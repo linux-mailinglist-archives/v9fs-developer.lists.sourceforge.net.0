@@ -2,82 +2,65 @@ Return-Path: <v9fs-developer-bounces@lists.sourceforge.net>
 X-Original-To: lists+v9fs-developer@lfdr.de
 Delivered-To: lists+v9fs-developer@lfdr.de
 Received: from lists.sourceforge.net (lists.sourceforge.net [216.105.38.7])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1FFB31433D
-	for <lists+v9fs-developer@lfdr.de>; Mon,  6 May 2019 02:42:08 +0200 (CEST)
-Received: from [127.0.0.1] (helo=sfs-ml-4.v29.lw.sourceforge.com)
-	by sfs-ml-4.v29.lw.sourceforge.com with esmtp (Exim 4.90_1)
+	by mail.lfdr.de (Postfix) with ESMTPS id DE0941F7E5
+	for <lists+v9fs-developer@lfdr.de>; Wed, 15 May 2019 17:42:20 +0200 (CEST)
+Received: from [127.0.0.1] (helo=sfs-ml-1.v29.lw.sourceforge.com)
+	by sfs-ml-1.v29.lw.sourceforge.com with esmtp (Exim 4.90_1)
 	(envelope-from <v9fs-developer-bounces@lists.sourceforge.net>)
-	id 1hNRhj-00023V-0M; Mon, 06 May 2019 00:42:03 +0000
+	id 1hQw2r-0006PS-1W; Wed, 15 May 2019 15:42:17 +0000
 Received: from [172.30.20.202] (helo=mx.sourceforge.net)
- by sfs-ml-4.v29.lw.sourceforge.com with esmtps
+ by sfs-ml-1.v29.lw.sourceforge.com with esmtps
  (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.90_1)
- (envelope-from <desarrollo@ccomercial.com.co>) id 1hNRhf-000239-Ng
- for v9fs-developer@lists.sourceforge.net; Mon, 06 May 2019 00:42:01 +0000
+ (envelope-from <asmadeus@notk.org>) id 1hQw2q-0006PD-Cq
+ for v9fs-developer@lists.sourceforge.net; Wed, 15 May 2019 15:42:16 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=sourceforge.net; s=x; h=Content-Type:Content-Transfer-Encoding:MIME-Version
- :Message-ID:Subject:Reply-To:From:To:Date:Sender:Cc:Content-ID:
- Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
- :Resent-Message-ID:In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:
+ d=sourceforge.net; s=x; h=In-Reply-To:Content-Type:MIME-Version:References:
+ Message-ID:Subject:Cc:To:From:Date:Sender:Reply-To:Content-Transfer-Encoding:
+ Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+ Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
  List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=WN6yIFOwPPyZf1OhJhA6YsARq7sevbP8vSFP9n4PtH8=; b=HZTCjwbDN34devw9HvqjFJIiDS
- x20gLDKQ9PF6sCw5tDCkW4djeuPWnu4FjwFUqdEHQTvWAZqJKTmIevV74ZBb/0I2RW/NznTDNMP3X
- TMwXSP9vGun0WYcBC0MyqgG/emcec42/psbeWtPeB3Bv5KaJwmCHMzyu3uNp5YHCHdCM=;
+ bh=Ip4I/Qyzt04ExpNMDEOxnbYGYQe75Qu74f+fj8SYBlc=; b=f2ZotrX0RypYNf8hrOY1qwDZl8
+ NfLiDEakRP/fskErZRT/xfbcElpQXLCfON34dax1IFB/7CM4G2qr9FbE6Bue4EjM9aqZQbBdOFcS4
+ 17274tR0zpf4j4isj/9h2KFABCkHuMOW2kff/jPVrVnamsSBb2kG3MpGNXjNDr+YBOJI=;
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  ;
- h=Content-Type:Content-Transfer-Encoding:MIME-Version:Message-ID:Subject:
- Reply-To:From:To:Date:Sender:Cc:Content-ID:Content-Description:Resent-Date:
- Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:
- References:List-Id:List-Help:List-Unsubscribe:List-Subscribe:List-Post:
- List-Owner:List-Archive; bh=WN6yIFOwPPyZf1OhJhA6YsARq7sevbP8vSFP9n4PtH8=; b=i
- YL/9muHnA8cc4LuTtHbrdsgpOc9LzSkw39X9kTjR6klHB0bUwQUAZVCHxPnfEQCKvV3JLQNbU4WFB
- M3gVYrt9AoAasQm949CO2mQ0IbG3y2c696cjsBL347Zbb7zb/GZ1tc18ij6L/QJ4NKG5D5d7+GIIV
- 7f6hLc0V5oGf4VkE=;
-Received: from [212.83.188.139] (helo=host-ccomercial.ccomercialmedellin.com)
+ h=In-Reply-To:Content-Type:MIME-Version:References:Message-ID:Subject:Cc:To
+ :From:Date:Sender:Reply-To:Content-Transfer-Encoding:Content-ID:
+ Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
+ :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
+ List-Post:List-Owner:List-Archive;
+ bh=Ip4I/Qyzt04ExpNMDEOxnbYGYQe75Qu74f+fj8SYBlc=; b=ImiWrUY0YPKn7ceqw2gbJOB1y4
+ 1wi0vUTGLgwHXUuVe2ZislsmUERV4qViw523eT3s6LeWVHEJ9ziyhX2UFJD9zfdmLi0BzBp4xDRvf
+ k1YI4Ix2uH/QN62wyrfgjMZDIlxvdsLn9oulRfeIksvPohjJiWfnxxtWFunXhMN+NEuA=;
+Received: from nautica.notk.org ([91.121.71.147])
  by sfi-mx-1.v28.lw.sourceforge.com with esmtps
  (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.90_1)
- id 1hNRhW-009sip-8v
- for v9fs-developer@lists.sourceforge.net; Mon, 06 May 2019 00:41:59 +0000
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=construccionesydemoliciones.com; s=default; h=Content-Type:
- Content-Transfer-Encoding:MIME-Version:Message-ID:Subject:Reply-To:From:To:
- Date:Sender:Cc:Content-ID:Content-Description:Resent-Date:Resent-From:
- Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
- List-Id:List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:
- List-Archive; bh=WN6yIFOwPPyZf1OhJhA6YsARq7sevbP8vSFP9n4PtH8=; b=ioHuggBPggEh
- fGvcFxfFpNpORc9VUTNs7Pur8Rk66988qf711GLdIUjlhp8DAHTB/PhUqkFPRCXgCKceHCnQJlhS2
- EeUt8jZDrM8+20whf7PF0tA9IJj4MsZ5jIQ1OIqQ7vgymuV/3Dm54pymCVhMnbFDzgjTukRWBXBSg
- bpTjw=;
-Received: from [::1] (port=58708 helo=www.construccionesydemoliciones.com)
- by host-ccomercial.ccomercialmedellin.com with esmtp (Exim 4.91)
- (envelope-from <desarrollo@ccomercial.com.co>) id 1hNR6h-00599P-JO
- for v9fs-developer@lists.sourceforge.net; Sun, 05 May 2019 19:03:47 -0500
-Date: Mon, 6 May 2019 00:03:47 +0000
-To: v9fs-developer@lists.sourceforge.net
-From: =?utf-8?Q?Construcci=C3=B3n_y_Demolici=C3=B3n?=
- <desarrollo@ccomercial.com.co>
-Message-ID: <c885930250778d37264d384ad9242867@www.construccionesydemoliciones.com>
-X-Priority: 3
-X-Mailer: PHPMailer 5.2.1
- (http://code.google.com/a/apache-extras.org/p/phpmailer/)
+ id 1hQw2o-004uJ7-6A
+ for v9fs-developer@lists.sourceforge.net; Wed, 15 May 2019 15:42:16 +0000
+Received: by nautica.notk.org (Postfix, from userid 1001)
+ id 5AFDDC009; Wed, 15 May 2019 17:42:07 +0200 (CEST)
+Date: Wed, 15 May 2019 17:41:52 +0200
+From: Dominique Martinet <asmadeus@codewreck.org>
+To: YueHaibing <yuehaibing@huawei.com>
+Message-ID: <20190515154152.GA29826@nautica>
+References: <20190430143933.19368-1-yuehaibing@huawei.com>
 MIME-Version: 1.0
-X-AntiAbuse: This header was added to track abuse,
- please include it with any abuse report
-X-AntiAbuse: Primary Hostname - host-ccomercial.ccomercialmedellin.com
-X-AntiAbuse: Original Domain - lists.sourceforge.net
-X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
-X-AntiAbuse: Sender Address Domain - ccomercial.com.co
-X-Get-Message-Sender-Via: host-ccomercial.ccomercialmedellin.com: acl_c_authenticated_local_user:
- construc
-X-Authenticated-Sender: host-ccomercial.ccomercialmedellin.com: construc
-X-Spam-Score: 1.0 (+)
+Content-Disposition: inline
+In-Reply-To: <20190430143933.19368-1-yuehaibing@huawei.com>
+User-Agent: Mutt/1.5.21 (2010-09-15)
+X-Spam-Score: 0.0 (/)
 X-Spam-Report: Spam Filtering performed by mx.sourceforge.net.
  See http://spamassassin.org/tag/ for more details.
- -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
- 0.1 DKIM_SIGNED            Message has a DKIM or DK signature,
- not necessarily valid
- 1.0 RDNS_NONE Delivered to internal network by a host with no rDNS
-X-Headers-End: 1hNRhW-009sip-8v
-Subject: [V9fs-developer] Copia de: Beautiful women for sex in your town
+ 0.0 URIBL_BLOCKED ADMINISTRATOR NOTICE: The query to URIBL was blocked.
+ See
+ http://wiki.apache.org/spamassassin/DnsBlocklists#dnsbl-block
+ for more information. [URIs: huawei.com]
+ 0.0 HEADER_FROM_DIFFERENT_DOMAINS From and EnvelopeFrom 2nd level mail
+ domains are different
+ -0.0 SPF_PASS               SPF: sender matches SPF record
+X-Headers-End: 1hQw2o-004uJ7-6A
+Subject: Re: [V9fs-developer] [PATCH -next] 9p/xen: Add cleanup path in
+ p9_trans_xen_init
 X-BeenThere: v9fs-developer@lists.sourceforge.net
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -89,17 +72,27 @@ List-Post: <mailto:v9fs-developer@lists.sourceforge.net>
 List-Help: <mailto:v9fs-developer-request@lists.sourceforge.net?subject=help>
 List-Subscribe: <https://lists.sourceforge.net/lists/listinfo/v9fs-developer>, 
  <mailto:v9fs-developer-request@lists.sourceforge.net?subject=subscribe>
-Reply-To: ClintonEvace <v9fs-developer@lists.sourceforge.net>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Cc: lucho@ionkov.net, ericvh@gmail.com, netdev@vger.kernel.org,
+ linux-kernel@vger.kernel.org, v9fs-developer@lists.sourceforge.net,
+ davem@davemloft.net
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: v9fs-developer-bounces@lists.sourceforge.net
 
-CkVzdG8gZXMgdW5hIGNvcGlhIGRlbCBtZW5zYWplIHF1ZSBlbnZpw7MgYSBDb250w6FjdGVub3Mg
-dsOtYSBDb25zdHJ1Y2Npw7NuIHkgRGVtb2xpY2nDs24KCkVzdG8gZXMgdW5hIHBldGljacOzbiBk
-ZSBjb3JyZW8gdsOtYSBodHRwczovL3d3dy5jb25zdHJ1Y2Npb25lc3lkZW1vbGljaW9uZXMuY29t
-LyBkZToKQ2xpbnRvbkV2YWNlIDx2OWZzLWRldmVsb3BlckBsaXN0cy5zb3VyY2Vmb3JnZS5uZXQ+
-CgpCZWF1dGlmdWwgZ2lybHMgZm9yIHNleCBpbiB5b3VyIGNpdHk6IGh0dHBzOi8vYWFhLm1vZGEv
-YmVzdGFkdWx0ZGF0aW5nMjcyNDIKCgoKCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fClY5ZnMtZGV2ZWxvcGVyIG1haWxpbmcgbGlzdApWOWZzLWRldmVsb3Bl
-ckBsaXN0cy5zb3VyY2Vmb3JnZS5uZXQKaHR0cHM6Ly9saXN0cy5zb3VyY2Vmb3JnZS5uZXQvbGlz
-dHMvbGlzdGluZm8vdjlmcy1kZXZlbG9wZXIK
+YueHaibing wrote on Tue, Apr 30, 2019:
+> If xenbus_register_frontend() fails in p9_trans_xen_init,
+> we should call v9fs_unregister_trans() to do cleanup.
+> 
+> Fixes: 868eb122739a ("xen/9pfs: introduce Xen 9pfs transport driver")
+> Signed-off-by: YueHaibing <yuehaibing@huawei.com>
+
+Thanks, queued both in my repo - sorry for the delay.
+
+-- 
+Dominique
+
+
+_______________________________________________
+V9fs-developer mailing list
+V9fs-developer@lists.sourceforge.net
+https://lists.sourceforge.net/lists/listinfo/v9fs-developer
