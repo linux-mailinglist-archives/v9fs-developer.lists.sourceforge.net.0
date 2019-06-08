@@ -2,79 +2,85 @@ Return-Path: <v9fs-developer-bounces@lists.sourceforge.net>
 X-Original-To: lists+v9fs-developer@lfdr.de
 Delivered-To: lists+v9fs-developer@lfdr.de
 Received: from lists.sourceforge.net (lists.sourceforge.net [216.105.38.7])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4E86439506
-	for <lists+v9fs-developer@lfdr.de>; Fri,  7 Jun 2019 20:57:19 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.sourceforge.net; s=beta; h=Content-Transfer-Encoding:Content-Type:
-	MIME-Version:Cc:Reply-To:From:List-Subscribe:List-Help:List-Post:List-Archive
-	:List-Unsubscribe:List-Id:Subject:Date:Message-Id:To:Sender:Content-ID:
-	Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
-	:Resent-Message-ID:In-Reply-To:References:List-Owner;
-	bh=mr04UvSWkDXNLf2KWNXmTLlCFoafhv8C3sB2wBqY3zY=; b=csQuAfGFHDupEmJ3kWgGRF1IRa
-	Y8hkMW2UKqigu0lDlV4Jpsv4kh3n8VSGqHbIDYVSkIHM4OEkAjeWHWW7TSdnAu/6RmzaUQjrdL+IQ
-	NJJhYLYili3u7PBPXD8doT+tdk1D6OaQ56RkbvUw0olDThcHSeHhHKctjwy9vVVuLX4c=;
-Received: from [127.0.0.1] (helo=sfs-ml-1.v29.lw.sourceforge.com)
-	by sfs-ml-1.v29.lw.sourceforge.com with esmtp (Exim 4.90_1)
+	by mail.lfdr.de (Postfix) with ESMTPS id A46DF3A0D4
+	for <lists+v9fs-developer@lfdr.de>; Sat,  8 Jun 2019 19:03:08 +0200 (CEST)
+Received: from [127.0.0.1] (helo=sfs-ml-4.v29.lw.sourceforge.com)
+	by sfs-ml-4.v29.lw.sourceforge.com with esmtp (Exim 4.90_1)
 	(envelope-from <v9fs-developer-bounces@lists.sourceforge.net>)
-	id 1hZK38-0003bJ-Ii; Fri, 07 Jun 2019 18:57:14 +0000
+	id 1hZekB-00031q-0g; Sat, 08 Jun 2019 17:03:03 +0000
 Received: from [172.30.20.202] (helo=mx.sourceforge.net)
- by sfs-ml-1.v29.lw.sourceforge.com with esmtps
+ by sfs-ml-4.v29.lw.sourceforge.com with esmtps
  (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.90_1)
- (envelope-from <wouicynajwm@yahoo.com>) id 1hZK37-0003b5-Np
- for v9fs-developer@lists.sourceforge.net; Fri, 07 Jun 2019 18:57:13 +0000
+ (envelope-from <infos@roulement.site>) id 1hZek9-00031Z-3p
+ for v9fs-developer@lists.sourceforge.net; Sat, 08 Jun 2019 17:03:01 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=sourceforge.net; s=x; h=Date:Message-Id:Subject:Reply-To:To:From:Sender:Cc:
- MIME-Version:Content-Type:Content-Transfer-Encoding:Content-ID:
+ d=sourceforge.net; s=x; h=Content-Transfer-Encoding:Content-Type:MIME-Version
+ :Message-ID:Subject:From:To:Date:Sender:Reply-To:Cc:Content-ID:
  Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
  :Resent-Message-ID:In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:
  List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=uRKRrgQXag2b64w+AmkD6HrZ+/uMZIJUXAPqrlmrOqU=; b=kQ/LOMdnju2KBoyjYViTGg5ZXJ
- k8m7v7CltBlAVSSFWaEG5zAfR7/unVVkYgHkVC0ALVZqipUD6vefJ9pYn4DC5QNjXsDFxRShMD0s4
- YACnb8tj+Jm7SAD/vTehkWqhU1Y3yAzxkIkkV6Bw2u9Ym+qHQ5US9AERBx7fKhL3Vxzs=;
+ bh=PUDatyiGFF4Y2CsTgrU9V45/dGUkbIkIMp4sDDDbN+A=; b=kL77oqTsgfs3qLVUxd5mLnegFj
+ j3PkL8vzefXBX1Wjh7KhdfVVH+wAFsMHbkK9GBIR7UFfph1pnfhUiW62vqYUeRkh4143JoTCqZnIk
+ gITdA7jKNh/b3mp0zqi/Uffwohv+vfHe7J42XqdnGPjOnlVGpY3ONIlcMvL05SYBNt44=;
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  ;
- h=Date:Message-Id:Subject:Reply-To:To:From:Sender:Cc:MIME-Version:
- Content-Type:Content-Transfer-Encoding:Content-ID:Content-Description:
- Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
- In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
- List-Post:List-Owner:List-Archive;
- bh=uRKRrgQXag2b64w+AmkD6HrZ+/uMZIJUXAPqrlmrOqU=; b=cD7fCF1HZS+ka1264480PtM0+5
- QBG7+2wL11E7HiKaew0E5oRHAUZdj1Tgyhhl4A2W4hURMfNvtQ6LxFEt95F3x0/6/O8ysmfgjolHf
- K3oRiI95RzT+wAdnIZalB2eH4jg3pZwoVu6dFKAdy0HNe1VCtAgbKRDt8BAwUBpNnMlY=;
-Received: from [178.128.40.87] (helo=TEST.localdomain)
- by sfi-mx-3.v28.lw.sourceforge.com with esmtp (Exim 4.90_1)
- id 1hZK36-000GgG-DH
- for v9fs-developer@lists.sourceforge.net; Fri, 07 Jun 2019 18:57:13 +0000
-Received: from localhost (TEST [127.0.0.1])
- by TEST.localdomain (Postfix) with SMTP id C8ED012293D
+ h=Content-Transfer-Encoding:Content-Type:MIME-Version:Message-ID:Subject:
+ From:To:Date:Sender:Reply-To:Cc:Content-ID:Content-Description:Resent-Date:
+ Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:
+ References:List-Id:List-Help:List-Unsubscribe:List-Subscribe:List-Post:
+ List-Owner:List-Archive; bh=PUDatyiGFF4Y2CsTgrU9V45/dGUkbIkIMp4sDDDbN+A=; b=P
+ uN0IiG9GVt3oUctLWMaZMMCba50wZkPqZnNA5WHDVB/90znXcj5OlUAwSphvrgk3VVbliGLeEWgE5
+ CSpiTqmKPcPZ4qf87WpSYbU+6Jvz6DcnF5NQ+o1+MO6Ze1P3QAcgMqVGHMhYHL/4PJYw9jrecmBij
+ fqTlIouNkq6U67Kc=;
+Received: from smtp5-g21.free.fr ([212.27.42.5])
+ by sfi-mx-3.v28.lw.sourceforge.com with esmtps
+ (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.90_1)
+ id 1hZek4-002U98-7s
+ for v9fs-developer@lists.sourceforge.net; Sat, 08 Jun 2019 17:03:01 +0000
+Received: from clanique (unknown [37.169.173.218])
+ by smtp5-g21.free.fr (Postfix) with ESMTP id F31365FF7A
  for <v9fs-developer@lists.sourceforge.net>;
- Fri,  7 Jun 2019 18:15:01 +0000 (UTC)
+ Sat,  8 Jun 2019 19:02:48 +0200 (CEST)
+Date: Sat, 8 Jun 2019 19:02:38 +0200
 To: v9fs-developer@lists.sourceforge.net
-Message-Id: <20190607181501.C8ED012293D@TEST.localdomain>
-Date: Fri,  7 Jun 2019 18:15:01 +0000 (UTC)
-X-Helo-Check: bad, Forged Fake (TEST.localdomain)
-X-Spam-Score: 6.0 (++++++)
+From: Accountancy services <infos@roulement.site>
+Message-ID: <95b55398f5de69f8cd6ccf048dfb1555@clanique>
+X-Priority: 3
+X-Mailer: atravers
+MIME-Version: 1.0
+DKIM-Signature: v=1; a=rsa-sha1; q=dns/txt; l=9936; s=default;
+ t=1560013358; c=relaxed/simple; h=From:To:Subject;
+ d=roulement.site; i=infos@roulement.site;
+ z=From:=20Accountancy=20services=20<infos@roulement.site>
+ |To:=20v9fs-developer@lists.sourceforge.net
+ |Subject:=20Get=20unlimited=20services;
+ bh=Wnl8K4s/EC1BpODMa00GYtPMTTg=;
+ b=GdLRTTFBO52MqBqe5XK8GGfxlNtpccnNOoHSvGF+NjE9uPFJ6Xa0fad/aN73VXEgVz4xSC+ufWCqaM/8UbapbLw4xY4E8SsZ1AaWU9M6M2+8R66AgAwJqxDHqGHaz0ylDhugptULualaNITeQpfsRDV1Gv/3IaoN6OP74ZflAJo=
+X-Spam-Score: 3.3 (+++)
 X-Spam-Report: Spam Filtering performed by mx.sourceforge.net.
  See http://spamassassin.org/tag/ for more details.
- 0.5 VA_HELO_CHECK          Host Used Invalid or Forged HELO/EHLO
- 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail provider
- (wouicynajwm[at]yahoo.com)
- 1.1 DKIM_ADSP_ALL          No valid author signature, domain signs all mail
- 0.0 HEADER_FROM_DIFFERENT_DOMAINS From and EnvelopeFrom 2nd level mail
- domains are different
- 0.0 RCVD_IN_SORBS_DUL      RBL: SORBS: sent directly from dynamic IP address
- [178.128.40.87 listed in dnsbl.sorbs.net]
- 0.7 SPF_NEUTRAL            SPF: sender does not match SPF record (neutral)
+ -0.0 RCVD_IN_DNSWL_NONE     RBL: Sender listed at https://www.dnswl.org/, no
+ trust [212.27.42.5 listed in list.dnswl.org]
+ -0.7 RCVD_IN_MSPIKE_H2      RBL: Average reputation (+2)
+ [212.27.42.5 listed in wl.mailspike.net]
+ -0.0 SPF_PASS               SPF: sender matches SPF record
  0.0 SPF_HELO_NONE          SPF: HELO does not publish an SPF Record
- 0.0 FREEMAIL_FORGED_FROMDOMAIN 2nd level domains in From and EnvelopeFrom
- freemail headers are different
- 1.0 RDNS_NONE Delivered to internal network by a host with no rDNS
- 0.3 PLING_QUERY            Subject has exclamation mark and question mark
- 0.0 TVD_SPACE_RATIO        No description available.
- 2.5 TVD_SPACE_RATIO_MINFP  Space ratio
-X-Headers-End: 1hZK36-000GgG-DH
-Subject: [V9fs-developer] Zdravstvuyte! Vas interesuyut kliyentskiye bazy
- dannykh?
+ 0.0 MIME_HTML_MOSTLY       BODY: Multipart message mostly text/html MIME
+ 1.0 HTML_MESSAGE           BODY: HTML included in message
+ 0.7 MPART_ALT_DIFF         BODY: HTML and text parts are different
+ -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from author's
+ domain
+ -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+ 0.1 DKIM_SIGNED            Message has a DKIM or DK signature,
+ not necessarily valid
+ 0.5 RAZOR2_CHECK           Listed in Razor2 (http://razor.sf.net/)
+ 1.5 RAZOR2_CF_RANGE_51_100 Razor2 gives confidence level above 50%
+ [cf: 100]
+ 0.0 T_REMOTE_IMAGE         Message contains an external image
+ 0.3 AWL AWL: Adjusted score from AWL reputation of From: address
+X-Headers-End: 1hZek4-002U98-7s
+X-Content-Filtered-By: Mailman/MimeDel 2.1.21
+Subject: [V9fs-developer] Get unlimited services
 X-BeenThere: v9fs-developer@lists.sourceforge.net
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -86,19 +92,11 @@ List-Post: <mailto:v9fs-developer@lists.sourceforge.net>
 List-Help: <mailto:v9fs-developer-request@lists.sourceforge.net?subject=help>
 List-Subscribe: <https://lists.sourceforge.net/lists/listinfo/v9fs-developer>, 
  <mailto:v9fs-developer-request@lists.sourceforge.net?subject=subscribe>
-From: v9fs-developer--- via V9fs-developer
- <v9fs-developer@lists.sourceforge.net>
-Reply-To: prodawez@armyspy.com
-Cc: v9fs-developer@lists.sourceforge.net
-MIME-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: v9fs-developer-bounces@lists.sourceforge.net
 
-Zdravstvuyte! Vas interesuyut kliyentskiye bazy dannykh?
-
-
-
+accountancy
 
 
 _______________________________________________
