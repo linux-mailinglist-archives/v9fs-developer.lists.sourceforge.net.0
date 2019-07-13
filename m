@@ -2,64 +2,72 @@ Return-Path: <v9fs-developer-bounces@lists.sourceforge.net>
 X-Original-To: lists+v9fs-developer@lfdr.de
 Delivered-To: lists+v9fs-developer@lfdr.de
 Received: from lists.sourceforge.net (lists.sourceforge.net [216.105.38.7])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9A104698EC
-	for <lists+v9fs-developer@lfdr.de>; Mon, 15 Jul 2019 18:15:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id DFD4169A89
+	for <lists+v9fs-developer@lfdr.de>; Mon, 15 Jul 2019 20:09:09 +0200 (CEST)
 Received: from [127.0.0.1] (helo=sfs-ml-2.v29.lw.sourceforge.com)
 	by sfs-ml-2.v29.lw.sourceforge.com with esmtp (Exim 4.90_1)
 	(envelope-from <v9fs-developer-bounces@lists.sourceforge.net>)
-	id 1hn3dP-00079D-1w; Mon, 15 Jul 2019 16:15:27 +0000
+	id 1hn5PN-0003mb-M5; Mon, 15 Jul 2019 18:09:05 +0000
 Received: from [172.30.20.202] (helo=mx.sourceforge.net)
  by sfs-ml-2.v29.lw.sourceforge.com with esmtps
  (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.90_1)
- (envelope-from <asmadeus@notk.org>) id 1hn3dM-000792-Vy
- for v9fs-developer@lists.sourceforge.net; Mon, 15 Jul 2019 16:15:24 +0000
+ (envelope-from <sgalarza@cisecuador.com>) id 1hn5PM-0003mS-6j
+ for v9fs-developer@lists.sourceforge.net; Mon, 15 Jul 2019 18:09:04 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=sourceforge.net; s=x; h=In-Reply-To:Content-Type:MIME-Version:References:
- Message-ID:Subject:Cc:To:From:Date:Sender:Reply-To:Content-Transfer-Encoding:
- Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
- Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
+ d=sourceforge.net; s=x; h=Reply-To:Date:From:To:Subject:MIME-Version:
+ Content-Type:Message-Id:Sender:Cc:Content-Transfer-Encoding:Content-ID:
+ Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
+ :Resent-Message-ID:In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:
  List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=fEegpl76PM4en662BvPYyPBz9VMdu1BhUMK1t9dX88o=; b=OqxNRiwdKwXwGAHlV32zntFzap
- EpbmihjDqW5OzdpykU3kh0dVsM7Zlabkl8X5CV3VLBRKJVamNijqn3Oxy556ho6sSM9UouRzzVT8A
- XR96iBKHHOVAEC1AS1+/ZvhA+LBeZzbSasbzk6d8lyYJD33utz46YPr66gvlW2hHz9t4=;
+ bh=myeIWKWzn1wNUTrAwXUV9yMGPkdQV6rUsiCA9aBjYrw=; b=Ue5VBw16kaVSuimf8YdVZizp4D
+ poTI1E3kB7IL0UvE7u6HeNM//NW3G1N8onOgFChu6tkUz2fkV5eTsD0KnNSzIB2TmDbOSQNs5Zkeq
+ EXRp44H51PC/vbL6RQKzLmu5aV6KqkmIQ16Tc5T7uqzFn9BUutsFcpa6lwjJuA8HFIFc=;
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  ;
- h=In-Reply-To:Content-Type:MIME-Version:References:Message-ID:Subject:Cc:To
- :From:Date:Sender:Reply-To:Content-Transfer-Encoding:Content-ID:
- Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
- :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
- List-Post:List-Owner:List-Archive;
- bh=fEegpl76PM4en662BvPYyPBz9VMdu1BhUMK1t9dX88o=; b=Z3VMDOCt/bFYvpx8IlgHtWgooc
- tRnobssHTSKcIxeVaCJ4vSNGjVnVY7sEQbmCJz3p8mGbfC6EYU0Tx77Yep2wclUVIppvvuKNO38l0
- i9wmJb1P85wdwoFQVOmTRQeFP0uDAqZFSY9futRc3CtgZlhXlsIgHiBrosyKGSPC+PbY=;
-Received: from nautica.notk.org ([91.121.71.147])
- by sfi-mx-3.v28.lw.sourceforge.com with esmtps
- (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.90_1)
- id 1hn3dK-002Uzq-Ot
- for v9fs-developer@lists.sourceforge.net; Mon, 15 Jul 2019 16:15:24 +0000
-Received: by nautica.notk.org (Postfix, from userid 1001)
- id 0ECD7C01B; Mon, 15 Jul 2019 18:15:16 +0200 (CEST)
-Date: Mon, 15 Jul 2019 18:15:01 +0200
-From: Dominique Martinet <asmadeus@codewreck.org>
-To: Matthieu Baerts <matthieu.baerts@tessares.net>
-Message-ID: <20190715161501.GA6535@nautica>
-References: <0757f061-0685-6e8e-9e6f-035d0f57eaf8@tessares.net>
- <20190715113251.GA28601@nautica>
- <f6513948-312e-2edb-44e7-40217741e9ba@tessares.net>
+ h=Reply-To:Date:From:To:Subject:MIME-Version:Content-Type:Message-Id:Sender
+ :Cc:Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+ Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:
+ References:List-Id:List-Help:List-Unsubscribe:List-Subscribe:List-Post:
+ List-Owner:List-Archive; bh=myeIWKWzn1wNUTrAwXUV9yMGPkdQV6rUsiCA9aBjYrw=; b=g
+ K3cH9vIa+ApclvtoCM5lj9xzy4eq5TV256XGKyVeK+5ISlSLEimFu8hWz2q1iaPeydqWaoTmbFsIF
+ S2LQ4BLcXJwsfo/YM400l1eCFpe1mCTz1GQJ5KOQWgcXwcinB9ql8GPZ35nd18oktEHXoku7yEu/f
+ kODyyr6n+YpKGxmY=;
+Received: from mail.cisecuador.com ([181.112.216.114])
+ by sfi-mx-4.v28.lw.sourceforge.com with esmtps (TLSv1:DHE-RSA-AES256-SHA:256)
+ (Exim 4.90_1) id 1hn5PK-002EyA-G5
+ for v9fs-developer@lists.sourceforge.net; Mon, 15 Jul 2019 18:09:04 +0000
+Received: from [102.165.33.185]
+ ([102.165.33.185])(authenticated)bymail.cisecuador.com (MYOB) with ESMTP id
+ x6DJoo1X014697for <v9fs-developer@lists.sourceforge.net>;
+ Sat, 13 Jul 2019 15:22:39 -0500
+Message-Id: <201907132022.x6DJoo1X014697@mail.cisecuador.com>
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <f6513948-312e-2edb-44e7-40217741e9ba@tessares.net>
-User-Agent: Mutt/1.5.21 (2010-09-15)
-X-Spam-Score: 0.2 (/)
+To: v9fs-developer@lists.sourceforge.net
+From: "Mariah Hills" <sgalarza@cisecuador.com>
+Date: Sat, 13 Jul 2019 13:22:23 -0700
+X-KypusServerAppliance-Kypus-MailProtection-Information: please contact your
+ Internet E-Mail Service Provider for details
+X-KypusServerAppliance-Kypus-MailProtection: Not scanned: please contact your
+ Internet E-Mail Service Provider for details
+X-Kypus-MailProtection-MCPCheck: 
+X-Kypus-MailProtection-From: sgalarza@cisecuador.com
+X-Spam-Score: 5.8 (+++++)
 X-Spam-Report: Spam Filtering performed by mx.sourceforge.net.
  See http://spamassassin.org/tag/ for more details.
- 0.2 HEADER_FROM_DIFFERENT_DOMAINS From and EnvelopeFrom 2nd level mail
- domains are different
- -0.0 SPF_PASS               SPF: sender matches SPF record
+ -0.0 RCVD_IN_DNSWL_NONE     RBL: Sender listed at https://www.dnswl.org/, no
+ trust [181.112.216.114 listed in list.dnswl.org]
+ 0.0 SPF_NONE               SPF: sender does not publish an SPF Record
  0.0 SPF_HELO_NONE          SPF: HELO does not publish an SPF Record
- 0.0 AWL AWL: Adjusted score from AWL reputation of From: address
-X-Headers-End: 1hn3dK-002Uzq-Ot
-Subject: Re: [V9fs-developer] New KASAN warnings with kernel v4.14.133
+ 0.2 FREEMAIL_REPLYTO_END_DIGIT Reply-To freemail username ends in digit
+ (mariahhills00[at]gmail.com)
+ 1.0 HTML_MESSAGE           BODY: HTML included in message
+ 0.0 UNPARSEABLE_RELAY Informational: message has unparseable relay lines
+ 2.0 HK_SCAM                No description available.
+ 2.5 FREEMAIL_FORGED_REPLYTO Freemail in Reply-To, but not From
+X-Headers-End: 1hn5PK-002EyA-G5
+Content-Description: Mail message body
+X-Content-Filtered-By: Mailman/MimeDel 2.1.21
+Subject: [V9fs-developer] Business Proposal
 X-BeenThere: v9fs-developer@lists.sourceforge.net
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -71,69 +79,22 @@ List-Post: <mailto:v9fs-developer@lists.sourceforge.net>
 List-Help: <mailto:v9fs-developer-request@lists.sourceforge.net?subject=help>
 List-Subscribe: <https://lists.sourceforge.net/lists/listinfo/v9fs-developer>, 
  <mailto:v9fs-developer-request@lists.sourceforge.net?subject=subscribe>
-Cc: Sasha Levin <sashal@kernel.org>, v9fs-developer@lists.sourceforge.net
+Reply-To: mariahhills00@gmail.com
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: v9fs-developer-bounces@lists.sourceforge.net
 
-Matthieu Baerts wrote on Mon, Jul 15, 2019:
-> > There are two things bugging me there:
-> >  - why does the trace speak of v9fs_vfs_get_link and not
-> > v9fs_vfs_get_link_dotl , from what I'm seeing of the code the
-> > v9fs_symlink_inode_operations_dotl is properly assigned so I don't see
-> > why you'd have mixed dotl and non-dotl calls. This might be a hint to
-> > some other problem.
-> >  - KASAN complains about a read in the p9dirent_read's strscpy, so
-> > 'nameptr' - the "allocated by task 330" stack corresponds as p9pdu_readf
-> > does allocate 'nameptr', but it's a 100% local pointer that's never
-> > stored anywhere else and shouldn't be free-able by p9stat_free which
-> > could free only free something from p9pdu_readf's 'S', not present in
-> > "Qqbs".
-> > (the corresponding 'S' in v9fs_vfs_get_link is p9_client_stat, but even
-> > if we're looking at the same fid I really do not see how it could get
-> > the same pointer as nameptr here)
-> > 
-> > I'd need to look deeper into a crash dump to understand this better,
-> > will try to reproduce on a fresh 4.14.133 with your mount command...
-> 
-> Thank you for your analysis and for looking at that!
-> 
-> I can maybe revert the 6 new patches related to 9P and check if I still
-> have the issue with KASAN.
-> Do you suspect one of them to cause this issue?
-
-The only one that might be related is "9p: p9dirent_read: check
-network-provided name length" ; but even that likely shouldn't kick in.
-
-You can check if it was implied by adding debug=1 to your 9p mount
-options, assuming it is compiled with debugs (I still plan on making
-that the default eventually as debug=1 only enables *error* messages)
-
-> > Do you have any idea what kind of access pattern 'confd' does on top
-> > of your mount?
-> 
-> I don't have the details but it is supposed to be used to collect data
-> from SNMP counters. Apparently, it is collecting info from
-> HOST-RESOURCES-MIB. From what I see, it is linked to the RFC 2790 and it
-> is getting many stats from the FS but I don't have the details. I heard
-> that it might be reproducible using snmpd and snmpwalk but I don't know
-> more.
-> 
-> If you think it is important, I can ask around and try to get more info.
-
-Well, just mounting won't reproduce, so I definitely need some kind of
-hint of what is happening if I'd want to have a chance.
-
-Looking at the traces I suspect it has to do with readlink on a symlink
-at the same time as it gets stat'd by another process but I didn't spend
-much time trying yet.
-
-The first step to understanding a bug is to know how it happens exactly
-:)
-
--- 
-Dominique
-
+Good day,
+  
+ 
+I have a business to discuss with you. *Please do not ignore this message, just let me know you received it and I will tell you more about this business which will benefit the both of us.
+ 
+ 
+Thanks and I look forward to read from you soon.
+ 
+ 
+Warm Regards
+Mariah Hills.
 
 _______________________________________________
 V9fs-developer mailing list
