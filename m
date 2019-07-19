@@ -2,26 +2,26 @@ Return-Path: <v9fs-developer-bounces@lists.sourceforge.net>
 X-Original-To: lists+v9fs-developer@lfdr.de
 Delivered-To: lists+v9fs-developer@lfdr.de
 Received: from lists.sourceforge.net (lists.sourceforge.net [216.105.38.7])
-	by mail.lfdr.de (Postfix) with ESMTPS id C01386DBFB
-	for <lists+v9fs-developer@lfdr.de>; Fri, 19 Jul 2019 06:13:04 +0200 (CEST)
-Received: from [127.0.0.1] (helo=sfs-ml-4.v29.lw.sourceforge.com)
-	by sfs-ml-4.v29.lw.sourceforge.com with esmtp (Exim 4.90_1)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5432C6DC23
+	for <lists+v9fs-developer@lfdr.de>; Fri, 19 Jul 2019 06:14:31 +0200 (CEST)
+Received: from [127.0.0.1] (helo=sfs-ml-1.v29.lw.sourceforge.com)
+	by sfs-ml-1.v29.lw.sourceforge.com with esmtp (Exim 4.90_1)
 	(envelope-from <v9fs-developer-bounces@lists.sourceforge.net>)
-	id 1hoKGT-0000Ag-SF; Fri, 19 Jul 2019 04:13:01 +0000
+	id 1hoKHs-0005fY-MO; Fri, 19 Jul 2019 04:14:28 +0000
 Received: from [172.30.20.202] (helo=mx.sourceforge.net)
- by sfs-ml-4.v29.lw.sourceforge.com with esmtps
+ by sfs-ml-1.v29.lw.sourceforge.com with esmtps
  (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.90_1)
- (envelope-from <sashal@kernel.org>) id 1hoKGS-0000AT-Kf
- for v9fs-developer@lists.sourceforge.net; Fri, 19 Jul 2019 04:13:00 +0000
+ (envelope-from <sashal@kernel.org>) id 1hoKHp-0005f8-FB
+ for v9fs-developer@lists.sourceforge.net; Fri, 19 Jul 2019 04:14:25 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
  d=sourceforge.net; s=x; h=Content-Transfer-Encoding:MIME-Version:References:
  In-Reply-To:Message-Id:Date:Subject:Cc:To:From:Sender:Reply-To:Content-Type:
  Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
  Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
  List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=YOTWfZf8AwJ/yV/5/9SPA7QnGn6Qg2ca55FZuSIMyCg=; b=BBwgoGekUFF1zzA2Qhq72jBIoq
- kU8jrapMyUnRjZUphluy1ewrMwtucawFWKfT+/oQ2NGhz8x6fOuK98qmqLdGySM13uCMHrD2W0rHS
- LxOp28B94fv+JPj2qtCuAOsBWFoMeVzY0VzjqgN2WRtXVyVhnKS8hK0dh1rsr13wB5H0=;
+ bh=lJ7sH3u3sqMWIJUdNssWkx/xIutGO9T9faemHhK5iyg=; b=MGt4G3nwYVDY1WZsU8B0Q2GcG8
+ fofbwgg3k9P86IMyIz8LaHk7vLRSDwu2LqD8LTRXQQiD4zSJhxgcU90o5rvWqO70d5NyjnV3MlQLk
+ 0Yqe11O+Xo7VHXT4eGJXNELYfRC7/mX7sZ41Dsj8WdYmxv/p0DXOB8CxHWZRcELE3LWA=;
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  ;
  h=Content-Transfer-Encoding:MIME-Version:References:In-Reply-To:Message-Id:
@@ -29,35 +29,35 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
  :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
  List-Post:List-Owner:List-Archive;
- bh=YOTWfZf8AwJ/yV/5/9SPA7QnGn6Qg2ca55FZuSIMyCg=; b=nTAna1qVis6Sb7jnanJxYuRSi3
- N87iEpBVt/KLvL3M9l89Q5LUUj6XknknFZkUgLM+eWGCLH5HcBxdgGpAWWITfxGLrAXjG/k6EbglI
- Z4l2hak/3D1YtVOcjWOiZLpmetayheNTozFfygDr6ANVjkDoaLwIVMieAHzHx2Ckpj0U=;
+ bh=lJ7sH3u3sqMWIJUdNssWkx/xIutGO9T9faemHhK5iyg=; b=H88cUq078ET++ofgzCIHCOPllL
+ KDMFJm+d0mTQShSmf/EdvUnwBbb6diAoN6kc6CHYj7mFA+ZqsJ7MPknpf+IIbMBvWShPEpLmOkClx
+ Y/eSpG1y2bdBq9K3O0GQXae9yo63oomFRGc2MN9eWmrpsJZVnQgSGytvOSudKcAhaV+I=;
 Received: from mail.kernel.org ([198.145.29.99])
- by sfi-mx-1.v28.lw.sourceforge.com with esmtps
+ by sfi-mx-3.v28.lw.sourceforge.com with esmtps
  (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.90_1)
- id 1hoKGR-007lsE-AU
- for v9fs-developer@lists.sourceforge.net; Fri, 19 Jul 2019 04:13:00 +0000
+ id 1hoKHo-00716D-5R
+ for v9fs-developer@lists.sourceforge.net; Fri, 19 Jul 2019 04:14:25 +0000
 Received: from sasha-vm.mshome.net (c-73-47-72-35.hsd1.nh.comcast.net
  [73.47.72.35])
  (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
  (No client certificate requested)
- by mail.kernel.org (Postfix) with ESMTPSA id B3F5021872;
- Fri, 19 Jul 2019 04:12:52 +0000 (UTC)
+ by mail.kernel.org (Postfix) with ESMTPSA id 9939B218A5;
+ Fri, 19 Jul 2019 04:14:17 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=default; t=1563509573;
- bh=TkYheni2xfJvsGBlP1JFbOMtexiEifIb5r9vkPjiB5c=;
+ s=default; t=1563509658;
+ bh=uVcLrusjSfxWYdiusVJ5VcWYyl6XYeIyuSFUIwhDr5M=;
  h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
- b=xOg0WwivSrsi0EZ+HOJji/suq07hgmuwrYYymJOqgz3f/dA7mZKmetytOHyCVIIS1
- z0fCd4Fawnp4nnIH6LzoDDjNuNo807sSGvsCtaxvQopuUDfgaaMVCHj/NSae5AYwdQ
- XAA679YjkCRDljwuVxc488990peKhByBCS28mv38=
+ b=CGgoKayHgcKQgNHFa7xzfThoJWQ1Sx3rSCcNMKx3cNc7NXJvuFITHUzh6okTchYbU
+ oHEYPXg6lupEwMiVwsfGV+VgeFNmOe7LpJatG4GwVHTDIDNx1VJaH7nK7pUNSTpjhu
+ BkCKUinRie5S4QUrBZ3Bpa797E64i2UxcCB/ZZaw=
 From: Sasha Levin <sashal@kernel.org>
 To: linux-kernel@vger.kernel.org,
 	stable@vger.kernel.org
-Date: Fri, 19 Jul 2019 00:11:05 -0400
-Message-Id: <20190719041109.18262-56-sashal@kernel.org>
+Date: Fri, 19 Jul 2019 00:13:02 -0400
+Message-Id: <20190719041304.18849-43-sashal@kernel.org>
 X-Mailer: git-send-email 2.20.1
-In-Reply-To: <20190719041109.18262-1-sashal@kernel.org>
-References: <20190719041109.18262-1-sashal@kernel.org>
+In-Reply-To: <20190719041304.18849-1-sashal@kernel.org>
+References: <20190719041304.18849-1-sashal@kernel.org>
 MIME-Version: 1.0
 X-stable: review
 X-Patchwork-Hint: Ignore
@@ -67,7 +67,7 @@ X-Spam-Report: Spam Filtering performed by mx.sourceforge.net.
  0.0 URIBL_BLOCKED ADMINISTRATOR NOTICE: The query to URIBL was blocked.
  See
  http://wiki.apache.org/spamassassin/DnsBlocklists#dnsbl-block
- for more information. [URIs: chromium.org]
+ for more information. [URIs: lst.de]
  -0.0 SPF_PASS               SPF: sender matches SPF record
  0.0 SPF_HELO_NONE          SPF: HELO does not publish an SPF Record
  -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from author's
@@ -77,8 +77,8 @@ X-Spam-Report: Spam Filtering performed by mx.sourceforge.net.
  not necessarily valid
  -0.0 DKIMWL_WL_HIGH         DKIMwl.org - Whitelisted High sender
  -0.3 AWL AWL: Adjusted score from AWL reputation of From: address
-X-Headers-End: 1hoKGR-007lsE-AU
-Subject: [V9fs-developer] [PATCH AUTOSEL 4.14 56/60] 9p: pass the correct
+X-Headers-End: 1hoKHo-00716D-5R
+Subject: [V9fs-developer] [PATCH AUTOSEL 4.9 43/45] 9p: pass the correct
  prototype to read_cache_page
 X-BeenThere: v9fs-developer@lists.sourceforge.net
 X-Mailman-Version: 2.1.21
@@ -120,10 +120,10 @@ Signed-off-by: Sasha Levin <sashal@kernel.org>
  1 file changed, 4 insertions(+), 2 deletions(-)
 
 diff --git a/fs/9p/vfs_addr.c b/fs/9p/vfs_addr.c
-index e1cbdfdb7c68..197069303510 100644
+index 6181ad79e1a5..e45b1a0dd513 100644
 --- a/fs/9p/vfs_addr.c
 +++ b/fs/9p/vfs_addr.c
-@@ -50,8 +50,9 @@
+@@ -49,8 +49,9 @@
   * @page: structure to page
   *
   */
@@ -134,7 +134,7 @@ index e1cbdfdb7c68..197069303510 100644
  	struct inode *inode = page->mapping->host;
  	struct bio_vec bvec = {.bv_page = page, .bv_len = PAGE_SIZE};
  	struct iov_iter to;
-@@ -122,7 +123,8 @@ static int v9fs_vfs_readpages(struct file *filp, struct address_space *mapping,
+@@ -121,7 +122,8 @@ static int v9fs_vfs_readpages(struct file *filp, struct address_space *mapping,
  	if (ret == 0)
  		return ret;
  
