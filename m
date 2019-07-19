@@ -2,26 +2,26 @@ Return-Path: <v9fs-developer-bounces@lists.sourceforge.net>
 X-Original-To: lists+v9fs-developer@lfdr.de
 Delivered-To: lists+v9fs-developer@lfdr.de
 Received: from lists.sourceforge.net (lists.sourceforge.net [216.105.38.7])
-	by mail.lfdr.de (Postfix) with ESMTPS id 196A06DA69
-	for <lists+v9fs-developer@lfdr.de>; Fri, 19 Jul 2019 06:02:08 +0200 (CEST)
-Received: from [127.0.0.1] (helo=sfs-ml-1.v29.lw.sourceforge.com)
-	by sfs-ml-1.v29.lw.sourceforge.com with esmtp (Exim 4.90_1)
+	by mail.lfdr.de (Postfix) with ESMTPS id 9E0BA6DB18
+	for <lists+v9fs-developer@lfdr.de>; Fri, 19 Jul 2019 06:06:55 +0200 (CEST)
+Received: from [127.0.0.1] (helo=sfs-ml-4.v29.lw.sourceforge.com)
+	by sfs-ml-4.v29.lw.sourceforge.com with esmtp (Exim 4.90_1)
 	(envelope-from <v9fs-developer-bounces@lists.sourceforge.net>)
-	id 1hoK5s-0002cR-NK; Fri, 19 Jul 2019 04:02:04 +0000
+	id 1hoKAW-0008IK-SD; Fri, 19 Jul 2019 04:06:52 +0000
 Received: from [172.30.20.202] (helo=mx.sourceforge.net)
- by sfs-ml-1.v29.lw.sourceforge.com with esmtps
+ by sfs-ml-4.v29.lw.sourceforge.com with esmtps
  (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.90_1)
- (envelope-from <sashal@kernel.org>) id 1hoK5q-0002bq-FY
- for v9fs-developer@lists.sourceforge.net; Fri, 19 Jul 2019 04:02:02 +0000
+ (envelope-from <sashal@kernel.org>) id 1hoKAW-0008I7-A2
+ for v9fs-developer@lists.sourceforge.net; Fri, 19 Jul 2019 04:06:52 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
  d=sourceforge.net; s=x; h=Content-Transfer-Encoding:MIME-Version:References:
  In-Reply-To:Message-Id:Date:Subject:Cc:To:From:Sender:Reply-To:Content-Type:
  Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
  Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
  List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=oZ8q6n9LqMHR/gD16YCnvnMxj2TYoU6tQTs5sSOcaho=; b=l/aUueaTPSxPF6FVlKgQyDam8z
- aJkpv4rHQpAEeknpmYCcixG20xIu/YIh+AKu3a0oPKZ/lk8a4BDettj7MT65gc9LWz0JGV1cFWoKv
- cX4nNgqA2uEX8L/4Ojt+ykH1T9D8oRA3P+CYVf+WgY8U9SrSaDh/8m5EZqetDyXxUKEc=;
+ bh=3crj7fY81fLdJ79xh03Nv+RgZ/5EB4Snpg6DatJoE8w=; b=fZxDfjwJN9yU+dpX4V1dRASgNh
+ XqZzTs3lzrRlYxDEScz8d+jYS235bQbYtespVcljn0geH+6ki7RqiTmwLAcbEZ7VXHeIc2OkZ9THX
+ M6KTLBXy5hu0PYZDngM9613Wh0rMFANwDmY9aeq2NlDER/Ep79K1a22O4Yb6kocUpNyQ=;
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  ;
  h=Content-Transfer-Encoding:MIME-Version:References:In-Reply-To:Message-Id:
@@ -29,35 +29,35 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
  :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
  List-Post:List-Owner:List-Archive;
- bh=oZ8q6n9LqMHR/gD16YCnvnMxj2TYoU6tQTs5sSOcaho=; b=BUz0AN85lP+BWIbfF0LPmVB6K1
- PDBvhBClCZLRg+1pE9a+wsCTBljf8DlPppRmu5HRLcn6XLGlHVT4lqKdI8gsJ5DiS0wiWlrjiM6VM
- qjlNXq73w0x6V9OCttDz6y/0mj+ZZX9IpnOsBcRPlWKHOR8ahteXGp4QXdp9DrfNUoGc=;
+ bh=3crj7fY81fLdJ79xh03Nv+RgZ/5EB4Snpg6DatJoE8w=; b=T1fPzkhH7q2Rn/V9oxAYG+AKcu
+ RxmcD5tsQa+Jq9JFSJKuSDc7VQLkN1prwHDW2e7ZPWqYuVO4UUCxfQssZBJ9OnkWlWc5oYrX590JF
+ wPuVSV4PJhxWgrkCUrCSR1Oa1/AD43gdqJJBrDwLE6jDpTuK4VXYDzCZJ6056V9AWJKs=;
 Received: from mail.kernel.org ([198.145.29.99])
- by sfi-mx-3.v28.lw.sourceforge.com with esmtps
+ by sfi-mx-1.v28.lw.sourceforge.com with esmtps
  (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.90_1)
- id 1hoK5p-006zTq-2Q
- for v9fs-developer@lists.sourceforge.net; Fri, 19 Jul 2019 04:02:02 +0000
+ id 1hoKAU-007l4o-LI
+ for v9fs-developer@lists.sourceforge.net; Fri, 19 Jul 2019 04:06:51 +0000
 Received: from sasha-vm.mshome.net (c-73-47-72-35.hsd1.nh.comcast.net
  [73.47.72.35])
  (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
  (No client certificate requested)
- by mail.kernel.org (Postfix) with ESMTPSA id 7748E218B8;
- Fri, 19 Jul 2019 04:01:54 +0000 (UTC)
+ by mail.kernel.org (Postfix) with ESMTPSA id 10FD1218C3;
+ Fri, 19 Jul 2019 04:06:43 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=default; t=1563508915;
- bh=AX73ikEry2voD9wFvV2u+EohCETcn1SCunXvxQ1Q/iM=;
+ s=default; t=1563509205;
+ bh=Y0Q9ALJB74CP3qZ6hN9OkLmocQCROe9zoqgAJwZbTXI=;
  h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
- b=JQSKNuJLYiTUdttgbHjCFM57pro8CPqICgCCnxH9IsrXsC8gM2/0Z1+su6lJi9x/s
- 1OQD4qMO6UtWGoccmF/v5pQAbk0TJz55BLXeSDAhykuTXGyBSY7eGH4s9cXSfSnJw/
- vZypyNkYu5NEjTixxmmW5LsFAcX5U2yfOCEKNayw=
+ b=mlpPDQshVtVGQ4Ux5ObORhqY3EjLUvI/+7dsrSpesidvbtefHaKPangG7bz9jVeDp
+ W4ncSIKsJvZqV+AYjIc07XnbZ5xzZAknKKFhn2tghe8X9xoVcZ40gz7bx74t1MD3OE
+ rEJkhum94NPHBrwntdz0BqBzbZhCkAxcFQ3M0VPQ=
 From: Sasha Levin <sashal@kernel.org>
 To: linux-kernel@vger.kernel.org,
 	stable@vger.kernel.org
-Date: Thu, 18 Jul 2019 23:56:28 -0400
-Message-Id: <20190719035643.14300-157-sashal@kernel.org>
+Date: Fri, 19 Jul 2019 00:02:32 -0400
+Message-Id: <20190719040246.15945-127-sashal@kernel.org>
 X-Mailer: git-send-email 2.20.1
-In-Reply-To: <20190719035643.14300-1-sashal@kernel.org>
-References: <20190719035643.14300-1-sashal@kernel.org>
+In-Reply-To: <20190719040246.15945-1-sashal@kernel.org>
+References: <20190719040246.15945-1-sashal@kernel.org>
 MIME-Version: 1.0
 X-stable: review
 X-Patchwork-Hint: Ignore
@@ -77,8 +77,8 @@ X-Spam-Report: Spam Filtering performed by mx.sourceforge.net.
  not necessarily valid
  -0.0 DKIMWL_WL_HIGH         DKIMwl.org - Whitelisted High sender
  -0.3 AWL AWL: Adjusted score from AWL reputation of From: address
-X-Headers-End: 1hoK5p-006zTq-2Q
-Subject: [V9fs-developer] [PATCH AUTOSEL 5.2 157/171] 9p: pass the correct
+X-Headers-End: 1hoKAU-007l4o-LI
+Subject: [V9fs-developer] [PATCH AUTOSEL 5.1 127/141] 9p: pass the correct
  prototype to read_cache_page
 X-BeenThere: v9fs-developer@lists.sourceforge.net
 X-Mailman-Version: 2.1.21
@@ -120,10 +120,10 @@ Signed-off-by: Sasha Levin <sashal@kernel.org>
  1 file changed, 4 insertions(+), 2 deletions(-)
 
 diff --git a/fs/9p/vfs_addr.c b/fs/9p/vfs_addr.c
-index bc57ae9e2963..cce9ace651a2 100644
+index 0bcbcc20f769..02e0fc51401e 100644
 --- a/fs/9p/vfs_addr.c
 +++ b/fs/9p/vfs_addr.c
-@@ -35,8 +35,9 @@
+@@ -50,8 +50,9 @@
   * @page: structure to page
   *
   */
@@ -134,7 +134,7 @@ index bc57ae9e2963..cce9ace651a2 100644
  	struct inode *inode = page->mapping->host;
  	struct bio_vec bvec = {.bv_page = page, .bv_len = PAGE_SIZE};
  	struct iov_iter to;
-@@ -107,7 +108,8 @@ static int v9fs_vfs_readpages(struct file *filp, struct address_space *mapping,
+@@ -122,7 +123,8 @@ static int v9fs_vfs_readpages(struct file *filp, struct address_space *mapping,
  	if (ret == 0)
  		return ret;
  
