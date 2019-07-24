@@ -2,92 +2,101 @@ Return-Path: <v9fs-developer-bounces@lists.sourceforge.net>
 X-Original-To: lists+v9fs-developer@lfdr.de
 Delivered-To: lists+v9fs-developer@lfdr.de
 Received: from lists.sourceforge.net (lists.sourceforge.net [216.105.38.7])
-	by mail.lfdr.de (Postfix) with ESMTPS id 522C672A3D
-	for <lists+v9fs-developer@lfdr.de>; Wed, 24 Jul 2019 10:36:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id C121D72C76
+	for <lists+v9fs-developer@lfdr.de>; Wed, 24 Jul 2019 12:40:07 +0200 (CEST)
 Received: from [127.0.0.1] (helo=sfs-ml-4.v29.lw.sourceforge.com)
 	by sfs-ml-4.v29.lw.sourceforge.com with esmtp (Exim 4.90_1)
 	(envelope-from <v9fs-developer-bounces@lists.sourceforge.net>)
-	id 1hqCkm-0002W2-P0; Wed, 24 Jul 2019 08:36:04 +0000
+	id 1hqEgl-0008E5-Hx; Wed, 24 Jul 2019 10:40:03 +0000
 Received: from [172.30.20.202] (helo=mx.sourceforge.net)
  by sfs-ml-4.v29.lw.sourceforge.com with esmtps
  (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.90_1)
- (envelope-from <mst@redhat.com>) id 1hqCkl-0002Vt-3D
- for v9fs-developer@lists.sourceforge.net; Wed, 24 Jul 2019 08:36:03 +0000
+ (envelope-from <baijiaju1990@gmail.com>) id 1hqEgk-0008Dv-H0
+ for v9fs-developer@lists.sourceforge.net; Wed, 24 Jul 2019 10:40:02 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=sourceforge.net; s=x; h=In-Reply-To:Content-Transfer-Encoding:Content-Type:
- MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Sender:Reply-To:
- Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
- Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
+ d=sourceforge.net; s=x; h=Message-Id:Date:Subject:Cc:To:From:Sender:Reply-To:
+ MIME-Version:Content-Type:Content-Transfer-Encoding:Content-ID:
+ Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
+ :Resent-Message-ID:In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:
  List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=/MFYQFzENwHk5G46kOvOVKTzaxjp4jXpKM7WypPWBDc=; b=azQ44mCcwpJNvXDtnPYR6uxscC
- 8lnb/pY2w6hwleJhrN7bPAIxNQlRd/bNHnPJKwq1tzJIrsJhoQ4d1Iq1i+eT3AJBeSSpclG4AeDuT
- jHkke2hy1uaCkdyUYkB9QtPk5F1cm7R1V8Dk0U1YZdZi/Hz2YXUGiwBDyDxZdtEyM7D0=;
+ bh=wO4O/Gvif+MADZGPdW4dqB529LtcQYyXiVt50YTB8sQ=; b=Wz1+2sqPSMLGZvhQXB3PQk5wNw
+ Fqee5HP/iJN5tfnO6KjlTiVLDvRE0ByP0iZiVJybo90NpyMtKiIa6KyjAxoTcGyDh6zeHok3qUZTi
+ avsNfd3NPuTAkx9mUzHPzdAYVkkmwh+yTWf0Hyi3hhY/lcnEj4357kDN1N2XJDWQMfZQ=;
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  ;
- h=In-Reply-To:Content-Transfer-Encoding:Content-Type:MIME-Version:
- References:Message-ID:Subject:Cc:To:From:Date:Sender:Reply-To:Content-ID:
- Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
- :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
+ h=Message-Id:Date:Subject:Cc:To:From:Sender:Reply-To:MIME-Version:
+ Content-Type:Content-Transfer-Encoding:Content-ID:Content-Description:
+ Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+ In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
  List-Post:List-Owner:List-Archive;
- bh=/MFYQFzENwHk5G46kOvOVKTzaxjp4jXpKM7WypPWBDc=; b=OwqJmQRqztSq/5LxwFRapavoA0
- U9vQxtlWN1wlW1cPQQ//MnlOIgPSsZ3W4SEqQcZglimIVDb3Oa7ze0w0HVwHkgirmelrXKXd4tD8x
- RXsugZsJ9zjgJ2/E9PDWIhb6zg1FoU6ko5GbGc2xHWHmSIcnyTcI/J4UTZbs1FY21oDk=;
-Received: from mail-qk1-f195.google.com ([209.85.222.195])
- by sfi-mx-1.v28.lw.sourceforge.com with esmtps
+ bh=wO4O/Gvif+MADZGPdW4dqB529LtcQYyXiVt50YTB8sQ=; b=AC8IAIWwCeXHahhkmw6ObI7xcJ
+ kh/hs4A1JbpwEpQAkw84K9C77/QNS4lXPLJxntAr3jClnhTHoy8Td41s5HFgMu7I3+Zmts3dEcBA6
+ 3sMxpv3ZXp1uCyyHkCreMTX36RZQaihQIbo6Cll+qb9KbNhnJhcI3aGgKog0B10XCKzA=;
+Received: from mail-pg1-f193.google.com ([209.85.215.193])
+ by sfi-mx-3.v28.lw.sourceforge.com with esmtps
  (TLSv1.2:ECDHE-RSA-AES128-GCM-SHA256:128) (Exim 4.90_1)
- id 1hqCkh-00FjX8-PT
- for v9fs-developer@lists.sourceforge.net; Wed, 24 Jul 2019 08:36:03 +0000
-Received: by mail-qk1-f195.google.com with SMTP id t8so33170004qkt.1
+ id 1hqEgj-00E080-4d
+ for v9fs-developer@lists.sourceforge.net; Wed, 24 Jul 2019 10:40:02 +0000
+Received: by mail-pg1-f193.google.com with SMTP id l21so21024144pgm.3
  for <v9fs-developer@lists.sourceforge.net>;
- Wed, 24 Jul 2019 01:35:59 -0700 (PDT)
+ Wed, 24 Jul 2019 03:40:00 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+ h=from:to:cc:subject:date:message-id;
+ bh=wO4O/Gvif+MADZGPdW4dqB529LtcQYyXiVt50YTB8sQ=;
+ b=L4Cn/0ZMJQOyjLGxVaYXm152UsTOpbzYiYWqFq9i917amlQjuDqAGIDml7mnGbbS18
+ hr2goSQqpjPH+wib0GQ1sPE4/MmxAPeSOzHpdZYyxwWeORTnnZtFuHpqArXYlnhHuB0/
+ AU3Nr3KjBpWkKtCMlJBtl6PXylB84eX4sKomMC0Q9hXUa2/UWO3gGU5WPtpwKvnC2V5t
+ pVXYu7f3G3tabd0agHqv02mcBr2ywbWKxqDIlnQQDricK/1cnQIMKCRjmpxJHxkmrDtV
+ m3/5YUtHLMA8fuCdjIphE7TmX/xOXeZMiE/ukZmvmKj6fmdN3Byo7VO/vWb+k2JHHmgw
+ gEBQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:date:from:to:cc:subject:message-id:references
- :mime-version:content-disposition:content-transfer-encoding
- :in-reply-to;
- bh=/MFYQFzENwHk5G46kOvOVKTzaxjp4jXpKM7WypPWBDc=;
- b=oqRxSBpAAcshK7HSa5hcC412FLedpZfH8k36GZNn1RLdW5WE6dcOAOgdAzDoFdT7hz
- 7vgxM+jhsMQ+ZOLh7WSsCiYRDMtvyYKR04CVet3u3OOgurVHxshOoda2c735fyU4wLeZ
- ODH5I1SXGEUtr6EnBa2gwtLCQphYJF1AJf8SCRrjKPSIMzwzFOwybXpco27Z80Bn8I+V
- tdtAe4rJU+zHoF3EzSCOdcU/uuiSH6k8lbyBFIbfcTJhlwdFKZl+r9PsE/m2Pz6OMB6B
- K2Mb/AXevEFvYUW7XEUKyinI145spFc6Be8YpESXg1EEkgB/upKVnZ9fJww8edbQdww9
- Rx+g==
-X-Gm-Message-State: APjAAAUzTKu4BXLwmgmDjEELlEHmXpdJdzBeoijRNUtm4O0dBOPv8Za6
- IeEtRzFuidu3C46V3CUEoT0PVQ==
-X-Google-Smtp-Source: APXvYqyqOJ7xj5WyBSGnSKw6r+fHzKSSQgggyWILPC/N5KbhyvrIGi3wpGDnO2q6i0xNWsrtSCd37A==
-X-Received: by 2002:a05:620a:31b:: with SMTP id
- s27mr17648521qkm.264.1563955687250; 
- Wed, 24 Jul 2019 01:08:07 -0700 (PDT)
-Received: from redhat.com (bzq-79-181-91-42.red.bezeqint.net. [79.181.91.42])
- by smtp.gmail.com with ESMTPSA id
- t26sm23203051qtc.95.2019.07.24.01.07.58
- (version=TLS1_3 cipher=AEAD-AES256-GCM-SHA384 bits=256/256);
- Wed, 24 Jul 2019 01:08:06 -0700 (PDT)
-Date: Wed, 24 Jul 2019 04:07:55 -0400
-From: "Michael S. Tsirkin" <mst@redhat.com>
-To: john.hubbard@gmail.com
-Message-ID: <20190724040745-mutt-send-email-mst@kernel.org>
-References: <20190724042518.14363-1-jhubbard@nvidia.com>
- <20190724042518.14363-8-jhubbard@nvidia.com>
-MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20190724042518.14363-8-jhubbard@nvidia.com>
-X-Spam-Score: 0.0 (/)
+ h=x-gm-message-state:from:to:cc:subject:date:message-id;
+ bh=wO4O/Gvif+MADZGPdW4dqB529LtcQYyXiVt50YTB8sQ=;
+ b=D/mGAxGpSjDe7+Hj4w74ZSzXLZyJaNICSNYSROiNFv3JkbnQb0hR7GBfPI9sfciE94
+ KwlGBzP2ClG3oh5IndxBrUhJOFzvxNFkDbcTuV7PoSbqKAJSOCV2PCBwhHc1bImnP80D
+ A75/XH1mgsKKdh0auCYTJPX+YBdMNV1sEhpelJPTdbflmMLyMJoGPh9ENDqZJjCK/lmY
+ YCbrMBMc7nJzubPWkQ+z7YfJ4dsAER/JWvn6ToYnJBgLzLkFYj5SUO7f1Yt1r6GF3x/T
+ SZT8vBCkqWbWIlMDsbLNtmGhr2yzW/GddWTj+SrQI6Kmf4TufqlSNvvvqFxTUAwmudB9
+ i/Jw==
+X-Gm-Message-State: APjAAAX0P/NTIVq7z+OPYlmlZN562MaGfyBZCptrh0C64z3g2VHVOow4
+ yrXK7FyZn8gAbZkBQhKaeM4=
+X-Google-Smtp-Source: APXvYqyB5tVuEHxgF/eAqyCET+wGzXScctFnZx1o/V16PJa1fLsTcB4Ztr+LWCuALB5012je06dYuA==
+X-Received: by 2002:a62:1515:: with SMTP id 21mr10953193pfv.100.1563964795549; 
+ Wed, 24 Jul 2019 03:39:55 -0700 (PDT)
+Received: from oslab.tsinghua.edu.cn ([2402:f000:4:72:808::3ca])
+ by smtp.gmail.com with ESMTPSA id i7sm36393739pjk.24.2019.07.24.03.39.53
+ (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+ Wed, 24 Jul 2019 03:39:55 -0700 (PDT)
+From: Jia-Ju Bai <baijiaju1990@gmail.com>
+To: ericvh@gmail.com, lucho@ionkov.net, asmadeus@codewreck.org,
+ davem@davemloft.net
+Date: Wed, 24 Jul 2019 18:39:48 +0800
+Message-Id: <20190724103948.5834-1-baijiaju1990@gmail.com>
+X-Mailer: git-send-email 2.17.0
+X-Spam-Score: -0.2 (/)
 X-Spam-Report: Spam Filtering performed by mx.sourceforge.net.
  See http://spamassassin.org/tag/ for more details.
- 0.0 URIBL_BLOCKED ADMINISTRATOR NOTICE: The query to URIBL was blocked.
- See
- http://wiki.apache.org/spamassassin/DnsBlocklists#dnsbl-block
- for more information. [URIs: infradead.org]
  -0.0 RCVD_IN_DNSWL_NONE     RBL: Sender listed at https://www.dnswl.org/, no
- trust [209.85.222.195 listed in list.dnswl.org]
- -0.0 RCVD_IN_MSPIKE_H2      RBL: Average reputation (+2)
- [209.85.222.195 listed in wl.mailspike.net]
+ trust [209.85.215.193 listed in list.dnswl.org]
+ 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail provider
+ (baijiaju1990[at]gmail.com)
+ 0.0 RCVD_IN_MSPIKE_H3      RBL: Good reputation (+3)
+ [209.85.215.193 listed in wl.mailspike.net]
  -0.0 SPF_PASS               SPF: sender matches SPF record
  0.0 SPF_HELO_NONE          SPF: HELO does not publish an SPF Record
-X-Headers-End: 1hqCkh-00FjX8-PT
-Subject: Re: [V9fs-developer] [PATCH 07/12] vhost-scsi: convert put_page()
- to put_user_page*()
+ 0.2 FREEMAIL_ENVFROM_END_DIGIT Envelope-from freemail username ends in
+ digit (baijiaju1990[at]gmail.com)
+ -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from author's
+ domain
+ -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+ 0.1 DKIM_SIGNED            Message has a DKIM or DK signature,
+ not necessarily valid
+ 0.0 RCVD_IN_MSPIKE_WL      Mailspike good senders
+ -0.4 AWL AWL: Adjusted score from AWL reputation of From: address
+X-Headers-End: 1hqEgj-00E080-4d
+Subject: [V9fs-developer] [PATCH] net: 9p: Fix possible null-pointer
+ dereferences in p9_cm_event_handler()
 X-BeenThere: v9fs-developer@lists.sourceforge.net
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -99,126 +108,81 @@ List-Post: <mailto:v9fs-developer@lists.sourceforge.net>
 List-Help: <mailto:v9fs-developer-request@lists.sourceforge.net?subject=help>
 List-Subscribe: <https://lists.sourceforge.net/lists/listinfo/v9fs-developer>, 
  <mailto:v9fs-developer-request@lists.sourceforge.net?subject=subscribe>
-Cc: Latchesar Ionkov <lucho@ionkov.net>, Boaz Harrosh <boaz@plexistor.com>,
- Jan Kara <jack@suse.cz>, kvm@vger.kernel.org,
- Dave Chinner <david@fromorbit.com>, virtualization@lists.linux-foundation.org,
- linux-mm@kvack.org, Christoph Hellwig <hch@lst.de>, linux-cifs@vger.kernel.org,
- Miklos Szeredi <miklos@szeredi.hu>, linux-rdma@vger.kernel.org,
- Matthew Wilcox <willy@infradead.org>, Jason Gunthorpe <jgg@ziepe.ca>,
- Johannes Thumshirn <jthumshirn@suse.de>, v9fs-developer@lists.sourceforge.net,
- Jason Wang <jasowang@redhat.com>, Eric Van Hensbergen <ericvh@gmail.com>,
- John Hubbard <jhubbard@nvidia.com>, Dan Williams <dan.j.williams@intel.com>,
- Ming Lei <ming.lei@redhat.com>, linux-block@vger.kernel.org,
- =?iso-8859-1?B?Suly9G1l?= Glisse <jglisse@redhat.com>,
- Alexander Viro <viro@zeniv.linux.org.uk>,
- Stefan Hajnoczi <stefanha@redhat.com>, ceph-devel@vger.kernel.org,
- Trond Myklebust <trond.myklebust@hammerspace.com>,
- Jens Axboe <axboe@kernel.dk>, linux-nfs@vger.kernel.org,
- netdev@vger.kernel.org, samba-technical@lists.samba.org,
- LKML <linux-kernel@vger.kernel.org>, "David S . Miller" <davem@davemloft.net>,
- linux-fsdevel@vger.kernel.org, Paolo Bonzini <pbonzini@redhat.com>,
- Anna Schumaker <anna.schumaker@netapp.com>
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+Cc: v9fs-developer@lists.sourceforge.net, Jia-Ju Bai <baijiaju1990@gmail.com>,
+ linux-kernel@vger.kernel.org, netdev@vger.kernel.org
+MIME-Version: 1.0
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: v9fs-developer-bounces@lists.sourceforge.net
 
-On Tue, Jul 23, 2019 at 09:25:13PM -0700, john.hubbard@gmail.com wrote:
-> From: J=E9r=F4me Glisse <jglisse@redhat.com>
-> =
+In p9_cm_event_handler(), there is an if statement on 260 to check
+whether rdma is NULL, which indicates that rdma can be NULL.
+If so, using rdma->xxx may cause a possible null-pointer dereference.
 
-> For pages that were retained via get_user_pages*(), release those pages
-> via the new put_user_page*() routines, instead of via put_page().
-> =
+To fix these bugs, rdma is checked before being used.
 
-> This is part a tree-wide conversion, as described in commit fc1d8e7cca2d
-> ("mm: introduce put_user_page*(), placeholder versions").
-> =
+These bugs are found by a static analysis tool STCheck written by us.
 
-> Changes from J=E9r=F4me's original patch:
-> =
+Signed-off-by: Jia-Ju Bai <baijiaju1990@gmail.com>
+---
+ net/9p/trans_rdma.c | 24 ++++++++++++++++--------
+ 1 file changed, 16 insertions(+), 8 deletions(-)
 
-> * Changed a WARN_ON to a BUG_ON.
-> =
+diff --git a/net/9p/trans_rdma.c b/net/9p/trans_rdma.c
+index bac8dad5dd69..eba3c5fc2731 100644
+--- a/net/9p/trans_rdma.c
++++ b/net/9p/trans_rdma.c
+@@ -242,18 +242,24 @@ p9_cm_event_handler(struct rdma_cm_id *id, struct rdma_cm_event *event)
+ 	struct p9_trans_rdma *rdma = c->trans;
+ 	switch (event->event) {
+ 	case RDMA_CM_EVENT_ADDR_RESOLVED:
+-		BUG_ON(rdma->state != P9_RDMA_INIT);
+-		rdma->state = P9_RDMA_ADDR_RESOLVED;
++		if (rdma) {
++			BUG_ON(rdma->state != P9_RDMA_INIT);
++			rdma->state = P9_RDMA_ADDR_RESOLVED;
++		}
+ 		break;
+ 
+ 	case RDMA_CM_EVENT_ROUTE_RESOLVED:
+-		BUG_ON(rdma->state != P9_RDMA_ADDR_RESOLVED);
+-		rdma->state = P9_RDMA_ROUTE_RESOLVED;
++		if (rdma) {
++			BUG_ON(rdma->state != P9_RDMA_ADDR_RESOLVED);
++			rdma->state = P9_RDMA_ROUTE_RESOLVED;
++		}
+ 		break;
+ 
+ 	case RDMA_CM_EVENT_ESTABLISHED:
+-		BUG_ON(rdma->state != P9_RDMA_ROUTE_RESOLVED);
+-		rdma->state = P9_RDMA_CONNECTED;
++		if (rdma) {
++			BUG_ON(rdma->state != P9_RDMA_ROUTE_RESOLVED);
++			rdma->state = P9_RDMA_CONNECTED;
++		}
+ 		break;
+ 
+ 	case RDMA_CM_EVENT_DISCONNECTED:
+@@ -277,12 +283,14 @@ p9_cm_event_handler(struct rdma_cm_id *id, struct rdma_cm_event *event)
+ 	case RDMA_CM_EVENT_ADDR_ERROR:
+ 	case RDMA_CM_EVENT_UNREACHABLE:
+ 		c->status = Disconnected;
+-		rdma_disconnect(rdma->cm_id);
++		if (rdma)
++			rdma_disconnect(rdma->cm_id);
+ 		break;
+ 	default:
+ 		BUG();
+ 	}
+-	complete(&rdma->cm_done);
++	if (rdma)
++		complete(&rdma->cm_done);
+ 	return 0;
+ }
+ 
+-- 
+2.17.0
 
-> Signed-off-by: J=E9r=F4me Glisse <jglisse@redhat.com>
-> Signed-off-by: John Hubbard <jhubbard@nvidia.com>
-> Cc: virtualization@lists.linux-foundation.org
-> Cc: linux-fsdevel@vger.kernel.org
-> Cc: linux-block@vger.kernel.org
-> Cc: linux-mm@kvack.org
-> Cc: Jan Kara <jack@suse.cz>
-> Cc: Dan Williams <dan.j.williams@intel.com>
-> Cc: Alexander Viro <viro@zeniv.linux.org.uk>
-> Cc: Johannes Thumshirn <jthumshirn@suse.de>
-> Cc: Christoph Hellwig <hch@lst.de>
-> Cc: Jens Axboe <axboe@kernel.dk>
-> Cc: Ming Lei <ming.lei@redhat.com>
-> Cc: Dave Chinner <david@fromorbit.com>
-> Cc: Jason Gunthorpe <jgg@ziepe.ca>
-> Cc: Matthew Wilcox <willy@infradead.org>
-> Cc: Boaz Harrosh <boaz@plexistor.com>
-> Cc: Miklos Szeredi <miklos@szeredi.hu>
-> Cc: "Michael S. Tsirkin" <mst@redhat.com>
-> Cc: Jason Wang <jasowang@redhat.com>
-> Cc: Paolo Bonzini <pbonzini@redhat.com>
-> Cc: Stefan Hajnoczi <stefanha@redhat.com>
-
-Acked-by: Michael S. Tsirkin <mst@redhat.com>
-
-> ---
->  drivers/vhost/scsi.c | 13 ++++++++++---
->  1 file changed, 10 insertions(+), 3 deletions(-)
-> =
-
-> diff --git a/drivers/vhost/scsi.c b/drivers/vhost/scsi.c
-> index a9caf1bc3c3e..282565ab5e3f 100644
-> --- a/drivers/vhost/scsi.c
-> +++ b/drivers/vhost/scsi.c
-> @@ -329,11 +329,11 @@ static void vhost_scsi_release_cmd(struct se_cmd *s=
-e_cmd)
->  =
-
->  	if (tv_cmd->tvc_sgl_count) {
->  		for (i =3D 0; i < tv_cmd->tvc_sgl_count; i++)
-> -			put_page(sg_page(&tv_cmd->tvc_sgl[i]));
-> +			put_user_page(sg_page(&tv_cmd->tvc_sgl[i]));
->  	}
->  	if (tv_cmd->tvc_prot_sgl_count) {
->  		for (i =3D 0; i < tv_cmd->tvc_prot_sgl_count; i++)
-> -			put_page(sg_page(&tv_cmd->tvc_prot_sgl[i]));
-> +			put_user_page(sg_page(&tv_cmd->tvc_prot_sgl[i]));
->  	}
->  =
-
->  	vhost_scsi_put_inflight(tv_cmd->inflight);
-> @@ -630,6 +630,13 @@ vhost_scsi_map_to_sgl(struct vhost_scsi_cmd *cmd,
->  	size_t offset;
->  	unsigned int npages =3D 0;
->  =
-
-> +	/*
-> +	 * Here in all cases we should have an IOVEC which use GUP. If that is
-> +	 * not the case then we will wrongly call put_user_page() and the page
-> +	 * refcount will go wrong (this is in vhost_scsi_release_cmd())
-> +	 */
-> +	WARN_ON(!iov_iter_get_pages_use_gup(iter));
-> +
->  	bytes =3D iov_iter_get_pages(iter, pages, LONG_MAX,
->  				VHOST_SCSI_PREALLOC_UPAGES, &offset);
->  	/* No pages were pinned */
-> @@ -681,7 +688,7 @@ vhost_scsi_iov_to_sgl(struct vhost_scsi_cmd *cmd, boo=
-l write,
->  			while (p < sg) {
->  				struct page *page =3D sg_page(p++);
->  				if (page)
-> -					put_page(page);
-> +					put_user_page(page);
->  			}
->  			return ret;
->  		}
-> -- =
-
-> 2.22.0
 
 
 _______________________________________________
