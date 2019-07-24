@@ -2,64 +2,108 @@ Return-Path: <v9fs-developer-bounces@lists.sourceforge.net>
 X-Original-To: lists+v9fs-developer@lfdr.de
 Delivered-To: lists+v9fs-developer@lfdr.de
 Received: from lists.sourceforge.net (lists.sourceforge.net [216.105.38.7])
-	by mail.lfdr.de (Postfix) with ESMTPS id D347573302
-	for <lists+v9fs-developer@lfdr.de>; Wed, 24 Jul 2019 17:46:41 +0200 (CEST)
-Received: from [127.0.0.1] (helo=sfs-ml-4.v29.lw.sourceforge.com)
-	by sfs-ml-4.v29.lw.sourceforge.com with esmtp (Exim 4.90_1)
-	(envelope-from <v9fs-developer-bounces@lists.sourceforge.net>)
-	id 1hqJTS-0004g3-59; Wed, 24 Jul 2019 15:46:38 +0000
-Received: from [172.30.20.202] (helo=mx.sourceforge.net)
- by sfs-ml-4.v29.lw.sourceforge.com with esmtps
- (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.90_1)
- (envelope-from <asmadeus@notk.org>) id 1hqJTQ-0004fu-DT
- for v9fs-developer@lists.sourceforge.net; Wed, 24 Jul 2019 15:46:36 +0000
+	by mail.lfdr.de (Postfix) with ESMTPS id DE2B673307
+	for <lists+v9fs-developer@lfdr.de>; Wed, 24 Jul 2019 17:47:29 +0200 (CEST)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=sourceforge.net; s=x; h=In-Reply-To:Content-Type:MIME-Version:References:
- Message-ID:Subject:Cc:To:From:Date:Sender:Reply-To:Content-Transfer-Encoding:
- Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+	d=lists.sourceforge.net; s=beta; h=Content-Transfer-Encoding:Content-Type:Cc:
+	Reply-To:From:List-Subscribe:List-Help:List-Post:List-Archive:
+	List-Unsubscribe:List-Id:Subject:To:Message-ID:Date:In-Reply-To:References:
+	MIME-Version:Sender:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
+	bh=ZB4nEDtry4nNg3tG4oRAQTyDMMcmsQ25fq28wbQwvxo=; b=LstKtATaopkj9lAQhTrUSdcUZI
+	f3nB8litwjrdedXaFFm71UUr2n1LyOOagd99vOmU92p5ENuMzCC6kfBURKzoUiiSrk+YBhaPWskzh
+	UG/c4IUxWcM1LfeaW9R9HvHxawfARL3UQHAi3wVA/uIDElZMb3qx1Skz6t77il9YPkYA=;
+Received: from [127.0.0.1] (helo=sfs-ml-2.v29.lw.sourceforge.com)
+	by sfs-ml-2.v29.lw.sourceforge.com with esmtp (Exim 4.90_1)
+	(envelope-from <v9fs-developer-bounces@lists.sourceforge.net>)
+	id 1hqJUD-0006us-Ol; Wed, 24 Jul 2019 15:47:25 +0000
+Received: from [172.30.20.202] (helo=mx.sourceforge.net)
+ by sfs-ml-2.v29.lw.sourceforge.com with esmtps
+ (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.90_1)
+ (envelope-from <dvyukov@google.com>) id 1hqJUC-0006uj-UH
+ for v9fs-developer@lists.sourceforge.net; Wed, 24 Jul 2019 15:47:24 +0000
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+ d=sourceforge.net; s=x; h=Content-Type:Cc:To:Subject:Message-ID:Date:From:
+ In-Reply-To:References:MIME-Version:Sender:Reply-To:Content-Transfer-Encoding
+ :Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
  Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
  List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=J0trUeyPc49XD8ZWUj2SjrBxFyuKklM2GssQxg/+of0=; b=Mo5OakedXsZb+wZRcQ4vwoD9om
- xYikq+XJIm10yctxuf0y36+nYFodmhubhTBfPXM3z1SuOXoYncavNnwnrwq1Zv3cr7tbqZVzWKOcT
- 3oDVwKYJahE40lb4EzjRexieLKxonyiXLOoxbD6dsJrJjeVVG1uNhSx2uoqQAYoXrMsc=;
+ bh=e91RU/Uzz3dxmlV1YYbFb2yB3ZDeyFoQVCvWxmZGx6U=; b=dBajTxue1U/AwsGy38oAPeKRDv
+ aIlDh7ZKiI8tcnO54nglQjBoTOPQjkwKb+mV34/n2cH1ib2CwabUh2pRv2b/UeSR+B18ZhapqChZT
+ S+jKiMzDcEi0b+m7vXb2ZRufDPCJFzLwaXi1m3ZES5pSiy5VudjqmZptoOLM3+dUscFk=;
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  ;
- h=In-Reply-To:Content-Type:MIME-Version:References:Message-ID:Subject:Cc:To
- :From:Date:Sender:Reply-To:Content-Transfer-Encoding:Content-ID:
+ h=Content-Type:Cc:To:Subject:Message-ID:Date:From:In-Reply-To:References:
+ MIME-Version:Sender:Reply-To:Content-Transfer-Encoding:Content-ID:
  Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
  :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
  List-Post:List-Owner:List-Archive;
- bh=J0trUeyPc49XD8ZWUj2SjrBxFyuKklM2GssQxg/+of0=; b=HxKYtbwu/8nB1KUyFXQH+DusOe
- 8n07Me+IQ4PtDLjL00hXnrUqNnz8CD6mvhEZnvdETxYCJ4f0Tk/Ycx77tAjK2/jNno29vryu/8gbb
- Bi23papCi/UE4bHMw29sNK/FUa4DVUb0lUt0BKuIp6MGEgdMl5SFE5H0XDOeW22GY27s=;
-Received: from nautica.notk.org ([91.121.71.147])
- by sfi-mx-4.v28.lw.sourceforge.com with esmtps
- (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.90_1)
- id 1hqJTM-00DvYn-4r
- for v9fs-developer@lists.sourceforge.net; Wed, 24 Jul 2019 15:46:36 +0000
-Received: by nautica.notk.org (Postfix, from userid 1001)
- id 3B50CC009; Wed, 24 Jul 2019 17:46:25 +0200 (CEST)
-Date: Wed, 24 Jul 2019 17:46:10 +0200
-From: Dominique Martinet <asmadeus@codewreck.org>
-To: Matthieu Baerts <matthieu.baerts@tessares.net>
-Message-ID: <20190724154610.GA11211@nautica>
-References: <20190718135255.GA21431@nautica>
- <0e508114-4e3c-f2ee-6160-9207a54414e4@tessares.net>
- <20190718155744.GA31023@nautica>
- <CAKuKrB=BaJLV87e3RVwpda5KYZB4ikwh20+kvbYk0JYYwNOZig@mail.gmail.com>
+ bh=e91RU/Uzz3dxmlV1YYbFb2yB3ZDeyFoQVCvWxmZGx6U=; b=hLPDSspl/CY1fdhP1Tf44W0pQz
+ t/LZf5X9QTiGEt4mEaqZ0BiCHxhkF5LJ793b5VcKAiKSSvIKyZxOagCFDQUIVBx+f3129ARudDo7x
+ ucSWttjTNSTQXhD76So0ztYLgkHaROE3TIr4odR00c/jsXTrIdtXEk+SGImHAIWb6S2A=;
+Received: from mail-io1-f65.google.com ([209.85.166.65])
+ by sfi-mx-3.v28.lw.sourceforge.com with esmtps
+ (TLSv1.2:ECDHE-RSA-AES128-GCM-SHA256:128) (Exim 4.90_1)
+ id 1hqJU9-00EJh1-U1
+ for v9fs-developer@lists.sourceforge.net; Wed, 24 Jul 2019 15:47:24 +0000
+Received: by mail-io1-f65.google.com with SMTP id i10so90517294iol.13
+ for <v9fs-developer@lists.sourceforge.net>;
+ Wed, 24 Jul 2019 08:47:21 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=20161025;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc; bh=e91RU/Uzz3dxmlV1YYbFb2yB3ZDeyFoQVCvWxmZGx6U=;
+ b=Myk/Gq/G6dwWFrykH2qp/tqo06K1Cv+Cr7pQOc6qDpqevIIb1WhKPPQ+fHay8zjDTo
+ d9UVJyoHfQ4ffWQ5zQgGn0kod2WVShhIWQHiV3wVZQFwm5Yfod2dvv7MD9RAZgssNK/k
+ ZYn/bRMxKcvL4O9wfOazt/Tc5ArvnoK8nRNr7Bc0aUzzP1LblqyJdsOTI2Nmdhd7OeEY
+ w2zyQsOO0Gr1OlYN/H7TWMuz9/2Hf+mKLeEcou8sfuSnNnq+yboAHIbMEv6ZD1VjhC3s
+ pn/nfKq/hQk95iXuWCEtf0IMuOC2bdAxxnmAiAnCPKphUBmsj5vWLw4wvd9uUOZsKUri
+ 8Icw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc;
+ bh=e91RU/Uzz3dxmlV1YYbFb2yB3ZDeyFoQVCvWxmZGx6U=;
+ b=OmjHLamPfJz+kjHK4iqcj16BqTrhNxmx88YsY13RZ9TYT8dBk7kSKukNNjfUDENjpr
+ IQq/bd+YI/acqBYqmTt0l1Zim0rNRFDPX7A6evI+QbktqlxWxMJPvSbZnKq98UkHyGUi
+ PXLf+arSH+7iXHQYU6A59mD/H4hAjWeQWbhHXKEzTTE1AZN4RdNOneDZbYte2rXcp+Ea
+ +2wNBp9cndlj+6R2lrcMfbkMa1lsL67PappvVgdZ2ZpfWcQp4MVn7HcIT/GMwtyaF6iH
+ dr4x4lLrAHjotnZXHrLsjhnqZy2LEjARpmjPeTTwGqjV+O8ffykf3xpfS5nl9HvXOUVA
+ ozRg==
+X-Gm-Message-State: APjAAAXgX0Gm9DvLCG1jy3zdlziwWBzPFGvdH19hcR7/J81oChLbNKLe
+ jKZ7aLFb8XMzXoZayf6O21tERJ5B8v2KmyZtLJDiYw==
+X-Google-Smtp-Source: APXvYqxnrz/Rkjs9cYyoJO+j6vzLLSDT9si2barOLaZ5pTonpHnFhnywyxZPbm2/IJDJKwQXlU1nCfAc4bapXN/JCEQ=
+X-Received: by 2002:a5e:de0d:: with SMTP id e13mr53071086iok.144.1563983235173; 
+ Wed, 24 Jul 2019 08:47:15 -0700 (PDT)
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <CAKuKrB=BaJLV87e3RVwpda5KYZB4ikwh20+kvbYk0JYYwNOZig@mail.gmail.com>
-User-Agent: Mutt/1.5.21 (2010-09-15)
-X-Spam-Score: 0.2 (/)
+References: <00000000000070c81a058e6c2917@google.com>
+In-Reply-To: <00000000000070c81a058e6c2917@google.com>
+Date: Wed, 24 Jul 2019 17:47:03 +0200
+Message-ID: <CACT4Y+aC_gdOMioLJ+v9D_1dMkgjnFYor-QjQydf6DY4WWoUHA@mail.gmail.com>
+To: Eric Van Hensbergen <ericvh@gmail.com>, Latchesar Ionkov <lucho@ionkov.net>,
+ Dominique Martinet <asmadeus@codewreck.org>,
+ v9fs-developer@lists.sourceforge.net
+X-Spam-Score: -15.6 (---------------)
 X-Spam-Report: Spam Filtering performed by mx.sourceforge.net.
  See http://spamassassin.org/tag/ for more details.
- 0.2 HEADER_FROM_DIFFERENT_DOMAINS From and EnvelopeFrom 2nd level mail
- domains are different
+ 0.0 URIBL_BLOCKED ADMINISTRATOR NOTICE: The query to URIBL was blocked.
+ See
+ http://wiki.apache.org/spamassassin/DnsBlocklists#dnsbl-block
+ for more information. [URIs: googlegroups.com]
+ -0.0 RCVD_IN_DNSWL_NONE     RBL: Sender listed at https://www.dnswl.org/, no
+ trust [209.85.166.65 listed in list.dnswl.org]
  -0.0 SPF_PASS               SPF: sender matches SPF record
+ -7.5 USER_IN_DEF_DKIM_WL    From: address is in the default DKIM white-list
  0.0 SPF_HELO_NONE          SPF: HELO does not publish an SPF Record
-X-Headers-End: 1hqJTM-00DvYn-4r
-Subject: Re: [V9fs-developer] New KASAN warnings with kernel v4.14.133
+ -7.5 USER_IN_DEF_SPF_WL     From: address is in the default SPF white-list
+ -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from author's
+ domain
+ -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+ 0.1 DKIM_SIGNED            Message has a DKIM or DK signature,
+ not necessarily valid
+ -0.5 ENV_AND_HDR_SPF_MATCH  Env and Hdr From used in default SPF WL Match
+ -0.0 DKIMWL_WL_MED          DKIMwl.org - Medium sender
+X-Headers-End: 1hqJU9-00EJh1-U1
+Subject: Re: [V9fs-developer] memory leak in v9fs_session_init
 X-BeenThere: v9fs-developer@lists.sourceforge.net
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -71,181 +115,774 @@ List-Post: <mailto:v9fs-developer@lists.sourceforge.net>
 List-Help: <mailto:v9fs-developer-request@lists.sourceforge.net?subject=help>
 List-Subscribe: <https://lists.sourceforge.net/lists/listinfo/v9fs-developer>, 
  <mailto:v9fs-developer-request@lists.sourceforge.net?subject=subscribe>
-Cc: Sasha Levin <sashal@kernel.org>, v9fs-developer@lists.sourceforge.net
+From: Dmitry Vyukov via V9fs-developer <v9fs-developer@lists.sourceforge.net>
+Reply-To: Dmitry Vyukov <dvyukov@google.com>
+Cc: syzbot <syzbot+15b759334fd44cd9785a@syzkaller.appspotmail.com>,
+ syzkaller-bugs <syzkaller-bugs@googlegroups.com>,
+ LKML <linux-kernel@vger.kernel.org>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: v9fs-developer-bounces@lists.sourceforge.net
 
-Matthieu Baerts wrote on Wed, Jul 24, 2019:
-> So I looked a bit at the code of strscpy() on master and I found that
-> it now uses read_word_at_a_time() which has some special instructions
-> for KASAN.
+ On Wed, Jul 24, 2019 at 2:08 PM syzbot
+<syzbot+15b759334fd44cd9785a@syzkaller.appspotmail.com> wrote:
+>
+> Hello,
+>
+> syzbot found the following crash on:
+>
+> HEAD commit:    abdfd52a Merge tag 'armsoc-defconfig' of git://git.kernel...
+> git tree:       upstream
+> console output: https://syzkaller.appspot.com/x/log.txt?x=163046afa00000
+> kernel config:  https://syzkaller.appspot.com/x/.config?x=d31de3d88059b7fa
+> dashboard link: https://syzkaller.appspot.com/bug?extid=15b759334fd44cd9785a
+> compiler:       gcc (GCC) 9.0.0 20181231 (experimental)
+> syz repro:      https://syzkaller.appspot.com/x/repro.syz?x=1735466c600000
+> C reproducer:   https://syzkaller.appspot.com/x/repro.c?x=117e0cf0600000
+>
+> IMPORTANT: if you fix the bug, please add the following tag to the commit:
+> Reported-by: syzbot+15b759334fd44cd9785a@syzkaller.appspotmail.com
 
-Woah. I did not expect strscpy itself to be the culprit, good job
-finding it!
++fs/9p/v9fs.c maintainers
 
-> I then cherry-picked these 3 patches and I no longer have the issue!
-> 
-> bdb5ac801af3 (compiler.h, kasan: Avoid duplicating __read_once_size_nocheck())
-> 7f1e541fc8d5 (compiler.h: Add read_word_at_a_time() function.)
-> 1a3241ff10d0 (lib/strscpy: Shut up KASAN false-positives in strscpy())
-> 
-> I will ask to also backport these 3 patches to -stable. I will send
-> that with an explanation ASAP!
-
-That would be great, thanks.
-
->> If you do not have interactive access, can you just add a print message
->> in the non-dotl function? I suggested perf because that can be used to
->> probe around and get full backtraces easily, but the first thing I'd
->> like to check is if v9fs_vfs_get_link really gets called or if kasan
->> prints the wrong function for some reason (I don't see why it would, but
->> this function really should never be called for you).
-> 
-> It seems this function is indeed called:
-> 
-> [    1.828201] matttbe: should not come here
-> [    1.832599] ------------[ cut here ]------------
-> [    1.833525] WARNING: CPU: 0 PID: 1 at
-> /kernelspace/fs/9p/vfs_inode.c:1253 v9fs_vfs_get_link+0x45/0x23f
-> [    1.833525] Modules linked in:
-> [    1.833525] CPU: 0 PID: 1 Comm: swapper/0 Not tainted 4.14.133-mptcp+ #57
-> [    1.833525] Hardware name: QEMU Standard PC (i440FX + PIIX, 1996),
-> BIOS 0.5.1 01/01/2011
-> [    1.833525] task: ffff888035dd8000 task.stack: ffff888035de0000
-> [    1.833525] RIP: 0010:v9fs_vfs_get_link+0x45/0x23f
-> [    1.833525] RSP: 0018:ffff888035def370 EFLAGS: 00010282
-> [    1.833525] RAX: 000000000000001d RBX: ffff888035ab1df0 RCX: 0000000000000000
-> [    1.833525] RDX: 000000000000001d RSI: 0000000000000016 RDI: ffffed1006bbde65
-> [    1.833525] RBP: ffff888035a8ad00 R08: 3a6562747474616d R09: 20646c756f687320
-> [    1.833525] R10: 6320746f6e20646c R11: dffffc0000000000 R12: ffff888035def958
-> [    1.833525] R13: 0000000000000000 R14: ffff888035def958 R15: ffff888035def8f0
-> [    1.833525] FS:  0000000000000000(0000) GS:ffff888036200000(0000)
-> knlGS:0000000000000000
-> [    1.833525] CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
-> [    1.833525] CR2: ffffffff82c9a5e0 CR3: 0000000003016000 CR4: 00000000000006b0
-> [    1.833525] Call Trace:
-> [    1.833525]  ? v9fs_vfs_link+0x1cc/0x1cc
-> [    1.833525]  link_path_walk+0xbe3/0x1430
-> [    1.833525]  ? kasan_kmalloc+0x76/0xc0
-> [    1.833525]  ? walk_component+0x11a0/0x11a0
-> [    1.833525]  ? get_empty_filp+0x263/0x450
-> [    1.833525]  ? xattr_resolve_name+0x229/0x4e0
-> [    1.833525]  ? __pte_alloc_kernel+0x2c0/0x2c0
-> [    1.833525]  ? __pte_alloc_kernel+0x2c0/0x2c0
-> [    1.833525]  ? deref_stack_reg+0xa7/0x110
-> [    1.833525]  path_openat+0x1e7/0x4d00
-> [    1.833525]  ? unwind_next_frame+0x137f/0x1dc0
-> [    1.833525]  ? __save_stack_trace+0x4f/0xd0
-> [    1.833525]  ? deref_stack_reg+0xa7/0x110
-> [    1.833525]  ? path_mountpoint+0xb40/0xb40
-> [    1.833525]  ? ret_from_fork+0x34/0x40
-> [    1.833525]  ? unwind_next_frame+0x2d5/0x1dc0
-> [    1.833525]  ? deref_stack_reg+0x110/0x110
-> [    1.833525]  ? _raw_spin_trylock+0x110/0x110
-> [    1.833525]  ? __save_stack_trace+0x73/0xd0
-> [    1.833525]  ? depot_save_stack+0x1f6/0x45a
-> [    1.833525]  ? getname_kernel+0x4d/0x2a0
-> [    1.833525]  ? kasan_kmalloc.part.1+0xa9/0xd0
-> [    1.833525]  ? kasan_kmalloc.part.1+0x4f/0xd0
-> [    1.833525]  ? kmem_cache_alloc+0x94/0x160
-> [    1.833525]  ? getname_kernel+0x4d/0x2a0
-> [    1.833525]  ? open_exec+0xc/0x40
-> [    1.833525]  ? load_script+0x5aa/0x7a0
-> [    1.833525]  ? search_binary_handler.part.7+0xdb/0x3c0
-> [    1.833525]  ? do_execveat_common+0x1033/0x1d00
-> [    1.833525]  ? kernel_init+0x8f/0x114
-> [    1.833525]  do_filp_open+0x22c/0x350
-> [    1.833525]  ? may_open_dev+0xc0/0xc0
-> [    1.833525]  ? put_arg_page+0x100/0x100
-> [    1.833525]  ? do_open_execat+0x4e0/0x4e0
-> [    1.833525]  do_open_execat+0x184/0x4e0
-> [    1.833525]  ? __register_binfmt+0x2f0/0x2f0
-> [    1.833525]  ? memcpy+0x34/0x50
-> [    1.833525]  open_exec+0x2c/0x40
-> [    1.833525]  load_script+0x5aa/0x7a0
-> [    1.833525]  ? locks_free_lock_context.cold.20+0xf4/0xf4
-> [    1.833525]  ? __inode_permission+0x9e/0x300
-> [    1.833525]  ? generic_permission+0x350/0x350
-> [    1.833525]  ? count.constprop.10+0x13b/0x190
-> [    1.833525]  search_binary_handler.part.7+0xdb/0x3c0
-> [    1.833525]  do_execveat_common+0x1033/0x1d00
-> [    1.833525]  ? prepare_bprm_creds+0x100/0x100
-> [    1.833525]  ? path_openat+0x4c50/0x4d00
-> [    1.833525]  ? kasan_kmalloc.part.1+0xa9/0xd0
-> [    1.833525]  ? kasan_kmalloc.part.1+0x4f/0xd0
-> [    1.833525]  ? kmem_cache_alloc+0x94/0x160
-> [    1.833525]  ? getname_kernel+0x4d/0x2a0
-> [    1.833525]  ? run_init_process+0x11/0x27
-> [    1.833525]  ? kernel_init+0x8f/0x114
-> [    1.833525]  ? ret_from_fork+0x35/0x40
-> [    1.833525]  ? vprintk_func+0x8d/0x1a6
-> [    1.833525]  ? __printk_safe_exit+0x10/0x10
-> [    1.833525]  ? vprintk_func+0x8d/0x1a6
-> [    1.833525]  ? __printk_safe_exit+0x10/0x10
-> [    1.833525]  ? async_page_fault+0x25/0x50
-> [    1.833525]  ? printk+0x96/0xb0
-> [    1.833525]  ? show_regs_print_info+0x58/0x58
-> [    1.833525]  ? kasan_unpoison_shadow+0x30/0x40
-> [    1.833525]  ? memcpy+0x34/0x50
-> [    1.833525]  ? getname_kernel+0xe4/0x2a0
-> [    1.833525]  ? rest_init+0xc1/0xc1
-> [    1.833525]  kernel_init+0x8f/0x114
-> [    1.833525]  ? rest_init+0xc1/0xc1
-> [    1.833525]  ret_from_fork+0x35/0x40
-> [    1.833525] Code: 89 fd 48 c7 c7 00 ec cb 82 53 e8 23 bf ae ff 80
-> 3d b7 50 bd 01 00 75 15 48 c7 c7 60 ec cb 82 c6 05 a7 50 bd 01 01 e8
-> 07 bf ae ff <0f> 0b 48 c7 c3 f6 ff ff ff 48 85 ed 0f 84 de 01 00 00 48
-> 8d 7d
-> [    1.833525] ---[ end trace 7d99a2b8ac332f35 ]---
-> 
-> (the function is also called a lot of time after)
-> 
-> Here is the printk I added:
-> 
-> ----------
-> diff --git a/fs/9p/vfs_inode.c b/fs/9p/vfs_inode.c
-> index e88cb25176dc..9fb5c7d0abcd 100644
-> --- a/fs/9p/vfs_inode.c
-> +++ b/fs/9p/vfs_inode.c
-> @@ -1249,6 +1249,9 @@ static const char *v9fs_vfs_get_link(struct
-> dentry *dentry,
->         struct p9_wstat *st;
->         char *res;
-> 
-> +       pr_warn("matttbe: should not be here; %s:%d\n", __func__, __LINE__);
-> +       WARN_ONCE(1, "matttbe: should not come here\n");
-> +
->         if (!dentry)
->                 return ERR_PTR(-ECHILD);
-> 
-> ----------
-> 
-> > If it is called, I will give you a few more things to print in there - I
-> > need to check how to get access to the v9ses and friends from this
-> > context (they should be attached to the inode so it should be accessible
-> > but I cannot give precise instructions from memory)
-> 
-> I can still do that if needed if you think it is not normal.
-
-That stack trace had kernel_init which made me look at your rootflags
-again, and this is actually normal: the root mount is 9p2000.u which
-will use this function, while the outshare mount is 9p2000.L, so all is
-working as expected here as well.
-
-I just forgot there were two different mounts involved and didn't expect
-them to use different mount options (and much less to interact with each
-other at this level), but since you found the culprit we don't need to
-look that way anymore.
-
-> At the end, it seems it was due to KASAN and not 9p code!
-> Thank you very much for your support.
-
-Thank you as well for taking the time to debug it after reporting! :)
-
-Have a good afternoon/evening,
--- 
-Dominique
+> BUG: memory leak
+> unreferenced object 0xffff88811181c360 (size 32):
+>    comm "syz-executor114", pid 7075, jiffies 4294946393 (age 16.360s)
+>    hex dump (first 32 bytes):
+>      77 66 64 6e 6f 25 61 63 63 65 73 73 3d 75 73 65  wfdno%access=use
+>      72 00 46 04 00 ea ff ff 80 4a 46 04 00 ea ff ff  r.F......JF.....
+>    backtrace:
+>      [<00000000830cd797>] kmemleak_alloc_recursive
+> /./include/linux/kmemleak.h:43 [inline]
+>      [<00000000830cd797>] slab_post_alloc_hook /mm/slab.h:522 [inline]
+>      [<00000000830cd797>] slab_alloc /mm/slab.c:3319 [inline]
+>      [<00000000830cd797>] __do_kmalloc /mm/slab.c:3653 [inline]
+>      [<00000000830cd797>] __kmalloc_track_caller+0x165/0x300 /mm/slab.c:3670
+>      [<000000004c2bde0e>] kmemdup_nul+0x31/0x80 /mm/util.c:143
+>      [<00000000d3b2a6b1>] match_strdup+0x21/0x30 /lib/parser.c:322
+>      [<00000000cb5a9103>] v9fs_parse_options /fs/9p/v9fs.c:281 [inline]
+>      [<00000000cb5a9103>] v9fs_session_init+0x29e/0x880 /fs/9p/v9fs.c:422
+>      [<0000000060a9624b>] v9fs_mount+0x5e/0x3a0 /fs/9p/vfs_super.c:120
+>      [<0000000045c47d3a>] legacy_get_tree+0x27/0x80 /fs/fs_context.c:661
+>      [<00000000966bd655>] vfs_get_tree+0x2e/0x110 /fs/super.c:1416
+>      [<000000004bdabb83>] do_new_mount /fs/namespace.c:2795 [inline]
+>      [<000000004bdabb83>] do_mount+0x94e/0xc70 /fs/namespace.c:3115
+>      [<000000008f276989>] ksys_mount+0xab/0x120 /fs/namespace.c:3324
+>      [<000000003dd28c22>] __do_sys_mount /fs/namespace.c:3338 [inline]
+>      [<000000003dd28c22>] __se_sys_mount /fs/namespace.c:3335 [inline]
+>      [<000000003dd28c22>] __x64_sys_mount+0x26/0x30 /fs/namespace.c:3335
+>      [<00000000b6179601>] do_syscall_64+0x76/0x1a0
+> /arch/x86/entry/common.c:296
+>      [<000000005924437c>] entry_SYSCALL_64_after_hwframe+0x44/0xa9
+>
+> BUG: memory leak
+> unreferenced object 0xffff8881109294a0 (size 32):
+>    comm "syz-executor114", pid 7076, jiffies 4294946394 (age 16.350s)
+>    hex dump (first 32 bytes):
+>      77 66 64 6e 6f 25 61 63 63 65 73 73 3d 75 73 65  wfdno%access=use
+>      72 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00  r...............
+>    backtrace:
+>      [<00000000830cd797>] kmemleak_alloc_recursive
+> /./include/linux/kmemleak.h:43 [inline]
+>      [<00000000830cd797>] slab_post_alloc_hook /mm/slab.h:522 [inline]
+>      [<00000000830cd797>] slab_alloc /mm/slab.c:3319 [inline]
+>      [<00000000830cd797>] __do_kmalloc /mm/slab.c:3653 [inline]
+>      [<00000000830cd797>] __kmalloc_track_caller+0x165/0x300 /mm/slab.c:3670
+>      [<000000004c2bde0e>] kmemdup_nul+0x31/0x80 /mm/util.c:143
+>      [<00000000d3b2a6b1>] match_strdup+0x21/0x30 /lib/parser.c:322
+>      [<00000000cb5a9103>] v9fs_parse_options /fs/9p/v9fs.c:281 [inline]
+>      [<00000000cb5a9103>] v9fs_session_init+0x29e/0x880 /fs/9p/v9fs.c:422
+>      [<0000000060a9624b>] v9fs_mount+0x5e/0x3a0 /fs/9p/vfs_super.c:120
+>      [<0000000045c47d3a>] legacy_get_tree+0x27/0x80 /fs/fs_context.c:661
+>      [<00000000966bd655>] vfs_get_tree+0x2e/0x110 /fs/super.c:1416
+>      [<000000004bdabb83>] do_new_mount /fs/namespace.c:2795 [inline]
+>      [<000000004bdabb83>] do_mount+0x94e/0xc70 /fs/namespace.c:3115
+>      [<000000008f276989>] ksys_mount+0xab/0x120 /fs/namespace.c:3324
+>      [<000000003dd28c22>] __do_sys_mount /fs/namespace.c:3338 [inline]
+>      [<000000003dd28c22>] __se_sys_mount /fs/namespace.c:3335 [inline]
+>      [<000000003dd28c22>] __x64_sys_mount+0x26/0x30 /fs/namespace.c:3335
+>      [<00000000b6179601>] do_syscall_64+0x76/0x1a0
+> /arch/x86/entry/common.c:296
+>      [<000000005924437c>] entry_SYSCALL_64_after_hwframe+0x44/0xa9
+>
+> BUG: memory leak
+> unreferenced object 0xffff888110929b40 (size 32):
+>    comm "syz-executor114", pid 7080, jiffies 4294946394 (age 16.350s)
+>    hex dump (first 32 bytes):
+>      77 66 64 6e 6f 25 61 63 63 65 73 73 3d 75 73 65  wfdno%access=use
+>      72 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00  r...............
+>    backtrace:
+>      [<00000000830cd797>] kmemleak_alloc_recursive
+> /./include/linux/kmemleak.h:43 [inline]
+>      [<00000000830cd797>] slab_post_alloc_hook /mm/slab.h:522 [inline]
+>      [<00000000830cd797>] slab_alloc /mm/slab.c:3319 [inline]
+>      [<00000000830cd797>] __do_kmalloc /mm/slab.c:3653 [inline]
+>      [<00000000830cd797>] __kmalloc_track_caller+0x165/0x300 /mm/slab.c:3670
+>      [<000000004c2bde0e>] kmemdup_nul+0x31/0x80 /mm/util.c:143
+>      [<00000000d3b2a6b1>] match_strdup+0x21/0x30 /lib/parser.c:322
+>      [<00000000cb5a9103>] v9fs_parse_options /fs/9p/v9fs.c:281 [inline]
+>      [<00000000cb5a9103>] v9fs_session_init+0x29e/0x880 /fs/9p/v9fs.c:422
+>      [<0000000060a9624b>] v9fs_mount+0x5e/0x3a0 /fs/9p/vfs_super.c:120
+>      [<0000000045c47d3a>] legacy_get_tree+0x27/0x80 /fs/fs_context.c:661
+>      [<00000000966bd655>] vfs_get_tree+0x2e/0x110 /fs/super.c:1416
+>      [<000000004bdabb83>] do_new_mount /fs/namespace.c:2795 [inline]
+>      [<000000004bdabb83>] do_mount+0x94e/0xc70 /fs/namespace.c:3115
+>      [<000000008f276989>] ksys_mount+0xab/0x120 /fs/namespace.c:3324
+>      [<000000003dd28c22>] __do_sys_mount /fs/namespace.c:3338 [inline]
+>      [<000000003dd28c22>] __se_sys_mount /fs/namespace.c:3335 [inline]
+>      [<000000003dd28c22>] __x64_sys_mount+0x26/0x30 /fs/namespace.c:3335
+>      [<00000000b6179601>] do_syscall_64+0x76/0x1a0
+> /arch/x86/entry/common.c:296
+>      [<000000005924437c>] entry_SYSCALL_64_after_hwframe+0x44/0xa9
+>
+> BUG: memory leak
+> unreferenced object 0xffff8881109292a0 (size 32):
+>    comm "syz-executor114", pid 7081, jiffies 4294946395 (age 16.340s)
+>    hex dump (first 32 bytes):
+>      77 66 64 6e 6f 25 61 63 63 65 73 73 3d 75 73 65  wfdno%access=use
+>      72 00 6b 65 72 6e 65 6c 5f 74 3a 73 30 00 00 00  r.kernel_t:s0...
+>    backtrace:
+>      [<00000000830cd797>] kmemleak_alloc_recursive
+> /./include/linux/kmemleak.h:43 [inline]
+>      [<00000000830cd797>] slab_post_alloc_hook /mm/slab.h:522 [inline]
+>      [<00000000830cd797>] slab_alloc /mm/slab.c:3319 [inline]
+>      [<00000000830cd797>] __do_kmalloc /mm/slab.c:3653 [inline]
+>      [<00000000830cd797>] __kmalloc_track_caller+0x165/0x300 /mm/slab.c:3670
+>      [<000000004c2bde0e>] kmemdup_nul+0x31/0x80 /mm/util.c:143
+>      [<00000000d3b2a6b1>] match_strdup+0x21/0x30 /lib/parser.c:322
+>      [<00000000cb5a9103>] v9fs_parse_options /fs/9p/v9fs.c:281 [inline]
+>      [<00000000cb5a9103>] v9fs_session_init+0x29e/0x880 /fs/9p/v9fs.c:422
+>      [<0000000060a9624b>] v9fs_mount+0x5e/0x3a0 /fs/9p/vfs_super.c:120
+>      [<0000000045c47d3a>] legacy_get_tree+0x27/0x80 /fs/fs_context.c:661
+>      [<00000000966bd655>] vfs_get_tree+0x2e/0x110 /fs/super.c:1416
+>      [<000000004bdabb83>] do_new_mount /fs/namespace.c:2795 [inline]
+>      [<000000004bdabb83>] do_mount+0x94e/0xc70 /fs/namespace.c:3115
+>      [<000000008f276989>] ksys_mount+0xab/0x120 /fs/namespace.c:3324
+>      [<000000003dd28c22>] __do_sys_mount /fs/namespace.c:3338 [inline]
+>      [<000000003dd28c22>] __se_sys_mount /fs/namespace.c:3335 [inline]
+>      [<000000003dd28c22>] __x64_sys_mount+0x26/0x30 /fs/namespace.c:3335
+>      [<00000000b6179601>] do_syscall_64+0x76/0x1a0
+> /arch/x86/entry/common.c:296
+>      [<000000005924437c>] entry_SYSCALL_64_after_hwframe+0x44/0xa9
+>
+> BUG: memory leak
+> unreferenced object 0xffff88811181c360 (size 32):
+>    comm "syz-executor114", pid 7075, jiffies 4294946393 (age 16.410s)
+>    hex dump (first 32 bytes):
+>      77 66 64 6e 6f 25 61 63 63 65 73 73 3d 75 73 65  wfdno%access=use
+>      72 00 46 04 00 ea ff ff 80 4a 46 04 00 ea ff ff  r.F......JF.....
+>    backtrace:
+>      [<00000000830cd797>] kmemleak_alloc_recursive
+> /./include/linux/kmemleak.h:43 [inline]
+>      [<00000000830cd797>] slab_post_alloc_hook /mm/slab.h:522 [inline]
+>      [<00000000830cd797>] slab_alloc /mm/slab.c:3319 [inline]
+>      [<00000000830cd797>] __do_kmalloc /mm/slab.c:3653 [inline]
+>      [<00000000830cd797>] __kmalloc_track_caller+0x165/0x300 /mm/slab.c:3670
+>      [<000000004c2bde0e>] kmemdup_nul+0x31/0x80 /mm/util.c:143
+>      [<00000000d3b2a6b1>] match_strdup+0x21/0x30 /lib/parser.c:322
+>      [<00000000cb5a9103>] v9fs_parse_options /fs/9p/v9fs.c:281 [inline]
+>      [<00000000cb5a9103>] v9fs_session_init+0x29e/0x880 /fs/9p/v9fs.c:422
+>      [<0000000060a9624b>] v9fs_mount+0x5e/0x3a0 /fs/9p/vfs_super.c:120
+>      [<0000000045c47d3a>] legacy_get_tree+0x27/0x80 /fs/fs_context.c:661
+>      [<00000000966bd655>] vfs_get_tree+0x2e/0x110 /fs/super.c:1416
+>      [<000000004bdabb83>] do_new_mount /fs/namespace.c:2795 [inline]
+>      [<000000004bdabb83>] do_mount+0x94e/0xc70 /fs/namespace.c:3115
+>      [<000000008f276989>] ksys_mount+0xab/0x120 /fs/namespace.c:3324
+>      [<000000003dd28c22>] __do_sys_mount /fs/namespace.c:3338 [inline]
+>      [<000000003dd28c22>] __se_sys_mount /fs/namespace.c:3335 [inline]
+>      [<000000003dd28c22>] __x64_sys_mount+0x26/0x30 /fs/namespace.c:3335
+>      [<00000000b6179601>] do_syscall_64+0x76/0x1a0
+> /arch/x86/entry/common.c:296
+>      [<000000005924437c>] entry_SYSCALL_64_after_hwframe+0x44/0xa9
+>
+> BUG: memory leak
+> unreferenced object 0xffff8881109294a0 (size 32):
+>    comm "syz-executor114", pid 7076, jiffies 4294946394 (age 16.400s)
+>    hex dump (first 32 bytes):
+>      77 66 64 6e 6f 25 61 63 63 65 73 73 3d 75 73 65  wfdno%access=use
+>      72 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00  r...............
+>    backtrace:
+>      [<00000000830cd797>] kmemleak_alloc_recursive
+> /./include/linux/kmemleak.h:43 [inline]
+>      [<00000000830cd797>] slab_post_alloc_hook /mm/slab.h:522 [inline]
+>      [<00000000830cd797>] slab_alloc /mm/slab.c:3319 [inline]
+>      [<00000000830cd797>] __do_kmalloc /mm/slab.c:3653 [inline]
+>      [<00000000830cd797>] __kmalloc_track_caller+0x165/0x300 /mm/slab.c:3670
+>      [<000000004c2bde0e>] kmemdup_nul+0x31/0x80 /mm/util.c:143
+>      [<00000000d3b2a6b1>] match_strdup+0x21/0x30 /lib/parser.c:322
+>      [<00000000cb5a9103>] v9fs_parse_options /fs/9p/v9fs.c:281 [inline]
+>      [<00000000cb5a9103>] v9fs_session_init+0x29e/0x880 /fs/9p/v9fs.c:422
+>      [<0000000060a9624b>] v9fs_mount+0x5e/0x3a0 /fs/9p/vfs_super.c:120
+>      [<0000000045c47d3a>] legacy_get_tree+0x27/0x80 /fs/fs_context.c:661
+>      [<00000000966bd655>] vfs_get_tree+0x2e/0x110 /fs/super.c:1416
+>      [<000000004bdabb83>] do_new_mount /fs/namespace.c:2795 [inline]
+>      [<000000004bdabb83>] do_mount+0x94e/0xc70 /fs/namespace.c:3115
+>      [<000000008f276989>] ksys_mount+0xab/0x120 /fs/namespace.c:3324
+>      [<000000003dd28c22>] __do_sys_mount /fs/namespace.c:3338 [inline]
+>      [<000000003dd28c22>] __se_sys_mount /fs/namespace.c:3335 [inline]
+>      [<000000003dd28c22>] __x64_sys_mount+0x26/0x30 /fs/namespace.c:3335
+>      [<00000000b6179601>] do_syscall_64+0x76/0x1a0
+> /arch/x86/entry/common.c:296
+>      [<000000005924437c>] entry_SYSCALL_64_after_hwframe+0x44/0xa9
+>
+> BUG: memory leak
+> unreferenced object 0xffff888110929b40 (size 32):
+>    comm "syz-executor114", pid 7080, jiffies 4294946394 (age 16.400s)
+>    hex dump (first 32 bytes):
+>      77 66 64 6e 6f 25 61 63 63 65 73 73 3d 75 73 65  wfdno%access=use
+>      72 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00  r...............
+>    backtrace:
+>      [<00000000830cd797>] kmemleak_alloc_recursive
+> /./include/linux/kmemleak.h:43 [inline]
+>      [<00000000830cd797>] slab_post_alloc_hook /mm/slab.h:522 [inline]
+>      [<00000000830cd797>] slab_alloc /mm/slab.c:3319 [inline]
+>      [<00000000830cd797>] __do_kmalloc /mm/slab.c:3653 [inline]
+>      [<00000000830cd797>] __kmalloc_track_caller+0x165/0x300 /mm/slab.c:3670
+>      [<000000004c2bde0e>] kmemdup_nul+0x31/0x80 /mm/util.c:143
+>      [<00000000d3b2a6b1>] match_strdup+0x21/0x30 /lib/parser.c:322
+>      [<00000000cb5a9103>] v9fs_parse_options /fs/9p/v9fs.c:281 [inline]
+>      [<00000000cb5a9103>] v9fs_session_init+0x29e/0x880 /fs/9p/v9fs.c:422
+>      [<0000000060a9624b>] v9fs_mount+0x5e/0x3a0 /fs/9p/vfs_super.c:120
+>      [<0000000045c47d3a>] legacy_get_tree+0x27/0x80 /fs/fs_context.c:661
+>      [<00000000966bd655>] vfs_get_tree+0x2e/0x110 /fs/super.c:1416
+>      [<000000004bdabb83>] do_new_mount /fs/namespace.c:2795 [inline]
+>      [<000000004bdabb83>] do_mount+0x94e/0xc70 /fs/namespace.c:3115
+>      [<000000008f276989>] ksys_mount+0xab/0x120 /fs/namespace.c:3324
+>      [<000000003dd28c22>] __do_sys_mount /fs/namespace.c:3338 [inline]
+>      [<000000003dd28c22>] __se_sys_mount /fs/namespace.c:3335 [inline]
+>      [<000000003dd28c22>] __x64_sys_mount+0x26/0x30 /fs/namespace.c:3335
+>      [<00000000b6179601>] do_syscall_64+0x76/0x1a0
+> /arch/x86/entry/common.c:296
+>      [<000000005924437c>] entry_SYSCALL_64_after_hwframe+0x44/0xa9
+>
+> BUG: memory leak
+> unreferenced object 0xffff8881109292a0 (size 32):
+>    comm "syz-executor114", pid 7081, jiffies 4294946395 (age 16.390s)
+>    hex dump (first 32 bytes):
+>      77 66 64 6e 6f 25 61 63 63 65 73 73 3d 75 73 65  wfdno%access=use
+>      72 00 6b 65 72 6e 65 6c 5f 74 3a 73 30 00 00 00  r.kernel_t:s0...
+>    backtrace:
+>      [<00000000830cd797>] kmemleak_alloc_recursive
+> /./include/linux/kmemleak.h:43 [inline]
+>      [<00000000830cd797>] slab_post_alloc_hook /mm/slab.h:522 [inline]
+>      [<00000000830cd797>] slab_alloc /mm/slab.c:3319 [inline]
+>      [<00000000830cd797>] __do_kmalloc /mm/slab.c:3653 [inline]
+>      [<00000000830cd797>] __kmalloc_track_caller+0x165/0x300 /mm/slab.c:3670
+>      [<000000004c2bde0e>] kmemdup_nul+0x31/0x80 /mm/util.c:143
+>      [<00000000d3b2a6b1>] match_strdup+0x21/0x30 /lib/parser.c:322
+>      [<00000000cb5a9103>] v9fs_parse_options /fs/9p/v9fs.c:281 [inline]
+>      [<00000000cb5a9103>] v9fs_session_init+0x29e/0x880 /fs/9p/v9fs.c:422
+>      [<0000000060a9624b>] v9fs_mount+0x5e/0x3a0 /fs/9p/vfs_super.c:120
+>      [<0000000045c47d3a>] legacy_get_tree+0x27/0x80 /fs/fs_context.c:661
+>      [<00000000966bd655>] vfs_get_tree+0x2e/0x110 /fs/super.c:1416
+>      [<000000004bdabb83>] do_new_mount /fs/namespace.c:2795 [inline]
+>      [<000000004bdabb83>] do_mount+0x94e/0xc70 /fs/namespace.c:3115
+>      [<000000008f276989>] ksys_mount+0xab/0x120 /fs/namespace.c:3324
+>      [<000000003dd28c22>] __do_sys_mount /fs/namespace.c:3338 [inline]
+>      [<000000003dd28c22>] __se_sys_mount /fs/namespace.c:3335 [inline]
+>      [<000000003dd28c22>] __x64_sys_mount+0x26/0x30 /fs/namespace.c:3335
+>      [<00000000b6179601>] do_syscall_64+0x76/0x1a0
+> /arch/x86/entry/common.c:296
+>      [<000000005924437c>] entry_SYSCALL_64_after_hwframe+0x44/0xa9
+>
+> BUG: memory leak
+> unreferenced object 0xffff88811181c360 (size 32):
+>    comm "syz-executor114", pid 7075, jiffies 4294946393 (age 17.280s)
+>    hex dump (first 32 bytes):
+>      77 66 64 6e 6f 25 61 63 63 65 73 73 3d 75 73 65  wfdno%access=use
+>      72 00 46 04 00 ea ff ff 80 4a 46 04 00 ea ff ff  r.F......JF.....
+>    backtrace:
+>      [<00000000830cd797>] kmemleak_alloc_recursive
+> /./include/linux/kmemleak.h:43 [inline]
+>      [<00000000830cd797>] slab_post_alloc_hook /mm/slab.h:522 [inline]
+>      [<00000000830cd797>] slab_alloc /mm/slab.c:3319 [inline]
+>      [<00000000830cd797>] __do_kmalloc /mm/slab.c:3653 [inline]
+>      [<00000000830cd797>] __kmalloc_track_caller+0x165/0x300 /mm/slab.c:3670
+>      [<000000004c2bde0e>] kmemdup_nul+0x31/0x80 /mm/util.c:143
+>      [<00000000d3b2a6b1>] match_strdup+0x21/0x30 /lib/parser.c:322
+>      [<00000000cb5a9103>] v9fs_parse_options /fs/9p/v9fs.c:281 [inline]
+>      [<00000000cb5a9103>] v9fs_session_init+0x29e/0x880 /fs/9p/v9fs.c:422
+>      [<0000000060a9624b>] v9fs_mount+0x5e/0x3a0 /fs/9p/vfs_super.c:120
+>      [<0000000045c47d3a>] legacy_get_tree+0x27/0x80 /fs/fs_context.c:661
+>      [<00000000966bd655>] vfs_get_tree+0x2e/0x110 /fs/super.c:1416
+>      [<000000004bdabb83>] do_new_mount /fs/namespace.c:2795 [inline]
+>      [<000000004bdabb83>] do_mount+0x94e/0xc70 /fs/namespace.c:3115
+>      [<000000008f276989>] ksys_mount+0xab/0x120 /fs/namespace.c:3324
+>      [<000000003dd28c22>] __do_sys_mount /fs/namespace.c:3338 [inline]
+>      [<000000003dd28c22>] __se_sys_mount /fs/namespace.c:3335 [inline]
+>      [<000000003dd28c22>] __x64_sys_mount+0x26/0x30 /fs/namespace.c:3335
+>      [<00000000b6179601>] do_syscall_64+0x76/0x1a0
+> /arch/x86/entry/common.c:296
+>      [<000000005924437c>] entry_SYSCALL_64_after_hwframe+0x44/0xa9
+>
+> BUG: memory leak
+> unreferenced object 0xffff8881109294a0 (size 32):
+>    comm "syz-executor114", pid 7076, jiffies 4294946394 (age 17.270s)
+>    hex dump (first 32 bytes):
+>      77 66 64 6e 6f 25 61 63 63 65 73 73 3d 75 73 65  wfdno%access=use
+>      72 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00  r...............
+>    backtrace:
+>      [<00000000830cd797>] kmemleak_alloc_recursive
+> /./include/linux/kmemleak.h:43 [inline]
+>      [<00000000830cd797>] slab_post_alloc_hook /mm/slab.h:522 [inline]
+>      [<00000000830cd797>] slab_alloc /mm/slab.c:3319 [inline]
+>      [<00000000830cd797>] __do_kmalloc /mm/slab.c:3653 [inline]
+>      [<00000000830cd797>] __kmalloc_track_caller+0x165/0x300 /mm/slab.c:3670
+>      [<000000004c2bde0e>] kmemdup_nul+0x31/0x80 /mm/util.c:143
+>      [<00000000d3b2a6b1>] match_strdup+0x21/0x30 /lib/parser.c:322
+>      [<00000000cb5a9103>] v9fs_parse_options /fs/9p/v9fs.c:281 [inline]
+>      [<00000000cb5a9103>] v9fs_session_init+0x29e/0x880 /fs/9p/v9fs.c:422
+>      [<0000000060a9624b>] v9fs_mount+0x5e/0x3a0 /fs/9p/vfs_super.c:120
+>      [<0000000045c47d3a>] legacy_get_tree+0x27/0x80 /fs/fs_context.c:661
+>      [<00000000966bd655>] vfs_get_tree+0x2e/0x110 /fs/super.c:1416
+>      [<000000004bdabb83>] do_new_mount /fs/namespace.c:2795 [inline]
+>      [<000000004bdabb83>] do_mount+0x94e/0xc70 /fs/namespace.c:3115
+>      [<000000008f276989>] ksys_mount+0xab/0x120 /fs/namespace.c:3324
+>      [<000000003dd28c22>] __do_sys_mount /fs/namespace.c:3338 [inline]
+>      [<000000003dd28c22>] __se_sys_mount /fs/namespace.c:3335 [inline]
+>      [<000000003dd28c22>] __x64_sys_mount+0x26/0x30 /fs/namespace.c:3335
+>      [<00000000b6179601>] do_syscall_64+0x76/0x1a0
+> /arch/x86/entry/common.c:296
+>      [<000000005924437c>] entry_SYSCALL_64_after_hwframe+0x44/0xa9
+>
+> BUG: memory leak
+> unreferenced object 0xffff888110929b40 (size 32):
+>    comm "syz-executor114", pid 7080, jiffies 4294946394 (age 17.270s)
+>    hex dump (first 32 bytes):
+>      77 66 64 6e 6f 25 61 63 63 65 73 73 3d 75 73 65  wfdno%access=use
+>      72 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00  r...............
+>    backtrace:
+>      [<00000000830cd797>] kmemleak_alloc_recursive
+> /./include/linux/kmemleak.h:43 [inline]
+>      [<00000000830cd797>] slab_post_alloc_hook /mm/slab.h:522 [inline]
+>      [<00000000830cd797>] slab_alloc /mm/slab.c:3319 [inline]
+>      [<00000000830cd797>] __do_kmalloc /mm/slab.c:3653 [inline]
+>      [<00000000830cd797>] __kmalloc_track_caller+0x165/0x300 /mm/slab.c:3670
+>      [<000000004c2bde0e>] kmemdup_nul+0x31/0x80 /mm/util.c:143
+>      [<00000000d3b2a6b1>] match_strdup+0x21/0x30 /lib/parser.c:322
+>      [<00000000cb5a9103>] v9fs_parse_options /fs/9p/v9fs.c:281 [inline]
+>      [<00000000cb5a9103>] v9fs_session_init+0x29e/0x880 /fs/9p/v9fs.c:422
+>      [<0000000060a9624b>] v9fs_mount+0x5e/0x3a0 /fs/9p/vfs_super.c:120
+>      [<0000000045c47d3a>] legacy_get_tree+0x27/0x80 /fs/fs_context.c:661
+>      [<00000000966bd655>] vfs_get_tree+0x2e/0x110 /fs/super.c:1416
+>      [<000000004bdabb83>] do_new_mount /fs/namespace.c:2795 [inline]
+>      [<000000004bdabb83>] do_mount+0x94e/0xc70 /fs/namespace.c:3115
+>      [<000000008f276989>] ksys_mount+0xab/0x120 /fs/namespace.c:3324
+>      [<000000003dd28c22>] __do_sys_mount /fs/namespace.c:3338 [inline]
+>      [<000000003dd28c22>] __se_sys_mount /fs/namespace.c:3335 [inline]
+>      [<000000003dd28c22>] __x64_sys_mount+0x26/0x30 /fs/namespace.c:3335
+>      [<00000000b6179601>] do_syscall_64+0x76/0x1a0
+> /arch/x86/entry/common.c:296
+>      [<000000005924437c>] entry_SYSCALL_64_after_hwframe+0x44/0xa9
+>
+> BUG: memory leak
+> unreferenced object 0xffff8881109292a0 (size 32):
+>    comm "syz-executor114", pid 7081, jiffies 4294946395 (age 17.260s)
+>    hex dump (first 32 bytes):
+>      77 66 64 6e 6f 25 61 63 63 65 73 73 3d 75 73 65  wfdno%access=use
+>      72 00 6b 65 72 6e 65 6c 5f 74 3a 73 30 00 00 00  r.kernel_t:s0...
+>    backtrace:
+>      [<00000000830cd797>] kmemleak_alloc_recursive
+> /./include/linux/kmemleak.h:43 [inline]
+>      [<00000000830cd797>] slab_post_alloc_hook /mm/slab.h:522 [inline]
+>      [<00000000830cd797>] slab_alloc /mm/slab.c:3319 [inline]
+>      [<00000000830cd797>] __do_kmalloc /mm/slab.c:3653 [inline]
+>      [<00000000830cd797>] __kmalloc_track_caller+0x165/0x300 /mm/slab.c:3670
+>      [<000000004c2bde0e>] kmemdup_nul+0x31/0x80 /mm/util.c:143
+>      [<00000000d3b2a6b1>] match_strdup+0x21/0x30 /lib/parser.c:322
+>      [<00000000cb5a9103>] v9fs_parse_options /fs/9p/v9fs.c:281 [inline]
+>      [<00000000cb5a9103>] v9fs_session_init+0x29e/0x880 /fs/9p/v9fs.c:422
+>      [<0000000060a9624b>] v9fs_mount+0x5e/0x3a0 /fs/9p/vfs_super.c:120
+>      [<0000000045c47d3a>] legacy_get_tree+0x27/0x80 /fs/fs_context.c:661
+>      [<00000000966bd655>] vfs_get_tree+0x2e/0x110 /fs/super.c:1416
+>      [<000000004bdabb83>] do_new_mount /fs/namespace.c:2795 [inline]
+>      [<000000004bdabb83>] do_mount+0x94e/0xc70 /fs/namespace.c:3115
+>      [<000000008f276989>] ksys_mount+0xab/0x120 /fs/namespace.c:3324
+>      [<000000003dd28c22>] __do_sys_mount /fs/namespace.c:3338 [inline]
+>      [<000000003dd28c22>] __se_sys_mount /fs/namespace.c:3335 [inline]
+>      [<000000003dd28c22>] __x64_sys_mount+0x26/0x30 /fs/namespace.c:3335
+>      [<00000000b6179601>] do_syscall_64+0x76/0x1a0
+> /arch/x86/entry/common.c:296
+>      [<000000005924437c>] entry_SYSCALL_64_after_hwframe+0x44/0xa9
+>
+> BUG: memory leak
+> unreferenced object 0xffff88811181c360 (size 32):
+>    comm "syz-executor114", pid 7075, jiffies 4294946393 (age 18.150s)
+>    hex dump (first 32 bytes):
+>      77 66 64 6e 6f 25 61 63 63 65 73 73 3d 75 73 65  wfdno%access=use
+>      72 00 46 04 00 ea ff ff 80 4a 46 04 00 ea ff ff  r.F......JF.....
+>    backtrace:
+>      [<00000000830cd797>] kmemleak_alloc_recursive
+> /./include/linux/kmemleak.h:43 [inline]
+>      [<00000000830cd797>] slab_post_alloc_hook /mm/slab.h:522 [inline]
+>      [<00000000830cd797>] slab_alloc /mm/slab.c:3319 [inline]
+>      [<00000000830cd797>] __do_kmalloc /mm/slab.c:3653 [inline]
+>      [<00000000830cd797>] __kmalloc_track_caller+0x165/0x300 /mm/slab.c:3670
+>      [<000000004c2bde0e>] kmemdup_nul+0x31/0x80 /mm/util.c:143
+>      [<00000000d3b2a6b1>] match_strdup+0x21/0x30 /lib/parser.c:322
+>      [<00000000cb5a9103>] v9fs_parse_options /fs/9p/v9fs.c:281 [inline]
+>      [<00000000cb5a9103>] v9fs_session_init+0x29e/0x880 /fs/9p/v9fs.c:422
+>      [<0000000060a9624b>] v9fs_mount+0x5e/0x3a0 /fs/9p/vfs_super.c:120
+>      [<0000000045c47d3a>] legacy_get_tree+0x27/0x80 /fs/fs_context.c:661
+>      [<00000000966bd655>] vfs_get_tree+0x2e/0x110 /fs/super.c:1416
+>      [<000000004bdabb83>] do_new_mount /fs/namespace.c:2795 [inline]
+>      [<000000004bdabb83>] do_mount+0x94e/0xc70 /fs/namespace.c:3115
+>      [<000000008f276989>] ksys_mount+0xab/0x120 /fs/namespace.c:3324
+>      [<000000003dd28c22>] __do_sys_mount /fs/namespace.c:3338 [inline]
+>      [<000000003dd28c22>] __se_sys_mount /fs/namespace.c:3335 [inline]
+>      [<000000003dd28c22>] __x64_sys_mount+0x26/0x30 /fs/namespace.c:3335
+>      [<00000000b6179601>] do_syscall_64+0x76/0x1a0
+> /arch/x86/entry/common.c:296
+>      [<000000005924437c>] entry_SYSCALL_64_after_hwframe+0x44/0xa9
+>
+> BUG: memory leak
+> unreferenced object 0xffff8881109294a0 (size 32):
+>    comm "syz-executor114", pid 7076, jiffies 4294946394 (age 18.140s)
+>    hex dump (first 32 bytes):
+>      77 66 64 6e 6f 25 61 63 63 65 73 73 3d 75 73 65  wfdno%access=use
+>      72 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00  r...............
+>    backtrace:
+>      [<00000000830cd797>] kmemleak_alloc_recursive
+> /./include/linux/kmemleak.h:43 [inline]
+>      [<00000000830cd797>] slab_post_alloc_hook /mm/slab.h:522 [inline]
+>      [<00000000830cd797>] slab_alloc /mm/slab.c:3319 [inline]
+>      [<00000000830cd797>] __do_kmalloc /mm/slab.c:3653 [inline]
+>      [<00000000830cd797>] __kmalloc_track_caller+0x165/0x300 /mm/slab.c:3670
+>      [<000000004c2bde0e>] kmemdup_nul+0x31/0x80 /mm/util.c:143
+>      [<00000000d3b2a6b1>] match_strdup+0x21/0x30 /lib/parser.c:322
+>      [<00000000cb5a9103>] v9fs_parse_options /fs/9p/v9fs.c:281 [inline]
+>      [<00000000cb5a9103>] v9fs_session_init+0x29e/0x880 /fs/9p/v9fs.c:422
+>      [<0000000060a9624b>] v9fs_mount+0x5e/0x3a0 /fs/9p/vfs_super.c:120
+>      [<0000000045c47d3a>] legacy_get_tree+0x27/0x80 /fs/fs_context.c:661
+>      [<00000000966bd655>] vfs_get_tree+0x2e/0x110 /fs/super.c:1416
+>      [<000000004bdabb83>] do_new_mount /fs/namespace.c:2795 [inline]
+>      [<000000004bdabb83>] do_mount+0x94e/0xc70 /fs/namespace.c:3115
+>      [<000000008f276989>] ksys_mount+0xab/0x120 /fs/namespace.c:3324
+>      [<000000003dd28c22>] __do_sys_mount /fs/namespace.c:3338 [inline]
+>      [<000000003dd28c22>] __se_sys_mount /fs/namespace.c:3335 [inline]
+>      [<000000003dd28c22>] __x64_sys_mount+0x26/0x30 /fs/namespace.c:3335
+>      [<00000000b6179601>] do_syscall_64+0x76/0x1a0
+> /arch/x86/entry/common.c:296
+>      [<000000005924437c>] entry_SYSCALL_64_after_hwframe+0x44/0xa9
+>
+> BUG: memory leak
+> unreferenced object 0xffff888110929b40 (size 32):
+>    comm "syz-executor114", pid 7080, jiffies 4294946394 (age 18.140s)
+>    hex dump (first 32 bytes):
+>      77 66 64 6e 6f 25 61 63 63 65 73 73 3d 75 73 65  wfdno%access=use
+>      72 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00  r...............
+>    backtrace:
+>      [<00000000830cd797>] kmemleak_alloc_recursive
+> /./include/linux/kmemleak.h:43 [inline]
+>      [<00000000830cd797>] slab_post_alloc_hook /mm/slab.h:522 [inline]
+>      [<00000000830cd797>] slab_alloc /mm/slab.c:3319 [inline]
+>      [<00000000830cd797>] __do_kmalloc /mm/slab.c:3653 [inline]
+>      [<00000000830cd797>] __kmalloc_track_caller+0x165/0x300 /mm/slab.c:3670
+>      [<000000004c2bde0e>] kmemdup_nul+0x31/0x80 /mm/util.c:143
+>      [<00000000d3b2a6b1>] match_strdup+0x21/0x30 /lib/parser.c:322
+>      [<00000000cb5a9103>] v9fs_parse_options /fs/9p/v9fs.c:281 [inline]
+>      [<00000000cb5a9103>] v9fs_session_init+0x29e/0x880 /fs/9p/v9fs.c:422
+>      [<0000000060a9624b>] v9fs_mount+0x5e/0x3a0 /fs/9p/vfs_super.c:120
+>      [<0000000045c47d3a>] legacy_get_tree+0x27/0x80 /fs/fs_context.c:661
+>      [<00000000966bd655>] vfs_get_tree+0x2e/0x110 /fs/super.c:1416
+>      [<000000004bdabb83>] do_new_mount /fs/namespace.c:2795 [inline]
+>      [<000000004bdabb83>] do_mount+0x94e/0xc70 /fs/namespace.c:3115
+>      [<000000008f276989>] ksys_mount+0xab/0x120 /fs/namespace.c:3324
+>      [<000000003dd28c22>] __do_sys_mount /fs/namespace.c:3338 [inline]
+>      [<000000003dd28c22>] __se_sys_mount /fs/namespace.c:3335 [inline]
+>      [<000000003dd28c22>] __x64_sys_mount+0x26/0x30 /fs/namespace.c:3335
+>      [<00000000b6179601>] do_syscall_64+0x76/0x1a0
+> /arch/x86/entry/common.c:296
+>      [<000000005924437c>] entry_SYSCALL_64_after_hwframe+0x44/0xa9
+>
+> BUG: memory leak
+> unreferenced object 0xffff8881109292a0 (size 32):
+>    comm "syz-executor114", pid 7081, jiffies 4294946395 (age 18.130s)
+>    hex dump (first 32 bytes):
+>      77 66 64 6e 6f 25 61 63 63 65 73 73 3d 75 73 65  wfdno%access=use
+>      72 00 6b 65 72 6e 65 6c 5f 74 3a 73 30 00 00 00  r.kernel_t:s0...
+>    backtrace:
+>      [<00000000830cd797>] kmemleak_alloc_recursive
+> /./include/linux/kmemleak.h:43 [inline]
+>      [<00000000830cd797>] slab_post_alloc_hook /mm/slab.h:522 [inline]
+>      [<00000000830cd797>] slab_alloc /mm/slab.c:3319 [inline]
+>      [<00000000830cd797>] __do_kmalloc /mm/slab.c:3653 [inline]
+>      [<00000000830cd797>] __kmalloc_track_caller+0x165/0x300 /mm/slab.c:3670
+>      [<000000004c2bde0e>] kmemdup_nul+0x31/0x80 /mm/util.c:143
+>      [<00000000d3b2a6b1>] match_strdup+0x21/0x30 /lib/parser.c:322
+>      [<00000000cb5a9103>] v9fs_parse_options /fs/9p/v9fs.c:281 [inline]
+>      [<00000000cb5a9103>] v9fs_session_init+0x29e/0x880 /fs/9p/v9fs.c:422
+>      [<0000000060a9624b>] v9fs_mount+0x5e/0x3a0 /fs/9p/vfs_super.c:120
+>      [<0000000045c47d3a>] legacy_get_tree+0x27/0x80 /fs/fs_context.c:661
+>      [<00000000966bd655>] vfs_get_tree+0x2e/0x110 /fs/super.c:1416
+>      [<000000004bdabb83>] do_new_mount /fs/namespace.c:2795 [inline]
+>      [<000000004bdabb83>] do_mount+0x94e/0xc70 /fs/namespace.c:3115
+>      [<000000008f276989>] ksys_mount+0xab/0x120 /fs/namespace.c:3324
+>      [<000000003dd28c22>] __do_sys_mount /fs/namespace.c:3338 [inline]
+>      [<000000003dd28c22>] __se_sys_mount /fs/namespace.c:3335 [inline]
+>      [<000000003dd28c22>] __x64_sys_mount+0x26/0x30 /fs/namespace.c:3335
+>      [<00000000b6179601>] do_syscall_64+0x76/0x1a0
+> /arch/x86/entry/common.c:296
+>      [<000000005924437c>] entry_SYSCALL_64_after_hwframe+0x44/0xa9
+>
+> BUG: memory leak
+> unreferenced object 0xffff88811181c360 (size 32):
+>    comm "syz-executor114", pid 7075, jiffies 4294946393 (age 19.020s)
+>    hex dump (first 32 bytes):
+>      77 66 64 6e 6f 25 61 63 63 65 73 73 3d 75 73 65  wfdno%access=use
+>      72 00 46 04 00 ea ff ff 80 4a 46 04 00 ea ff ff  r.F......JF.....
+>    backtrace:
+>      [<00000000830cd797>] kmemleak_alloc_recursive
+> /./include/linux/kmemleak.h:43 [inline]
+>      [<00000000830cd797>] slab_post_alloc_hook /mm/slab.h:522 [inline]
+>      [<00000000830cd797>] slab_alloc /mm/slab.c:3319 [inline]
+>      [<00000000830cd797>] __do_kmalloc /mm/slab.c:3653 [inline]
+>      [<00000000830cd797>] __kmalloc_track_caller+0x165/0x300 /mm/slab.c:3670
+>      [<000000004c2bde0e>] kmemdup_nul+0x31/0x80 /mm/util.c:143
+>      [<00000000d3b2a6b1>] match_strdup+0x21/0x30 /lib/parser.c:322
+>      [<00000000cb5a9103>] v9fs_parse_options /fs/9p/v9fs.c:281 [inline]
+>      [<00000000cb5a9103>] v9fs_session_init+0x29e/0x880 /fs/9p/v9fs.c:422
+>      [<0000000060a9624b>] v9fs_mount+0x5e/0x3a0 /fs/9p/vfs_super.c:120
+>      [<0000000045c47d3a>] legacy_get_tree+0x27/0x80 /fs/fs_context.c:661
+>      [<00000000966bd655>] vfs_get_tree+0x2e/0x110 /fs/super.c:1416
+>      [<000000004bdabb83>] do_new_mount /fs/namespace.c:2795 [inline]
+>      [<000000004bdabb83>] do_mount+0x94e/0xc70 /fs/namespace.c:3115
+>      [<000000008f276989>] ksys_mount+0xab/0x120 /fs/namespace.c:3324
+>      [<000000003dd28c22>] __do_sys_mount /fs/namespace.c:3338 [inline]
+>      [<000000003dd28c22>] __se_sys_mount /fs/namespace.c:3335 [inline]
+>      [<000000003dd28c22>] __x64_sys_mount+0x26/0x30 /fs/namespace.c:3335
+>      [<00000000b6179601>] do_syscall_64+0x76/0x1a0
+> /arch/x86/entry/common.c:296
+>      [<000000005924437c>] entry_SYSCALL_64_after_hwframe+0x44/0xa9
+>
+> BUG: memory leak
+> unreferenced object 0xffff8881109294a0 (size 32):
+>    comm "syz-executor114", pid 7076, jiffies 4294946394 (age 19.010s)
+>    hex dump (first 32 bytes):
+>      77 66 64 6e 6f 25 61 63 63 65 73 73 3d 75 73 65  wfdno%access=use
+>      72 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00  r...............
+>    backtrace:
+>      [<00000000830cd797>] kmemleak_alloc_recursive
+> /./include/linux/kmemleak.h:43 [inline]
+>      [<00000000830cd797>] slab_post_alloc_hook /mm/slab.h:522 [inline]
+>      [<00000000830cd797>] slab_alloc /mm/slab.c:3319 [inline]
+>      [<00000000830cd797>] __do_kmalloc /mm/slab.c:3653 [inline]
+>      [<00000000830cd797>] __kmalloc_track_caller+0x165/0x300 /mm/slab.c:3670
+>      [<000000004c2bde0e>] kmemdup_nul+0x31/0x80 /mm/util.c:143
+>      [<00000000d3b2a6b1>] match_strdup+0x21/0x30 /lib/parser.c:322
+>      [<00000000cb5a9103>] v9fs_parse_options /fs/9p/v9fs.c:281 [inline]
+>      [<00000000cb5a9103>] v9fs_session_init+0x29e/0x880 /fs/9p/v9fs.c:422
+>      [<0000000060a9624b>] v9fs_mount+0x5e/0x3a0 /fs/9p/vfs_super.c:120
+>      [<0000000045c47d3a>] legacy_get_tree+0x27/0x80 /fs/fs_context.c:661
+>      [<00000000966bd655>] vfs_get_tree+0x2e/0x110 /fs/super.c:1416
+>      [<000000004bdabb83>] do_new_mount /fs/namespace.c:2795 [inline]
+>      [<000000004bdabb83>] do_mount+0x94e/0xc70 /fs/namespace.c:3115
+>      [<000000008f276989>] ksys_mount+0xab/0x120 /fs/namespace.c:3324
+>      [<000000003dd28c22>] __do_sys_mount /fs/namespace.c:3338 [inline]
+>      [<000000003dd28c22>] __se_sys_mount /fs/namespace.c:3335 [inline]
+>      [<000000003dd28c22>] __x64_sys_mount+0x26/0x30 /fs/namespace.c:3335
+>      [<00000000b6179601>] do_syscall_64+0x76/0x1a0
+> /arch/x86/entry/common.c:296
+>      [<000000005924437c>] entry_SYSCALL_64_after_hwframe+0x44/0xa9
+>
+> BUG: memory leak
+> unreferenced object 0xffff888110929b40 (size 32):
+>    comm "syz-executor114", pid 7080, jiffies 4294946394 (age 19.010s)
+>    hex dump (first 32 bytes):
+>      77 66 64 6e 6f 25 61 63 63 65 73 73 3d 75 73 65  wfdno%access=use
+>      72 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00  r...............
+>    backtrace:
+>      [<00000000830cd797>] kmemleak_alloc_recursive
+> /./include/linux/kmemleak.h:43 [inline]
+>      [<00000000830cd797>] slab_post_alloc_hook /mm/slab.h:522 [inline]
+>      [<00000000830cd797>] slab_alloc /mm/slab.c:3319 [inline]
+>      [<00000000830cd797>] __do_kmalloc /mm/slab.c:3653 [inline]
+>      [<00000000830cd797>] __kmalloc_track_caller+0x165/0x300 /mm/slab.c:3670
+>      [<000000004c2bde0e>] kmemdup_nul+0x31/0x80 /mm/util.c:143
+>      [<00000000d3b2a6b1>] match_strdup+0x21/0x30 /lib/parser.c:322
+>      [<00000000cb5a9103>] v9fs_parse_options /fs/9p/v9fs.c:281 [inline]
+>      [<00000000cb5a9103>] v9fs_session_init+0x29e/0x880 /fs/9p/v9fs.c:422
+>      [<0000000060a9624b>] v9fs_mount+0x5e/0x3a0 /fs/9p/vfs_super.c:120
+>      [<0000000045c47d3a>] legacy_get_tree+0x27/0x80 /fs/fs_context.c:661
+>      [<00000000966bd655>] vfs_get_tree+0x2e/0x110 /fs/super.c:1416
+>      [<000000004bdabb83>] do_new_mount /fs/namespace.c:2795 [inline]
+>      [<000000004bdabb83>] do_mount+0x94e/0xc70 /fs/namespace.c:3115
+>      [<000000008f276989>] ksys_mount+0xab/0x120 /fs/namespace.c:3324
+>      [<000000003dd28c22>] __do_sys_mount /fs/namespace.c:3338 [inline]
+>      [<000000003dd28c22>] __se_sys_mount /fs/namespace.c:3335 [inline]
+>      [<000000003dd28c22>] __x64_sys_mount+0x26/0x30 /fs/namespace.c:3335
+>      [<00000000b6179601>] do_syscall_64+0x76/0x1a0
+> /arch/x86/entry/common.c:296
+>      [<000000005924437c>] entry_SYSCALL_64_after_hwframe+0x44/0xa9
+>
+> BUG: memory leak
+> unreferenced object 0xffff8881109292a0 (size 32):
+>    comm "syz-executor114", pid 7081, jiffies 4294946395 (age 19.000s)
+>    hex dump (first 32 bytes):
+>      77 66 64 6e 6f 25 61 63 63 65 73 73 3d 75 73 65  wfdno%access=use
+>      72 00 6b 65 72 6e 65 6c 5f 74 3a 73 30 00 00 00  r.kernel_t:s0...
+>    backtrace:
+>      [<00000000830cd797>] kmemleak_alloc_recursive
+> /./include/linux/kmemleak.h:43 [inline]
+>      [<00000000830cd797>] slab_post_alloc_hook /mm/slab.h:522 [inline]
+>      [<00000000830cd797>] slab_alloc /mm/slab.c:3319 [inline]
+>      [<00000000830cd797>] __do_kmalloc /mm/slab.c:3653 [inline]
+>      [<00000000830cd797>] __kmalloc_track_caller+0x165/0x300 /mm/slab.c:3670
+>      [<000000004c2bde0e>] kmemdup_nul+0x31/0x80 /mm/util.c:143
+>      [<00000000d3b2a6b1>] match_strdup+0x21/0x30 /lib/parser.c:322
+>      [<00000000cb5a9103>] v9fs_parse_options /fs/9p/v9fs.c:281 [inline]
+>      [<00000000cb5a9103>] v9fs_session_init+0x29e/0x880 /fs/9p/v9fs.c:422
+>      [<0000000060a9624b>] v9fs_mount+0x5e/0x3a0 /fs/9p/vfs_super.c:120
+>      [<0000000045c47d3a>] legacy_get_tree+0x27/0x80 /fs/fs_context.c:661
+>      [<00000000966bd655>] vfs_get_tree+0x2e/0x110 /fs/super.c:1416
+>      [<000000004bdabb83>] do_new_mount /fs/namespace.c:2795 [inline]
+>      [<000000004bdabb83>] do_mount+0x94e/0xc70 /fs/namespace.c:3115
+>      [<000000008f276989>] ksys_mount+0xab/0x120 /fs/namespace.c:3324
+>      [<000000003dd28c22>] __do_sys_mount /fs/namespace.c:3338 [inline]
+>      [<000000003dd28c22>] __se_sys_mount /fs/namespace.c:3335 [inline]
+>      [<000000003dd28c22>] __x64_sys_mount+0x26/0x30 /fs/namespace.c:3335
+>      [<00000000b6179601>] do_syscall_64+0x76/0x1a0
+> /arch/x86/entry/common.c:296
+>      [<000000005924437c>] entry_SYSCALL_64_after_hwframe+0x44/0xa9
+>
+> BUG: memory leak
+> unreferenced object 0xffff88811181c360 (size 32):
+>    comm "syz-executor114", pid 7075, jiffies 4294946393 (age 19.070s)
+>    hex dump (first 32 bytes):
+>      77 66 64 6e 6f 25 61 63 63 65 73 73 3d 75 73 65  wfdno%access=use
+>      72 00 46 04 00 ea ff ff 80 4a 46 04 00 ea ff ff  r.F......JF.....
+>    backtrace:
+>      [<00000000830cd797>] kmemleak_alloc_recursive
+> /./include/linux/kmemleak.h:43 [inline]
+>      [<00000000830cd797>] slab_post_alloc_hook /mm/slab.h:522 [inline]
+>      [<00000000830cd797>] slab_alloc /mm/slab.c:3319 [inline]
+>      [<00000000830cd797>] __do_kmalloc /mm/slab.c:3653 [inline]
+>      [<00000000830cd797>] __kmalloc_track_caller+0x165/0x300 /mm/slab.c:3670
+>      [<000000004c2bde0e>] kmemdup_nul+0x31/0x80 /mm/util.c:143
+>      [<00000000d3b2a6b1>] match_strdup+0x21/0x30 /lib/parser.c:322
+>      [<00000000cb5a9103>] v9fs_parse_options /fs/9p/v9fs.c:281 [inline]
+>      [<00000000cb5a9103>] v9fs_session_init+0x29e/0x880 /fs/9p/v9fs.c:422
+>      [<0000000060a9624b>] v9fs_mount+0x5e/0x3a0 /fs/9p/vfs_super.c:120
+>      [<0000000045c47d3a>] legacy_get_tree+0x27/0x80 /fs/fs_context.c:661
+>      [<00000000966bd655>] vfs_get_tree+0x2e/0x110 /fs/super.c:1416
+>      [<000000004bdabb83>] do_new_mount /fs/namespace.c:2795 [inline]
+>      [<000000004bdabb83>] do_mount+0x94e/0xc70 /fs/namespace.c:3115
+>      [<000000008f276989>] ksys_mount+0xab/0x120 /fs/namespace.c:3324
+>      [<000000003dd28c22>] __do_sys_mount /fs/namespace.c:3338 [inline]
+>      [<000000003dd28c22>] __se_sys_mount /fs/namespace.c:3335 [inline]
+>      [<000000003dd28c22>] __x64_sys_mount+0x26/0x30 /fs/namespace.c:3335
+>      [<00000000b6179601>] do_syscall_64+0x76/0x1a0
+> /arch/x86/entry/common.c:296
+>      [<000000005924437c>] entry_SYSCALL_64_after_hwframe+0x44/0xa9
+>
+> BUG: memory leak
+> unreferenced object 0xffff8881109294a0 (size 32):
+>    comm "syz-executor114", pid 7076, jiffies 4294946394 (age 19.060s)
+>    hex dump (first 32 bytes):
+>      77 66 64 6e 6f 25 61 63 63 65 73 73 3d 75 73 65  wfdno%access=use
+>      72 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00  r...............
+>    backtrace:
+>      [<00000000830cd797>] kmemleak_alloc_recursive
+> /./include/linux/kmemleak.h:43 [inline]
+>      [<00000000830cd797>] slab_post_alloc_hook /mm/slab.h:522 [inline]
+>      [<00000000830cd797>] slab_alloc /mm/slab.c:3319 [inline]
+>      [<00000000830cd797>] __do_kmalloc /mm/slab.c:3653 [inline]
+>      [<00000000830cd797>] __kmalloc_track_caller+0x165/0x300 /mm/slab.c:3670
+>      [<000000004c2bde0e>] kmemdup_nul+0x31/0x80 /mm/util.c:143
+>      [<00000000d3b2a6b1>] match_strdup+0x21/0x30 /lib/parser.c:322
+>      [<00000000cb5a9103>] v9fs_parse_options /fs/9p/v9fs.c:281 [inline]
+>      [<00000000cb5a9103>] v9fs_session_init+0x29e/0x880 /fs/9p/v9fs.c:422
+>      [<0000000060a9624b>] v9fs_mount+0x5e/0x3a0 /fs/9p/vfs_super.c:120
+>      [<0000000045c47d3a>] legacy_get_tree+0x27/0x80 /fs/fs_context.c:661
+>      [<00000000966bd655>] vfs_get_tree+0x2e/0x110 /fs/super.c:1416
+>      [<000000004bdabb83>] do_new_mount /fs/namespace.c:2795 [inline]
+>      [<000000004bdabb83>] do_mount+0x94e/0xc70 /fs/namespace.c:3115
+>      [<000000008f276989>] ksys_mount+0xab/0x120 /fs/namespace.c:3324
+>      [<000000003dd28c22>] __do_sys_mount /fs/namespace.c:3338 [inline]
+>      [<000000003dd28c22>] __se_sys_mount /fs/namespace.c:3335 [inline]
+>      [<000000003dd28c22>] __x64_sys_mount+0x26/0x30 /fs/namespace.c:3335
+>      [<00000000b6179601>] do_syscall_64+0x76/0x1a0
+> /arch/x86/entry/common.c:296
+>      [<000000005924437c>] entry_SYSCALL_64_after_hwframe+0x44/0xa9
+>
+> BUG: memory leak
+> unreferenced object 0xffff888110929b40 (size 32):
+>    comm "syz-executor114", pid 7080, jiffies 4294946394 (age 19.060s)
+>    hex dump (first 32 bytes):
+>      77 66 64 6e 6f 25 61 63 63 65 73 73 3d 75 73 65  wfdno%access=use
+>      72 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00  r...............
+>    backtrace:
+>      [<00000000830cd797>] kmemleak_alloc_recursive
+> /./include/linux/kmemleak.h:43 [inline]
+>      [<00000000830cd797>] slab_post_alloc_hook /mm/slab.h:522 [inline]
+>      [<00000000830cd797>] slab_alloc /mm/slab.c:3319 [inline]
+>      [<00000000830cd797>] __do_kmalloc /mm/slab.c:3653 [inline]
+>      [<00000000830cd797>] __kmalloc_track_caller+0x165/0x300 /mm/slab.c:3670
+>      [<000000004c2bde0e>] kmemdup_nul+0x31/0x80 /mm/util.c:143
+>      [<00000000d3b2a6b1>] match_strdup+0x21/0x30 /lib/parser.c:322
+>      [<00000000cb5a9103>] v9fs_parse_options /fs/9p/v9fs.c:281 [inline]
+>      [<00000000cb5a9103>] v9fs_session_init+0x29e/0x880 /fs/9p/v9fs.c:422
+>      [<0000000060a9624b>] v9fs_mount+0x5e/0x3a0 /fs/9p/vfs_super.c:120
+>      [<0000000045c47d3a>] legacy_get_tree+0x27/0x80 /fs/fs_context.c:661
+>      [<00000000966bd655>] vfs_get_tree+0x2e/0x110 /fs/super.c:1416
+>      [<000000004bdabb83>] do_new_mount /fs/namespace.c:2795 [inline]
+>      [<000000004bdabb83>] do_mount+0x94e/0xc70 /fs/namespace.c:3115
+>      [<000000008f276989>] ksys_mount+0xab/0x120 /fs/namespace.c:3324
+>      [<000000003dd28c22>] __do_sys_mount /fs/namespace.c:3338 [inline]
+>      [<000000003dd28c22>] __se_sys_mount /fs/namespace.c:3335 [inline]
+>      [<000000003dd28c22>] __x64_sys_mount+0x26/0x30 /fs/namespace.c:3335
+>      [<00000000b6179601>] do_syscall_64+0x76/0x1a0
+> /arch/x86/entry/common.c:296
+>      [<000000005924437c>] entry_SYSCALL_64_after_hwframe+0x44/0xa9
+>
+> BUG: memory leak
+> unreferenced object 0xffff8881109292a0 (size 32):
+>    comm "syz-executor114", pid 7081, jiffies 4294946395 (age 19.050s)
+>    hex dump (first 32 bytes):
+>      77 66 64 6e 6f 25 61 63 63 65 73 73 3d 75 73 65  wfdno%access=use
+>      72 00 6b 65 72 6e 65 6c 5f 74 3a 73 30 00 00 00  r.kernel_t:s0...
+>    backtrace:
+>      [<00000000830cd797>] kmemleak_alloc_recursive
+> /./include/linux/kmemleak.h:43 [inline]
+>      [<00000000830cd797>] slab_post_alloc_hook /mm/slab.h:522 [inline]
+>      [<00000000830cd797>] slab_alloc /mm/slab.c:3319 [inline]
+>      [<00000000830cd797>] __do_kmalloc /mm/slab.c:3653 [inline]
+>      [<00000000830cd797>] __kmalloc_track_caller+0x165/0x300 /mm/slab.c:3670
+>      [<000000004c2bde0e>] kmemdup_nul+0x31/0x80 /mm/util.c:143
+>      [<00000000d3b2a6b1>] match_strdup+0x21/0x30 /lib/parser.c:322
+>      [<00000000cb5a9103>] v9fs_parse_options /fs/9p/v9fs.c:281 [inline]
+>      [<00000000cb5a9103>] v9fs_session_init+0x29e/0x880 /fs/9p/v9fs.c:422
+>      [<0000000060a9624b>] v9fs_mount+0x5e/0x3a0 /fs/9p/vfs_super.c:120
+>      [<0000000045c47d3a>] legacy_get_tree+0x27/0x80 /fs/fs_context.c:661
+>      [<00000000966bd655>] vfs_get_tree+0x2e/0x110 /fs/super.c:1416
+>      [<000000004bdabb83>] do_new_mount /fs/namespace.c:2795 [inline]
+>      [<000000004bdabb83>] do_mount+0x94e/0xc70 /fs/namespace.c:3115
+>      [<000000008f276989>] ksys_mount+0xab/0x120 /fs/namespace.c:3324
+>      [<000000003dd28c22>] __do_sys_mount /fs/namespace.c:3338 [inline]
+>      [<000000003dd28c22>] __se_sys_mount /fs/namespace.c:3335 [inline]
+>      [<000000003dd28c22>] __x64_sys_mount+0x26/0x30 /fs/namespace.c:3335
+>      [<00000000b6179601>] do_syscall_64+0x76/0x1a0
+> /arch/x86/entry/common.c:296
+>      [<000000005924437c>] entry_SYSCALL_64_after_hwframe+0x44/0xa9
+>
+> executing program
+> executing program
+>
+>
+> ---
+> This bug is generated by a bot. It may contain errors.
+> See https://goo.gl/tpsmEJ for more information about syzbot.
+> syzbot engineers can be reached at syzkaller@googlegroups.com.
+>
+> syzbot will keep track of this bug report. See:
+> https://goo.gl/tpsmEJ#status for how to communicate with syzbot.
+> syzbot can test patches for this bug, for details see:
+> https://goo.gl/tpsmEJ#testing-patches
+>
+> --
+> You received this message because you are subscribed to the Google Groups "syzkaller-bugs" group.
+> To unsubscribe from this group and stop receiving emails from it, send an email to syzkaller-bugs+unsubscribe@googlegroups.com.
+> To view this discussion on the web visit https://groups.google.com/d/msgid/syzkaller-bugs/00000000000070c81a058e6c2917%40google.com.
 
 
 _______________________________________________
