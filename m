@@ -2,105 +2,76 @@ Return-Path: <v9fs-developer-bounces@lists.sourceforge.net>
 X-Original-To: lists+v9fs-developer@lfdr.de
 Delivered-To: lists+v9fs-developer@lfdr.de
 Received: from lists.sourceforge.net (lists.sourceforge.net [216.105.38.7])
-	by mail.lfdr.de (Postfix) with ESMTPS id AFBA978070
-	for <lists+v9fs-developer@lfdr.de>; Sun, 28 Jul 2019 18:30:45 +0200 (CEST)
-Received: from [127.0.0.1] (helo=sfs-ml-2.v29.lw.sourceforge.com)
-	by sfs-ml-2.v29.lw.sourceforge.com with esmtp (Exim 4.90_1)
+	by mail.lfdr.de (Postfix) with ESMTPS id 993EC78492
+	for <lists+v9fs-developer@lfdr.de>; Mon, 29 Jul 2019 07:49:50 +0200 (CEST)
+Received: from [127.0.0.1] (helo=sfs-ml-4.v29.lw.sourceforge.com)
+	by sfs-ml-4.v29.lw.sourceforge.com with esmtp (Exim 4.90_1)
 	(envelope-from <v9fs-developer-bounces@lists.sourceforge.net>)
-	id 1hrm4H-0006dn-UM; Sun, 28 Jul 2019 16:30:41 +0000
+	id 1hryXa-0004b5-PP; Mon, 29 Jul 2019 05:49:46 +0000
 Received: from [172.30.20.202] (helo=mx.sourceforge.net)
- by sfs-ml-2.v29.lw.sourceforge.com with esmtps
+ by sfs-ml-4.v29.lw.sourceforge.com with esmtps
  (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.90_1)
- (envelope-from <chucklever@gmail.com>) id 1hrm4G-0006dg-CO
- for v9fs-developer@lists.sourceforge.net; Sun, 28 Jul 2019 16:30:40 +0000
+ (envelope-from <leon@kernel.org>) id 1hryXa-0004ay-1w
+ for v9fs-developer@lists.sourceforge.net; Mon, 29 Jul 2019 05:49:46 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=sourceforge.net; s=x; h=Content-Transfer-Encoding:Content-Type:MIME-Version
- :Message-ID:Date:Cc:To:From:Subject:Sender:Reply-To:Content-ID:
- Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
- :Resent-Message-ID:In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:
+ d=sourceforge.net; s=x; h=In-Reply-To:Content-Transfer-Encoding:Content-Type:
+ MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Sender:Reply-To:
+ Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+ Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
  List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=oA6bu67gLuaHmSW8iekOb/yblL/gOjUKzvdlx+SkmfQ=; b=Jkuwm4uQ7Pdznt+C4L0z9KTxSb
- ODolnUvqTvohyN8+MabfcfZZtCrnSM0f7BHwMs/wYUTbqe3aBueH53Y048E0MXznBWGcTAHqW/dGQ
- S1iVwYTO6lYssqBZGVaHFHylKaUwJinCPKXiu6kLoYh03N9+BTIeU6gQDSUqYZnDAORI=;
+ bh=5B7sQboOVh0VkFkrGNLWAkttkfoO3HS1hOkGhhPLDkQ=; b=e72/4Oir54kDc0XpMGejgoO+Yi
+ tGdyK1/iJN+GWO3CTpUUr8n01wBZP+u5QC16gCyMKOaFdjpXZpZSWLVLnT2TOqXETT5IKVLp9pQKX
+ 5H7cluiRl8rsXTb9mahO8wdwVbR3ZhhjWMYg33QK7LwGe8JZ1ofK1kHxyPSHJuJRHid0=;
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  ;
- h=Content-Transfer-Encoding:Content-Type:MIME-Version:Message-ID:Date:Cc:To
- :From:Subject:Sender:Reply-To:Content-ID:Content-Description:Resent-Date:
- Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:
- References:List-Id:List-Help:List-Unsubscribe:List-Subscribe:List-Post:
- List-Owner:List-Archive; bh=oA6bu67gLuaHmSW8iekOb/yblL/gOjUKzvdlx+SkmfQ=; b=b
- rvwScxf7+j36Z08oa0VkdC5EiBjgMmvqhOLMA04gC8UMaqQlteU0vK11MpmEXh61GFOqHtwYxa9Ez
- LTTcoHb/2KV5mLH93SU5OZweqE7ZcXvLD1lp9PqhfLqivz6Z+LWa7JGZGeKmXeSA8DxOyu61bfN32
- wqsyoYYmj5nG9Bl0=;
-Received: from mail-io1-f68.google.com ([209.85.166.68])
+ h=In-Reply-To:Content-Transfer-Encoding:Content-Type:MIME-Version:
+ References:Message-ID:Subject:Cc:To:From:Date:Sender:Reply-To:Content-ID:
+ Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
+ :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
+ List-Post:List-Owner:List-Archive;
+ bh=5B7sQboOVh0VkFkrGNLWAkttkfoO3HS1hOkGhhPLDkQ=; b=f/PtAZIBOI0Sm4jMWneaT9r+0r
+ xmTCzonGOnxBsLMOf8dA1HICxa/TxSP0ZjxJO+THhKEO/pqRFvuMna3LSKqE1ybI6RCdv0Coi40Zx
+ 3EGzCJl08gjlS5MvsZhtbJh+q0JQUsMp7/nI3RSL0W4Ni4Tru5qhQTXrKA/f50Iv+yHM=;
+Received: from mail.kernel.org ([198.145.29.99])
  by sfi-mx-3.v28.lw.sourceforge.com with esmtps
- (TLSv1.2:ECDHE-RSA-AES128-GCM-SHA256:128) (Exim 4.90_1)
- id 1hrm4C-002T4A-CR
- for v9fs-developer@lists.sourceforge.net; Sun, 28 Jul 2019 16:30:40 +0000
-Received: by mail-io1-f68.google.com with SMTP id o9so11327415iom.3
- for <v9fs-developer@lists.sourceforge.net>;
- Sun, 28 Jul 2019 09:30:36 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=sender:subject:from:to:cc:date:message-id:user-agent:mime-version
- :content-transfer-encoding;
- bh=oA6bu67gLuaHmSW8iekOb/yblL/gOjUKzvdlx+SkmfQ=;
- b=gzb930PKTBhmTdneUeKF8SJ+UMgoiA6aZA0rTPqiopLrsSMYnI7JkqFLGErrLgkj9I
- EIt4uZtVuf9UxvT8lF+XJuSuEfghRTllYZHim7bjsQif4AEvEq3rRAmd/bjvtHmNR86F
- wdJNicYytKbC0RrZ7Vi32C1C289U6RGLE5Z0pSHqMfYE8LHod0giaBNgmCNxy5IO15T+
- HA6ujDBjKsqDsN5uD6Odl5oOYr67vlgX3Lawwu+WLPi9yFEVYCfLUgiNkIWKXngqyIql
- FuufruRYug62nA+veYeqPWM096R0WHytTXXlljgm/dLSZUBnMmDGZJ1nv5yHBzdIxlAp
- 7VFg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:sender:subject:from:to:cc:date:message-id
- :user-agent:mime-version:content-transfer-encoding;
- bh=oA6bu67gLuaHmSW8iekOb/yblL/gOjUKzvdlx+SkmfQ=;
- b=Pzaq0n5ADCxGYoNTo0CsKM5WEnYdfnq//Qj9wkI0Imc9HFK7nUpUoaOKFxgbR6xMJO
- yuH+qdFqGeaZPg1UMzPKgwv3reQRc6/veRr8/KAEVmkM2lOU6GipamU42kpEQd1nwdEo
- ghJeY9iEovvbIaKQNSH5sD668KzncIzp1VtCdWPe9SwSErHEfELXC54Z45FLb/71HgV5
- axjoJ2I3tMqRUUsV3a6c6w7bfAyUygZP86NpCI7AnASysjEqZw6Mdbfilgh0kUmEQ81n
- /kNgg6xN/MQZpKXmxyhqYHaXj9cC8y4CNi/fpEZw+vTtmdLX4rrPltAy0kuXfH4bmIFv
- LI5Q==
-X-Gm-Message-State: APjAAAVnykAgj2wJ8RYO8QgQtUrj1DtsC1odHvBjz7Zwp+OSNbZ3bxHd
- Lkup/aj550pO9/abp9JbkePZhhCH
-X-Google-Smtp-Source: APXvYqwy+2Qu2Sazw7qxz8L//asbpVwASBgjxsPPKSRL7gRXNthfrI53z+6sIG9pwA1PHknV+wthOA==
-X-Received: by 2002:a5d:9c12:: with SMTP id 18mr46464341ioe.48.1564331430285; 
- Sun, 28 Jul 2019 09:30:30 -0700 (PDT)
-Received: from gateway.1015granger.net (c-68-61-232-219.hsd1.mi.comcast.net.
- [68.61.232.219])
- by smtp.gmail.com with ESMTPSA id m4sm51255883iok.68.2019.07.28.09.30.29
- (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
- Sun, 28 Jul 2019 09:30:29 -0700 (PDT)
-Received: from manet.1015granger.net (manet.1015granger.net [192.168.1.51])
- by gateway.1015granger.net (8.14.7/8.14.7) with ESMTP id x6SGURGG000927;
- Sun, 28 Jul 2019 16:30:28 GMT
-From: Chuck Lever <chuck.lever@oracle.com>
-To: linux-rdma@vger.kernel.org, linux-nfs@vger.kernel.org
-Date: Sun, 28 Jul 2019 12:30:27 -0400
-Message-ID: <20190728163027.3637.70740.stgit@manet.1015granger.net>
-User-Agent: StGit/0.17.1-dirty
+ (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.90_1)
+ id 1hryXX-00326L-Jr
+ for v9fs-developer@lists.sourceforge.net; Mon, 29 Jul 2019 05:49:45 +0000
+Received: from localhost (unknown [77.137.115.125])
+ (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+ (No client certificate requested)
+ by mail.kernel.org (Postfix) with ESMTPSA id 5EF3D2073F;
+ Mon, 29 Jul 2019 05:49:37 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+ s=default; t=1564379378;
+ bh=5FSf7zYaAcj4Rbx53EQ++OMWByWA3rHKkdAgYw393Jg=;
+ h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+ b=FEhpg/VSfTXeZELoy7HVC7r+CT8/Qdny5rMk6KgKGYq7P4klXznvOTIuQUAYxPTod
+ v9jgsogtOSTODkXX5MriGp0dNXPYGbH5gfMRD5UYSvHOh9v7cBLt/FRhA8K9hRvDYA
+ /kA0KMR1UOPjbMFjzEv3MMTvFwIl5Z+ndNnB0vDE=
+Date: Mon, 29 Jul 2019 08:49:33 +0300
+From: Leon Romanovsky <leon@kernel.org>
+To: Chuck Lever <chuck.lever@oracle.com>
+Message-ID: <20190729054933.GK4674@mtr-leonro.mtl.com>
+References: <20190728163027.3637.70740.stgit@manet.1015granger.net>
 MIME-Version: 1.0
-X-Spam-Score: 0.3 (/)
+Content-Disposition: inline
+In-Reply-To: <20190728163027.3637.70740.stgit@manet.1015granger.net>
+User-Agent: Mutt/1.12.0 (2019-05-25)
+X-Spam-Score: -0.1 (/)
 X-Spam-Report: Spam Filtering performed by mx.sourceforge.net.
  See http://spamassassin.org/tag/ for more details.
- 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail provider
- (chucklever[at]gmail.com)
- -0.0 RCVD_IN_DNSWL_NONE     RBL: Sender listed at https://www.dnswl.org/, no
- trust [209.85.166.68 listed in list.dnswl.org]
- 0.2 HEADER_FROM_DIFFERENT_DOMAINS From and EnvelopeFrom 2nd level mail
- domains are different
- -0.0 RCVD_IN_MSPIKE_H2      RBL: Average reputation (+2)
- [209.85.166.68 listed in wl.mailspike.net]
  -0.0 SPF_PASS               SPF: sender matches SPF record
  0.0 SPF_HELO_NONE          SPF: HELO does not publish an SPF Record
+ -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from author's
+ domain
  -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
  0.1 DKIM_SIGNED            Message has a DKIM or DK signature,
  not necessarily valid
- 0.0 FREEMAIL_FORGED_FROMDOMAIN 2nd level domains in From and EnvelopeFrom
- freemail headers are different
-X-Headers-End: 1hrm4C-002T4A-CR
-Subject: [V9fs-developer] [PATCH v2] rdma: Enable ib_alloc_cq to spread work
- over a device's comp_vectors
+ -0.0 DKIMWL_WL_HIGH         DKIMwl.org - Whitelisted High sender
+X-Headers-End: 1hryXX-00326L-Jr
+Subject: Re: [V9fs-developer] [PATCH v2] rdma: Enable ib_alloc_cq to spread
+ work over a device's comp_vectors
 X-BeenThere: v9fs-developer@lists.sourceforge.net
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -112,145 +83,264 @@ List-Post: <mailto:v9fs-developer@lists.sourceforge.net>
 List-Help: <mailto:v9fs-developer-request@lists.sourceforge.net?subject=help>
 List-Subscribe: <https://lists.sourceforge.net/lists/listinfo/v9fs-developer>, 
  <mailto:v9fs-developer-request@lists.sourceforge.net?subject=subscribe>
-Cc: linux-cifs@vger.kernel.org, v9fs-developer@lists.sourceforge.net
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Cc: linux-rdma@vger.kernel.org, linux-cifs@vger.kernel.org,
+ linux-nfs@vger.kernel.org, v9fs-developer@lists.sourceforge.net
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 Errors-To: v9fs-developer-bounces@lists.sourceforge.net
 
-U2VuZCBhbmQgUmVjZWl2ZSBjb21wbGV0aW9uIGlzIGhhbmRsZWQgb24gYSBzaW5nbGUgQ1BVIHNl
-bGVjdGVkIGF0CnRoZSB0aW1lIGVhY2ggQ29tcGxldGlvbiBRdWV1ZSBpcyBhbGxvY2F0ZWQuIFR5
-cGljYWxseSB0aGlzIGlzIHdoZW4KYW4gaW5pdGlhdG9yIGluc3RhbnRpYXRlcyBhbiBSRE1BIHRy
-YW5zcG9ydCwgb3Igd2hlbiBhIHRhcmdldAphY2NlcHRzIGFuIFJETUEgY29ubmVjdGlvbi4KClNv
-bWUgVUxQcyBjYW5ub3Qgb3BlbiBhIGNvbm5lY3Rpb24gcGVyIENQVSB0byBzcHJlYWQgY29tcGxl
-dGlvbgp3b3JrbG9hZCBhY3Jvc3MgYXZhaWxhYmxlIENQVXMgYW5kIE1TSSB2ZWN0b3JzLiBGb3Ig
-c3VjaCBVTFBzLApwcm92aWRlIGFuIEFQSSB0aGF0IGFsbG93cyB0aGUgUkRNQSBjb3JlIHRvIHNl
-bGVjdCBhIGNvbXBsZXRpb24KdmVjdG9yIGJhc2VkIG9uIHRoZSBkZXZpY2UncyBjb21wbGVtZW50
-IG9mIGF2YWlsYWJsZSBjb21wX3ZlY3MuCgpVTFBzIHRoYXQgaW52b2tlIGliX2FsbG9jX2NxKCkg
-d2l0aCBvbmx5IGNvbXBfdmVjdG9yIDAgYXJlIGNvbnZlcnRlZAp0byB1c2UgdGhlIG5ldyBBUEkg
-c28gdGhhdCB0aGVpciBjb21wbGV0aW9uIHdvcmtsb2FkcyBpbnRlcmZlcmUgbGVzcwp3aXRoIGVh
-Y2ggb3RoZXIuCgpTdWdnZXN0ZWQtYnk6IEjDpWtvbiBCdWdnZSA8aGFha29uLmJ1Z2dlQG9yYWNs
-ZS5jb20+ClNpZ25lZC1vZmYtYnk6IENodWNrIExldmVyIDxjaHVjay5sZXZlckBvcmFjbGUuY29t
-PgpDYzogPGxpbnV4LWNpZnNAdmdlci5rZXJuZWwub3JnPgpDYzogPHY5ZnMtZGV2ZWxvcGVyQGxp
-c3RzLnNvdXJjZWZvcmdlLm5ldD4KLS0tCiBkcml2ZXJzL2luZmluaWJhbmQvY29yZS9jcS5jICAg
-ICAgICAgICAgIHwgICAyOSArKysrKysrKysrKysrKysrKysrKysrKysrKysrKwogZHJpdmVycy9p
-bmZpbmliYW5kL3VscC9zcnB0L2liX3NycHQuYyAgICB8ICAgIDQgKystLQogZnMvY2lmcy9zbWJk
-aXJlY3QuYyAgICAgICAgICAgICAgICAgICAgICB8ICAgMTAgKysrKysrLS0tLQogaW5jbHVkZS9y
-ZG1hL2liX3ZlcmJzLmggICAgICAgICAgICAgICAgICB8ICAgMTkgKysrKysrKysrKysrKysrKysr
-KwogbmV0LzlwL3RyYW5zX3JkbWEuYyAgICAgICAgICAgICAgICAgICAgICB8ICAgIDYgKysrLS0t
-CiBuZXQvc3VucnBjL3hwcnRyZG1hL3N2Y19yZG1hX3RyYW5zcG9ydC5jIHwgICAgOCArKysrLS0t
-LQogbmV0L3N1bnJwYy94cHJ0cmRtYS92ZXJicy5jICAgICAgICAgICAgICB8ICAgMTMgKysrKysr
-LS0tLS0tLQogNyBmaWxlcyBjaGFuZ2VkLCA2OSBpbnNlcnRpb25zKCspLCAyMCBkZWxldGlvbnMo
-LSkKCmRpZmYgLS1naXQgYS9kcml2ZXJzL2luZmluaWJhbmQvY29yZS9jcS5jIGIvZHJpdmVycy9p
-bmZpbmliYW5kL2NvcmUvY3EuYwppbmRleCA3YzU5OTg3Li5lYTNiYjBkIDEwMDY0NAotLS0gYS9k
-cml2ZXJzL2luZmluaWJhbmQvY29yZS9jcS5jCisrKyBiL2RyaXZlcnMvaW5maW5pYmFuZC9jb3Jl
-L2NxLmMKQEAgLTI1Myw2ICsyNTMsMzUgQEAgc3RydWN0IGliX2NxICpfX2liX2FsbG9jX2NxX3Vz
-ZXIoc3RydWN0IGliX2RldmljZSAqZGV2LCB2b2lkICpwcml2YXRlLAogRVhQT1JUX1NZTUJPTChf
-X2liX2FsbG9jX2NxX3VzZXIpOwogCiAvKioKKyAqIF9faWJfYWxsb2NfY3FfYW55IC0gYWxsb2Nh
-dGUgYSBjb21wbGV0aW9uIHF1ZXVlCisgKiBAZGV2OgkJZGV2aWNlIHRvIGFsbG9jYXRlIHRoZSBD
-USBmb3IKKyAqIEBwcml2YXRlOgkJZHJpdmVyIHByaXZhdGUgZGF0YSwgYWNjZXNzaWJsZSBmcm9t
-IGNxLT5jcV9jb250ZXh0CisgKiBAbnJfY3FlOgkJbnVtYmVyIG9mIENRRXMgdG8gYWxsb2NhdGUK
-KyAqIEBwb2xsX2N0eDoJCWNvbnRleHQgdG8gcG9sbCB0aGUgQ1EgZnJvbS4KKyAqIEBjYWxsZXI6
-CQltb2R1bGUgb3duZXIgbmFtZS4KKyAqCisgKiBBdHRlbXB0IHRvIHNwcmVhZCBVTFAgQ29tcGxl
-dGlvbiBRdWV1ZXMgb3ZlciBlYWNoIGRldmljZSdzIGludGVycnVwdAorICogdmVjdG9ycy4KKyAq
-Lworc3RydWN0IGliX2NxICpfX2liX2FsbG9jX2NxX2FueShzdHJ1Y3QgaWJfZGV2aWNlICpkZXYs
-IHZvaWQgKnByaXZhdGUsCisJCQkJaW50IG5yX2NxZSwgZW51bSBpYl9wb2xsX2NvbnRleHQgcG9s
-bF9jdHgsCisJCQkJY29uc3QgY2hhciAqY2FsbGVyKQoreworCXN0YXRpYyBhdG9taWNfdCBjb3Vu
-dGVyOworCWludCBjb21wX3ZlY3RvcjsKKworCWNvbXBfdmVjdG9yID0gMDsKKwlpZiAoZGV2LT5u
-dW1fY29tcF92ZWN0b3JzID4gMSkKKwkJY29tcF92ZWN0b3IgPQorCQkJYXRvbWljX2luY19yZXR1
-cm4oJmNvdW50ZXIpICUKKwkJCW1pbl90KGludCwgZGV2LT5udW1fY29tcF92ZWN0b3JzLCBudW1f
-b25saW5lX2NwdXMoKSk7CisKKwlyZXR1cm4gX19pYl9hbGxvY19jcV91c2VyKGRldiwgcHJpdmF0
-ZSwgbnJfY3FlLCBjb21wX3ZlY3RvciwgcG9sbF9jdHgsCisJCQkJICBjYWxsZXIsIE5VTEwpOwor
-fQorRVhQT1JUX1NZTUJPTChfX2liX2FsbG9jX2NxX2FueSk7CisKKy8qKgogICogaWJfZnJlZV9j
-cV91c2VyIC0gZnJlZSBhIGNvbXBsZXRpb24gcXVldWUKICAqIEBjcToJCWNvbXBsZXRpb24gcXVl
-dWUgdG8gZnJlZS4KICAqIEB1ZGF0YToJVXNlciBkYXRhIG9yIE5VTEwgZm9yIGtlcm5lbCBvYmpl
-Y3QKZGlmZiAtLWdpdCBhL2RyaXZlcnMvaW5maW5pYmFuZC91bHAvc3JwdC9pYl9zcnB0LmMgYi9k
-cml2ZXJzL2luZmluaWJhbmQvdWxwL3NycHQvaWJfc3JwdC5jCmluZGV4IDFhMDM5ZjEuLmUyNWM3
-MGEgMTAwNjQ0Ci0tLSBhL2RyaXZlcnMvaW5maW5pYmFuZC91bHAvc3JwdC9pYl9zcnB0LmMKKysr
-IGIvZHJpdmVycy9pbmZpbmliYW5kL3VscC9zcnB0L2liX3NycHQuYwpAQCAtMTc2Nyw4ICsxNzY3
-LDggQEAgc3RhdGljIGludCBzcnB0X2NyZWF0ZV9jaF9pYihzdHJ1Y3Qgc3JwdF9yZG1hX2NoICpj
-aCkKIAkJZ290byBvdXQ7CiAKIHJldHJ5OgotCWNoLT5jcSA9IGliX2FsbG9jX2NxKHNkZXYtPmRl
-dmljZSwgY2gsIGNoLT5ycV9zaXplICsgc3Ffc2l6ZSwKLQkJCTAgLyogWFhYOiBzcHJlYWQgQ1Fz
-ICovLCBJQl9QT0xMX1dPUktRVUVVRSk7CisJY2gtPmNxID0gaWJfYWxsb2NfY3FfYW55KHNkZXYt
-PmRldmljZSwgY2gsIGNoLT5ycV9zaXplICsgc3Ffc2l6ZSwKKwkJCQkgSUJfUE9MTF9XT1JLUVVF
-VUUpOwogCWlmIChJU19FUlIoY2gtPmNxKSkgewogCQlyZXQgPSBQVFJfRVJSKGNoLT5jcSk7CiAJ
-CXByX2VycigiZmFpbGVkIHRvIGNyZWF0ZSBDUSBjcWU9ICVkIHJldD0gJWRcbiIsCmRpZmYgLS1n
-aXQgYS9mcy9jaWZzL3NtYmRpcmVjdC5jIGIvZnMvY2lmcy9zbWJkaXJlY3QuYwppbmRleCBjZDA3
-ZTUzLi4zYzkxZmE5IDEwMDY0NAotLS0gYS9mcy9jaWZzL3NtYmRpcmVjdC5jCisrKyBiL2ZzL2Np
-ZnMvc21iZGlyZWN0LmMKQEAgLTE2NTQsMTUgKzE2NTQsMTcgQEAgc3RhdGljIHN0cnVjdCBzbWJk
-X2Nvbm5lY3Rpb24gKl9zbWJkX2dldF9jb25uZWN0aW9uKAogCiAJaW5mby0+c2VuZF9jcSA9IE5V
-TEw7CiAJaW5mby0+cmVjdl9jcSA9IE5VTEw7Ci0JaW5mby0+c2VuZF9jcSA9IGliX2FsbG9jX2Nx
-KGluZm8tPmlkLT5kZXZpY2UsIGluZm8sCi0JCQlpbmZvLT5zZW5kX2NyZWRpdF90YXJnZXQsIDAs
-IElCX1BPTExfU09GVElSUSk7CisJaW5mby0+c2VuZF9jcSA9CisJCWliX2FsbG9jX2NxX2FueShp
-bmZvLT5pZC0+ZGV2aWNlLCBpbmZvLAorCQkJCWluZm8tPnNlbmRfY3JlZGl0X3RhcmdldCwgSUJf
-UE9MTF9TT0ZUSVJRKTsKIAlpZiAoSVNfRVJSKGluZm8tPnNlbmRfY3EpKSB7CiAJCWluZm8tPnNl
-bmRfY3EgPSBOVUxMOwogCQlnb3RvIGFsbG9jX2NxX2ZhaWxlZDsKIAl9CiAKLQlpbmZvLT5yZWN2
-X2NxID0gaWJfYWxsb2NfY3EoaW5mby0+aWQtPmRldmljZSwgaW5mbywKLQkJCWluZm8tPnJlY2Vp
-dmVfY3JlZGl0X21heCwgMCwgSUJfUE9MTF9TT0ZUSVJRKTsKKwlpbmZvLT5yZWN2X2NxID0KKwkJ
-aWJfYWxsb2NfY3FfYW55KGluZm8tPmlkLT5kZXZpY2UsIGluZm8sCisJCQkJaW5mby0+cmVjZWl2
-ZV9jcmVkaXRfbWF4LCBJQl9QT0xMX1NPRlRJUlEpOwogCWlmIChJU19FUlIoaW5mby0+cmVjdl9j
-cSkpIHsKIAkJaW5mby0+cmVjdl9jcSA9IE5VTEw7CiAJCWdvdG8gYWxsb2NfY3FfZmFpbGVkOwpk
-aWZmIC0tZ2l0IGEvaW5jbHVkZS9yZG1hL2liX3ZlcmJzLmggYi9pbmNsdWRlL3JkbWEvaWJfdmVy
-YnMuaAppbmRleCBjNWY4YTlmLi4yYTE1MjNjYyAxMDA2NDQKLS0tIGEvaW5jbHVkZS9yZG1hL2li
-X3ZlcmJzLmgKKysrIGIvaW5jbHVkZS9yZG1hL2liX3ZlcmJzLmgKQEAgLTM3MTEsNiArMzcxMSwy
-NSBAQCBzdGF0aWMgaW5saW5lIHN0cnVjdCBpYl9jcSAqaWJfYWxsb2NfY3Eoc3RydWN0IGliX2Rl
-dmljZSAqZGV2LCB2b2lkICpwcml2YXRlLAogCQkJCU5VTEwpOwogfQogCitzdHJ1Y3QgaWJfY3Eg
-Kl9faWJfYWxsb2NfY3FfYW55KHN0cnVjdCBpYl9kZXZpY2UgKmRldiwgdm9pZCAqcHJpdmF0ZSwK
-KwkJCQlpbnQgbnJfY3FlLCBlbnVtIGliX3BvbGxfY29udGV4dCBwb2xsX2N0eCwKKwkJCQljb25z
-dCBjaGFyICpjYWxsZXIpOworCisvKioKKyAqIGliX2FsbG9jX2NxX2FueTogQWxsb2NhdGUga2Vy
-bmVsIENRCisgKiBAZGV2OiBUaGUgSUIgZGV2aWNlCisgKiBAcHJpdmF0ZTogUHJpdmF0ZSBkYXRh
-IGF0dGFjaGVkIHRvIHRoZSBDUUUKKyAqIEBucl9jcWU6IE51bWJlciBvZiBDUUVzIGluIHRoZSBD
-UQorICogQHBvbGxfY3R4OiBDb250ZXh0IHVzZWQgZm9yIHBvbGxpbmcgdGhlIENRCisgKi8KK3N0
-YXRpYyBpbmxpbmUgc3RydWN0IGliX2NxICppYl9hbGxvY19jcV9hbnkoc3RydWN0IGliX2Rldmlj
-ZSAqZGV2LAorCQkJCQkgICAgdm9pZCAqcHJpdmF0ZSwgaW50IG5yX2NxZSwKKwkJCQkJICAgIGVu
-dW0gaWJfcG9sbF9jb250ZXh0IHBvbGxfY3R4KQoreworCXJldHVybiBfX2liX2FsbG9jX2NxX2Fu
-eShkZXYsIHByaXZhdGUsIG5yX2NxZSwgcG9sbF9jdHgsCisJCQkJIEtCVUlMRF9NT0ROQU1FKTsK
-K30KKwogLyoqCiAgKiBpYl9mcmVlX2NxX3VzZXIgLSBGcmVlIGtlcm5lbC91c2VyIENRCiAgKiBA
-Y3E6IFRoZSBDUSB0byBmcmVlCmRpZmYgLS1naXQgYS9uZXQvOXAvdHJhbnNfcmRtYS5jIGIvbmV0
-LzlwL3RyYW5zX3JkbWEuYwppbmRleCBiYWM4ZGFkLi5iMjFjM2MyIDEwMDY0NAotLS0gYS9uZXQv
-OXAvdHJhbnNfcmRtYS5jCisrKyBiL25ldC85cC90cmFuc19yZG1hLmMKQEAgLTY4NSw5ICs2ODUs
-OSBAQCBzdGF0aWMgaW50IHA5X3JkbWFfYmluZF9wcml2cG9ydChzdHJ1Y3QgcDlfdHJhbnNfcmRt
-YSAqcmRtYSkKIAkJZ290byBlcnJvcjsKIAogCS8qIENyZWF0ZSB0aGUgQ29tcGxldGlvbiBRdWV1
-ZSAqLwotCXJkbWEtPmNxID0gaWJfYWxsb2NfY3EocmRtYS0+Y21faWQtPmRldmljZSwgY2xpZW50
-LAotCQkJb3B0cy5zcV9kZXB0aCArIG9wdHMucnFfZGVwdGggKyAxLAotCQkJMCwgSUJfUE9MTF9T
-T0ZUSVJRKTsKKwlyZG1hLT5jcSA9IGliX2FsbG9jX2NxX2FueShyZG1hLT5jbV9pZC0+ZGV2aWNl
-LCBjbGllbnQsCisJCQkJICAgb3B0cy5zcV9kZXB0aCArIG9wdHMucnFfZGVwdGggKyAxLAorCQkJ
-CSAgIElCX1BPTExfU09GVElSUSk7CiAJaWYgKElTX0VSUihyZG1hLT5jcSkpCiAJCWdvdG8gZXJy
-b3I7CiAKZGlmZiAtLWdpdCBhL25ldC9zdW5ycGMveHBydHJkbWEvc3ZjX3JkbWFfdHJhbnNwb3J0
-LmMgYi9uZXQvc3VucnBjL3hwcnRyZG1hL3N2Y19yZG1hX3RyYW5zcG9ydC5jCmluZGV4IDNmZTY2
-NTEuLjRkM2RiNmUgMTAwNjQ0Ci0tLSBhL25ldC9zdW5ycGMveHBydHJkbWEvc3ZjX3JkbWFfdHJh
-bnNwb3J0LmMKKysrIGIvbmV0L3N1bnJwYy94cHJ0cmRtYS9zdmNfcmRtYV90cmFuc3BvcnQuYwpA
-QCAtNDU0LDE0ICs0NTQsMTQgQEAgc3RhdGljIHN0cnVjdCBzdmNfeHBydCAqc3ZjX3JkbWFfYWNj
-ZXB0KHN0cnVjdCBzdmNfeHBydCAqeHBydCkKIAkJZHByaW50aygic3ZjcmRtYTogZXJyb3IgY3Jl
-YXRpbmcgUEQgZm9yIGNvbm5lY3QgcmVxdWVzdFxuIik7CiAJCWdvdG8gZXJyb3V0OwogCX0KLQlu
-ZXd4cHJ0LT5zY19zcV9jcSA9IGliX2FsbG9jX2NxKGRldiwgbmV3eHBydCwgbmV3eHBydC0+c2Nf
-c3FfZGVwdGgsCi0JCQkJCTAsIElCX1BPTExfV09SS1FVRVVFKTsKKwluZXd4cHJ0LT5zY19zcV9j
-cSA9IGliX2FsbG9jX2NxX2FueShkZXYsIG5ld3hwcnQsIG5ld3hwcnQtPnNjX3NxX2RlcHRoLAor
-CQkJCQkgICAgSUJfUE9MTF9XT1JLUVVFVUUpOwogCWlmIChJU19FUlIobmV3eHBydC0+c2Nfc3Ff
-Y3EpKSB7CiAJCWRwcmludGsoInN2Y3JkbWE6IGVycm9yIGNyZWF0aW5nIFNRIENRIGZvciBjb25u
-ZWN0IHJlcXVlc3RcbiIpOwogCQlnb3RvIGVycm91dDsKIAl9Ci0JbmV3eHBydC0+c2NfcnFfY3Eg
-PSBpYl9hbGxvY19jcShkZXYsIG5ld3hwcnQsIHJxX2RlcHRoLAotCQkJCQkwLCBJQl9QT0xMX1dP
-UktRVUVVRSk7CisJbmV3eHBydC0+c2NfcnFfY3EgPQorCQlpYl9hbGxvY19jcV9hbnkoZGV2LCBu
-ZXd4cHJ0LCBycV9kZXB0aCwgSUJfUE9MTF9XT1JLUVVFVUUpOwogCWlmIChJU19FUlIobmV3eHBy
-dC0+c2NfcnFfY3EpKSB7CiAJCWRwcmludGsoInN2Y3JkbWE6IGVycm9yIGNyZWF0aW5nIFJRIENR
-IGZvciBjb25uZWN0IHJlcXVlc3RcbiIpOwogCQlnb3RvIGVycm91dDsKZGlmZiAtLWdpdCBhL25l
-dC9zdW5ycGMveHBydHJkbWEvdmVyYnMuYyBiL25ldC9zdW5ycGMveHBydHJkbWEvdmVyYnMuYwpp
-bmRleCA4MDViMWYzNS4uYjEwYWExNiAxMDA2NDQKLS0tIGEvbmV0L3N1bnJwYy94cHJ0cmRtYS92
-ZXJicy5jCisrKyBiL25ldC9zdW5ycGMveHBydHJkbWEvdmVyYnMuYwpAQCAtNTIxLDE4ICs1MjEs
-MTcgQEAgaW50IHJwY3JkbWFfZXBfY3JlYXRlKHN0cnVjdCBycGNyZG1hX3hwcnQgKnJfeHBydCkK
-IAlpbml0X3dhaXRxdWV1ZV9oZWFkKCZlcC0+cmVwX2Nvbm5lY3Rfd2FpdCk7CiAJZXAtPnJlcF9y
-ZWNlaXZlX2NvdW50ID0gMDsKIAotCXNlbmRjcSA9IGliX2FsbG9jX2NxKGlhLT5yaV9pZC0+ZGV2
-aWNlLCBOVUxMLAotCQkJICAgICBlcC0+cmVwX2F0dHIuY2FwLm1heF9zZW5kX3dyICsgMSwKLQkJ
-CSAgICAgaWEtPnJpX2lkLT5kZXZpY2UtPm51bV9jb21wX3ZlY3RvcnMgPiAxID8gMSA6IDAsCi0J
-CQkgICAgIElCX1BPTExfV09SS1FVRVVFKTsKKwlzZW5kY3EgPSBpYl9hbGxvY19jcV9hbnkoaWEt
-PnJpX2lkLT5kZXZpY2UsIE5VTEwsCisJCQkJIGVwLT5yZXBfYXR0ci5jYXAubWF4X3NlbmRfd3Ig
-KyAxLAorCQkJCSBJQl9QT0xMX1dPUktRVUVVRSk7CiAJaWYgKElTX0VSUihzZW5kY3EpKSB7CiAJ
-CXJjID0gUFRSX0VSUihzZW5kY3EpOwogCQlnb3RvIG91dDE7CiAJfQogCi0JcmVjdmNxID0gaWJf
-YWxsb2NfY3EoaWEtPnJpX2lkLT5kZXZpY2UsIE5VTEwsCi0JCQkgICAgIGVwLT5yZXBfYXR0ci5j
-YXAubWF4X3JlY3Zfd3IgKyAxLAotCQkJICAgICAwLCBJQl9QT0xMX1dPUktRVUVVRSk7CisJcmVj
-dmNxID0gaWJfYWxsb2NfY3FfYW55KGlhLT5yaV9pZC0+ZGV2aWNlLCBOVUxMLAorCQkJCSBlcC0+
-cmVwX2F0dHIuY2FwLm1heF9yZWN2X3dyICsgMSwKKwkJCQkgSUJfUE9MTF9XT1JLUVVFVUUpOwog
-CWlmIChJU19FUlIocmVjdmNxKSkgewogCQlyYyA9IFBUUl9FUlIocmVjdmNxKTsKIAkJZ290byBv
-dXQyOwoKCgpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpW
-OWZzLWRldmVsb3BlciBtYWlsaW5nIGxpc3QKVjlmcy1kZXZlbG9wZXJAbGlzdHMuc291cmNlZm9y
-Z2UubmV0Cmh0dHBzOi8vbGlzdHMuc291cmNlZm9yZ2UubmV0L2xpc3RzL2xpc3RpbmZvL3Y5ZnMt
-ZGV2ZWxvcGVyCg==
+On Sun, Jul 28, 2019 at 12:30:27PM -0400, Chuck Lever wrote:
+> Send and Receive completion is handled on a single CPU selected at
+> the time each Completion Queue is allocated. Typically this is when
+> an initiator instantiates an RDMA transport, or when a target
+> accepts an RDMA connection.
+>
+> Some ULPs cannot open a connection per CPU to spread completion
+> workload across available CPUs and MSI vectors. For such ULPs,
+> provide an API that allows the RDMA core to select a completion
+> vector based on the device's complement of available comp_vecs.
+>
+> ULPs that invoke ib_alloc_cq() with only comp_vector 0 are converted
+> to use the new API so that their completion workloads interfere less
+> with each other.
+>
+> Suggested-by: H=E5kon Bugge <haakon.bugge@oracle.com>
+> Signed-off-by: Chuck Lever <chuck.lever@oracle.com>
+> Cc: <linux-cifs@vger.kernel.org>
+> Cc: <v9fs-developer@lists.sourceforge.net>
+> ---
+>  drivers/infiniband/core/cq.c             |   29 ++++++++++++++++++++++++=
++++++
+>  drivers/infiniband/ulp/srpt/ib_srpt.c    |    4 ++--
+>  fs/cifs/smbdirect.c                      |   10 ++++++----
+>  include/rdma/ib_verbs.h                  |   19 +++++++++++++++++++
+>  net/9p/trans_rdma.c                      |    6 +++---
+>  net/sunrpc/xprtrdma/svc_rdma_transport.c |    8 ++++----
+>  net/sunrpc/xprtrdma/verbs.c              |   13 ++++++-------
+>  7 files changed, 69 insertions(+), 20 deletions(-)
+>
+> diff --git a/drivers/infiniband/core/cq.c b/drivers/infiniband/core/cq.c
+> index 7c59987..ea3bb0d 100644
+> --- a/drivers/infiniband/core/cq.c
+> +++ b/drivers/infiniband/core/cq.c
+> @@ -253,6 +253,35 @@ struct ib_cq *__ib_alloc_cq_user(struct ib_device *d=
+ev, void *private,
+>  EXPORT_SYMBOL(__ib_alloc_cq_user);
+>
+>  /**
+> + * __ib_alloc_cq_any - allocate a completion queue
+> + * @dev:		device to allocate the CQ for
+> + * @private:		driver private data, accessible from cq->cq_context
+> + * @nr_cqe:		number of CQEs to allocate
+> + * @poll_ctx:		context to poll the CQ from.
+> + * @caller:		module owner name.
+> + *
+> + * Attempt to spread ULP Completion Queues over each device's interrupt
+> + * vectors.
+> + */
+> +struct ib_cq *__ib_alloc_cq_any(struct ib_device *dev, void *private,
+> +				int nr_cqe, enum ib_poll_context poll_ctx,
+> +				const char *caller)
+> +{
+> +	static atomic_t counter;
+> +	int comp_vector;
+
+int comp_vector =3D 0;
+
+> +
+> +	comp_vector =3D 0;
+
+This assignment is better to be part of initialization.
+
+> +	if (dev->num_comp_vectors > 1)
+> +		comp_vector =3D
+> +			atomic_inc_return(&counter) %
+
+Don't we need manage "free list" of comp_vectors? Otherwise we can find
+ourselves providing already "taken" comp_vector.
+
+Just as an example:
+dev->num_comp_vectors =3D 2
+num_online_cpus =3D 4
+
+The following combination will give us same comp_vector:
+1. ib_alloc_cq_any()
+2. ib_alloc_cq_any()
+3. ib_free_cq()
+4. goto 2
+
+> +			min_t(int, dev->num_comp_vectors, num_online_cpus());
+> +
+> +	return __ib_alloc_cq_user(dev, private, nr_cqe, comp_vector, poll_ctx,
+> +				  caller, NULL);
+> +}
+> +EXPORT_SYMBOL(__ib_alloc_cq_any);
+> +
+> +/**
+>   * ib_free_cq_user - free a completion queue
+>   * @cq:		completion queue to free.
+>   * @udata:	User data or NULL for kernel object
+> diff --git a/drivers/infiniband/ulp/srpt/ib_srpt.c b/drivers/infiniband/u=
+lp/srpt/ib_srpt.c
+> index 1a039f1..e25c70a 100644
+> --- a/drivers/infiniband/ulp/srpt/ib_srpt.c
+> +++ b/drivers/infiniband/ulp/srpt/ib_srpt.c
+> @@ -1767,8 +1767,8 @@ static int srpt_create_ch_ib(struct srpt_rdma_ch *c=
+h)
+>  		goto out;
+>
+>  retry:
+> -	ch->cq =3D ib_alloc_cq(sdev->device, ch, ch->rq_size + sq_size,
+> -			0 /* XXX: spread CQs */, IB_POLL_WORKQUEUE);
+> +	ch->cq =3D ib_alloc_cq_any(sdev->device, ch, ch->rq_size + sq_size,
+> +				 IB_POLL_WORKQUEUE);
+>  	if (IS_ERR(ch->cq)) {
+>  		ret =3D PTR_ERR(ch->cq);
+>  		pr_err("failed to create CQ cqe=3D %d ret=3D %d\n",
+> diff --git a/fs/cifs/smbdirect.c b/fs/cifs/smbdirect.c
+> index cd07e53..3c91fa9 100644
+> --- a/fs/cifs/smbdirect.c
+> +++ b/fs/cifs/smbdirect.c
+> @@ -1654,15 +1654,17 @@ static struct smbd_connection *_smbd_get_connecti=
+on(
+>
+>  	info->send_cq =3D NULL;
+>  	info->recv_cq =3D NULL;
+> -	info->send_cq =3D ib_alloc_cq(info->id->device, info,
+> -			info->send_credit_target, 0, IB_POLL_SOFTIRQ);
+> +	info->send_cq =3D
+> +		ib_alloc_cq_any(info->id->device, info,
+> +				info->send_credit_target, IB_POLL_SOFTIRQ);
+>  	if (IS_ERR(info->send_cq)) {
+>  		info->send_cq =3D NULL;
+>  		goto alloc_cq_failed;
+>  	}
+>
+> -	info->recv_cq =3D ib_alloc_cq(info->id->device, info,
+> -			info->receive_credit_max, 0, IB_POLL_SOFTIRQ);
+> +	info->recv_cq =3D
+> +		ib_alloc_cq_any(info->id->device, info,
+> +				info->receive_credit_max, IB_POLL_SOFTIRQ);
+>  	if (IS_ERR(info->recv_cq)) {
+>  		info->recv_cq =3D NULL;
+>  		goto alloc_cq_failed;
+> diff --git a/include/rdma/ib_verbs.h b/include/rdma/ib_verbs.h
+> index c5f8a9f..2a1523cc 100644
+> --- a/include/rdma/ib_verbs.h
+> +++ b/include/rdma/ib_verbs.h
+> @@ -3711,6 +3711,25 @@ static inline struct ib_cq *ib_alloc_cq(struct ib_=
+device *dev, void *private,
+>  				NULL);
+>  }
+>
+> +struct ib_cq *__ib_alloc_cq_any(struct ib_device *dev, void *private,
+> +				int nr_cqe, enum ib_poll_context poll_ctx,
+> +				const char *caller);
+> +
+> +/**
+> + * ib_alloc_cq_any: Allocate kernel CQ
+> + * @dev: The IB device
+> + * @private: Private data attached to the CQE
+> + * @nr_cqe: Number of CQEs in the CQ
+> + * @poll_ctx: Context used for polling the CQ
+> + */
+> +static inline struct ib_cq *ib_alloc_cq_any(struct ib_device *dev,
+> +					    void *private, int nr_cqe,
+> +					    enum ib_poll_context poll_ctx)
+> +{
+> +	return __ib_alloc_cq_any(dev, private, nr_cqe, poll_ctx,
+> +				 KBUILD_MODNAME);
+> +}
+
+This should be macro and not inline function, because compiler can be
+instructed do not inline functions (there is kconfig option for that)
+and it will cause that wrong KBUILD_MODNAME will be inserted (ib_core
+instead of ulp).
+
+And yes, commit c4367a26357b ("IB: Pass uverbs_attr_bundle down ib_x
+destroy path") did it completely wrong.
+
+> +
+>  /**
+>   * ib_free_cq_user - Free kernel/user CQ
+>   * @cq: The CQ to free
+> diff --git a/net/9p/trans_rdma.c b/net/9p/trans_rdma.c
+> index bac8dad..b21c3c2 100644
+> --- a/net/9p/trans_rdma.c
+> +++ b/net/9p/trans_rdma.c
+> @@ -685,9 +685,9 @@ static int p9_rdma_bind_privport(struct p9_trans_rdma=
+ *rdma)
+>  		goto error;
+>
+>  	/* Create the Completion Queue */
+> -	rdma->cq =3D ib_alloc_cq(rdma->cm_id->device, client,
+> -			opts.sq_depth + opts.rq_depth + 1,
+> -			0, IB_POLL_SOFTIRQ);
+> +	rdma->cq =3D ib_alloc_cq_any(rdma->cm_id->device, client,
+> +				   opts.sq_depth + opts.rq_depth + 1,
+> +				   IB_POLL_SOFTIRQ);
+>  	if (IS_ERR(rdma->cq))
+>  		goto error;
+>
+> diff --git a/net/sunrpc/xprtrdma/svc_rdma_transport.c b/net/sunrpc/xprtrd=
+ma/svc_rdma_transport.c
+> index 3fe6651..4d3db6e 100644
+> --- a/net/sunrpc/xprtrdma/svc_rdma_transport.c
+> +++ b/net/sunrpc/xprtrdma/svc_rdma_transport.c
+> @@ -454,14 +454,14 @@ static struct svc_xprt *svc_rdma_accept(struct svc_=
+xprt *xprt)
+>  		dprintk("svcrdma: error creating PD for connect request\n");
+>  		goto errout;
+>  	}
+> -	newxprt->sc_sq_cq =3D ib_alloc_cq(dev, newxprt, newxprt->sc_sq_depth,
+> -					0, IB_POLL_WORKQUEUE);
+> +	newxprt->sc_sq_cq =3D ib_alloc_cq_any(dev, newxprt, newxprt->sc_sq_dept=
+h,
+> +					    IB_POLL_WORKQUEUE);
+>  	if (IS_ERR(newxprt->sc_sq_cq)) {
+>  		dprintk("svcrdma: error creating SQ CQ for connect request\n");
+>  		goto errout;
+>  	}
+> -	newxprt->sc_rq_cq =3D ib_alloc_cq(dev, newxprt, rq_depth,
+> -					0, IB_POLL_WORKQUEUE);
+> +	newxprt->sc_rq_cq =3D
+> +		ib_alloc_cq_any(dev, newxprt, rq_depth, IB_POLL_WORKQUEUE);
+>  	if (IS_ERR(newxprt->sc_rq_cq)) {
+>  		dprintk("svcrdma: error creating RQ CQ for connect request\n");
+>  		goto errout;
+> diff --git a/net/sunrpc/xprtrdma/verbs.c b/net/sunrpc/xprtrdma/verbs.c
+> index 805b1f35..b10aa16 100644
+> --- a/net/sunrpc/xprtrdma/verbs.c
+> +++ b/net/sunrpc/xprtrdma/verbs.c
+> @@ -521,18 +521,17 @@ int rpcrdma_ep_create(struct rpcrdma_xprt *r_xprt)
+>  	init_waitqueue_head(&ep->rep_connect_wait);
+>  	ep->rep_receive_count =3D 0;
+>
+> -	sendcq =3D ib_alloc_cq(ia->ri_id->device, NULL,
+> -			     ep->rep_attr.cap.max_send_wr + 1,
+> -			     ia->ri_id->device->num_comp_vectors > 1 ? 1 : 0,
+> -			     IB_POLL_WORKQUEUE);
+> +	sendcq =3D ib_alloc_cq_any(ia->ri_id->device, NULL,
+> +				 ep->rep_attr.cap.max_send_wr + 1,
+> +				 IB_POLL_WORKQUEUE);
+>  	if (IS_ERR(sendcq)) {
+>  		rc =3D PTR_ERR(sendcq);
+>  		goto out1;
+>  	}
+>
+> -	recvcq =3D ib_alloc_cq(ia->ri_id->device, NULL,
+> -			     ep->rep_attr.cap.max_recv_wr + 1,
+> -			     0, IB_POLL_WORKQUEUE);
+> +	recvcq =3D ib_alloc_cq_any(ia->ri_id->device, NULL,
+> +				 ep->rep_attr.cap.max_recv_wr + 1,
+> +				 IB_POLL_WORKQUEUE);
+>  	if (IS_ERR(recvcq)) {
+>  		rc =3D PTR_ERR(recvcq);
+>  		goto out2;
+>
+
+
+_______________________________________________
+V9fs-developer mailing list
+V9fs-developer@lists.sourceforge.net
+https://lists.sourceforge.net/lists/listinfo/v9fs-developer
