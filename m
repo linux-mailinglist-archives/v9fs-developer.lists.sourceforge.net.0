@@ -2,96 +2,97 @@ Return-Path: <v9fs-developer-bounces@lists.sourceforge.net>
 X-Original-To: lists+v9fs-developer@lfdr.de
 Delivered-To: lists+v9fs-developer@lfdr.de
 Received: from lists.sourceforge.net (lists.sourceforge.net [216.105.38.7])
-	by mail.lfdr.de (Postfix) with ESMTPS id C910B80A2D
-	for <lists+v9fs-developer@lfdr.de>; Sun,  4 Aug 2019 11:49:44 +0200 (CEST)
-Received: from [127.0.0.1] (helo=sfs-ml-2.v29.lw.sourceforge.com)
-	by sfs-ml-2.v29.lw.sourceforge.com with esmtp (Exim 4.90_1)
+	by mail.lfdr.de (Postfix) with ESMTPS id B0C528214F
+	for <lists+v9fs-developer@lfdr.de>; Mon,  5 Aug 2019 18:09:14 +0200 (CEST)
+Received: from [127.0.0.1] (helo=sfs-ml-1.v29.lw.sourceforge.com)
+	by sfs-ml-1.v29.lw.sourceforge.com with esmtp (Exim 4.90_1)
 	(envelope-from <v9fs-developer-bounces@lists.sourceforge.net>)
-	id 1huD92-0007w3-K0; Sun, 04 Aug 2019 09:49:40 +0000
+	id 1hufXr-0000Hk-6X; Mon, 05 Aug 2019 16:09:11 +0000
 Received: from [172.30.20.202] (helo=mx.sourceforge.net)
- by sfs-ml-2.v29.lw.sourceforge.com with esmtps
+ by sfs-ml-1.v29.lw.sourceforge.com with esmtps
  (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.90_1)
- (envelope-from
- <bounce-id=D216=U15855.cluster006.ovh.net=1564899235.14-F64J3@mail-out.cluster006.hosting.ovh.net>)
- id 1huD91-0007vw-1O
- for v9fs-developer@lists.sourceforge.net; Sun, 04 Aug 2019 09:49:39 +0000
+ (envelope-from <bart.vanassche@gmail.com>) id 1hufXp-0000H6-Rv
+ for v9fs-developer@lists.sourceforge.net; Mon, 05 Aug 2019 16:09:09 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=sourceforge.net; s=x; h=Content-Transfer-Encoding:Content-Type:MIME-Version
- :Message-ID:From:Date:Subject:To:Sender:Reply-To:Cc:Content-ID:
- Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
- :Resent-Message-ID:In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:
+ d=sourceforge.net; s=x; h=Content-Transfer-Encoding:Content-Type:In-Reply-To:
+ MIME-Version:Date:Message-ID:From:References:Cc:To:Subject:Sender:Reply-To:
+ Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+ Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
  List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=yYuyn5JfVjHgnx0ralMyhk160HclOaUVEF4d0m66u78=; b=MMKwkrZtCRWVhgD+wx2N4p6L9s
- aXwZ3xL7saIOXbGx/b3ZDcwWRLjItg+m/COGln3D8J65DWrP6xS75oLJvZPRWNNcR2F5PxwEe4u0m
- 7HO4J3KxrN7makxBI1tRbSqk+w58Tlwo1t4T/9hGRaJDQHYulhZz3T8iKyIsMia347sU=;
+ bh=ILZYy/Qkh2SOroGxB401ESLDlG+ppsquN1OQynPyiSU=; b=BiInguGhucezKpXLNEm2QrC6ne
+ NFiFOcMv1LeC8xKMLEGndTPgImpaNsRehY4jAsCKohLYT0W134cifk7e5l0vorcrw7hHGJAQgdusR
+ ne7l2Rd/HjGG6EE2Sb7C4hOvrLe/YfgBtmZ1ym3FyojJ1z1D8CiMYqL24M5Zv8aeiu2w=;
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  ;
- h=Content-Transfer-Encoding:Content-Type:MIME-Version:Message-ID:From:Date:
- Subject:To:Sender:Reply-To:Cc:Content-ID:Content-Description:Resent-Date:
- Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:
- References:List-Id:List-Help:List-Unsubscribe:List-Subscribe:List-Post:
- List-Owner:List-Archive; bh=yYuyn5JfVjHgnx0ralMyhk160HclOaUVEF4d0m66u78=; b=A
- u7wP4rMRMq+g00S0j3N5nMlJGSP324UhS7td5n4T7I7YaAwYrHj7F9Skzgq0Zp7Ur/eGTFUT3NEq/
- 9mM5MJrpw/1Tf3PxXLa6FZNFa1NmjzT3ZozhP5ELzT5aR+UG4o2OZ1eLfATjcr5fjGOMVcjcHsIpb
- 9QTnVb6WtOYVMOsY=;
-Received: from 7.mo161.mail-out.ovh.net ([46.105.63.229])
- by sfi-mx-3.v28.lw.sourceforge.com with esmtps
- (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.90_1)
- id 1huD8w-00ADLi-VO
- for v9fs-developer@lists.sourceforge.net; Sun, 04 Aug 2019 09:49:38 +0000
-Received: from mail-out02.cluster006.gra.hosting.ovh.net (unknown
- [10.110.145.238])
- by mo161.mail-out.ovh.net (Postfix) with ESMTP id 5B8E5AB73B
+ h=Content-Transfer-Encoding:Content-Type:In-Reply-To:MIME-Version:Date:
+ Message-ID:From:References:Cc:To:Subject:Sender:Reply-To:Content-ID:
+ Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
+ :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
+ List-Post:List-Owner:List-Archive;
+ bh=ILZYy/Qkh2SOroGxB401ESLDlG+ppsquN1OQynPyiSU=; b=TLv3SHMSCoFO7zbcWvgNh07b2q
+ c2j1QAL+LbQuihEQ+6xDa8hvubj928x5JLvbTaGlYWKxJ9xIgNQPSXppfQ6kOjaNV/CvNu/oZ+8Rt
+ EJFRVjWLIgetv3X9v43VZC3N+FxEfooWAM35JkUv89Zj2u7l83z9wbRDBytIuAZSWzto=;
+Received: from mail-pg1-f194.google.com ([209.85.215.194])
+ by sfi-mx-4.v28.lw.sourceforge.com with esmtps
+ (TLSv1.2:ECDHE-RSA-AES128-GCM-SHA256:128) (Exim 4.90_1)
+ id 1hufXo-00BKoE-G9
+ for v9fs-developer@lists.sourceforge.net; Mon, 05 Aug 2019 16:09:09 +0000
+Received: by mail-pg1-f194.google.com with SMTP id n4so4710342pgv.2
  for <v9fs-developer@lists.sourceforge.net>;
- Sun,  4 Aug 2019 08:13:55 +0200 (CEST)
-Received: from mail-out02.cluster006.gra.hosting.ovh.net
- (localhost.localdomain [127.0.0.1])
- by mail-out02.cluster006.gra.hosting.ovh.net (Postfix) with ESMTP id
- 4104524005C for <v9fs-developer@lists.sourceforge.net>;
- Sun,  4 Aug 2019 08:13:55 +0200 (CEST)
-Received: from cluster006.hosting.ovh.net (gwa.cluster006.hosting.ovh.net
- [51.68.11.202])
- by mail-out02.cluster006.gra.hosting.ovh.net (Postfix) with ESMTP id
- 8BD4124005C for <v9fs-developer@lists.sourceforge.net>;
- Sun,  4 Aug 2019 08:13:54 +0200 (CEST)
-Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
- by localhost.domain.tld (Postfix) with ESMTP id 8A02B6020C
- for <v9fs-developer@lists.sourceforge.net>;
- Sun,  4 Aug 2019 08:13:54 +0200 (CEST)
-Received: by cluster006.hosting.ovh.net (Postfix, from userid 15855)
- id 6A30260453; Sun,  4 Aug 2019 08:13:54 +0200 (CEST)
-To: v9fs-developer@lists.sourceforge.net
-Date: Sun, 4 Aug 2019 06:13:54 +0000
-From: SAV MECANUMERIC <sav@mecanumeric.com>
-Message-ID: <c3671883fbd5c27b97cb981a52cdf16a@meca-line.com>
-X-Priority: 3
-X-Mailer: PHPMailer 5.2.9 (https://github.com/PHPMailer/PHPMailer/)
+ Mon, 05 Aug 2019 09:09:08 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+ :user-agent:mime-version:in-reply-to:content-language
+ :content-transfer-encoding;
+ bh=ILZYy/Qkh2SOroGxB401ESLDlG+ppsquN1OQynPyiSU=;
+ b=nQP86Yqk3GFv083wevulFkhFBAdR78RlTIZvCexnTtnu4j9UtQ9F3loH5kDgP6h1e9
+ 7dxpfPa+q6KA9E5tKG8XNR06cfJ9ZPEciG42O2Oum0iKiHNdRIQaqnTD/nyIxEV58xbu
+ rkENHftY1SSPLhGKk1ZONqGxvGEUcz3lT6Do9qS6HFEkSnu/aR0bh5s/iESHnVSsgno7
+ tFg9cn6w2jmMy5rA1i+K/Qyh5z64HDFx0FWuhTD6M8dQccgUP7d+ioRFbgAbD+abRed1
+ CYAF/b3wa+1m3TJnTHlpbCIcMJWRAnDvc2YJHXhKVelTzk7P25fUfPaLZMDhsWciZc0N
+ OKQQ==
+X-Gm-Message-State: APjAAAW5riYH9oOQCLQw+wxbhmKbKW8KW+yLp5rOzYmtbUPjjfUHDsmc
+ vh81sihORwGkEuoAtRR6+XpL+a43
+X-Google-Smtp-Source: APXvYqwAxl1pBS8AeJ6EZK9QTwP7S8jW1nhyg9FAGS/zhrgSmhxNmxd6AUEWfED1glvlzd4Q5NiPYA==
+X-Received: by 2002:a62:2aca:: with SMTP id
+ q193mr75352974pfq.209.1565021342284; 
+ Mon, 05 Aug 2019 09:09:02 -0700 (PDT)
+Received: from desktop-bart.svl.corp.google.com
+ ([2620:15c:2cd:202:4308:52a3:24b6:2c60])
+ by smtp.gmail.com with ESMTPSA id b136sm111692066pfb.73.2019.08.05.09.09.00
+ (version=TLS1_3 cipher=AEAD-AES128-GCM-SHA256 bits=128/128);
+ Mon, 05 Aug 2019 09:09:01 -0700 (PDT)
+To: Chuck Lever <chuck.lever@oracle.com>, jgg@ziepe.ca
+References: <20190729171923.13428.52555.stgit@manet.1015granger.net>
+From: Bart Van Assche <bvanassche@acm.org>
+Message-ID: <f181b5b6-df7c-d657-4ec6-4a4e56a9b5ff@acm.org>
+Date: Mon, 5 Aug 2019 09:09:00 -0700
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+ Thunderbird/60.8.0
 MIME-Version: 1.0
-X-Ovh-Tracer-Id: 8620452639401975953
-X-VR-SPAMSTATE: OK
-X-VR-SPAMSCORE: 10
-X-VR-SPAMCAUSE: gggruggvucftvghtrhhoucdtuddrgeduvddruddtgedguddtucetufdoteggodetrfdotffvucfrrhhofhhilhgvmecuqfggjfdpvefjgfevmfevgfenuceurghilhhouhhtmecuhedttdenucgfrhhlucfvnfffucdluddtmd
-X-Spam-Score: 3.3 (+++)
+In-Reply-To: <20190729171923.13428.52555.stgit@manet.1015granger.net>
+Content-Language: en-US
+X-Spam-Score: 0.4 (/)
 X-Spam-Report: Spam Filtering performed by mx.sourceforge.net.
  See http://spamassassin.org/tag/ for more details.
- 0.0 URIBL_BLOCKED ADMINISTRATOR NOTICE: The query to URIBL was blocked.
- See
- http://wiki.apache.org/spamassassin/DnsBlocklists#dnsbl-block
- for more information. [URIs: inskydrime.tk]
+ 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail provider
+ (bart.vanassche[at]gmail.com)
  -0.0 RCVD_IN_DNSWL_NONE     RBL: Sender listed at https://www.dnswl.org/, no
- trust [46.105.63.229 listed in list.dnswl.org]
+ trust [209.85.215.194 listed in list.dnswl.org]
+ -0.0 RCVD_IN_MSPIKE_H3      RBL: Good reputation (+3)
+ [209.85.215.194 listed in wl.mailspike.net]
  0.2 HEADER_FROM_DIFFERENT_DOMAINS From and EnvelopeFrom 2nd level mail
  domains are different
  -0.0 SPF_PASS               SPF: sender matches SPF record
  0.0 SPF_HELO_NONE          SPF: HELO does not publish an SPF Record
- 1.0 HTML_MESSAGE           BODY: HTML included in message
- 0.5 RAZOR2_CHECK           Listed in Razor2 (http://razor.sf.net/)
- 1.5 RAZOR2_CF_RANGE_51_100 Razor2 gives confidence level above 50%
- [cf: 100]
- 0.0 T_FILL_THIS_FORM_SHORT Fill in a short form with personal information
-X-Headers-End: 1huD8w-00ADLi-VO
-X-Content-Filtered-By: Mailman/MimeDel 2.1.21
-Subject: [V9fs-developer] Merci pour votre message
+ -0.0 RCVD_IN_MSPIKE_WL      Mailspike good senders
+ 0.2 FREEMAIL_FORGED_FROMDOMAIN 2nd level domains in From and EnvelopeFrom
+ freemail headers are different
+ -0.1 AWL AWL: Adjusted score from AWL reputation of From: address
+X-Headers-End: 1hufXo-00BKoE-G9
+Subject: Re: [V9fs-developer] [PATCH v3] rdma: Enable ib_alloc_cq to spread
+ work over a device's comp_vectors
 X-BeenThere: v9fs-developer@lists.sourceforge.net
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -103,18 +104,39 @@ List-Post: <mailto:v9fs-developer@lists.sourceforge.net>
 List-Help: <mailto:v9fs-developer-request@lists.sourceforge.net?subject=help>
 List-Subscribe: <https://lists.sourceforge.net/lists/listinfo/v9fs-developer>, 
  <mailto:v9fs-developer-request@lists.sourceforge.net?subject=subscribe>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Cc: linux-rdma@vger.kernel.org, linux-cifs@vger.kernel.org,
+ linux-nfs@vger.kernel.org, v9fs-developer@lists.sourceforge.net
+Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Errors-To: v9fs-developer-bounces@lists.sourceforge.net
 
-CgpTT0NJRVRFIC8gQ09NUEFOWWdvb2dsZQpWSUxMRSAvIENJVFlNYWRhZ2FzY2FyCk1PREVMRSBN
-QUNISU5FIC8gTUFDSElORSBNT0RFTE1lZXQgc2V4eSBnaXJscyBpbiB5b3VyIGNpdHkKTsKwIFNF
-UklFIE1BQ0hJTkUgLyBTRVJJQUwgTlVNQkVSIE1BQ0hJTkU0NjY4Ck5PTSBDT05UQUNUIC8gQ09O
-VEFDVCBOQU1FS2VpdGhDZWFrcwpURUxFUEhPTkU4NjU1NDIzMTU0MQpFLU1BSUx2OWZzLWRldmVs
-b3BlckBsaXN0cy5zb3VyY2Vmb3JnZS5uZXQKRMOpY3JpdmV6IHZvdHJlIGRlbWFuZGUgLyBEZXNj
-cmliZSB5b3VyIHJlcXVlc3RGaW5kIHlvdXJzZWxmIGEgZ2lybCBmb3IgdGhlIG5pZ2h0IGluIHlv
-dXIgY2l0eTogaHR0cDovL2luc2t5ZHJpbWUudGsvNzV4MDM/R2NnY1lVMXVEWG1ZbAoKSVA6IDE4
-NS45NC4xOTIuODMKCgpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fXwpWOWZzLWRldmVsb3BlciBtYWlsaW5nIGxpc3QKVjlmcy1kZXZlbG9wZXJAbGlzdHMuc291
-cmNlZm9yZ2UubmV0Cmh0dHBzOi8vbGlzdHMuc291cmNlZm9yZ2UubmV0L2xpc3RzL2xpc3RpbmZv
-L3Y5ZnMtZGV2ZWxvcGVyCg==
+On 7/29/19 10:22 AM, Chuck Lever wrote:
+> diff --git a/drivers/infiniband/ulp/srpt/ib_srpt.c b/drivers/infiniband/ulp/srpt/ib_srpt.c
+> index 1a039f1..e25c70a 100644
+> --- a/drivers/infiniband/ulp/srpt/ib_srpt.c
+> +++ b/drivers/infiniband/ulp/srpt/ib_srpt.c
+> @@ -1767,8 +1767,8 @@ static int srpt_create_ch_ib(struct srpt_rdma_ch *ch)
+>   		goto out;
+>   
+>   retry:
+> -	ch->cq = ib_alloc_cq(sdev->device, ch, ch->rq_size + sq_size,
+> -			0 /* XXX: spread CQs */, IB_POLL_WORKQUEUE);
+> +	ch->cq = ib_alloc_cq_any(sdev->device, ch, ch->rq_size + sq_size,
+> +				 IB_POLL_WORKQUEUE);
+>   	if (IS_ERR(ch->cq)) {
+>   		ret = PTR_ERR(ch->cq);
+>   		pr_err("failed to create CQ cqe= %d ret= %d\n",
+Hi Chuck,
+
+Please Cc me for future srp and srpt patches. I think my name appears 
+next to both drivers in the MAINTAINERS file.
+
+Thanks,
+
+Bart.
+
+
+_______________________________________________
+V9fs-developer mailing list
+V9fs-developer@lists.sourceforge.net
+https://lists.sourceforge.net/lists/listinfo/v9fs-developer
