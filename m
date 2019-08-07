@@ -2,65 +2,87 @@ Return-Path: <v9fs-developer-bounces@lists.sourceforge.net>
 X-Original-To: lists+v9fs-developer@lfdr.de
 Delivered-To: lists+v9fs-developer@lfdr.de
 Received: from lists.sourceforge.net (lists.sourceforge.net [216.105.38.7])
-	by mail.lfdr.de (Postfix) with ESMTPS id F00D1829BB
-	for <lists+v9fs-developer@lfdr.de>; Tue,  6 Aug 2019 04:43:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 817998448C
+	for <lists+v9fs-developer@lfdr.de>; Wed,  7 Aug 2019 08:35:56 +0200 (CEST)
 Received: from [127.0.0.1] (helo=sfs-ml-1.v29.lw.sourceforge.com)
 	by sfs-ml-1.v29.lw.sourceforge.com with esmtp (Exim 4.90_1)
 	(envelope-from <v9fs-developer-bounces@lists.sourceforge.net>)
-	id 1hupS1-0008Qz-2c; Tue, 06 Aug 2019 02:43:49 +0000
+	id 1hvFY7-0005Sq-V3; Wed, 07 Aug 2019 06:35:51 +0000
 Received: from [172.30.20.202] (helo=mx.sourceforge.net)
  by sfs-ml-1.v29.lw.sourceforge.com with esmtps
  (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.90_1)
- (envelope-from <loan@severnfunding.org>) id 1hupRz-0008Qj-EJ
- for v9fs-developer@lists.sourceforge.net; Tue, 06 Aug 2019 02:43:47 +0000
+ (envelope-from
+ <BATV+ecabc3e5d1f7686a0adb+5827+infradead.org+hch@bombadil.srs.infradead.org>)
+ id 1hvFY6-0005Sb-PC
+ for v9fs-developer@lists.sourceforge.net; Wed, 07 Aug 2019 06:35:50 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=sourceforge.net; s=x; h=Content-Transfer-Encoding:Content-Type:MIME-Version
- :Message-ID:Date:Subject:To:From:Reply-To:Sender:Cc:Content-ID:
- Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
- :Resent-Message-ID:In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:
+ d=sourceforge.net; s=x; h=In-Reply-To:Content-Transfer-Encoding:Content-Type:
+ MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Sender:Reply-To:
+ Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+ Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
  List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=VRz/o2MwbGHTIUC6fuyJ82zMHsPw84r+9+FQ7lNMo4A=; b=kMN8WJKt7C6mVZRf6OXQwpU96E
- BxKxN3bxDw9hTXApebkcCUdModSF8nrxOjHYpWzkxAhzR7b7A6bWjtKE+k79FyWXsJrGId8bajZ+S
- xO6S3Yt9uwSLwITHKbJ+if4/+dB624whtIP7rAMvEwGk8OeaL9WPFwMrNJ8puqJXSq24=;
+ bh=h/YO9E7Kk2GlCfqzWsOaLMxcaYYFJaO+2uQZpeggUB0=; b=gS4vKn7b/wracvLc8uh0tgeSev
+ mr2nYzmm9UP2fFRhCbhl+DFTmWb08rnYOqR+4e0YnRbtz2wBMpz4/iDui/V7NrXia9YRD79ZPw31F
+ OGzsuOgnb13rvK7kq6b8XQGmwPsmS0FI5zUy+ojTdvYX3mpjjihGSF3QYCyuM3BbaDMc=;
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  ;
- h=Content-Transfer-Encoding:Content-Type:MIME-Version:Message-ID:Date:
- Subject:To:From:Reply-To:Sender:Cc:Content-ID:Content-Description:Resent-Date
- :Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:
- References:List-Id:List-Help:List-Unsubscribe:List-Subscribe:List-Post:
- List-Owner:List-Archive; bh=VRz/o2MwbGHTIUC6fuyJ82zMHsPw84r+9+FQ7lNMo4A=; b=G
- TcwRLWlQM2rDrVPb2wlBZEv7lUvH9CT0PlVmMpZcEgsWi4f8kucvcEbnydMp/QhluQbDTnLsvHwKq
- yHeEpt1ZF10oaNu9Qf3J2A6gd0W3TJ684w9bKXg5E2vfOKbCtQyJiTNXqAjezAEwJLptKGo6c94oc
- I2188Ox7eIBEDDFA=;
-Received: from mta42.bitcoincashinf.me ([185.251.118.42])
- by sfi-mx-4.v28.lw.sourceforge.com with esmtp (Exim 4.90_1)
- id 1hupRv-00Boni-L2
- for v9fs-developer@lists.sourceforge.net; Tue, 06 Aug 2019 02:43:47 +0000
-From: "Financial Loan"<loan@severnfunding.org>
-To: v9fs-developer@lists.sourceforge.net
-Date: 5 Aug 2019 19:43:29 -0700
-Message-ID: <20190805194329.AD02B6B11296D0DA@severnfunding.org>
+ h=In-Reply-To:Content-Transfer-Encoding:Content-Type:MIME-Version:
+ References:Message-ID:Subject:Cc:To:From:Date:Sender:Reply-To:Content-ID:
+ Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
+ :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
+ List-Post:List-Owner:List-Archive;
+ bh=h/YO9E7Kk2GlCfqzWsOaLMxcaYYFJaO+2uQZpeggUB0=; b=hmCApJ7tXdwfyRwzYm7hObokPm
+ eqrLVk/FN0/KvVoCuzXcHokJX0JjxG5/JH+vPBSUQuACevDiaMmI+1nn5r6FDveYXSHNQWYUzxB8f
+ yNhnA7dszzJ/KuEVcThg5uRTovpLzwJzJlYSAXzZTgW+1z+QXNv0FDgKeIXzBIMd0+hs=;
+Received: from bombadil.infradead.org ([198.137.202.133])
+ by sfi-mx-1.v28.lw.sourceforge.com with esmtps
+ (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.90_1)
+ id 1hvFY4-00EOT0-Nn
+ for v9fs-developer@lists.sourceforge.net; Wed, 07 Aug 2019 06:35:50 +0000
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+ d=infradead.org; s=bombadil.20170209; h=In-Reply-To:Content-Transfer-Encoding
+ :Content-Type:MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:
+ Sender:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+ Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:
+ List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
+ bh=h/YO9E7Kk2GlCfqzWsOaLMxcaYYFJaO+2uQZpeggUB0=; b=otE89qYM9WmETe4AtaYSwZhaVp
+ x2hWnzTkK/+H6YrywBw2CCvGkAGS0+cMqYBTGZ1bytkCsNKOywsxuaErRoaQPCJFZ74nyD+BaWD0D
+ Fqio4bMq3iSkQd4EZDyn1AS+qiOZ+zvMv6fNRqFHw53t3ciAgH4Z1x8wvN/D7EYKreU7FK2EDXOVj
+ PtXuttuf2InvZsTot7swxCxX4U2Gh/2vRud2yGtuCEvw7oeWsTGK9Fxhm2aMTINFjUbhDSIHyQW9d
+ 1InA9ls8uWP73McSrAt6icdTTX2iY22SDv4qsGs3F3dJNdqSF3NdiMXvEekNoqV5nkE99PNfKXpGY
+ TVYojzfw==;
+Received: from hch by bombadil.infradead.org with local (Exim 4.92 #3 (Red Hat
+ Linux)) id 1hvFX6-0004to-Ui; Wed, 07 Aug 2019 06:34:48 +0000
+Date: Tue, 6 Aug 2019 23:34:48 -0700
+From: Christoph Hellwig <hch@infradead.org>
+To: John Hubbard <jhubbard@nvidia.com>
+Message-ID: <20190807063448.GA6002@infradead.org>
+References: <20190724042518.14363-1-jhubbard@nvidia.com>
+ <20190724061750.GA19397@infradead.org>
+ <c35aa2bf-c830-9e57-78ca-9ce6fb6cb53b@nvidia.com>
 MIME-Version: 1.0
-X-Spam-Score: 6.2 (++++++)
+Content-Disposition: inline
+In-Reply-To: <c35aa2bf-c830-9e57-78ca-9ce6fb6cb53b@nvidia.com>
+User-Agent: Mutt/1.11.4 (2019-03-13)
+X-SRS-Rewrite: SMTP reverse-path rewritten from <hch@infradead.org> by
+ bombadil.infradead.org. See http://www.infradead.org/rpr.html
+X-Spam-Score: -0.1 (/)
 X-Spam-Report: Spam Filtering performed by mx.sourceforge.net.
  See http://spamassassin.org/tag/ for more details.
- 2.5 URIBL_DBL_SPAM         Contains a spam URL listed in the Spamhaus DBL
- blocklist [URIs: severnfundinginvestment.com]
- 0.4 NO_DNS_FOR_FROM        DNS: Envelope sender has no MX or A DNS records
- 1.3 RCVD_IN_RP_RNBL        RBL: Relay in RNBL,
- https://senderscore.org/blacklistlookup/
- [185.251.118.42 listed in bl.score.senderscore.com]
- 1.2 RCVD_IN_BL_SPAMCOP_NET RBL: Received via a relay in bl.spamcop.net
- [Blocked - see <https://www.spamcop.net/bl.shtml?185.251.118.42>]
  0.0 URIBL_BLOCKED ADMINISTRATOR NOTICE: The query to URIBL was blocked.
  See
  http://wiki.apache.org/spamassassin/DnsBlocklists#dnsbl-block
- for more information. [URIs: severnfundinginvestment.com]
+ for more information. [URIs: infradead.org]
  0.0 SPF_NONE               SPF: sender does not publish an SPF Record
- 0.8 DKIM_ADSP_NXDOMAIN     No valid author signature and domain not in DNS
  0.0 SPF_HELO_NONE          SPF: HELO does not publish an SPF Record
-X-Headers-End: 1hupRv-00Boni-L2
-Subject: [V9fs-developer] Financial Loan At The Best Rate
+ -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from author's
+ domain
+ -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+ 0.1 DKIM_SIGNED            Message has a DKIM or DK signature,
+ not necessarily valid
+X-Headers-End: 1hvFY4-00EOT0-Nn
+Subject: Re: [V9fs-developer] [PATCH 00/12] block/bio,
+ fs: convert put_page() to put_user_page*()
 X-BeenThere: v9fs-developer@lists.sourceforge.net
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -72,47 +94,50 @@ List-Post: <mailto:v9fs-developer@lists.sourceforge.net>
 List-Help: <mailto:v9fs-developer-request@lists.sourceforge.net?subject=help>
 List-Subscribe: <https://lists.sourceforge.net/lists/listinfo/v9fs-developer>, 
  <mailto:v9fs-developer-request@lists.sourceforge.net?subject=subscribe>
-Reply-To: morales.gustavo@severnfundinginvestment.com
+Cc: Latchesar Ionkov <lucho@ionkov.net>, kvm@vger.kernel.org,
+ "Michael S . Tsirkin" <mst@redhat.com>,
+ virtualization@lists.linux-foundation.org, linux-mm@kvack.org,
+ Christoph Hellwig <hch@lst.de>, linux-cifs@vger.kernel.org,
+ Miklos Szeredi <miklos@szeredi.hu>, linux-rdma@vger.kernel.org,
+ Matthew Wilcox <willy@infradead.org>, Christoph Hellwig <hch@infradead.org>,
+ Jason Gunthorpe <jgg@ziepe.ca>, v9fs-developer@lists.sourceforge.net,
+ Jason Wang <jasowang@redhat.com>, Eric Van Hensbergen <ericvh@gmail.com>,
+ john.hubbard@gmail.com, linux-block@vger.kernel.org,
+ Alexander Viro <viro@zeniv.linux.org.uk>, ceph-devel@vger.kernel.org,
+ Trond Myklebust <trond.myklebust@hammerspace.com>,
+ Jens Axboe <axboe@kernel.dk>, linux-nfs@vger.kernel.org,
+ netdev@vger.kernel.org, samba-technical@lists.samba.org,
+ LKML <linux-kernel@vger.kernel.org>, "David S . Miller" <davem@davemloft.net>,
+ linux-fsdevel@vger.kernel.org, Anna Schumaker <anna.schumaker@netapp.com>
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: base64
 Errors-To: v9fs-developer-bounces@lists.sourceforge.net
 
-RGVhciBSZXNwZWN0ZWQgU2lyLAoKQXJlIHlvdSB0aGlua2luZyBhYm91dCBzdGFydGluZyB5b3Vy
-IG93biBidXNpbmVzcyBhbmQgeW91IG5lZWQgdG8gcmFpc2UgYSBjYXBpdGFsIG9yIGlmIHlvdSBu
-ZWVkIGZ1bmRpbmcgZm9yIGV4cGFuc2lvbiBvciBtb3N0IG90aGVyIHJlYXNvbnMuIFNFRUsgTk8g
-TU9SRSBiZWNhdXNlIFNldmVybiBGdW5kaW5nIGFuZCBJbnZlc3RtZW50IExpbWl0ZWQgaGFzIHlv
-dSBjb3ZlcmVkLiAKClRoZXJlJ3MgMyB0aGluZ3MgdGhhdCB5b3UgbmVlZCB0byBrZWVwIGluIG1p
-bmQ7IAogCjEuIFlvdSBuZWVkIHRvIG1ha2UgYSB3ZWxsIHRob3VnaHQgb3V0IHBsYW4sIHRyeSB0
-byBjb3ZlciBldmVyeXRoaW5nIHlvdSB3YW50IHRvIGFjY29tcGxpc2ggYW5kIHRoaW5rIG9mIHdo
-YXQgY291bGQgZ28gd3JvbmcgYWxvbmcgdGhlIHdheS4gWW91IGNvdWxkIGNyZWF0ZSBhIGJ1c2lu
-ZXNzIHBsYW4gYW5kIG9yIGV4ZWN1dGl2ZSBzdW1tYXJ5IHRvIHVzZSBhcyB5b3VyIGd1aWRlbGlu
-ZS4gQXMgYSBydWxlLCBpdOKAmXMgYmVzdCBOT1QgdG8gYXNrIGZhbWlseSBvciBmcmllbmRzIGZv
-ciBtb25leSBpdHMgYmVzdCB0byB1c2UgKG90aGVyIHBlb3BsZeKAmXMgbW9uZXkpIGEgZnVuZGlu
-ZyBzb3VyY2UgdGhhdCB5b3UgaGF2ZSBubyBwZXJzb25hbCByZWxhdGlvbnNoaXAgd2l0aC4KIAoy
-LiBFeHBlY3QgeW91ciBwbGFuIHRvIGZhaWwgaW4gcGFydCBvciBmdWxsIGluIG1hbnkgY2FzZXMg
-dGhpcyB3aWxsIGhhcHBlbiBubyBtYXR0ZXIgaG93IHdlbGwgeW91IHRob3VnaHQgb3V0IHlvdXIg
-cGxhbi4gVW5mb3Jlc2VlbiBvYnN0YWNsZXMgYW5kIHNwZWVkIGJ1bXBzIG9mdGVuIHdpbGwgY29t
-ZSBpbiB5b3VyIHBhdGggdGhhdCBwcmV2ZW50IHlvdXIgcGxhbnMgZnJvbSBnb2luZyBhcyB5b3Ug
-aGFkIHByb2plY3RlZC4gCiAKMy4gQWx3YXlzIHdpdGhvdXQgZXhjZXB0aW9uIGhhdmUgYSAoUGxh
-biBCKS4gQW5kIHRoYXQncyB3aGVyZSB3ZSBjb21lIGluLiBXZSBhcmUgeW91ciBQbGFuIEIhIEJ1
-dCBkb24ndCB3b3JyeSB3ZSBhcmUgaGVyZSB0byBtYWtlIHlvdXIgZHJlYW0gYSBzdWNjZXNzLgog
-CkZvciBmdW5kaW5nIG9yIHF1ZXN0aW9uczsgRmVlbCBmcmVlIHRvIGdldCBpbiB0b3VjaCB3aXRo
-IG1lLgoKQmVzdCB3aXNoZXMKTW9yYWxlcyBHdXN0YXZvClByb2plY3QgRmluYW5jZSBGYWNpbGl0
-YXRvcgpTZXZlcm4gRnVuZGluZyBhbmQgSW52ZXN0bWVudCBMVEQKMTAzNiBTIE1haW4gU3QsIEFu
-biBBcmJvcgpNSSA0ODEwNCBVU0EuCkUtbWFpbDogbW9yYWxlcy5ndXN0YXZvQHNldmVybmZ1bmRp
-bmdpbnZlc3RtZW50LmNvbQpXZWJzaXRlOiB3d3cuc2V2ZXJuZnVuZGluZ2ludmVzdG1lbnQuY29t
-CgoqKklmIHlvdSBkbyBub3QgbmVlZCBmdW5kaW5nIGF0IHRoaXMgdGltZSwgcGVyaGFwcyB5b3Ug
-a25vdyBzb21lb25lIHdobyBkb2VzLiBXZSBQYXkgUmVmZXJyYWwgRmVlcyEhIQpfX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KRElTQ0xBSU1FUjogVGhp
-cyBlbWFpbCBhbmQgYW55IGZpbGVzIHRyYW5zbWl0dGVkIHdpdGggaXQgYXJlIGNvbmZpZGVudGlh
-bCBhbmQgaW50ZW5kZWQgc29sZWx5IGZvciB0aGUgdXNlIG9mIHRoZSBpbmRpdmlkdWFsIG9yIGVu
-dGl0eSB0byB3aG9tIHRoZXkgYXJlIGFkZHJlc3NlZC4gSW50ZXJuZXQgY29tbXVuaWNhdGlvbnMg
-YXJlIG5vdCBzZWN1cmVkIGFuZCB0aGVyZWZvcmUgSSBkbyBub3QgYWNjZXB0IGFueSBsZWdhbCBy
-ZXNwb25zaWJpbGl0eSBmb3IgdGhlIGNvbnRlbnRzIG9mIHRoaXMgbWVzc2FnZS4gSWYgeW91IGhh
-dmUgcmVjZWl2ZWQgdGhpcyBlbWFpbCBpbiBlcnJvciBwbGVhc2Ugbm90aWZ5IHVzIGltbWVkaWF0
-ZWx5LiBJZiB5b3UgYXJlIG5vdCB0aGUgbmFtZWQgYWRkcmVzc2VlIHlvdSBzaG91bGQgbm90IGRp
-c3NlbWluYXRlLCBkaXN0cmlidXRlIG9yIGNvcHkgdGhpcyBlLW1haWwuCgoKX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KVjlmcy1kZXZlbG9wZXIgbWFpbGlu
-ZyBsaXN0ClY5ZnMtZGV2ZWxvcGVyQGxpc3RzLnNvdXJjZWZvcmdlLm5ldApodHRwczovL2xpc3Rz
-LnNvdXJjZWZvcmdlLm5ldC9saXN0cy9saXN0aW5mby92OWZzLWRldmVsb3Blcgo=
+T24gTW9uLCBBdWcgMDUsIDIwMTkgYXQgMDM6NTQ6MzVQTSAtMDcwMCwgSm9obiBIdWJiYXJkIHdy
+b3RlOgo+IE9uIDcvMjMvMTkgMTE6MTcgUE0sIENocmlzdG9waCBIZWxsd2lnIHdyb3RlOgo+ID4g
+T24gVHVlLCBKdWwgMjMsIDIwMTkgYXQgMDk6MjU6MDZQTSAtMDcwMCwgam9obi5odWJiYXJkQGdt
+YWlsLmNvbSB3cm90ZToKPiA+PiAqIFN0b3JlLCBpbiB0aGUgaW92X2l0ZXIsIGEgImNhbWUgZnJv
+bSBndXAgKGdldF91c2VyX3BhZ2VzKSIgcGFyYW1ldGVyLgo+ID4+ICAgVGhlbiwgdXNlIHRoZSBu
+ZXcgaW92X2l0ZXJfZ2V0X3BhZ2VzX3VzZV9ndXAoKSB0byByZXRyaWV2ZSBpdCB3aGVuCj4gPj4g
+ICBpdCBpcyB0aW1lIHRvIHJlbGVhc2UgdGhlIHBhZ2VzLiBUaGF0IGFsbG93cyBjaG9vc2luZyBi
+ZXR3ZWVuIHB1dF9wYWdlKCkKPiA+PiAgIGFuZCBwdXRfdXNlcl9wYWdlKigpLgo+ID4+Cj4gPj4g
+KiBQYXNzIGluIG9uZSBtb3JlIHBpZWNlIG9mIGluZm9ybWF0aW9uIHRvIGJpb19yZWxlYXNlX3Bh
+Z2VzOiBhICJmcm9tX2d1cCIKPiA+PiAgIHBhcmFtZXRlci4gU2ltaWxhciB1c2UgYXMgYWJvdmUu
+Cj4gPj4KPiA+PiAqIENoYW5nZSB0aGUgYmxvY2sgbGF5ZXIsIGFuZCBzZXZlcmFsIGZpbGUgc3lz
+dGVtcywgdG8gdXNlCj4gPj4gICBwdXRfdXNlcl9wYWdlKigpLgo+ID4gCj4gPiBJIHRoaW5rIHdl
+IGNhbiBkbyB0aGlzIGluIGEgc2ltcGxlIGFuZCBiZXR0ZXIgd2F5LiAgV2UgaGF2ZSA1IElURVJf
+Kgo+ID4gdHlwZXMuICBPZiB0aG9zZSBJVEVSX0RJU0NBUkQgYXMgdGhlIG5hbWUgc3VnZ2VzdHMg
+bmV2ZXIgdXNlcyBwYWdlcywgc28KPiA+IHdlIGNhbiBza2lwIGhhbmRsaW5nIGl0LiAgSVRFUl9Q
+SVBFIGlzIHJlamVjdGVkINGWbiB0aGUgZGlyZWN0IEkvTyBwYXRoLAo+ID4gd2hpY2ggbGVhdmVz
+IHVzIHdpdGggdGhyZWUuCj4gPiAKPiAKPiBIaSBDaHJpc3RvcGgsCj4gCj4gQXJlIHlvdSB3b3Jr
+aW5nIG9uIGFueXRoaW5nIGxpa2UgdGhpcz8KCkkgd2FzIGhvcGluZyBJIGNvdWxkIHN0ZWVyIHlv
+dSB0b3dhcmRzIGl0LiAgQnV0IGlmIHlvdSBkb24ndCB3YW50IHRvIGRvCml0IHlvdXJzZWxmIEkn
+bGwgYWRkIGl0IHRvIG15IGV2ZXIgZ3Jvd2luZyB0b2RvIGxpc3QuCgo+IE9yIG9uIHRoZSBwdXRf
+dXNlcl9idmVjKCkgaWRlYT8KCkkgaGF2ZSBhIHByb3RvdHlwZSBmcm9tIHR3byBtb250aCBhZ286
+CgpodHRwOi8vZ2l0LmluZnJhZGVhZC5vcmcvdXNlcnMvaGNoL21pc2MuZ2l0L3Nob3J0bG9nL3Jl
+ZnMvaGVhZHMvZ3VwLWJ2ZWMKCmJ1dCB0aGF0IG9ubHkgc3Vydml2ZWQgdGhlIG1vc3QgYmFzaWMg
+dGVzdGluZywgc28gaXQnbGwgbmVlZCBtb3JlIHdvcmssCndoaWNoIEknbSBub3Qgc3VyZSB3aGVu
+IEknbGwgZmluZCB0aW1lIGZvci4KCgpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fXwpWOWZzLWRldmVsb3BlciBtYWlsaW5nIGxpc3QKVjlmcy1kZXZlbG9wZXJA
+bGlzdHMuc291cmNlZm9yZ2UubmV0Cmh0dHBzOi8vbGlzdHMuc291cmNlZm9yZ2UubmV0L2xpc3Rz
+L2xpc3RpbmZvL3Y5ZnMtZGV2ZWxvcGVyCg==
