@@ -2,100 +2,81 @@ Return-Path: <v9fs-developer-bounces@lists.sourceforge.net>
 X-Original-To: lists+v9fs-developer@lfdr.de
 Delivered-To: lists+v9fs-developer@lfdr.de
 Received: from lists.sourceforge.net (lists.sourceforge.net [216.105.38.7])
-	by mail.lfdr.de (Postfix) with ESMTPS id 03D5D844A6
-	for <lists+v9fs-developer@lfdr.de>; Wed,  7 Aug 2019 08:40:50 +0200 (CEST)
-Received: from [127.0.0.1] (helo=sfs-ml-2.v29.lw.sourceforge.com)
-	by sfs-ml-2.v29.lw.sourceforge.com with esmtp (Exim 4.90_1)
-	(envelope-from <v9fs-developer-bounces@lists.sourceforge.net>)
-	id 1hvFct-0001LV-95; Wed, 07 Aug 2019 06:40:47 +0000
-Received: from [172.30.20.202] (helo=mx.sourceforge.net)
- by sfs-ml-2.v29.lw.sourceforge.com with esmtps
- (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.90_1)
- (envelope-from <jhubbard@nvidia.com>) id 1hvFcr-0001LN-IJ
- for v9fs-developer@lists.sourceforge.net; Wed, 07 Aug 2019 06:40:45 +0000
+	by mail.lfdr.de (Postfix) with ESMTPS id D742B872FB
+	for <lists+v9fs-developer@lfdr.de>; Fri,  9 Aug 2019 09:30:55 +0200 (CEST)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=sourceforge.net; s=x; h=Content-Transfer-Encoding:Content-Type:In-Reply-To:
- MIME-Version:Date:Message-ID:From:References:CC:To:Subject:Sender:Reply-To:
- Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
- Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
+	d=lists.sourceforge.net; s=beta; h=Content-Transfer-Encoding:Content-Type:
+	Reply-To:From:List-Subscribe:List-Help:List-Post:List-Archive:
+	List-Unsubscribe:List-Id:Subject:MIME-Version:To:Date:Message-ID:Sender:Cc:
+	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+	Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:List-Owner;
+	bh=4gzfL6YHAF/i0nsbsOi4MCyygO51SOpgsLqo/L6y2IY=; b=DWY5r5jc0DDLgTLa3WcwtA09Dp
+	m5e4K9ZayXVLY/qve4KJ5cih3jnBJA1nAmuw69XJGh2B16X8soUy5OPxFvLYUmp5e6OhUyk6tZQOq
+	eZr+lCHba/JGQo8xHeP1YABxRDkkGZzNtokqsGUhmCQrecfxrZRGpi1a63SFploMgPlw=;
+Received: from [127.0.0.1] (helo=sfs-ml-1.v29.lw.sourceforge.com)
+	by sfs-ml-1.v29.lw.sourceforge.com with esmtp (Exim 4.90_1)
+	(envelope-from <v9fs-developer-bounces@lists.sourceforge.net>)
+	id 1hvzMS-0000gm-10; Fri, 09 Aug 2019 07:30:52 +0000
+Received: from [172.30.20.202] (helo=mx.sourceforge.net)
+ by sfs-ml-1.v29.lw.sourceforge.com with esmtps
+ (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.90_1)
+ (envelope-from <kamil.adamec@automatics-control.eu>)
+ id 1hvzMQ-0000gZ-Ub
+ for v9fs-developer@lists.sourceforge.net; Fri, 09 Aug 2019 07:30:50 +0000
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+ d=sourceforge.net; s=x; h=Content-Transfer-Encoding:Content-Type:MIME-Version
+ :Subject:To:From:Date:Message-ID:Sender:Reply-To:Cc:Content-ID:
+ Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
+ :Resent-Message-ID:In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:
  List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=jn0FnBY7ADCh0laBLX/xGqPiB9Jg8oG9YEaLS2KH1Js=; b=d34m8a9XKrYWhrriF+nlERohRa
- o6xxxGxiiTPl+4+av+eqCWV5snlmec/EtGzOYsc9ex3XPr7QfXbCTK/koNSEM544sE+yT8IX9r3Qg
- gawSUOD7kJFkNrox1MxnVwmhgytPSGJFs8BqwvIdsf0o9M/bsfXl9A8zqtKTgwHwYubQ=;
+ bh=NjLcrs3cCMbbo+n0H6fjGJqdIYCaDUtkMzaQjEdJoS8=; b=XU/IX229eoh0tlGOnCeCjA3gmO
+ jbhQo56ISgZz+GWps0udlDoi4RqvQbnFDf4k67hgLcl7DSzWcakl8uVQhwOOvtwkDnrgJHwTMttvI
+ gePaGctWG1tA+Cop1x+nwJvq2rEhAcg9pNtQU8R3K8YSP8UkGUrI06OFFnfgAq99TlGQ=;
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  ;
- h=Content-Transfer-Encoding:Content-Type:In-Reply-To:MIME-Version:Date:
- Message-ID:From:References:CC:To:Subject:Sender:Reply-To:Content-ID:
- Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
- :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
- List-Post:List-Owner:List-Archive;
- bh=jn0FnBY7ADCh0laBLX/xGqPiB9Jg8oG9YEaLS2KH1Js=; b=g43GYnmlLTe/dvyepp9Jvy+Ddv
- hj7aeJHQyzosrJLb6BV0hTWZwrpEDuC47TrSVVqf0o9idaMh86DZr02Ez6WKHBDrLH49Be6xB6c0f
- 6n1Tj/QgAVJZzNZG5jeRQZRlJ2paWQ5QKUddrcuq5eIuVlZ61Wvyzq/aKJpf16xA5aG4=;
-Received: from hqemgate15.nvidia.com ([216.228.121.64])
+ h=Content-Transfer-Encoding:Content-Type:MIME-Version:Subject:To:From:Date:
+ Message-ID:Sender:Reply-To:Cc:Content-ID:Content-Description:Resent-Date:
+ Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:
+ References:List-Id:List-Help:List-Unsubscribe:List-Subscribe:List-Post:
+ List-Owner:List-Archive; bh=NjLcrs3cCMbbo+n0H6fjGJqdIYCaDUtkMzaQjEdJoS8=; b=b
+ K30XYjWP5FmFchB2aw04FwgKyAQX87G1K7Tqaq/8mUTSCF3y35RQ+Y4XcLMlunDX+48Uqa+jwZ/6o
+ cBCJiMOeb//mojbPC9WI/4wBeaD4lv4TZk7PKbBdf1Fd5zQGrjq36Ix7aScDrmCNpfMOlS2Q4g+EN
+ 3c84KQVfwHLT+a5g=;
+Received: from mail.automatics-control.eu ([80.211.144.215])
  by sfi-mx-4.v28.lw.sourceforge.com with esmtps
  (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.90_1)
- id 1hvFcn-00DW8P-HH
- for v9fs-developer@lists.sourceforge.net; Wed, 07 Aug 2019 06:40:45 +0000
-Received: from hqpgpgate101.nvidia.com (Not Verified[216.228.121.13]) by
- hqemgate15.nvidia.com (using TLS: TLSv1.2, DES-CBC3-SHA)
- id <B5d4a726c0000>; Tue, 06 Aug 2019 23:40:44 -0700
-Received: from hqmail.nvidia.com ([172.20.161.6])
- by hqpgpgate101.nvidia.com (PGP Universal service);
- Tue, 06 Aug 2019 23:40:34 -0700
-X-PGP-Universal: processed;
- by hqpgpgate101.nvidia.com on Tue, 06 Aug 2019 23:40:34 -0700
-Received: from [10.2.165.207] (10.124.1.5) by HQMAIL107.nvidia.com
- (172.20.187.13) with Microsoft SMTP Server (TLS) id 15.0.1473.3; Wed, 7 Aug
- 2019 06:40:34 +0000
-To: Christoph Hellwig <hch@infradead.org>
-References: <20190724042518.14363-1-jhubbard@nvidia.com>
- <20190724061750.GA19397@infradead.org>
- <c35aa2bf-c830-9e57-78ca-9ce6fb6cb53b@nvidia.com>
- <20190807063448.GA6002@infradead.org>
-X-Nvconfidentiality: public
-From: John Hubbard <jhubbard@nvidia.com>
-Message-ID: <3ab1e69f-88c6-3e16-444d-cab78c3bf1d1@nvidia.com>
-Date: Tue, 6 Aug 2019 23:38:59 -0700
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
- Thunderbird/60.8.0
+ id 1hvzMO-00Fgbu-TV
+ for v9fs-developer@lists.sourceforge.net; Fri, 09 Aug 2019 07:30:50 +0000
+Received: by mail.automatics-control.eu (Postfix, from userid 1001)
+ id DC077A1ECA; Fri,  9 Aug 2019 09:30:36 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=automatics-control.eu; s=mail; t=1565335841;
+ bh=NjLcrs3cCMbbo+n0H6fjGJqdIYCaDUtkMzaQjEdJoS8=;
+ h=Date:From:To:Subject:From;
+ b=VuyqL7CSSRW7N1oCiH/hk375U9C5coNxntI1USSKahlcuYyGGBSSiO8yDwt+NqVeP
+ dZMr0AxB29FuUC0Cqwy/F2VYiIt6yH8reuPvr00Ud9EAyKlapKGlhizKG2AGxfL/a6
+ p77uJ1Kcit0elvG7vlYLrLYf+0OlOm3EEv+tWF9E=
+Received: by mail.automatics-control.eu for
+ <v9fs-developer@lists.sourceforge.net>; Fri,  9 Aug 2019 07:30:32 GMT
+Message-ID: <20190809084500-0.1.j.1wx9.0.h6tpfkfa9c@automatics-control.eu>
+Date: Fri,  9 Aug 2019 07:30:32 GMT
+To: <v9fs-developer@lists.sourceforge.net>
+X-Mailer: mail.automatics-control.eu
 MIME-Version: 1.0
-In-Reply-To: <20190807063448.GA6002@infradead.org>
-X-Originating-IP: [10.124.1.5]
-X-ClientProxiedBy: HQMAIL104.nvidia.com (172.18.146.11) To
- HQMAIL107.nvidia.com (172.20.187.13)
-Content-Language: en-US
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nvidia.com; s=n1;
- t=1565160044; bh=jn0FnBY7ADCh0laBLX/xGqPiB9Jg8oG9YEaLS2KH1Js=;
- h=X-PGP-Universal:Subject:To:CC:References:X-Nvconfidentiality:From:
- Message-ID:Date:User-Agent:MIME-Version:In-Reply-To:
- X-Originating-IP:X-ClientProxiedBy:Content-Type:Content-Language:
- Content-Transfer-Encoding;
- b=cZhyddtfeWnuDzmY91G/o97CceVB5RM0qm7xIS+BT+DJS1yACOaMbPnxtDPonJo3O
- Ckk802AdQClg27dtVTwqZlP1rJ45uR/xJxU2tj1bAWtx6wGx8MnDwDr9/hAcMofdtY
- YSzbF7dvdBOxPO1CMgg0kHDyQnZ9XI/sZkIaiXVixuZIn5BzSqRh7aOyfPS3OIiva2
- EdoAoTR8kqTmNnuIpmqz0Mts9lp7nFil4TrfQHcFTrur14aYk9UOgpcZdRREzoyCup
- 0KYEKb/ZJNSFduxPI76a4ilG78VxY7/mJHog1LdnWqMnq4OYf6DhFN3qt02E1MzswR
- TFH77+TyL//6w==
-X-Spam-Score: -0.3 (/)
+X-Spam-Score: 1.1 (+)
 X-Spam-Report: Spam Filtering performed by mx.sourceforge.net.
  See http://spamassassin.org/tag/ for more details.
- -0.0 SPF_HELO_PASS          SPF: HELO matches SPF record
- -0.0 SPF_PASS               SPF: sender matches SPF record
- -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from author's
- domain
- -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
- 0.1 DKIM_SIGNED            Message has a DKIM or DK signature,
- not necessarily valid
  0.0 URIBL_BLOCKED ADMINISTRATOR NOTICE: The query to URIBL was blocked.
  See
  http://wiki.apache.org/spamassassin/DnsBlocklists#dnsbl-block
- for more information. [URIs: infradead.org]
- -0.0 DKIMWL_WL_HIGH         DKIMwl.org - Whitelisted High sender
- -0.1 AWL AWL: Adjusted score from AWL reputation of From: address
-X-Headers-End: 1hvFcn-00DW8P-HH
-Subject: Re: [V9fs-developer] [PATCH 00/12] block/bio,
- fs: convert put_page() to put_user_page*()
+ for more information. [URIs: automatics-control.eu]
+ -0.0 SPF_PASS               SPF: sender matches SPF record
+ 0.9 SPF_HELO_SOFTFAIL      SPF: HELO does not match SPF record (softfail)
+ 0.1 DKIM_SIGNED            Message has a DKIM or DK signature,
+ not necessarily valid
+ 0.1 DKIM_INVALID           DKIM or DK signature exists, but is not valid
+X-Headers-End: 1hvzMO-00Fgbu-TV
+Subject: [V9fs-developer] =?utf-8?b?RG9kYXRlxI1uw6kgemRyb2pl?=
 X-BeenThere: v9fs-developer@lists.sourceforge.net
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -107,46 +88,26 @@ List-Post: <mailto:v9fs-developer@lists.sourceforge.net>
 List-Help: <mailto:v9fs-developer-request@lists.sourceforge.net?subject=help>
 List-Subscribe: <https://lists.sourceforge.net/lists/listinfo/v9fs-developer>, 
  <mailto:v9fs-developer-request@lists.sourceforge.net?subject=subscribe>
-Cc: Latchesar Ionkov <lucho@ionkov.net>, kvm@vger.kernel.org,
- "Michael S . Tsirkin" <mst@redhat.com>,
- virtualization@lists.linux-foundation.org, linux-mm@kvack.org,
- Christoph Hellwig <hch@lst.de>, linux-cifs@vger.kernel.org,
- Miklos Szeredi <miklos@szeredi.hu>, linux-rdma@vger.kernel.org,
- Matthew Wilcox <willy@infradead.org>, Jason Gunthorpe <jgg@ziepe.ca>,
- v9fs-developer@lists.sourceforge.net, Jason Wang <jasowang@redhat.com>,
- Eric Van Hensbergen <ericvh@gmail.com>, john.hubbard@gmail.com,
- linux-block@vger.kernel.org, Alexander Viro <viro@zeniv.linux.org.uk>,
- ceph-devel@vger.kernel.org, Trond Myklebust <trond.myklebust@hammerspace.com>,
- Jens Axboe <axboe@kernel.dk>, linux-nfs@vger.kernel.org,
- netdev@vger.kernel.org, samba-technical@lists.samba.org,
- LKML <linux-kernel@vger.kernel.org>, "David S . Miller" <davem@davemloft.net>,
- linux-fsdevel@vger.kernel.org, Anna Schumaker <anna.schumaker@netapp.com>
+From: Kamil Adamec via V9fs-developer <v9fs-developer@lists.sourceforge.net>
+Reply-To: Kamil Adamec <kamil.adamec@automatics-control.eu>
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: base64
-Content-Type: text/plain; charset="utf-8"; Format="flowed"
 Errors-To: v9fs-developer-bounces@lists.sourceforge.net
 
-T24gOC82LzE5IDExOjM0IFBNLCBDaHJpc3RvcGggSGVsbHdpZyB3cm90ZToKPiBPbiBNb24sIEF1
-ZyAwNSwgMjAxOSBhdCAwMzo1NDozNVBNIC0wNzAwLCBKb2huIEh1YmJhcmQgd3JvdGU6Cj4+IE9u
-IDcvMjMvMTkgMTE6MTcgUE0sIENocmlzdG9waCBIZWxsd2lnIHdyb3RlOgouLi4KPj4+IEkgdGhp
-bmsgd2UgY2FuIGRvIHRoaXMgaW4gYSBzaW1wbGUgYW5kIGJldHRlciB3YXkuICBXZSBoYXZlIDUg
-SVRFUl8qCj4+PiB0eXBlcy4gIE9mIHRob3NlIElURVJfRElTQ0FSRCBhcyB0aGUgbmFtZSBzdWdn
-ZXN0cyBuZXZlciB1c2VzIHBhZ2VzLCBzbwo+Pj4gd2UgY2FuIHNraXAgaGFuZGxpbmcgaXQuICBJ
-VEVSX1BJUEUgaXMgcmVqZWN0ZWQg0ZZuIHRoZSBkaXJlY3QgSS9PIHBhdGgsCj4+PiB3aGljaCBs
-ZWF2ZXMgdXMgd2l0aCB0aHJlZS4KPj4+Cj4+Cj4+IEhpIENocmlzdG9waCwKPj4KPj4gQXJlIHlv
-dSB3b3JraW5nIG9uIGFueXRoaW5nIGxpa2UgdGhpcz8KPiAKPiBJIHdhcyBob3BpbmcgSSBjb3Vs
-ZCBzdGVlciB5b3UgdG93YXJkcyBpdC4gIEJ1dCBpZiB5b3UgZG9uJ3Qgd2FudCB0byBkbwo+IGl0
-IHlvdXJzZWxmIEknbGwgYWRkIGl0IHRvIG15IGV2ZXIgZ3Jvd2luZyB0b2RvIGxpc3QuCj4gCgpT
-dXJlLCBJJ20gdXAgZm9yIHRoaXMuIFRoZSBidmVjLXJlbGF0ZWQgaXRlbXMgYXJlIHRoZSBuZXh0
-IGxvZ2ljYWwgcGFydApvZiB0aGUgZ3VwL2RtYSBjb252ZXJzaW9ucyB0byB3b3JrIG9uLCBhbmQg
-SSBqdXN0IHdhbnRlZCB0byBhdm9pZCBzb2x2aW5nIHRoZQpzYW1lIHByb2JsZW0gaWYgeW91IHdl
-cmUgYWxyZWFkeSBpbiB0aGUgY29kZS4KCgo+PiBPciBvbiB0aGUgcHV0X3VzZXJfYnZlYygpIGlk
-ZWE/Cj4gCj4gSSBoYXZlIGEgcHJvdG90eXBlIGZyb20gdHdvIG1vbnRoIGFnbzoKPiAKPiBodHRw
-Oi8vZ2l0LmluZnJhZGVhZC5vcmcvdXNlcnMvaGNoL21pc2MuZ2l0L3Nob3J0bG9nL3JlZnMvaGVh
-ZHMvZ3VwLWJ2ZWMKPiAKPiBidXQgdGhhdCBvbmx5IHN1cnZpdmVkIHRoZSBtb3N0IGJhc2ljIHRl
-c3RpbmcsIHNvIGl0J2xsIG5lZWQgbW9yZSB3b3JrLAo+IHdoaWNoIEknbSBub3Qgc3VyZSB3aGVu
-IEknbGwgZmluZCB0aW1lIGZvci4KPiAKCkknbGwgdGFrZSBhIHBlZWssIGFuZCBwcm9iYWJseSBw
-ZXN0ZXIgeW91IHdpdGggYSBmZXcgcXVlc3Rpb25zIGlmIEkgZ2V0CmNvbmZ1c2VkLiA6KQoKdGhh
-bmtzLAotLSAKSm9obiBIdWJiYXJkCk5WSURJQQoKCl9fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fClY5ZnMtZGV2ZWxvcGVyIG1haWxpbmcgbGlzdApWOWZzLWRl
-dmVsb3BlckBsaXN0cy5zb3VyY2Vmb3JnZS5uZXQKaHR0cHM6Ly9saXN0cy5zb3VyY2Vmb3JnZS5u
-ZXQvbGlzdHMvbGlzdGluZm8vdjlmcy1kZXZlbG9wZXIK
+RG9icsO9IGRlbiEKCsW9aXZub3N0bsOta8WvbSDEjWFzdG8gc3RvasOtIHYgY2VzdMSbIGsgZG9z
+YcW+ZW7DrSDDunNwxJtjaHUgbsOtemvDoSDDunJvdmXFiCBwcm92b3puw61jaCB6ZHJvasWvIG5h
+IG7DoWt1cCBtYXRlcmnDoWx1LCB6Ym/FvsOtIG5lYm8gc3Vyb3ZpbiB6IGTFr3ZvZHUgbmFwxZku
+IG5lemFwbGFjZW7DrSBmYWt0dXIgKG5lemFwbGFjZW7DrSBvZCBkb2RhdmF0ZWzFrywgcHJvZGxv
+dcW+ZW7DoSBzcGxhdG5vc3QgYXBvZC4pLiBWIHTDqXRvIG9ibGFzdGkganNtZSBqacW+IHBvbW9o
+bGkgxZlhZMSbIGZpcmVtLCBrdGVyw6kgbW9obHkgZMOta3kgesOtc2vDoW7DrSBuw6F2cmF0bsOp
+aG8gZmluYW5jb3bDoW7DrSByZWFsaXpvdmF0IHN2w6kga2zDrcSNb3bDqSBwbMOhbnkuCgpKc2Vt
+IHBhcnRuZXJlbSBtbm9oYSBzcG9sZcSNbm9zdMOtLCBqZWppY2jFviDEjWlubm9zdCBqZSBzcm92
+bmF0ZWxuw6EgcyB0b3UgVmHFocOtIGEgemEga29vcGVyYWNpIHMgbsOhbWkgesOtc2vDoXRlIGJv
+bnVzIC0gcnljaGzDqSBzcGxhY2Vuw60gdmUgdsO9xaFpIGHFviA0IHNwbMOhdGVrLgoKRG92b2x0
+ZSwgYWJ5Y2hvbSBWw6FzIGtvbnRha3RvdmFsaSB6YSDDusSNZWxlbSBwcm92ZWRlbsOtIGFuYWzD
+vXp5IG1vxb5ub3N0w60gcG9tb2NpIGZpbmFuY292w6Fuw60uIEtkeSBieWNoIG1vaGwgemF2b2xh
+dD8KCgpTIHBvemRyYXZlbQpLYW1pbCBBZGFtZWMKQWNjb3VudCBNYW5hZ2VyCnd3dy5hdXRvbWF0
+aWNzLWNvbnRyb2wuZXUKCgpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fXwpWOWZzLWRldmVsb3BlciBtYWlsaW5nIGxpc3QKVjlmcy1kZXZlbG9wZXJAbGlzdHMu
+c291cmNlZm9yZ2UubmV0Cmh0dHBzOi8vbGlzdHMuc291cmNlZm9yZ2UubmV0L2xpc3RzL2xpc3Rp
+bmZvL3Y5ZnMtZGV2ZWxvcGVyCg==
