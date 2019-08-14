@@ -2,75 +2,116 @@ Return-Path: <v9fs-developer-bounces@lists.sourceforge.net>
 X-Original-To: lists+v9fs-developer@lfdr.de
 Delivered-To: lists+v9fs-developer@lfdr.de
 Received: from lists.sourceforge.net (lists.sourceforge.net [216.105.38.7])
-	by mail.lfdr.de (Postfix) with ESMTPS id 49EE08D2A1
-	for <lists+v9fs-developer@lfdr.de>; Wed, 14 Aug 2019 14:01:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 46AE88D6AD
+	for <lists+v9fs-developer@lfdr.de>; Wed, 14 Aug 2019 16:54:32 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+	d=lists.sourceforge.net; s=beta; h=Content-Type:Content-Transfer-Encoding:Cc:
+	Reply-To:From:List-Subscribe:List-Help:List-Post:List-Archive:
+	List-Unsubscribe:List-Id:Subject:In-Reply-To:MIME-Version:Date:Message-ID:
+	References:To:Sender:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
+	bh=l/vC+QWQuMLnZxhtgay5F+I5RWYcdnx02G/tQYVKP1c=; b=TMuYT9d9YqErw+4yWAW9VOoIVq
+	CyJJnDqGMcnAOxM29K4tweG3PDx42quSGNm0eUn/MVp9O4XhrJwQ3kWoOsVJUoUgtjjdl8dLaA2wR
+	ZV7aqcaS5Ssgduqmtm5owvYob7Ovax0icdWUPT0wze74bzZvIH/qwc0nYaL6AuHCaRdQ=;
 Received: from [127.0.0.1] (helo=sfs-ml-4.v29.lw.sourceforge.com)
 	by sfs-ml-4.v29.lw.sourceforge.com with esmtp (Exim 4.90_1)
 	(envelope-from <v9fs-developer-bounces@lists.sourceforge.net>)
-	id 1hxrxu-00020L-Nf; Wed, 14 Aug 2019 12:01:18 +0000
+	id 1hxufV-0001L7-4F; Wed, 14 Aug 2019 14:54:29 +0000
 Received: from [172.30.20.202] (helo=mx.sourceforge.net)
  by sfs-ml-4.v29.lw.sourceforge.com with esmtps
  (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.90_1)
- (envelope-from <lkp@intel.com>)
- id 1hxrxs-000202-Em; Wed, 14 Aug 2019 12:01:16 +0000
+ (envelope-from <salyzyn@android.com>) id 1hxufT-0001Ky-K4
+ for v9fs-developer@lists.sourceforge.net; Wed, 14 Aug 2019 14:54:27 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=sourceforge.net; s=x; h=In-Reply-To:Content-Type:MIME-Version:References:
- Message-ID:Subject:Cc:To:From:Date:Sender:Reply-To:Content-Transfer-Encoding:
+ d=sourceforge.net; s=x; h=Content-Transfer-Encoding:Content-Type:In-Reply-To:
+ MIME-Version:Date:Message-ID:From:References:Cc:To:Subject:Sender:Reply-To:
  Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
  Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
  List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=z8eKzOncGz19IJajHGRQ39XewheDQ2ojCLoROl5qnZw=; b=LGt2t8dmJnsMKiMQOezeL7JiOg
- vLytez5hJ/6zLC/sPVg2Z0SnhBZSfteZsQvq0nQd8Qnxby9CrvJF0lqIcv+APd9c5WxuAofG+tVho
- SGKdsgNhoaDiEsLdneN+6LatfSxWtEY7UGq9ZZ7gd/6hP4wKuOFSC8PLQWAmmx3JQelE=;
+ bh=CnI+bcK+PrkZXa0lXxFneGD0jULXut8K+Ere8plo5Kc=; b=M3r8bd42cDhbCbJteDVr8dpaif
+ zVwOGoXXRJIOzRSwqb4SnelkAJSAUVqJr3ETW/8Vm7/TjcClQ4SCxYzq9u1B/RjLzTFd5r2DkSEli
+ 6a7WGVuuSKCxUQc/SCBzqMBbygoz5DofzZtbSEM9Coj6sqBgQLuuB8VInvDeodYHYe0g=;
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  ;
- h=In-Reply-To:Content-Type:MIME-Version:References:Message-ID:Subject:Cc:To
- :From:Date:Sender:Reply-To:Content-Transfer-Encoding:Content-ID:
+ h=Content-Transfer-Encoding:Content-Type:In-Reply-To:MIME-Version:Date:
+ Message-ID:From:References:Cc:To:Subject:Sender:Reply-To:Content-ID:
  Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
  :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
  List-Post:List-Owner:List-Archive;
- bh=z8eKzOncGz19IJajHGRQ39XewheDQ2ojCLoROl5qnZw=; b=f3J0TXQabURGoZLQv7QoQA5uBW
- 5OdCXRA1i9vBOAFQUXeMfN9XcUKOqgzmZ/f7O9CZUPzeceFUvKliZmz4ptIv1cKo+2AYBa31Yl245
- IGppiYVJjlTxCm8HrpGA3mP+cVMAMPIFYUgKp4vu5mAkXKxpxZZNr3CpFKZoIbqEcW+8=;
-Received: from mga11.intel.com ([192.55.52.93])
+ bh=CnI+bcK+PrkZXa0lXxFneGD0jULXut8K+Ere8plo5Kc=; b=NBxfSo/mn5B28FQS9dbCMT//j4
+ 0MsUINlfHJYAIdAR0Kj/2uWQv2SL0woKbddDe8TINTWi24VnCQA+nITkWaChUL+mTZD5fMTCiW6JI
+ tPhFxD6SlSdxfP16L/z+zvXkYBPgwmLwL52t6yFMU/RGUqutOnnIA/OyKCDjbCfXtHZI=;
+Received: from mail-pl1-f196.google.com ([209.85.214.196])
  by sfi-mx-3.v28.lw.sourceforge.com with esmtps
- (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.90_1)
- id 1hxrxl-003p4s-4S; Wed, 14 Aug 2019 12:01:16 +0000
-X-Amp-Result: UNKNOWN
-X-Amp-Original-Verdict: FILE UNKNOWN
-X-Amp-File-Uploaded: False
-Received: from orsmga003.jf.intel.com ([10.7.209.27])
- by fmsmga102.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 14 Aug 2019 05:01:02 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.64,385,1559545200"; 
- d="gz'50?scan'50,208,50";a="179025067"
-Received: from lkp-server01.sh.intel.com (HELO lkp-server01) ([10.239.97.150])
- by orsmga003.jf.intel.com with ESMTP; 14 Aug 2019 05:00:46 -0700
-Received: from kbuild by lkp-server01 with local (Exim 4.89)
- (envelope-from <lkp@intel.com>)
- id 1hxrxN-000ER5-O8; Wed, 14 Aug 2019 20:00:45 +0800
-Date: Wed, 14 Aug 2019 19:59:57 +0800
-From: kbuild test robot <lkp@intel.com>
-To: Mark Salyzyn <salyzyn@android.com>
-Message-ID: <201908141935.iswsiyzF%lkp@intel.com>
+ (TLSv1.2:ECDHE-RSA-AES128-GCM-SHA256:128) (Exim 4.90_1)
+ id 1hxufR-003wS9-Bs
+ for v9fs-developer@lists.sourceforge.net; Wed, 14 Aug 2019 14:54:27 +0000
+Received: by mail-pl1-f196.google.com with SMTP id t14so50769331plr.11
+ for <v9fs-developer@lists.sourceforge.net>;
+ Wed, 14 Aug 2019 07:54:25 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=android.com; s=20161025;
+ h=subject:to:cc:references:from:message-id:date:user-agent
+ :mime-version:in-reply-to:content-transfer-encoding:content-language;
+ bh=CnI+bcK+PrkZXa0lXxFneGD0jULXut8K+Ere8plo5Kc=;
+ b=ahMJ7+6MRm+vSMGaNapJnzEVkJAGqdseEv5NiAiJ2xVM1sgCa/KjV3CzptwbORiRO4
+ tdVwxwGBtUsGnUn2c7e13VySsAmWdVDIrtQOwhPmb7DJeeLmPii1ZL4rskNBRvtj47Hs
+ RPxCzpXwnaU3g/CUfEBg3QlPGY1SngnQDCYWpuzQB5cndu90bUkPUFPxqy0/Rekd1WQO
+ 4zngI17UYs23Aiqj3B79lt987Hor3fkgPNT95mLnJes5xZMFhtrjHD+wvpp9CvYS0OOT
+ T0Jx+829oyOwsEqr2Xgl3CEpOuwA5/x9WXxEUC4UDChgzDD/d77A140pfqc0MLV3w5Tr
+ /pug==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+ :user-agent:mime-version:in-reply-to:content-transfer-encoding
+ :content-language;
+ bh=CnI+bcK+PrkZXa0lXxFneGD0jULXut8K+Ere8plo5Kc=;
+ b=CkhNv0ZZKctqOJ4iv36nlhwZeK+CpYK0EwABj16+CEbb1Tx93viwLvE1uj0RtuJY1R
+ NNw5j/IsL+rSEF/r5wsqhLWwpzFTjL88rlTof1WKiNvV9YxAY/FDT1yf0oAvwP+Pfjz7
+ a0bGzPcxa5q8B58g85bR8V0EXmFdomTrJtSFPBAjCXCz8HBkCpgrUBWxFov8H4IJPKk3
+ A9osZRadFgyH72ERU2xYR9Nwqms25ODaj68ug1vCh1J6R72V6aKVPNpT+VQMjN4krCGo
+ DJMgceh98+j440MtBhWyNZspIr0bL1n/bstrHjaS4Zhu6jzZAhS4BO2ZqaQSiC40OZoM
+ 86Ug==
+X-Gm-Message-State: APjAAAUCBpDX5mQC5SZMVt75hkWVsf8w+ZR4Ne5LS0fTELS4gliLBm/l
+ Yl89TK0Cpav5jCW5qCDi/pZ1ww==
+X-Google-Smtp-Source: APXvYqz3CwepJ0lR8OwKX1IycWhHHs06AM+yzu0iFct+XZq8bOtgfYosWIvv1z0G9d0AAh0UWfDALQ==
+X-Received: by 2002:a17:902:3103:: with SMTP id
+ w3mr43683432plb.84.1565794459417; 
+ Wed, 14 Aug 2019 07:54:19 -0700 (PDT)
+Received: from nebulus.mtv.corp.google.com
+ ([2620:15c:211:200:5404:91ba:59dc:9400])
+ by smtp.googlemail.com with ESMTPSA id
+ f20sm144508955pgg.56.2019.08.14.07.54.16
+ (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+ Wed, 14 Aug 2019 07:54:18 -0700 (PDT)
+To: Jan Kara <jack@suse.cz>
 References: <20190813145527.26289-1-salyzyn@android.com>
+ <20190814110022.GB26273@quack2.suse.cz>
+Message-ID: <71d66fd1-cc94-fd0c-dfa7-115ba8a6b95a@android.com>
+Date: Wed, 14 Aug 2019 07:54:16 -0700
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+ Thunderbird/60.8.0
 MIME-Version: 1.0
-In-Reply-To: <20190813145527.26289-1-salyzyn@android.com>
-X-Patchwork-Hint: ignore
-User-Agent: NeoMutt/20170113 (1.7.2)
-X-Spam-Score: 0.0 (/)
+In-Reply-To: <20190814110022.GB26273@quack2.suse.cz>
+Content-Language: en-GB
+X-Spam-Score: -0.1 (/)
 X-Spam-Report: Spam Filtering performed by mx.sourceforge.net.
  See http://spamassassin.org/tag/ for more details.
- 0.0 URIBL_BLOCKED ADMINISTRATOR NOTICE: The query to URIBL was blocked.
- See
- http://wiki.apache.org/spamassassin/DnsBlocklists#dnsbl-block
- for more information. [URIs: intel.com]
+ -0.0 RCVD_IN_DNSWL_NONE     RBL: Sender listed at https://www.dnswl.org/, no
+ trust [209.85.214.196 listed in list.dnswl.org]
+ 0.0 RCVD_IN_MSPIKE_H3      RBL: Good reputation (+3)
+ [209.85.214.196 listed in wl.mailspike.net]
  -0.0 SPF_PASS               SPF: sender matches SPF record
  0.0 SPF_HELO_NONE          SPF: HELO does not publish an SPF Record
-X-Headers-End: 1hxrxl-003p4s-4S
-Content-Disposition: inline
-X-Content-Filtered-By: Mailman/MimeDel 2.1.21
+ -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from author's
+ domain
+ -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+ 0.1 DKIM_SIGNED            Message has a DKIM or DK signature,
+ not necessarily valid
+ 0.0 RCVD_IN_MSPIKE_WL      Mailspike good senders
+ -0.0 DKIMWL_WL_HIGH         DKIMwl.org - Whitelisted High sender
+ 0.0 AWL AWL: Adjusted score from AWL reputation of From: address
+X-Headers-End: 1hxufR-003wS9-Bs
 Subject: Re: [V9fs-developer] [PATCH v2] Add flags option to get xattr
  method paired to __vfs_getxattr
 X-BeenThere: v9fs-developer@lists.sourceforge.net
@@ -84,18 +125,21 @@ List-Post: <mailto:v9fs-developer@lists.sourceforge.net>
 List-Help: <mailto:v9fs-developer-request@lists.sourceforge.net?subject=help>
 List-Subscribe: <https://lists.sourceforge.net/lists/listinfo/v9fs-developer>, 
  <mailto:v9fs-developer-request@lists.sourceforge.net?subject=subscribe>
+From: Mark Salyzyn via V9fs-developer <v9fs-developer@lists.sourceforge.net>
+Reply-To: Mark Salyzyn <salyzyn@android.com>
 Cc: Latchesar Ionkov <lucho@ionkov.net>, Dave Kleikamp <shaggy@kernel.org>,
- jfs-discussion@lists.sourceforge.net, linux-integrity@vger.kernel.org,
+ jfs-discussion@lists.sourceforge.net,
+ Phillip Lougher <phillip@squashfs.org.uk>, linux-integrity@vger.kernel.org,
  Martin Brandenburg <martin@omnibond.com>, samba-technical@lists.samba.org,
  Chao Yu <yuchao0@huawei.com>, Mimi Zohar <zohar@linux.ibm.com>,
- Adrian Hunter <adrian.hunter@intel.com>, David Howells <dhowells@redhat.com>,
- Chris Mason <clm@fb.com>, "David S. Miller" <davem@davemloft.net>,
- Andreas Dilger <adilger.kernel@dilger.ca>, ocfs2-devel@oss.oracle.com,
- Eric Paris <eparis@parisplace.org>, netdev@vger.kernel.org,
- Tyler Hicks <tyhicks@canonical.com>, linux-afs@lists.infradead.org,
+ Adrian Hunter <adrian.hunter@intel.com>, linux-mm@kvack.org,
+ Chris Mason <clm@fb.com>, netdev@vger.kernel.org,
+ Andreas Dilger <adilger.kernel@dilger.ca>, linux-xfs@vger.kernel.org,
+ Eric Paris <eparis@parisplace.org>, linux-f2fs-devel@lists.sourceforge.net,
+ linux-afs@lists.infradead.org, Stephen Smalley <sds@tycho.nsa.gov>,
  Mike Marshall <hubcap@omnibond.com>, devel@driverdev.osuosl.org,
- linux-xfs@vger.kernel.org, Andreas Gruenbacher <agruenba@redhat.com>,
- Sage Weil <sage@redhat.com>, Miklos Szeredi <miklos@szeredi.hu>,
+ linux-cifs@vger.kernel.org, Paul Moore <paul@paul-moore.com>,
+ Sage Weil <sage@redhat.com>, "Darrick J. Wong" <darrick.wong@oracle.com>,
  Richard Weinberger <richard@nod.at>, Mark Fasheh <mark@fasheh.com>,
  linux-unionfs@vger.kernel.org, Hugh Dickins <hughd@google.com>,
  James Morris <jmorris@namei.org>, cluster-devel@redhat.com,
@@ -103,137 +147,132 @@ Cc: Latchesar Ionkov <lucho@ionkov.net>, Dave Kleikamp <shaggy@kernel.org>,
  Vyacheslav Dubeyko <slava@dubeyko.com>,
  Casey Schaufler <casey@schaufler-ca.com>, v9fs-developer@lists.sourceforge.net,
  Ilya Dryomov <idryomov@gmail.com>, linux-ext4@vger.kernel.org,
- kernel-team@android.com, linux-mm@kvack.org, devel@lists.orangefs.org,
- Serge Hallyn <serge@hallyn.com>,
- Ernesto =?unknown-8bit?Q?A=2E_Fern=C3=A1ndez?=
- <ernesto.mnd.fernandez@gmail.com>, Gao Xiang <gaoxiang25@huawei.com>,
- linux-cifs@vger.kernel.org, Eric Van Hensbergen <ericvh@gmail.com>,
- ecryptfs@vger.kernel.org, linux-erofs@lists.ozlabs.org,
- Josef Bacik <josef@toxicpanda.com>,
- "Darrick J. Wong" <darrick.wong@oracle.com>, reiserfs-devel@vger.kernel.org,
- Tejun Heo <tj@kernel.org>, Joel Becker <jlbec@evilplan.org>,
- linux-mtd@lists.infradead.org, David Sterba <dsterba@suse.com>,
- Jaegeuk Kim <jaegeuk@kernel.org>, ceph-devel@vger.kernel.org,
- selinux@vger.kernel.org, Trond Myklebust <trond.myklebust@hammerspace.com>,
- Paul Moore <paul@paul-moore.com>, linux-nfs@vger.kernel.org,
- linux-f2fs-devel@lists.sourceforge.net, Theodore Ts'o <tytso@mit.edu>,
- linux-fsdevel@vger.kernel.org, Stephen Smalley <sds@tycho.nsa.gov>,
+ kernel-team@android.com, devel@lists.orangefs.org,
+ Serge Hallyn <serge@hallyn.com>, Gao Xiang <gaoxiang25@huawei.com>,
+ Eric Van Hensbergen <ericvh@gmail.com>, ecryptfs@vger.kernel.org,
+ linux-erofs@lists.ozlabs.org, Josef Bacik <josef@toxicpanda.com>,
+ reiserfs-devel@vger.kernel.org, Bob Peterson <rpeterso@redhat.com>,
+ Joel Becker <jlbec@evilplan.org>, Anna Schumaker <anna.schumaker@netapp.com>,
+ David Sterba <dsterba@suse.com>, Jaegeuk Kim <jaegeuk@kernel.org>,
+ ceph-devel@vger.kernel.org, selinux@vger.kernel.org,
+ Trond Myklebust <trond.myklebust@hammerspace.com>,
+ Andreas Gruenbacher <agruenba@redhat.com>, David Howells <dhowells@redhat.com>,
+ linux-nfs@vger.kernel.org, Theodore Ts'o <tytso@mit.edu>,
+ linux-fsdevel@vger.kernel.org, Artem Bityutskiy <dedekind1@gmail.com>,
  Mathieu Malaterre <malat@debian.org>,
  Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- Artem Bityutskiy <dedekind1@gmail.com>, Jeff Layton <jlayton@kernel.org>,
+ Miklos Szeredi <miklos@szeredi.hu>, Jeff Layton <jlayton@kernel.org>,
  linux-kernel@vger.kernel.org, stable@vger.kernel.org,
- Mark Salyzyn <salyzyn@android.com>, Steve French <sfrench@samba.org>,
- linux-security-module@vger.kernel.org, kbuild-all@01.org,
- Jan Kara <jack@suse.com>, Bob Peterson <rpeterso@redhat.com>,
- Phillip Lougher <phillip@squashfs.org.uk>,
- David Woodhouse <dwmw2@infradead.org>,
- Anna Schumaker <anna.schumaker@netapp.com>, linux-btrfs@vger.kernel.org,
+ Tyler Hicks <tyhicks@canonical.com>, Steve French <sfrench@samba.org>,
+ =?UTF-8?Q?Ernesto_A=2e_Fern=c3=a1ndez?= <ernesto.mnd.fernandez@gmail.com>,
+ linux-btrfs@vger.kernel.org, linux-security-module@vger.kernel.org,
+ Jan Kara <jack@suse.com>, Tejun Heo <tj@kernel.org>,
+ linux-mtd@lists.infradead.org, David Woodhouse <dwmw2@infradead.org>,
+ "David S. Miller" <davem@davemloft.net>, ocfs2-devel@oss.oracle.com,
  Alexander Viro <viro@zeniv.linux.org.uk>
-Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Errors-To: v9fs-developer-bounces@lists.sourceforge.net
 
-Hi Mark,
+On 8/14/19 4:00 AM, Jan Kara wrote:
+> On Tue 13-08-19 07:55:06, Mark Salyzyn wrote:
+> ...
+>> diff --git a/fs/xattr.c b/fs/xattr.c
+>> index 90dd78f0eb27..71f887518d6f 100644
+>> --- a/fs/xattr.c
+>> +++ b/fs/xattr.c
+> ...
+>>   ssize_t
+>>   __vfs_getxattr(struct dentry *dentry, struct inode *inode, const char *name,
+>> -	       void *value, size_t size)
+>> +	       void *value, size_t size, int flags)
+>>   {
+>>   	const struct xattr_handler *handler;
+>> -
+>> -	handler = xattr_resolve_name(inode, &name);
+>> -	if (IS_ERR(handler))
+>> -		return PTR_ERR(handler);
+>> -	if (!handler->get)
+>> -		return -EOPNOTSUPP;
+>> -	return handler->get(handler, dentry, inode, name, value, size);
+>> -}
+>> -EXPORT_SYMBOL(__vfs_getxattr);
+>> -
+>> -ssize_t
+>> -vfs_getxattr(struct dentry *dentry, const char *name, void *value, size_t size)
+>> -{
+>> -	struct inode *inode = dentry->d_inode;
+>>   	int error;
+>>   
+>> +	if (flags & XATTR_NOSECURITY)
+>> +		goto nolsm;
+> Hum, is it OK for XATTR_NOSECURITY to skip even the xattr_permission()
+> check? I understand that for reads of security xattrs it actually does not
+> matter in practice but conceptually that seems wrong to me as
+> XATTR_NOSECURITY is supposed to skip just security-module checks to avoid
+> recursion AFAIU.
 
-Thank you for the patch! Yet something to improve:
+Good catch I think.
 
-[auto build test ERROR on linus/master]
-[cannot apply to v5.3-rc4 next-20190813]
-[if your patch is applied to the wrong git tree, please drop us a note to help improve the system]
+I was attempting to make this change purely inert, no change in 
+functionality, only a change in API. Adding a call to xattr_permission 
+would incur a change in overall functionality, as it would introduce 
+into the current and original __vfs_getxattr a call to xattr_permission 
+that was not there before.
 
-url:    https://github.com/0day-ci/linux/commits/Mark-Salyzyn/Add-flags-option-to-get-xattr-method-paired-to-__vfs_getxattr/20190814-124805
-config: nds32-allmodconfig (attached as .config)
-compiler: nds32le-linux-gcc (GCC) 8.1.0
-reproduce:
-        wget https://raw.githubusercontent.com/intel/lkp-tests/master/sbin/make.cross -O ~/bin/make.cross
-        chmod +x ~/bin/make.cross
-        # save the attached .config to linux build tree
-        GCC_VERSION=8.1.0 make.cross ARCH=nds32 
+(I will have to defer the real answer and requirements to the security 
+folks)
 
-If you fix the issue, kindly add following tag
-Reported-by: kbuild test robot <lkp@intel.com>
+AFAIK you are correct, and to make the call would reduce the attack 
+surface, trading a very small amount of CPU utilization, for a much 
+larger amount of trust.
 
-All errors (new ones prefixed by >>):
+Given the long history of this patch set (for overlayfs) and the large 
+amount of stakeholders, I would _prefer_ to submit a followup 
+independent functionality/security change to _vfs_get_xattr _after_ this 
+makes it in.
 
-   fs/ubifs/xattr.c:326:9: error: conflicting types for 'ubifs_xattr_get'
-    ssize_t ubifs_xattr_get(struct inode *host, const char *name, void *buf,
-            ^~~~~~~~~~~~~~~
-   In file included from fs/ubifs/xattr.c:46:
-   fs/ubifs/ubifs.h:2006:9: note: previous declaration of 'ubifs_xattr_get' was here
-    ssize_t ubifs_xattr_get(struct inode *host, const char *name, void *buf,
-            ^~~~~~~~~~~~~~~
-   fs/ubifs/xattr.c: In function 'xattr_get':
-   fs/ubifs/xattr.c:678:9: error: too few arguments to function 'ubifs_xattr_get'
-     return ubifs_xattr_get(inode, name, buffer, size);
-            ^~~~~~~~~~~~~~~
-   fs/ubifs/xattr.c:326:9: note: declared here
-    ssize_t ubifs_xattr_get(struct inode *host, const char *name, void *buf,
-            ^~~~~~~~~~~~~~~
-   fs/ubifs/xattr.c: At top level:
->> fs/ubifs/xattr.c:699:9: error: initialization of 'int (*)(const struct xattr_handler *, struct dentry *, struct inode *, const char *, void *, size_t,  int)' {aka 'int (*)(const struct xattr_handler *, struct dentry *, struct inode *, const char *, void *, unsigned int,  int)'} from incompatible pointer type 'int (*)(const struct xattr_handler *, struct dentry *, struct inode *, const char *, void *, size_t)' {aka 'int (*)(const struct xattr_handler *, struct dentry *, struct inode *, const char *, void *, unsigned int)'} [-Werror=incompatible-pointer-types]
-     .get = xattr_get,
-            ^~~~~~~~~
-   fs/ubifs/xattr.c:699:9: note: (near initialization for 'ubifs_user_xattr_handler.get')
-   fs/ubifs/xattr.c:705:9: error: initialization of 'int (*)(const struct xattr_handler *, struct dentry *, struct inode *, const char *, void *, size_t,  int)' {aka 'int (*)(const struct xattr_handler *, struct dentry *, struct inode *, const char *, void *, unsigned int,  int)'} from incompatible pointer type 'int (*)(const struct xattr_handler *, struct dentry *, struct inode *, const char *, void *, size_t)' {aka 'int (*)(const struct xattr_handler *, struct dentry *, struct inode *, const char *, void *, unsigned int)'} [-Werror=incompatible-pointer-types]
-     .get = xattr_get,
-            ^~~~~~~~~
-   fs/ubifs/xattr.c:705:9: note: (near initialization for 'ubifs_trusted_xattr_handler.get')
-   fs/ubifs/xattr.c:712:9: error: initialization of 'int (*)(const struct xattr_handler *, struct dentry *, struct inode *, const char *, void *, size_t,  int)' {aka 'int (*)(const struct xattr_handler *, struct dentry *, struct inode *, const char *, void *, unsigned int,  int)'} from incompatible pointer type 'int (*)(const struct xattr_handler *, struct dentry *, struct inode *, const char *, void *, size_t)' {aka 'int (*)(const struct xattr_handler *, struct dentry *, struct inode *, const char *, void *, unsigned int)'} [-Werror=incompatible-pointer-types]
-     .get = xattr_get,
-            ^~~~~~~~~
-   fs/ubifs/xattr.c:712:9: note: (near initialization for 'ubifs_security_xattr_handler.get')
-   fs/ubifs/xattr.c: In function 'xattr_get':
-   fs/ubifs/xattr.c:679:1: warning: control reaches end of non-void function [-Wreturn-type]
-    }
-    ^
-   cc1: some warnings being treated as errors
+>
+>> diff --git a/include/uapi/linux/xattr.h b/include/uapi/linux/xattr.h
+>> index c1395b5bd432..1216d777d210 100644
+>> --- a/include/uapi/linux/xattr.h
+>> +++ b/include/uapi/linux/xattr.h
+>> @@ -17,8 +17,9 @@
+>>   #if __UAPI_DEF_XATTR
+>>   #define __USE_KERNEL_XATTR_DEFS
+>>   
+>> -#define XATTR_CREATE	0x1	/* set value, fail if attr already exists */
+>> -#define XATTR_REPLACE	0x2	/* set value, fail if attr does not exist */
+>> +#define XATTR_CREATE	 0x1	/* set value, fail if attr already exists */
+>> +#define XATTR_REPLACE	 0x2	/* set value, fail if attr does not exist */
+>> +#define XATTR_NOSECURITY 0x4	/* get value, do not involve security check */
+>>   #endif
+> It seems confusing to export XATTR_NOSECURITY definition to userspace when
+> that is kernel-internal flag. I'd just define it in include/linux/xattr.h
+> somewhere from the top of flags space (like 0x40000000).
+>
+> Otherwise the patch looks OK to me (cannot really comment on the security
+> module aspect of this whole thing though).
 
-vim +699 fs/ubifs/xattr.c
+Good point. However, we do need to keep these flags together to reduce 
+maintenance risk, I personally abhor two locations for flags bits even 
+if one comes from the opposite bit-side; collisions are undetectable at 
+build time. Although I have not gone through the entire thought 
+experiment, I am expecting that fuse could possibly benefit from this 
+flag (if exposed) since it also has a security recursion. That said, 
+fuse is probably the example of a gaping wide attack surface if user 
+space had access to it ... your xattr_permissions call addition 
+requested above would be realistically, not just pedantically, required!
 
-2b88fc21cae91e Andreas Gruenbacher 2016-04-22  669  
-ade46c3a6029de Richard Weinberger  2016-09-19  670  static int xattr_get(const struct xattr_handler *handler,
-2b88fc21cae91e Andreas Gruenbacher 2016-04-22  671  			   struct dentry *dentry, struct inode *inode,
-2b88fc21cae91e Andreas Gruenbacher 2016-04-22  672  			   const char *name, void *buffer, size_t size)
-2b88fc21cae91e Andreas Gruenbacher 2016-04-22  673  {
-2b88fc21cae91e Andreas Gruenbacher 2016-04-22  674  	dbg_gen("xattr '%s', ino %lu ('%pd'), buf size %zd", name,
-2b88fc21cae91e Andreas Gruenbacher 2016-04-22  675  		inode->i_ino, dentry, size);
-2b88fc21cae91e Andreas Gruenbacher 2016-04-22  676  
-17ce1eb0b64eb2 Richard Weinberger  2016-07-31  677  	name = xattr_full_name(handler, name);
-ade46c3a6029de Richard Weinberger  2016-09-19 @678  	return ubifs_xattr_get(inode, name, buffer, size);
-2b88fc21cae91e Andreas Gruenbacher 2016-04-22  679  }
-2b88fc21cae91e Andreas Gruenbacher 2016-04-22  680  
-ade46c3a6029de Richard Weinberger  2016-09-19  681  static int xattr_set(const struct xattr_handler *handler,
-5930122683dff5 Al Viro             2016-05-27  682  			   struct dentry *dentry, struct inode *inode,
-5930122683dff5 Al Viro             2016-05-27  683  			   const char *name, const void *value,
-5930122683dff5 Al Viro             2016-05-27  684  			   size_t size, int flags)
-2b88fc21cae91e Andreas Gruenbacher 2016-04-22  685  {
-2b88fc21cae91e Andreas Gruenbacher 2016-04-22  686  	dbg_gen("xattr '%s', host ino %lu ('%pd'), size %zd",
-2b88fc21cae91e Andreas Gruenbacher 2016-04-22  687  		name, inode->i_ino, dentry, size);
-2b88fc21cae91e Andreas Gruenbacher 2016-04-22  688  
-17ce1eb0b64eb2 Richard Weinberger  2016-07-31  689  	name = xattr_full_name(handler, name);
-17ce1eb0b64eb2 Richard Weinberger  2016-07-31  690  
-2b88fc21cae91e Andreas Gruenbacher 2016-04-22  691  	if (value)
-d8db5b1ca9d4c5 Xiaolei Li          2017-06-23  692  		return ubifs_xattr_set(inode, name, value, size, flags, true);
-2b88fc21cae91e Andreas Gruenbacher 2016-04-22  693  	else
-ade46c3a6029de Richard Weinberger  2016-09-19  694  		return ubifs_xattr_remove(inode, name);
-2b88fc21cae91e Andreas Gruenbacher 2016-04-22  695  }
-2b88fc21cae91e Andreas Gruenbacher 2016-04-22  696  
-dfaf8d2aeca482 Ben Dooks           2016-06-21  697  static const struct xattr_handler ubifs_user_xattr_handler = {
-2b88fc21cae91e Andreas Gruenbacher 2016-04-22  698  	.prefix = XATTR_USER_PREFIX,
-ade46c3a6029de Richard Weinberger  2016-09-19 @699  	.get = xattr_get,
-ade46c3a6029de Richard Weinberger  2016-09-19  700  	.set = xattr_set,
-2b88fc21cae91e Andreas Gruenbacher 2016-04-22  701  };
-2b88fc21cae91e Andreas Gruenbacher 2016-04-22  702  
+I have to respin the patch because of yet another hole in filesystem 
+coverage (I blew the mechanical ubifs adjustment, adjusted the wrong 
+function), so please do tell if my rationalizations above hit a note, or 
+if I _need_ to make the changes in this patch (change it to a series?).
 
-:::::: The code at line 699 was first introduced by commit
-:::::: ade46c3a6029dea49dbc6c7734b0f6a78d3f104c ubifs: Export xattr get and set functions
+Thanks -- Mark Salyzyn
 
-:::::: TO: Richard Weinberger <richard@nod.at>
-:::::: CC: Richard Weinberger <richard@nod.at>
 
----
-0-DAY kernel test infrastructure                Open Source Technology Center
-https://lists.01.org/pipermail/kbuild-all                   Intel Corporation
+
 
 _______________________________________________
 V9fs-developer mailing list
