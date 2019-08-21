@@ -2,84 +2,84 @@ Return-Path: <v9fs-developer-bounces@lists.sourceforge.net>
 X-Original-To: lists+v9fs-developer@lfdr.de
 Delivered-To: lists+v9fs-developer@lfdr.de
 Received: from lists.sourceforge.net (lists.sourceforge.net [216.105.38.7])
-	by mail.lfdr.de (Postfix) with ESMTPS id CE73596DD1
-	for <lists+v9fs-developer@lfdr.de>; Wed, 21 Aug 2019 01:33:32 +0200 (CEST)
-Received: from [127.0.0.1] (helo=sfs-ml-4.v29.lw.sourceforge.com)
-	by sfs-ml-4.v29.lw.sourceforge.com with esmtp (Exim 4.90_1)
-	(envelope-from <v9fs-developer-bounces@lists.sourceforge.net>)
-	id 1i0Dd2-0004Ox-4f; Tue, 20 Aug 2019 23:33:28 +0000
-Received: from [172.30.20.202] (helo=mx.sourceforge.net)
- by sfs-ml-4.v29.lw.sourceforge.com with esmtps
- (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.90_1)
- (envelope-from <mioconnor1@hotmail.com>) id 1i0Dd0-0004Oo-TK
- for v9fs-developer@lists.sourceforge.net; Tue, 20 Aug 2019 23:33:26 +0000
+	by mail.lfdr.de (Postfix) with ESMTPS id 8133A96F0A
+	for <lists+v9fs-developer@lfdr.de>; Wed, 21 Aug 2019 03:49:12 +0200 (CEST)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=sourceforge.net; s=x; h=Message-Id:Date:Reply-To:MIME-Version:Content-Type:
- To:Subject:From:Sender:Cc:Content-Transfer-Encoding:Content-ID:
- Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
- :Resent-Message-ID:In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:
+	d=lists.sourceforge.net; s=beta; h=Content-Transfer-Encoding:Content-Type:Cc:
+	Reply-To:From:List-Subscribe:List-Help:List-Post:List-Archive:
+	List-Unsubscribe:List-Id:Subject:MIME-Version:References:In-Reply-To:Date:To:
+	Message-ID:Sender:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
+	bh=A16xZYx/VUlRqwq7PcHC4hqc1W/4ZVHJrmGYElS5UC0=; b=kT5/9663njDVky3DD5kU64Mmeo
+	NCkgNJM5d8Fi7bCYCjqh15897w/CBJ1/1AC1LxzWAB1VBPmhKwEXeqdLlIkQPcCrDsQEXGsfKhR95
+	CujgEv+EKoBJMtcUTuQPQZ5ul0zbBsVbPz3warJlYglV9UC+/cpfGo/T3H+eP2hqIJZw=;
+Received: from [127.0.0.1] (helo=sfs-ml-1.v29.lw.sourceforge.com)
+	by sfs-ml-1.v29.lw.sourceforge.com with esmtp (Exim 4.90_1)
+	(envelope-from <v9fs-developer-bounces@lists.sourceforge.net>)
+	id 1i0FkK-0007Oj-7l; Wed, 21 Aug 2019 01:49:08 +0000
+Received: from [172.30.20.202] (helo=mx.sourceforge.net)
+ by sfs-ml-1.v29.lw.sourceforge.com with esmtps
+ (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.90_1)
+ (envelope-from <cgxu519@zoho.com.cn>) id 1i0FkI-0007OS-Jg
+ for v9fs-developer@lists.sourceforge.net; Wed, 21 Aug 2019 01:49:06 +0000
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+ d=sourceforge.net; s=x; h=Content-Transfer-Encoding:MIME-Version:Content-Type
+ :References:In-Reply-To:Date:Cc:To:Reply-To:From:Subject:Message-ID:Sender:
+ Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+ Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
  List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=/gwWlnXwKFyiLjtl06Yl7rh75ehLqLBPLHgvzcCOb58=; b=fKt4g5TGvvViue627iXkMGx0TB
- gMwDsQ+a/wzqHm+S03zmGuGYsZ1msj56N1ElcBVb0repNwMiiXR8dYlDwb+881WeAWNVay2tbL9I+
- k/Z7T8TSVraLOSh5cZHsJRnXm8KYQbST3UaPnfdZMcWlDe9/sad3tRWxIsOI53QHjUu8=;
+ bh=DcF5su0fLTO1Pln6URG5KEfqkJ7no+cr1/Tz3A0/29c=; b=OxkAgNU0YmzSVj0/93bO4ny3LR
+ QBWjILPRHLUCUbv/eAKOTLoyLCxpNtEce/bhQs7p1Zz9pM/5lUbko6JuywOgiC457jc3/xVPsNpEQ
+ CoCevIosuxR7RvIDNUj5yoi1GQRjnKwDoFGO9k4kZKsE1FlrQgcb8Brwywp3xb9UvvH8=;
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  ;
- h=Message-Id:Date:Reply-To:MIME-Version:Content-Type:To:Subject:From:Sender
- :Cc:Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
- Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:
- References:List-Id:List-Help:List-Unsubscribe:List-Subscribe:List-Post:
- List-Owner:List-Archive; bh=/gwWlnXwKFyiLjtl06Yl7rh75ehLqLBPLHgvzcCOb58=; b=a
- e3MLsV4JzQ+ZKnfbQQl0K4d2kP1yWXW5L22IWaUzsdwo7jZnCzw8Lc3tdaznfMF1iJ1KXw/0MgamL
- 62CjJ9Zv8z7QQWRDej46dnO2u65FyeBxTu7B4Ee/OfWvcUNVR2Dg5WxAwK75ekzPN/5W24o7bBsnc
- KXEgbwOUICueJP28=;
-Received: from mail.abanti.net ([203.76.110.138])
- by sfi-mx-1.v28.lw.sourceforge.com with esmtps
- (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.90_1)
- id 1i0Dcz-00DqPD-Go
- for v9fs-developer@lists.sourceforge.net; Tue, 20 Aug 2019 23:33:26 +0000
-Received: from localhost (localhost [127.0.0.1])
- by mail.abanti.net (Postfix) with ESMTP id 4818D94DDD2
- for <v9fs-developer@lists.sourceforge.net>;
- Wed, 21 Aug 2019 05:08:29 +0600 (+06)
-Received: from mail.abanti.net ([127.0.0.1])
- by localhost (mail.abanti.net [127.0.0.1]) (amavisd-new, port 10032)
- with ESMTP id zdwMM9loN-0u; Wed, 21 Aug 2019 05:08:29 +0600 (+06)
-Received: from localhost (localhost [127.0.0.1])
- by mail.abanti.net (Postfix) with ESMTP id 9493E94F8C8;
- Wed, 21 Aug 2019 04:53:40 +0600 (+06)
-X-Virus-Scanned: amavisd-new at abanti.net
-Received: from mail.abanti.net ([127.0.0.1])
- by localhost (mail.abanti.net [127.0.0.1]) (amavisd-new, port 10026)
- with ESMTP id E1J62E----hT; Wed, 21 Aug 2019 04:53:40 +0600 (+06)
-Received: from joneshou (61-221-103-85.HINET-IP.hinet.net [61.221.103.85])
- by mail.abanti.net (Postfix) with ESMTPA id 5DD1F9428C7
- for <v9fs-developer@lists.sourceforge.net>;
- Wed, 21 Aug 2019 04:25:56 +0600 (+06)
-From: "Marilyn Oconnor" <mioconnor1@hotmail.com>
-To: v9fs-developer@lists.sourceforge.net
+ h=Content-Transfer-Encoding:MIME-Version:Content-Type:References:
+ In-Reply-To:Date:Cc:To:Reply-To:From:Subject:Message-ID:Sender:Content-ID:
+ Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
+ :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
+ List-Post:List-Owner:List-Archive;
+ bh=DcF5su0fLTO1Pln6URG5KEfqkJ7no+cr1/Tz3A0/29c=; b=H23aifdeO5x7FdHqBo8KNz7pmb
+ wyZ4QoG901sXMqtkf0E0drAanSX1kXoVDDfjPmZOOZYsrAiTfCVn/1bvs5GQZ/I0O/Al+3Tx0H0Rd
+ lTrEQ8vEjAdpGfN7UMfbIdyjXfV7S6C6e02hGoWsr7ayxE4xKMA5rH0hLvIvvndbv0cc=;
+Received: from sender3-pp-o92.zoho.com.cn ([124.251.121.251])
+ by sfi-mx-4.v28.lw.sourceforge.com with esmtps
+ (TLSv1.2:ECDHE-RSA-AES256-SHA384:256) (Exim 4.90_1)
+ id 1i0FkG-00A3Hc-VM
+ for v9fs-developer@lists.sourceforge.net; Wed, 21 Aug 2019 01:49:06 +0000
+ARC-Seal: i=1; a=rsa-sha256; t=1566351194; cv=none; d=zoho.com.cn; s=zohoarc; 
+ b=qXDiO8FzgxJCCamp5ZOnxH8GADPlPSHLur4pqj/1XkFusSgR4zxgAAPbvwa5TWc65Y9yvJph6Cc4mwYnqJdsIGA0e+fTcvvitOwy7Vi1yXXxLpKAClkJylh8RabS1eXPowpAZtsGI70zuyphL1jJ31T2xP/2N2rgV+IotA6IXwI=
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zoho.com.cn;
+ s=zohoarc; t=1566351194;
+ h=Content-Type:Content-Transfer-Encoding:Cc:Date:From:In-Reply-To:MIME-Version:Message-ID:Reply-To:References:Subject:To:ARC-Authentication-Results;
+ bh=DcF5su0fLTO1Pln6URG5KEfqkJ7no+cr1/Tz3A0/29c=; 
+ b=WTGfIeb93/NnQATYhsuXKzuOj0HAYuNGPHQivWs4851ioPX+zB0McGmqi7I7/RmWu8koplnSLV3b+oi3M2Khs6vzZ9y4zmY12xj5MQK98GJVqzz2RejmsyDvsjVK2pp9TRizYFc49W4NjZysM6wiVlhrBylsaGwxUNqgGGYYnuo=
+ARC-Authentication-Results: i=1; mx.zoho.com.cn;
+ dkim=pass  header.i=zoho.com.cn;
+ spf=pass  smtp.mailfrom=cgxu519@zoho.com.cn;
+ dmarc=pass header.from=<cgxu519@zoho.com.cn> header.from=<cgxu519@zoho.com.cn>
+Received: from hades (218.18.229.179 [218.18.229.179]) by mx.zoho.com.cn
+ with SMTPS id 1566351192884306.16074813454156;
+ Wed, 21 Aug 2019 09:33:12 +0800 (CST)
+Message-ID: <9afcec4d3987296ed4823d024c5a6fc54f741364.camel@zoho.com.cn>
+To: Dominique Martinet <asmadeus@codewreck.org>
+Date: Wed, 21 Aug 2019 09:33:09 +0800
+In-Reply-To: <20190820114927.GA12715@nautica>
+References: <20190820100325.10313-1-cgxu519@zoho.com.cn>
+ <20190820114927.GA12715@nautica>
+User-Agent: Evolution 3.30.5 (3.30.5-1.fc29) 
 MIME-Version: 1.0
-Date: Wed, 21 Aug 2019 06:25:34 +0800
-Message-Id: <20190820222556.5DD1F9428C7@mail.abanti.net>
-X-Spam-Score: 7.7 (+++++++)
+X-ZohoCNMailClient: External
+X-Spam-Score: 0.6 (/)
 X-Spam-Report: Spam Filtering performed by mx.sourceforge.net.
  See http://spamassassin.org/tag/ for more details.
- 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail provider
- (mioconnor1[at]hotmail.com)
- 1.0 SPF_SOFTFAIL           SPF: sender does not match SPF record (softfail)
- 0.5 SUBJ_ALL_CAPS          Subject is all capitals
+ 1.2 RCVD_IN_BL_SPAMCOP_NET RBL: Received via a relay in bl.spamcop.net
+ [Blocked - see <https://www.spamcop.net/bl.shtml?124.251.121.251>]
+ -0.0 SPF_PASS               SPF: sender matches SPF record
  0.0 SPF_HELO_NONE          SPF: HELO does not publish an SPF Record
- 0.2 FREEMAIL_REPLYTO_END_DIGIT Reply-To freemail username ends in digit
- (mioconnor51[at]gmail.com)
- 1.2 FORGED_HOTMAIL_RCVD2   hotmail.com 'From' address, but no 'Received:'
- 0.2 FREEMAIL_ENVFROM_END_DIGIT Envelope-from freemail username ends in
- digit (mioconnor1[at]hotmail.com)
- 1.0 HTML_MESSAGE           BODY: HTML included in message
- 1.0 FREEMAIL_REPLYTO       Reply-To/From or Reply-To/body contain different
- freemails
- 2.5 SPOOFED_FREEM_REPTO    Forged freemail sender with freemail reply-to
-X-Headers-End: 1i0Dcz-00DqPD-Go
-X-Content-Filtered-By: Mailman/MimeDel 2.1.21
-Subject: [V9fs-developer] I WILL APPRECIATE YOUR QUICK REPLY.
+ -0.6 AWL AWL: Adjusted score from AWL reputation of From: address
+X-Headers-End: 1i0FkG-00A3Hc-VM
+Subject: Re: [V9fs-developer] [PATCH] 9p: avoid attaching writeback_fid on
+ mmap with type PRIVATE
 X-BeenThere: v9fs-developer@lists.sourceforge.net
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -91,19 +91,47 @@ List-Post: <mailto:v9fs-developer@lists.sourceforge.net>
 List-Help: <mailto:v9fs-developer-request@lists.sourceforge.net?subject=help>
 List-Subscribe: <https://lists.sourceforge.net/lists/listinfo/v9fs-developer>, 
  <mailto:v9fs-developer-request@lists.sourceforge.net?subject=subscribe>
-Reply-To: mioconnor51@gmail.com
+From: cgxu519--- via V9fs-developer <v9fs-developer@lists.sourceforge.net>
+Reply-To: cgxu519@zoho.com.cn
+Cc: ericvh@gmail.com, lucho@ionkov.net, linux-kernel@vger.kernel.org,
+ v9fs-developer@lists.sourceforge.net
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: v9fs-developer-bounces@lists.sourceforge.net
 
- - This mail is in HTML. Some elements may be ommited in plain text. -
+On Tue, 2019-08-20 at 13:49 +0200, Dominique Martinet wrote:
+> Chengguang Xu wrote on Tue, Aug 20, 2019:
+> > Currently on mmap cache policy, we always attach writeback_fid
+> > whether mmap type is SHARED or PRIVATE. However, in the use case
+> > of kata-container which combines 9p(Guest OS) with overlayfs(Host OS),
+> > this behavior will trigger overlayfs' copy-up when excute command
+> > inside container.
+> 
+> hmm, I guess this just works for non-ovl cases because sync_inode()
+> realizes there is nothing to sync, but the fsync at the end still
+> triggers the copy-up ?
+> 
+> Well, I guess there really is no need to flush for private mappings,
+> so might as well go for this; sparing an extra useless clone walk cannot
+> hurt.
 
-Good day to you,
+Unfortunately, overlayfs does copy-up at open operation if the open flags
+indicate data/meta modification, so as long as we attach writeback_fid with
+O_RDWR on private mmap there are a lot of unnecessary copy-up of binary and
+shared library files on backedn overlayfs when executing command inside kata
+containers. After this patch we found there are no useless copy-up files anymore
+and also private/shared mmap worked as expected.
 
-I am Mrs. Marilyn Oconnor. I have suffered maltreatment and hardship in the hands of my late husband's relatives since the death of my husband with my son in a car crash. By tradition, all that my late husband had, [wealth] belongs to his brothers/family. I am to be remarried by his immediate younger brother which I vehemently refused. They have ceased all that I laboured with my husband to acquire including treasures, houses and his bank documents.
-I have suffered cancer of the oesophagus for almost 7 years, my health is very bad and the doctor said i dont have much time to live. My late husband deposited some money with a security company. It has therefore become very necessary and urgent to contact someone, a foreigner like you to help me receive/secure these deposit. Let me know if you can handle this by responding to this email.
-Stay blessed.
-Marilyn Oconnor
+
+Thanks,
+Chengguang.
+
+> 
+> I'll queue this up after tests, no promise on delay sorry :/
+
+
+
+
 
 _______________________________________________
 V9fs-developer mailing list
