@@ -2,89 +2,91 @@ Return-Path: <v9fs-developer-bounces@lists.sourceforge.net>
 X-Original-To: lists+v9fs-developer@lfdr.de
 Delivered-To: lists+v9fs-developer@lfdr.de
 Received: from lists.sourceforge.net (lists.sourceforge.net [216.105.38.7])
-	by mail.lfdr.de (Postfix) with ESMTPS id ABD15A101B
-	for <lists+v9fs-developer@lfdr.de>; Thu, 29 Aug 2019 05:58:19 +0200 (CEST)
-Received: from [127.0.0.1] (helo=sfs-ml-1.v29.lw.sourceforge.com)
-	by sfs-ml-1.v29.lw.sourceforge.com with esmtp (Exim 4.90_1)
+	by mail.lfdr.de (Postfix) with ESMTPS id B2109A1083
+	for <lists+v9fs-developer@lfdr.de>; Thu, 29 Aug 2019 06:38:30 +0200 (CEST)
+Received: from [127.0.0.1] (helo=sfs-ml-4.v29.lw.sourceforge.com)
+	by sfs-ml-4.v29.lw.sourceforge.com with esmtp (Exim 4.90_1)
 	(envelope-from <v9fs-developer-bounces@lists.sourceforge.net>)
-	id 1i3BZf-0007kq-0W; Thu, 29 Aug 2019 03:58:15 +0000
+	id 1i3CCY-000664-Oa; Thu, 29 Aug 2019 04:38:26 +0000
 Received: from [172.30.20.202] (helo=mx.sourceforge.net)
- by sfs-ml-1.v29.lw.sourceforge.com with esmtps
+ by sfs-ml-4.v29.lw.sourceforge.com with esmtps
  (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.90_1)
- (envelope-from
- <3Tk1nXQkbAHcntufVggZmVkkdY.bjjbgZpnZmXjioZio.Xjh@M3KW2WVRGUFZ5GODRSRYTGD7.apphosting.bounces.google.com>)
- id 1i3BZe-0007kf-25
- for v9fs-developer@lists.sourceforge.net; Thu, 29 Aug 2019 03:58:14 +0000
+ (envelope-from <deepa.kernel@gmail.com>)
+ id 1i3CCW-00065U-VI; Thu, 29 Aug 2019 04:38:24 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=sourceforge.net; s=x; h=Content-Type:To:From:Subject:Message-ID:Date:
- MIME-Version:Sender:Reply-To:Cc:Content-Transfer-Encoding:Content-ID:
- Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
- :Resent-Message-ID:In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:
+ d=sourceforge.net; s=x; h=Content-Type:Cc:To:Subject:Message-ID:Date:From:
+ In-Reply-To:References:MIME-Version:Sender:Reply-To:Content-Transfer-Encoding
+ :Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+ Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
  List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=tadFVeIOZOH0yr8dBxtTfxDdH48rZZJcwvhVqN0Ob+0=; b=L8A+PO9j9TFQbE2RYLV0E8zLtw
- orrXprpVNv/YOoT8e6NRQrOn4yySHTiIlIPVVOTHk+NkGb96pzDyeaER0xQ5mZOg4xUdQ2PzEM6tT
- Q8m2XdkWVUPtitralFH2YSOAxtKsQFjZb1lm8NPwyaDikgYTSPE3JhKY33yzTUQkXuew=;
+ bh=Ph2TDX0t8VD1IALiSLotxXSH3Hc7LzlyzCWrbeW7KEM=; b=iCpuZvCWWgeWsKUQTQxROFwiFG
+ qyCshIwcVooSx7YoqDiEHxjN+dqpQu5OUZ7TbSbPqI+fLFA5tITh4LHyQxtOD/1+wc45deW4LjDco
+ zcZaZCNq4Kj5xyD6EkVMa211/Dj/RNR+BC36vyGgTDCFmDQX0IhpGjaLGLb1Vc2ua638=;
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  ;
- h=Content-Type:To:From:Subject:Message-ID:Date:MIME-Version:Sender:Reply-To
- :Cc:Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
- Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:
- References:List-Id:List-Help:List-Unsubscribe:List-Subscribe:List-Post:
- List-Owner:List-Archive; bh=tadFVeIOZOH0yr8dBxtTfxDdH48rZZJcwvhVqN0Ob+0=; b=a
- Pge+w/xz1mt04G6jhzLrMBLpuewQbGcA87mxahUzC42OMIta1DXZQ5XwHQ1TZlfHKxARMzK0G/Nfe
- 7yjJEsaYm6QJjCwdyy2TB5B5dafLICd2EUhn1qOyri3KJLjeuEs5uEYGFhXuUx7hS8GzEwenwe8E0
- uisMiviaaikc/4vQ=;
-Received: from mail-io1-f72.google.com ([209.85.166.72])
- by sfi-mx-3.v28.lw.sourceforge.com with esmtps
+ h=Content-Type:Cc:To:Subject:Message-ID:Date:From:In-Reply-To:References:
+ MIME-Version:Sender:Reply-To:Content-Transfer-Encoding:Content-ID:
+ Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
+ :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
+ List-Post:List-Owner:List-Archive;
+ bh=Ph2TDX0t8VD1IALiSLotxXSH3Hc7LzlyzCWrbeW7KEM=; b=Q7KNMbrwulgf77lG8ArKpaeYNw
+ bls7F3qTVsK9d0DVdG+CVSuDxD++X2D6rnQOqDgKJxn2HV/BtOykJyiZ7DSeRRg7TTEGgRvfMUJii
+ andvr6M29TTVCSNktulK286kIAW7LZzn7moaZ5bSgRuLrtQ4iWJ6BH8AAhJYmYuGABhQ=;
+Received: from mail-io1-f65.google.com ([209.85.166.65])
+ by sfi-mx-4.v28.lw.sourceforge.com with esmtps
  (TLSv1.2:ECDHE-RSA-AES128-GCM-SHA256:128) (Exim 4.90_1)
- id 1i3BZc-002Iwa-GF
- for v9fs-developer@lists.sourceforge.net; Thu, 29 Aug 2019 03:58:14 +0000
-Received: by mail-io1-f72.google.com with SMTP id g12so2383181iok.6
- for <v9fs-developer@lists.sourceforge.net>;
- Wed, 28 Aug 2019 20:58:12 -0700 (PDT)
+ id 1i3CCT-001oI6-GW; Thu, 29 Aug 2019 04:38:24 +0000
+Received: by mail-io1-f65.google.com with SMTP id u185so417222iod.10;
+ Wed, 28 Aug 2019 21:38:21 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc; bh=Ph2TDX0t8VD1IALiSLotxXSH3Hc7LzlyzCWrbeW7KEM=;
+ b=Ad4yH+QK5ygrblSOoyxD0tbvjV1ue9nzyr8wf1rjkD8nTQtAUxNZJKQHZoLxHgRk2B
+ TEAoeI524dxNfHCqzBGvK8fuiw+bAamqjZzPjGzpO4q1JaVUUDD9ax94jSI09AwQIEcQ
+ WVE9Kk/mYHro0Fu7Hu8WrE90Mi3tlpvW3ZwrAo0k7GoHIwwQC60Y8Y9lhWHQ2x0r9tnz
+ jSaqwnIO0Z4sBYO3fglWtXsmzhw2k5YPG8bbqxvl5SmNtQPBiiKKdIu9pdlVPfuYLf7e
+ 1REmXyzixgNc7NV2Y7fqiRSpx+wDxIJjwki+5Yj33Yn9bHcHOqns04S9V/iNntVln4qf
+ JFkA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:date:message-id:subject:from:to;
- bh=tadFVeIOZOH0yr8dBxtTfxDdH48rZZJcwvhVqN0Ob+0=;
- b=M5/ZTjCufppnqRSgLT0tO9o5nkY6lE5nIK7CcpkVvfbpbM/D1cJXf/JPK5Hp0WtJ/y
- iSMfotSaDTwcp8tViClhMyJlh0mQh6R6eyrIsVmPjlNAEH8+EDMqDv1cL8OKv+5vR3M0
- xnzolRxo8BIDTLjZ1Kgyw7aQocMWhYvNkjcNEnF8huz1R2NcO8dQAAvwLNM2TwPKVv4T
- tKlSUIX4j1xb0cEUa2L3Z0emgEbrwGd0c0I2o1WyvvuV4cqSh1SH8WipxIHzV4iGHoEP
- rAVrzT7SEL6woapzGKGv822KnFksJ9/tR7ioWqe1rDBDS6rqT+aOJ9l4uBNFSVS1PTL0
- 6buA==
-X-Gm-Message-State: APjAAAXFb1B6/SfJLJbyGLjKenBzFEABUZ3WWZ7t7mIbGnTS7lM2p0+B
- B6fyILskOP1BbhUeiCvfirE/isJOsgeDwmxs9G+Kcz/wxjSw
-X-Google-Smtp-Source: APXvYqwMqjrkCA5Nz6C2Kl02P75sJtglRiLadVdDvvfuuKk8pEhv2NYmmL67pWiPfKlP4Or+i1JX1rFE7KWTCJNFZgk3BFutjz7a
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc;
+ bh=Ph2TDX0t8VD1IALiSLotxXSH3Hc7LzlyzCWrbeW7KEM=;
+ b=FpbaScNh8g1QeFoJRuO4qZlvH5GiHJKNM5JZ0IfMtjIXGhYkxkI06ImTYaccmsRtBg
+ GUK4GHRkiLHX3RpRUMu2TXSoQNRToK4ke7FzEX0AMwMusu97ml3mWF3VgOUnH1Rzy6ls
+ mYSuWlCG8x4Zn7kNmgf+2aIQZjwi5czXKv7/4uY0pY//8EvW8ONrELgzNQGOnzL2/SbL
+ vcJb+bgnQ+B8vjAEOgplXFzJFVxd/VyRODz0iHZ7SwpHLDNIFkwaJF3W4gubCceNbT73
+ xBVLbj0rNsaA8S6nZQib974CYA9A/BunnXcY/jaVO/UTzNUNz2WBVwl+Hm29+sPbRI21
+ g7XQ==
+X-Gm-Message-State: APjAAAU42PJB9OimBI5K+L25e/dYmRFB7RZi8aqRsSV4lMeLjjIgnaJk
+ WbeZcLf6hcJhaY5csI2SJA/r5XgHcCI3pwfFtFM=
+X-Google-Smtp-Source: APXvYqxGcrhx04qhhiztO9h7tEg9eaTJ/omReFf3uThdfVv9L98okzDLYj6+TF/LNCwbU0Ps8hWzB+I1empnbI4Uys0=
+X-Received: by 2002:a02:23cc:: with SMTP id u195mr8401832jau.136.1567053495481; 
+ Wed, 28 Aug 2019 21:38:15 -0700 (PDT)
 MIME-Version: 1.0
-X-Received: by 2002:a5e:c301:: with SMTP id a1mr2303953iok.1.1567051086634;
- Wed, 28 Aug 2019 20:58:06 -0700 (PDT)
-Date: Wed, 28 Aug 2019 20:58:06 -0700
-X-Google-Appengine-App-Id: s~syzkaller
-X-Google-Appengine-App-Id-Alias: syzkaller
-Message-ID: <0000000000005d2a1e0591398391@google.com>
-From: syzbot <syzbot+1d26c4ed77bc6c5ed5e6@syzkaller.appspotmail.com>
-To: asmadeus@codewreck.org, davem@davemloft.net, ericvh@gmail.com, 
- linux-kernel@vger.kernel.org, lucho@ionkov.net, netdev@vger.kernel.org, 
- syzkaller-bugs@googlegroups.com, v9fs-developer@lists.sourceforge.net
-X-Spam-Score: 3.1 (+++)
+References: <20190829041132.26677-1-deepa.kernel@gmail.com>
+In-Reply-To: <20190829041132.26677-1-deepa.kernel@gmail.com>
+From: Deepa Dinamani <deepa.kernel@gmail.com>
+Date: Wed, 28 Aug 2019 21:38:03 -0700
+Message-ID: <CABeXuvoKD83B7iUqE33Y9E2OVtf61DKv-swZr-N=ozz-cMmGOA@mail.gmail.com>
+To: Alexander Viro <viro@zeniv.linux.org.uk>, Arnd Bergmann <arnd@arndb.de>
+X-Spam-Score: -0.1 (/)
 X-Spam-Report: Spam Filtering performed by mx.sourceforge.net.
  See http://spamassassin.org/tag/ for more details.
- 0.0 URIBL_BLOCKED ADMINISTRATOR NOTICE: The query to URIBL was blocked.
- See
- http://wiki.apache.org/spamassassin/DnsBlocklists#dnsbl-block
- for more information. [URIs: googlegroups.com]
- 0.3 FROM_LOCAL_HEX         From: localpart has long hexadecimal sequence
- -0.0 RCVD_IN_MSPIKE_H2      RBL: Average reputation (+2)
- [209.85.166.72 listed in wl.mailspike.net]
- 0.2 HEADER_FROM_DIFFERENT_DOMAINS From and EnvelopeFrom 2nd level mail
- domains are different
+ -0.0 RCVD_IN_DNSWL_NONE     RBL: Sender listed at https://www.dnswl.org/, no
+ trust [209.85.166.65 listed in list.dnswl.org]
+ 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail provider
+ (deepa.kernel[at]gmail.com)
  -0.0 SPF_PASS               SPF: sender matches SPF record
  0.0 SPF_HELO_NONE          SPF: HELO does not publish an SPF Record
- 2.5 SORTED_RECIPS          Recipient list is sorted by address
- -0.0 RCVD_IN_DNSWL_NONE     RBL: Sender listed at https://www.dnswl.org/, no
- trust [209.85.166.72 listed in list.dnswl.org]
-X-Headers-End: 1i3BZc-002Iwa-GF
-Subject: [V9fs-developer] BUG: corrupted list in p9_fd_cancelled (2)
+ -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from author's
+ domain
+ -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+ 0.1 DKIM_SIGNED            Message has a DKIM or DK signature,
+ not necessarily valid
+X-Headers-End: 1i3CCT-001oI6-GW
+Subject: Re: [V9fs-developer] [GIT PULL] vfs: Add support for timestamp
+ limits
 X-BeenThere: v9fs-developer@lists.sourceforge.net
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -96,106 +98,144 @@ List-Post: <mailto:v9fs-developer@lists.sourceforge.net>
 List-Help: <mailto:v9fs-developer-request@lists.sourceforge.net?subject=help>
 List-Subscribe: <https://lists.sourceforge.net/lists/listinfo/v9fs-developer>, 
  <mailto:v9fs-developer-request@lists.sourceforge.net?subject=subscribe>
+Cc: Latchesar Ionkov <lucho@ionkov.net>, martin@omnibond.com,
+ jfs-discussion@lists.sourceforge.net, Dave Kleikamp <shaggy@kernel.org>,
+ al@alarsen.net, yuchao0@huawei.com, Bob Copeland <me@bobcopeland.com>,
+ Adrian Hunter <adrian.hunter@intel.com>,
+ Andreas Dilger <adilger.kernel@dilger.ca>, mikulas@artax.karlin.mff.cuni.cz,
+ stoph Hellwig <hch@lst.de>, nico@fluxnic.net,
+ Mike Marshall <hubcap@omnibond.com>, linux-cifs@vger.kernel.org, "Yan,
+ Zheng" <zyan@redhat.com>, Sage Weil <sage@redhat.com>,
+ "Darrick J. Wong" <darrick.wong@oracle.com>,
+ y2038 Mailman List <y2038@lists.linaro.org>,
+ Richard Weinberger <richard@nod.at>, Steve French <sfrench@samba.org>,
+ Anton Vorontsov <anton@enomsg.org>, linux@armlinux.org.uk,
+ codalist@coda.cs.cmu.edu, Christoph Hellwig <hch@infradead.org>,
+ coda@cs.cmu.edu, V9FS Developers <v9fs-developer@lists.sourceforge.net>,
+ Ilya Dryomov <idryomov@gmail.com>,
+ Ext4 Developers List <linux-ext4@vger.kernel.org>, salah.triki@gmail.com,
+ devel@lists.orangefs.org, Evgeniy Dushistov <dushistov@mail.ru>,
+ Kees Cook <keescook@chromium.org>, Eric Van Hensbergen <ericvh@gmail.com>,
+ Jan Kara <jack@suse.com>, reiserfs-devel@vger.kernel.org,
+ Tejun Heo <tj@kernel.org>, Joel Becker <jlbec@evilplan.org>,
+ aivazian.tigran@gmail.com, phillip@squashfs.org.uk,
+ David Sterba <dsterba@suse.com>, Jaegeuk Kim <jaegeuk@kernel.org>,
+ ceph-devel <ceph-devel@vger.kernel.org>, trond.myklebust@hammerspace.com,
+ OGAWA Hirofumi <hirofumi@mail.parknet.co.jp>,
+ Andreas Dilger <adilger@dilger.ca>, Jan Harkes <jaharkes@cs.cmu.edu>,
+ Linux NFS Mailing List <linux-nfs@vger.kernel.org>,
+ Tony Luck <tony.luck@intel.com>, Theodore Ts'o <tytso@mit.edu>,
+ luisbg@kernel.org, Artem Bityutskiy <dedekind1@gmail.com>,
+ linux-ntfs-dev@lists.sourceforge.net, Greg KH <gregkh@linuxfoundation.org>,
+ linux-karma-devel@lists.sourceforge.net, jlayton@kernel.org,
+ Linux Kernel Mailing List <linux-kernel@vger.kernel.org>, "Linux F2FS DEV,
+ Mailing List" <linux-f2fs-devel@lists.sourceforge.net>,
+ linux-xfs@vger.kernel.org, Colin Cross <ccross@android.com>,
+ Linux FS-devel Mailing List <linux-fsdevel@vger.kernel.org>,
+ linux-mtd <linux-mtd@lists.infradead.org>,
+ David Woodhouse <dwmw2@infradead.org>,
+ Anna Schumaker <anna.schumaker@netapp.com>
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"; DelSp="yes"
 Errors-To: v9fs-developer-bounces@lists.sourceforge.net
 
-Hello,
+Adding the others who were on original cc, just in case.
+- Deepa
 
-syzbot found the following crash on:
-
-HEAD commit:    36146921 Merge tag 'hyperv-fixes-signed' of git://git.kern..
-git tree:       upstream
-console output: https://syzkaller.appspot.com/x/log.txt?x=169f691e600000
-kernel config:  https://syzkaller.appspot.com/x/.config?x=6919752cc1b760b4
-dashboard link: https://syzkaller.appspot.com/bug?extid=1d26c4ed77bc6c5ed5e6
-compiler:       gcc (GCC) 9.0.0 20181231 (experimental)
-syz repro:      https://syzkaller.appspot.com/x/repro.syz?x=14d03ba6600000
-
-IMPORTANT: if you fix the bug, please add the following tag to the commit:
-Reported-by: syzbot+1d26c4ed77bc6c5ed5e6@syzkaller.appspotmail.com
-
-list_del corruption, ffff88808ecdbfb0->next is LIST_POISON1  
-(dead000000000100)
-------------[ cut here ]------------
-kernel BUG at lib/list_debug.c:45!
-invalid opcode: 0000 [#1] PREEMPT SMP KASAN
-CPU: 0 PID: 20174 Comm: syz-executor.1 Not tainted 5.3.0-rc5+ #125
-Hardware name: Google Google Compute Engine/Google Compute Engine, BIOS  
-Google 01/01/2011
-RIP: 0010:__list_del_entry_valid.cold+0x23/0x4f lib/list_debug.c:45
-Code: e8 d5 06 1e fe 0f 0b 4c 89 f6 48 c7 c7 e0 26 c6 87 e8 c4 06 1e fe 0f  
-0b 4c 89 ea 4c 89 f6 48 c7 c7 20 26 c6 87 e8 b0 06 1e fe <0f> 0b 4c 89 e2  
-4c 89 f6 48 c7 c7 80 26 c6 87 e8 9c 06 1e fe 0f 0b
-RSP: 0018:ffff8880994076d8 EFLAGS: 00010286
-RAX: 000000000000004e RBX: 1ffff11013280ee9 RCX: 0000000000000000
-RDX: 0000000000000000 RSI: ffffffff815c2526 RDI: ffffed1013280ecd
-RBP: ffff8880994076f0 R08: 000000000000004e R09: ffffed1015d060d1
-R10: ffffed1015d060d0 R11: ffff8880ae830687 R12: dead000000000122
-R13: dead000000000100 R14: ffff88808ecdbfb0 R15: ffff88808ecdbfb8
-FS:  00007fb2aca54700(0000) GS:ffff8880ae800000(0000) knlGS:0000000000000000
-CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
-CR2: 00007ffee6574f58 CR3: 00000000a8e6d000 CR4: 00000000001406f0
-DR0: 0000000000000000 DR1: 0000000000000000 DR2: 0000000000000000
-DR3: 0000000000000000 DR6: 00000000fffe0ff0 DR7: 0000000000000400
-Call Trace:
-  __list_del_entry include/linux/list.h:131 [inline]
-  list_del include/linux/list.h:139 [inline]
-  p9_fd_cancelled+0x3c/0x1c0 net/9p/trans_fd.c:710
-  p9_client_flush+0x1b7/0x1f0 net/9p/client.c:674
-  p9_client_rpc+0x112f/0x12a0 net/9p/client.c:781
-  p9_client_version net/9p/client.c:952 [inline]
-  p9_client_create+0xb7f/0x1430 net/9p/client.c:1052
-  v9fs_session_init+0x1e7/0x18c0 fs/9p/v9fs.c:406
-  v9fs_mount+0x7d/0x920 fs/9p/vfs_super.c:120
-  legacy_get_tree+0x108/0x220 fs/fs_context.c:661
-  vfs_get_tree+0x8e/0x390 fs/super.c:1413
-  do_new_mount fs/namespace.c:2791 [inline]
-  do_mount+0x13b3/0x1c30 fs/namespace.c:3111
-  ksys_mount+0xdb/0x150 fs/namespace.c:3320
-  __do_sys_mount fs/namespace.c:3334 [inline]
-  __se_sys_mount fs/namespace.c:3331 [inline]
-  __x64_sys_mount+0xbe/0x150 fs/namespace.c:3331
-  do_syscall_64+0xfd/0x6a0 arch/x86/entry/common.c:296
-  entry_SYSCALL_64_after_hwframe+0x49/0xbe
-RIP: 0033:0x459879
-Code: fd b7 fb ff c3 66 2e 0f 1f 84 00 00 00 00 00 66 90 48 89 f8 48 89 f7  
-48 89 d6 48 89 ca 4d 89 c2 4d 89 c8 4c 8b 4c 24 08 0f 05 <48> 3d 01 f0 ff  
-ff 0f 83 cb b7 fb ff c3 66 2e 0f 1f 84 00 00 00 00
-RSP: 002b:00007fb2aca53c78 EFLAGS: 00000246 ORIG_RAX: 00000000000000a5
-RAX: ffffffffffffffda RBX: 0000000000000005 RCX: 0000000000459879
-RDX: 00000000200002c0 RSI: 0000000020000040 RDI: 0000000000000000
-RBP: 000000000075bfc8 R08: 0000000020000400 R09: 0000000000000000
-R10: 0000000000000000 R11: 0000000000000246 R12: 00007fb2aca546d4
-R13: 00000000004c5e2f R14: 00000000004da930 R15: 00000000ffffffff
-Modules linked in:
----[ end trace c76f5f29f0af3347 ]---
-RIP: 0010:__list_del_entry_valid.cold+0x23/0x4f lib/list_debug.c:45
-Code: e8 d5 06 1e fe 0f 0b 4c 89 f6 48 c7 c7 e0 26 c6 87 e8 c4 06 1e fe 0f  
-0b 4c 89 ea 4c 89 f6 48 c7 c7 20 26 c6 87 e8 b0 06 1e fe <0f> 0b 4c 89 e2  
-4c 89 f6 48 c7 c7 80 26 c6 87 e8 9c 06 1e fe 0f 0b
-RSP: 0018:ffff8880994076d8 EFLAGS: 00010286
-RAX: 000000000000004e RBX: 1ffff11013280ee9 RCX: 0000000000000000
-RDX: 0000000000000000 RSI: ffffffff815c2526 RDI: ffffed1013280ecd
-RBP: ffff8880994076f0 R08: 000000000000004e R09: ffffed1015d060d1
-R10: ffffed1015d060d0 R11: ffff8880ae830687 R12: dead000000000122
-R13: dead000000000100 R14: ffff88808ecdbfb0 R15: ffff88808ecdbfb8
-FS:  00007fb2aca54700(0000) GS:ffff8880ae800000(0000) knlGS:0000000000000000
-CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
-CR2: 00007ffee6574f58 CR3: 00000000a8e6d000 CR4: 00000000001406f0
-DR0: 0000000000000000 DR1: 0000000000000000 DR2: 0000000000000000
-DR3: 0000000000000000 DR6: 00000000fffe0ff0 DR7: 0000000000000400
-
-
----
-This bug is generated by a bot. It may contain errors.
-See https://goo.gl/tpsmEJ for more information about syzbot.
-syzbot engineers can be reached at syzkaller@googlegroups.com.
-
-syzbot will keep track of this bug report. See:
-https://goo.gl/tpsmEJ#status for how to communicate with syzbot.
-syzbot can test patches for this bug, for details see:
-https://goo.gl/tpsmEJ#testing-patches
+On Wed, Aug 28, 2019 at 9:12 PM Deepa Dinamani <deepa.kernel@gmail.com> wrote:
+>
+> Hi Al, Arnd,
+>
+> This is a pull request for filling in min and max timestamps for filesystems.
+> I've added all the acks, and dropped the adfs patch. That will be merged through
+> Russell's tree.
+>
+> Thanks,
+> Deepa
+>
+> The following changes since commit 5d18cb62218608a1388858880ad3ec76d6cb0d3b:
+>
+>   Add linux-next specific files for 20190828 (2019-08-28 19:59:14 +1000)
+>
+> are available in the Git repository at:
+>
+>   https://github.com/deepa-hub/vfs limits
+>
+> for you to fetch changes up to f0f216afa4c7e4dee9121fde52ccf57f76119188:
+>
+>   isofs: Initialize filesystem timestamp ranges (2019-08-28 19:19:36 -0700)
+>
+> ----------------------------------------------------------------
+> Deepa Dinamani (19):
+>       vfs: Add file timestamp range support
+>       vfs: Add timestamp_truncate() api
+>       timestamp_truncate: Replace users of timespec64_trunc
+>       mount: Add mount warning for impending timestamp expiry
+>       utimes: Clamp the timestamps before update
+>       fs: Fill in max and min timestamps in superblock
+>       9p: Fill min and max timestamps in sb
+>       ext4: Initialize timestamps limits
+>       fs: nfs: Initialize filesystem timestamp ranges
+>       fs: cifs: Initialize filesystem timestamp ranges
+>       fs: fat: Initialize filesystem timestamp ranges
+>       fs: affs: Initialize filesystem timestamp ranges
+>       fs: sysv: Initialize filesystem timestamp ranges
+>       fs: ceph: Initialize filesystem timestamp ranges
+>       fs: orangefs: Initialize filesystem timestamp ranges
+>       fs: hpfs: Initialize filesystem timestamp ranges
+>       fs: omfs: Initialize filesystem timestamp ranges
+>       pstore: fs superblock limits
+>       isofs: Initialize filesystem timestamp ranges
+>
+>  fs/9p/vfs_super.c        |  6 +++++-
+>  fs/affs/amigaffs.c       |  2 +-
+>  fs/affs/amigaffs.h       |  3 +++
+>  fs/affs/inode.c          |  4 ++--
+>  fs/affs/super.c          |  4 ++++
+>  fs/attr.c                | 21 ++++++++++++---------
+>  fs/befs/linuxvfs.c       |  2 ++
+>  fs/bfs/inode.c           |  2 ++
+>  fs/ceph/super.c          |  2 ++
+>  fs/cifs/cifsfs.c         | 22 ++++++++++++++++++++++
+>  fs/cifs/netmisc.c        | 14 +++++++-------
+>  fs/coda/inode.c          |  3 +++
+>  fs/configfs/inode.c      | 12 ++++++------
+>  fs/cramfs/inode.c        |  2 ++
+>  fs/efs/super.c           |  2 ++
+>  fs/ext2/super.c          |  2 ++
+>  fs/ext4/ext4.h           | 10 +++++++++-
+>  fs/ext4/super.c          | 17 +++++++++++++++--
+>  fs/f2fs/file.c           | 21 ++++++++++++---------
+>  fs/fat/inode.c           | 12 ++++++++++++
+>  fs/freevxfs/vxfs_super.c |  2 ++
+>  fs/hpfs/hpfs_fn.h        |  6 ++----
+>  fs/hpfs/super.c          |  2 ++
+>  fs/inode.c               | 33 ++++++++++++++++++++++++++++++++-
+>  fs/isofs/inode.c         |  7 +++++++
+>  fs/jffs2/fs.c            |  3 +++
+>  fs/jfs/super.c           |  2 ++
+>  fs/kernfs/inode.c        |  7 +++----
+>  fs/minix/inode.c         |  2 ++
+>  fs/namespace.c           | 33 ++++++++++++++++++++++++++++++++-
+>  fs/nfs/super.c           | 20 +++++++++++++++++++-
+>  fs/ntfs/inode.c          | 21 ++++++++++++---------
+>  fs/omfs/inode.c          |  4 ++++
+>  fs/orangefs/super.c      |  2 ++
+>  fs/pstore/ram.c          |  2 ++
+>  fs/qnx4/inode.c          |  2 ++
+>  fs/qnx6/inode.c          |  2 ++
+>  fs/reiserfs/super.c      |  3 +++
+>  fs/romfs/super.c         |  2 ++
+>  fs/squashfs/super.c      |  2 ++
+>  fs/super.c               |  2 ++
+>  fs/sysv/super.c          |  5 ++++-
+>  fs/ubifs/file.c          | 21 ++++++++++++---------
+>  fs/ufs/super.c           |  7 +++++++
+>  fs/utimes.c              |  6 ++----
+>  fs/xfs/xfs_super.c       |  2 ++
+>  include/linux/fs.h       |  5 +++++
+>  include/linux/time64.h   |  2 ++
+>  48 files changed, 298 insertions(+), 72 deletions(-)
 
 
 _______________________________________________
