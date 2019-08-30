@@ -2,101 +2,95 @@ Return-Path: <v9fs-developer-bounces@lists.sourceforge.net>
 X-Original-To: lists+v9fs-developer@lfdr.de
 Delivered-To: lists+v9fs-developer@lfdr.de
 Received: from lists.sourceforge.net (lists.sourceforge.net [216.105.38.7])
-	by mail.lfdr.de (Postfix) with ESMTPS id 57C87A2C56
-	for <lists+v9fs-developer@lfdr.de>; Fri, 30 Aug 2019 03:32:59 +0200 (CEST)
-Received: from [127.0.0.1] (helo=sfs-ml-1.v29.lw.sourceforge.com)
-	by sfs-ml-1.v29.lw.sourceforge.com with esmtp (Exim 4.90_1)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7549DA2C7D
+	for <lists+v9fs-developer@lfdr.de>; Fri, 30 Aug 2019 03:49:31 +0200 (CEST)
+Received: from [127.0.0.1] (helo=sfs-ml-4.v29.lw.sourceforge.com)
+	by sfs-ml-4.v29.lw.sourceforge.com with esmtp (Exim 4.90_1)
 	(envelope-from <v9fs-developer-bounces@lists.sourceforge.net>)
-	id 1i3VmY-0006QP-Pi; Fri, 30 Aug 2019 01:32:54 +0000
+	id 1i3W2a-0003Ab-DT; Fri, 30 Aug 2019 01:49:28 +0000
 Received: from [172.30.20.202] (helo=mx.sourceforge.net)
- by sfs-ml-1.v29.lw.sourceforge.com with esmtps
+ by sfs-ml-4.v29.lw.sourceforge.com with esmtps
  (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.90_1)
- (envelope-from <hubcap@omnibond.com>) id 1i3VmX-0006QE-Te
- for v9fs-developer@lists.sourceforge.net; Fri, 30 Aug 2019 01:32:53 +0000
+ (envelope-from <hubcap@omnibond.com>) id 1i3W2Z-0003AV-Ll
+ for v9fs-developer@lists.sourceforge.net; Fri, 30 Aug 2019 01:49:27 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=sourceforge.net; s=x; h=Content-Transfer-Encoding:Content-Type:Cc:To:
- Subject:Message-ID:Date:From:In-Reply-To:References:MIME-Version:Sender:
- Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender
- :Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
+ d=sourceforge.net; s=x; h=Content-Type:Cc:To:Subject:Message-ID:Date:From:
+ In-Reply-To:References:MIME-Version:Sender:Reply-To:Content-Transfer-Encoding
+ :Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+ Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
  List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=4TfZVE6zvYYuoOuB/Rxqa+Mlm3vtxZPY12krCFPSTtI=; b=jh/PDLUBlVRqPRJ1v5Ku95e6s9
- 65SesTZ1aCQSglcdXjwK1kuhr4+bVOS74+z4Xj1U6NFKZYbK4XbAZvajAc9dk7x/efPZ7+AIV4IOt
- QuOuvoaAjmnxrlNf7a8Fuioz+8EpGdNnjK/HMCIrx09JLeJsCyIn3vq8/TcMF0nR/kIA=;
+ bh=+IuQC8pbIafmSwD8SbGVAzn/DZ0LTbah8BkBemk6zek=; b=UYraY2q02ojLtrSP4LGLk8rpDW
+ tUrusgIE3ZvFYMMVHqZcjKAxO7jXA9bZHawtCxsbG0chn2Aa4EhY3TpTSHYu0XgwSZuohh8kjxFQ1
+ Mqn5N+gbkCz6OW++yW4sbmAbltJV767diit2C/RXnwcMiOB3iRV/Q4kO4g/WAG5pqOks=;
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  ;
- h=Content-Transfer-Encoding:Content-Type:Cc:To:Subject:Message-ID:Date:From
- :In-Reply-To:References:MIME-Version:Sender:Reply-To:Content-ID:
+ h=Content-Type:Cc:To:Subject:Message-ID:Date:From:In-Reply-To:References:
+ MIME-Version:Sender:Reply-To:Content-Transfer-Encoding:Content-ID:
  Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
  :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
  List-Post:List-Owner:List-Archive;
- bh=4TfZVE6zvYYuoOuB/Rxqa+Mlm3vtxZPY12krCFPSTtI=; b=Xln4flltGyJXApiSAfqbnF1X2C
- HRHskOQCAjYkCfiaqz46f+TTtaLrUoXDPKF+3DOsmh5r27Z0Itm9QTwiBlcGzvADpRcpnZi3VQ3x0
- KtDkn0LG2QvQdEJWk6HEkizoQB4wmQaT/9DQvtSOAWiEB7hyMiG7AH9a4cchulgwe/98=;
-Received: from mail-yw1-f68.google.com ([209.85.161.68])
+ bh=+IuQC8pbIafmSwD8SbGVAzn/DZ0LTbah8BkBemk6zek=; b=j7qf2XzyiGK09vcNgWfQpSCEbn
+ 9NenoBwixsfLlPj0k2Q9799lPfX9B2+52XnhG8P3zqGblkx7RrZ+rGNq2QVf1SXdGOBwLgdej67SL
+ aefkIy0y8nw3vbaamO6bqg2BlExvm6iUQ4fhZ6q1NFOaH/jUtEnPwhi1xu7g2iMdHiiA=;
+Received: from mail-yw1-f67.google.com ([209.85.161.67])
  by sfi-mx-4.v28.lw.sourceforge.com with esmtps
  (TLSv1.2:ECDHE-RSA-AES128-GCM-SHA256:128) (Exim 4.90_1)
- id 1i3VmW-002t6X-32
- for v9fs-developer@lists.sourceforge.net; Fri, 30 Aug 2019 01:32:53 +0000
-Received: by mail-yw1-f68.google.com with SMTP id 129so1215921ywb.8
+ id 1i3W2Y-002tmN-79
+ for v9fs-developer@lists.sourceforge.net; Fri, 30 Aug 2019 01:49:27 +0000
+Received: by mail-yw1-f67.google.com with SMTP id 129so1226524ywb.8
  for <v9fs-developer@lists.sourceforge.net>;
- Thu, 29 Aug 2019 18:32:51 -0700 (PDT)
+ Thu, 29 Aug 2019 18:49:25 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=omnibond-com.20150623.gappssmtp.com; s=20150623;
  h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc:content-transfer-encoding;
- bh=4TfZVE6zvYYuoOuB/Rxqa+Mlm3vtxZPY12krCFPSTtI=;
- b=rsF3TnYvnJjkhMrqd8jgi2b1fWfnS720m/snkWNYBAl3jogwp2mEsqA8h0meBBMFCG
- mupgLKrOXopsTT3mx+lDcAZLHUPbfCw/vXrZaEIvlfIiq4H0dj/IKCul0NWP4fpGLsu4
- 48Lini1zfDu9D/EL0CeWiI8kZAXrgg08x+hcJWXhpsmSN701z4+zSsQ5V2A/N+PZ/ko+
- cAveXQxi5GTfOnxm/M0L2QMcpa0QpEp0UoezlsX6vklrx1noOLsykTvVpPGdg1yASetm
- NGCTD4uF7gFM2G4DP0Fj0jWpPyOxMpJF0KkXFU1tGtaTorkpzYDBwzJA49OyfPjy95xt
- U/rA==
+ :cc; bh=+IuQC8pbIafmSwD8SbGVAzn/DZ0LTbah8BkBemk6zek=;
+ b=FGYyo76P5II4TE0xyyEdll3m2ufcqhN3TwhgI6WWOYj3toWhxeSi1wWMnzOp+D+rYj
+ ahd/4sJOU/IaAo7fV5KpR4dy/NEnkI1UPi4BR9HH0itETNn+Hditb/hnVnP9oH/cyNg4
+ oI/T5YJcX1gIvRAs4gjgcyFpS6Se90hdq2vCkSsM9WNmJBY7Ycu/Ay47jlkEZ0BEznLj
+ bnxVQVgo6gmqDF8OmKQJnD/UyjSMDAyIfFY4B9AG7e1HO4urtYx5HaPIY5KSCwE1BSTn
+ LymvSnfnU7tZBJ24uBJnsgaKmzRTtIBHnwqi8KIi0Il9SHJcQtsaNRWzW9wHZdDsxfKj
+ tuYw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc:content-transfer-encoding;
- bh=4TfZVE6zvYYuoOuB/Rxqa+Mlm3vtxZPY12krCFPSTtI=;
- b=YRQJMt4g/Ft5MbonbjyktSHj0s27IvK6I7cAeNlR+MdNiVuijVr4rSDFYy1Xow56C/
- y9YCym+LBkAqJr67uU3KjSfKuaIUNrpwg9XZvPG8euVqYl9l0rmNtjMx9Koo3wYTC/8Q
- SCFvj9VeV8ZMMXjIO12kYkzh881jluYisBe2e1xVzRKTmuPCo31uvdepITllvFyjUkKI
- dw9brXu3hzBghqJ9POwMmnRCk0URtF5WnYflwYD+D6BM9TpPZQRm14MnOjMFvVcDlO8m
- cxel1Ehl3qkgu2dZ1s/nZbhPAzwnt53aiuvuZlirqCxItFEyxjc3BqejcoRdCnC84sy4
- rTzA==
-X-Gm-Message-State: APjAAAVLkDKSPw6LE0zkw5CQnyb1h4Gvz72X5AILGexzbAGC7XbMVC4H
- kQQC3WF7XCEH2nZ7x323JjvDuBy8+lqi1UkCL3puNA==
-X-Google-Smtp-Source: APXvYqwS/gBw6GYqWJhwCNBmHR6+W2ONQRTVjMY8ZXLyRIgVZbf1blJaiiDec2a/U/ArNO35ME5xZuocZ9cXu0GpPKQ=
-X-Received: by 2002:a0d:d596:: with SMTP id x144mr9018446ywd.69.1567128290041; 
- Thu, 29 Aug 2019 18:24:50 -0700 (PDT)
+ :message-id:subject:to:cc;
+ bh=+IuQC8pbIafmSwD8SbGVAzn/DZ0LTbah8BkBemk6zek=;
+ b=hk0LRKI14Q4eifg8GDEDI2B1NXdhThYx8C3o2gi0kNdPETNbcOu/vaEu10GEE9bjpJ
+ MXuQRdS/+BW2yaIvv2eefUUk/yx62r6XreWiUKx7JYtiHskqLE4+V0yR5VWFKtX5N7uG
+ irFPHRE1p7eONUfUvPdtoPrDHTzbAJZv8gtgjCmJItGSAOLSnyOf7R3lHDM1Ov/ZnAw4
+ uTlFvIG7qk2c/6Sy4DeVGz/x2asP04bSvv/mxdgFc0jw4StRXk2EYz9/b/+bXqYGaDlQ
+ FoeSlAnEBPArvUwzhvcGa24n9CVRrV3k2N+6idXTeiIXYurV839FXdEOrP+c4Jz2zMjF
+ 9V5w==
+X-Gm-Message-State: APjAAAVLEobKn5hBFEcA7ikVXwv4rY3Fur8pQtnj2R6FhaDJ0/HgaGXG
+ mmOlG0yPpdfNr6z/Zh0kKX7WDWLTfN5jCG60CWLtHg==
+X-Google-Smtp-Source: APXvYqxAu3ghLEx4a7gfcA71cO2rSrBRWU6Icj84myb4LlhRF0l0un6rKVRkx0QZ124nnLqeAoTJBmXR1ZEKYdU440U=
+X-Received: by 2002:a81:3681:: with SMTP id d123mr9784376ywa.348.1567128029653; 
+ Thu, 29 Aug 2019 18:20:29 -0700 (PDT)
 MIME-Version: 1.0
-References: <20190827150544.151031-1-salyzyn@android.com>
- <20190828142423.GA1955@infradead.org>
- <5dd09a38-fffb-36f2-505b-be2ddf6bb750@android.com>
-In-Reply-To: <5dd09a38-fffb-36f2-505b-be2ddf6bb750@android.com>
+References: <20190829041132.26677-1-deepa.kernel@gmail.com>
+ <CABeXuvoKD83B7iUqE33Y9E2OVtf61DKv-swZr-N=ozz-cMmGOA@mail.gmail.com>
+In-Reply-To: <CABeXuvoKD83B7iUqE33Y9E2OVtf61DKv-swZr-N=ozz-cMmGOA@mail.gmail.com>
 From: Mike Marshall <hubcap@omnibond.com>
-Date: Thu, 29 Aug 2019 21:24:38 -0400
-Message-ID: <CAOg9mSTCC4Z3RpEyppC50B+pnSBbV0sr-F7hbsM-B+z3c-AZVA@mail.gmail.com>
-To: Mark Salyzyn <salyzyn@android.com>
+Date: Thu, 29 Aug 2019 21:20:18 -0400
+Message-ID: <CAOg9mSR25eAH7e1KhDZt_uscJSzyuSmELbCxgyh=-KWRxjZtcw@mail.gmail.com>
+To: Deepa Dinamani <deepa.kernel@gmail.com>
 X-Spam-Score: 0.0 (/)
 X-Spam-Report: Spam Filtering performed by mx.sourceforge.net.
  See http://spamassassin.org/tag/ for more details.
- 0.0 URIBL_BLOCKED ADMINISTRATOR NOTICE: The query to URIBL was blocked.
- See
- http://wiki.apache.org/spamassassin/DnsBlocklists#dnsbl-block
- for more information. [URIs: android.com]
+ -0.0 RCVD_IN_DNSWL_NONE     RBL: Sender listed at https://www.dnswl.org/, no
+ trust [209.85.161.67 listed in list.dnswl.org]
  0.0 RCVD_IN_MSPIKE_H3      RBL: Good reputation (+3)
- [209.85.161.68 listed in wl.mailspike.net]
+ [209.85.161.67 listed in wl.mailspike.net]
  0.0 SPF_NONE               SPF: sender does not publish an SPF Record
  0.0 SPF_HELO_NONE          SPF: HELO does not publish an SPF Record
  -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
  0.1 DKIM_SIGNED            Message has a DKIM or DK signature,
  not necessarily valid
- -0.0 RCVD_IN_DNSWL_NONE     RBL: Sender listed at https://www.dnswl.org/, no
- trust [209.85.161.68 listed in list.dnswl.org]
  0.0 RCVD_IN_MSPIKE_WL      Mailspike good senders
  -0.0 AWL AWL: Adjusted score from AWL reputation of From: address
-X-Headers-End: 1i3VmW-002t6X-32
-Subject: Re: [V9fs-developer] [PATCH v8] Add flags option to get xattr
- method paired to __vfs_getxattr
+X-Headers-End: 1i3W2Y-002tmN-79
+Subject: Re: [V9fs-developer] [GIT PULL] vfs: Add support for timestamp
+ limits
 X-BeenThere: v9fs-developer@lists.sourceforge.net
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -108,83 +102,173 @@ List-Post: <mailto:v9fs-developer@lists.sourceforge.net>
 List-Help: <mailto:v9fs-developer-request@lists.sourceforge.net?subject=help>
 List-Subscribe: <https://lists.sourceforge.net/lists/listinfo/v9fs-developer>, 
  <mailto:v9fs-developer-request@lists.sourceforge.net?subject=subscribe>
-Cc: Latchesar Ionkov <lucho@ionkov.net>, Hugh Dickins <hughd@google.com>,
- James Morris <jmorris@namei.org>, Christoph Hellwig <hch@infradead.org>,
- devel@lists.orangefs.org, Eric Van Hensbergen <ericvh@gmail.com>,
- Joel Becker <jlbec@evilplan.org>, Anna Schumaker <anna.schumaker@netapp.com>,
- Trond Myklebust <trond.myklebust@hammerspace.com>,
- Mathieu Malaterre <malat@debian.org>,
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- LKML <linux-kernel@vger.kernel.org>, Jan Kara <jack@suse.com>,
- Casey Schaufler <casey@schaufler-ca.com>, Dave Kleikamp <shaggy@kernel.org>,
- linux-doc@vger.kernel.org, Jeff Layton <jlayton@kernel.org>,
- Chao Yu <yuchao0@huawei.com>, Mimi Zohar <zohar@linux.ibm.com>,
- linux-cifs@vger.kernel.org, Paul Moore <paul@paul-moore.com>,
+Cc: Latchesar Ionkov <lucho@ionkov.net>,
+ Martin Brandenburg <martin@omnibond.com>, jfs-discussion@lists.sourceforge.net,
+ Dave Kleikamp <shaggy@kernel.org>, al@alarsen.net, yuchao0@huawei.com,
+ Bob Copeland <me@bobcopeland.com>, Adrian Hunter <adrian.hunter@intel.com>,
+ Andreas Dilger <adilger.kernel@dilger.ca>, mikulas@artax.karlin.mff.cuni.cz,
+ stoph Hellwig <hch@lst.de>, nico@fluxnic.net, linux-cifs@vger.kernel.org, "Yan,
+ Zheng" <zyan@redhat.com>, Sage Weil <sage@redhat.com>,
  "Darrick J. Wong" <darrick.wong@oracle.com>,
- Eric Sandeen <sandeen@sandeen.net>, kernel-team@android.com,
- selinux@vger.kernel.org, Brian Foster <bfoster@redhat.com>,
- reiserfs-devel@vger.kernel.org, Tejun Heo <tj@kernel.org>,
- Jaegeuk Kim <jaegeuk@kernel.org>, Theodore Ts'o <tytso@mit.edu>,
- Miklos Szeredi <miklos@szeredi.hu>, "Linux F2FS DEV,
- Mailing List" <linux-f2fs-devel@lists.sourceforge.net>,
- Benjamin Coddington <bcodding@redhat.com>, linux-integrity@vger.kernel.org,
- Martin Brandenburg <martin@omnibond.com>, Chris Mason <clm@fb.com>,
- linux-mtd <linux-mtd@lists.infradead.org>, linux-afs@lists.infradead.org,
- Jonathan Corbet <corbet@lwn.net>, Vyacheslav Dubeyko <slava@dubeyko.com>,
- Allison Henderson <allison.henderson@oracle.com>,
+ y2038 Mailman List <y2038@lists.linaro.org>,
+ Richard Weinberger <richard@nod.at>, Steve French <sfrench@samba.org>,
+ Anton Vorontsov <anton@enomsg.org>, linux@armlinux.org.uk,
+ codalist@coda.cs.cmu.edu, Christoph Hellwig <hch@infradead.org>,
+ coda@cs.cmu.edu, V9FS Developers <v9fs-developer@lists.sourceforge.net>,
  Ilya Dryomov <idryomov@gmail.com>,
- Ext4 Developers List <linux-ext4@vger.kernel.org>,
- Stephen Smalley <sds@tycho.nsa.gov>, Serge Hallyn <serge@hallyn.com>,
- Gao Xiang <gaoxiang25@huawei.com>, Eric Paris <eparis@parisplace.org>,
- ceph-devel <ceph-devel@vger.kernel.org>,
+ Ext4 Developers List <linux-ext4@vger.kernel.org>, salah.triki@gmail.com,
+ devel@lists.orangefs.org, Evgeniy Dushistov <dushistov@mail.ru>,
+ Kees Cook <keescook@chromium.org>, Arnd Bergmann <arnd@arndb.de>,
+ Eric Van Hensbergen <ericvh@gmail.com>, Jan Kara <jack@suse.com>,
+ reiserfs-devel@vger.kernel.org, Tejun Heo <tj@kernel.org>,
+ Alexander Viro <viro@zeniv.linux.org.uk>, aivazian.tigran@gmail.com,
+ phillip@squashfs.org.uk, David Sterba <dsterba@suse.com>,
+ Jaegeuk Kim <jaegeuk@kernel.org>, ceph-devel <ceph-devel@vger.kernel.org>,
+ trond.myklebust@hammerspace.com, OGAWA Hirofumi <hirofumi@mail.parknet.co.jp>,
+ Andreas Dilger <adilger@dilger.ca>, Jan Harkes <jaharkes@cs.cmu.edu>,
  Linux NFS Mailing List <linux-nfs@vger.kernel.org>,
- linux-mm <linux-mm@kvack.org>, samba-technical@lists.samba.org,
- linux-xfs@vger.kernel.org, Bob Peterson <rpeterso@redhat.com>,
- linux-fsdevel <linux-fsdevel@vger.kernel.org>, linux-erofs@lists.ozlabs.org,
- "David S. Miller" <davem@davemloft.net>, ocfs2-devel@oss.oracle.com,
- jfs-discussion@lists.sourceforge.net, Jan Kara <jack@suse.cz>,
- Eric Biggers <ebiggers@google.com>, Adrian Hunter <adrian.hunter@intel.com>,
- David Howells <dhowells@redhat.com>, Joseph Qi <joseph.qi@linux.alibaba.com>,
- Andreas Dilger <adilger.kernel@dilger.ca>, devel@driverdev.osuosl.org,
- "J. Bruce Fields" <bfields@redhat.com>,
- Andreas Gruenbacher <agruenba@redhat.com>, Sage Weil <sage@redhat.com>,
- Richard Weinberger <richard@nod.at>, Mark Fasheh <mark@fasheh.com>,
- cluster-devel@redhat.com, Steve French <sfrench@samba.org>,
- V9FS Developers <v9fs-developer@lists.sourceforge.net>,
- Bharath Vedartham <linux.bhar@gmail.com>, Jann Horn <jannh@google.com>,
- ecryptfs@vger.kernel.org, Josef Bacik <josef@toxicpanda.com>,
- Dave Chinner <dchinner@redhat.com>, David Sterba <dsterba@suse.com>,
- Artem Bityutskiy <dedekind1@gmail.com>, netdev@vger.kernel.org,
- linux-unionfs@vger.kernel.org, stable@vger.kernel.org,
- Tyler Hicks <tyhicks@canonical.com>, linux-security-module@vger.kernel.org,
- Phillip Lougher <phillip@squashfs.org.uk>,
- David Woodhouse <dwmw2@infradead.org>, linux-btrfs@vger.kernel.org,
- Alexander Viro <viro@zeniv.linux.org.uk>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+ Tony Luck <tony.luck@intel.com>, Theodore Ts'o <tytso@mit.edu>,
+ luisbg@kernel.org, Artem Bityutskiy <dedekind1@gmail.com>,
+ linux-ntfs-dev@lists.sourceforge.net, Greg KH <gregkh@linuxfoundation.org>,
+ linux-karma-devel@lists.sourceforge.net, jlayton@kernel.org,
+ Linux Kernel Mailing List <linux-kernel@vger.kernel.org>, "Linux F2FS DEV,
+ Mailing List" <linux-f2fs-devel@lists.sourceforge.net>,
+ linux-xfs@vger.kernel.org, Colin Cross <ccross@android.com>,
+ Linux FS-devel Mailing List <linux-fsdevel@vger.kernel.org>,
+ linux-mtd <linux-mtd@lists.infradead.org>,
+ David Woodhouse <dwmw2@infradead.org>,
+ Anna Schumaker <anna.schumaker@netapp.com>, Joel Becker <jlbec@evilplan.org>
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: v9fs-developer-bounces@lists.sourceforge.net
 
-SSBhZGRlZCB0aGlzIHBhdGNoIHNlcmllcyBvbiB0b3Agb2YgTGludXggNS4zLXJjNiBhbmQgcmFu
-IHhmc3Rlc3RzCm9uIG9yYW5nZWZzIHdpdGggbm8gcmVncmVzc2lvbnMuCgpBY2tlZC1ieTogTWlr
-ZSBNYXJzaGFsbCA8aHViY2FwQG9tbmlib25kLmNvbT4KCi1NaWtlCgpPbiBXZWQsIEF1ZyAyOCwg
-MjAxOSBhdCAxMDo0MCBBTSBNYXJrIFNhbHl6eW4gPHNhbHl6eW5AYW5kcm9pZC5jb20+IHdyb3Rl
-Ogo+Cj4gT24gOC8yOC8xOSA3OjI0IEFNLCBDaHJpc3RvcGggSGVsbHdpZyB3cm90ZToKPiA+IE9u
-IFR1ZSwgQXVnIDI3LCAyMDE5IGF0IDA4OjA1OjE1QU0gLTA3MDAsIE1hcmsgU2FseXp5biB3cm90
-ZToKPiA+PiBSZXBsYWNlIGFyZ3VtZW50cyBmb3IgZ2V0IGFuZCBzZXQgeGF0dHIgbWV0aG9kcywg
-YW5kIF9fdmZzX2dldHhhdHRyCj4gPj4gYW5kIF9fdmZzX3NldGF4dHIgZnVuY3Rpb25zIHdpdGgg
-YSByZWZlcmVuY2UgdG8gdGhlIGZvbGxvd2luZyBub3cKPiA+PiBjb21tb24gYXJndW1lbnQgc3Ry
-dWN0dXJlOgo+ID4gWWlrZXMuICBUaGF0IGxvb2tzIGxpa2UgYSBtZXNzLiAgV2h5IGNhbid0IHdl
-IHBhc3MgYSBrZXJuZWwtb25seQo+ID4gZmxhZyBpbiB0aGUgZXhpc3RpbmcgZmxhZ3MgZmllbGQg
-Zm9yIOKCiz5zZXQgYW5kIGFkZCBhIGZsYWdzIGZpZWxkCj4gPiB0byAtPmdldD8gIFBhc3Npbmcg
-bWV0aG9kcyBieSBzdHJ1Y3R1cmUgYWx3YXlzIHRlbmRzIHRvIGJlIGEgbWVzcy4KPgo+IFRoaXMg
-d2FzIGEgcmVzcG9uc2UgdG8gR3JlZ0tIQCBjcml0aWNpc20sIGFuIGVhcmxpZXIgcGF0Y2ggc2V0
-IGp1c3QKPiBhZGRlZCBhIGZsYWcgYXMgeW91IHN0YXRlZCB0byBnZXQgbWV0aG9kLCB1bnRpbCBj
-b21wbGFpbnRzIG9mIGFuCj4gZXhjZXNzaXZlbHkgbG9uZyBhcmd1bWVudCBsaXN0IGFuZCBmcmFn
-aWxpdHkgdG8gYWRkIG9yIGNoYW5nZSBtb3JlCj4gYXJndW1lbnRzLgo+Cj4gU28gbWFueSB3YXlz
-IGhhdmUgYmVlbiB0cmllZCB0byBza2luIHRoaXMgY2F0IC4uLiB0aGUgcmlzayB3YXMgdGFrZW4g
-dG8KPiBwbGVhc2Ugc29tZSwgYW5kIHdlIG5vdyBoYXZlIGh1bmRyZWRzIG9mIHN0YWtlaG9sZGVy
-cywgd2hlbiB0aGUgZmlyc3QKPiBwYXRjaCBzZXQgd2FzIGxlc3MgdGhhbiBhIGRvemVuLiBBIHJl
-Y2lwZSBmb3IgZmFpbHVyZT8KPgo+IC0tIE1hcmsKPgoKCl9fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fClY5ZnMtZGV2ZWxvcGVyIG1haWxpbmcgbGlzdApWOWZz
-LWRldmVsb3BlckBsaXN0cy5zb3VyY2Vmb3JnZS5uZXQKaHR0cHM6Ly9saXN0cy5zb3VyY2Vmb3Jn
-ZS5uZXQvbGlzdHMvbGlzdGluZm8vdjlmcy1kZXZlbG9wZXIK
+Hi Deepa...
+
+I installed this patch series on top of Linux 5.3-rc6 and ran xfstests
+on orangefs and got a regression... generic/258 failed
+with: "Timestamp wrapped"...
+
+# cat results/generic/258.out.bad
+QA output created by 258
+Creating file with timestamp of Jan 1, 1960
+Testing for negative seconds since epoch
+Timestamp wrapped: 0
+Timestamp wrapped
+(see /home/hubcap/xfstests-dev/results//generic/258.full for details)
+
+Just to double check, I compiled Linux 5.3-rc6 without the timestamp series,
+and 258 passed... then added the patch series back and the failure returned...
+
+Also.... when I was using "git am" to apply the patch series, the ceph patch
+failed, so I "git skipped" it...
+
+I obtained the patch series from: https://github.com/deepa-hub/vfs limits
+today.
+
+-Mike
+
+On Thu, Aug 29, 2019 at 12:38 AM Deepa Dinamani <deepa.kernel@gmail.com> wrote:
+>
+> Adding the others who were on original cc, just in case.
+> - Deepa
+>
+> On Wed, Aug 28, 2019 at 9:12 PM Deepa Dinamani <deepa.kernel@gmail.com> wrote:
+> >
+> > Hi Al, Arnd,
+> >
+> > This is a pull request for filling in min and max timestamps for filesystems.
+> > I've added all the acks, and dropped the adfs patch. That will be merged through
+> > Russell's tree.
+> >
+> > Thanks,
+> > Deepa
+> >
+> > The following changes since commit 5d18cb62218608a1388858880ad3ec76d6cb0d3b:
+> >
+> >   Add linux-next specific files for 20190828 (2019-08-28 19:59:14 +1000)
+> >
+> > are available in the Git repository at:
+> >
+> >   https://github.com/deepa-hub/vfs limits
+> >
+> > for you to fetch changes up to f0f216afa4c7e4dee9121fde52ccf57f76119188:
+> >
+> >   isofs: Initialize filesystem timestamp ranges (2019-08-28 19:19:36 -0700)
+> >
+> > ----------------------------------------------------------------
+> > Deepa Dinamani (19):
+> >       vfs: Add file timestamp range support
+> >       vfs: Add timestamp_truncate() api
+> >       timestamp_truncate: Replace users of timespec64_trunc
+> >       mount: Add mount warning for impending timestamp expiry
+> >       utimes: Clamp the timestamps before update
+> >       fs: Fill in max and min timestamps in superblock
+> >       9p: Fill min and max timestamps in sb
+> >       ext4: Initialize timestamps limits
+> >       fs: nfs: Initialize filesystem timestamp ranges
+> >       fs: cifs: Initialize filesystem timestamp ranges
+> >       fs: fat: Initialize filesystem timestamp ranges
+> >       fs: affs: Initialize filesystem timestamp ranges
+> >       fs: sysv: Initialize filesystem timestamp ranges
+> >       fs: ceph: Initialize filesystem timestamp ranges
+> >       fs: orangefs: Initialize filesystem timestamp ranges
+> >       fs: hpfs: Initialize filesystem timestamp ranges
+> >       fs: omfs: Initialize filesystem timestamp ranges
+> >       pstore: fs superblock limits
+> >       isofs: Initialize filesystem timestamp ranges
+> >
+> >  fs/9p/vfs_super.c        |  6 +++++-
+> >  fs/affs/amigaffs.c       |  2 +-
+> >  fs/affs/amigaffs.h       |  3 +++
+> >  fs/affs/inode.c          |  4 ++--
+> >  fs/affs/super.c          |  4 ++++
+> >  fs/attr.c                | 21 ++++++++++++---------
+> >  fs/befs/linuxvfs.c       |  2 ++
+> >  fs/bfs/inode.c           |  2 ++
+> >  fs/ceph/super.c          |  2 ++
+> >  fs/cifs/cifsfs.c         | 22 ++++++++++++++++++++++
+> >  fs/cifs/netmisc.c        | 14 +++++++-------
+> >  fs/coda/inode.c          |  3 +++
+> >  fs/configfs/inode.c      | 12 ++++++------
+> >  fs/cramfs/inode.c        |  2 ++
+> >  fs/efs/super.c           |  2 ++
+> >  fs/ext2/super.c          |  2 ++
+> >  fs/ext4/ext4.h           | 10 +++++++++-
+> >  fs/ext4/super.c          | 17 +++++++++++++++--
+> >  fs/f2fs/file.c           | 21 ++++++++++++---------
+> >  fs/fat/inode.c           | 12 ++++++++++++
+> >  fs/freevxfs/vxfs_super.c |  2 ++
+> >  fs/hpfs/hpfs_fn.h        |  6 ++----
+> >  fs/hpfs/super.c          |  2 ++
+> >  fs/inode.c               | 33 ++++++++++++++++++++++++++++++++-
+> >  fs/isofs/inode.c         |  7 +++++++
+> >  fs/jffs2/fs.c            |  3 +++
+> >  fs/jfs/super.c           |  2 ++
+> >  fs/kernfs/inode.c        |  7 +++----
+> >  fs/minix/inode.c         |  2 ++
+> >  fs/namespace.c           | 33 ++++++++++++++++++++++++++++++++-
+> >  fs/nfs/super.c           | 20 +++++++++++++++++++-
+> >  fs/ntfs/inode.c          | 21 ++++++++++++---------
+> >  fs/omfs/inode.c          |  4 ++++
+> >  fs/orangefs/super.c      |  2 ++
+> >  fs/pstore/ram.c          |  2 ++
+> >  fs/qnx4/inode.c          |  2 ++
+> >  fs/qnx6/inode.c          |  2 ++
+> >  fs/reiserfs/super.c      |  3 +++
+> >  fs/romfs/super.c         |  2 ++
+> >  fs/squashfs/super.c      |  2 ++
+> >  fs/super.c               |  2 ++
+> >  fs/sysv/super.c          |  5 ++++-
+> >  fs/ubifs/file.c          | 21 ++++++++++++---------
+> >  fs/ufs/super.c           |  7 +++++++
+> >  fs/utimes.c              |  6 ++----
+> >  fs/xfs/xfs_super.c       |  2 ++
+> >  include/linux/fs.h       |  5 +++++
+> >  include/linux/time64.h   |  2 ++
+> >  48 files changed, 298 insertions(+), 72 deletions(-)
+
+
+_______________________________________________
+V9fs-developer mailing list
+V9fs-developer@lists.sourceforge.net
+https://lists.sourceforge.net/lists/listinfo/v9fs-developer
