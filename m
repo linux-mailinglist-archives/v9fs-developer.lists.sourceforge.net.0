@@ -2,89 +2,95 @@ Return-Path: <v9fs-developer-bounces@lists.sourceforge.net>
 X-Original-To: lists+v9fs-developer@lfdr.de
 Delivered-To: lists+v9fs-developer@lfdr.de
 Received: from lists.sourceforge.net (lists.sourceforge.net [216.105.38.7])
-	by mail.lfdr.de (Postfix) with ESMTPS id F0323A3E5E
-	for <lists+v9fs-developer@lfdr.de>; Fri, 30 Aug 2019 21:28:20 +0200 (CEST)
-Received: from [127.0.0.1] (helo=sfs-ml-1.v29.lw.sourceforge.com)
-	by sfs-ml-1.v29.lw.sourceforge.com with esmtp (Exim 4.90_1)
+	by mail.lfdr.de (Postfix) with ESMTPS id AFFAAA467A
+	for <lists+v9fs-developer@lfdr.de>; Sun,  1 Sep 2019 00:50:38 +0200 (CEST)
+Received: from [127.0.0.1] (helo=sfs-ml-2.v29.lw.sourceforge.com)
+	by sfs-ml-2.v29.lw.sourceforge.com with esmtp (Exim 4.90_1)
 	(envelope-from <v9fs-developer-bounces@lists.sourceforge.net>)
-	id 1i3mZF-0004i1-0r; Fri, 30 Aug 2019 19:28:17 +0000
+	id 1i4CCX-0006kU-D4; Sat, 31 Aug 2019 22:50:33 +0000
 Received: from [172.30.20.202] (helo=mx.sourceforge.net)
- by sfs-ml-1.v29.lw.sourceforge.com with esmtps
+ by sfs-ml-2.v29.lw.sourceforge.com with esmtps
  (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.90_1)
- (envelope-from
- <3x3hpXQkbAFAAGH2s33w9s770v.y66y3wCAw9u65Bw5B.u64@M3KW2WVRGUFZ5GODRSRYTGD7.apphosting.bounces.google.com>)
- id 1i3mZD-0004hk-E1
- for v9fs-developer@lists.sourceforge.net; Fri, 30 Aug 2019 19:28:15 +0000
+ (envelope-from <deepa.kernel@gmail.com>)
+ id 1i4CCU-0006je-2H; Sat, 31 Aug 2019 22:50:30 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=sourceforge.net; s=x; h=Content-Type:To:From:Subject:Message-ID:Date:
- MIME-Version:Sender:Reply-To:Cc:Content-Transfer-Encoding:Content-ID:
- Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
- :Resent-Message-ID:In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:
+ d=sourceforge.net; s=x; h=Content-Type:Cc:To:Subject:Message-ID:Date:From:
+ In-Reply-To:References:MIME-Version:Sender:Reply-To:Content-Transfer-Encoding
+ :Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+ Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
  List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=FsZT3YOiyb+RSdO03B9uEqR9QzRRsgEZdKe73XL3LGE=; b=cWK3hB/8hQRfTYD0qbkQRw6vvG
- v7hZEhLpm9/WOHMiVi/5Lqht5VBZNhogOVclfObD2VQLWn8CLVXxNQTV3M0iSPIyrGR8ijeylcZfJ
- eKc2K8WwXJBg74lkJ4MTi5boKa+n70L04f1YK0pS4FrHrfWxnn/bD76Meq8pjMc5ya7g=;
+ bh=1oc+uIAZAMYuOvhDPlikaVjREiDzvlKPCeE4Nt1ZrJE=; b=Xgi4cExYXMEAVD42fL0IUSlEud
+ NsuyxKgdLsufH/nLYO0ejqvEPawr5GDpsB4xt+nIjvuVBd3jG3XMcZcZaUN2QGd10aZ0le44Hpk7p
+ cvGYHmzmEVisdQGDoTNHxVvO20mhEcmmdVv9Yz3mthSJYFixurnmLRxB9Y/6ySUDkfZ4=;
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  ;
- h=Content-Type:To:From:Subject:Message-ID:Date:MIME-Version:Sender:Reply-To
- :Cc:Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
- Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:
- References:List-Id:List-Help:List-Unsubscribe:List-Subscribe:List-Post:
- List-Owner:List-Archive; bh=FsZT3YOiyb+RSdO03B9uEqR9QzRRsgEZdKe73XL3LGE=; b=U
- i9karggtrs5NRisV3B53eWVqgkLfhVChKU9ByuX+med6ckFbb7PZAkUDy2XReK8iJSwss/CbZl/eQ
- 7pALinExiAhPoQYL8PYiTC/xYOnwwTukkF0NCJBHd1HYFdVqXZH0bqUcLJbZPJt0QadxVjFMKUh8D
- OMcgz1SNRoTRO3mg=;
-Received: from mail-io1-f69.google.com ([209.85.166.69])
- by sfi-mx-3.v28.lw.sourceforge.com with esmtps
+ h=Content-Type:Cc:To:Subject:Message-ID:Date:From:In-Reply-To:References:
+ MIME-Version:Sender:Reply-To:Content-Transfer-Encoding:Content-ID:
+ Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
+ :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
+ List-Post:List-Owner:List-Archive;
+ bh=1oc+uIAZAMYuOvhDPlikaVjREiDzvlKPCeE4Nt1ZrJE=; b=WW9xuaeWm+DCv8uxjCrCHG6s36
+ Rod6phCfWnCGAoZBWz+S1It0yBe15YqQVDGt+2VjL2hJkoNZZndgaahT+jqI/SDgTOO++dUxR1fI6
+ ihS7YhZq5s3N/m2JAefAazw8KivDG9l6Tgs9y4yR9eu/NW6j0Y4X3fvY8gmD9qsuXY4I=;
+Received: from mail-io1-f66.google.com ([209.85.166.66])
+ by sfi-mx-4.v28.lw.sourceforge.com with esmtps
  (TLSv1.2:ECDHE-RSA-AES128-GCM-SHA256:128) (Exim 4.90_1)
- id 1i3mZB-004DN1-QF
- for v9fs-developer@lists.sourceforge.net; Fri, 30 Aug 2019 19:28:15 +0000
-Received: by mail-io1-f69.google.com with SMTP id z23so5937410ioj.15
- for <v9fs-developer@lists.sourceforge.net>;
- Fri, 30 Aug 2019 12:28:13 -0700 (PDT)
+ id 1i4CCQ-004nkk-73; Sat, 31 Aug 2019 22:50:30 +0000
+Received: by mail-io1-f66.google.com with SMTP id p12so21870239iog.5;
+ Sat, 31 Aug 2019 15:50:25 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc; bh=1oc+uIAZAMYuOvhDPlikaVjREiDzvlKPCeE4Nt1ZrJE=;
+ b=aXcTp5ORUJ9v6lvzIgnO3kFSbLpXDiwrjmF8wY+g2guepKA06q9bi3Rm9msLfVfOjQ
+ KNRvWmw8ak6S3NwzAdmSxBIeG1Sb4eSNm5e0ZjmAgk9ZlM4k21SSALJLCNoiAvHUizK4
+ zOmrFrhQJgVIgE1sjux3jaSKnzRaF/6H90IkDMl/BMTaq8C/TCYMXEN7O4ZJQQtSqb0a
+ GFuX6/WoU+ZaNaNKXJ3mYccQ7I8pJ4ma0YPOCysvVSCuZ0omHUn2dF26yyXMeNNj0vzq
+ AXHMjcuekyx7LGzDWacrH+K9/2E8bcBn8KFkWIoTNCkGetG/vTsXGmlPsdXHkSwFh3F/
+ GYew==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:date:message-id:subject:from:to;
- bh=FsZT3YOiyb+RSdO03B9uEqR9QzRRsgEZdKe73XL3LGE=;
- b=dlGQBoyVtvq9jRI7wqtH6R7vMPkDfPOY6fOF3BEjNIicDfLf9TLg+4sSE1kZolhsRw
- 34RucAT9PSRujytNg+pkKhMunxYLhMEW6w16b3wVqrNG+E46AR42BTgjWT+k4F4G/gvp
- +D53whnQQF9SqX584vK01YZZLd1GXKeYEqbUweHvv/jbu8sfimRFU174b3pWsO4fWvLL
- k2yEqhbpPVNoV1MGOt54NakuR7M1yElZS1GzRxmLyJfwMRc2naoPLIbtu7PEyCCpP5o5
- Mx4gSafkgkU7W0FHZH+3zDaJh2Am17Sn9X/GVHDZZgR8OiaprgPVgLoUhir19bsoSRqg
- GlhQ==
-X-Gm-Message-State: APjAAAUiXrWSBDv9pKvOCK/POn9JpgnHJYnpU6SZ5fv104A9YOqItIUf
- KyPRXUs0BBjqbMIq/SmFgeChyjoFR3R1MMysQaRVmqms8sHH
-X-Google-Smtp-Source: APXvYqyIC295ngKPQvaPHvVRjgln7ZY90xzgn2aZ5O1dn/DrG9wZm3Vq2gAOhal8qpX/PfOpzXdW2QpihYYiAcBNzXYuuaem2zH0
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc;
+ bh=1oc+uIAZAMYuOvhDPlikaVjREiDzvlKPCeE4Nt1ZrJE=;
+ b=TRRLnFHdeDdDvP1Duxn1UZJPwItbMcZ/wHQqIusPUPV4ekLZXrH1CM3BqtSWmMcilS
+ IGtcZyY1CRq92fIefalox/wv/rlrPfFXeOTk1LHe6Dv2+VBXyLmkny2OrK2W+5w6kIUR
+ MWOxsN5oCb9FUU5xCT+CGSRkfcNvk1YAn6/9BNAG9RGeKb58WVvApWJ0otiiYrG1Nqx1
+ /p2tYEntA2wCL4qBqS+qIBVdHmao3jUbxAtn7qmUckpQMcQUAa+1UbMeS+BVtqk6pLS8
+ 3hDfp6/mZGqo33Spd7f01OLt5OEq3CZcWP6CiqpqkHBtWrBpwDFf3qZdJAVAulu5gVvT
+ KP5g==
+X-Gm-Message-State: APjAAAUdzp6TRRLWd4QRdP/wgFM2v1BLdfx1Vw0Qe/vF/EPiiMvFjxvg
+ RNCcafL6eESnexPecoX4FZb/uCghjzjZ+SZVp3c=
+X-Google-Smtp-Source: APXvYqyTRG8TWby1CMDSb8c+t9UhDYnpFv7cJIBGTaHwW7d+/cTfJvK+wGxNxwIJlNTmqmGSFTPf1WR9NOkPmivvWCA=
+X-Received: by 2002:a02:904d:: with SMTP id y13mr12652386jaf.139.1567291820141; 
+ Sat, 31 Aug 2019 15:50:20 -0700 (PDT)
 MIME-Version: 1.0
-X-Received: by 2002:a6b:ba85:: with SMTP id k127mr904273iof.101.1567193287992; 
- Fri, 30 Aug 2019 12:28:07 -0700 (PDT)
-Date: Fri, 30 Aug 2019 12:28:07 -0700
-X-Google-Appengine-App-Id: s~syzkaller
-X-Google-Appengine-App-Id-Alias: syzkaller
-Message-ID: <00000000000039af4d05915a9f56@google.com>
-From: syzbot <syzbot+8b41a1365f1106fd0f33@syzkaller.appspotmail.com>
-To: asmadeus@codewreck.org, davem@davemloft.net, ericvh@gmail.com, 
- linux-kernel@vger.kernel.org, lucho@ionkov.net, netdev@vger.kernel.org, 
- syzkaller-bugs@googlegroups.com, v9fs-developer@lists.sourceforge.net
-X-Spam-Score: 3.1 (+++)
+References: <20190829041132.26677-1-deepa.kernel@gmail.com>
+ <CABeXuvoKD83B7iUqE33Y9E2OVtf61DKv-swZr-N=ozz-cMmGOA@mail.gmail.com>
+ <CAOg9mSR25eAH7e1KhDZt_uscJSzyuSmELbCxgyh=-KWRxjZtcw@mail.gmail.com>
+ <CABeXuvpe9vADLZUr4zHrH0izt=1BaLQvBMxAu=T1A2CV3AN4vA@mail.gmail.com>
+ <CAK8P3a0NMUv2xOw=fCxJXo_2wbmBMG24Fst3U1LT-m7C8uxz0w@mail.gmail.com>
+In-Reply-To: <CAK8P3a0NMUv2xOw=fCxJXo_2wbmBMG24Fst3U1LT-m7C8uxz0w@mail.gmail.com>
+From: Deepa Dinamani <deepa.kernel@gmail.com>
+Date: Sat, 31 Aug 2019 15:50:08 -0700
+Message-ID: <CABeXuvrm76iKnFrd7Wo=z4d0v7i7xT+Ta37D-mwVwy7-P3YyUg@mail.gmail.com>
+To: Arnd Bergmann <arnd@arndb.de>
+X-Spam-Score: -0.1 (/)
 X-Spam-Report: Spam Filtering performed by mx.sourceforge.net.
  See http://spamassassin.org/tag/ for more details.
- 0.0 URIBL_BLOCKED ADMINISTRATOR NOTICE: The query to URIBL was blocked.
- See
- http://wiki.apache.org/spamassassin/DnsBlocklists#dnsbl-block
- for more information. [URIs: googlegroups.com]
+ 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail provider
+ (deepa.kernel[at]gmail.com)
  -0.0 RCVD_IN_DNSWL_NONE     RBL: Sender listed at https://www.dnswl.org/, no
- trust [209.85.166.69 listed in list.dnswl.org]
- 0.3 FROM_LOCAL_HEX         From: localpart has long hexadecimal sequence
- -0.0 RCVD_IN_MSPIKE_H2      RBL: Average reputation (+2)
- [209.85.166.69 listed in wl.mailspike.net]
- 0.2 HEADER_FROM_DIFFERENT_DOMAINS From and EnvelopeFrom 2nd level mail
- domains are different
+ trust [209.85.166.66 listed in list.dnswl.org]
  -0.0 SPF_PASS               SPF: sender matches SPF record
  0.0 SPF_HELO_NONE          SPF: HELO does not publish an SPF Record
- 2.5 SORTED_RECIPS          Recipient list is sorted by address
-X-Headers-End: 1i3mZB-004DN1-QF
-Subject: [V9fs-developer] INFO: task hung in p9_fd_close
+ -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from author's
+ domain
+ -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+ 0.1 DKIM_SIGNED            Message has a DKIM or DK signature,
+ not necessarily valid
+X-Headers-End: 1i4CCQ-004nkk-73
+Subject: Re: [V9fs-developer] [GIT PULL] vfs: Add support for timestamp
+ limits
 X-BeenThere: v9fs-developer@lists.sourceforge.net
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -96,97 +102,122 @@ List-Post: <mailto:v9fs-developer@lists.sourceforge.net>
 List-Help: <mailto:v9fs-developer-request@lists.sourceforge.net?subject=help>
 List-Subscribe: <https://lists.sourceforge.net/lists/listinfo/v9fs-developer>, 
  <mailto:v9fs-developer-request@lists.sourceforge.net?subject=subscribe>
+Cc: Latchesar Ionkov <lucho@ionkov.net>,
+ Martin Brandenburg <martin@omnibond.com>, jfs-discussion@lists.sourceforge.net,
+ Dave Kleikamp <shaggy@kernel.org>, Anders Larsen <al@alarsen.net>,
+ Chao Yu <yuchao0@huawei.com>, Bob Copeland <me@bobcopeland.com>,
+ Adrian Hunter <adrian.hunter@intel.com>,
+ Andreas Dilger <adilger.kernel@dilger.ca>, mikulas@artax.karlin.mff.cuni.cz,
+ stoph Hellwig <hch@lst.de>, Nicolas Pitre <nico@fluxnic.net>,
+ Mike Marshall <hubcap@omnibond.com>, linux-cifs@vger.kernel.org, "Yan,
+ Zheng" <zyan@redhat.com>, Sage Weil <sage@redhat.com>,
+ "Darrick J. Wong" <darrick.wong@oracle.com>,
+ y2038 Mailman List <y2038@lists.linaro.org>,
+ Richard Weinberger <richard@nod.at>, Steve French <sfrench@samba.org>,
+ Anton Vorontsov <anton@enomsg.org>,
+ Russell King - ARM Linux <linux@armlinux.org.uk>, codalist@coda.cs.cmu.edu,
+ Christoph Hellwig <hch@infradead.org>, coda@cs.cmu.edu,
+ V9FS Developers <v9fs-developer@lists.sourceforge.net>,
+ Ilya Dryomov <idryomov@gmail.com>,
+ Ext4 Developers List <linux-ext4@vger.kernel.org>, salah.triki@gmail.com,
+ devel@lists.orangefs.org, Evgeniy Dushistov <dushistov@mail.ru>,
+ Kees Cook <keescook@chromium.org>, Eric Van Hensbergen <ericvh@gmail.com>,
+ Jan Kara <jack@suse.com>, reiserfs-devel@vger.kernel.org,
+ Tejun Heo <tj@kernel.org>, Alexander Viro <viro@zeniv.linux.org.uk>,
+ aivazian.tigran@gmail.com, phillip@squashfs.org.uk,
+ David Sterba <dsterba@suse.com>, Jaegeuk Kim <jaegeuk@kernel.org>,
+ ceph-devel <ceph-devel@vger.kernel.org>, trond.myklebust@hammerspace.com,
+ OGAWA Hirofumi <hirofumi@mail.parknet.co.jp>,
+ Andreas Dilger <adilger@dilger.ca>, Jan Harkes <jaharkes@cs.cmu.edu>,
+ Linux NFS Mailing List <linux-nfs@vger.kernel.org>,
+ Tony Luck <tony.luck@intel.com>, Theodore Ts'o <tytso@mit.edu>,
+ Luis de Bethencourt <luisbg@kernel.org>,
+ Artem Bityutskiy <dedekind1@gmail.com>, linux-ntfs-dev@lists.sourceforge.net,
+ Greg KH <gregkh@linuxfoundation.org>, linux-karma-devel@lists.sourceforge.net,
+ Jeff Layton <jlayton@kernel.org>,
+ Linux Kernel Mailing List <linux-kernel@vger.kernel.org>, "Linux F2FS DEV,
+ Mailing List" <linux-f2fs-devel@lists.sourceforge.net>,
+ linux-xfs <linux-xfs@vger.kernel.org>, Colin Cross <ccross@android.com>,
+ Linux FS-devel Mailing List <linux-fsdevel@vger.kernel.org>,
+ linux-mtd <linux-mtd@lists.infradead.org>,
+ David Woodhouse <dwmw2@infradead.org>,
+ Anna Schumaker <anna.schumaker@netapp.com>, Joel Becker <jlbec@evilplan.org>
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"; DelSp="yes"
 Errors-To: v9fs-developer-bounces@lists.sourceforge.net
 
-Hello,
+> I think it's unclear from the orangefs source code what the intention is,
+> as there is a mixed of signed and unsigned types used for the inode
+> stamps:
+>
+> #define encode_PVFS_time encode_int64_t
+> #define encode_int64_t(pptr,x) do { \
+>     *(int64_t*) *(pptr) = cpu_to_le64(*(x)); \
+>     *(pptr) += 8; \
+> } while (0)
+> #define decode_PVFS_time decode_int64_t
+> #define decode_int64_t(pptr,x) do { \
+>     *(x) = le64_to_cpu(*(int64_t*) *(pptr)); \
+>     *(pptr) += 8; \
+> } while (0)
+>
+> This suggests that making it unsigned may have been an accident.
+>
+> Then again,  it's clearly and consistently printed as unsigned in
+> user space:
+>
+>         gossip_debug(
+>             GOSSIP_GETATTR_DEBUG, " VERSION is %llu, mtime is %llu\n",
+>             llu(s_op->attr.mtime), llu(resp_attr->mtime));
 
-syzbot found the following crash on:
+I think I had noticed these two and decided maybe the intention was to
+use unsigned types.
 
-HEAD commit:    6525771f Merge tag 'arc-5.3-rc7' of git://git.kernel.org/p..
-git tree:       upstream
-console output: https://syzkaller.appspot.com/x/log.txt?x=1118a71e600000
-kernel config:  https://syzkaller.appspot.com/x/.config?x=58485246ad14eafe
-dashboard link: https://syzkaller.appspot.com/bug?extid=8b41a1365f1106fd0f33
-compiler:       clang version 9.0.0 (/home/glider/llvm/clang  
-80fee25776c2fb61e74c1ecb1a523375c2500b69)
-syz repro:      https://syzkaller.appspot.com/x/repro.syz?x=1125ee12600000
+> A related issue I noticed is this:
+>
+> PVFS_time PINT_util_mktime_version(PVFS_time time)
+> {
+>     struct timeval t = {0,0};
+>     PVFS_time version = (time << 32);
+>
+>     gettimeofday(&t, NULL);
+>     version |= (PVFS_time)t.tv_usec;
+>     return version;
+> }
+> PVFS_time PINT_util_mkversion_time(PVFS_time version)
+> {
+>     return (PVFS_time)(version >> 32);
+> }
+> static PINT_sm_action getattr_verify_attribs(
+>         struct PINT_smcb *smcb, job_status_s *js_p)
+> {
+> ...
+>     resp_attr->mtime = PINT_util_mkversion_time(s_op->attr.mtime);
+> ...
+> }
+>
+> which suggests that at least for some purposes, the mtime field
+> is only an unsigned 32-bit number (1970..2106). From my readiing,
+> this affects the on-disk format, but not the protocol implemented
+> by the kernel.
+>
+> atime and ctime are apparently 64-bit, but mtime is only 32-bit
+> seconds, plus a 32-bit 'version'. I suppose the server could be
+> fixed to allow a larger range, but probably would take it out of
+> the 'version' bits, not the upper half.
 
-IMPORTANT: if you fix the bug, please add the following tag to the commit:
-Reported-by: syzbot+8b41a1365f1106fd0f33@syzkaller.appspotmail.com
+I had missed this part. Thanks.
 
-INFO: task syz-executor.1:13699 blocked for more than 143 seconds.
-       Not tainted 5.3.0-rc6+ #94
-"echo 0 > /proc/sys/kernel/hung_task_timeout_secs" disables this message.
-syz-executor.1  D28888 13699   9148 0x00004004
-Call Trace:
-  context_switch kernel/sched/core.c:3254 [inline]
-  __schedule+0x877/0xc50 kernel/sched/core.c:3880
-  schedule+0x131/0x1e0 kernel/sched/core.c:3947
-  schedule_timeout+0x46/0x240 kernel/time/timer.c:1783
-  do_wait_for_common+0x2e7/0x4d0 kernel/sched/completion.c:83
-  __wait_for_common kernel/sched/completion.c:104 [inline]
-  wait_for_common kernel/sched/completion.c:115 [inline]
-  wait_for_completion+0x47/0x60 kernel/sched/completion.c:136
-  __flush_work+0xd4/0x150 kernel/workqueue.c:3040
-  __cancel_work_timer+0x420/0x570 kernel/workqueue.c:3127
-  cancel_work_sync+0x17/0x20 kernel/workqueue.c:3163
-  p9_conn_destroy net/9p/trans_fd.c:868 [inline]
-  p9_fd_close+0x297/0x3c0 net/9p/trans_fd.c:898
-  p9_client_create+0x974/0xee0 net/9p/client.c:1068
-  v9fs_session_init+0x192/0x18e0 fs/9p/v9fs.c:406
-  v9fs_mount+0x82/0x810 fs/9p/vfs_super.c:120
-  legacy_get_tree+0xf9/0x1a0 fs/fs_context.c:661
-  vfs_get_tree+0x8f/0x380 fs/super.c:1413
-  do_new_mount fs/namespace.c:2791 [inline]
-  do_mount+0x169d/0x2490 fs/namespace.c:3111
-  ksys_mount+0xcc/0x100 fs/namespace.c:3320
-  __do_sys_mount fs/namespace.c:3334 [inline]
-  __se_sys_mount fs/namespace.c:3331 [inline]
-  __x64_sys_mount+0xbf/0xd0 fs/namespace.c:3331
-  do_syscall_64+0xfe/0x140 arch/x86/entry/common.c:296
-  entry_SYSCALL_64_after_hwframe+0x49/0xbe
-RIP: 0033:0x459879
-Code: 8b 44 24 18 48 8b 4c 24 30 48 83 c1 08 48 89 0c 24 48 89 44 24 08 48  
-c7 44 24 10 10 00 00 00 e8 0d da fa ff 48 8b 44 24 18 48 <89> 44 24 40 48  
-8b 6c 24 20 48 83 c4 28 c3 e8 14 b9 ff ff eb 82 cc
-RSP: 002b:00007f6b4dda7c78 EFLAGS: 00000246 ORIG_RAX: 00000000000000a5
-RAX: ffffffffffffffda RBX: 0000000000000005 RCX: 0000000000459879
-RDX: 0000000020000140 RSI: 0000000020000000 RDI: 0000000000000000
-RBP: 000000000075c118 R08: 0000000020000480 R09: 0000000000000000
-R10: 0000000000000000 R11: 0000000000000246 R12: 00007f6b4dda86d4
-R13: 00000000004c5e2f R14: 00000000004da930 R15: 00000000ffffffff
-INFO: lockdep is turned off.
-NMI backtrace for cpu 0
-CPU: 0 PID: 1057 Comm: khungtaskd Not tainted 5.3.0-rc6+ #94
-Hardware name: Google Google Compute Engine/Google Compute Engine, BIOS  
-Google 01/01/2011
-Call Trace:
-  __dump_stack lib/dump_stack.c:77 [inline]
-  dump_stack+0x1d8/0x2f8 lib/dump_stack.c:113
-  nmi_cpu_backtrace+0xaf/0x1a0 lib/nmi_backtrace.c:101
-  nmi_trigger_cpumask_backtrace+0x174/0x290 lib/nmi_backtrace.c:62
-  arch_trigger_cpumask_backtrace+0x10/0x20 arch/x86/kernel/apic/hw_nmi.c:38
-  trigger_all_cpu_backtrace+0x17/0x20 include/linux/nmi.h:146
-  check_hung_uninterruptible_tasks kernel/hung_task.c:205 [inline]
-  watchdog+0xbb9/0xbd0 kernel/hung_task.c:289
-  kthread+0x332/0x350 kernel/kthread.c:255
-  ret_from_fork+0x24/0x30 arch/x86/entry/entry_64.S:352
-Sending NMI from CPU 0 to CPUs 1:
-NMI backtrace for cpu 1 skipped: idling at native_safe_halt+0xe/0x10  
-arch/x86/include/asm/irqflags.h:60
+> To be on the safe side, I suppose the kernel can only assume
+> an unsigned 32-bit range to be available. If the server gets
+> extended beyond that, it would have to pass a feature flag.
 
+This makes sense to me also. And, as Arnd pointed out on the IRC, if
+there are negative timestamps that are already in use, this will be a
+problem for those use cases.
+I can update tha patch to use limits 0-u32_max.
 
----
-This bug is generated by a bot. It may contain errors.
-See https://goo.gl/tpsmEJ for more information about syzbot.
-syzbot engineers can be reached at syzkaller@googlegroups.com.
-
-syzbot will keep track of this bug report. See:
-https://goo.gl/tpsmEJ#status for how to communicate with syzbot.
-syzbot can test patches for this bug, for details see:
-https://goo.gl/tpsmEJ#testing-patches
+-Deepa
 
 
 _______________________________________________
