@@ -2,75 +2,63 @@ Return-Path: <v9fs-developer-bounces@lists.sourceforge.net>
 X-Original-To: lists+v9fs-developer@lfdr.de
 Delivered-To: lists+v9fs-developer@lfdr.de
 Received: from lists.sourceforge.net (lists.sourceforge.net [216.105.38.7])
-	by mail.lfdr.de (Postfix) with ESMTPS id D9F96C0E39
-	for <lists+v9fs-developer@lfdr.de>; Sat, 28 Sep 2019 01:00:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 899C1C13D7
+	for <lists+v9fs-developer@lfdr.de>; Sun, 29 Sep 2019 09:44:26 +0200 (CEST)
 Received: from [127.0.0.1] (helo=sfs-ml-2.v29.lw.sourceforge.com)
 	by sfs-ml-2.v29.lw.sourceforge.com with esmtp (Exim 4.90_1)
 	(envelope-from <v9fs-developer-bounces@lists.sourceforge.net>)
-	id 1iDzE5-0003TH-1r; Fri, 27 Sep 2019 23:00:37 +0000
+	id 1iETsU-0008SY-MV; Sun, 29 Sep 2019 07:44:22 +0000
 Received: from [172.30.20.202] (helo=mx.sourceforge.net)
  by sfs-ml-2.v29.lw.sourceforge.com with esmtps
  (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.90_1)
- (envelope-from <pr-tracker-bot@kernel.org>) id 1iDzE0-0003T2-OX
- for v9fs-developer@lists.sourceforge.net; Fri, 27 Sep 2019 23:00:32 +0000
+ (envelope-from <johnkenzie@jkenzie.com>) id 1iETsS-0008SO-Ms
+ for v9fs-developer@lists.sourceforge.net; Sun, 29 Sep 2019 07:44:20 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=sourceforge.net; s=x; h=Cc:To:Date:Message-Id:References:In-Reply-To:From:
- Subject:Sender:Reply-To:MIME-Version:Content-Type:Content-Transfer-Encoding:
- Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
- Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
+ d=sourceforge.net; s=x; h=Content-Transfer-Encoding:Content-Type:MIME-Version
+ :Message-ID:Date:Subject:To:From:Reply-To:Sender:Cc:Content-ID:
+ Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
+ :Resent-Message-ID:In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:
  List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=LMiM6xuRlGmT0FZ/91HPhX/kTfMT6LHs6CMoPLn4unI=; b=YfXHAy44ulRCcJ3hn6xP1Xj2dw
- ktyuovfbCHBvqCeXa80mDTeGzh9zKA6OGga+3ZoAaj6AIuCwiN9Q1BBPL8aXryho/8J6GukI4H7ti
- S2PdGgpYtCPv6jsLUeE0V//T4ai0kBkwAxnd74K7bYtxBfu2Lrkkq0nhUNvmGQ7vikec=;
+ bh=HAGYyat/Ioipmif16/3mYPUNGDy2x2hUTWhmDt4NWfI=; b=RO5rWyVCjGwIrSys68nd2MDmKH
+ Uhwir2rPfTctedTV+e48Zl6u3hXGT4uFYvDWBntcHTyE/69bQK/93a0/dr6baGx/hhfuxbYAutsnV
+ 7U8/U7+3WN+tden+E4ANwxAHLSDY1OiBzIn0qRk8Nt8AvPVg4gYFDUXeVneiir/i5AnI=;
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  ;
- h=Cc:To:Date:Message-Id:References:In-Reply-To:From:Subject:Sender:Reply-To
- :MIME-Version:Content-Type:Content-Transfer-Encoding:Content-ID:
- Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
- :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
- List-Post:List-Owner:List-Archive;
- bh=LMiM6xuRlGmT0FZ/91HPhX/kTfMT6LHs6CMoPLn4unI=; b=M70OmVbRuge8EY98AYvJo++sso
- WVQckwV0R9Wej/sX4V4ybU02ro/9F4+7FlcsalXY1NkkBL2/6jwH+pwld5V9CF9DPQIfVp7yuDS9T
- zcbO640vCsRlT1p6AISvmeJreE7rQAmPCsIHDJQG9s/SCaiidpOZljB8B6P7o3RYVPMk=;
-Received: from mail.kernel.org ([198.145.29.99])
- by sfi-mx-1.v28.lw.sourceforge.com with esmtps
- (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.92.2)
- id 1iDzDy-00CA5S-Oh
- for v9fs-developer@lists.sourceforge.net; Fri, 27 Sep 2019 23:00:31 +0000
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=default; t=1569625225;
- bh=sOmkUwDptShoBIASuX4SCcnaHcEbbpoN1nJZcqTmius=;
- h=From:In-Reply-To:References:Date:To:Cc:From;
- b=mQ7UH8+piZka+ufHrTF665+on+mZzFyvkeIXB5NsYUxwVhCF1+7xgSVMY8YbAk58N
- ohVkaeklk+avIiYnQ/t5VCdKOMityE7hHDbw0LssTa0bXOBisvLAmTMC5FB7j2ceKz
- h1U1Cf9f9061Low6y8uMVts0Ahfh5unpiZBRd94M=
-From: pr-tracker-bot@kernel.org
-In-Reply-To: <20190927142725.GA8169@nautica>
-References: <20190927142725.GA8169@nautica>
-X-PR-Tracked-List-Id: <linux-kernel.vger.kernel.org>
-X-PR-Tracked-Message-Id: <20190927142725.GA8169@nautica>
-X-PR-Tracked-Remote: https://github.com/martinetd/linux tags/9p-for-5.4
-X-PR-Tracked-Commit-Id: aafee43b72863f1f70aeaf1332d049916e8df239
-X-PR-Merge-Tree: torvalds/linux.git
-X-PR-Merge-Refname: refs/heads/master
-X-PR-Merge-Commit-Id: 9977b1a71488742606376c09e19e0074e4403cdf
-Message-Id: <156962522511.10299.7199492339418267253.pr-tracker-bot@kernel.org>
-Date: Fri, 27 Sep 2019 23:00:25 +0000
-To: Dominique Martinet <asmadeus@codewreck.org>
-X-Spam-Score: -0.5 (/)
+ h=Content-Transfer-Encoding:Content-Type:MIME-Version:Message-ID:Date:
+ Subject:To:From:Reply-To:Sender:Cc:Content-ID:Content-Description:Resent-Date
+ :Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:
+ References:List-Id:List-Help:List-Unsubscribe:List-Subscribe:List-Post:
+ List-Owner:List-Archive; bh=HAGYyat/Ioipmif16/3mYPUNGDy2x2hUTWhmDt4NWfI=; b=f
+ 1vSm4FaEXFr/OTrKPD97JweYx7lZeppUw56xwdYEb79/Uck35SOf8Mj2RigqtpJTYOpQ/ctyOL12F
+ SnMLDoq2Ekdx5Z2c3y8g0gAjKGQaW5Uk2Kj7zIkLyuaodBvm8ZkGDCUrJkP2tmuM0RnLur80tSFzG
+ C9tzBW6jQ4Q6hKUQ=;
+Received: from [134.175.243.164] (helo=mail.skwe.xyz)
+ by sfi-mx-3.v28.lw.sourceforge.com with esmtp (Exim 4.92.2)
+ id 1iETsR-00AIRN-C7
+ for v9fs-developer@lists.sourceforge.net; Sun, 29 Sep 2019 07:44:20 +0000
+Received: from jkenzie.com (unknown [103.125.191.239])
+ by mail.skwe.xyz (Postfix) with ESMTP id 5E12CC421D
+ for <v9fs-developer@lists.sourceforge.net>;
+ Sun, 29 Sep 2019 13:25:53 +0800 (CST)
+From: johnkenzie@jkenzie.com
+To: v9fs-developer@lists.sourceforge.net
+Date: 28 Sep 2019 22:25:54 -0700
+Message-ID: <20190928222554.88769BECAAC157B4@jkenzie.com>
+MIME-Version: 1.0
+X-Spam-Score: 5.0 (+++++)
 X-Spam-Report: Spam Filtering performed by mx.sourceforge.net.
  See http://spamassassin.org/tag/ for more details.
- -0.0 SPF_PASS               SPF: sender matches SPF record
+ 0.4 NO_DNS_FOR_FROM        DNS: Envelope sender has no MX or A DNS records
+ 0.0 SPF_NONE               SPF: sender does not publish an SPF Record
+ 0.8 DKIM_ADSP_NXDOMAIN     No valid author signature and domain not in DNS
  0.0 SPF_HELO_NONE          SPF: HELO does not publish an SPF Record
- -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from author's
- domain
- -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
- 0.1 DKIM_SIGNED            Message has a DKIM or DK signature,
- not necessarily valid
- -0.0 DKIMWL_WL_HIGH         DKIMwl.org - Whitelisted High sender
- -0.4 AWL AWL: Adjusted score from AWL reputation of From: address
-X-Headers-End: 1iDzDy-00CA5S-Oh
-Subject: Re: [V9fs-developer] [GIT PULL] 9p updates for 5.4
+ 0.2 FREEMAIL_REPLYTO_END_DIGIT Reply-To freemail username ends in digit
+ (johnkenzie0011[at]outlook.com)
+ 1.0 RDNS_NONE Delivered to internal network by a host with no rDNS
+ 2.5 FREEMAIL_FORGED_REPLYTO Freemail in Reply-To, but not From
+ 0.0 AWL AWL: Adjusted score from AWL reputation of From: address
+X-Headers-End: 1iETsR-00AIRN-C7
+Subject: [V9fs-developer] Partnership
 X-BeenThere: v9fs-developer@lists.sourceforge.net
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -82,26 +70,25 @@ List-Post: <mailto:v9fs-developer@lists.sourceforge.net>
 List-Help: <mailto:v9fs-developer-request@lists.sourceforge.net?subject=help>
 List-Subscribe: <https://lists.sourceforge.net/lists/listinfo/v9fs-developer>, 
  <mailto:v9fs-developer-request@lists.sourceforge.net?subject=subscribe>
-Cc: v9fs-developer@lists.sourceforge.net,
- Linus Torvalds <torvalds@linux-foundation.org>, linux-kernel@vger.kernel.org,
- netdev@vger.kernel.org
-MIME-Version: 1.0
+Reply-To: johnkenzie0011@outlook.com
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: v9fs-developer-bounces@lists.sourceforge.net
 
-The pull request you sent on Fri, 27 Sep 2019 16:27:26 +0200:
+Greetings,
 
-> https://github.com/martinetd/linux tags/9p-for-5.4
+My name is Engr John Kenzie of  Global Mining Company SL Limited 
+in Botswana. I am in search of a (Foreign Transaction Manager) 
+who will participant in our current Gold Sales Contracts between 
+our Mining Company and Prospective Gold Buyers. Please kindly 
+confirm to us if you are interested to participate in this Job 
+Contract.
 
-has been merged into torvalds/linux.git:
-https://git.kernel.org/torvalds/c/9977b1a71488742606376c09e19e0074e4403cdf
+If you have any question don't hesitate to let me know.
+Best Regards
 
-Thank you!
-
--- 
-Deet-doot-dot, I am a bot.
-https://korg.wiki.kernel.org/userdoc/prtracker
+John Kenzie
+Global Mining Company SL Limited
 
 
 _______________________________________________
