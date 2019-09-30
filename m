@@ -2,63 +2,62 @@ Return-Path: <v9fs-developer-bounces@lists.sourceforge.net>
 X-Original-To: lists+v9fs-developer@lfdr.de
 Delivered-To: lists+v9fs-developer@lfdr.de
 Received: from lists.sourceforge.net (lists.sourceforge.net [216.105.38.7])
-	by mail.lfdr.de (Postfix) with ESMTPS id 899C1C13D7
-	for <lists+v9fs-developer@lfdr.de>; Sun, 29 Sep 2019 09:44:26 +0200 (CEST)
-Received: from [127.0.0.1] (helo=sfs-ml-2.v29.lw.sourceforge.com)
-	by sfs-ml-2.v29.lw.sourceforge.com with esmtp (Exim 4.90_1)
+	by mail.lfdr.de (Postfix) with ESMTPS id 09374C1B1F
+	for <lists+v9fs-developer@lfdr.de>; Mon, 30 Sep 2019 07:49:37 +0200 (CEST)
+Received: from [127.0.0.1] (helo=sfs-ml-4.v29.lw.sourceforge.com)
+	by sfs-ml-4.v29.lw.sourceforge.com with esmtp (Exim 4.90_1)
 	(envelope-from <v9fs-developer-bounces@lists.sourceforge.net>)
-	id 1iETsU-0008SY-MV; Sun, 29 Sep 2019 07:44:22 +0000
+	id 1iEoYu-0000E4-Ow; Mon, 30 Sep 2019 05:49:32 +0000
 Received: from [172.30.20.202] (helo=mx.sourceforge.net)
- by sfs-ml-2.v29.lw.sourceforge.com with esmtps
+ by sfs-ml-4.v29.lw.sourceforge.com with esmtps
  (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.90_1)
- (envelope-from <johnkenzie@jkenzie.com>) id 1iETsS-0008SO-Ms
- for v9fs-developer@lists.sourceforge.net; Sun, 29 Sep 2019 07:44:20 +0000
+ (envelope-from <asmadeus@notk.org>) id 1iEoYt-0000Du-QG
+ for v9fs-developer@lists.sourceforge.net; Mon, 30 Sep 2019 05:49:31 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=sourceforge.net; s=x; h=Content-Transfer-Encoding:Content-Type:MIME-Version
- :Message-ID:Date:Subject:To:From:Reply-To:Sender:Cc:Content-ID:
- Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
- :Resent-Message-ID:In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:
+ d=sourceforge.net; s=x; h=In-Reply-To:Content-Type:MIME-Version:References:
+ Message-ID:Subject:Cc:To:From:Date:Sender:Reply-To:Content-Transfer-Encoding:
+ Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+ Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
  List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=HAGYyat/Ioipmif16/3mYPUNGDy2x2hUTWhmDt4NWfI=; b=RO5rWyVCjGwIrSys68nd2MDmKH
- Uhwir2rPfTctedTV+e48Zl6u3hXGT4uFYvDWBntcHTyE/69bQK/93a0/dr6baGx/hhfuxbYAutsnV
- 7U8/U7+3WN+tden+E4ANwxAHLSDY1OiBzIn0qRk8Nt8AvPVg4gYFDUXeVneiir/i5AnI=;
+ bh=EAnZIEzfuyAmhtDtDe4XGxHIp6MX51C1RF1LVyUBFLI=; b=Ggqfu0YAEdoC24rJjVOGLdp/io
+ 0abcLR+wntzPPDBXcxj7Vgr5Yc05Yxhgcq68kDuon9gSqkssT9MhpcMq5ykgLYZ5AHFhgY0fcxRX4
+ kvxryld+6gvtiprXgzoIkTGzgXfujcAThb0s+yRapfHLMf3CJEC7EfLXSlFfEqwU5+EM=;
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  ;
- h=Content-Transfer-Encoding:Content-Type:MIME-Version:Message-ID:Date:
- Subject:To:From:Reply-To:Sender:Cc:Content-ID:Content-Description:Resent-Date
- :Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:
- References:List-Id:List-Help:List-Unsubscribe:List-Subscribe:List-Post:
- List-Owner:List-Archive; bh=HAGYyat/Ioipmif16/3mYPUNGDy2x2hUTWhmDt4NWfI=; b=f
- 1vSm4FaEXFr/OTrKPD97JweYx7lZeppUw56xwdYEb79/Uck35SOf8Mj2RigqtpJTYOpQ/ctyOL12F
- SnMLDoq2Ekdx5Z2c3y8g0gAjKGQaW5Uk2Kj7zIkLyuaodBvm8ZkGDCUrJkP2tmuM0RnLur80tSFzG
- C9tzBW6jQ4Q6hKUQ=;
-Received: from [134.175.243.164] (helo=mail.skwe.xyz)
- by sfi-mx-3.v28.lw.sourceforge.com with esmtp (Exim 4.92.2)
- id 1iETsR-00AIRN-C7
- for v9fs-developer@lists.sourceforge.net; Sun, 29 Sep 2019 07:44:20 +0000
-Received: from jkenzie.com (unknown [103.125.191.239])
- by mail.skwe.xyz (Postfix) with ESMTP id 5E12CC421D
- for <v9fs-developer@lists.sourceforge.net>;
- Sun, 29 Sep 2019 13:25:53 +0800 (CST)
-From: johnkenzie@jkenzie.com
-To: v9fs-developer@lists.sourceforge.net
-Date: 28 Sep 2019 22:25:54 -0700
-Message-ID: <20190928222554.88769BECAAC157B4@jkenzie.com>
+ h=In-Reply-To:Content-Type:MIME-Version:References:Message-ID:Subject:Cc:To
+ :From:Date:Sender:Reply-To:Content-Transfer-Encoding:Content-ID:
+ Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
+ :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
+ List-Post:List-Owner:List-Archive;
+ bh=EAnZIEzfuyAmhtDtDe4XGxHIp6MX51C1RF1LVyUBFLI=; b=jf2fY3tUlpPpaAtcl/04V85q9M
+ cpDwBwtTafmiNGT6sY8iLOjLE/4uqh6aAfOvMM5aHkecKfrrjjPTDjoHRICvdrr0e5c+J8J9VBT9h
+ 9xEXLbAweLzmK6HYeX6nM58EZcP7f6CixFkewhKuNZQAE9YzHKil3/OSe9tZTzpbWows=;
+Received: from nautica.notk.org ([91.121.71.147])
+ by sfi-mx-4.v28.lw.sourceforge.com with esmtps
+ (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.92.2)
+ id 1iEoYr-00B73G-W0
+ for v9fs-developer@lists.sourceforge.net; Mon, 30 Sep 2019 05:49:31 +0000
+Received: by nautica.notk.org (Postfix, from userid 1001)
+ id 28964C009; Mon, 30 Sep 2019 07:49:23 +0200 (CEST)
+Date: Mon, 30 Sep 2019 07:49:08 +0200
+From: Dominique Martinet <asmadeus@codewreck.org>
+To: Mounesh Badiger <mounesh.b@gmail.com>
+Message-ID: <20190930054908.GB28400@nautica>
+References: <CAOGU1pxuDbnCW6MZtfoOcvkttVnAh=yK-YpQ1xFErhczyFQ5Ug@mail.gmail.com>
 MIME-Version: 1.0
-X-Spam-Score: 5.0 (+++++)
+Content-Disposition: inline
+In-Reply-To: <CAOGU1pxuDbnCW6MZtfoOcvkttVnAh=yK-YpQ1xFErhczyFQ5Ug@mail.gmail.com>
+User-Agent: Mutt/1.5.21 (2010-09-15)
+X-Spam-Score: 0.0 (/)
 X-Spam-Report: Spam Filtering performed by mx.sourceforge.net.
  See http://spamassassin.org/tag/ for more details.
- 0.4 NO_DNS_FOR_FROM        DNS: Envelope sender has no MX or A DNS records
- 0.0 SPF_NONE               SPF: sender does not publish an SPF Record
- 0.8 DKIM_ADSP_NXDOMAIN     No valid author signature and domain not in DNS
+ 0.0 HEADER_FROM_DIFFERENT_DOMAINS From and EnvelopeFrom 2nd level mail
+ domains are different
+ -0.0 SPF_PASS               SPF: sender matches SPF record
  0.0 SPF_HELO_NONE          SPF: HELO does not publish an SPF Record
- 0.2 FREEMAIL_REPLYTO_END_DIGIT Reply-To freemail username ends in digit
- (johnkenzie0011[at]outlook.com)
- 1.0 RDNS_NONE Delivered to internal network by a host with no rDNS
- 2.5 FREEMAIL_FORGED_REPLYTO Freemail in Reply-To, but not From
  0.0 AWL AWL: Adjusted score from AWL reputation of From: address
-X-Headers-End: 1iETsR-00AIRN-C7
-Subject: [V9fs-developer] Partnership
+X-Headers-End: 1iEoYr-00B73G-W0
+Subject: Re: [V9fs-developer] v9fs - loose cache usage
 X-BeenThere: v9fs-developer@lists.sourceforge.net
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -70,25 +69,89 @@ List-Post: <mailto:v9fs-developer@lists.sourceforge.net>
 List-Help: <mailto:v9fs-developer-request@lists.sourceforge.net?subject=help>
 List-Subscribe: <https://lists.sourceforge.net/lists/listinfo/v9fs-developer>, 
  <mailto:v9fs-developer-request@lists.sourceforge.net?subject=subscribe>
-Reply-To: johnkenzie0011@outlook.com
+Cc: V9fs-developer <v9fs-developer@lists.sourceforge.net>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: v9fs-developer-bounces@lists.sourceforge.net
 
-Greetings,
+Hi,
 
-My name is Engr John Kenzie of  Global Mining Company SL Limited 
-in Botswana. I am in search of a (Foreign Transaction Manager) 
-who will participant in our current Gold Sales Contracts between 
-our Mining Company and Prospective Gold Buyers. Please kindly 
-confirm to us if you are interested to participate in this Job 
-Contract.
+Mounesh Badiger wrote on Sun, Sep 29, 2019:
+> Hi Dominique,
 
-If you have any question don't hesitate to let me know.
-Best Regards
+Please post these to the v9fs-developer list, I'm sure more would be
+interested and/or would know better.
 
-John Kenzie
-Global Mining Company SL Limited
+I've added the list in Cc now so quoting the full text.
+
+> we are using 9p protocol for exposing our file system.
+> 
+> For caching metadata we are using cache=loose of v9fs.
+> 
+> Specifically we have modified v9fs to bypass cache for read/write of data,
+> we only using loose cache for metadata.
+> 
+> Now we are seeing issue, that after unlink most of fids are in cache and
+> v9fs is not sending final clunk and underlying filesystme accumulating lot
+> of unlinked fids but client perspective they are closed, but space is not
+> released.
+> 
+> 
+> I have debugged the issue and found that fids are stuck in cache, I used
+> d_prune_aliases() in v9fs_remove() to release inodes from cache.
+> 
+> Now I would like to understand is it safe to use d_prune_aliases() in
+> unlink path
+
+I'm not familiar with this part of the VFS but would say no for an
+obvious reason: d_prune_aliases will find an inode's hardlinks and kill
+their dentries ; unlink only removes a single hardlink so it's a bit
+unreasonable to kill all the aliases here.
+Even if that weren't the case it's doing __dentry_kill directly which is
+likely unsafe in a number of cases if others are using the dentry, it's
+going to rain use-after-frees...
+
+The unlink path might use an extra dput() on the dentry that was just
+unlinked though; that might need safeguards (not sure how two racing
+unlinks would be handled in the current code) but should work in
+general.
+
+
+However; you're pointing at a much more general problem, the 9p cache
+model is absolutely horrible - it's not just unlinked fids that aren't
+clunked, it's always keeping a fid on -all- entries it's ever seen, I
+personally never use it for this reason.
+
+The whole cache system is very optimistic and could use having some
+limits, even something as simple as an LRU might help contain the
+disaster a bit... Removing from LRU + dput on unlink would definitely
+make sense if one were to pop.
+Cache revalidation like NFS does (checking directory mtime to see if
+something changed and stuff like that) is probably going to be too
+complex but a simple LRU might be doable ; this is just keeping entries
+in cache for as long as the client has memory available but this isn't
+reasonable for a networked filesystem that keeps resources reserved per
+inode in cache (on the server and client).
+
+
+As a work-around for your problem though a simple flush on your client
+('echo 2 > /proc/sys/vm/drop_caches') might do the trick... maybe...
+
+> And can we safely bypass read/write call from cache and use cache only for
+> metadata. ?
+
+I don't think anyone has done that, but yet a new cache mode md-only
+shouldn't be hard to do and would probably work. You might want
+something like the cache=mmap setting for read/write otherwise some
+applications will fail.
+
+Quite a lot of code explicitely checks for v9ses->cache being
+CACHE_LOOSE or CACHE_FSCACHE though so instead of adding a third close
+here having a static inline helper to check if metadata should be cached
+might make more readable code...
+
+-- 
+Dominique
 
 
 _______________________________________________
