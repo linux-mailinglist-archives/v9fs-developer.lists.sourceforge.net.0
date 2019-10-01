@@ -2,26 +2,26 @@ Return-Path: <v9fs-developer-bounces@lists.sourceforge.net>
 X-Original-To: lists+v9fs-developer@lfdr.de
 Delivered-To: lists+v9fs-developer@lfdr.de
 Received: from lists.sourceforge.net (lists.sourceforge.net [216.105.38.7])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0C6FBC3B59
-	for <lists+v9fs-developer@lfdr.de>; Tue,  1 Oct 2019 18:44:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 28AA6C3B5E
+	for <lists+v9fs-developer@lfdr.de>; Tue,  1 Oct 2019 18:45:19 +0200 (CEST)
 Received: from [127.0.0.1] (helo=sfs-ml-4.v29.lw.sourceforge.com)
 	by sfs-ml-4.v29.lw.sourceforge.com with esmtp (Exim 4.90_1)
 	(envelope-from <v9fs-developer-bounces@lists.sourceforge.net>)
-	id 1iFLGN-0006w8-Rv; Tue, 01 Oct 2019 16:44:35 +0000
+	id 1iFLH3-0006yD-Vb; Tue, 01 Oct 2019 16:45:17 +0000
 Received: from [172.30.20.202] (helo=mx.sourceforge.net)
  by sfs-ml-4.v29.lw.sourceforge.com with esmtps
  (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.90_1)
- (envelope-from <sashal@kernel.org>) id 1iFLGM-0006w0-7z
- for v9fs-developer@lists.sourceforge.net; Tue, 01 Oct 2019 16:44:34 +0000
+ (envelope-from <sashal@kernel.org>) id 1iFLH2-0006y5-4u
+ for v9fs-developer@lists.sourceforge.net; Tue, 01 Oct 2019 16:45:16 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
  d=sourceforge.net; s=x; h=Content-Transfer-Encoding:MIME-Version:References:
  In-Reply-To:Message-Id:Date:Subject:Cc:To:From:Sender:Reply-To:Content-Type:
  Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
  Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
  List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=sEV1tAPqplvkHcfAIMxR+vJxW7+CYwoG9iNZoD7Ustc=; b=kTMx2PATycRszUq47+xqwNev+o
- CeavkJyTnQhFpvm8E4FQd6LymhEVIoumw6K9ejfxaIW7yuayq/TlZHbzSszFDxgy+MuX1xhWdik0H
- KXwUxHfNztVxXGTcuXAB3e2fNYOZkPFksXoZTsaTFrYrSutdkzlWeeExh83YpOe26foM=;
+ bh=nLdeDYI3CZ2uuURtRtuLeMziXEDWm4ffunfAVtw6e4U=; b=dNlhfFHsuy3/6cNX7h3TRcDykp
+ RykoiJBcs4sEuwZ6a+rX1EDd80m41XvCDp4FeqNJJusKgvEnNqvjBy99iu250XHXWlzT22PXsJie5
+ GWxXz2esJsJP/kCW+TMeNc4H7jTGKgYTJNPPINAc+vOw+hyLqpOnFYr6PMCOj01U0fRo=;
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  ;
  h=Content-Transfer-Encoding:MIME-Version:References:In-Reply-To:Message-Id:
@@ -29,35 +29,35 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
  :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
  List-Post:List-Owner:List-Archive;
- bh=sEV1tAPqplvkHcfAIMxR+vJxW7+CYwoG9iNZoD7Ustc=; b=d1sgt/njfN3TG42AK5GWtUsu7U
- tMdJbc2CyNYnCspLZYGugkPBY3HpRv4omobI4Ej1vy5IMomwmbiQYsHkNckULlykiczEI82aGOW2z
- 2gHxgxp9TQt5WpziMcnmr7CbPcnRhQfdthQrkyTBkf8UImCjxXwslPMajvuDjwsH1MJ8=;
+ bh=nLdeDYI3CZ2uuURtRtuLeMziXEDWm4ffunfAVtw6e4U=; b=S2djOwiX5Ewnr8ZyWBIhq762tB
+ Bj8mc5EESuyLZrnRbD7zwhaiOmhqhMPItjTKNSvmlXS3prAamVNz5iekCpTbHAeLlpJhETJ90SiRY
+ 9TpwV168NR1YQShw5YRZKGQAW7MEx8MUCXnw3zRiLq1TMJIJzRMFLYxkNvaMlopUbxdw=;
 Received: from mail.kernel.org ([198.145.29.99])
- by sfi-mx-1.v28.lw.sourceforge.com with esmtps
+ by sfi-mx-4.v28.lw.sourceforge.com with esmtps
  (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.92.2)
- id 1iFLGK-00HN3b-Oy
- for v9fs-developer@lists.sourceforge.net; Tue, 01 Oct 2019 16:44:34 +0000
+ id 1iFLH0-00D0ZZ-O9
+ for v9fs-developer@lists.sourceforge.net; Tue, 01 Oct 2019 16:45:16 +0000
 Received: from sasha-vm.mshome.net (c-73-47-72-35.hsd1.nh.comcast.net
  [73.47.72.35])
  (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
  (No client certificate requested)
- by mail.kernel.org (Postfix) with ESMTPSA id 86E0F21A4A;
- Tue,  1 Oct 2019 16:44:26 +0000 (UTC)
+ by mail.kernel.org (Postfix) with ESMTPSA id 7F4C72190F;
+ Tue,  1 Oct 2019 16:45:08 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=default; t=1569948267;
- bh=0vy7cwwMtprbaXBRsL023GbSZ8oA2bGQyRVAPcP6bSc=;
+ s=default; t=1569948309;
+ bh=2i8+d2TT3yX8/1+HhuIWKqY7fbcAmg4UD+/uh4pIKuY=;
  h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
- b=Jylp55NlnDG8S/JL1cyd1BYkVarfgS879zTZlHNE16cOQGQH3ANkWhfPir8d5PEwc
- xJzJ3vnVSjanRRXI43MN8OwWxi5C3l2iXWdygj84X9gPOGuk5DoPsUZEfDf+FNP5KQ
- VTh8zp0Hh+ordj8Qs9os6+B3ozKr3ABhngI5a22I=
+ b=q2cst86dE3KW9QpoKzrlIpGI68YGySdgr/IMAIK2T6y/Bgwxb4uSMDibRMvfjtPag
+ 4TbQszZIRW+1JfLTV9BHQbxTAtj2IE5vNrLBXR1qYZlojX/Lk+93l5yaovl9ibuHVW
+ AhBUBC7qcH5P8nFmwqA51qqxlKp9ZRJNEA17GsZw=
 From: Sasha Levin <sashal@kernel.org>
 To: linux-kernel@vger.kernel.org,
 	stable@vger.kernel.org
-Date: Tue,  1 Oct 2019 12:43:57 -0400
-Message-Id: <20191001164423.16406-3-sashal@kernel.org>
+Date: Tue,  1 Oct 2019 12:44:49 -0400
+Message-Id: <20191001164505.16708-3-sashal@kernel.org>
 X-Mailer: git-send-email 2.20.1
-In-Reply-To: <20191001164423.16406-1-sashal@kernel.org>
-References: <20191001164423.16406-1-sashal@kernel.org>
+In-Reply-To: <20191001164505.16708-1-sashal@kernel.org>
+References: <20191001164505.16708-1-sashal@kernel.org>
 MIME-Version: 1.0
 X-stable: review
 X-Patchwork-Hint: Ignore
@@ -73,8 +73,8 @@ X-Spam-Report: Spam Filtering performed by mx.sourceforge.net.
  not necessarily valid
  -0.0 DKIMWL_WL_HIGH         DKIMwl.org - Whitelisted High sender
  -0.3 AWL AWL: Adjusted score from AWL reputation of From: address
-X-Headers-End: 1iFLGK-00HN3b-Oy
-Subject: [V9fs-developer] [PATCH AUTOSEL 4.14 03/29] 9p: avoid attaching
+X-Headers-End: 1iFLH0-00D0ZZ-O9
+Subject: [V9fs-developer] [PATCH AUTOSEL 4.9 03/19] 9p: avoid attaching
  writeback_fid on mmap with type PRIVATE
 X-BeenThere: v9fs-developer@lists.sourceforge.net
 X-Mailman-Version: 2.1.21
@@ -113,7 +113,7 @@ Signed-off-by: Sasha Levin <sashal@kernel.org>
  1 file changed, 3 insertions(+)
 
 diff --git a/fs/9p/vfs_file.c b/fs/9p/vfs_file.c
-index 89e69904976a5..2651192f01667 100644
+index 79ff727254bb6..e963b83afc717 100644
 --- a/fs/9p/vfs_file.c
 +++ b/fs/9p/vfs_file.c
 @@ -528,6 +528,7 @@ v9fs_mmap_file_mmap(struct file *filp, struct vm_area_struct *vma)
