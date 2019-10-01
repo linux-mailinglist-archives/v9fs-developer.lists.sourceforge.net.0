@@ -2,26 +2,26 @@ Return-Path: <v9fs-developer-bounces@lists.sourceforge.net>
 X-Original-To: lists+v9fs-developer@lfdr.de
 Delivered-To: lists+v9fs-developer@lfdr.de
 Received: from lists.sourceforge.net (lists.sourceforge.net [216.105.38.7])
-	by mail.lfdr.de (Postfix) with ESMTPS id 63F61C3AB7
-	for <lists+v9fs-developer@lfdr.de>; Tue,  1 Oct 2019 18:39:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8081CC3ADE
+	for <lists+v9fs-developer@lfdr.de>; Tue,  1 Oct 2019 18:41:50 +0200 (CEST)
 Received: from [127.0.0.1] (helo=sfs-ml-1.v29.lw.sourceforge.com)
 	by sfs-ml-1.v29.lw.sourceforge.com with esmtp (Exim 4.90_1)
 	(envelope-from <v9fs-developer-bounces@lists.sourceforge.net>)
-	id 1iFLBm-0003eZ-Dn; Tue, 01 Oct 2019 16:39:50 +0000
+	id 1iFLDg-0003tU-MO; Tue, 01 Oct 2019 16:41:48 +0000
 Received: from [172.30.20.202] (helo=mx.sourceforge.net)
  by sfs-ml-1.v29.lw.sourceforge.com with esmtps
  (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.90_1)
- (envelope-from <sashal@kernel.org>) id 1iFLBk-0003eI-Kx
- for v9fs-developer@lists.sourceforge.net; Tue, 01 Oct 2019 16:39:48 +0000
+ (envelope-from <sashal@kernel.org>) id 1iFLDe-0003sy-Vq
+ for v9fs-developer@lists.sourceforge.net; Tue, 01 Oct 2019 16:41:46 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
  d=sourceforge.net; s=x; h=Content-Transfer-Encoding:MIME-Version:References:
  In-Reply-To:Message-Id:Date:Subject:Cc:To:From:Sender:Reply-To:Content-Type:
  Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
  Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
  List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=+SnqkqyKyEfns998eP7V1cTteWxWu3224xPLEAzlL9w=; b=VYRaY55/uVDSaoXL8xK0wKon0A
- MANnukpf0WAxt8ZArrXszuBGFNVxLa5z3cyTAnfn4Wm9x4SG3PVYfAbNBZfNMIZub72V0gRUPLZO6
- yeMLgwWBNVo7l9JDNvQa5qNGqTMWQzp3e+dFr9XN1lRkylC/TnMVyna0pj8HhPuRKb6c=;
+ bh=kOUZGz7SmdL0XUHhODqEI6rVDeno5FxTnsGAQhZP7XQ=; b=jF6FbqJVjNfjjM/bXIKMijH4J0
+ dtISdcnXeTllli/f130VCFRqdzVePotythn/Z164sBvR/fdHcGLiV2Ht31xMmwXDUsAcKXJR+S1mi
+ MG9qSOMzrPSTa6koF2GRZxgwQrFyyVNZ/pqVkZgQBLXoU9udFFhoIzirPpne1B54rlP8=;
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  ;
  h=Content-Transfer-Encoding:MIME-Version:References:In-Reply-To:Message-Id:
@@ -29,42 +29,41 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
  :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
  List-Post:List-Owner:List-Archive;
- bh=+SnqkqyKyEfns998eP7V1cTteWxWu3224xPLEAzlL9w=; b=cCPwifKiQy6s2irJDr8CGjs+II
- SaiO7DrBMaitRsDZpoM0W0ckRN6zd9Vovwi/wJdK/yj7FT//2KT/tSnzUQAtpgX5jziwdmNVM8MjZ
- nUJDjMmXCZZG/aILogWOXXunkjsGokepHH2P011/IBUQPpeJgzH4XXv595wmf8mzadFw=;
+ bh=kOUZGz7SmdL0XUHhODqEI6rVDeno5FxTnsGAQhZP7XQ=; b=f0SFz0+coT0XF3+NJy8vgy0q8v
+ nynWVjbYqH+Sc7SOBBZnXyv9Ey316QEFpMTSXjzRqu3xn3sStG+8x2f3nSf/Fmk+YdFjtf9s2ZZBa
+ 7CTVXp4yCeWnS9OYN04rmZgjdJYQzYCCsNdUwqe4Cc3CRt7OAbtzAoX3R6Wo4KcfiTl0=;
 Received: from mail.kernel.org ([198.145.29.99])
- by sfi-mx-3.v28.lw.sourceforge.com with esmtps
+ by sfi-mx-1.v28.lw.sourceforge.com with esmtps
  (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.92.2)
- id 1iFLBe-00CvmG-FO
- for v9fs-developer@lists.sourceforge.net; Tue, 01 Oct 2019 16:39:48 +0000
+ id 1iFLDY-00HMYw-4e
+ for v9fs-developer@lists.sourceforge.net; Tue, 01 Oct 2019 16:41:46 +0000
 Received: from sasha-vm.mshome.net (c-73-47-72-35.hsd1.nh.comcast.net
  [73.47.72.35])
  (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
  (No client certificate requested)
- by mail.kernel.org (Postfix) with ESMTPSA id 3379E2168B;
- Tue,  1 Oct 2019 16:39:36 +0000 (UTC)
+ by mail.kernel.org (Postfix) with ESMTPSA id C244421A4C;
+ Tue,  1 Oct 2019 16:41:33 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=default; t=1569947976;
- bh=Kk6XxuN59+qbkbLJtVxcjtqKExqw2JI0CVGdOUTiFQw=;
+ s=default; t=1569948094;
+ bh=K4JtO4D3ApZQ4fgFUps0vrNW1aXpYkqjHX4RDmNYVX8=;
  h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
- b=xHC3a5aaFE0DoHdowBpbtVras53K1YvO0V1EhB5FHMn6uBnlrLl6KSpjXgFlgNBsG
- SHTIV89AjHY5y8k0SYCnyIaSRUqUcxmkQT+5tP7VbBWgivCsDhGLcrDgJHpgoVZyDZ
- pUfxDK/TfUGHn6ZtVhrhImE8G70T9KhSCiJzQVD0=
+ b=wD/i9c0UgH0h5w+XTdpQxRN9WF1e3D6AGQ04d57RQLw6hdaP20cPW5xczGZESQzh8
+ G2zngSYj1J7DCXIPZ1vwcn84/7Zy6/i+KCKNgL0kewOITHggUNnNMBkCLdKcYtt0Xt
+ QLIbBOplORGZAGZnejAL9keASTe7ipKCbNjloiDg=
 From: Sasha Levin <sashal@kernel.org>
 To: linux-kernel@vger.kernel.org,
 	stable@vger.kernel.org
-Date: Tue,  1 Oct 2019 12:38:19 -0400
-Message-Id: <20191001163922.14735-9-sashal@kernel.org>
+Date: Tue,  1 Oct 2019 12:40:28 -0400
+Message-Id: <20191001164125.15398-6-sashal@kernel.org>
 X-Mailer: git-send-email 2.20.1
-In-Reply-To: <20191001163922.14735-1-sashal@kernel.org>
-References: <20191001163922.14735-1-sashal@kernel.org>
+In-Reply-To: <20191001164125.15398-1-sashal@kernel.org>
+References: <20191001164125.15398-1-sashal@kernel.org>
 MIME-Version: 1.0
 X-stable: review
 X-Patchwork-Hint: Ignore
-X-Spam-Score: -0.1 (/)
+X-Spam-Score: -0.4 (/)
 X-Spam-Report: Spam Filtering performed by mx.sourceforge.net.
  See http://spamassassin.org/tag/ for more details.
- -0.0 SPF_PASS               SPF: sender matches SPF record
  0.0 SPF_HELO_NONE          SPF: HELO does not publish an SPF Record
  -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from author's
  domain
@@ -72,10 +71,10 @@ X-Spam-Report: Spam Filtering performed by mx.sourceforge.net.
  0.1 DKIM_SIGNED            Message has a DKIM or DK signature,
  not necessarily valid
  -0.0 DKIMWL_WL_HIGH         DKIMwl.org - Whitelisted High sender
- 0.0 AWL AWL: Adjusted score from AWL reputation of From: address
-X-Headers-End: 1iFLBe-00CvmG-FO
-Subject: [V9fs-developer] [PATCH AUTOSEL 5.3 09/71] 9p/cache.c: Fix memory
- leak in v9fs_cache_session_get_cookie
+ -0.3 AWL AWL: Adjusted score from AWL reputation of From: address
+X-Headers-End: 1iFLDY-00HMYw-4e
+Subject: [V9fs-developer] [PATCH AUTOSEL 5.2 06/63] 9p: Transport error
+ uninitialized
 X-BeenThere: v9fs-developer@lists.sourceforge.net
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -87,55 +86,97 @@ List-Post: <mailto:v9fs-developer@lists.sourceforge.net>
 List-Help: <mailto:v9fs-developer-request@lists.sourceforge.net?subject=help>
 List-Subscribe: <https://lists.sourceforge.net/lists/listinfo/v9fs-developer>, 
  <mailto:v9fs-developer-request@lists.sourceforge.net?subject=subscribe>
-Cc: Bharath Vedartham <linux.bhar@gmail.com>,
+Cc: Lu Shuaibing <shuaibinglu@126.com>,
  Dominique Martinet <dominique.martinet@cea.fr>,
- v9fs-developer@lists.sourceforge.net,
- syzbot+3a030a73b6c1e9833815@syzkaller.appspotmail.com,
+ v9fs-developer@lists.sourceforge.net, netdev@vger.kernel.org,
  Sasha Levin <sashal@kernel.org>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: v9fs-developer-bounces@lists.sourceforge.net
 
-From: Bharath Vedartham <linux.bhar@gmail.com>
+From: Lu Shuaibing <shuaibinglu@126.com>
 
-[ Upstream commit 962a991c5de18452d6c429d99f3039387cf5cbb0 ]
+[ Upstream commit 0ce772fe79b68f83df40f07f28207b292785c677 ]
 
-v9fs_cache_session_get_cookie assigns a random cachetag to v9ses->cachetag,
-if the cachetag is not assigned previously.
+The p9_tag_alloc() does not initialize the transport error t_err field.
+The struct p9_req_t *req is allocated and stored in a struct p9_client
+variable. The field t_err is never initialized before p9_conn_cancel()
+checks its value.
 
-v9fs_random_cachetag allocates memory to v9ses->cachetag with kmalloc and uses
-scnprintf to fill it up with a cachetag.
+KUMSAN(KernelUninitializedMemorySantizer, a new error detection tool)
+reports this bug.
 
-But if scnprintf fails, v9ses->cachetag is not freed in the current
-code causing a memory leak.
+==================================================================
+BUG: KUMSAN: use of uninitialized memory in p9_conn_cancel+0x2d9/0x3b0
+Read of size 4 at addr ffff88805f9b600c by task kworker/1:2/1216
 
-Fix this by freeing v9ses->cachetag it v9fs_random_cachetag fails.
+CPU: 1 PID: 1216 Comm: kworker/1:2 Not tainted 5.2.0-rc4+ #28
+Hardware name: QEMU Standard PC (i440FX + PIIX, 1996), BIOS Ubuntu-1.8.2-1ubuntu1 04/01/2014
+Workqueue: events p9_write_work
+Call Trace:
+ dump_stack+0x75/0xae
+ __kumsan_report+0x17c/0x3e6
+ kumsan_report+0xe/0x20
+ p9_conn_cancel+0x2d9/0x3b0
+ p9_write_work+0x183/0x4a0
+ process_one_work+0x4d1/0x8c0
+ worker_thread+0x6e/0x780
+ kthread+0x1ca/0x1f0
+ ret_from_fork+0x35/0x40
 
-This was reported by syzbot, the link to the report is below:
-https://syzkaller.appspot.com/bug?id=f012bdf297a7a4c860c38a88b44fbee43fd9bbf3
+Allocated by task 1979:
+ save_stack+0x19/0x80
+ __kumsan_kmalloc.constprop.3+0xbc/0x120
+ kmem_cache_alloc+0xa7/0x170
+ p9_client_prepare_req.part.9+0x3b/0x380
+ p9_client_rpc+0x15e/0x880
+ p9_client_create+0x3d0/0xac0
+ v9fs_session_init+0x192/0xc80
+ v9fs_mount+0x67/0x470
+ legacy_get_tree+0x70/0xd0
+ vfs_get_tree+0x4a/0x1c0
+ do_mount+0xba9/0xf90
+ ksys_mount+0xa8/0x120
+ __x64_sys_mount+0x62/0x70
+ do_syscall_64+0x6d/0x1e0
+ entry_SYSCALL_64_after_hwframe+0x44/0xa9
 
-Link: http://lkml.kernel.org/r/20190522194519.GA5313@bharath12345-Inspiron-5559
-Reported-by: syzbot+3a030a73b6c1e9833815@syzkaller.appspotmail.com
-Signed-off-by: Bharath Vedartham <linux.bhar@gmail.com>
+Freed by task 0:
+(stack is not available)
+
+The buggy address belongs to the object at ffff88805f9b6008
+ which belongs to the cache p9_req_t of size 144
+The buggy address is located 4 bytes inside of
+ 144-byte region [ffff88805f9b6008, ffff88805f9b6098)
+The buggy address belongs to the page:
+page:ffffea00017e6d80 refcount:1 mapcount:0 mapping:ffff888068b63740 index:0xffff88805f9b7d90 compound_mapcount: 0
+flags: 0x100000000010200(slab|head)
+raw: 0100000000010200 ffff888068b66450 ffff888068b66450 ffff888068b63740
+raw: ffff88805f9b7d90 0000000000100001 00000001ffffffff 0000000000000000
+page dumped because: kumsan: bad access detected
+==================================================================
+
+Link: http://lkml.kernel.org/r/20190613070854.10434-1-shuaibinglu@126.com
+Signed-off-by: Lu Shuaibing <shuaibinglu@126.com>
+[dominique.martinet@cea.fr: grouped the added init with the others]
 Signed-off-by: Dominique Martinet <dominique.martinet@cea.fr>
 Signed-off-by: Sasha Levin <sashal@kernel.org>
 ---
- fs/9p/cache.c | 2 ++
- 1 file changed, 2 insertions(+)
+ net/9p/client.c | 1 +
+ 1 file changed, 1 insertion(+)
 
-diff --git a/fs/9p/cache.c b/fs/9p/cache.c
-index 995e332eee5c0..eb2151fb60494 100644
---- a/fs/9p/cache.c
-+++ b/fs/9p/cache.c
-@@ -51,6 +51,8 @@ void v9fs_cache_session_get_cookie(struct v9fs_session_info *v9ses)
- 	if (!v9ses->cachetag) {
- 		if (v9fs_random_cachetag(v9ses) < 0) {
- 			v9ses->fscache = NULL;
-+			kfree(v9ses->cachetag);
-+			v9ses->cachetag = NULL;
- 			return;
- 		}
- 	}
+diff --git a/net/9p/client.c b/net/9p/client.c
+index 9622f3e469f67..1d48afc7033ca 100644
+--- a/net/9p/client.c
++++ b/net/9p/client.c
+@@ -281,6 +281,7 @@ p9_tag_alloc(struct p9_client *c, int8_t type, unsigned int max_size)
+ 
+ 	p9pdu_reset(&req->tc);
+ 	p9pdu_reset(&req->rc);
++	req->t_err = 0;
+ 	req->status = REQ_STATUS_ALLOC;
+ 	init_waitqueue_head(&req->wq);
+ 	INIT_LIST_HEAD(&req->req_list);
 -- 
 2.20.1
 
