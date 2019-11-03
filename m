@@ -2,62 +2,60 @@ Return-Path: <v9fs-developer-bounces@lists.sourceforge.net>
 X-Original-To: lists+v9fs-developer@lfdr.de
 Delivered-To: lists+v9fs-developer@lfdr.de
 Received: from lists.sourceforge.net (lists.sourceforge.net [216.105.38.7])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1C35CED110
-	for <lists+v9fs-developer@lfdr.de>; Sun,  3 Nov 2019 00:25:12 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 94387ED1B3
+	for <lists+v9fs-developer@lfdr.de>; Sun,  3 Nov 2019 05:34:15 +0100 (CET)
 Received: from [127.0.0.1] (helo=sfs-ml-4.v29.lw.sourceforge.com)
 	by sfs-ml-4.v29.lw.sourceforge.com with esmtp (Exim 4.90_1)
 	(envelope-from <v9fs-developer-bounces@lists.sourceforge.net>)
-	id 1iR2lZ-0000Lq-5K; Sat, 02 Nov 2019 23:25:09 +0000
+	id 1iR7ae-0004Zs-IT; Sun, 03 Nov 2019 04:34:12 +0000
 Received: from [172.30.20.202] (helo=mx.sourceforge.net)
  by sfs-ml-4.v29.lw.sourceforge.com with esmtps
  (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.90_1)
- (envelope-from <choimj@isd.co.kr>) id 1iR2lX-0000LH-Lg
- for v9fs-developer@lists.sourceforge.net; Sat, 02 Nov 2019 23:25:07 +0000
+ (envelope-from <support@vyclean.in>) id 1iR7aY-0004ZO-La
+ for v9fs-developer@lists.sourceforge.net; Sun, 03 Nov 2019 04:34:06 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=sourceforge.net; s=x; h=Content-Transfer-Encoding:Content-Type:MIME-Version
- :Subject:Message-ID:To:Reply-To:From:Date:Sender:Cc:Content-ID:
+ d=sourceforge.net; s=x; h=Content-Type:Content-Transfer-Encoding:To:From:
+ Message-ID:Subject:Date:Sender:Reply-To:Cc:MIME-Version:Content-ID:
  Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
  :Resent-Message-ID:In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:
  List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=aChK6y62chCC0OWW3PPxc3C1ix0JVl7tBoV6zD/CzIk=; b=QvDX4VkLJq0lN+V6DPbV+GMlg1
- 4fbaET+VHW9FyVsyMWB0nzZ/pxyswiye+Um234kwvGgaQetJwlkWvJZxEsnzqf2I8JiRiUux8OAZT
- Pkn41u74xu+L0zeq6AE1Un3KVYIDOjNHF8DLXSPG6mnwCH/iNax3I/XpVHEaDsFTTSi0=;
+ bh=V26Mllvyga9bHUsNQQra4ZoYzBejtbEOj2MiPR7GNIw=; b=e5EEYfIriEh09YV3uKEftxrEKj
+ XiBrNnk+NazODrYWHKqYZtqXv7cswqX+1F5UmJGPnCaa9cAhnxH74LGTrtgsTvQfQwZQB8+vErIzU
+ IVeFsiOu6qYnRP7tkiTCxZogIgt3MKb8ZvcV+j4R+QQX7ubhuliMIIDkVSTsZIsqsZQI=;
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  ;
- h=Content-Transfer-Encoding:Content-Type:MIME-Version:Subject:Message-ID:To
- :Reply-To:From:Date:Sender:Cc:Content-ID:Content-Description:Resent-Date:
+ h=Content-Type:Content-Transfer-Encoding:To:From:Message-ID:Subject:Date:
+ Sender:Reply-To:Cc:MIME-Version:Content-ID:Content-Description:Resent-Date:
  Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:
  References:List-Id:List-Help:List-Unsubscribe:List-Subscribe:List-Post:
- List-Owner:List-Archive; bh=aChK6y62chCC0OWW3PPxc3C1ix0JVl7tBoV6zD/CzIk=; b=F
- EclTczd9imnOdoQgJNj630JeSWmvApp9vW8SquJwCLsbCCBbtREH/ufeV9G8fZFctFLRwcPE3Y55y
- OEoU4lHuYHRMkSZk0W+WdaFiXUjT1oL5BvP5CguwJ3qNlZzrnVIAnCI7RAXUss8Z7oyVq3g13JyMM
- kVU4rnuXhPRUU4Zs=;
-Received: from [211.53.128.215] (helo=MAIL.isd.co.kr)
- by sfi-mx-3.v28.lw.sourceforge.com with esmtps
- (TLSv1:ECDHE-RSA-AES256-SHA:256) (Exim 4.92.2) id 1iR2lV-00FU9T-Cm
- for v9fs-developer@lists.sourceforge.net; Sat, 02 Nov 2019 23:25:07 +0000
-Received: from 192.168.1.163 (217.217.179.17) by MAIL.isd.co.kr (10.10.10.22)
- with Microsoft SMTP Server id 14.3.123.3;
- Sun, 3 Nov 2019 08:24:56 +0900
-Date: Sun, 3 Nov 2019 00:24:53 +0100
-From: Peter Wong <choimj@isd.co.kr>
-To: <v9fs-developer@lists.sourceforge.net>
-Message-ID: <24059592.252447.1572737095145.JavaMail.cash@211.53.128.215>
-MIME-Version: 1.0
-X-Originating-IP: [217.217.179.17]
-X-Spam-Score: 5.7 (+++++)
+ List-Owner:List-Archive; bh=V26Mllvyga9bHUsNQQra4ZoYzBejtbEOj2MiPR7GNIw=; b=l
+ w5xOZmfDtWKh+oWGeTpZASrQv8TJJjQSzBldAIQS0jMgJIP90LpZCHwVOZiy5TuvgcqWV84JCZZ3w
+ e+tX3AkpeeWIsZAfSw1Qt09I6qW8jrMnDs+Li10JQ4A5lZwervyTAqPm3b2hZn09V5/mn6z+939vK
+ kR6NRWy3IS2sv5D8=;
+Received: from [69.167.191.21] (helo=windows11.hostguy.com)
+ by sfi-mx-1.v28.lw.sourceforge.com with esmtps
+ (TLSv1.2:ECDHE-RSA-AES256-SHA384:256) (Exim 4.92.2)
+ id 1iR7aW-00F0CU-RA
+ for v9fs-developer@lists.sourceforge.net; Sun, 03 Nov 2019 04:34:06 +0000
+Received: from ([127.0.0.1]) with MailEnable ESMTPA;
+ Sun, 3 Nov 2019 09:23:57 +0530
+Date: Sun, 3 Nov 2019 11:53:57 +0800
+Message-ID: <4zkj19ntt2mf7o0j.1831883121436@vyclean.in>
+From: "Login Alert" <support@vyclean.in>
+To: v9fs-developer@lists.sourceforge.net
+X-Spam-Score: 6.3 (++++++)
 X-Spam-Report: Spam Filtering performed by mx.sourceforge.net.
  See http://spamassassin.org/tag/ for more details.
- 1.3 RCVD_IN_RP_RNBL        RBL: Relay in RNBL,
- https://senderscore.org/blacklistlookup/
- [211.53.128.215 listed in bl.score.senderscore.com]
- 1.0 SPF_SOFTFAIL           SPF: sender does not match SPF record (softfail)
+ 0.0 SPF_NONE               SPF: sender does not publish an SPF Record
  0.0 SPF_HELO_NONE          SPF: HELO does not publish an SPF Record
  1.0 RDNS_NONE Delivered to internal network by a host with no rDNS
- 2.5 FREEMAIL_FORGED_REPLYTO Freemail in Reply-To, but not From
- -0.0 AWL AWL: Adjusted score from AWL reputation of From: address
-X-Headers-End: 1iR2lV-00FU9T-Cm
-Subject: [V9fs-developer] Your opportunity
+ 0.0 UNPARSEABLE_RELAY Informational: message has unparseable relay lines
+ 3.0 GB_BITCOIN_NH          Localized Bitcoin scam
+ 0.5 PDS_BTC_ID             FP reduced Bitcoin ID
+ 1.8 BITCOIN_EXTORT_01      Extortion spam, pay via BitCoin
+X-Headers-End: 1iR7aW-00F0CU-RA
+Subject: [V9fs-developer] Your operating system has been hacked by
+ cybercriminals. Change the authorization method.
 X-BeenThere: v9fs-developer@lists.sourceforge.net
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -69,25 +67,48 @@ List-Post: <mailto:v9fs-developer@lists.sourceforge.net>
 List-Help: <mailto:v9fs-developer-request@lists.sourceforge.net?subject=help>
 List-Subscribe: <https://lists.sourceforge.net/lists/listinfo/v9fs-developer>, 
  <mailto:v9fs-developer-request@lists.sourceforge.net?subject=subscribe>
-Reply-To: Peter Wong <peterwongpwhk@gmail.com>
+MIME-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: v9fs-developer-bounces@lists.sourceforge.net
 
-Greetings,
+Hello!
 
-Find this mail very confidential. reply for more details
+I am a hacker who has access to your operating system.
+I also have full access to your account.
 
-Thanks.
-Peter Wong
+I've been watching you for a few months now.
+The fact is that you were infected with malware through an adult site that you visited.
+
+If you are not familiar with this, I will explain.
+Trojan Virus gives me full access and control over a computer or other device.
+This means that I can see everything on your screen, turn on the camera and microphone, but you do not know about it.
+
+I also have access to all your contacts and all your correspondence.
+
+Why your antivirus did not detect malware?
+Answer: My malware uses the driver, I update its signatures every 4 hours so that your antivirus is silent.
+
+I made a video showing how you satisfy yourself in the left half of the screen, and in the right half you see the video that you watched.
+With one click of the mouse, I can send this video to all your emails and contacts on social networks.
+I can also post access to all your e-mail correspondence and messengers that you use.
+
+If you want to prevent this,
+transfer the amount of $645 to my bitcoin address (if you do not know how to do this, write to Google: "Buy Bitcoin").
+
+My bitcoin address (BTC Wallet) is: 15xmLXBr6rX7c87LRWXswHjCqnvuqJpMwg
+
+After receiving the payment, I will delete the video and you will never hear me again.
+I give you 50 hours (more than 2 days) to pay.
+I have a notice reading this letter, and the timer will work when you see this letter.
+
+Filing a complaint somewhere does not make sense because this email cannot be tracked like my bitcoin address.
+I do not make any mistakes.
+
+If I find that you have shared this message with someone else, the video will be immediately distributed.
 
 
-
-
-----------------------------------------------------
-This email was sent by the shareware version of Postman Professional.
-
-
+Best regards!
 
 _______________________________________________
 V9fs-developer mailing list
