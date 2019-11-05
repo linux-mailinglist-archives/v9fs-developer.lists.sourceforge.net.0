@@ -2,66 +2,115 @@ Return-Path: <v9fs-developer-bounces@lists.sourceforge.net>
 X-Original-To: lists+v9fs-developer@lfdr.de
 Delivered-To: lists+v9fs-developer@lfdr.de
 Received: from lists.sourceforge.net (lists.sourceforge.net [216.105.38.7])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6918FEF9ED
-	for <lists+v9fs-developer@lfdr.de>; Tue,  5 Nov 2019 10:48:49 +0100 (CET)
-Received: from [127.0.0.1] (helo=sfs-ml-2.v29.lw.sourceforge.com)
-	by sfs-ml-2.v29.lw.sourceforge.com with esmtp (Exim 4.90_1)
-	(envelope-from <v9fs-developer-bounces@lists.sourceforge.net>)
-	id 1iRvSA-0007co-N8; Tue, 05 Nov 2019 09:48:46 +0000
-Received: from [172.30.20.202] (helo=mx.sourceforge.net)
- by sfs-ml-2.v29.lw.sourceforge.com with esmtps
- (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.90_1)
- (envelope-from <jack@suse.cz>)
- id 1iRvS9-0007cN-2h; Tue, 05 Nov 2019 09:48:45 +0000
+	by mail.lfdr.de (Postfix) with ESMTPS id 884E3F0195
+	for <lists+v9fs-developer@lfdr.de>; Tue,  5 Nov 2019 16:37:18 +0100 (CET)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=sourceforge.net; s=x; h=In-Reply-To:Content-Type:MIME-Version:References:
- Message-ID:Subject:Cc:To:From:Date:Sender:Reply-To:Content-Transfer-Encoding:
+	d=lists.sourceforge.net; s=beta; h=Content-Type:Content-Transfer-Encoding:Cc:
+	Reply-To:From:List-Subscribe:List-Help:List-Post:List-Archive:
+	List-Unsubscribe:List-Id:Subject:In-Reply-To:MIME-Version:Date:Message-ID:
+	References:To:Sender:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
+	bh=r3JiNypUlSPWS/W5dAaNZduC9atwmTiC9WzNOqNNfI0=; b=YboFf5d+pUd1J4OlHNqW0Fht92
+	24lTWw/gANxlorS2rsrbbKqdTmYdEvg78jvJOtZbyrseRJQOm8gljPiW3z20FbDcb2ROPYTbr9eX4
+	VQl6vwJPC1W+0X3mWgRGiGGl485/L0T2JIJ71yZ8c3jBqLyUg3QqKuZQrQPzfH/jOs64=;
+Received: from [127.0.0.1] (helo=sfs-ml-1.v29.lw.sourceforge.com)
+	by sfs-ml-1.v29.lw.sourceforge.com with esmtp (Exim 4.90_1)
+	(envelope-from <v9fs-developer-bounces@lists.sourceforge.net>)
+	id 1iS0tQ-0006jm-0P; Tue, 05 Nov 2019 15:37:16 +0000
+Received: from [172.30.20.202] (helo=mx.sourceforge.net)
+ by sfs-ml-1.v29.lw.sourceforge.com with esmtps
+ (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.90_1)
+ (envelope-from <salyzyn@android.com>) id 1iS0tP-0006jc-H2
+ for v9fs-developer@lists.sourceforge.net; Tue, 05 Nov 2019 15:37:15 +0000
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+ d=sourceforge.net; s=x; h=Content-Transfer-Encoding:Content-Type:In-Reply-To:
+ MIME-Version:Date:Message-ID:From:References:Cc:To:Subject:Sender:Reply-To:
  Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
  Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
  List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=uOVvLIfAKaABNeenvYiWQ2HO7/bSUZZppsMPK3eSjzk=; b=JXurOXfT7KbO2DUg9GnP+lNiKD
- a9+mg9F9fToU727slsl6JuU0mz2o5rlOfLjPvjLo7+pbabbIZRFcnCItgx1VinEavZiVWSpm9iKxs
- 8SG/l+yjUk8/1j3SAnq+34xzGyMXOSHa5/n3czAHTzZsCgMj8NduciTLIHhZzPBmi1F4=;
+ bh=2/8/BwrhtmEXI7dj68SMTpCzdsjoLETsRSfZ5j8yePw=; b=AFXGvqGMbX+60v6PtR/E8Q1kQl
+ SGrkYXIc35qJIgDT/JdbmeHnB8QBZWddUhq61LNa3O7HL9NAMzndmKrMLC1JJNndh4aMrbHKPFYEj
+ rhQ7Tf6lXZFZj5nZ5APZqJ6rMFg6QuSXxU6zkzfe1FWvXtvj7ygxrSOx8AEeaizy1RIw=;
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  ;
- h=In-Reply-To:Content-Type:MIME-Version:References:Message-ID:Subject:Cc:To
- :From:Date:Sender:Reply-To:Content-Transfer-Encoding:Content-ID:
+ h=Content-Transfer-Encoding:Content-Type:In-Reply-To:MIME-Version:Date:
+ Message-ID:From:References:Cc:To:Subject:Sender:Reply-To:Content-ID:
  Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
  :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
  List-Post:List-Owner:List-Archive;
- bh=uOVvLIfAKaABNeenvYiWQ2HO7/bSUZZppsMPK3eSjzk=; b=G7hWtdEf3Hjv5SfcHdPBAcoq5E
- mMToDEfYFDlskBdJjGPSjJ0dA6GJTOyPf6OjzAxAAuylrIhVsCTXaix5tJ8caIdlb9rmf5Y0Tb/1o
- N6OFvTZx5J0nT/D1wzlqyswAnNb7ZGqufooOBoB5SFRWoHtqBU7P3QEnZSLwXrPmhPVE=;
-Received: from mx2.suse.de ([195.135.220.15] helo=mx1.suse.de)
- by sfi-mx-3.v28.lw.sourceforge.com with esmtps
- (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.92.2)
- id 1iRvS7-000gDg-6j; Tue, 05 Nov 2019 09:48:45 +0000
-X-Virus-Scanned: by amavisd-new at test-mx.suse.de
-Received: from relay2.suse.de (unknown [195.135.220.254])
- by mx1.suse.de (Postfix) with ESMTP id DDAFFB3A6;
- Tue,  5 Nov 2019 09:48:34 +0000 (UTC)
-Received: by quack2.suse.cz (Postfix, from userid 1000)
- id 242661E4407; Tue,  5 Nov 2019 10:48:30 +0100 (CET)
-Date: Tue, 5 Nov 2019 10:48:30 +0100
-From: Jan Kara <jack@suse.cz>
-To: Mark Salyzyn <salyzyn@android.com>
-Message-ID: <20191105094830.GL22379@quack2.suse.cz>
+ bh=2/8/BwrhtmEXI7dj68SMTpCzdsjoLETsRSfZ5j8yePw=; b=AMZVbporIAuKi6zkr59FI01o6+
+ I/pYqHWgLzcChKcX4E8f1zwl8IFC0CSMlMwsDwxou68QyYGQgG67hT2Gznsbmiu7DLNVzQTm1uKJD
+ FeC9LPuwkQrqrq3WwkxRgiFeiRx12eaZ+bDfCVwcBBZA4pL3ZWNnzASyN9CF8k9OMLuo=;
+Received: from mail-pf1-f196.google.com ([209.85.210.196])
+ by sfi-mx-1.v28.lw.sourceforge.com with esmtps
+ (TLSv1.2:ECDHE-RSA-AES128-GCM-SHA256:128) (Exim 4.92.2)
+ id 1iS0tN-001P1s-NK
+ for v9fs-developer@lists.sourceforge.net; Tue, 05 Nov 2019 15:37:15 +0000
+Received: by mail-pf1-f196.google.com with SMTP id x28so12529120pfo.6
+ for <v9fs-developer@lists.sourceforge.net>;
+ Tue, 05 Nov 2019 07:37:13 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=android.com; s=20161025;
+ h=subject:to:cc:references:from:message-id:date:user-agent
+ :mime-version:in-reply-to:content-transfer-encoding:content-language;
+ bh=2/8/BwrhtmEXI7dj68SMTpCzdsjoLETsRSfZ5j8yePw=;
+ b=R8lPpHZaNTKC1//4X3YRy/co01wfSuPnFkkkoDrdRRcs8xZqXtNYPLgm9OjzsXnJfg
+ w/sgCdd9n+99HdKAd13HjrpckBRQK4F+I41/fuJw7ICMDJgQ0tKfn8kAw++u9jIK9Pl7
+ wc3lGWI+tLAg5Fo7mlf+u1oz4ZCnt5dRpAwNiKM1EwVqGR4FwH3zMLPET/FX6DvXl/Cq
+ XMn8MNwm1G21DoBMHo9twX6ox9SH+JhzmjDChdy5f2tzhmNnEaRv4FiGKkmYlD/OTP+l
+ 39M21mPDgGHAV1JVejM/uCulS4TGW/MwgQAeZfS0L3/q73lP5U74GqdSjn6t5WS3czii
+ QV3g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+ :user-agent:mime-version:in-reply-to:content-transfer-encoding
+ :content-language;
+ bh=2/8/BwrhtmEXI7dj68SMTpCzdsjoLETsRSfZ5j8yePw=;
+ b=WsYawPL6F8uiZY3/HULZGOVCsoM16+OeVxe8gk8deLA90XYV1+6uTxL9eVrn/SYLHZ
+ eMNHDrQMpvH0quae9mBb6NwJa/8esrcAkYUY0ib/48r+AyfL7Nxa3yS77K1UuQ6PT+se
+ Jl3zwjWgzRup5q2pKGXb0Ekn+A9w1jvJmxi35d3YmsnWPKKl6If+SfCzSPHQGfFiwg0I
+ CGjIgXzP9yAvB7/iMuN0uEkJ+cgK+3lAbrn2tFbw1I90TUX2Fs7CXfUopYOCM74z+xS9
+ kd85KRaYDzUYuD/KpylpOVaL/sWY+ZG+n9ctStYSX0xlknKDMr7WMievGpWJF49VMNcx
+ Ecxw==
+X-Gm-Message-State: APjAAAWEDLuMGmGgVrN1IE7uhDm+w1ttnJE4aegZPBFmKiK72xfeuF3B
+ jNAjcMIdQ9ojvuf2VvR1KwFwMg==
+X-Google-Smtp-Source: APXvYqy6Q+jW7Nx8yhUJvITL/ENlgb+bvGP0zh9whSnmepYB/pthS+WgqdQwDBfJOEs5VO1iezn2Pw==
+X-Received: by 2002:a62:e519:: with SMTP id n25mr38428065pff.144.1572968227784; 
+ Tue, 05 Nov 2019 07:37:07 -0800 (PST)
+Received: from nebulus.mtv.corp.google.com
+ ([2620:15c:211:200:5404:91ba:59dc:9400])
+ by smtp.googlemail.com with ESMTPSA id m13sm18037460pga.70.2019.11.05.07.37.05
+ (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+ Tue, 05 Nov 2019 07:37:07 -0800 (PST)
+To: Jan Kara <jack@suse.cz>
 References: <20191104215253.141818-1-salyzyn@android.com>
  <20191104215253.141818-2-salyzyn@android.com>
+ <20191105094830.GL22379@quack2.suse.cz>
+Message-ID: <1de43656-e751-53a2-c0da-ff44ecbabbc4@android.com>
+Date: Tue, 5 Nov 2019 07:37:04 -0800
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+ Thunderbird/60.9.0
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20191104215253.141818-2-salyzyn@android.com>
-User-Agent: Mutt/1.10.1 (2018-07-13)
-X-Spam-Score: 0.0 (/)
+In-Reply-To: <20191105094830.GL22379@quack2.suse.cz>
+Content-Language: en-GB
+X-Spam-Score: -0.2 (/)
 X-Spam-Report: Spam Filtering performed by mx.sourceforge.net.
  See http://spamassassin.org/tag/ for more details.
- 0.0 URIBL_BLOCKED ADMINISTRATOR NOTICE: The query to URIBL was blocked.
- See
- http://wiki.apache.org/spamassassin/DnsBlocklists#dnsbl-block
- for more information. [URIs: suse.com]
+ -0.0 RCVD_IN_DNSWL_NONE     RBL: Sender listed at https://www.dnswl.org/, no
+ trust [209.85.210.196 listed in list.dnswl.org]
+ 0.0 RCVD_IN_MSPIKE_H3      RBL: Good reputation (+3)
+ [209.85.210.196 listed in wl.mailspike.net]
  -0.0 SPF_PASS               SPF: sender matches SPF record
  0.0 SPF_HELO_NONE          SPF: HELO does not publish an SPF Record
-X-Headers-End: 1iRvS7-000gDg-6j
+ -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from author's
+ domain
+ -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+ 0.1 DKIM_SIGNED            Message has a DKIM or DK signature,
+ not necessarily valid
+ 0.0 RCVD_IN_MSPIKE_WL      Mailspike good senders
+ -0.0 DKIMWL_WL_HIGH         DKIMwl.org - Whitelisted High sender
+ -0.1 AWL AWL: Adjusted score from AWL reputation of From: address
+X-Headers-End: 1iS0tN-001P1s-NK
 Subject: Re: [V9fs-developer] [PATCH v15 1/4] Add flags option to get xattr
  method paired to __vfs_getxattr
 X-BeenThere: v9fs-developer@lists.sourceforge.net
@@ -75,9 +124,11 @@ List-Post: <mailto:v9fs-developer@lists.sourceforge.net>
 List-Help: <mailto:v9fs-developer-request@lists.sourceforge.net?subject=help>
 List-Subscribe: <https://lists.sourceforge.net/lists/listinfo/v9fs-developer>, 
  <mailto:v9fs-developer-request@lists.sourceforge.net?subject=subscribe>
+From: Mark Salyzyn via V9fs-developer <v9fs-developer@lists.sourceforge.net>
+Reply-To: Mark Salyzyn <salyzyn@android.com>
 Cc: Latchesar Ionkov <lucho@ionkov.net>, Dave Kleikamp <shaggy@kernel.org>,
- jfs-discussion@lists.sourceforge.net, Jan Kara <jack@suse.cz>,
- linux-doc@vger.kernel.org, linux-integrity@vger.kernel.org,
+ jfs-discussion@lists.sourceforge.net, linux-doc@vger.kernel.org,
+ linux-integrity@vger.kernel.org,
  Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
  Martin Brandenburg <martin@omnibond.com>, samba-technical@lists.samba.org,
  Artem Bityutskiy <dedekind1@gmail.com>,
@@ -118,32 +169,37 @@ Cc: Latchesar Ionkov <lucho@ionkov.net>, Dave Kleikamp <shaggy@kernel.org>,
  David Woodhouse <dwmw2@infradead.org>,
  Anna Schumaker <anna.schumaker@netapp.com>, linux-btrfs@vger.kernel.org,
  Alexander Viro <viro@zeniv.linux.org.uk>
-Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Errors-To: v9fs-developer-bounces@lists.sourceforge.net
 
-> @@ -228,11 +228,11 @@ static int afs_xattr_get_yfs(const struct xattr_handler *handler,
->  		break;
->  	case 1:
->  		data = buf;
-> -		dsize = snprintf(buf, sizeof(buf), "%u", yacl->inherit_flag);
-> +		dsize = scnprintf(buf, sizeof(buf), "%u", yacl->inherit_flag);
->  		break;
->  	case 2:
->  		data = buf;
-> -		dsize = snprintf(buf, sizeof(buf), "%u", yacl->num_cleaned);
-> +		dsize = scnprintf(buf, sizeof(buf), "%u", yacl->num_cleaned);
->  		break;
->  	case 3:
+On 11/5/19 1:48 AM, Jan Kara wrote:
+>> @@ -228,11 +228,11 @@ static int afs_xattr_get_yfs(const struct xattr_handler *handler,
+>>   		break;
+>>   	case 1:
+>>   		data = buf;
+>> -		dsize = snprintf(buf, sizeof(buf), "%u", yacl->inherit_flag);
+>> +		dsize = scnprintf(buf, sizeof(buf), "%u", yacl->inherit_flag);
+>>   		break;
+>>   	case 2:
+>>   		data = buf;
+>> -		dsize = snprintf(buf, sizeof(buf), "%u", yacl->num_cleaned);
+>> +		dsize = scnprintf(buf, sizeof(buf), "%u", yacl->num_cleaned);
+>>   		break;
+>>   	case 3:
+> These scnprintf() changes (and there are more in the patch) probably
+> shouldn't be here... Otherwise the patch still looks good to me :).
+>
+> 								Honza
+>
+Good catch, they were done in locality, I forgot about them, this patch 
+series has been living for almost a year now and time has become its 
+enemy ... will spin this as a separate patch. They strike as a security 
+issue with the possibility of fragile UAF when the code is maintained by 
+future selves.
 
-These scnprintf() changes (and there are more in the patch) probably
-shouldn't be here... Otherwise the patch still looks good to me :).
+-- Mark
 
-								Honza
-
--- 
-Jan Kara <jack@suse.com>
-SUSE Labs, CR
 
 
 _______________________________________________
