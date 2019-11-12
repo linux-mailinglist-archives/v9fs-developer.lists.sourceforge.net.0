@@ -2,94 +2,84 @@ Return-Path: <v9fs-developer-bounces@lists.sourceforge.net>
 X-Original-To: lists+v9fs-developer@lfdr.de
 Delivered-To: lists+v9fs-developer@lfdr.de
 Received: from lists.sourceforge.net (lists.sourceforge.net [216.105.38.7])
-	by mail.lfdr.de (Postfix) with ESMTPS id 79A33F53D9
-	for <lists+v9fs-developer@lfdr.de>; Fri,  8 Nov 2019 19:53:12 +0100 (CET)
-Received: from [127.0.0.1] (helo=sfs-ml-4.v29.lw.sourceforge.com)
-	by sfs-ml-4.v29.lw.sourceforge.com with esmtp (Exim 4.90_1)
+	by mail.lfdr.de (Postfix) with ESMTPS id 47D99F8D27
+	for <lists+v9fs-developer@lfdr.de>; Tue, 12 Nov 2019 11:47:37 +0100 (CET)
+Received: from [127.0.0.1] (helo=sfs-ml-1.v29.lw.sourceforge.com)
+	by sfs-ml-1.v29.lw.sourceforge.com with esmtp (Exim 4.90_1)
 	(envelope-from <v9fs-developer-bounces@lists.sourceforge.net>)
-	id 1iT9Ne-0000nr-9n; Fri, 08 Nov 2019 18:53:10 +0000
+	id 1iUThv-0005Ir-2c; Tue, 12 Nov 2019 10:47:35 +0000
 Received: from [172.30.20.202] (helo=mx.sourceforge.net)
- by sfs-ml-4.v29.lw.sourceforge.com with esmtps
+ by sfs-ml-1.v29.lw.sourceforge.com with esmtps
  (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.90_1)
  (envelope-from
- <3jLnFXQkbAAs39Avlwwp2l00to.rzzrwp53p2nzy4py4.nzx@M3KW2WVRGUFZ5GODRSRYTGD7.apphosting.bounces.google.com>)
- id 1iT9Nc-0000nj-Nh
- for v9fs-developer@lists.sourceforge.net; Fri, 08 Nov 2019 18:53:08 +0000
+ <info-v9fs+2Ddeveloper=lists.sourceforge.net@cyprusweddingday.com>)
+ id 1iUThu-0005Ia-A0
+ for v9fs-developer@lists.sourceforge.net; Tue, 12 Nov 2019 10:47:34 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=sourceforge.net; s=x; h=Content-Type:To:From:Subject:Message-ID:In-Reply-To
- :Date:MIME-Version:Sender:Reply-To:Cc:Content-Transfer-Encoding:Content-ID:
- Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
- :Resent-Message-ID:References:List-Id:List-Help:List-Unsubscribe:
- List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=Sl9ZT+3VnhHk9C9hUuWzxJC0ZnzOKIM3/flYfXRQH6Y=; b=LaVPaNvl6uy+EO3JiZi73+wu4W
- akuwSrXnfYZ3sPWyO7zyu4FP6peUGjqI1j00gTj2s9f3LzOQIIFvYHOsYUCoOfv4LRJzR5qUZZNSw
- nHEkRmCGkGtn7yAKVph0hbJJpOcWLYLNSmeeudpblXsTDTSDGtD0i2+Q6j9lqd05146Y=;
+ d=sourceforge.net; s=x; h=Message-ID:Reply-To:Date:From:To:Subject:
+ Content-Description:Content-Transfer-Encoding:MIME-Version:Content-Type:
+ Sender:Cc:Content-ID:Resent-Date:Resent-From:Resent-Sender:Resent-To:
+ Resent-Cc:Resent-Message-ID:In-Reply-To:References:List-Id:List-Help:
+ List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
+ bh=7q9n6Tr6N62lgCu9r1nm9kAiVScpDx9nrmiyZWB09P0=; b=C8CGJ8vmtP7bX+qZp9DGOnB3W9
+ Yn77iZ6NJl/xQT38SP7xh4kDn4ghQyb1eb9m4jvYrCxXJOKD6MPmlksvFO/LZkxTxijaBhSThfKBO
+ AtS1JXqn989HXo8KbFicPgVgjDwoebR7J9HIQ17NyZzpCtWPw03UfElOTTaOjdz/TeGU=;
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  ;
- h=Content-Type:To:From:Subject:Message-ID:In-Reply-To:Date:MIME-Version:
- Sender:Reply-To:Cc:Content-Transfer-Encoding:Content-ID:Content-Description:
+ h=Message-ID:Reply-To:Date:From:To:Subject:Content-Description:
+ Content-Transfer-Encoding:MIME-Version:Content-Type:Sender:Cc:Content-ID:
  Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
- References:List-Id:List-Help:List-Unsubscribe:List-Subscribe:List-Post:
- List-Owner:List-Archive; bh=Sl9ZT+3VnhHk9C9hUuWzxJC0ZnzOKIM3/flYfXRQH6Y=; b=A
- 7973Zd5HWWya67NSLcH07smkJ6OzKn+QQz9pVfNfvwylvF+qTWHneEtO9BElrRVSoGiyo7WDWAhLE
- 3bTFPqMHFKkt/WUivdxuUZEoD7dZv5c+tBB4/oF/tpedDU8zdNBZLRv0sf8MRoaORbg2IE6ahWbPH
- UEYBHmDn7BX00T3M=;
-Received: from mail-il1-f198.google.com ([209.85.166.198])
- by sfi-mx-4.v28.lw.sourceforge.com with esmtps
- (TLSv1.2:ECDHE-RSA-AES128-GCM-SHA256:128) (Exim 4.92.2)
- id 1iT9Na-005oHh-Oi
- for v9fs-developer@lists.sourceforge.net; Fri, 08 Nov 2019 18:53:08 +0000
-Received: by mail-il1-f198.google.com with SMTP id f6so7863912ilg.5
- for <v9fs-developer@lists.sourceforge.net>;
- Fri, 08 Nov 2019 10:53:06 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:date:in-reply-to:message-id:subject
- :from:to;
- bh=Sl9ZT+3VnhHk9C9hUuWzxJC0ZnzOKIM3/flYfXRQH6Y=;
- b=IQEiowZH/e5RbC1F4iWDaECxfwd6GizFjxsiyZ9gcJ5Y4MOXQRCKce0csVdWYSOI71
- L6/rbC5ibvkgFOb9SOsjkZ5QU/X2qqHEEQCwP4XI4Fsj0AHcqJnkU7F1b1xS6HlgffZ7
- 2J2/RJu1EOiTtkdbViDMWlqFfHpxiTviueVp01m8Hh3leRoM0dzAI+idh/eGDQZhklVo
- tZUiTrZ2oItpdvrJRwy9da/goy5xAiPw8W9k5pvJXYM48SBTLXP8uIN+kZFOi/SGgVqq
- KSySYxgNLST80DhvfQT8zPpdoZ/c9513yZMBtYO6oF5MzJmN+52RYLgPgMXJgtHeS8h7
- iuOA==
-X-Gm-Message-State: APjAAAUNrHSJJYHHtGdreEtxxnE0D89YXKZB3zy2yFwqMgY762KtDYAr
- tpyhZoCeSia/K3GEYfPJpcSFBbIpj9b7UO2X7g3wC2UvdsNU
-X-Google-Smtp-Source: APXvYqzQP9CYRfTlLHLsV6QBEQYBhPgI8bypq0U9hHsKzSMeEB/CVu4ed4IzOfkvt3dGwLP0hHzE142Gz/VsIc1tEwnjoCJ+zd1h
+ In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
+ List-Post:List-Owner:List-Archive;
+ bh=7q9n6Tr6N62lgCu9r1nm9kAiVScpDx9nrmiyZWB09P0=; b=lsBgIPRBUXKVdUe8TXvOun1Nxv
+ dz6pZOb9OK3F1nJHOaOBaq9vJ+TwLCieo7k6YfuauRr1qvz5RHcax8eKZA3yc2La/5vI/A1akB4Hk
+ qDHX8jyngaJsAB3tK71s4n1pd6lBXPpqrVHK4BmhXozP5Jln91/QrhVUm+LYsTg6BddE=;
+Received: from mail.iserviceltd.com ([157.245.160.152])
+ by sfi-mx-3.v28.lw.sourceforge.com with esmtp (Exim 4.92.2)
+ id 1iUTht-00D8c6-9U
+ for v9fs-developer@lists.sourceforge.net; Tue, 12 Nov 2019 10:47:34 +0000
+DKIM-Signature: v=1; a=rsa-sha1; c=relaxed/relaxed; s=dkim;
+ d=cyprusweddingday.com; 
+ h=Content-Type:MIME-Version:Content-Transfer-Encoding:Content-Description:Subject:To:From:Date:Reply-To:Message-ID;
+ i=info@cyprusweddingday.com; bh=18TjuDxD2VZoK6udkStVVKxmrSQ=;
+ b=YXszUeIf5WwRrC1E5XgK1lg1iUZjadSUyMCG7Fwt58YZZWjlPhdGLbzVCrZd9BY4Lh6b/bx8dy7F
+ Bu7opnVeUUnIKrwgBBpG7dprKAJGpUpoNmSLmIjUIP2hEcwbnDRUGnOzWJXTnmOBGgGBaYWST/NY
+ pE66TaQdkM2WFnWJdzvLUXIbt3WJEUfce/Bot+qJXatDrW7QYUjbzFTCjbeNe9p50dd3IfK8ETxd
+ Lzv1Bt8KtRy3nbNZSF96ftl0gGXgn+/58TFsv0zV1Epy4wGODsCzwfW3SGJQteiyI8KAWtiST2m4
+ 4X/RaPKWtisSLnXBHI6Bqucpcncbia3sXROEuQ==
+DomainKey-Signature: a=rsa-sha1; c=nofws; q=dns; s=dkim; d=cyprusweddingday.com;
+ b=bFlELqjlVNzIBHvEvAU7g/wU9a6N1pAcGRaq6oFQBoIS8tqgcxr3bYBK4HabsqmJaEmdf55drX0v
+ TgEzO2f7O5wSZ+C4rzDxmcuhaeQBn7wm48rh5GVM/7XhGB7t/Eni3qO8tk1SEilJAf9k+r+r84bf
+ ROKaIYotXxtawfP5NZiMn4tJG/t7jaryMxfkNfPA8ulcENeYNDvpHT/HgUw8P2bJOpX60UKZKPxs
+ 65gOnpkYu6HbjEfDgZgaD9oA4m9Y5ztvNub8IpZi+8PAcHp6mKjBqu9uFlVVLBm55KiMmm+E9C3i
+ fXp2AtJL/kkDiehYqU+nJzXut8ZmLpjAd8tIyw==;
+DKIM-Filter: OpenDKIM Filter v2.11.0 mail.iserviceltd.com D87507141E
 MIME-Version: 1.0
-X-Received: by 2002:a02:c4cf:: with SMTP id h15mr12593320jaj.112.1573239180629; 
- Fri, 08 Nov 2019 10:53:00 -0800 (PST)
-Date: Fri, 08 Nov 2019 10:53:00 -0800
-In-Reply-To: <0000000000005e2bf90570bbe2ab@google.com>
-X-Google-Appengine-App-Id: s~syzkaller
-X-Google-Appengine-App-Id-Alias: syzkaller
-Message-ID: <000000000000821d620596da4ad0@google.com>
-From: syzbot <syzbot+78b902c73c69102cb767@syzkaller.appspotmail.com>
-To: asmadeus@codewreck.org, davem@davemloft.net, dominique.martinet@cea.fr, 
- ericvh@gmail.com, jiangyiwen@huwei.com, linux-fsdevel@vger.kernel.org, 
- linux-kernel@vger.kernel.org, lucho@ionkov.net, netdev@vger.kernel.org, 
- syzkaller-bugs@googlegroups.com, tomasbortoli@gmail.com, 
- v9fs-developer@lists.sourceforge.net, viro@zeniv.linux.org.uk
-X-Spam-Score: 3.1 (+++)
+Content-Description: Mail message body
+To: v9fs-developer@lists.sourceforge.net
+From: "Portfolio Managements " <info@cyprusweddingday.com>
+Date: Tue, 12 Nov 2019 12:47:23 +0200
+Message-ID: <0.0.2.B0B.1D599469293AFBE.0@mail.iserviceltd.com>
+X-Spam-Score: 6.6 (++++++)
 X-Spam-Report: Spam Filtering performed by mx.sourceforge.net.
  See http://spamassassin.org/tag/ for more details.
- 0.3 FROM_LOCAL_HEX         From: localpart has long hexadecimal sequence
- 0.0 URIBL_BLOCKED ADMINISTRATOR NOTICE: The query to URIBL was blocked.
- See
- http://wiki.apache.org/spamassassin/DnsBlocklists#dnsbl-block
- for more information. [URIs: syzkaller.appspot.com]
- -0.0 RCVD_IN_DNSWL_NONE     RBL: Sender listed at https://www.dnswl.org/, no
- trust [209.85.166.198 listed in list.dnswl.org]
- -0.0 RCVD_IN_MSPIKE_H2      RBL: Average reputation (+2)
- [209.85.166.198 listed in wl.mailspike.net]
- 0.2 HEADER_FROM_DIFFERENT_DOMAINS From and EnvelopeFrom 2nd level mail
- domains are different
- -0.0 SPF_PASS               SPF: sender matches SPF record
+ 1.5 RCVD_IN_PSBL           RBL: Received via a relay in PSBL
+ [157.245.160.152 listed in psbl.surriel.com]
+ 1.3 RCVD_IN_RP_RNBL        RBL: Relay in RNBL,
+ https://senderscore.org/blacklistlookup/
+ [157.245.160.152 listed in bl.score.senderscore.com]
  0.0 SPF_HELO_NONE          SPF: HELO does not publish an SPF Record
- 2.5 SORTED_RECIPS          Recipient list is sorted by address
-X-Headers-End: 1iT9Na-005oHh-Oi
-Subject: Re: [V9fs-developer] KASAN: use-after-free Read in
- ep_scan_ready_list
+ 0.9 SPF_FAIL               SPF: sender does not match SPF record (fail)
+ [SPF failed: Please see http://www.openspf.net/Why?s=mfrom;
+ id=info-v9fs%2B2ddeveloper%3Dlists.sourceforge.net%40cyprusweddingday.com;
+ ip=157.245.160.152; r=util-malware-1.v13.lw.sourceforge.com]
+ 0.1 DKIM_SIGNED            Message has a DKIM or DK signature,
+ not necessarily valid
+ 0.1 DKIM_INVALID           DKIM or DK signature exists, but is not valid
+ 2.5 FREEMAIL_FORGED_REPLYTO Freemail in Reply-To, but not From
+ 0.2 AWL AWL: Adjusted score from AWL reputation of From: address
+X-Headers-End: 1iUTht-00D8c6-9U
+Subject: Re: [V9fs-developer] 11 November
 X-BeenThere: v9fs-developer@lists.sourceforge.net
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -101,33 +91,20 @@ List-Post: <mailto:v9fs-developer@lists.sourceforge.net>
 List-Help: <mailto:v9fs-developer-request@lists.sourceforge.net?subject=help>
 List-Subscribe: <https://lists.sourceforge.net/lists/listinfo/v9fs-developer>, 
  <mailto:v9fs-developer-request@lists.sourceforge.net?subject=subscribe>
+Reply-To: potfolio.management@aol.com
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"; DelSp="yes"
 Errors-To: v9fs-developer-bounces@lists.sourceforge.net
 
-syzbot suspects this bug was fixed by commit:
+Good Day ,
 
-commit 430ac66eb4c5b5c4eb846b78ebf65747510b30f1
-Author: Tomas Bortoli <tomasbortoli@gmail.com>
-Date:   Fri Jul 20 09:27:30 2018 +0000
+I am outsourcing individuals with proficient abilities to manage a vast wealth for an Arab Angel Investor with beleaguered political situation. These funds can be invested in tranches of 50 M or a tranche that is suitable for the portfolio manager.
 
-     net/9p/trans_fd.c: fix race-condition by flushing workqueue before the  
-kfree()
+If you have Investment and/or Portfolio Management abilities, credible projects in need of funding or existing businesses requiring expansion, we would be delighted to work with you.
 
-bisection log:  https://syzkaller.appspot.com/x/bisect.txt?x=167fa19ae00000
-start commit:   1e09177a Merge tag 'mips_fixes_4.18_3' of git://git.kernel..
-git tree:       upstream
-kernel config:  https://syzkaller.appspot.com/x/.config?x=25856fac4e580aa7
-dashboard link: https://syzkaller.appspot.com/bug?extid=78b902c73c69102cb767
-userspace arch: i386
-syz repro:      https://syzkaller.appspot.com/x/repro.syz?x=135660c8400000
+Sincerely,
 
-If the result looks correct, please mark the bug fixed by replying with:
-
-#syz fix: net/9p/trans_fd.c: fix race-condition by flushing workqueue  
-before the kfree()
-
-For information about bisection process see: https://goo.gl/tpsmEJ#bisection
+John
 
 
 _______________________________________________
