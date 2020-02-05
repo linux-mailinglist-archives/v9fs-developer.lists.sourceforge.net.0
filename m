@@ -2,82 +2,65 @@ Return-Path: <v9fs-developer-bounces@lists.sourceforge.net>
 X-Original-To: lists+v9fs-developer@lfdr.de
 Delivered-To: lists+v9fs-developer@lfdr.de
 Received: from lists.sourceforge.net (lists.sourceforge.net [216.105.38.7])
-	by mail.lfdr.de (Postfix) with ESMTPS id 650B4152451
-	for <lists+v9fs-developer@lfdr.de>; Wed,  5 Feb 2020 01:55:24 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 16AAE152548
+	for <lists+v9fs-developer@lfdr.de>; Wed,  5 Feb 2020 04:44:01 +0100 (CET)
 Received: from [127.0.0.1] (helo=sfs-ml-4.v29.lw.sourceforge.com)
 	by sfs-ml-4.v29.lw.sourceforge.com with esmtp (Exim 4.90_1)
 	(envelope-from <v9fs-developer-bounces@lists.sourceforge.net>)
-	id 1iz8yR-0002hA-4p; Wed, 05 Feb 2020 00:55:23 +0000
+	id 1izBba-0001KG-Mg; Wed, 05 Feb 2020 03:43:58 +0000
 Received: from [172.30.20.202] (helo=mx.sourceforge.net)
  by sfs-ml-4.v29.lw.sourceforge.com with esmtps
  (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.90_1)
- (envelope-from <l29ah@cock.li>) id 1iz8yM-0002gv-IV
- for v9fs-developer@lists.sourceforge.net; Wed, 05 Feb 2020 00:55:18 +0000
+ (envelope-from <lidhaje@jcb.co.jp>) id 1izBbZ-0001K9-TU
+ for v9fs-developer@lists.sourceforge.net; Wed, 05 Feb 2020 03:43:57 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=sourceforge.net; s=x; h=Content-Transfer-Encoding:MIME-Version:References:
- In-Reply-To:Message-Id:Date:Subject:Cc:To:From:Sender:Reply-To:Content-Type:
- Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
- Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
+ d=sourceforge.net; s=x; h=Content-Type:MIME-Version:Date:Subject:To:From:
+ Message-ID:Sender:Reply-To:Cc:Content-Transfer-Encoding:Content-ID:
+ Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
+ :Resent-Message-ID:In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:
  List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=DM4kDaOsb2DuV+kjY+blsOGJiY10P8x5wmeDe51N59I=; b=QcTnGZkH9Z51B/eZMaYKt/qvqP
- BkRAoNwR2pIg6P69ekqtvHSCIobMOxIenStUV4VXK8YWuv7/z6fNIc66ZVYaxZXmhkmAD3hPwx58v
- 3F/BRi9/D9TdAcalbd6fBZQt/uXrvonvZQNJ11GMLf5Qz1GbGYsoQkk8EjoRolvqt6DA=;
+ bh=5bL83pcJRJ7pvQDCmkXzFtII2H4hgKwq/V1bGpMxvmg=; b=TxXFmCK8jewhfgbxpjlIMFvyqi
+ pU/3S7bP1krEg7W1oE4CUB/EObiJCuaSeCJYnNx2grvqCRchXq1rcV5o6ukRRnXZVHPUasvDTV0m0
+ MI5JzmK5Q+rZ5N0b+myaBTEpzc4RBnbZeIaCmFgqMvFT++wO9BB1V5CU0U3Ye9ZBIViA=;
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  ;
- h=Content-Transfer-Encoding:MIME-Version:References:In-Reply-To:Message-Id:
- Date:Subject:Cc:To:From:Sender:Reply-To:Content-Type:Content-ID:
- Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
- :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
- List-Post:List-Owner:List-Archive;
- bh=DM4kDaOsb2DuV+kjY+blsOGJiY10P8x5wmeDe51N59I=; b=ZU7rKrGzbd4ynvwoAVpvZtB3hf
- lPtzgixwLGAlDDYPKIAl58UHI1XsbrbQA8UiXlyWjb+Jk/i6WM06uYwBA/RyAODarQrjcO5r8td5D
- t+CqNxwUPaVllexDGhDujYCxlJsm0uWPCS9aSd+RL+KhL50cmZRUYtHtanovIFey6Vjc=;
-Received: from mx1.cock.li ([185.10.68.5] helo=cock.li)
- by sfi-mx-4.v28.lw.sourceforge.com with esmtps
- (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.92.2)
- id 1iz8yJ-00ATne-ON
- for v9fs-developer@lists.sourceforge.net; Wed, 05 Feb 2020 00:55:18 +0000
-X-Spam-Checker-Version: SpamAssassin 3.4.2 (2018-09-13) on cock.li
-X-Spam-Level: 
-X-Spam-Status: No, score=0.7 required=5.0 tests=BAYES_50,DKIM_SIGNED,
- DKIM_VALID,DKIM_VALID_AU,NO_RECEIVED,NO_RELAYS shortcircuit=_SCTYPE_
- autolearn=disabled version=3.4.2
-From: Sergey Alirzaev <l29ah@cock.li>
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=cock.li; s=mail;
- t=1580862943; bh=Hjws4hd6gO2//6ej+Q1oLOrL7jmkiZKIXGuthMfEYqY=;
- h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
- b=knpvXt/SYh3/6+DkvT/RYVyVwKyKqP/J1WLMVs3qP/R++J9A2mtZwIjjvtJ+MN2bQ
- RPoGVCnorvJAyGWi7TMoFHUM6NGBdUXi+mvX9iws//EgMbGGoh1lDdfcbzCOdQ7jo4
- Tnb5CJldbRPd0ul46RllaNuUEHWk/V+GGAVJTVYs2gXiYkiNpi9EXJeYJkFkCK5mQa
- 6jwTP1VU3bw4b6GV1vCe3OAweiRo5yudSefxBK/A3jqcvpYelAt/JYEW/BOe6XyBpZ
- Bwrj+uL4xBSfVGZNAN9N0VQ1sfdv0psNuGfwbs7dLeF+inGP4LOFs/i6RFbrSY9F01
- 4XnN3SCgmrXJg==
-To: v9fs-developer@lists.sourceforge.net
-Date: Wed,  5 Feb 2020 03:34:57 +0300
-Message-Id: <20200205003457.24340-2-l29ah@cock.li>
-X-Mailer: git-send-email 2.25.0
-In-Reply-To: <20200205003457.24340-1-l29ah@cock.li>
-References: <20200205003457.24340-1-l29ah@cock.li>
+ h=Content-Type:MIME-Version:Date:Subject:To:From:Message-ID:Sender:Reply-To
+ :Cc:Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+ Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:
+ References:List-Id:List-Help:List-Unsubscribe:List-Subscribe:List-Post:
+ List-Owner:List-Archive; bh=5bL83pcJRJ7pvQDCmkXzFtII2H4hgKwq/V1bGpMxvmg=; b=V
+ myMR8qbA28o3ptUxXl1NeMRxAHxGZCrHTb0PA3atc6s3BD0VjGm+iUnEI34QIZ5qAPP+pyow2r/hx
+ o4Q2cgyb6FvGi0bzWsszSqRPBFj6VYIalY3PjkpiAwZzgyGOx7qgEIaUM1hDxUqj1b2PKPiHNCpli
+ ff3NAvQkqR3CNaHQ=;
+Received: from [14.118.208.218] (helo=jcb.co.jp)
+ by sfi-mx-3.v28.lw.sourceforge.com with esmtp (Exim 4.92.2)
+ id 1izBbV-00AblJ-RS
+ for v9fs-developer@lists.sourceforge.net; Wed, 05 Feb 2020 03:43:57 +0000
+Message-ID: <20200205114349008407@jcb.co.jp>
+From: "JCB" <lidhaje@jcb.co.jp>
+To: <v9fs-developer@lists.sourceforge.net>
+Date: Wed, 5 Feb 2020 11:43:42 +0800
 MIME-Version: 1.0
-X-Spam-Score: -0.4 (/)
+X-mailer: Edgrddkjy 1
+X-Spam-Score: 6.8 (++++++)
 X-Spam-Report: Spam Filtering performed by mx.sourceforge.net.
  See http://spamassassin.org/tag/ for more details.
  0.0 URIBL_BLOCKED ADMINISTRATOR NOTICE: The query to URIBL was blocked.
  See
  http://wiki.apache.org/spamassassin/DnsBlocklists#dnsbl-block
- for more information. [URIs: cock.li]
- -0.0 RCVD_IN_MSPIKE_H2      RBL: Average reputation (+2)
- [185.10.68.5 listed in wl.mailspike.net]
- -0.0 SPF_HELO_PASS          SPF: HELO matches SPF record
- -0.0 SPF_PASS               SPF: sender matches SPF record
- -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from author's
- domain
- -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
- 0.1 DKIM_SIGNED            Message has a DKIM or DK signature,
- not necessarily valid
- -0.3 AWL AWL: Adjusted score from AWL reputation of From: address
-X-Headers-End: 1iz8yJ-00ATne-ON
-Subject: [V9fs-developer] [PATCH 2/2] 9p: read only once on O_NONBLOCK
+ for more information. [URIs: jcb.co.jp]
+ 3.6 RCVD_IN_PBL            RBL: Received via a relay in Spamhaus PBL
+ [14.118.208.218 listed in zen.spamhaus.org]
+ 0.0 SPF_NONE               SPF: sender does not publish an SPF Record
+ 0.0 SPF_HELO_NONE          SPF: HELO does not publish an SPF Record
+ 1.0 HTML_MESSAGE           BODY: HTML included in message
+ 1.0 RDNS_NONE Delivered to internal network by a host with no rDNS
+ 0.0 TVD_SPACE_ENCODED      Space ratio & encoded subject
+ 1.3 TVD_SPACE_RATIO_MINFP  Space ratio
+X-Headers-End: 1izBbV-00AblJ-RS
+X-Content-Filtered-By: Mailman/MimeDel 2.1.21
+Subject: [V9fs-developer]
+	=?gb2312?B?pKq/zZiUpM5KQ0KloqWrpaal86XIpKyl7aXDpa+ktaTspMakpA==?=	=?gb2312?B?pOsgt6y6xaO6obgxODY3MDQ3M6G5?=
 X-BeenThere: v9fs-developer@lists.sourceforge.net
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -89,45 +72,57 @@ List-Post: <mailto:v9fs-developer@lists.sourceforge.net>
 List-Help: <mailto:v9fs-developer-request@lists.sourceforge.net?subject=help>
 List-Subscribe: <https://lists.sourceforge.net/lists/listinfo/v9fs-developer>, 
  <mailto:v9fs-developer-request@lists.sourceforge.net?subject=subscribe>
-Cc: Latchesar Ionkov <lucho@ionkov.net>, Eric Van Hensbergen <ericvh@gmail.com>,
- netdev@vger.kernel.org, linux-kernel@vger.kernel.org,
- Sergey Alirzaev <l29ah@cock.li>, Jakub Kicinski <kuba@kernel.org>,
- "David S. Miller" <davem@davemloft.net>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: multipart/mixed; boundary="===============2372413148315350951=="
 Errors-To: v9fs-developer-bounces@lists.sourceforge.net
 
-A proper way to handle O_NONBLOCK would be making the requests and
-responses happen asynchronously, but this would require serious code
-refactoring.
+This is a multi-part message in MIME format.
 
-Signed-off-by: Sergey Alirzaev <l29ah@cock.li>
----
- fs/9p/vfs_file.c | 5 ++++-
- 1 file changed, 4 insertions(+), 1 deletion(-)
+--===============2372413148315350951==
+Content-Type: text/plain;
+	charset="gb2312"
+Content-Transfer-Encoding: base64
 
-diff --git a/fs/9p/vfs_file.c b/fs/9p/vfs_file.c
-index fe7f0bd2048e..92cd1d80218d 100644
---- a/fs/9p/vfs_file.c
-+++ b/fs/9p/vfs_file.c
-@@ -388,7 +388,10 @@ v9fs_file_read_iter(struct kiocb *iocb, struct iov_iter *to)
- 	p9_debug(P9_DEBUG_VFS, "count %zu offset %lld\n",
- 		 iov_iter_count(to), iocb->ki_pos);
- 
--	ret = p9_client_read(fid, iocb->ki_pos, to, &err);
-+	if (iocb->ki_filp->f_flags & O_NONBLOCK)
-+		ret = p9_client_read_once(fid, iocb->ki_pos, to, &err);
-+	else
-+		ret = p9_client_read(fid, iocb->ki_pos, to, &err);
- 	if (!ret)
- 		return err;
- 
--- 
-2.25.0
+DQoNCrG+peGpYKXrpM+lyaXhpaSl86TO31zTw6OopeGpYKXry83K3NDFpOSl26lgpeCl2qlgpbik
+zrHtyr6jqaTL6Xak76TrDQqhodbY0qqkys2o1qqkyKTKpOqk3qS5oaMNCqH2oaGppamlqaWppaml
+qaWppamlqaWppamlqaWppamlqaWppamlqaWppamlqaWppamlqaWppamlqaWppamlqaWppamlqaWp
+pQ0KoaGh4KhFod+oRaHgqEWh36hFoeCoRaHgqEWh36hFoeCoRaHfqEWh4KhFoeCoRaHfqEWh4KhF
+od+oRaHgqEWh4KhFod+oRaHgDQogDQqkoqTKpL+kzqWvpeyluKXDpcilq6lgpcm/2tf5pKy12sj9
+1d+ky6TopMOkxsq508OktaTspMakpKTrpLOkyKTyl8rWqqS3pL+kzqTHoaKkoqTKpL+kzr/a1/mk
+rNlZvfCkzrCyyKukzqS/pOGky4P2vVmktaTspL+kzqTHpLmkrKGipLmksKTLV0VCpbWpYKXTpblJ
+RKTIpdGluaXvqWClyaTy1Nm1x+VopLekxqGi1sbP3qTyveKz/aS3pMqksaTspNCkyqTqpN6ku6Tz
+DQogDQqJ5Lj8pPKktCBXRUKltalgpdOluaTopOqkqsnq3nqk36SvpMCktaSkoaMNCiANCiANCqH2
+IInkuPyk8qS0ILe9t6gNCqiLTXlKQ0Kl7aWwpaSl86TPpLOkwaTpDQpodHRwczovL2pjYi5jby5q
+cC9sb2dpbg0KIA0KIA0Ko72jvaO9o72jvaO9o72jvaO9o72jvaO9o72jvaO9o72jvaO9o72jvaO9
+o72jvaO9o72jvaO9o72jvaO9o72jvaO9o70NCqGh1urKvbvhyeeluKWnqWClt6lgpdOpYCANCqGh
+lny+qba8uNvH+MTPx+DJvTUtMS0yMqGhx+DJvaXppaSluqW5pa+lqKWioaGokzEwNy04Njg2DQqh
+oaH5sb6l4algpeukz8vN0MWMn9PDpMekuaGjDQqhoSAgpKqGlqSkus+k76S7pM/Jz6TOVVJMpM6h
+ooyf08Ol1aWpqWCl4KTopOqkqu6KpKSkt6TepLmhow0Ko72jvaO9o72jvaO9o72jvaO9o72jvaO9
+o72jvaO9o72jvaO9o72jvaO9o72jvaO9o72jvaO9o72jvaO9o72jvaO9o70NCqGhobhNeUpDQiBF
+eHByZXNzIE5ld3OhuaTLkvfdZKS1pOykxqSkpOukuaTZpMakztObysKhog0KoaHOxNXCtcikzp9v
+ts/cnt1kpPK9+9a5pLek3qS5oaMNCqGh1vjX95jYpM+kuaTZpMahotbqyr274cnnpbilp6lgpbep
+YKXTqWCky46iyvSkt6TepLmhow0KoaFDb3B5cmlnaHQgSkNCIENvLiwgTHRkLiAyMDE5DQqjvaO9
+o72jvaO9o72jvaO9o72jvaO9o72jvaO9o72jvaO9o72jvaO9o72jvaO9o72jvaO9o72jvaO9o72j
+vaO9o72jvQ0KoaGhoaGhoaGhoaGhoaGhoaGhoaGhoaGhoaGhoaGhoaGhoaGhoaGhoaGhoaGhoaGh
+oaGhoaGhoaGhoSBFMTkxMDEwMjQy
+
+--===============2372413148315350951==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
 
 
+--===============2372413148315350951==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
 
 _______________________________________________
 V9fs-developer mailing list
 V9fs-developer@lists.sourceforge.net
 https://lists.sourceforge.net/lists/listinfo/v9fs-developer
+
+--===============2372413148315350951==--
+
+
