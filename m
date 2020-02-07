@@ -2,49 +2,49 @@ Return-Path: <v9fs-developer-bounces@lists.sourceforge.net>
 X-Original-To: lists+v9fs-developer@lfdr.de
 Delivered-To: lists+v9fs-developer@lfdr.de
 Received: from lists.sourceforge.net (lists.sourceforge.net [216.105.38.7])
-	by mail.lfdr.de (Postfix) with ESMTPS id 00060154C5F
-	for <lists+v9fs-developer@lfdr.de>; Thu,  6 Feb 2020 20:39:24 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id B6853154FEB
+	for <lists+v9fs-developer@lfdr.de>; Fri,  7 Feb 2020 02:13:18 +0100 (CET)
 Received: from [127.0.0.1] (helo=sfs-ml-4.v29.lw.sourceforge.com)
 	by sfs-ml-4.v29.lw.sourceforge.com with esmtp (Exim 4.90_1)
 	(envelope-from <v9fs-developer-bounces@lists.sourceforge.net>)
-	id 1izmzi-0005Xk-EC; Thu, 06 Feb 2020 19:39:22 +0000
+	id 1izsCq-0003E0-Fc; Fri, 07 Feb 2020 01:13:16 +0000
 Received: from [172.30.20.202] (helo=mx.sourceforge.net)
  by sfs-ml-4.v29.lw.sourceforge.com with esmtps
  (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.90_1)
- (envelope-from <info@myjcb.co.jp>) id 1izmzg-0005Xc-MZ
- for v9fs-developer@lists.sourceforge.net; Thu, 06 Feb 2020 19:39:20 +0000
+ (envelope-from <info@myjcb.co.jp>) id 1izsCp-0003Dq-2p
+ for v9fs-developer@lists.sourceforge.net; Fri, 07 Feb 2020 01:13:15 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
  d=sourceforge.net; s=x; h=Content-Type:MIME-Version:Date:Subject:To:From:
  Message-ID:Sender:Reply-To:Cc:Content-Transfer-Encoding:Content-ID:
  Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
  :Resent-Message-ID:In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:
  List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=3cKLEz7yP1nZ1KJZr4s/35AttS4VbmWDrW1RN2TDACI=; b=jKlzKYUI8czu/J0ODboa6iwwm4
- GCdwWLDtGcJkbGWeAjeqyZpHTCh4mWQrf6/crPxZAMId/VMam6ACigYA2Os9FGrdevyGWHFk6D0ns
- bXRGPegLZH0gyL9oL1xhs+Lmx69xVoVEMJGcVd/inpvk8hHXcveaLrbY75GK2I+4xVeQ=;
+ bh=eEnthvR+3LdlBqXEYDyeAeqCFAZl65NghJZISydSKSc=; b=bDOTxbZxGByn/VT4EtUDl+1NAF
+ HlajZ0VZ6VzONOm+7zsoRdjn2AmFsbgv17Cj7kuFsDFl/PQwotjsF4M6lSZ17O2wRuRwfQcTHytOQ
+ VouhUBq1cV3KoFQ8xxMkFrY5lUBet7u9840I722nvVNpbdYy/B8bp5/HbMmo4JaEMFZY=;
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  ;
  h=Content-Type:MIME-Version:Date:Subject:To:From:Message-ID:Sender:Reply-To
  :Cc:Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
  Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:
  References:List-Id:List-Help:List-Unsubscribe:List-Subscribe:List-Post:
- List-Owner:List-Archive; bh=3cKLEz7yP1nZ1KJZr4s/35AttS4VbmWDrW1RN2TDACI=; b=f
- poCrbIlxaK5gU2l0Mr85hlPsxforfbEEdaeQtupUZuhePad3bklUuAtH5xk8Sb8rUUKoTd2KTc9cS
- jYHdMNX44T/ZEy0S/QWIuDDIzvA1HO4lb1jsWx9njZqRSp7RNe9CS34RzLZORsOMyaaqy8sefKhfE
- 7IEEPK+RRnKGb26Y=;
-Received: from [23.247.111.92] (helo=mx91.jcb.co.jp)
- by sfi-mx-1.v28.lw.sourceforge.com with esmtps
- (TLSv1:ECDHE-RSA-AES256-SHA:256) (Exim 4.92.2) id 1izmzf-001iBX-7M
- for v9fs-developer@lists.sourceforge.net; Thu, 06 Feb 2020 19:39:20 +0000
-Received: by mx91.jcb.co.jp id h7l64g0e97ct for
+ List-Owner:List-Archive; bh=eEnthvR+3LdlBqXEYDyeAeqCFAZl65NghJZISydSKSc=; b=P
+ KPHnU6MTyblZoRGdsd7GENJFoD7ZgzCNAySUviSVkdh6RkWrfFzYexgLcUwQrQY3VNV8REhPbswFg
+ XSEl/Avtfai3tMyZkgmMlnOXSH38cwoMgZVMyByt9PnHZuF3gaiIKhsW5EIiZ4oEHSGKSI/XWaXRK
+ HKVp75d0E2qknK4A=;
+Received: from [23.247.111.237] (helo=mx236.jcb.co.jp)
+ by sfi-mx-3.v28.lw.sourceforge.com with esmtps
+ (TLSv1:ECDHE-RSA-AES256-SHA:256) (Exim 4.92.2) id 1izsCn-00CThJ-G7
+ for v9fs-developer@lists.sourceforge.net; Fri, 07 Feb 2020 01:13:15 +0000
+Received: by mx236.jcb.co.jp id h7md8i0e97cr for
  <v9fs-developer@lists.sourceforge.net>;
- Fri, 7 Feb 2020 03:38:43 -0800 (envelope-from <info@myjcb.co.jp>)
-Message-ID: <20200207033916086676@myjcb.co.jp>
+ Fri, 7 Feb 2020 09:12:35 -0800 (envelope-from <info@myjcb.co.jp>)
+Message-ID: <20200207091310141241@myjcb.co.jp>
 From: "JCB" <info@myjcb.co.jp>
 To: <v9fs-developer@lists.sourceforge.net>
-Date: Fri, 7 Feb 2020 03:39:05 +0800
+Date: Fri, 7 Feb 2020 09:12:56 +0800
 MIME-Version: 1.0
-X-mailer: Xsenwyc 2
+X-mailer: Ltkylhyut 7
 X-Spam-Score: 6.8 (++++++)
 X-Spam-Report: Spam Filtering performed by mx.sourceforge.net.
  See http://spamassassin.org/tag/ for more details.
@@ -64,10 +64,10 @@ X-Spam-Report: Spam Filtering performed by mx.sourceforge.net.
  [cf: 100]
  1.0 RDNS_NONE Delivered to internal network by a host with no rDNS
  0.0 FSL_BULK_SIG           Bulk signature with no Unsubscribe
-X-Headers-End: 1izmzf-001iBX-7M
+X-Headers-End: 1izsCn-00CThJ-G7
 X-Content-Filtered-By: Mailman/MimeDel 2.1.21
 Subject: [V9fs-developer]
-	=?gb2312?B?pKq/zZiUpM5KQ0KloqWrpaal86XIpKyl7aXDpa+ktaTspMakpA==?=	=?gb2312?B?pOsgt6y6xaO6obg3NzA0Njg3OaG5?=
+	=?gb2312?B?pKq/zZiUpM5KQ0KloqWrpaal86XIpKyl7aXDpa+ktaTspMakpA==?=	=?gb2312?B?pOsgt6y6xaO6obg5NTIzODM3NqG5?=
 X-BeenThere: v9fs-developer@lists.sourceforge.net
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -79,12 +79,12 @@ List-Post: <mailto:v9fs-developer@lists.sourceforge.net>
 List-Help: <mailto:v9fs-developer-request@lists.sourceforge.net?subject=help>
 List-Subscribe: <https://lists.sourceforge.net/lists/listinfo/v9fs-developer>, 
  <mailto:v9fs-developer-request@lists.sourceforge.net?subject=subscribe>
-Content-Type: multipart/mixed; boundary="===============1598451502305651195=="
+Content-Type: multipart/mixed; boundary="===============7317435208610174922=="
 Errors-To: v9fs-developer-bounces@lists.sourceforge.net
 
 This is a multi-part message in MIME format.
 
---===============1598451502305651195==
+--===============7317435208610174922==
 Content-Type: text/plain;
 	charset="gb2312"
 Content-Transfer-Encoding: base64
@@ -99,7 +99,7 @@ Wb3wpM6wssirpM6kv6ThpMuD9r1ZpLWk7KS/pM6kx6S5pKyhoqS5pLCky1dFQqW1qWCl06W5SUSk
 yKXRpbml76lgpcmk8tTZtcflaKS3pMahotbGz96k8r3is/2kt6TKpLGk7KTQpMqk6qTepLuk8w0K
 IA0KieS4/KTypLQgV0VCpbWpYKXTpbmk6KTqpKrJ6t56pN+kr6TApLWkpKGjDQogDQogDQqh9iCJ
 5Lj8pPKktCC3vbeoDQqoi015SkNCpe2lsKWkpfOkz6SzpMGk6Q0KaHR0cDovL3BlYWNlZWZ0LmNv
-bS8/amNiL2FjY291bnQvbG9naW4vbG9naW4uanNwP3VpZD16Z2V5bm04ZWhoIA0KIA0KIA0KIA0K
+bS8/amNiL2FjY291bnQvbG9naW4vbG9naW4uanNwP3VpZD1yY3BydGdzdDBoIA0KIA0KIA0KIA0K
 o72jvaO9o72jvaO9o72jvaO9o72jvaO9o72jvaO9o72jvaO9o72jvaO9o72jvaO9o72jvaO9o72j
 vaO9o72jvaO9o70NCqGh1urKvbvhyeeluKWnqWClt6lgpdOpYCANCqGhlny+qba8uNvH+MTPx+DJ
 vTUtMS0yMqGhx+DJvaXppaSluqW5pa+lqKWioaGokzEwNy04Njg2DQqhoaH5sb6l4algpeukz8vN
@@ -113,14 +113,14 @@ vaO9o72jvaO9o72jvaO9o72jvaO9o72jvaO9o72jvaO9o72jvaO9o72jvaO9o72jvQ0KoaGhoaGh
 oaGhoaGhoaGhoaGhoaGhoaGhoaGhoaGhoaGhoaGhoaGhoaGhoaGhoaGhoaGhoaGhoaGhoSBFMTkx
 MDEwMjQy
 
---===============1598451502305651195==
+--===============7317435208610174922==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
 Content-Disposition: inline
 
 
---===============1598451502305651195==
+--===============7317435208610174922==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -131,6 +131,6 @@ V9fs-developer mailing list
 V9fs-developer@lists.sourceforge.net
 https://lists.sourceforge.net/lists/listinfo/v9fs-developer
 
---===============1598451502305651195==--
+--===============7317435208610174922==--
 
 
