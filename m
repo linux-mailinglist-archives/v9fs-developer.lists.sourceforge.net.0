@@ -2,72 +2,99 @@ Return-Path: <v9fs-developer-bounces@lists.sourceforge.net>
 X-Original-To: lists+v9fs-developer@lfdr.de
 Delivered-To: lists+v9fs-developer@lfdr.de
 Received: from lists.sourceforge.net (lists.sourceforge.net [216.105.38.7])
-	by mail.lfdr.de (Postfix) with ESMTPS id B6853154FEB
-	for <lists+v9fs-developer@lfdr.de>; Fri,  7 Feb 2020 02:13:18 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3E9141569A2
+	for <lists+v9fs-developer@lfdr.de>; Sun,  9 Feb 2020 09:19:31 +0100 (CET)
 Received: from [127.0.0.1] (helo=sfs-ml-4.v29.lw.sourceforge.com)
 	by sfs-ml-4.v29.lw.sourceforge.com with esmtp (Exim 4.90_1)
 	(envelope-from <v9fs-developer-bounces@lists.sourceforge.net>)
-	id 1izsCq-0003E0-Fc; Fri, 07 Feb 2020 01:13:16 +0000
+	id 1j0hoN-0008Gy-Le; Sun, 09 Feb 2020 08:19:27 +0000
 Received: from [172.30.20.202] (helo=mx.sourceforge.net)
  by sfs-ml-4.v29.lw.sourceforge.com with esmtps
  (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.90_1)
- (envelope-from <info@myjcb.co.jp>) id 1izsCp-0003Dq-2p
- for v9fs-developer@lists.sourceforge.net; Fri, 07 Feb 2020 01:13:15 +0000
+ (envelope-from <peterwong@bodazone.com>) id 1j0hoM-0008Gr-Mj
+ for v9fs-developer@lists.sourceforge.net; Sun, 09 Feb 2020 08:19:26 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=sourceforge.net; s=x; h=Content-Type:MIME-Version:Date:Subject:To:From:
- Message-ID:Sender:Reply-To:Cc:Content-Transfer-Encoding:Content-ID:
+ d=sourceforge.net; s=x; h=Content-Transfer-Encoding:Content-Type:MIME-Version
+ :Subject:Message-ID:To:Reply-To:From:Date:Sender:Cc:Content-ID:
  Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
  :Resent-Message-ID:In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:
  List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=eEnthvR+3LdlBqXEYDyeAeqCFAZl65NghJZISydSKSc=; b=bDOTxbZxGByn/VT4EtUDl+1NAF
- HlajZ0VZ6VzONOm+7zsoRdjn2AmFsbgv17Cj7kuFsDFl/PQwotjsF4M6lSZ17O2wRuRwfQcTHytOQ
- VouhUBq1cV3KoFQ8xxMkFrY5lUBet7u9840I722nvVNpbdYy/B8bp5/HbMmo4JaEMFZY=;
+ bh=Kza/Q9aKZPDahLi3dEVpzp2HWclRPmp/qjSGKhAjI+8=; b=g9cvmTqTU1sFbWWLjp5dXxOZpU
+ lOBA+y0pF90aNgaGE7CSUYhmKXSCnxbCetuFcOfeqg2hFX+eiFCNhLra5XNubQdK6r5+9h+fOd6S4
+ Htqmx72HdLC4Sb60ZWwxSusMjQ8CyAn/UqiEIeoWcDufk6HHgA9hm+s3n9vkTbuTuJ/4=;
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  ;
- h=Content-Type:MIME-Version:Date:Subject:To:From:Message-ID:Sender:Reply-To
- :Cc:Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+ h=Content-Transfer-Encoding:Content-Type:MIME-Version:Subject:Message-ID:To
+ :Reply-To:From:Date:Sender:Cc:Content-ID:Content-Description:Resent-Date:
  Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:
  References:List-Id:List-Help:List-Unsubscribe:List-Subscribe:List-Post:
- List-Owner:List-Archive; bh=eEnthvR+3LdlBqXEYDyeAeqCFAZl65NghJZISydSKSc=; b=P
- KPHnU6MTyblZoRGdsd7GENJFoD7ZgzCNAySUviSVkdh6RkWrfFzYexgLcUwQrQY3VNV8REhPbswFg
- XSEl/Avtfai3tMyZkgmMlnOXSH38cwoMgZVMyByt9PnHZuF3gaiIKhsW5EIiZ4oEHSGKSI/XWaXRK
- HKVp75d0E2qknK4A=;
-Received: from [23.247.111.237] (helo=mx236.jcb.co.jp)
+ List-Owner:List-Archive; bh=Kza/Q9aKZPDahLi3dEVpzp2HWclRPmp/qjSGKhAjI+8=; b=T
+ eFC1hfu0O8cG6+D1+u7JxlLUuDlvhBB7zYewkjp8g/ztVxK/zMHEsnieRlxaWz0bXkrEVY9cSfkpH
+ +3HSPWDtQ2fwKVyTK58oJ67dxPe0om7gKVsC8s4ChouWkVCojgtDrqbdYDTR4kS159kRosnfanMM/
+ wzhrozyfKN3szmWI=;
+Received: from mail01.vodafone.es ([217.130.24.71])
  by sfi-mx-3.v28.lw.sourceforge.com with esmtps
- (TLSv1:ECDHE-RSA-AES256-SHA:256) (Exim 4.92.2) id 1izsCn-00CThJ-G7
- for v9fs-developer@lists.sourceforge.net; Fri, 07 Feb 2020 01:13:15 +0000
-Received: by mx236.jcb.co.jp id h7md8i0e97cr for
- <v9fs-developer@lists.sourceforge.net>;
- Fri, 7 Feb 2020 09:12:35 -0800 (envelope-from <info@myjcb.co.jp>)
-Message-ID: <20200207091310141241@myjcb.co.jp>
-From: "JCB" <info@myjcb.co.jp>
-To: <v9fs-developer@lists.sourceforge.net>
-Date: Fri, 7 Feb 2020 09:12:56 +0800
+ (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.92.2)
+ id 1j0hoK-00FnEX-A4
+ for v9fs-developer@lists.sourceforge.net; Sun, 09 Feb 2020 08:19:26 +0000
+IronPort-SDR: zGEZrLt24LKfze9LRE7TyD3OcehkKmUfM0e9jpX8db0IykX3LT/i4MP2c8jIWJoC+LYO1VpNUI
+ 8H3JbuKEmo9g==
+IronPort-PHdr: =?us-ascii?q?9a23=3AB+t3DRF0gvR/xALVg+ILMZ1GYnF86YWxBRYc79?=
+ =?us-ascii?q?8ds5kLTJ7zosWwAkXT6L1XgUPTWs2DsrQY0raQ7vCrADVYqdbZ6TZeKccKD0?=
+ =?us-ascii?q?dEwewt3CUYSPafDkP6KPO4JwcbJ+9lEGFfwnegLEJOE9z/bVCB6le77DoVBw?=
+ =?us-ascii?q?mtfVEtfre9FYHdldm42P6v8JPPfQpImCC9YbRvJxmqsAndrMYbjZZtJ6oryh?=
+ =?us-ascii?q?bEoXREd/lLyW90OFmfmwrw6tqq8JNs7ihdtegt+9JcXan/Yq81UaFWADM6Pm?=
+ =?us-ascii?q?4v+cblrwPDTQyB5nsdVmUZjB9FCBXb4R/5Q5n8rDL0uvJy1yeGM8L2S6s0WS?=
+ =?us-ascii?q?m54KdwVBDokiYHOCUn/2zRl8d9kbhUoBOlpxx43o7UfISYP+dwc6/BYd8XQ3?=
+ =?us-ascii?q?dKU8BMXCJDH4y8dZMCAeQBM+ZCsYfzpEYAohSiCgejH+7v1j1FiWPq0aEmz+?=
+ =?us-ascii?q?gtDwfL1xEgEdIUt3TUqc34Or0MXuCp0qbI1yjIYPNR2Tf754jDbxcsoemSUr?=
+ =?us-ascii?q?Jsb8XR00cuFwTDjlWfsoHqJDSV2fkXvGma6OpgU/ygh3Q7pAF2pzii38EhgZ?=
+ =?us-ascii?q?TKiIIN0l3I6zh1zYQvKdGlRkN3fcSoHIVfui2AOYZ7QsUvSHxytikg0L0Jo5?=
+ =?us-ascii?q?u7cTAPyJQg2hHQdeSKc5ON4hL/TOaRJip4hG59dLK/mRmy9U+gx/X5Vsau0V?=
+ =?us-ascii?q?ZKqjBFncfItnwR2BHf8NaHSvxg8Ui71zaP0AbT5f9eLU8qjqrXM58hwrgumZ?=
+ =?us-ascii?q?oPqUnPADL6lUfsgKOLeEgo5vKk5/rob7n8qJKRN5d4igTkPaQvnsy/D/44Mg?=
+ =?us-ascii?q?8LX2WD4eSzyqHj8lPjQLREif02lKbZvYvBKsQcu6G2GQ5U0oEl6xmhFTupzN?=
+ =?us-ascii?q?MYnXwfIFJfZB2Hl5TpO03JIP3gE/eyh1qskCxyy//bILLhHIvCLnzEkLf5Y7?=
+ =?us-ascii?q?l98VVRyA4yzdBE+5JUEasNIOn0Wk/srtzXEgE2MwKzw+b9B9VyyJkSWWSRDa?=
+ =?us-ascii?q?+FY+vutgqWt+w0ZuWBeoIRvy7wMdAh5uXyljkinkIHdqSn2oEYZTa+E+g1GU?=
+ =?us-ascii?q?iBZWvQhYI5HHsHpEIBS+rlwAmaXCJefWm1Wa08/TswCIGOAoLKR4Tri7uEin?=
+ =?us-ascii?q?SVBJpTM1hLFl2WWUjvcYrMD+8BdC+IPchnnRQOUrSoWYgn2FelswqsmOkvFf?=
+ =?us-ascii?q?bd5iBN7cGr79Ny/eCGzRw=3D?=
+X-IronPort-Anti-Spam-Filtered: true
+X-IronPort-Anti-Spam-Result: =?us-ascii?q?A2FJbQBevz9eeiMYgtlmHQEBAQkBEQU?=
+ =?us-ascii?q?FAYF7AgGBPQKBVlINExKMZIZvgU0fg0OLaIEAgzOGCBOBZw0BAQEBARsaAgE?=
+ =?us-ascii?q?BhECCRiQ8Ag0CAw0BAQUBAQEBAQUEAQECEAEBCwsLBCuFSkIBDAGBayKDcCA?=
+ =?us-ascii?q?POUpMAQ4BhiIBATOlNokBDQ0ChR6CSgQKgQiBGyOBNgIBAYwhGoFBP4EjIYI?=
+ =?us-ascii?q?rCAGCAYJ/ARIBboJIglkEjVASIYk/mDCCRAR4lWuCOAEPiBGENQOCWA+BC4M?=
+ =?us-ascii?q?dgwiBZ4RSgX6fWIQSV4Egc3EzGiOCHYEgTxgNnGICQIEXEAJPhDuGNoIyAQE?=
+X-IPAS-Result: =?us-ascii?q?A2FJbQBevz9eeiMYgtlmHQEBAQkBEQUFAYF7AgGBPQKBV?=
+ =?us-ascii?q?lINExKMZIZvgU0fg0OLaIEAgzOGCBOBZw0BAQEBARsaAgEBhECCRiQ8Ag0CA?=
+ =?us-ascii?q?w0BAQUBAQEBAQUEAQECEAEBCwsLBCuFSkIBDAGBayKDcCAPOUpMAQ4BhiIBA?=
+ =?us-ascii?q?TOlNokBDQ0ChR6CSgQKgQiBGyOBNgIBAYwhGoFBP4EjIYIrCAGCAYJ/ARIBb?=
+ =?us-ascii?q?oJIglkEjVASIYk/mDCCRAR4lWuCOAEPiBGENQOCWA+BC4MdgwiBZ4RSgX6fW?=
+ =?us-ascii?q?IQSV4Egc3EzGiOCHYEgTxgNnGICQIEXEAJPhDuGNoIyAQE?=
+X-IronPort-AV: E=Sophos;i="5.70,420,1574118000"; d="scan'208";a="315878425"
+Received: from mailrel04.vodafone.es ([217.130.24.35])
+ by mail01.vodafone.es with ESMTP; 09 Feb 2020 09:19:16 +0100
+Received: (qmail 978 invoked from network); 9 Feb 2020 02:24:49 -0000
+Received: from unknown (HELO 192.168.1.163) (apamar@[217.217.179.17])
+ (envelope-sender <peterwong@bodazone.com>)
+ by mailrel04.vodafone.es (qmail-ldap-1.03) with SMTP
+ for <v9fs-developer@lists.sourceforge.net>; 9 Feb 2020 02:24:49 -0000
+Date: Sun, 9 Feb 2020 03:24:48 +0100 (CET)
+From: Peter Wong <peterwong@bodazone.com>
+To: v9fs-developer@lists.sourceforge.net
+Message-ID: <31427934.387521.1581215089368.JavaMail.cash@217.130.24.55>
 MIME-Version: 1.0
-X-mailer: Ltkylhyut 7
-X-Spam-Score: 6.8 (++++++)
+X-Spam-Score: 3.5 (+++)
 X-Spam-Report: Spam Filtering performed by mx.sourceforge.net.
  See http://spamassassin.org/tag/ for more details.
- 0.0 URIBL_BLOCKED ADMINISTRATOR NOTICE: The query to URIBL was blocked.
- See
- http://wiki.apache.org/spamassassin/DnsBlocklists#dnsbl-block
- for more information. [URIs: peaceeft.com]
- 0.4 NO_DNS_FOR_FROM        DNS: Envelope sender has no MX or A DNS records
- 0.0 SPF_NONE               SPF: sender does not publish an SPF Record
- 0.8 DKIM_ADSP_NXDOMAIN     No valid author signature and domain not in DNS
+ 1.0 SPF_SOFTFAIL           SPF: sender does not match SPF record (softfail)
  0.0 SPF_HELO_NONE          SPF: HELO does not publish an SPF Record
- 0.1 HTML_TAG_BALANCE_BODY  BODY: HTML has unbalanced "body" tags
- 1.5 MPART_ALT_DIFF_COUNT   BODY: HTML and text parts are different
- 1.0 HTML_MESSAGE           BODY: HTML included in message
- 0.5 RAZOR2_CHECK           Listed in Razor2 (http://razor.sf.net/)
- 1.5 RAZOR2_CF_RANGE_51_100 Razor2 gives confidence level above 50%
- [cf: 100]
- 1.0 RDNS_NONE Delivered to internal network by a host with no rDNS
- 0.0 FSL_BULK_SIG           Bulk signature with no Unsubscribe
-X-Headers-End: 1izsCn-00CThJ-G7
-X-Content-Filtered-By: Mailman/MimeDel 2.1.21
-Subject: [V9fs-developer]
-	=?gb2312?B?pKq/zZiUpM5KQ0KloqWrpaal86XIpKyl7aXDpa+ktaTspMakpA==?=	=?gb2312?B?pOsgt6y6xaO6obg5NTIzODM3NqG5?=
+ 2.5 FREEMAIL_FORGED_REPLYTO Freemail in Reply-To, but not From
+ -0.0 AWL AWL: Adjusted score from AWL reputation of From: address
+X-Headers-End: 1j0hoK-00FnEX-A4
+Subject: [V9fs-developer] Investment opportunity
 X-BeenThere: v9fs-developer@lists.sourceforge.net
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -79,58 +106,25 @@ List-Post: <mailto:v9fs-developer@lists.sourceforge.net>
 List-Help: <mailto:v9fs-developer-request@lists.sourceforge.net?subject=help>
 List-Subscribe: <https://lists.sourceforge.net/lists/listinfo/v9fs-developer>, 
  <mailto:v9fs-developer-request@lists.sourceforge.net?subject=subscribe>
-Content-Type: multipart/mixed; boundary="===============7317435208610174922=="
+Reply-To: Peter Wong <peterwonghsbchk@gmail.com>
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: v9fs-developer-bounces@lists.sourceforge.net
 
-This is a multi-part message in MIME format.
-
---===============7317435208610174922==
-Content-Type: text/plain;
-	charset="gb2312"
-Content-Transfer-Encoding: base64
-
-DQqxvqXhqWCl66TPpcml4aWkpfOkzt9c08OjqKXhqWCl68vNytzQxaTkpdupYKXgpdqpYKW4pM6x
-7cq+o6mky+l2pO+k6w0KoaHW2NKqpMrNqNaqpMikyqTqpN6kuaGjDQqh9qGhqaWppamlqaWppaml
-qaWppamlqaWppamlqaWppamlqaWppamlqaWppamlqaWppamlqaWppamlqaWppamlqaWppamlqaUN
-CqGhoeCoRaHfqEWh4KhFod+oRaHgqEWh4KhFod+oRaHgqEWh36hFoeCoRaHgqEWh36hFoeCoRaHf
-qEWh4KhFoeCoRaHfqEWh4A0KIA0KpKKkyqS/pM6lr6Xspbilw6XIpaupYKXJv9rX+aSstdrI/dXf
-pMuk6KTDpMbKudPDpLWk7KTGpKSk66SzpMik8pfK1qqkt6S/pM6kx6GipKKkyqS/pM6/2tf5pKzZ
-Wb3wpM6wssirpM6kv6ThpMuD9r1ZpLWk7KS/pM6kx6S5pKyhoqS5pLCky1dFQqW1qWCl06W5SUSk
-yKXRpbml76lgpcmk8tTZtcflaKS3pMahotbGz96k8r3is/2kt6TKpLGk7KTQpMqk6qTepLuk8w0K
-IA0KieS4/KTypLQgV0VCpbWpYKXTpbmk6KTqpKrJ6t56pN+kr6TApLWkpKGjDQogDQogDQqh9iCJ
-5Lj8pPKktCC3vbeoDQqoi015SkNCpe2lsKWkpfOkz6SzpMGk6Q0KaHR0cDovL3BlYWNlZWZ0LmNv
-bS8/amNiL2FjY291bnQvbG9naW4vbG9naW4uanNwP3VpZD1yY3BydGdzdDBoIA0KIA0KIA0KIA0K
-o72jvaO9o72jvaO9o72jvaO9o72jvaO9o72jvaO9o72jvaO9o72jvaO9o72jvaO9o72jvaO9o72j
-vaO9o72jvaO9o70NCqGh1urKvbvhyeeluKWnqWClt6lgpdOpYCANCqGhlny+qba8uNvH+MTPx+DJ
-vTUtMS0yMqGhx+DJvaXppaSluqW5pa+lqKWioaGokzEwNy04Njg2DQqhoaH5sb6l4algpeukz8vN
-0MWMn9PDpMekuaGjDQqhoSAgpKqGlqSkus+k76S7pM/Jz6TOVVJMpM6hooyf08Ol1aWpqWCl4KTo
-pOqkqu6KpKSkt6TepLmhow0Ko72jvaO9o72jvaO9o72jvaO9o72jvaO9o72jvaO9o72jvaO9o72j
-vaO9o72jvaO9o72jvaO9o72jvaO9o72jvaO9o70NCqGhobhNeUpDQiBFeHByZXNzIE5ld3OhuaTL
-kvfdZKS1pOykxqSkpOukuaTZpMakztObysKhog0KoaHOxNXCtcikzp9vts/cnt1kpPK9+9a5pLek
-3qS5oaMNCqGh1vjX95jYpM+kuaTZpMahotbqyr274cnnpbilp6lgpbepYKXTqWCky46iyvSkt6Te
-pLmhow0KoaFDb3B5cmlnaHQgSkNCIENvLiwgTHRkLiAyMDE5DQqjvaO9o72jvaO9o72jvaO9o72j
-vaO9o72jvaO9o72jvaO9o72jvaO9o72jvaO9o72jvaO9o72jvaO9o72jvaO9o72jvQ0KoaGhoaGh
-oaGhoaGhoaGhoaGhoaGhoaGhoaGhoaGhoaGhoaGhoaGhoaGhoaGhoaGhoaGhoaGhoaGhoSBFMTkx
-MDEwMjQy
-
---===============7317435208610174922==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
+Greetings,
+Please check the attached email for a buisness proposal to explore.
+Looking forward to hearing from you for more details.
+Sincerely: Peter Wong
 
 
---===============7317435208610174922==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
+
+
+----------------------------------------------------
+This email was sent by the shareware version of Postman Professional.
+
+
 
 _______________________________________________
 V9fs-developer mailing list
 V9fs-developer@lists.sourceforge.net
 https://lists.sourceforge.net/lists/listinfo/v9fs-developer
-
---===============7317435208610174922==--
-
-
