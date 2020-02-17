@@ -2,64 +2,67 @@ Return-Path: <v9fs-developer-bounces@lists.sourceforge.net>
 X-Original-To: lists+v9fs-developer@lfdr.de
 Delivered-To: lists+v9fs-developer@lfdr.de
 Received: from lists.sourceforge.net (lists.sourceforge.net [216.105.38.7])
-	by mail.lfdr.de (Postfix) with ESMTPS id 31E7316172F
-	for <lists+v9fs-developer@lfdr.de>; Mon, 17 Feb 2020 17:13:11 +0100 (CET)
-Received: from [127.0.0.1] (helo=sfs-ml-4.v29.lw.sourceforge.com)
-	by sfs-ml-4.v29.lw.sourceforge.com with esmtp (Exim 4.90_1)
+	by mail.lfdr.de (Postfix) with ESMTPS id 596AF16172C
+	for <lists+v9fs-developer@lfdr.de>; Mon, 17 Feb 2020 17:13:01 +0100 (CET)
+Received: from [127.0.0.1] (helo=sfs-ml-1.v29.lw.sourceforge.com)
+	by sfs-ml-1.v29.lw.sourceforge.com with esmtp (Exim 4.90_1)
 	(envelope-from <v9fs-developer-bounces@lists.sourceforge.net>)
-	id 1j3j1B-00043V-Vb; Mon, 17 Feb 2020 16:13:09 +0000
+	id 1j3j11-0005uC-02; Mon, 17 Feb 2020 16:12:59 +0000
 Received: from [172.30.20.202] (helo=mx.sourceforge.net)
- by sfs-ml-4.v29.lw.sourceforge.com with esmtps
+ by sfs-ml-1.v29.lw.sourceforge.com with esmtps
  (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.90_1)
- (envelope-from <mchehab@bombadil.infradead.org>)
- id 1j3j1B-000438-20; Mon, 17 Feb 2020 16:13:09 +0000
+ (envelope-from <mchehab@bombadil.infradead.org>) id 1j3j10-0005u5-P1
+ for v9fs-developer@lists.sourceforge.net; Mon, 17 Feb 2020 16:12:58 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
  d=sourceforge.net; s=x; h=Sender:Content-Transfer-Encoding:MIME-Version:
- Message-Id:Date:Subject:Cc:To:From:Reply-To:Content-Type:Content-ID:
- Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
- :Resent-Message-ID:In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:
- List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=79mrsdMpZPq81EcHssJU6sAclSp6O+HRgk1tiwv0Vl8=; b=Mbdh8M0dgUwox/dZqHCiXZGtRJ
- FADQiEzkeWrdetvxoo3FdcVtdUQHV2FrDwkRm+Cihs5ghFYCg7MKXT5F0svkOK5yUsv494kDxd3cI
- hyXlDzMpVl6z3JRztP/iRSqBIo25S+7rlhTZe3kCfgrZ/WqsT/I7uaQI49kqhtB27808=;
+ References:In-Reply-To:Message-Id:Date:Subject:Cc:To:From:Reply-To:
+ Content-Type:Content-ID:Content-Description:Resent-Date:Resent-From:
+ Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:
+ List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
+ bh=G8lDDv1JK8b0jHvPwyJYj+kHxvR8kXxKB1b/XhJcnWw=; b=kuJ0TyP24Zcarcu3kv83HypGKS
+ Tfw87pGaoDjPtDO753CubTWcyFp5egD4YlCrcGfBso4/pGF6kiIb7k8tnkobweseP9VakcupfDayo
+ 8T/SfOE5+9EUElGmOFyRR7du85KmQhan4I4bUoXHAmEywLzj/xNnMGDyCwRU8r9Flz/8=;
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  ;
- h=Sender:Content-Transfer-Encoding:MIME-Version:Message-Id:Date:Subject:Cc:
- To:From:Reply-To:Content-Type:Content-ID:Content-Description:Resent-Date:
- Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:
- References:List-Id:List-Help:List-Unsubscribe:List-Subscribe:List-Post:
- List-Owner:List-Archive; bh=79mrsdMpZPq81EcHssJU6sAclSp6O+HRgk1tiwv0Vl8=; b=X
- JLhOuQcNZXyzaE6mZHt+hnkKIs8If7cBP/GoMCbNpk0F9LjNsoDNyRhO9/NYRhHv7sFuwZqCAXZn+
- V4Y1tyUuUnrSC5oVHLcfbAAlBqCDQucPO2UoJ4zO8ZEbpo7lyIM4RHR+4EgzumqzOnOZH1PNu38MQ
- 4VbRubpD75jVqQJI=;
+ h=Sender:Content-Transfer-Encoding:MIME-Version:References:In-Reply-To:
+ Message-Id:Date:Subject:Cc:To:From:Reply-To:Content-Type:Content-ID:
+ Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
+ :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
+ List-Post:List-Owner:List-Archive;
+ bh=G8lDDv1JK8b0jHvPwyJYj+kHxvR8kXxKB1b/XhJcnWw=; b=jTmxPFDBamz1B46wP+v9QW1eIU
+ ZxBg2IHRzY4B3DOswDNK6ozWkL7o6x4cI57AprFNsdtqj6YicoINy1EidrEpg/nj4fqBm9VaQRGZe
+ d9LnOOJLvKuxdrAiqO6vNDYMmmAg5aOi3BANU1tYBl2hA9nF2na5P6OjnvqmrR70Ke9c=;
 Received: from bombadil.infradead.org ([198.137.202.133])
- by sfi-mx-4.v28.lw.sourceforge.com with esmtps
+ by sfi-mx-1.v28.lw.sourceforge.com with esmtps
  (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.92.2)
- id 1j3j19-006Jj8-P5; Mon, 17 Feb 2020 16:13:08 +0000
+ id 1j3j0x-00Feev-AJ
+ for v9fs-developer@lists.sourceforge.net; Mon, 17 Feb 2020 16:12:58 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
  d=infradead.org; s=bombadil.20170209; h=Sender:Content-Transfer-Encoding:
- MIME-Version:Message-Id:Date:Subject:Cc:To:From:Reply-To:Content-Type:
- Content-ID:Content-Description:In-Reply-To:References;
- bh=79mrsdMpZPq81EcHssJU6sAclSp6O+HRgk1tiwv0Vl8=; b=GMuzjHpYp20+IP116h8bDp0g41
- ttVv3QJJR7FUdGUEREIUbjI+FUFjDSURRen682to2IXcwuRloQMyivCGW0qj86X72Kvp1WppX4YSF
- KBNTZhQI4rrwMsNuFOEBTsFYSoyIjfuhXQtkFp51xA162kdPm79JVt9XIZ0172I/NqXRxeERVPF9L
- kLpRpq7LmR/RnnjrPy/y+l34kcRu6hNJOaGfDY1XqGzt5O0+3y1BFL1SEB5+/2nSR6nonL9n110Kx
- N4rWXQRqkj1rqfV3jAF6Ow+Wmr+s/DXyeHln9cn6x1qRSToaShgKICUy4iF4JXV3I10hB9VhSPmLY
- BoN4dDdw==;
-Received: from ip-109-41-129-189.web.vodafone.de ([109.41.129.189]
+ MIME-Version:References:In-Reply-To:Message-Id:Date:Subject:Cc:To:From:
+ Reply-To:Content-Type:Content-ID:Content-Description;
+ bh=G8lDDv1JK8b0jHvPwyJYj+kHxvR8kXxKB1b/XhJcnWw=; b=HyJvKOEFutvgV3wfePY1Ucs+29
+ O1NCk/l6TVNSE4JdpekjkxQY5LiP1R4Tv5Tg5D/+1bAhKxX4OgKwAC1UcdJkKgh2vCs1kksZ7clmR
+ Tijozu0LNo/odIyXMOMEE00QzawIrNBT9r6ahZo5Dwy1QPBSvnZEgUkyXaTju3al/1W8Hahb23G18
+ dmj5LTEYlftTms05cAtUhhhjNuNmGo0vtz00Z6LL/HdKNoQxptIDp3SXOD6mBdYdvl5I9ZobLTzbk
+ Fceryla3WOgLvRaq8b2hW8Rby7c59S/adHi4jcl98gZiCI1Dz6HMk7tXW6R7Inrv7H/D9/8r70sPT
+ 3NpP4emw==;
+Received: from tmo-109-126.customers.d1-online.com ([80.187.109.126]
  helo=bombadil.infradead.org)
  by bombadil.infradead.org with esmtpsa (Exim 4.92.3 #3 (Red Hat Linux))
- id 1j3j0c-0006ud-6y; Mon, 17 Feb 2020 16:12:34 +0000
+ id 1j3j0e-0006uh-3v; Mon, 17 Feb 2020 16:12:36 +0000
 Received: from mchehab by bombadil.infradead.org with local (Exim 4.92.3)
  (envelope-from <mchehab@bombadil.infradead.org>)
- id 1j3j0Z-000fYx-H7; Mon, 17 Feb 2020 17:12:31 +0100
+ id 1j3j0Z-000fZ0-IZ; Mon, 17 Feb 2020 17:12:31 +0100
 From: Mauro Carvalho Chehab <mchehab+huawei@kernel.org>
 To: Linux Doc Mailing List <linux-doc@vger.kernel.org>
-Date: Mon, 17 Feb 2020 17:11:46 +0100
-Message-Id: <cover.1581955849.git.mchehab+huawei@kernel.org>
+Date: Mon, 17 Feb 2020 17:11:47 +0100
+Message-Id: <96a060b7b5c0c3838ab1751addfe4d6d3bc37bd6.1581955849.git.mchehab+huawei@kernel.org>
 X-Mailer: git-send-email 2.24.1
+In-Reply-To: <cover.1581955849.git.mchehab+huawei@kernel.org>
+References: <cover.1581955849.git.mchehab+huawei@kernel.org>
 MIME-Version: 1.0
-X-Spam-Score: -0.1 (/)
+X-Spam-Score: -0.3 (/)
 X-Spam-Report: Spam Filtering performed by mx.sourceforge.net.
  See http://spamassassin.org/tag/ for more details.
  0.2 HEADER_FROM_DIFFERENT_DOMAINS From and EnvelopeFrom 2nd level mail
@@ -69,10 +72,11 @@ X-Spam-Report: Spam Filtering performed by mx.sourceforge.net.
  -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
  0.1 DKIM_SIGNED            Message has a DKIM or DK signature,
  not necessarily valid
- -0.4 AWL AWL: Adjusted score from AWL reputation of From: address
-X-Headers-End: 1j3j19-006Jj8-P5
-Subject: [V9fs-developer] [PATCH 00/44] Manually convert filesystem FS
- documents to ReST
+ 0.0 T_FILL_THIS_FORM_SHORT Fill in a short form with personal information
+ -0.5 AWL AWL: Adjusted score from AWL reputation of From: address
+X-Headers-End: 1j3j0x-00Feev-AJ
+Subject: [V9fs-developer] [PATCH 01/44] docs: filesystems: convert 9p.txt to
+ ReST
 X-BeenThere: v9fs-developer@lists.sourceforge.net
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -84,187 +88,246 @@ List-Post: <mailto:v9fs-developer@lists.sourceforge.net>
 List-Help: <mailto:v9fs-developer-request@lists.sourceforge.net?subject=help>
 List-Subscribe: <https://lists.sourceforge.net/lists/listinfo/v9fs-developer>, 
  <mailto:v9fs-developer-request@lists.sourceforge.net?subject=subscribe>
-Cc: Latchesar Ionkov <lucho@ionkov.net>,
- Martin Brandenburg <martin@omnibond.com>, Jan Kara <jack@suse.cz>,
- Amir Goldstein <amir73il@gmail.com>, Bob Copeland <me@bobcopeland.com>,
- David Howells <dhowells@redhat.com>, Joseph Qi <joseph.qi@linux.alibaba.com>,
- linux-mtd@lists.infradead.org, Tyler Hicks <code@tyhicks.com>,
- linux-afs@lists.infradead.org, Mike Marshall <hubcap@omnibond.com>,
- Naohiro Aota <naohiro.aota@wdc.com>, Christoph Hellwig <hch@infradead.org>,
- linux-nilfs@vger.kernel.org, Andreas Gruenbacher <agruenba@redhat.com>,
- Sage Weil <sage@redhat.com>, Jonathan Corbet <corbet@lwn.net>,
+Cc: Latchesar Ionkov <lucho@ionkov.net>, Jonathan Corbet <corbet@lwn.net>,
  Mauro Carvalho Chehab <mchehab+huawei@kernel.org>,
- Richard Weinberger <richard@nod.at>, Mark Fasheh <mark@fasheh.com>,
- Chris Mason <clm@fb.com>, Ryusuke Konishi <konishi.ryusuke@gmail.com>,
- cluster-devel@redhat.com, v9fs-developer@lists.sourceforge.net,
- Gao Xiang <xiang@kernel.org>, linux-ext4@vger.kernel.org,
- Salah Triki <salah.triki@gmail.com>, Alexey Dobriyan <adobriyan@gmail.com>,
- devel@lists.orangefs.org, ecryptfs@vger.kernel.org,
- Eric Van Hensbergen <ericvh@gmail.com>, Chao Yu <chao@kernel.org>,
- Josef Bacik <josef@toxicpanda.com>, linux-fsdevel@vger.kernel.org,
- Joel Becker <jlbec@evilplan.org>,
- "Tigran A. Aivazian" <aivazian.tigran@gmail.com>,
- David Sterba <dsterba@suse.com>, Jaegeuk Kim <jaegeuk@kernel.org>,
- ceph-devel@vger.kernel.org, Ilya Dryomov <idryomov@gmail.com>,
- Anton Altaparmakov <anton@tuxera.com>, Damien Le Moal <damien.lemoal@wdc.com>,
- Luis de Bethencourt <luisbg@kernel.org>, Nicolas Pitre <nico@fluxnic.net>,
- linux-ntfs-dev@lists.sourceforge.net, Jeff Layton <jlayton@kernel.org>,
- linux-f2fs-devel@lists.sourceforge.net, linux-btrfs@vger.kernel.org,
- Jan Kara <jack@suse.com>, Bob Peterson <rpeterso@redhat.com>,
- Phillip Lougher <phillip@squashfs.org.uk>, Johannes Thumshirn <jth@kernel.org>,
- linux-erofs@lists.ozlabs.org, linux-karma-devel@lists.sourceforge.net,
- ocfs2-devel@oss.oracle.com
+ Eric Van Hensbergen <ericvh@gmail.com>, linux-fsdevel@vger.kernel.org,
+ v9fs-developer@lists.sourceforge.net
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: v9fs-developer-bounces@lists.sourceforge.net
 
-There are lots of plain text documents under Documentation/filesystems.
+- Add a SPDX header;
+- Add a document title;
+- Adjust section titles;
+- Some whitespace fixes and new line breaks;
+- Mark literal blocks as such;
+- Add table markups;
+- Add it to filesystems/index.rst.
 
-Manually convert several of those to ReST and add them to the index file.
-
-Mauro Carvalho Chehab (44):
-  docs: filesystems: convert 9p.txt to ReST
-  docs: filesystems: convert adfs.txt to ReST
-  docs: filesystems: convert affs.txt to ReST
-  docs: filesystems: convert afs.txt to ReST
-  docs: filesystems: convert autofs-mount-control.txt to ReST
-  docs: filesystems: convert befs.txt to ReST
-  docs: filesystems: convert bfs.txt to ReST
-  docs: filesystems: convert btrfs.txt to ReST
-  docs: filesystems: convert ceph.txt to ReST
-  docs: filesystems: convert cramfs.txt to ReST
-  docs: filesystems: convert debugfs.txt to ReST
-  docs: filesystems: convert dlmfs.txt to ReST
-  docs: filesystems: convert ecryptfs.txt to ReST
-  docs: filesystems: convert efivarfs.txt to ReST
-  docs: filesystems: convert erofs.txt to ReST
-  docs: filesystems: convert ext2.txt to ReST
-  docs: filesystems: convert ext3.txt to ReST
-  docs: filesystems: convert f2fs.txt to ReST
-  docs: filesystems: convert gfs2.txt to ReST
-  docs: filesystems: convert gfs2-uevents.txt to ReST
-  docs: filesystems: convert hfsplus.txt to ReST
-  docs: filesystems: convert hfs.txt to ReST
-  docs: filesystems: convert hpfs.txt to ReST
-  docs: filesystems: convert inotify.txt to ReST
-  docs: filesystems: convert isofs.txt to ReST
-  docs: filesystems: convert nilfs2.txt to ReST
-  docs: filesystems: convert ntfs.txt to ReST
-  docs: filesystems: convert ocfs2-online-filecheck.txt to ReST
-  docs: filesystems: convert ocfs2.txt to ReST
-  docs: filesystems: convert omfs.txt to ReST
-  docs: filesystems: convert orangefs.txt to ReST
-  docs: filesystems: convert proc.txt to ReST
-  docs: filesystems: convert qnx6.txt to ReST
-  docs: filesystems: convert ramfs-rootfs-initramfs.txt to ReST
-  docs: filesystems: convert relay.txt to ReST
-  docs: filesystems: convert romfs.txt to ReST
-  docs: filesystems: convert squashfs.txt to ReST
-  docs: filesystems: convert sysfs.txt to ReST
-  docs: filesystems: convert sysv-fs.txt to ReST
-  docs: filesystems: convert tmpfs.txt to ReST
-  docs: filesystems: convert ubifs-authentication.rst.txt to ReST
-  docs: filesystems: convert ubifs.txt to ReST
-  docs: filesystems: convert udf.txt to ReST
-  docs: filesystems: convert zonefs.txt to ReST
-
- Documentation/filesystems/{9p.txt => 9p.rst}  |  114 +-
- .../filesystems/{adfs.txt => adfs.rst}        |   29 +-
- .../filesystems/{affs.txt => affs.rst}        |   62 +-
- .../filesystems/{afs.txt => afs.rst}          |   73 +-
- ...t-control.txt => autofs-mount-control.rst} |  102 +-
- .../filesystems/{befs.txt => befs.rst}        |   59 +-
- .../filesystems/{bfs.txt => bfs.rst}          |   37 +-
- .../filesystems/{btrfs.txt => btrfs.rst}      |    3 +
- .../filesystems/{ceph.txt => ceph.rst}        |   26 +-
- .../filesystems/{cramfs.txt => cramfs.rst}    |   19 +-
- .../filesystems/{debugfs.txt => debugfs.rst}  |   54 +-
- .../filesystems/{dlmfs.txt => dlmfs.rst}      |   28 +-
- .../{ecryptfs.txt => ecryptfs.rst}            |   44 +-
- .../{efivarfs.txt => efivarfs.rst}            |    5 +-
- .../filesystems/{erofs.txt => erofs.rst}      |  175 +-
- .../filesystems/{ext2.txt => ext2.rst}        |   41 +-
- .../filesystems/{ext3.txt => ext3.rst}        |    2 +
- .../filesystems/{f2fs.txt => f2fs.rst}        |  252 +--
- .../{gfs2-uevents.txt => gfs2-uevents.rst}    |   20 +-
- .../filesystems/{gfs2.txt => gfs2.rst}        |   20 +-
- .../filesystems/{hfs.txt => hfs.rst}          |   23 +-
- .../filesystems/{hfsplus.txt => hfsplus.rst}  |    2 +
- .../filesystems/{hpfs.txt => hpfs.rst}        |  239 ++-
- Documentation/filesystems/index.rst           |   46 +-
- .../filesystems/{inotify.txt => inotify.rst}  |   33 +-
- Documentation/filesystems/isofs.rst           |   64 +
- Documentation/filesystems/isofs.txt           |   48 -
- .../filesystems/{nilfs2.txt => nilfs2.rst}    |   40 +-
- .../filesystems/{ntfs.txt => ntfs.rst}        |  143 +-
- ...lecheck.txt => ocfs2-online-filecheck.rst} |   45 +-
- .../filesystems/{ocfs2.txt => ocfs2.rst}      |   31 +-
- Documentation/filesystems/omfs.rst            |  112 ++
- Documentation/filesystems/omfs.txt            |  106 --
- .../{orangefs.txt => orangefs.rst}            |  187 +-
- .../filesystems/{proc.txt => proc.rst}        | 1498 +++++++++--------
- .../filesystems/{qnx6.txt => qnx6.rst}        |   22 +
- ...itramfs.txt => ramfs-rootfs-initramfs.rst} |   54 +-
- .../filesystems/{relay.txt => relay.rst}      |  129 +-
- .../filesystems/{romfs.txt => romfs.rst}      |   42 +-
- .../{squashfs.txt => squashfs.rst}            |   60 +-
- .../filesystems/{sysfs.txt => sysfs.rst}      |  324 ++--
- .../filesystems/{sysv-fs.txt => sysv-fs.rst}  |  155 +-
- .../filesystems/{tmpfs.txt => tmpfs.rst}      |   44 +-
- .../filesystems/ubifs-authentication.rst      |   10 +-
- .../filesystems/{ubifs.txt => ubifs.rst}      |   25 +-
- .../filesystems/{udf.txt => udf.rst}          |   21 +-
- .../filesystems/{zonefs.txt => zonefs.rst}    |  106 +-
- 47 files changed, 2739 insertions(+), 2035 deletions(-)
+Signed-off-by: Mauro Carvalho Chehab <mchehab+huawei@kernel.org>
+---
+ Documentation/filesystems/{9p.txt => 9p.rst} | 114 +++++++++++--------
+ Documentation/filesystems/index.rst          |   1 +
+ 2 files changed, 70 insertions(+), 45 deletions(-)
  rename Documentation/filesystems/{9p.txt => 9p.rst} (63%)
- rename Documentation/filesystems/{adfs.txt => adfs.rst} (85%)
- rename Documentation/filesystems/{affs.txt => affs.rst} (86%)
- rename Documentation/filesystems/{afs.txt => afs.rst} (90%)
- rename Documentation/filesystems/{autofs-mount-control.txt => autofs-mount-control.rst} (89%)
- rename Documentation/filesystems/{befs.txt => befs.rst} (83%)
- rename Documentation/filesystems/{bfs.txt => bfs.rst} (71%)
- rename Documentation/filesystems/{btrfs.txt => btrfs.rst} (96%)
- rename Documentation/filesystems/{ceph.txt => ceph.rst} (91%)
- rename Documentation/filesystems/{cramfs.txt => cramfs.rst} (88%)
- rename Documentation/filesystems/{debugfs.txt => debugfs.rst} (91%)
- rename Documentation/filesystems/{dlmfs.txt => dlmfs.rst} (86%)
- rename Documentation/filesystems/{ecryptfs.txt => ecryptfs.rst} (70%)
- rename Documentation/filesystems/{efivarfs.txt => efivarfs.rst} (85%)
- rename Documentation/filesystems/{erofs.txt => erofs.rst} (54%)
- rename Documentation/filesystems/{ext2.txt => ext2.rst} (91%)
- rename Documentation/filesystems/{ext3.txt => ext3.rst} (88%)
- rename Documentation/filesystems/{f2fs.txt => f2fs.rst} (84%)
- rename Documentation/filesystems/{gfs2-uevents.txt => gfs2-uevents.rst} (94%)
- rename Documentation/filesystems/{gfs2.txt => gfs2.rst} (76%)
- rename Documentation/filesystems/{hfs.txt => hfs.rst} (80%)
- rename Documentation/filesystems/{hfsplus.txt => hfsplus.rst} (95%)
- rename Documentation/filesystems/{hpfs.txt => hpfs.rst} (66%)
- rename Documentation/filesystems/{inotify.txt => inotify.rst} (83%)
- create mode 100644 Documentation/filesystems/isofs.rst
- delete mode 100644 Documentation/filesystems/isofs.txt
- rename Documentation/filesystems/{nilfs2.txt => nilfs2.rst} (89%)
- rename Documentation/filesystems/{ntfs.txt => ntfs.rst} (85%)
- rename Documentation/filesystems/{ocfs2-online-filecheck.txt => ocfs2-online-filecheck.rst} (77%)
- rename Documentation/filesystems/{ocfs2.txt => ocfs2.rst} (88%)
- create mode 100644 Documentation/filesystems/omfs.rst
- delete mode 100644 Documentation/filesystems/omfs.txt
- rename Documentation/filesystems/{orangefs.txt => orangefs.rst} (83%)
- rename Documentation/filesystems/{proc.txt => proc.rst} (65%)
- rename Documentation/filesystems/{qnx6.txt => qnx6.rst} (98%)
- rename Documentation/filesystems/{ramfs-rootfs-initramfs.txt => ramfs-rootfs-initramfs.rst} (91%)
- rename Documentation/filesystems/{relay.txt => relay.rst} (91%)
- rename Documentation/filesystems/{romfs.txt => romfs.rst} (86%)
- rename Documentation/filesystems/{squashfs.txt => squashfs.rst} (91%)
- rename Documentation/filesystems/{sysfs.txt => sysfs.rst} (56%)
- rename Documentation/filesystems/{sysv-fs.txt => sysv-fs.rst} (73%)
- rename Documentation/filesystems/{tmpfs.txt => tmpfs.rst} (86%)
- rename Documentation/filesystems/{ubifs.txt => ubifs.rst} (91%)
- rename Documentation/filesystems/{udf.txt => udf.rst} (83%)
- rename Documentation/filesystems/{zonefs.txt => zonefs.rst} (90%)
 
+diff --git a/Documentation/filesystems/9p.txt b/Documentation/filesystems/9p.rst
+similarity index 63%
+rename from Documentation/filesystems/9p.txt
+rename to Documentation/filesystems/9p.rst
+index fec7144e817c..f054d1c45e86 100644
+--- a/Documentation/filesystems/9p.txt
++++ b/Documentation/filesystems/9p.rst
+@@ -1,7 +1,10 @@
+-	  	    v9fs: Plan 9 Resource Sharing for Linux
+-		    =======================================
++.. SPDX-License-Identifier: GPL-2.0
+ 
+-ABOUT
++=======================================
++v9fs: Plan 9 Resource Sharing for Linux
++=======================================
++
++About
+ =====
+ 
+ v9fs is a Unix implementation of the Plan 9 9p remote filesystem protocol.
+@@ -14,32 +17,34 @@ and Maya Gokhale.  Additional development by Greg Watson
+ 
+ The best detailed explanation of the Linux implementation and applications of
+ the 9p client is available in the form of a USENIX paper:
++
+    http://www.usenix.org/events/usenix05/tech/freenix/hensbergen.html
+ 
+ Other applications are described in the following papers:
++
+ 	* XCPU & Clustering
+-		http://xcpu.org/papers/xcpu-talk.pdf
++	  http://xcpu.org/papers/xcpu-talk.pdf
+ 	* KVMFS: control file system for KVM
+-		http://xcpu.org/papers/kvmfs.pdf
++	  http://xcpu.org/papers/kvmfs.pdf
+ 	* CellFS: A New Programming Model for the Cell BE
+-		http://xcpu.org/papers/cellfs-talk.pdf
++	  http://xcpu.org/papers/cellfs-talk.pdf
+ 	* PROSE I/O: Using 9p to enable Application Partitions
+-		http://plan9.escet.urjc.es/iwp9/cready/PROSE_iwp9_2006.pdf
++	  http://plan9.escet.urjc.es/iwp9/cready/PROSE_iwp9_2006.pdf
+ 	* VirtFS: A Virtualization Aware File System pass-through
+-		http://goo.gl/3WPDg
++	  http://goo.gl/3WPDg
+ 
+-USAGE
++Usage
+ =====
+ 
+-For remote file server:
++For remote file server::
+ 
+ 	mount -t 9p 10.10.1.2 /mnt/9
+ 
+-For Plan 9 From User Space applications (http://swtch.com/plan9)
++For Plan 9 From User Space applications (http://swtch.com/plan9)::
+ 
+ 	mount -t 9p `namespace`/acme /mnt/9 -o trans=unix,uname=$USER
+ 
+-For server running on QEMU host with virtio transport:
++For server running on QEMU host with virtio transport::
+ 
+ 	mount -t 9p -o trans=virtio <mount_tag> /mnt/9
+ 
+@@ -48,18 +53,22 @@ mount points. Each 9P export is seen by the client as a virtio device with an
+ associated "mount_tag" property. Available mount tags can be
+ seen by reading /sys/bus/virtio/drivers/9pnet_virtio/virtio<n>/mount_tag files.
+ 
+-OPTIONS
++Options
+ =======
+ 
++  ============= ===============================================================
+   trans=name	select an alternative transport.  Valid options are
+   		currently:
+-			unix 	- specifying a named pipe mount point
+-			tcp	- specifying a normal TCP/IP connection
+-			fd   	- used passed file descriptors for connection
+-                                (see rfdno and wfdno)
+-			virtio	- connect to the next virtio channel available
+-				(from QEMU with trans_virtio module)
+-			rdma	- connect to a specified RDMA channel
++
++			========  ============================================
++			unix 	  specifying a named pipe mount point
++			tcp	  specifying a normal TCP/IP connection
++			fd   	  used passed file descriptors for connection
++                                  (see rfdno and wfdno)
++			virtio	  connect to the next virtio channel available
++				  (from QEMU with trans_virtio module)
++			rdma	  connect to a specified RDMA channel
++			========  ============================================
+ 
+   uname=name	user name to attempt mount as on the remote server.  The
+   		server may override or ignore this value.  Certain user
+@@ -69,28 +78,36 @@ OPTIONS
+   		offering several exported file systems.
+ 
+   cache=mode	specifies a caching policy.  By default, no caches are used.
+-                        none = default no cache policy, metadata and data
++
++                        none
++				default no cache policy, metadata and data
+                                 alike are synchronous.
+-			loose = no attempts are made at consistency,
++			loose
++				no attempts are made at consistency,
+                                 intended for exclusive, read-only mounts
+-                        fscache = use FS-Cache for a persistent, read-only
++                        fscache
++				use FS-Cache for a persistent, read-only
+ 				cache backend.
+-                        mmap = minimal cache that is only used for read-write
++                        mmap
++				minimal cache that is only used for read-write
+                                 mmap.  Northing else is cached, like cache=none
+ 
+   debug=n	specifies debug level.  The debug level is a bitmask.
+-			0x01  = display verbose error messages
+-			0x02  = developer debug (DEBUG_CURRENT)
+-			0x04  = display 9p trace
+-			0x08  = display VFS trace
+-			0x10  = display Marshalling debug
+-			0x20  = display RPC debug
+-			0x40  = display transport debug
+-			0x80  = display allocation debug
+-			0x100 = display protocol message debug
+-			0x200 = display Fid debug
+-			0x400 = display packet debug
+-			0x800 = display fscache tracing debug
++
++			=====   ================================
++			0x01    display verbose error messages
++			0x02    developer debug (DEBUG_CURRENT)
++			0x04    display 9p trace
++			0x08    display VFS trace
++			0x10    display Marshalling debug
++			0x20    display RPC debug
++			0x40    display transport debug
++			0x80    display allocation debug
++			0x100   display protocol message debug
++			0x200   display Fid debug
++			0x400   display packet debug
++			0x800   display fscache tracing debug
++			=====   ================================
+ 
+   rfdno=n	the file descriptor for reading with trans=fd
+ 
+@@ -103,9 +120,12 @@ OPTIONS
+   noextend	force legacy mode (no 9p2000.u or 9p2000.L semantics)
+ 
+   version=name	Select 9P protocol version. Valid options are:
+-			9p2000          - Legacy mode (same as noextend)
+-			9p2000.u        - Use 9P2000.u protocol
+-			9p2000.L        - Use 9P2000.L protocol
++
++			========        ==============================
++			9p2000          Legacy mode (same as noextend)
++			9p2000.u        Use 9P2000.u protocol
++			9p2000.L        Use 9P2000.L protocol
++			========        ==============================
+ 
+   dfltuid	attempt to mount as a particular uid
+ 
+@@ -118,22 +138,27 @@ OPTIONS
+ 		hosts.  This functionality will be expanded in later versions.
+ 
+   access	there are four access modes.
+-			user  = if a user tries to access a file on v9fs
++			user
++				if a user tries to access a file on v9fs
+ 			        filesystem for the first time, v9fs sends an
+ 			        attach command (Tattach) for that user.
+ 				This is the default mode.
+-			<uid> = allows only user with uid=<uid> to access
++			<uid>
++				allows only user with uid=<uid> to access
+ 				the files on the mounted filesystem
+-			any   = v9fs does single attach and performs all
++			any
++				v9fs does single attach and performs all
+ 				operations as one user
+-			client = ACL based access check on the 9p client
++			clien
++				 ACL based access check on the 9p client
+ 			         side for access validation
+ 
+   cachetag	cache tag to use the specified persistent cache.
+ 		cache tags for existing cache sessions can be listed at
+ 		/sys/fs/9p/caches. (applies only to cache=fscache)
++  ============= ===============================================================
+ 
+-RESOURCES
++Resources
+ =========
+ 
+ Protocol specifications are maintained on github:
+@@ -158,4 +183,3 @@ http://plan9.bell-labs.com/plan9
+ 
+ For information on Plan 9 from User Space (Plan 9 applications and libraries
+ ported to Linux/BSD/OSX/etc) check out http://swtch.com/plan9
+-
+diff --git a/Documentation/filesystems/index.rst b/Documentation/filesystems/index.rst
+index 45d791905e91..a9330c3f8c2e 100644
+--- a/Documentation/filesystems/index.rst
++++ b/Documentation/filesystems/index.rst
+@@ -46,6 +46,7 @@ Documentation for filesystem implementations.
+ .. toctree::
+    :maxdepth: 2
+ 
++   9p
+    autofs
+    fuse
+    overlayfs
 -- 
 2.24.1
-
 
 
 
