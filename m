@@ -2,26 +2,26 @@ Return-Path: <v9fs-developer-bounces@lists.sourceforge.net>
 X-Original-To: lists+v9fs-developer@lfdr.de
 Delivered-To: lists+v9fs-developer@lfdr.de
 Received: from lists.sourceforge.net (lists.sourceforge.net [216.105.38.7])
-	by mail.lfdr.de (Postfix) with ESMTPS id F41421640CB
-	for <lists+v9fs-developer@lfdr.de>; Wed, 19 Feb 2020 10:51:29 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6D4161647EE
+	for <lists+v9fs-developer@lfdr.de>; Wed, 19 Feb 2020 16:11:58 +0100 (CET)
 Received: from [127.0.0.1] (helo=sfs-ml-4.v29.lw.sourceforge.com)
 	by sfs-ml-4.v29.lw.sourceforge.com with esmtp (Exim 4.90_1)
 	(envelope-from <v9fs-developer-bounces@lists.sourceforge.net>)
-	id 1j4M0p-0006Dq-QR; Wed, 19 Feb 2020 09:51:23 +0000
+	id 1j4R11-0003XQ-BA; Wed, 19 Feb 2020 15:11:55 +0000
 Received: from [172.30.20.202] (helo=mx.sourceforge.net)
  by sfs-ml-4.v29.lw.sourceforge.com with esmtps
  (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.90_1)
- (envelope-from <corbet@lwn.net>)
- id 1j4M0m-0006DC-Rw; Wed, 19 Feb 2020 09:51:20 +0000
+ (envelope-from <mchehab+huawei@kernel.org>)
+ id 1j4R10-0003X6-E5; Wed, 19 Feb 2020 15:11:54 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
  d=sourceforge.net; s=x; h=Content-Transfer-Encoding:Content-Type:MIME-Version
  :References:In-Reply-To:Message-ID:Subject:Cc:To:From:Date:Sender:Reply-To:
  Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
  Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
  List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=g7qX9mp4oJ6yBemyXwClHjkdSOM0BIl1OFgwFQscLhE=; b=nV2MGYTw9sbkrW+uQYhKOyngqj
- 7u0fIWrm3rCmZ3ILPlVEyGlug4VXoosCMSPKIG1LrYaWKGecf1mQloix3rIS6A7oV9g/Sq4v8HMlz
- JgFhN/e0CEcKbccKiFuiFeZdt0e2hyUsqdBFkvtA7ms+V2FiqSQO3gLzOTMraCAaLLSM=;
+ bh=Uvk/WRH89AWMdOVPSMRB0SCJsQtjKOS/wrWpFHrNMmM=; b=jDbcu9auHiUD2Z/wWSZCV8UIJf
+ Q0KXnVpXS1QyqUkLLCua9UZ0wGS1DtoRXtFvu8cAZsM6eQ2JAm4xcMu5zQix28/yI99OXH5HMGx6i
+ gva03TKvyvNXqHLQpYQCBa9szZ+CNEW1o7nBFqnA1I5jiS6tJzgQ9okq2ERehAriAKBs=;
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  ;
  h=Content-Transfer-Encoding:Content-Type:MIME-Version:References:
@@ -29,37 +29,52 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
  :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
  List-Post:List-Owner:List-Archive;
- bh=g7qX9mp4oJ6yBemyXwClHjkdSOM0BIl1OFgwFQscLhE=; b=dn7F+f58kGupgOx4WB/VoysL+4
- 8hVoOBydzFRUa5aYoHnvdVUwGyro81QZHN68ccEfKDOc42rj28sPNovB7/WT2We+XaKRyuOAvO387
- JTcM9zAEU0mxKqE4emHZ66gAaHOF9YwbK3YqF9zeT+DbR7k6UEZKxXwib5jknBLKlzmM=;
-Received: from ms.lwn.net ([45.79.88.28])
- by sfi-mx-3.v28.lw.sourceforge.com with esmtps
+ bh=Uvk/WRH89AWMdOVPSMRB0SCJsQtjKOS/wrWpFHrNMmM=; b=V5RsBMxT4KVFZVFJX48/go8K6y
+ tHJIe4bQGN9F3HGkkZCM/RaRFtu1YJFq/7sdd8nBhMPejooLSDWQQ0C1fFT6Zo4fjIdBUMcYjiyb1
+ BR6IF6+aDKj/SCRPO4jRaGSban2AptyAWqnrtq95TpzNHNmC/Gxg3VRbXATLou4+WlfM=;
+Received: from bombadil.infradead.org ([198.137.202.133])
+ by sfi-mx-1.v28.lw.sourceforge.com with esmtps
  (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.92.2)
- id 1j4M0k-00858p-3W; Wed, 19 Feb 2020 09:51:20 +0000
-Received: from localhost.localdomain (localhost [127.0.0.1])
- (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
- (No client certificate requested)
- by ms.lwn.net (Postfix) with ESMTPSA id 558BA2DC;
- Wed, 19 Feb 2020 09:32:40 +0000 (UTC)
-Date: Wed, 19 Feb 2020 02:32:34 -0700
-From: Jonathan Corbet <corbet@lwn.net>
-To: Mauro Carvalho Chehab <mchehab+huawei@kernel.org>
-Message-ID: <20200219023234.7b704acb@lwn.net>
-In-Reply-To: <20200218110406.098fdc09@kernel.org>
+ id 1j4R0y-0001k6-Js; Wed, 19 Feb 2020 15:11:54 +0000
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+ d=infradead.org; s=bombadil.20170209; h=Content-Transfer-Encoding:
+ Content-Type:MIME-Version:References:In-Reply-To:Message-ID:Subject:Cc:To:
+ From:Date:Sender:Reply-To:Content-ID:Content-Description;
+ bh=Uvk/WRH89AWMdOVPSMRB0SCJsQtjKOS/wrWpFHrNMmM=; b=j2lHtYJz/WtcOazwhe9FYpwcMw
+ PilYDNbrwf0g6lTRRzQa0QrB8HYHq4emi91b2LPURX5BgK7AAbxvYBLaMzwrtvNwImG/Fe2WBhENT
+ w8oYGUiDuQf2Y82cs6KthEC4N0cGjMFvIJAk4el1ecH1mDO7oFTBYBHPrpOVoJsBiVYOKlrN2kKul
+ jQ+c46w/yklPdM3nTe4K6vkbqBn0SiKUJhg0HquiKuRPfo0HM7Lr7fZNwQXZL0MIsJvqc+OP48inL
+ 1yZzyFDMvMB/XYuYLRKDH8PYvPOr4nLtGpKWOIh6aa0/SJvmYFsuI5VmNJkbOVZjHKZow7nLGP4Vl
+ BXjkRYUA==;
+Received: from tmo-109-126.customers.d1-online.com ([80.187.109.126]
+ helo=localhost)
+ by bombadil.infradead.org with esmtpsa (Exim 4.92.3 #3 (Red Hat Linux))
+ id 1j4R0Y-0000UF-OT; Wed, 19 Feb 2020 15:11:26 +0000
+Date: Wed, 19 Feb 2020 16:11:13 +0100
+From: Mauro Carvalho Chehab <mchehab+huawei@kernel.org>
+To: Jonathan Corbet <corbet@lwn.net>
+Message-ID: <20200219161113.41add6e4@kernel.org>
+In-Reply-To: <20200219023234.7b704acb@lwn.net>
 References: <cover.1581955849.git.mchehab+huawei@kernel.org>
  <20200218040146.GM7778@bombadil.infradead.org>
  <20200218110406.098fdc09@kernel.org>
-Organization: LWN.net
+ <20200219023234.7b704acb@lwn.net>
 X-Mailer: Claws Mail 3.17.4 (GTK+ 2.24.32; x86_64-redhat-linux-gnu)
 MIME-Version: 1.0
-X-Spam-Score: 0.0 (/)
+X-Spam-Score: 0.1 (/)
 X-Spam-Report: Spam Filtering performed by mx.sourceforge.net.
  See http://spamassassin.org/tag/ for more details.
- -0.0 RCVD_IN_DNSWL_NONE     RBL: Sender listed at https://www.dnswl.org/, no
- trust [45.79.88.28 listed in list.dnswl.org]
- -0.0 SPF_PASS               SPF: sender matches SPF record
+ 1.0 SPF_SOFTFAIL           SPF: sender does not match SPF record (softfail)
  0.0 SPF_HELO_NONE          SPF: HELO does not publish an SPF Record
-X-Headers-End: 1j4M0k-00858p-3W
+ -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+ 0.1 DKIM_SIGNED            Message has a DKIM or DK signature,
+ not necessarily valid
+ 0.0 URIBL_BLOCKED ADMINISTRATOR NOTICE: The query to URIBL was blocked.
+ See
+ http://wiki.apache.org/spamassassin/DnsBlocklists#dnsbl-block
+ for more information. [URIs: lwn.net]
+ -0.9 AWL AWL: Adjusted score from AWL reputation of From: address
+X-Headers-End: 1j4R0y-0001k6-Js
 Subject: Re: [V9fs-developer] [PATCH 00/44] Manually convert filesystem FS
  documents to ReST
 X-BeenThere: v9fs-developer@lists.sourceforge.net
@@ -105,21 +120,32 @@ Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: v9fs-developer-bounces@lists.sourceforge.net
 
-On Tue, 18 Feb 2020 11:04:06 +0100
-Mauro Carvalho Chehab <mchehab+huawei@kernel.org> wrote:
+Em Wed, 19 Feb 2020 02:32:34 -0700
+Jonathan Corbet <corbet@lwn.net> escreveu:
 
-> Then, do a second pass at files outside the new directories (like
-> admin-guide), in order to better organize things, eventually splitting
-> some files into kAPI, uAPI and/or admin-guide.
+> On Tue, 18 Feb 2020 11:04:06 +0100
+> Mauro Carvalho Chehab <mchehab+huawei@kernel.org> wrote:
+> 
+> > Then, do a second pass at files outside the new directories (like
+> > admin-guide), in order to better organize things, eventually splitting
+> > some files into kAPI, uAPI and/or admin-guide.  
+> 
+> I'm looking forward to this phase!  Yes it is harder, and it often
+> requires selling the idea to skeptical maintainers.  But that is how,
+> IMO, we get from where we're at now to something closer to a set of
+> coherent kernel docs.
 
-I'm looking forward to this phase!  Yes it is harder, and it often
-requires selling the idea to skeptical maintainers.  But that is how,
-IMO, we get from where we're at now to something closer to a set of
-coherent kernel docs.
+Yeah, fully agreed that this is an important step.
 
-Thanks,
+I'm even more anxious for a third phase: filling the gaps. I'm pretty sure
+that several important parts of the Kernel aren't properly represented
+at Documentation.
 
-jon
+Yet, before start writing new things, we should first organizing what we
+already have, making them well-organized.
+
+Cheers,
+Mauro
 
 
 _______________________________________________
