@@ -2,81 +2,90 @@ Return-Path: <v9fs-developer-bounces@lists.sourceforge.net>
 X-Original-To: lists+v9fs-developer@lfdr.de
 Delivered-To: lists+v9fs-developer@lfdr.de
 Received: from lists.sourceforge.net (lists.sourceforge.net [216.105.38.7])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6D4161647EE
-	for <lists+v9fs-developer@lfdr.de>; Wed, 19 Feb 2020 16:11:58 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 547BB166C6C
+	for <lists+v9fs-developer@lfdr.de>; Fri, 21 Feb 2020 02:39:18 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+	d=lists.sourceforge.net; s=beta; h=Message-Id:Content-Type:Cc:Reply-To:From:
+	List-Subscribe:List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:
+	Subject:Date:MIME-Version:To:Sender:Content-Transfer-Encoding:Content-ID:
+	Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
+	:Resent-Message-ID:In-Reply-To:References:List-Owner;
+	bh=9ypFJmqrNtXq+M4U08CnsnErlQclzZjntQaTWGHW3HE=; b=ipn3jB2spWvBZeIvBNNZ0ITXzJ
+	Wgj2vsFM2+c6Jm5l4jjVo+9rT5UE86vtPrZWKIkvnytODBIQ1AWvuzdvmMW7GlLpXeoetMpsRNwjT
+	hTulLSSwlmX/ikM52ZrQm044o2jOQ/byYGUYS01m2ZIuR5UZo+LEBAkLZNhXyPjmrQCE=;
 Received: from [127.0.0.1] (helo=sfs-ml-4.v29.lw.sourceforge.com)
 	by sfs-ml-4.v29.lw.sourceforge.com with esmtp (Exim 4.90_1)
 	(envelope-from <v9fs-developer-bounces@lists.sourceforge.net>)
-	id 1j4R11-0003XQ-BA; Wed, 19 Feb 2020 15:11:55 +0000
+	id 1j4xHb-0003ot-1j; Fri, 21 Feb 2020 01:39:11 +0000
 Received: from [172.30.20.202] (helo=mx.sourceforge.net)
  by sfs-ml-4.v29.lw.sourceforge.com with esmtps
  (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.90_1)
- (envelope-from <mchehab+huawei@kernel.org>)
- id 1j4R10-0003X6-E5; Wed, 19 Feb 2020 15:11:54 +0000
+ (envelope-from <sales@pronewsemaillist.info>) id 1j4xHZ-0003ol-Tl
+ for v9fs-developer@lists.sourceforge.net; Fri, 21 Feb 2020 01:39:09 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=sourceforge.net; s=x; h=Content-Transfer-Encoding:Content-Type:MIME-Version
- :References:In-Reply-To:Message-ID:Subject:Cc:To:From:Date:Sender:Reply-To:
- Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
- Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
+ d=sourceforge.net; s=x; h=Date:Reply-To:MIME-Version:Content-Type:To:Subject:
+ From:Sender:Message-ID:Cc:Content-Transfer-Encoding:Content-ID:
+ Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
+ :Resent-Message-ID:In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:
  List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=Uvk/WRH89AWMdOVPSMRB0SCJsQtjKOS/wrWpFHrNMmM=; b=jDbcu9auHiUD2Z/wWSZCV8UIJf
- Q0KXnVpXS1QyqUkLLCua9UZ0wGS1DtoRXtFvu8cAZsM6eQ2JAm4xcMu5zQix28/yI99OXH5HMGx6i
- gva03TKvyvNXqHLQpYQCBa9szZ+CNEW1o7nBFqnA1I5jiS6tJzgQ9okq2ERehAriAKBs=;
+ bh=rHhRg4Z1OGTFliOWbBIPNFKG+1+maptYN9i1SIbj8QA=; b=cMvgrsKQc+FotdL1NFYzQzYjXr
+ vWWULlaORrAekoIzwWU/1VGiMhjyfXzmKRFtxICz+EpfSXK42qngHApGoI2bcv2DYy4VEdoOL4zjS
+ JMD1qqJaLoS/DeFy1Jcv2nTPMn4XZ3dNltOTrzEbl2Vo89HRPw+gX4CH2LfGkSjKzGxc=;
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  ;
- h=Content-Transfer-Encoding:Content-Type:MIME-Version:References:
- In-Reply-To:Message-ID:Subject:Cc:To:From:Date:Sender:Reply-To:Content-ID:
- Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
- :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
- List-Post:List-Owner:List-Archive;
- bh=Uvk/WRH89AWMdOVPSMRB0SCJsQtjKOS/wrWpFHrNMmM=; b=V5RsBMxT4KVFZVFJX48/go8K6y
- tHJIe4bQGN9F3HGkkZCM/RaRFtu1YJFq/7sdd8nBhMPejooLSDWQQ0C1fFT6Zo4fjIdBUMcYjiyb1
- BR6IF6+aDKj/SCRPO4jRaGSban2AptyAWqnrtq95TpzNHNmC/Gxg3VRbXATLou4+WlfM=;
-Received: from bombadil.infradead.org ([198.137.202.133])
- by sfi-mx-1.v28.lw.sourceforge.com with esmtps
+ h=Date:Reply-To:MIME-Version:Content-Type:To:Subject:From:Sender:Message-ID
+ :Cc:Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+ Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:
+ References:List-Id:List-Help:List-Unsubscribe:List-Subscribe:List-Post:
+ List-Owner:List-Archive; bh=rHhRg4Z1OGTFliOWbBIPNFKG+1+maptYN9i1SIbj8QA=; b=J
+ 8PCK8oSlDNuzWfI9pRTlXB2eo/n2Wa436r1fstFaTNvu59vgSGlLmi26FPqVrrSJTA7nQPiXTkbdJ
+ j5nhWP4gRFibSP/jfJpiZ1H2zFdmiVAVIZ05vgC5+ZiJsMkldFVcrFCF2EcFwKPQTPRnKXe0nkLZM
+ da4CbZXi0fHWhB6Y=;
+Received: from pronewsemaillist.info ([106.75.143.47])
+ by sfi-mx-3.v28.lw.sourceforge.com with esmtps
  (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.92.2)
- id 1j4R0y-0001k6-Js; Wed, 19 Feb 2020 15:11:54 +0000
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=infradead.org; s=bombadil.20170209; h=Content-Transfer-Encoding:
- Content-Type:MIME-Version:References:In-Reply-To:Message-ID:Subject:Cc:To:
- From:Date:Sender:Reply-To:Content-ID:Content-Description;
- bh=Uvk/WRH89AWMdOVPSMRB0SCJsQtjKOS/wrWpFHrNMmM=; b=j2lHtYJz/WtcOazwhe9FYpwcMw
- PilYDNbrwf0g6lTRRzQa0QrB8HYHq4emi91b2LPURX5BgK7AAbxvYBLaMzwrtvNwImG/Fe2WBhENT
- w8oYGUiDuQf2Y82cs6KthEC4N0cGjMFvIJAk4el1ecH1mDO7oFTBYBHPrpOVoJsBiVYOKlrN2kKul
- jQ+c46w/yklPdM3nTe4K6vkbqBn0SiKUJhg0HquiKuRPfo0HM7Lr7fZNwQXZL0MIsJvqc+OP48inL
- 1yZzyFDMvMB/XYuYLRKDH8PYvPOr4nLtGpKWOIh6aa0/SJvmYFsuI5VmNJkbOVZjHKZow7nLGP4Vl
- BXjkRYUA==;
-Received: from tmo-109-126.customers.d1-online.com ([80.187.109.126]
- helo=localhost)
- by bombadil.infradead.org with esmtpsa (Exim 4.92.3 #3 (Red Hat Linux))
- id 1j4R0Y-0000UF-OT; Wed, 19 Feb 2020 15:11:26 +0000
-Date: Wed, 19 Feb 2020 16:11:13 +0100
-From: Mauro Carvalho Chehab <mchehab+huawei@kernel.org>
-To: Jonathan Corbet <corbet@lwn.net>
-Message-ID: <20200219161113.41add6e4@kernel.org>
-In-Reply-To: <20200219023234.7b704acb@lwn.net>
-References: <cover.1581955849.git.mchehab+huawei@kernel.org>
- <20200218040146.GM7778@bombadil.infradead.org>
- <20200218110406.098fdc09@kernel.org>
- <20200219023234.7b704acb@lwn.net>
-X-Mailer: Claws Mail 3.17.4 (GTK+ 2.24.32; x86_64-redhat-linux-gnu)
+ id 1j4xHY-0031fB-EU
+ for v9fs-developer@lists.sourceforge.net; Fri, 21 Feb 2020 01:39:09 +0000
+DKIM-Signature: v=1; a=rsa-sha1; c=relaxed/relaxed; s=default;
+ d=pronewsemaillist.info; 
+ h=From:Subject:To:Content-Type:MIME-Version:Reply-To:Date;
+ i=sales@pronewsemaillist.info; 
+ bh=dTkEeTvJPWuCvQ32ppMQIskB/V4=;
+ b=4hSXlj5vAYZfG7XsmJZ8rNvuL7PLrwYdMpJOONsCv4g3kbV25Jnse/2RvTxiPTkOlgO2Mh3xU3A/
+ CBpZAQn89e3zuUqqMIIhr1y5TklcU+8eTdSQJg7Ovj+rvGHS008ZvRc6DqMzqplZp2k3YdqV1wBc
+ kBnpACAmJlNb0kycQCM=
+DomainKey-Signature: a=rsa-sha1; c=nofws; q=dns; s=default;
+ d=pronewsemaillist.info; 
+ b=QwrNRHFrD/nYHcJ2p2x4c7pY87ACqUst/mB65uWf2do/CJjl4mRJ/FHUC5fh/IWfRDmdtVpzk/Ul
+ AgPdC1lWblu/czihOTR291AyM0g96s+hAYooNbaEQgxTHIm6r+VTNvivs800Q4r2uWP4m03E6n2A
+ OczSUTfBr9wRAwla8rk=;
+To: v9fs-developer@lists.sourceforge.net
 MIME-Version: 1.0
-X-Spam-Score: 0.1 (/)
+Date: Thu, 20 Feb 2020 17:38:59 -0800
+X-Spam-Score: 5.9 (+++++)
 X-Spam-Report: Spam Filtering performed by mx.sourceforge.net.
  See http://spamassassin.org/tag/ for more details.
- 1.0 SPF_SOFTFAIL           SPF: sender does not match SPF record (softfail)
- 0.0 SPF_HELO_NONE          SPF: HELO does not publish an SPF Record
- -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
- 0.1 DKIM_SIGNED            Message has a DKIM or DK signature,
- not necessarily valid
  0.0 URIBL_BLOCKED ADMINISTRATOR NOTICE: The query to URIBL was blocked.
  See
  http://wiki.apache.org/spamassassin/DnsBlocklists#dnsbl-block
- for more information. [URIs: lwn.net]
- -0.9 AWL AWL: Adjusted score from AWL reputation of From: address
-X-Headers-End: 1j4R0y-0001k6-Js
-Subject: Re: [V9fs-developer] [PATCH 00/44] Manually convert filesystem FS
- documents to ReST
+ for more information. [URIs: gk-group.com]
+ -0.0 SPF_HELO_PASS          SPF: HELO matches SPF record
+ 0.5 SUBJ_ALL_CAPS          Subject is all capitals
+ -0.0 SPF_PASS               SPF: sender matches SPF record
+ 1.0 HTML_MESSAGE           BODY: HTML included in message
+ -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from author's
+ domain
+ -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+ 0.1 DKIM_SIGNED            Message has a DKIM or DK signature,
+ not necessarily valid
+ 1.0 MISSING_MID            Missing Message-Id: header
+ 2.5 FREEMAIL_FORGED_REPLYTO Freemail in Reply-To, but not From
+ 1.0 FREEMAIL_REPLYTO       Reply-To/From or Reply-To/body contain different
+ freemails
+ 0.0 AWL AWL: Adjusted score from AWL reputation of From: address
+X-Headers-End: 1j4xHY-0031fB-EU
+X-Content-Filtered-By: Mailman/MimeDel 2.1.21
+Subject: [V9fs-developer] Fwd: Re: 3% LOAN OFFER.
 X-BeenThere: v9fs-developer@lists.sourceforge.net
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -88,67 +97,65 @@ List-Post: <mailto:v9fs-developer@lists.sourceforge.net>
 List-Help: <mailto:v9fs-developer-request@lists.sourceforge.net?subject=help>
 List-Subscribe: <https://lists.sourceforge.net/lists/listinfo/v9fs-developer>, 
  <mailto:v9fs-developer-request@lists.sourceforge.net?subject=subscribe>
-Cc: Latchesar Ionkov <lucho@ionkov.net>,
- Martin Brandenburg <martin@omnibond.com>, Jan Kara <jack@suse.cz>,
- Linux Doc Mailing List <linux-doc@vger.kernel.org>,
- Amir Goldstein <amir73il@gmail.com>, Bob Copeland <me@bobcopeland.com>,
- David Howells <dhowells@redhat.com>, Chris Mason <clm@fb.com>,
- linux-mtd@lists.infradead.org, Ilya Dryomov <idryomov@gmail.com>,
- linux-afs@lists.infradead.org, Mike Marshall <hubcap@omnibond.com>,
- Naohiro Aota <naohiro.aota@wdc.com>, Christoph Hellwig <hch@infradead.org>,
- linux-nilfs@vger.kernel.org, Andreas Gruenbacher <agruenba@redhat.com>,
- Sage Weil <sage@redhat.com>, Richard Weinberger <richard@nod.at>,
- Matthew Wilcox <willy@infradead.org>, Tyler Hicks <code@tyhicks.com>,
- cluster-devel@redhat.com, v9fs-developer@lists.sourceforge.net,
- Gao Xiang <xiang@kernel.org>, linux-ext4@vger.kernel.org,
- Salah Triki <salah.triki@gmail.com>, Alexey Dobriyan <adobriyan@gmail.com>,
- devel@lists.orangefs.org, Chao Yu <chao@kernel.org>,
- Eric Van Hensbergen <ericvh@gmail.com>, ecryptfs@vger.kernel.org,
- Josef Bacik <josef@toxicpanda.com>, Bob Peterson <rpeterso@redhat.com>,
- "Tigran A. Aivazian" <aivazian.tigran@gmail.com>,
- David Sterba <dsterba@suse.com>, Jaegeuk Kim <jaegeuk@kernel.org>,
- ceph-devel@vger.kernel.org, Ryusuke Konishi <konishi.ryusuke@gmail.com>,
- Anton Altaparmakov <anton@tuxera.com>, Damien Le Moal <damien.lemoal@wdc.com>,
- Luis de Bethencourt <luisbg@kernel.org>, Nicolas Pitre <nico@fluxnic.net>,
- linux-ntfs-dev@lists.sourceforge.net, Jeff Layton <jlayton@kernel.org>,
- linux-f2fs-devel@lists.sourceforge.net, ocfs2-devel@oss.oracle.com,
- Jan Kara <jack@suse.com>, linux-fsdevel@vger.kernel.org,
- Phillip Lougher <phillip@squashfs.org.uk>, Johannes Thumshirn <jth@kernel.org>,
- linux-erofs@lists.ozlabs.org, linux-karma-devel@lists.sourceforge.net,
- linux-btrfs@vger.kernel.org
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+From: Demetrios Daniel via V9fs-developer
+ <v9fs-developer@lists.sourceforge.net>
+Reply-To: tradedubailtd@gmail.com
+Cc: Demetrios Daniel <sales@pronewsemaillist.info>
+Content-Type: multipart/mixed; boundary="===============2302852833523165107=="
 Errors-To: v9fs-developer-bounces@lists.sourceforge.net
+Message-Id: <E1j4xHb-0003ot-1j@sfs-ml-4.v29.lw.sourceforge.com>
 
-Em Wed, 19 Feb 2020 02:32:34 -0700
-Jonathan Corbet <corbet@lwn.net> escreveu:
+This is a multi-part message in MIME format
 
-> On Tue, 18 Feb 2020 11:04:06 +0100
-> Mauro Carvalho Chehab <mchehab+huawei@kernel.org> wrote:
-> 
-> > Then, do a second pass at files outside the new directories (like
-> > admin-guide), in order to better organize things, eventually splitting
-> > some files into kAPI, uAPI and/or admin-guide.  
-> 
-> I'm looking forward to this phase!  Yes it is harder, and it often
-> requires selling the idea to skeptical maintainers.  But that is how,
-> IMO, we get from where we're at now to something closer to a set of
-> coherent kernel docs.
+--===============2302852833523165107==
+Content-Type: text/plain
+Content-Transfer-Encoding: quoted-printable
 
-Yeah, fully agreed that this is an important step.
+ - This mail is in HTML. Some elements may be ommited in plain text. -
 
-I'm even more anxious for a third phase: filling the gaps. I'm pretty sure
-that several important parts of the Kernel aren't properly represented
-at Documentation.
+GK FINANCE Ltd.
+D1, 27-29 William Pickering Drive,
+Rosedale, 0632, New Zealand.
+ATTN: GK FINANCE Ltd.  Dear Applicant,
+Are you an Investors? Do you need a Business Loan?, Personal Loan ? at=
+ 3% Interest rate and a Maximum Repayment plan of 20 years.
+In placing an Application, (loan applicants) do quote Reference: ( HT6=
+47 / AMPLNN3 ) as subject and send us an e-Mail to: dr.demetriosdaniel=
+6@gmail.com - or call us on our whats App Number in order for us to se=
+rve you better ( for better Understanding ) - Application Desk - Phone=
+: +447451205806
+Until Then
+Do Have a Very lovely day,
+Dr Demetrius Daniel (CEO)
+xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+GK FINANCE Ltd.
+D1, 27-29 William Pickering Drive,
+Rosedale, 0632, New Zealand.
+P: +208 629 5626 | M:  | F: +281-305-4954
+General Enquiries: tradedubailtd@gmail.com | W: www.gk-group.com
+=A9 2020 GK FINANCE Ltd All Rights Reserved.
 
-Yet, before start writing new things, we should first organizing what we
-already have, making them well-organized.
 
-Cheers,
-Mauro
+sent from my iPad
 
+--===============2302852833523165107==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
+
+--===============2302852833523165107==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
 
 _______________________________________________
 V9fs-developer mailing list
 V9fs-developer@lists.sourceforge.net
 https://lists.sourceforge.net/lists/listinfo/v9fs-developer
+
+--===============2302852833523165107==--
+
+
