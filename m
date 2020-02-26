@@ -2,91 +2,60 @@ Return-Path: <v9fs-developer-bounces@lists.sourceforge.net>
 X-Original-To: lists+v9fs-developer@lfdr.de
 Delivered-To: lists+v9fs-developer@lfdr.de
 Received: from lists.sourceforge.net (lists.sourceforge.net [216.105.38.7])
-	by mail.lfdr.de (Postfix) with ESMTPS id 01CEB166F4F
-	for <lists+v9fs-developer@lfdr.de>; Fri, 21 Feb 2020 06:45:18 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3A9BE1702D8
+	for <lists+v9fs-developer@lfdr.de>; Wed, 26 Feb 2020 16:41:52 +0100 (CET)
 Received: from [127.0.0.1] (helo=sfs-ml-1.v29.lw.sourceforge.com)
 	by sfs-ml-1.v29.lw.sourceforge.com with esmtp (Exim 4.90_1)
 	(envelope-from <v9fs-developer-bounces@lists.sourceforge.net>)
-	id 1j517e-0000qu-94; Fri, 21 Feb 2020 05:45:10 +0000
+	id 1j6yom-000280-Bp; Wed, 26 Feb 2020 15:41:48 +0000
 Received: from [172.30.20.202] (helo=mx.sourceforge.net)
  by sfs-ml-1.v29.lw.sourceforge.com with esmtps
  (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.90_1)
- (envelope-from <infos@sefairevoir.info>) id 1j517c-0000qg-Pb
- for v9fs-developer@lists.sourceforge.net; Fri, 21 Feb 2020 05:45:08 +0000
+ (envelope-from <info@euro-pinnacle.com>) id 1j6yok-00027c-Sw
+ for v9fs-developer@lists.sourceforge.net; Wed, 26 Feb 2020 15:41:46 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=sourceforge.net; s=x; h=Content-Transfer-Encoding:Content-Type:MIME-Version
- :Message-ID:Subject:From:To:Date:Sender:Reply-To:Cc:Content-ID:
+ d=sourceforge.net; s=x; h=Reply-To:Date:From:To:Subject:MIME-Version:
+ Content-Type:Sender:Message-ID:Cc:Content-Transfer-Encoding:Content-ID:
  Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
  :Resent-Message-ID:In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:
  List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=BpIYO1WVlM2WM314LhZLMnFBay32TfPbf25Lt9eX6jY=; b=hUbGJ7YIBb+VKn22f5Pfla6tzn
- dUTc7pXjDYID6BluaGCBXKrB3Un1OaV6R14vxPC0ToNtFtxwcQ24hof9ftxeLtBdyxCnz70bTYnxa
- SG1buP+csqHlQUwSQHaH9Xku4rKbNzuFk+UvK2rQOiIiYsaEYvhLQoa9eERStU0aKJFY=;
+ bh=cCF/8TumMeoazOEqLchSikWBlrCWTLYC7R3kJITrC0U=; b=S4xC+g8/McrMTS+TtrC5l+EALP
+ cTBFx8aURLDqQgeVQ6RfSUzORDyKcR2NWFlhAK0J6uBr8t6uwQOC/x7v0q3gqoqruu9QwxGmtI/Fk
+ +3CaA722QxnyFFpLfuBu1b0onPRVN5If1GsolXLnusEf7jlw5eVWTqvJJ4/lCCdrfnOQ=;
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  ;
- h=Content-Transfer-Encoding:Content-Type:MIME-Version:Message-ID:Subject:
- From:To:Date:Sender:Reply-To:Cc:Content-ID:Content-Description:Resent-Date:
+ h=Reply-To:Date:From:To:Subject:MIME-Version:Content-Type:Sender:Message-ID
+ :Cc:Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
  Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:
  References:List-Id:List-Help:List-Unsubscribe:List-Subscribe:List-Post:
- List-Owner:List-Archive; bh=BpIYO1WVlM2WM314LhZLMnFBay32TfPbf25Lt9eX6jY=; b=T
- 9CCKdsjwnq4qsE9fU00n0e1+e4dXHfHGCp/Wif5vrneqiUa230k88QQzf4l5X4xSgK/seo4s/Hwdh
- UjUyiwpmViYJSUqgjM9GnNxcBImv0BXj/LvJHEsWGTD2vzKSon1+kCkQMiYzwPTr1PRRt77cNNywC
- BqJLds4PXoz/oXi4=;
-Received: from smtp4-g21.free.fr ([212.27.42.4])
+ List-Owner:List-Archive; bh=cCF/8TumMeoazOEqLchSikWBlrCWTLYC7R3kJITrC0U=; b=G
+ nopZx3kCnVv1lGlWwrdYlSICzl5Za37NsTMERxYuckWs5sdAzJNeU4NJtuEOem58yElQTvgvL651L
+ PQFzdWlBxjnK4wZzzO2M1uhb7DB5OBDkuAQKW/HclfwVDbSDQ96y/OGr4eKJsCFzfY5xW5bPh5oVG
+ zqWh/0d23NQTr3FQ=;
+Received: from [165.22.214.51] (helo=rdns0.mandrakedining.gq)
  by sfi-mx-4.v28.lw.sourceforge.com with esmtps
  (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.92.2)
- id 1j517a-00Dpdf-DE
- for v9fs-developer@lists.sourceforge.net; Fri, 21 Feb 2020 05:45:08 +0000
-Received: from lastnight (unknown [37.170.124.71])
- by smtp4-g21.free.fr (Postfix) with ESMTP id EEC5019F576
- for <v9fs-developer@lists.sourceforge.net>;
- Fri, 21 Feb 2020 06:44:59 +0100 (CET)
-Date: Fri, 21 Feb 2020 05:44:34 +0000
-To: v9fs-developer@lists.sourceforge.net
-From: ONE MONTHLY FEE <infos@sefairevoir.info>
-Message-ID: 1582263874-ce9183fca4cbcfc5360bad12c477c816@sefairevoir.info
-X-Priority: 3
-X-Mailer: cavalerie
+ id 1j6yoj-00ANAl-Hs
+ for v9fs-developer@lists.sourceforge.net; Wed, 26 Feb 2020 15:41:46 +0000
 MIME-Version: 1.0
-DKIM-Signature: v=1; a=rsa-sha1; q=dns/txt; l=11325; s=default;
- t=1582263874; c=relaxed/simple; h=From:To:Subject;
- d=sefairevoir.info; i=infos@sefairevoir.info;
- z=From:=20ONE=20MONTHLY=20FEE=20<infos@sefairevoir.info>
- |To:=20v9fs-developer@lists.sourceforge.net
- |Subject:=20Accountancy=20services;
- bh=L8Wj7K8zzLdUhiq7r7WqARWFKas=;
- b=XZZxwSbM39tsUFqrycsrwGxugz18qRkLSTa7iNznZZ9L3ZD4RmMbo09f74a9U8B38tecTK6DkHUZerpqmNLTkwqwOxsbhSoGduDOpzsDzdv3v1GmsLEIQPK5uQM2anYCJI0ZcrC+tEpPN9fOlfoH8ghCpJZPLym/l8DhcuFPTqg=
-X-Spam-Score: 6.9 (++++++)
+To: v9fs-developer@lists.sourceforge.net
+From: "Kyle Smith" <info@euro-pinnacle.com>
+Date: Wed, 26 Feb 2020 15:18:00 +0000
+X-Spam-Score: 5.2 (+++++)
 X-Spam-Report: Spam Filtering performed by mx.sourceforge.net.
  See http://spamassassin.org/tag/ for more details.
- 0.3 URIBL_RHS_DOB          Contains an URI of a new domain (Day Old Bread)
- [URIs: sefairevoir.info]
- 0.0 URIBL_BLOCKED ADMINISTRATOR NOTICE: The query to URIBL was blocked.
- See
- http://wiki.apache.org/spamassassin/DnsBlocklists#dnsbl-block
- for more information. [URIs: sefairevoir.info]
- 2.5 URIBL_DBL_SPAM         Contains a spam URL listed in the Spamhaus DBL
- blocklist [URIs: sefairevoir.info]
- 0.0 RCVD_IN_MSPIKE_H3      RBL: Good reputation (+3)
- [212.27.42.4 listed in wl.mailspike.net]
- -0.0 RCVD_IN_DNSWL_NONE     RBL: Sender listed at https://www.dnswl.org/, no
- trust [212.27.42.4 listed in list.dnswl.org]
- -0.0 SPF_PASS               SPF: sender matches SPF record
+ 1.2 RCVD_IN_BL_SPAMCOP_NET RBL: Received via a relay in bl.spamcop.net
+ [Blocked - see <https://www.spamcop.net/bl.shtml?165.22.214.51>]
+ 1.0 SPF_SOFTFAIL           SPF: sender does not match SPF record (softfail)
  0.0 SPF_HELO_NONE          SPF: HELO does not publish an SPF Record
  1.0 HTML_MESSAGE           BODY: HTML included in message
- -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from author's
- domain
- -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
- 0.1 DKIM_SIGNED            Message has a DKIM or DK signature,
- not necessarily valid
- 0.5 RAZOR2_CHECK           Listed in Razor2 (http://razor.sf.net/)
- 1.5 RAZOR2_CF_RANGE_51_100 Razor2 gives confidence level above 50%
- [cf: 100] 0.0 RCVD_IN_MSPIKE_WL      Mailspike good senders
- 1.2 INVALID_MSGID          Message-Id is not valid, according to RFC 2822
- 0.0 T_REMOTE_IMAGE         Message contains an external image
-X-Headers-End: 1j517a-00Dpdf-DE
+ 1.0 MISSING_MID            Missing Message-Id: header
+ 1.0 RDNS_NONE Delivered to internal network by a host with no rDNS
+ -0.0 AWL AWL: Adjusted score from AWL reputation of From: address
+X-Headers-End: 1j6yoj-00ANAl-Hs
+Content-Description: Mail message body
 X-Content-Filtered-By: Mailman/MimeDel 2.1.21
-Subject: [V9fs-developer] Accountancy services
+Subject: Re: [V9fs-developer] Investment Seed Capital
 X-BeenThere: v9fs-developer@lists.sourceforge.net
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -98,67 +67,24 @@ List-Post: <mailto:v9fs-developer@lists.sourceforge.net>
 List-Help: <mailto:v9fs-developer-request@lists.sourceforge.net?subject=help>
 List-Subscribe: <https://lists.sourceforge.net/lists/listinfo/v9fs-developer>, 
  <mailto:v9fs-developer-request@lists.sourceforge.net?subject=subscribe>
+Reply-To: info@euro-pinnacle.com
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: v9fs-developer-bounces@lists.sourceforge.net
+Message-Id: <E1j6yom-000280-Bp@sfs-ml-1.v29.lw.sourceforge.com>
 
-
-Complete Accountant
-
-
-UNLIMITED ACCOUNTANCY
-SERVICES
-ONE MONTHLY FEE
-
-QUOTE ONLINE &gt;&gt;
-We quote online based on company turnover and transactions
-Quote Now
-Quote Online To See How Much
-You Should Be Paying
-Unlimited Accountancy Services Include:
-Unlimited Telephone Support
-Unlimited Email Support
-(3 Hour Response)
-Dedicated Accountant
-Monthly Bookkeeping/Reconciliation
-Quarterly VAT Returns
-Company Annual Accounts
-Company Tax Return
-Self-Assessment Tax Returns
-Submission of Confirmation Statement
+Attn:Sir
+  
+    
+I have an investor looking to invest in entrepreneurial teams with big ideas and a need for Seed Capital to turn their business or ideas into great Companies.
  
-Xero Software
-Xero Training
-Company Incorporation
-(if required)
-VAT Registration (if required)
-PAYE Registration (if required)
-CIS Registration (if required)
-Financial Reference (e.g. Mortgage)
-Access to Business Funding
-Monthly Management Information
-
-
-Tired of unexpected accountancy fees?
-
-Get unlimited services and Support for
-
-One Monthly fee.
-
-
-Never any unexpected fees*
-
-QUOTE ONLINE &gt;&gt;
-
-
-
-
-Follow this link to stop receiving messages about ACCOUNTANCY SERVICES.
-You have the right of access, rectification, opposition and consent, which you have access on this web page: Privacy policy.
-You are receiving this message on your email address because you are in our list of managers and professionals.
-ASCPM - 5 Avenue du General de Gaulle - SAINT MANDE - France - R.C.S. 814 073 060 CRETEIL
-
-
+He has funds available for Investment and want them invested under you or your Company strict guidance. For more details, please reply to this email so we can discuss further.
+ 
+Yours faithfully.
+ Kyle Smith
+ Mobile Whatsapp  + 1 (646) 441 8989  (USA)
+ Private email:pinacletrend@gmail.com
+  
 
 _______________________________________________
 V9fs-developer mailing list
