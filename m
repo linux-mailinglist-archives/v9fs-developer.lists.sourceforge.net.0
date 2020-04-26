@@ -2,96 +2,102 @@ Return-Path: <v9fs-developer-bounces@lists.sourceforge.net>
 X-Original-To: lists+v9fs-developer@lfdr.de
 Delivered-To: lists+v9fs-developer@lfdr.de
 Received: from lists.sourceforge.net (lists.sourceforge.net [216.105.38.7])
-	by mail.lfdr.de (Postfix) with ESMTPS id C766A1A90A9
-	for <lists+v9fs-developer@lfdr.de>; Wed, 15 Apr 2020 03:54:10 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.sourceforge.net; s=beta; h=Content-Transfer-Encoding:Content-Type:Cc:
-	Reply-To:From:List-Subscribe:List-Help:List-Post:List-Archive:
-	List-Unsubscribe:List-Id:Subject:Message-Id:Date:MIME-Version:To:Sender:
-	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
-	Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:List-Owner;
-	bh=xR4G6rUMD9WugAIv3O5aNsvsn/VMZGPJtJ7KkBsZdEA=; b=BQDhpQMEozXjef0DpbHzRolN+b
-	yk9hyx2QUTWebvMXjCA1uYcygLJ+cd2Lekdhlku18k/DbjD1mKZ4usO9hTsVOXbi20N4Dvt03DYdd
-	DppE8mEq5BHepQ831qyYZZru2USE65JoqMOaOVgjgPCkZ01AX7lnhqYJAqWLy/VfyGkc=;
+	by mail.lfdr.de (Postfix) with ESMTPS id 426401B8AE9
+	for <lists+v9fs-developer@lfdr.de>; Sun, 26 Apr 2020 03:53:08 +0200 (CEST)
 Received: from [127.0.0.1] (helo=sfs-ml-2.v29.lw.sourceforge.com)
 	by sfs-ml-2.v29.lw.sourceforge.com with esmtp (Exim 4.90_1)
 	(envelope-from <v9fs-developer-bounces@lists.sourceforge.net>)
-	id 1jOXFg-0002V5-8b; Wed, 15 Apr 2020 01:54:08 +0000
+	id 1jSWTh-0000YI-49; Sun, 26 Apr 2020 01:53:05 +0000
 Received: from [172.30.20.202] (helo=mx.sourceforge.net)
  by sfs-ml-2.v29.lw.sourceforge.com with esmtps
  (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.90_1)
- (envelope-from <info@hident.org>) id 1jOXFf-0002Ux-8u
- for v9fs-developer@lists.sourceforge.net; Wed, 15 Apr 2020 01:54:07 +0000
+ (envelope-from <vejeta@gmail.com>) id 1jSWTf-0000YB-TT
+ for v9fs-developer@lists.sourceforge.net; Sun, 26 Apr 2020 01:53:03 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=sourceforge.net; s=x; h=Message-Id:Date:Reply-To:MIME-Version:Content-Type:
- To:Subject:From:Sender:Cc:Content-Transfer-Encoding:Content-ID:
+ d=sourceforge.net; s=x; h=Content-Transfer-Encoding:Content-Type:MIME-Version
+ :Message-ID:Subject:To:From:Date:Sender:Reply-To:Cc:Content-ID:
  Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
  :Resent-Message-ID:In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:
  List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=nwHDQdO+WE7v9wqoSs32XrkmHhjXhkhMAGzPVL1LAKg=; b=X/MhcAi0KtWCjfNkTa5JFlBJKj
- tuxdn23hjX30kxIj+ykJq66wECE5DosF95L7nVbLuHKqAQP9QOEpXMiSaA8SPvQbLcCf6ze8hi4Y1
- 9TueQSVCPTAbM6KRnD4KaRNMOyFd6gX4sIELtctBSXZUA2ZWqAzipiol921q/6mzYtbM=;
+ bh=/NJAbZ6lLwzseu4mh9ugN078hNbVoCxwgPvpWD8teZQ=; b=iX1dpcRR7mgUjRUsNO54ymarIf
+ dvehi1Waxv4rbfs0GuKkr5zBuaWaig845zvxyon63+z/iR+sGn+xugJX9dUEKsylbVhi+ohTUKRs2
+ fQ/Yxam1ImJEX52l4k4AZ2MccaPVpHEQjOJNZ9wOphM3B2WxrCyp13Pup6SH5xll6r8c=;
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  ;
- h=Message-Id:Date:Reply-To:MIME-Version:Content-Type:To:Subject:From:Sender
- :Cc:Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+ h=Content-Transfer-Encoding:Content-Type:MIME-Version:Message-ID:Subject:To
+ :From:Date:Sender:Reply-To:Cc:Content-ID:Content-Description:Resent-Date:
  Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:
  References:List-Id:List-Help:List-Unsubscribe:List-Subscribe:List-Post:
- List-Owner:List-Archive; bh=nwHDQdO+WE7v9wqoSs32XrkmHhjXhkhMAGzPVL1LAKg=; b=d
- JMJXcqhehJth4woXzfPJbf8SvxkN5On4j8uep1YqtcoKgMM6WONT4pbsDkdQmq34K90RO0cFlFU9H
- hnoyXKyYVGZIofAVJSwI08b+EU359B76t5J2tfdTpoFQKFkskWmVKO7kID3DuzQUJLaSuEiwCln9g
- Nhd3pWjL+eXNOMXc=;
-Received: from box.hident.org ([216.108.228.54])
- by sfi-mx-3.v28.lw.sourceforge.com with esmtps
+ List-Owner:List-Archive; bh=/NJAbZ6lLwzseu4mh9ugN078hNbVoCxwgPvpWD8teZQ=; b=N
+ MtY66hPHpjB66vQscJBucjGwfTR2+Kp5vQ2hxnoTYige0erqgYkn62GmQ8WHgKu6VSmRgnjMhV+Ao
+ 5KJwJ+l1exYcDzWLENVcOSuKTaSPFdxhjWwMrRp+qoFWdpGnjvrOGIBE9mrphEiBUPjfetdHRD30l
+ TgtEt9ywFF2/i8/Y=;
+Received: from mail-wr1-f66.google.com ([209.85.221.66])
+ by sfi-mx-4.v28.lw.sourceforge.com with esmtps
  (TLSv1.2:ECDHE-RSA-AES128-GCM-SHA256:128) (Exim 4.92.2)
- id 1jOXFc-00FRPV-Cg
- for v9fs-developer@lists.sourceforge.net; Wed, 15 Apr 2020 01:54:07 +0000
-Received: from authenticated-user (box.hident.org [216.108.228.54])
- (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
- (No client certificate requested)
- by box.hident.org (Postfix) with ESMTPSA id 281534A761
+ id 1jSWTc-00ElYH-Dz
+ for v9fs-developer@lists.sourceforge.net; Sun, 26 Apr 2020 01:53:03 +0000
+Received: by mail-wr1-f66.google.com with SMTP id k13so16277346wrw.7
  for <v9fs-developer@lists.sourceforge.net>;
- Wed, 15 Apr 2020 02:48:02 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=hident.org; s=mail;
- t=1586911682; bh=8y+KVGQcsjWc8pIRP7uHj42fXtN+KBXBZprrukttL4g=;
- h=From:Subject:To:Reply-To:Date:From;
- b=ao7zgnsboiVWOIKkf92wJ6yAtN6Cwu+13LhRrfDn190kTruXdm6fjqMJj/RgXkX6a
- O0KSagoF6jrSNPqGzwPEI1xAtOMjr2Jv4cseKy1ByI3gvU85ezAnst3H2MUhxqMuFZ
- ubj9hZUgmjxbmePGrl3frMOaUkYtzDa8C4h5Nvu2/iWp/yOi4g5fSx4ybHKbhw8FSp
- nWjeg9NkckFKzkIz5ABwjKiznDn4e7K7s1dN73WpUr7O3F2nBkL8EwyUJRYdIETGzn
- rgBP0TKsOUKCsIG80fSVdcdN52lYZ9i38aIAWaYLTGTlu0UcWZpnM+NKbQagMIy8Fv
- GwHuUlq3vCX/g==
-To: <v9fs-developer@lists.sourceforge.net>
+ Sat, 25 Apr 2020 18:53:00 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+ h=date:from:to:subject:message-id:mime-version:content-disposition
+ :content-transfer-encoding;
+ bh=/NJAbZ6lLwzseu4mh9ugN078hNbVoCxwgPvpWD8teZQ=;
+ b=lSUC4ROCm19t4oQO0nwA4EOsVYo1JDj9UkF/HtbSqyidk1d/i5ObXATW1H+HUGJ/DU
+ i/1I0Qpe+C/IQnmDJsl/T9aWZF1Nt6xIloQco/EqJ537jFAzMCUae3GsRu/dpTEK1qgU
+ TeUAdhV6Al0czfD3V0g4K2eEeOV3X8ItA1Zp6IeqtkIH2jpDTxElCxu9d1/oG5HH0diJ
+ yAqiKfOEMM8TfRz9HQvzL0ON6Jj8FtVjHR6rysQ4wViIl2qj+za48TQa8eH2XrLLjcA8
+ BFkbfy+JnaHS0JVRsrXY28iu8PZUnoZsh/wML+npeNkllw+mMSa4tvrtOrxbJeWF0oh1
+ mTfg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:date:from:to:subject:message-id:mime-version
+ :content-disposition:content-transfer-encoding;
+ bh=/NJAbZ6lLwzseu4mh9ugN078hNbVoCxwgPvpWD8teZQ=;
+ b=N2EJpjogK2vHS//0ELxNby0wa2w78MZ8pdvIajU3ldsRL5cbe/sdnOt9EPNQh54Eao
+ sw5zFxD6vwmSrLoOMCpsf0nCl+gmorAkcn/H5ISVmRTG1+V8YDXQhK1RnCyP/ZDbjFiE
+ 07EeOwMYNHooq6r2pJpZjz1d4+70DZgJYIPwA6t9thfp+kipw50nNwIP7ANHiogL5RLf
+ goXVoGV5YY7XhFesshPqg3wmZ5qHi/sx0kPmBgo3tM+Rs7O7xyXqwE3ziU0RfgPv3A5k
+ PvdwjZbd5eomInYYcDCQPS+dmd21hwQ1z8revkWWZimeTAhe+0l1xP6JIGNBo1GkCCnm
+ p3GA==
+X-Gm-Message-State: AGi0PuYdHO28ljdm9FHTTuZHgpaBFhmZ9TxXm18RxNIHhv0Tai4FqdjX
+ 3yjIR4KkSQYy0HEtVT7U6o9fVTFCr1PvCw==
+X-Google-Smtp-Source: APiQypJMAVpgqfFppEa61HaKzquerhhTqjNJk8hwgIHu4NeYoFeeNsl8YKVG8/htMFeGI+87Y+Ii1A==
+X-Received: by 2002:adf:fad0:: with SMTP id a16mr21644097wrs.149.1587865973865; 
+ Sat, 25 Apr 2020 18:52:53 -0700 (PDT)
+Received: from camelot (33.red-83-52-26.dynamicip.rima-tde.net. [83.52.26.33])
+ by smtp.gmail.com with ESMTPSA id
+ l15sm9180548wmi.48.2020.04.25.18.52.52
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Sat, 25 Apr 2020 18:52:53 -0700 (PDT)
+Date: Sun, 26 Apr 2020 03:52:50 +0200
+From: Juan Manuel =?iso-8859-1?Q?M=E9ndez?= Rey <vejeta@gmail.com>
+To: ericvh@gmail.com, lucho@ionkov.net, asmadeus@codewreck.org,
+ corbet@lwn.net, v9fs-developer@lists.sourceforge.net,
+ linux-doc@vger.kernel.org
+Message-ID: <20200426015250.GA35090@camelot>
 MIME-Version: 1.0
-Date: Tue, 14 Apr 2020 17:48:29 -0700
-Priority: urgent
-X-Priority: 1
-Importance: high
-Message-Id: <142920200448170FA93D4CD8$CF75079CB6@WINRVRAQDHB>
-X-Spam-Score: 5.1 (+++++)
+Content-Disposition: inline
+X-Spam-Score: -0.1 (/)
 X-Spam-Report: Spam Filtering performed by mx.sourceforge.net.
  See http://spamassassin.org/tag/ for more details.
- 1.7 DEAR_SOMETHING         BODY: Contains 'Dear (something)'
- 0.0 URIBL_BLOCKED ADMINISTRATOR NOTICE: The query to URIBL was blocked.
- See
- http://wiki.apache.org/spamassassin/DnsBlocklists#dnsbl-block
- for more information. [URIs: kochind.com]
- -0.0 SPF_HELO_PASS          SPF: HELO matches SPF record
- 0.5 SUBJ_ALL_CAPS          Subject is all capitals
+ 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail provider
+ (vejeta[at]gmail.com)
+ -0.0 RCVD_IN_DNSWL_NONE     RBL: Sender listed at https://www.dnswl.org/, no
+ trust [209.85.221.66 listed in list.dnswl.org]
+ -0.0 RCVD_IN_MSPIKE_H2      RBL: Average reputation (+2)
+ [209.85.221.66 listed in wl.mailspike.net]
  -0.0 SPF_PASS               SPF: sender matches SPF record
- 1.0 HTML_MESSAGE           BODY: HTML included in message
+ 0.0 SPF_HELO_NONE          SPF: HELO does not publish an SPF Record
  -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from author's
  domain
  -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
  0.1 DKIM_SIGNED            Message has a DKIM or DK signature,
  not necessarily valid
- 0.0 FILL_THIS_FORM         Fill in a form with personal information
- 2.0 FILL_THIS_FORM_LONG    Fill in a form with personal information
- 0.0 T_FILL_THIS_FORM_LOAN  Answer loan question(s)
-X-Headers-End: 1jOXFc-00FRPV-Cg
-X-Content-Filtered-By: Mailman/MimeDel 2.1.21
-Subject: [V9fs-developer] OUR COMPANY (KOCH INDUSTRIES INC) NEED A FAITHFUL
- AGENT IN CHINA OR HONG KONG
+X-Headers-End: 1jSWTc-00ElYH-Dz
+Subject: [V9fs-developer] [PATCH] Update the documentation referencing Plan
+ 9 from User Space.
 X-BeenThere: v9fs-developer@lists.sourceforge.net
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -103,39 +109,38 @@ List-Post: <mailto:v9fs-developer@lists.sourceforge.net>
 List-Help: <mailto:v9fs-developer-request@lists.sourceforge.net?subject=help>
 List-Subscribe: <https://lists.sourceforge.net/lists/listinfo/v9fs-developer>, 
  <mailto:v9fs-developer-request@lists.sourceforge.net?subject=subscribe>
-From: Sylvia Donald via V9fs-developer <v9fs-developer@lists.sourceforge.net>
-Reply-To: danielray@kochindustriesllc.com
-Cc: Sylvia Donald <info@hident.org>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 Errors-To: v9fs-developer-bounces@lists.sourceforge.net
 
+The page originally referenced to checkout Plan9 application and libraries
+have been missing for quite some time and the development is carried out
+in github and documented on this new site.
 
-Dear Sir/Madam,
-This is Sylvia Donald from och industries Inc. USA, We are a Multicompany, we are involved in a variety of industries such as refining, chemicals and biofuels; forest and consumer products; fertilizers; polymers and fibers; process and pollution control equipment and technologies; electronics; information systems; minerals; energy; glass; and marketing and distribution of all kind goods/products for many companies in the world here in USA. We got your contact from a trading site and we are so sorry to write you directly this way. Please understand
-We are looking for an agent in China who will be helping us in processing payment to our personal supplier in China who handles any purchases from us or our partners.we would like to know if you are interested to work for us and get paid of 5% commission from any payment you receive from us or our partners in USD and process to our suppliers personal chinese account in RMB. We are looking for an agent because our personal supplier only has Chinese personal account and he can not receive payment from us or our partners in USD. So we need someone who can receive payment in USD from us or our partners and pay to our supplier chinese personal account in RMB.
-Note: All you need to do is to receive payment from us or our partners in USD and pay to our supplier chinese personal account in RMB.
-IF YOU ARE INTERESTED TO WORK FOR US. KINDLY FILL OUR COMPANY EMPLOYMENT FORM BELOW.
-Full Names:-----------------
-House Address:-----------------
-Company Address:--------------
-City:-----------------
-Phone Number:-----------------
-Country: -----------------
-Occupation: -----------------
-Age: -----------------
-Company website-----------
-Company USD account---------
-Whatsapp & Wechat ID-------------
-Gender---------------
-NOTE: PLEASE CONTACT OUR GENERAL MANAGER THROUGH HIS EMAIL,WECHAT OR WHATSAPP DETAILS BELOW FOR YOUR AGREEMENT LETTER BETWEEN US AND YOU.
+Signed-off-by: Juan Manuel M=E9ndez Rey <vejeta@gmail.com>
+---
+ Documentation/filesystems/9p.rst | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-Mr Daniel Ray/General Manager.
-Whatsapp: +19138280252
-Wechat:+15189309872
-Email: danielray@kochindustriesllc.com/danielray716@gmail.com
-(Koch industries Inc. USA)
-website: www.kochind.com
+diff --git a/Documentation/filesystems/9p.rst b/Documentation/filesystems/9=
+p.rst
+index 671fef39a802..2995279ddc24 100644
+--- a/Documentation/filesystems/9p.rst
++++ b/Documentation/filesystems/9p.rst
+@@ -192,4 +192,4 @@ For more information on the Plan 9 Operating System che=
+ck out
+ http://plan9.bell-labs.com/plan9
+ =
+
+ For information on Plan 9 from User Space (Plan 9 applications and librari=
+es
+-ported to Linux/BSD/OSX/etc) check out http://swtch.com/plan9
++ported to Linux/BSD/OSX/etc) check out https://9fans.github.io/plan9port/
+-- =
+
+2.26.2
+
+
 
 _______________________________________________
 V9fs-developer mailing list
