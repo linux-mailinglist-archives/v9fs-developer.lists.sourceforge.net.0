@@ -2,102 +2,66 @@ Return-Path: <v9fs-developer-bounces@lists.sourceforge.net>
 X-Original-To: lists+v9fs-developer@lfdr.de
 Delivered-To: lists+v9fs-developer@lfdr.de
 Received: from lists.sourceforge.net (lists.sourceforge.net [216.105.38.7])
-	by mail.lfdr.de (Postfix) with ESMTPS id 426401B8AE9
-	for <lists+v9fs-developer@lfdr.de>; Sun, 26 Apr 2020 03:53:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 454101B98D3
+	for <lists+v9fs-developer@lfdr.de>; Mon, 27 Apr 2020 09:43:03 +0200 (CEST)
 Received: from [127.0.0.1] (helo=sfs-ml-2.v29.lw.sourceforge.com)
 	by sfs-ml-2.v29.lw.sourceforge.com with esmtp (Exim 4.90_1)
 	(envelope-from <v9fs-developer-bounces@lists.sourceforge.net>)
-	id 1jSWTh-0000YI-49; Sun, 26 Apr 2020 01:53:05 +0000
+	id 1jSyPs-0001Qr-FJ; Mon, 27 Apr 2020 07:43:00 +0000
 Received: from [172.30.20.202] (helo=mx.sourceforge.net)
  by sfs-ml-2.v29.lw.sourceforge.com with esmtps
  (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.90_1)
- (envelope-from <vejeta@gmail.com>) id 1jSWTf-0000YB-TT
- for v9fs-developer@lists.sourceforge.net; Sun, 26 Apr 2020 01:53:03 +0000
+ (envelope-from <masud.m@ttx-group.com>) id 1jSyPk-0001QI-Si
+ for v9fs-developer@lists.sourceforge.net; Mon, 27 Apr 2020 07:42:52 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=sourceforge.net; s=x; h=Content-Transfer-Encoding:Content-Type:MIME-Version
- :Message-ID:Subject:To:From:Date:Sender:Reply-To:Cc:Content-ID:
- Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
- :Resent-Message-ID:In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:
+ d=sourceforge.net; s=x; h=Reply-To:Date:From:To:Subject:Content-Description:
+ Content-Transfer-Encoding:MIME-Version:Content-Type:Sender:Message-ID:Cc:
+ Content-ID:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:
+ Resent-Message-ID:In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:
  List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=/NJAbZ6lLwzseu4mh9ugN078hNbVoCxwgPvpWD8teZQ=; b=iX1dpcRR7mgUjRUsNO54ymarIf
- dvehi1Waxv4rbfs0GuKkr5zBuaWaig845zvxyon63+z/iR+sGn+xugJX9dUEKsylbVhi+ohTUKRs2
- fQ/Yxam1ImJEX52l4k4AZ2MccaPVpHEQjOJNZ9wOphM3B2WxrCyp13Pup6SH5xll6r8c=;
+ bh=pdkKnXKpODu5KSLBUytxsncgrtr37kakgTEOJ+IzAwA=; b=YjceeIhLd35Kw6EeVFvd5rJ8MR
+ B5mHDba7rpVGiWBxml9c1lzSQwPSSwUGWQ/PgMyS7t+kgdeOh0nk/cQ1DkADec7kyJzYOlSDo53YP
+ NLaaiCz0PuYSrcuSyaY/c0IkTmbNOR4dotAf/AZvIfooD65p1USOOsb0R/wgm88/Fauc=;
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
- ;
- h=Content-Transfer-Encoding:Content-Type:MIME-Version:Message-ID:Subject:To
- :From:Date:Sender:Reply-To:Cc:Content-ID:Content-Description:Resent-Date:
- Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:
- References:List-Id:List-Help:List-Unsubscribe:List-Subscribe:List-Post:
- List-Owner:List-Archive; bh=/NJAbZ6lLwzseu4mh9ugN078hNbVoCxwgPvpWD8teZQ=; b=N
- MtY66hPHpjB66vQscJBucjGwfTR2+Kp5vQ2hxnoTYige0erqgYkn62GmQ8WHgKu6VSmRgnjMhV+Ao
- 5KJwJ+l1exYcDzWLENVcOSuKTaSPFdxhjWwMrRp+qoFWdpGnjvrOGIBE9mrphEiBUPjfetdHRD30l
- TgtEt9ywFF2/i8/Y=;
-Received: from mail-wr1-f66.google.com ([209.85.221.66])
- by sfi-mx-4.v28.lw.sourceforge.com with esmtps
- (TLSv1.2:ECDHE-RSA-AES128-GCM-SHA256:128) (Exim 4.92.2)
- id 1jSWTc-00ElYH-Dz
- for v9fs-developer@lists.sourceforge.net; Sun, 26 Apr 2020 01:53:03 +0000
-Received: by mail-wr1-f66.google.com with SMTP id k13so16277346wrw.7
- for <v9fs-developer@lists.sourceforge.net>;
- Sat, 25 Apr 2020 18:53:00 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=date:from:to:subject:message-id:mime-version:content-disposition
- :content-transfer-encoding;
- bh=/NJAbZ6lLwzseu4mh9ugN078hNbVoCxwgPvpWD8teZQ=;
- b=lSUC4ROCm19t4oQO0nwA4EOsVYo1JDj9UkF/HtbSqyidk1d/i5ObXATW1H+HUGJ/DU
- i/1I0Qpe+C/IQnmDJsl/T9aWZF1Nt6xIloQco/EqJ537jFAzMCUae3GsRu/dpTEK1qgU
- TeUAdhV6Al0czfD3V0g4K2eEeOV3X8ItA1Zp6IeqtkIH2jpDTxElCxu9d1/oG5HH0diJ
- yAqiKfOEMM8TfRz9HQvzL0ON6Jj8FtVjHR6rysQ4wViIl2qj+za48TQa8eH2XrLLjcA8
- BFkbfy+JnaHS0JVRsrXY28iu8PZUnoZsh/wML+npeNkllw+mMSa4tvrtOrxbJeWF0oh1
- mTfg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:date:from:to:subject:message-id:mime-version
- :content-disposition:content-transfer-encoding;
- bh=/NJAbZ6lLwzseu4mh9ugN078hNbVoCxwgPvpWD8teZQ=;
- b=N2EJpjogK2vHS//0ELxNby0wa2w78MZ8pdvIajU3ldsRL5cbe/sdnOt9EPNQh54Eao
- sw5zFxD6vwmSrLoOMCpsf0nCl+gmorAkcn/H5ISVmRTG1+V8YDXQhK1RnCyP/ZDbjFiE
- 07EeOwMYNHooq6r2pJpZjz1d4+70DZgJYIPwA6t9thfp+kipw50nNwIP7ANHiogL5RLf
- goXVoGV5YY7XhFesshPqg3wmZ5qHi/sx0kPmBgo3tM+Rs7O7xyXqwE3ziU0RfgPv3A5k
- PvdwjZbd5eomInYYcDCQPS+dmd21hwQ1z8revkWWZimeTAhe+0l1xP6JIGNBo1GkCCnm
- p3GA==
-X-Gm-Message-State: AGi0PuYdHO28ljdm9FHTTuZHgpaBFhmZ9TxXm18RxNIHhv0Tai4FqdjX
- 3yjIR4KkSQYy0HEtVT7U6o9fVTFCr1PvCw==
-X-Google-Smtp-Source: APiQypJMAVpgqfFppEa61HaKzquerhhTqjNJk8hwgIHu4NeYoFeeNsl8YKVG8/htMFeGI+87Y+Ii1A==
-X-Received: by 2002:adf:fad0:: with SMTP id a16mr21644097wrs.149.1587865973865; 
- Sat, 25 Apr 2020 18:52:53 -0700 (PDT)
-Received: from camelot (33.red-83-52-26.dynamicip.rima-tde.net. [83.52.26.33])
- by smtp.gmail.com with ESMTPSA id
- l15sm9180548wmi.48.2020.04.25.18.52.52
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Sat, 25 Apr 2020 18:52:53 -0700 (PDT)
-Date: Sun, 26 Apr 2020 03:52:50 +0200
-From: Juan Manuel =?iso-8859-1?Q?M=E9ndez?= Rey <vejeta@gmail.com>
-To: ericvh@gmail.com, lucho@ionkov.net, asmadeus@codewreck.org,
- corbet@lwn.net, v9fs-developer@lists.sourceforge.net,
- linux-doc@vger.kernel.org
-Message-ID: <20200426015250.GA35090@camelot>
+ ; h=Reply-To:Date:From:To:Subject:Content-Description:
+ Content-Transfer-Encoding:MIME-Version:Content-Type:Sender:Message-ID:Cc:
+ Content-ID:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:
+ Resent-Message-ID:In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:
+ List-Subscribe:List-Post:List-Owner:List-Archive;
+ bh=pdkKnXKpODu5KSLBUytxsncgrtr37kakgTEOJ+IzAwA=; b=dEanLvSMu4ZezzhERtyavPkQ16
+ rtpvTD7P4oGeqvJ2kGL4/5CvUxpOdBIoYBoAwR+kge39FHLT08J121UDbIj5Kj2n+3VJNCspnD8vi
+ iKE3m61umAsaTFyEOwHwRg8rxqSYVPKbQweguvphlgwLCruh+C7m/lP3dqdelKb6zzIg=;
+Received: from mail.ttx-group.com ([182.160.106.194] helo=ttx-group.com)
+ by sfi-mx-1.v28.lw.sourceforge.com with esmtps
+ (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.92.2)
+ id 1jSyPh-00HC2r-0f
+ for v9fs-developer@lists.sourceforge.net; Mon, 27 Apr 2020 07:42:50 +0000
+Received: (qmail 4359 invoked by uid 1008); 27 Apr 2020 05:31:59 +0600
+Received: from unknown (HELO ?204.10.162.134?)
+ (masud.m@ttx-group.com@204.10.162.134)
+ by ttx-group.com with SMTP; 27 Apr 2020 05:31:59 +0600
 MIME-Version: 1.0
-Content-Disposition: inline
-X-Spam-Score: -0.1 (/)
+Content-Description: Mail message body
+To: v9fs-developer@lists.sourceforge.net
+From: "Mr. Okrapah Adjei" <masud.m@ttx-group.com>
+Date: Sun, 26 Apr 2020 16:29:47 -0700
+X-Spam-Score: 6.8 (++++++)
 X-Spam-Report: Spam Filtering performed by mx.sourceforge.net.
  See http://spamassassin.org/tag/ for more details.
- 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail provider
- (vejeta[at]gmail.com)
- -0.0 RCVD_IN_DNSWL_NONE     RBL: Sender listed at https://www.dnswl.org/, no
- trust [209.85.221.66 listed in list.dnswl.org]
- -0.0 RCVD_IN_MSPIKE_H2      RBL: Average reputation (+2)
- [209.85.221.66 listed in wl.mailspike.net]
+ 1.7 DEAR_SOMETHING         BODY: Contains 'Dear (something)'
+ -0.0 SPF_HELO_PASS          SPF: HELO matches SPF record
+ 1.3 RCVD_IN_RP_RNBL        RBL: Relay in RNBL,
+ https://senderscore.org/blacklistlookup/
+ [182.160.106.194 listed in bl.score.senderscore.com]
  -0.0 SPF_PASS               SPF: sender matches SPF record
- 0.0 SPF_HELO_NONE          SPF: HELO does not publish an SPF Record
- -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from author's
- domain
- -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
- 0.1 DKIM_SIGNED            Message has a DKIM or DK signature,
- not necessarily valid
-X-Headers-End: 1jSWTc-00ElYH-Dz
-Subject: [V9fs-developer] [PATCH] Update the documentation referencing Plan
- 9 from User Space.
+ 0.2 FREEMAIL_REPLYTO_END_DIGIT Reply-To freemail username ends in digit
+ (okrapahadjei233[at]gmail.com)
+ 1.0 MISSING_MID            Missing Message-Id: header
+ 0.0 HK_NAME_MR_MRS         No description available.
+ 2.5 FREEMAIL_FORGED_REPLYTO Freemail in Reply-To, but not From
+ -0.0 AWL AWL: Adjusted score from AWL reputation of From: address
+X-Headers-End: 1jSyPh-00HC2r-0f
+Subject: [V9fs-developer] Product Inquiry
 X-BeenThere: v9fs-developer@lists.sourceforge.net
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -109,37 +73,25 @@ List-Post: <mailto:v9fs-developer@lists.sourceforge.net>
 List-Help: <mailto:v9fs-developer-request@lists.sourceforge.net?subject=help>
 List-Subscribe: <https://lists.sourceforge.net/lists/listinfo/v9fs-developer>, 
  <mailto:v9fs-developer-request@lists.sourceforge.net?subject=subscribe>
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+Reply-To: okrapahadjei233@gmail.com
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: v9fs-developer-bounces@lists.sourceforge.net
+Message-Id: <E1jSyPs-0001Qr-FJ@sfs-ml-2.v29.lw.sourceforge.com>
 
-The page originally referenced to checkout Plan9 application and libraries
-have been missing for quite some time and the development is carried out
-in github and documented on this new site.
+Dear Sir,
 
-Signed-off-by: Juan Manuel M=E9ndez Rey <vejeta@gmail.com>
----
- Documentation/filesystems/9p.rst | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+We got your company information through an exhaustive search.
 
-diff --git a/Documentation/filesystems/9p.rst b/Documentation/filesystems/9=
-p.rst
-index 671fef39a802..2995279ddc24 100644
---- a/Documentation/filesystems/9p.rst
-+++ b/Documentation/filesystems/9p.rst
-@@ -192,4 +192,4 @@ For more information on the Plan 9 Operating System che=
-ck out
- http://plan9.bell-labs.com/plan9
- =
+Our scope is basically to search for foreign companies to bid for contract supply on commission basis.
 
- For information on Plan 9 from User Space (Plan 9 applications and librari=
-es
--ported to Linux/BSD/OSX/etc) check out http://swtch.com/plan9
-+ported to Linux/BSD/OSX/etc) check out https://9fans.github.io/plan9port/
--- =
+We are interested in buying your products in a larger quantity if only you can supply and open for business.
 
-2.26.2
-
+Best Regard,
+Mr. Okrapah Adjei
+CEO
+OK-Adjei Sourcing Ltd
+Accra,Ghana
 
 
 _______________________________________________
