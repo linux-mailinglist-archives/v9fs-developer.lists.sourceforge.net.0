@@ -2,68 +2,68 @@ Return-Path: <v9fs-developer-bounces@lists.sourceforge.net>
 X-Original-To: lists+v9fs-developer@lfdr.de
 Delivered-To: lists+v9fs-developer@lfdr.de
 Received: from lists.sourceforge.net (lists.sourceforge.net [216.105.38.7])
-	by mail.lfdr.de (Postfix) with ESMTPS id 55FBB1BC86E
-	for <lists+v9fs-developer@lfdr.de>; Tue, 28 Apr 2020 20:33:45 +0200 (CEST)
-Received: from [127.0.0.1] (helo=sfs-ml-4.v29.lw.sourceforge.com)
-	by sfs-ml-4.v29.lw.sourceforge.com with esmtp (Exim 4.90_1)
+	by mail.lfdr.de (Postfix) with ESMTPS id CBF491C3127
+	for <lists+v9fs-developer@lfdr.de>; Mon,  4 May 2020 03:42:16 +0200 (CEST)
+Received: from [127.0.0.1] (helo=sfs-ml-1.v29.lw.sourceforge.com)
+	by sfs-ml-1.v29.lw.sourceforge.com with esmtp (Exim 4.90_1)
 	(envelope-from <v9fs-developer-bounces@lists.sourceforge.net>)
-	id 1jTV39-0005gN-22; Tue, 28 Apr 2020 18:33:43 +0000
+	id 1jVQ7Z-0004en-Ql; Mon, 04 May 2020 01:42:13 +0000
 Received: from [172.30.20.202] (helo=mx.sourceforge.net)
- by sfs-ml-4.v29.lw.sourceforge.com with esmtps
+ by sfs-ml-1.v29.lw.sourceforge.com with esmtps
  (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.90_1)
- (envelope-from <corbet@lwn.net>) id 1jTV34-0005g1-7L
- for v9fs-developer@lists.sourceforge.net; Tue, 28 Apr 2020 18:33:38 +0000
+ (envelope-from <mail@cxu.jp>) id 1jVQ7Y-0004eb-Rv
+ for v9fs-developer@lists.sourceforge.net; Mon, 04 May 2020 01:42:12 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=sourceforge.net; s=x; h=Content-Transfer-Encoding:Content-Type:MIME-Version
- :References:In-Reply-To:Message-ID:Subject:Cc:To:From:Date:Sender:Reply-To:
- Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
- Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
+ d=sourceforge.net; s=x; h=Date:From:To:Subject:MIME-Version:Content-Type:
+ Sender:Reply-To:Message-ID:Cc:Content-Transfer-Encoding:Content-ID:
+ Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
+ :Resent-Message-ID:In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:
  List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=A+eXJavhK0jQXXosqLcnKYPOpRoG0mIWH5NHf4xkTFE=; b=OHtFohfLqLu6rJkWODZV6bKQiW
- qnDZRWm7/da78LfQeos6w7IrLKpblu9yMmLW56k+o1OBEZPK765cakWGNqE6+Skd1DWbEhpojCQac
- uniHZZzI5ZmNpVGkwfS+Td0d10wntlBJiTwsoNpXE3HdTvFZQg0s0SsIFy0WlTOzHlVI=;
+ bh=a4N7MZIaL0kc+J4F9NmCHC3Hy+brpUjqcTTPrua1Jpo=; b=RCCe57iSHKuuWYlTAQoLrQlauR
+ AiKFsq0mLoHsdFu5zxUuY+x+343tdX3sZccZDjS+DKxXdLW0+6+nky7fyjWu+ZzrScjTVBwSB+8SC
+ 8I0+ThP3CHHtzQHiZdhBfJqIQ3SRpzZ2UdDAu3Hb4iRwfwx61YnVuZsko1IbzcodQWpQ=;
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  ;
- h=Content-Transfer-Encoding:Content-Type:MIME-Version:References:
- In-Reply-To:Message-ID:Subject:Cc:To:From:Date:Sender:Reply-To:Content-ID:
- Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
- :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
- List-Post:List-Owner:List-Archive;
- bh=A+eXJavhK0jQXXosqLcnKYPOpRoG0mIWH5NHf4xkTFE=; b=nUbjOtsyUilFJSlZG+BtESn9bh
- XMTkLGAc8U19O9EYpaKwt6bfQABtwgudNYEa/a9xSH8FdDsIpt6i4yaerqIW0t1tBF9a3hCOOt0li
- InHZnmcGClhJB2gdcJ00UgBg4kBHDWCE7F1itlhhdEAbcm3eOWMlzPGlpmNynxgY7bwA=;
-Received: from ms.lwn.net ([45.79.88.28])
- by sfi-mx-4.v28.lw.sourceforge.com with esmtps
- (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.92.2)
- id 1jTV30-001MRj-MH
- for v9fs-developer@lists.sourceforge.net; Tue, 28 Apr 2020 18:33:38 +0000
-Received: from lwn.net (localhost [127.0.0.1])
- (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
- (No client certificate requested)
- by ms.lwn.net (Postfix) with ESMTPSA id AB7DA44A;
- Tue, 28 Apr 2020 18:33:25 +0000 (UTC)
-Date: Tue, 28 Apr 2020 12:33:24 -0600
-From: Jonathan Corbet <corbet@lwn.net>
-To: Juan Manuel =?UTF-8?B?TcOpbmRleg==?= Rey <vejeta@gmail.com>
-Message-ID: <20200428123324.7406f340@lwn.net>
-In-Reply-To: <20200426015250.GA35090@camelot>
-References: <20200426015250.GA35090@camelot>
-Organization: LWN.net
+ h=Date:From:To:Subject:MIME-Version:Content-Type:Sender:Reply-To:Message-ID
+ :Cc:Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+ Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:
+ References:List-Id:List-Help:List-Unsubscribe:List-Subscribe:List-Post:
+ List-Owner:List-Archive; bh=a4N7MZIaL0kc+J4F9NmCHC3Hy+brpUjqcTTPrua1Jpo=; b=M
+ 6j/F5DWCY0uMFPPLWjhrw41MR2R2ch8oRboC30Dj0TKzU/uaoqqqunzcgw6j36sG2D0VeRSZYis4C
+ wbXXQ3o7dpgyHHzR9oVgh7OT3zfA8EqZZKolsKkaazXtQDo6+MzV07zAQ/gNS/jR0ZG7yBGmRjjW+
+ ya6Fvx8H14A8bfyM=;
+Received: from [202.210.157.72] (helo=mail.cxu.jp)
+ by sfi-mx-3.v28.lw.sourceforge.com with esmtp (Exim 4.92.2)
+ id 1jVQ7X-004yKA-KK
+ for v9fs-developer@lists.sourceforge.net; Mon, 04 May 2020 01:42:12 +0000
+Received: from [46.38.145.171] (unknown [46.38.145.171])
+ by mail.cxu.jp (Postfix) with ESMTPA id 3419916DF70
+ for <v9fs-developer@lists.sourceforge.net>;
+ Mon,  4 May 2020 10:37:54 +0900 (JST)
 MIME-Version: 1.0
-X-Spam-Score: 0.0 (/)
+To: v9fs-developer@lists.sourceforge.net
+From: "Sales Manager" <mail@cxu.jp>
+Date: Sun, 03 May 2020 18:37:53 -0700
+X-Spam-Score: 5.0 (+++++)
 X-Spam-Report: Spam Filtering performed by mx.sourceforge.net.
  See http://spamassassin.org/tag/ for more details.
  0.0 URIBL_BLOCKED ADMINISTRATOR NOTICE: The query to URIBL was blocked.
  See
  http://wiki.apache.org/spamassassin/DnsBlocklists#dnsbl-block
- for more information. [URIs: bell-labs.com]
- -0.0 RCVD_IN_DNSWL_NONE     RBL: Sender listed at https://www.dnswl.org/, no
- trust [45.79.88.28 listed in list.dnswl.org]
+ for more information. [URIs: perennialboutique.com]
  -0.0 SPF_PASS               SPF: sender matches SPF record
  0.0 SPF_HELO_NONE          SPF: HELO does not publish an SPF Record
-X-Headers-End: 1jTV30-001MRj-MH
-Subject: Re: [V9fs-developer] [PATCH] Update the documentation referencing
- Plan 9 from User Space.
+ 1.0 HTML_MESSAGE           BODY: HTML included in message
+ 0.5 RAZOR2_CHECK           Listed in Razor2 (http://razor.sf.net/)
+ 1.5 RAZOR2_CF_RANGE_51_100 Razor2 gives confidence level above 50%
+ [cf: 100] 1.0 MISSING_MID            Missing Message-Id: header
+ 1.0 RDNS_NONE Delivered to internal network by a host with no rDNS
+ 0.0 FSL_BULK_SIG           Bulk signature with no Unsubscribe
+X-Headers-End: 1jVQ7X-004yKA-KK
+Content-Description: Mail message body
+X-Content-Filtered-By: Mailman/MimeDel 2.1.21
+Subject: Re: [V9fs-developer] Purchase Order | Specifications | Order
+ Confirmation
 X-BeenThere: v9fs-developer@lists.sourceforge.net
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -75,31 +75,13 @@ List-Post: <mailto:v9fs-developer@lists.sourceforge.net>
 List-Help: <mailto:v9fs-developer-request@lists.sourceforge.net?subject=help>
 List-Subscribe: <https://lists.sourceforge.net/lists/listinfo/v9fs-developer>, 
  <mailto:v9fs-developer-request@lists.sourceforge.net?subject=subscribe>
-Cc: ericvh@gmail.com, lucho@ionkov.net, linux-doc@vger.kernel.org,
- v9fs-developer@lists.sourceforge.net
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: v9fs-developer-bounces@lists.sourceforge.net
+Message-Id: <E1jVQ7Z-0004en-Ql@sfs-ml-1.v29.lw.sourceforge.com>
 
-T24gU3VuLCAyNiBBcHIgMjAyMCAwMzo1Mjo1MCArMDIwMApKdWFuIE1hbnVlbCBNw6luZGV6IFJl
-eSA8dmVqZXRhQGdtYWlsLmNvbT4gd3JvdGU6Cgo+IFRoZSBwYWdlIG9yaWdpbmFsbHkgcmVmZXJl
-bmNlZCB0byBjaGVja291dCBQbGFuOSBhcHBsaWNhdGlvbiBhbmQgbGlicmFyaWVzCj4gaGF2ZSBi
-ZWVuIG1pc3NpbmcgZm9yIHF1aXRlIHNvbWUgdGltZSBhbmQgdGhlIGRldmVsb3BtZW50IGlzIGNh
-cnJpZWQgb3V0Cj4gaW4gZ2l0aHViIGFuZCBkb2N1bWVudGVkIG9uIHRoaXMgbmV3IHNpdGUuCj4g
-Cj4gU2lnbmVkLW9mZi1ieTogSnVhbiBNYW51ZWwgTcOpbmRleiBSZXkgPHZlamV0YUBnbWFpbC5j
-b20+Cj4gLS0tCj4gIERvY3VtZW50YXRpb24vZmlsZXN5c3RlbXMvOXAucnN0IHwgMiArLQo+ICAx
-IGZpbGUgY2hhbmdlZCwgMSBpbnNlcnRpb24oKyksIDEgZGVsZXRpb24oLSkKPiAKPiBkaWZmIC0t
-Z2l0IGEvRG9jdW1lbnRhdGlvbi9maWxlc3lzdGVtcy85cC5yc3QgYi9Eb2N1bWVudGF0aW9uL2Zp
-bGVzeXN0ZW1zLzlwLnJzdAo+IGluZGV4IDY3MWZlZjM5YTgwMi4uMjk5NTI3OWRkYzI0IDEwMDY0
-NAo+IC0tLSBhL0RvY3VtZW50YXRpb24vZmlsZXN5c3RlbXMvOXAucnN0Cj4gKysrIGIvRG9jdW1l
-bnRhdGlvbi9maWxlc3lzdGVtcy85cC5yc3QKPiBAQCAtMTkyLDQgKzE5Miw0IEBAIEZvciBtb3Jl
-IGluZm9ybWF0aW9uIG9uIHRoZSBQbGFuIDkgT3BlcmF0aW5nIFN5c3RlbSBjaGVjayBvdXQKPiAg
-aHR0cDovL3BsYW45LmJlbGwtbGFicy5jb20vcGxhbjkKPiAgCj4gIEZvciBpbmZvcm1hdGlvbiBv
-biBQbGFuIDkgZnJvbSBVc2VyIFNwYWNlIChQbGFuIDkgYXBwbGljYXRpb25zIGFuZCBsaWJyYXJp
-ZXMKPiAtcG9ydGVkIHRvIExpbnV4L0JTRC9PU1gvZXRjKSBjaGVjayBvdXQgaHR0cDovL3N3dGNo
-LmNvbS9wbGFuOQo+ICtwb3J0ZWQgdG8gTGludXgvQlNEL09TWC9ldGMpIGNoZWNrIG91dCBodHRw
-czovLzlmYW5zLmdpdGh1Yi5pby9wbGFuOXBvcnQvCgpBcHBsaWVkLCB0aGFua3MuCgpqb24KCgpf
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpWOWZzLWRldmVs
-b3BlciBtYWlsaW5nIGxpc3QKVjlmcy1kZXZlbG9wZXJAbGlzdHMuc291cmNlZm9yZ2UubmV0Cmh0
-dHBzOi8vbGlzdHMuc291cmNlZm9yZ2UubmV0L2xpc3RzL2xpc3RpbmZvL3Y5ZnMtZGV2ZWxvcGVy
-Cg==
+https://perennialboutique.com/download/index.php?go=v9fs-developer@lists.sourceforge.net&download=yes&useraccess=secr&id=order_CFM&receipt=true
+_______________________________________________
+V9fs-developer mailing list
+V9fs-developer@lists.sourceforge.net
+https://lists.sourceforge.net/lists/listinfo/v9fs-developer
