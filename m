@@ -2,26 +2,26 @@ Return-Path: <v9fs-developer-bounces@lists.sourceforge.net>
 X-Original-To: lists+v9fs-developer@lfdr.de
 Delivered-To: lists+v9fs-developer@lfdr.de
 Received: from lists.sourceforge.net (lists.sourceforge.net [216.105.38.7])
-	by mail.lfdr.de (Postfix) with ESMTPS id CCC6F1C4578
-	for <lists+v9fs-developer@lfdr.de>; Mon,  4 May 2020 20:17:13 +0200 (CEST)
-Received: from [127.0.0.1] (helo=sfs-ml-2.v29.lw.sourceforge.com)
-	by sfs-ml-2.v29.lw.sourceforge.com with esmtp (Exim 4.90_1)
+	by mail.lfdr.de (Postfix) with ESMTPS id 615C81C4353
+	for <lists+v9fs-developer@lfdr.de>; Mon,  4 May 2020 19:53:35 +0200 (CEST)
+Received: from [127.0.0.1] (helo=sfs-ml-4.v29.lw.sourceforge.com)
+	by sfs-ml-4.v29.lw.sourceforge.com with esmtp (Exim 4.90_1)
 	(envelope-from <v9fs-developer-bounces@lists.sourceforge.net>)
-	id 1jVfeR-0002XY-8D; Mon, 04 May 2020 18:17:11 +0000
+	id 1jVfHZ-0004IW-4B; Mon, 04 May 2020 17:53:33 +0000
 Received: from [172.30.20.202] (helo=mx.sourceforge.net)
- by sfs-ml-2.v29.lw.sourceforge.com with esmtps
+ by sfs-ml-4.v29.lw.sourceforge.com with esmtps
  (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.90_1)
- (envelope-from <dhowells@redhat.com>) id 1jVfeP-0002XP-5g
- for v9fs-developer@lists.sourceforge.net; Mon, 04 May 2020 18:17:09 +0000
+ (envelope-from <dhowells@redhat.com>) id 1jVfHX-0004IP-PZ
+ for v9fs-developer@lists.sourceforge.net; Mon, 04 May 2020 17:53:31 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
  d=sourceforge.net; s=x; h=Content-Transfer-Encoding:Content-Type:MIME-Version
  :References:In-Reply-To:Message-ID:Date:Cc:To:From:Subject:Sender:Reply-To:
  Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
  Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
  List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=ZuwzthaQnSNVn03puNWRMvA3AfX1NCjj+U0YsPzF/UI=; b=BXQ9quxv1+HWvofGgwHWOGWAPf
- 37iQsCazRKuWwTCs2HPfh6Re/Ji3iYnJbm/Y17HdfoDuEdtmOCatd4Y/DQ/MOGhyJyMiE9tF+tFhA
- uDYPuTL+vo/z5RhAy+c42VYb5+6UGVDVuwS9x/pukId8GTJjxWUxrw0N2i2zSKKW8ISI=;
+ bh=LhWlx2Ll5MCOg+oPWlbdnb6jX8iPT9XI75bmO3tipj0=; b=SjOwPtBSpYtC3wOqEGDJxeOJBd
+ Vb/FRqJixy3XRDzNph3/WbllEpwhBrzupi0kKSfqkGRKvNMR2H116gOrKHIzTma4QLxYr5VPDJO3B
+ xJ/ZZo7uXGqDXIxlrolVaux4FVDGK8z9KwF/NqbaiRX2PsehkmwreQbFQpcuUeBJ5DwU=;
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  ;
  h=Content-Transfer-Encoding:Content-Type:MIME-Version:References:
@@ -29,39 +29,39 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
  :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
  List-Post:List-Owner:List-Archive;
- bh=ZuwzthaQnSNVn03puNWRMvA3AfX1NCjj+U0YsPzF/UI=; b=i3QbXEbJ5ele6uBR0Sc+OoIO30
- ZrMQnn5N0HiWZnI7DWyqVZle4JSNMX0JrOO+lutfVFSL9ofl3ubjVgHPIRafqrWGA9CA8fAKJZwxc
- yo6NAJorRlQMu0KF31n3zmucKstyzL16BAqR7/JQ4YEBQXWz/hDg4E1Te8/wEt7EfpVk=;
-Received: from us-smtp-2.mimecast.com ([205.139.110.61]
+ bh=LhWlx2Ll5MCOg+oPWlbdnb6jX8iPT9XI75bmO3tipj0=; b=XKZ7h5uHqhrf9m6qxtvbJ7at9o
+ to9QR2oqx2osQKiTzaG6stsQAcdNEqUip0hSsKm/l8EXtmyS921mvN9v5p8/t5JcX/Wg73qYOgMta
+ 4IvWGPBS1YUI4BWm3oxerT49CGAv0P2anmr3Sjr22f/c0C5W/MyP9RcSYhgogjUZpYCg=;
+Received: from us-smtp-2.mimecast.com ([207.211.31.81]
  helo=us-smtp-delivery-1.mimecast.com)
  by sfi-mx-3.v28.lw.sourceforge.com with esmtps
  (TLSv1.2:ECDHE-RSA-AES256-SHA384:256) (Exim 4.92.2)
- id 1jVfeN-007FqQ-LR
- for v9fs-developer@lists.sourceforge.net; Mon, 04 May 2020 18:17:09 +0000
+ id 1jVfHV-007EAn-Rc
+ for v9fs-developer@lists.sourceforge.net; Mon, 04 May 2020 17:53:31 +0000
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
- s=mimecast20190719; t=1588616221;
+ s=mimecast20190719; t=1588614803;
  h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
  to:to:cc:cc:mime-version:mime-version:content-type:content-type:
  content-transfer-encoding:content-transfer-encoding:
  in-reply-to:in-reply-to:references:references;
- bh=ZuwzthaQnSNVn03puNWRMvA3AfX1NCjj+U0YsPzF/UI=;
- b=PN9qCxsROpr/+8TFS5WSdchS6q4TZIzRtgp0QtswshgZ7zF4AxLQfB1Czsp0TWXDrB/5ZQ
- +AVRHepjsNDcR+b2ngrqB87tWLKnLyPgrdxOebZdAH/Cl2WvhMl0wvq6kJiK7ftGTbAxuD
- bwo1bPmqO7GYjez6TyVGAmcVfzIkVKQ=
+ bh=LhWlx2Ll5MCOg+oPWlbdnb6jX8iPT9XI75bmO3tipj0=;
+ b=NSIrGzrq2xyJAiyp8rbTLpKl0pPAXHumAYcNrplGw+ZWd4yZ8DJPkvvuqOvecx3uXdaUVS
+ YFrnvj6yjYSu5nmek+f8a/rlZUQQZjBz1GV+b+iQgcmdHIUL+EywyAKh9zvM7cVqCyL91X
+ s9H+jDDkGojnlhnKUA2D/v157fETGv0=
 Received: from mimecast-mx01.redhat.com (mimecast-mx01.redhat.com
  [209.132.183.4]) (Using TLS) by relay.mimecast.com with ESMTP id
- us-mta-334-59IuCeZMP6WrTHdqLI9BLg-1; Mon, 04 May 2020 13:16:04 -0400
-X-MC-Unique: 59IuCeZMP6WrTHdqLI9BLg-1
+ us-mta-460-EGtm6iJ_NgCUhQWQql-cVA-1; Mon, 04 May 2020 13:16:20 -0400
+X-MC-Unique: EGtm6iJ_NgCUhQWQql-cVA-1
 Received: from smtp.corp.redhat.com (int-mx06.intmail.prod.int.phx2.redhat.com
  [10.5.11.16])
  (using TLSv1.2 with cipher AECDH-AES256-SHA (256/256 bits))
  (No client certificate requested)
- by mimecast-mx01.redhat.com (Postfix) with ESMTPS id 6857119200CD;
- Mon,  4 May 2020 17:16:02 +0000 (UTC)
+ by mimecast-mx01.redhat.com (Postfix) with ESMTPS id C188B107B270;
+ Mon,  4 May 2020 17:16:18 +0000 (UTC)
 Received: from warthog.procyon.org.uk (ovpn-118-225.rdu2.redhat.com
  [10.10.118.225])
- by smtp.corp.redhat.com (Postfix) with ESMTP id ADDD35C1B2;
- Mon,  4 May 2020 17:15:58 +0000 (UTC)
+ by smtp.corp.redhat.com (Postfix) with ESMTP id 700715C1B2;
+ Mon,  4 May 2020 17:16:08 +0000 (UTC)
 Organization: Red Hat UK Ltd. Registered Address: Red Hat UK Ltd, Amberley
  Place, 107-111 Peascod Street, Windsor, Berkshire, SI4 1TE, United
  Kingdom.
@@ -70,8 +70,8 @@ From: David Howells <dhowells@redhat.com>
 To: Trond Myklebust <trondmy@hammerspace.com>,
  Anna Schumaker <anna.schumaker@netapp.com>, Steve French <sfrench@samba.org>, 
  Jeff Layton <jlayton@redhat.com>
-Date: Mon, 04 May 2020 18:15:57 +0100
-Message-ID: <158861255792.340223.1309939976492492377.stgit@warthog.procyon.org.uk>
+Date: Mon, 04 May 2020 18:16:07 +0100
+Message-ID: <158861256762.340223.10583346645344676649.stgit@warthog.procyon.org.uk>
 In-Reply-To: <158861203563.340223.7585359869938129395.stgit@warthog.procyon.org.uk>
 References: <158861203563.340223.7585359869938129395.stgit@warthog.procyon.org.uk>
 User-Agent: StGit/0.21
@@ -81,21 +81,21 @@ X-Spam-Score: -0.3 (/)
 X-Spam-Report: Spam Filtering performed by mx.sourceforge.net.
  See http://spamassassin.org/tag/ for more details.
  -0.0 RCVD_IN_DNSWL_NONE     RBL: Sender listed at https://www.dnswl.org/, no
- trust [205.139.110.61 listed in list.dnswl.org]
+ trust [207.211.31.81 listed in list.dnswl.org]
  -0.0 SPF_PASS               SPF: sender matches SPF record
  0.0 SPF_HELO_NONE          SPF: HELO does not publish an SPF Record
- -0.0 RCVD_IN_MSPIKE_H2      RBL: Average reputation (+2)
- [205.139.110.61 listed in wl.mailspike.net]
  -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from author's
  domain
  -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
  0.1 DKIM_SIGNED            Message has a DKIM or DK signature,
  not necessarily valid
+ -0.0 RCVD_IN_MSPIKE_H2      RBL: Average reputation (+2)
+ [207.211.31.81 listed in wl.mailspike.net]
  -0.0 DKIMWL_WL_HIGH         DKIMwl.org - Whitelisted High sender
  -0.2 AWL AWL: Adjusted score from AWL reputation of From: address
-X-Headers-End: 1jVfeN-007FqQ-LR
-Subject: [V9fs-developer] [RFC PATCH 56/61] afs: Copy local writes to the
- cache when writing to the server
+X-Headers-End: 1jVfHV-007EAn-Rc
+Subject: [V9fs-developer] [RFC PATCH 57/61] afs: Invoke
+ fscache_resize_cookie() when handling ATTR_SIZE for setattr
 X-BeenThere: v9fs-developer@lists.sourceforge.net
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -116,206 +116,51 @@ Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: v9fs-developer-bounces@lists.sourceforge.net
 
-When writing to the server from afs_writepage() or afs_writepages(), copy
-the data to the cache object too.
+Invoke fscache_resize_cookie() to adjust the size of the backing cache
+object when setattr is called with ATTR_SIZE.  This discards any data that
+then lies beyond the revised EOF and frees up space.
 
 Signed-off-by: David Howells <dhowells@redhat.com>
 ---
 
- fs/afs/write.c |  124 ++++++++++++++++++++++++++++++++++++++++++++++++++++++--
- 1 file changed, 119 insertions(+), 5 deletions(-)
+ fs/afs/inode.c |   10 ++++++++--
+ 1 file changed, 8 insertions(+), 2 deletions(-)
 
-diff --git a/fs/afs/write.c b/fs/afs/write.c
-index 312d8f07533e..38637dc6043c 100644
---- a/fs/afs/write.c
-+++ b/fs/afs/write.c
-@@ -13,6 +13,9 @@
- #include <linux/pagevec.h>
- #include "internal.h"
+diff --git a/fs/afs/inode.c b/fs/afs/inode.c
+index 59dc179b40cb..21a48ab74d2b 100644
+--- a/fs/afs/inode.c
++++ b/fs/afs/inode.c
+@@ -838,6 +838,8 @@ int afs_setattr(struct dentry *dentry, struct iattr *attr)
+ 	if (!scb)
+ 		goto error;
  
-+static void afs_write_to_cache(struct afs_vnode *vnode,
-+			       pgoff_t start, pgoff_t end, loff_t a, loff_t b);
++	fscache_use_cookie(afs_vnode_cache(vnode), true);
 +
- /*
-  * mark a page as having been made dirty and thus needing writeback
-  */
-@@ -389,6 +392,8 @@ static int afs_write_back_from_locked_page(struct address_space *mapping,
- 	count = 1;
- 	if (test_set_page_writeback(primary_page))
- 		BUG();
-+	if (TestSetPageFsCache(primary_page))
-+		BUG();
- 
- 	/* Find all consecutive lockable dirty pages that have contiguous
- 	 * written regions, stopping when we find a page that is not
-@@ -437,7 +442,8 @@ static int afs_write_back_from_locked_page(struct address_space *mapping,
- 				break;
- 			if (!trylock_page(page))
- 				break;
--			if (!PageDirty(page) || PageWriteback(page)) {
-+			if (!PageDirty(page) || PageWriteback(page) ||
-+			    PageFsCache(page)) {
- 				unlock_page(page);
- 				break;
- 			}
-@@ -459,6 +465,8 @@ static int afs_write_back_from_locked_page(struct address_space *mapping,
- 				BUG();
- 			if (test_set_page_writeback(page))
- 				BUG();
-+			if (TestSetPageFsCache(page))
-+				BUG();
- 			unlock_page(page);
- 			put_page(page);
+ 	/* flush any dirty data outstanding on a regular file */
+ 	if (S_ISREG(vnode->vfs_inode.i_mode))
+ 		filemap_write_and_wait(vnode->vfs_inode.i_mapping);
+@@ -848,7 +850,7 @@ int afs_setattr(struct dentry *dentry, struct iattr *attr)
+ 		key = afs_request_key(vnode->volume->cell);
+ 		if (IS_ERR(key)) {
+ 			ret = PTR_ERR(key);
+-			goto error_scb;
++			goto error_unuse;
  		}
-@@ -489,8 +497,13 @@ static int afs_write_back_from_locked_page(struct address_space *mapping,
- 	b = last;
- 	b <<= PAGE_SHIFT;
- 	b += to;
--	iov_iter_mapping(&iter, WRITE, mapping, a, b - a);
+ 	}
  
-+	/* Speculatively write to the cache.  We have to fix this up later if
-+	 * the store fails.
-+	 */
-+	afs_write_to_cache(vnode, first, last + 1, a, b);
-+
-+	iov_iter_mapping(&iter, WRITE, mapping, a, b - a);
- 	ret = afs_store_data(vnode, &iter, a, first, last);
- 	switch (ret) {
- 	case 0:
-@@ -543,6 +556,10 @@ int afs_writepage(struct page *page, struct writeback_control *wbc)
+@@ -873,7 +875,11 @@ int afs_setattr(struct dentry *dentry, struct iattr *attr)
+ 	if (!(attr->ia_valid & ATTR_FILE))
+ 		key_put(key);
  
- 	_enter("{%lx},", page->index);
- 
-+#ifdef CONFIG_AFS_FSCACHE
-+	wait_on_page_fscache(page);
-+#endif
+-error_scb:
++	if ((attr->ia_valid & ATTR_SIZE) && ret == 0)
++		fscache_resize_cookie(afs_vnode_cache(vnode), scb->status.size);
 +
- 	ret = afs_write_back_from_locked_page(page->mapping, wbc, page,
- 					      wbc->range_end >> PAGE_SHIFT);
- 	if (ret < 0) {
-@@ -570,7 +587,7 @@ static int afs_writepages_region(struct address_space *mapping,
- 
- 	do {
- 		n = find_get_pages_range_tag(mapping, &index, end,
--					PAGECACHE_TAG_DIRTY, 1, &page);
-+					     PAGECACHE_TAG_DIRTY, 1, &page);
- 		if (!n)
- 			break;
- 
-@@ -595,10 +612,14 @@ static int afs_writepages_region(struct address_space *mapping,
- 			continue;
- 		}
- 
--		if (PageWriteback(page)) {
-+		if (PageWriteback(page) || PageFsCache(page)) {
- 			unlock_page(page);
--			if (wbc->sync_mode != WB_SYNC_NONE)
-+			if (wbc->sync_mode != WB_SYNC_NONE) {
- 				wait_on_page_writeback(page);
-+#ifdef CONFIG_AFS_FSCACHE
-+				wait_on_page_fscache(page);
-+#endif
-+			}
- 			put_page(page);
- 			continue;
- 		}
-@@ -818,3 +839,96 @@ int afs_launder_page(struct page *page)
- 	ClearPagePrivate(page);
- 	return ret;
- }
-+
-+/*
-+ * Clear the PG_fscache flag from a sequence of pages and wake up anyone who's
-+ * waiting.  The last page is included in the sequence.
-+ */
-+static void afs_clear_fscache_bits(struct address_space *mapping,
-+				   pgoff_t start, pgoff_t last)
-+{
-+	struct page *page;
-+
-+	XA_STATE(xas, &mapping->i_pages, start);
-+
-+	rcu_read_lock();
-+	xas_for_each(&xas, page, last) {
-+		unlock_page_fscache(page);
-+	}
-+	rcu_read_unlock();
-+}
-+
-+/*
-+ * Deal with the completion of writing the data to the cache.
-+ */
-+static void afs_write_to_cache_done(struct fscache_io_request *_req)
-+{
-+	struct afs_read *req = container_of(_req, struct afs_read, cache);
-+	pgoff_t index = req->cache.pos >> PAGE_SHIFT;
-+	pgoff_t last = index + req->cache.nr_pages - 1;
-+
-+	_enter("%lx,%x,%llx", index, req->cache.nr_pages, req->cache.transferred);
-+
-+	afs_clear_fscache_bits(req->cache.mapping, index, last);
-+
-+	if (req->cache.error && req->cache.error != -ENOBUFS) {
-+		struct afs_vnode *vnode = req->vnode;
-+		struct afs_vnode_cache_aux aux = {
-+			.data_version = vnode->status.data_version,
-+		};
-+		_debug("inval wr %d", req->cache.error);
-+		fscache_invalidate(req->cache.cookie, &aux,
-+				   i_size_read(&vnode->vfs_inode), 0);
-+	}
-+}
-+
-+static const struct fscache_io_request_ops afs_write_req_ops = {
-+	.get		= afs_req_get,
-+	.put		= afs_req_put,
-+};
-+
-+/*
-+ * Save the write to the cache also.
-+ */
-+static void afs_write_to_cache(struct afs_vnode *vnode,
-+			       pgoff_t start, pgoff_t end, loff_t a, loff_t b)
-+{
-+	struct afs_read *req;
-+	struct iov_iter iter;
-+	unsigned int x;
-+
-+	struct fscache_extent extent = {
-+		.start		= start,
-+		.block_end	= end,
-+		.limit		= end,
-+	};
-+
-+	_enter("%lx,%lx,%llx,%llx", start, end, a, b);
-+
-+	x = fscache_shape_extent(afs_vnode_cache(vnode), &extent,
-+				 i_size_read(&vnode->vfs_inode), true);
-+	if (!(x & FSCACHE_WRITE_TO_CACHE))
-+		goto abandon;
-+
-+	req = afs_alloc_read(GFP_KERNEL);
-+	if (!req)
-+		goto abandon;
-+
-+	fscache_init_io_request(&req->cache, afs_vnode_cache(vnode),
-+				&afs_write_req_ops);
-+	req->vnode		= vnode;
-+	req->cache.pos		= round_down(a, extent.dio_block_size);
-+	req->cache.len		= round_up(b, extent.dio_block_size) - req->cache.pos;
-+	req->cache.nr_pages	= end - start;
-+	req->cache.mapping	= vnode->vfs_inode.i_mapping;
-+	req->cache.io_done	= &afs_write_to_cache_done;
-+
-+	iov_iter_mapping(&iter, WRITE, req->cache.mapping,
-+			 req->cache.pos, req->cache.len);
-+	fscache_write(&req->cache, &iter);
-+	afs_put_read(req);
-+	return;
-+
-+abandon:
-+	afs_clear_fscache_bits(vnode->vfs_inode.i_mapping, start, end);
-+}
++error_unuse:
++	fscache_unuse_cookie(afs_vnode_cache(vnode), NULL, NULL);
+ 	kfree(scb);
+ error:
+ 	_leave(" = %d", ret);
 
 
 
