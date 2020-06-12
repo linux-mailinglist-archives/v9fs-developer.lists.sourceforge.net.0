@@ -2,60 +2,71 @@ Return-Path: <v9fs-developer-bounces@lists.sourceforge.net>
 X-Original-To: lists+v9fs-developer@lfdr.de
 Delivered-To: lists+v9fs-developer@lfdr.de
 Received: from lists.sourceforge.net (lists.sourceforge.net [216.105.38.7])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3705B1F6A4E
-	for <lists+v9fs-developer@lfdr.de>; Thu, 11 Jun 2020 16:51:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 78E6D1F7290
+	for <lists+v9fs-developer@lfdr.de>; Fri, 12 Jun 2020 05:42:16 +0200 (CEST)
 Received: from [127.0.0.1] (helo=sfs-ml-1.v29.lw.sourceforge.com)
 	by sfs-ml-1.v29.lw.sourceforge.com with esmtp (Exim 4.90_1)
 	(envelope-from <v9fs-developer-bounces@lists.sourceforge.net>)
-	id 1jjOYG-0004zF-8d; Thu, 11 Jun 2020 14:51:32 +0000
+	id 1jjaa6-0008FL-Fh; Fri, 12 Jun 2020 03:42:14 +0000
 Received: from [172.30.20.202] (helo=mx.sourceforge.net)
  by sfs-ml-1.v29.lw.sourceforge.com with esmtps
  (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.90_1)
- (envelope-from <asmadeus@notk.org>) id 1jjOYC-0004yr-Ke
- for v9fs-developer@lists.sourceforge.net; Thu, 11 Jun 2020 14:51:28 +0000
+ (envelope-from <wanghai38@huawei.com>) id 1jjaa4-0008Et-Jg
+ for v9fs-developer@lists.sourceforge.net; Fri, 12 Jun 2020 03:42:12 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=sourceforge.net; s=x; h=In-Reply-To:Content-Type:MIME-Version:References:
- Message-ID:Subject:Cc:To:From:Date:Sender:Reply-To:Content-Transfer-Encoding:
- Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
- Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
- List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=2tc+rbs3cYLNVVDM36a+YAIXPKkWCZna/AbZUSRxxbs=; b=Le81hoBDEapx5+LokEag3seEqr
- kcvZse7f/ZKCj1687GZgZVFsejaNpfq040ZwSh33dpa2ABcTIXNdjNDxytwSzgR94G1Ven1Gp9f9i
- 74IxuWzb3xTym/PwZa/ZqVVCTsItPtt0q6vjOA72sSHW6NP/lUSWShQ++vQTjaJsQHWs=;
+ d=sourceforge.net; s=x; h=Content-Type:In-Reply-To:MIME-Version:Date:
+ Message-ID:From:References:CC:To:Subject:Sender:Reply-To:
+ Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+ Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:
+ List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
+ bh=zCJfdupdXXUf+Bl88n/wiqU0xwlMAG2qBIUWS+AJMVg=; b=lm2SGotWw/AlhrGJerYUjZ6lD
+ CrryQe3e+wpZLPpqUmHc65eRWBB0/vthM8xtOTDtP3P+hoS/mfOYZP74eg9OmibsygiO6JNSxQJ4W
+ blPxR6wRv3SxTPOluCXiOdDH/OXd/YVG/KmRwKNYv9MnmjncTIUDnw4B8l44Rapaa4wfo=;
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  ;
- h=In-Reply-To:Content-Type:MIME-Version:References:Message-ID:Subject:Cc:To
- :From:Date:Sender:Reply-To:Content-Transfer-Encoding:Content-ID:
+ h=Content-Type:In-Reply-To:MIME-Version:Date:Message-ID:From:References:CC:
+ To:Subject:Sender:Reply-To:Content-Transfer-Encoding:Content-ID:
  Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
  :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
  List-Post:List-Owner:List-Archive;
- bh=2tc+rbs3cYLNVVDM36a+YAIXPKkWCZna/AbZUSRxxbs=; b=fqxAbct21QSh1b8fvLQ74cxZrc
- qnVf93MmeqhYJXBOByLPBhuL9Mcvg5iM0QHtpWzVC0xPoVXd9ufPEYG8A3Q3rgWR23vVrLHHLPazc
- T+PUAMdVuEXlIo7nkvZ+h7xYsrJMNmUTNIxRJnzRwWCIZMY1UKyzJyxJ6+DRTcpJ2cCw=;
-Received: from nautica.notk.org ([91.121.71.147])
+ bh=zCJfdupdXXUf+Bl88n/wiqU0xwlMAG2qBIUWS+AJMVg=; b=ZU6BGhf8Gum4iW+j4lGb0GdvQa
+ l87J9uqSTP4YR21B6T6vRUVA2s+x9c2tvHJ5EicIOR6wvAyKs/1jae+m1pPJgvArZbIicRlXxB28T
+ YekzNC3KX80ZD6yzViGLqI6ijs9Dyay8ueZJW50BGgJEkcYS6QvDLeMM0LNi92H6tsqY=;
+Received: from szxga07-in.huawei.com ([45.249.212.35] helo=huawei.com)
  by sfi-mx-1.v28.lw.sourceforge.com with esmtps
  (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.92.2)
- id 1jjOYA-00FXFi-HL
- for v9fs-developer@lists.sourceforge.net; Thu, 11 Jun 2020 14:51:28 +0000
-Received: by nautica.notk.org (Postfix, from userid 1001)
- id 38925C009; Thu, 11 Jun 2020 16:51:10 +0200 (CEST)
-Date: Thu, 11 Jun 2020 16:50:55 +0200
-From: Dominique Martinet <asmadeus@codewreck.org>
-To: Wang Hai <wanghai38@huawei.com>
-Message-ID: <20200611145055.GA28945@nautica>
+ id 1jjaa1-00GI5J-Dr
+ for v9fs-developer@lists.sourceforge.net; Fri, 12 Jun 2020 03:42:12 +0000
+Received: from DGGEMS405-HUB.china.huawei.com (unknown [172.30.72.60])
+ by Forcepoint Email with ESMTP id 9075BA2BE87946DB3759;
+ Fri, 12 Jun 2020 11:42:02 +0800 (CST)
+Received: from [127.0.0.1] (10.166.215.205) by DGGEMS405-HUB.china.huawei.com
+ (10.3.19.205) with Microsoft SMTP Server id 14.3.487.0;
+ Fri, 12 Jun 2020 11:41:57 +0800
+To: Dominique Martinet <asmadeus@codewreck.org>
 References: <20200611014855.60550-1-wanghai38@huawei.com>
+ <20200611145055.GA28945@nautica>
+From: "wanghai (M)" <wanghai38@huawei.com>
+Message-ID: <7bed531c-0ea5-b5f8-eaf8-4feb9ccf1b31@huawei.com>
+Date: Fri, 12 Jun 2020 11:41:57 +0800
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:60.0) Gecko/20100101
+ Thunderbird/60.8.0
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20200611014855.60550-1-wanghai38@huawei.com>
-User-Agent: Mutt/1.5.21 (2010-09-15)
+In-Reply-To: <20200611145055.GA28945@nautica>
+X-Originating-IP: [10.166.215.205]
+X-CFilter-Loop: Reflected
 X-Spam-Score: 0.2 (/)
 X-Spam-Report: Spam Filtering performed by mx.sourceforge.net.
  See http://spamassassin.org/tag/ for more details.
- 0.2 HEADER_FROM_DIFFERENT_DOMAINS From and EnvelopeFrom 2nd level mail
- domains are different
+ 0.0 RCVD_IN_MSPIKE_H4      RBL: Very Good reputation (+4)
+ [45.249.212.35 listed in wl.mailspike.net]
+ -0.0 SPF_HELO_PASS          SPF: HELO matches SPF record
  -0.0 SPF_PASS               SPF: sender matches SPF record
- 0.0 SPF_HELO_NONE          SPF: HELO does not publish an SPF Record
-X-Headers-End: 1jjOYA-00FXFi-HL
+ 1.0 HTML_MESSAGE           BODY: HTML included in message
+ 0.0 RCVD_IN_MSPIKE_WL      Mailspike good senders
+ -0.8 AWL AWL: Adjusted score from AWL reputation of From: address
+X-Headers-End: 1jjaa1-00GI5J-Dr
+X-Content-Filtered-By: Mailman/MimeDel 2.1.21
 Subject: Re: [V9fs-developer] [PATCH] 9p/trans_fd: Fix concurrency del of
  req_list in p9_fd_cancelled/p9_read_work
 X-BeenThere: v9fs-developer@lists.sourceforge.net
@@ -72,83 +83,121 @@ List-Subscribe: <https://lists.sourceforge.net/lists/listinfo/v9fs-developer>,
 Cc: lucho@ionkov.net, ericvh@gmail.com, netdev@vger.kernel.org,
  linux-kernel@vger.kernel.org, v9fs-developer@lists.sourceforge.net,
  davem@davemloft.net
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="utf-8"; Format="flowed"
 Errors-To: v9fs-developer-bounces@lists.sourceforge.net
 
-Wang Hai wrote on Thu, Jun 11, 2020:
-> p9_read_work and p9_fd_cancelled may be called concurrently.
-
-Good catch. I'm sure this fixes some of the old syzbot bugs...
-I'll check other transports handle this properly as well.
-
-> Before list_del(&m->rreq->req_list) in p9_read_work is called,
-> the req->req_list may have been deleted in p9_fd_cancelled.
-> We can fix it by setting req->status to REQ_STATUS_FLSHD after
-> list_del(&req->req_list) in p9_fd_cancelled.
-
-hm if you do that read_work will fail with EIO and all further 9p
-messages will not be read?
-p9_read_work probably should handle REQ_STATUS_FLSHD in a special case
-that just throws the message away without error as well.
-
-> Before list_del(&req->req_list) in p9_fd_cancelled is called,
-> the req->req_list may have been deleted in p9_read_work.
-> We should return when req->status = REQ_STATUS_RCVD which means
-> we just received a response for oldreq, so we need do nothing
-> in p9_fd_cancelled.
-
-I'll need some time to convince myself the refcounting is correct in
-this case.
-Pre-ref counting this definitely was wrong, but now it might just work
-by chance.... I'll double-check.
-
-> Fixes: 60ff779c4abb ("9p: client: remove unused code and any reference
-> to "cancelled" function")
-
-I don't understand how this commit is related?
-At least make it afd8d65411 ("9P: Add cancelled() to the transport
-functions.") which adds the op, not something that removed a previous
-version of cancelled even earlier.
-
-> diff --git a/net/9p/trans_fd.c b/net/9p/trans_fd.c
-> index f868cf6fba79..a563699629cb 100644
-> --- a/net/9p/trans_fd.c
-> +++ b/net/9p/trans_fd.c
-> @@ -718,11 +718,18 @@ static int p9_fd_cancelled(struct p9_client *client, struct p9_req_t *req)
->  {
->  	p9_debug(P9_DEBUG_TRANS, "client %p req %p\n", client, req);
->  
-> -	/* we haven't received a response for oldreq,
-> -	 * remove it from the list.
-> +	/* If req->status == REQ_STATUS_RCVD, it means we just received a
-> +	 * response for oldreq, we need do nothing here. Else, remove it from
-> +	 * the list.
-
-(nitpick) this feels a bit hard to read, and does not give any
-information: you're just paraphrasing the C code.
-
-I would suggest moving the comment after the spinlock and say what we
-really do ; something as simple as "ignore cancelled request if message
-has been received before lock" is enough.
-
->  	 */
->  	spin_lock(&client->lock);
-> +	if (req->status == REQ_STATUS_RCVD) {
-> +		spin_unlock(&client->lock);
-> +		return 0;
-> +	}
-> +
->  	list_del(&req->req_list);
-> +	req->status = REQ_STATUS_FLSHD;
->  	spin_unlock(&client->lock);
->  	p9_req_put(req);
->  
--- 
-Dominique
-
-
-_______________________________________________
-V9fs-developer mailing list
-V9fs-developer@lists.sourceforge.net
-https://lists.sourceforge.net/lists/listinfo/v9fs-developer
+CuWcqCAyMDIwLzYvMTEgMjI6NTAsIERvbWluaXF1ZSBNYXJ0aW5ldCDlhpnpgZM6Cj4gV2FuZyBI
+YWkgd3JvdGUgb24gVGh1LCBKdW4gMTEsIDIwMjA6Cj4+IHA5X3JlYWRfd29yayBhbmQgcDlfZmRf
+Y2FuY2VsbGVkIG1heSBiZSBjYWxsZWQgY29uY3VycmVudGx5Lgo+IEdvb2QgY2F0Y2guIEknbSBz
+dXJlIHRoaXMgZml4ZXMgc29tZSBvZiB0aGUgb2xkIHN5emJvdCBidWdzLi4uCj4gSSdsbCBjaGVj
+ayBvdGhlciB0cmFuc3BvcnRzIGhhbmRsZSB0aGlzIHByb3Blcmx5IGFzIHdlbGwuCgpZb3UgYXJl
+IHJpZ2h0LCBJIGdvdCBhIHN5emthbGxlciBidWcuCgoicDlfcmVhZF93b3JrKzB4N2MzLzB4ZDkw
+IiBwb2ludHMgdG8gbGlzdF9kZWwoJm0tPnJyZXEtPnJlcV9saXN0KTsKClsgICA2Mi43MzM1OThd
+IGthc2FuOiBDT05GSUdfS0FTQU5fSU5MSU5FIGVuYWJsZWQKWyAgIDYyLjczNDQ4NF0ga2FzYW46
+IEdQRiBjb3VsZCBiZSBjYXVzZWQgYnkgTlVMTC1wdHIgZGVyZWYgb3IgdXNlciBtZW1vcnkgYWNj
+ZXNzClsgICA2Mi43MzU2NzBdIGdlbmVyYWwgcHJvdGVjdGlvbiBmYXVsdDogMDAwMCBbIzFdIFNN
+UCBLQVNBTiBQVEkKWyAgIDYyLjczNjU3N10gQ1BVOiAzIFBJRDogODIgQ29tbToga3dvcmtlci8z
+OjEgTm90IHRhaW50ZWQgNC4xOS4xMjQrICMyClsgICA2Mi43Mzc1ODJdIEhhcmR3YXJlIG5hbWU6
+IFFFTVUgU3RhbmRhcmQgUEMgKGk0NDBGWCArIFBJSVgsIDE5OTYpLCBCSU9TIDEuMTAuMi0xdWJ1
+bnR1MSAwNC8wMS8yMDE0ClsgICA2Mi43Mzg5ODhdIFdvcmtxdWV1ZTogZXZlbnRzIHA5X3JlYWRf
+d29yawpbICAgNjIuNzM5NjQyXSBSSVA6IDAwMTA6cDlfcmVhZF93b3JrKzB4N2MzLzB4ZDkwClsg
+ICA2Mi43NDAzNDhdIENvZGU6IDQ4IGMxIGU5IDAzIDgwIDNjIDAxIDAwIDBmIDg1IGNiIDA1IDAw
+IDAwIDQ4IDhkIDdhIDA4IDQ4IGI5IDAwIDAwIDAwIDAwIDAwIGZjIGZmIGRmIDQ5IDhiIDg3IGI4
+IDAwIDAwIDAwIDQ4IDg5IGZlIDQ4IGMxIGVlIDAzIDw4MD4gM2MgMGUgMDAgMGYgODUgODkgMDUg
+MDAgMDAgNDggODkgYzYgNDggYjkgMDAgMDAgMDAgMDAgMDAgZmMgZmYKWyAgIDYyLjc0MzIzNl0g
+UlNQOiAwMDE4OmZmZmY4ODgzZWNlMTdjYTAgRUZMQUdTOiAwMDAxMGEwNgpbICAgNjIuNzQ0MDU5
+XSBSQVg6IGRlYWQwMDAwMDAwMDAyMDAgUkJYOiBmZmZmODg4M2Q0NTY2NmIwIFJDWDogZGZmZmZj
+MDAwMDAwMDAwMApbICAgNjIuNzQ1MTczXSBSRFg6IGRlYWQwMDAwMDAwMDAxMDAgUlNJOiAxYmQ1
+YTAwMDAwMDAwMDIxIFJESTogZGVhZDAwMDAwMDAwMDEwOApbICAgNjIuNzQ2Mjc5XSBSQlA6IGZm
+ZmY4ODgzZDQ1NjY1OTAgUjA4OiBmZmZmZWQxMDdhOGFjZjMxIFIwOTogZmZmZmVkMTA3YThhY2Yz
+MQpbICAgNjIuNzQ3Mzk4XSBSMTA6IDAwMDAwMDAwMDAwMDAwMDEgUjExOiBmZmZmZWQxMDdhOGFj
+ZjMwIFIxMjogMWZmZmYxMTA3ZDljMmY5YgpbICAgNjIuNzQ4NTA1XSBSMTM6IGZmZmY4ODgzZDQ1
+NjY1ZDAgUjE0OiBmZmZmODg4M2Q0NTY2NjA4IFIxNTogZmZmZjg4ODNlMWYxYzAwMApbICAgNjIu
+NzQ5NjE1XSBGUzogIDAwMDAwMDAwMDAwMDAwMDAoMDAwMCkgR1M6ZmZmZjg4ODNlZjE4MDAwMCgw
+MDAwKSBrbmxHUzowMDAwMDAwMDAwMDAwMDAwClsgICA2Mi43NTA4ODFdIENTOiAgMDAxMCBEUzog
+MDAwMCBFUzogMDAwMCBDUjA6IDAwMDAwMDAwODAwNTAwMzMKWyAgIDYyLjc1MTc4NF0gQ1IyOiAw
+MDAwMDAwMDAwMDAwMDAwIENSMzogMDAwMDAwMDA5YzYyMjAwMyBDUjQ6IDAwMDAwMDAwMDA3NjA2
+ZTAKWyAgIDYyLjc1Mjg5OF0gRFIwOiAwMDAwMDAwMDAwMDAwMDAwIERSMTogMDAwMDAwMDAwMDAw
+MDAwMCBEUjI6IDAwMDAwMDAwMDAwMDAwMDAKWyAgIDYyLjc1NDAxMV0gRFIzOiAwMDAwMDAwMDAw
+MDAwMDAwIERSNjogMDAwMDAwMDBmZmZlMGZmMCBEUjc6IDAwMDAwMDAwMDAwMDA0MDAKWyAgIDYy
+Ljc1NTEyNl0gUEtSVTogNTU1NTU1NTQKWyAgIDYyLjc1NTU2MV0gQ2FsbCBUcmFjZToKWyAgIDYy
+Ljc1NTk2M10gID8gcDlfd3JpdGVfd29yaysweGEwMC8weGEwMApbICAgNjIuNzU2NTkyXSAgcHJv
+Y2Vzc19vbmVfd29yaysweGFlNC8weDFiMjAKWyAgIDYyLjc1NzI1Ml0gID8gYXBwbHlfd3FhdHRy
+c19jb21taXQrMHgzZTAvMHgzZTAKWyAgIDYyLjc1Nzk4NV0gIHdvcmtlcl90aHJlYWQrMHg4Yy8w
+eGU4MApbICAgNjIuNzU4NjAwXSAgPyBfX2t0aHJlYWRfcGFya21lKzB4ZTkvMHgxOTAKWyAgIDYy
+Ljc1OTI1NF0gID8gcHJvY2Vzc19vbmVfd29yaysweDFiMjAvMHgxYjIwClsgICA2Mi43NTk5NTBd
+ICBrdGhyZWFkKzB4MzQxLzB4NDEwClsgICA2Mi43NjA0NzldICA/IGt0aHJlYWRfY3JlYXRlX3dv
+cmtlcl9vbl9jcHUrMHhmMC8weGYwClsgICA2Mi43NjEyOTZdICByZXRfZnJvbV9mb3JrKzB4M2Ev
+MHg1MApbICAgNjIuNzYxODc0XSBNb2R1bGVzIGxpbmtlZCBpbjoKWyAgIDYyLjc2MjM3OF0gRHVt
+cGluZyBmdHJhY2UgYnVmZmVyOgpbICAgNjIuNzYyOTQyXSAgICAoZnRyYWNlIGJ1ZmZlciBlbXB0
+eSkKWyAgIDYyLjc2MzU0N10gLS0tWyBlbmQgdHJhY2UgNjk2NzI4MTY2MTM5NDdhMyBdLS0tCgoK
+Pj4gQmVmb3JlIGxpc3RfZGVsKCZtLT5ycmVxLT5yZXFfbGlzdCkgaW4gcDlfcmVhZF93b3JrIGlz
+IGNhbGxlZCwKPj4gdGhlIHJlcS0+cmVxX2xpc3QgbWF5IGhhdmUgYmVlbiBkZWxldGVkIGluIHA5
+X2ZkX2NhbmNlbGxlZC4KPj4gV2UgY2FuIGZpeCBpdCBieSBzZXR0aW5nIHJlcS0+c3RhdHVzIHRv
+IFJFUV9TVEFUVVNfRkxTSEQgYWZ0ZXIKPj4gbGlzdF9kZWwoJnJlcS0+cmVxX2xpc3QpIGluIHA5
+X2ZkX2NhbmNlbGxlZC4KPiBobSBpZiB5b3UgZG8gdGhhdCByZWFkX3dvcmsgd2lsbCBmYWlsIHdp
+dGggRUlPIGFuZCBhbGwgZnVydGhlciA5cAo+IG1lc3NhZ2VzIHdpbGwgbm90IGJlIHJlYWQ/Clll
+c++8jEluIHRoaXMgY2FzZSzCoCBhbGwgZnVydGhlciA5cCBtZXNzYWdlcyB3aWxsIG5vdCBiZSBy
+ZWFkLgo+IHA5X3JlYWRfd29yayBwcm9iYWJseSBzaG91bGQgaGFuZGxlIFJFUV9TVEFUVVNfRkxT
+SEQgaW4gYSBzcGVjaWFsIGNhc2UKPiB0aGF0IGp1c3QgdGhyb3dzIHRoZSBtZXNzYWdlIGF3YXkg
+d2l0aG91dCBlcnJvciBhcyB3ZWxsLgoKQ2FuIGl0IGJlIHNvbHZlZCBsaWtlIHRoaXM/CgotLS0g
+YS9uZXQvOXAvdHJhbnNfZmQuYworKysgYi9uZXQvOXAvdHJhbnNfZmQuYwpAQCAtMzYyLDcgKzM2
+Miw3IEBAIHN0YXRpYyB2b2lkIHA5X3JlYWRfd29yayhzdHJ1Y3Qgd29ya19zdHJ1Y3QgKndvcmsp
+CiDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgaWYgKG0tPnJyZXEtPnN0YXR1cyA9PSBS
+RVFfU1RBVFVTX1NFTlQpIHsKIMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
+wqDCoMKgwqAgbGlzdF9kZWwoJm0tPnJyZXEtPnJlcV9saXN0KTsKIMKgwqDCoMKgwqDCoMKgwqDC
+oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgcDlfY2xpZW50X2NiKG0tPmNsaWVudCwgbS0+
+cnJlcSwgUkVRX1NUQVRVU19SQ1ZEKTsKLcKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgfSBl
+bHNlIHsKK8KgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgfSBlbHNlIGlmIChtLT5ycmVxLT5z
+dGF0dXMgIT0gUkVRX1NUQVRVU19GTFNIRCkgewogwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
+oMKgwqDCoMKgwqDCoMKgwqDCoCBzcGluX3VubG9jaygmbS0+Y2xpZW50LT5sb2NrKTsKIMKgwqDC
+oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgcDlfZGVidWcoUDlfREVC
+VUdfRVJST1IsCiDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
+wqDCoMKgwqDCoMKgwqDCoMKgICJSZXF1ZXN0IHRhZyAlZCBlcnJvcmVkIG91dCB3aGlsZSB3ZSAK
+d2VyZSByZWFkaW5nIHRoZSByZXBseVxuIiwKCj4+IEJlZm9yZSBsaXN0X2RlbCgmcmVxLT5yZXFf
+bGlzdCkgaW4gcDlfZmRfY2FuY2VsbGVkIGlzIGNhbGxlZCwKPj4gdGhlIHJlcS0+cmVxX2xpc3Qg
+bWF5IGhhdmUgYmVlbiBkZWxldGVkIGluIHA5X3JlYWRfd29yay4KPj4gV2Ugc2hvdWxkIHJldHVy
+biB3aGVuIHJlcS0+c3RhdHVzID0gUkVRX1NUQVRVU19SQ1ZEIHdoaWNoIG1lYW5zCj4+IHdlIGp1
+c3QgcmVjZWl2ZWQgYSByZXNwb25zZSBmb3Igb2xkcmVxLCBzbyB3ZSBuZWVkIGRvIG5vdGhpbmcK
+Pj4gaW4gcDlfZmRfY2FuY2VsbGVkLgo+IEknbGwgbmVlZCBzb21lIHRpbWUgdG8gY29udmluY2Ug
+bXlzZWxmIHRoZSByZWZjb3VudGluZyBpcyBjb3JyZWN0IGluCj4gdGhpcyBjYXNlLgo+IFByZS1y
+ZWYgY291bnRpbmcgdGhpcyBkZWZpbml0ZWx5IHdhcyB3cm9uZywgYnV0IG5vdyBpdCBtaWdodCBq
+dXN0IHdvcmsKPiBieSBjaGFuY2UuLi4uIEknbGwgZG91YmxlLWNoZWNrLgo+Cj4+IEZpeGVzOiA2
+MGZmNzc5YzRhYmIgKCI5cDogY2xpZW50OiByZW1vdmUgdW51c2VkIGNvZGUgYW5kIGFueSByZWZl
+cmVuY2UKPj4gdG8gImNhbmNlbGxlZCIgZnVuY3Rpb24iKQo+IEkgZG9uJ3QgdW5kZXJzdGFuZCBo
+b3cgdGhpcyBjb21taXQgaXMgcmVsYXRlZD8KPiBBdCBsZWFzdCBtYWtlIGl0IGFmZDhkNjU0MTEg
+KCI5UDogQWRkIGNhbmNlbGxlZCgpIHRvIHRoZSB0cmFuc3BvcnQKPiBmdW5jdGlvbnMuIikgd2hp
+Y2ggYWRkcyB0aGUgb3AsIG5vdCBzb21ldGhpbmcgdGhhdCByZW1vdmVkIGEgcHJldmlvdXMKPiB2
+ZXJzaW9uIG9mIGNhbmNlbGxlZCBldmVuIGVhcmxpZXIuCgpUaGlzIHBhdGNoICJhZmQ4ZDY1NDEx
+IiBqdXN0IG1vdmVkIGxpc3RfZGVsIGludG8gY2FuY2VsbGVkIG9wcy4gSXQgaXMgCm5vdCBhY3R1
+YWxseSB0aGUgaW5pdGlhbCBwYXRjaCB0aGF0IGNhdXNlZCB0aGUgYnVnCgpJbiA2MGZmNzc5YzRh
+YmIgKCI5cDogY2xpZW50OiByZW1vdmUgdW51c2VkIGNvZGUgYW5kIGFueSByZWZlcmVuY2UgdG8g
+CiJjYW5jZWxsZWQiIGZ1bmN0aW9uIikKCkl0IG1vdmVkIHNwaW5fbG9jayB1bmRlciAiaWYgKG9s
+ZHJlcS0+c3RhdHVzID09IFJFUV9TVEFUVVNfRkxTSCkiIC4KCkFmdGVyICJpZiAob2xkcmVxLT5z
+dGF0dXMgPT0gUkVRX1NUQVRVU19GTFNIKSIsIG9sZHJlcSBtYXkgYmUgY2hhbmdlZCBieSAKb3Ro
+ZXIgdGhyZWFkLgoKPj4gZGlmZiAtLWdpdCBhL25ldC85cC90cmFuc19mZC5jIGIvbmV0LzlwL3Ry
+YW5zX2ZkLmMKPj4gaW5kZXggZjg2OGNmNmZiYTc5Li5hNTYzNjk5NjI5Y2IgMTAwNjQ0Cj4+IC0t
+LSBhL25ldC85cC90cmFuc19mZC5jCj4+ICsrKyBiL25ldC85cC90cmFuc19mZC5jCj4+IEBAIC03
+MTgsMTEgKzcxOCwxOCBAQCBzdGF0aWMgaW50IHA5X2ZkX2NhbmNlbGxlZChzdHJ1Y3QgcDlfY2xp
+ZW50ICpjbGllbnQsIHN0cnVjdCBwOV9yZXFfdCAqcmVxKQo+PiAgIHsKPj4gICAJcDlfZGVidWco
+UDlfREVCVUdfVFJBTlMsICJjbGllbnQgJXAgcmVxICVwXG4iLCBjbGllbnQsIHJlcSk7Cj4+ICAg
+Cj4+IC0JLyogd2UgaGF2ZW4ndCByZWNlaXZlZCBhIHJlc3BvbnNlIGZvciBvbGRyZXEsCj4+IC0J
+ICogcmVtb3ZlIGl0IGZyb20gdGhlIGxpc3QuCj4+ICsJLyogSWYgcmVxLT5zdGF0dXMgPT0gUkVR
+X1NUQVRVU19SQ1ZELCBpdCBtZWFucyB3ZSBqdXN0IHJlY2VpdmVkIGEKPj4gKwkgKiByZXNwb25z
+ZSBmb3Igb2xkcmVxLCB3ZSBuZWVkIGRvIG5vdGhpbmcgaGVyZS4gRWxzZSwgcmVtb3ZlIGl0IGZy
+b20KPj4gKwkgKiB0aGUgbGlzdC4KPiAobml0cGljaykgdGhpcyBmZWVscyBhIGJpdCBoYXJkIHRv
+IHJlYWQsIGFuZCBkb2VzIG5vdCBnaXZlIGFueQo+IGluZm9ybWF0aW9uOiB5b3UncmUganVzdCBw
+YXJhcGhyYXNpbmcgdGhlIEMgY29kZS4KPgo+IEkgd291bGQgc3VnZ2VzdCBtb3ZpbmcgdGhlIGNv
+bW1lbnQgYWZ0ZXIgdGhlIHNwaW5sb2NrIGFuZCBzYXkgd2hhdCB3ZQo+IHJlYWxseSBkbyA7IHNv
+bWV0aGluZyBhcyBzaW1wbGUgYXMgImlnbm9yZSBjYW5jZWxsZWQgcmVxdWVzdCBpZiBtZXNzYWdl
+Cj4gaGFzIGJlZW4gcmVjZWl2ZWQgYmVmb3JlIGxvY2siIGlzIGVub3VnaC4KVGhhbmtzIGZvciB5
+b3VyIHN1Z2dlc3QsIEkgd2lsbMKgIHBlcmZlY3QgaXQuCj4+ICAgCSAqLwo+PiAgIAlzcGluX2xv
+Y2soJmNsaWVudC0+bG9jayk7Cj4+ICsJaWYgKHJlcS0+c3RhdHVzID09IFJFUV9TVEFUVVNfUkNW
+RCkgewo+PiArCQlzcGluX3VubG9jaygmY2xpZW50LT5sb2NrKTsKPj4gKwkJcmV0dXJuIDA7Cj4+
+ICsJfQo+PiArCj4+ICAgCWxpc3RfZGVsKCZyZXEtPnJlcV9saXN0KTsKPj4gKwlyZXEtPnN0YXR1
+cyA9IFJFUV9TVEFUVVNfRkxTSEQ7Cj4+ICAgCXNwaW5fdW5sb2NrKCZjbGllbnQtPmxvY2spOwo+
+PiAgIAlwOV9yZXFfcHV0KHJlcSk7Cj4+ICAgCgpfX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fXwpWOWZzLWRldmVsb3BlciBtYWlsaW5nIGxpc3QKVjlmcy1kZXZl
+bG9wZXJAbGlzdHMuc291cmNlZm9yZ2UubmV0Cmh0dHBzOi8vbGlzdHMuc291cmNlZm9yZ2UubmV0
+L2xpc3RzL2xpc3RpbmZvL3Y5ZnMtZGV2ZWxvcGVyCg==
