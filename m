@@ -2,63 +2,79 @@ Return-Path: <v9fs-developer-bounces@lists.sourceforge.net>
 X-Original-To: lists+v9fs-developer@lfdr.de
 Delivered-To: lists+v9fs-developer@lfdr.de
 Received: from lists.sourceforge.net (lists.sourceforge.net [216.105.38.7])
-	by mail.lfdr.de (Postfix) with ESMTPS id C20731F9484
-	for <lists+v9fs-developer@lfdr.de>; Mon, 15 Jun 2020 12:21:29 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 43B9D1FD57D
+	for <lists+v9fs-developer@lfdr.de>; Wed, 17 Jun 2020 21:38:48 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+	d=lists.sourceforge.net; s=beta; h=Content-Transfer-Encoding:Content-Type:Cc:
+	Reply-To:From:List-Subscribe:List-Help:List-Post:List-Archive:
+	List-Unsubscribe:List-Id:Subject:MIME-Version:Message-ID:Date:To:Sender:
+	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+	Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:List-Owner;
+	bh=W/5Jsut2ku0JoRLz+An2+zw57b+P3eTjP4ZXIm9EsSQ=; b=KzNIkZEY17lglPEL+Yvr6wV4Ip
+	ll5zFP0Vqp5HQ+S6JN7bwAavsgHtve4K68BYWuRppG7Rnq9IDgFvZsTqsA/5O15kMVHwItc+BjnF/
+	EcuNoCpKDXrv+0hiBCVG5eIzGpMwLZNelDwDYib7A5UFtKOEuTm6RH3FtC2nh/YXQf28=;
 Received: from [127.0.0.1] (helo=sfs-ml-4.v29.lw.sourceforge.com)
 	by sfs-ml-4.v29.lw.sourceforge.com with esmtp (Exim 4.90_1)
 	(envelope-from <v9fs-developer-bounces@lists.sourceforge.net>)
-	id 1jkmF5-0004LD-L8; Mon, 15 Jun 2020 10:21:27 +0000
+	id 1jldtW-0006WY-8j; Wed, 17 Jun 2020 19:38:46 +0000
 Received: from [172.30.20.202] (helo=mx.sourceforge.net)
  by sfs-ml-4.v29.lw.sourceforge.com with esmtps
  (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.90_1)
- (envelope-from <asmadeus@notk.org>) id 1jkmF3-0004L4-Gy
- for v9fs-developer@lists.sourceforge.net; Mon, 15 Jun 2020 10:21:25 +0000
+ (envelope-from <info@delivers-solutions.com>) id 1jldtU-0006WR-U7
+ for v9fs-developer@lists.sourceforge.net; Wed, 17 Jun 2020 19:38:44 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=sourceforge.net; s=x; h=In-Reply-To:Content-Type:MIME-Version:References:
- Message-ID:Subject:Cc:To:From:Date:Sender:Reply-To:Content-Transfer-Encoding:
- Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
- Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
+ d=sourceforge.net; s=x; h=Content-Transfer-Encoding:Content-Type:MIME-Version
+ :Message-ID:Date:Subject:To:From:Reply-To:Sender:Cc:Content-ID:
+ Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
+ :Resent-Message-ID:In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:
  List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=Z/Y1sS3kqs8dscDEjrk5GURIu+2XWCtiHVMRteETZdg=; b=RnnqXSHOGAyodWFT1lCy7BMjwA
- zOq/xrZ7WmhkVVJpNPkIRJxfXhFzlvGEsQmtVd2OtG2XzVfPbtoHa1Q4A3RoBhMpoxNsHLomACavc
- ts+Sw9pyZYKaMlTtUPfU5D79W4KNVY2jP/TU7rT4HfP8QEqS7d9YVizEojAukW/13wQ4=;
+ bh=nD2LXSFydu4gppR4zy4e9/bxCcFzCCQc/XbshKt3nVk=; b=OK9mbKPzQo006K+Ct/Dt/IzqzF
+ CqykC5lC6lhbY2ylzmhwh7Rz5ON8KFez6L8Umhs6VewkGnHGqR26suieiWaymuphM+Q+e3QJ3A6yD
+ +IuKHPTTqOG5I4QSiPlxm/DZfX8eha0fumyJPYOdTebd7Pi/PETCqVl5jFkNrASzgEKY=;
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  ;
- h=In-Reply-To:Content-Type:MIME-Version:References:Message-ID:Subject:Cc:To
- :From:Date:Sender:Reply-To:Content-Transfer-Encoding:Content-ID:
- Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
- :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
- List-Post:List-Owner:List-Archive;
- bh=Z/Y1sS3kqs8dscDEjrk5GURIu+2XWCtiHVMRteETZdg=; b=ZCTdiqxGmfu0EmKKT0W1ZupHlS
- ESePgO4NdGV8U65nFFw7efG6OmUXGq0GDEsDCPqSE7Nw6GD5SmShpTjb6n9wEhHqa1KC3GG2C4xiR
- W1e0r1guctO4ukdTFUkSDcM9SPsdpWKS/l0DIqm655ejQ5Cx4m5YPol3a9CqQvTX5qyI=;
-Received: from nautica.notk.org ([91.121.71.147])
- by sfi-mx-3.v28.lw.sourceforge.com with esmtps
- (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.92.2)
- id 1jkmF1-003PgM-Ey
- for v9fs-developer@lists.sourceforge.net; Mon, 15 Jun 2020 10:21:25 +0000
-Received: by nautica.notk.org (Postfix, from userid 1001)
- id 341B6C01C; Mon, 15 Jun 2020 12:21:08 +0200 (CEST)
-Date: Mon, 15 Jun 2020 12:20:53 +0200
-From: Dominique Martinet <asmadeus@codewreck.org>
-To: Zheng Bin <zhengbin13@huawei.com>
-Message-ID: <20200615102053.GA11026@nautica>
-References: <20200615012153.89538-1-zhengbin13@huawei.com>
+ h=Content-Transfer-Encoding:Content-Type:MIME-Version:Message-ID:Date:
+ Subject:To:From:Reply-To:Sender:Cc:Content-ID:Content-Description:Resent-Date
+ :Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:
+ References:List-Id:List-Help:List-Unsubscribe:List-Subscribe:List-Post:
+ List-Owner:List-Archive; bh=nD2LXSFydu4gppR4zy4e9/bxCcFzCCQc/XbshKt3nVk=; b=X
+ UkPt4aokbaMhqos7nCPcC1B7Lh75X61+cJViNrG1IFE/sgdnp6x5N6oBc7U5Pg4tAyPJvclEUAVYn
+ MM5k5Uf3sY8wdUE4h0/3GkSYVXybopkhRtc73bUcMtLqYlglPb5RgigZ9aN5ramJes9kZ4sbD/Syl
+ Bwc0tPBIOfx5Zyg8=;
+Received: from rdns2.delivers-solutions.com ([147.135.99.14])
+ by sfi-mx-4.v28.lw.sourceforge.com with esmtp (Exim 4.92.2)
+ id 1jldtT-009kVX-OW
+ for v9fs-developer@lists.sourceforge.net; Wed, 17 Jun 2020 19:38:44 +0000
+DKIM-Signature: v=1; a=rsa-sha1; c=relaxed/relaxed; s=default;
+ d=delivers-solutions.com; 
+ h=Reply-To:From:To:Subject:Date:Message-ID:MIME-Version:Content-Type:Content-Transfer-Encoding;
+ i=info@delivers-solutions.com; 
+ bh=HfOzYHtXihvNe2PYgpNWZYop7xo=;
+ b=Vtdro1G72YJ0S/T8oK6TVqhNsuOZiSOGCu2ymnNXnmY93B8llbWrafUa8BZzUlFaXfwBZL9T/KuM
+ LSLREcPf4cZeDSryu5j2GksCVNaZrlXu86ItBmv2JLeUkt+dbo6zzFKgeBjztZC3CiDnOYvhG8eH
+ s+DRO5AR/q2QgUORsOw=
+DomainKey-Signature: a=rsa-sha1; c=nofws; q=dns; s=default;
+ d=delivers-solutions.com; 
+ b=WCOBTHQcIFb2YWydhqI9lCI7FyYSXf8q23QrYXpC2YYQye1PEBTXRyTYOON0PI0u118v008KxEM3
+ /WQu/9+gJbIosJPh8TyBU1cj4e/RErRgQrPNMEIYFcUNxeeKKgpcKmzhDKzHef54hbTuqGzQS3TD
+ o8UH3BGyO72GpQrxwMU=;
+To: v9fs-developer@lists.sourceforge.net
+Date: 17 Jun 2020 21:38:35 +0200
+Message-ID: <20200617213835.E6A38199F007E10F@delivers-solutions.com>
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20200615012153.89538-1-zhengbin13@huawei.com>
-User-Agent: Mutt/1.5.21 (2010-09-15)
-X-Spam-Score: 0.1 (/)
+X-Spam-Score: 1.3 (+)
 X-Spam-Report: Spam Filtering performed by mx.sourceforge.net.
  See http://spamassassin.org/tag/ for more details.
- 0.2 HEADER_FROM_DIFFERENT_DOMAINS From and EnvelopeFrom 2nd level mail
- domains are different
  -0.0 SPF_PASS               SPF: sender matches SPF record
  0.0 SPF_HELO_NONE          SPF: HELO does not publish an SPF Record
- -0.2 AWL AWL: Adjusted score from AWL reputation of From: address
-X-Headers-End: 1jkmF1-003PgM-Ey
-Subject: Re: [V9fs-developer] [PATCH RESEND] 9p: Fix memory leak in
- v9fs_mount
+ -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from author's
+ domain
+ -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+ 0.1 DKIM_SIGNED            Message has a DKIM or DK signature,
+ not necessarily valid
+ 1.4 AWL AWL: Adjusted score from AWL reputation of From: address
+X-Headers-End: 1jldtT-009kVX-OW
+Subject: [V9fs-developer] Receipt For Goods Available
 X-BeenThere: v9fs-developer@lists.sourceforge.net
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -70,33 +86,42 @@ List-Post: <mailto:v9fs-developer@lists.sourceforge.net>
 List-Help: <mailto:v9fs-developer-request@lists.sourceforge.net?subject=help>
 List-Subscribe: <https://lists.sourceforge.net/lists/listinfo/v9fs-developer>, 
  <mailto:v9fs-developer-request@lists.sourceforge.net?subject=subscribe>
-Cc: lucho@ionkov.net, yi.zhang@huawei.com, ericvh@gmail.com,
- linux-kernel@vger.kernel.org, linux-fsdevel@vger.kernel.org,
- v9fs-developer@lists.sourceforge.net
+From: info--- via V9fs-developer <v9fs-developer@lists.sourceforge.net>
+Reply-To: info@cocyflame.de
+Cc: info@delivers-solutions.com
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: v9fs-developer-bounces@lists.sourceforge.net
 
-Zheng Bin wrote on Mon, Jun 15, 2020:
-> v9fs_mount
->   v9fs_session_init
->     v9fs_cache_session_get_cookie
->       v9fs_random_cachetag                     -->alloc cachetag
->       v9ses->fscache = fscache_acquire_cookie  -->maybe NULL
->   sb = sget                                    -->fail, goto clunk
-> clunk_fid:
->   v9fs_session_close
->     if (v9ses->fscache)                        -->NULL
->       kfree(v9ses->cachetag)
-> 
-> Thus memleak happens.
-> 
-> Signed-off-by: Zheng Bin <zhengbin13@huawei.com>
+Hi
 
-Thanks, will run tests & queue next weekend
+Hope this mail finds you well.
 
--- 
-Dominique
+Our company have not bought your products before but due to 
+excess demand of it here, so we decided to go for it.
+
+I still have other request to make but there all in my 
+specification.
+
+Please let me know if you still have stocks available.
+
+
+Waiting for your reply
+
+ 
+
+
+
+Warmest Regards,
+
+Angela Wilpert
+
+Sales Executives Dept
+
+HDT Sales & Merkating
+vasileos konstantinou 89 Paphos, Paphos, Cyprus
+Phone: +357 26 040001
+
 
 
 _______________________________________________
