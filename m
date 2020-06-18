@@ -2,61 +2,102 @@ Return-Path: <v9fs-developer-bounces@lists.sourceforge.net>
 X-Original-To: lists+v9fs-developer@lfdr.de
 Delivered-To: lists+v9fs-developer@lfdr.de
 Received: from lists.sourceforge.net (lists.sourceforge.net [216.105.38.7])
-	by mail.lfdr.de (Postfix) with ESMTPS id B68DD1FF59F
-	for <lists+v9fs-developer@lfdr.de>; Thu, 18 Jun 2020 16:49:10 +0200 (CEST)
-Received: from [127.0.0.1] (helo=sfs-ml-1.v29.lw.sourceforge.com)
-	by sfs-ml-1.v29.lw.sourceforge.com with esmtp (Exim 4.90_1)
+	by mail.lfdr.de (Postfix) with ESMTPS id EE9111FFB19
+	for <lists+v9fs-developer@lfdr.de>; Thu, 18 Jun 2020 20:33:31 +0200 (CEST)
+Received: from [127.0.0.1] (helo=sfs-ml-2.v29.lw.sourceforge.com)
+	by sfs-ml-2.v29.lw.sourceforge.com with esmtp (Exim 4.90_1)
 	(envelope-from <v9fs-developer-bounces@lists.sourceforge.net>)
-	id 1jlvqm-0004qe-Pe; Thu, 18 Jun 2020 14:49:08 +0000
+	id 1jlzLt-0008GM-KO; Thu, 18 Jun 2020 18:33:29 +0000
 Received: from [172.30.20.202] (helo=mx.sourceforge.net)
- by sfs-ml-1.v29.lw.sourceforge.com with esmtps
+ by sfs-ml-2.v29.lw.sourceforge.com with esmtps
  (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.90_1)
- (envelope-from <asmadeus@notk.org>) id 1jlvql-0004qS-Hc
- for v9fs-developer@lists.sourceforge.net; Thu, 18 Jun 2020 14:49:07 +0000
+ (envelope-from <alexander.kapshuk@gmail.com>) id 1jlzLs-0008GF-JP
+ for v9fs-developer@lists.sourceforge.net; Thu, 18 Jun 2020 18:33:28 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=sourceforge.net; s=x; h=In-Reply-To:Content-Transfer-Encoding:Content-Type:
- MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Sender:Reply-To:
- Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
- Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
+ d=sourceforge.net; s=x; h=Content-Transfer-Encoding:MIME-Version:Message-Id:
+ Date:Subject:Cc:To:From:Sender:Reply-To:Content-Type:Content-ID:
+ Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
+ :Resent-Message-ID:In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:
  List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=UdmumBnc0D3X2Ca6gb8OK9JD0Vk+60PxgsXihTleE8s=; b=QngcPgx3cTb0tCOjv9/98FhqCI
- 4vLRiwMiErgIE5N7uZW+YTBOO+GFarlCFNohapjnl1gcfqaoRPCniji8/Reblzpj7zWcQwW/6rESa
- 4B5PHhjzhJQpowsnXVJoR9VwhIvwFv7gYuq9mnLFrq8bsN84alBy2FdQjU/PFm2tcs60=;
+ bh=GfxBQhl30ftp8BzrZSRW5vI7XCIOgc9ST9sUu1yvoKQ=; b=UkU+4x/TjZ3me91m0YBPnOYPj5
+ 3zoCWYZUGUIUVijAmi9FTFVDXWwT0NxkaLb2hLdfnuYTzqhuYJ92Trqw9kXNMZBXQYt6WKHhTvCnp
+ Exkpyu4h/fxk44hjn4WI4c0lHK+9wveZPK/mW3kepdRUSREsI+wmtYGKUAFsDIBScwXY=;
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  ;
- h=In-Reply-To:Content-Transfer-Encoding:Content-Type:MIME-Version:
- References:Message-ID:Subject:Cc:To:From:Date:Sender:Reply-To:Content-ID:
- Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
- :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
- List-Post:List-Owner:List-Archive;
- bh=UdmumBnc0D3X2Ca6gb8OK9JD0Vk+60PxgsXihTleE8s=; b=B2N3LPqXoza4P9rcVl2vLGerpS
- bX0+Mt81ocnqN6C1B7wC5fFXW1h6EQSABQH1jVw4nXHETRx+vvLBUNOIUphSx4RnVfMexj70SDkq8
- ymOytvHBDz7ymQ7573UhRei15pM2ZXzXfLPILRP5PnlxOND9tfVIYFeJF2iqOS2o0oxQ=;
-Received: from nautica.notk.org ([91.121.71.147])
- by sfi-mx-1.v28.lw.sourceforge.com with esmtps
- (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.92.2)
- id 1jlvqg-008aOX-Bc
- for v9fs-developer@lists.sourceforge.net; Thu, 18 Jun 2020 14:49:07 +0000
-Received: by nautica.notk.org (Postfix, from userid 1001)
- id 8D62BC01C; Thu, 18 Jun 2020 16:48:48 +0200 (CEST)
-Date: Thu, 18 Jun 2020 16:48:33 +0200
-From: Dominique Martinet <asmadeus@codewreck.org>
-To: Lionel Fourquaux <lionel.fourquaux@normalesup.org>
-Message-ID: <20200618144833.GB6838@nautica>
-References: <20200618134502.GA3973@emris.lionel.fourquaux.org>
+ h=Content-Transfer-Encoding:MIME-Version:Message-Id:Date:Subject:Cc:To:From
+ :Sender:Reply-To:Content-Type:Content-ID:Content-Description:Resent-Date:
+ Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:
+ References:List-Id:List-Help:List-Unsubscribe:List-Subscribe:List-Post:
+ List-Owner:List-Archive; bh=GfxBQhl30ftp8BzrZSRW5vI7XCIOgc9ST9sUu1yvoKQ=; b=e
+ DZYdH55jmqobK/ZVmc5juSGcojLlEhOymdb3bfkiCVvQKp5fBHtKTVDhbvb4LHMAT5vY6VCKnW+d5
+ /aF15CA9b6sQdxmkvDDwXhs/+ifh48QCVSvJOwYreoTpuwxvsGuSHnHkFYjLICz6y1IWUzKHLh/ER
+ vePB9pw5pf1LP7V8=;
+Received: from mail-lj1-f193.google.com ([209.85.208.193])
+ by sfi-mx-3.v28.lw.sourceforge.com with esmtps
+ (TLSv1.2:ECDHE-RSA-AES128-GCM-SHA256:128) (Exim 4.92.2)
+ id 1jlzLr-0083Sx-DO
+ for v9fs-developer@lists.sourceforge.net; Thu, 18 Jun 2020 18:33:28 +0000
+Received: by mail-lj1-f193.google.com with SMTP id 9so8488387ljc.8
+ for <v9fs-developer@lists.sourceforge.net>;
+ Thu, 18 Jun 2020 11:33:27 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+ h=from:to:cc:subject:date:message-id:mime-version
+ :content-transfer-encoding;
+ bh=GfxBQhl30ftp8BzrZSRW5vI7XCIOgc9ST9sUu1yvoKQ=;
+ b=HnJ6W8d8IEhzEpI5u0sQdOHDWKiBPP4zGmOesg+GBKgFdNepm4tT7iQLfBboohIhzz
+ hsMa+iHPwsUR4ddHmYNsuPldOm4SiDguICTiQTBtMb3kg9BckTV+ak1N7BMutTQJBnyy
+ VI7AMa6tOyipoBCk9/1+1rH3ftq/OGbyjh+YZFU/ke1hsKLA4WNLo0g0wxS4pEj9LgQw
+ ygKBdcEvWID73mJblxh5nl4br8WV07Avcj2DdtiMuJCRj2d6om5R28ApTXcgHDcAaPUa
+ /vqTBWb15qEm2cHWgBJmv7y1+JbUM26z108EnAhnxRRbT8uMMmUuliB9j9v1HpV+95R3
+ JGDA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+ :content-transfer-encoding;
+ bh=GfxBQhl30ftp8BzrZSRW5vI7XCIOgc9ST9sUu1yvoKQ=;
+ b=NJEtM/eEfQ1Ti4KzM7S6PjhRFrGpeFUTshGZ3ltDMYlhrDHkk+ZUzpP/RpMabksYaJ
+ T/fAfnuhoatp8eFAiDXm0cDBQHpuZxfr5K+uSbQoubFV8d0ilMkAgnoXuKProDBsumHc
+ gamNmtPhCs4KU8L+aAEkgWto8Hwh/Ri7w8AdNfPqL10EaIeAkFDKFeLrV7kLm+euDCY/
+ hXJSIPkQKriL+KLibQE6UTaEPDXYi4XfCPRVceQS6JwV+KBgz0+3qSju/9b0vMQIXx8t
+ aS159kyMMTJZLu5oJhGeUoBGXnZxTF3Schin2tBBToHzjPB5mCffibdC1ynVgqvRe366
+ JBng==
+X-Gm-Message-State: AOAM530gBTd0aDBisD4bEBmUBj7bfF8jF3gvcsi1mrIXi+UOD015S1Rn
+ Pt/6QWwTtDVU3WHkPe2tO2A=
+X-Google-Smtp-Source: ABdhPJy6jugihkxyO5CBEIfSggrL5MElULeZHrxoHVR/Zmp2AqhP8slBr5Ac+hzmMi5/l0hmUhVSJw==
+X-Received: by 2002:a2e:22c2:: with SMTP id i185mr3233274lji.200.1592505200794; 
+ Thu, 18 Jun 2020 11:33:20 -0700 (PDT)
+Received: from pc-sasha.localdomain ([146.120.244.6])
+ by smtp.gmail.com with ESMTPSA id x10sm769339ljx.67.2020.06.18.11.33.19
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Thu, 18 Jun 2020 11:33:20 -0700 (PDT)
+From: Alexander Kapshuk <alexander.kapshuk@gmail.com>
+To: ericvh@gmail.com,
+	lucho@ionkov.net,
+	asmadeus@codewreck.org
+Date: Thu, 18 Jun 2020 21:33:10 +0300
+Message-Id: <20200618183310.5352-1-alexander.kapshuk@gmail.com>
+X-Mailer: git-send-email 2.27.0
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20200618134502.GA3973@emris.lionel.fourquaux.org>
-User-Agent: Mutt/1.5.21 (2010-09-15)
-X-Spam-Score: 0.2 (/)
+X-Spam-Score: 3.5 (+++)
 X-Spam-Report: Spam Filtering performed by mx.sourceforge.net.
  See http://spamassassin.org/tag/ for more details.
- 0.2 HEADER_FROM_DIFFERENT_DOMAINS From and EnvelopeFrom 2nd level mail
- domains are different
+ -0.0 RCVD_IN_DNSWL_NONE     RBL: Sender listed at https://www.dnswl.org/, no
+ trust [209.85.208.193 listed in list.dnswl.org]
+ 3.6 RCVD_IN_SBL_CSS        RBL: Received via a relay in Spamhaus SBL-CSS
+ [146.120.244.6 listed in zen.spamhaus.org]
+ 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail provider
+ (alexander.kapshuk[at]gmail.com)
  -0.0 SPF_PASS               SPF: sender matches SPF record
  0.0 SPF_HELO_NONE          SPF: HELO does not publish an SPF Record
-X-Headers-End: 1jlvqg-008aOX-Bc
-Subject: Re: [V9fs-developer] Question on v9fs performance
+ -0.0 RCVD_IN_MSPIKE_H2      RBL: Average reputation (+2)
+ [209.85.208.193 listed in wl.mailspike.net]
+ -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from author's
+ domain
+ -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+ 0.1 DKIM_SIGNED            Message has a DKIM or DK signature,
+ not necessarily valid
+X-Headers-End: 1jlzLr-0083Sx-DO
+Subject: [V9fs-developer] [PATCH] net/9p: Fix sparse rcu warnings in client.c
 X-BeenThere: v9fs-developer@lists.sourceforge.net
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -68,71 +109,78 @@ List-Post: <mailto:v9fs-developer@lists.sourceforge.net>
 List-Help: <mailto:v9fs-developer-request@lists.sourceforge.net?subject=help>
 List-Subscribe: <https://lists.sourceforge.net/lists/listinfo/v9fs-developer>, 
  <mailto:v9fs-developer-request@lists.sourceforge.net?subject=subscribe>
-Cc: V9fs-developer <v9fs-developer@lists.sourceforge.net>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Cc: alexander.kapshuk@gmail.com, netdev@vger.kernel.org,
+ linux-kernel@vger.kernel.org, v9fs-developer@lists.sourceforge.net,
+ kuba@kernel.org, davem@davemloft.net
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: v9fs-developer-bounces@lists.sourceforge.net
 
-SGkgTGlvbmVsLAoKTGlvbmVsIEZvdXJxdWF1eCB3cm90ZSBvbiBUaHUsIEp1biAxOCwgMjAyMDoK
-PiBJIGFwb2xvZ2l6ZSBmb3IgdGhlIHVuc29sbGljaXRlZCBlbWFpbC4gIFBsZWFzZSBpZ25vcmUg
-aXQgaWYgeW91Cj4gZG9uJ3QgaGF2ZSB0aGUgdGltZSBhbmQgdGhlIGluY2xpbmF0aW9uIHRvIGFu
-c3dlciBuYWl2ZSBxdWVzdGlvbnMKPiBhYm91dCB2OWZzLgoKTm8gcHJvYmxlbSwgYnV0IGxldCdz
-IGtlZXAgdjlmcy1kZXZlbG9wZXIgaW4gQ2MgLS0gSSd2ZSBhZGRlZCB0aGUgbGlzdCwKYXBvbG9n
-aWVzIGlmIHlvdSB3YW50ZWQgdG8ga2VlcCB0aGlzIHByaXZhdGUgYnV0IHRoZXJlIGlzbid0IGFu
-eXRoaW5nCnRoYXQgbG9va3MgY29uZmlkZW50aWFsIGhlcmUuIEhvcGVmdWxseSBub3JtYWxlIHN1
-cCB3b24ndCBnZXQgeW91IGZpcmVkCmJlY2F1c2UgeW91IHRyaWVkIHRvIGRvIG9wZW4gc291cmNl
-IHN0dWZmLi4uIDopCgoKPiBJIGhhdmUgYmVlbiB1c2luZyB2OWZzIGFuZCBkaW9kIGF0IGhvbWUg
-Zm9yIG15IGhvbWUtYnVpbHQgTkFTLCBhbmQgSQo+IG5vdGljZWQgdGhhdCB0aGUgcGVyZm9ybWFu
-Y2UsIHdoaWxlIHJlbWFya2FibGUgZm9yIHN1Y2ggYW4gb2xkCj4gcHJvdG9jb2wsIGlzIHN0aWxs
-IGZhciBiZWxvdyB0aGUgcmF3IHRjcCB0aHJvdWdocHV0ICgqKS4gIEFzIGZhciBhcwo+IEkgdW5k
-ZXJzdGFuZCwgdGhpcyBpcyBjYXVzZWQgYnkgdGhlIGxhdGVuY3kgb2YgdGhlIGNvbm5lY3Rpb24g
-d2hpY2gKPiBzbG93cyBkb3duIHNlcXVlbmNlcyBvZiBmaWxlc3lzdGVtIG9wZXJhdGlvbnMuCgpZ
-ZXMsIGJhc2ljYWxseSB0aGUgY2xpZW50IGlzIG5vdCBzbWFydCBlbm91Z2ggdG8gInBpcGVsaW5l
-IiByZXF1ZXN0cywgc28KaXQgd2lsbCB3YWl0IGZvciB0aGUgZmlyc3QgY2h1bmsgdG8gaGF2ZSBi
-ZWVuIHJlY2VpdmVkIHRvIGFzayBmb3IgdGhlCm5leHQgb25lIGFuZCBsYXRlbmN5IHdpbGwgaGF2
-ZSBhIGRpcmVjdCBpbXBhY3Qgb24gcGVyZm9ybWFuY2VzLAplc3BlY2lhbGx5IHdpdGggc21hbGwg
-YnVmZmVycy4KSSB3cm90ZSBhIHRveSB1c2Vyc3BhY2UgOXAgY2xpZW50IGFnZXMgYWdvIHRoYXQg
-aW1wbGVtZW50cyBwaXBlbGluaW5nCmFuZCBnaXZlcyBtdWNoIGJldHRlciBwZXJmb3JtYW5jZSBm
-b3IgbGFyZ2UgZmlsZXMsIHVuZm9ydHVuYXRlbHkgSSdtIG5vdAphd2FyZSBvZiBhbnkgdXNlciAo
-bm90IGV2ZW4gbXlzZWxmLCBJIG5vIGxvbmdlciBhY3RpdmVseSBkZXZlbG9wIGFueQpzZXJ2ZXIg
-c28gbXkgZWZmb3J0IHRvIHVzZSBpdCBmb3IgcmVncmVzc2lvbiB0ZXN0aW5nIGtpbmQgb2YgZGll
-ZCBhCndoaWxlIGFnbyksIGJ1dCB3b3VsZCBiZSBoYXBweSB0byBhZGRyZXNzIGFueSBpc3N1ZSBp
-ZiB5b3Ugd2FudCB0byBwbGF5CndpdGggaXQuCllvdSBjYW4gZmluZCBpdCBoZXJlLCBJIGJlbGll
-dmUgaXQgd2lsbCBwZXJmb3JtIGJldHRlciBpZiBpdCBzdGlsbAp3b3Jrc8KgOgpodHRwczovL2dp
-dGh1Yi5jb20vbWFydGluZXRkL3NwYWNlOQoKCj4gRm9yIGxhcmdlIGZpbGVzLCB1c2luZyBhIGxh
-cmdlciBtc2l6ZSBsb29rcyBsaWtlIGl0IHdvdWxkIGhlbHAuCj4gVXNpbmcgYSBwYXRjaGVkIGRp
-b2Qgc2VydmVyLCBhbmQgdGhlIGRpb2RjYXQgdG9vbCwgd2l0aCBtc2l6ZT0xTQo+IChpbnN0ZWFk
-IG9mIDY0ayksIEkgZG8gZ2V0IHNwZWVkcyBjbG9zZSB0byB0aGUgbGluayB0aHJvdWdocHV0Lgo+
-IEhvd2V2ZXIsIGl0IGlzIG5vdCBwb3NzaWJsZSB0byBzZXQgbXNpemU+NjRrIGZvciB2OWZzIHdp
-dGhvdXQKPiBwYXRjaGluZyB0aGUga2VybmVsLCBiZWNhdXNlIE1BWF9TT0NLX0JVRiBpcyBoYXJk
-Y29kZWQgYXQgNjRrIGluCj4gbmV0LzlwL3RyYW5zX2ZkLmMuCgpPaCBpcyB0aGF0IHN0aWxsIDY0
-az8gSSB0aG91Z2h0IEkgaGFkIGluY3JlYXNlZCB0aGUgbWF4IGEgd2hpbGUgYWdvLCBJCmhhdmUg
-dGhpcyBzZXQgdG8gMU1CIG9uIHNvbWUgbWFjaGluZXMgYnV0IHRoZXkgbXVzdCBiZSBydW5uaW5n
-IGEgcGF0Y2hlZAp2ZXJzaW9uLi4uIEFsdGhvdWdoIHRoaXMgYWxzbyBwcmVkYXRlcyBteSBjaGFu
-Z2UgZnJvbSBwcmUtYWxsb2NhdGVkCmJ1ZmZlcnMgdG8gdXNpbmcgYSBrbWVtX2NhY2hlIHNvIEkg
-aGF2ZSBubyByZWNlbnQgZGF0YSBwb2ludC4KCgo+IFNpbmNlIGFsbCBvdGhlciB0cmFuc3BvcnRz
-IHNlZW0gYWJsZSB0byB1c2UgYSBsYXJnZXIgbXNpemUsIHdvdWxkIGl0Cj4gYmUgcG9zc2libGUg
-dG8gaW5jcmVhc2UgTUFYX1NPQ0tfQlVGIGluIG5ldC85cC90cmFuc19mZC5jIChJIHdvdWxkCj4g
-c3VnZ2VzdCBNQVhfU09DS19CVUY9Mk0gdG8gaGF2ZSBzb21lIGxlZXdheSksIHNvIHRoYXQgdXNl
-cnMgd2hvIHdhbnQKPiBmYXN0IGZpbGUgdHJhbnNmZXJzIHJlZ2FyZGxlc3Mgb2YgbWVtb3J5IHVz
-YWdlIGNhbiBzZXQgYSBsYXJnZQo+IG1zaXplPyAgT3Igd291bGQgaXQgaGF2ZSB1bndhbnRlZCBz
-aWRlIGVmZmVjdHM/CgpXZWxsLCB0aGVyZSBhbHNvIGlzIGEgaGlnaCBjaGFuY2UgdGhlIGFsbG9j
-YXRpb25zIHdpbGwgc3RhcnQgdG8gZmFpbApvbmNlIHlvdXIgY2xpZW50IGhhcyBmcmFnbWVudGVk
-IGl0cyBtZW1vcnkgZW5vdWdoLgpMYXJnZSBjb250aWd1b3VzIG1lbW9yeSBhbGxvY2F0aW9ucyBh
-cmUgcmVhbGx5IGZyb3duZWQgdXBvbiBhbmQgaXQgd291bGQKaGVscCB0byBiZSBhYmxlIHRvIHVz
-ZSBpb3ZlYyBvciBzY2F0dGVyLWdhdGhlciBsaWtlIHN0cnVjdHVyZXMgdG8KYmVuZWZpdCBmcm9t
-IGxhcmdlciBtZXNzYWdlcyB3aXRob3V0IGltcG9zaW5nIHRoaXM7IEkgd291bGRuJ3QgYWN0aXZl
-bHkKcmVjb21tZW5kIGdvaW5nIGFib3ZlIDEyOCBvciBtYXliZSAyNTZrIGZvciBsYXJnZSwgYWN0
-aXZlIHNlcnZlcnMKCk9uIHRoZSBvdGhlciBoYW5kIGFzIGxvbmcgYXMgeW91IGhhdmUgZW5vdWdo
-IGZyZWUgY29udGlndW91cyBtZW1vcnkgSQpzZWUgbm8gb3RoZXIgcHJvYmxlbSwgdG8gdGhlIHBv
-aW50IEkgdGhvdWdodCB0aGlzIHdhcyBhY3R1YWxseSBpbiwgSQp3aWxsIHNlbmQgYSBwYXRjaCB0
-aGF0IGluY3JlYXNlIHRoZSBsaW1pdCB0byAxTUIgYW5kIGRvY3VtZW50IHRoZQpwaXRmYWxsIHNv
-IExpbnVzIGNhbiByZWZ1c2UgaWYgaGUgd2FudHMgdG8uCgoKPiAoKikgSGVyZSBpcyBhIG1pY3Jv
-LWJlbmNobWFyayBmb3IgcmVhZGluZyBhIDFHQiBmaWxlOgo+ICBMaW51eCB2OWZzOiAzMDBNYi9z
-Cj4gIGRpb2RjYXQgKGRlZmF1bHQgbXNpemU9NjRrKTogNDAwTWIvcwo+ICBkaXJlY3QgdGNwIChu
-ZXRjYXQpOiA5MDBNYi9zCj4gKEV0aGVybmV0IDFHYi9zLCBsYXRlbmN5IDAuNG1zLCBtdHUgOTAw
-MCkKCklzIGl0IG1pc3NpbmcgbXNpemU9MU1CIHRlc3RzIGZpZ3VyZXM/IDspCgotLSAKRG9taW5p
-cXVlCgoKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KVjlm
-cy1kZXZlbG9wZXIgbWFpbGluZyBsaXN0ClY5ZnMtZGV2ZWxvcGVyQGxpc3RzLnNvdXJjZWZvcmdl
-Lm5ldApodHRwczovL2xpc3RzLnNvdXJjZWZvcmdlLm5ldC9saXN0cy9saXN0aW5mby92OWZzLWRl
-dmVsb3Blcgo=
+Address sparse nonderef rcu warnings:
+net/9p/client.c:790:17: warning: incorrect type in argument 1 (different address spaces)
+net/9p/client.c:790:17:    expected struct spinlock [usertype] *lock
+net/9p/client.c:790:17:    got struct spinlock [noderef] <asn:4> *
+net/9p/client.c:792:48: warning: incorrect type in argument 1 (different address spaces)
+net/9p/client.c:792:48:    expected struct spinlock [usertype] *lock
+net/9p/client.c:792:48:    got struct spinlock [noderef] <asn:4> *
+net/9p/client.c:872:17: warning: incorrect type in argument 1 (different address spaces)
+net/9p/client.c:872:17:    expected struct spinlock [usertype] *lock
+net/9p/client.c:872:17:    got struct spinlock [noderef] <asn:4> *
+net/9p/client.c:874:48: warning: incorrect type in argument 1 (different address spaces)
+net/9p/client.c:874:48:    expected struct spinlock [usertype] *lock
+net/9p/client.c:874:48:    got struct spinlock [noderef] <asn:4> *
+
+Signed-off-by: Alexander Kapshuk <alexander.kapshuk@gmail.com>
+---
+ net/9p/client.c | 20 ++++++++++++++++----
+ 1 file changed, 16 insertions(+), 4 deletions(-)
+
+diff --git a/net/9p/client.c b/net/9p/client.c
+index fc1f3635e5dd..807e0e2e2e5a 100644
+--- a/net/9p/client.c
++++ b/net/9p/client.c
+@@ -787,9 +787,15 @@ p9_client_rpc(struct p9_client *c, int8_t type, const char *fmt, ...)
+ 	}
+ recalc_sigpending:
+ 	if (sigpending) {
+-		spin_lock_irqsave(&current->sighand->siglock, flags);
++		struct sighand_struct *sighand;
++		rcu_read_lock();
++		sighand = rcu_dereference(current->sighand);
++
++		spin_lock_irqsave(&sighand->siglock, flags);
+ 		recalc_sigpending();
+-		spin_unlock_irqrestore(&current->sighand->siglock, flags);
++		spin_unlock_irqrestore(&sighand->siglock, flags);
++
++		rcu_read_unlock();
+ 	}
+ 	if (err < 0)
+ 		goto reterr;
+@@ -869,9 +875,15 @@ static struct p9_req_t *p9_client_zc_rpc(struct p9_client *c, int8_t type,
+ 	}
+ recalc_sigpending:
+ 	if (sigpending) {
+-		spin_lock_irqsave(&current->sighand->siglock, flags);
++		struct sighand_struct *sighand;
++		rcu_read_lock();
++		sighand = rcu_dereference(current->sighand);
++
++		spin_lock_irqsave(&sighand->siglock, flags);
+ 		recalc_sigpending();
+-		spin_unlock_irqrestore(&current->sighand->siglock, flags);
++		spin_unlock_irqrestore(&sighand->siglock, flags);
++
++		rcu_read_unlock();
+ 	}
+ 	if (err < 0)
+ 		goto reterr;
+--
+2.27.0
+
+
+
+_______________________________________________
+V9fs-developer mailing list
+V9fs-developer@lists.sourceforge.net
+https://lists.sourceforge.net/lists/listinfo/v9fs-developer
