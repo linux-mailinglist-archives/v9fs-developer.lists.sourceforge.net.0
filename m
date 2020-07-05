@@ -2,80 +2,80 @@ Return-Path: <v9fs-developer-bounces@lists.sourceforge.net>
 X-Original-To: lists+v9fs-developer@lfdr.de
 Delivered-To: lists+v9fs-developer@lfdr.de
 Received: from lists.sourceforge.net (lists.sourceforge.net [216.105.38.7])
-	by mail.lfdr.de (Postfix) with ESMTPS id 052DE214BC4
-	for <lists+v9fs-developer@lfdr.de>; Sun,  5 Jul 2020 12:08:54 +0200 (CEST)
-Received: from [127.0.0.1] (helo=sfs-ml-4.v29.lw.sourceforge.com)
-	by sfs-ml-4.v29.lw.sourceforge.com with esmtp (Exim 4.90_1)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7567A214F92
+	for <lists+v9fs-developer@lfdr.de>; Sun,  5 Jul 2020 22:49:12 +0200 (CEST)
+Received: from [127.0.0.1] (helo=sfs-ml-2.v29.lw.sourceforge.com)
+	by sfs-ml-2.v29.lw.sourceforge.com with esmtp (Exim 4.90_1)
 	(envelope-from <v9fs-developer-bounces@lists.sourceforge.net>)
-	id 1js1Zr-0001VM-MM; Sun, 05 Jul 2020 10:08:51 +0000
+	id 1jsBZW-00041D-4G; Sun, 05 Jul 2020 20:49:10 +0000
 Received: from [172.30.20.202] (helo=mx.sourceforge.net)
- by sfs-ml-4.v29.lw.sourceforge.com with esmtps
+ by sfs-ml-2.v29.lw.sourceforge.com with esmtps
  (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.90_1)
  (envelope-from
- <bounces+17336747-c28a-v9fs-developer=lists.sourceforge.net@em5045.urutrade.com>)
- id 1js1Zp-0001VD-O5
- for v9fs-developer@lists.sourceforge.net; Sun, 05 Jul 2020 10:08:49 +0000
+ <bounces+17344838-37d5-v9fs-developer=lists.sourceforge.net@em6119.fa376.com>)
+ id 1jsBZV-000417-2A
+ for v9fs-developer@lists.sourceforge.net; Sun, 05 Jul 2020 20:49:09 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
  d=sourceforge.net; s=x; h=Content-Type:MIME-Version:Message-ID:Date:Subject:
  To:From:Sender:Reply-To:Cc:Content-Transfer-Encoding:Content-ID:
  Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
  :Resent-Message-ID:In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:
  List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=XSqkQgvwTUHCOO1BwmFcpnFNovDTXr8Bjn+2ttS86nY=; b=hJwi4KPmSa/cIFPuIBvLBORAj5
- Pvi/x2sbuQrYqkk/6JhUeZMGwBYrRxpWf0gzW/2VRVWLcafXBK2VXdqBl/6/a5cgr2gPwX7H/owi8
- HAq2tzLr4g6hqS31OuziWh5n5uGUaN7RszSAnMad5LnAgGTgL9s5Gj76ohCozQWApe5s=;
+ bh=4dvL6JMUCrb9LD2TMjtH2oWDwXEt4rVDj2snX94JJd0=; b=iUnWLsa8pDx8c79L1565xoKSZz
+ pWWlvuoYutyc7J2UoL1a7X7hIuC+bRvl/jKgZqEXqqhamdshw4vaET+x9Xj125e0Zi3NP9JkieQJw
+ YdVDvup3qnDD51/JW8OPVLL79gQ05a45y8aB2n+/EJI/S9ZPC5/POV9SXdfRnjJjF4N4=;
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  ;
  h=Content-Type:MIME-Version:Message-ID:Date:Subject:To:From:Sender:Reply-To
  :Cc:Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
  Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:
  References:List-Id:List-Help:List-Unsubscribe:List-Subscribe:List-Post:
- List-Owner:List-Archive; bh=XSqkQgvwTUHCOO1BwmFcpnFNovDTXr8Bjn+2ttS86nY=; b=M
- 95tMHHZg+eba8WauLby/iA5kaM/QhRGwA4A0MrrZReDpX/AsxOPBpbAPgky+XF41lq20Unk6YwBEn
- 8kLDBbVg9pl6hnnpTeKJiXRa18KO2y1l3ruVMoKba+fwG99kXi1xyeiBpkdX+W3Vyz/STL2XJ01bn
- OSr4UtlbFeRrn4D8=;
-Received: from wrqvdnbd.outbound-mail.sendgrid.net ([149.72.210.189])
- by sfi-mx-3.v28.lw.sourceforge.com with esmtps
+ List-Owner:List-Archive; bh=4dvL6JMUCrb9LD2TMjtH2oWDwXEt4rVDj2snX94JJd0=; b=Y
+ Y7Ubtggp86gAvU9Y2SCw6XAnJpPcNutP45YRyp3mgR8DqT1fuW98bhHniWNm0rzGVLvcJ8FJq/Uzd
+ eXua1NbR6e38DAoqrddspXETKFUxpgTzm7CZs30FJ+0OlXMIoZnH8EmdsmIe0aIFkOBb3rtQzE07j
+ whDZtsEAy8SyTypU=;
+Received: from wrqvrfdk.outbound-mail.sendgrid.net ([149.72.95.209])
+ by sfi-mx-4.v28.lw.sourceforge.com with esmtps
  (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.92.2)
- id 1js1Zo-008Ap9-3P
- for v9fs-developer@lists.sourceforge.net; Sun, 05 Jul 2020 10:08:49 +0000
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=urutrade.com; 
+ id 1jsBZM-00BY3n-De
+ for v9fs-developer@lists.sourceforge.net; Sun, 05 Jul 2020 20:49:09 +0000
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=fa376.com; 
  h=from:to:subject:mime-version:content-type; s=s1; 
- bh=XSqkQgvwTUHCOO1BwmFcpnFNovDTXr8Bjn+2ttS86nY=; b=X/M8p/ShV4d3g
- epHxhiPglfA4vqO+urqjlFz/1RtzssNxB+fUNJHrchd9cZ9Zss5jOjg4c1UbC6Ll
- 9fvzb1/pBA8Rs7Nw53Ebu8KbCzEGnBQCB0YcPs6rvP4UgEc7AbZLKbFDVuCMW/D1
- YeGG+kFZtEQMALHK8ueoiOQRJsztUs=
-Received: by filter2013p1mdw1.sendgrid.net with SMTP id
- filter2013p1mdw1-13969-5F01A694-1C
- 2020-07-05 10:08:20.890023421 +0000 UTC m=+475477.903591015
-Received: from c (unknown)
- by ismtpd0025p1las1.sendgrid.net (SG) with ESMTP id JGIyXv6yQNGMrhWmc2dmlQ
+ bh=4dvL6JMUCrb9LD2TMjtH2oWDwXEt4rVDj2snX94JJd0=; b=dYghKiaeMcrfo
+ EuTXL1L692H92m1WfQlRvPfUSff0/DOWcqPl8T8ASf70bJaTVw0s8DqYrYEUfIbe
+ yOeh4oj5oPxZHvxr8HkNknWxQc+bgQwgOE/CBDs97M3k2U9lLAcDT1LKIQdHszg2
+ YkYtTBOcSnxJPbNAyZa7gYWz044e18=
+Received: by filter0496p1iad2.sendgrid.net with SMTP id
+ filter0496p1iad2-29514-5F023CAD-15
+ 2020-07-05 20:48:46.017945213 +0000 UTC m=+509335.598228230
+Received: from ijluseq (unknown)
+ by ismtpd0001p1hnd1.sendgrid.net (SG) with ESMTP id iyypRlxRT7u7H9EXREmS6g
  for <v9fs-developer@lists.sourceforge.net>;
- Sun, 05 Jul 2020 10:08:20.362 +0000 (UTC)
-From: Amazon.co.jp <Amazon@urutrade.com>
+ Sun, 05 Jul 2020 20:48:45.558 +0000 (UTC)
+From: Amazon <Amazon@fa376.com>
 To: v9fs-developer <v9fs-developer@lists.sourceforge.net>
-Date: Sun, 05 Jul 2020 10:08:21 +0000 (UTC)
-Message-ID: <007fc7a7e510$bdebed59$f91db187$@c>
+Date: Sun, 05 Jul 2020 20:48:46 +0000 (UTC)
+Message-ID: <0007ab613f19$1bbec6bb$efe7cc56$@ijluseq>
 MIME-Version: 1.0
 X-Mailer: Microsoft Outlook 16.0
-X-SG-EID: N1XBR1EmuL1ry2MK5urCrs2kFFnNuJB52KRPo0MACB4JbFq2V7WONv2GIdvRCchKHYfbM/im36a9ro
- ywyQTtuthL/bV/dGdMuPFXuTftEH3ATJqDxFYDfaBzsQ2cePU1CryWTI5IX8iQpTF1OIhtTGLIm6+B
- wkltFM653zZkiDyaIVYhz/DPRMBZLkNXcahLuVc2W28KS44akhLQbCYSYPxt347W8kcqRspxDqjj7x
- xP2BT35EJz7cEB5Ap84tqI
-X-Spam-Score: 2.8 (++)
+X-SG-EID: N1XBR1EmuL1ry2MK5urCrs2kFFnNuJB52KRPo0MACB4JbFq2V7WONv2GIdvRCchKHSXshmbulHg0VA
+ LswpgY5++Vd/6n5BIHjjCQtQcpInMlt4PRr3Cy7NlVTuFLoZx26WAKSqfjloCk7g3GY1aFSmY2t7Hf
+ Ik/5Ht3hzzJSqKOlQAhctyKm+PJKUUWDOmd61j8++S42u8NQI/idtZsy1kID9gNbTHKq7JmG5MW0R7
+ U=
+X-Spam-Score: 3.4 (+++)
 X-Spam-Report: Spam Filtering performed by mx.sourceforge.net.
  See http://spamassassin.org/tag/ for more details.
  0.0 URIBL_BLOCKED ADMINISTRATOR NOTICE: The query to URIBL was blocked.
  See
  http://wiki.apache.org/spamassassin/DnsBlocklists#dnsbl-block
- for more information. [URIs: sendgrid.net]
+ for more information. [URIs: amazon.co.jp]
  1.2 RCVD_IN_BL_SPAMCOP_NET RBL: Received via a relay in bl.spamcop.net
- [Blocked - see <https://www.spamcop.net/bl.shtml?149.72.210.189>]
- 0.0 RCVD_IN_MSPIKE_L5      RBL: Very bad reputation (-5)
- [149.72.210.189 listed in bl.mailspike.net]
+ [Blocked - see <https://www.spamcop.net/bl.shtml?149.72.95.209>]
  1.3 RCVD_IN_RP_RNBL        RBL: Relay in RNBL,
  https://senderscore.org/blacklistlookup/
- [149.72.210.189 listed in bl.score.senderscore.com]
+ [149.72.95.209 listed in bl.score.senderscore.com]
+ 0.0 RCVD_IN_MSPIKE_L4      RBL: Bad reputation (-4)
+ [149.72.95.209 listed in bl.mailspike.net]
  -0.0 SPF_PASS               SPF: sender matches SPF record
  0.0 SPF_HELO_NONE          SPF: HELO does not publish an SPF Record
  1.0 HTML_MESSAGE           BODY: HTML included in message
@@ -86,9 +86,8 @@ X-Spam-Report: Spam Filtering performed by mx.sourceforge.net.
  not necessarily valid
  0.0 UNPARSEABLE_RELAY Informational: message has unparseable relay lines
  0.0 RCVD_IN_MSPIKE_BL      Mailspike blacklisted
- 0.0 T_REMOTE_IMAGE         Message contains an external image
- -0.6 AWL AWL: Adjusted score from AWL reputation of From: address
-X-Headers-End: 1js1Zo-008Ap9-3P
+ -0.1 AWL AWL: Adjusted score from AWL reputation of From: address
+X-Headers-End: 1jsBZM-00BY3n-De
 X-Content-Filtered-By: Mailman/MimeDel 2.1.21
 Subject: [V9fs-developer] =?iso-2022-jp?b?GyRCJCo7WUonJCRKfUshJE4+cEpzGyhC?=
  =?iso-2022-jp?b?GyRCJHI5OT83GyhC?=
@@ -115,7 +114,7 @@ Errors-To: v9fs-developer-bounces@lists.sourceforge.net
  
 
 
-Amazonプライムをご利用頂きありがとうございます。お客様のAmazonプライム会員資格は、2020/06/09に更新を迎えます。お調べしたところ、会費のお支払いに使用できる有効なクレジットカードがアカウントに登録されていません。クレジットカード情報の更新、新しいクレジットカードの追加については以下の手順をご確認ください。
+Amazonプライムをご利用頂きありがとうございます。お客様のAmazonプライム会員資格は、2020/07/06に更新を迎えます。お調べしたところ、会費のお支払いに使用できる有効なクレジットカードがアカウントに登録されていません。クレジットカード情報の更新、新しいクレジットカードの追加については以下の手順をご確認ください。
 
 
 
