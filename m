@@ -2,26 +2,26 @@ Return-Path: <v9fs-developer-bounces@lists.sourceforge.net>
 X-Original-To: lists+v9fs-developer@lfdr.de
 Delivered-To: lists+v9fs-developer@lfdr.de
 Received: from lists.sourceforge.net (lists.sourceforge.net [216.105.38.7])
-	by mail.lfdr.de (Postfix) with ESMTPS id 577D921B3B3
-	for <lists+v9fs-developer@lfdr.de>; Fri, 10 Jul 2020 13:09:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2803A21B3D2
+	for <lists+v9fs-developer@lfdr.de>; Fri, 10 Jul 2020 13:12:58 +0200 (CEST)
 Received: from [127.0.0.1] (helo=sfs-ml-4.v29.lw.sourceforge.com)
 	by sfs-ml-4.v29.lw.sourceforge.com with esmtp (Exim 4.90_1)
 	(envelope-from <v9fs-developer-bounces@lists.sourceforge.net>)
-	id 1jtqu6-0007Ui-4d; Fri, 10 Jul 2020 11:09:18 +0000
+	id 1jtqxc-0007dh-OS; Fri, 10 Jul 2020 11:12:56 +0000
 Received: from [172.30.20.202] (helo=mx.sourceforge.net)
  by sfs-ml-4.v29.lw.sourceforge.com with esmtps
  (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.90_1)
- (envelope-from <asmadeus@notk.org>) id 1jtqu4-0007Ub-Ui
- for v9fs-developer@lists.sourceforge.net; Fri, 10 Jul 2020 11:09:16 +0000
+ (envelope-from <asmadeus@notk.org>) id 1jtqxb-0007dX-Cj
+ for v9fs-developer@lists.sourceforge.net; Fri, 10 Jul 2020 11:12:55 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
  d=sourceforge.net; s=x; h=In-Reply-To:Content-Type:MIME-Version:References:
  Message-ID:Subject:Cc:To:From:Date:Sender:Reply-To:Content-Transfer-Encoding:
  Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
  Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
  List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=IM6jxQfKOmb87OreuR2hv+b7q66aVE3zXYinfPQDxAM=; b=dOPQosZ1hMeiqR1bCviuQkymAv
- +HHxa2pK+/z4H5bpAMRpq9P5A9krQNwMFnBUxZUbOXn6Fwss5JWOTpSnpV6C+mTaM01P0ubpKarxR
- I3RhvelKZJRbzz8rBbWmwAeBph6p3yn1M5d2Sy8yTx8F4+VrbWbSW5EQIvo2qAk7Boss=;
+ bh=qR7h0r+FFvoLhQgeL8bJG/QF49ckG8Ymtq+tC5uDzRs=; b=YHRgTqnSYT4ftfrrOzOSzFaojG
+ XFV5Fg2awMcwS//vLj001o3TZdOoFoF3Jm1FFA9oDROy0M1frt2T+JLmGnfQi589A9pWzYIGkzrPC
+ 1w/MDDzC7N2mFgFeE1e4DwAWjnDzO7INZS32NdaheSZYOdoOvMmbUsbMutog8+WMQ5WI=;
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  ;
  h=In-Reply-To:Content-Type:MIME-Version:References:Message-ID:Subject:Cc:To
@@ -29,24 +29,24 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
  :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
  List-Post:List-Owner:List-Archive;
- bh=IM6jxQfKOmb87OreuR2hv+b7q66aVE3zXYinfPQDxAM=; b=hd0AUMghjjercS1OINuXhaBMz2
- 8B4X6dEftFE+QPiagzojsjq/R4xwhfS5nP34oM/E9eGdSANTTASBASXG2Wd0MYhSBCUl8oeAXvqKy
- 7yOq3hhRXzurwS8840bxDPT6kLN1ofqlgnyUPJetuhgpbfVYxX5baRTZ9oTIr1guM+tw=;
+ bh=qR7h0r+FFvoLhQgeL8bJG/QF49ckG8Ymtq+tC5uDzRs=; b=Zumjb9+ZrUdWZ9EKisKN3oAgsw
+ YoHUHRhYBRP9x1O4sFKianVrnut3QI1YOXKRSZOsRUh3qU/uNPpyB4HH+/hEvXdrQyw/879jsfW47
+ 31FoT6pX+fVzCIMuxErxLc93SloYkNNgw3xn7kk0Z71k52L8WxcGn1YIfUdgXmOG7EIQ=;
 Received: from nautica.notk.org ([91.121.71.147])
  by sfi-mx-1.v28.lw.sourceforge.com with esmtps
  (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.92.2)
- id 1jtqtz-001vhD-Be
- for v9fs-developer@lists.sourceforge.net; Fri, 10 Jul 2020 11:09:16 +0000
+ id 1jtqxZ-001vqf-SD
+ for v9fs-developer@lists.sourceforge.net; Fri, 10 Jul 2020 11:12:55 +0000
 Received: by nautica.notk.org (Postfix, from userid 1001)
- id 2F266C009; Fri, 10 Jul 2020 13:09:05 +0200 (CEST)
-Date: Fri, 10 Jul 2020 13:08:50 +0200
+ id A3B2DC009; Fri, 10 Jul 2020 13:12:47 +0200 (CEST)
+Date: Fri, 10 Jul 2020 13:12:32 +0200
 From: Dominique Martinet <asmadeus@codewreck.org>
-To: Jianyong Wu <jianyong.wu@arm.com>
-Message-ID: <20200710110850.GB17924@nautica>
-References: <20200710101548.10108-1-jianyong.wu@arm.com>
+To: Christoph Hellwig <hch@lst.de>
+Message-ID: <20200710111232.GC17924@nautica>
+References: <20200710085722.435850-1-hch@lst.de>
 MIME-Version: 1.0
 Content-Disposition: inline
-In-Reply-To: <20200710101548.10108-1-jianyong.wu@arm.com>
+In-Reply-To: <20200710085722.435850-1-hch@lst.de>
 User-Agent: Mutt/1.5.21 (2010-09-15)
 X-Spam-Score: -0.1 (/)
 X-Spam-Report: Spam Filtering performed by mx.sourceforge.net.
@@ -54,15 +54,14 @@ X-Spam-Report: Spam Filtering performed by mx.sourceforge.net.
  0.0 URIBL_BLOCKED ADMINISTRATOR NOTICE: The query to URIBL was blocked.
  See
  http://wiki.apache.org/spamassassin/DnsBlocklists#dnsbl-block
- for more information. [URIs: arm.com]
+ for more information. [URIs: appspotmail.com]
  0.2 HEADER_FROM_DIFFERENT_DOMAINS From and EnvelopeFrom 2nd level mail
  domains are different
  -0.0 SPF_PASS               SPF: sender matches SPF record
  0.0 SPF_HELO_NONE          SPF: HELO does not publish an SPF Record
- -0.4 AWL AWL: Adjusted score from AWL reputation of From: address
-X-Headers-End: 1jtqtz-001vhD-Be
-Subject: Re: [V9fs-developer] [PATCH v4] 9p: retrieve fid from file when
- file instance exist.
+ -0.3 AWL AWL: Adjusted score from AWL reputation of From: address
+X-Headers-End: 1jtqxZ-001vqf-SD
+Subject: Re: [V9fs-developer] [PATCH] net/9p: validate fds in p9_fd_open
 X-BeenThere: v9fs-developer@lists.sourceforge.net
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -74,37 +73,25 @@ List-Post: <mailto:v9fs-developer@lists.sourceforge.net>
 List-Help: <mailto:v9fs-developer-request@lists.sourceforge.net?subject=help>
 List-Subscribe: <https://lists.sourceforge.net/lists/listinfo/v9fs-developer>, 
  <mailto:v9fs-developer-request@lists.sourceforge.net?subject=subscribe>
-Cc: lucho@ionkov.net, justin.he@arm.com, wei.chen@arm.com, Steve.Capper@arm.com,
- ericvh@gmail.com, linux-kernel@vger.kernel.org, Kaly.Xin@arm.com,
+Cc: lucho@ionkov.net, syzbot+e6f77e16ff68b2434a2c@syzkaller.appspotmail.com,
+ ericvh@gmail.com, netdev@vger.kernel.org, linux-kernel@vger.kernel.org,
  v9fs-developer@lists.sourceforge.net
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: v9fs-developer-bounces@lists.sourceforge.net
 
-Jianyong Wu wrote on Fri, Jul 10, 2020:
-> In the current setattr implementation in 9p, fid is always retrieved
-> from dentry no matter file instance exists or not. If so, there may be
-> some info related to opened file instance dropped. So it's better
-> to retrieve fid from file instance when it is passed to setattr.
+Christoph Hellwig wrote on Fri, Jul 10, 2020:
+> p9_fd_open just fgets file descriptors passed in from userspace, but
+> doesn't verify that they are valid for read or writing.  This gets
+> cought down in the VFS when actually attemping a read or write, but a
+> new warning added in linux-next upsets syzcaller.
 > 
-> for example:
-> fd=open("tmp", O_RDWR);
-> ftruncate(fd, 10);
+> Fix this by just verifying the fds early on.
 > 
-> The file context related with the fd will be lost as fid is always
-> retrieved from dentry, then the backend can't get the info of
-> file context. It is against the original intention of user and
-> may lead to bug.
-> 
-> Signed-off-by: Jianyong Wu <jianyong.wu@arm.com>
-> ---
+> Reported-by: syzbot+e6f77e16ff68b2434a2c@syzkaller.appspotmail.com
+> Signed-off-by: Christoph Hellwig <hch@lst.de>
 
-
-For next time, you can add arbitrary comments (e.g. describe briefly
-differences from previous versions) after the --- line.
-
-For others, this inits fid to NULL in both functions; thanks for picking
-it up I'll refresh the patch.
+Looks good to me, I'll pick it up shortly.
 
 -- 
 Dominique
