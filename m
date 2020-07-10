@@ -2,84 +2,65 @@ Return-Path: <v9fs-developer-bounces@lists.sourceforge.net>
 X-Original-To: lists+v9fs-developer@lfdr.de
 Delivered-To: lists+v9fs-developer@lfdr.de
 Received: from lists.sourceforge.net (lists.sourceforge.net [216.105.38.7])
-	by mail.lfdr.de (Postfix) with ESMTPS id 95F7921B1D2
-	for <lists+v9fs-developer@lfdr.de>; Fri, 10 Jul 2020 11:00:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id D680021B306
+	for <lists+v9fs-developer@lfdr.de>; Fri, 10 Jul 2020 12:16:13 +0200 (CEST)
 Received: from [127.0.0.1] (helo=sfs-ml-1.v29.lw.sourceforge.com)
 	by sfs-ml-1.v29.lw.sourceforge.com with esmtp (Exim 4.90_1)
 	(envelope-from <v9fs-developer-bounces@lists.sourceforge.net>)
-	id 1jtotC-0006Qg-MG; Fri, 10 Jul 2020 09:00:14 +0000
+	id 1jtq4h-0006S4-IN; Fri, 10 Jul 2020 10:16:11 +0000
 Received: from [172.30.20.202] (helo=mx.sourceforge.net)
  by sfs-ml-1.v29.lw.sourceforge.com with esmtps
  (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.90_1)
- (envelope-from
- <BATV+9f3021a47afaa262729b+6165+infradead.org+hch@casper.srs.infradead.org>)
- id 1jtotB-0006Q4-EX
- for v9fs-developer@lists.sourceforge.net; Fri, 10 Jul 2020 09:00:13 +0000
+ (envelope-from <jianyong.wu@arm.com>) id 1jtq4g-0006Ri-4O
+ for v9fs-developer@lists.sourceforge.net; Fri, 10 Jul 2020 10:16:10 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=sourceforge.net; s=x; h=Content-Transfer-Encoding:MIME-Version:Message-Id:
- Date:Subject:Cc:To:From:Sender:Reply-To:Content-Type:Content-ID:
+ d=sourceforge.net; s=x; h=Message-Id:Date:Subject:Cc:To:From:Sender:Reply-To:
+ MIME-Version:Content-Type:Content-Transfer-Encoding:Content-ID:
  Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
  :Resent-Message-ID:In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:
  List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=46zVvTCTOU6ly5L8DQ5CyQhpZx1njBDbWU2lkQmXjRM=; b=C+5EBfx1kDdEKTzoYMMEoPTr5n
- bpdeVLLM+plTAFBVhT0RYl2+W+YbrR2rRBQpWfNQ30tgHbijObLrmDAcaZ6lxjvOiIbJzpFXvb53E
- CiOj2Opvm2Q0k/3B+HI+Bsu0l39BUwY+NN6wc1MH1EYUSvWPzInAx4ExMLfaafmgtRhk=;
+ bh=xEWeOmiRcNZxDMo4w56xaQpcnFr17PiLtiCDZ6VQFCM=; b=JqLrFAzM/gnGKnWnT9P8KW5Fyd
+ HEjpzA3zaFhtwsAsX3ZciBmYMGaVIT0TNCAx3wEe8labTxfgeInKKV49D6+O3gBTLInZ0pTrih4AA
+ ZsIPhebq3aAP7qlMTDq8ywI7PgqyXqbtngk6uAEdBc4Ves8eFzqjrlVLrv0GZKXlhL8M=;
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  ;
- h=Content-Transfer-Encoding:MIME-Version:Message-Id:Date:Subject:Cc:To:From
- :Sender:Reply-To:Content-Type:Content-ID:Content-Description:Resent-Date:
- Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:
- References:List-Id:List-Help:List-Unsubscribe:List-Subscribe:List-Post:
- List-Owner:List-Archive; bh=46zVvTCTOU6ly5L8DQ5CyQhpZx1njBDbWU2lkQmXjRM=; b=E
- mBZiG/f9QbYNnahHn2IzMkGhhhARgVbVuWho6fs0++dF3uAae3gI/TcmD+nyVpC5lHpdmH/JLHIRV
- /9u0qhYzCw1Q+HQZzWm3RBel2nSxb4kmrSZV3K/RWskManVVxC0oHxBu9RZfW6SqvBQT5yQthq0In
- WZpU5nDsTkECNvQ0=;
-Received: from casper.infradead.org ([90.155.50.34])
- by sfi-mx-3.v28.lw.sourceforge.com with esmtps
- (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.92.2)
- id 1jtosy-00D0qb-Vb
- for v9fs-developer@lists.sourceforge.net; Fri, 10 Jul 2020 09:00:13 +0000
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=infradead.org; s=casper.20170209; h=Content-Transfer-Encoding:MIME-Version:
- Message-Id:Date:Subject:Cc:To:From:Sender:Reply-To:Content-Type:Content-ID:
- Content-Description:In-Reply-To:References;
- bh=46zVvTCTOU6ly5L8DQ5CyQhpZx1njBDbWU2lkQmXjRM=; b=ekpALOaKRhzdpAi91A603FNUEc
- 8jMBLVjFMPuzRYer7Qk8uDweww316Rlk6rVKMIqXddXo4s80WblIH/eY1g8nYLCMvJPuctcp07LFW
- UQ1nR2uo+uqAi4+b9Zzk7kjs7L04URC0zXkRTzxS85EFisNDAk1kklxninKo5WGsOwAuxCiJK1A6S
- ++nJj9fxFOW9ks953HI7RCpcm1lt3GhTUvTAnXbmdN/25cOmzdKRZx97dVF0i7uT3734W97LG16Ks
- 8OShoni+XXPPyZiSb9D19+C4MeOJWQBND/w17rqHIGrhYEasy8nZxQnJ5Asz1hT4dOUf2W4mJjhbH
- 2L0eld0w==;
-Received: from 089144201169.atnat0010.highway.a1.net ([89.144.201.169]
- helo=localhost)
- by casper.infradead.org with esmtpsa (Exim 4.92.3 #3 (Red Hat Linux))
- id 1jtosY-00082k-5L; Fri, 10 Jul 2020 08:59:35 +0000
-From: Christoph Hellwig <hch@lst.de>
-To: ericvh@gmail.com,
-	lucho@ionkov.net,
-	asmadeus@codewreck.org
-Date: Fri, 10 Jul 2020 10:57:22 +0200
-Message-Id: <20200710085722.435850-1-hch@lst.de>
-X-Mailer: git-send-email 2.26.2
-MIME-Version: 1.0
-X-SRS-Rewrite: SMTP reverse-path rewritten from <hch@infradead.org> by
- casper.infradead.org. See http://www.infradead.org/rpr.html
-X-Spam-Score: -0.1 (/)
+ h=Message-Id:Date:Subject:Cc:To:From:Sender:Reply-To:MIME-Version:
+ Content-Type:Content-Transfer-Encoding:Content-ID:Content-Description:
+ Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+ In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
+ List-Post:List-Owner:List-Archive;
+ bh=xEWeOmiRcNZxDMo4w56xaQpcnFr17PiLtiCDZ6VQFCM=; b=Z3lhD2CkPEruzL+vyy0k9+5Lza
+ MYpDi9VP6IPbJn+9POYJjcnFw5ZgExpTMYk0c6p+UM7GTlriAeoETsUiRezq31m8+L8oOHMcK3UiU
+ eqiB/HaSpGA4RKh4bFUNjYqpy0NbT6ypCzEQeYMkJIfMJ01zaBxPi6OTrnlujGvvNaUg=;
+Received: from foss.arm.com ([217.140.110.172])
+ by sfi-mx-3.v28.lw.sourceforge.com with esmtp (Exim 4.92.2)
+ id 1jtq4b-00D4VW-Iz
+ for v9fs-developer@lists.sourceforge.net; Fri, 10 Jul 2020 10:16:09 +0000
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+ by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 1304A31B;
+ Fri, 10 Jul 2020 03:16:00 -0700 (PDT)
+Received: from entos-d05.shanghai.arm.com (entos-d05.shanghai.arm.com
+ [10.169.212.212])
+ by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPA id E9F513F9AB;
+ Fri, 10 Jul 2020 03:15:56 -0700 (PDT)
+From: Jianyong Wu <jianyong.wu@arm.com>
+To: ericvh@gmail.com, lucho@ionkov.net, asmadeus@codewreck.org,
+ v9fs-developer@lists.sourceforge.net
+Date: Fri, 10 Jul 2020 18:15:48 +0800
+Message-Id: <20200710101548.10108-1-jianyong.wu@arm.com>
+X-Mailer: git-send-email 2.17.1
+X-Spam-Score: 0.0 (/)
 X-Spam-Report: Spam Filtering performed by mx.sourceforge.net.
  See http://spamassassin.org/tag/ for more details.
  0.0 URIBL_BLOCKED ADMINISTRATOR NOTICE: The query to URIBL was blocked.
  See
  http://wiki.apache.org/spamassassin/DnsBlocklists#dnsbl-block
- for more information. [URIs: appspotmail.com]
- 0.2 HEADER_FROM_DIFFERENT_DOMAINS From and EnvelopeFrom 2nd level mail
- domains are different
- 0.0 SPF_NONE               SPF: sender does not publish an SPF Record
+ for more information. [URIs: arm.com]
+ -0.0 SPF_PASS               SPF: sender matches SPF record
  0.0 SPF_HELO_NONE          SPF: HELO does not publish an SPF Record
- 0.1 DKIM_SIGNED            Message has a DKIM or DK signature,
- not necessarily valid
- 0.1 DKIM_INVALID           DKIM or DK signature exists, but is not valid
- -0.5 AWL AWL: Adjusted score from AWL reputation of From: address
-X-Headers-End: 1jtosy-00D0qb-Vb
-Subject: [V9fs-developer] [PATCH] net/9p: validate fds in p9_fd_open
+X-Headers-End: 1jtq4b-00D4VW-Iz
+Subject: [V9fs-developer] [PATCH v4] 9p: retrieve fid from file when file
+ instance exist.
 X-BeenThere: v9fs-developer@lists.sourceforge.net
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -91,69 +72,89 @@ List-Post: <mailto:v9fs-developer@lists.sourceforge.net>
 List-Help: <mailto:v9fs-developer-request@lists.sourceforge.net?subject=help>
 List-Subscribe: <https://lists.sourceforge.net/lists/listinfo/v9fs-developer>, 
  <mailto:v9fs-developer-request@lists.sourceforge.net?subject=subscribe>
-Cc: v9fs-developer@lists.sourceforge.net,
- syzbot+e6f77e16ff68b2434a2c@syzkaller.appspotmail.com,
- linux-kernel@vger.kernel.org, netdev@vger.kernel.org
+Cc: justin.he@arm.com, wei.chen@arm.com, Steve.Capper@arm.com,
+ jianyong.wu@arm.com, linux-kernel@vger.kernel.org, Kaly.Xin@arm.com
+MIME-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: v9fs-developer-bounces@lists.sourceforge.net
 
-p9_fd_open just fgets file descriptors passed in from userspace, but
-doesn't verify that they are valid for read or writing.  This gets
-cought down in the VFS when actually attemping a read or write, but a
-new warning added in linux-next upsets syzcaller.
+In the current setattr implementation in 9p, fid is always retrieved
+from dentry no matter file instance exists or not. If so, there may be
+some info related to opened file instance dropped. So it's better
+to retrieve fid from file instance when it is passed to setattr.
 
-Fix this by just verifying the fds early on.
+for example:
+fd=open("tmp", O_RDWR);
+ftruncate(fd, 10);
 
-Reported-by: syzbot+e6f77e16ff68b2434a2c@syzkaller.appspotmail.com
-Signed-off-by: Christoph Hellwig <hch@lst.de>
+The file context related with the fd will be lost as fid is always
+retrieved from dentry, then the backend can't get the info of
+file context. It is against the original intention of user and
+may lead to bug.
+
+Signed-off-by: Jianyong Wu <jianyong.wu@arm.com>
 ---
- net/9p/trans_fd.c | 24 ++++++++++++++++--------
- 1 file changed, 16 insertions(+), 8 deletions(-)
+ fs/9p/vfs_inode.c      | 9 +++++++--
+ fs/9p/vfs_inode_dotl.c | 9 +++++++--
+ 2 files changed, 14 insertions(+), 4 deletions(-)
 
-diff --git a/net/9p/trans_fd.c b/net/9p/trans_fd.c
-index 13cd683a658ab6..1cd8ea0e493617 100644
---- a/net/9p/trans_fd.c
-+++ b/net/9p/trans_fd.c
-@@ -803,20 +803,28 @@ static int p9_fd_open(struct p9_client *client, int rfd, int wfd)
- 		return -ENOMEM;
+diff --git a/fs/9p/vfs_inode.c b/fs/9p/vfs_inode.c
+index c9255d399917..cd004dee2214 100644
+--- a/fs/9p/vfs_inode.c
++++ b/fs/9p/vfs_inode.c
+@@ -1090,7 +1090,7 @@ static int v9fs_vfs_setattr(struct dentry *dentry, struct iattr *iattr)
+ {
+ 	int retval;
+ 	struct v9fs_session_info *v9ses;
+-	struct p9_fid *fid;
++	struct p9_fid *fid = NULL;
+ 	struct p9_wstat wstat;
  
- 	ts->rd = fget(rfd);
-+	if (!ts->rd)
-+		goto out_free_ts;
-+	if (!(ts->rd->f_mode & FMODE_READ))
-+		goto out_put_wr;
- 	ts->wr = fget(wfd);
--	if (!ts->rd || !ts->wr) {
--		if (ts->rd)
--			fput(ts->rd);
--		if (ts->wr)
--			fput(ts->wr);
--		kfree(ts);
--		return -EIO;
--	}
-+	if (!ts->wr)
-+		goto out_put_rd;
-+	if (!(ts->wr->f_mode & FMODE_WRITE))
-+		goto out_put_wr;
+ 	p9_debug(P9_DEBUG_VFS, "\n");
+@@ -1100,7 +1100,12 @@ static int v9fs_vfs_setattr(struct dentry *dentry, struct iattr *iattr)
  
- 	client->trans = ts;
- 	client->status = Connected;
+ 	retval = -EPERM;
+ 	v9ses = v9fs_dentry2v9ses(dentry);
+-	fid = v9fs_fid_lookup(dentry);
++	if (iattr->ia_valid & ATTR_FILE) {
++		fid = iattr->ia_file->private_data;
++		WARN_ON(!fid);
++	}
++	if (!fid)
++		fid = v9fs_fid_lookup(dentry);
+ 	if(IS_ERR(fid))
+ 		return PTR_ERR(fid);
  
- 	return 0;
-+
-+out_put_wr:
-+	fput(ts->wr);
-+out_put_rd:
-+	fput(ts->rd);
-+out_free_ts:
-+	kfree(ts);
-+	return -EIO;
- }
+diff --git a/fs/9p/vfs_inode_dotl.c b/fs/9p/vfs_inode_dotl.c
+index 60328b21c5fb..0028eccb665a 100644
+--- a/fs/9p/vfs_inode_dotl.c
++++ b/fs/9p/vfs_inode_dotl.c
+@@ -540,7 +540,7 @@ static int v9fs_mapped_iattr_valid(int iattr_valid)
+ int v9fs_vfs_setattr_dotl(struct dentry *dentry, struct iattr *iattr)
+ {
+ 	int retval;
+-	struct p9_fid *fid;
++	struct p9_fid *fid = NULL;
+ 	struct p9_iattr_dotl p9attr;
+ 	struct inode *inode = d_inode(dentry);
  
- static int p9_socket_open(struct p9_client *client, struct socket *csocket)
+@@ -560,7 +560,12 @@ int v9fs_vfs_setattr_dotl(struct dentry *dentry, struct iattr *iattr)
+ 	p9attr.mtime_sec = iattr->ia_mtime.tv_sec;
+ 	p9attr.mtime_nsec = iattr->ia_mtime.tv_nsec;
+ 
+-	fid = v9fs_fid_lookup(dentry);
++	if (iattr->ia_valid & ATTR_FILE) {
++		fid = iattr->ia_file->private_data;
++		WARN_ON(!fid);
++	}
++	if (!fid)
++		fid = v9fs_fid_lookup(dentry);
+ 	if (IS_ERR(fid))
+ 		return PTR_ERR(fid);
+ 
 -- 
-2.26.2
+2.17.1
 
 
 
