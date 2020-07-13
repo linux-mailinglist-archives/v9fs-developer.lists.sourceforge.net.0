@@ -2,26 +2,26 @@ Return-Path: <v9fs-developer-bounces@lists.sourceforge.net>
 X-Original-To: lists+v9fs-developer@lfdr.de
 Delivered-To: lists+v9fs-developer@lfdr.de
 Received: from lists.sourceforge.net (lists.sourceforge.net [216.105.38.7])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8BADB21DD0D
-	for <lists+v9fs-developer@lfdr.de>; Mon, 13 Jul 2020 18:36:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8EDA521DD0F
+	for <lists+v9fs-developer@lfdr.de>; Mon, 13 Jul 2020 18:36:45 +0200 (CEST)
 Received: from [127.0.0.1] (helo=sfs-ml-1.v29.lw.sourceforge.com)
 	by sfs-ml-1.v29.lw.sourceforge.com with esmtp (Exim 4.90_1)
 	(envelope-from <v9fs-developer-bounces@lists.sourceforge.net>)
-	id 1jv1RV-0007OY-A7; Mon, 13 Jul 2020 16:36:37 +0000
+	id 1jv1Rc-0007PM-C2; Mon, 13 Jul 2020 16:36:44 +0000
 Received: from [172.30.20.202] (helo=mx.sourceforge.net)
  by sfs-ml-1.v29.lw.sourceforge.com with esmtps
  (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.90_1)
- (envelope-from <dhowells@redhat.com>) id 1jv1RU-0007OR-DN
- for v9fs-developer@lists.sourceforge.net; Mon, 13 Jul 2020 16:36:36 +0000
+ (envelope-from <dhowells@redhat.com>) id 1jv1Rb-0007PG-P5
+ for v9fs-developer@lists.sourceforge.net; Mon, 13 Jul 2020 16:36:43 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
  d=sourceforge.net; s=x; h=Content-Transfer-Encoding:Content-Type:MIME-Version
  :References:In-Reply-To:Message-ID:Date:Cc:To:From:Subject:Sender:Reply-To:
  Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
  Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
  List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=4Dx73C4k9Thc3ljEFUPGVG7P3hZSGE4+WwiC3XK8A+c=; b=UZGHAfc1M7qWjxhoS0vec2ZKIa
- YdKckEQE+50E6EBVCKLBNdBBtlr11/LTaeA4M5RrOylVFDzaf3qU+rftmyQYhQUxEnvEN1co9YgAQ
- dRW5xY7tEaHU43serdlzQYvXqbh75GCEjLsId1V2RNbgyGmOp7KjMgPsmGgViygeY8cg=;
+ bh=qPZPF8CZHtaoL1uBXqtCN+iDfCdWcWYQMvIrZ6uG2yY=; b=DHm6bc3cJ958hjFeU0LO7j2fCo
+ FFI4JmSiy1rKAZmQQ7dGzLQNaIRL5iN2oMe/wjBFsJZuuOgbrJu3iyghWsEYwvsIsLIE+6H6YnZ80
+ rrPKFejQ4EQFCIMmSNefLBDJBA02sLY2vIoqe6i+/oa3ASvQAlSzSAtRUUiw1+Bwzhd4=;
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  ;
  h=Content-Transfer-Encoding:Content-Type:MIME-Version:References:
@@ -29,39 +29,39 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
  :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
  List-Post:List-Owner:List-Archive;
- bh=4Dx73C4k9Thc3ljEFUPGVG7P3hZSGE4+WwiC3XK8A+c=; b=dQurokSQDv0JCdJ/hUIB2kEEND
- Qb7KPdx1jn0/aLVsNNpSweKi/ommQd9VK7SBU8rF5HZqOaS/ilClAz5T/nm2qTkF63DvaHUvUNhcs
- AvK98x882G7HgUyaeL5T+Cc9awf2Z0vDFoCQ5TM6YvwERtpv/4Tosx7i5zxEmC0pGL1w=;
-Received: from us-smtp-2.mimecast.com ([205.139.110.61]
+ bh=qPZPF8CZHtaoL1uBXqtCN+iDfCdWcWYQMvIrZ6uG2yY=; b=jjS3R47nz/jzJaR1puXuGYH7Ne
+ mImF/ocvpDKlxZnCPRinAo+agDCFKpHAka2HtHSeq18sgc3NLL6Za1ep10wWWgg7rX+LlgzLvXuVn
+ U8xKjM6mkX4a0ZiJI3/T/CVJy7e6vbhhloZvaBHD4OjLjslOeAjlQ0NBtMceBOYUv5Uc=;
+Received: from us-smtp-1.mimecast.com ([205.139.110.61]
  helo=us-smtp-delivery-1.mimecast.com)
- by sfi-mx-1.v28.lw.sourceforge.com with esmtps
+ by sfi-mx-4.v28.lw.sourceforge.com with esmtps
  (TLSv1.2:ECDHE-RSA-AES256-SHA384:256) (Exim 4.92.2)
- id 1jv1RS-005eQb-Lf
- for v9fs-developer@lists.sourceforge.net; Mon, 13 Jul 2020 16:36:36 +0000
+ id 1jv1Ra-001hgH-5g
+ for v9fs-developer@lists.sourceforge.net; Mon, 13 Jul 2020 16:36:43 +0000
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
- s=mimecast20190719; t=1594658181;
+ s=mimecast20190719; t=1594658196;
  h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
  to:to:cc:cc:mime-version:mime-version:content-type:content-type:
  content-transfer-encoding:content-transfer-encoding:
  in-reply-to:in-reply-to:references:references;
- bh=4Dx73C4k9Thc3ljEFUPGVG7P3hZSGE4+WwiC3XK8A+c=;
- b=NVyQRR7UjDsG7ZW2t7lTnzBdDpCN3i/WoRJ9+Iy7zgf5S60XCoJLP6Vehri3eCGicYJ1En
- NlzPxkpH0sdx7PWxFYLbk6Y+kfVsBXq46Q+HJ0qKdolaZCQCxhtDxJg7G1jVc8ELBaOE5D
- AAJIZ+pjgcArukmgqLHCgWP81Em4+f0=
+ bh=qPZPF8CZHtaoL1uBXqtCN+iDfCdWcWYQMvIrZ6uG2yY=;
+ b=i7dviruoijavrklan6hvGkIz4q6LYHpd1RuterXV0IErqeeBbgBnV6jnp1/LtrsyHPspsa
+ 7si+WgQE4t4ROQZ+C+ftXNUV/Kvgvq39cbtzWSi+mM0K41im4dWSC5+n8wL82hyOTfxyWl
+ s+dp3wiqIKrc+oSYd36OSpORvdwS5Pc=
 Received: from mimecast-mx01.redhat.com (mimecast-mx01.redhat.com
  [209.132.183.4]) (Using TLS) by relay.mimecast.com with ESMTP id
- us-mta-158-LNWmS2GOPOaPnnliCcz2VQ-1; Mon, 13 Jul 2020 12:36:19 -0400
-X-MC-Unique: LNWmS2GOPOaPnnliCcz2VQ-1
-Received: from smtp.corp.redhat.com (int-mx03.intmail.prod.int.phx2.redhat.com
- [10.5.11.13])
+ us-mta-402-9Pba6R6MNXasIO1U8nE6QA-1; Mon, 13 Jul 2020 12:36:34 -0400
+X-MC-Unique: 9Pba6R6MNXasIO1U8nE6QA-1
+Received: from smtp.corp.redhat.com (int-mx04.intmail.prod.int.phx2.redhat.com
+ [10.5.11.14])
  (using TLSv1.2 with cipher AECDH-AES256-SHA (256/256 bits))
  (No client certificate requested)
- by mimecast-mx01.redhat.com (Postfix) with ESMTPS id 7FE501088;
- Mon, 13 Jul 2020 16:36:17 +0000 (UTC)
+ by mimecast-mx01.redhat.com (Postfix) with ESMTPS id ACF9E1080;
+ Mon, 13 Jul 2020 16:36:32 +0000 (UTC)
 Received: from warthog.procyon.org.uk (ovpn-112-113.rdu2.redhat.com
  [10.10.112.113])
- by smtp.corp.redhat.com (Postfix) with ESMTP id EE1AF6FDD1;
- Mon, 13 Jul 2020 16:36:08 +0000 (UTC)
+ by smtp.corp.redhat.com (Postfix) with ESMTP id 7F2B45D9DC;
+ Mon, 13 Jul 2020 16:36:23 +0000 (UTC)
 Organization: Red Hat UK Ltd. Registered Address: Red Hat UK Ltd, Amberley
  Place, 107-111 Peascod Street, Windsor, Berkshire, SI4 1TE, United
  Kingdom.
@@ -71,13 +71,13 @@ To: Trond Myklebust <trondmy@hammerspace.com>,
  Anna Schumaker <anna.schumaker@netapp.com>, Steve French <sfrench@samba.org>, 
  Alexander Viro <viro@zeniv.linux.org.uk>,
  Matthew Wilcox <willy@infradead.org>
-Date: Mon, 13 Jul 2020 17:36:08 +0100
-Message-ID: <159465816816.1376674.16552237991218497564.stgit@warthog.procyon.org.uk>
+Date: Mon, 13 Jul 2020 17:36:22 +0100
+Message-ID: <159465818273.1376674.5693474446095659046.stgit@warthog.procyon.org.uk>
 In-Reply-To: <159465784033.1376674.18106463693989811037.stgit@warthog.procyon.org.uk>
 References: <159465784033.1376674.18106463693989811037.stgit@warthog.procyon.org.uk>
 User-Agent: StGit/0.22
 MIME-Version: 1.0
-X-Scanned-By: MIMEDefang 2.79 on 10.5.11.13
+X-Scanned-By: MIMEDefang 2.79 on 10.5.11.14
 X-Spam-Score: -0.4 (/)
 X-Spam-Report: Spam Filtering performed by mx.sourceforge.net.
  See http://spamassassin.org/tag/ for more details.
@@ -94,9 +94,8 @@ X-Spam-Report: Spam Filtering performed by mx.sourceforge.net.
  not necessarily valid
  -0.0 DKIMWL_WL_HIGH         DKIMwl.org - Whitelisted High sender
  -0.3 AWL AWL: Adjusted score from AWL reputation of From: address
-X-Headers-End: 1jv1RS-005eQb-Lf
-Subject: [V9fs-developer] [PATCH 29/32] fscache: Implement "will_modify"
- parameter on fscache_use_cookie()
+X-Headers-End: 1jv1Ra-001hgH-5g
+Subject: [V9fs-developer] [PATCH 30/32] fscache: Provide resize operation
 X-BeenThere: v9fs-developer@lists.sourceforge.net
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -117,338 +116,191 @@ Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: v9fs-developer-bounces@lists.sourceforge.net
 
-Implement the "will_modify" parameter passed to fscache_use_cookie().
-
-Setting this to true will henceforth cause the affected object to be marked
-as dirty on disk, subject to conflict resolution in the event that power
-failure or a crash occurs or the filesystem operates in disconnected mode.
-
-The dirty flag is removed when the fscache_object is discarded from memory.
-
-A cache hook is provided to prepare for writing - and this can be used to
-mark the object on disk.
+Provide a cache operation to resize an object.  This is intended to be run
+synchronously rather than being deferred as it really needs to run inside
+the inode lock on the netfs inode from ->setattr() to correctly order with
+respect to other truncates and writes.
 
 Signed-off-by: David Howells <dhowells@redhat.com>
 ---
 
- fs/cachefiles/interface.c     |   65 +++++++++++++++++++++++++++++++++++++++++
- fs/cachefiles/internal.h      |    2 +
- fs/cachefiles/xattr.c         |   21 +++++++++++++
- fs/fscache/cookie.c           |   17 +++++++++--
- fs/fscache/internal.h         |    1 +
- fs/fscache/obj.c              |   28 +++++++++++++++---
- include/linux/fscache-cache.h |    4 +++
- 7 files changed, 129 insertions(+), 9 deletions(-)
+ fs/cachefiles/interface.c     |   24 ++++++++++++++++++++++++
+ fs/fscache/internal.h         |    3 +++
+ fs/fscache/io.c               |   27 +++++++++++++++++++++++++++
+ fs/fscache/stats.c            |    9 +++++++--
+ include/linux/fscache-cache.h |    2 ++
+ include/linux/fscache.h       |   18 ++++++++++++++++++
+ 6 files changed, 81 insertions(+), 2 deletions(-)
 
 diff --git a/fs/cachefiles/interface.c b/fs/cachefiles/interface.c
-index 76f3a89d3e6c..c626cc4248a7 100644
+index c626cc4248a7..d4172a40ddc9 100644
 --- a/fs/cachefiles/interface.c
 +++ b/fs/cachefiles/interface.c
-@@ -210,14 +210,78 @@ static void cachefiles_update_object(struct fscache_object *_object)
- 	_leave("");
+@@ -248,6 +248,29 @@ static bool cachefiles_shorten_object(struct cachefiles_object *object, loff_t n
+ 	return true;
  }
  
 +/*
-+ * Shorten the backing object to discard any dirty data and free up
-+ * any unused granules.
++ * Resize the backing object.
 + */
-+static bool cachefiles_shorten_object(struct cachefiles_object *object, loff_t new_size)
-+{
-+	struct cachefiles_cache *cache;
-+	struct inode *inode;
-+	struct path path;
-+	loff_t i_size;
-+
-+	cache = container_of(object->fscache.cache,
-+			     struct cachefiles_cache, cache);
-+	path.mnt = cache->mnt;
-+	path.dentry = object->dentry;
-+
-+	inode = d_inode(object->dentry);
-+	trace_cachefiles_trunc(object, inode, i_size_read(inode), new_size);
-+	if (vfs_truncate(&path, new_size) < 0) {
-+		cachefiles_io_error_obj(object, "Trunc-to-size failed");
-+		cachefiles_remove_object_xattr(cache, object->dentry);
-+		return false;
-+	}
-+
-+	new_size = round_up(new_size, CACHEFILES_DIO_BLOCK_SIZE);
-+	i_size = i_size_read(inode);
-+	if (i_size < new_size) {
-+		trace_cachefiles_trunc(object, inode, i_size, new_size);
-+		if (vfs_truncate(&path, new_size) < 0) {
-+			cachefiles_io_error_obj(object, "Trunc-to-dio-size failed");
-+			cachefiles_remove_object_xattr(cache, object->dentry);
-+			return false;
-+		}
-+	}
-+
-+	return true;
-+}
-+
-+/*
-+ * Trim excess stored data off of an object.
-+ */
-+static bool cachefiles_trim_object(struct cachefiles_object *object)
-+{
-+	loff_t object_size;
-+
-+	_enter("{OBJ%x}", object->fscache.debug_id);
-+
-+	object_size = object->fscache.cookie->object_size;
-+	if (i_size_read(d_inode(object->dentry)) <= object_size)
-+		return true;
-+
-+	return cachefiles_shorten_object(object, object_size);
-+}
-+
- /*
-  * Commit changes to the object as we drop it.
-  */
- static bool cachefiles_commit_object(struct cachefiles_object *object,
- 				     struct cachefiles_cache *cache)
- {
-+	bool update = false;
-+
- 	if (object->content_map_changed)
- 		cachefiles_save_content_map(object);
-+	if (test_and_clear_bit(FSCACHE_OBJECT_LOCAL_WRITE, &object->fscache.flags))
-+		update = true;
-+	if (test_and_clear_bit(FSCACHE_OBJECT_NEEDS_UPDATE, &object->fscache.flags))
-+		update = true;
-+	if (update) {
-+		if (cachefiles_trim_object(object))
-+			cachefiles_set_object_xattr(object);
-+	}
- 
- 	if (test_bit(CACHEFILES_OBJECT_USING_TMPFILE, &object->flags))
- 		return cachefiles_commit_tmpfile(cache, object);
-@@ -575,5 +639,6 @@ const struct fscache_cache_ops cachefiles_cache_ops = {
- 	.shape_request		= cachefiles_shape_request,
- 	.read			= cachefiles_read,
- 	.write			= cachefiles_write,
-+	.prepare_to_write	= cachefiles_prepare_to_write,
- 	.display_object		= cachefiles_display_object,
- };
-diff --git a/fs/cachefiles/internal.h b/fs/cachefiles/internal.h
-index ba60fc9dda0a..bfe56eb53104 100644
---- a/fs/cachefiles/internal.h
-+++ b/fs/cachefiles/internal.h
-@@ -247,7 +247,7 @@ extern int cachefiles_set_object_xattr(struct cachefiles_object *object);
- extern int cachefiles_check_auxdata(struct cachefiles_object *object);
- extern int cachefiles_remove_object_xattr(struct cachefiles_cache *cache,
- 					  struct dentry *dentry);
--
-+extern int cachefiles_prepare_to_write(struct fscache_object *object);
- 
- /*
-  * error handling
-diff --git a/fs/cachefiles/xattr.c b/fs/cachefiles/xattr.c
-index 22c56ca2fd0b..456301b7abb0 100644
---- a/fs/cachefiles/xattr.c
-+++ b/fs/cachefiles/xattr.c
-@@ -124,6 +124,8 @@ int cachefiles_set_object_xattr(struct cachefiles_object *object)
- 	buf->zero_point		= cpu_to_be64(object->fscache.cookie->zero_point);
- 	buf->type		= object->fscache.cookie->type;
- 	buf->content		= object->content_info;
-+	if (test_bit(FSCACHE_OBJECT_LOCAL_WRITE, &object->fscache.flags))
-+		buf->content	= CACHEFILES_CONTENT_DIRTY;
- 	if (len > 0)
- 		memcpy(buf->data, fscache_get_aux(object->fscache.cookie), len);
- 
-@@ -184,10 +186,16 @@ int cachefiles_check_auxdata(struct cachefiles_object *object)
- 		why = cachefiles_coherency_check_aux;
- 	} else if (be64_to_cpu(buf->object_size) != object->fscache.cookie->object_size) {
- 		why = cachefiles_coherency_check_objsize;
-+	} else if (buf->content == CACHEFILES_CONTENT_DIRTY) {
-+		// TODO: Begin conflict resolution
-+		pr_warn("Dirty object in cache\n");
-+		why = cachefiles_coherency_check_dirty;
- 	} else {
- 		object->fscache.cookie->zero_point = be64_to_cpu(buf->zero_point);
- 		object->content_info = buf->content;
- 		why = cachefiles_coherency_check_ok;
-+		object->fscache.cookie->zero_point = be64_to_cpu(buf->zero_point);
-+		object->content_info = buf->content;
- 		ret = 0;
- 	}
- 
-@@ -219,3 +227,16 @@ int cachefiles_remove_object_xattr(struct cachefiles_cache *cache,
- 	_leave(" = %d", ret);
- 	return ret;
- }
-+
-+/*
-+ * Stick a marker on the cache object to indicate that it's dirty.
-+ */
-+int cachefiles_prepare_to_write(struct fscache_object *_object)
++static void cachefiles_resize_object(struct fscache_object *_object, loff_t new_size)
 +{
 +	struct cachefiles_object *object =
 +		container_of(_object, struct cachefiles_object, fscache);
++	loff_t old_size = object->fscache.cookie->object_size;
 +
-+	_enter("c=%08x", object->fscache.cookie->debug_id);
++	_enter("%llu->%llu", old_size, new_size);
 +
-+	return cachefiles_set_object_xattr(object);
++	if (new_size < old_size) {
++		cachefiles_shorten_content_map(object, new_size);
++		cachefiles_shorten_object(object, new_size);
++		return;
++	}
++
++	/* The file is being expanded.  We don't need to do anything
++	 * particularly.  cookie->initial_size doesn't change and so the point
++	 * at which we have to download before doesn't change.
++	 */
 +}
-diff --git a/fs/fscache/cookie.c b/fs/fscache/cookie.c
-index fc93f4b69198..22cb8efe261f 100644
---- a/fs/fscache/cookie.c
-+++ b/fs/fscache/cookie.c
-@@ -342,6 +342,8 @@ EXPORT_SYMBOL(__fscache_acquire_cookie);
- void __fscache_use_cookie(struct fscache_cookie *cookie, bool will_modify)
- {
- 	enum fscache_cookie_stage stage;
-+	struct fscache_object *object;
-+	bool write_set;
- 
- 	_enter("c=%08x", cookie->debug_id);
- 
-@@ -360,7 +362,7 @@ void __fscache_use_cookie(struct fscache_cookie *cookie, bool will_modify)
- 
- 		/* The lookup job holds its own active increment */
- 		atomic_inc(&cookie->n_active);
--		fscache_dispatch(cookie, NULL, 0, fscache_lookup_object);
-+		fscache_dispatch(cookie, NULL, will_modify, fscache_lookup_object);
- 		break;
- 
- 	case FSCACHE_COOKIE_STAGE_INITIALISING:
-@@ -373,8 +375,17 @@ void __fscache_use_cookie(struct fscache_cookie *cookie, bool will_modify)
- 	case FSCACHE_COOKIE_STAGE_NO_DATA_YET:
- 	case FSCACHE_COOKIE_STAGE_ACTIVE:
- 	case FSCACHE_COOKIE_STAGE_INVALIDATING:
--		// TODO: Handle will_modify
--		spin_unlock(&cookie->lock);
-+		if (will_modify) {
-+			object = hlist_entry(cookie->backing_objects.first,
-+					     struct fscache_object, cookie_link);
-+			write_set = test_and_set_bit(FSCACHE_OBJECT_LOCAL_WRITE,
-+						     &object->flags);
-+			spin_unlock(&cookie->lock);
-+			if (!write_set)
-+				fscache_dispatch(cookie, object, 0, fscache_prepare_to_write);
-+		} else {
-+			spin_unlock(&cookie->lock);
-+		}
- 		break;
- 
- 	case FSCACHE_COOKIE_STAGE_DEAD:
++
+ /*
+  * Trim excess stored data off of an object.
+  */
+@@ -631,6 +654,7 @@ const struct fscache_cache_ops cachefiles_cache_ops = {
+ 	.free_lookup_data	= cachefiles_free_lookup_data,
+ 	.grab_object		= cachefiles_grab_object,
+ 	.update_object		= cachefiles_update_object,
++	.resize_object		= cachefiles_resize_object,
+ 	.invalidate_object	= cachefiles_invalidate_object,
+ 	.drop_object		= cachefiles_drop_object,
+ 	.put_object		= cachefiles_put_object,
 diff --git a/fs/fscache/internal.h b/fs/fscache/internal.h
-index d9391d3974d1..120bb68f74b1 100644
+index 120bb68f74b1..eb61e0716e20 100644
 --- a/fs/fscache/internal.h
 +++ b/fs/fscache/internal.h
-@@ -136,6 +136,7 @@ extern void fscache_lookup_object(struct fscache_cookie *, struct fscache_object
- extern void fscache_invalidate_object(struct fscache_cookie *, struct fscache_object *, int);
- extern void fscache_drop_object(struct fscache_cookie *, struct fscache_object *, bool);
- extern void fscache_discard_objects(struct fscache_cookie *, struct fscache_object *, int);
-+extern void fscache_prepare_to_write(struct fscache_cookie *, struct fscache_object *, int);
+@@ -178,6 +178,9 @@ extern atomic_t fscache_n_updates;
+ extern atomic_t fscache_n_updates_null;
+ extern atomic_t fscache_n_updates_run;
  
- /*
-  * object-list.c
-diff --git a/fs/fscache/obj.c b/fs/fscache/obj.c
-index a7064a4cb486..139b59472628 100644
---- a/fs/fscache/obj.c
-+++ b/fs/fscache/obj.c
-@@ -117,7 +117,8 @@ static bool fscache_wrangle_object(struct fscache_cookie *cookie,
-  * Create an object chain, making sure that the index chain is fully created.
-  */
- static struct fscache_object *fscache_lookup_object_chain(struct fscache_cookie *cookie,
--							  struct fscache_cache *cache)
-+							  struct fscache_cache *cache,
-+							  bool will_modify)
- {
- 	struct fscache_object *object = NULL, *parent, *xobject;
- 
-@@ -131,7 +132,7 @@ static struct fscache_object *fscache_lookup_object_chain(struct fscache_cookie
- 	spin_unlock(&cookie->lock);
- 
- 	/* Recurse to look up/create the parent index. */
--	parent = fscache_lookup_object_chain(cookie->parent, cache);
-+	parent = fscache_lookup_object_chain(cookie->parent, cache, false);
- 	if (IS_ERR(parent))
- 		goto error;
- 
-@@ -146,6 +147,9 @@ static struct fscache_object *fscache_lookup_object_chain(struct fscache_cookie
- 	if (!object)
- 		goto error;
- 
-+	if (will_modify)
-+		__set_bit(FSCACHE_OBJECT_LOCAL_WRITE, &object->flags);
++extern atomic_t fscache_n_resizes;
++extern atomic_t fscache_n_resizes_null;
 +
- 	xobject = fscache_attach_object(cookie, object);
- 	if (xobject != object) {
- 		fscache_do_put_object(object, fscache_obj_put_alloc_dup);
-@@ -203,7 +207,8 @@ static struct fscache_object *fscache_lookup_object_chain(struct fscache_cookie
-  * - this must make sure the index chain is instantiated and instantiate the
-  *   object representation too
-  */
--static void fscache_lookup_object_locked(struct fscache_cookie *cookie)
-+static void fscache_lookup_object_locked(struct fscache_cookie *cookie,
-+					 bool will_modify)
- {
- 	struct fscache_object *object;
- 	struct fscache_cache *cache;
-@@ -221,12 +226,16 @@ static void fscache_lookup_object_locked(struct fscache_cookie *cookie)
- 
- 	_debug("cache %s", cache->tag->name);
- 
--	object = fscache_lookup_object_chain(cookie, cache);
-+	object = fscache_lookup_object_chain(cookie, cache, will_modify);
- 	if (!object) {
- 		_leave(" [fail]");
- 		return;
+ extern atomic_t fscache_n_relinquishes;
+ extern atomic_t fscache_n_relinquishes_null;
+ extern atomic_t fscache_n_relinquishes_retire;
+diff --git a/fs/fscache/io.c b/fs/fscache/io.c
+index 1885cfbe7f04..1a074f9c4bbe 100644
+--- a/fs/fscache/io.c
++++ b/fs/fscache/io.c
+@@ -172,3 +172,30 @@ int __fscache_write(struct fscache_io_request *req, struct iov_iter *iter)
  	}
- 
-+	if (will_modify &&
-+	    test_and_set_bit(FSCACHE_OBJECT_LOCAL_WRITE, &object->flags))
-+		fscache_prepare_to_write(cookie, object, 0);
-+
- 	fscache_do_put_object(object, fscache_obj_put);
- 	_leave(" [done]");
  }
-@@ -235,7 +244,7 @@ void fscache_lookup_object(struct fscache_cookie *cookie,
- 			   struct fscache_object *object, int param)
- {
- 	down_read(&fscache_addremove_sem);
--	fscache_lookup_object_locked(cookie);
-+	fscache_lookup_object_locked(cookie, param);
- 	up_read(&fscache_addremove_sem);
- 	__fscache_unuse_cookie(cookie, NULL, NULL);
- }
-@@ -339,3 +348,12 @@ void fscache_discard_objects(struct fscache_cookie *cookie,
- 	up_read(&fscache_addremove_sem);
- 	_leave("");
- }
+ EXPORT_SYMBOL(__fscache_write);
 +
 +/*
-+ * Prepare a cache object to be written to.
++ * Change the size of a backing object.
 + */
-+void fscache_prepare_to_write(struct fscache_cookie *cookie,
-+			      struct fscache_object *object, int param)
++void __fscache_resize_cookie(struct fscache_cookie *cookie, loff_t new_size)
 +{
-+	object->cache->ops->prepare_to_write(object);
++	struct fscache_object *object;
++
++	ASSERT(cookie->type != FSCACHE_COOKIE_TYPE_INDEX);
++
++	object = fscache_begin_io_operation(cookie, FSCACHE_WANT_WRITE, NULL);
++	if (!IS_ERR(object)) {
++		fscache_stat(&fscache_n_resizes);
++		set_bit(FSCACHE_OBJECT_NEEDS_UPDATE, &object->flags);
++
++		/* We cannot defer a resize as we need to do it inside the
++		 * netfs's inode lock so that we're serialised with respect to
++		 * writes.
++		 */
++		object->cache->ops->resize_object(object, new_size);
++		object->cache->ops->put_object(object, fscache_obj_put_ioreq);
++		fscache_end_io_operation(cookie);
++	} else {
++		fscache_stat(&fscache_n_resizes_null);
++	}
 +}
++EXPORT_SYMBOL(__fscache_resize_cookie);
+diff --git a/fs/fscache/stats.c b/fs/fscache/stats.c
+index 63fb4d831f4d..33cea7f527db 100644
+--- a/fs/fscache/stats.c
++++ b/fs/fscache/stats.c
+@@ -26,6 +26,9 @@ atomic_t fscache_n_updates;
+ atomic_t fscache_n_updates_null;
+ atomic_t fscache_n_updates_run;
+ 
++atomic_t fscache_n_resizes;
++atomic_t fscache_n_resizes_null;
++
+ atomic_t fscache_n_relinquishes;
+ atomic_t fscache_n_relinquishes_null;
+ atomic_t fscache_n_relinquishes_retire;
+@@ -132,10 +135,12 @@ int fscache_stats_show(struct seq_file *m, void *v)
+ 	seq_printf(m, "Invals : n=%u\n",
+ 		   atomic_read(&fscache_n_invalidates));
+ 
+-	seq_printf(m, "Updates: n=%u nul=%u run=%u\n",
++	seq_printf(m, "Updates: n=%u nul=%u run=%u rsz=%u rsn=%u\n",
+ 		   atomic_read(&fscache_n_updates),
+ 		   atomic_read(&fscache_n_updates_null),
+-		   atomic_read(&fscache_n_updates_run));
++		   atomic_read(&fscache_n_updates_run),
++		   atomic_read(&fscache_n_resizes),
++		   atomic_read(&fscache_n_resizes_null));
+ 
+ 	seq_printf(m, "Relinqs: n=%u nul=%u rtr=%u\n",
+ 		   atomic_read(&fscache_n_relinquishes),
 diff --git a/include/linux/fscache-cache.h b/include/linux/fscache-cache.h
-index da85eb15b3c9..3625fd431d9f 100644
+index 3625fd431d9f..ba0ad89a968e 100644
 --- a/include/linux/fscache-cache.h
 +++ b/include/linux/fscache-cache.h
-@@ -154,6 +154,9 @@ struct fscache_cache_ops {
- 		     struct fscache_io_request *req,
- 		     struct iov_iter *iter);
+@@ -118,6 +118,8 @@ struct fscache_cache_ops {
  
-+	/* Prepare to write to a live cache object */
-+	int (*prepare_to_write)(struct fscache_object *object);
+ 	/* store the updated auxiliary data on an object */
+ 	void (*update_object)(struct fscache_object *object);
++	/* Change the size of a data object */
++	void (*resize_object)(struct fscache_object *object, loff_t new_size);
+ 
+ 	/* Invalidate an object */
+ 	bool (*invalidate_object)(struct fscache_object *object,
+diff --git a/include/linux/fscache.h b/include/linux/fscache.h
+index c313950afd8a..cd8b6dc81c52 100644
+--- a/include/linux/fscache.h
++++ b/include/linux/fscache.h
+@@ -232,6 +232,7 @@ extern void __fscache_unuse_cookie(struct fscache_cookie *, const void *, const
+ extern void __fscache_relinquish_cookie(struct fscache_cookie *, bool);
+ extern void __fscache_update_cookie(struct fscache_cookie *, const void *, const loff_t *);
+ extern void __fscache_shape_request(struct fscache_cookie *, struct fscache_request_shape *);
++extern void __fscache_resize_cookie(struct fscache_cookie *, loff_t);
+ extern void __fscache_invalidate(struct fscache_cookie *, const void *, loff_t, unsigned int);
+ extern void __fscache_init_io_request(struct fscache_io_request *,
+ 				      struct fscache_cookie *);
+@@ -431,6 +432,23 @@ void fscache_update_cookie(struct fscache_cookie *cookie, const void *aux_data,
+ 		__fscache_update_cookie(cookie, aux_data, object_size);
+ }
+ 
++/**
++ * fscache_resize_cookie - Request that a cache object be resized
++ * @cookie: The cookie representing the cache object
++ * @new_size: The new size of the object (may be NULL)
++ *
++ * Request that the size of an object be changed.
++ *
++ * See Documentation/filesystems/caching/netfs-api.txt for a complete
++ * description.
++ */
++static inline
++void fscache_resize_cookie(struct fscache_cookie *cookie, loff_t new_size)
++{
++	if (fscache_cookie_valid(cookie))
++		__fscache_resize_cookie(cookie, new_size);
++}
 +
- 	/* Display object info in /proc/fs/fscache/objects */
- 	int (*display_object)(struct seq_file *m, struct fscache_object *object);
- };
-@@ -182,6 +185,7 @@ struct fscache_object {
- 	spinlock_t		lock;		/* state and operations lock */
- 
- 	unsigned long		flags;
-+#define FSCACHE_OBJECT_LOCAL_WRITE	1	/* T if the object is being modified locally */
- #define FSCACHE_OBJECT_NEEDS_INVAL	8	/* T if object needs invalidation */
- #define FSCACHE_OBJECT_NEEDS_UPDATE	9	/* T if object attrs need writing to disk */
- 
+ /**
+  * fscache_pin_cookie - Pin a data-storage cache object in its cache
+  * @cookie: The cookie representing the cache object
 
 
 
