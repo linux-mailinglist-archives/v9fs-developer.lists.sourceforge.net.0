@@ -2,26 +2,26 @@ Return-Path: <v9fs-developer-bounces@lists.sourceforge.net>
 X-Original-To: lists+v9fs-developer@lfdr.de
 Delivered-To: lists+v9fs-developer@lfdr.de
 Received: from lists.sourceforge.net (lists.sourceforge.net [216.105.38.7])
-	by mail.lfdr.de (Postfix) with ESMTPS id 772DB21F07A
-	for <lists+v9fs-developer@lfdr.de>; Tue, 14 Jul 2020 14:13:21 +0200 (CEST)
-Received: from [127.0.0.1] (helo=sfs-ml-4.v29.lw.sourceforge.com)
-	by sfs-ml-4.v29.lw.sourceforge.com with esmtp (Exim 4.90_1)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1FFB921FEF4
+	for <lists+v9fs-developer@lfdr.de>; Tue, 14 Jul 2020 22:54:20 +0200 (CEST)
+Received: from [127.0.0.1] (helo=sfs-ml-2.v29.lw.sourceforge.com)
+	by sfs-ml-2.v29.lw.sourceforge.com with esmtp (Exim 4.90_1)
 	(envelope-from <v9fs-developer-bounces@lists.sourceforge.net>)
-	id 1jvJoF-00063t-Ev; Tue, 14 Jul 2020 12:13:19 +0000
+	id 1jvRwQ-0005MH-4D; Tue, 14 Jul 2020 20:54:18 +0000
 Received: from [172.30.20.202] (helo=mx.sourceforge.net)
- by sfs-ml-4.v29.lw.sourceforge.com with esmtps
+ by sfs-ml-2.v29.lw.sourceforge.com with esmtps
  (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.90_1)
- (envelope-from <asmadeus@notk.org>) id 1jvJoD-00063h-Rn
- for v9fs-developer@lists.sourceforge.net; Tue, 14 Jul 2020 12:13:17 +0000
+ (envelope-from <ebiggers@kernel.org>) id 1jvRwO-0005MA-WB
+ for v9fs-developer@lists.sourceforge.net; Tue, 14 Jul 2020 20:54:17 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
  d=sourceforge.net; s=x; h=In-Reply-To:Content-Type:MIME-Version:References:
  Message-ID:Subject:Cc:To:From:Date:Sender:Reply-To:Content-Transfer-Encoding:
  Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
  Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
  List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=dbM7QhdQH+BOGMhLWa7O6b96M53JJLuDNJ3jghm2BOQ=; b=kt38J64qwETRpMN6JrVnk1JS5Y
- Ep8E0UO1Y3L693h1TBNzXX1R7zmLhzHetetOIsShmiketWys2bUJdgeqcRJ93DnsXRzVLH9aZsi9L
- cpKWlmAKz0Upacl4I3XCG6lQ59GnjGB5XAF6svNgfp2FaExvAcKWWgHmllGhTVx9KXA8=;
+ bh=fcE/Zrnx1DVFVUArEdVRTbFdXiDVbZOXEpcxh87SByg=; b=SrB6qJPf5tvnw8YW1m9RdW91H8
+ kn6G0bN11cWlt+hCm4l+XZtrek5k7kmG5DgnbviJ9i9dJ/bnRXqC2BTZ3Xng5rr8DzMeIvJLtx6AL
+ 4TVuYnFOf9BwTr5jMi1wjX56OwA9GMdNTEfdEhXqbpg3zJzaLEHfxPSmYvKQYp6BlmRo=;
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  ;
  h=In-Reply-To:Content-Type:MIME-Version:References:Message-ID:Subject:Cc:To
@@ -29,33 +29,48 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
  :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
  List-Post:List-Owner:List-Archive;
- bh=dbM7QhdQH+BOGMhLWa7O6b96M53JJLuDNJ3jghm2BOQ=; b=CPCGOOomuP+bOvIZM7DTiBEfda
- SpyCgxECMJX+ovT4CHv+5PHQOi7UGNgnRD9IIN2SPZKVv9O5//OEQ78GNQHoosv/+YNkmgv+X1Lx1
- nVG8E22Dkr5AQ10sX846HAmJBH+6fDoWzhC+/ezV8oyHx64tA2fLIsntbZEmsyaXcW3w=;
-Received: from nautica.notk.org ([91.121.71.147])
- by sfi-mx-3.v28.lw.sourceforge.com with esmtps
+ bh=fcE/Zrnx1DVFVUArEdVRTbFdXiDVbZOXEpcxh87SByg=; b=jXWyLWksR51lNZYWxV4Dz5xSG+
+ u9C8T+Y2+tJ4HhfMy1HtOFt3XcEV2vpuyMJO8viVatD/rYsX9IIRgy1bQFpCPwOMrXm5Nd31l//P3
+ 3PhKjMfvKdo6qKgQ+lrmmriQWS9bu9YVedwI1FG8DZ08K+fj5E7WnVIABAw73qNc8pqA=;
+Received: from mail.kernel.org ([198.145.29.99])
+ by sfi-mx-1.v28.lw.sourceforge.com with esmtps
  (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.92.2)
- id 1jvJoB-00HPF0-K6
- for v9fs-developer@lists.sourceforge.net; Tue, 14 Jul 2020 12:13:17 +0000
-Received: by nautica.notk.org (Postfix, from userid 1001)
- id C9AB1C01B; Tue, 14 Jul 2020 14:13:04 +0200 (CEST)
-Date: Tue, 14 Jul 2020 14:12:49 +0200
-From: Dominique Martinet <asmadeus@codewreck.org>
-To: Victor Hsieh <victorhsieh@google.com>
-Message-ID: <20200714121249.GA21928@nautica>
+ id 1jvRwN-007VT9-NE
+ for v9fs-developer@lists.sourceforge.net; Tue, 14 Jul 2020 20:54:16 +0000
+Received: from gmail.com (unknown [104.132.1.76])
+ (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+ (No client certificate requested)
+ by mail.kernel.org (Postfix) with ESMTPSA id E2CA220658;
+ Tue, 14 Jul 2020 20:54:02 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+ s=default; t=1594760043;
+ bh=LrI6TvbFj8VaPzxpp5ekzeAMl8autdFdnS/2bB9ZGF4=;
+ h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+ b=t3+1RnT8+rDhVNw2EQLq8U3lJLOrZp7oVzOLMqPaKBEK9GVdooPlmF++zdcsk1+X1
+ ejPQLSrHEcog43UBm0ufElUp7iBgBfPN2WPd/z+mu9ANozuJF/2lkbh7NzC5lb2yuu
+ wDiQUxF+13uMOFxohJUKI0OXfaaMqX3v/Q9oUyJ0=
+Date: Tue, 14 Jul 2020 13:54:01 -0700
+From: Eric Biggers <ebiggers@kernel.org>
+To: Dominique Martinet <asmadeus@codewreck.org>
+Message-ID: <20200714205401.GE1064009@gmail.com>
 References: <20200713215759.3701482-1-victorhsieh@google.com>
+ <20200714121249.GA21928@nautica>
 MIME-Version: 1.0
 Content-Disposition: inline
-In-Reply-To: <20200713215759.3701482-1-victorhsieh@google.com>
-User-Agent: Mutt/1.5.21 (2010-09-15)
-X-Spam-Score: 0.0 (/)
+In-Reply-To: <20200714121249.GA21928@nautica>
+X-Spam-Score: -0.6 (/)
 X-Spam-Report: Spam Filtering performed by mx.sourceforge.net.
  See http://spamassassin.org/tag/ for more details.
- 0.0 HEADER_FROM_DIFFERENT_DOMAINS From and EnvelopeFrom 2nd level mail
- domains are different
  -0.0 SPF_PASS               SPF: sender matches SPF record
  0.0 SPF_HELO_NONE          SPF: HELO does not publish an SPF Record
-X-Headers-End: 1jvJoB-00HPF0-K6
+ -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from author's
+ domain
+ -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+ 0.1 DKIM_SIGNED            Message has a DKIM or DK signature,
+ not necessarily valid
+ -0.0 DKIMWL_WL_HIGH         DKIMwl.org - Whitelisted High sender
+ -0.5 AWL AWL: Adjusted score from AWL reputation of From: address
+X-Headers-End: 1jvRwN-007VT9-NE
 Subject: Re: [V9fs-developer] [PATCH] fs/9p: Fix TCREATE's fid in protocol
 X-BeenThere: v9fs-developer@lists.sourceforge.net
 X-Mailman-Version: 2.1.21
@@ -70,62 +85,36 @@ List-Subscribe: <https://lists.sourceforge.net/lists/listinfo/v9fs-developer>,
  <mailto:v9fs-developer-request@lists.sourceforge.net?subject=subscribe>
 Cc: Latchesar Ionkov <lucho@ionkov.net>, Eric Van Hensbergen <ericvh@gmail.com>,
  linux-kernel@vger.kernel.org, stable@vger.kernel.org,
- linux-fsdevel@vger.kernel.org, v9fs-developer@lists.sourceforge.net
+ linux-fsdevel@vger.kernel.org, v9fs-developer@lists.sourceforge.net,
+ Victor Hsieh <victorhsieh@google.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: v9fs-developer-bounces@lists.sourceforge.net
 
-Victor Hsieh wrote on Mon, Jul 13, 2020:
-> The fid parameter of TCREATE represents the directory that the file
-
-This is not TCREATE, this is TLCREATE.
-The fid represents the directory before the call, but on success
-represents the file that has been created.
-
-> should be created at. The current implementation mistakenly passes a
-> locally created fid for the file. The correct file fid is usually
-> retrieved by another WALK call, which does happen right after.
+On Tue, Jul 14, 2020 at 02:12:49PM +0200, Dominique Martinet wrote:
 > 
-> The problem happens when a new created fd is read from (i.e. where
-> private_data->fid is used), but not write to.
-
-I'm not sure why the code currently does a 2nd walk from the directory
-with the name which is prone to a race instead of cloning ofid without a
-path, but I fail to see the problem you ran into - file->private_data is
-a fid pointing to the file as it should be.
-
-Could you describe what kind of errors you get and if possible how to
-reproduce?
-
-> Fixes: 5643135a2846 ("fs/9p: This patch implements TLCREATE for 9p2000.L protocol.")
-> Signed-off-by: Victor Hsieh <victorhsieh@google.com>
-> Cc: stable@vger.kernel.org
-
-(afaiu it is normally frowned upon for developers to add this cc (I can
-understand stable@ not wanting spam discussing issues left and right
-before maintainers agreed on them!) ; I can add it to the commit itself
-if requested but they normally pick most such fixes pretty nicely for
-backport anyway; I see most 9p patches backported as long as the patch
-applies cleanly which is pretty much all the time.
-Please let me know if I understood that incorrectly)
-
-> ---
->  fs/9p/vfs_inode_dotl.c | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
+> > Fixes: 5643135a2846 ("fs/9p: This patch implements TLCREATE for 9p2000.L protocol.")
+> > Signed-off-by: Victor Hsieh <victorhsieh@google.com>
+> > Cc: stable@vger.kernel.org
 > 
-> diff --git a/fs/9p/vfs_inode_dotl.c b/fs/9p/vfs_inode_dotl.c
-> index 60328b21c5fb..90a7aaea918d 100644
-> --- a/fs/9p/vfs_inode_dotl.c
-> +++ b/fs/9p/vfs_inode_dotl.c
-> @@ -285,7 +285,7 @@ v9fs_vfs_atomic_open_dotl(struct inode *dir, struct dentry *dentry,
->  			 err);
->  		goto error;
->  	}
-> -	err = p9_client_create_dotl(ofid, name, v9fs_open_to_dotl_flags(flags),
-> +	err = p9_client_create_dotl(dfid, name, v9fs_open_to_dotl_flags(flags),
->  				    mode, gid, &qid);
->  	if (err < 0) {
->  		p9_debug(P9_DEBUG_VFS, "p9_client_open_dotl failed in creat %d\n",
+> (afaiu it is normally frowned upon for developers to add this cc (I can
+> understand stable@ not wanting spam discussing issues left and right
+> before maintainers agreed on them!) ; I can add it to the commit itself
+> if requested but they normally pick most such fixes pretty nicely for
+> backport anyway; I see most 9p patches backported as long as the patch
+> applies cleanly which is pretty much all the time.
+> Please let me know if I understood that incorrectly)
+> 
+
+Some people assume this, but the stable maintainers themselves say that Cc'ing
+stable@vger.kernel.org on in-development patches is fine:
+https://lkml.kernel.org/r/20200423184219.GA80650@kroah.com
+
+And doing so is pretty much inevitable, since the tag gets picked up by
+'git send-email'.  (Yes, there's also "stable@kernel.org", but it's not actually
+what is documented.)
+
+- Eric
 
 
 _______________________________________________
