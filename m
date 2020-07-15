@@ -2,64 +2,70 @@ Return-Path: <v9fs-developer-bounces@lists.sourceforge.net>
 X-Original-To: lists+v9fs-developer@lfdr.de
 Delivered-To: lists+v9fs-developer@lfdr.de
 Received: from lists.sourceforge.net (lists.sourceforge.net [216.105.38.7])
-	by mail.lfdr.de (Postfix) with ESMTPS id 88143221428
-	for <lists+v9fs-developer@lfdr.de>; Wed, 15 Jul 2020 20:20:11 +0200 (CEST)
-Received: from [127.0.0.1] (helo=sfs-ml-4.v29.lw.sourceforge.com)
-	by sfs-ml-4.v29.lw.sourceforge.com with esmtp (Exim 4.90_1)
+	by mail.lfdr.de (Postfix) with ESMTPS id 900AB2216FA
+	for <lists+v9fs-developer@lfdr.de>; Wed, 15 Jul 2020 23:25:24 +0200 (CEST)
+Received: from [127.0.0.1] (helo=sfs-ml-2.v29.lw.sourceforge.com)
+	by sfs-ml-2.v29.lw.sourceforge.com with esmtp (Exim 4.90_1)
 	(envelope-from <v9fs-developer-bounces@lists.sourceforge.net>)
-	id 1jvm0m-0006RU-Jg; Wed, 15 Jul 2020 18:20:08 +0000
+	id 1jvou2-0006Ur-5d; Wed, 15 Jul 2020 21:25:22 +0000
 Received: from [172.30.20.202] (helo=mx.sourceforge.net)
- by sfs-ml-4.v29.lw.sourceforge.com with esmtps
+ by sfs-ml-2.v29.lw.sourceforge.com with esmtps
  (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.90_1)
- (envelope-from <hch@lst.de>) id 1jvm0l-0006RK-7u
- for v9fs-developer@lists.sourceforge.net; Wed, 15 Jul 2020 18:20:07 +0000
+ (envelope-from <davem@davemloft.net>) id 1jvou0-0006Uk-Lg
+ for v9fs-developer@lists.sourceforge.net; Wed, 15 Jul 2020 21:25:20 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=sourceforge.net; s=x; h=In-Reply-To:Content-Type:MIME-Version:References:
- Message-ID:Subject:Cc:To:From:Date:Sender:Reply-To:Content-Transfer-Encoding:
+ d=sourceforge.net; s=x; h=Content-Transfer-Encoding:Content-Type:Mime-Version
+ :References:In-Reply-To:From:Subject:Cc:To:Message-Id:Date:Sender:Reply-To:
  Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
  Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
  List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=6R29tk8StEz7i4/DEBl236hOTubleGx7aou7XrLwBA0=; b=C71TKVZy5/3B6OkFGYxj1Fz3ak
- 0LW3lO9/NZFfDAlwX+EuL1AsQ8Gj8QqJ6NlivxThc1fhJWRMG2iQfzleQ2DzzpRxC99yPvVz0hOoc
- YVYnPLVkM4fYoGJjhajLrkdS8UoxMaAyL5IzNFJ7aKKLovbFGvfj9iXlTNVE/PrWfpzQ=;
+ bh=sXUntEC8Usf17V1dVgcRoSdjfD3h9f7MOEQc5/osRVs=; b=NP4FGRpO51C4oYhAQcwj0GHOl3
+ VQmkuVCrbDuAGUOmbe8KL/PfQzBH3i56O2Pt4y/ItZD+rfWbQsxMxCxMMTtuFjUJRLZSoPmWFqn8K
+ keb/HhlD1/A9YivNRlpcydO3iKeVixCFxVJq0Wxe8jahVcx78ZelhJ8i+pqxNSY9FUAc=;
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  ;
- h=In-Reply-To:Content-Type:MIME-Version:References:Message-ID:Subject:Cc:To
- :From:Date:Sender:Reply-To:Content-Transfer-Encoding:Content-ID:
+ h=Content-Transfer-Encoding:Content-Type:Mime-Version:References:
+ In-Reply-To:From:Subject:Cc:To:Message-Id:Date:Sender:Reply-To:Content-ID:
  Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
  :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
  List-Post:List-Owner:List-Archive;
- bh=6R29tk8StEz7i4/DEBl236hOTubleGx7aou7XrLwBA0=; b=TNNzppAEBfJljaxzjyb7k1zU2E
- s/vZn+IQvj6ZQeyOH3RXnXhWE1l+KjPsGaiiwt0qXKGAmHlcd5gWa2a44Z/eQRZ8km+rpcsry1igI
- phRcPSMQ9bq/C+tF2LYIOCscRTfv/BWn/203ZPxp34Zusn3EjTarfQSDlg6Koek7KhWs=;
-Received: from verein.lst.de ([213.95.11.211])
- by sfi-mx-1.v28.lw.sourceforge.com with esmtps
+ bh=sXUntEC8Usf17V1dVgcRoSdjfD3h9f7MOEQc5/osRVs=; b=Utqb/U7hxMn6EQyqJKZ0KkFjcw
+ 15hCNLNQoYM0rYG+2371G48Cy6QVTgmdoQXZboaHO6Mlx2sHV0PO4/rgObyuu3vKpGo46RPDdj4wM
+ oQ6WCeSYHqn7opisaEmQPZYLWpR4CE6KC0fU5b/pX+cFA0Yp97LO80a8wdtEfnhpEcnA=;
+Received: from shards.monkeyblade.net ([23.128.96.9])
+ by sfi-mx-4.v28.lw.sourceforge.com with esmtps
  (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.92.2)
- id 1jvm0i-0095jA-RG
- for v9fs-developer@lists.sourceforge.net; Wed, 15 Jul 2020 18:20:07 +0000
-Received: by verein.lst.de (Postfix, from userid 2407)
- id 254CC68AFE; Wed, 15 Jul 2020 20:19:50 +0200 (CEST)
-Date: Wed, 15 Jul 2020 20:19:49 +0200
-From: Christoph Hellwig <hch@lst.de>
-To: Dominique Martinet <asmadeus@codewreck.org>
-Message-ID: <20200715181949.GA31172@lst.de>
-References: <20200710085722.435850-1-hch@lst.de>
- <5bee3e33-2400-2d85-080e-d10cd82b0d85@nazar.ca>
- <20200711104923.GA6584@nautica> <20200715073715.GA22899@lst.de>
- <20200715134756.GB22828@nautica>
-MIME-Version: 1.0
-Content-Disposition: inline
+ id 1jvotw-004xcr-NV
+ for v9fs-developer@lists.sourceforge.net; Wed, 15 Jul 2020 21:25:20 +0000
+Received: from localhost (unknown [IPv6:2601:601:9f00:477::3d5])
+ (using TLSv1 with cipher AES256-SHA (256/256 bits))
+ (Client did not present a certificate)
+ (Authenticated sender: davem-davemloft)
+ by shards.monkeyblade.net (Postfix) with ESMTPSA id 0625A11E45909;
+ Wed, 15 Jul 2020 14:25:02 -0700 (PDT)
+Date: Wed, 15 Jul 2020 14:24:59 -0700 (PDT)
+Message-Id: <20200715.142459.1215411672362681844.davem@davemloft.net>
+To: asmadeus@codewreck.org
+From: David Miller <davem@davemloft.net>
 In-Reply-To: <20200715134756.GB22828@nautica>
-User-Agent: Mutt/1.5.17 (2007-11-01)
+References: <20200711104923.GA6584@nautica> <20200715073715.GA22899@lst.de>
+ <20200715134756.GB22828@nautica>
+X-Mailer: Mew version 6.8 on Emacs 26.3
+Mime-Version: 1.0
+X-Greylist: Sender succeeded SMTP AUTH, not delayed by milter-greylist-4.5.12
+ (shards.monkeyblade.net [149.20.54.216]);
+ Wed, 15 Jul 2020 14:25:03 -0700 (PDT)
 X-Spam-Score: -0.5 (/)
 X-Spam-Report: Spam Filtering performed by mx.sourceforge.net.
  See http://spamassassin.org/tag/ for more details.
- -0.0 RCVD_IN_DNSWL_NONE     RBL: Sender listed at https://www.dnswl.org/, no
- trust [213.95.11.211 listed in list.dnswl.org]
+ 0.0 URIBL_BLOCKED ADMINISTRATOR NOTICE: The query to URIBL was blocked.
+ See
+ http://wiki.apache.org/spamassassin/DnsBlocklists#dnsbl-block
+ for more information. [URIs: codewreck.org]
  0.0 SPF_NONE               SPF: sender does not publish an SPF Record
  0.0 SPF_HELO_NONE          SPF: HELO does not publish an SPF Record
  -0.5 AWL AWL: Adjusted score from AWL reputation of From: address
-X-Headers-End: 1jvm0i-0095jA-RG
+X-Headers-End: 1jvotw-004xcr-NV
 Subject: Re: [V9fs-developer] [PATCH] net/9p: validate fds in p9_fd_open
 X-BeenThere: v9fs-developer@lists.sourceforge.net
 X-Mailman-Version: 2.1.21
@@ -74,45 +80,23 @@ List-Subscribe: <https://lists.sourceforge.net/lists/listinfo/v9fs-developer>,
  <mailto:v9fs-developer-request@lists.sourceforge.net?subject=subscribe>
 Cc: lucho@ionkov.net, syzbot+e6f77e16ff68b2434a2c@syzkaller.appspotmail.com,
  ericvh@gmail.com, netdev@vger.kernel.org, linux-kernel@vger.kernel.org,
- Doug Nazar <nazard@nazar.ca>, v9fs-developer@lists.sourceforge.net,
- Christoph Hellwig <hch@lst.de>
+ nazard@nazar.ca, v9fs-developer@lists.sourceforge.net, hch@lst.de
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: v9fs-developer-bounces@lists.sourceforge.net
 
-On Wed, Jul 15, 2020 at 03:47:56PM +0200, Dominique Martinet wrote:
-> Christoph Hellwig wrote on Wed, Jul 15, 2020:
-> > FYI, this is now generating daily syzbot reports, so I'd love to see
-> > the fix going into Linus' tree ASAP..
-> 
-> Yes, I'm getting some syzbot warnings as well now.
-> 
-> I had however only planned to get this in linux-next, since that is what
-> the syzbot mails were complaining about, but I see this got into -rc5...
-> 
-> 
+From: Dominique Martinet <asmadeus@codewreck.org>
+Date: Wed, 15 Jul 2020 15:47:56 +0200
+
 > It's honestly just a warn on something that would fail anyway so I'd
 > rather let it live in -next first, I don't get why syzbot is so verbose
 > about this - it sent a mail when it found a c repro and one more once it
 > bisected the commit yesterday but it should not be sending more?
 
-Yes, I agree that this is just a warning on existing behavior.  But then
-again these constant syzbot reports are pretty annoying..
+I honestly find it hard to understand the resistence to fixing the
+warning in mainline.
 
-> (likewise it should pick up the fix tag even if it only gets in -next,
-> or would it keep being noisy unless this gets merged to mainline?)
-> 
-> 
-> FWIW this is along with the 5 other patches I have queued for 5.9
-> waiting for my tests as my infra is still down, I've stopped trying to
-> make promises, but I could push at least just this one to -next if that
-> really helps.
-> Sorry for that, things should be smoother once I've taken the time to
-> put things back in place.
-
-No need to be sorry, just through it might be worth to ping you.
-
-Thanks for all your help!
+I merge such fixes aggressively.
 
 
 _______________________________________________
