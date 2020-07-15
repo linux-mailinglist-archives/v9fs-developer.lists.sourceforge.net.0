@@ -2,26 +2,26 @@ Return-Path: <v9fs-developer-bounces@lists.sourceforge.net>
 X-Original-To: lists+v9fs-developer@lfdr.de
 Delivered-To: lists+v9fs-developer@lfdr.de
 Received: from lists.sourceforge.net (lists.sourceforge.net [216.105.38.7])
-	by mail.lfdr.de (Postfix) with ESMTPS id 69209220659
-	for <lists+v9fs-developer@lfdr.de>; Wed, 15 Jul 2020 09:37:38 +0200 (CEST)
-Received: from [127.0.0.1] (helo=sfs-ml-2.v29.lw.sourceforge.com)
-	by sfs-ml-2.v29.lw.sourceforge.com with esmtp (Exim 4.90_1)
+	by mail.lfdr.de (Postfix) with ESMTPS id B119B2206B5
+	for <lists+v9fs-developer@lfdr.de>; Wed, 15 Jul 2020 10:04:20 +0200 (CEST)
+Received: from [127.0.0.1] (helo=sfs-ml-1.v29.lw.sourceforge.com)
+	by sfs-ml-1.v29.lw.sourceforge.com with esmtp (Exim 4.90_1)
 	(envelope-from <v9fs-developer-bounces@lists.sourceforge.net>)
-	id 1jvbyy-0000Ln-76; Wed, 15 Jul 2020 07:37:36 +0000
+	id 1jvcOo-0003KD-Ty; Wed, 15 Jul 2020 08:04:18 +0000
 Received: from [172.30.20.202] (helo=mx.sourceforge.net)
- by sfs-ml-2.v29.lw.sourceforge.com with esmtps
+ by sfs-ml-1.v29.lw.sourceforge.com with esmtps
  (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.90_1)
- (envelope-from <hch@lst.de>) id 1jvbyt-0000LX-Aw
- for v9fs-developer@lists.sourceforge.net; Wed, 15 Jul 2020 07:37:31 +0000
+ (envelope-from <gregkh@linuxfoundation.org>) id 1jvcOn-0003Jm-Ge
+ for v9fs-developer@lists.sourceforge.net; Wed, 15 Jul 2020 08:04:17 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
  d=sourceforge.net; s=x; h=In-Reply-To:Content-Type:MIME-Version:References:
  Message-ID:Subject:Cc:To:From:Date:Sender:Reply-To:Content-Transfer-Encoding:
  Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
  Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
  List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=G792ZD88BzWHu8v7nhFi7jwiPeciW6tuQujmBqhbskQ=; b=JcmRG+yA5y1xhBaCKrY+0VEuDm
- QguLu1pvssVw69OSnr7qhn2vnkzCloynRBANAIuWVjkJCv2UPUFdDihZQsQemNGcu/5p6YuZc6N9E
- 6P7yrTvN3naD+rYY6hvnIjAkrs6YhYdPFxi7vJXz37yd2lJXHwygChUcDDVbTzU/litE=;
+ bh=CoK6nqXXUrtD19DPC16HJx1GfEyYb3YchpeRwwp+G2U=; b=FpXlv+wgNufmwlmkQmX6mY584B
+ 6WV5elsWSSMgNUgLraOXw8pQTIJSbTMclLPlHUzTJVSRhqFO6jcOv/Rgb0UsTfV8drhIxMS4czZMc
+ g+uxNRBf19JyEz8V2eosqFkJshfYgoIZ+d0fue1m2Cf36b87xSsAjvRVBLDVE61hpsyo=;
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  ;
  h=In-Reply-To:Content-Type:MIME-Version:References:Message-ID:Subject:Cc:To
@@ -29,37 +29,49 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
  :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
  List-Post:List-Owner:List-Archive;
- bh=G792ZD88BzWHu8v7nhFi7jwiPeciW6tuQujmBqhbskQ=; b=XFb6vnMADVptS/u5yZ5TF3SaSx
- EBVPkJWN6grqGq53f4OgDmmE8m8Wd9KW4iYKAl9cwJuIyNs/o+jRk01UCJoiOz+Q+c9Ky4U8ao3ds
- Y+6Yt0CrkkDZ678Chg5h/9YI1cKSJsEnQkBWRhsKpuubWf0gztCt5T637B/q3RFJEIyM=;
-Received: from verein.lst.de ([213.95.11.211])
- by sfi-mx-1.v28.lw.sourceforge.com with esmtps
+ bh=CoK6nqXXUrtD19DPC16HJx1GfEyYb3YchpeRwwp+G2U=; b=bGaX7NC8SoB8QRS0eDOXpzqJpG
+ 8U6/MSMxfu6MQK6zhHCSKZZTukvfhfe4ZfBNhZQMhMxgS/BEuppBIGiACNdlre7IVMICoaH4Yrsj1
+ s+u98gQAOVlRSYyMFQ0IlHR8zPOaGCr5jzpoEfN28cp8G3Rk/YT5GaZmIMsuS/9YEJjQ=;
+Received: from mail.kernel.org ([198.145.29.99])
+ by sfi-mx-3.v28.lw.sourceforge.com with esmtps
  (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.92.2)
- id 1jvbyo-008Nu8-VU
- for v9fs-developer@lists.sourceforge.net; Wed, 15 Jul 2020 07:37:29 +0000
-Received: by verein.lst.de (Postfix, from userid 2407)
- id 949496736F; Wed, 15 Jul 2020 09:37:15 +0200 (CEST)
-Date: Wed, 15 Jul 2020 09:37:15 +0200
-From: Christoph Hellwig <hch@lst.de>
+ id 1jvcOm-001CPP-Ed
+ for v9fs-developer@lists.sourceforge.net; Wed, 15 Jul 2020 08:04:17 +0000
+Received: from localhost (83-86-89-107.cable.dynamic.v4.ziggo.nl
+ [83.86.89.107])
+ (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+ (No client certificate requested)
+ by mail.kernel.org (Postfix) with ESMTPSA id 9B5BE2064C;
+ Wed, 15 Jul 2020 08:04:01 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+ s=default; t=1594800242;
+ bh=HIG91/ioMlIScqdxhHK1XI6hYx30577FlENF9j/AlEw=;
+ h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+ b=bfepzjD7u8Mx9WRTyJYUr0DmmMF7Fe3KKrMrTFDZnsH4TrYXAvF1hg/OpTq0XbmWP
+ Cr6KfiadSdvxq7c0jZlsW/nZKBVwjtIlUggx4lQcpnclJrcTreRe80E9c1NLx3J9Kf
+ wTrqHuXAdpBeVGbS7Q924vpShEv7DcwHRUrlcPLM=
+Date: Wed, 15 Jul 2020 10:03:58 +0200
+From: Greg KH <gregkh@linuxfoundation.org>
 To: Dominique Martinet <asmadeus@codewreck.org>
-Message-ID: <20200715073715.GA22899@lst.de>
-References: <20200710085722.435850-1-hch@lst.de>
- <5bee3e33-2400-2d85-080e-d10cd82b0d85@nazar.ca>
- <20200711104923.GA6584@nautica>
+Message-ID: <20200715080358.GA2521386@kroah.com>
+References: <20200713215759.3701482-1-victorhsieh@google.com>
+ <20200714121249.GA21928@nautica>
+ <20200714205401.GE1064009@gmail.com>
 MIME-Version: 1.0
 Content-Disposition: inline
-In-Reply-To: <20200711104923.GA6584@nautica>
-User-Agent: Mutt/1.5.17 (2007-11-01)
+In-Reply-To: <20200714205401.GE1064009@gmail.com>
 X-Spam-Score: -0.5 (/)
 X-Spam-Report: Spam Filtering performed by mx.sourceforge.net.
  See http://spamassassin.org/tag/ for more details.
- -0.0 RCVD_IN_DNSWL_NONE     RBL: Sender listed at https://www.dnswl.org/, no
- trust [213.95.11.211 listed in list.dnswl.org]
- 0.0 SPF_NONE               SPF: sender does not publish an SPF Record
+ -0.0 SPF_PASS               SPF: sender matches SPF record
  0.0 SPF_HELO_NONE          SPF: HELO does not publish an SPF Record
+ -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+ 0.1 DKIM_SIGNED            Message has a DKIM or DK signature,
+ not necessarily valid
+ -0.0 DKIMWL_WL_HIGH         DKIMwl.org - Whitelisted High sender
  -0.5 AWL AWL: Adjusted score from AWL reputation of From: address
-X-Headers-End: 1jvbyo-008Nu8-VU
-Subject: Re: [V9fs-developer] [PATCH] net/9p: validate fds in p9_fd_open
+X-Headers-End: 1jvcOm-001CPP-Ed
+Subject: Re: [V9fs-developer] [PATCH] fs/9p: Fix TCREATE's fid in protocol
 X-BeenThere: v9fs-developer@lists.sourceforge.net
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -71,16 +83,37 @@ List-Post: <mailto:v9fs-developer@lists.sourceforge.net>
 List-Help: <mailto:v9fs-developer-request@lists.sourceforge.net?subject=help>
 List-Subscribe: <https://lists.sourceforge.net/lists/listinfo/v9fs-developer>, 
  <mailto:v9fs-developer-request@lists.sourceforge.net?subject=subscribe>
-Cc: lucho@ionkov.net, syzbot+e6f77e16ff68b2434a2c@syzkaller.appspotmail.com,
- ericvh@gmail.com, netdev@vger.kernel.org, linux-kernel@vger.kernel.org,
- Christoph Hellwig <hch@lst.de>, v9fs-developer@lists.sourceforge.net,
- Doug Nazar <nazard@nazar.ca>
+Cc: Latchesar Ionkov <lucho@ionkov.net>, Eric Van Hensbergen <ericvh@gmail.com>,
+ linux-kernel@vger.kernel.org, stable@vger.kernel.org,
+ Eric Biggers <ebiggers@kernel.org>, linux-fsdevel@vger.kernel.org,
+ v9fs-developer@lists.sourceforge.net, Victor Hsieh <victorhsieh@google.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: v9fs-developer-bounces@lists.sourceforge.net
 
-FYI, this is now generating daily syzbot reports, so I'd love to see
-the fix going into Linus' tree ASAP..
+On Tue, Jul 14, 2020 at 01:54:01PM -0700, Eric Biggers wrote:
+> On Tue, Jul 14, 2020 at 02:12:49PM +0200, Dominique Martinet wrote:
+> > 
+> > > Fixes: 5643135a2846 ("fs/9p: This patch implements TLCREATE for 9p2000.L protocol.")
+> > > Signed-off-by: Victor Hsieh <victorhsieh@google.com>
+> > > Cc: stable@vger.kernel.org
+> > 
+> > (afaiu it is normally frowned upon for developers to add this cc (I can
+> > understand stable@ not wanting spam discussing issues left and right
+> > before maintainers agreed on them!) ; I can add it to the commit itself
+> > if requested but they normally pick most such fixes pretty nicely for
+> > backport anyway; I see most 9p patches backported as long as the patch
+> > applies cleanly which is pretty much all the time.
+> > Please let me know if I understood that incorrectly)
+
+As Eric says, this is fine to cc: stable with this kind of thing.  It's
+good to get a "heads up" on patches that are coming, and Sasha runs some
+tests on them as well to make sure that they really are going to apply
+to what trees you think they should apply to.
+
+thanks,
+
+greg k-h
 
 
 _______________________________________________
