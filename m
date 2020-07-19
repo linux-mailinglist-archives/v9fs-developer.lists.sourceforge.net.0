@@ -2,61 +2,101 @@ Return-Path: <v9fs-developer-bounces@lists.sourceforge.net>
 X-Original-To: lists+v9fs-developer@lfdr.de
 Delivered-To: lists+v9fs-developer@lfdr.de
 Received: from lists.sourceforge.net (lists.sourceforge.net [216.105.38.7])
-	by mail.lfdr.de (Postfix) with ESMTPS id 57C59224E98
-	for <lists+v9fs-developer@lfdr.de>; Sun, 19 Jul 2020 04:02:55 +0200 (CEST)
-Received: from [127.0.0.1] (helo=sfs-ml-4.v29.lw.sourceforge.com)
-	by sfs-ml-4.v29.lw.sourceforge.com with esmtp (Exim 4.90_1)
+	by mail.lfdr.de (Postfix) with ESMTPS id 9A3FC2250FC
+	for <lists+v9fs-developer@lfdr.de>; Sun, 19 Jul 2020 11:52:20 +0200 (CEST)
+Received: from [127.0.0.1] (helo=sfs-ml-1.v29.lw.sourceforge.com)
+	by sfs-ml-1.v29.lw.sourceforge.com with esmtp (Exim 4.90_1)
 	(envelope-from <v9fs-developer-bounces@lists.sourceforge.net>)
-	id 1jwyfE-0006Rr-7Y; Sun, 19 Jul 2020 02:02:52 +0000
+	id 1jx5zV-0000jy-9l; Sun, 19 Jul 2020 09:52:17 +0000
 Received: from [172.30.20.202] (helo=mx.sourceforge.net)
- by sfs-ml-4.v29.lw.sourceforge.com with esmtps
+ by sfs-ml-1.v29.lw.sourceforge.com with esmtps
  (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.90_1)
- (envelope-from <viro@ftp.linux.org.uk>) id 1jwyfC-0006Rg-I7
- for v9fs-developer@lists.sourceforge.net; Sun, 19 Jul 2020 02:02:50 +0000
+ (envelope-from <dhowells@redhat.com>) id 1jx5zT-0000jg-G3
+ for v9fs-developer@lists.sourceforge.net; Sun, 19 Jul 2020 09:52:15 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=sourceforge.net; s=x; h=Sender:In-Reply-To:Content-Type:MIME-Version:
- References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
- Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
- Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:
- List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=dxtWRwCvlytLfp7F0l4b2YoxbrBu6fnGXYSPSObz5jw=; b=f2rhxnyewfb+Rqe4ljnjVuXrd
- Qf5TgnSDVzfq2tv33GTCeTJ70dGpD1h9s+uhqpP9kQZhF9lxDeID1mGYGr2a6ctLtgExxEynq8rZA
- Sa8uAxNtY/TOfOmGVdAm9ZGSA6Mcbky2YqC4kmkvR8Y/DlgYiE1kF/B6KDlMOvErPIefk=;
+ d=sourceforge.net; s=x; h=Message-ID:Date:Content-ID:Content-Type:
+ MIME-Version:From:Subject:Cc:To:References:In-Reply-To:Sender:Reply-To:
+ Content-Transfer-Encoding:Content-Description:Resent-Date:Resent-From:
+ Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:
+ List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
+ bh=mknWuDNTSPVA5tuUznaF/9X4S4nuMwQxpbXQ5+3goe4=; b=gKvUfoz8jHy2fMUc38Wpw2czmd
+ yz7ur2VgK2w7H5LwGiQIH2y1mq3VXZ/KTTPHExe+u1nFH+RhbcQWLO6MCDyM4PVLrFR0tE4oylbv/
+ zJAnFju7NIJSh5t36aGzgHrF59Rr5J5H+eFywwudiW25VPo29zbF6pDUxle63AnwBuPg=;
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  ;
- h=Sender:In-Reply-To:Content-Type:MIME-Version:References:Message-ID:
- Subject:Cc:To:From:Date:Reply-To:Content-Transfer-Encoding:Content-ID:
+ h=Message-ID:Date:Content-ID:Content-Type:MIME-Version:From:Subject:Cc:To:
+ References:In-Reply-To:Sender:Reply-To:Content-Transfer-Encoding:
  Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
  :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
  List-Post:List-Owner:List-Archive;
- bh=dxtWRwCvlytLfp7F0l4b2YoxbrBu6fnGXYSPSObz5jw=; b=ic+F5qkezznYbw7YdYc5XZbXun
- 5S65FbjJh9ejVUrtFM+N+DsZjmJ/uDSYtT2sC/56qS483JGa6+a49AAXMZdf0BmMu90qbnN3N6Fw7
- APCRKUKkS70XEhvN0rb03hYND/mJm4LVuu78YuyYzYtnyz/vvSPvSv3gPDhdfY+I1HBs=;
-Received: from zeniv.linux.org.uk ([195.92.253.2])
+ bh=mknWuDNTSPVA5tuUznaF/9X4S4nuMwQxpbXQ5+3goe4=; b=KfDmaaSJu+L+6RNQy6u0ej0AMY
+ 4+UycpHCLMKVqgbdMZnjM45kIsgWZJzgCkB+Wuy8A5y/QNh240R9/IMKSVbQ0AHTIWJj76alVBwwH
+ 0i3rOo9su6cbaROJfxghgX+s+kX2HKF0FNrsPFRJHmcS3OHw8l80cNMWq3K3fz8Z+CXM=;
+Received: from us-smtp-1.mimecast.com ([205.139.110.61]
+ helo=us-smtp-delivery-1.mimecast.com)
  by sfi-mx-3.v28.lw.sourceforge.com with esmtps
- (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.92.2)
- id 1jwyfB-006EhG-0w
- for v9fs-developer@lists.sourceforge.net; Sun, 19 Jul 2020 02:02:50 +0000
-Received: from viro by ZenIV.linux.org.uk with local (Exim 4.92.3 #3 (Red Hat
- Linux)) id 1jwyNY-00FOFG-MQ; Sun, 19 Jul 2020 01:44:36 +0000
-Date: Sun, 19 Jul 2020 02:44:36 +0100
-From: Al Viro <viro@zeniv.linux.org.uk>
-To: David Howells <dhowells@redhat.com>
-Message-ID: <20200719014436.GG2786714@ZenIV.linux.org.uk>
-References: <159465784033.1376674.18106463693989811037.stgit@warthog.procyon.org.uk>
+ (TLSv1.2:ECDHE-RSA-AES256-SHA384:256) (Exim 4.92.2)
+ id 1jx5zN-006r7D-04
+ for v9fs-developer@lists.sourceforge.net; Sun, 19 Jul 2020 09:52:15 +0000
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+ s=mimecast20190719; t=1595152322;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+ in-reply-to:in-reply-to:references:references;
+ bh=mknWuDNTSPVA5tuUznaF/9X4S4nuMwQxpbXQ5+3goe4=;
+ b=KTNUbDob46tg9SJK7KzWkduacmY2eOFp9p4cWPefWh8xV/H29cBNiB36A068Zcny5RdTeK
+ y9gpO9xNrG1oTtDOnP2Pv1Pcn4CAGvNeRpNgWqThWxYnMIOrGBKHZJCemWPx7anQQIvN/p
+ rryJvEu+SWR9hPemHmiDTseufKW+MAU=
+Received: from mimecast-mx01.redhat.com (mimecast-mx01.redhat.com
+ [209.132.183.4]) (Using TLS) by relay.mimecast.com with ESMTP id
+ us-mta-138-nURWLhFwNNyG7fNENd1CWQ-1; Sun, 19 Jul 2020 05:52:00 -0400
+X-MC-Unique: nURWLhFwNNyG7fNENd1CWQ-1
+Received: from smtp.corp.redhat.com (int-mx08.intmail.prod.int.phx2.redhat.com
+ [10.5.11.23])
+ (using TLSv1.2 with cipher AECDH-AES256-SHA (256/256 bits))
+ (No client certificate requested)
+ by mimecast-mx01.redhat.com (Postfix) with ESMTPS id 940D580183C;
+ Sun, 19 Jul 2020 09:51:58 +0000 (UTC)
+Received: from warthog.procyon.org.uk (ovpn-112-32.rdu2.redhat.com
+ [10.10.112.32])
+ by smtp.corp.redhat.com (Postfix) with ESMTP id 8F9481A90F;
+ Sun, 19 Jul 2020 09:51:52 +0000 (UTC)
+Organization: Red Hat UK Ltd. Registered Address: Red Hat UK Ltd, Amberley
+ Place, 107-111 Peascod Street, Windsor, Berkshire, SI4 1TE, United
+ Kingdom.
+ Registered in England and Wales under Company Registration No. 3798903
+In-Reply-To: <20200719014436.GG2786714@ZenIV.linux.org.uk>
+References: <20200719014436.GG2786714@ZenIV.linux.org.uk>
+ <159465784033.1376674.18106463693989811037.stgit@warthog.procyon.org.uk>
  <159465785214.1376674.6062549291411362531.stgit@warthog.procyon.org.uk>
+To: Al Viro <viro@zeniv.linux.org.uk>
+From: David Howells <dhowells@redhat.com>
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <159465785214.1376674.6062549291411362531.stgit@warthog.procyon.org.uk>
-X-Spam-Score: 0.0 (/)
+Content-ID: <3417.1595152311.1@warthog.procyon.org.uk>
+Date: Sun, 19 Jul 2020 10:51:51 +0100
+Message-ID: <3418.1595152311@warthog.procyon.org.uk>
+X-Scanned-By: MIMEDefang 2.84 on 10.5.11.23
+X-Spam-Score: -0.6 (/)
 X-Spam-Report: Spam Filtering performed by mx.sourceforge.net.
  See http://spamassassin.org/tag/ for more details.
- 0.0 RCVD_IN_MSPIKE_H3      RBL: Good reputation (+3)
- [195.92.253.2 listed in wl.mailspike.net]
- 0.0 SPF_NONE               SPF: sender does not publish an SPF Record
+ 0.0 URIBL_BLOCKED ADMINISTRATOR NOTICE: The query to URIBL was blocked.
+ See
+ http://wiki.apache.org/spamassassin/DnsBlocklists#dnsbl-block
+ for more information. [URIs: linux.org.uk]
+ -0.0 RCVD_IN_DNSWL_NONE     RBL: Sender listed at https://www.dnswl.org/, no
+ trust [205.139.110.61 listed in list.dnswl.org]
+ -0.0 RCVD_IN_MSPIKE_H2      RBL: Average reputation (+2)
+ [205.139.110.61 listed in wl.mailspike.net]
+ -0.0 SPF_PASS               SPF: sender matches SPF record
  0.0 SPF_HELO_NONE          SPF: HELO does not publish an SPF Record
- 0.0 RCVD_IN_MSPIKE_WL      Mailspike good senders
-X-Headers-End: 1jwyfB-006EhG-0w
+ -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from author's
+ domain
+ -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+ 0.1 DKIM_SIGNED            Message has a DKIM or DK signature,
+ not necessarily valid
+ -0.0 DKIMWL_WL_HIGH         DKIMwl.org - Whitelisted High sender
+ -0.5 AWL AWL: Adjusted score from AWL reputation of From: address
+X-Headers-End: 1jx5zN-006r7D-04
 Subject: Re: [V9fs-developer] [PATCH 01/32] iov_iter: Add ITER_MAPPING
 X-BeenThere: v9fs-developer@lists.sourceforge.net
 X-Mailman-Version: 2.1.21
@@ -69,54 +109,45 @@ List-Post: <mailto:v9fs-developer@lists.sourceforge.net>
 List-Help: <mailto:v9fs-developer-request@lists.sourceforge.net?subject=help>
 List-Subscribe: <https://lists.sourceforge.net/lists/listinfo/v9fs-developer>, 
  <mailto:v9fs-developer-request@lists.sourceforge.net?subject=subscribe>
-Cc: linux-cifs@vger.kernel.org, linux-nfs@vger.kernel.org,
- Jeff Layton <jlayton@redhat.com>, Dave Wysochanski <dwysocha@redhat.com>,
- linux-kernel@vger.kernel.org, Matthew Wilcox <willy@infradead.org>,
- linux-afs@lists.infradead.org, Steve French <sfrench@samba.org>,
- linux-cachefs@redhat.com, Trond Myklebust <trondmy@hammerspace.com>,
- linux-fsdevel@vger.kernel.org, v9fs-developer@lists.sourceforge.net,
- ceph-devel@vger.kernel.org, Anna Schumaker <anna.schumaker@netapp.com>
+Cc: Steve French <sfrench@samba.org>, linux-nfs@vger.kernel.org,
+ Jeff Layton <jlayton@redhat.com>, linux-cifs@vger.kernel.org,
+ Dave Wysochanski <dwysocha@redhat.com>, linux-kernel@vger.kernel.org,
+ Matthew Wilcox <willy@infradead.org>, linux-afs@lists.infradead.org,
+ dhowells@redhat.com, linux-cachefs@redhat.com,
+ Trond Myklebust <trondmy@hammerspace.com>, linux-fsdevel@vger.kernel.org,
+ v9fs-developer@lists.sourceforge.net, ceph-devel@vger.kernel.org,
+ Anna Schumaker <anna.schumaker@netapp.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: v9fs-developer-bounces@lists.sourceforge.net
 
-On Mon, Jul 13, 2020 at 05:30:52PM +0100, David Howells wrote:
-> Add an iterator, ITER_MAPPING, that walks through a set of pages attached
-> to an address_space, starting at a given page and offset and walking for
-> the specified amount of bytes.
-> 
-> The caller must guarantee that the pages are all present and they must be
-> locked using PG_locked, PG_writeback or PG_fscache to prevent them from
-> going away or being migrated whilst they're being accessed.
-> 
-> This is useful for copying data from socket buffers to inodes in network
-> filesystems and for transferring data between those inodes and the cache
-> using direct I/O.
-> 
-> Whilst it is true that ITER_BVEC could be used instead, that would require
-> a bio_vec array to be allocated to refer to all the pages - which should be
-> redundant if inode->i_pages also points to all these pages.
-> 
-> This could also be turned into an ITER_XARRAY, taking and xarray pointer
-> instead of a mapping pointer.  It would be mostly trivial, except for the
-> use of find_get_pages_contig() by iov_iter_get_pages*().
-> 
+Al Viro <viro@zeniv.linux.org.uk> wrote:
 
-My main problem here is that your iterate_mapping() assumes that STEP is
-safe under rcu_read_lock(), with no visible mentioning of that fact.
-Note, BTW, that iov_iter_for_each_range() quietly calls user-supplied
-callback in such context.
+> My main problem here is that your iterate_mapping() assumes that STEP is
+> safe under rcu_read_lock(), with no visible mentioning of that fact.
 
-Incidentally, do you ever have different steps for bvec and mapping?
+Yeah, that's probably the biggest objection to this.
 
-> +	if (unlikely(iov_iter_is_mapping(i))) {
-> +		/* We really don't want to fetch pages if we can avoid it */
-> +		i->iov_offset += size;
-> +		i->count -= size;
-> +		return;
+> Note, BTW, that iov_iter_for_each_range() quietly calls user-supplied
+> callback in such context.
 
-That's... not nice.  At the very least you want to cap size by i->count here
-(and for discard case as well, while we are at it).
+And calls kmap(), but should probably use kmap_atomic().  git grep doesn't
+show any users of this, so can it be removed?
+
+> Incidentally, do you ever have different steps for bvec and mapping?
+
+Yes:
+
+	csum_and_copy_from_iter_full()
+	iov_iter_npages()
+	iov_iter_get_pages()
+	iov_iter_get_pages_alloc()
+
+But I've tried to use the internal representation struct for bvec where I can
+rather than inventing a new one.
+
+David
+
 
 
 _______________________________________________
