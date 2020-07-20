@@ -2,102 +2,60 @@ Return-Path: <v9fs-developer-bounces@lists.sourceforge.net>
 X-Original-To: lists+v9fs-developer@lfdr.de
 Delivered-To: lists+v9fs-developer@lfdr.de
 Received: from lists.sourceforge.net (lists.sourceforge.net [216.105.38.7])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9A3FC2250FC
-	for <lists+v9fs-developer@lfdr.de>; Sun, 19 Jul 2020 11:52:20 +0200 (CEST)
-Received: from [127.0.0.1] (helo=sfs-ml-1.v29.lw.sourceforge.com)
-	by sfs-ml-1.v29.lw.sourceforge.com with esmtp (Exim 4.90_1)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1F04022558F
+	for <lists+v9fs-developer@lfdr.de>; Mon, 20 Jul 2020 03:46:46 +0200 (CEST)
+Received: from [127.0.0.1] (helo=sfs-ml-4.v29.lw.sourceforge.com)
+	by sfs-ml-4.v29.lw.sourceforge.com with esmtp (Exim 4.90_1)
 	(envelope-from <v9fs-developer-bounces@lists.sourceforge.net>)
-	id 1jx5zV-0000jy-9l; Sun, 19 Jul 2020 09:52:17 +0000
+	id 1jxKt9-0000Nf-Dl; Mon, 20 Jul 2020 01:46:43 +0000
 Received: from [172.30.20.202] (helo=mx.sourceforge.net)
- by sfs-ml-1.v29.lw.sourceforge.com with esmtps
+ by sfs-ml-4.v29.lw.sourceforge.com with esmtps
  (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.90_1)
- (envelope-from <dhowells@redhat.com>) id 1jx5zT-0000jg-G3
- for v9fs-developer@lists.sourceforge.net; Sun, 19 Jul 2020 09:52:15 +0000
+ (envelope-from <jianyong.wu@arm.com>) id 1jxKt7-0000NY-HD
+ for v9fs-developer@lists.sourceforge.net; Mon, 20 Jul 2020 01:46:41 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=sourceforge.net; s=x; h=Message-ID:Date:Content-ID:Content-Type:
- MIME-Version:From:Subject:Cc:To:References:In-Reply-To:Sender:Reply-To:
- Content-Transfer-Encoding:Content-Description:Resent-Date:Resent-From:
- Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:
- List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=mknWuDNTSPVA5tuUznaF/9X4S4nuMwQxpbXQ5+3goe4=; b=gKvUfoz8jHy2fMUc38Wpw2czmd
- yz7ur2VgK2w7H5LwGiQIH2y1mq3VXZ/KTTPHExe+u1nFH+RhbcQWLO6MCDyM4PVLrFR0tE4oylbv/
- zJAnFju7NIJSh5t36aGzgHrF59Rr5J5H+eFywwudiW25VPo29zbF6pDUxle63AnwBuPg=;
+ d=sourceforge.net; s=x; h=Message-Id:Date:Subject:Cc:To:From:Sender:Reply-To:
+ MIME-Version:Content-Type:Content-Transfer-Encoding:Content-ID:
+ Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
+ :Resent-Message-ID:In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:
+ List-Subscribe:List-Post:List-Owner:List-Archive;
+ bh=gUyl8P1CpYgcyTqgbAPH6wDS6pkg8YvdPI5u9vWM7xA=; b=UxCt39DHo+4sSbqzu41LlVANl0
+ ZjCihTiQzjiUMQ8SqO7lujeDQ7zMPgLp/j1XiCKVfXiqli/jzOdyYbm+QW2f5Uve9gpSBhnH+bPTQ
+ lUoI1nevByNviTxp8uuPzkxbNsDg+fGTOQx7D+1/LAZ6X/fQ0bGlxf9yrF0zjZfSrSGE=;
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  ;
- h=Message-ID:Date:Content-ID:Content-Type:MIME-Version:From:Subject:Cc:To:
- References:In-Reply-To:Sender:Reply-To:Content-Transfer-Encoding:
- Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
- :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
+ h=Message-Id:Date:Subject:Cc:To:From:Sender:Reply-To:MIME-Version:
+ Content-Type:Content-Transfer-Encoding:Content-ID:Content-Description:
+ Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+ In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
  List-Post:List-Owner:List-Archive;
- bh=mknWuDNTSPVA5tuUznaF/9X4S4nuMwQxpbXQ5+3goe4=; b=KfDmaaSJu+L+6RNQy6u0ej0AMY
- 4+UycpHCLMKVqgbdMZnjM45kIsgWZJzgCkB+Wuy8A5y/QNh240R9/IMKSVbQ0AHTIWJj76alVBwwH
- 0i3rOo9su6cbaROJfxghgX+s+kX2HKF0FNrsPFRJHmcS3OHw8l80cNMWq3K3fz8Z+CXM=;
-Received: from us-smtp-1.mimecast.com ([205.139.110.61]
- helo=us-smtp-delivery-1.mimecast.com)
- by sfi-mx-3.v28.lw.sourceforge.com with esmtps
- (TLSv1.2:ECDHE-RSA-AES256-SHA384:256) (Exim 4.92.2)
- id 1jx5zN-006r7D-04
- for v9fs-developer@lists.sourceforge.net; Sun, 19 Jul 2020 09:52:15 +0000
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
- s=mimecast20190719; t=1595152322;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:content-type:content-type:
- in-reply-to:in-reply-to:references:references;
- bh=mknWuDNTSPVA5tuUznaF/9X4S4nuMwQxpbXQ5+3goe4=;
- b=KTNUbDob46tg9SJK7KzWkduacmY2eOFp9p4cWPefWh8xV/H29cBNiB36A068Zcny5RdTeK
- y9gpO9xNrG1oTtDOnP2Pv1Pcn4CAGvNeRpNgWqThWxYnMIOrGBKHZJCemWPx7anQQIvN/p
- rryJvEu+SWR9hPemHmiDTseufKW+MAU=
-Received: from mimecast-mx01.redhat.com (mimecast-mx01.redhat.com
- [209.132.183.4]) (Using TLS) by relay.mimecast.com with ESMTP id
- us-mta-138-nURWLhFwNNyG7fNENd1CWQ-1; Sun, 19 Jul 2020 05:52:00 -0400
-X-MC-Unique: nURWLhFwNNyG7fNENd1CWQ-1
-Received: from smtp.corp.redhat.com (int-mx08.intmail.prod.int.phx2.redhat.com
- [10.5.11.23])
- (using TLSv1.2 with cipher AECDH-AES256-SHA (256/256 bits))
- (No client certificate requested)
- by mimecast-mx01.redhat.com (Postfix) with ESMTPS id 940D580183C;
- Sun, 19 Jul 2020 09:51:58 +0000 (UTC)
-Received: from warthog.procyon.org.uk (ovpn-112-32.rdu2.redhat.com
- [10.10.112.32])
- by smtp.corp.redhat.com (Postfix) with ESMTP id 8F9481A90F;
- Sun, 19 Jul 2020 09:51:52 +0000 (UTC)
-Organization: Red Hat UK Ltd. Registered Address: Red Hat UK Ltd, Amberley
- Place, 107-111 Peascod Street, Windsor, Berkshire, SI4 1TE, United
- Kingdom.
- Registered in England and Wales under Company Registration No. 3798903
-In-Reply-To: <20200719014436.GG2786714@ZenIV.linux.org.uk>
-References: <20200719014436.GG2786714@ZenIV.linux.org.uk>
- <159465784033.1376674.18106463693989811037.stgit@warthog.procyon.org.uk>
- <159465785214.1376674.6062549291411362531.stgit@warthog.procyon.org.uk>
-To: Al Viro <viro@zeniv.linux.org.uk>
-From: David Howells <dhowells@redhat.com>
-MIME-Version: 1.0
-Content-ID: <3417.1595152311.1@warthog.procyon.org.uk>
-Date: Sun, 19 Jul 2020 10:51:51 +0100
-Message-ID: <3418.1595152311@warthog.procyon.org.uk>
-X-Scanned-By: MIMEDefang 2.84 on 10.5.11.23
-X-Spam-Score: -0.6 (/)
+ bh=gUyl8P1CpYgcyTqgbAPH6wDS6pkg8YvdPI5u9vWM7xA=; b=djftWHVjYgcfxP5xnWb2H359BG
+ t/8gy2cnfAHVIKNecFu02h5iSocWAlhPm2W2fy734UKEJBZbREZC3m21o3c4vWDUXLAxFWA8PDm7s
+ a4G5gOXEAGgXbz1T3C/iFB2nHfQThv/FFJxCq+jViP4L2SP7qx6Mp4usJ+jjgwSquulI=;
+Received: from foss.arm.com ([217.140.110.172])
+ by sfi-mx-3.v28.lw.sourceforge.com with esmtp (Exim 4.92.2)
+ id 1jxKt5-009Hkb-T4
+ for v9fs-developer@lists.sourceforge.net; Mon, 20 Jul 2020 01:46:41 +0000
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+ by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id F2D10106F;
+ Sun, 19 Jul 2020 18:46:33 -0700 (PDT)
+Received: from entos-d05.shanghai.arm.com (entos-d05.shanghai.arm.com
+ [10.169.212.212])
+ by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPA id 9035F3F66E;
+ Sun, 19 Jul 2020 18:46:30 -0700 (PDT)
+From: Jianyong Wu <jianyong.wu@arm.com>
+To: ericvh@gmail.com, hch@lst.de, dhowells@redhat.com, lucho@ionkov.net,
+ asmadeus@codewreck.org
+Date: Mon, 20 Jul 2020 09:46:20 +0800
+Message-Id: <20200720014622.37364-1-jianyong.wu@arm.com>
+X-Mailer: git-send-email 2.17.1
+X-Spam-Score: 0.0 (/)
 X-Spam-Report: Spam Filtering performed by mx.sourceforge.net.
  See http://spamassassin.org/tag/ for more details.
- 0.0 URIBL_BLOCKED ADMINISTRATOR NOTICE: The query to URIBL was blocked.
- See
- http://wiki.apache.org/spamassassin/DnsBlocklists#dnsbl-block
- for more information. [URIs: linux.org.uk]
- -0.0 RCVD_IN_DNSWL_NONE     RBL: Sender listed at https://www.dnswl.org/, no
- trust [205.139.110.61 listed in list.dnswl.org]
- -0.0 RCVD_IN_MSPIKE_H2      RBL: Average reputation (+2)
- [205.139.110.61 listed in wl.mailspike.net]
  -0.0 SPF_PASS               SPF: sender matches SPF record
  0.0 SPF_HELO_NONE          SPF: HELO does not publish an SPF Record
- -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from author's
- domain
- -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
- 0.1 DKIM_SIGNED            Message has a DKIM or DK signature,
- not necessarily valid
- -0.0 DKIMWL_WL_HIGH         DKIMwl.org - Whitelisted High sender
- -0.5 AWL AWL: Adjusted score from AWL reputation of From: address
-X-Headers-End: 1jx5zN-006r7D-04
-Subject: Re: [V9fs-developer] [PATCH 01/32] iov_iter: Add ITER_MAPPING
+X-Headers-End: 1jxKt5-009Hkb-T4
+Subject: [V9fs-developer] [RFC PATCH 0/2] vfs:9p: fix open-unlink-fstat bug
 X-BeenThere: v9fs-developer@lists.sourceforge.net
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -109,44 +67,41 @@ List-Post: <mailto:v9fs-developer@lists.sourceforge.net>
 List-Help: <mailto:v9fs-developer-request@lists.sourceforge.net?subject=help>
 List-Subscribe: <https://lists.sourceforge.net/lists/listinfo/v9fs-developer>, 
  <mailto:v9fs-developer-request@lists.sourceforge.net?subject=subscribe>
-Cc: Steve French <sfrench@samba.org>, linux-nfs@vger.kernel.org,
- Jeff Layton <jlayton@redhat.com>, linux-cifs@vger.kernel.org,
- Dave Wysochanski <dwysocha@redhat.com>, linux-kernel@vger.kernel.org,
- Matthew Wilcox <willy@infradead.org>, linux-afs@lists.infradead.org,
- dhowells@redhat.com, linux-cachefs@redhat.com,
- Trond Myklebust <trondmy@hammerspace.com>, linux-fsdevel@vger.kernel.org,
- v9fs-developer@lists.sourceforge.net, ceph-devel@vger.kernel.org,
- Anna Schumaker <anna.schumaker@netapp.com>
+Cc: justin.he@arm.com, wei.chen@arm.com, jianyong.wu@arm.com,
+ linux-kernel@vger.kernel.org, Kaly.Xin@arm.com,
+ v9fs-developer@lists.sourceforge.net
+MIME-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: v9fs-developer-bounces@lists.sourceforge.net
 
-Al Viro <viro@zeniv.linux.org.uk> wrote:
+how to reproduce:
+in 9p guest:
 
-> My main problem here is that your iterate_mapping() assumes that STEP is
-> safe under rcu_read_lock(), with no visible mentioning of that fact.
+struct stat *statbuf;
+int fd;
 
-Yeah, that's probably the biggest objection to this.
+fd = open("tmp", O_RDWR);
+unlink("tmp");
+fstat(fd, statbuf);
 
-> Note, BTW, that iov_iter_for_each_range() quietly calls user-supplied
-> callback in such context.
+fstat will fail as "tmp" in 9p server side has been removed. 9p server
+can't retrieve the file context as the guest has not passed it down.
+so we should pass the file info down in 9p guest in getattr op.
+it need add a new file member in "struct kstat" as "struct istat" does.
 
-And calls kmap(), but should probably use kmap_atomic().  git grep doesn't
-show any users of this, so can it be removed?
+Jianyong Wu (2):
+  vfs: pass file down when getattr to avoid losing info.
+  9p: retrieve fid from file if it exists when getattr.
 
-> Incidentally, do you ever have different steps for bvec and mapping?
+ fs/9p/vfs_inode.c      | 9 +++++++--
+ fs/9p/vfs_inode_dotl.c | 9 +++++++--
+ fs/stat.c              | 1 +
+ include/linux/stat.h   | 6 ++++++
+ 4 files changed, 21 insertions(+), 4 deletions(-)
 
-Yes:
-
-	csum_and_copy_from_iter_full()
-	iov_iter_npages()
-	iov_iter_get_pages()
-	iov_iter_get_pages_alloc()
-
-But I've tried to use the internal representation struct for bvec where I can
-rather than inventing a new one.
-
-David
+-- 
+2.17.1
 
 
 
