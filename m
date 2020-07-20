@@ -2,26 +2,26 @@ Return-Path: <v9fs-developer-bounces@lists.sourceforge.net>
 X-Original-To: lists+v9fs-developer@lfdr.de
 Delivered-To: lists+v9fs-developer@lfdr.de
 Received: from lists.sourceforge.net (lists.sourceforge.net [216.105.38.7])
-	by mail.lfdr.de (Postfix) with ESMTPS id CB803225590
-	for <lists+v9fs-developer@lfdr.de>; Mon, 20 Jul 2020 03:46:49 +0200 (CEST)
-Received: from [127.0.0.1] (helo=sfs-ml-1.v29.lw.sourceforge.com)
-	by sfs-ml-1.v29.lw.sourceforge.com with esmtp (Exim 4.90_1)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8697F225591
+	for <lists+v9fs-developer@lfdr.de>; Mon, 20 Jul 2020 03:46:58 +0200 (CEST)
+Received: from [127.0.0.1] (helo=sfs-ml-2.v29.lw.sourceforge.com)
+	by sfs-ml-2.v29.lw.sourceforge.com with esmtp (Exim 4.90_1)
 	(envelope-from <v9fs-developer-bounces@lists.sourceforge.net>)
-	id 1jxKtE-0005F7-Ke; Mon, 20 Jul 2020 01:46:48 +0000
+	id 1jxKtN-0005xb-C9; Mon, 20 Jul 2020 01:46:57 +0000
 Received: from [172.30.20.202] (helo=mx.sourceforge.net)
- by sfs-ml-1.v29.lw.sourceforge.com with esmtps
+ by sfs-ml-2.v29.lw.sourceforge.com with esmtps
  (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.90_1)
- (envelope-from <jianyong.wu@arm.com>) id 1jxKtB-0005Ew-Hv
- for v9fs-developer@lists.sourceforge.net; Mon, 20 Jul 2020 01:46:45 +0000
+ (envelope-from <jianyong.wu@arm.com>) id 1jxKtM-0005xO-3i
+ for v9fs-developer@lists.sourceforge.net; Mon, 20 Jul 2020 01:46:56 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
  d=sourceforge.net; s=x; h=References:In-Reply-To:Message-Id:Date:Subject:Cc:
  To:From:Sender:Reply-To:MIME-Version:Content-Type:Content-Transfer-Encoding:
  Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
  Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
  List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=aZ9GiExZW3QkniI9rzQ6OJi5UzrpNK8QDOpkq2ajCRw=; b=Pg2IvJ6exr4Ew2wSa23GyZINno
- /KawkfiaXuSU8ELtltgLJwpiNXEkYXXa6dbdUeZdJUAzJiE6XrzBTrTAI0f32O9dtg3mJ+nUa3+cZ
- KNL8UmcsS1AfrgsTcr4Q21X38vl3GtlFnlkIZ0F9PhRaSauPP+jYoWuld2dmWDUfO3Fk=;
+ bh=z+pjDMkVsr1GSxEmSht1t62uZ1Ls+LDRfVe39NOHfdI=; b=UZikgdmnOEE308SUCwFg1r0shy
+ iuOKrRu9EGT9PDhijO6OcUU6BVGXO+cWBfF7NlJfdDpc7XE3V2sniQ8qouQi9L5xtC0fHQstHVdUM
+ F6yOxJxIxfDHm3MHeGELlHVlgj3aXbSFbXAEbu8vhtRX0Nu2s5j5lCQIOGc1ONmqykXk=;
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  ;
  h=References:In-Reply-To:Message-Id:Date:Subject:Cc:To:From:Sender:Reply-To
@@ -29,25 +29,25 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
  :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
  List-Post:List-Owner:List-Archive;
- bh=aZ9GiExZW3QkniI9rzQ6OJi5UzrpNK8QDOpkq2ajCRw=; b=lCNF4c+4eLQREtzz8RxFhBPZjn
- RiEKKJ7Q1hIjJLbOcCLGXxgBRQ/rNqHWEtOkprsK5BGLYCpbe15NTt82BHzk59BPrhAk4sXYlPbbh
- qyEWyUipBMwDsBnn+ITt/TuSvQ+S3xOnWj4j4O/yD08YchVTF2LOQz5HOGLMkP3lGhqk=;
+ bh=z+pjDMkVsr1GSxEmSht1t62uZ1Ls+LDRfVe39NOHfdI=; b=Oq+eUIMxvDoB/lak6Pe/6XC1tj
+ 03rVLsbytV9A1iqkTNozbMa7857d9qR5Gra7W9unFioU5gv/qlIeKmd4v27VVbtWzXEL0Tn+HCA5D
+ AxnVV42ydQMuG79K3btikPzFxnCA2t1mhwRs3MuFO/UaZnZxSe/g3uzakkrM+HuZzzZ4=;
 Received: from foss.arm.com ([217.140.110.172])
  by sfi-mx-4.v28.lw.sourceforge.com with esmtp (Exim 4.92.2)
- id 1jxKtA-00CHJM-5A
- for v9fs-developer@lists.sourceforge.net; Mon, 20 Jul 2020 01:46:45 +0000
+ id 1jxKtK-00CHMn-9C
+ for v9fs-developer@lists.sourceforge.net; Mon, 20 Jul 2020 01:46:55 +0000
 Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
- by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id DAE8F12FC;
- Sun, 19 Jul 2020 18:46:37 -0700 (PDT)
+ by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id BADAE143B;
+ Sun, 19 Jul 2020 18:46:41 -0700 (PDT)
 Received: from entos-d05.shanghai.arm.com (entos-d05.shanghai.arm.com
  [10.169.212.212])
- by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPA id 79D6C3F66E;
- Sun, 19 Jul 2020 18:46:34 -0700 (PDT)
+ by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPA id 6307A3F66E;
+ Sun, 19 Jul 2020 18:46:38 -0700 (PDT)
 From: Jianyong Wu <jianyong.wu@arm.com>
 To: ericvh@gmail.com, hch@lst.de, dhowells@redhat.com, lucho@ionkov.net,
  asmadeus@codewreck.org
-Date: Mon, 20 Jul 2020 09:46:21 +0800
-Message-Id: <20200720014622.37364-2-jianyong.wu@arm.com>
+Date: Mon, 20 Jul 2020 09:46:22 +0800
+Message-Id: <20200720014622.37364-3-jianyong.wu@arm.com>
 X-Mailer: git-send-email 2.17.1
 In-Reply-To: <20200720014622.37364-1-jianyong.wu@arm.com>
 References: <20200720014622.37364-1-jianyong.wu@arm.com>
@@ -57,9 +57,9 @@ X-Spam-Report: Spam Filtering performed by mx.sourceforge.net.
  -0.0 SPF_PASS               SPF: sender matches SPF record
  0.0 SPF_HELO_NONE          SPF: HELO does not publish an SPF Record
  -0.3 AWL AWL: Adjusted score from AWL reputation of From: address
-X-Headers-End: 1jxKtA-00CHJM-5A
-Subject: [V9fs-developer] [RFC PATCH 1/2] vfs: pass file down when getattr
- to avoid losing info.
+X-Headers-End: 1jxKtK-00CHMn-9C
+Subject: [V9fs-developer] [RFC PATCH 2/2] 9p: retrieve fid from file if it
+ exists when getattr.
 X-BeenThere: v9fs-developer@lists.sourceforge.net
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -79,46 +79,71 @@ Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: v9fs-developer-bounces@lists.sourceforge.net
 
-Currently, getting attribute for a file represented by fd is always
-by inode or path which may lead to bug for a certain network file system.
-Adding file struct into struct kstat and assigning file for it in
-vfs_statx_fd can avoid this issue. This change refers to struct istat.
+fid should be retrieved from file when it is not NULL in getattr.
+it denotes that getattr is called by fdstat from userspace when
+file is exist, which means we should get info from file context
+not dentry to avoid the failure when the dentry has gone.
 
 Signed-off-by: Jianyong Wu <jianyong.wu@arm.com>
 ---
- fs/stat.c            | 1 +
- include/linux/stat.h | 6 ++++++
- 2 files changed, 7 insertions(+)
+ fs/9p/vfs_inode.c      | 9 +++++++--
+ fs/9p/vfs_inode_dotl.c | 9 +++++++--
+ 2 files changed, 14 insertions(+), 4 deletions(-)
 
-diff --git a/fs/stat.c b/fs/stat.c
-index 44f8ad346db4..0dee5487f6d6 100644
---- a/fs/stat.c
-+++ b/fs/stat.c
-@@ -147,6 +147,7 @@ int vfs_statx_fd(unsigned int fd, struct kstat *stat,
- 		return -EINVAL;
+diff --git a/fs/9p/vfs_inode.c b/fs/9p/vfs_inode.c
+index c9255d399917..f562f5710eae 100644
+--- a/fs/9p/vfs_inode.c
++++ b/fs/9p/vfs_inode.c
+@@ -1054,7 +1054,7 @@ v9fs_vfs_getattr(const struct path *path, struct kstat *stat,
+ {
+ 	struct dentry *dentry = path->dentry;
+ 	struct v9fs_session_info *v9ses;
+-	struct p9_fid *fid;
++	struct p9_fid *fid = NULL;
+ 	struct p9_wstat *st;
  
- 	f = fdget_raw(fd);
-+	stat->filp = f.file;
- 	if (f.file) {
- 		error = vfs_getattr(&f.file->f_path, stat,
- 				    request_mask, query_flags);
-diff --git a/include/linux/stat.h b/include/linux/stat.h
-index 56614af83d4a..4755c528d49a 100644
---- a/include/linux/stat.h
-+++ b/include/linux/stat.h
-@@ -48,6 +48,12 @@ struct kstat {
- 	struct timespec64 btime;			/* File creation time */
- 	u64		blocks;
- 	u64		mnt_id;
-+
-+	/*
-+	 * Not an attribute, but an auxiliary info for filesystems wanting to
-+	 * implement an fstat() like method.
-+	 */
-+	struct file	*filp;
- };
+ 	p9_debug(P9_DEBUG_VFS, "dentry: %p\n", dentry);
+@@ -1063,7 +1063,12 @@ v9fs_vfs_getattr(const struct path *path, struct kstat *stat,
+ 		generic_fillattr(d_inode(dentry), stat);
+ 		return 0;
+ 	}
+-	fid = v9fs_fid_lookup(dentry);
++	if (stat->filp) {
++		fid = stat->filp->private_data;
++		WARN_ON(!fid);
++	}
++	if (!fid)
++		fid = v9fs_fid_lookup(dentry);
+ 	if (IS_ERR(fid))
+ 		return PTR_ERR(fid);
  
- #endif
+diff --git a/fs/9p/vfs_inode_dotl.c b/fs/9p/vfs_inode_dotl.c
+index 60328b21c5fb..6b7cbe74b0bb 100644
+--- a/fs/9p/vfs_inode_dotl.c
++++ b/fs/9p/vfs_inode_dotl.c
+@@ -460,7 +460,7 @@ v9fs_vfs_getattr_dotl(const struct path *path, struct kstat *stat,
+ {
+ 	struct dentry *dentry = path->dentry;
+ 	struct v9fs_session_info *v9ses;
+-	struct p9_fid *fid;
++	struct p9_fid *fid = NULL;
+ 	struct p9_stat_dotl *st;
+ 
+ 	p9_debug(P9_DEBUG_VFS, "dentry: %p\n", dentry);
+@@ -469,7 +469,12 @@ v9fs_vfs_getattr_dotl(const struct path *path, struct kstat *stat,
+ 		generic_fillattr(d_inode(dentry), stat);
+ 		return 0;
+ 	}
+-	fid = v9fs_fid_lookup(dentry);
++	if (stat->filp) {
++		fid = stat->filp->private_data;
++		WARN_ON(!fid);
++	}
++	if (!fid)
++		fid = v9fs_fid_lookup(dentry);
+ 	if (IS_ERR(fid))
+ 		return PTR_ERR(fid);
+ 
 -- 
 2.17.1
 
