@@ -2,186 +2,71 @@ Return-Path: <v9fs-developer-bounces@lists.sourceforge.net>
 X-Original-To: lists+v9fs-developer@lfdr.de
 Delivered-To: lists+v9fs-developer@lfdr.de
 Received: from lists.sourceforge.net (lists.sourceforge.net [216.105.38.7])
-	by mail.lfdr.de (Postfix) with ESMTPS id 25F2A227D35
-	for <lists+v9fs-developer@lfdr.de>; Tue, 21 Jul 2020 12:38:45 +0200 (CEST)
-Received: from [127.0.0.1] (helo=sfs-ml-1.v29.lw.sourceforge.com)
-	by sfs-ml-1.v29.lw.sourceforge.com with esmtp (Exim 4.90_1)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6861422B11D
+	for <lists+v9fs-developer@lfdr.de>; Thu, 23 Jul 2020 16:17:57 +0200 (CEST)
+Received: from [127.0.0.1] (helo=sfs-ml-2.v29.lw.sourceforge.com)
+	by sfs-ml-2.v29.lw.sourceforge.com with esmtp (Exim 4.90_1)
 	(envelope-from <v9fs-developer-bounces@lists.sourceforge.net>)
-	id 1jxpfV-0002d0-3A; Tue, 21 Jul 2020 10:38:41 +0000
+	id 1jyc2k-0000kq-Jl; Thu, 23 Jul 2020 14:17:54 +0000
 Received: from [172.30.20.202] (helo=mx.sourceforge.net)
- by sfs-ml-1.v29.lw.sourceforge.com with esmtps
+ by sfs-ml-2.v29.lw.sourceforge.com with esmtps
  (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.90_1)
- (envelope-from <Jianyong.Wu@arm.com>) id 1jxpfR-0002cp-FU
- for v9fs-developer@lists.sourceforge.net; Tue, 21 Jul 2020 10:38:37 +0000
+ (envelope-from <cengiz@kernel.wtf>) id 1jyc2i-0000kh-IB
+ for v9fs-developer@lists.sourceforge.net; Thu, 23 Jul 2020 14:17:52 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=sourceforge.net; s=x; h=MIME-Version:Content-Transfer-Encoding:Content-Type
- :In-Reply-To:References:Message-ID:Date:Subject:CC:To:From:Sender:Reply-To:
+ d=sourceforge.net; s=x; h=Content-Transfer-Encoding:MIME-Version:Content-Type
+ :References:In-Reply-To:Date:Cc:To:From:Subject:Message-ID:Sender:Reply-To:
  Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
  Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
  List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=ai0ey2mHfLjQfUqBOluMkvMKLAwoke6W22MKuXHDOYU=; b=PFBqrq0x4HZWVg45y24T0JrPxw
- DRauO15PCHRvMD9UTYirOlGKMFovtv7h/femSX389x/qrmjIilABJtlkomFzgefXFzNMOaGXyKRVH
- FREcO1wWpfPlXKekNNO6Ga1Oq/K2C9P7gB/4Bm55752bur0EUsWEA/jvNCdn10oVxBgM=;
+ bh=lB7V/YTZwJQtOLUAGvtHu8a+7xNiF+J/XsJNLhH886I=; b=JYgL6pvQIRLjbVSKYsF1SJ1Ipc
+ a+nRGSBpicNgd5VYjZ/uytgIpoSk8SlC+N0STnAYbYhu3iLJUz0IF1FpaDUR4qyHRDYE0Fqj/l3Ki
+ j2nmMjDI9oKE6lT2DJ1Xrr5jmWUVRvGKHRyyDn/aV6sANcwRGW8AgUuatDFWBMR1AdzM=;
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  ;
- h=MIME-Version:Content-Transfer-Encoding:Content-Type:In-Reply-To:
- References:Message-ID:Date:Subject:CC:To:From:Sender:Reply-To:Content-ID:
+ h=Content-Transfer-Encoding:MIME-Version:Content-Type:References:
+ In-Reply-To:Date:Cc:To:From:Subject:Message-ID:Sender:Reply-To:Content-ID:
  Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
  :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
  List-Post:List-Owner:List-Archive;
- bh=ai0ey2mHfLjQfUqBOluMkvMKLAwoke6W22MKuXHDOYU=; b=EacQ4Z2jhowkgvpusd/hzEzYcO
- yugymPlGf21+8QyJHgLzmWHpAhWkIv48lGgNS6spVskutu7O9Gduhnzb02IYtadlCJfHK2S6RMq8l
- +jMCSO+k/Kgs67gvkNrgM1/dwR1KNr/ICXZeA+GhLO8o0Ba/eABv02aTIQsC/9ScL3yo=;
-Received: from mail-vi1eur05on2066.outbound.protection.outlook.com
- ([40.107.21.66] helo=EUR05-VI1-obe.outbound.protection.outlook.com)
- by sfi-mx-4.v28.lw.sourceforge.com with esmtps
+ bh=lB7V/YTZwJQtOLUAGvtHu8a+7xNiF+J/XsJNLhH886I=; b=WSFsAmlfB8mUa+N/1eIQsBwOy1
+ TAqRzNkoWD1Wrs6lHltOjxvWF+n2XUhv4XFWunf30nOkg3LVud7ihnpY9oIFNXPrjGActbGr8z4L0
+ 9QnhPtGJJf7iW3MCklrz2zMAFOBAu7WbEuc7NO2rzRfuaSWTzihYcHESI5Bg8FXXBssY=;
+Received: from relay4-d.mail.gandi.net ([217.70.183.196])
+ by sfi-mx-1.v28.lw.sourceforge.com with esmtps
  (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.92.2)
- id 1jxpfO-00ExmZ-3o
- for v9fs-developer@lists.sourceforge.net; Tue, 21 Jul 2020 10:38:37 +0000
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=armh.onmicrosoft.com; 
- s=selector2-armh-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=ai0ey2mHfLjQfUqBOluMkvMKLAwoke6W22MKuXHDOYU=;
- b=igf4iLXwjAHXkgyTwVkNdV8ypcf26UYmESybooSB/UhFp8XJLztPvYazHLeYmIeDIw0Iaoa7yU4H9odaf5sA0fFiHyo08YIewFicbvX2gZo/nQZcbccgyT41z6EYUXMdjCIgrCvjH3q9t6rn68kiFCzLkmiP3yK5THEBOj2lzx4=
-Received: from AM6PR0202CA0045.eurprd02.prod.outlook.com
- (2603:10a6:20b:3a::22) by HE1PR0801MB1836.eurprd08.prod.outlook.com
- (2603:10a6:3:89::16) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3195.18; Tue, 21 Jul
- 2020 10:03:32 +0000
-Received: from AM5EUR03FT056.eop-EUR03.prod.protection.outlook.com
- (2603:10a6:20b:3a:cafe::77) by AM6PR0202CA0045.outlook.office365.com
- (2603:10a6:20b:3a::22) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3195.18 via Frontend
- Transport; Tue, 21 Jul 2020 10:03:32 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 63.35.35.123)
- smtp.mailfrom=arm.com; lists.sourceforge.net; dkim=pass (signature was
- verified) header.d=armh.onmicrosoft.com;lists.sourceforge.net;
- dmarc=bestguesspass action=none header.from=arm.com;
-Received-SPF: Pass (protection.outlook.com: domain of arm.com designates
- 63.35.35.123 as permitted sender) receiver=protection.outlook.com;
- client-ip=63.35.35.123; helo=64aa7808-outbound-1.mta.getcheckrecipient.com;
-Received: from 64aa7808-outbound-1.mta.getcheckrecipient.com (63.35.35.123) by
- AM5EUR03FT056.mail.protection.outlook.com (10.152.17.224) with
- Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.3195.18 via Frontend Transport; Tue, 21 Jul 2020 10:03:32 +0000
-Received: ("Tessian outbound 7de93d801f24:v62");
- Tue, 21 Jul 2020 10:03:31 +0000
-X-CR-MTA-TID: 64aa7808
-Received: from ea91dfd565cb.2
- by 64aa7808-outbound-1.mta.getcheckrecipient.com id
- 6FF2EB22-C626-4A05-A06D-817920D350B2.1; 
- Tue, 21 Jul 2020 10:03:26 +0000
-Received: from EUR01-VE1-obe.outbound.protection.outlook.com
- by 64aa7808-outbound-1.mta.getcheckrecipient.com with ESMTPS id ea91dfd565cb.2
- (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384);
- Tue, 21 Jul 2020 10:03:26 +0000
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=VsQfnNkY5/ZD0BEtfUkIVAt511x/F/BfjfazSo22zkrDBLa7kSQu2RNLDZprw1IC2fIZy0RZFI1lKX/rlMSHdIm4VjCbd3oJCbaBVU8Eq7YOouZziR/gxlhZh2Gu4MZzEdyGlJX8HKvKRaF0SvLpjt/X2Z/wBM2Va9k1t44ku20PUjsgi9oF/JWVbmTf5iUo8THytS8dMnF7qmp0+coStdxleHT0/vE8heIw6C9/p7zbhEFlv0GBmNM9vIWZG0dt7YKkLBJHOp2w7EUxTXfN6yL3aiOHK0/EpVmUBX8AOUD7+/yeDyZadknLkYvO8fDjTtdvTSrBeOLmh9kJRVin5g==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=ai0ey2mHfLjQfUqBOluMkvMKLAwoke6W22MKuXHDOYU=;
- b=H0BvvWWORVFCUFbRMWIdU1mjJXVv14XHlhzVYR6CpXQKl8W8z+9dMz/QEnvRkIG+BilktCKHYnNzG1lgirUu0x7ej6g1DRIE4Z10BscR9hBMBblth8XzBjS6Sl68xzU1i0yprdQrDE5Onjdt80ABCnsaboP0gXlq54VSOrYb05qIMn4bGa0w87DUYiJaL0/Glj7UVbnmyEzkpCpO1TFA/rUTU88azIMPhTY36glUzF+lph6+o1UnXqUqzux8p5GOCHWkGKjvVtv+840yrz4b3GxgeXLGya9/utRr+20Rf1BRxR2zuA75oJNBEH6ETIKIx+BuPk9lfZKbu6hvWrIX4g==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=arm.com; dmarc=pass action=none header.from=arm.com; dkim=pass
- header.d=arm.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=armh.onmicrosoft.com; 
- s=selector2-armh-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=ai0ey2mHfLjQfUqBOluMkvMKLAwoke6W22MKuXHDOYU=;
- b=igf4iLXwjAHXkgyTwVkNdV8ypcf26UYmESybooSB/UhFp8XJLztPvYazHLeYmIeDIw0Iaoa7yU4H9odaf5sA0fFiHyo08YIewFicbvX2gZo/nQZcbccgyT41z6EYUXMdjCIgrCvjH3q9t6rn68kiFCzLkmiP3yK5THEBOj2lzx4=
-Received: from HE1PR0802MB2555.eurprd08.prod.outlook.com (2603:10a6:3:e0::7)
- by HE1PR0801MB1833.eurprd08.prod.outlook.com (2603:10a6:3:80::18) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3216.20; Tue, 21 Jul
- 2020 10:03:24 +0000
-Received: from HE1PR0802MB2555.eurprd08.prod.outlook.com
- ([fe80::9:c111:edc1:d65a]) by HE1PR0802MB2555.eurprd08.prod.outlook.com
- ([fe80::9:c111:edc1:d65a%6]) with mapi id 15.20.3195.026; Tue, 21 Jul 2020
- 10:03:24 +0000
-From: Jianyong Wu <Jianyong.Wu@arm.com>
-To: Dominique Martinet <asmadeus@codewreck.org>
-Thread-Topic: [RFC PATCH 1/2] vfs: pass file down when getattr to avoid losing
- info.
-Thread-Index: AQHWXjeiNMxBqXo7yk2X9SbcHqU0bakQjqwAgAE4FHA=
-Date: Tue, 21 Jul 2020 10:03:23 +0000
-Message-ID: <HE1PR0802MB2555AA0A535543B214155BE7F4780@HE1PR0802MB2555.eurprd08.prod.outlook.com>
-References: <20200720014622.37364-1-jianyong.wu@arm.com>
- <20200720014622.37364-2-jianyong.wu@arm.com> <20200720145340.GA13275@nautica>
-In-Reply-To: <20200720145340.GA13275@nautica>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-ts-tracking-id: 690fd59d-d198-432f-baef-9141a2033527.1
-x-checkrecipientchecked: true
-Authentication-Results-Original: codewreck.org; dkim=none (message not signed)
- header.d=none; codewreck.org;
- dmarc=none action=none header.from=arm.com; 
-x-originating-ip: [203.126.0.113]
-x-ms-publictraffictype: Email
-X-MS-Office365-Filtering-HT: Tenant
-X-MS-Office365-Filtering-Correlation-Id: c34484ff-2893-45de-3ac7-08d82d5d531d
-x-ms-traffictypediagnostic: HE1PR0801MB1833:|HE1PR0801MB1836:
-x-ms-exchange-transport-forked: True
-X-Microsoft-Antispam-PRVS: <HE1PR0801MB18366F6750CFFCC02A454462F4780@HE1PR0801MB1836.eurprd08.prod.outlook.com>
-x-checkrecipientrouted: true
-nodisclaimer: true
-x-ms-oob-tlc-oobclassifiers: OLM:10000;OLM:10000;
-X-MS-Exchange-SenderADCheck: 1
-X-Microsoft-Antispam-Untrusted: BCL:0;
-X-Microsoft-Antispam-Message-Info-Original: 3xtN0brkvolQZCtBkC4SKfoVvX2KkrxpBUZ9aRcMUgrdfvjfdHZlFAVpM7AYwOmxej20efX3NEadMeI+uXJI7QrGFhufoIfFZiWcJSGgCExWHOYBuXIqdDVuP+HrCky34fjVDH9udlfxXRIuMqDZW2wChv5zAXGq8xjhGoTOTU1T85ESxsvafduGMPkkkfUxUbSr0+0CyAmPwFZgvz23DvQqxd+zEgvveVGGWU24ou8MkBI27P26RraH1oelBJC4rR4VZSqkTt0dcx+YLWij84LvLl2329GIF3IXneLWk2bJ6Y0orLs6TVfqHx+SOzEjyMY43tsgkwQmVM4cqEU4XKKSIw+W43Ljp5kV1n86Gc/GzGdO19zYiM4sQv3/lOp8eODoYY+2J4ChYd0yTfDpig==
-X-Forefront-Antispam-Report-Untrusted: CIP:255.255.255.255; CTRY:; LANG:en;
- SCL:1; SRV:; IPV:NLI; SFV:NSPM; H:HE1PR0802MB2555.eurprd08.prod.outlook.com;
- PTR:; CAT:NONE; SFTY:;
- SFS:(4636009)(39860400002)(346002)(366004)(136003)(376002)(396003)(8936002)(966005)(2906002)(76116006)(66946007)(66476007)(66556008)(64756008)(66446008)(71200400001)(83380400001)(8676002)(6916009)(7696005)(316002)(54906003)(5660300002)(33656002)(55016002)(53546011)(6506007)(9686003)(478600001)(52536014)(86362001)(186003)(26005)(4326008);
- DIR:OUT; SFP:1101; 
-x-ms-exchange-antispam-messagedata: fvioaT89p7hh7QLSOUSvW0wPh8oD1YKlet6tCDPc2BA5e+NfmWIGt2utj93zyHG4Pe056q0nZCIwxIT3AZmErCIlclqOD3frX4c7p9+V1Zee3xIzlJWKxd38pifUmQXOytrnWmTA0PgDIV5v/zyMyFQTIJAY9uxslwlXGsvFwFeQiATwqmdKm48Qb8+w+G+RQPmeEIabVN3sjMHZXVxNqdR+2i6oh4zCAUKMHFdp5GzF5fK5wirYCBAEqmeIUMzL+TgJ/N33u7AdfTrZw+KefHy4D2wXFbDF6JRr+4Cc8IB+Ip0FCPXs6SoMZq7pMInA530K8d8Y76qmSQvOQPt0/KMjkp6RoaZTi2Un1MKIa6nNX+IcyZ4slupUI3FgUAZXVlrV3W/5OEIzILK8ccTamrN/xcp8MhLaLFDNaBaKv8tZX6+D/YYX0dlUkAWUayrP4gl9QGUx44tAvXdSgsy28hwFrLz8gXfFnmvsG0ZOLvE=
+ id 1jyc2f-006Kza-Ht
+ for v9fs-developer@lists.sourceforge.net; Thu, 23 Jul 2020 14:17:52 +0000
+X-Originating-IP: 84.44.14.226
+Received: from nexussix (unknown [84.44.14.226])
+ (Authenticated sender: cengiz@kernel.wtf)
+ by relay4-d.mail.gandi.net (Postfix) with ESMTPSA id 70E95E0009;
+ Thu, 23 Jul 2020 14:17:26 +0000 (UTC)
+Message-ID: <455c6bf929ea197a7c18ba3f9e8464148b333297.camel@kernel.wtf>
+From: Cengiz Can <cengiz@kernel.wtf>
+To: Eric Van Hensbergen <ericvh@gmail.com>, Latchesar Ionkov
+ <lucho@ionkov.net>,  Dominique Martinet <asmadeus@codewreck.org>
+Date: Thu, 23 Jul 2020 17:17:25 +0300
+In-Reply-To: <20200714110239.GE16178@lst.de>
+References: <00000000000003d32b05aa4d493c@google.com>
+ <20200714110239.GE16178@lst.de>
+User-Agent: Evolution 3.36.4 
 MIME-Version: 1.0
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: HE1PR0801MB1833
-Original-Authentication-Results: codewreck.org; dkim=none (message not signed)
- header.d=none; codewreck.org;
- dmarc=none action=none header.from=arm.com; 
-X-EOPAttributedMessage: 0
-X-MS-Exchange-Transport-CrossTenantHeadersStripped: AM5EUR03FT056.eop-EUR03.prod.protection.outlook.com
-X-Forefront-Antispam-Report: CIP:63.35.35.123; CTRY:IE; LANG:en; SCL:1; SRV:;
- IPV:CAL; SFV:NSPM; H:64aa7808-outbound-1.mta.getcheckrecipient.com;
- PTR:ec2-63-35-35-123.eu-west-1.compute.amazonaws.com; CAT:NONE; SFTY:;
- SFS:(4636009)(136003)(346002)(39860400002)(376002)(396003)(46966005)(53546011)(6506007)(8676002)(186003)(54906003)(26005)(70586007)(70206006)(7696005)(966005)(478600001)(82740400003)(83380400001)(4326008)(47076004)(81166007)(356005)(82310400002)(2906002)(6862004)(36906005)(316002)(8936002)(55016002)(86362001)(336012)(52536014)(5660300002)(9686003)(33656002);
- DIR:OUT; SFP:1101; 
-X-MS-Office365-Filtering-Correlation-Id-Prvs: 12df63be-d024-46cc-2363-08d82d5d4e5e
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: Ij+Q7hm4jtUwG9VKoJYwofGz59+xqH+hT5sYek04Ih1w9Vb84MMTdkwhBIv+UBPRJ1wTs4ZlxtVe/UmZ4OjMex44GEmqtsWJp06fhFaJwDIJ7IukSQeKNtGxTxPMw0KQLcgDIVlS0S8r0vk9WibVDG2GeenfT3LQLUs1/8kGbIvgrnqJAsIuJAwjcbEO8XRCFlTnFeLwP2vwmWZLXYQXoF/npSd9ceD73lcEMNCGorh8ZukyOyewf+vwJKfPACJpMp2s3sRVqIsAuZhgdOE1bLf0lpozk28bUCRAeOfJtM4cPVD4xnXErI6A82rqs9z74lC5/YEbVT50bpg0SzsY2kogtX2EG64L3QzoT5jDTkp81AdxEoksFxqbAusczuWTfCni4pIl2ckNHgxMk635ZyQ04/w1rWfJVItP2j8u20UvlCtpoiBgQ8np+bxHShs98+9VLAsbdZySjXOfiEHwBpczUzxmC6t4NL6Ju4xsM60=
-X-OriginatorOrg: arm.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 21 Jul 2020 10:03:32.1988 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: c34484ff-2893-45de-3ac7-08d82d5d531d
-X-MS-Exchange-CrossTenant-Id: f34e5979-57d9-4aaa-ad4d-b122a662184d
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=f34e5979-57d9-4aaa-ad4d-b122a662184d; Ip=[63.35.35.123];
- Helo=[64aa7808-outbound-1.mta.getcheckrecipient.com]
-X-MS-Exchange-CrossTenant-AuthSource: AM5EUR03FT056.eop-EUR03.prod.protection.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: HE1PR0801MB1836
 X-Spam-Score: -0.5 (/)
 X-Spam-Report: Spam Filtering performed by mx.sourceforge.net.
  See http://spamassassin.org/tag/ for more details.
  0.0 URIBL_BLOCKED ADMINISTRATOR NOTICE: The query to URIBL was blocked.
  See
  http://wiki.apache.org/spamassassin/DnsBlocklists#dnsbl-block
- for more information. [URIs: codewreck.org]
- -0.0 RCVD_IN_MSPIKE_H2      RBL: Average reputation (+2)
- [40.107.21.66 listed in wl.mailspike.net]
- -0.0 SPF_HELO_PASS          SPF: HELO matches SPF record
+ for more information. [URIs: appspotmail.com]
+ 0.0 RCVD_IN_MSPIKE_H3      RBL: Good reputation (+3)
+ [217.70.183.196 listed in wl.mailspike.net]
  -0.0 SPF_PASS               SPF: sender matches SPF record
- -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
- 0.1 DKIM_SIGNED            Message has a DKIM or DK signature,
- not necessarily valid
- 0.0 UNPARSEABLE_RELAY Informational: message has unparseable relay lines
+ 0.0 SPF_HELO_NONE          SPF: HELO does not publish an SPF Record
+ 0.0 RCVD_IN_MSPIKE_WL      Mailspike good senders
  -0.5 AWL AWL: Adjusted score from AWL reputation of From: address
-X-Headers-End: 1jxpfO-00ExmZ-3o
-Subject: Re: [V9fs-developer] [RFC PATCH 1/2] vfs: pass file down when
- getattr to avoid losing info.
+X-Headers-End: 1jyc2f-006Kza-Ht
+Subject: Re: [V9fs-developer] WARNING in __kernel_read
 X-BeenThere: v9fs-developer@lists.sourceforge.net
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -193,98 +78,144 @@ List-Post: <mailto:v9fs-developer@lists.sourceforge.net>
 List-Help: <mailto:v9fs-developer-request@lists.sourceforge.net?subject=help>
 List-Subscribe: <https://lists.sourceforge.net/lists/listinfo/v9fs-developer>, 
  <mailto:v9fs-developer-request@lists.sourceforge.net?subject=subscribe>
-Cc: "lucho@ionkov.net" <lucho@ionkov.net>, Justin He <Justin.He@arm.com>,
- Wei Chen <Wei.Chen@arm.com>, "ericvh@gmail.com" <ericvh@gmail.com>,
- "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
- "dhowells@redhat.com" <dhowells@redhat.com>, Kaly Xin <Kaly.Xin@arm.com>,
- "v9fs-developer@lists.sourceforge.net" <v9fs-developer@lists.sourceforge.net>,
- "hch@lst.de" <hch@lst.de>
+Cc: syzkaller-bugs@googlegroups.com, linux-kernel@vger.kernel.org,
+ viro@zeniv.linux.org.uk, linux-fsdevel@vger.kernel.org,
+ v9fs-developer@lists.sourceforge.net, Christoph Hellwig <hch@lst.de>,
+ syzbot <syzbot+d012ca3f813739c37c25@syzkaller.appspotmail.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: v9fs-developer-bounces@lists.sourceforge.net
 
+Hello,
 
+I'm trying to help clean up syzkaller submissions and this caught my
+attention and I wanted to get your advice.
 
-> -----Original Message-----
-> From: Dominique Martinet <asmadeus@codewreck.org>
-> Sent: Monday, July 20, 2020 10:54 PM
-> To: Jianyong Wu <Jianyong.Wu@arm.com>
-> Cc: ericvh@gmail.com; hch@lst.de; dhowells@redhat.com;
-> lucho@ionkov.net; v9fs-developer@lists.sourceforge.net; linux-
-> kernel@vger.kernel.org; Kaly Xin <Kaly.Xin@arm.com>; Justin He
-> <Justin.He@arm.com>; Wei Chen <Wei.Chen@arm.com>
-> Subject: Re: [RFC PATCH 1/2] vfs: pass file down when getattr to avoid losing
-> info.
->
-> Jianyong Wu wrote on Mon, Jul 20, 2020:
-> > Currently, getting attribute for a file represented by fd is always by
-> > inode or path which may lead to bug for a certain network file system.
-> > Adding file struct into struct kstat and assigning file for it in
-> > vfs_statx_fd can avoid this issue. This change refers to struct istat.
-> >
-> > Signed-off-by: Jianyong Wu <jianyong.wu@arm.com>
+With commit: 6209dd9132e8ea5545cffc84483841e88ea8cc5b `kernel_read` was
+modified to use `__kernel_read` by Christoph Hellwig.
+
+One of the syzkaller tests executes following system calls:
+
+open("./file0", O_WRONLY|O_CREAT|O_EXCL|O_DIRECT|0x4, 000) = 5
+open("/dev/char/4:1", O_RDWR)           = 6
+mount(NULL, "./file0", "9p", 0,
+"trans=fd,rfdno=0x0000000000000005,wfdno=0x0000000000000006,"
+
+This initiates a `__kernel_read` call from `p9_read_work` (and
+`p9_fd_read`) and since the `file->f_mode` does not contain FMODE_READ
+, a WARN_ON_ONCE is thrown.
+
+```
+if (WARN_ON_ONCE(!(file->f_mode & FMODE_READ)))
+         return -EINVAL;
+```
+
+Can you help me understand what's wrong and fix this issue? 
+Is it already being worked on?
+
+Thank you
+
+Cengiz Can
+
+On Tue, 2020-07-14 at 13:02 +0200, Christoph Hellwig wrote:
+> On Mon, Jul 13, 2020 at 12:03:17AM -0700, syzbot wrote:
+> > Hello,
+> > 
+> > syzbot found the following crash on:
+> 
+> This is not a crash, but a WARN_ON_ONCE, someone really needs to fix
+> syzbot to report this correctly.
+> 
+> The fix should be queued up by the 9p maintainers.
+> 
+> > HEAD commit:    a581387e Merge tag 'io_uring-5.8-2020-07-10' of
+> > git://git...
+> > git tree:       upstream
+> > console output: 
+> > https://syzkaller.appspot.com/x/log.txt?x=13e730eb100000
+> > kernel config:  
+> > https://syzkaller.appspot.com/x/.config?x=66ad203c2bb6d8b
+> > dashboard link: 
+> > https://syzkaller.appspot.com/bug?extid=d012ca3f813739c37c25
+> > compiler:       gcc (GCC) 10.1.0-syz 20200507
+> > syz repro:      
+> > https://syzkaller.appspot.com/x/repro.syz?x=12e0222b100000
+> > C reproducer:   
+> > https://syzkaller.appspot.com/x/repro.c?x=162a004f100000
+> > 
+> > The bug was bisected to:
+> > 
+> > commit 6209dd9132e8ea5545cffc84483841e88ea8cc5b
+> > Author: Christoph Hellwig <hch@lst.de>
+> > Date:   Fri May 8 07:00:28 2020 +0000
+> > 
+> >     fs: implement kernel_read using __kernel_read
+> > 
+> > bisection log:  
+> > https://syzkaller.appspot.com/x/bisect.txt?x=152d91fb100000
+> > final crash:    
+> > https://syzkaller.appspot.com/x/report.txt?x=172d91fb100000
+> > console output: 
+> > https://syzkaller.appspot.com/x/log.txt?x=132d91fb100000
+> > 
+> > IMPORTANT: if you fix the bug, please add the following tag to the
+> > commit:
+> > Reported-by: syzbot+d012ca3f813739c37c25@syzkaller.appspotmail.com
+> > Fixes: 6209dd9132e8 ("fs: implement kernel_read using
+> > __kernel_read")
+> > 
+> > ------------[ cut here ]------------
+> > WARNING: CPU: 0 PID: 5 at fs/read_write.c:427
+> > __kernel_read+0x41d/0x4d0 fs/read_write.c:427
+> > Kernel panic - not syncing: panic_on_warn set ...
+> > CPU: 0 PID: 5 Comm: kworker/0:0 Not tainted 5.8.0-rc4-syzkaller #0
+> > Hardware name: Google Google Compute Engine/Google Compute Engine,
+> > BIOS Google 01/01/2011
+> > Workqueue: events p9_read_work
+> > Call Trace:
+> >  __dump_stack lib/dump_stack.c:77 [inline]
+> >  dump_stack+0x18f/0x20d lib/dump_stack.c:118
+> >  panic+0x2e3/0x75c kernel/panic.c:231
+> >  __warn.cold+0x20/0x45 kernel/panic.c:600
+> >  report_bug+0x1bd/0x210 lib/bug.c:198
+> >  handle_bug+0x38/0x90 arch/x86/kernel/traps.c:235
+> >  exc_invalid_op+0x13/0x40 arch/x86/kernel/traps.c:255
+> >  asm_exc_invalid_op+0x12/0x20 arch/x86/include/asm/idtentry.h:542
+> > RIP: 0010:__kernel_read+0x41d/0x4d0 fs/read_write.c:427
+> > Code: fd ff ff e8 75 19 b6 ff 45 31 c9 45 31 c0 b9 01 00 00 00 4c
+> > 89 f2 89 ee 4c 89 ef e8 5d 22 12 00 e9 46 ff ff ff e8 53 19 b6 ff
+> > <0f> 0b 49 c7 c4 ea ff ff ff e9 11 fe ff ff 4c 89 f7 e8 2d 76 f5 ff
+> > RSP: 0018:ffffc90000cbfbc8 EFLAGS: 00010293
+> > RAX: 0000000000000000 RBX: ffff8880a9786ac0 RCX: ffffffff81bd9ac4
+> > RDX: ffff8880a95a2140 RSI: ffffffff81bd9e3d RDI: 0000000000000005
+> > RBP: ffff888096bc8060 R08: 0000000000000000 R09: 0000000000000000
+> > R10: 0000000000000000 R11: 1ffffffff1829bdd R12: 00000000081d801e
+> > R13: ffffc90000cbfc98 R14: ffff8880a9786b44 R15: 0000000000000007
+> >  kernel_read+0x52/0x70 fs/read_write.c:457
+> >  p9_fd_read net/9p/trans_fd.c:263 [inline]
+> >  p9_read_work+0x2ac/0xff0 net/9p/trans_fd.c:298
+> >  process_one_work+0x94c/0x1670 kernel/workqueue.c:2269
+> >  worker_thread+0x64c/0x1120 kernel/workqueue.c:2415
+> >  kthread+0x3b5/0x4a0 kernel/kthread.c:291
+> >  ret_from_fork+0x1f/0x30 arch/x86/entry/entry_64.S:293
+> > Kernel Offset: disabled
+> > Rebooting in 86400 seconds..
+> > 
+> > 
 > > ---
-> >  fs/stat.c            | 1 +
-> >  include/linux/stat.h | 6 ++++++
-> >  2 files changed, 7 insertions(+)
-> >
-> > diff --git a/fs/stat.c b/fs/stat.c
-> > index 44f8ad346db4..0dee5487f6d6 100644
-> > --- a/fs/stat.c
-> > +++ b/fs/stat.c
-> > @@ -147,6 +147,7 @@ int vfs_statx_fd(unsigned int fd, struct kstat *stat,
-> >  return -EINVAL;
-> >
-> >  f = fdget_raw(fd);
-> > +stat->filp = f.file;
-> >  if (f.file) {
-> >  error = vfs_getattr(&f.file->f_path, stat,
-> >      request_mask, query_flags);
-> > diff --git a/include/linux/stat.h b/include/linux/stat.h index
-> > 56614af83d4a..4755c528d49a 100644
-> > --- a/include/linux/stat.h
-> > +++ b/include/linux/stat.h
-> > @@ -48,6 +48,12 @@ struct kstat {
-> >  struct timespec64 btime;/* File creation time
-> */
-> >  u64blocks;
-> >  u64mnt_id;
-> > +
-> > +/*
-> > + * Not an attribute, but an auxiliary info for filesystems wanting to
-> > + * implement an fstat() like method.
-> > + */
-> > +struct file*filp;
->
-> Just, no ; don't touch this, it isn't likely to get accepted ever.
-> file operations should all have a filp around already, we need to fix this in our
-> code.
->
-Ok, but I think it may not be an easy job to fix it inside 9p.
+> > This bug is generated by a bot. It may contain errors.
+> > See https://goo.gl/tpsmEJ for more information about syzbot.
+> > syzbot engineers can be reached at syzkaller@googlegroups.com.
+> > 
+> > syzbot will keep track of this bug report. See:
+> > https://goo.gl/tpsmEJ#status for how to communicate with syzbot.
+> > For information about bisection process see: 
+> > https://goo.gl/tpsmEJ#bisection
+> > syzbot can test patches for this bug, for details see:
+> > https://goo.gl/tpsmEJ#testing-patches
+> ---end quoted text---
 
-> (also missing quite a few Cc if you ever want to touch these bits, at least
-> linux-fsdevel@)
-> thanks. Should have added them.
->
->
-> FWIW the problem has been discussed a few times previously.
->
-> I'd appreciate if you could take over from Eric and Greg's old series that
-> intended to fix that:
-> https://lore.kernel.org/lkml/146659832556.15781.17414806975641516683.
-> stgit@bahia.lan/
->
-> it introduced a race somewhere, but the idea looked good at the time so it's
-> worth looking into.
 
-Thanks, I will look into it to find some ideas. if I can get the solution, I will be back.
-
-Thanks
-Jianyong
->
-> --
-> Dominique
-IMPORTANT NOTICE: The contents of this email and any attachments are confidential and may also be privileged. If you are not the intended recipient, please notify the sender immediately and do not disclose the contents to any other person, use it for any purpose, or store or copy the information in any medium. Thank you.
 
 _______________________________________________
 V9fs-developer mailing list
