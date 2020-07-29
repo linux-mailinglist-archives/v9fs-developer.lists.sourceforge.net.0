@@ -2,59 +2,84 @@ Return-Path: <v9fs-developer-bounces@lists.sourceforge.net>
 X-Original-To: lists+v9fs-developer@lfdr.de
 Delivered-To: lists+v9fs-developer@lfdr.de
 Received: from lists.sourceforge.net (lists.sourceforge.net [216.105.38.7])
-	by mail.lfdr.de (Postfix) with ESMTPS id 81F6E23199E
-	for <lists+v9fs-developer@lfdr.de>; Wed, 29 Jul 2020 08:33:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id A16882319B4
+	for <lists+v9fs-developer@lfdr.de>; Wed, 29 Jul 2020 08:47:06 +0200 (CEST)
 Received: from [127.0.0.1] (helo=sfs-ml-4.v29.lw.sourceforge.com)
 	by sfs-ml-4.v29.lw.sourceforge.com with esmtp (Exim 4.90_1)
 	(envelope-from <v9fs-developer-bounces@lists.sourceforge.net>)
-	id 1k0fec-0002cv-O1; Wed, 29 Jul 2020 06:33:30 +0000
+	id 1k0frl-0003Cy-6o; Wed, 29 Jul 2020 06:47:05 +0000
 Received: from [172.30.20.202] (helo=mx.sourceforge.net)
  by sfs-ml-4.v29.lw.sourceforge.com with esmtps
  (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.90_1)
- (envelope-from <asmadeus@notk.org>) id 1k0feb-0002co-NW
- for v9fs-developer@lists.sourceforge.net; Wed, 29 Jul 2020 06:33:29 +0000
+ (envelope-from <groug@kaod.org>) id 1k0frj-0003Cq-P0
+ for v9fs-developer@lists.sourceforge.net; Wed, 29 Jul 2020 06:47:03 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=sourceforge.net; s=x; h=Content-Type:MIME-Version:Message-ID:Subject:Cc:To:
- From:Date:Sender:Reply-To:Content-Transfer-Encoding:Content-ID:
- Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
- :Resent-Message-ID:In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:
+ d=sourceforge.net; s=x; h=Content-Transfer-Encoding:Content-Type:MIME-Version
+ :References:In-Reply-To:Message-ID:Subject:Cc:To:From:Date:Sender:Reply-To:
+ Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+ Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
  List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=H1cVfU+MvVZ9xtv/Fv6t/3piZCazJ5GZiAVD34mJYT4=; b=Ld9QM5xPjfSA/mIonCqdTgMaL0
- qub0x/KTzHjAr/+HcA6ElajZMZmxjwoOvZgdoI8j8MNMRi0/uoFbFld5hT351aVClTwRoYnlep0o8
- OheoF7+z1gq3vZsKY1kBxzFJuuW3qzvV5mrssxbttzpwEkK01d8yOaWeCHKxuP94+YqI=;
+ bh=f885jt7QdnT93i9atfMci2ZnAhY7d2QZteFvtyNfEuo=; b=hiDW7LQiw4+APAxb48zUd3IIIC
+ O41bRxdnt/S4+WCKhooouaxmfKF6uHJgKd0vPbcY9XsGNCPH9Q7CSx7H0e+TxRc18xCfTP5whxmOS
+ dHZSVpG60jrFCdQmtPIC5Tx2Y/bJPbUVyFHX5En/9fF5fCc0I2pgP/XS7EIQIp0Ob3AQ=;
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  ;
- h=Content-Type:MIME-Version:Message-ID:Subject:Cc:To:From:Date:Sender:
- Reply-To:Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date
- :Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:
- References:List-Id:List-Help:List-Unsubscribe:List-Subscribe:List-Post:
- List-Owner:List-Archive; bh=H1cVfU+MvVZ9xtv/Fv6t/3piZCazJ5GZiAVD34mJYT4=; b=l
- ccT5dFbg6nBGOaUMmO6yL8ZmL47hu5lDrp6XdNjgSRbNs9VP4pvUpiA31FD+594wOnBm3/rJKwigd
- 6fNlfISfV5Y8mP6DwWEBNDUyC9Xh58AQ1OW4OpPX+9sejm5HBbRFm/VEQHYNMC8Sz3SyK7/GWf4JQ
- vR6FuYf5bHwHTdQ0=;
-Received: from nautica.notk.org ([91.121.71.147])
- by sfi-mx-4.v28.lw.sourceforge.com with esmtps
+ h=Content-Transfer-Encoding:Content-Type:MIME-Version:References:
+ In-Reply-To:Message-ID:Subject:Cc:To:From:Date:Sender:Reply-To:Content-ID:
+ Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
+ :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
+ List-Post:List-Owner:List-Archive;
+ bh=f885jt7QdnT93i9atfMci2ZnAhY7d2QZteFvtyNfEuo=; b=aFbmxddkgUjCpDDT/Q9E01DxgW
+ CyVyGQn/eXPH3jEIsUBR7mKY/mqfKFLMQo/QTgh53OrGY6ucKArEo4yNnHtwcg3vaiwXG8fBrFywz
+ toWsaRrs4IIiIOHksZNFrcI1J3FKWSwgZlYKl5HEu6s73pikmRA/BERINVjfI9Gi4m+g=;
+Received: from 1.mo2.mail-out.ovh.net ([46.105.63.121])
+ by sfi-mx-1.v28.lw.sourceforge.com with esmtps
  (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.92.2)
- id 1k0feZ-005r34-Uv
- for v9fs-developer@lists.sourceforge.net; Wed, 29 Jul 2020 06:33:29 +0000
-Received: by nautica.notk.org (Postfix, from userid 1001)
- id C9EDDC01F; Wed, 29 Jul 2020 08:33:21 +0200 (CEST)
-Date: Wed, 29 Jul 2020 08:33:06 +0200
-From: Dominique Martinet <asmadeus@codewreck.org>
-To: Linus Torvalds <torvalds@linux-foundation.org>
-Message-ID: <20200729063306.GA19549@nautica>
+ id 1k0frg-00D1Hd-1A
+ for v9fs-developer@lists.sourceforge.net; Wed, 29 Jul 2020 06:47:03 +0000
+Received: from player711.ha.ovh.net (unknown [10.108.57.150])
+ by mo2.mail-out.ovh.net (Postfix) with ESMTP id 198A31E2BC2
+ for <v9fs-developer@lists.sourceforge.net>;
+ Wed, 29 Jul 2020 08:38:32 +0200 (CEST)
+Received: from kaod.org (lns-bzn-46-82-253-208-248.adsl.proxad.net
+ [82.253.208.248]) (Authenticated sender: groug@kaod.org)
+ by player711.ha.ovh.net (Postfix) with ESMTPSA id AB08514A1AD8F;
+ Wed, 29 Jul 2020 06:38:23 +0000 (UTC)
+Authentication-Results: garm.ovh; auth=pass
+ (GARM-105G006896df29f-f4f3-493b-ab9a-d0c6f23d8bcf,
+ A40F6FE0CFFE28C23AB4AFBB3D5D665E11D39731) smtp.auth=groug@kaod.org
+Date: Wed, 29 Jul 2020 08:38:22 +0200
+From: Greg Kurz <groug@kaod.org>
+To: Dominique Martinet <asmadeus@codewreck.org>
+Message-ID: <20200729083822.66e165ed@bahia.lan>
+In-Reply-To: <20200729061449.GA19682@nautica>
+References: <20200728124129.130856-1-aik@ozlabs.ru>
+ <20200728194235.52660c08@bahia.lan>
+ <20200729061449.GA19682@nautica>
+X-Mailer: Claws Mail 3.17.5 (GTK+ 2.24.32; x86_64-redhat-linux-gnu)
 MIME-Version: 1.0
-Content-Disposition: inline
-User-Agent: Mutt/1.5.21 (2010-09-15)
-X-Spam-Score: 0.0 (/)
+X-Ovh-Tracer-Id: 1830713248816142592
+X-VR-SPAMSTATE: OK
+X-VR-SPAMSCORE: -100
+X-VR-SPAMCAUSE: gggruggvucftvghtrhhoucdtuddrgeduiedrieefgddutdelucetufdoteggodetrfdotffvucfrrhhofhhilhgvmecuqfggjfdpvefjgfevmfevgfenuceurghilhhouhhtmecuhedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmnecujfgurhepfffhvffukfgjfhfogggtgfesthejredtredtvdenucfhrhhomhepifhrvghgucfmuhhriicuoehgrhhouhhgsehkrghougdrohhrgheqnecuggftrfgrthhtvghrnhepveehieetvdettdfhiefhueetheekheejgfdtvddthfffuefgueduvefgveeijeegnecuffhomhgrihhnpehophgvnhhgrhhouhhprdhorhhgnecukfhppedtrddtrddtrddtpdekvddrvdehfedrvddtkedrvdegkeenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepmhhouggvpehsmhhtphdqohhuthdphhgvlhhopehplhgrhigvrhejuddurdhhrgdrohhvhhdrnhgvthdpihhnvghtpedtrddtrddtrddtpdhmrghilhhfrhhomhepghhrohhugheskhgrohgurdhorhhgpdhrtghpthhtohepvhelfhhsqdguvghvvghlohhpvghrsehlihhsthhsrdhsohhurhgtvghfohhrghgvrdhnvght
+X-Spam-Score: -0.4 (/)
 X-Spam-Report: Spam Filtering performed by mx.sourceforge.net.
  See http://spamassassin.org/tag/ for more details.
- 0.0 HEADER_FROM_DIFFERENT_DOMAINS From and EnvelopeFrom 2nd level mail
- domains are different
+ 0.0 URIBL_BLOCKED ADMINISTRATOR NOTICE: The query to URIBL was blocked.
+ See
+ http://wiki.apache.org/spamassassin/DnsBlocklists#dnsbl-block
+ for more information. [URIs: opengroup.org]
+ 0.0 RCVD_IN_MSPIKE_H3      RBL: Good reputation (+3)
+ [46.105.63.121 listed in wl.mailspike.net]
+ -0.0 RCVD_IN_DNSWL_NONE     RBL: Sender listed at https://www.dnswl.org/, no
+ trust [46.105.63.121 listed in list.dnswl.org]
  -0.0 SPF_PASS               SPF: sender matches SPF record
  0.0 SPF_HELO_NONE          SPF: HELO does not publish an SPF Record
-X-Headers-End: 1k0feZ-005r34-Uv
-Subject: [V9fs-developer] [GIT PULL] 9p update for 5.8
+ 0.0 RCVD_IN_MSPIKE_WL      Mailspike good senders
+ -0.4 AWL AWL: Adjusted score from AWL reputation of From: address
+X-Headers-End: 1k0frg-00D1Hd-1A
+Subject: Re: [V9fs-developer] [PATCH kernel] 9p/trans_fd: Check file mode at
+ opening
 X-BeenThere: v9fs-developer@lists.sourceforge.net
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -66,51 +91,61 @@ List-Post: <mailto:v9fs-developer@lists.sourceforge.net>
 List-Help: <mailto:v9fs-developer-request@lists.sourceforge.net?subject=help>
 List-Subscribe: <https://lists.sourceforge.net/lists/listinfo/v9fs-developer>, 
  <mailto:v9fs-developer-request@lists.sourceforge.net?subject=subscribe>
-Cc: netdev@vger.kernel.org, linux-kernel@vger.kernel.org,
- v9fs-developer@lists.sourceforge.net
+Cc: Latchesar Ionkov <lucho@ionkov.net>, Alexey Kardashevskiy <aik@ozlabs.ru>,
+ netdev@vger.kernel.org, linux-kernel@vger.kernel.org,
+ Eric Van Hensbergen <ericvh@gmail.com>, Jakub Kicinski <kuba@kernel.org>,
+ v9fs-developer@lists.sourceforge.net, "David S. Miller" <davem@davemloft.net>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: v9fs-developer-bounces@lists.sourceforge.net
 
-Sorry for the late request, I took some time to fix my test setup and to
-be convinced these two patches are worth sending now and not wait until
-the next merge window.
+On Wed, 29 Jul 2020 08:14:49 +0200
+Dominique Martinet <asmadeus@codewreck.org> wrote:
 
-(the "weird" -2 at the end of the tag is because I had already used
-9p-for-5.8 for the original -rc1 pull)
+> Greg Kurz wrote on Tue, Jul 28, 2020:
+> > > The "fd" transport layer uses 2 file descriptors passed externally
+> > > and calls kernel_write()/kernel_read() on these. If files were opened
+> > > without FMODE_WRITE/FMODE_READ, WARN_ON_ONCE() will fire.
+> 
+> There already is a fix in linux-next as a39c46067c84 ("net/9p: validate
+> fds in p9_fd_open")
+> 
+> > > This adds file mode checking in p9_fd_open; this returns -EBADF to
+> > > preserve the original behavior.
+> > 
+> > So this would cause open() to fail with EBADF, which might look a bit
 
+Oops... this seems to rather end up in mount(). :)
 
-The following changes since commit 11ba468877bb23f28956a35e896356252d63c983:
+> > weird to userspace since it didn't pass an fd... Is this to have a
+> > different error than -EIO that is returned when either rfd or wfd
+> > doesn't point to an open file descriptor ? If yes, why do we care ?
+> 
+> FWIW the solution taken just returns EIO as it would if an invalid fd
+> was given, but since it did pass an fd EBADF actually makes sense to me?
+> 
 
-  Linux 5.8-rc5 (2020-07-12 16:34:50 -0700)
+POSIX says:
 
-are available in the Git repository at:
+https://pubs.opengroup.org/onlinepubs/9699919799/functions/V2_chap02.html
 
-  https://github.com/martinetd/linux tags/9p-for-5.8-2
+[EBADF]
+Bad file descriptor. A file descriptor argument is out of range, refers to
+no open file, or a read (write) request is made to a file that is only open
+for writing (reading).
 
-for you to fetch changes up to 74d6a5d5662975aed7f25952f62efbb6f6dadd29:
+It seems that EBADF would be appropriate for both the existing and the
+new error path.
 
-  9p/trans_fd: Fix concurrency del of req_list in
-  p9_fd_cancelled/p9_read_work (2020-07-19 14:58:47 +0200)
+> However to the second question I'm not sure I care :)
+> 
+> > > Found by syzkaller.
+> 
+> I'm starting to understand where David comment came from the other day,
+> I guess it's still time to change my mind and submit to linus now I've
+> had time to test it...
+> 
 
-----------------------------------------------------------------
-A couple of syzcaller fixes for 5.8
-
-the first one in particular has been quite noisy ("broke" in -rc5)
-so this would be worth landing even this late even if users likely
-won't see a difference
-
-----------------------------------------------------------------
-Christoph Hellwig (1):
-      net/9p: validate fds in p9_fd_open
-
-Wang Hai (1):
-      9p/trans_fd: Fix concurrency del of req_list in p9_fd_cancelled/p9_read_work
-
- net/9p/trans_fd.c | 39 ++++++++++++++++++++++++++++++---------
- 1 file changed, 30 insertions(+), 9 deletions(-)
--- 
-Dominique
 
 
 _______________________________________________
