@@ -2,52 +2,49 @@ Return-Path: <v9fs-developer-bounces@lists.sourceforge.net>
 X-Original-To: lists+v9fs-developer@lfdr.de
 Delivered-To: lists+v9fs-developer@lfdr.de
 Received: from lists.sourceforge.net (lists.sourceforge.net [216.105.38.7])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8DF9923195A
-	for <lists+v9fs-developer@lfdr.de>; Wed, 29 Jul 2020 08:15:19 +0200 (CEST)
-Received: from [127.0.0.1] (helo=sfs-ml-2.v29.lw.sourceforge.com)
-	by sfs-ml-2.v29.lw.sourceforge.com with esmtp (Exim 4.90_1)
+	by mail.lfdr.de (Postfix) with ESMTPS id 81F6E23199E
+	for <lists+v9fs-developer@lfdr.de>; Wed, 29 Jul 2020 08:33:33 +0200 (CEST)
+Received: from [127.0.0.1] (helo=sfs-ml-4.v29.lw.sourceforge.com)
+	by sfs-ml-4.v29.lw.sourceforge.com with esmtp (Exim 4.90_1)
 	(envelope-from <v9fs-developer-bounces@lists.sourceforge.net>)
-	id 1k0fMx-0008U2-En; Wed, 29 Jul 2020 06:15:15 +0000
+	id 1k0fec-0002cv-O1; Wed, 29 Jul 2020 06:33:30 +0000
 Received: from [172.30.20.202] (helo=mx.sourceforge.net)
- by sfs-ml-2.v29.lw.sourceforge.com with esmtps
+ by sfs-ml-4.v29.lw.sourceforge.com with esmtps
  (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.90_1)
- (envelope-from <asmadeus@notk.org>) id 1k0fMv-0008Tp-Un
- for v9fs-developer@lists.sourceforge.net; Wed, 29 Jul 2020 06:15:13 +0000
+ (envelope-from <asmadeus@notk.org>) id 1k0feb-0002co-NW
+ for v9fs-developer@lists.sourceforge.net; Wed, 29 Jul 2020 06:33:29 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=sourceforge.net; s=x; h=In-Reply-To:Content-Type:MIME-Version:References:
- Message-ID:Subject:Cc:To:From:Date:Sender:Reply-To:Content-Transfer-Encoding:
- Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
- Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
+ d=sourceforge.net; s=x; h=Content-Type:MIME-Version:Message-ID:Subject:Cc:To:
+ From:Date:Sender:Reply-To:Content-Transfer-Encoding:Content-ID:
+ Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
+ :Resent-Message-ID:In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:
  List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=jrYdPy4sx+WpBMZYT+l1f5VJQEvST9WsAA6BUr2Afnc=; b=Z02rwrPeMRB6WI3ssO0P2ae+2o
- ZgUI/l1KbTekAugZjBZ3hPkSn17HDC/3118UL2K2XGNfb+MTNR45YiBYqfnO8I0+WaTzKpJdqnw1l
- QGHVLtXuqpZloR+BYggZycUrHcrtNkSBlrE/5XEb599bZXSE1j1RQAdigr6OlRVtNSuM=;
+ bh=H1cVfU+MvVZ9xtv/Fv6t/3piZCazJ5GZiAVD34mJYT4=; b=Ld9QM5xPjfSA/mIonCqdTgMaL0
+ qub0x/KTzHjAr/+HcA6ElajZMZmxjwoOvZgdoI8j8MNMRi0/uoFbFld5hT351aVClTwRoYnlep0o8
+ OheoF7+z1gq3vZsKY1kBxzFJuuW3qzvV5mrssxbttzpwEkK01d8yOaWeCHKxuP94+YqI=;
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  ;
- h=In-Reply-To:Content-Type:MIME-Version:References:Message-ID:Subject:Cc:To
- :From:Date:Sender:Reply-To:Content-Transfer-Encoding:Content-ID:
- Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
- :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
- List-Post:List-Owner:List-Archive;
- bh=jrYdPy4sx+WpBMZYT+l1f5VJQEvST9WsAA6BUr2Afnc=; b=ieNwhT9DI9N3Aga6hZEmX72qfG
- FNos5RqlpZYLrg8wYF7RlNcl56fnWSTkDQ9EBNQEHIFpaNcx9dD/GDPgjW5vp9vyc3BCd/xG2dBu/
- CoV8obo5SRMqsp92iHY1d8+wUhNLJLNa1ccU5rkE9A9Myl4hfhVCDFabHAjsb7TOCKY0=;
+ h=Content-Type:MIME-Version:Message-ID:Subject:Cc:To:From:Date:Sender:
+ Reply-To:Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date
+ :Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:
+ References:List-Id:List-Help:List-Unsubscribe:List-Subscribe:List-Post:
+ List-Owner:List-Archive; bh=H1cVfU+MvVZ9xtv/Fv6t/3piZCazJ5GZiAVD34mJYT4=; b=l
+ ccT5dFbg6nBGOaUMmO6yL8ZmL47hu5lDrp6XdNjgSRbNs9VP4pvUpiA31FD+594wOnBm3/rJKwigd
+ 6fNlfISfV5Y8mP6DwWEBNDUyC9Xh58AQ1OW4OpPX+9sejm5HBbRFm/VEQHYNMC8Sz3SyK7/GWf4JQ
+ vR6FuYf5bHwHTdQ0=;
 Received: from nautica.notk.org ([91.121.71.147])
  by sfi-mx-4.v28.lw.sourceforge.com with esmtps
  (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.92.2)
- id 1k0fMt-005prA-Nm
- for v9fs-developer@lists.sourceforge.net; Wed, 29 Jul 2020 06:15:13 +0000
+ id 1k0feZ-005r34-Uv
+ for v9fs-developer@lists.sourceforge.net; Wed, 29 Jul 2020 06:33:29 +0000
 Received: by nautica.notk.org (Postfix, from userid 1001)
- id 31395C01F; Wed, 29 Jul 2020 08:15:04 +0200 (CEST)
-Date: Wed, 29 Jul 2020 08:14:49 +0200
+ id C9EDDC01F; Wed, 29 Jul 2020 08:33:21 +0200 (CEST)
+Date: Wed, 29 Jul 2020 08:33:06 +0200
 From: Dominique Martinet <asmadeus@codewreck.org>
-To: Greg Kurz <groug@kaod.org>
-Message-ID: <20200729061449.GA19682@nautica>
-References: <20200728124129.130856-1-aik@ozlabs.ru>
- <20200728194235.52660c08@bahia.lan>
+To: Linus Torvalds <torvalds@linux-foundation.org>
+Message-ID: <20200729063306.GA19549@nautica>
 MIME-Version: 1.0
 Content-Disposition: inline
-In-Reply-To: <20200728194235.52660c08@bahia.lan>
 User-Agent: Mutt/1.5.21 (2010-09-15)
 X-Spam-Score: 0.0 (/)
 X-Spam-Report: Spam Filtering performed by mx.sourceforge.net.
@@ -56,9 +53,8 @@ X-Spam-Report: Spam Filtering performed by mx.sourceforge.net.
  domains are different
  -0.0 SPF_PASS               SPF: sender matches SPF record
  0.0 SPF_HELO_NONE          SPF: HELO does not publish an SPF Record
-X-Headers-End: 1k0fMt-005prA-Nm
-Subject: Re: [V9fs-developer] [PATCH kernel] 9p/trans_fd: Check file mode at
- opening
+X-Headers-End: 1k0feZ-005r34-Uv
+Subject: [V9fs-developer] [GIT PULL] 9p update for 5.8
 X-BeenThere: v9fs-developer@lists.sourceforge.net
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -70,41 +66,49 @@ List-Post: <mailto:v9fs-developer@lists.sourceforge.net>
 List-Help: <mailto:v9fs-developer-request@lists.sourceforge.net?subject=help>
 List-Subscribe: <https://lists.sourceforge.net/lists/listinfo/v9fs-developer>, 
  <mailto:v9fs-developer-request@lists.sourceforge.net?subject=subscribe>
-Cc: Latchesar Ionkov <lucho@ionkov.net>, Alexey Kardashevskiy <aik@ozlabs.ru>,
- netdev@vger.kernel.org, linux-kernel@vger.kernel.org,
- Eric Van Hensbergen <ericvh@gmail.com>, Jakub Kicinski <kuba@kernel.org>,
- v9fs-developer@lists.sourceforge.net, "David S. Miller" <davem@davemloft.net>
+Cc: netdev@vger.kernel.org, linux-kernel@vger.kernel.org,
+ v9fs-developer@lists.sourceforge.net
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: v9fs-developer-bounces@lists.sourceforge.net
 
-Greg Kurz wrote on Tue, Jul 28, 2020:
-> > The "fd" transport layer uses 2 file descriptors passed externally
-> > and calls kernel_write()/kernel_read() on these. If files were opened
-> > without FMODE_WRITE/FMODE_READ, WARN_ON_ONCE() will fire.
+Sorry for the late request, I took some time to fix my test setup and to
+be convinced these two patches are worth sending now and not wait until
+the next merge window.
 
-There already is a fix in linux-next as a39c46067c84 ("net/9p: validate
-fds in p9_fd_open")
+(the "weird" -2 at the end of the tag is because I had already used
+9p-for-5.8 for the original -rc1 pull)
 
-> > This adds file mode checking in p9_fd_open; this returns -EBADF to
-> > preserve the original behavior.
-> 
-> So this would cause open() to fail with EBADF, which might look a bit
-> weird to userspace since it didn't pass an fd... Is this to have a
-> different error than -EIO that is returned when either rfd or wfd
-> doesn't point to an open file descriptor ? If yes, why do we care ?
 
-FWIW the solution taken just returns EIO as it would if an invalid fd
-was given, but since it did pass an fd EBADF actually makes sense to me?
+The following changes since commit 11ba468877bb23f28956a35e896356252d63c983:
 
-However to the second question I'm not sure I care :)
+  Linux 5.8-rc5 (2020-07-12 16:34:50 -0700)
 
-> > Found by syzkaller.
+are available in the Git repository at:
 
-I'm starting to understand where David comment came from the other day,
-I guess it's still time to change my mind and submit to linus now I've
-had time to test it...
+  https://github.com/martinetd/linux tags/9p-for-5.8-2
 
+for you to fetch changes up to 74d6a5d5662975aed7f25952f62efbb6f6dadd29:
+
+  9p/trans_fd: Fix concurrency del of req_list in
+  p9_fd_cancelled/p9_read_work (2020-07-19 14:58:47 +0200)
+
+----------------------------------------------------------------
+A couple of syzcaller fixes for 5.8
+
+the first one in particular has been quite noisy ("broke" in -rc5)
+so this would be worth landing even this late even if users likely
+won't see a difference
+
+----------------------------------------------------------------
+Christoph Hellwig (1):
+      net/9p: validate fds in p9_fd_open
+
+Wang Hai (1):
+      9p/trans_fd: Fix concurrency del of req_list in p9_fd_cancelled/p9_read_work
+
+ net/9p/trans_fd.c | 39 ++++++++++++++++++++++++++++++---------
+ 1 file changed, 30 insertions(+), 9 deletions(-)
 -- 
 Dominique
 
