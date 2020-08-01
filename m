@@ -2,66 +2,70 @@ Return-Path: <v9fs-developer-bounces@lists.sourceforge.net>
 X-Original-To: lists+v9fs-developer@lfdr.de
 Delivered-To: lists+v9fs-developer@lfdr.de
 Received: from lists.sourceforge.net (lists.sourceforge.net [216.105.38.7])
-	by mail.lfdr.de (Postfix) with ESMTPS id D52FC233EA5
-	for <lists+v9fs-developer@lfdr.de>; Fri, 31 Jul 2020 07:24:49 +0200 (CEST)
-Received: from [127.0.0.1] (helo=sfs-ml-2.v29.lw.sourceforge.com)
-	by sfs-ml-2.v29.lw.sourceforge.com with esmtp (Exim 4.90_1)
-	(envelope-from <v9fs-developer-bounces@lists.sourceforge.net>)
-	id 1k1NXC-0002QK-SA; Fri, 31 Jul 2020 05:24:46 +0000
-Received: from [172.30.20.202] (helo=mx.sourceforge.net)
- by sfs-ml-2.v29.lw.sourceforge.com with esmtps
- (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.90_1)
- (envelope-from <asmadeus@notk.org>) id 1k1NXA-0002QB-T8
- for v9fs-developer@lists.sourceforge.net; Fri, 31 Jul 2020 05:24:44 +0000
+	by mail.lfdr.de (Postfix) with ESMTPS id 595BF235319
+	for <lists+v9fs-developer@lfdr.de>; Sat,  1 Aug 2020 17:54:02 +0200 (CEST)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=sourceforge.net; s=x; h=In-Reply-To:Content-Type:MIME-Version:References:
- Message-ID:Subject:Cc:To:From:Date:Sender:Reply-To:Content-Transfer-Encoding:
- Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
- Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
+	d=lists.sourceforge.net; s=beta; h=Content-Transfer-Encoding:Content-Type:Cc:
+	Reply-To:From:List-Subscribe:List-Help:List-Post:List-Archive:
+	List-Unsubscribe:List-Id:Subject:MIME-Version:Message-ID:Date:To:Sender:
+	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+	Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:List-Owner;
+	bh=iv8Y0SJ5wf8/1ezpdz6YMSPq9UTZEtQkCeUV6acJaOU=; b=i7HE+7EMZ3vXIlKaWaj14pWQ6v
+	pjdtKsFP8AyPXB5b8SlSdNuKXlDC8Y3fcvSOw6ATcFGzhCpZBW1Z3qpIFTbliLBBWuLK9IYNzoHT2
+	JFJjvNOhG52xLPsJoCjlJtTXSA/UuTsV028+OpTq51CnGDFz2/Eq1gzk15AwK/9dsGis=;
+Received: from [127.0.0.1] (helo=sfs-ml-1.v29.lw.sourceforge.com)
+	by sfs-ml-1.v29.lw.sourceforge.com with esmtp (Exim 4.90_1)
+	(envelope-from <v9fs-developer-bounces@lists.sourceforge.net>)
+	id 1k1tpf-0007OG-RN; Sat, 01 Aug 2020 15:53:59 +0000
+Received: from [172.30.20.202] (helo=mx.sourceforge.net)
+ by sfs-ml-1.v29.lw.sourceforge.com with esmtps
+ (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.90_1)
+ (envelope-from <no=reply@WHO.com>) id 1k1tpe-0007O4-U8
+ for v9fs-developer@lists.sourceforge.net; Sat, 01 Aug 2020 15:53:58 +0000
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+ d=sourceforge.net; s=x; h=Content-Transfer-Encoding:Content-Type:MIME-Version
+ :Message-ID:Date:Subject:To:From:Reply-To:Sender:Cc:Content-ID:
+ Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
+ :Resent-Message-ID:In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:
  List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=tPkDg+BkG+CmhSLlb1RqgR//w/3VyVvVztpDyJjNyPM=; b=cpqUtCWh2MGtsMigbR1nyWTX3+
- UMEdt04xxnTHxItIBQXmzIBo5NApRxZiXdP8VhU4xtY+o1zf5i9YFEJrI6LW57MiiCqtE3tC0Fg4a
- GeaadnBeOq+6SoNHZbVPOuFmU+bD+5Hiz/KnwXr2umvNziu2Qom7uZu0BozA2JVnQRoA=;
+ bh=dWYoN3YZQpbeYK36Ny+TrcwcWSeufEz/udwQhVWCP3E=; b=XS9c907ixtXZdG7bYkveZ13Jkv
+ nMByDeWs0Ck+vN7/96Nkk7XJqXsEbcarwun6wxMcIkEQl+7CI7V/QE4U+usedAclEbyKHXksjB/e8
+ PSEEWW0KtkN8tRXQ3IixKQxpGqLCfmWXeoab7UZSfEivmqUjTXN72NogQyA5DKMS8/Ew=;
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  ;
- h=In-Reply-To:Content-Type:MIME-Version:References:Message-ID:Subject:Cc:To
- :From:Date:Sender:Reply-To:Content-Transfer-Encoding:Content-ID:
- Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
- :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
- List-Post:List-Owner:List-Archive;
- bh=tPkDg+BkG+CmhSLlb1RqgR//w/3VyVvVztpDyJjNyPM=; b=hRxgBmxCNVjOHezpDYSm9SrYIK
- 3bx5qlvSsV9nJ5ZZ2U/q/x9gpquKOcTyVI58hU2EAnhNzBFILVDqhIpkuZmGhFjBvjPACPK1QXVxB
- 61C+UwCWcseF49clsLP3aZghrMuzcK/2/k4YA/l9yqexSQ9zjFoHxWn601WoYYjDLkHQ=;
-Received: from nautica.notk.org ([91.121.71.147])
- by sfi-mx-4.v28.lw.sourceforge.com with esmtps
- (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.92.2)
- id 1k1NX8-007urL-Uj
- for v9fs-developer@lists.sourceforge.net; Fri, 31 Jul 2020 05:24:44 +0000
-Received: by nautica.notk.org (Postfix, from userid 1001)
- id 5DC4FC01C; Fri, 31 Jul 2020 07:24:36 +0200 (CEST)
-Date: Fri, 31 Jul 2020 07:24:21 +0200
-From: Dominique Martinet <asmadeus@codewreck.org>
-To: Li Heng <liheng40@huawei.com>
-Message-ID: <20200731052421.GA22875@nautica>
-References: <1596013140-49744-1-git-send-email-liheng40@huawei.com>
+ h=Content-Transfer-Encoding:Content-Type:MIME-Version:Message-ID:Date:
+ Subject:To:From:Reply-To:Sender:Cc:Content-ID:Content-Description:Resent-Date
+ :Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:
+ References:List-Id:List-Help:List-Unsubscribe:List-Subscribe:List-Post:
+ List-Owner:List-Archive; bh=dWYoN3YZQpbeYK36Ny+TrcwcWSeufEz/udwQhVWCP3E=; b=J
+ WTkI+h6lHdoTnI2l1doXsAhJdFKTV87DKYGr3togSf3tVewFoUZlAqZHKljlmEhitJp7kb+i1TjLi
+ 38v+oqPAarnjEze61emJ8jLsMfP4xci+P0+MuASrPllG4h37CAPZgDZk6FPao2F2G0XWdSGSFRnIH
+ YS4QxHYLuxZQoTwo=;
+Received: from [103.141.137.241] by sfi-mx-1.v28.lw.sourceforge.com with esmtp 
+ (Exim 4.92.2) id 1k1tpd-00H2lB-8S
+ for v9fs-developer@lists.sourceforge.net; Sat, 01 Aug 2020 15:53:58 +0000
+To: v9fs-developer@lists.sourceforge.net
+Date: 1 Aug 2020 08:53:50 -0700
+Message-ID: <20200801085350.995FB89E5E0D4497@WHO.com>
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <1596013140-49744-1-git-send-email-liheng40@huawei.com>
-User-Agent: Mutt/1.5.21 (2010-09-15)
-X-Spam-Score: 0.0 (/)
+X-Spam-Score: 6.6 (++++++)
 X-Spam-Report: Spam Filtering performed by mx.sourceforge.net.
  See http://spamassassin.org/tag/ for more details.
  0.0 URIBL_BLOCKED ADMINISTRATOR NOTICE: The query to URIBL was blocked.
  See
  http://wiki.apache.org/spamassassin/DnsBlocklists#dnsbl-block
- for more information. [URIs: huawei.com]
- 0.0 HEADER_FROM_DIFFERENT_DOMAINS From and EnvelopeFrom 2nd level mail
- domains are different
- -0.0 SPF_PASS               SPF: sender matches SPF record
- 0.0 SPF_HELO_NONE          SPF: HELO does not publish an SPF Record
-X-Headers-End: 1k1NX8-007urL-Uj
-Subject: Re: [V9fs-developer] [PATCH -next] 9p: Remove unneeded cast from
- memory allocation
+ for more information. [URIs: onet.eu]
+ 1.2 RCVD_IN_BL_SPAMCOP_NET RBL: Received via a relay in bl.spamcop.net
+ [Blocked - see <https://www.spamcop.net/bl.shtml?103.141.137.241>]
+ 3.6 RCVD_IN_SBL_CSS        RBL: Received via a relay in Spamhaus SBL-CSS
+ [103.141.137.241 listed in zen.spamhaus.org]
+ 1.5 RCVD_IN_PSBL           RBL: Received via a relay in PSBL
+ [103.141.137.241 listed in psbl.surriel.com]
+ 0.0 SPF_NONE               SPF: sender does not publish an SPF Record
+ 0.0 LOTS_OF_MONEY          Huge... sums of money
+ 0.3 AWL AWL: Adjusted score from AWL reputation of From: address
+X-Headers-End: 1k1tpd-00H2lB-8S
+Subject: Re: [V9fs-developer] COVID-19 Compensation Payment Waiver
 X-BeenThere: v9fs-developer@lists.sourceforge.net
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -73,44 +77,37 @@ List-Post: <mailto:v9fs-developer@lists.sourceforge.net>
 List-Help: <mailto:v9fs-developer-request@lists.sourceforge.net?subject=help>
 List-Subscribe: <https://lists.sourceforge.net/lists/listinfo/v9fs-developer>, 
  <mailto:v9fs-developer-request@lists.sourceforge.net?subject=subscribe>
-Cc: ericvh@gmail.com, lucho@ionkov.net, linux-kernel@vger.kernel.org,
- v9fs-developer@lists.sourceforge.net
+From: UN Foundation via V9fs-developer <v9fs-developer@lists.sourceforge.net>
+Reply-To: delia.d@onet.eu
+Cc: UN Foundation <no=reply@WHO.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: v9fs-developer-bounces@lists.sourceforge.net
 
-Li Heng wrote on Wed, Jul 29, 2020:
-> Remove casting the values returned by memory allocation function.
-> 
-> Coccinelle emits WARNING:
-> 
-> ./fs/9p/vfs_inode.c:226:12-29: WARNING: casting value returned by memory allocation function to (struct v9fs_inode *) is useless.
-> 
-> Signed-off-by: Li Heng <liheng40@huawei.com>
+Fund Beneficiary / Email Owner
+REGISTERED CASE NR: WHO/UNCCORG/HEALTH020
 
-Why not, I'll take this for next.
-Please pay a bit more attention to the commit message next time though,
-neither "Remove casting the values" nor "x emits warning" are proper
-English -- I've taken the liberty to fix the grammar a bit...
+Congratulations!! 
 
-> ---
->  fs/9p/vfs_inode.c | 3 +--
->  1 file changed, 1 insertion(+), 2 deletions(-)
-> 
-> diff --git a/fs/9p/vfs_inode.c b/fs/9p/vfs_inode.c
-> index 0fd5bf2..ae0c38a 100644
-> --- a/fs/9p/vfs_inode.c
-> +++ b/fs/9p/vfs_inode.c
-> @@ -223,8 +223,7 @@ v9fs_blank_wstat(struct p9_wstat *wstat)
->  struct inode *v9fs_alloc_inode(struct super_block *sb)
->  {
->  	struct v9fs_inode *v9inode;
-> -	v9inode = (struct v9fs_inode *)kmem_cache_alloc(v9fs_inode_cache,
-> -							GFP_KERNEL);
-> +	v9inode = kmem_cache_alloc(v9fs_inode_cache, GFP_KERNEL);
->  	if (!v9inode)
->  		return NULL;
->  #ifdef CONFIG_9P_FSCACHE
+Your Email has been conditionally selected for Solidarity COVID-
+19 Palliative through World Health Organization(WHO), United 
+Nations Foundation COMPENSATION BOARD and the financial 
+empowerment platform is sending out relief Grants sum of 
+US$500,000.00 (Five Hundred Thousand United States Dollars) as 
+part of the Compensating response for Coronavirus (COVID-19) 
+outbreak.
+
+For claim, reach out to "Mrs Stefanova" on her Email " 
+delia.d@onet.eu "
+
+Sincerely,
+
+Director general of the World Health Organization(WHO) &
+United Nations Economic and Social Council(UNESCO)
+WHO, UN Foundations.
+405 East 42nd Street,
+New York NY, 10017, USA
+www.unfoundation.org
 
 
 _______________________________________________
