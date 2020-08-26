@@ -2,93 +2,65 @@ Return-Path: <v9fs-developer-bounces@lists.sourceforge.net>
 X-Original-To: lists+v9fs-developer@lfdr.de
 Delivered-To: lists+v9fs-developer@lfdr.de
 Received: from lists.sourceforge.net (lists.sourceforge.net [216.105.38.7])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9ECBA252B7C
-	for <lists+v9fs-developer@lfdr.de>; Wed, 26 Aug 2020 12:38:25 +0200 (CEST)
-Received: from [127.0.0.1] (helo=sfs-ml-2.v29.lw.sourceforge.com)
-	by sfs-ml-2.v29.lw.sourceforge.com with esmtp (Exim 4.90_1)
+	by mail.lfdr.de (Postfix) with ESMTPS id B98F8252EA6
+	for <lists+v9fs-developer@lfdr.de>; Wed, 26 Aug 2020 14:27:19 +0200 (CEST)
+Received: from [127.0.0.1] (helo=sfs-ml-1.v29.lw.sourceforge.com)
+	by sfs-ml-1.v29.lw.sourceforge.com with esmtp (Exim 4.90_1)
 	(envelope-from <v9fs-developer-bounces@lists.sourceforge.net>)
-	id 1kAsox-0002B4-LA; Wed, 26 Aug 2020 10:38:23 +0000
+	id 1kAuWL-0006Jb-Gl; Wed, 26 Aug 2020 12:27:17 +0000
 Received: from [172.30.20.202] (helo=mx.sourceforge.net)
- by sfs-ml-2.v29.lw.sourceforge.com with esmtps
+ by sfs-ml-1.v29.lw.sourceforge.com with esmtps
  (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.90_1)
- (envelope-from
- <3lztGXwkbACgWcdOEPPIVETTMH.KSSKPIYWIVGSRXIRX.GSQ@M3KW2WVRGUFZ5GODRSRYTGD7.apphosting.bounces.google.com>)
- id 1kAsow-0002At-Po
- for v9fs-developer@lists.sourceforge.net; Wed, 26 Aug 2020 10:38:22 +0000
+ (envelope-from <support@videomakervicenza.it>) id 1kAuWK-0006JN-3A
+ for v9fs-developer@lists.sourceforge.net; Wed, 26 Aug 2020 12:27:16 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=sourceforge.net; s=x; h=Content-Type:To:From:Subject:Message-ID:Date:
- MIME-Version:Sender:Reply-To:Cc:Content-Transfer-Encoding:Content-ID:
+ d=sourceforge.net; s=x; h=Content-Transfer-Encoding:Content-Type:MIME-Version
+ :Message-ID:Reply-To:From:Date:Subject:To:Sender:Cc:Content-ID:
  Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
  :Resent-Message-ID:In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:
  List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=zygVL94X6Q9/gOxylja2ASyPRPX3GqyZ0wHqqF523eI=; b=LSXUBOp4LQtJAgO0Kj+5kMGOET
- 4SO/Fwi2JEPkwznEFSF93u7zeHHLesg3eBZsWo3MGFojuodjnwzjCElIovJyd47+jMLfEzg1obyo/
- q8DfDfqX38ErxSkDsf9cBIQRcarv5f+rV25GDqCKAiGu3uw/OWP4xalOlPHhFX7iJfFo=;
+ bh=M9RV+Csfmg+uHDz2BGewJzh5S9vOnh2NwZOot20GI9M=; b=W9+eW5QzDPXUHmhi5QuWA9C/qP
+ lbAZoxTuSTwbqxo8K7mHKB3bLICSHVBmxgEWgbpahEHUua9LWfVTfdB/WM6ZsKoLkwmcoa+Z7fYOi
+ Xb6Tc6B4IWGN0uL16cVF708jz2HfkThOUDzkYaV80RotRe2TsJ7TuJZ1JLmg2NI+2Pgo=;
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  ;
- h=Content-Type:To:From:Subject:Message-ID:Date:MIME-Version:Sender:Reply-To
- :Cc:Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+ h=Content-Transfer-Encoding:Content-Type:MIME-Version:Message-ID:Reply-To:
+ From:Date:Subject:To:Sender:Cc:Content-ID:Content-Description:Resent-Date:
  Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:
  References:List-Id:List-Help:List-Unsubscribe:List-Subscribe:List-Post:
- List-Owner:List-Archive; bh=zygVL94X6Q9/gOxylja2ASyPRPX3GqyZ0wHqqF523eI=; b=V
- BL4teGUhj5wW8qqD5t2R6ar2cwEKGopY9x9J2kSME+hC1xaMPxth0eysFwy0vi7X8zs2HiouUjPhI
- b7AIsMFfXlrYb6KvtCHGGwf2Ow4wA7IpatQXwUrZnYwbTamEzRs3tXHLDIwNfXHXUZSDuLkNTGWXP
- 24uiDr5ArDP0I6l0=;
-Received: from mail-io1-f72.google.com ([209.85.166.72])
- by sfi-mx-4.v28.lw.sourceforge.com with esmtps
- (TLSv1.2:ECDHE-RSA-AES128-GCM-SHA256:128) (Exim 4.92.2)
- id 1kAsou-006myL-Sh
- for v9fs-developer@lists.sourceforge.net; Wed, 26 Aug 2020 10:38:22 +0000
-Received: by mail-io1-f72.google.com with SMTP id w9so885597ior.20
- for <v9fs-developer@lists.sourceforge.net>;
- Wed, 26 Aug 2020 03:38:20 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:date:message-id:subject:from:to;
- bh=zygVL94X6Q9/gOxylja2ASyPRPX3GqyZ0wHqqF523eI=;
- b=Lhjij6topCSXxltu3YPnZ8DtrlJWDXBcU/U2zcH3yrQgIDEMrKP1IenDgmlUmmitIZ
- FaZO6q+6tfSmCObVusqMpx8OxFsdOGWzU21NFKFRjkS5fMDHjvUNQq1hZzgwug3lWxvD
- xBaO4zXN71xjKyBlCbi30kvPXJqxkbu3YFR2MfOhiukUzYbxGyj7dEQBE0F3N7jCJ60D
- +5tbcIAH1gBMz//q0ch3AbluTBTNVFuAbGFoOZdBJmRw3UZQqQHOx5rcu45Le7Zw+HIC
- zd5TCVEdrJtQ6eDB6qmPjHuS8Cm0oEaBsnpd00r0ctaJ9ARQtbEdO9oO6cUquFspGZft
- eWMg==
-X-Gm-Message-State: AOAM532ioq934+WGnfqyqI/FprXC2zhv7W3hal/+MYM2aNdrbyca/Vkd
- apeu+4vGJP9ssW5Y3LbtB9DDYlczhJfwcCd+4uxt4PNTvL2Z
-X-Google-Smtp-Source: ABdhPJw08lyBJzdODV2Nkxfhuk4RHh+Cw2MEsa6J9AamNBzV1YHNImbwq9QQ84qsc0HcufY/KZOLJ+Gx1fTymR3g1Kve5aQLypQ6
+ List-Owner:List-Archive; bh=M9RV+Csfmg+uHDz2BGewJzh5S9vOnh2NwZOot20GI9M=; b=B
+ BqBGA+rq2XEfXZvTTkJjTHUs/wI9iUP8sOuLMpMigaoC9/7rPi3up09JQVPKZEULoiSFwPvK59ELJ
+ ccCWoseWVm5nBXtsZ1wh9mbNstxaonR9Lq3YV8Z6ZS/VgZGOnGZ1bY08SwerwyHGkKFDtxAd3FB7D
+ TS1E2uNhAnPBd/1o=;
+Received: from server.samueleschiavo.it ([87.76.28.30])
+ by sfi-mx-3.v28.lw.sourceforge.com with esmtps
+ (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.92.2)
+ id 1kAuWG-0042I5-DA
+ for v9fs-developer@lists.sourceforge.net; Wed, 26 Aug 2020 12:27:16 +0000
+Received: by server.samueleschiavo.it (Postfix, from userid 10036)
+ id B6538544008; Wed, 26 Aug 2020 14:27:02 +0200 (CEST)
+To: v9fs-developer@lists.sourceforge.net
+Date: Wed, 26 Aug 2020 12:27:02 +0000
+From: El Gordo de la Primitiva Lotterien Spanien <support@videomakervicenza.it>
+Message-ID: <7fdae8b47cadde4f0507aeeb3ac375f3@www.videomakervicenza.it>
 MIME-Version: 1.0
-X-Received: by 2002:a02:6d0e:: with SMTP id m14mr14520416jac.23.1598438295340; 
- Wed, 26 Aug 2020 03:38:15 -0700 (PDT)
-Date: Wed, 26 Aug 2020 03:38:15 -0700
-X-Google-Appengine-App-Id: s~syzkaller
-X-Google-Appengine-App-Id-Alias: syzkaller
-Message-ID: <000000000000ca0c6805adc56a38@google.com>
-From: syzbot <syzbot+fbe34b643e462f65e542@syzkaller.appspotmail.com>
-To: alsa-devel@alsa-project.org, asmadeus@codewreck.org, broonie@kernel.org, 
- daniel.baluta@nxp.com, davem@davemloft.net, ericvh@gmail.com,
- kuba@kernel.org, 
- lgirdwood@gmail.com, linux-kernel@vger.kernel.org, lucho@ionkov.net, 
- netdev@vger.kernel.org, perex@perex.cz, rminnich@sandia.gov, 
- syzkaller-bugs@googlegroups.com, tiwai@suse.com, 
- v9fs-developer@lists.sourceforge.net
-X-Spam-Score: 3.1 (+++)
+X-Spam-Score: 4.5 (++++)
 X-Spam-Report: Spam Filtering performed by mx.sourceforge.net.
  See http://spamassassin.org/tag/ for more details.
  0.0 URIBL_BLOCKED ADMINISTRATOR NOTICE: The query to URIBL was blocked.
  See
  http://wiki.apache.org/spamassassin/DnsBlocklists#dnsbl-block
- for more information. [URIs: googlegroups.com]
- 0.3 FROM_LOCAL_HEX         From: localpart has long hexadecimal sequence
- 0.2 HEADER_FROM_DIFFERENT_DOMAINS From and EnvelopeFrom 2nd level mail
- domains are different
- -0.0 RCVD_IN_DNSWL_NONE     RBL: Sender listed at https://www.dnswl.org/, no
- trust [209.85.166.72 listed in list.dnswl.org]
- -0.0 RCVD_IN_MSPIKE_H2      RBL: Average reputation (+2)
- [209.85.166.72 listed in wl.mailspike.net]
- -0.0 SPF_PASS               SPF: sender matches SPF record
+ for more information. [URIs: spainmail.com]
+ 0.0 SPF_NONE               SPF: sender does not publish an SPF Record
  0.0 SPF_HELO_NONE          SPF: HELO does not publish an SPF Record
- 2.5 SORTED_RECIPS          Recipient list is sorted by address
-X-Headers-End: 1kAsou-006myL-Sh
-Subject: [V9fs-developer] INFO: task can't die in p9_fd_close
+ 1.0 HK_LOTTO               No description available.
+ 0.0 LOTS_OF_MONEY          Huge... sums of money
+ 2.5 FREEMAIL_FORGED_REPLYTO Freemail in Reply-To, but not From
+ 0.0 T_FILL_THIS_FORM_LOAN  Answer loan question(s)
+ 0.0 T_FILL_THIS_FORM_FRAUD_PHISH Answer suspicious question(s)
+ 1.0 FORM_FRAUD             Fill a form and a fraud phrase
+X-Headers-End: 1kAuWG-0042I5-DA
+Subject: [V9fs-developer] Auszeichnungen gewinnen
 X-BeenThere: v9fs-developer@lists.sourceforge.net
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -100,235 +72,95 @@ List-Post: <mailto:v9fs-developer@lists.sourceforge.net>
 List-Help: <mailto:v9fs-developer-request@lists.sourceforge.net?subject=help>
 List-Subscribe: <https://lists.sourceforge.net/lists/listinfo/v9fs-developer>, 
  <mailto:v9fs-developer-request@lists.sourceforge.net?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Reply-To: santalucia.sg.es@spainmail.com
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: v9fs-developer-bounces@lists.sourceforge.net
 
-Hello,
-
-syzbot found the following issue on:
-
-HEAD commit:    494d311a Add linux-next specific files for 20200821
-git tree:       linux-next
-console output: https://syzkaller.appspot.com/x/log.txt?x=10615b36900000
-kernel config:  https://syzkaller.appspot.com/x/.config?x=a61d44f28687f508
-dashboard link: https://syzkaller.appspot.com/bug?extid=fbe34b643e462f65e542
-compiler:       gcc (GCC) 10.1.0-syz 20200507
-syz repro:      https://syzkaller.appspot.com/x/repro.syz?x=15920a05900000
-C reproducer:   https://syzkaller.appspot.com/x/repro.c?x=13a78539900000
-
-The issue was bisected to:
-
-commit af3acca3e35c01920fe476f730dca7345d0a48df
-Author: Daniel Baluta <daniel.baluta@nxp.com>
-Date:   Tue Feb 20 12:53:10 2018 +0000
-
-    ASoC: ak5558: Fix style for SPDX identifier
-
-bisection log:  https://syzkaller.appspot.com/x/bisect.txt?x=12ea5d39900000
-final oops:     https://syzkaller.appspot.com/x/report.txt?x=11ea5d39900000
-console output: https://syzkaller.appspot.com/x/log.txt?x=16ea5d39900000
-
-IMPORTANT: if you fix the issue, please add the following tag to the commit:
-Reported-by: syzbot+fbe34b643e462f65e542@syzkaller.appspotmail.com
-Fixes: af3acca3e35c ("ASoC: ak5558: Fix style for SPDX identifier")
-
-INFO: task syz-executor475:7005 can't die for more than 143 seconds.
-task:syz-executor475 state:D stack:27208 pid: 7005 ppid:  6875 flags:0x00004004
-Call Trace:
- context_switch kernel/sched/core.c:3778 [inline]
- __schedule+0x8e5/0x21e0 kernel/sched/core.c:4527
- schedule+0xd0/0x2a0 kernel/sched/core.c:4602
- schedule_timeout+0x1d8/0x250 kernel/time/timer.c:1855
- do_wait_for_common kernel/sched/completion.c:85 [inline]
- __wait_for_common kernel/sched/completion.c:106 [inline]
- wait_for_common kernel/sched/completion.c:117 [inline]
- wait_for_completion+0x163/0x260 kernel/sched/completion.c:138
- __flush_work+0x51f/0xab0 kernel/workqueue.c:3046
- __cancel_work_timer+0x5de/0x700 kernel/workqueue.c:3133
- p9_conn_destroy net/9p/trans_fd.c:889 [inline]
- p9_fd_close+0x305/0x520 net/9p/trans_fd.c:919
- p9_client_destroy+0xbe/0x360 net/9p/client.c:1086
- v9fs_session_close+0x45/0x2c0 fs/9p/v9fs.c:498
- v9fs_kill_super+0x49/0x90 fs/9p/vfs_super.c:222
- deactivate_locked_super+0x94/0x160 fs/super.c:335
- v9fs_mount+0x77c/0x970 fs/9p/vfs_super.c:203
- legacy_get_tree+0x105/0x220 fs/fs_context.c:592
- vfs_get_tree+0x89/0x2f0 fs/super.c:1547
- do_new_mount fs/namespace.c:2896 [inline]
- path_mount+0x1287/0x1e20 fs/namespace.c:3214
- do_mount fs/namespace.c:3227 [inline]
- __do_sys_mount fs/namespace.c:3435 [inline]
- __se_sys_mount fs/namespace.c:3412 [inline]
- __x64_sys_mount+0x27f/0x300 fs/namespace.c:3412
- do_syscall_64+0x2d/0x70 arch/x86/entry/common.c:46
- entry_SYSCALL_64_after_hwframe+0x44/0xa9
-RIP: 0033:0x446eb9
-Code: Bad RIP value.
-RSP: 002b:00007f6a133add98 EFLAGS: 00000246 ORIG_RAX: 00000000000000a5
-RAX: ffffffffffffffda RBX: 00000000006dcc48 RCX: 0000000000446eb9
-RDX: 0000000020000200 RSI: 0000000020000000 RDI: 0000000000000000
-RBP: 00000000006dcc40 R08: 00000000200028c0 R09: 0000000000000000
-R10: 0000000000000000 R11: 0000000000000246 R12: 00000000006dcc4c
-R13: 00000000200003c0 R14: 00000000004af538 R15: 0000000000000000
-INFO: task syz-executor475:7005 blocked for more than 143 seconds.
-      Not tainted 5.9.0-rc1-next-20200821-syzkaller #0
-"echo 0 > /proc/sys/kernel/hung_task_timeout_secs" disables this message.
-task:syz-executor475 state:D stack:27208 pid: 7005 ppid:  6875 flags:0x00004004
-Call Trace:
- context_switch kernel/sched/core.c:3778 [inline]
- __schedule+0x8e5/0x21e0 kernel/sched/core.c:4527
- schedule+0xd0/0x2a0 kernel/sched/core.c:4602
- schedule_timeout+0x1d8/0x250 kernel/time/timer.c:1855
- do_wait_for_common kernel/sched/completion.c:85 [inline]
- __wait_for_common kernel/sched/completion.c:106 [inline]
- wait_for_common kernel/sched/completion.c:117 [inline]
- wait_for_completion+0x163/0x260 kernel/sched/completion.c:138
- __flush_work+0x51f/0xab0 kernel/workqueue.c:3046
- __cancel_work_timer+0x5de/0x700 kernel/workqueue.c:3133
- p9_conn_destroy net/9p/trans_fd.c:889 [inline]
- p9_fd_close+0x305/0x520 net/9p/trans_fd.c:919
- p9_client_destroy+0xbe/0x360 net/9p/client.c:1086
- v9fs_session_close+0x45/0x2c0 fs/9p/v9fs.c:498
- v9fs_kill_super+0x49/0x90 fs/9p/vfs_super.c:222
- deactivate_locked_super+0x94/0x160 fs/super.c:335
- v9fs_mount+0x77c/0x970 fs/9p/vfs_super.c:203
- legacy_get_tree+0x105/0x220 fs/fs_context.c:592
- vfs_get_tree+0x89/0x2f0 fs/super.c:1547
- do_new_mount fs/namespace.c:2896 [inline]
- path_mount+0x1287/0x1e20 fs/namespace.c:3214
- do_mount fs/namespace.c:3227 [inline]
- __do_sys_mount fs/namespace.c:3435 [inline]
- __se_sys_mount fs/namespace.c:3412 [inline]
- __x64_sys_mount+0x27f/0x300 fs/namespace.c:3412
- do_syscall_64+0x2d/0x70 arch/x86/entry/common.c:46
- entry_SYSCALL_64_after_hwframe+0x44/0xa9
-RIP: 0033:0x446eb9
-Code: Bad RIP value.
-RSP: 002b:00007f6a133add98 EFLAGS: 00000246 ORIG_RAX: 00000000000000a5
-RAX: ffffffffffffffda RBX: 00000000006dcc48 RCX: 0000000000446eb9
-RDX: 0000000020000200 RSI: 0000000020000000 RDI: 0000000000000000
-RBP: 00000000006dcc40 R08: 00000000200028c0 R09: 0000000000000000
-R10: 0000000000000000 R11: 0000000000000246 R12: 00000000006dcc4c
-R13: 00000000200003c0 R14: 00000000004af538 R15: 0000000000000000
-
-Showing all locks held in the system:
-1 lock held by khungtaskd/1173:
- #0: ffffffff89c675c0 (rcu_read_lock){....}-{1:2}, at: debug_show_all_locks+0x53/0x260 kernel/locking/lockdep.c:5825
-1 lock held by in:imklog/6540:
-2 locks held by kworker/0:1/6858:
- #0: ffff8880ae635dd8 (&rq->lock){-.-.}-{2:2}, at: rq_lock kernel/sched/sched.h:1292 [inline]
- #0: ffff8880ae635dd8 (&rq->lock){-.-.}-{2:2}, at: __schedule+0x232/0x21e0 kernel/sched/core.c:4445
- #1: ffff8880ae620ec8 (&per_cpu_ptr(group->pcpu, cpu)->seq){-.-.}-{0:0}, at: psi_task_switch+0x2fb/0x400 kernel/sched/psi.c:833
-2 locks held by kworker/0:2/6898:
- #0: ffff8880aa063d38 ((wq_completion)events){+.+.}-{0:0}, at: arch_atomic64_set arch/x86/include/asm/atomic64_64.h:34 [inline]
- #0: ffff8880aa063d38 ((wq_completion)events){+.+.}-{0:0}, at: atomic64_set include/asm-generic/atomic-instrumented.h:856 [inline]
- #0: ffff8880aa063d38 ((wq_completion)events){+.+.}-{0:0}, at: atomic_long_set include/asm-generic/atomic-long.h:41 [inline]
- #0: ffff8880aa063d38 ((wq_completion)events){+.+.}-{0:0}, at: set_work_data kernel/workqueue.c:616 [inline]
- #0: ffff8880aa063d38 ((wq_completion)events){+.+.}-{0:0}, at: set_work_pool_and_clear_pending kernel/workqueue.c:643 [inline]
- #0: ffff8880aa063d38 ((wq_completion)events){+.+.}-{0:0}, at: process_one_work+0x82b/0x1670 kernel/workqueue.c:2240
- #1: ffffc90005577da8 ((work_completion)(&m->wq)){+.+.}-{0:0}, at: process_one_work+0x85f/0x1670 kernel/workqueue.c:2244
-1 lock held by syz-executor475/6960:
- #0: ffff8880a7c7a0e0 (&type->s_umount_key#45/1){+.+.}-{3:3}, at: alloc_super+0x201/0xa90 fs/super.c:229
-1 lock held by syz-executor475/7064:
- #0: ffff8880a6c9c0e0 (&type->s_umount_key#45/1){+.+.}-{3:3}, at: alloc_super+0x201/0xa90 fs/super.c:229
-2 locks held by kworker/0:3/7070:
- #0: ffff8880aa073538 ((wq_completion)rcu_gp){+.+.}-{0:0}, at: arch_atomic64_set arch/x86/include/asm/atomic64_64.h:34 [inline]
- #0: ffff8880aa073538 ((wq_completion)rcu_gp){+.+.}-{0:0}, at: atomic64_set include/asm-generic/atomic-instrumented.h:856 [inline]
- #0: ffff8880aa073538 ((wq_completion)rcu_gp){+.+.}-{0:0}, at: atomic_long_set include/asm-generic/atomic-long.h:41 [inline]
- #0: ffff8880aa073538 ((wq_completion)rcu_gp){+.+.}-{0:0}, at: set_work_data kernel/workqueue.c:616 [inline]
- #0: ffff8880aa073538 ((wq_completion)rcu_gp){+.+.}-{0:0}, at: set_work_pool_and_clear_pending kernel/workqueue.c:643 [inline]
- #0: ffff8880aa073538 ((wq_completion)rcu_gp){+.+.}-{0:0}, at: process_one_work+0x82b/0x1670 kernel/workqueue.c:2240
- #1: ffffc90006157da8 ((work_completion)(&rew.rew_work)){+.+.}-{0:0}, at: process_one_work+0x85f/0x1670 kernel/workqueue.c:2244
-1 lock held by syz-executor475/7279:
- #0: ffff88809476e0e0 (&type->s_umount_key#45/1){+.+.}-{3:3}, at: alloc_super+0x201/0xa90 fs/super.c:229
-1 lock held by syz-executor475/32328:
- #0: ffffffff89c6bc28 (rcu_state.exp_mutex){+.+.}-{3:3}, at: exp_funnel_lock kernel/rcu/tree_exp.h:322 [inline]
- #0: ffffffff89c6bc28 (rcu_state.exp_mutex){+.+.}-{3:3}, at: synchronize_rcu_expedited+0x274/0x5f0 kernel/rcu/tree_exp.h:836
-1 lock held by syz-executor475/32335:
- #0: ffffffff89c6bc28 (rcu_state.exp_mutex){+.+.}-{3:3}, at: exp_funnel_lock kernel/rcu/tree_exp.h:322 [inline]
- #0: ffffffff89c6bc28 (rcu_state.exp_mutex){+.+.}-{3:3}, at: synchronize_rcu_expedited+0x274/0x5f0 kernel/rcu/tree_exp.h:836
-
-=============================================
-
-NMI backtrace for cpu 1
-CPU: 1 PID: 1173 Comm: khungtaskd Not tainted 5.9.0-rc1-next-20200821-syzkaller #0
-Hardware name: Google Google Compute Engine/Google Compute Engine, BIOS Google 01/01/2011
-Call Trace:
- __dump_stack lib/dump_stack.c:77 [inline]
- dump_stack+0x18f/0x20d lib/dump_stack.c:118
- nmi_cpu_backtrace.cold+0x44/0xd7 lib/nmi_backtrace.c:105
- nmi_trigger_cpumask_backtrace+0x1b3/0x223 lib/nmi_backtrace.c:62
- trigger_all_cpu_backtrace include/linux/nmi.h:147 [inline]
- check_hung_uninterruptible_tasks kernel/hung_task.c:253 [inline]
- watchdog+0xd89/0xf30 kernel/hung_task.c:339
- kthread+0x3b5/0x4a0 kernel/kthread.c:292
- ret_from_fork+0x1f/0x30 arch/x86/entry/entry_64.S:294
-Sending NMI from CPU 1 to CPUs 0:
-NMI backtrace for cpu 0
-CPU: 0 PID: 32335 Comm: syz-executor475 Not tainted 5.9.0-rc1-next-20200821-syzkaller #0
-Hardware name: Google Google Compute Engine/Google Compute Engine, BIOS Google 01/01/2011
-RIP: 0010:write_comp_data+0x0/0x80 kernel/kcov.c:212
-Code: e8 ff ff cc cc cc cc cc cc cc 65 48 8b 04 25 c0 fe 01 00 48 8b 80 20 14 00 00 c3 0f 1f 44 00 00 66 2e 0f 1f 84 00 00 00 00 00 <49> 89 f2 65 8b 05 76 90 8d 7e 65 48 8b 34 25 c0 fe 01 00 a9 00 01
-RSP: 0018:ffffc90009c47ab8 EFLAGS: 00000086
-RAX: 0000000000000000 RBX: ffff888096e0e000 RCX: ffffffff8134b5d6
-RDX: ffff888116e0e000 RSI: ffff888096e0e000 RDI: 0000000000000006
-RBP: ffff888116e0e000 R08: 0000000000000001 R09: ffff8880ae736dc7
-R10: 0000000000000000 R11: 0000000000000001 R12: 0000000000000000
-R13: ffff888096e0e000 R14: ffff8880ae632c80 R15: ffff8880a43f9f00
-FS:  00007f6a133ae700(0000) GS:ffff8880ae600000(0000) knlGS:0000000000000000
-CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
-CR2: 00007f19a2450710 CR3: 0000000097214000 CR4: 00000000001506f0
-DR0: 0000000000000000 DR1: 0000000000000000 DR2: 0000000000000000
-DR3: 0000000000000000 DR6: 00000000fffe0ff0 DR7: 0000000000000400
-Call Trace:
- __phys_addr+0x26/0x110 arch/x86/mm/physaddr.c:20
- virt_to_head_page include/linux/mm.h:846 [inline]
- qlink_to_cache mm/kasan/quarantine.c:128 [inline]
- qlist_move_cache+0x72/0xd0 mm/kasan/quarantine.c:278
- per_cpu_remove_cache+0x47/0x60 mm/kasan/quarantine.c:296
- on_each_cpu+0xf0/0x240 kernel/smp.c:834
- quarantine_remove_cache+0x40/0xd0 mm/kasan/quarantine.c:313
- shutdown_cache mm/slab_common.c:449 [inline]
- kmem_cache_destroy+0x50/0x120 mm/slab_common.c:497
- p9_client_destroy+0x24b/0x360 net/9p/client.c:1097
- v9fs_session_close+0x45/0x2c0 fs/9p/v9fs.c:498
- v9fs_kill_super+0x49/0x90 fs/9p/vfs_super.c:222
- deactivate_locked_super+0x94/0x160 fs/super.c:335
- v9fs_mount+0x77c/0x970 fs/9p/vfs_super.c:203
- legacy_get_tree+0x105/0x220 fs/fs_context.c:592
- vfs_get_tree+0x89/0x2f0 fs/super.c:1547
- do_new_mount fs/namespace.c:2896 [inline]
- path_mount+0x1287/0x1e20 fs/namespace.c:3214
- do_mount fs/namespace.c:3227 [inline]
- __do_sys_mount fs/namespace.c:3435 [inline]
- __se_sys_mount fs/namespace.c:3412 [inline]
- __x64_sys_mount+0x27f/0x300 fs/namespace.c:3412
- do_syscall_64+0x2d/0x70 arch/x86/entry/common.c:46
- entry_SYSCALL_64_after_hwframe+0x44/0xa9
-RIP: 0033:0x446eb9
-Code: e8 dc e6 ff ff 48 83 c4 18 c3 0f 1f 80 00 00 00 00 48 89 f8 48 89 f7 48 89 d6 48 89 ca 4d 89 c2 4d 89 c8 4c 8b 4c 24 08 0f 05 <48> 3d 01 f0 ff ff 0f 83 ab 05 fc ff c3 66 2e 0f 1f 84 00 00 00 00
-RSP: 002b:00007f6a133add98 EFLAGS: 00000246 ORIG_RAX: 00000000000000a5
-RAX: ffffffffffffffda RBX: 00000000006dcc48 RCX: 0000000000446eb9
-RDX: 0000000020000200 RSI: 0000000020000000 RDI: 0000000000000000
-RBP: 00000000006dcc40 R08: 00000000200028c0 R09: 0000000000000000
-R10: 0000000000000000 R11: 0000000000000246 R12: 00000000006dcc4c
-R13: 00000000200003c0 R14: 00000000004af538 R15: 0000000000000000
-
-
----
-This report is generated by a bot. It may contain errors.
-See https://goo.gl/tpsmEJ for more information about syzbot.
-syzbot engineers can be reached at syzkaller@googlegroups.com.
-
-syzbot will keep track of this issue. See:
-https://goo.gl/tpsmEJ#status for how to communicate with syzbot.
-For information about bisection process see: https://goo.gl/tpsmEJ#bisection
-syzbot can test patches for this issue, for details see:
-https://goo.gl/tpsmEJ#testing-patches
-
-
-_______________________________________________
-V9fs-developer mailing list
-V9fs-developer@lists.sourceforge.net
-https://lists.sourceforge.net/lists/listinfo/v9fs-developer
+RWwgR29yZG8gZGUgbGEgUHJpbWl0aXZhIExvdHRlcmllbiBTcGFuaWVuICAgICAgICAgICAgICAg
+ICAgICAgICAgICAKQWRyZXNzZTogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg
+ICAgICAKQ2FsbGUgZGVsIFByw61uY2lwZSBkZSBWZXJnYXJhLCAzOCwgMjgwMDEgTWFkcmlkIEVz
+cGHDsWEgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAKRSBtYWls
+Ol1hbnNwcnVjaGdld2lubi5tbXQuZXNAc3BhaW5tYWlsLmNvbV0KS29udGFrdCBhdWZuZWhtZW4g
+dW50ZXI6XSAgMzQ2MDIgODEwIDE4NSBmYXggIDM0OTM1NDU3NDkwXQpBa3RlbnplaWNoZW46XVAw
+OS8wMS8wMi8yMDIwLl0KTG9zbnVtbWVyOl0gRVNQIDQ0NDcvMTE0NjQxMTg4MDIwMV0KIERhdHVt
+OiAxOC8wOC8yMDIwCiAKICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg
+ICAgICAgICAgCkhhbGxvLCAgICAgICAgIAogICAgICAgICAgICAgICAgICAKICAgICAgICAgICAg
+IE9GRklaSUVMTEUgTUlUVEVJTFVORywKRGllc2UgRWwgR29yZG8gZGUgbGEgUHJpbWl0aXZhIFNv
+bW1lciBCb25hbnphICBMb3R0ZXJpZSB3dXJkZSAgIHVuZCBNaW5pc3RlcmlvIGRlIEluZHVzdHJp
+YSwgQ29tZXJjaW8geSBUdXJpc21vICBnZXNwb25zZXJ0IHVtIFRvdXJpc211cyBpbiBFc3Bhw7Fh
+ICB6dSBmw7ZyZGVybi4KIApXaXIgc2luZCBlcmZyZXV0IElobmVuIG1pdCB6dSB0ZWlsZW4sIGRh
+c3MgZGllIEdld2lubmVyIGRlcyBTb25kZXIgU3BhbmlzaCBUb3VyaXNtdXMgUHJvbW90aW9uYWwg
+RHJhdyBiZWthbm50IGdlZ2ViZW4gd29yZGVuIHNpbmQuIERpZSBvZmZpemllbGxlIExpc3RlIGRl
+ciBHZXdpbm5lciAgZXJzY2hpZW4gYW0gIFNhbXN0YWcgZGVyIDIyLzA3LzIwMjAuIAogCklocmUg
+ZW1haWwgYWRyZXNzZSAgbWl0IGRlciBhbmjDpG5nZW5kZW4gTG9zbnVtbWVyOiBFU1AgNDQ0Ny8x
+MTQ2NDExODgwMjAxICB1bmQgbWl0IGRlciBTZXJpZW5udW1tZXI6IEVTUC8wMTg4MTEtMjAyMCB6
+b2cgZGllIEdsw7xja3NudW1tZXI6IDYuMTYuMTguMzMuNDcuNTEgQm9udToyOSxFbCBHb3JkbyBk
+ZSBsYSBQcmltaXRpdmEgIExvdHRlcmllICA2IC80OSBpbiBkZXIgMy4gS2F0ZWdvcmllLgogClNp
+ZSBzaW5kIGRhbWl0IGdld2lubmVyIHZvbjog4oKsOTkxLDAwMC4wMCBFdXJvLiBEaWUgU3VtbWUg
+ZXJnaWJ0IHNpY2ggYXVzIGVpbmVyIEdld2lubmF1c3NjaMO8dHR1bmcgdm9uOiDigqw2OTM3LDAw
+MC4wMCBFdXJvLCBkaWUgZHVyY2ggZGllIGVyc3RlbiBzaWViZW4gKDcpIEdld2lubmVyIGF1cyBk
+ZXIgZ2xlaWNoZW4gS2F0ZWdvcmllIGdldGVpbHQgd3VyZGUuICBEaXIgZ2V3aW5uIGlzdCBiZWkg
+ZWluZXIgc2ljaGVyaGVpdHNmaXJtYSBoaW50ZXJsZWd0IHVuZCBpbiBpaHJlbiBuYW1lbi9lbWFp
+bCAgdmVyc2ljaGVydC4gdW0ga2VpbmUga29tcGxpa2F0aW9uZW4gYmVpIGRlciBhYndpY2tsdW5n
+IGRlciB6YWhsdW5nIHp1IHZlcnVyc2FjaGVuIGJpdHRlbiB3aXIgc2llIGRpZXNlIG9mZml6aWVs
+bGUgbWl0dGVpbHVuZyAsIGRpc2tyZXQgenUgYmVoYW5kZWxuLixlcyBpc3QgZWluIHRlaWwgdW5z
+ZXJlcyBzaWNoZXJoZWl0c3Byb3Rva29sbHMgdW5kIGdhcmFudGllcnQgaWhuZW4gZWluZW4gcmVp
+YnVuZ3Nsb3NlbiBBYmxhdWYuCiAKQWxsZSBnZXdpbm5lciB3dXJkZW4gcGVyIGNvbXB1dGVyIGF1
+cyBVcmxhdWJzaG90ZWxzLCBGbHVnZ2VzZWxsc2NoYWZ0ZW4gdW5kIFJlaXNlYsO8cm9zIG1haWxl
+biBEYXRlbiB2b24gZsO8bmYgTWlsbGlvbmVuICg1MDAwMDAwKSBFbWFpbCBhZHJlc3NlbiBhdXNn
+ZXfDpGhsdCwgYWxzIHRlaWwgdW5zZXJlciBJbnRlcm5hdGlvbmFsZW4gdG91cmlzbXVzIHByb21v
+dGlvbiBwcm9ncmFtbXMsIHdlbGNoZXMgd2lyIGVpbm1hbCBpbSBqYWhyIHZlcmFuc3RhbHRlbiB1
+bSBUb3VyaXNtdXMgaW4gU3BhbmllbiB6dSBmw7ZyZGVybi4KIApCaXR0ZSBrb250YWt0aWVyZW4g
+c2llIHVuc2VyZW4gYXVzbGFuZHMgc2FjaGJlYXJiZWl0ZXIgSGVyciBHYWJyaWVsICBiZWkgZGVy
+IHNpY2hlcmhlaXRzZmlybWEgU2FudGFsdWNpYSBTaWNoZXJoZWl0c2Zpcm1hOlBlciBFbWFpbCBh
+bjpiZXJhdGVyZ2FicmllbC5zcEBjb25zdWx0YW50LmNvbSBvZGVyIGFucnVmZW46IDM0IDYwMiA4
+MTAgMTg1ICYgRmF4OiAgMzQgOTMxIDcwIDIxMjAsIHVtIElociBHZWxkIHNjaG5lbGwgenUgYmVr
+b21tZW4uCiAKRGVua2VuIFNpZSBkYXJhbiwgamVkZXIgZ2V3aW5uYW5zcHJ1Y2ggbXVzcyBiaXMg
+enVtIDIyLzkvMjAyMCBBbmdlbWVsZGV0ZSBzZWluLiBKZWRlciBuaWNodCBhbmdlbWVsZGV0IEdl
+d2lubmFuc3BydWNoIHZlcmbDpGxsdCB1bmQgZ2VodCB6dXJ1Y2sgYW4gZGFzIFNwYW5pc2NoZSBT
+dGFhdHNrYXNzZS4KICAKV0lDSFRJRzogdW0gdmVyesO2Z2VydW5nZW4gdW5kIGtvbXBsaWthdGlv
+bmVuIHp1IHZlcm1laWRlbiwgYml0dGUgaW1tZXIgQWt0ZW56ZWljaGVuIGFuZ2ViZW4uICBBbmJl
+aSBlaW4gYW5tZWxkZWZvcm11bGFyLCBiaXR0ZSBhdXNmw7xsbGVuIHVuZCB6dXLDvGNrIFBlciBl
+bWFpbCBhbjpiZXJhdGVyZ2FicmllbC5zcEBjb25zdWx0YW50LmNvbSBvZGVyIGFucnVmZW46ICAz
+NCA2MDIgODEwMTg1ICYgRmF4OiAgMzQgOTMxIDcwIDIxMjAgZGllIHNpY2hlcmhlaXRzZmlybWEg
+U2FudGFsdWNpYSBTaWNoZXJoZWl0c2Zpcm1hLgogCkhFUlpMSUNIRU4gR0xVQ0tXVU5TQ0jigKYh
+Ck1pdCBmcmV1bmRsaWNoZW4gR3LDvMOfZW4KTUFSSUEgSElEQUxHTwpWSVpFUFLDhFNJREVOVElO
+CiAKQsOcUk8sU0FOVEFMVUNJQSBTRUdVUk9TIFMuQSBFc3Bhw7FhIApQbGF6YSBFc3Bhw7FhLCAx
+NSAtIC0xNiAgICAgICAgICAgICAgICAgICAgICAgICAgICAKTWFkcmlkLCAyODAwOCBFc3Bhw7Fh
+CiAgICAgICAgICAgICAgICAgICAgICAgICAgIAogCkFOTUVMREVGT1JNVUxBUiBaVVIgR0VXSU5O
+QU5TUFJVQ0hTCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXyAK
+Qml0dGUgZsO8bGxlbiBTaWUgZGFzIEZvcm11bGFyIHNvcmdmw6RsdGlnIGF1cyB1bmQgc2VuZGVu
+IGVzIHBlciBlIG1haWw6c2FudGFsdWNpYS5zZy5lc0BzcGFpbm1haWwuY29tIGFuIGRlciBTYW50
+YWx1Y2lhIFNpY2hlcmhlaXRzZmlybWEgbWl0IEtvcGllIElocmVzIFBlcnNvbmFsYXVzd2Vpc2Vz
+IG9kZXIgUmVpc2VwYXNzZXMuCiAKR0VXSU5OQkVUUkFHOl9fX19fIEFLVEVOWkVJQ0hFTiBfX19f
+X19fX19fCk5BTUU6X19fX19fX19fX19fIFZPUk5BTUU6X19fX19fX19fX19fX19fX18KR0VCVVJU
+U0RBVFVNOl9fX19fTkFUSU9OQUxJVEFUX19fX19fX19fX19fXwpMT1NOVU1NRVI6X19fX19fX19f
+X18gR0zDnENLU1pBSExFTiBfX19fX19fXwpTVFJBU1NFOl9fX19fX19fX19fX19fXyBOVU1NRVI6
+X19fX19fX19fX19fXwpXT0hOT1JUOl9fX19fIFBPU1RMRUlUWkFITF9fX19fTEFORCBfX19fX19f
+XwpEaXJla3RlciBLb250YWt0IEUtTWFpbF9fX19fX19fX19fX19fX19fX19fXwpURUxFRk9OOl9f
+X19fX19fX18gSEFORFk6X19fX19fX19fXyBGQVg6X19fX18KQkVSVUY6X19fX18gRkFNSUxJRU5T
+VEFORDpfX19fXyhHRVNDSExFQ0hUKV9fXyAgICAKIApXRUxDSEUgWkFITFVOR1NGT1JNIEJFVk9S
+WlVHRU4gU0lFPyAgKEEpIEJBTkvDnEJFUldFSVNVTkc6ICAoQikgQkFSU0NIRUNLICAKQkFOS0RB
+VEVOIFNJTkQgTlVSIE5PVFdFTkRJRyBXRU5OIFNJRSBTSUNIIEbDnFIgRUlORSBCQU5Lw5xCRVJX
+RUlTVU5HIEVOVFNDSElFREVOIEhBQkVOLgogCk5BTUUgREVTIEdFTERJTlNUSVRVVFM6X19fX19f
+X19fX19fX18KS09OVE9OVU1NRVI6X19fX19fX19fX19fX19fX19fX19fX19fIApJQkFOOl9fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX18KQkFOSyBBRERSRVNTOl9fX19fX19fX19fX19fX19f
+X19fX19fXwoKIAogICAgIEVSS0zDhFJVTkcgREVTIEJFR8OcTlNUSUdURU4KSUNIIF9fX19fX19f
+X19fX19fX19fX19fX19fX19fX0JFU1TDhFRJR0UgSElFUk1JVCwgREFTUyBBTExFIElORk9STUFU
+SU9ORU4sIEtPUlJFS1QgU0lORCwgVU5EIERJRSBWRVJBTlNUQUxURVIgREVSIEVsIFNQQU5JU0gg
+TE9UVEVSWSAvIFNBTlRBTFVDSUEgU0lDSEVSSEVJVFNGSVJNQSBOSUNIVCBWRVJBTlRXT1JUTElD
+SCBHRU1BQ0hUIFdFUkRFTiwgV0VOTiBFUyBaVSBFSU5FUiBVTkJFUkVDSFRJR1RFTiBaQUhMVU5H
+IERVUkNIIFVOR0VOQVVFIElORk9STUFUSU9ORU4sIERJRSBJQ0ggSU4gRElFU0VNIEZPUk1VTEFS
+IEFOR0VCRSBLT01NVC5EQVNTIDEwJSBQUk9WSVNJT04gREVSIFNBTlRBIExVQ0lBIFNFQ1VSSVRZ
+IENPTVBBTlkgR0VIP1JFTiwgU09CQUxEIFNJRSBJSFJFTiBHRVdJTk4gRk9ORFMgRVJIQUxURU4u
+IERJRVNFIFpFSE4gUFJPWkVOVCBXRVJERU4gSUhORU4gU09GT1JUIFpVUsOcQ0tHRUdFQkVOLCBT
+SUUgRVJIQUxURU4gSUhSRU4gR0VXSU5OIEFVRiBJSFJFTSBLT05UTy4gKEFDSFRVTkcgV2lyIGJp
+dHRlbiBTaWUsIGF1ZiBkaWVzZSBFLU1haWwtQWRyZXNzZSB6dSBhbnR3b3J0ZW4oc2FudGFsdWNp
+YS5zZy5lc0BzcGFpbm1haWwuY29tKSBCw5xSTy1LT05UT0lORk9STUFUSU9ORU4tSUJBTiBFUzE3
+IDIxMDAgNTYyNCAxMTAyIDAwMTEgNzcxOSBTV0lGVCBDT0RFOiBDQUlYRVNCQlhYWC4gIEtPTlRP
+TkFNRSxMQSBQTEFDSVRBIERFTCBNSVJBRE9SIFMuTCBTUEFJTi4KVXJoZWJlcnJlY2h0wqkgMjAw
+Mi0yMDIwIE11bHRpLVN0YWF0IExvdHRlcmllIFZlcmJhbmQuIEFsbGUgUmVjaHRlCgoKCl9fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fClY5ZnMtZGV2ZWxvcGVy
+IG1haWxpbmcgbGlzdApWOWZzLWRldmVsb3BlckBsaXN0cy5zb3VyY2Vmb3JnZS5uZXQKaHR0cHM6
+Ly9saXN0cy5zb3VyY2Vmb3JnZS5uZXQvbGlzdHMvbGlzdGluZm8vdjlmcy1kZXZlbG9wZXIK
