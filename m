@@ -2,65 +2,103 @@ Return-Path: <v9fs-developer-bounces@lists.sourceforge.net>
 X-Original-To: lists+v9fs-developer@lfdr.de
 Delivered-To: lists+v9fs-developer@lfdr.de
 Received: from lists.sourceforge.net (lists.sourceforge.net [216.105.38.7])
-	by mail.lfdr.de (Postfix) with ESMTPS id B98F8252EA6
-	for <lists+v9fs-developer@lfdr.de>; Wed, 26 Aug 2020 14:27:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 9A38025496C
+	for <lists+v9fs-developer@lfdr.de>; Thu, 27 Aug 2020 17:29:21 +0200 (CEST)
 Received: from [127.0.0.1] (helo=sfs-ml-1.v29.lw.sourceforge.com)
 	by sfs-ml-1.v29.lw.sourceforge.com with esmtp (Exim 4.90_1)
 	(envelope-from <v9fs-developer-bounces@lists.sourceforge.net>)
-	id 1kAuWL-0006Jb-Gl; Wed, 26 Aug 2020 12:27:17 +0000
+	id 1kBJq3-0007FN-N9; Thu, 27 Aug 2020 15:29:19 +0000
 Received: from [172.30.20.202] (helo=mx.sourceforge.net)
  by sfs-ml-1.v29.lw.sourceforge.com with esmtps
  (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.90_1)
- (envelope-from <support@videomakervicenza.it>) id 1kAuWK-0006JN-3A
- for v9fs-developer@lists.sourceforge.net; Wed, 26 Aug 2020 12:27:16 +0000
+ (envelope-from <dhowells@redhat.com>) id 1kBJq2-0007F6-HE
+ for v9fs-developer@lists.sourceforge.net; Thu, 27 Aug 2020 15:29:18 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=sourceforge.net; s=x; h=Content-Transfer-Encoding:Content-Type:MIME-Version
- :Message-ID:Reply-To:From:Date:Subject:To:Sender:Cc:Content-ID:
- Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
- :Resent-Message-ID:In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:
- List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=M9RV+Csfmg+uHDz2BGewJzh5S9vOnh2NwZOot20GI9M=; b=W9+eW5QzDPXUHmhi5QuWA9C/qP
- lbAZoxTuSTwbqxo8K7mHKB3bLICSHVBmxgEWgbpahEHUua9LWfVTfdB/WM6ZsKoLkwmcoa+Z7fYOi
- Xb6Tc6B4IWGN0uL16cVF708jz2HfkThOUDzkYaV80RotRe2TsJ7TuJZ1JLmg2NI+2Pgo=;
+ d=sourceforge.net; s=x; h=Message-ID:Date:Content-ID:Content-Type:
+ MIME-Version:Subject:Cc:To:References:In-Reply-To:From:Sender:Reply-To:
+ Content-Transfer-Encoding:Content-Description:Resent-Date:Resent-From:
+ Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:
+ List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
+ bh=+kaDLLF1f55NCIko0/llJRLFGMqoBN4rwHWmAV1FCCk=; b=F/wp6qhY9uAgwzTeMrGNR7MoNr
+ nBUSASsvVTQ2ObU6ltP8U7jDXCjNLW9l+aDL2PoISMUo9nupps6Gzh2cJUNZ5gFTcQ1gkcunh4G56
+ oRdvSN/HD94moR9P8Fm0MOKpMfXITpAUqnpAutIv+wVkdLSq5knOrSCGRuir/su9Zz78=;
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  ;
- h=Content-Transfer-Encoding:Content-Type:MIME-Version:Message-ID:Reply-To:
- From:Date:Subject:To:Sender:Cc:Content-ID:Content-Description:Resent-Date:
- Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:
- References:List-Id:List-Help:List-Unsubscribe:List-Subscribe:List-Post:
- List-Owner:List-Archive; bh=M9RV+Csfmg+uHDz2BGewJzh5S9vOnh2NwZOot20GI9M=; b=B
- BqBGA+rq2XEfXZvTTkJjTHUs/wI9iUP8sOuLMpMigaoC9/7rPi3up09JQVPKZEULoiSFwPvK59ELJ
- ccCWoseWVm5nBXtsZ1wh9mbNstxaonR9Lq3YV8Z6ZS/VgZGOnGZ1bY08SwerwyHGkKFDtxAd3FB7D
- TS1E2uNhAnPBd/1o=;
-Received: from server.samueleschiavo.it ([87.76.28.30])
- by sfi-mx-3.v28.lw.sourceforge.com with esmtps
- (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.92.2)
- id 1kAuWG-0042I5-DA
- for v9fs-developer@lists.sourceforge.net; Wed, 26 Aug 2020 12:27:16 +0000
-Received: by server.samueleschiavo.it (Postfix, from userid 10036)
- id B6538544008; Wed, 26 Aug 2020 14:27:02 +0200 (CEST)
-To: v9fs-developer@lists.sourceforge.net
-Date: Wed, 26 Aug 2020 12:27:02 +0000
-From: El Gordo de la Primitiva Lotterien Spanien <support@videomakervicenza.it>
-Message-ID: <7fdae8b47cadde4f0507aeeb3ac375f3@www.videomakervicenza.it>
+ h=Message-ID:Date:Content-ID:Content-Type:MIME-Version:Subject:Cc:To:
+ References:In-Reply-To:From:Sender:Reply-To:Content-Transfer-Encoding:
+ Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
+ :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
+ List-Post:List-Owner:List-Archive;
+ bh=+kaDLLF1f55NCIko0/llJRLFGMqoBN4rwHWmAV1FCCk=; b=dMbO3AKIDv6CeaZR37y04ozzyt
+ gZ+zzLYyn57i2ufzWjAk9iySVPRwBWH1jITD+Xd5awy9AGUQwghsPs1/u1//50rSaTFsABBkNaSqS
+ UaneDxsV19ZN5cXGLY36zJ1pRpj7iLXlQV2/xfkWRurxa50FzbaM7NGKkRhI/F9lCpeo=;
+Received: from us-smtp-delivery-124.mimecast.com ([216.205.24.124])
+ by sfi-mx-4.v28.lw.sourceforge.com with esmtps
+ (TLSv1.2:ECDHE-RSA-AES256-SHA384:256) (Exim 4.92.2)
+ id 1kBJq1-007qVj-2N
+ for v9fs-developer@lists.sourceforge.net; Thu, 27 Aug 2020 15:29:18 +0000
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+ s=mimecast20190719; t=1598542146;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+ in-reply-to:in-reply-to:references:references;
+ bh=+kaDLLF1f55NCIko0/llJRLFGMqoBN4rwHWmAV1FCCk=;
+ b=F2cJBMMYJY73NsbdUIafpW3IKZP3ILqr91GfzK6tOgeMZAY5/T6anXHMvKE/stNzAqrzyh
+ 8ybzke+A24Dr9eb9Oy2E+o6YnMoOtvf89Kln3LM9e/SJSXT9n6bJHk23mSVuC1euayhekT
+ 1Xd5DRMqc7vjljfA/bSpsNOWbqmZVf0=
+Received: from mimecast-mx01.redhat.com (mimecast-mx01.redhat.com
+ [209.132.183.4]) (Using TLS) by relay.mimecast.com with ESMTP id
+ us-mta-425-9dtdZprBOgSEsWY5L1TUOg-1; Thu, 27 Aug 2020 11:29:05 -0400
+X-MC-Unique: 9dtdZprBOgSEsWY5L1TUOg-1
+Received: from smtp.corp.redhat.com (int-mx06.intmail.prod.int.phx2.redhat.com
+ [10.5.11.16])
+ (using TLSv1.2 with cipher AECDH-AES256-SHA (256/256 bits))
+ (No client certificate requested)
+ by mimecast-mx01.redhat.com (Postfix) with ESMTPS id 56CE310ABDC2;
+ Thu, 27 Aug 2020 15:29:02 +0000 (UTC)
+Received: from warthog.procyon.org.uk (ovpn-120-127.rdu2.redhat.com
+ [10.10.120.127])
+ by smtp.corp.redhat.com (Postfix) with ESMTP id 14FE85C1C2;
+ Thu, 27 Aug 2020 15:28:55 +0000 (UTC)
+Organization: Red Hat UK Ltd. Registered Address: Red Hat UK Ltd, Amberley
+ Place, 107-111 Peascod Street, Windsor, Berkshire, SI4 1TE, United
+ Kingdom.
+ Registered in England and Wales under Company Registration No. 3798903
+From: David Howells <dhowells@redhat.com>
+In-Reply-To: <20200810164044.GA31753@lst.de>
+References: <20200810164044.GA31753@lst.de>
+ <1851200.1596472222@warthog.procyon.org.uk>
+ <447452.1596109876@warthog.procyon.org.uk>
+ <667820.1597072619@warthog.procyon.org.uk>
+To: Christoph Hellwig <hch@lst.de>
 MIME-Version: 1.0
-X-Spam-Score: 4.5 (++++)
+Content-ID: <1428310.1598542135.1@warthog.procyon.org.uk>
+Date: Thu, 27 Aug 2020 16:28:55 +0100
+Message-ID: <1428311.1598542135@warthog.procyon.org.uk>
+X-Scanned-By: MIMEDefang 2.79 on 10.5.11.16
+X-Spam-Score: -1.1 (-)
 X-Spam-Report: Spam Filtering performed by mx.sourceforge.net.
  See http://spamassassin.org/tag/ for more details.
  0.0 URIBL_BLOCKED ADMINISTRATOR NOTICE: The query to URIBL was blocked.
  See
  http://wiki.apache.org/spamassassin/DnsBlocklists#dnsbl-block
- for more information. [URIs: spainmail.com]
- 0.0 SPF_NONE               SPF: sender does not publish an SPF Record
+ for more information. [URIs: lst.de]
+ -0.0 RCVD_IN_DNSWL_NONE     RBL: Sender listed at https://www.dnswl.org/, no
+ trust [216.205.24.124 listed in list.dnswl.org]
+ 0.0 RCVD_IN_MSPIKE_H5      RBL: Excellent reputation (+5)
+ [216.205.24.124 listed in wl.mailspike.net]
+ -0.0 SPF_PASS               SPF: sender matches SPF record
  0.0 SPF_HELO_NONE          SPF: HELO does not publish an SPF Record
- 1.0 HK_LOTTO               No description available.
- 0.0 LOTS_OF_MONEY          Huge... sums of money
- 2.5 FREEMAIL_FORGED_REPLYTO Freemail in Reply-To, but not From
- 0.0 T_FILL_THIS_FORM_LOAN  Answer loan question(s)
- 0.0 T_FILL_THIS_FORM_FRAUD_PHISH Answer suspicious question(s)
- 1.0 FORM_FRAUD             Fill a form and a fraud phrase
-X-Headers-End: 1kAuWG-0042I5-DA
-Subject: [V9fs-developer] Auszeichnungen gewinnen
+ -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from author's
+ domain
+ -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+ 0.1 DKIM_SIGNED            Message has a DKIM or DK signature,
+ not necessarily valid
+ 0.0 RCVD_IN_MSPIKE_WL      Mailspike good senders
+ -1.0 DKIMWL_WL_HIGH         DKIMwl.org - Whitelisted High sender
+X-Headers-End: 1kBJq1-007qVj-2N
+Subject: Re: [V9fs-developer] [GIT PULL] fscache rewrite -- please drop for
+ now
 X-BeenThere: v9fs-developer@lists.sourceforge.net
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -72,95 +110,37 @@ List-Post: <mailto:v9fs-developer@lists.sourceforge.net>
 List-Help: <mailto:v9fs-developer-request@lists.sourceforge.net?subject=help>
 List-Subscribe: <https://lists.sourceforge.net/lists/listinfo/v9fs-developer>, 
  <mailto:v9fs-developer-request@lists.sourceforge.net?subject=subscribe>
-Reply-To: santalucia.sg.es@spainmail.com
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Cc: Steve French <sfrench@samba.org>, linux-nfs@vger.kernel.org,
+ Jeff Layton <jlayton@redhat.com>, linux-cifs@vger.kernel.org,
+ Eric Van Hensbergen <ericvh@gmail.com>, Dave Wysochanski <dwysocha@redhat.com>,
+ linux-kernel@vger.kernel.org, Matthew Wilcox <willy@infradead.org>,
+ linux-afs@lists.infradead.org, dhowells@redhat.com, linux-cachefs@redhat.com,
+ Alexander Viro <viro@zeniv.linux.org.uk>,
+ Trond Myklebust <trondmy@hammerspace.com>, linux-fsdevel@vger.kernel.org,
+ v9fs-developer@lists.sourceforge.net, ceph-devel@vger.kernel.org,
+ Anna Schumaker <anna.schumaker@netapp.com>
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: v9fs-developer-bounces@lists.sourceforge.net
 
-RWwgR29yZG8gZGUgbGEgUHJpbWl0aXZhIExvdHRlcmllbiBTcGFuaWVuICAgICAgICAgICAgICAg
-ICAgICAgICAgICAKQWRyZXNzZTogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg
-ICAgICAKQ2FsbGUgZGVsIFByw61uY2lwZSBkZSBWZXJnYXJhLCAzOCwgMjgwMDEgTWFkcmlkIEVz
-cGHDsWEgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAKRSBtYWls
-Ol1hbnNwcnVjaGdld2lubi5tbXQuZXNAc3BhaW5tYWlsLmNvbV0KS29udGFrdCBhdWZuZWhtZW4g
-dW50ZXI6XSAgMzQ2MDIgODEwIDE4NSBmYXggIDM0OTM1NDU3NDkwXQpBa3RlbnplaWNoZW46XVAw
-OS8wMS8wMi8yMDIwLl0KTG9zbnVtbWVyOl0gRVNQIDQ0NDcvMTE0NjQxMTg4MDIwMV0KIERhdHVt
-OiAxOC8wOC8yMDIwCiAKICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg
-ICAgICAgICAgCkhhbGxvLCAgICAgICAgIAogICAgICAgICAgICAgICAgICAKICAgICAgICAgICAg
-IE9GRklaSUVMTEUgTUlUVEVJTFVORywKRGllc2UgRWwgR29yZG8gZGUgbGEgUHJpbWl0aXZhIFNv
-bW1lciBCb25hbnphICBMb3R0ZXJpZSB3dXJkZSAgIHVuZCBNaW5pc3RlcmlvIGRlIEluZHVzdHJp
-YSwgQ29tZXJjaW8geSBUdXJpc21vICBnZXNwb25zZXJ0IHVtIFRvdXJpc211cyBpbiBFc3Bhw7Fh
-ICB6dSBmw7ZyZGVybi4KIApXaXIgc2luZCBlcmZyZXV0IElobmVuIG1pdCB6dSB0ZWlsZW4sIGRh
-c3MgZGllIEdld2lubmVyIGRlcyBTb25kZXIgU3BhbmlzaCBUb3VyaXNtdXMgUHJvbW90aW9uYWwg
-RHJhdyBiZWthbm50IGdlZ2ViZW4gd29yZGVuIHNpbmQuIERpZSBvZmZpemllbGxlIExpc3RlIGRl
-ciBHZXdpbm5lciAgZXJzY2hpZW4gYW0gIFNhbXN0YWcgZGVyIDIyLzA3LzIwMjAuIAogCklocmUg
-ZW1haWwgYWRyZXNzZSAgbWl0IGRlciBhbmjDpG5nZW5kZW4gTG9zbnVtbWVyOiBFU1AgNDQ0Ny8x
-MTQ2NDExODgwMjAxICB1bmQgbWl0IGRlciBTZXJpZW5udW1tZXI6IEVTUC8wMTg4MTEtMjAyMCB6
-b2cgZGllIEdsw7xja3NudW1tZXI6IDYuMTYuMTguMzMuNDcuNTEgQm9udToyOSxFbCBHb3JkbyBk
-ZSBsYSBQcmltaXRpdmEgIExvdHRlcmllICA2IC80OSBpbiBkZXIgMy4gS2F0ZWdvcmllLgogClNp
-ZSBzaW5kIGRhbWl0IGdld2lubmVyIHZvbjog4oKsOTkxLDAwMC4wMCBFdXJvLiBEaWUgU3VtbWUg
-ZXJnaWJ0IHNpY2ggYXVzIGVpbmVyIEdld2lubmF1c3NjaMO8dHR1bmcgdm9uOiDigqw2OTM3LDAw
-MC4wMCBFdXJvLCBkaWUgZHVyY2ggZGllIGVyc3RlbiBzaWViZW4gKDcpIEdld2lubmVyIGF1cyBk
-ZXIgZ2xlaWNoZW4gS2F0ZWdvcmllIGdldGVpbHQgd3VyZGUuICBEaXIgZ2V3aW5uIGlzdCBiZWkg
-ZWluZXIgc2ljaGVyaGVpdHNmaXJtYSBoaW50ZXJsZWd0IHVuZCBpbiBpaHJlbiBuYW1lbi9lbWFp
-bCAgdmVyc2ljaGVydC4gdW0ga2VpbmUga29tcGxpa2F0aW9uZW4gYmVpIGRlciBhYndpY2tsdW5n
-IGRlciB6YWhsdW5nIHp1IHZlcnVyc2FjaGVuIGJpdHRlbiB3aXIgc2llIGRpZXNlIG9mZml6aWVs
-bGUgbWl0dGVpbHVuZyAsIGRpc2tyZXQgenUgYmVoYW5kZWxuLixlcyBpc3QgZWluIHRlaWwgdW5z
-ZXJlcyBzaWNoZXJoZWl0c3Byb3Rva29sbHMgdW5kIGdhcmFudGllcnQgaWhuZW4gZWluZW4gcmVp
-YnVuZ3Nsb3NlbiBBYmxhdWYuCiAKQWxsZSBnZXdpbm5lciB3dXJkZW4gcGVyIGNvbXB1dGVyIGF1
-cyBVcmxhdWJzaG90ZWxzLCBGbHVnZ2VzZWxsc2NoYWZ0ZW4gdW5kIFJlaXNlYsO8cm9zIG1haWxl
-biBEYXRlbiB2b24gZsO8bmYgTWlsbGlvbmVuICg1MDAwMDAwKSBFbWFpbCBhZHJlc3NlbiBhdXNn
-ZXfDpGhsdCwgYWxzIHRlaWwgdW5zZXJlciBJbnRlcm5hdGlvbmFsZW4gdG91cmlzbXVzIHByb21v
-dGlvbiBwcm9ncmFtbXMsIHdlbGNoZXMgd2lyIGVpbm1hbCBpbSBqYWhyIHZlcmFuc3RhbHRlbiB1
-bSBUb3VyaXNtdXMgaW4gU3BhbmllbiB6dSBmw7ZyZGVybi4KIApCaXR0ZSBrb250YWt0aWVyZW4g
-c2llIHVuc2VyZW4gYXVzbGFuZHMgc2FjaGJlYXJiZWl0ZXIgSGVyciBHYWJyaWVsICBiZWkgZGVy
-IHNpY2hlcmhlaXRzZmlybWEgU2FudGFsdWNpYSBTaWNoZXJoZWl0c2Zpcm1hOlBlciBFbWFpbCBh
-bjpiZXJhdGVyZ2FicmllbC5zcEBjb25zdWx0YW50LmNvbSBvZGVyIGFucnVmZW46IDM0IDYwMiA4
-MTAgMTg1ICYgRmF4OiAgMzQgOTMxIDcwIDIxMjAsIHVtIElociBHZWxkIHNjaG5lbGwgenUgYmVr
-b21tZW4uCiAKRGVua2VuIFNpZSBkYXJhbiwgamVkZXIgZ2V3aW5uYW5zcHJ1Y2ggbXVzcyBiaXMg
-enVtIDIyLzkvMjAyMCBBbmdlbWVsZGV0ZSBzZWluLiBKZWRlciBuaWNodCBhbmdlbWVsZGV0IEdl
-d2lubmFuc3BydWNoIHZlcmbDpGxsdCB1bmQgZ2VodCB6dXJ1Y2sgYW4gZGFzIFNwYW5pc2NoZSBT
-dGFhdHNrYXNzZS4KICAKV0lDSFRJRzogdW0gdmVyesO2Z2VydW5nZW4gdW5kIGtvbXBsaWthdGlv
-bmVuIHp1IHZlcm1laWRlbiwgYml0dGUgaW1tZXIgQWt0ZW56ZWljaGVuIGFuZ2ViZW4uICBBbmJl
-aSBlaW4gYW5tZWxkZWZvcm11bGFyLCBiaXR0ZSBhdXNmw7xsbGVuIHVuZCB6dXLDvGNrIFBlciBl
-bWFpbCBhbjpiZXJhdGVyZ2FicmllbC5zcEBjb25zdWx0YW50LmNvbSBvZGVyIGFucnVmZW46ICAz
-NCA2MDIgODEwMTg1ICYgRmF4OiAgMzQgOTMxIDcwIDIxMjAgZGllIHNpY2hlcmhlaXRzZmlybWEg
-U2FudGFsdWNpYSBTaWNoZXJoZWl0c2Zpcm1hLgogCkhFUlpMSUNIRU4gR0xVQ0tXVU5TQ0jigKYh
-Ck1pdCBmcmV1bmRsaWNoZW4gR3LDvMOfZW4KTUFSSUEgSElEQUxHTwpWSVpFUFLDhFNJREVOVElO
-CiAKQsOcUk8sU0FOVEFMVUNJQSBTRUdVUk9TIFMuQSBFc3Bhw7FhIApQbGF6YSBFc3Bhw7FhLCAx
-NSAtIC0xNiAgICAgICAgICAgICAgICAgICAgICAgICAgICAKTWFkcmlkLCAyODAwOCBFc3Bhw7Fh
-CiAgICAgICAgICAgICAgICAgICAgICAgICAgIAogCkFOTUVMREVGT1JNVUxBUiBaVVIgR0VXSU5O
-QU5TUFJVQ0hTCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXyAK
-Qml0dGUgZsO8bGxlbiBTaWUgZGFzIEZvcm11bGFyIHNvcmdmw6RsdGlnIGF1cyB1bmQgc2VuZGVu
-IGVzIHBlciBlIG1haWw6c2FudGFsdWNpYS5zZy5lc0BzcGFpbm1haWwuY29tIGFuIGRlciBTYW50
-YWx1Y2lhIFNpY2hlcmhlaXRzZmlybWEgbWl0IEtvcGllIElocmVzIFBlcnNvbmFsYXVzd2Vpc2Vz
-IG9kZXIgUmVpc2VwYXNzZXMuCiAKR0VXSU5OQkVUUkFHOl9fX19fIEFLVEVOWkVJQ0hFTiBfX19f
-X19fX19fCk5BTUU6X19fX19fX19fX19fIFZPUk5BTUU6X19fX19fX19fX19fX19fX18KR0VCVVJU
-U0RBVFVNOl9fX19fTkFUSU9OQUxJVEFUX19fX19fX19fX19fXwpMT1NOVU1NRVI6X19fX19fX19f
-X18gR0zDnENLU1pBSExFTiBfX19fX19fXwpTVFJBU1NFOl9fX19fX19fX19fX19fXyBOVU1NRVI6
-X19fX19fX19fX19fXwpXT0hOT1JUOl9fX19fIFBPU1RMRUlUWkFITF9fX19fTEFORCBfX19fX19f
-XwpEaXJla3RlciBLb250YWt0IEUtTWFpbF9fX19fX19fX19fX19fX19fX19fXwpURUxFRk9OOl9f
-X19fX19fX18gSEFORFk6X19fX19fX19fXyBGQVg6X19fX18KQkVSVUY6X19fX18gRkFNSUxJRU5T
-VEFORDpfX19fXyhHRVNDSExFQ0hUKV9fXyAgICAKIApXRUxDSEUgWkFITFVOR1NGT1JNIEJFVk9S
-WlVHRU4gU0lFPyAgKEEpIEJBTkvDnEJFUldFSVNVTkc6ICAoQikgQkFSU0NIRUNLICAKQkFOS0RB
-VEVOIFNJTkQgTlVSIE5PVFdFTkRJRyBXRU5OIFNJRSBTSUNIIEbDnFIgRUlORSBCQU5Lw5xCRVJX
-RUlTVU5HIEVOVFNDSElFREVOIEhBQkVOLgogCk5BTUUgREVTIEdFTERJTlNUSVRVVFM6X19fX19f
-X19fX19fX18KS09OVE9OVU1NRVI6X19fX19fX19fX19fX19fX19fX19fX19fIApJQkFOOl9fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX18KQkFOSyBBRERSRVNTOl9fX19fX19fX19fX19fX19f
-X19fX19fXwoKIAogICAgIEVSS0zDhFJVTkcgREVTIEJFR8OcTlNUSUdURU4KSUNIIF9fX19fX19f
-X19fX19fX19fX19fX19fX19fX0JFU1TDhFRJR0UgSElFUk1JVCwgREFTUyBBTExFIElORk9STUFU
-SU9ORU4sIEtPUlJFS1QgU0lORCwgVU5EIERJRSBWRVJBTlNUQUxURVIgREVSIEVsIFNQQU5JU0gg
-TE9UVEVSWSAvIFNBTlRBTFVDSUEgU0lDSEVSSEVJVFNGSVJNQSBOSUNIVCBWRVJBTlRXT1JUTElD
-SCBHRU1BQ0hUIFdFUkRFTiwgV0VOTiBFUyBaVSBFSU5FUiBVTkJFUkVDSFRJR1RFTiBaQUhMVU5H
-IERVUkNIIFVOR0VOQVVFIElORk9STUFUSU9ORU4sIERJRSBJQ0ggSU4gRElFU0VNIEZPUk1VTEFS
-IEFOR0VCRSBLT01NVC5EQVNTIDEwJSBQUk9WSVNJT04gREVSIFNBTlRBIExVQ0lBIFNFQ1VSSVRZ
-IENPTVBBTlkgR0VIP1JFTiwgU09CQUxEIFNJRSBJSFJFTiBHRVdJTk4gRk9ORFMgRVJIQUxURU4u
-IERJRVNFIFpFSE4gUFJPWkVOVCBXRVJERU4gSUhORU4gU09GT1JUIFpVUsOcQ0tHRUdFQkVOLCBT
-SUUgRVJIQUxURU4gSUhSRU4gR0VXSU5OIEFVRiBJSFJFTSBLT05UTy4gKEFDSFRVTkcgV2lyIGJp
-dHRlbiBTaWUsIGF1ZiBkaWVzZSBFLU1haWwtQWRyZXNzZSB6dSBhbnR3b3J0ZW4oc2FudGFsdWNp
-YS5zZy5lc0BzcGFpbm1haWwuY29tKSBCw5xSTy1LT05UT0lORk9STUFUSU9ORU4tSUJBTiBFUzE3
-IDIxMDAgNTYyNCAxMTAyIDAwMTEgNzcxOSBTV0lGVCBDT0RFOiBDQUlYRVNCQlhYWC4gIEtPTlRP
-TkFNRSxMQSBQTEFDSVRBIERFTCBNSVJBRE9SIFMuTCBTUEFJTi4KVXJoZWJlcnJlY2h0wqkgMjAw
-Mi0yMDIwIE11bHRpLVN0YWF0IExvdHRlcmllIFZlcmJhbmQuIEFsbGUgUmVjaHRlCgoKCl9fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fClY5ZnMtZGV2ZWxvcGVy
-IG1haWxpbmcgbGlzdApWOWZzLWRldmVsb3BlckBsaXN0cy5zb3VyY2Vmb3JnZS5uZXQKaHR0cHM6
-Ly9saXN0cy5zb3VyY2Vmb3JnZS5uZXQvbGlzdHMvbGlzdGluZm8vdjlmcy1kZXZlbG9wZXIK
+Christoph Hellwig <hch@lst.de> wrote:
+
+> FYI, a giant rewrite dropping support for existing consumer is always
+> rather awkward.  Is there any way you could pre-stage some infrastructure
+> changes, and then do a temporary fscache2, which could then be renamed
+> back to fscache once everyone switched over?
+
+That's a bit tricky.  There are three points that would have to be shared: the
+userspace miscdev interface, the backing filesystem and the single index tree.
+
+It's probably easier to just have a go at converting 9P and cifs.  Making the
+old and new APIs share would be a fairly hefty undertaking in its own right.
+
+David
+
+
+
+_______________________________________________
+V9fs-developer mailing list
+V9fs-developer@lists.sourceforge.net
+https://lists.sourceforge.net/lists/listinfo/v9fs-developer
