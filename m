@@ -2,63 +2,83 @@ Return-Path: <v9fs-developer-bounces@lists.sourceforge.net>
 X-Original-To: lists+v9fs-developer@lfdr.de
 Delivered-To: lists+v9fs-developer@lfdr.de
 Received: from lists.sourceforge.net (lists.sourceforge.net [216.105.38.7])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6394226873E
-	for <lists+v9fs-developer@lfdr.de>; Mon, 14 Sep 2020 10:32:28 +0200 (CEST)
-Received: from [127.0.0.1] (helo=sfs-ml-2.v29.lw.sourceforge.com)
-	by sfs-ml-2.v29.lw.sourceforge.com with esmtp (Exim 4.90_1)
+	by mail.lfdr.de (Postfix) with ESMTPS id E0CB22687C7
+	for <lists+v9fs-developer@lfdr.de>; Mon, 14 Sep 2020 11:01:24 +0200 (CEST)
+Received: from [127.0.0.1] (helo=sfs-ml-4.v29.lw.sourceforge.com)
+	by sfs-ml-4.v29.lw.sourceforge.com with esmtp (Exim 4.90_1)
 	(envelope-from <v9fs-developer-bounces@lists.sourceforge.net>)
-	id 1kHjuV-0004uV-6T; Mon, 14 Sep 2020 08:32:27 +0000
+	id 1kHkMT-0001r5-Kk; Mon, 14 Sep 2020 09:01:21 +0000
 Received: from [172.30.20.202] (helo=mx.sourceforge.net)
- by sfs-ml-2.v29.lw.sourceforge.com with esmtps
+ by sfs-ml-4.v29.lw.sourceforge.com with esmtps
  (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.90_1)
- (envelope-from <asmadeus@notk.org>) id 1kHjuS-0004uK-7t
- for v9fs-developer@lists.sourceforge.net; Mon, 14 Sep 2020 08:32:24 +0000
+ (envelope-from <groug@kaod.org>) id 1kHkMS-0001qw-6o
+ for v9fs-developer@lists.sourceforge.net; Mon, 14 Sep 2020 09:01:20 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=sourceforge.net; s=x; h=In-Reply-To:Content-Type:MIME-Version:Message-ID:
- Subject:Cc:To:From:Date:Sender:Reply-To:Content-Transfer-Encoding:Content-ID:
- Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
- :Resent-Message-ID:References:List-Id:List-Help:List-Unsubscribe:
+ d=sourceforge.net; s=x; h=Content-Transfer-Encoding:Content-Type:MIME-Version
+ :References:In-Reply-To:Message-ID:Subject:CC:To:From:Date:Sender:Reply-To:
+ Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+ Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
  List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=slhrZCKrdO4mAuUHqBFgn9Y9HHsE+QNov3f8GqgmZN8=; b=G0jAmn4Duk4/8kMDUvX/oTBXAS
- PXj2se161Te5DcUJYGPp9YMiQqWZKeCxzhLi1QsQ50km99xDQ4z90GbHSBbzSjipvWzcDvMb5E1rS
- gK1Fh6x06yynwFp+mCT1BubZ8orQIQaNUE1LATNqFWCFMxv6eau8lwhfJktFFfAUlNgI=;
+ bh=LWgU1jZ8PSvSLkKeOUXjaR7nKa6gytTYv2DNxld+poE=; b=dtaWSAccSEIkMuxCtfjQhET8Tu
+ ognRlYwRiOGOBegCbn8JLOXjZmv5z1NVvgrQmQ0HBHklhzYLHA55lwez4cD8fhmHZPMnM9Pv2uLmQ
+ pwZYMbEe+ph+uJxOD8FRkIYZx7rMHuTiivMJJo+feP8TphDif1vCYF2YTBTILroYixfs=;
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  ;
- h=In-Reply-To:Content-Type:MIME-Version:Message-ID:Subject:Cc:To:From:Date:
- Sender:Reply-To:Content-Transfer-Encoding:Content-ID:Content-Description:
- Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
- References:List-Id:List-Help:List-Unsubscribe:List-Subscribe:List-Post:
- List-Owner:List-Archive; bh=slhrZCKrdO4mAuUHqBFgn9Y9HHsE+QNov3f8GqgmZN8=; b=Z
- 8E6r5UCro7pMUJjZ85gW/TqexU+IclppUBMClHpzMBD2m1tlhIO/7wsJXKfU3gQRcPKZ/HDdsEY7Y
- I6hy4jVVPQR8GN2eT0WSwWuCp5fYNuGcmcBMCCrli4E6YfVHmYr39nwW5J/Vte6+gR77f78OMj5rC
- rj97waCckc1fgV0Y=;
-Received: from nautica.notk.org ([91.121.71.147])
+ h=Content-Transfer-Encoding:Content-Type:MIME-Version:References:
+ In-Reply-To:Message-ID:Subject:CC:To:From:Date:Sender:Reply-To:Content-ID:
+ Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
+ :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
+ List-Post:List-Owner:List-Archive;
+ bh=LWgU1jZ8PSvSLkKeOUXjaR7nKa6gytTYv2DNxld+poE=; b=dh3myt9tDT/nDUnqWMjpP1uC1e
+ qlTZmsodBBhG4SFIiHQbnOyQzHzsz2BOSH4aEWXZLzCf+8HU8W2czOAoKOeUbPfObUsqyn/UsfbfZ
+ PJ9D4qK8R1MWYN25nhfK8B8SLd7tE21LfUGqJxttoImjMBsHSQVbKDu1FcSdRmQ54PCU=;
+Received: from smtpout1.mo804.mail-out.ovh.net ([79.137.123.220])
  by sfi-mx-3.v28.lw.sourceforge.com with esmtps
  (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.92.2)
- id 1kHjuP-0089Rz-Q9
- for v9fs-developer@lists.sourceforge.net; Mon, 14 Sep 2020 08:32:24 +0000
-Received: by nautica.notk.org (Postfix, from userid 1001)
- id 77BEFC009; Mon, 14 Sep 2020 10:32:15 +0200 (CEST)
-Date: Mon, 14 Sep 2020 10:32:00 +0200
-From: Dominique Martinet <asmadeus@codewreck.org>
-To: Jianyong Wu <Jianyong.Wu@arm.com>
-Message-ID: <20200914083200.GA9259@nautica>
+ id 1kHkMK-008C2S-Ol
+ for v9fs-developer@lists.sourceforge.net; Mon, 14 Sep 2020 09:01:20 +0000
+Received: from mxplan5.mail.ovh.net (unknown [10.109.143.134])
+ by mo804.mail-out.ovh.net (Postfix) with ESMTPS id 68299614D66C;
+ Mon, 14 Sep 2020 10:35:49 +0200 (CEST)
+Received: from kaod.org (37.59.142.101) by DAG8EX1.mxp5.local (172.16.2.71)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2044.4; Mon, 14 Sep
+ 2020 10:35:47 +0200
+Authentication-Results: garm.ovh; auth=pass
+ (GARM-101G00438ece552-2604-404d-8aff-070da96458dd,
+ 33559CD024D4F69900824C14C2AC4808F9346AFD) smtp.auth=groug@kaod.org
+Date: Mon, 14 Sep 2020 10:35:46 +0200
+From: Greg Kurz <groug@kaod.org>
+To: Jianyong Wu <jianyong.wu@arm.com>
+Message-ID: <20200914103546.0f775bcd@bahia.lan>
+In-Reply-To: <20200914033754.29188-1-jianyong.wu@arm.com>
+References: <20200914033754.29188-1-jianyong.wu@arm.com>
+X-Mailer: Claws Mail 3.17.6 (GTK+ 2.24.32; x86_64-redhat-linux-gnu)
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <HE1PR0802MB255594D67D97733CFDFE777EF4230@HE1PR0802MB2555.eurprd08.prod.outlook.com>
- <HE1PR0802MB25555E7AAFA66DA3FE025D0AF4230@HE1PR0802MB2555.eurprd08.prod.outlook.com>
-User-Agent: Mutt/1.5.21 (2010-09-15)
-X-Spam-Score: 0.2 (/)
+X-Originating-IP: [37.59.142.101]
+X-ClientProxiedBy: DAG9EX2.mxp5.local (172.16.2.82) To DAG8EX1.mxp5.local
+ (172.16.2.71)
+X-Ovh-Tracer-GUID: a4adab61-5db0-417d-bdd6-ca742aabf020
+X-Ovh-Tracer-Id: 3126905517296294252
+X-VR-SPAMSTATE: OK
+X-VR-SPAMSCORE: -100
+X-VR-SPAMCAUSE: gggruggvucftvghtrhhoucdtuddrgeduiedrudeiiedgtdeiucetufdoteggodetrfdotffvucfrrhhofhhilhgvmecuqfggjfdpvefjgfevmfevgfenuceurghilhhouhhtmecuhedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmnecujfgurhepfffhvffukfgjfhfogggtgfhisehtjeertdertddvnecuhfhrohhmpefirhgvghcumfhurhiiuceoghhrohhugheskhgrohgurdhorhhgqeenucggtffrrghtthgvrhhnpeefuddtieejjeevheekieeltefgleetkeetheettdeifeffvefhffelffdtfeeljeenucfkpheptddrtddrtddrtddpfeejrdehledrudegvddruddtudenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepmhhouggvpehsmhhtphdqohhuthdphhgvlhhopehmgihplhgrnhehrdhmrghilhdrohhvhhdrnhgvthdpihhnvghtpedtrddtrddtrddtpdhmrghilhhfrhhomhepghhrohhugheskhgrohgurdhorhhgpdhrtghpthhtohepqhgvmhhupghoshhssegtrhhuuggvsgihthgvrdgtohhm
+X-Spam-Score: 0.0 (/)
 X-Spam-Report: Spam Filtering performed by mx.sourceforge.net.
  See http://spamassassin.org/tag/ for more details.
- 0.2 HEADER_FROM_DIFFERENT_DOMAINS From and EnvelopeFrom 2nd level mail
- domains are different
+ 0.0 URIBL_BLOCKED ADMINISTRATOR NOTICE: The query to URIBL was blocked.
+ See
+ http://wiki.apache.org/spamassassin/DnsBlocklists#dnsbl-block
+ for more information. [URIs: arm.com]
+ -0.0 RCVD_IN_DNSWL_NONE     RBL: Sender listed at https://www.dnswl.org/, no
+ trust [79.137.123.220 listed in list.dnswl.org]
+ -0.0 RCVD_IN_MSPIKE_H2      RBL: Average reputation (+2)
+ [79.137.123.220 listed in wl.mailspike.net]
  -0.0 SPF_PASS               SPF: sender matches SPF record
  0.0 SPF_HELO_NONE          SPF: HELO does not publish an SPF Record
- 0.0 FAKE_REPLY_C           No description available.
-X-Headers-End: 1kHjuP-0089Rz-Q9
-Subject: Re: [V9fs-developer] [PATCH RFC 4/4] 9p: fix race issue in fid
- contention.
+X-Headers-End: 1kHkMK-008C2S-Ol
+Subject: Re: [V9fs-developer] [PATCH RFC 0/4] 9p: fix open-unlink-f*syscall
+ bug
 X-BeenThere: v9fs-developer@lists.sourceforge.net
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -70,68 +90,52 @@ List-Post: <mailto:v9fs-developer@lists.sourceforge.net>
 List-Help: <mailto:v9fs-developer-request@lists.sourceforge.net?subject=help>
 List-Subscribe: <https://lists.sourceforge.net/lists/listinfo/v9fs-developer>, 
  <mailto:v9fs-developer-request@lists.sourceforge.net?subject=subscribe>
-Cc: "lucho@ionkov.net" <lucho@ionkov.net>, Justin He <Justin.He@arm.com>,
- "ericvh@gmail.com" <ericvh@gmail.com>, Greg Kurz <groug@kaod.org>,
- "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
- "v9fs-developer@lists.sourceforge.net" <v9fs-developer@lists.sourceforge.net>
+Cc: lucho@ionkov.net, justin.he@arm.com, ericvh@gmail.com,
+ Christian Schoenebeck <qemu_oss@crudebyte.com>, linux-kernel@vger.kernel.org,
+ v9fs-developer@lists.sourceforge.net
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: v9fs-developer-bounces@lists.sourceforge.net
 
-Jianyong Wu wrote on Mon, Sep 14, 2020:
-> > Not having exceptions for that will also make the code around
-> > fid_atomic_dec much simpler: just have clunk do an atomic dec and only do
-> > the actual clunk if that hit zero, and we should be able to get rid of that
-> > helper?
+On Mon, 14 Sep 2020 11:37:50 +0800
+Jianyong Wu <jianyong.wu@arm.com> wrote:
+
+> open-unlink-f*syscall bug is a well-known bug in 9p, we try to fix the bug
+> in this patch set.
+> I take Eric's and Greg's patches which constiute the 1/4 - 3/4 of this patch
+> set as the main frame of the solution. In patch 4/4, I fix the fid race issue
+> exists in Greg's patch.
 > 
-> Sorry, I think always-one refcount  won't work at this point, as the
-> fid will be clunked only by file context itself not the every consumer
-> of every fid. We can't decrease the refcounter at just one static
-> point.
-> Am I wrong?
 
-I don't understand the "We can't decrease the refcounter at just one
-static point".
-Basically everywhere you added a fid_atomic_dec() will just need to be
-changed to clunk -- the basic rule of refcounting is that anywhere you
-take a ref you need to put it back.
+IIRC some patches were needed on the QEMU side as well... I'm spending
+less time on 9pfs in QEMU, so Cc'ing the new maintainer:
 
-All these places take a fid to do some RPC already so it's not a problem
-to add a clunk and do one more; especially since the "clunk" will just
-be just a deref.
-For consistency I'd advocate for the kref API as we use that for
-requests already; it might be better to rename the clunk calls to
-p9_fid_put or something but I think that's more churn than it's
-worth....
+Christian Schoenebeck <qemu_oss@crudebyte.com>
 
-
-Is there anywhere you think cannot do that?
-
-> This enum value is not functionally necessary, but I think it can
-> reduce the contention of fid, as there are really lots of scenarios
-> that fid from inode is not necessary.
-
-I really don't think it makes things slower if done correctly (e.g. no
-waiting as currently done but the last deref does the actual clunk), and
-would rather keep code simpler unless the difference is big (so would
-need to do an actual benchmark of both if you're convinced it helps) --
-sorry.
-
->> If possible put the patch first in the series so commits can be
->> tested independently.
+> Eric Van Hensbergen (1):
+>   fs/9p: fix create-unlink-getattr idiom
 > 
-> Ah, this patch depends on the previous patches, how can I put it as
-> the first of the series?
+> Greg Kurz (1):
+>   fs/9p: search open fids first
+> 
+> Jianyong Wu (2):
+>   fs/9p: track open fids
+>   9p: fix race issue in fid contention.
+> 
+>  fs/9p/fid.c             | 72 +++++++++++++++++++++++++++++++++++------
+>  fs/9p/fid.h             | 25 +++++++++++---
+>  fs/9p/vfs_dentry.c      |  2 +-
+>  fs/9p/vfs_dir.c         | 20 ++++++++++--
+>  fs/9p/vfs_file.c        |  3 +-
+>  fs/9p/vfs_inode.c       | 52 +++++++++++++++++++++--------
+>  fs/9p/vfs_inode_dotl.c  | 44 ++++++++++++++++---------
+>  fs/9p/vfs_super.c       |  7 ++--
+>  fs/9p/xattr.c           | 18 ++++++++---
+>  include/net/9p/client.h |  8 +++++
+>  net/9p/client.c         |  7 +++-
+>  11 files changed, 206 insertions(+), 52 deletions(-)
+> 
 
-Basically build the logic in the first patch, then either apply the
-other three as close as they currently are as possible and add the
-missing refcalls in a new patch or incorporate the refcounting in them
-as well.
-It's fine if you keep it it last, that was just a greedy request on my
-part to be able to test async clunk more easily ; forget about it.
-
--- 
-Dominique
 
 
 _______________________________________________
