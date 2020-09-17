@@ -2,16 +2,16 @@ Return-Path: <v9fs-developer-bounces@lists.sourceforge.net>
 X-Original-To: lists+v9fs-developer@lfdr.de
 Delivered-To: lists+v9fs-developer@lfdr.de
 Received: from lists.sourceforge.net (lists.sourceforge.net [216.105.38.7])
-	by mail.lfdr.de (Postfix) with ESMTPS id E6CB526DF2D
-	for <lists+v9fs-developer@lfdr.de>; Thu, 17 Sep 2020 17:11:15 +0200 (CEST)
-Received: from [127.0.0.1] (helo=sfs-ml-1.v29.lw.sourceforge.com)
-	by sfs-ml-1.v29.lw.sourceforge.com with esmtp (Exim 4.90_1)
+	by mail.lfdr.de (Postfix) with ESMTPS id 47E3026DF36
+	for <lists+v9fs-developer@lfdr.de>; Thu, 17 Sep 2020 17:11:20 +0200 (CEST)
+Received: from [127.0.0.1] (helo=sfs-ml-2.v29.lw.sourceforge.com)
+	by sfs-ml-2.v29.lw.sourceforge.com with esmtp (Exim 4.90_1)
 	(envelope-from <v9fs-developer-bounces@lists.sourceforge.net>)
-	id 1kIvZ4-0004Cg-EZ; Thu, 17 Sep 2020 15:11:14 +0000
+	id 1kIvZ6-0006pZ-1F; Thu, 17 Sep 2020 15:11:16 +0000
 Received: from [172.30.20.202] (helo=mx.sourceforge.net)
- by sfs-ml-1.v29.lw.sourceforge.com with esmtps
+ by sfs-ml-2.v29.lw.sourceforge.com with esmtps
  (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.90_1)
- (envelope-from <willy@infradead.org>) id 1kIvZ3-0004C4-Ib
+ (envelope-from <willy@infradead.org>) id 1kIvZ3-0006or-07
  for v9fs-developer@lists.sourceforge.net; Thu, 17 Sep 2020 15:11:13 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
  d=sourceforge.net; s=x; h=Content-Transfer-Encoding:MIME-Version:References:
@@ -19,9 +19,9 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
  Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
  Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
  List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=5bMB1AIyFb3Uo5KQX9JPM+gHHI0JgEg44Zm96s2wWSw=; b=GuQyIUJ+F4zOlP9a0xyrpGpeyP
- vvYpH3iinEmlp88c/pyYP1F6yMkULaWiJyFGBVZNsD1yeP+f6Vd6eoNINHugmDpnS7nhu2foQ2f/v
- HxYZB1VyZ6man2lbPfaHVGNnlaMjaNpjJdDG1LFK2y4Ev7Tk6m3GzBB8guN30j/01V7I=;
+ bh=zAZy51PVGFxs64ScUkLAAfIGOTINfzCY3cwZ6yg8A5Q=; b=XgZBcwqz4LtR0viJ1aOM9l1J4S
+ z/A++bno7zlsLgCO2mPPy9SRKGAxyFYpJ5okkcKlHypXIPbhrYME34F04VDYbailFJRdmEAbpQLXE
+ ZdCqLq4n16wHVO+Z/3Cf1mWlPVRY6jRWiRemJWGv6sqR/iTvUer/jJBD5NXtzTzZX4Lk=;
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  ;
  h=Content-Transfer-Encoding:MIME-Version:References:In-Reply-To:Message-Id:
@@ -29,30 +29,30 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
  :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
  List-Post:List-Owner:List-Archive;
- bh=5bMB1AIyFb3Uo5KQX9JPM+gHHI0JgEg44Zm96s2wWSw=; b=GMiNdzkvLA7RYWu86qi5dRXmWs
- vKrSOyFTPritV4HxJlXWa83rAnDSAHccJryxZfZ69crTi/ZyOZgdsJXNH9tmNL6b9bgLglJr40YU1
- piA+KcKM9Hb2xfzXmqZhNUzwpvB8W0vEubAxqJpuyFLKeZ3JT/POCOcAudwbGNDDx+j8=;
+ bh=zAZy51PVGFxs64ScUkLAAfIGOTINfzCY3cwZ6yg8A5Q=; b=CoKQBpAnTvyhCtjvBGInC6a/0Y
+ 3TO3Fl5WPEVPjubQ3whbLefqJfd7HEaIis0rNFI7qkz5dMrtISbwfSVOvragh9as4kIFbu8xwuSrs
+ Zm796ZERzo7Q/5HrPNsvm4fBZuS8kJPodFeyPuscQgM51MdBDjmVlrMjTk6+khQiX3l4=;
 Received: from casper.infradead.org ([90.155.50.34])
- by sfi-mx-3.v28.lw.sourceforge.com with esmtps
+ by sfi-mx-1.v28.lw.sourceforge.com with esmtps
  (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.92.2)
- id 1kIvYw-00D5fd-UD
- for v9fs-developer@lists.sourceforge.net; Thu, 17 Sep 2020 15:11:13 +0000
+ id 1kIvYx-00EHfE-IR
+ for v9fs-developer@lists.sourceforge.net; Thu, 17 Sep 2020 15:11:12 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
  d=infradead.org; s=casper.20170209; h=Content-Transfer-Encoding:MIME-Version:
  References:In-Reply-To:Message-Id:Date:Subject:Cc:To:From:Sender:Reply-To:
  Content-Type:Content-ID:Content-Description;
- bh=5bMB1AIyFb3Uo5KQX9JPM+gHHI0JgEg44Zm96s2wWSw=; b=rBA3BEedGxTEi6jjWgdFgG9hWD
- rAtzju3sIMBKwrAld+mQATn7QaELiGbXVXmda93yYxh+yGS2+0GwA617L8+TIuo3Jk8ylfnIXk1LL
- H0TvouglbVTFDzhXbSrLLJR8GAx9F0XOhb7d7HXvbImpXSlYZ+WbfMfJ7KLJgKaDDRuyCUS26Oz12
- KxWnZX+HUeYpcjcOv6pJRJj8WdPq//IKqqm0bFb6zeal4AaAU3BZ/IPEj68NH4x1qS98+Qp9MtRPu
- cADf27TdVH4fZZTEQTThue/nS5onCBKmS8Q73H+9r1P8RaGh4WeCO+yzsvRmbQR5olV5anJvC0EkL
- rdhWhOtg==;
+ bh=zAZy51PVGFxs64ScUkLAAfIGOTINfzCY3cwZ6yg8A5Q=; b=rNkQQL233o1qC43qgzc5gAcwW0
+ JWxbRmm2ZfIwaHZhsWpFEKH6URvvGnOl1lWpFGP1nYY0Sqr7ijYVsrYUtJkFiSonlGtRJl6cimgyP
+ lDLV4gyAydyEpflI+vQZ4wM9tquamB9lVliU76d1jfrLZ3AZAK1nSIlPRXGCk+Ogknuo6rL6Fg0xy
+ L1asspYZzWlUYbQnnTCDsrSYurULC6YWIxRKHcIflFNXXfqW5r/+hTUi1w8a8PEiaXpPlez6I5SbS
+ NPlMlq+FCbmcCu9y8afa0VyqlkfmuaoZLWu95P043ThRs5XDJ3LySRaf0uovI42Oq1qtLiMaK/SK0
+ RnSxJNWg==;
 Received: from willy by casper.infradead.org with local (Exim 4.92.3 #3 (Red
- Hat Linux)) id 1kIvYk-0001QE-67; Thu, 17 Sep 2020 15:10:54 +0000
+ Hat Linux)) id 1kIvYk-0001QP-FF; Thu, 17 Sep 2020 15:10:54 +0000
 From: "Matthew Wilcox (Oracle)" <willy@infradead.org>
 To: linux-fsdevel@vger.kernel.org
-Date: Thu, 17 Sep 2020 16:10:46 +0100
-Message-Id: <20200917151050.5363-10-willy@infradead.org>
+Date: Thu, 17 Sep 2020 16:10:47 +0100
+Message-Id: <20200917151050.5363-11-willy@infradead.org>
 X-Mailer: git-send-email 2.21.3
 In-Reply-To: <20200917151050.5363-1-willy@infradead.org>
 References: <20200917151050.5363-1-willy@infradead.org>
@@ -67,8 +67,8 @@ X-Spam-Report: Spam Filtering performed by mx.sourceforge.net.
  -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
  0.1 DKIM_SIGNED            Message has a DKIM or DK signature,
  not necessarily valid
-X-Headers-End: 1kIvYw-00D5fd-UD
-Subject: [V9fs-developer] [PATCH 09/13] hostfs: Tell the VFS that readpage
+X-Headers-End: 1kIvYx-00EHfE-IR
+Subject: [V9fs-developer] [PATCH 10/13] jffs2: Tell the VFS that readpage
  was synchronous
 X-BeenThere: v9fs-developer@lists.sourceforge.net
 X-Mailman-Version: 2.1.21
@@ -91,27 +91,38 @@ Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: v9fs-developer-bounces@lists.sourceforge.net
 
-The hostfs readpage implementation was already synchronous, so use
+The jffs2 readpage implementation was already synchronous, so use
 AOP_UPDATED_PAGE to avoid cycling the page lock.
 
 Signed-off-by: Matthew Wilcox (Oracle) <willy@infradead.org>
 ---
- fs/hostfs/hostfs_kern.c | 2 ++
- 1 file changed, 2 insertions(+)
+ fs/jffs2/file.c | 6 ++++--
+ 1 file changed, 4 insertions(+), 2 deletions(-)
 
-diff --git a/fs/hostfs/hostfs_kern.c b/fs/hostfs/hostfs_kern.c
-index c070c0d8e3e9..c49221c09c4b 100644
---- a/fs/hostfs/hostfs_kern.c
-+++ b/fs/hostfs/hostfs_kern.c
-@@ -455,6 +455,8 @@ static int hostfs_readpage(struct file *file, struct page *page)
-  out:
- 	flush_dcache_page(page);
- 	kunmap(page);
-+	if (!ret)
-+		return AOP_UPDATED_PAGE;
- 	unlock_page(page);
+diff --git a/fs/jffs2/file.c b/fs/jffs2/file.c
+index f8fb89b10227..959a74027041 100644
+--- a/fs/jffs2/file.c
++++ b/fs/jffs2/file.c
+@@ -116,15 +116,17 @@ int jffs2_do_readpage_unlock(void *data, struct page *pg)
  	return ret;
  }
+ 
+-
+ static int jffs2_readpage (struct file *filp, struct page *pg)
+ {
+ 	struct jffs2_inode_info *f = JFFS2_INODE_INFO(pg->mapping->host);
+ 	int ret;
+ 
+ 	mutex_lock(&f->sem);
+-	ret = jffs2_do_readpage_unlock(pg->mapping->host, pg);
++	ret = jffs2_do_readpage_nolock(pg->mapping->host, pg);
+ 	mutex_unlock(&f->sem);
++	if (!ret)
++		return AOP_UPDATED_PAGE;
++	unlock_page(pg);
+ 	return ret;
+ }
+ 
 -- 
 2.28.0
 
