@@ -2,16 +2,16 @@ Return-Path: <v9fs-developer-bounces@lists.sourceforge.net>
 X-Original-To: lists+v9fs-developer@lfdr.de
 Delivered-To: lists+v9fs-developer@lfdr.de
 Received: from lists.sourceforge.net (lists.sourceforge.net [216.105.38.7])
-	by mail.lfdr.de (Postfix) with ESMTPS id 47D5826DF32
-	for <lists+v9fs-developer@lfdr.de>; Thu, 17 Sep 2020 17:11:17 +0200 (CEST)
-Received: from [127.0.0.1] (helo=sfs-ml-2.v29.lw.sourceforge.com)
-	by sfs-ml-2.v29.lw.sourceforge.com with esmtp (Exim 4.90_1)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0F27826DF38
+	for <lists+v9fs-developer@lfdr.de>; Thu, 17 Sep 2020 17:11:21 +0200 (CEST)
+Received: from [127.0.0.1] (helo=sfs-ml-4.v29.lw.sourceforge.com)
+	by sfs-ml-4.v29.lw.sourceforge.com with esmtp (Exim 4.90_1)
 	(envelope-from <v9fs-developer-bounces@lists.sourceforge.net>)
-	id 1kIvZ6-0006pm-2K; Thu, 17 Sep 2020 15:11:16 +0000
+	id 1kIvZ9-00026l-Rm; Thu, 17 Sep 2020 15:11:19 +0000
 Received: from [172.30.20.202] (helo=mx.sourceforge.net)
- by sfs-ml-2.v29.lw.sourceforge.com with esmtps
+ by sfs-ml-4.v29.lw.sourceforge.com with esmtps
  (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.90_1)
- (envelope-from <willy@infradead.org>) id 1kIvZ3-0006p2-Io
+ (envelope-from <willy@infradead.org>) id 1kIvZ3-00025o-0O
  for v9fs-developer@lists.sourceforge.net; Thu, 17 Sep 2020 15:11:13 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
  d=sourceforge.net; s=x; h=Content-Transfer-Encoding:MIME-Version:References:
@@ -19,9 +19,9 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
  Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
  Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
  List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=On43e4GnGO79fh9MGOiH3t2swuO0c44z7mV7G3PjPdg=; b=GsXE2eaDi0se99or70mSBvbN58
- kvvW2UjH26825CwLgWAlW+PjKaIqwDBrgxlydzCSXxKR81FSDwy6zoQWcF2/+LV08t8RsjiHLCzL4
- yOE5kgVb3+iQ/dMtR5ZzyxRd90jdqlciUYWKeau2bNTeG+gmLm+VJeOm1u4O5VJmAQig=;
+ bh=MTLlKe719mgAVscm2w1Ql0nN7cIRPfZQnUskn6+25OA=; b=FWL6iDiL47A4Zait6GDhzmrG8j
+ 3OQ8tk5pJt9mx9x2QHzrveMnpGUqLa1fU/zCVrPaNdEJ4gyGDF5ZpLHCN8b1ZTeOthwVDonBcw1/a
+ 0JsxGwn1kEzIlgI7Ac2MLxd8RNpQ0kKEHV4MOKaiHDjuU/nY76m/EuYmjdYd18VfHeGI=;
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  ;
  h=Content-Transfer-Encoding:MIME-Version:References:In-Reply-To:Message-Id:
@@ -29,30 +29,30 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
  :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
  List-Post:List-Owner:List-Archive;
- bh=On43e4GnGO79fh9MGOiH3t2swuO0c44z7mV7G3PjPdg=; b=mFVo8R7bY+GWKXuRrfKZg6WkRc
- 8VyGqg1QxtWkTVNSqMztzTwo8ciyPaDqPVKuk+0u/J7d/jSybbwlrQOWiQZznBp9kQv+dplscmHXQ
- K6SkYeTHBNUgLLkeGfMLZvMXlc7/GfH1lFXNTOKbeFbTkQ5bSDR3W/aqqVtlj1hYNA7g=;
+ bh=MTLlKe719mgAVscm2w1Ql0nN7cIRPfZQnUskn6+25OA=; b=T/VFwsG6AVyR2I5KjnXqk8S9rN
+ 2bzHhNB5pKp6uIbvomM7dY1MN6kd2nL9bjDIwUSNUGH8pzrs3iqX0bPBrVCT0NE0YWEfCPaBRn3KS
+ wrL1xVsWoS4/QpbrLXJ+765k+viePfXJ94kuv8dR5pXX9ZMksf/rvcb0KKSPmxXu2DTg=;
 Received: from casper.infradead.org ([90.155.50.34])
  by sfi-mx-1.v28.lw.sourceforge.com with esmtps
  (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.92.2)
- id 1kIvZ0-00EHfc-9j
- for v9fs-developer@lists.sourceforge.net; Thu, 17 Sep 2020 15:11:13 +0000
+ id 1kIvYx-00EHf7-IP
+ for v9fs-developer@lists.sourceforge.net; Thu, 17 Sep 2020 15:11:12 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
  d=infradead.org; s=casper.20170209; h=Content-Transfer-Encoding:MIME-Version:
  References:In-Reply-To:Message-Id:Date:Subject:Cc:To:From:Sender:Reply-To:
  Content-Type:Content-ID:Content-Description;
- bh=On43e4GnGO79fh9MGOiH3t2swuO0c44z7mV7G3PjPdg=; b=JpgNMgAMtP37e2z1ODJoACSlyK
- ZQFRFUMyW6V2MeLhpTmyJAeub1VQHVFoEFbrpdAuEICFyc0AHXjewrnjzRXfMEuzWL7E+dyYGabyd
- A1RS7Tonh20I00pQtRnWsnK+nfLGfgwVuwmiwJCERV56YcrH+xTkJxvoSXyxbudjVRNVQZQPsJGDw
- /GSHYP46vWHoYPnjADmCSGZO9olC+ksUnB6Jcrds+VDufa4bFLZCIQpaFfLSIplfPdvT9nrFF6G4U
- PHAGD4QvI88MFyYVX2M35YIWXErf0ffDTV1XoWhrPUUGdig34Sj0jR3s2VZV69Z9EMEt8hjqRRV1T
- zvgKjiwA==;
+ bh=MTLlKe719mgAVscm2w1Ql0nN7cIRPfZQnUskn6+25OA=; b=hL1cKoF+6/UAQwKZIfKnU0NZqr
+ 5yu8M7+7C5AX6w2ZPJR/qCXtNh7fJv27Z77Vzg8+rgPWUUAccXm6tDAc3RAjURPkde7Zqjc5//Z0p
+ 46Fkcm7nzOM2P9Av5IqEb5DBysNZXaLpSIFI0VmfJzpsEzy4k1mlNLIFBwXItEIIMuEfqHOhCFmD6
+ N9w4+E/bGdCcr5t/UEf/772f/WOi+W3pu/0ob1SVwmgYAGtuCpTkHyVzp2Eii+eUkpm7Y2RVYO8Jh
+ weQ8jbJAdSxLrmFKCtZL5WTufs7vOcOru0MJvs/IwIS8jD/oQYRu/fi5yOyFxJl0fkYD/uFdDqAe/
+ Mdqo87Jg==;
 Received: from willy by casper.infradead.org with local (Exim 4.92.3 #3 (Red
- Hat Linux)) id 1kIvYi-0001PW-ND; Thu, 17 Sep 2020 15:10:52 +0000
+ Hat Linux)) id 1kIvYi-0001Pa-Tk; Thu, 17 Sep 2020 15:10:52 +0000
 From: "Matthew Wilcox (Oracle)" <willy@infradead.org>
 To: linux-fsdevel@vger.kernel.org
-Date: Thu, 17 Sep 2020 16:10:40 +0100
-Message-Id: <20200917151050.5363-4-willy@infradead.org>
+Date: Thu, 17 Sep 2020 16:10:41 +0100
+Message-Id: <20200917151050.5363-5-willy@infradead.org>
 X-Mailer: git-send-email 2.21.3
 In-Reply-To: <20200917151050.5363-1-willy@infradead.org>
 References: <20200917151050.5363-1-willy@infradead.org>
@@ -67,8 +67,8 @@ X-Spam-Report: Spam Filtering performed by mx.sourceforge.net.
  -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
  0.1 DKIM_SIGNED            Message has a DKIM or DK signature,
  not necessarily valid
-X-Headers-End: 1kIvZ0-00EHfc-9j
-Subject: [V9fs-developer] [PATCH 03/13] afs: Tell the VFS that readpage was
+X-Headers-End: 1kIvYx-00EHf7-IP
+Subject: [V9fs-developer] [PATCH 04/13] ceph: Tell the VFS that readpage was
  synchronous
 X-BeenThere: v9fs-developer@lists.sourceforge.net
 X-Mailman-Version: 2.1.21
@@ -91,28 +91,34 @@ Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: v9fs-developer-bounces@lists.sourceforge.net
 
-The afs readpage implementation was already synchronous, so use
+The ceph readpage implementation was already synchronous, so use
 AOP_UPDATED_PAGE to avoid cycling the page lock.
 
 Signed-off-by: Matthew Wilcox (Oracle) <willy@infradead.org>
 ---
- fs/afs/file.c | 3 ++-
- 1 file changed, 2 insertions(+), 1 deletion(-)
+ fs/ceph/addr.c | 9 +++++----
+ 1 file changed, 5 insertions(+), 4 deletions(-)
 
-diff --git a/fs/afs/file.c b/fs/afs/file.c
-index 6f6ed1605cfe..8f15305b6574 100644
---- a/fs/afs/file.c
-+++ b/fs/afs/file.c
-@@ -367,7 +367,8 @@ int afs_page_filler(void *data, struct page *page)
- 			BUG_ON(PageFsCache(page));
- 		}
- #endif
+diff --git a/fs/ceph/addr.c b/fs/ceph/addr.c
+index 6ea761c84494..b2bf8bf7a312 100644
+--- a/fs/ceph/addr.c
++++ b/fs/ceph/addr.c
+@@ -291,10 +291,11 @@ static int ceph_do_readpage(struct file *filp, struct page *page)
+ static int ceph_readpage(struct file *filp, struct page *page)
+ {
+ 	int r = ceph_do_readpage(filp, page);
+-	if (r != -EINPROGRESS)
 -		unlock_page(page);
-+		_leave(" = AOP_UPDATED_PAGE");
+-	else
+-		r = 0;
++	if (r == -EINPROGRESS)
++		return 0;
++	if (r == 0)
 +		return AOP_UPDATED_PAGE;
- 	}
++	unlock_page(page);
+ 	return r;
+ }
  
- 	_leave(" = 0");
 -- 
 2.28.0
 
