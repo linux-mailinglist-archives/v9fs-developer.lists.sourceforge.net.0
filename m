@@ -2,176 +2,76 @@ Return-Path: <v9fs-developer-bounces@lists.sourceforge.net>
 X-Original-To: lists+v9fs-developer@lfdr.de
 Delivered-To: lists+v9fs-developer@lfdr.de
 Received: from lists.sourceforge.net (lists.sourceforge.net [216.105.38.7])
-	by mail.lfdr.de (Postfix) with ESMTPS id B73E126F9E3
-	for <lists+v9fs-developer@lfdr.de>; Fri, 18 Sep 2020 12:06:15 +0200 (CEST)
-Received: from [127.0.0.1] (helo=sfs-ml-4.v29.lw.sourceforge.com)
-	by sfs-ml-4.v29.lw.sourceforge.com with esmtp (Exim 4.90_1)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1BCDC26FB69
+	for <lists+v9fs-developer@lfdr.de>; Fri, 18 Sep 2020 13:24:58 +0200 (CEST)
+Received: from [127.0.0.1] (helo=sfs-ml-1.v29.lw.sourceforge.com)
+	by sfs-ml-1.v29.lw.sourceforge.com with esmtp (Exim 4.90_1)
 	(envelope-from <v9fs-developer-bounces@lists.sourceforge.net>)
-	id 1kJDHQ-0002NC-0e; Fri, 18 Sep 2020 10:06:12 +0000
+	id 1kJEVa-00038Y-GS; Fri, 18 Sep 2020 11:24:54 +0000
 Received: from [172.30.20.202] (helo=mx.sourceforge.net)
- by sfs-ml-4.v29.lw.sourceforge.com with esmtps
+ by sfs-ml-1.v29.lw.sourceforge.com with esmtps
  (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.90_1)
- (envelope-from <Jianyong.Wu@arm.com>) id 1kJDHO-0002N4-01
- for v9fs-developer@lists.sourceforge.net; Fri, 18 Sep 2020 10:06:10 +0000
+ (envelope-from <willy@infradead.org>) id 1kJEVX-00034j-SZ
+ for v9fs-developer@lists.sourceforge.net; Fri, 18 Sep 2020 11:24:51 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=sourceforge.net; s=x; h=MIME-Version:Content-Transfer-Encoding:Content-Type
- :In-Reply-To:References:Message-ID:Date:Subject:CC:To:From:Sender:Reply-To:
+ d=sourceforge.net; s=x; h=In-Reply-To:Content-Type:MIME-Version:References:
+ Message-ID:Subject:Cc:To:From:Date:Sender:Reply-To:Content-Transfer-Encoding:
  Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
  Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
  List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=dNokvzcnR02bTceMRVagVs1KvCyJdxCYzEiadoiH1Qs=; b=N/Xcz75toJ0R45eJUEqmdqbK0G
- jkyjsRQFcMbmZFzznxwVcrSPIUbukNHVKX37vyh1VJ4jxVzqtGcF1tnBd0lQBg9JcOi2ayXUp9/Gk
- f0L8fFJHcBMmKOdQPWhsMQ1LzQHEeFySLfRC1m6g2TewM4V/parlIeYWnuJBqcsoLsdE=;
+ bh=D2ju8jMz6rNG3JDmyLzknrnz9KKFGg0PYq+DeMuVZKY=; b=HMD9r3jPF6edRT5dIBymOqKvhj
+ Qnh0Uvb4iLXNl3rupTZJD/p0zflzC4e4biR8FBhr9ZDp45+GYODdZRAPK4OIPs/Myo/0b22Bn16nJ
+ T0kwGVOm9+josTRb8XFg/CD6ES2nD9FUpgUdSlBwskeOg2THXfr5pAy/VN56CNilmB1s=;
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  ;
- h=MIME-Version:Content-Transfer-Encoding:Content-Type:In-Reply-To:
- References:Message-ID:Date:Subject:CC:To:From:Sender:Reply-To:Content-ID:
+ h=In-Reply-To:Content-Type:MIME-Version:References:Message-ID:Subject:Cc:To
+ :From:Date:Sender:Reply-To:Content-Transfer-Encoding:Content-ID:
  Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
  :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
  List-Post:List-Owner:List-Archive;
- bh=dNokvzcnR02bTceMRVagVs1KvCyJdxCYzEiadoiH1Qs=; b=Howx/vr1sgIrnEUqcOYEygcNIt
- mgcEJRkC3fI5Znxo50+8gq3fgyDeoJGRyiKpFYBRz2fjIP4le3StieBgI4qB5R2mnCHh1m0vbrjv3
- USfTowyv2UE0O+HTLVFJbTo2iqe6wO6mvNxDVdzh6rmkk2Swms/NA+Y7jO/S5/GI0JmM=;
-Received: from mail-eopbgr60071.outbound.protection.outlook.com ([40.107.6.71]
- helo=EUR04-DB3-obe.outbound.protection.outlook.com)
+ bh=D2ju8jMz6rNG3JDmyLzknrnz9KKFGg0PYq+DeMuVZKY=; b=ADuhLyaoIkhpkrBj3lF+sCVrHp
+ DEwIAm6Ihzpc5bGy9iUO6tS/yXRuWlBBjSV8mDz39GdrR/EzQrYoGwrjgeotGJAPigVHAeKke7JHK
+ 3CeFF5HYZ4yBrEkTfy3SP4hGMvSjNzqGB8W9TtmDUkHmc7cHaCQBy9+6T10rEjmDlUjw=;
+Received: from casper.infradead.org ([90.155.50.34])
  by sfi-mx-3.v28.lw.sourceforge.com with esmtps
  (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.92.2)
- id 1kJDH6-00E0z7-Mb
- for v9fs-developer@lists.sourceforge.net; Fri, 18 Sep 2020 10:06:09 +0000
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=armh.onmicrosoft.com; 
- s=selector2-armh-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=dNokvzcnR02bTceMRVagVs1KvCyJdxCYzEiadoiH1Qs=;
- b=2IIwgb3h2h2ctOttg3rVNMa8tnWr3UZnfYgrSg1gAlftA1CU33Pz/BLo9fOL/ysqYGSWTvbR91r/l4zAnFm/9/Q9s0BeSxlgClocNUU+gLdBsIKGEk6iTktsiu6W/bp07aQCOhi82w4YQaPhzKDEKtlehxjHbuj8GpT2xQfoMoA=
-Received: from MR2P264CA0037.FRAP264.PROD.OUTLOOK.COM (2603:10a6:500::25) by
- DB7PR08MB3867.eurprd08.prod.outlook.com (2603:10a6:10:7f::13) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.3391.11; Fri, 18 Sep 2020 10:05:41 +0000
-Received: from VE1EUR03FT056.eop-EUR03.prod.protection.outlook.com
- (2603:10a6:500:0:cafe::34) by MR2P264CA0037.outlook.office365.com
- (2603:10a6:500::25) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3391.14 via Frontend
- Transport; Fri, 18 Sep 2020 10:05:41 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 63.35.35.123)
- smtp.mailfrom=arm.com; lists.sourceforge.net; dkim=pass (signature was
- verified) header.d=armh.onmicrosoft.com;lists.sourceforge.net;
- dmarc=bestguesspass action=none header.from=arm.com;
-Received-SPF: Pass (protection.outlook.com: domain of arm.com designates
- 63.35.35.123 as permitted sender) receiver=protection.outlook.com;
- client-ip=63.35.35.123; helo=64aa7808-outbound-1.mta.getcheckrecipient.com;
-Received: from 64aa7808-outbound-1.mta.getcheckrecipient.com (63.35.35.123) by
- VE1EUR03FT056.mail.protection.outlook.com (10.152.19.28) with
- Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.3391.15 via Frontend Transport; Fri, 18 Sep 2020 10:05:41 +0000
-Received: ("Tessian outbound 195a290eb161:v64");
- Fri, 18 Sep 2020 10:05:40 +0000
-X-CR-MTA-TID: 64aa7808
-Received: from f07f19517232.2
- by 64aa7808-outbound-1.mta.getcheckrecipient.com id
- FC5C3833-7BAC-49CD-852B-A6D30CA0F7A3.1; 
- Fri, 18 Sep 2020 10:05:35 +0000
-Received: from EUR05-VI1-obe.outbound.protection.outlook.com
- by 64aa7808-outbound-1.mta.getcheckrecipient.com with ESMTPS id f07f19517232.2
- (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384);
- Fri, 18 Sep 2020 10:05:35 +0000
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=oPoye1PWIxAV55W4RuVbDFRyvXdrQUgjv45S5sDU7BzPGuRhi9tAYH5dxGjdd/rEJIsKfGrvlGdmQmqibGbeyElZ77c6oaJcLIMcYxVFkyRVTVHVdixvEvj9n+SIqp90rMwxDOHSyAliCBtyQu1ap6FNIVg30bWTp/2sEX6hR9IZYncR8XfvA0sFdsHGgTNJHN8wRaOsOdui+icjOz8nRPI/eQ+caQJ/dmn2iOSLPLaVFplkJC6aQchFNXZKA08uRUAxrYxBifWSHykuJpbBDYW8omE7EGA84cgxqNx5B+6MxJCTia1ipCw2UQZ/wSZ5HGw8VZVOxIvo+1EedGRKSQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=dNokvzcnR02bTceMRVagVs1KvCyJdxCYzEiadoiH1Qs=;
- b=dKpkiHobmHLo6V6eeQOh/wzihUceeynSXDnDFdd/kQw6L3KcJuzr+0ciBCYRcsyiGf8Cxvx9cLkiVQfWBBydKjeJunQ0ILHeJNQRCaU8yZKhBxQjuYlJYBaKnQgt58wRKpbBdF++a22AsRRIUsBC0AE4Tz2uzESGKDc64ugmPQGsNhaDLpF4c47ZkgMPNmF5uoEjgBxEY5ER1vVt6HXFv9HA5LLkK/a26KXSdrEBX2JPzQ2yvcEXW1Knxsunsl0deeTdJ8tOOCiP0bY+s+12wbc1zBgSlPOdpCYLoroBjOCilwR1IxT4m/N0QCKTxBibZ0VJ/qUMSocG7j+XhXYlQg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=arm.com; dmarc=pass action=none header.from=arm.com; dkim=pass
- header.d=arm.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=armh.onmicrosoft.com; 
- s=selector2-armh-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=dNokvzcnR02bTceMRVagVs1KvCyJdxCYzEiadoiH1Qs=;
- b=2IIwgb3h2h2ctOttg3rVNMa8tnWr3UZnfYgrSg1gAlftA1CU33Pz/BLo9fOL/ysqYGSWTvbR91r/l4zAnFm/9/Q9s0BeSxlgClocNUU+gLdBsIKGEk6iTktsiu6W/bp07aQCOhi82w4YQaPhzKDEKtlehxjHbuj8GpT2xQfoMoA=
-Received: from HE1PR0802MB2555.eurprd08.prod.outlook.com (2603:10a6:3:e0::7)
- by HE1PR0802MB2554.eurprd08.prod.outlook.com (2603:10a6:3:d7::11) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3391.11; Fri, 18 Sep
- 2020 10:05:33 +0000
-Received: from HE1PR0802MB2555.eurprd08.prod.outlook.com
- ([fe80::74f7:5759:4e9e:6e00]) by HE1PR0802MB2555.eurprd08.prod.outlook.com
- ([fe80::74f7:5759:4e9e:6e00%5]) with mapi id 15.20.3391.011; Fri, 18 Sep 2020
- 10:05:33 +0000
-From: Jianyong Wu <Jianyong.Wu@arm.com>
+ id 1kJEQL-00E5yv-Fq
+ for v9fs-developer@lists.sourceforge.net; Fri, 18 Sep 2020 11:19:40 +0000
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+ d=infradead.org; s=casper.20170209; h=In-Reply-To:Content-Type:MIME-Version:
+ References:Message-ID:Subject:Cc:To:From:Date:Sender:Reply-To:
+ Content-Transfer-Encoding:Content-ID:Content-Description;
+ bh=D2ju8jMz6rNG3JDmyLzknrnz9KKFGg0PYq+DeMuVZKY=; b=OhWnaBzrqkDRbzOwxxDZrAitsW
+ uGCQAikASHjYa/PMPuiPlUOcliemRBZlSc/1RLXgVWxgpXKT26jnRaH2hmTM72gxSVdhOPqu6kQPd
+ h+y2nYjcOI/MK6CMWwhrlZi9ICHnkGIztdyZsb1kUMTfkP470jFOrvRJfyuy8uYVb1UtlcOcYJKpU
+ E5Rm9//Op9Yh9xVsMJdzShSN0jO9N6AGwLLD/O1r3P9sdUd2Ic22Cm/qIxyYzHn5gT/lwgN84usJW
+ ACafXKejemQbxTWMfkPL3z3ucBuijE/zG8VKPfz4WQt3m2mP+hkouoscs89VtGRxh2HUUy/mInKXY
+ PZ8Gd81Q==;
+Received: from willy by casper.infradead.org with local (Exim 4.92.3 #3 (Red
+ Hat Linux)) id 1kJEQ9-0002ra-1H; Fri, 18 Sep 2020 11:19:17 +0000
+Date: Fri, 18 Sep 2020 12:19:16 +0100
+From: Matthew Wilcox <willy@infradead.org>
 To: Dominique Martinet <asmadeus@codewreck.org>
-Thread-Topic: [PATCH RFC 4/4] 9p: fix race issue in fid contention.
-Thread-Index: AQHWinG9C+xn4SZNHU61ZAxGCD89xKluG5xQgAANXQCAAAfugA==
-Date: Fri, 18 Sep 2020 10:05:33 +0000
-Message-ID: <HE1PR0802MB25555E46ABF8C53798B4FE5FF43F0@HE1PR0802MB2555.eurprd08.prod.outlook.com>
-References: <HE1PR0802MB255594D67D97733CFDFE777EF4230@HE1PR0802MB2555.eurprd08.prod.outlook.com>
- <HE1PR0802MB25555E7AAFA66DA3FE025D0AF4230@HE1PR0802MB2555.eurprd08.prod.outlook.com>
- <20200914083200.GA9259@nautica>
- <HE1PR0802MB255560720A13BD59C11DEA00F43F0@HE1PR0802MB2555.eurprd08.prod.outlook.com>
- <20200918093440.GA1877@nautica>
-In-Reply-To: <20200918093440.GA1877@nautica>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-ts-tracking-id: 860EA2A240D8554EBB79B667509C2B1E.0
-x-checkrecipientchecked: true
-Authentication-Results-Original: codewreck.org; dkim=none (message not signed)
- header.d=none; codewreck.org;
- dmarc=none action=none header.from=arm.com; 
-x-originating-ip: [203.126.0.113]
-x-ms-publictraffictype: Email
-X-MS-Office365-Filtering-HT: Tenant
-X-MS-Office365-Filtering-Correlation-Id: cac308e9-1172-499e-2d75-08d85bba6662
-x-ms-traffictypediagnostic: HE1PR0802MB2554:|DB7PR08MB3867:
-x-ms-exchange-transport-forked: True
-X-Microsoft-Antispam-PRVS: <DB7PR08MB38675021A9EC8C8E07332BD2F43F0@DB7PR08MB3867.eurprd08.prod.outlook.com>
-x-checkrecipientrouted: true
-nodisclaimer: true
-x-ms-oob-tlc-oobclassifiers: OLM:10000;OLM:10000;
-X-MS-Exchange-SenderADCheck: 1
-X-Microsoft-Antispam-Untrusted: BCL:0;
-X-Microsoft-Antispam-Message-Info-Original: Dz07nSu9xuCbUASJu3ds5kD0O0JeAccXX93femmLV7rUAgp9iUlJrIPrZLdQj4fObGaPypRggfvhCKdT5vIApRVd4bpzPZwvA22aiw1djvNDILmOpDjhMBC13xgO+yIY7mEOC0yqFqu47EF9GC/KDLyj6EW4bLMoBoEsb11O8/4w4FUUmyi3QGNli1IR3bdYOysy5XO6FrECSchCLAkJVmBJD7L29deRivhA1f5kimp17rvyPGSMqQxQI/grvIQc3ZVvCIX0BlWEBmduUIiUhuOq4LHtaz01gkBrlcd5mxN2hmyum+YEVxvFMs4jgAxJxw9jr6mbYj4EYl0+NPXYAwfCELHR3CLCuJfbSEXrafzz0CxoL+Vl+0pgTIxRf7/g
-X-Forefront-Antispam-Report-Untrusted: CIP:255.255.255.255; CTRY:; LANG:en;
- SCL:1; SRV:; IPV:NLI; SFV:NSPM; H:HE1PR0802MB2555.eurprd08.prod.outlook.com;
- PTR:; CAT:NONE;
- SFS:(4636009)(39860400002)(376002)(136003)(396003)(346002)(366004)(186003)(66476007)(7696005)(6916009)(66446008)(64756008)(53546011)(83380400001)(4326008)(66946007)(66556008)(6506007)(71200400001)(2906002)(76116006)(5660300002)(9686003)(52536014)(8936002)(8676002)(86362001)(316002)(55016002)(26005)(33656002)(478600001)(54906003);
- DIR:OUT; SFP:1101; 
-x-ms-exchange-antispam-messagedata: p8uNiKTvOM690D6qXJ7XlKsE19OzsQBzwL/WrHCnn1jswX3LroubEn3iuwi48G99f6Htw8dqSugCi+j0mrqjDsUfYqOrVgdnPg4xEuXjqPhF3kDvldej+Z5xYF6jkSQfjpaKBJGsej8IoTktBw6+EauQ6ph5l3SWqV88mm4PC80qeUUsAo1sVSQT0iO3C6vaft58v8TSYVIC3uubvTobJHlTH6xKgW79KHHPjzLQdUlKBaNGZxOW4R73VQp0mgx2JAgdfVOE/izfjdCgTBrysNqolSEiwPFSQK6bwlKDJVtkFx6P2LwmbWqQTxgkbfbNpZ0wnVJW72ralUxx66un1owG0KBRNh1K8e9Vi5hIZMGhwMWyKRt3foaXRhV6PQFrhQVzfPDBabijVPj81kvU082G1kjxOdTSddXfht63fJDDOA20vnvvzVxQ5ANJSB/NlDV95ItODIhWZ2w84ekmNDvlpBWyIgN4506yv9jwkwu723rZzVVHueDnte95Ti9r2jlg73fG+rSIkYsugl/c7xTzI1JX0kV6rYsYZMXezu3+UPw9CFn4ynDyCvKScg7pk85IRR2+v0oSbOqfev4RgAu6ynlcovwtpkZTrUO3n4reU0w8RoWrK1+ndkm67RlAQELpdU8PZvvQj7qGODqj9g==
+Message-ID: <20200918111916.GA32101@casper.infradead.org>
+References: <20200917151050.5363-1-willy@infradead.org>
+ <20200917151050.5363-3-willy@infradead.org>
+ <20200918055919.GA30929@nautica>
 MIME-Version: 1.0
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: HE1PR0802MB2554
-Original-Authentication-Results: codewreck.org; dkim=none (message not signed)
- header.d=none; codewreck.org;
- dmarc=none action=none header.from=arm.com; 
-X-EOPAttributedMessage: 0
-X-MS-Exchange-Transport-CrossTenantHeadersStripped: VE1EUR03FT056.eop-EUR03.prod.protection.outlook.com
-X-MS-Office365-Filtering-Correlation-Id-Prvs: 4c9ce3ec-27cc-4ed2-e143-08d85bba61d5
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: mnsXRUXhpaMk/bB5Ei26bmLfoiHMdwVaShSvIrLQ2ewK46/oo48VWuELzAyXDir51GURp5+cP+YIg4aoiXY45cWZTBMQIdqvHAqM6s/v/lS9w8z8yYKMGqvbgS2zCLhIN3N0CFgK3ORTMz/MtFWbn71CD9abMhSVP93vEiUaOthIB5Tbmibkw2qMxvN9KIo5X26QGr7hOrGBnSUzqRH2GamgB86n0tZaVJtv3v+WAB6159S9pe8F8qOxmUuCkioAhSOtPNKYLKbLiVDuigt7gDmWuoAxtvX/IUEtvfdX0iqQ1u6SYRuy33fzWwoupREU75sSrJGLew6W1gP9aQC0OHVUsaRRTvMf7eMC1tIUNvZb6DGCRKrd8pz+krIhgoRWqKXasHgHgmApCZDBt54pcQ==
-X-Forefront-Antispam-Report: CIP:63.35.35.123; CTRY:IE; LANG:en; SCL:1; SRV:;
- IPV:CAL; SFV:NSPM; H:64aa7808-outbound-1.mta.getcheckrecipient.com;
- PTR:ec2-63-35-35-123.eu-west-1.compute.amazonaws.com; CAT:NONE;
- SFS:(4636009)(376002)(136003)(396003)(346002)(39860400002)(46966005)(33656002)(52536014)(5660300002)(8676002)(478600001)(336012)(54906003)(8936002)(53546011)(26005)(7696005)(316002)(36906005)(186003)(4326008)(107886003)(70586007)(2906002)(70206006)(55016002)(9686003)(81166007)(82740400003)(82310400003)(47076004)(83380400001)(6862004)(86362001)(6506007)(356005);
- DIR:OUT; SFP:1101; 
-X-OriginatorOrg: arm.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 18 Sep 2020 10:05:41.1520 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: cac308e9-1172-499e-2d75-08d85bba6662
-X-MS-Exchange-CrossTenant-Id: f34e5979-57d9-4aaa-ad4d-b122a662184d
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=f34e5979-57d9-4aaa-ad4d-b122a662184d; Ip=[63.35.35.123];
- Helo=[64aa7808-outbound-1.mta.getcheckrecipient.com]
-X-MS-Exchange-CrossTenant-AuthSource: VE1EUR03FT056.eop-EUR03.prod.protection.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DB7PR08MB3867
-X-Spam-Score: 0.0 (/)
+Content-Disposition: inline
+In-Reply-To: <20200918055919.GA30929@nautica>
+X-Spam-Score: -0.1 (/)
 X-Spam-Report: Spam Filtering performed by mx.sourceforge.net.
  See http://spamassassin.org/tag/ for more details.
- -0.0 SPF_HELO_PASS          SPF: HELO matches SPF record
- 0.0 TIME_LIMIT_EXCEEDED    Exceeded time limit / deadline
-X-Headers-End: 1kJDH6-00E0z7-Mb
-Subject: Re: [V9fs-developer] [PATCH RFC 4/4] 9p: fix race issue in fid
- contention.
+ 0.0 SPF_NONE               SPF: sender does not publish an SPF Record
+ 0.0 SPF_HELO_NONE          SPF: HELO does not publish an SPF Record
+ -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from author's
+ domain
+ -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+ 0.1 DKIM_SIGNED            Message has a DKIM or DK signature,
+ not necessarily valid
+X-Headers-End: 1kJEQL-00E5yv-Fq
+Subject: Re: [V9fs-developer] [PATCH 02/13] 9p: Tell the VFS that readpage
+ was synchronous
 X-BeenThere: v9fs-developer@lists.sourceforge.net
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -183,56 +83,59 @@ List-Post: <mailto:v9fs-developer@lists.sourceforge.net>
 List-Help: <mailto:v9fs-developer-request@lists.sourceforge.net?subject=help>
 List-Subscribe: <https://lists.sourceforge.net/lists/listinfo/v9fs-developer>, 
  <mailto:v9fs-developer-request@lists.sourceforge.net?subject=subscribe>
-Cc: "lucho@ionkov.net" <lucho@ionkov.net>, Justin He <Justin.He@arm.com>,
- "ericvh@gmail.com" <ericvh@gmail.com>, Greg Kurz <groug@kaod.org>,
- "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
- "v9fs-developer@lists.sourceforge.net" <v9fs-developer@lists.sourceforge.net>
+Cc: linux-cifs@vger.kernel.org, Richard Weinberger <richard@nod.at>,
+ ecryptfs@vger.kernel.org, linux-um@lists.infradead.org,
+ linux-kernel@vger.kernel.org, linux-mm@kvack.org,
+ linux-mtd@lists.infradead.org, linux-fsdevel@vger.kernel.org,
+ v9fs-developer@lists.sourceforge.net, ceph-devel@vger.kernel.org,
+ linux-afs@lists.infradead.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: v9fs-developer-bounces@lists.sourceforge.net
 
+On Fri, Sep 18, 2020 at 07:59:19AM +0200, Dominique Martinet wrote:
+> Matthew Wilcox (Oracle) wrote on Thu, Sep 17, 2020:
+> > diff --git a/fs/9p/vfs_addr.c b/fs/9p/vfs_addr.c
+> > index cce9ace651a2..506ca0ba2ec7 100644
+> > --- a/fs/9p/vfs_addr.c
+> > +++ b/fs/9p/vfs_addr.c
+> > @@ -280,6 +280,10 @@ static int v9fs_write_begin(struct file *filp, struct address_space *mapping,
+> >  		goto out;
+> >  
+> >  	retval = v9fs_fid_readpage(v9inode->writeback_fid, page);
+> > +	if (retval == AOP_UPDATED_PAGE) {
+> > +		retval = 0;
+> > +		goto out;
+> > +	}
+> 
+> FWIW this is a change of behaviour; for some reason the code used to
+> loop back to grab_cache_page_write_begin() and bail out on
+> PageUptodate() I suppose; some sort of race check?
+> The whole pattern is a bit weird to me and 9p has no guarantee on
+> concurrent writes to a file with cache enabled (except that it will
+> corrupt something), so this part is fine with me.
+> 
+> What I'm curious about is the page used to be both unlocked and put, but
+> now isn't either and the return value hasn't changed for the caller to
+> make a difference on write_begin / I don't see any code change in the
+> vfs  to handle that.
+> What did I miss?
 
+The page cache is kind of subtle.  The grab_cache_page_write_begin()
+will return a Locked page with an increased refcount.  If it's Uptodate,
+that's exactly what we want, and we return it.  If we have to read the
+page, readpage used to unlock the page before returning, and rather than
+re-lock it, we would drop the reference to the page and look it up again.
+It's possible that after dropping the lock on that page that the page
+was replaced in the page cache and so we'd get a different page.
 
-> -----Original Message-----
-> From: Dominique Martinet <asmadeus@codewreck.org>
-> Sent: Friday, September 18, 2020 5:35 PM
-> To: Jianyong Wu <Jianyong.Wu@arm.com>
-> Cc: ericvh@gmail.com; lucho@ionkov.net; v9fs-
-> developer@lists.sourceforge.net; linux-kernel@vger.kernel.org; Justin He
-> <Justin.He@arm.com>; Greg Kurz <groug@kaod.org>
-> Subject: Re: [PATCH RFC 4/4] 9p: fix race issue in fid contention.
->
-> Jianyong Wu wrote on Fri, Sep 18, 2020:
-> > If we move the counter decrease code into p9_client_clunk and put it
-> > instead of fid_atomic_dec, we need delete fid off the inode where it
-> > stores in p9_client_clunk.
-> > But there is no way can we acquire the inode in p9_client_clunk. Do
-> > you have any idea? I think introduce another parameter for
-> > p9_client_clunk Is not graceful.
->
-> You cannot write code about the inode in p9_client_clunk, the way the code
-> is split fs/9p can refer to net/9p but not the other way around (module-wise,
-> 9p can refer to 9pnet but 9pnet cannot refer to 9p or we would have cyclic
-> dependencies)
->
-> However I don't see what bothers you.
-> v9fs_dir_release can remove the fid from the inode as it does currently and
-> just clunk immediately afterwards.
->
->
-> If another user of the fid had gotten the fid from the inode previously, it has
-> a ref, so the fid will not be actually clunked then but it will be clunked later
-> when it is done being used -- that is perfectly fine ?
->
-> p9_client_clunk should not have to worry about anything in the vfs.
->
-Yeah, I see. That's it.
+Anyway, now (unless fscache is involved), v9fs_fid_readpage will return
+the page without unlocking it.  So we don't need to do the dance of
+dropping the lock, putting the refcount and looking the page back up
+again.  We can just return the page.  The VFS doesn't need a special
+return code because nothing has changed from the VFS's point of view --
+it asked you to get a page and you got the page.
 
-Thanks
-Jianyong
-> --
-> Dominique
-IMPORTANT NOTICE: The contents of this email and any attachments are confidential and may also be privileged. If you are not the intended recipient, please notify the sender immediately and do not disclose the contents to any other person, use it for any purpose, or store or copy the information in any medium. Thank you.
 
 _______________________________________________
 V9fs-developer mailing list
