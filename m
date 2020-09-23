@@ -2,63 +2,61 @@ Return-Path: <v9fs-developer-bounces@lists.sourceforge.net>
 X-Original-To: lists+v9fs-developer@lfdr.de
 Delivered-To: lists+v9fs-developer@lfdr.de
 Received: from lists.sourceforge.net (lists.sourceforge.net [216.105.38.7])
-	by mail.lfdr.de (Postfix) with ESMTPS id D10C226FC7D
-	for <lists+v9fs-developer@lfdr.de>; Fri, 18 Sep 2020 14:31:07 +0200 (CEST)
-Received: from [127.0.0.1] (helo=sfs-ml-4.v29.lw.sourceforge.com)
-	by sfs-ml-4.v29.lw.sourceforge.com with esmtp (Exim 4.90_1)
+	by mail.lfdr.de (Postfix) with ESMTPS id C3D9927598E
+	for <lists+v9fs-developer@lfdr.de>; Wed, 23 Sep 2020 16:12:21 +0200 (CEST)
+Received: from [127.0.0.1] (helo=sfs-ml-1.v29.lw.sourceforge.com)
+	by sfs-ml-1.v29.lw.sourceforge.com with esmtp (Exim 4.90_1)
 	(envelope-from <v9fs-developer-bounces@lists.sourceforge.net>)
-	id 1kJFXb-0000Va-8I; Fri, 18 Sep 2020 12:31:03 +0000
+	id 1kL5VJ-0004XM-E2; Wed, 23 Sep 2020 14:12:17 +0000
 Received: from [172.30.20.202] (helo=mx.sourceforge.net)
- by sfs-ml-4.v29.lw.sourceforge.com with esmtps
+ by sfs-ml-1.v29.lw.sourceforge.com with esmtps
  (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.90_1)
- (envelope-from <asmadeus@notk.org>) id 1kJFXZ-0000VK-00
- for v9fs-developer@lists.sourceforge.net; Fri, 18 Sep 2020 12:31:01 +0000
+ (envelope-from <jianyong.wu@arm.com>) id 1kL5VI-0004X8-Lj
+ for v9fs-developer@lists.sourceforge.net; Wed, 23 Sep 2020 14:12:16 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=sourceforge.net; s=x; h=In-Reply-To:Content-Type:MIME-Version:Message-ID:
- Subject:Cc:To:From:Date:Sender:Reply-To:Content-Transfer-Encoding:Content-ID:
+ d=sourceforge.net; s=x; h=Message-Id:Date:Subject:Cc:To:From:Sender:Reply-To:
+ MIME-Version:Content-Type:Content-Transfer-Encoding:Content-ID:
  Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
- :Resent-Message-ID:References:List-Id:List-Help:List-Unsubscribe:
+ :Resent-Message-ID:In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:
  List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=qb9VDDN9yIp9DqoN/+RfqCQGHFSolbayGqEaYturCqM=; b=e9BF0mqHz55zHrKLcffB5E85IB
- cBQLsdz6PluV9PRbGU89Zdu+PVmbzC0DhL9mMmV3cXLIDhyQba0HH/A0PFJqMQPPorLqIK1YAFcME
- 70RysyyRuB44fPGgPpeZrLtyd0vm2xa+ADqyfI00LA4i3k2ygDZ0gS7VpZuuhIPyIPFU=;
+ bh=aSxnKJMq7ZvzdQxbD1BksuZfe9Bc1twFNuFFnsAYGRg=; b=HrfaLJnylV0zFfwksquOllrV40
+ +tznGuqCc5hMKDZ/GD+Q/3LgxCm6pS6zgcnZ5wcQBLqZkNV748vBlbvvsMQD6wYjp7/+s5/GkvURB
+ qkHnpCvnHixT/3q1Ize3Z4E3l0vAKCfBeBOw4Fmy725eFo6FxEig/2PER9pDaTZDnW6M=;
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  ;
- h=In-Reply-To:Content-Type:MIME-Version:Message-ID:Subject:Cc:To:From:Date:
- Sender:Reply-To:Content-Transfer-Encoding:Content-ID:Content-Description:
+ h=Message-Id:Date:Subject:Cc:To:From:Sender:Reply-To:MIME-Version:
+ Content-Type:Content-Transfer-Encoding:Content-ID:Content-Description:
  Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
- References:List-Id:List-Help:List-Unsubscribe:List-Subscribe:List-Post:
- List-Owner:List-Archive; bh=qb9VDDN9yIp9DqoN/+RfqCQGHFSolbayGqEaYturCqM=; b=L
- bTvjnDoE5ksNMzfenA4fnSRgQxG2P/tMMZeO9caP55VJ8DZIcc4dPcqcZdl6b2b6q4przSVHPFDR8
- ehOR0xSpXeYNkdzrrtkiLt79Jtcm9n+S38tIpKqUh8Dg0+55H2IO1ejQqS+lQem2FKv0rdlB+lm5a
- eDvGp2d6Ep4Qs3aQ=;
-Received: from nautica.notk.org ([91.121.71.147])
- by sfi-mx-3.v28.lw.sourceforge.com with esmtps
- (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.92.2)
- id 1kJFXK-00EA3b-Nv
- for v9fs-developer@lists.sourceforge.net; Fri, 18 Sep 2020 12:31:00 +0000
-Received: by nautica.notk.org (Postfix, from userid 1001)
- id 58A7FC01D; Fri, 18 Sep 2020 14:30:40 +0200 (CEST)
-Date: Fri, 18 Sep 2020 14:30:25 +0200
-From: Dominique Martinet <asmadeus@codewreck.org>
-To: "Matthew Wilcox (Oracle)" <willy@infradead.org>
-Message-ID: <20200918123025.GA735@nautica>
-MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20200918111916.GA32101@casper.infradead.org>
- <20200917151050.5363-3-willy@infradead.org>
-User-Agent: Mutt/1.5.21 (2010-09-15)
-X-Spam-Score: 0.3 (/)
+ In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
+ List-Post:List-Owner:List-Archive;
+ bh=aSxnKJMq7ZvzdQxbD1BksuZfe9Bc1twFNuFFnsAYGRg=; b=DqhA9o0ocYu9tQesnw9WZaek+i
+ SC9XLD4nMfogy5zE3OiHgqKqr5kqcq0GXueXfOd7Uo1v0NvBZZObamk44JeRh63T8uuKnbE9HhBup
+ EwgKCir4roz+XTTWkmAHGLghWyi7K3TPlo7s8ciqERy2TRBhrDNNdAstF7eSDx6fYSMc=;
+Received: from foss.arm.com ([217.140.110.172])
+ by sfi-mx-1.v28.lw.sourceforge.com with esmtp (Exim 4.92.2)
+ id 1kL5V7-004fA2-4F
+ for v9fs-developer@lists.sourceforge.net; Wed, 23 Sep 2020 14:12:16 +0000
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+ by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 8D00A113E;
+ Wed, 23 Sep 2020 07:11:59 -0700 (PDT)
+Received: from entos-thunderx2-desktop.shanghai.arm.com
+ (entos-thunderx2-desktop.shanghai.arm.com [10.169.212.215])
+ by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPA id 927EA3F73B;
+ Wed, 23 Sep 2020 07:11:56 -0700 (PDT)
+From: Jianyong Wu <jianyong.wu@arm.com>
+To: ericvh@gmail.com, lucho@ionkov.net, asmadeus@codewreck.org,
+ qemu_oss@crudebyte.com
+Date: Wed, 23 Sep 2020 22:11:42 +0800
+Message-Id: <20200923141146.90046-1-jianyong.wu@arm.com>
+X-Mailer: git-send-email 2.17.1
+X-Spam-Score: 0.0 (/)
 X-Spam-Report: Spam Filtering performed by mx.sourceforge.net.
  See http://spamassassin.org/tag/ for more details.
- 0.2 HEADER_FROM_DIFFERENT_DOMAINS From and EnvelopeFrom 2nd level mail
- domains are different
  -0.0 SPF_PASS               SPF: sender matches SPF record
  0.0 SPF_HELO_NONE          SPF: HELO does not publish an SPF Record
- 0.0 FAKE_REPLY_C           No description available.
-X-Headers-End: 1kJFXK-00EA3b-Nv
-Subject: Re: [V9fs-developer] [PATCH 02/13] 9p: Tell the VFS that readpage
- was synchronous
+X-Headers-End: 1kL5V7-004fA2-4F
+Subject: [V9fs-developer] [PATCH RFC v2 0/4] 9p: fix open-unlink-f*syscall
+ bug.
 X-BeenThere: v9fs-developer@lists.sourceforge.net
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -70,55 +68,51 @@ List-Post: <mailto:v9fs-developer@lists.sourceforge.net>
 List-Help: <mailto:v9fs-developer-request@lists.sourceforge.net?subject=help>
 List-Subscribe: <https://lists.sourceforge.net/lists/listinfo/v9fs-developer>, 
  <mailto:v9fs-developer-request@lists.sourceforge.net?subject=subscribe>
-Cc: linux-cifs@vger.kernel.org, Richard Weinberger <richard@nod.at>,
- ecryptfs@vger.kernel.org, linux-um@lists.infradead.org,
- linux-kernel@vger.kernel.org, linux-mm@kvack.org,
- linux-mtd@lists.infradead.org, linux-fsdevel@vger.kernel.org,
- v9fs-developer@lists.sourceforge.net, ceph-devel@vger.kernel.org,
- linux-afs@lists.infradead.org
+Cc: v9fs-developer@lists.sourceforge.net, jianyong.wu@arm.com,
+ justin.he@arm.com, groug@kaod.org, linux-kernel@vger.kernel.org
+MIME-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: v9fs-developer-bounces@lists.sourceforge.net
 
-Matthew Wilcox (Oracle) wrote on Thu, Sep 17, 2020:
-> The 9p readpage implementation was already synchronous, so use
-> AOP_UPDATED_PAGE to avoid cycling the page lock.
-> 
-> Signed-off-by: Matthew Wilcox (Oracle) <willy@infradead.org>
+open-unlink-f*syscall bug is well-known in 9p. We try to fix the bug
+in this patch set.
+I take Eric's and Greg's patches which constiute the 1/4 - 3/4 of this patch
+set as the main frame of the solution. In patch 4/4, I fix the fid race issue
+exists in Greg's patch.
 
-Acked-by: Dominique Martinet <asmadeus@codewreck.org>
+change log:
+v1 to v2:
+        (1) in patch 4/4: do fid refcounter down in the clunk helper.
+        (2) int patch 4/4: remove the enum value denoting from which of the
+inode or dentry fids are allcated.
 
-(I assume it'll be merged together with the rest)
+Eric Van Hensbergen (1):
+  fs/9p: fix create-unlink-getattr idiom
 
-> > What I'm curious about is the page used to be both unlocked and put, but
-> > now isn't either and the return value hasn't changed for the caller to
-> > make a difference on write_begin / I don't see any code change in the
-> > vfs  to handle that.
-> > What did I miss?
-> 
-> The page cache is kind of subtle.  The grab_cache_page_write_begin()
-> will return a Locked page with an increased refcount.  If it's Uptodate,
-> that's exactly what we want, and we return it.  If we have to read the
-> page, readpage used to unlock the page before returning, and rather than
-> re-lock it, we would drop the reference to the page and look it up again.
-> It's possible that after dropping the lock on that page that the page
-> was replaced in the page cache and so we'd get a different page.
+Greg Kurz (1):
+  fs/9p: search open fids first
 
-Thanks for the explanation, I didn't realize the page already is
-gotten/locked at the PageUptodate goto out.
+Jianyong Wu (2):
+  fs/9p: track open fids
+  9p: fix race issue in fid contention.
 
-> Anyway, now (unless fscache is involved), v9fs_fid_readpage will return
-> the page without unlocking it.  So we don't need to do the dance of
-> dropping the lock, putting the refcount and looking the page back up
-> again.  We can just return the page.  The VFS doesn't need a special
-> return code because nothing has changed from the VFS's point of view --
-> it asked you to get a page and you got the page.
+ fs/9p/fid.c             | 69 ++++++++++++++++++++++++++++++++++++++---
+ fs/9p/fid.h             | 11 ++++++-
+ fs/9p/vfs_dentry.c      |  2 ++
+ fs/9p/vfs_dir.c         |  6 +++-
+ fs/9p/vfs_file.c        |  1 +
+ fs/9p/vfs_inode.c       | 47 ++++++++++++++++++++++------
+ fs/9p/vfs_inode_dotl.c  | 35 +++++++++++++++++----
+ fs/9p/vfs_super.c       |  1 +
+ fs/9p/xattr.c           | 16 ++++++++--
+ include/net/9p/client.h |  7 +++++
+ net/9p/client.c         | 14 ++++++---
+ 11 files changed, 179 insertions(+), 30 deletions(-)
 
-Yes, looks good to me.
-
-Cheers,
 -- 
-Dominique
+2.17.1
+
 
 
 _______________________________________________
