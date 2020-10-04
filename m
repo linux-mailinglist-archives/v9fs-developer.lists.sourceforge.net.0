@@ -2,16 +2,16 @@ Return-Path: <v9fs-developer-bounces@lists.sourceforge.net>
 X-Original-To: lists+v9fs-developer@lfdr.de
 Delivered-To: lists+v9fs-developer@lfdr.de
 Received: from lists.sourceforge.net (lists.sourceforge.net [216.105.38.7])
-	by mail.lfdr.de (Postfix) with ESMTPS id 34398282C48
-	for <lists+v9fs-developer@lfdr.de>; Sun,  4 Oct 2020 20:05:14 +0200 (CEST)
-Received: from [127.0.0.1] (helo=sfs-ml-2.v29.lw.sourceforge.com)
-	by sfs-ml-2.v29.lw.sourceforge.com with esmtp (Exim 4.90_1)
+	by mail.lfdr.de (Postfix) with ESMTPS id 35186282C45
+	for <lists+v9fs-developer@lfdr.de>; Sun,  4 Oct 2020 20:05:12 +0200 (CEST)
+Received: from [127.0.0.1] (helo=sfs-ml-1.v29.lw.sourceforge.com)
+	by sfs-ml-1.v29.lw.sourceforge.com with esmtp (Exim 4.90_1)
 	(envelope-from <v9fs-developer-bounces@lists.sourceforge.net>)
-	id 1kP8Nl-0004mo-07; Sun, 04 Oct 2020 18:05:13 +0000
+	id 1kP8Nj-0003oh-10; Sun, 04 Oct 2020 18:05:11 +0000
 Received: from [172.30.20.202] (helo=mx.sourceforge.net)
- by sfs-ml-2.v29.lw.sourceforge.com with esmtps
+ by sfs-ml-1.v29.lw.sourceforge.com with esmtps
  (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.90_1)
- (envelope-from <willy@infradead.org>) id 1kP8Ng-0004mJ-N5
+ (envelope-from <willy@infradead.org>) id 1kP8Ng-0003nz-N4
  for v9fs-developer@lists.sourceforge.net; Sun, 04 Oct 2020 18:05:08 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
  d=sourceforge.net; s=x; h=Content-Transfer-Encoding:MIME-Version:References:
@@ -19,9 +19,9 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
  Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
  Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
  List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=pBzpd+ZwGINPndJww6tlDY0rtfFWrUcfW5HnCOvqMps=; b=AqnwNGZfUyzwoY22ihT/pI0q03
- vRekCTqA+TjJV1Nc6JDxBcyyJcnDG7OZLiqS6uqUNGP5l1Hf36ElmdmJqrbtwd4bS9Pt6hTC84yfn
- gAJB1zI4k7XGBoJfWMQuNUr1/YEFMWxcuoyi/h44OHPDSuMcqzCPH8f0WH34Wl9yYOGk=;
+ bh=WbC9hgAcg/kmSfhruAEKvz/UhCG0YVX9Mb6rUn6uioQ=; b=dAb+oVWOT8NOjdTafkfGKdp7cj
+ Dn3glOjaapyk47jL++pqekFVXAYxv15kOtodfow5QbBBOL/aF5FyftxIDGmVy6Cm4FMyTrEQ7w+Ff
+ tm07aChyy7AB2mC6oRMRbCAz17R6utVSmhSzDcz5xl2nTPXxpBAqeL59LezNWVhPUxN4=;
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  ;
  h=Content-Transfer-Encoding:MIME-Version:References:In-Reply-To:Message-Id:
@@ -29,30 +29,30 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
  :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
  List-Post:List-Owner:List-Archive;
- bh=pBzpd+ZwGINPndJww6tlDY0rtfFWrUcfW5HnCOvqMps=; b=AC4FsAIuKr8FwxCUdw7kjXrb6x
- 3bSxeQ+oaas9idkvFXkeWRSxV5jzsFLJ9dFjYDsxPjhG1uJHcI8XDVYL7AnQac5ILpshRo7sozVen
- a4qX3lWMEw2LhXD3nznlHiRFPqRmZXXfECSKUUH6+etq4FPKPWxq+I854dt/156gs3KM=;
+ bh=WbC9hgAcg/kmSfhruAEKvz/UhCG0YVX9Mb6rUn6uioQ=; b=A/qL8IsQMtRNsIwaj+EacvQ3fD
+ e59cRXVN7JlUqHCgg+I5OfctHp9KAylz+kzBZXdN4nRhsBEanvUnBC8pd176u+qQMKx7arazsy9Rk
+ YL4EShHwu3sVhVnzFgvHJWZcm5RUcjrtV58ldFseWWHb1fFLJwC03BlKnfcFCH4DgaKI=;
 Received: from casper.infradead.org ([90.155.50.34])
  by sfi-mx-3.v28.lw.sourceforge.com with esmtps
  (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.92.2)
- id 1kP8Na-00GVa7-DK
+ id 1kP8Ne-00GVaP-Ez
  for v9fs-developer@lists.sourceforge.net; Sun, 04 Oct 2020 18:05:08 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
  d=infradead.org; s=casper.20170209; h=Content-Transfer-Encoding:MIME-Version:
  References:In-Reply-To:Message-Id:Date:Subject:Cc:To:From:Sender:Reply-To:
  Content-Type:Content-ID:Content-Description;
- bh=pBzpd+ZwGINPndJww6tlDY0rtfFWrUcfW5HnCOvqMps=; b=HhKU5wBQQ0+KAkIw1hnOknJpey
- b+TM07EAXbH1BzLpr/tUIU6Zn7nHldnfw2dLBkS4z6MtoQnD3AAjPOkWyZZOu/Jr6aVZ0Cw5ktum2
- 5rjXSksb901BlCVzzhiselxVyeUEGWOOPrd8+9nldrBw8W+QUdQRl7AMynVgT4dl7FqMGGLAz4MPp
- WJxO5XhcrH1qidqBSWiTtGhlnAVa1ZuoGcR32NQI48q1WbsygsXbRVU6XAKrsyhKOb4CKCU486nqP
- KNFJDJkYunqJevFpgyZjj/sGecsoaHR04EjI6+GDdt8LHtOLgV2YMnxRvy8yT5o4QNZnfm3hX91QT
- JGA1mwtw==;
+ bh=WbC9hgAcg/kmSfhruAEKvz/UhCG0YVX9Mb6rUn6uioQ=; b=Sas70Pi87VyEThzdZtQqppqRFa
+ r7ubnYnhYzuwIusGo49ix97K0EBn/xVxSpN375sGwlJiPpu0UDwrEBZG5FL9eAPEh2veW32n8NBQA
+ F3Hop8U7b6l3GoiXeTRkDa0ea/HGXW9X9ky0sI9sSzqyYzHg/4UJWf2/qPTLkd79zhI/6QFjKEhKU
+ Ezb2LYypVMi1nZzY49EFZEopszt4Tq1+Q70ZnAZs1oW8la6Z3m6vCkdEy9dP0wpBUntmJrM8JIWKX
+ +Ad4cY6H0AFFZGjdbAjNME7za+4lRYqA1SEsUlT5H/3PoKj8xKRgPI49ALhozsg26ra0dIn6vtVtl
+ zt9HlwvA==;
 Received: from willy by casper.infradead.org with local (Exim 4.92.3 #3 (Red
- Hat Linux)) id 1kP8N6-0003mo-1t; Sun, 04 Oct 2020 18:04:32 +0000
+ Hat Linux)) id 1kP8N6-0003ms-7z; Sun, 04 Oct 2020 18:04:32 +0000
 From: "Matthew Wilcox (Oracle)" <willy@infradead.org>
 To: linux-fsdevel@vger.kernel.org
-Date: Sun,  4 Oct 2020 19:04:26 +0100
-Message-Id: <20201004180428.14494-6-willy@infradead.org>
+Date: Sun,  4 Oct 2020 19:04:27 +0100
+Message-Id: <20201004180428.14494-7-willy@infradead.org>
 X-Mailer: git-send-email 2.21.3
 In-Reply-To: <20201004180428.14494-1-willy@infradead.org>
 References: <20201004180428.14494-1-willy@infradead.org>
@@ -71,8 +71,8 @@ X-Spam-Report: Spam Filtering performed by mx.sourceforge.net.
  -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
  0.1 DKIM_SIGNED            Message has a DKIM or DK signature,
  not necessarily valid
-X-Headers-End: 1kP8Na-00GVa7-DK
-Subject: [V9fs-developer] [PATCH 5/7] btrfs: Promote to unsigned long long
+X-Headers-End: 1kP8Ne-00GVaP-Ez
+Subject: [V9fs-developer] [PATCH 6/7] btrfs: Promote to unsigned long long
  before shifting
 X-BeenThere: v9fs-developer@lists.sourceforge.net
 X-Mailman-Version: 2.1.21
@@ -99,43 +99,25 @@ Errors-To: v9fs-developer-bounces@lists.sourceforge.net
 On 32-bit systems, this shift will overflow for files larger than 4GB.
 
 Cc: stable@vger.kernel.org
-Fixes: df480633b891 ("btrfs: extent-tree: Switch to new delalloc space reserve and release")
+Fixes: 53b381b3abeb ("Btrfs: RAID5 and RAID6")
 Signed-off-by: Matthew Wilcox (Oracle) <willy@infradead.org>
 ---
- fs/btrfs/ioctl.c | 6 +++---
- 1 file changed, 3 insertions(+), 3 deletions(-)
+ fs/btrfs/raid56.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/fs/btrfs/ioctl.c b/fs/btrfs/ioctl.c
-index ac45f022b495..4d3b7e4ae53a 100644
---- a/fs/btrfs/ioctl.c
-+++ b/fs/btrfs/ioctl.c
-@@ -1277,7 +1277,7 @@ static int cluster_pages_for_defrag(struct inode *inode,
- 	page_cnt = min_t(u64, (u64)num_pages, (u64)file_end - start_index + 1);
+diff --git a/fs/btrfs/raid56.c b/fs/btrfs/raid56.c
+index 255490f42b5d..5ee0a53301bd 100644
+--- a/fs/btrfs/raid56.c
++++ b/fs/btrfs/raid56.c
+@@ -1089,7 +1089,7 @@ static int rbio_add_io_page(struct btrfs_raid_bio *rbio,
+ 	u64 disk_start;
  
- 	ret = btrfs_delalloc_reserve_space(BTRFS_I(inode), &data_reserved,
--			start_index << PAGE_SHIFT,
-+			(loff_t)start_index << PAGE_SHIFT,
- 			page_cnt << PAGE_SHIFT);
- 	if (ret)
- 		return ret;
-@@ -1367,7 +1367,7 @@ static int cluster_pages_for_defrag(struct inode *inode,
- 		btrfs_mod_outstanding_extents(BTRFS_I(inode), 1);
- 		spin_unlock(&BTRFS_I(inode)->lock);
- 		btrfs_delalloc_release_space(BTRFS_I(inode), data_reserved,
--				start_index << PAGE_SHIFT,
-+				(loff_t)start_index << PAGE_SHIFT,
- 				(page_cnt - i_done) << PAGE_SHIFT, true);
- 	}
+ 	stripe = &rbio->bbio->stripes[stripe_nr];
+-	disk_start = stripe->physical + (page_index << PAGE_SHIFT);
++	disk_start = stripe->physical + ((loff_t)page_index << PAGE_SHIFT);
  
-@@ -1395,7 +1395,7 @@ static int cluster_pages_for_defrag(struct inode *inode,
- 		put_page(pages[i]);
- 	}
- 	btrfs_delalloc_release_space(BTRFS_I(inode), data_reserved,
--			start_index << PAGE_SHIFT,
-+			(loff_t)start_index << PAGE_SHIFT,
- 			page_cnt << PAGE_SHIFT, true);
- 	btrfs_delalloc_release_extents(BTRFS_I(inode), page_cnt << PAGE_SHIFT);
- 	extent_changeset_free(data_reserved);
+ 	/* if the device is missing, just fail this stripe */
+ 	if (!stripe->dev->bdev)
 -- 
 2.28.0
 
