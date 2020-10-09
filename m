@@ -2,72 +2,108 @@ Return-Path: <v9fs-developer-bounces@lists.sourceforge.net>
 X-Original-To: lists+v9fs-developer@lfdr.de
 Delivered-To: lists+v9fs-developer@lfdr.de
 Received: from lists.sourceforge.net (lists.sourceforge.net [216.105.38.7])
-	by mail.lfdr.de (Postfix) with ESMTPS id A0AEB288406
-	for <lists+v9fs-developer@lfdr.de>; Fri,  9 Oct 2020 09:55:34 +0200 (CEST)
-Received: from [127.0.0.1] (helo=sfs-ml-4.v29.lw.sourceforge.com)
-	by sfs-ml-4.v29.lw.sourceforge.com with esmtp (Exim 4.90_1)
+	by mail.lfdr.de (Postfix) with ESMTPS id B2B75288BCF
+	for <lists+v9fs-developer@lfdr.de>; Fri,  9 Oct 2020 16:48:27 +0200 (CEST)
+Received: from [127.0.0.1] (helo=sfs-ml-1.v29.lw.sourceforge.com)
+	by sfs-ml-1.v29.lw.sourceforge.com with esmtp (Exim 4.90_1)
 	(envelope-from <v9fs-developer-bounces@lists.sourceforge.net>)
-	id 1kQnFU-0000gI-MK; Fri, 09 Oct 2020 07:55:32 +0000
+	id 1kQth4-0002p4-Gh; Fri, 09 Oct 2020 14:48:26 +0000
 Received: from [172.30.20.202] (helo=mx.sourceforge.net)
- by sfs-ml-4.v29.lw.sourceforge.com with esmtps
+ by sfs-ml-1.v29.lw.sourceforge.com with esmtps
  (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.90_1)
- (envelope-from <yebin10@huawei.com>) id 1kQnFT-0000gB-K2
- for v9fs-developer@lists.sourceforge.net; Fri, 09 Oct 2020 07:55:31 +0000
+ (envelope-from <josef@toxicpanda.com>) id 1kQth3-0002oo-R9
+ for v9fs-developer@lists.sourceforge.net; Fri, 09 Oct 2020 14:48:25 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=sourceforge.net; s=x; h=Content-Type:MIME-Version:Message-ID:Date:Subject:
- CC:To:From:Sender:Reply-To:Content-Transfer-Encoding:Content-ID:
- Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
- :Resent-Message-ID:In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:
+ d=sourceforge.net; s=x; h=Content-Transfer-Encoding:Content-Type:In-Reply-To:
+ MIME-Version:Date:Message-ID:From:References:Cc:To:Subject:Sender:Reply-To:
+ Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+ Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
  List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=XT1AfQR0ZHG/Xu9BYSg+9vYp8mXDneJCHAInp37uopo=; b=HlEFXJXRxyCcaxQcoyFS/xP/Ft
- pH4NAsMFPDAGo8pEOFyhZyMwVPec3TvOZaN5R/TOytcW555yT7dP88mHrrWBsaBanH59AwyuMQVCT
- kv4OeXS4nA+QHPHiWiMqPWzv69++FTz2e7rk2brT9VZxrniG/qks88XvA4uGR0w/fVRc=;
+ bh=CcKsaaPzQT2ESj6YOvwBkh06P5IZh1MGDwlgLgs4VHo=; b=T/x2pxTCv+mzKhoA5bMu0NXQ6B
+ fHFQ7A+ad8pEdswDlNA4SfZWST6tLhI6t31jEmngH0d/4IJn3Dv1X6mMUsZRMoZLi6q8WAX7JBTuu
+ GcAbIvHN0Rd2ubWo76k8t3j3cnKR8mL8cRC5K92XT4mWXPpCifRbPaN0OCor9Ummij8Y=;
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  ;
- h=Content-Type:MIME-Version:Message-ID:Date:Subject:CC:To:From:Sender:
- Reply-To:Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date
- :Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:
- References:List-Id:List-Help:List-Unsubscribe:List-Subscribe:List-Post:
- List-Owner:List-Archive; bh=XT1AfQR0ZHG/Xu9BYSg+9vYp8mXDneJCHAInp37uopo=; b=Y
- giUlPacgMF2UNDaWVXA9jJ58KaApWxClcY1/vFsgD9eqZ+Lowsd1ER1LMOTiEreX7wgcmBQahj6zh
- VQnD4Yb1BcAMgTwnjcUfHe4vP0Ggw0Uv4sUd8jUlIi1fzRxwpbOCVaAi+48hw1iB+J3J3v43JCVTr
- bFBwY9fBEkeW0GRs=;
-Received: from szxga05-in.huawei.com ([45.249.212.191] helo=huawei.com)
+ h=Content-Transfer-Encoding:Content-Type:In-Reply-To:MIME-Version:Date:
+ Message-ID:From:References:Cc:To:Subject:Sender:Reply-To:Content-ID:
+ Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
+ :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
+ List-Post:List-Owner:List-Archive;
+ bh=CcKsaaPzQT2ESj6YOvwBkh06P5IZh1MGDwlgLgs4VHo=; b=j9eqFtLpZ5T60nDkP9M2J+sihI
+ gv5OlOKiktzTjU1HwOcDokNOJ6Y9+ZY5ouc1N5ksmchQbmax+2Wbf6YwRQ3Cq/cpWuR2n5uiObYFC
+ imvVgiAV8gsF1Vs5SidW05DaJly6jlO5eAbC5q6/xxGFmn/7ACCNzpxCW52q9iKVYlOI=;
+Received: from mail-qk1-f194.google.com ([209.85.222.194])
  by sfi-mx-3.v28.lw.sourceforge.com with esmtps
- (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.92.2)
- id 1kQnFN-003yyo-BB
- for v9fs-developer@lists.sourceforge.net; Fri, 09 Oct 2020 07:55:30 +0000
-Received: from DGGEMS407-HUB.china.huawei.com (unknown [172.30.72.58])
- by Forcepoint Email with ESMTP id 3F743A54B8DDE1C5C05E;
- Fri,  9 Oct 2020 15:55:16 +0800 (CST)
-Received: from huawei.com (10.90.53.225) by DGGEMS407-HUB.china.huawei.com
- (10.3.19.207) with Microsoft SMTP Server id 14.3.487.0; Fri, 9 Oct 2020
- 15:55:05 +0800
-From: Ye Bin <yebin10@huawei.com>
-To: <ericvh@gmail.com>, <lucho@ionkov.net>, <asmadeus@codewreck.org>,
- <davem@davemloft.net>, <kuba@kernel.org>,
- <v9fs-developer@lists.sourceforge.net>, <netdev@vger.kernel.org>,
- <linux-kernel@vger.kernel.org>
-Date: Fri, 9 Oct 2020 16:05:52 +0800
-Message-ID: <20201009080552.89918-1-yebin10@huawei.com>
-X-Mailer: git-send-email 2.16.2.dirty
+ (TLSv1.2:ECDHE-RSA-AES128-GCM-SHA256:128) (Exim 4.92.2)
+ id 1kQtgw-004JSn-HP
+ for v9fs-developer@lists.sourceforge.net; Fri, 09 Oct 2020 14:48:25 +0000
+Received: by mail-qk1-f194.google.com with SMTP id s4so10791515qkf.7
+ for <v9fs-developer@lists.sourceforge.net>;
+ Fri, 09 Oct 2020 07:48:18 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=toxicpanda-com.20150623.gappssmtp.com; s=20150623;
+ h=subject:to:cc:references:from:message-id:date:user-agent
+ :mime-version:in-reply-to:content-language:content-transfer-encoding;
+ bh=CcKsaaPzQT2ESj6YOvwBkh06P5IZh1MGDwlgLgs4VHo=;
+ b=NlLNJz0gReMZ2olYoTwOI71Q3J7hZ4eCjDSLwfxrDsINskB/uRN0RJ63/6e4mp7rWK
+ 8HBBtYSi0tq6rQFBsNjlT8Imwpm8kDcN4jK2nSy7e062CLRT5RQCSFjHf1lN8ImYUGqc
+ /vhv7tZjTIgwahWg6NDlOfjzYJ70RBtTYFaUtayjCmBbBlk6KxW8RzL4UWdAG77v2I9N
+ A7UYx+wU+9EnXtsWlWiz3jQTPpdXvIdYWAVVCCCHPiVwb88OgPGRxAtC9APpf83BXrog
+ jD06zR6/j/9ASrwFeC4hcqIdoEkQl6E5WRGzyO2rSgnCpr/6ATUZ0Ujgycjt3F5z1/Cd
+ Sd+A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+ :user-agent:mime-version:in-reply-to:content-language
+ :content-transfer-encoding;
+ bh=CcKsaaPzQT2ESj6YOvwBkh06P5IZh1MGDwlgLgs4VHo=;
+ b=qupyrUZnFXstsG5XyGY+/5jV43lemXq5wYoPXhZSCnNXww0ltRrYVQvyxD64MnYPnU
+ wCbbGWFaCbtnS70ZSVpCOIFT0gcAZ17AfYeh0NIiGg48z/Egtb8UzHcYhlIPuYC+Uxn/
+ IuysdqYpqi8PhTRw65T3Yp6584fxDyR7RNa3buV8QSbyRK0b/O+9GUUafaDS8NfilRok
+ yr/iYg1tXq8LezP01wGDzuU9EFhvijazYGYRcoINFosMOPZJwrRgH1YUI7AzcSCVYna5
+ xPQtkB5XhUpejE75de/3K/dMJOOViEycWIIrX8Y2rxoanjA0n2MMmbJ0tnSKc5wzT0S5
+ avMA==
+X-Gm-Message-State: AOAM5311DnIKoV03alds/J8Ha7Wc0T0W6USxXhgIQqYHhp3mFIypUrcT
+ DUCPYdybc24i2gjiBJj4Le/1P+onCarAUw==
+X-Google-Smtp-Source: ABdhPJxkUTamFkDclFTulS7UVScV42JPT3TSQbrdjQZFe2ID/ahDqSFwMiv5AdzptTI3yxVlMZazyg==
+X-Received: by 2002:ac8:5d04:: with SMTP id f4mr13754639qtx.290.1602253085840; 
+ Fri, 09 Oct 2020 07:18:05 -0700 (PDT)
+Received: from ?IPv6:2620:10d:c0a8:11e8::107d? ([2620:10d:c091:480::1:f1f8])
+ by smtp.gmail.com with ESMTPSA id f3sm6216160qtp.57.2020.10.09.07.18.02
+ (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+ Fri, 09 Oct 2020 07:18:03 -0700 (PDT)
+To: "Matthew Wilcox (Oracle)" <willy@infradead.org>,
+ linux-fsdevel@vger.kernel.org
+References: <20201004180428.14494-1-willy@infradead.org>
+ <20201004180428.14494-6-willy@infradead.org>
+From: Josef Bacik <josef@toxicpanda.com>
+Message-ID: <b36885cc-0c4b-ee03-bcd3-56f94800d84e@toxicpanda.com>
+Date: Fri, 9 Oct 2020 10:18:01 -0400
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:78.0)
+ Gecko/20100101 Thunderbird/78.3.1
 MIME-Version: 1.0
-X-Originating-IP: [10.90.53.225]
-X-CFilter-Loop: Reflected
-X-Spam-Score: 0.0 (/)
+In-Reply-To: <20201004180428.14494-6-willy@infradead.org>
+Content-Language: en-US
+X-Spam-Score: -0.2 (/)
 X-Spam-Report: Spam Filtering performed by mx.sourceforge.net.
  See http://spamassassin.org/tag/ for more details.
  0.0 URIBL_BLOCKED ADMINISTRATOR NOTICE: The query to URIBL was blocked.
  See
  http://wiki.apache.org/spamassassin/DnsBlocklists#dnsbl-block
- for more information. [URIs: huawei.com]
- 0.0 RCVD_IN_MSPIKE_H4      RBL: Very Good reputation (+4)
- [45.249.212.191 listed in wl.mailspike.net]
- -0.0 SPF_HELO_PASS          SPF: HELO matches SPF record
- -0.0 SPF_PASS               SPF: sender matches SPF record
- 0.0 RCVD_IN_MSPIKE_WL      Mailspike good senders
-X-Headers-End: 1kQnFN-003yyo-BB
-Subject: [V9fs-developer] [PATCH] 9p/xen: Fix format argument warning
+ for more information. [URIs: infradead.org]
+ -0.0 RCVD_IN_DNSWL_NONE     RBL: Sender listed at https://www.dnswl.org/, no
+ trust [209.85.222.194 listed in list.dnswl.org]
+ -0.0 RCVD_IN_MSPIKE_H2      RBL: Average reputation (+2)
+ [209.85.222.194 listed in wl.mailspike.net]
+ 0.0 SPF_NONE               SPF: sender does not publish an SPF Record
+ 0.0 SPF_HELO_NONE          SPF: HELO does not publish an SPF Record
+ -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+ 0.1 DKIM_SIGNED            Message has a DKIM or DK signature,
+ not necessarily valid
+ -0.2 NICE_REPLY_A           Looks like a legit reply (A)
+X-Headers-End: 1kQtgw-004JSn-HP
+Subject: Re: [V9fs-developer] [PATCH 5/7] btrfs: Promote to unsigned long
+ long before shifting
 X-BeenThere: v9fs-developer@lists.sourceforge.net
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -79,46 +115,27 @@ List-Post: <mailto:v9fs-developer@lists.sourceforge.net>
 List-Help: <mailto:v9fs-developer-request@lists.sourceforge.net?subject=help>
 List-Subscribe: <https://lists.sourceforge.net/lists/listinfo/v9fs-developer>, 
  <mailto:v9fs-developer-request@lists.sourceforge.net?subject=subscribe>
-Cc: Ye Bin <yebin10@huawei.com>
-Content-Type: text/plain; charset="us-ascii"
+Cc: lucho@ionkov.net, clm@fb.com, ericvh@gmail.com, linux-btrfs@vger.kernel.org,
+ mark@fasheh.com, jlayton@kernel.org, linux-kernel@vger.kernel.org,
+ stable@vger.kernel.org, joseph.qi@linux.alibaba.com, viro@zeniv.linux.org.uk,
+ dsterba@suse.com, v9fs-developer@lists.sourceforge.net, idryomov@gmail.com,
+ ceph-devel@vger.kernel.org, ocfs2-devel@oss.oracle.com, jlbec@evilplan.org
 Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Errors-To: v9fs-developer-bounces@lists.sourceforge.net
 
-Fix follow warnings:
-[net/9p/trans_xen.c:454]: (warning) %u in format string (no. 1) requires
-'unsigned int' but the argument type is 'int'.
-[net/9p/trans_xen.c:460]: (warning) %u in format string (no. 1) requires
-'unsigned int' but the argument type is 'int'.
+On 10/4/20 2:04 PM, Matthew Wilcox (Oracle) wrote:
+> On 32-bit systems, this shift will overflow for files larger than 4GB.
+> 
+> Cc: stable@vger.kernel.org
+> Fixes: df480633b891 ("btrfs: extent-tree: Switch to new delalloc space reserve and release")
+> Signed-off-by: Matthew Wilcox (Oracle) <willy@infradead.org>
 
-Reported-by: Hulk Robot <hulkci@huawei.com>
-Signed-off-by: Ye Bin <yebin10@huawei.com>
----
- net/9p/trans_xen.c | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
+Reviewed-by: Josef Bacik <josef@toxicpanda.com>
 
-diff --git a/net/9p/trans_xen.c b/net/9p/trans_xen.c
-index bc8807d9281f..f4fea28e05da 100644
---- a/net/9p/trans_xen.c
-+++ b/net/9p/trans_xen.c
-@@ -451,13 +451,13 @@ static int xen_9pfs_front_probe(struct xenbus_device *dev,
- 		char str[16];
- 
- 		BUILD_BUG_ON(XEN_9PFS_NUM_RINGS > 9);
--		sprintf(str, "ring-ref%u", i);
-+		sprintf(str, "ring-ref%d", i);
- 		ret = xenbus_printf(xbt, dev->nodename, str, "%d",
- 				    priv->rings[i].ref);
- 		if (ret)
- 			goto error_xenbus;
- 
--		sprintf(str, "event-channel-%u", i);
-+		sprintf(str, "event-channel-%d", i);
- 		ret = xenbus_printf(xbt, dev->nodename, str, "%u",
- 				    priv->rings[i].evtchn);
- 		if (ret)
--- 
-2.16.2.dirty
+Thanks,
 
+Josef
 
 
 _______________________________________________
