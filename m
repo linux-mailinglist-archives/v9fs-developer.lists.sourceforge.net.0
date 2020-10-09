@@ -2,16 +2,16 @@ Return-Path: <v9fs-developer-bounces@lists.sourceforge.net>
 X-Original-To: lists+v9fs-developer@lfdr.de
 Delivered-To: lists+v9fs-developer@lfdr.de
 Received: from lists.sourceforge.net (lists.sourceforge.net [216.105.38.7])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8078A288AFD
-	for <lists+v9fs-developer@lfdr.de>; Fri,  9 Oct 2020 16:31:39 +0200 (CEST)
-Received: from [127.0.0.1] (helo=sfs-ml-1.v29.lw.sourceforge.com)
-	by sfs-ml-1.v29.lw.sourceforge.com with esmtp (Exim 4.90_1)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3136C288AF1
+	for <lists+v9fs-developer@lfdr.de>; Fri,  9 Oct 2020 16:31:36 +0200 (CEST)
+Received: from [127.0.0.1] (helo=sfs-ml-4.v29.lw.sourceforge.com)
+	by sfs-ml-4.v29.lw.sourceforge.com with esmtp (Exim 4.90_1)
 	(envelope-from <v9fs-developer-bounces@lists.sourceforge.net>)
-	id 1kQtQo-0007tS-98; Fri, 09 Oct 2020 14:31:38 +0000
+	id 1kQtQk-0002io-UC; Fri, 09 Oct 2020 14:31:34 +0000
 Received: from [172.30.20.202] (helo=mx.sourceforge.net)
- by sfs-ml-1.v29.lw.sourceforge.com with esmtps
+ by sfs-ml-4.v29.lw.sourceforge.com with esmtps
  (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.90_1)
- (envelope-from <willy@infradead.org>) id 1kQtQj-0007rV-Fz
+ (envelope-from <willy@infradead.org>) id 1kQtQj-0002i5-FZ
  for v9fs-developer@lists.sourceforge.net; Fri, 09 Oct 2020 14:31:33 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
  d=sourceforge.net; s=x; h=Content-Transfer-Encoding:MIME-Version:References:
@@ -19,9 +19,9 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
  Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
  Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
  List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=RIb1gQ+A64FbhPeJkfhHPdkd0Jjt6Z+sspMIve+fcDU=; b=NrZr7Q4wb/djBEXpbgjJPtFm+A
- NKJVZgjy7jL7eTcm4dy47RgsWocdX1fugp8NO3BClnyq8RMK5sXoZfQkuRFmR55V9ykf4LU9VtF6Z
- HOqkWBNMxHoqjabRWcD32SGRKJQVuw2m7FDzzI1TPeez6I65b7X6/fJLg4eR2fcanioM=;
+ bh=qnANyeE8BGUfs9EI0mAgvyYgGmWNNC+tzF64JAGclAM=; b=ZA+1Fhi6fg0KNLNRlDKEWBCsv5
+ 7Zz2f3ytk8Uo9jUmtHqbJqCYRi+EyhPKEeTfYJn2jlaqawOb9kZ3Tn4kvAK+yPOgoyVmEVFe6OSbA
+ SwpjPyaOAKw0T77129ouqnusDK+xGqFV3vzfdZjNX9RxXpdb+8UOGpsrCwuu/0LQkPSE=;
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  ;
  h=Content-Transfer-Encoding:MIME-Version:References:In-Reply-To:Message-Id:
@@ -29,30 +29,30 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
  :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
  List-Post:List-Owner:List-Archive;
- bh=RIb1gQ+A64FbhPeJkfhHPdkd0Jjt6Z+sspMIve+fcDU=; b=gpqYTRYYlYfrrTP2J8r8dqWNsF
- C4eBEDzD68uufqMjS5irAcpl9jC0Y2w6idy8dR3IOK8sr1WbP1BajiNT8zLGsNSzPcI1kG/4LMiBn
- v+La7e23jairandcai4JxBGf/fX0er3zs/oK52brlVlQKABh1WPfl0p81oIAwJUh5Yl4=;
+ bh=qnANyeE8BGUfs9EI0mAgvyYgGmWNNC+tzF64JAGclAM=; b=iUTlfrjW09Ob2AP9jPwDxc9OSM
+ /Nf/FjQSScpjm8JrsJUcP0huqNO8TWZZwsi1kbLn/P9HCd9wntzSG11VQ3PVwIpWhDmmo9ZbBXW0O
+ yPMgslXj2HHO/j7VimQ+5Jsb+9Pe0KwO2QPw45OPSOPyNYTGUV1PDL3A4FcOOHsJOwCU=;
 Received: from casper.infradead.org ([90.155.50.34])
  by sfi-mx-1.v28.lw.sourceforge.com with esmtps
  (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.92.2)
- id 1kQtQb-008YK9-D2
+ id 1kQtQU-008YJq-HH
  for v9fs-developer@lists.sourceforge.net; Fri, 09 Oct 2020 14:31:32 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
  d=infradead.org; s=casper.20170209; h=Content-Transfer-Encoding:MIME-Version:
  References:In-Reply-To:Message-Id:Date:Subject:Cc:To:From:Sender:Reply-To:
  Content-Type:Content-ID:Content-Description;
- bh=RIb1gQ+A64FbhPeJkfhHPdkd0Jjt6Z+sspMIve+fcDU=; b=VsE23OLOrUsnE7PhGHwfx4AvQD
- ZxkA8063qfbOb72uym0CvuEdjOdRn7oO/of7SRBBhcxjg9XTVL1ic5NG9xyRTX+fd2YtHU6noe+tR
- uEp06xjPiOqssHfOpiCZbZjqG05aMT4oOo9biqN01offaQ9iApy0o0e4MMkooCZAHQAeyjeBIDN8e
- KJorn95GK3/JkF8UaucM0gBtV/Vb6J3DVeBdt7Q6Dy7Pz7UU0qxP6J4lpYi/+bz+kDQ9hjZSAe76U
- jlZ6/O0bb9U/qtqCLSWlYuFcsp/+4PYyUSBphJDs2Y1Tzrf2WkgaY0Ow7NhEPSzbvdY53XI8klRju
- ymkLE0qQ==;
+ bh=qnANyeE8BGUfs9EI0mAgvyYgGmWNNC+tzF64JAGclAM=; b=QHCGxvwZzOX1kKFzij5mlSA/gw
+ QTEkEHUkZeBUJ3wxqkKLJnb+bsoPZd4hqA4z6Fwej0ZQFO//xttCyk0G8YeGWpkWOR3Ke/QHezikU
+ UDp2rHaCqzXEJaLyZsMKYIcB76E++KCon/B6LkQ7B4lkZm/QIUpuSjEl7+/dqENZ1ckEIQZVsUjZ7
+ ks/g/Az4xPcjq9NueOILPQhW/QPHNUAt/TaqD3NrozoRyFrwY7lri5+g0QXxkQNUY8pwlwF5g61iK
+ i1MIhRgWYaawB21c84FTADz1O9wLc66fLBSz21rg1EdS0WrlcP85GM4DMvNPwUHqexLNS+zDBNn2N
+ 9ny/3G4w==;
 Received: from willy by casper.infradead.org with local (Exim 4.92.3 #3 (Red
- Hat Linux)) id 1kQtQL-0005vk-SX; Fri, 09 Oct 2020 14:31:09 +0000
+ Hat Linux)) id 1kQtQM-0005vs-7D; Fri, 09 Oct 2020 14:31:10 +0000
 From: "Matthew Wilcox (Oracle)" <willy@infradead.org>
 To: linux-fsdevel@vger.kernel.org
-Date: Fri,  9 Oct 2020 15:30:59 +0100
-Message-Id: <20201009143104.22673-12-willy@infradead.org>
+Date: Fri,  9 Oct 2020 15:31:00 +0100
+Message-Id: <20201009143104.22673-13-willy@infradead.org>
 X-Mailer: git-send-email 2.21.3
 In-Reply-To: <20201009143104.22673-1-willy@infradead.org>
 References: <20201009143104.22673-1-willy@infradead.org>
@@ -63,7 +63,7 @@ X-Spam-Report: Spam Filtering performed by mx.sourceforge.net.
  0.0 URIBL_BLOCKED ADMINISTRATOR NOTICE: The query to URIBL was blocked.
  See
  http://wiki.apache.org/spamassassin/DnsBlocklists#dnsbl-block
- for more information. [URIs: infradead.org]
+ for more information. [URIs: nod.at]
  0.0 SPF_NONE               SPF: sender does not publish an SPF Record
  0.0 SPF_HELO_NONE          SPF: HELO does not publish an SPF Record
  -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from author's
@@ -71,8 +71,8 @@ X-Spam-Report: Spam Filtering performed by mx.sourceforge.net.
  -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
  0.1 DKIM_SIGNED            Message has a DKIM or DK signature,
  not necessarily valid
-X-Headers-End: 1kQtQb-008YK9-D2
-Subject: [V9fs-developer] [PATCH v2 11/16] jffs2: Tell the VFS that readpage
+X-Headers-End: 1kQtQU-008YJq-HH
+Subject: [V9fs-developer] [PATCH v2 12/16] ubifs: Tell the VFS that readpage
  was synchronous
 X-BeenThere: v9fs-developer@lists.sourceforge.net
 X-Mailman-Version: 2.1.21
@@ -96,39 +96,49 @@ Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: v9fs-developer-bounces@lists.sourceforge.net
 
-The jffs2 readpage implementation was already synchronous, so use
+The ubifs readpage implementation was already synchronous, so use
 AOP_UPDATED_PAGE to avoid cycling the page lock.
 
 Signed-off-by: Matthew Wilcox (Oracle) <willy@infradead.org>
 Acked-by: Richard Weinberger <richard@nod.at>
 ---
- fs/jffs2/file.c | 6 ++++--
- 1 file changed, 4 insertions(+), 2 deletions(-)
+ fs/ubifs/file.c | 16 ++++++++++------
+ 1 file changed, 10 insertions(+), 6 deletions(-)
 
-diff --git a/fs/jffs2/file.c b/fs/jffs2/file.c
-index f8fb89b10227..959a74027041 100644
---- a/fs/jffs2/file.c
-+++ b/fs/jffs2/file.c
-@@ -116,15 +116,17 @@ int jffs2_do_readpage_unlock(void *data, struct page *pg)
- 	return ret;
- }
+diff --git a/fs/ubifs/file.c b/fs/ubifs/file.c
+index b77d1637bbbc..82633509c45e 100644
+--- a/fs/ubifs/file.c
++++ b/fs/ubifs/file.c
+@@ -772,7 +772,6 @@ static int ubifs_do_bulk_read(struct ubifs_info *c, struct bu_info *bu,
+ 	if (err)
+ 		goto out_warn;
  
--
- static int jffs2_readpage (struct file *filp, struct page *pg)
+-	unlock_page(page1);
+ 	ret = 1;
+ 
+ 	isize = i_size_read(inode);
+@@ -892,11 +891,16 @@ static int ubifs_bulk_read(struct page *page)
+ 
+ static int ubifs_readpage(struct file *file, struct page *page)
  {
- 	struct jffs2_inode_info *f = JFFS2_INODE_INFO(pg->mapping->host);
- 	int ret;
- 
- 	mutex_lock(&f->sem);
--	ret = jffs2_do_readpage_unlock(pg->mapping->host, pg);
-+	ret = jffs2_do_readpage_nolock(pg->mapping->host, pg);
- 	mutex_unlock(&f->sem);
-+	if (!ret)
-+		return AOP_UPDATED_PAGE;
-+	unlock_page(pg);
- 	return ret;
+-	if (ubifs_bulk_read(page))
+-		return 0;
+-	do_readpage(page);
+-	unlock_page(page);
+-	return 0;
++	int err;
++
++	err = ubifs_bulk_read(page);
++	if (err == 0)
++		err = do_readpage(page);
++	if (err < 0) {
++		unlock_page(page);
++		return err;
++	}
++	return AOP_UPDATED_PAGE;
  }
  
+ static int do_writepage(struct page *page, int len)
 -- 
 2.28.0
 
