@@ -2,71 +2,66 @@ Return-Path: <v9fs-developer-bounces@lists.sourceforge.net>
 X-Original-To: lists+v9fs-developer@lfdr.de
 Delivered-To: lists+v9fs-developer@lfdr.de
 Received: from lists.sourceforge.net (lists.sourceforge.net [216.105.38.7])
-	by mail.lfdr.de (Postfix) with ESMTPS id 096BC288307
-	for <lists+v9fs-developer@lfdr.de>; Fri,  9 Oct 2020 08:54:37 +0200 (CEST)
-Received: from [127.0.0.1] (helo=sfs-ml-2.v29.lw.sourceforge.com)
-	by sfs-ml-2.v29.lw.sourceforge.com with esmtp (Exim 4.90_1)
+	by mail.lfdr.de (Postfix) with ESMTPS id BDD2C288397
+	for <lists+v9fs-developer@lfdr.de>; Fri,  9 Oct 2020 09:30:26 +0200 (CEST)
+Received: from [127.0.0.1] (helo=sfs-ml-4.v29.lw.sourceforge.com)
+	by sfs-ml-4.v29.lw.sourceforge.com with esmtp (Exim 4.90_1)
 	(envelope-from <v9fs-developer-bounces@lists.sourceforge.net>)
-	id 1kQmIS-00077t-A6; Fri, 09 Oct 2020 06:54:32 +0000
+	id 1kQmr8-00084z-Os; Fri, 09 Oct 2020 07:30:22 +0000
 Received: from [172.30.20.202] (helo=mx.sourceforge.net)
- by sfs-ml-2.v29.lw.sourceforge.com with esmtps
+ by sfs-ml-4.v29.lw.sourceforge.com with esmtps
  (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.90_1)
- (envelope-from <yebin10@huawei.com>) id 1kQmIQ-00077l-GP
- for v9fs-developer@lists.sourceforge.net; Fri, 09 Oct 2020 06:54:30 +0000
+ (envelope-from <asmadeus@notk.org>) id 1kQmr5-00084q-HY
+ for v9fs-developer@lists.sourceforge.net; Fri, 09 Oct 2020 07:30:19 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=sourceforge.net; s=x; h=Content-Type:MIME-Version:Message-ID:Date:Subject:
- CC:To:From:Sender:Reply-To:Content-Transfer-Encoding:Content-ID:
- Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
- :Resent-Message-ID:In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:
+ d=sourceforge.net; s=x; h=In-Reply-To:Content-Type:MIME-Version:References:
+ Message-ID:Subject:Cc:To:From:Date:Sender:Reply-To:Content-Transfer-Encoding:
+ Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+ Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
  List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=XT1AfQR0ZHG/Xu9BYSg+9vYp8mXDneJCHAInp37uopo=; b=k4gOqg/P60r6Ep1jWFaczTjB2g
- tL5eMRb9hGVy/a5PqIk7gsE/tklTSdEgJE4vbh0M+WzRpk0A0rI1cAPcx9M87R3VuJByt+lEnwyEw
- aONtwmBdNlt2l6/SGJAy8fU039JCJvu06xuFfhAVldqHaSj7WYQxeQwVuZndJuC2amiY=;
+ bh=HNlsyhgrfWzlcQZjlO/tfnT1ypXi0nHYaSPWGqZcqWI=; b=XvQuesCOHcRTFznNb5P4Zb3gZj
+ ta5gCSV1Pi4tkBNN31sfLioi/vEhuFlHEWXlqN7gCux4UypRlNxR9A6wRkDTdKWH1j9l5SA1Rt6yh
+ nhrr+tMo2MDP4fugbjXkaRW9shG0sw3H7DDMLPZtKO/32CCsOrNrNe+WKmIbeljSZjBk=;
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  ;
- h=Content-Type:MIME-Version:Message-ID:Date:Subject:CC:To:From:Sender:
- Reply-To:Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date
- :Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:
- References:List-Id:List-Help:List-Unsubscribe:List-Subscribe:List-Post:
- List-Owner:List-Archive; bh=XT1AfQR0ZHG/Xu9BYSg+9vYp8mXDneJCHAInp37uopo=; b=S
- l1yslnnwJ2dewe+3aStoAKlV55d5w7vnBX4B4UvJa6cpUheenjEzUNfet7WFribw+Sl08UtjVI/6o
- Ncahmw/23tDTmCE8ccD+XAO8yQ2NICwoLtsA+T5pnhZAN2efDO3P8hcRgYVgc0+QLvwkgFzoge50t
- Ab+awQ1p/GN8TQ6w=;
-Received: from szxga06-in.huawei.com ([45.249.212.32] helo=huawei.com)
- by sfi-mx-1.v28.lw.sourceforge.com with esmtps
+ h=In-Reply-To:Content-Type:MIME-Version:References:Message-ID:Subject:Cc:To
+ :From:Date:Sender:Reply-To:Content-Transfer-Encoding:Content-ID:
+ Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
+ :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
+ List-Post:List-Owner:List-Archive;
+ bh=HNlsyhgrfWzlcQZjlO/tfnT1ypXi0nHYaSPWGqZcqWI=; b=EGgxJaElYF2N7HGbNnXdtgC7/s
+ 2UsLMbL7slyYvekH/VE8zNdA/Be7HbuAMzr5LIaxBap0KFs0SEDkSuDZJaokDrmMt7ZU9sU9Gldbr
+ E/dHMILG5bzCEXuIhjifiuleaPupbvnIp2YOGSis9N51E0fWjdf6nNsZsTJIkCnk1S/c=;
+Received: from nautica.notk.org ([91.121.71.147])
+ by sfi-mx-3.v28.lw.sourceforge.com with esmtps
  (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.92.2)
- id 1kQmIH-0086gY-MT
- for v9fs-developer@lists.sourceforge.net; Fri, 09 Oct 2020 06:54:30 +0000
-Received: from DGGEMS410-HUB.china.huawei.com (unknown [172.30.72.60])
- by Forcepoint Email with ESMTP id C848690BEA8988BAE40B;
- Fri,  9 Oct 2020 14:54:09 +0800 (CST)
-Received: from huawei.com (10.90.53.225) by DGGEMS410-HUB.china.huawei.com
- (10.3.19.210) with Microsoft SMTP Server id 14.3.487.0; Fri, 9 Oct 2020
- 14:54:01 +0800
-From: Ye Bin <yebin10@huawei.com>
-To: <ericvh@gmail.com>, <lucho@ionkov.net>, <asmadeus@codewreck.org>,
- <v9fs-developer@lists.sourceforge.net>
-Date: Fri, 9 Oct 2020 15:04:48 +0800
-Message-ID: <20201009070448.63901-1-yebin10@huawei.com>
-X-Mailer: git-send-email 2.16.2.dirty
+ id 1kQmqt-003xQw-Tw
+ for v9fs-developer@lists.sourceforge.net; Fri, 09 Oct 2020 07:30:19 +0000
+Received: by nautica.notk.org (Postfix, from userid 1001)
+ id 1C2EAC009; Fri,  9 Oct 2020 09:30:01 +0200 (CEST)
+Date: Fri, 9 Oct 2020 09:29:46 +0200
+From: Dominique Martinet <asmadeus@codewreck.org>
+To: Ye Bin <yebin10@huawei.com>
+Message-ID: <20201009072946.GA22796@nautica>
+References: <20201009070448.63901-1-yebin10@huawei.com>
 MIME-Version: 1.0
-X-Originating-IP: [10.90.53.225]
-X-CFilter-Loop: Reflected
-X-Spam-Score: 0.0 (/)
+Content-Disposition: inline
+In-Reply-To: <20201009070448.63901-1-yebin10@huawei.com>
+User-Agent: Mutt/1.5.21 (2010-09-15)
+X-Spam-Score: 0.3 (/)
 X-Spam-Report: Spam Filtering performed by mx.sourceforge.net.
  See http://spamassassin.org/tag/ for more details.
  0.0 URIBL_BLOCKED ADMINISTRATOR NOTICE: The query to URIBL was blocked.
  See
  http://wiki.apache.org/spamassassin/DnsBlocklists#dnsbl-block
  for more information. [URIs: huawei.com]
- 0.0 RCVD_IN_MSPIKE_H4      RBL: Very Good reputation (+4)
- [45.249.212.32 listed in wl.mailspike.net]
- -0.0 SPF_HELO_PASS          SPF: HELO matches SPF record
+ 0.2 HEADER_FROM_DIFFERENT_DOMAINS From and EnvelopeFrom 2nd level mail
+ domains are different
  -0.0 SPF_PASS               SPF: sender matches SPF record
- 0.0 RCVD_IN_MSPIKE_WL      Mailspike good senders
-X-Headers-End: 1kQmIH-0086gY-MT
-Subject: [V9fs-developer] [PATCH] 9p/xen: Fix inconsistent of format with
- argument type in trans_xen.c
+ 0.0 SPF_HELO_NONE          SPF: HELO does not publish an SPF Record
+X-Headers-End: 1kQmqt-003xQw-Tw
+Subject: Re: [V9fs-developer] [PATCH] 9p/xen: Fix inconsistent of format
+ with argument type in trans_xen.c
 X-BeenThere: v9fs-developer@lists.sourceforge.net
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -78,46 +73,47 @@ List-Post: <mailto:v9fs-developer@lists.sourceforge.net>
 List-Help: <mailto:v9fs-developer-request@lists.sourceforge.net?subject=help>
 List-Subscribe: <https://lists.sourceforge.net/lists/listinfo/v9fs-developer>, 
  <mailto:v9fs-developer-request@lists.sourceforge.net?subject=subscribe>
-Cc: Ye Bin <yebin10@huawei.com>
+Cc: ericvh@gmail.com, lucho@ionkov.net, v9fs-developer@lists.sourceforge.net
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: v9fs-developer-bounces@lists.sourceforge.net
 
-Fix follow warnings:
-[net/9p/trans_xen.c:454]: (warning) %u in format string (no. 1) requires
-'unsigned int' but the argument type is 'int'.
-[net/9p/trans_xen.c:460]: (warning) %u in format string (no. 1) requires
-'unsigned int' but the argument type is 'int'.
 
-Reported-by: Hulk Robot <hulkci@huawei.com>
-Signed-off-by: Ye Bin <yebin10@huawei.com>
----
- net/9p/trans_xen.c | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
 
-diff --git a/net/9p/trans_xen.c b/net/9p/trans_xen.c
-index bc8807d9281f..f4fea28e05da 100644
---- a/net/9p/trans_xen.c
-+++ b/net/9p/trans_xen.c
-@@ -451,13 +451,13 @@ static int xen_9pfs_front_probe(struct xenbus_device *dev,
- 		char str[16];
- 
- 		BUILD_BUG_ON(XEN_9PFS_NUM_RINGS > 9);
--		sprintf(str, "ring-ref%u", i);
-+		sprintf(str, "ring-ref%d", i);
- 		ret = xenbus_printf(xbt, dev->nodename, str, "%d",
- 				    priv->rings[i].ref);
- 		if (ret)
- 			goto error_xenbus;
- 
--		sprintf(str, "event-channel-%u", i);
-+		sprintf(str, "event-channel-%d", i);
- 		ret = xenbus_printf(xbt, dev->nodename, str, "%u",
- 				    priv->rings[i].evtchn);
- 		if (ret)
+Ye Bin wrote on Fri, Oct 09, 2020:
+> Fix follow warnings:
+> [net/9p/trans_xen.c:454]: (warning) %u in format string (no. 1) requires
+> 'unsigned int' but the argument type is 'int'.
+> [net/9p/trans_xen.c:460]: (warning) %u in format string (no. 1) requires
+> 'unsigned int' but the argument type is 'int'.
+> 
+> Reported-by: Hulk Robot <hulkci@huawei.com>
+> Signed-off-by: Ye Bin <yebin10@huawei.com>
+
+Err, well, we'll run into more troubles than a bad printf if `i` ever
+hits values where that'd make a difference but sure.
+
+Could you resend with linux-kernel@vger.kernel.org added to Ccs so I can
+add a lkml link?
+In general you should run your patch through the "get_maintainer.pl"
+script, that'll add a few more Ccs, but I insist on a vger list for
+history mostly.
+
+> Subject Re: [PATCH] 9p/xen: Fix inconsistent of format with argument
+type in trans_xen.c
+
+Since you'll have to resend anyway, please fix the subject a bit.
+
+'inconsistent of format' is not valid English, and I don't think it's
+worth specifying in trans_xen.c after 9p/xen has already been said --
+let's keep summaries short.
+
+For example, "9p/xen: Fix format argument warning" ?
+
+
+Thanks
 -- 
-2.16.2.dirty
-
+Dominique
 
 
 _______________________________________________
