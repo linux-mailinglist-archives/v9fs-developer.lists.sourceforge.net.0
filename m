@@ -2,26 +2,26 @@ Return-Path: <v9fs-developer-bounces@lists.sourceforge.net>
 X-Original-To: lists+v9fs-developer@lfdr.de
 Delivered-To: lists+v9fs-developer@lfdr.de
 Received: from lists.sourceforge.net (lists.sourceforge.net [216.105.38.7])
-	by mail.lfdr.de (Postfix) with ESMTPS id 70DF8288AFC
+	by mail.lfdr.de (Postfix) with ESMTPS id 3397F288AF8
 	for <lists+v9fs-developer@lfdr.de>; Fri,  9 Oct 2020 16:31:39 +0200 (CEST)
 Received: from [127.0.0.1] (helo=sfs-ml-1.v29.lw.sourceforge.com)
 	by sfs-ml-1.v29.lw.sourceforge.com with esmtp (Exim 4.90_1)
 	(envelope-from <v9fs-developer-bounces@lists.sourceforge.net>)
-	id 1kQtQo-0007tD-73; Fri, 09 Oct 2020 14:31:38 +0000
+	id 1kQtQn-0007sM-Ux; Fri, 09 Oct 2020 14:31:37 +0000
 Received: from [172.30.20.202] (helo=mx.sourceforge.net)
  by sfs-ml-1.v29.lw.sourceforge.com with esmtps
  (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.90_1)
- (envelope-from <willy@infradead.org>) id 1kQtQg-0007ql-0M
- for v9fs-developer@lists.sourceforge.net; Fri, 09 Oct 2020 14:31:30 +0000
+ (envelope-from <willy@infradead.org>) id 1kQtQZ-0007pF-NU
+ for v9fs-developer@lists.sourceforge.net; Fri, 09 Oct 2020 14:31:23 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
  d=sourceforge.net; s=x; h=Content-Transfer-Encoding:MIME-Version:References:
  In-Reply-To:Message-Id:Date:Subject:Cc:To:From:Sender:Reply-To:Content-Type:
  Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
  Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
  List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=9pnCDQD7BT3wSOEmQ/ujAa+Hm2ir7A48RB79T7IxK0Q=; b=Vv0OoPv/bPI3fSnnWXkCEKc/7y
- KEaqjrxWIvigIdbcod7IyqUwrT69FtKZjXhb2UBj4/7w2bwrJH+T6dAWDvvFOO1rtYpB4CP2Bx9C1
- Rerl7hvUgrpwimMdgsAoOS7SO2tkhgcOTMuhEBd7Wuqbgx1FHmomxoPodxdhH+8LgGfo=;
+ bh=HQZhweg8a+1Qpo+qFNQoqVI2WIjKy37atq+XWcCiXOA=; b=OpgVon/Iqktx+C5lMfKH81NUsE
+ eD0fUaLq2dUpTWJRtybE7EVZ/jPFakY0E6B0nwCHwCSsjdiGctHlAvA9njQF0qZNbXUS/Ebbd2vgH
+ WMQ3ZqU08GFgSdLu+nfb/QYzD+j+rWmvT86cPAtSVTJ1uCh+px8iO04+vHPnjvH4QVbo=;
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  ;
  h=Content-Transfer-Encoding:MIME-Version:References:In-Reply-To:Message-Id:
@@ -29,30 +29,30 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
  :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
  List-Post:List-Owner:List-Archive;
- bh=9pnCDQD7BT3wSOEmQ/ujAa+Hm2ir7A48RB79T7IxK0Q=; b=JXHqGwnaXFGtT368oKSeD981dk
- jKRCbCGs52pSTR/JuGAE8ON2rSJtCBBctGFKmOrXFHXKcgTkWZI0Pdf7UsMU7nrmkKK0IjvlkJ4hR
- FKYqs66Pk+mUnIXsyx0heAFgN3JMEcI+RB9N6OwzQM4ku1QjVDaj+vlKr2SEPmY/jtFY=;
+ bh=HQZhweg8a+1Qpo+qFNQoqVI2WIjKy37atq+XWcCiXOA=; b=aQ7UhooaUn5HRmGqwjnlg2MvBw
+ JkX+Id/b5x+qKYlgzVrzzLuJNu9dLyphXDSaThfU56zFIbafH0ZKfcDyhhypk0DWm1TMSTfpSydiH
+ jVc9y/UmjaaxuyB0oW8ZIzwNGg2X/AS+XI5UQOkT9TD3W6SgqXPG9bJuiOyacwQR9cDM=;
 Received: from casper.infradead.org ([90.155.50.34])
  by sfi-mx-3.v28.lw.sourceforge.com with esmtps
  (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.92.2)
- id 1kQtQY-004Iq5-Su
- for v9fs-developer@lists.sourceforge.net; Fri, 09 Oct 2020 14:31:29 +0000
+ id 1kQtQT-004Ipx-TA
+ for v9fs-developer@lists.sourceforge.net; Fri, 09 Oct 2020 14:31:23 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
  d=infradead.org; s=casper.20170209; h=Content-Transfer-Encoding:MIME-Version:
  References:In-Reply-To:Message-Id:Date:Subject:Cc:To:From:Sender:Reply-To:
  Content-Type:Content-ID:Content-Description;
- bh=9pnCDQD7BT3wSOEmQ/ujAa+Hm2ir7A48RB79T7IxK0Q=; b=OpgwA4h4sqP1jU/IETGKZCdM+Q
- i2z3mUNTVaNMrPcKu/kIEUukM1dt974qFSZx4F1PJP3u9M1SgxVKgcIonjd/aNrK8oJYJJN4oHRk1
- obdU0/M9Ik9JMH/nzkWE8D3yho4lKnaBpftYWxPJpDwLQo52xiQnfV7kpYc8EtYGLGmDorJ9y8V5N
- CJcX+ugzQELTPBZdvOkJejfwb3L1y6UeR3FiWZL/sICMMOlGRRiA2qGYtu0wV9jkbIzwzA2oq/dOd
- H5aqicfp9nwOgncn7C7ET7kxAk5rWlkDprT8RSZwKu9U+B7N0o7spekfqopBUVo/2X+R5nO4vA99R
- nxNxhJxw==;
+ bh=HQZhweg8a+1Qpo+qFNQoqVI2WIjKy37atq+XWcCiXOA=; b=geZDyx9zxwDAZMT1kXigMN/NeL
+ y6/HNpoOVZM17yr4WSs7XuzAzLshwq8rV9NK+/vsXt6jsWTQxWhH+vHhc4/DVRZcalbVZPc8Yy/NL
+ f52u9USjrpHt2Vdpc+Q0yu7uJPyz8uUxtZPaio2gMRZcZuowPskJmHiL6fAeHi6Ajcfh9e9cwrHSI
+ TmB+0AFd9Z/t0TIdJXWLWd91z7Pp6JIf5hnIB/SWa+Yy6dCtUU2PL/k26ExALlqokhxxVICHxEv59
+ UQBenExGSJ+MvxSnlfXVcMDO3ia2WBU5dNBvo9LboGyaLuY3yZn4ZfDYK8obdEN6KwtUtXt74EgUi
+ H+Jfrfig==;
 Received: from willy by casper.infradead.org with local (Exim 4.92.3 #3 (Red
- Hat Linux)) id 1kQtQI-0005uX-P8; Fri, 09 Oct 2020 14:31:06 +0000
+ Hat Linux)) id 1kQtQI-0005ub-VP; Fri, 09 Oct 2020 14:31:07 +0000
 From: "Matthew Wilcox (Oracle)" <willy@infradead.org>
 To: linux-fsdevel@vger.kernel.org
-Date: Fri,  9 Oct 2020 15:30:50 +0100
-Message-Id: <20201009143104.22673-3-willy@infradead.org>
+Date: Fri,  9 Oct 2020 15:30:51 +0100
+Message-Id: <20201009143104.22673-4-willy@infradead.org>
 X-Mailer: git-send-email 2.21.3
 In-Reply-To: <20201009143104.22673-1-willy@infradead.org>
 References: <20201009143104.22673-1-willy@infradead.org>
@@ -71,9 +71,9 @@ X-Spam-Report: Spam Filtering performed by mx.sourceforge.net.
  -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
  0.1 DKIM_SIGNED            Message has a DKIM or DK signature,
  not necessarily valid
-X-Headers-End: 1kQtQY-004Iq5-Su
-Subject: [V9fs-developer] [PATCH v2 02/16] mm: Inline wait_on_page_read into
- its one caller
+X-Headers-End: 1kQtQT-004Ipx-TA
+Subject: [V9fs-developer] [PATCH v2 03/16] 9p: Tell the VFS that readpage
+ was synchronous
 X-BeenThere: v9fs-developer@lists.sourceforge.net
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -96,58 +96,39 @@ Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: v9fs-developer-bounces@lists.sourceforge.net
 
-Having this code inline helps the function read more easily.
+The 9p readpage implementation was already synchronous, so use
+AOP_UPDATED_PAGE to avoid cycling the page lock.
 
 Signed-off-by: Matthew Wilcox (Oracle) <willy@infradead.org>
+Acked-by: Dominique Martinet <asmadeus@codewreck.org>
 ---
- mm/filemap.c | 20 ++++----------------
- 1 file changed, 4 insertions(+), 16 deletions(-)
+ fs/9p/vfs_addr.c | 6 +++++-
+ 1 file changed, 5 insertions(+), 1 deletion(-)
 
-diff --git a/mm/filemap.c b/mm/filemap.c
-index 95b68ec1f22c..0ef06d515532 100644
---- a/mm/filemap.c
-+++ b/mm/filemap.c
-@@ -2834,18 +2834,6 @@ EXPORT_SYMBOL(filemap_page_mkwrite);
- EXPORT_SYMBOL(generic_file_mmap);
- EXPORT_SYMBOL(generic_file_readonly_mmap);
+diff --git a/fs/9p/vfs_addr.c b/fs/9p/vfs_addr.c
+index cce9ace651a2..506ca0ba2ec7 100644
+--- a/fs/9p/vfs_addr.c
++++ b/fs/9p/vfs_addr.c
+@@ -65,7 +65,7 @@ static int v9fs_fid_readpage(void *data, struct page *page)
+ 	SetPageUptodate(page);
  
--static struct page *wait_on_page_read(struct page *page)
--{
--	if (!IS_ERR(page)) {
--		wait_on_page_locked(page);
--		if (!PageUptodate(page)) {
--			put_page(page);
--			page = ERR_PTR(-EIO);
--		}
--	}
--	return page;
--}
--
- static struct page *do_read_cache_page(struct address_space *mapping,
- 				pgoff_t index,
- 				int (*filler)(void *, struct page *),
-@@ -2876,7 +2864,10 @@ static struct page *do_read_cache_page(struct address_space *mapping,
- 			err = mapping->a_ops->readpage(data, page);
- 		if (err == AOP_UPDATED_PAGE) {
- 			unlock_page(page);
--			goto out;
-+		} else if (!err) {
-+			wait_on_page_locked(page);
-+			if (!PageUptodate(page))
-+				err = -EIO;
- 		}
+ 	v9fs_readpage_to_fscache(inode, page);
+-	retval = 0;
++	return AOP_UPDATED_PAGE;
  
- 		if (err < 0) {
-@@ -2884,9 +2875,6 @@ static struct page *do_read_cache_page(struct address_space *mapping,
- 			return ERR_PTR(err);
- 		}
- 
--		page = wait_on_page_read(page);
--		if (IS_ERR(page))
--			return page;
+ done:
+ 	unlock_page(page);
+@@ -280,6 +280,10 @@ static int v9fs_write_begin(struct file *filp, struct address_space *mapping,
  		goto out;
- 	}
- 	if (PageUptodate(page))
+ 
+ 	retval = v9fs_fid_readpage(v9inode->writeback_fid, page);
++	if (retval == AOP_UPDATED_PAGE) {
++		retval = 0;
++		goto out;
++	}
+ 	put_page(page);
+ 	if (!retval)
+ 		goto start;
 -- 
 2.28.0
 
