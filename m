@@ -2,77 +2,92 @@ Return-Path: <v9fs-developer-bounces@lists.sourceforge.net>
 X-Original-To: lists+v9fs-developer@lfdr.de
 Delivered-To: lists+v9fs-developer@lfdr.de
 Received: from lists.sourceforge.net (lists.sourceforge.net [216.105.38.7])
-	by mail.lfdr.de (Postfix) with ESMTPS id 53496288B17
-	for <lists+v9fs-developer@lfdr.de>; Fri,  9 Oct 2020 16:31:49 +0200 (CEST)
-Received: from [127.0.0.1] (helo=sfs-ml-2.v29.lw.sourceforge.com)
-	by sfs-ml-2.v29.lw.sourceforge.com with esmtp (Exim 4.90_1)
+	by mail.lfdr.de (Postfix) with ESMTPS id 98B9B28A0DD
+	for <lists+v9fs-developer@lfdr.de>; Sat, 10 Oct 2020 18:05:42 +0200 (CEST)
+Received: from [127.0.0.1] (helo=sfs-ml-1.v29.lw.sourceforge.com)
+	by sfs-ml-1.v29.lw.sourceforge.com with esmtp (Exim 4.90_1)
 	(envelope-from <v9fs-developer-bounces@lists.sourceforge.net>)
-	id 1kQtQy-0002eW-3s; Fri, 09 Oct 2020 14:31:48 +0000
+	id 1kRHNM-0005w2-64; Sat, 10 Oct 2020 16:05:40 +0000
 Received: from [172.30.20.202] (helo=mx.sourceforge.net)
- by sfs-ml-2.v29.lw.sourceforge.com with esmtps
+ by sfs-ml-1.v29.lw.sourceforge.com with esmtps
  (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.90_1)
- (envelope-from <willy@infradead.org>) id 1kQtQg-0002ck-0N
- for v9fs-developer@lists.sourceforge.net; Fri, 09 Oct 2020 14:31:30 +0000
+ (envelope-from <infos@newdiffusions.website>) id 1kRHNJ-0005vI-5V
+ for v9fs-developer@lists.sourceforge.net; Sat, 10 Oct 2020 16:05:37 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=sourceforge.net; s=x; h=Content-Transfer-Encoding:MIME-Version:References:
- In-Reply-To:Message-Id:Date:Subject:Cc:To:From:Sender:Reply-To:Content-Type:
- Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
- Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
+ d=sourceforge.net; s=x; h=Content-Transfer-Encoding:Content-Type:MIME-Version
+ :Message-ID:Subject:Reply-To:From:To:Date:Sender:Cc:Content-ID:
+ Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
+ :Resent-Message-ID:In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:
  List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=XENkUyBYEqQdDJViwbkj3PXnyvtkG9pwyINW5T48dY0=; b=RZWPiQXvFsbSbbaDfcGCIVxBeU
- mIWxb++y8ucZoT1yttuO2+lGWNjITUMU1yaxYgiqvMy7s74EIPNtpHPk1ErsO0/NrEiMJfH78GsHE
- 4QVwNDND9hgY/EeWextJMqrZDYwLCwPIdPc+bOfMBBt3KaEOFC0BpkVcU92/PF/LnNII=;
+ bh=B44Fs6ssfUnsqJsMLy+yuGpv8BtWzn7YVc61QJNcl4w=; b=gcDwrrwfmioJeE8uh9/YvZ1vBE
+ wRnhs62oQJiP+RYOPvCmmRucRd3ZitkOsKCtOoEcATK2oJxtxvHmBs92NYSBlQoVLDFmyXXWfO2SW
+ q2TA4ciqc3H/2GaqwJbWu12Q1+ab/jEBstyMaAJzc2xzPDGWw1mC75wsqLmHpztGhhZc=;
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  ;
- h=Content-Transfer-Encoding:MIME-Version:References:In-Reply-To:Message-Id:
- Date:Subject:Cc:To:From:Sender:Reply-To:Content-Type:Content-ID:
- Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
- :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
- List-Post:List-Owner:List-Archive;
- bh=XENkUyBYEqQdDJViwbkj3PXnyvtkG9pwyINW5T48dY0=; b=jk0cZ0Bq44UvFVHREVlyVc+YkG
- qRD3cLipTL/CjhCTgNwOccdwBgqKgyShF4BOrB3Q2hIoWDDNeAPE7lpPmsiZOgETQStb6hW1m/8WW
- Tqg/cUlQbO3pRmRisJzwqziNuv23yzmbqjDyZpHIRt2I5FSW/6gFzc/fOCIQbADck+aU=;
-Received: from casper.infradead.org ([90.155.50.34])
- by sfi-mx-1.v28.lw.sourceforge.com with esmtps
- (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.92.2)
- id 1kQtQd-008YKE-Dr
- for v9fs-developer@lists.sourceforge.net; Fri, 09 Oct 2020 14:31:29 +0000
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=infradead.org; s=casper.20170209; h=Content-Transfer-Encoding:MIME-Version:
- References:In-Reply-To:Message-Id:Date:Subject:Cc:To:From:Sender:Reply-To:
- Content-Type:Content-ID:Content-Description;
- bh=XENkUyBYEqQdDJViwbkj3PXnyvtkG9pwyINW5T48dY0=; b=ekyZ0RqHciHT6w0FRtBIb74RNP
- ATW28QGWmqsNnH/vLrqBZaFXuDhEx3ApS3w+jFzpx2X/taHl+6rpgUjut8ndwr5pqa+DLjv4Gx50+
- 6+70qpWiZ3+++j70k/q90ALYSczVw6/4PCbVL3Y2U2L6Y23KLl4a3w8gd03srsRFuXNg/GmrWwXYN
- vTNgqiQtCBrX8BYOQuu/fsNDHXqjKDBLsVhD/vQ09kXf7CReTOSNh1XplEPkeYBls5zfzru3+gi4I
- EhS0MsH/dvccHF4LZQeeilzTBaCqLN8cLE90npHEUozqFLYE3kkEPktZ4a+EFwfYQ8aTrZOR6RQUm
- 0EdAxQ2A==;
-Received: from willy by casper.infradead.org with local (Exim 4.92.3 #3 (Red
- Hat Linux)) id 1kQtQN-0005wc-Vg; Fri, 09 Oct 2020 14:31:12 +0000
-From: "Matthew Wilcox (Oracle)" <willy@infradead.org>
-To: linux-fsdevel@vger.kernel.org
-Date: Fri,  9 Oct 2020 15:31:04 +0100
-Message-Id: <20201009143104.22673-17-willy@infradead.org>
-X-Mailer: git-send-email 2.21.3
-In-Reply-To: <20201009143104.22673-1-willy@infradead.org>
-References: <20201009143104.22673-1-willy@infradead.org>
+ h=Content-Transfer-Encoding:Content-Type:MIME-Version:Message-ID:Subject:
+ Reply-To:From:To:Date:Sender:Cc:Content-ID:Content-Description:Resent-Date:
+ Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:
+ References:List-Id:List-Help:List-Unsubscribe:List-Subscribe:List-Post:
+ List-Owner:List-Archive; bh=B44Fs6ssfUnsqJsMLy+yuGpv8BtWzn7YVc61QJNcl4w=; b=l
+ AKMHhaEGRDsn8Zonkeulz3xKV08c/ZLnic7WVaRhPNKU7s4GVGXqc7nKGaVNMnAsWZ995dOdVlOJK
+ jwgJ5Guls5DfrRh/jrWDlt2twbiCTKBVaIm+dfeu9hnd8JbGOogzk3/dlo34Z0Qenj7oI4RTNCZpJ
+ HLEgRCqLgkKjeImE=;
+Received: from smtp03.smtpout.orange.fr ([80.12.242.125]
+ helo=smtp.smtpout.orange.fr)
+ by sfi-mx-1.v28.lw.sourceforge.com with esmtps (TLSv1:DHE-RSA-AES128-SHA:128)
+ (Exim 4.92.2) id 1kRHN9-009jXT-DL
+ for v9fs-developer@lists.sourceforge.net; Sat, 10 Oct 2020 16:05:36 +0000
+Received: from crucidulle ([10.162.66.52]) by mwinf5d38 with ME
+ id eG5C2300S17fAaq03G5C4X; Sat, 10 Oct 2020 18:05:13 +0200
+X-ME-Helo: crucidulle
+X-ME-Date: Sat, 10 Oct 2020 18:05:13 +0200
+X-ME-IP: 10.162.66.52
+Date: Sat, 10 Oct 2020 16:05:12 +0000
+To: v9fs-developer@lists.sourceforge.net
+From: ONE MONTHLY FEE <infos@newdiffusions.website>
+Message-ID: <1170c1d09b50a6b2783555f96863e5cb@crucidulle>
+X-Priority: 3
+X-Mailer: PHP/7.1.33
 MIME-Version: 1.0
-X-Spam-Score: -0.1 (/)
+DKIM-Signature: v=1; a=rsa-sha1; q=dns/txt; l=8057; s=default;
+ t=1602345912; c=relaxed/simple; h=From:To:Subject;
+ d=newdiffusions.website; i=infos@newdiffusions.website;
+ z=From:=20ONE=20MONTHLY=20FEE=20<infos@newdiffusions.website>
+ |To:=20v9fs-developer@lists.sourceforge.net
+ |Subject:=20Unlimited=20Accountancy=20Services;
+ bh=N8y1mCfNNHITZiXd9C5Hejdjuew=;
+ b=fSDWZJNk+UDhODpGWzN+W4Se0ddW9x9qSAWBjwA0OvAjJrx7LHIecg4QHIiIEzzlmO0AJqd8CTszUeV9LcvDy3ehE7YyWZU5Iv7SNDJ3skXj2kZ5vodVu46D9N5tKrsYDH2SLAYg4yhMpNQ+c9B8ZvIS0ZNldI3xTNYn/gAJLm4=
+X-Spam-Score: 6.9 (++++++)
 X-Spam-Report: Spam Filtering performed by mx.sourceforge.net.
  See http://spamassassin.org/tag/ for more details.
+ 2.0 URIBL_DBL_ABUSE_SPAM   Contains an abused spamvertized URL listed in
+ the Spamhaus DBL blocklist [URIs: newdiffusions.website]
  0.0 URIBL_BLOCKED ADMINISTRATOR NOTICE: The query to URIBL was blocked.
  See
  http://wiki.apache.org/spamassassin/DnsBlocklists#dnsbl-block
- for more information. [URIs: infradead.org]
- 0.0 SPF_NONE               SPF: sender does not publish an SPF Record
+ for more information. [URIs: newdiffusions.website]
+ 1.9 URIBL_ABUSE_SURBL Contains an URL listed in the ABUSE SURBL blocklist
+ [URIs: newdiffusions.website]
+ -0.0 RCVD_IN_DNSWL_NONE     RBL: Sender listed at https://www.dnswl.org/, no
+ trust [80.12.242.125 listed in list.dnswl.org]
+ -0.0 RCVD_IN_MSPIKE_H2      RBL: Average reputation (+2)
+ [80.12.242.125 listed in wl.mailspike.net]
  0.0 SPF_HELO_NONE          SPF: HELO does not publish an SPF Record
+ 1.0 HTML_MESSAGE           BODY: HTML included in message
+ 0.0 HTML_FONT_LOW_CONTRAST BODY: HTML font color similar or identical to
+ background
  -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from author's
  domain
  -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
  0.1 DKIM_SIGNED            Message has a DKIM or DK signature,
  not necessarily valid
-X-Headers-End: 1kQtQd-008YKE-Dr
-Subject: [V9fs-developer] [PATCH v2 16/16] iomap: Make readpage synchronous
+ 0.5 RAZOR2_CHECK           Listed in Razor2 (http://razor.sf.net/)
+ 1.5 RAZOR2_CF_RANGE_51_100 Razor2 gives confidence level above 50%
+ [cf: 100]
+ 0.0 T_REMOTE_IMAGE         Message contains an external image
+X-Headers-End: 1kRHN9-009jXT-DL
+X-Content-Filtered-By: Mailman/MimeDel 2.1.21
+Subject: [V9fs-developer] Unlimited Accountancy Services
 X-BeenThere: v9fs-developer@lists.sourceforge.net
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -84,166 +99,73 @@ List-Post: <mailto:v9fs-developer@lists.sourceforge.net>
 List-Help: <mailto:v9fs-developer-request@lists.sourceforge.net?subject=help>
 List-Subscribe: <https://lists.sourceforge.net/lists/listinfo/v9fs-developer>, 
  <mailto:v9fs-developer-request@lists.sourceforge.net?subject=subscribe>
-Cc: linux-cifs@vger.kernel.org, Richard Weinberger <richard@nod.at>,
- ecryptfs@vger.kernel.org, linux-um@lists.infradead.org,
- linux-kernel@vger.kernel.org,
- "Matthew Wilcox \(Oracle\)" <willy@infradead.org>, linux-xfs@vger.kernel.org,
- linux-mm@kvack.org, linux-mtd@lists.infradead.org,
- v9fs-developer@lists.sourceforge.net, ceph-devel@vger.kernel.org,
- linux-afs@lists.infradead.org
+Reply-To: infos@newdiffusions.website
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: v9fs-developer-bounces@lists.sourceforge.net
 
-A synchronous readpage lets us report the actual errno instead of
-ineffectively setting PageError.
 
-Signed-off-by: Matthew Wilcox (Oracle) <willy@infradead.org>
----
- fs/iomap/buffered-io.c | 74 ++++++++++++++++++++++++------------------
- 1 file changed, 42 insertions(+), 32 deletions(-)
 
-diff --git a/fs/iomap/buffered-io.c b/fs/iomap/buffered-io.c
-index e60f572e1590..887bf871ca9b 100644
---- a/fs/iomap/buffered-io.c
-+++ b/fs/iomap/buffered-io.c
-@@ -150,9 +150,6 @@ static void iomap_set_range_uptodate(struct page *page, unsigned off,
- 	unsigned last = (off + len - 1) >> inode->i_blkbits;
- 	unsigned long flags;
- 
--	if (PageError(page))
--		return;
--
- 	if (!iop) {
- 		SetPageUptodate(page);
- 		return;
-@@ -165,42 +162,50 @@ static void iomap_set_range_uptodate(struct page *page, unsigned off,
- 	spin_unlock_irqrestore(&iop->uptodate_lock, flags);
- }
- 
--static void
--iomap_read_page_end_io(struct bio_vec *bvec, int error)
-+static void iomap_read_page_end_io(struct bio_vec *bvec,
-+		struct completion *done, bool error)
- {
- 	struct page *page = bvec->bv_page;
- 	struct iomap_page *iop = to_iomap_page(page);
- 
--	if (unlikely(error)) {
--		ClearPageUptodate(page);
--		SetPageError(page);
--	} else {
-+	if (!error)
- 		iomap_set_range_uptodate(page, bvec->bv_offset, bvec->bv_len);
--	}
- 
--	if (!iop || atomic_sub_and_test(bvec->bv_len, &iop->read_bytes_pending))
--		unlock_page(page);
-+	if (!iop ||
-+	    atomic_sub_and_test(bvec->bv_len, &iop->read_bytes_pending)) {
-+		if (done)
-+			complete(done);
-+		else
-+			unlock_page(page);
-+	}
- }
- 
-+struct iomap_readpage_ctx {
-+	struct page		*cur_page;
-+	bool			cur_page_in_bio;
-+	blk_status_t		status;
-+	struct bio		*bio;
-+	struct readahead_control *rac;
-+	struct completion	done;
-+};
-+
- static void
- iomap_read_end_io(struct bio *bio)
- {
--	int error = blk_status_to_errno(bio->bi_status);
-+	struct iomap_readpage_ctx *ctx = bio->bi_private;
- 	struct bio_vec *bvec;
- 	struct bvec_iter_all iter_all;
- 
-+	/* Capture the first error */
-+	if (ctx && ctx->status == BLK_STS_OK)
-+		ctx->status = bio->bi_status;
-+
- 	bio_for_each_segment_all(bvec, bio, iter_all)
--		iomap_read_page_end_io(bvec, error);
-+		iomap_read_page_end_io(bvec, ctx ? &ctx->done : NULL,
-+				bio->bi_status != BLK_STS_OK);
- 	bio_put(bio);
- }
- 
--struct iomap_readpage_ctx {
--	struct page		*cur_page;
--	bool			cur_page_in_bio;
--	struct bio		*bio;
--	struct readahead_control *rac;
--};
--
- static void
- iomap_read_inline_data(struct inode *inode, struct page *page,
- 		struct iomap *iomap)
-@@ -292,6 +297,8 @@ iomap_readpage_actor(struct inode *inode, loff_t pos, loff_t length, void *data,
- 		ctx->bio->bi_opf = REQ_OP_READ;
- 		if (ctx->rac)
- 			ctx->bio->bi_opf |= REQ_RAHEAD;
-+		else
-+			ctx->bio->bi_private = ctx;
- 		ctx->bio->bi_iter.bi_sector = sector;
- 		bio_set_dev(ctx->bio, iomap->bdev);
- 		ctx->bio->bi_end_io = iomap_read_end_io;
-@@ -318,15 +325,17 @@ iomap_readpage(struct page *page, const struct iomap_ops *ops)
- 
- 	trace_iomap_readpage(page->mapping->host, 1);
- 
-+	ctx.status = BLK_STS_OK;
-+	init_completion(&ctx.done);
-+
- 	for (poff = 0; poff < PAGE_SIZE; poff += ret) {
- 		ret = iomap_apply(inode, page_offset(page) + poff,
- 				PAGE_SIZE - poff, 0, ops, &ctx,
- 				iomap_readpage_actor);
--		if (ret <= 0) {
--			WARN_ON_ONCE(ret == 0);
--			SetPageError(page);
-+		if (WARN_ON_ONCE(ret == 0))
-+			ret = -EIO;
-+		if (ret < 0)
- 			break;
--		}
- 	}
- 
- 	if (ctx.bio) {
-@@ -334,15 +343,16 @@ iomap_readpage(struct page *page, const struct iomap_ops *ops)
- 		WARN_ON_ONCE(!ctx.cur_page_in_bio);
- 	} else {
- 		WARN_ON_ONCE(ctx.cur_page_in_bio);
--		unlock_page(page);
-+		complete(&ctx.done);
- 	}
- 
--	/*
--	 * Just like mpage_readahead and block_read_full_page we always
--	 * return 0 and just mark the page as PageError on errors.  This
--	 * should be cleaned up all through the stack eventually.
--	 */
--	return 0;
-+	wait_for_completion(&ctx.done);
-+	if (ret >= 0)
-+		ret = blk_status_to_errno(ctx.status);
-+	if (ret == 0)
-+		return AOP_UPDATED_PAGE;
-+	unlock_page(page);
-+	return ret;
- }
- EXPORT_SYMBOL_GPL(iomap_readpage);
- 
--- 
-2.28.0
 
+
+
+Unlimited Accountancy Services
+One Monthly FEE
+
+
+Quote Online To See How Much
+You Should Be Paying
+
+
+We quote online based on company turnover and transactions.
+Quote Now.
+
+
+Unlimited Accountancy Services Include:
+
+Unlimited Telephone Support
+Unlimited Email Support (3 Hour Response)
+Dedicated Accountant
+Monthly Bookkeeping/Reconciliation
+Quarterly VAT Returns
+Company Annual Accounts
+Company Tax Return
+Self-Assessment Tax Returns
+Submission of Confirmation Statement
+Xero Software
+Xero Training
+Company Incorporation (if required)
+VAT Registration (if required)
+PAYE Registration (if required)
+CIS Registration (if required)
+Financial Reference (e.g. Mortgage)
+Access to Business Funding
+Monthly Management Information
+
+Tired of unexpected
+accountancy fees?
+Get unlimited services
+and Support for
+One Monthly fee
+
+
+
+
+
+
+
+
+
+
+
+This e-mail is brought to you by an independent e-mail marketing company.
+
+
+
+Follow this link to stop receiving messages about ACCOUNTANCY SERVICES.
+You have the right of access, rectification, opposition and consent, which you have access on this web page: Privacy policy.
+You are receiving this message on your email address because you are in our list of managers and professionals.
+A SCPM - 5 Avenue du General de Gaulle - SAINT MANDE - France - R.C.S. 814 073 060 CRETEIL
 
 
 _______________________________________________
