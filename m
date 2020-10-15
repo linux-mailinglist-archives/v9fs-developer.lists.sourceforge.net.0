@@ -2,28 +2,26 @@ Return-Path: <v9fs-developer-bounces@lists.sourceforge.net>
 X-Original-To: lists+v9fs-developer@lfdr.de
 Delivered-To: lists+v9fs-developer@lfdr.de
 Received: from lists.sourceforge.net (lists.sourceforge.net [216.105.38.7])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9905728EF9B
-	for <lists+v9fs-developer@lfdr.de>; Thu, 15 Oct 2020 11:51:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id A7C5B28F185
+	for <lists+v9fs-developer@lfdr.de>; Thu, 15 Oct 2020 13:50:38 +0200 (CEST)
 Received: from [127.0.0.1] (helo=sfs-ml-1.v29.lw.sourceforge.com)
 	by sfs-ml-1.v29.lw.sourceforge.com with esmtp (Exim 4.90_1)
 	(envelope-from <v9fs-developer-bounces@lists.sourceforge.net>)
-	id 1kSzuq-0007Q7-4N; Thu, 15 Oct 2020 09:51:20 +0000
+	id 1kT1mB-0001kl-3J; Thu, 15 Oct 2020 11:50:31 +0000
 Received: from [172.30.20.202] (helo=mx.sourceforge.net)
  by sfs-ml-1.v29.lw.sourceforge.com with esmtps
  (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.90_1)
- (envelope-from
- <BATV+d12e96c8672b4e58918a+6262+infradead.org+hch@casper.srs.infradead.org>)
- id 1kSzuo-00078v-8A
- for v9fs-developer@lists.sourceforge.net; Thu, 15 Oct 2020 09:51:18 +0000
+ (envelope-from <willy@infradead.org>) id 1kT1m9-0001kQ-Oo
+ for v9fs-developer@lists.sourceforge.net; Thu, 15 Oct 2020 11:50:29 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
  d=sourceforge.net; s=x; h=In-Reply-To:Content-Type:MIME-Version:References:
  Message-ID:Subject:Cc:To:From:Date:Sender:Reply-To:Content-Transfer-Encoding:
  Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
  Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
  List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=5ZNMyaMGLyh0iAzgchZNWKe2QHg2PouniT97lm2hLjc=; b=GxS1emGHUVWovTuOFwOQD8WZn0
- 6bXvbyQRdBAaRCOInagXYC6Km5Jcxyx9iXqh/p6LfrQM65qdkF/xoRuarESoyzAECNmkSl/b/WH9g
- q65NtITShr+zvltfywFZLI1/ZYSFMm9Vfk7eqbLQcZqiN5pq8XlucNZTXGVf3UxtQOZA=;
+ bh=XLRuihqm3fAlHyAROY0lvBAgKqxOu9ggAgyL2LNoHgw=; b=d0mYcS+iCuTfZt+RIdfAXyMu/F
+ fbbI5+BxHCFVFwUWXVGZKhScMbQu7tTODEs91HCpd/Zn+FVG5WzjsM6ChhzF5nNZjOBPf9NzkxExN
+ A4Ki80Y94/87EZ/JJGOP0+r5X1AZAOsZ9IQHeio6aXgCosEeuCrCWefzHPhmeb/IdRuE=;
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  ;
  h=In-Reply-To:Content-Type:MIME-Version:References:Message-ID:Subject:Cc:To
@@ -31,37 +29,35 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
  :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
  List-Post:List-Owner:List-Archive;
- bh=5ZNMyaMGLyh0iAzgchZNWKe2QHg2PouniT97lm2hLjc=; b=nLu8nhEtnUyHlwSHauD8KyFz/y
- DwI41MosS5LTOFzdTVWNLjxWX0r39cd0boiaitT/GAGDh9rugDi/fGNxq9C7wwtUsMiyQ+ORaV1Vl
- btJ+QJHk8FLf89R+1+4QfIj8Gz0gPxtNokGHqlCiaaMmpvsd796/ju/v4phzGG+f0IyQ=;
+ bh=XLRuihqm3fAlHyAROY0lvBAgKqxOu9ggAgyL2LNoHgw=; b=KCHdFPbaFNh9I+OpiRDI/67bUL
+ G5+YJZN3FsKKBJD+rZisZgXA/P5T9HF2SyNRzeTFRNXTx6J8c0MRHsnMM3Rm9MFiUrAeTennTbqZN
+ K5TVW0FJQX8kIZJeJTv7Q8Vf6kzqzkHUMy398zbMejbl1a9IaBm/zJzCmfzFTp3XvYZg=;
 Received: from casper.infradead.org ([90.155.50.34])
  by sfi-mx-1.v28.lw.sourceforge.com with esmtps
  (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.92.2)
- id 1kSzm7-00GOka-3u
- for v9fs-developer@lists.sourceforge.net; Thu, 15 Oct 2020 09:42:27 +0000
+ id 1kT1lt-00GVaE-2o
+ for v9fs-developer@lists.sourceforge.net; Thu, 15 Oct 2020 11:50:29 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
  d=infradead.org; s=casper.20170209; h=In-Reply-To:Content-Type:MIME-Version:
  References:Message-ID:Subject:Cc:To:From:Date:Sender:Reply-To:
  Content-Transfer-Encoding:Content-ID:Content-Description;
- bh=5ZNMyaMGLyh0iAzgchZNWKe2QHg2PouniT97lm2hLjc=; b=UbzTDpbCdU/uUj0rHetupp4L8v
- PaUluuLxr8LZvOCbK9ck4YLDi3+zPB/hmdH1KgeWEQy8Co2xXtMtUhhVl9GuJYbtbnLeCYd76TNBS
- HZdz95qNkGmkZVezmYCzg8HJhkMbKqv1Xzk2iHdAGnB93fydw7f720JSiZsLwGL22D4bQXb6udDfh
- PL01QS5q/vOm7rs0lz6hK4oIgOO7vvQYNc16v1alatMUt6a+VXectLz3GydJeK3X0T3ZVV1HjE6ii
- B2gLxhncLeJgIGpvtuBsx546BEOgs/6FT1ows1Phr2vQszB8BnyKkzc5Y6LhzlbR7Y0dCe+NH+Dss
- rHuYJitg==;
-Received: from hch by casper.infradead.org with local (Exim 4.92.3 #3 (Red Hat
- Linux)) id 1kSzlr-0005i9-5C; Thu, 15 Oct 2020 09:42:03 +0000
-Date: Thu, 15 Oct 2020 10:42:03 +0100
-From: Christoph Hellwig <hch@infradead.org>
-To: "Matthew Wilcox (Oracle)" <willy@infradead.org>
-Message-ID: <20201015094203.GA21420@infradead.org>
+ bh=XLRuihqm3fAlHyAROY0lvBAgKqxOu9ggAgyL2LNoHgw=; b=VixR6nbubUCnsr4ZO2wy9wuxCn
+ lduZ4bu+AY2nVEOKTBe3JvtWf0PlYzWVbpiellQE6WWeKJ46G0qRMjoBJK9Zqxld+20RhqXCyTXW8
+ iIJ7jl6BzmDlIQEHhkYHBhTOphSFccJhtJ7PpwARQc60tLRYyOXI9J4I06bLQgXnncAM+vpCMN1TW
+ moWLhI0VJd33AOfpSmp24xN24NWqTOcT4f7uyXVJtcRgmtAdi8WW/5Tj8q5TbdPOmTEfJAcHjHHpN
+ vx2Me/S+s+qLI0dsDRm2ZiSRjkSNyE2miUVgJCU5cSIyqF0lNfp5SeuzMdGwwLIvbsLqhY94JNLFJ
+ JtXRqa5w==;
+Received: from willy by casper.infradead.org with local (Exim 4.92.3 #3 (Red
+ Hat Linux)) id 1kT1lV-0004fH-KR; Thu, 15 Oct 2020 11:49:49 +0000
+Date: Thu, 15 Oct 2020 12:49:49 +0100
+From: Matthew Wilcox <willy@infradead.org>
+To: Christoph Hellwig <hch@infradead.org>
+Message-ID: <20201015114949.GY20115@casper.infradead.org>
 References: <20201009143104.22673-1-willy@infradead.org>
- <20201009143104.22673-17-willy@infradead.org>
+ <20201015090242.GA12879@infradead.org>
 MIME-Version: 1.0
 Content-Disposition: inline
-In-Reply-To: <20201009143104.22673-17-willy@infradead.org>
-X-SRS-Rewrite: SMTP reverse-path rewritten from <hch@infradead.org> by
- casper.infradead.org. See http://www.infradead.org/rpr.html
+In-Reply-To: <20201015090242.GA12879@infradead.org>
 X-Spam-Score: -0.1 (/)
 X-Spam-Report: Spam Filtering performed by mx.sourceforge.net.
  See http://spamassassin.org/tag/ for more details.
@@ -72,9 +68,9 @@ X-Spam-Report: Spam Filtering performed by mx.sourceforge.net.
  -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
  0.1 DKIM_SIGNED            Message has a DKIM or DK signature,
  not necessarily valid
-X-Headers-End: 1kSzm7-00GOka-3u
-Subject: Re: [V9fs-developer] [PATCH v2 16/16] iomap: Make readpage
- synchronous
+X-Headers-End: 1kT1lt-00GVaE-2o
+Subject: Re: [V9fs-developer] [PATCH v2 00/16] Allow readpage to return a
+ locked page
 X-BeenThere: v9fs-developer@lists.sourceforge.net
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -96,172 +92,45 @@ Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: v9fs-developer-bounces@lists.sourceforge.net
 
-> +static void iomap_read_page_end_io(struct bio_vec *bvec,
-> +		struct completion *done, bool error)
+On Thu, Oct 15, 2020 at 10:02:42AM +0100, Christoph Hellwig wrote:
+> On Fri, Oct 09, 2020 at 03:30:48PM +0100, Matthew Wilcox (Oracle) wrote:
+> > Ideally all filesystems would return from ->readpage with the page
+> > Uptodate and Locked, but it's a bit painful to convert all the
+> > asynchronous readpage implementations to synchronous.  The first 14
+> > filesystems converted are already synchronous.  The last two patches
+> > convert iomap to synchronous readpage.
+> 
+> Is it really that bad?  It seems like a lot of the remainig file systems
+> use the generic mpage/buffer/nobh helpers.
+> 
+> But I guess this series is a good first step.
 
-I really don't like the parameters here.  Part of the problem is
-that ctx is only assigned to bi_private conditionally, which can
-easily be fixed.  The other part is the strange bool error when
-we can just pass on bi_stats.  See the patch at the end of what
-I'd do intead.
+I'm just testing a patch to mpage_readpage():
 
-> @@ -318,15 +325,17 @@ iomap_readpage(struct page *page, const struct iomap_ops *ops)
->  
->  	trace_iomap_readpage(page->mapping->host, 1);
->  
-> +	ctx.status = BLK_STS_OK;
-
-This should move into the initializer for ctx.  Or we could just drop
-it given that BLK_STS_OK is and must always be 0.
-
->  	} else {
->  		WARN_ON_ONCE(ctx.cur_page_in_bio);
-> -		unlock_page(page);
-> +		complete(&ctx.done);
->  	}
->  
-> +	wait_for_completion(&ctx.done);
-
-I don't think we need the complete / wait_for_completion dance in
-this case.
-
-> +	if (ret >= 0)
-> +		ret = blk_status_to_errno(ctx.status);
-> +	if (ret == 0)
-> +		return AOP_UPDATED_PAGE;
-> +	unlock_page(page);
-> +	return ret;
-
-Nipick, but I'd rather have a goto out_unlock for both error case
-and have the AOP_UPDATED_PAGE for the normal path straight in line.
-
-Here is an untested patch with my suggestions:
-
-
-diff --git a/fs/iomap/buffered-io.c b/fs/iomap/buffered-io.c
-index 887bf871ca9bba..81d34725565d7e 100644
---- a/fs/iomap/buffered-io.c
-+++ b/fs/iomap/buffered-io.c
-@@ -162,33 +162,34 @@ static void iomap_set_range_uptodate(struct page *page, unsigned off,
- 	spin_unlock_irqrestore(&iop->uptodate_lock, flags);
++++ b/fs/mpage.c
+@@ -406,11 +406,17 @@ int mpage_readpage(struct page *page, get_block_t get_block)
+                .nr_pages = 1,
+                .get_block = get_block,
+        };
++       int err;
+ 
+        args.bio = do_mpage_readpage(&args);
+-       if (args.bio)
+-               mpage_bio_submit(REQ_OP_READ, 0, args.bio);
+-       return 0;
++       if (!args.bio)
++               return 0;
++       bio_set_op_attrs(args.bio, REQ_OP_READ, 0);
++       guard_bio_eod(args.bio);
++       err = submit_bio_wait(args.bio);
++       if (!err)
++               err = AOP_UPDATED_PAGE;
++       return err;
  }
+ EXPORT_SYMBOL(mpage_readpage);
  
--static void iomap_read_page_end_io(struct bio_vec *bvec,
--		struct completion *done, bool error)
-+struct iomap_readpage_ctx {
-+	struct page		*cur_page;
-+	bool			cur_page_in_bio;
-+	blk_status_t		status;
-+	struct bio		*bio;
-+	struct readahead_control *rac;
-+	struct completion	done;
-+};
-+
-+static void
-+iomap_read_page_end_io(struct iomap_readpage_ctx *ctx, struct bio_vec *bvec,
-+		blk_status_t status)
- {
- 	struct page *page = bvec->bv_page;
- 	struct iomap_page *iop = to_iomap_page(page);
- 
--	if (!error)
-+	if (status == BLK_STS_OK)
- 		iomap_set_range_uptodate(page, bvec->bv_offset, bvec->bv_len);
- 
- 	if (!iop ||
- 	    atomic_sub_and_test(bvec->bv_len, &iop->read_bytes_pending)) {
--		if (done)
--			complete(done);
--		else
-+		if (ctx->rac)
- 			unlock_page(page);
-+		else
-+			complete(&ctx->done);
- 	}
- }
- 
--struct iomap_readpage_ctx {
--	struct page		*cur_page;
--	bool			cur_page_in_bio;
--	blk_status_t		status;
--	struct bio		*bio;
--	struct readahead_control *rac;
--	struct completion	done;
--};
--
- static void
- iomap_read_end_io(struct bio *bio)
- {
-@@ -197,12 +198,11 @@ iomap_read_end_io(struct bio *bio)
- 	struct bvec_iter_all iter_all;
- 
- 	/* Capture the first error */
--	if (ctx && ctx->status == BLK_STS_OK)
-+	if (ctx->status == BLK_STS_OK)
- 		ctx->status = bio->bi_status;
- 
- 	bio_for_each_segment_all(bvec, bio, iter_all)
--		iomap_read_page_end_io(bvec, ctx ? &ctx->done : NULL,
--				bio->bi_status != BLK_STS_OK);
-+		iomap_read_page_end_io(ctx, bvec, bio->bi_status);
- 	bio_put(bio);
- }
- 
-@@ -297,8 +297,7 @@ iomap_readpage_actor(struct inode *inode, loff_t pos, loff_t length, void *data,
- 		ctx->bio->bi_opf = REQ_OP_READ;
- 		if (ctx->rac)
- 			ctx->bio->bi_opf |= REQ_RAHEAD;
--		else
--			ctx->bio->bi_private = ctx;
-+		ctx->bio->bi_private = ctx;
- 		ctx->bio->bi_iter.bi_sector = sector;
- 		bio_set_dev(ctx->bio, iomap->bdev);
- 		ctx->bio->bi_end_io = iomap_read_end_io;
-@@ -318,14 +317,16 @@ iomap_readpage_actor(struct inode *inode, loff_t pos, loff_t length, void *data,
- int
- iomap_readpage(struct page *page, const struct iomap_ops *ops)
- {
--	struct iomap_readpage_ctx ctx = { .cur_page = page };
-+	struct iomap_readpage_ctx ctx = {
-+		.cur_page	= page,
-+		.status		= BLK_STS_OK,
-+	};
- 	struct inode *inode = page->mapping->host;
- 	unsigned poff;
- 	loff_t ret;
- 
- 	trace_iomap_readpage(page->mapping->host, 1);
- 
--	ctx.status = BLK_STS_OK;
- 	init_completion(&ctx.done);
- 
- 	for (poff = 0; poff < PAGE_SIZE; poff += ret) {
-@@ -340,17 +341,16 @@ iomap_readpage(struct page *page, const struct iomap_ops *ops)
- 
- 	if (ctx.bio) {
- 		submit_bio(ctx.bio);
--		WARN_ON_ONCE(!ctx.cur_page_in_bio);
--	} else {
--		WARN_ON_ONCE(ctx.cur_page_in_bio);
--		complete(&ctx.done);
-+		wait_for_completion(&ctx.done);
- 	}
- 
--	wait_for_completion(&ctx.done);
--	if (ret >= 0)
--		ret = blk_status_to_errno(ctx.status);
--	if (ret == 0)
--		return AOP_UPDATED_PAGE;
-+	if (ret < 0)
-+		goto out_unlock;
-+	ret = blk_status_to_errno(ctx.status);
-+	if (ret < 0)
-+		goto out_unlock;
-+	return AOP_UPDATED_PAGE;
-+out_unlock:
- 	unlock_page(page);
- 	return ret;
- }
+
+but I'm not looking forward to block_read_full_page().
 
 
 _______________________________________________
