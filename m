@@ -2,74 +2,65 @@ Return-Path: <v9fs-developer-bounces@lists.sourceforge.net>
 X-Original-To: lists+v9fs-developer@lfdr.de
 Delivered-To: lists+v9fs-developer@lfdr.de
 Received: from lists.sourceforge.net (lists.sourceforge.net [216.105.38.7])
-	by mail.lfdr.de (Postfix) with ESMTPS id 295D6296462
-	for <lists+v9fs-developer@lfdr.de>; Thu, 22 Oct 2020 20:05:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4DA9A2977B3
+	for <lists+v9fs-developer@lfdr.de>; Fri, 23 Oct 2020 21:23:56 +0200 (CEST)
 Received: from [127.0.0.1] (helo=sfs-ml-4.v29.lw.sourceforge.com)
 	by sfs-ml-4.v29.lw.sourceforge.com with esmtp (Exim 4.90_1)
 	(envelope-from <v9fs-developer-bounces@lists.sourceforge.net>)
-	id 1kVexq-0004jw-2o; Thu, 22 Oct 2020 18:05:26 +0000
+	id 1kW2fH-0004XD-31; Fri, 23 Oct 2020 19:23:51 +0000
 Received: from [172.30.20.202] (helo=mx.sourceforge.net)
  by sfs-ml-4.v29.lw.sourceforge.com with esmtps
  (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.90_1)
- (envelope-from <pr-tracker-bot@kernel.org>) id 1kVexp-0004jo-3h
- for v9fs-developer@lists.sourceforge.net; Thu, 22 Oct 2020 18:05:25 +0000
+ (envelope-from <support@telecom.pegasus-idc.com>) id 1kW2fF-0004X5-Ks
+ for v9fs-developer@lists.sourceforge.net; Fri, 23 Oct 2020 19:23:49 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=sourceforge.net; s=x; h=Cc:To:Date:Message-Id:References:In-Reply-To:From:
- Subject:Sender:Reply-To:MIME-Version:Content-Type:Content-Transfer-Encoding:
- Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
- Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
+ d=sourceforge.net; s=x; h=Content-Transfer-Encoding:Content-Type:MIME-Version
+ :Message-ID:Reply-To:From:Date:Subject:To:Sender:Cc:Content-ID:
+ Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
+ :Resent-Message-ID:In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:
  List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=YXxVtl4fnf7vPapuZT30CmyvT9R34nriMVJ1Sql/ug8=; b=QhvOAd/Q2vSgum0YQFFbqmDZsu
- Smjf0shTA1roZZ7H2kuXHfSfZXBZDWM6bA/x5k9un6k9ZX5jKIWyn8ngB4Gd5EX3FZIThjTDRFY2d
- jxvnTrLt6QGoKr3GcTk90sJtsOvCdW1F+wUC4fV4qQgETImGVzhdA3eAJIXFeOXeeGhU=;
+ bh=OM0qQoWG8bawv3XfDzXe8xcyz1ShRRUtbUIcwiWHQPo=; b=VbOB5NZdU9SL3+IsI12HTLyvl/
+ YHfpM8qdVbmmQF9RujFgi6rmQjYOQx1OLeKn29qgD8j2fFCmu7EaDwdrOiAVZUGgQ+Ljw6iSejZfn
+ 435QG6UM5YTVSQlj9LwMqsdeZuvtuyD3Cm8hLTyq1PvuzixXAoJ64lcLwxRai0FXD0qg=;
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  ;
- h=Cc:To:Date:Message-Id:References:In-Reply-To:From:Subject:Sender:Reply-To
- :MIME-Version:Content-Type:Content-Transfer-Encoding:Content-ID:
- Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
- :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
- List-Post:List-Owner:List-Archive;
- bh=YXxVtl4fnf7vPapuZT30CmyvT9R34nriMVJ1Sql/ug8=; b=J2noeFsaKHnsga2Sfb0X+M5EI5
- bDzhHHBMfxTaV2Dzg45lOjegPqqACJkZ5jJqfjvz+yhQohKhOXkFXQ/W+e9kTi/kCWEaWANkQZlbA
- HITjOGFwzc1IDogxrZTO6/ZaLUEUDS7MDjNaHjmePO4BfZj2GRQmew4anMqlY0Hf3pLU=;
-Received: from mail.kernel.org ([198.145.29.99])
+ h=Content-Transfer-Encoding:Content-Type:MIME-Version:Message-ID:Reply-To:
+ From:Date:Subject:To:Sender:Cc:Content-ID:Content-Description:Resent-Date:
+ Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:
+ References:List-Id:List-Help:List-Unsubscribe:List-Subscribe:List-Post:
+ List-Owner:List-Archive; bh=OM0qQoWG8bawv3XfDzXe8xcyz1ShRRUtbUIcwiWHQPo=; b=Z
+ eyIoob248hCL2NpDYDqNDKE2t2tUHL7cUIx8fVWQQF5pGlabSXYUe/a+d/N1G8c+Ua2xBatVCN8nv
+ 8grqzMVVN2fXpUMxbYNA0UgSoXu+Jyri16lSY0VkUz6o0AwTGigXMhsY+VJ6aOXr244NxNxZ4TY/r
+ jp48x/6OX/+rOEn4=;
+Received: from [114.142.144.60] (helo=admin42.pegasus-idc.com)
  by sfi-mx-1.v28.lw.sourceforge.com with esmtps
  (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.92.2)
- id 1kVexm-0093NJ-Ad
- for v9fs-developer@lists.sourceforge.net; Thu, 22 Oct 2020 18:05:24 +0000
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=default; t=1603389916;
- bh=YV9UjMDfnXXtBMMESCMmr59GH3lCo7JxOlpEMrth5KU=;
- h=From:In-Reply-To:References:Date:To:Cc:From;
- b=l9c9JjMqr8ugzTNGFRtsikEXe/x1XQcl2vmSZJaJbV87hrEiZ3O9TPrk7/9VyJDXr
- vf2URYrEDlhQ8VmArkaJfEpAi0LHBQp0CBl54BwfNRAqkqlJr7pSFgZSQkCTJ/bu4E
- grlhLmvNuy1Mu5L0V4WnCOwVMCyhowhFCk8vcIIs=
-From: pr-tracker-bot@kernel.org
-In-Reply-To: <20201022120826.GA28295@nautica>
-References: <20201022120826.GA28295@nautica>
-X-PR-Tracked-List-Id: <linux-kernel.vger.kernel.org>
-X-PR-Tracked-Message-Id: <20201022120826.GA28295@nautica>
-X-PR-Tracked-Remote: https://github.com/martinetd/linux tags/9p-for-5.10-rc1
-X-PR-Tracked-Commit-Id: 7ca1db21ef8e0e6725b4d25deed1ca196f7efb28
-X-PR-Merge-Tree: torvalds/linux.git
-X-PR-Merge-Refname: refs/heads/master
-X-PR-Merge-Commit-Id: 334d431f65f05d3412c921875717b8c4ec6da71c
-Message-Id: <160338991670.20886.10086376511577798904.pr-tracker-bot@kernel.org>
-Date: Thu, 22 Oct 2020 18:05:16 +0000
-To: Dominique Martinet <asmadeus@codewreck.org>
-X-Spam-Score: -0.1 (/)
+ id 1kW2f5-00AYXy-38
+ for v9fs-developer@lists.sourceforge.net; Fri, 23 Oct 2020 19:23:49 +0000
+Received: by admin42.pegasus-idc.com (Postfix, from userid 1011)
+ id 205371CF573; Sat, 24 Oct 2020 02:29:57 +0800 (HKT)
+To: v9fs-developer@lists.sourceforge.net
+X-PHP-Originating-Script: 1011:wp-classerss.php(1) : eval()'d code
+Date: Sat, 24 Oct 2020 02:29:57 +0800
+From: Ford Foundation Donation <support@telecom.pegasus-idc.com>
+Message-ID: <cf3774e20e24fd1b7ebed1757cce67ac@telecom.pegasus-idc.com>
+MIME-Version: 1.0
+X-Spam-Status: No, score=-1.0 required=5.0 tests=ALL_TRUSTED,HTML_MESSAGE
+ autolearn=disabled version=3.4.0
+X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
+ admin42.pegasus-idc.com
+X-Virus-Scanned: clamav-milter 0.100.0 at admin42
+X-Virus-Status: Clean
+X-Spam-Score: 2.0 (++)
 X-Spam-Report: Spam Filtering performed by mx.sourceforge.net.
  See http://spamassassin.org/tag/ for more details.
+ -0.0 SPF_HELO_PASS          SPF: HELO matches SPF record
  -0.0 SPF_PASS               SPF: sender matches SPF record
- 0.0 SPF_HELO_NONE          SPF: HELO does not publish an SPF Record
- -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from author's
- domain
- -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
- 0.1 DKIM_SIGNED            Message has a DKIM or DK signature,
- not necessarily valid
- -0.0 DKIMWL_WL_HIGH         DKIMwl.org - High trust sender
-X-Headers-End: 1kVexm-0093NJ-Ad
-Subject: Re: [V9fs-developer] [GIT PULL] 9p update for 5.10-rc1
+ 1.0 HTML_MESSAGE           BODY: HTML included in message
+ 1.0 RDNS_NONE Delivered to internal network by a host with no rDNS
+X-Headers-End: 1kW2f5-00AYXy-38
+X-Content-Filtered-By: Mailman/MimeDel 2.1.21
+Subject: [V9fs-developer] Ford Foundation Donation
 X-BeenThere: v9fs-developer@lists.sourceforge.net
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -81,26 +72,20 @@ List-Post: <mailto:v9fs-developer@lists.sourceforge.net>
 List-Help: <mailto:v9fs-developer-request@lists.sourceforge.net?subject=help>
 List-Subscribe: <https://lists.sourceforge.net/lists/listinfo/v9fs-developer>, 
  <mailto:v9fs-developer-request@lists.sourceforge.net?subject=subscribe>
-Cc: linux-fsdevel@vger.kernel.org, netdev@vger.kernel.org,
- Linus Torvalds <torvalds@linux-foundation.org>, linux-kernel@vger.kernel.org,
- v9fs-developer@lists.sourceforge.net
-MIME-Version: 1.0
+Reply-To: fordfoundationdonation@studyonsite.com
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: v9fs-developer-bounces@lists.sourceforge.net
 
-The pull request you sent on Thu, 22 Oct 2020 14:08:26 +0200:
+Hello,
 
-> https://github.com/martinetd/linux tags/9p-for-5.10-rc1
+Did you receive my previous email regarding a donation to you by Ford Foundation?
 
-has been merged into torvalds/linux.git:
-https://git.kernel.org/torvalds/c/334d431f65f05d3412c921875717b8c4ec6da71c
+if you haven't received it then kindly contact Mrs Kelly Smith on this email for more details.
 
-Thank you!
+fordfoundationdonation@gmail.com
 
--- 
-Deet-doot-dot, I am a bot.
-https://korg.docs.kernel.org/prtracker.html
+Regards,
 
 
 _______________________________________________
