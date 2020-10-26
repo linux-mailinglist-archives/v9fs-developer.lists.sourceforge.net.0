@@ -2,26 +2,26 @@ Return-Path: <v9fs-developer-bounces@lists.sourceforge.net>
 X-Original-To: lists+v9fs-developer@lfdr.de
 Delivered-To: lists+v9fs-developer@lfdr.de
 Received: from lists.sourceforge.net (lists.sourceforge.net [216.105.38.7])
-	by mail.lfdr.de (Postfix) with ESMTPS id DC725299BF1
-	for <lists+v9fs-developer@lfdr.de>; Tue, 27 Oct 2020 00:54:33 +0100 (CET)
-Received: from [127.0.0.1] (helo=sfs-ml-2.v29.lw.sourceforge.com)
-	by sfs-ml-2.v29.lw.sourceforge.com with esmtp (Exim 4.90_1)
+	by mail.lfdr.de (Postfix) with ESMTPS id DBAC6299C34
+	for <lists+v9fs-developer@lfdr.de>; Tue, 27 Oct 2020 00:56:44 +0100 (CET)
+Received: from [127.0.0.1] (helo=sfs-ml-4.v29.lw.sourceforge.com)
+	by sfs-ml-4.v29.lw.sourceforge.com with esmtp (Exim 4.90_1)
 	(envelope-from <v9fs-developer-bounces@lists.sourceforge.net>)
-	id 1kXCJs-0004HR-LI; Mon, 26 Oct 2020 23:54:32 +0000
+	id 1kXCLz-0001Zt-Lc; Mon, 26 Oct 2020 23:56:43 +0000
 Received: from [172.30.20.202] (helo=mx.sourceforge.net)
- by sfs-ml-2.v29.lw.sourceforge.com with esmtps
+ by sfs-ml-4.v29.lw.sourceforge.com with esmtps
  (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.90_1)
- (envelope-from <sashal@kernel.org>) id 1kXCJr-0004HG-GG
- for v9fs-developer@lists.sourceforge.net; Mon, 26 Oct 2020 23:54:31 +0000
+ (envelope-from <sashal@kernel.org>) id 1kXCLy-0001Zm-Gp
+ for v9fs-developer@lists.sourceforge.net; Mon, 26 Oct 2020 23:56:42 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
  d=sourceforge.net; s=x; h=Content-Transfer-Encoding:MIME-Version:References:
  In-Reply-To:Message-Id:Date:Subject:Cc:To:From:Sender:Reply-To:Content-Type:
  Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
  Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
  List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=SVhEBJMT+gi8Vd5Aq+k7ylEVlRV38iWww+oqMrUqzLg=; b=XIaJuueHUTMHMN8HjcU9fg5cKR
- /xXqSHBwxLqZwuDWJzWICAGl436wkqDBT3nCzaS9gY4WjfW5gyH2thN+Qf6KlTQW6Bnxey2tvH7jY
- uA2nInop+mxZ7eGo0gdi9YAtkorUQPHqcZqIXRE8eBigpi1/hvVWiNcymywoBFYKO4+s=;
+ bh=SVhEBJMT+gi8Vd5Aq+k7ylEVlRV38iWww+oqMrUqzLg=; b=f7f94+GU1LlVCUwFl9B5YbeswO
+ 2cVsGqQRlm6OvayRmPTUhY9TE7PjIOm1jyoEhX+c6KInYsZOzU37OnTmiZ4W5Jo7VKa/LV7uDiYz4
+ Ks8FPkfZk+oKgKwwFUh0RVUOhjgCS4oVPwz7gADPNrawNG6EZh6GgCG8aL2nqtdkDWIs=;
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  ;
  h=Content-Transfer-Encoding:MIME-Version:References:In-Reply-To:Message-Id:
@@ -29,35 +29,35 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
  :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
  List-Post:List-Owner:List-Archive;
- bh=SVhEBJMT+gi8Vd5Aq+k7ylEVlRV38iWww+oqMrUqzLg=; b=iSUA92dAy9MF3kgf+Jxzv7mpPK
- mBUqsVZ8kkw4mYsKkrCG8mC+1/RvQyNe7Caxt5eD/Qt6EMe1w7sUePPX1r1b2oz+ZwSAQEz9NcLBt
- kqxYCQM6bzn4hd1Bs8PpxA0CCB/Fq7cYeNVSYqRkR8GzUq52ciUwvaYJx294/dGDgXD8=;
+ bh=SVhEBJMT+gi8Vd5Aq+k7ylEVlRV38iWww+oqMrUqzLg=; b=EhGPNf0pIyXbSllCHYIekn493P
+ en6E5DO2D1EVwYpNFJiX8WbxOxvKmkHnuouBmYanfzVJoK2/So1p9taQoAQCtxCuJpOYdNoi1J5fW
+ 7XPEFYGaZ8g740/i3vjlP5rxE47hApxXa/9/pkz7uW0GaKLsilBD3Vk3wzCivhijzC24=;
 Received: from mail.kernel.org ([198.145.29.99])
  by sfi-mx-1.v28.lw.sourceforge.com with esmtps
  (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.92.2)
- id 1kXCJj-00EuGx-BW
- for v9fs-developer@lists.sourceforge.net; Mon, 26 Oct 2020 23:54:31 +0000
+ id 1kXCLt-00EuMV-VU
+ for v9fs-developer@lists.sourceforge.net; Mon, 26 Oct 2020 23:56:42 +0000
 Received: from sasha-vm.mshome.net (c-73-47-72-35.hsd1.nh.comcast.net
  [73.47.72.35])
  (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
  (No client certificate requested)
- by mail.kernel.org (Postfix) with ESMTPSA id 12B922224E;
- Mon, 26 Oct 2020 23:54:16 +0000 (UTC)
+ by mail.kernel.org (Postfix) with ESMTPSA id C380220B1F;
+ Mon, 26 Oct 2020 23:56:31 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=default; t=1603756458;
+ s=default; t=1603756592;
  bh=SjerEqdv/XdKad4bUN4LsYPOCOZGVRCpnot5rfzuTGU=;
  h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
- b=PGJocbzHT44FGtGzoZcACMCWl2rN8LYxr0rTzcyOt86M9fsm3q00pMd8AAg/im4gG
- WcZtFnR9kX0lJQENoo20QBeKTtsoT4e+jNYjRUF7njTnlNpfryQgTSOJ0aZeoTwPha
- 7E7VlVaKlXEGGvb8UTnZW8F+eYoNL3+OoE7DWyyI=
+ b=sdDY8qBB9KnOrvNMkv6tRNAJRQBT2+k50uOJEO5RjmJM8DatBQNMMy/toJLApak4U
+ 1br3scIwG8fIuMwBu8I8pTTAcpZcLy40ALcKkz9+CcyMo7yQbRjHd//44adhTJ2rCv
+ YEZSDNs3MbA23FE4E/g4wzEFW/GKATKECKajSADw=
 From: Sasha Levin <sashal@kernel.org>
 To: linux-kernel@vger.kernel.org,
 	stable@vger.kernel.org
-Date: Mon, 26 Oct 2020 19:51:39 -0400
-Message-Id: <20201026235205.1023962-107-sashal@kernel.org>
+Date: Mon, 26 Oct 2020 19:54:59 -0400
+Message-Id: <20201026235516.1025100-63-sashal@kernel.org>
 X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20201026235205.1023962-1-sashal@kernel.org>
-References: <20201026235205.1023962-1-sashal@kernel.org>
+In-Reply-To: <20201026235516.1025100-1-sashal@kernel.org>
+References: <20201026235516.1025100-1-sashal@kernel.org>
 MIME-Version: 1.0
 X-stable: review
 X-Patchwork-Hint: Ignore
@@ -72,8 +72,8 @@ X-Spam-Report: Spam Filtering performed by mx.sourceforge.net.
  0.1 DKIM_SIGNED            Message has a DKIM or DK signature,
  not necessarily valid
  -0.0 DKIMWL_WL_HIGH         DKIMwl.org - High trust sender
-X-Headers-End: 1kXCJj-00EuGx-BW
-Subject: [V9fs-developer] [PATCH AUTOSEL 5.8 107/132] net: 9p: initialize
+X-Headers-End: 1kXCLt-00EuMV-VU
+Subject: [V9fs-developer] [PATCH AUTOSEL 5.4 63/80] net: 9p: initialize
  sun_server.sun_path to have addr's value only when addr is valid
 X-BeenThere: v9fs-developer@lists.sourceforge.net
 X-Mailman-Version: 2.1.21
