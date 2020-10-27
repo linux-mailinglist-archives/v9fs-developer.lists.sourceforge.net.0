@@ -2,26 +2,26 @@ Return-Path: <v9fs-developer-bounces@lists.sourceforge.net>
 X-Original-To: lists+v9fs-developer@lfdr.de
 Delivered-To: lists+v9fs-developer@lfdr.de
 Received: from lists.sourceforge.net (lists.sourceforge.net [216.105.38.7])
-	by mail.lfdr.de (Postfix) with ESMTPS id CC4A9299E04
-	for <lists+v9fs-developer@lfdr.de>; Tue, 27 Oct 2020 01:11:28 +0100 (CET)
-Received: from [127.0.0.1] (helo=sfs-ml-2.v29.lw.sourceforge.com)
-	by sfs-ml-2.v29.lw.sourceforge.com with esmtp (Exim 4.90_1)
+	by mail.lfdr.de (Postfix) with ESMTPS id 332D7299E10
+	for <lists+v9fs-developer@lfdr.de>; Tue, 27 Oct 2020 01:12:02 +0100 (CET)
+Received: from [127.0.0.1] (helo=sfs-ml-1.v29.lw.sourceforge.com)
+	by sfs-ml-1.v29.lw.sourceforge.com with esmtp (Exim 4.90_1)
 	(envelope-from <v9fs-developer-bounces@lists.sourceforge.net>)
-	id 1kXCaF-00059x-K7; Tue, 27 Oct 2020 00:11:27 +0000
+	id 1kXCam-00032X-T6; Tue, 27 Oct 2020 00:12:00 +0000
 Received: from [172.30.20.202] (helo=mx.sourceforge.net)
- by sfs-ml-2.v29.lw.sourceforge.com with esmtps
+ by sfs-ml-1.v29.lw.sourceforge.com with esmtps
  (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.90_1)
- (envelope-from <sashal@kernel.org>) id 1kXCaE-00059q-6b
- for v9fs-developer@lists.sourceforge.net; Tue, 27 Oct 2020 00:11:26 +0000
+ (envelope-from <sashal@kernel.org>) id 1kXCak-00032B-OM
+ for v9fs-developer@lists.sourceforge.net; Tue, 27 Oct 2020 00:11:58 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
  d=sourceforge.net; s=x; h=Content-Transfer-Encoding:MIME-Version:References:
  In-Reply-To:Message-Id:Date:Subject:Cc:To:From:Sender:Reply-To:Content-Type:
  Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
  Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
  List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=07CsKVKGnR1i3OP36wNTTGBYy4WoV+GGCUyxvgD1RBc=; b=cUFu9WtCZmruBkHEUPjM71HQMk
- mtGRLzhkIJmSLC9DH/VbF92RjUGU0JQzB4Du3GWkwu7NC5PDmuT2RJx/51sRmm9K24WA86hcvAXzQ
- IF6TqwokKrs6y8DitSypc2XRnsU8QwRYEdaMrb4v6pK+aYLIJYDZbat1uBrrpsKvo8v4=;
+ bh=vZV/Z3hj2ld3FSZuYPJZx11qHNPQYuiW/4/5YN3vaeQ=; b=eg8ClNsynoyqKx8n/EUxCNsCeE
+ BnN6mKOVZk6gSO7mMjVQsQOq+SmYiY0E+oLQiTuZmwzd1//SbsjZ7Pt3mGfRgwFUJBm21vj0/ZSej
+ YFoGyVxzjYv89uqNfGF/uGmkZoOsQW23KeXzGJovte5UQKdrIEaFU0ZDbDw4o990D44A=;
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  ;
  h=Content-Transfer-Encoding:MIME-Version:References:In-Reply-To:Message-Id:
@@ -29,35 +29,35 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
  :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
  List-Post:List-Owner:List-Archive;
- bh=07CsKVKGnR1i3OP36wNTTGBYy4WoV+GGCUyxvgD1RBc=; b=MitqbNopsb3i2GJF5CZC+dfDOH
- snsEv/eOh3vwaWcFV4Wj19S9q6Lv/KQLkij4NojoZ9KzDvSW2UKA8fl0qE5iyNMaTsyz2mO7MW2nB
- pv+PSR2dHtC8gltoceBsB+SOoJn6ojNWt+E8RsHsnp4ELqkIm/bXnHYs/nRSPsPQOrsg=;
+ bh=vZV/Z3hj2ld3FSZuYPJZx11qHNPQYuiW/4/5YN3vaeQ=; b=hMQ9Ih2XljgnswDLXc9F2dXpjo
+ KIVihSAV2K7H9lr8oFChmunJnZiFjN8ckZUYdwJ6SCHlFSooDstJk8Lf/cgxWhwfYtFG+vvvwIjC1
+ CPcHO0/x5HboQ2pXyiLskigX/n8UcrOaWsGXw+gzXnbwUItyJaByqTBFU2zR1poRwfdM=;
 Received: from mail.kernel.org ([198.145.29.99])
  by sfi-mx-1.v28.lw.sourceforge.com with esmtps
  (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.92.2)
- id 1kXCa4-00EvHh-Vx
- for v9fs-developer@lists.sourceforge.net; Tue, 27 Oct 2020 00:11:26 +0000
+ id 1kXCad-00EvJS-TN
+ for v9fs-developer@lists.sourceforge.net; Tue, 27 Oct 2020 00:11:58 +0000
 Received: from sasha-vm.mshome.net (c-73-47-72-35.hsd1.nh.comcast.net
  [73.47.72.35])
  (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
  (No client certificate requested)
- by mail.kernel.org (Postfix) with ESMTPSA id C8DAD20754;
- Tue, 27 Oct 2020 00:11:10 +0000 (UTC)
+ by mail.kernel.org (Postfix) with ESMTPSA id 7CA9B20791;
+ Tue, 27 Oct 2020 00:11:45 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=default; t=1603757471;
- bh=N793Gw5Gn15NAHgGIFebTIjapowzqTQncYZtkjWLKjw=;
+ s=default; t=1603757506;
+ bh=pTmON0MBagbOpYt2bCEsqlJ5ioNCc9Yr4PxBXsDjCCY=;
  h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
- b=Bf+EcNeUAUG5HsRG51+uAogMs38zXmbcryHCeKNQ7arvr+pwhJHnNT3g+vs2lUpfl
- L4q1NEIxxZsrKqORN1DnZz0bAALmwSJG1ZykC/Kj0c45COjib6ppyYNEXELd97bSU0
- CUMtun6Lnu5fKHEjZZrPnCLwWM5yk7YYpaNhv5k8=
+ b=oL9muj3AGuxYOdWvo+KnNLw9EYWAL2K4SOnzQZZtNMR8R+fZ9DXaQE91G5BdEKj1H
+ qvE9TTiL9ODIDfFOtMt+EJYFN7H0ORD4S1uqzs9Tz4DN2DmT3AdeaHgduWmUpa5Xpc
+ tqTenkmDumZUV83FSbbtLRrYYMg7C9RxORZ2F0/k=
 From: Sasha Levin <sashal@kernel.org>
 To: linux-kernel@vger.kernel.org,
 	stable@vger.kernel.org
-Date: Mon, 26 Oct 2020 20:10:37 -0400
-Message-Id: <20201027001044.1027349-23-sashal@kernel.org>
+Date: Mon, 26 Oct 2020 20:11:16 -0400
+Message-Id: <20201027001123.1027642-18-sashal@kernel.org>
 X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20201027001044.1027349-1-sashal@kernel.org>
-References: <20201027001044.1027349-1-sashal@kernel.org>
+In-Reply-To: <20201027001123.1027642-1-sashal@kernel.org>
+References: <20201027001123.1027642-1-sashal@kernel.org>
 MIME-Version: 1.0
 X-stable: review
 X-Patchwork-Hint: Ignore
@@ -76,8 +76,8 @@ X-Spam-Report: Spam Filtering performed by mx.sourceforge.net.
  0.1 DKIM_SIGNED            Message has a DKIM or DK signature,
  not necessarily valid
  -0.0 DKIMWL_WL_HIGH         DKIMwl.org - High trust sender
-X-Headers-End: 1kXCa4-00EvHh-Vx
-Subject: [V9fs-developer] [PATCH AUTOSEL 4.9 23/30] net: 9p: initialize
+X-Headers-End: 1kXCad-00EvJS-TN
+Subject: [V9fs-developer] [PATCH AUTOSEL 4.4 18/25] net: 9p: initialize
  sun_server.sun_path to have addr's value only when addr is valid
 X-BeenThere: v9fs-developer@lists.sourceforge.net
 X-Mailman-Version: 2.1.21
@@ -122,10 +122,10 @@ Signed-off-by: Sasha Levin <sashal@kernel.org>
  1 file changed, 1 insertion(+), 1 deletion(-)
 
 diff --git a/net/9p/trans_fd.c b/net/9p/trans_fd.c
-index bad27b0ec65d6..33b317a25a2d5 100644
+index eab058f93ec97..6f8e84844bb27 100644
 --- a/net/9p/trans_fd.c
 +++ b/net/9p/trans_fd.c
-@@ -1013,7 +1013,7 @@ p9_fd_create_unix(struct p9_client *client, const char *addr, char *args)
+@@ -991,7 +991,7 @@ p9_fd_create_unix(struct p9_client *client, const char *addr, char *args)
  
  	csocket = NULL;
  
