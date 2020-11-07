@@ -2,80 +2,104 @@ Return-Path: <v9fs-developer-bounces@lists.sourceforge.net>
 X-Original-To: lists+v9fs-developer@lfdr.de
 Delivered-To: lists+v9fs-developer@lfdr.de
 Received: from lists.sourceforge.net (lists.sourceforge.net [216.105.38.7])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5F3022A7F84
-	for <lists+v9fs-developer@lfdr.de>; Thu,  5 Nov 2020 14:17:06 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.sourceforge.net; s=beta; h=Content-Transfer-Encoding:Content-Type:Cc:
-	Reply-To:From:List-Subscribe:List-Help:List-Post:List-Archive:
-	List-Unsubscribe:List-Id:Subject:MIME-Version:References:In-Reply-To:
-	Message-ID:Date:To:Sender:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	 bh=40YkvBMm79p8gmgqCPfhXcD757J9CtluOeXCuGQmRVI=; b=WaVobg1XqbVoSqgCKiD/xLpmU
-	Owoevaj0YFARUjyu7T9OePuyrKGYelhWSF/yKU2+d6XOU3EKcA3nmlxgL0+63hjW1w0G+wYupMqid
-	ShHROZ2kO9t/CfOD2FOFRVaXXDp3jS18h47eHG5bQvnqLoWZLW3d7ocd916Jt7gRMPGHc=;
-Received: from [127.0.0.1] (helo=sfs-ml-2.v29.lw.sourceforge.com)
-	by sfs-ml-2.v29.lw.sourceforge.com with esmtp (Exim 4.90_1)
+	by mail.lfdr.de (Postfix) with ESMTPS id 75C512AA414
+	for <lists+v9fs-developer@lfdr.de>; Sat,  7 Nov 2020 10:01:55 +0100 (CET)
+Received: from [127.0.0.1] (helo=sfs-ml-4.v29.lw.sourceforge.com)
+	by sfs-ml-4.v29.lw.sourceforge.com with esmtp (Exim 4.90_1)
 	(envelope-from <v9fs-developer-bounces@lists.sourceforge.net>)
-	id 1kaf8M-00007h-V2; Thu, 05 Nov 2020 13:16:58 +0000
+	id 1kbK6V-0006ws-TF; Sat, 07 Nov 2020 09:01:47 +0000
 Received: from [172.30.20.202] (helo=mx.sourceforge.net)
- by sfs-ml-2.v29.lw.sourceforge.com with esmtps
+ by sfs-ml-4.v29.lw.sourceforge.com with esmtps
  (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.90_1)
- (envelope-from <qemu_oss@crudebyte.com>) id 1kaf8L-00007Z-Nr
- for v9fs-developer@lists.sourceforge.net; Thu, 05 Nov 2020 13:16:57 +0000
+ (envelope-from <3aWKmXw4JAMoty5.qw7u39MKIIw2qy1.s42@trix.bounces.google.com>)
+ id 1kbK6T-0006wd-UP
+ for v9fs-developer@lists.sourceforge.net; Sat, 07 Nov 2020 09:01:45 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=sourceforge.net; s=x; h=Content-Type:Content-Transfer-Encoding:MIME-Version
- :References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Sender:Reply-To:
- Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
- Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
+ d=sourceforge.net; s=x; h=Content-Type:To:From:Subject:Date:Message-ID:
+ Reply-To:MIME-Version:Sender:Cc:Content-Transfer-Encoding:Content-ID:
+ Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
+ :Resent-Message-ID:In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:
  List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=CeSDKjQThdIABp8s+s/E8JP6zStMA/YM/SdYYX3O/K8=; b=Apqfk+xa/svt3JJLhlVg2zl9Qv
- c0akFQ8UZ6mjGqTi6FuYyY2L7IKzAzcV+VTsGGXW4OrI0zTEY0EFkIhoTg95PTpZ/N/hFukbLG0GP
- 3gIIKhIiRg1My9q1ZDK/2s8Sjc8bPWbFiS6O304gVSUx6sfequj/NqrGXEMpbkI54nmI=;
+ bh=xnpN2AG4aUT7eCsmiHlVsdoe5w8jt/Me3IlPHUmBVXw=; b=T7vh3LNF0t8p6K/TKWvkBj3Otz
+ 2uV53uD5vhUSdnwqXT3JyoHV6eOCeZqjTQLuKzXcyGMNS1GbkCTH3DBYB1xQbtGBKJx7sV2jUcEc2
+ LeRMt72KN9l50ppe+iPJ5UBv6O1HW6zVq5OoybBhUI/SYclYDf+wKvqep3NojbgKmcyk=;
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  ;
- h=Content-Type:Content-Transfer-Encoding:MIME-Version:References:
- In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Sender:Reply-To:Content-ID:
- Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
- :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
- List-Post:List-Owner:List-Archive;
- bh=CeSDKjQThdIABp8s+s/E8JP6zStMA/YM/SdYYX3O/K8=; b=L4chVzpifhyrA5nblY+Ac4heec
- 4LmE7ljFMHKkZUkaISMULCQJva9Z6+yMSL+7Mi2Thw0V7dUAovX7vk/3pyFZGQ/JBuVuLXZShpArQ
- TVDECSPnzuH37sRjtE7+mayvWiM7trPIJz/fKkpj4gxC85HkXorOot/yb1QtBK5gmmJ8=;
-Received: from lizzy.crudebyte.com ([91.194.90.13])
- by sfi-mx-1.v28.lw.sourceforge.com with esmtps
- (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.92.2)
- id 1kaf8C-00AQR9-GM
- for v9fs-developer@lists.sourceforge.net; Thu, 05 Nov 2020 13:16:57 +0000
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=crudebyte.com; s=lizzy; h=Content-Type:Content-Transfer-Encoding:
- MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:
- Content-ID:Content-Description;
- bh=CeSDKjQThdIABp8s+s/E8JP6zStMA/YM/SdYYX3O/K8=; b=lMGWqo4HYT2Vjxdcyu8lRLeUrb
- HEEwVhDEGTlVF+0T4L9udgmm6dSckgzk7oT6ix/TVRJUvumz3RUjt+sf7mLc3ykbhepjXRBo2Jb9d
- y6/Ggj3leVe40XwlqfqJcYbz3XZ+ePY5EgWWYJ26IOos+xUYeBV44l1VYtIA7t1SbYJtSG4Ha+eI3
- +wZsb4dzufLWJa41huRe95It2N3A9X8sQUyh9EPMasD/wx6rlRTHqP8eFZ0ZRPfjqVry3XSy8vuWl
- CrhX7v1QsQ9+nVcL2MVYs0lYDxDgh46yMd5fDue5uZs2TcEZz3udstQKzvzN/O4OG692QZQ+g9I8Q
- AgY3gaQQ==;
-To: Dominique Martinet <asmadeus@codewreck.org>
-Date: Thu, 05 Nov 2020 13:32:34 +0100
-Message-ID: <2540304.0IflC6tfRZ@silver>
-In-Reply-To: <20201104115708.GA30104@nautica>
-References: <20200923141146.90046-1-jianyong.wu@arm.com>
- <1755303.6a88tIVZ8j@silver> <20201104115708.GA30104@nautica>
+ h=Content-Type:To:From:Subject:Date:Message-ID:Reply-To:MIME-Version:Sender
+ :Cc:Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+ Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:
+ References:List-Id:List-Help:List-Unsubscribe:List-Subscribe:List-Post:
+ List-Owner:List-Archive; bh=xnpN2AG4aUT7eCsmiHlVsdoe5w8jt/Me3IlPHUmBVXw=; b=S
+ Ee5Lex1EhB6MLDKVWRnWcOXDvgVqlRc0JiBv8rkkyXrdu8xUc/baO8mUif4K+rNl2oK/CEpZ0WmCf
+ TdnnjZNaqSreS5GR8DXwPyXu586mM5X041zn2/8N6+1F6EFQdVWw6AElmuKtgD3bRCvule3X+eIqO
+ KuyyWueGRpbHHy4M=;
+Received: from mail-qv1-f71.google.com ([209.85.219.71])
+ by sfi-mx-3.v28.lw.sourceforge.com with esmtps
+ (TLSv1.2:ECDHE-RSA-AES128-GCM-SHA256:128) (Exim 4.92.2)
+ id 1kbK6R-0042De-9e
+ for v9fs-developer@lists.sourceforge.net; Sat, 07 Nov 2020 09:01:45 +0000
+Received: by mail-qv1-f71.google.com with SMTP id a1so2197354qvv.18
+ for <v9fs-developer@lists.sourceforge.net>;
+ Sat, 07 Nov 2020 01:01:43 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+ h=mime-version:reply-to:message-id:date:subject:from:to;
+ bh=xnpN2AG4aUT7eCsmiHlVsdoe5w8jt/Me3IlPHUmBVXw=;
+ b=Wkrn6/Q4a4NBG2s5XTa+H63tw09k+AlMEyb7CNeJqbXQojxOpeIuxCV8FxLhrLfN9W
+ mmvIThBvwCalxWOvOECrXp7uZgBAR/NK+uS7EisYSf8GvgxcPRZ5qf1BecTrozQ9JFO3
+ RoIUVEB/jBF5qwrXTlEnZSk0eNZ7q+bxRXEHz+piSaXQP13F1CNv/8DV9bYvyC28MAOQ
+ TWuMzvStWcvifI76VhJiZB72i4dAu9+L0DqRbjCbYNjdfmoMH0IN9n6+VYROWLX78oN6
+ ma+g1TKgm+7DRT1cuT4pdL4mWtkpoxFGDlPhUYzQPZlKWgRvgc9CT7VGwFqnlKWOfYyb
+ ICKg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:mime-version:reply-to:message-id:date:subject
+ :from:to;
+ bh=xnpN2AG4aUT7eCsmiHlVsdoe5w8jt/Me3IlPHUmBVXw=;
+ b=dwjUWsgcaPCGHlL89yBnW9NMiMXNza5MjxS0LHecMZS5Ne1Zxg5/ily4UHAEupJu8S
+ Zh5quOOy3TYhQ5Y6XxSZrUjJYX/yFQrhvUnh8gsKzetK5Ft0VVn0ibq84v5UmTg7hsE7
+ vBrnOdnfOMS/MApo5qG06o2PzwY1silRfPF59UfsxpugoG83xDEnAmbQsFIzBCEY6LXR
+ ueG57+jXfkFMuRi5sW+hCQljR0tA20ceGuWsZ2N6HMradSzIc8phEodZgnR5nhNL/0Ot
+ JZvRBPCugpGyjl/31JDztc6rhLS9uYhqI0btbfsYlNi2BeazkImVHn5z7V3xpO+PoR4o
+ Wg1g==
+X-Gm-Message-State: AOAM531Lz/sq1wmEl4Ev80enTmhSkd2zY53dq+Yo3Dkf19QGDV0DNdcj
+ WTLcdN19sTz1use3KbfmGTd70rWfArkRDB+gTUzP
 MIME-Version: 1.0
-X-Spam-Score: -0.1 (/)
+X-Received: by 2002:a05:620a:2054:: with SMTP id
+ d20mt5421787qka.175.1604739689369; 
+ Sat, 07 Nov 2020 01:01:29 -0800 (PST)
+X-No-Auto-Attachment: 1
+Message-ID: <000000000000246dee05b380932d@google.com>
+Date: Sat, 07 Nov 2020 09:01:30 +0000
+From: dip.agrent6422@gmail.com
+To: v9fs-developer@lists.sourceforge.net
+X-Spam-Score: 2.6 (++)
 X-Spam-Report: Spam Filtering performed by mx.sourceforge.net.
  See http://spamassassin.org/tag/ for more details.
+ 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail provider
+ (dip.agrent6422[at]gmail.com)
+ 0.2 HEADER_FROM_DIFFERENT_DOMAINS From and EnvelopeFrom 2nd level mail
+ domains are different
+ -0.0 RCVD_IN_MSPIKE_H2      RBL: Average reputation (+2)
+ [209.85.219.71 listed in wl.mailspike.net]
  -0.0 SPF_PASS               SPF: sender matches SPF record
  0.0 SPF_HELO_NONE          SPF: HELO does not publish an SPF Record
+ 0.2 FREEMAIL_REPLYTO_END_DIGIT Reply-To freemail username ends in digit
+ (dip.agrent6422[at]gmail.com)
+ 1.0 HTML_MESSAGE           BODY: HTML included in message
  -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from author's
  domain
  -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
  0.1 DKIM_SIGNED            Message has a DKIM or DK signature,
  not necessarily valid
-X-Headers-End: 1kaf8C-00AQR9-GM
-Subject: Re: [V9fs-developer] [PATCH RFC v2 4/4] 9p: fix race issue in fid
- contention.
+ -0.0 RCVD_IN_DNSWL_NONE     RBL: Sender listed at https://www.dnswl.org/, no
+ trust [209.85.219.71 listed in list.dnswl.org]
+ 0.2 FREEMAIL_FORGED_FROMDOMAIN 2nd level domains in From and EnvelopeFrom
+ freemail headers are different
+ 1.0 FREEMAIL_REPLYTO       Reply-To/From or Reply-To/body contain different
+ freemails
+X-Headers-End: 1kbK6R-0042De-9e
+X-Content-Filtered-By: Mailman/MimeDel 2.1.21
+Subject: [V9fs-developer] U.S. Customs and Border Protection.
 X-BeenThere: v9fs-developer@lists.sourceforge.net
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -87,119 +111,34 @@ List-Post: <mailto:v9fs-developer@lists.sourceforge.net>
 List-Help: <mailto:v9fs-developer-request@lists.sourceforge.net?subject=help>
 List-Subscribe: <https://lists.sourceforge.net/lists/listinfo/v9fs-developer>, 
  <mailto:v9fs-developer-request@lists.sourceforge.net?subject=subscribe>
-From: Christian Schoenebeck via V9fs-developer
- <v9fs-developer@lists.sourceforge.net>
-Reply-To: Christian Schoenebeck <qemu_oss@crudebyte.com>
-Cc: lucho@ionkov.net, justin.he@arm.com, ericvh@gmail.com,
- Jianyong Wu <jianyong.wu@arm.com>, groug@kaod.org,
- linux-kernel@vger.kernel.org, v9fs-developer@lists.sourceforge.net
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Reply-To: dip.agrent6422@gmail.com
+Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="utf-8"; Format="flowed"; DelSp="yes"
 Errors-To: v9fs-developer-bounces@lists.sourceforge.net
 
-On Mittwoch, 4. November 2020 12:57:08 CET Dominique Martinet wrote:
-> Christian Schoenebeck wrote on Wed, Nov 04, 2020:
-> > > Greg, Christian - from what I understood (in private, hopefully I'm
-> > > allowed to repeat!), he won't be able to contribute to qemu because of
-> > > company policies and I'm unlikely to take the time either right now.
-> > > I don't think it's a problem to continue as is though, we can land linux
-> > > kernel support (it's still useful for non-qemu servers) and if someone
-> > > is interested later on they'll just need to finish that bit.
-> > 
-> > Hmm, no idea what kind of policy that is; there is no GPL3 in qemu at
-> > least
-> > that some companies are concerned about, but OK not my business.
-> > 
-> > I actually thought this would still take a while on kernel side,
-> 
-> To be honest, so did I -- the original patches are so old I had more or
-> less given up on it :P
-> 
-> But I don't see any more problem now and we'll want to get there
-> eventually so now's a good time as any... I just want to get fault
-> injection to work to test various refcounting cornercases but shouldn't
-> be much longer.
-
-Exactly! The situation would presumably not change at any other time in 
-future. Maybe there will be issues, we'll see, but I think it's worth it, as a 
-large bunch of software depends on use-after-unlink behaviour.
-
-> 
-> > so in the
-> > meantime we layed the ground in qemu for resolving this issue independent
-> > of clients and independent of any guest OS installation by introducing
-> > test cases using the 9pfs 'local' filesystem driver:
-> > 
-> > https://github.com/qemu/qemu/blob/master/tests/qtest/virtio-9p-test.c
-> > 
-> > So the idea was to resolve that chicken egg problem of this issue that way
-> > and also handle it a bit more systematically. If you now run qemu's 9p
-> > tests with latest git version (or at least with yesterday's QEMU 5.2 rc1
-> > tarball):
-> > 
-> > cd qemu/build
-> > make
-> > export QTEST_QEMU_BINARY=x86_64-softmmu/qemu-system-x86_64
-> > tests/qtest/qos-test
-> > 
-> > these tests will now create a test directory qtest-9p-local-XXXXXX under
-> > the current directory (i.e. the build directory) where they are creating
-> > real directories and files like on a production system would do, just
-> > without a guest OS.
-> > 
-> > As you can see, there are already 9p tests for creating and deleting
-> > directories, files, symlinks and hard links, etc.
-> > 
-> > Maybe somebody interested to see this issue resolved in qemu might help by
-> > rebasing Greg's old patches and testing it with some test cases this way.
-> > Personally I need to work on some other things in the next couple weeks,
-> > but if somebody needs help, questions, review, etc., I'll be there.
-> 
-> Great news, nice work there.
-> I see the new tests it doesn't look hard to add new ones reproducing
-> open-unlink-fstat for example; I think it's good to have regardless of
-> kernel progress.
-> 
-> We'll get there!
-
-Yes, that was the goal, trying to keep it simple so that people not 
-necessarily being deeply familiar with 9P (or QEMU) can still quickly write 
-tests for their issues.
-
-This provides several benefits: we can now clearly isolate issues, because in 
-the past we often received patches where it was not immediately clear what's 
-that this patch is fixing exacly, is it a qemu problem, is it rather the 
-client that should handle this, or is this even some spanning side effect of 
-several layers involved like e.g. when overlayfs is deployed.
-
-And another major benefit is that it simply makes development much more 
-efficient. Because you can now just change something on qemu side, and simply 
-run
-
-make && tests/qtest/qos-test
-
-to see within few seconds whether it really does what you wanted it to do. And 
-on doubt you just look into that subdirectory qtest-9p-local-XXXXXX to see 
-what happened.
-
-You can also automatically test your changes with multiple qemu configurations 
-(e.g. different security modes, mappings, etc.) as each test case can supply 
-its own set of qemu CL options, and the tests can also be run for all enabled 
-architectures.
-
-The command "tests/qtest/qos-test" is just a shortcut for 9P tests of course. 
-Because obviously there is a huge amount of test cases in qemu for all its 
-subsystems. But I will document this and other things more clearly soon to 
-lower the entry barrier for new people getting in touch with the qemu 9p code 
-base.
-
-Best regards,
-Christian Schoenebeck
-
-
-
-
-_______________________________________________
-V9fs-developer mailing list
-V9fs-developer@lists.sourceforge.net
-https://lists.sourceforge.net/lists/listinfo/v9fs-developer
+SSd2ZSBpbnZpdGVkIHlvdSB0byBmaWxsIG91dCB0aGUgZm9sbG93aW5nIGZvcm06DQpVbnRpdGxl
+ZCBmb3JtDQoNClRvIGZpbGwgaXQgb3V0LCB2aXNpdDoNCmh0dHBzOi8vZG9jcy5nb29nbGUuY29t
+L2Zvcm1zL2QvZS8xRkFJcFFMU2ZmejltQUl0dlRHWVN5M19XZ21HVnFzb3cwdmJwTjVRRnVqQTk5
+TGphbzJYTEk3Zy92aWV3Zm9ybT92Yz0wJmFtcDtjPTAmYW1wO3c9MSZhbXA7ZmxyPTAmYW1wO3Vz
+cD1tYWlsX2Zvcm1fbGluaw0KDQpHb29kIG1vcm5pbmcgdG8geW91Lg0KDQpUaGlzIG1lc3NhZ2Ug
+aXMgY29taW5nIHRvIHlvdSBmcm9tIFUuUy4gQ3VzdG9tcyBhbmQgQm9yZGVyIFByb3RlY3Rpb24g
+LSAgDQpDaGllZiBNb3VudGFpbiBQb3J0IG9mIEVudHJ5LCBUaGUgbWVzc2FnZSBpcyBiZWNhdXNl
+IG9mIHlvdXIgcGFja2FnZSBib3ggIA0Kd2hpY2ggd2FzIGp1c3QgcmVsZWFzZWQgYW5kIGNsZWFy
+ZWQgYWJvdXQgMzAgbWludXRlcyBhZ2/igKYgd2Ugd2FudCB5b3UgdG8gIA0KY29tZSBkb3duIGhl
+cmUgaW4gcGVyc29uIGFuZCB0YWtlIGF3YXkgeW91ciBwYWNrYWdlIHdpdGhvdXQgYW55IHF1ZXN0
+aW9uIG9yICANCmRlbGF5IGZyZWVseSAoQWRkcmVzczogMTM5NSBDaGllZiBNb3VudGFpbiBId3ks
+IEJhYmIsIE1UIDU5NDExLCBVbml0ZWQgIA0KU3RhdGVzKQ0KYnV0IGlmIGl0IGNhbuKAmXQgYmUg
+cG9zc2libGUgZm9yIHlvdSB0byBjb21lIGRvd24gZHVlIHRvIHdvcmtpbmcgaG91ciBqdXN0ICAN
+CmdvIGRvd24gdG8gYW55IG5lYXJlc3Qgc3RvcmUgYnV5IHN0ZWFtIGNhcmQgb3Igbm9yZHN0cm9t
+IGNhcmQgb2YgJDE5MCBhbmQgIA0Kc2VuZCBpdCB0byB5b3VyIGRlbGl2ZXJ5IGFnZW50IHZpYSBl
+IGVtYWlsIChob25vcmFibGVoYXJyaXNvbjJAZ21haWwuY29tKSAgDQpvciBwaG9uZSArMSAoMjE2
+KSA0NjUtNTMxNyBpIGV4cGVjdCB5b3VyIHVyZ2VudCBjYWxsIHBsZWFzZSBhbHNvIHByb3ZpZGUg
+IA0KeW91ciBhZGRyZXNzIHdoZXJlIHlvdSB3YW50IHlvdXIgcGFja2FnZSBib3ggdG8gYmUgZGVs
+aXZlcmVkIHRvICB5b3UgaW4gIA0KbmV4dCA0IGhvdXJzIHlvdSB3aWxsIGNvbmZpcm0geW91ciBw
+YWNrYWdlIGltbWVkaWF0ZWx5LCBwbGVhc2UgZG9u4oCZdCBpZ25vcmUgIA0KdGhpcyBtZXNzYWdl
+IGJlY2F1c2UgeW91IGFyZSB2ZXJ5IGx1Y2t5IHBlcnNvbiB0b2RheeKApi4uDQoNClUuUy4gQ3Vz
+dG9tcyBhbmQgQm9yZGVyIFByb3RlY3Rpb24uDQoNCkdvb2dsZSBGb3JtczogQ3JlYXRlIGFuZCBh
+bmFseXplIHN1cnZleXMuDQoKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX18KVjlmcy1kZXZlbG9wZXIgbWFpbGluZyBsaXN0ClY5ZnMtZGV2ZWxvcGVyQGxpc3Rz
+LnNvdXJjZWZvcmdlLm5ldApodHRwczovL2xpc3RzLnNvdXJjZWZvcmdlLm5ldC9saXN0cy9saXN0
+aW5mby92OWZzLWRldmVsb3Blcgo=
