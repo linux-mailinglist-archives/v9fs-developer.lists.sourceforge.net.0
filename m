@@ -2,91 +2,59 @@ Return-Path: <v9fs-developer-bounces@lists.sourceforge.net>
 X-Original-To: lists+v9fs-developer@lfdr.de
 Delivered-To: lists+v9fs-developer@lfdr.de
 Received: from lists.sourceforge.net (lists.sourceforge.net [216.105.38.7])
-	by mail.lfdr.de (Postfix) with ESMTPS id 779FC2AFA05
-	for <lists+v9fs-developer@lfdr.de>; Wed, 11 Nov 2020 21:48:56 +0100 (CET)
-Received: from [127.0.0.1] (helo=sfs-ml-1.v29.lw.sourceforge.com)
-	by sfs-ml-1.v29.lw.sourceforge.com with esmtp (Exim 4.90_1)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5F4302AFBA1
+	for <lists+v9fs-developer@lfdr.de>; Thu, 12 Nov 2020 00:23:13 +0100 (CET)
+Received: from [127.0.0.1] (helo=sfs-ml-2.v29.lw.sourceforge.com)
+	by sfs-ml-2.v29.lw.sourceforge.com with esmtp (Exim 4.90_1)
 	(envelope-from <v9fs-developer-bounces@lists.sourceforge.net>)
-	id 1kcx2z-0005bP-Sl; Wed, 11 Nov 2020 20:48:53 +0000
+	id 1kczSI-00073m-EV; Wed, 11 Nov 2020 23:23:10 +0000
 Received: from [172.30.20.202] (helo=mx.sourceforge.net)
- by sfs-ml-1.v29.lw.sourceforge.com with esmtps
+ by sfs-ml-2.v29.lw.sourceforge.com with esmtps
  (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.90_1)
- (envelope-from
- <bounces+19272268-b574-v9fs-developer=lists.sourceforge.net@em8497.indusdrills.org>)
- id 1kcx2y-0005b6-IC
- for v9fs-developer@lists.sourceforge.net; Wed, 11 Nov 2020 20:48:52 +0000
+ (envelope-from <kkbfeqkdez@fjdigihfdg.xyz>) id 1kczSG-00073b-4P
+ for v9fs-developer@lists.sourceforge.net; Wed, 11 Nov 2020 23:23:08 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=sourceforge.net; s=x; h=Content-Type:MIME-Version:Message-ID:Date:Subject:
- To:From:Sender:Reply-To:Cc:Content-Transfer-Encoding:Content-ID:
+ d=sourceforge.net; s=x; h=Content-Type:Mime-Version:Date:Subject:To:From:
+ Message-ID:Sender:Reply-To:Cc:Content-Transfer-Encoding:Content-ID:
  Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
  :Resent-Message-ID:In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:
  List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=uoF377rzB9LhRah+uWvJigcN4I2CdxtPidP6uc0024Y=; b=iN/68apdkXMyrGfRG7Mnj0FtAr
- pwYnLTB+5jme7DbLg86zcEM7JNxY6hATylGe1XpvCmrSoTVtiqmV3I29cEL9ELQIKGRPp1R58vhlb
- yb33W/QQzryhsYEc7+H14L5LUWs+KKLoEm0RPFdIUN/d2nq+96mG0Y1Zuu02khqjsC8o=;
+ bh=bGGgtwCJrusSg/fNs8UVyS4m6ErdN/TEovIgrjWM1Ss=; b=QfgKywdMnejvSeI+PuK2qc2jNC
+ 3xIYNdZSi0m3a574V6FaRt0bWg4q4N/ggQ47/gLd7Ptz2n+ikqSHFqva/YZT8gcW2g3zBdFdhb/sA
+ Cgb2XecBjGySYFgSrHBYg6knhoUMUcXKHp2q3mHzECFmQtt4PaEQWX+RloxLkRytB4qQ=;
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  ;
- h=Content-Type:MIME-Version:Message-ID:Date:Subject:To:From:Sender:Reply-To
+ h=Content-Type:Mime-Version:Date:Subject:To:From:Message-ID:Sender:Reply-To
  :Cc:Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
  Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:
  References:List-Id:List-Help:List-Unsubscribe:List-Subscribe:List-Post:
- List-Owner:List-Archive; bh=uoF377rzB9LhRah+uWvJigcN4I2CdxtPidP6uc0024Y=; b=Y
- 29J0TAd9mJO4OQaa5fitE+2ezVwN95RLGcD5vsXD66VZIvtnnuyJSmFk7SajztL+sLK/VauBchXGY
- SlmdYYgcUgfVmi5QkcmzpeVpiQrrISBxkkW2+GtFcmHQld97VltbdZ9xh6Smq9f5C+TcI3D4M+NdZ
- IUytUXPF+DgKLj/8=;
-Received: from o1.ptr2397.indusdrills.org ([50.31.38.73])
- by sfi-mx-1.v28.lw.sourceforge.com with esmtps
- (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.92.2)
- id 1kcx2h-00HIHY-Ri
- for v9fs-developer@lists.sourceforge.net; Wed, 11 Nov 2020 20:48:51 +0000
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; 
- d=indusdrills.org; h=from:to:subject:mime-version:content-type; 
- s=s1; bh=uoF377rzB9LhRah+uWvJigcN4I2CdxtPidP6uc0024Y=; b=S4L7sYC
- E7p8MWociDxLrMMUDLMkFt+icSQFWfd0xI/f4UFIRZrhAZFQgoLnWJc+SBHqVhRo
- rw5Fhvv45P6zVM7jfrFg9Mlh6LZLEcH1LyhRPhKKTSO4BNjZMMitGZ9PlCPadFAc
- UmDmzmwJadzolggWb+k/Wlbu9qsLbzEZO7l0=
-Received: by filter2300p1mdw1.sendgrid.net with SMTP id
- filter2300p1mdw1-10586-5FAC4E1D-21
- 2020-11-11 20:48:29.920017941 +0000 UTC m=+518957.347555052
-Received: from ec2-99-79-56-76.ca-central-1.compute.amazonaws.com (unknown)
- by ismtpd0030p1iad2.sendgrid.net (SG) with ESMTP id ZZzktC_DToauw7SjN0gQ0g
- for <v9fs-developer@lists.sourceforge.net>;
- Wed, 11 Nov 2020 20:48:29.832 +0000 (UTC)
-From: "support@lists.sourceforge.net" <mail@indusdrills.org>
-To: v9fs-developer@lists.sourceforge.net
-Date: Wed, 11 Nov 2020 20:48:29 +0000 (UTC)
-Message-ID: <20201111204830.AE682CC3A758A114@indusdrills.org>
-MIME-Version: 1.0
-X-SG-EID: N1XBR1EmuL1ry2MK5urCrs2kFFnNuJB52KRPo0MACB4JbFq2V7WONv2GIdvRCchKY+A/xPg9SNCqnk
- dUTyARjC0zncpzwV3M3wYJuKst9s0lpnrUJnGCk8rT1ltaKY/inKOHaMXCw3u/nA3G/pBiUZDLDO9P
- rKGfO/xYQcym17Q1jgcADJGo38lm546kjfVodVNFIvX9V2ellCM2Ny5cDq+IMx+viNwBUugSw3NfTQ
- 6p5ITzecbUN0t79wNQVAl0oEgBIUXz2tNQsBkJHR8s2g==
-X-Entity-ID: dhzRN/rFlU4I7ApPkNgmNA==
-X-Spam-Score: 3.9 (+++)
+ List-Owner:List-Archive; bh=bGGgtwCJrusSg/fNs8UVyS4m6ErdN/TEovIgrjWM1Ss=; b=H
+ /++3Xs/O3lfPiGZAs9ct7AFWkvaxoGp8tZC2IHZHhAAxVPuFL4Eb37xJPJ5YPLYeURqJdskoVPRtd
+ XhF5/77JcrVEOJzDQCL0VOakwdhZ0U6yKYHqZ219uTS/9eSS6uHSFqSxQlxwFGWe22RJELkDpixgB
+ cetFWGxaMPuJjy98=;
+Received: from 165084180109.ctinets.com ([165.84.180.109] helo=fjdigihfdg.xyz)
+ by sfi-mx-3.v28.lw.sourceforge.com with esmtp (Exim 4.92.2)
+ id 1kczRy-008U99-Gi
+ for v9fs-developer@lists.sourceforge.net; Wed, 11 Nov 2020 23:23:07 +0000
+Message-ID: <D2A50D9D3BD03BEC9514E91285950E7B@fjdigihfdg.xyz>
+From: =?utf-8?B?5LiJ5LqV5L2P5Y+L44Kr44O844OJ?= <thankyou@vpass.ne.jp>
+To: <v9fs-developer@lists.sourceforge.net>
+Date: Thu, 12 Nov 2020 07:22:44 +0800
+Mime-Version: 1.0
+X-Priority: 3
+X-MSMail-Priority: Normal
+X-Mailer: Microsoft Outlook Express 6.00.2900.5512
+X-MimeOLE: Produced By Microsoft MimeOLE V6.3.9600.19846
+X-Spam-Score: 0.2 (/)
 X-Spam-Report: Spam Filtering performed by mx.sourceforge.net.
  See http://spamassassin.org/tag/ for more details.
- 0.0 URIBL_BLOCKED ADMINISTRATOR NOTICE: The query to URIBL was blocked.
- See
- http://wiki.apache.org/spamassassin/DnsBlocklists#dnsbl-block
- for more information. [URIs: sendgrid.net]
- 0.1 URIBL_SBL_A Contains URL's A record listed in the Spamhaus SBL
- blocklist [URIs: u19272268.ct.sendgrid.net]
- 0.6 URIBL_SBL Contains an URL's NS IP listed in the Spamhaus SBL
- blocklist [URIs: u19272268.ct.sendgrid.net]
- 0.0 SPF_HELO_NONE          SPF: HELO does not publish an SPF Record
- 1.0 HTML_MESSAGE           BODY: HTML included in message
- -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from author's
- domain
- -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
- 0.1 DKIM_SIGNED            Message has a DKIM or DK signature,
- not necessarily valid
- 0.0 UNPARSEABLE_RELAY Informational: message has unparseable relay lines
- 0.7 NAME_EMAIL_DIFF        Sender NAME is an unrelated email address
- 1.5 SENDGRID_REDIR         Redirect URI via Sendgrid
+ 0.2 HEADER_FROM_DIFFERENT_DOMAINS From and EnvelopeFrom 2nd level mail
+ domains are different
  0.0 TIME_LIMIT_EXCEEDED    Exceeded time limit / deadline
-X-Headers-End: 1kcx2h-00HIHY-Ri
+X-Headers-End: 1kczRy-008U99-Gi
 X-Content-Filtered-By: Mailman/MimeDel 2.1.21
-Subject: [V9fs-developer] New Recording [13913790]
+Subject: [V9fs-developer] =?utf-8?b?44CQ6YeN6KaB44CR77yc5LiJ5LqV5L2P5Y+L?=
+	=?utf-8?b?44Kr44O844OJ77ye44GU5Yip55So56K66KqN44Gu44GK6aGY44GE?=
 X-BeenThere: v9fs-developer@lists.sourceforge.net
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -102,21 +70,30 @@ Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: base64
 Errors-To: v9fs-developer-bounces@lists.sourceforge.net
 
-wqAKwqAKCklEOiA8IHY5ZnMtZGV2ZWxvcGVyQGxpc3RzLnNvdXJjZWZvcmdlLm5ldCA+CgpBIGNh
-bGxlciBpbiB5b3VyIGRpcmVjdG9yeSBqdXN0IGxlZnQgeW91IGEgbWVzc2FnZS4KCkNhbGxlciA6
-ICsxIDcwMSAzMjggOTAxMApEYXRlOiAxMS0xMC0yMDIwCkR1cmF0aW9uOiAwMTowc2VjCgpMaXN0
-ZW4gdG8gVm9pY2UgTWVzc8SFZ2UgCijCoGh0dHBzOi8vdTE5MjcyMjY4LmN0LnNlbmRncmlkLm5l
-dC9scy9jbGljaz91cG49Y0pGSm55M3hjU0hkV0ZCLTJCbVdkQ2tLb0o3djRsY3ZZYy0yQnNGVkg3
-NFN4TlhuNXhvMDEtMkJ6bzJIZFNVS3F3WDdObFIzazBmaGI2TFM1QWdldVFSUlFES3puZFc4WTQ1
-U0RnTFFkUjhLdHZ0WUZrMjBkYXVjOGItMkZTdlZnM0o4cjZlLTJCN1B3WG1PLTJGOVBiN1ZEcFkt
-MkJTUWgyaGZvbENqdGpPd254RzZpLTJGQlpCNjJFay0zRFphcmFfSjh6aDZDZ3FvZzUtMkZORU9m
-Z3AzZDhKaXhPTlB0TW1reUF6LTJGdlBNS0tzMmp0YzJCdlBPOC0yRmVLQTdVbFptUmJKcGF5NG80
-UDZmRlp6dnBkYnlsRUdqWWoyMWhQZENLMlpHeVlKYlc2akY1bWRZQ09FMVdMU2dRSWVnWG5OZnBF
-TFJNLTJGUjR3QzRpS1ItMkZ4UklNM1JvYmNlbjdaM09EdnZtTVBoSk1WZjdWUzVHbHc2aUQ5eEtR
-a2lVU2VQMlBvQzMtMkZNVURmbWVWSWxOZXE5MVBMVloxQ0M4bGZILTJCU1VYa1VzU09VUkJhc2dn
-SmNORXJIazc3aFNxRk42Z0ZkeHpjOFAyCgpFbWFpbCB3YXMgc2VudCB0byB2OWZzLWRldmVsb3Bl
-ckBsaXN0cy5zb3VyY2Vmb3JnZS5uZXQKCllvdXIgbWVzc2FnZSBsaW5rIGxhc3QgZm9yIDEyIGhv
-dXJzwqAKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KVjlm
-cy1kZXZlbG9wZXIgbWFpbGluZyBsaXN0ClY5ZnMtZGV2ZWxvcGVyQGxpc3RzLnNvdXJjZWZvcmdl
-Lm5ldApodHRwczovL2xpc3RzLnNvdXJjZWZvcmdlLm5ldC9saXN0cy9saXN0aW5mby92OWZzLWRl
-dmVsb3Blcgo=
+DQogDQoNCg0K5pys44Oh44O844Or44Gv44OJ44Oh44Kk44Oz44Gu6YGL55So77yI44Oh44O844Or
+6YCB5Y+X5L+h44KE44Ob44O844Og44Oa44O844K444Gu6KGo56S677yJ44Gr6Zai44KP44KLDQrp
+h43opoHjgarpgJrnn6Xjgajjgarjgorjgb7jgZnjgIINCg0K44GE44Gk44KC5byK56S+44Kr44O8
+44OJ44KS44GU5Yip55So44GE44Gf44Gg44GN44GC44KK44GM44Go44GG44GU44GW44GE44G+44GZ
+44CCDQoNCg0K5pio5LuK44Gu56ys5LiJ6ICF5LiN5q2j5Yip55So44Gu5oCl5aKX44Gr5Ly044GE
+44CB5byK56S+44Gn44Gv44CM5LiN5q2j5Yip55So55uj6KaW44K344K544OG44Og44CN44KS5bCO
+5YWl44GX44CBMjTmmYLplpMzNjXml6XkvZPliLbjgafjgqvjg7zjg4njga7jgZTliKnnlKjjgavl
+r77jgZnjgovjg6Ljg4vjgr/jg6rjg7PjgrDjgpLooYzjgaPjgabjgYrjgorjgb7jgZnjgIINCg0K
+44GT44Gu44Gf44Gz44CB44GU5pys5Lq65qeY44Gu44GU5Yip55So44GL44Gp44GG44GL44KS56K6
+6KqN44GV44Gb44Gm44GE44Gf44Gg44GN44Gf44GE44GK5Y+W5byV44GM44GC44KK44G+44GX44Gf
+44Gu44Gn44CB6Kqg44Gr5Yud5omL44Gq44GM44KJ44CB44Kr44O844OJ44Gu44GU5Yip55So44KS
+5LiA6YOo5Yi26ZmQ44GV44Gb44Gm44GE44Gf44Gg44GN44CB44GU6YCj57Wh44GV44Gb44Gm44GE
+44Gf44Gg44GN44G+44GX44Gf44CCDQoNCg0K44Gk44GN44G+44GX44Gm44Gv44CB5Lul5LiL44G4
+44Ki44Kv44K744K544Gu5LiK44CB44Kr44O844OJ44Gu44GU5Yip55So56K66KqN44Gr44GU5Y2U
+5Yqb44KS44GK6aGY44GE6Ie044GX44G+44GZ44CCDQrjgZTlm57nrZTjgpLjgYTjgZ/jgaDjgZHj
+garjgYTloLTlkIjjgIHjgqvjg7zjg4njga7jgZTliKnnlKjliLbpmZDjgYzntpnntprjgZXjgozj
+govjgZPjgajjgoLjgZTjgZbjgYTjgb7jgZnjga7jgafjgIHkuojjgoHjgZTkuobmib/kuIvjgZXj
+gYTjgIINCg0KDQrilqDjgZTliKnnlKjnorroqo3jga/jgZPjgaHjgonilqANCg0K44CAIA0KDQoN
+CuiHs+aApeOAgVMgTSBCIEPjgqvjg7zjg4nkvJrlk6HjgrXjg7zjg5Pjgrnjgavmg4XloLHjgpLl
+ho3nmbvpjLLjgZfjgabjgY/jgaDjgZXjgYQNCg0KDQrilqDnmbrooYzogIXilqANCuS4ieS6leS9
+j+WPi+OCq+ODvOODieagquW8j+S8muekvg0K44CAaHR0cHM6Ly93d3cuc21iYy1jYXJkLmNvbS8N
+CuOAkjEwNS04MDExIOadseS6rOmDvea4r+WMuua1t+WyuDHkuIHnm64y55WqMjDlj7cg5rGQ55WZ
+44OT44Or44OH44Kj44Oz44KwDQoNCg0KDQoNCuOAgA0KQ29weXJpZ2h0IChDKSAyMDIwIFN1bWl0
+b21vIE1pdHN1aSBDYXJkIENvLiwgTHRkLg0KIApfX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fXwpWOWZzLWRldmVsb3BlciBtYWlsaW5nIGxpc3QKVjlmcy1kZXZl
+bG9wZXJAbGlzdHMuc291cmNlZm9yZ2UubmV0Cmh0dHBzOi8vbGlzdHMuc291cmNlZm9yZ2UubmV0
+L2xpc3RzL2xpc3RpbmZvL3Y5ZnMtZGV2ZWxvcGVyCg==
