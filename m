@@ -2,78 +2,97 @@ Return-Path: <v9fs-developer-bounces@lists.sourceforge.net>
 X-Original-To: lists+v9fs-developer@lfdr.de
 Delivered-To: lists+v9fs-developer@lfdr.de
 Received: from lists.sourceforge.net (lists.sourceforge.net [216.105.38.7])
-	by mail.lfdr.de (Postfix) with ESMTPS id 08F452B34C9
-	for <lists+v9fs-developer@lfdr.de>; Sun, 15 Nov 2020 13:08:15 +0100 (CET)
-Received: from [127.0.0.1] (helo=sfs-ml-2.v29.lw.sourceforge.com)
-	by sfs-ml-2.v29.lw.sourceforge.com with esmtp (Exim 4.90_1)
-	(envelope-from <v9fs-developer-bounces@lists.sourceforge.net>)
-	id 1keGpI-0005cG-7F; Sun, 15 Nov 2020 12:08:12 +0000
-Received: from [172.30.20.202] (helo=mx.sourceforge.net)
- by sfs-ml-2.v29.lw.sourceforge.com with esmtps
- (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.90_1)
- (envelope-from <admin@bnupg.com>) id 1keGpH-0005bm-4Z
- for v9fs-developer@lists.sourceforge.net; Sun, 15 Nov 2020 12:08:11 +0000
+	by mail.lfdr.de (Postfix) with ESMTPS id B19A42B38F1
+	for <lists+v9fs-developer@lfdr.de>; Sun, 15 Nov 2020 21:00:06 +0100 (CET)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=sourceforge.net; s=x; h=Sender:Content-Type:Mime-Version:Message-ID:Subject
- :To:From:Date:Reply-To:Cc:Content-Transfer-Encoding:Content-ID:
+	d=lists.sourceforge.net; s=beta; h=Content-Transfer-Encoding:Content-Type:
+	Reply-To:From:List-Subscribe:List-Help:List-Post:List-Archive:
+	List-Unsubscribe:List-Id:Subject:MIME-Version:Date:To:Message-ID:Sender:Cc:
+	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+	Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:List-Owner;
+	bh=jPlhScs3HWT9vBgTJXYqnKSUwckCSCukBopT2tC6T7I=; b=HhQx39zHU+pWESOr9r9AgLk4xA
+	f46Qy+flfvhIKt1YrrLl2gH2srqw9LOMmwmVjSWt68WlptJqII4RzbleIm5ZPJoUd8lKTxlNiOMbN
+	qs67XhS36dQtdD705QvI95eydLRJynirfGEQltFfn7KyDX3vvAVhJu58/2UHurRTJabw=;
+Received: from [127.0.0.1] (helo=sfs-ml-4.v29.lw.sourceforge.com)
+	by sfs-ml-4.v29.lw.sourceforge.com with esmtp (Exim 4.90_1)
+	(envelope-from <v9fs-developer-bounces@lists.sourceforge.net>)
+	id 1keOBx-0002rQ-1D; Sun, 15 Nov 2020 20:00:05 +0000
+Received: from [172.30.20.202] (helo=mx.sourceforge.net)
+ by sfs-ml-4.v29.lw.sourceforge.com with esmtps
+ (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.90_1)
+ (envelope-from <updateaccount@transmit.monster>) id 1keLqW-0000wG-Oj
+ for v9fs-developer@lists.sourceforge.net; Sun, 15 Nov 2020 17:29:48 +0000
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+ d=sourceforge.net; s=x; h=Content-Type:MIME-Version:Date:Subject:To:From:
+ Message-ID:Sender:Reply-To:Cc:Content-Transfer-Encoding:Content-ID:
  Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
  :Resent-Message-ID:In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:
  List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=j9SDbUWr3CvWBfHBuFI3KdKUJ7cLUZqG59jLHlqYMVw=; b=Y+25GP72YA5qDGLn8B0L5ilauG
- ArBb076MHVfycs7hvLWMiG41T4zWgr0HM16vcB7bkDU/0Ss+A4bS6ZwMNekThKwqrpH1RqBmButcm
- 8a0G7wd/ZkJCSY/1nOFvFY2JOUVtqpZ54k/k1Cvm1xmUWLKtJTfvWLx6AsMS9i7lZ434=;
+ bh=7rE9r2T8Dr90VmDUPcBqtduRisDp+iVIqhwUi+tOG+Y=; b=EYsQ6brohGgX9yfD92yC9CRV4y
+ Rqb8btZ05eUAZs5jFkBXM/GvGXcNQUe4oSmjEVmoTF7Pl0oM30LLn/H1LEBGB5msZ3h5TR4pqyWJt
+ d58HXSHKN09DcU25mfynZTDegs+MirlQ4VsesxlEJauG3XRf0kPM4A86z8j7RW3HtCWQ=;
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  ;
- h=Sender:Content-Type:Mime-Version:Message-ID:Subject:To:From:Date:Reply-To
+ h=Content-Type:MIME-Version:Date:Subject:To:From:Message-ID:Sender:Reply-To
  :Cc:Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
  Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:
  References:List-Id:List-Help:List-Unsubscribe:List-Subscribe:List-Post:
- List-Owner:List-Archive; bh=j9SDbUWr3CvWBfHBuFI3KdKUJ7cLUZqG59jLHlqYMVw=; b=H
- LERLa52lcuDnlJv6fOce0SMlzvSmgVFRm4MOnzS73yUMPngG71O/oop7J1EFDj5Utrwz8GfyzIFYj
- 9kZv31nqMZva4wanDL7/e/bVdUykfyFKc7YcxgadYvveuuxNhqCkkEiSK8elx1Zk4I4PwvROlJc8S
- FGMVDeuhE14N7bwA=;
-Received: from [124.205.5.185] (helo=bnup.com)
- by sfi-mx-3.v28.lw.sourceforge.com with esmtp (Exim 4.92.2)
- id 1keGp9-00CVEx-Ju
- for v9fs-developer@lists.sourceforge.net; Sun, 15 Nov 2020 12:08:11 +0000
-Received: from yahoo2.com.cn (unknown [120.38.215.227])
- by localhost.localdomain (Coremail) with SMTP id
- AQAAfwD3naUrHbFfU0FXAA--.11999S2; 
- Sun, 15 Nov 2020 20:20:59 +0800 (CST)
-Date: Sun, 15 Nov 2020 20:06:18 +0800
-From: "Server"
+ List-Owner:List-Archive; bh=7rE9r2T8Dr90VmDUPcBqtduRisDp+iVIqhwUi+tOG+Y=; b=B
+ Dneta0dYTchvfmobD+QtGEXeeexTlzmFrq5EemUJ6gDv/lEBRRt70u+iEYMiNpt+FrXseOcoUxL9A
+ uFMTN7/+Dj9kqx4Xk8bAnQJO5vfCHrXxa3KsQ2yWyTrtlGfCq4JK/8XOj5xmxDSrrAu9qpxvB9Yo6
+ 5/YFuDyG6DfdI8Zg=;
+Received: from [170.106.76.103] (helo=nyaaIoEv9H2)
+ by sfi-mx-1.v28.lw.sourceforge.com with esmtps
+ (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.92.2)
+ id 1keLqG-004lh4-Ru
+ for v9fs-developer@lists.sourceforge.net; Sun, 15 Nov 2020 17:29:48 +0000
+Received: from uivfkg (unknown [222.247.190.89])
+ by nyaaIoEv9H2 (Postfix) with ESMTPA id B609B20E5B
+ for <v9fs-developer@lists.sourceforge.net>;
+ Sun, 15 Nov 2020 23:41:00 +0800 (CST)
+DKIM-Filter: OpenDKIM Filter v2.11.0 nyaaIoEv9H2 B609B20E5B
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=transmit.monster;
+ s=default; t=1605454862;
+ bh=7rE9r2T8Dr90VmDUPcBqtduRisDp+iVIqhwUi+tOG+Y=;
+ h=From:To:Subject:Date:From;
+ b=z9eXV48Hoj1+kbrmDQ5vQJH4bAIbUrQgACwjpM7lDE9JsA+xAuaXSAuiQnsyryFcp
+ ytpk2V4b4jJnTh8VkpjevtYNI6agaZRw0+AQvQxwBu+IVbKAcbV2LH6RezzBFz4ZBn
+ plF5zUcCsGAxb4hgR4Uo6ksEZz3kXudhGtcV//98=
+Message-ID: <0818B770BB426676E70EB26FD776E5E0@uivfkg>
 To: <v9fs-developer@lists.sourceforge.net>
-Message-ID: <20201115200630281646@bnupg.com>
-X-Priority: 1 (Highest)
-X-mailer: Foxmail 6, 13, 102, 15 [cn]
-Mime-Version: 1.0
-X-CM-TRANSID: AQAAfwD3naUrHbFfU0FXAA--.11999S2
-Authentication-Results: localhost.localdomain; spf=neutral smtp.mail=a
- dmin@bnupg.com;
-X-Coremail-Antispam: 1UD129KBjvdXoW7Jr43Zw4xXF43AF48Cr1kuFg_yoWxurcEgF
- 42vr98KFZxtanxtr1Ykw1ku3yFg3WaqF1xurZ5XFW2gFn5tw1Fyr47W3yFgrZ7XFn7tFn7
- Wws7uw47Zr1kXjkaLaAFLSUrUUUUUb8apTn2vfkv8UJUUUU8Yxn0WfASr-VFAUDa7-sFnT
- 9fnUUIcSsGvfJ3UbIYCTnIWIevJa73UjIFyTuYvj4RJUUUUUUUU
-X-CM-SenderInfo: pdgpx0o6eq313jof0z/
-X-Spam-Score: 4.5 (++++)
+Date: Sun, 15 Nov 2020 23:40:48 +0800
+MIME-Version: 1.0
+X-Priority: 1
+X-MSMail-Priority: High
+X-Mailer: Microsoft Outlook Express 6.00.2900.5512
+X-MimeOLE: Produced By Microsoft MimeOLE V6.00.2900.5512
+X-Helo-Check: bad, Not FQDN (nyaaIoEv9H2)
+X-Spam-Score: 2.7 (++)
 X-Spam-Report: Spam Filtering performed by mx.sourceforge.net.
  See http://spamassassin.org/tag/ for more details.
+ 0.0 FSL_HELO_NON_FQDN_1    No description available.
+ 0.5 VA_HELO_CHECK          Host Used Invalid or Forged HELO/EHLO
  0.0 URIBL_BLOCKED ADMINISTRATOR NOTICE: The query to URIBL was blocked.
  See
  http://wiki.apache.org/spamassassin/DnsBlocklists#dnsbl-block
- for more information. [URIs: 204.44.71.206]
+ for more information. [URIs: postimg.cc]
  0.0 SPF_NONE               SPF: sender does not publish an SPF Record
- 0.0 SPF_HELO_NONE          SPF: HELO does not publish an SPF Record
- 0.0 NUMERIC_HTTP_ADDR      URI: Uses a numeric IP address in URL
- 0.0 NORMAL_HTTP_TO_IP      URI: URI host has a public dotted-decimal IPv4
- address
  1.0 HTML_MESSAGE           BODY: HTML included in message
+ 0.0 HTML_FONT_LOW_CONTRAST BODY: HTML font color similar or identical to
+ background
+ 0.1 DKIM_SIGNED            Message has a DKIM or DK signature,
+ not necessarily valid
  1.0 RDNS_NONE Delivered to internal network by a host with no rDNS
- 2.5 TVD_SPACE_RATIO_MINFP  Space ratio (vertical text obfuscation?)
-X-Headers-End: 1keGp9-00CVEx-Ju
+ 0.0 HELO_NO_DOMAIN         Relay reports its domain incorrectly
+ 0.1 DKIM_INVALID           DKIM or DK signature exists, but is not valid
+ 0.0 T_REMOTE_IMAGE         Message contains an external image
+ 0.0 NORDNS_LOW_CONTRAST    No rDNS + hidden text
+ 0.0 TIME_LIMIT_EXCEEDED    Exceeded time limit / deadline
+X-Headers-End: 1keLqG-004lh4-Ru
 X-Content-Filtered-By: Mailman/MimeDel 2.1.21
-Subject: [V9fs-developer] =?utf-8?b?6YKu5Lu257O757uf5Y2H57qn6YCa55+lLWpo?=
- =?utf-8?q?d?=
+Subject: [V9fs-developer] =?utf-8?b?QW1hem9uLmNvLmpwIOmHjeimgeOBquOBig==?=
+	=?utf-8?b?55+l44KJ44Gb77ya44GK5pSv5omV44GE5pa55rOV44Gu5oOF5aCx44KS?=
+	=?utf-8?b?5pu05paw44GX44Gm44GP44Gg44GV44GE?=
 X-BeenThere: v9fs-developer@lists.sourceforge.net
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -85,22 +104,45 @@ List-Post: <mailto:v9fs-developer@lists.sourceforge.net>
 List-Help: <mailto:v9fs-developer-request@lists.sourceforge.net?subject=help>
 List-Subscribe: <https://lists.sourceforge.net/lists/listinfo/v9fs-developer>, 
  <mailto:v9fs-developer-request@lists.sourceforge.net?subject=subscribe>
+From: =?utf-8?B?QW1hem9u44GL44KJ44GuIOOBiuefpeOCieOBmw==?= via V9fs-developer
+ <v9fs-developer@lists.sourceforge.net>
+Reply-To: =?utf-8?B?QW1hem9u44GL44KJ44GuIOOBiuefpeOCieOBmw==?=
+ <updateaccount@transmit.monster>
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: base64
 Errors-To: v9fs-developer-bounces@lists.sourceforge.net
 
-DQoNCuaCqOWlve+8mnY5ZnMtZGV2ZWxvcGVyQGxpc3RzLnNvdXJjZWZvcmdlLm5ldA0K5oiR5Lus
-5peg5rOV6K+G5Yir5oKo5pyA6L+R55m75b2V55qE6K6+5aSH5oiW5L2N572u77yM5Zug5q2k5oiR
-5Lus5biM5pyb56Gu6K6k5oKo5oul5pyJ5q2k6LSm5oi377yM5Li65LqG5a6J5YWo6LW36KeBDQrm
-iJHku6zopoHnoa7kv53ov5nmmK/mgqjnmoTotKbmiLfjgILor7fmjInnhafku6XkuIvpk77mjqXm
-m7TmlrDmgqjnmoTnlLXlrZDpgq7ku7blnLDlnYANCueCueWHu+i/memHjOehruiupOabtOaWsA0K
-5aaC5rKh5pyJ5oyJ5pe26Ze05YaF5a6M5oiQ6K6k6K+B77yM566h55CG5ZGY5bCG5Lya6K6k5Li6
-5piv5peg5Lq65L2/55So55qE6YKu566x5bm25pqC5YGc5pyN5Yqh77yBDQrmnKzmrKHmm7TmlrDl
-kI7kvJroh6rliqjlj5HpgIHmiJDlip/pgq7ku7bliLDmgqjnmoTotKbmiLfvvIzor7fms6jmhI/l
-j4rml7bmn6XmlLbjgIINCumCrueuseeuoeeQhuWRmOWPkemAgeS6jiAgICAgICAgICAgICAgICAg
-ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg
-IDIwMjAvMTEvMTUgICAgIA0KDQrlpoLmnpzmgqjmnInku7vkvZXnlpHpl67or7forr/pl67lj43l
-noPlnL7pgq7ku7bmlK/mjIHnq5nngrnjgIIgDQrnur/kuIrpmpDnp4HmlL/nrZYgCl9fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fClY5ZnMtZGV2ZWxvcGVyIG1h
-aWxpbmcgbGlzdApWOWZzLWRldmVsb3BlckBsaXN0cy5zb3VyY2Vmb3JnZS5uZXQKaHR0cHM6Ly9s
-aXN0cy5zb3VyY2Vmb3JnZS5uZXQvbGlzdHMvbGlzdGluZm8vdjlmcy1kZXZlbG9wZXIK
+DQoNCg0KDQoNCg0KDQoNCg0KDQpBbWF6b24uY28uanANCuOCq+ODvOODieOBruWIqeeUqOaJv+iq
+jeOBjOW+l+OCieOCjOOBvuOBm+OCk+OBp+OBl+OBnw0K55Wq5Y+377yaODYxLTM3MTg4OTYtNzcw
+ODY1Ng0Kdjlmcy1kZXZlbG9wZXJAbGlzdHMuc291cmNlZm9yZ2UubmV05qeYDQpBbWF6b27jg5fj
+g6njgqTjg6DjgqTjg6Djga7nhKHmlpnkvZPpqJPjgavjgZTnmbvpjLLjgYTjgZ/jgaDjgY3jgb7j
+gZfjgaboqqDjgavjgYLjgorjgYzjgajjgYbjgZTjgZbjgYTjgb7jgZnjgILnhKHmlpnkvZPpqJPn
+mbvpjLLjga7pmpvjgavmnInlirnjgarjgYrmlK/miZXjgYTmlrnms5Xjga7jgZTnmbvpjLLjgpLj
+gYrpoZjjgYTjgZfjgabjgYrjgorjgb7jgZfjgZ/jgYzjgIHoqo3oqLzjgafjgqjjg6njg7zjgYzn
+mbrnlJ/jgZfjgb7jgZfjgZ/jgILku6XkuIvjgavlvpPjgaPjgabjgYrmlK/miZXjgYTmlrnms5Xj
+ga7lho3nmbvpjLLjgpLjgYrpoZjoh7TjgZfjgb7jgZnjgIINCjEuIOOBk+OBoeOCieOBi+OCieOB
+iuWuouanmOOBruOCouOCq+OCpuODs+ODiOaDheWgseOCkuOBlOWFpeWKm+S4i+OBleOBhDog5pSv
+5omV5pa55rOV44Gu5oOF5aCx44KS5pu05paw44GZ44KL44CCDQoyLiBBbWF6b27jg5fjg6njgqTj
+g6DjgavnmbvpjLLjgZfjgZ9BbWF6b24uY28uanDjga7jgqLjgqvjgqbjg7Pjg4jjgpLkvb/nlKjj
+gZfjgabjgrXjgqTjg7PjgqTjg7PjgZfjgb7jgZnjgIINCjMuIOW3puWBtOOBq+ihqOekuuOBleOC
+jOOBpuOBhOOCi+OAjOePvuWcqOOBruaUr+aJleaWueazleOAjeOBruS4i+OBq+OBguOCi+OAjOaU
+r+aJleaWueazleOCkuWkieabtOOBmeOCi+OAjeOBruODquODs+OCr+OCkuOCr+ODquODg+OCr+OB
+l+OBvuOBmeOAgg0KNC4g5pyJ5Yq55pyf6ZmQ44Gu5pu05paw44G+44Gf44Gv5paw44GX44GE44Kv
+44Os44K444OD44OI44Kr44O844OJ5oOF5aCx44KS5YWl5Yqb44GX44Gm44GP44Gg44GV44GE44CC
+DQrkuIvoqJjjg5zjgr/jg7PjgpLjgq/jg6rjg4Pjgq/jgZnjgovjgajjgIHjgYrmlK/miZXjgYTm
+lrnms5XjgpLlpInmm7TjgafjgY3jgb7jgZnjgIINCg0KDQoNCg0K5pSv5omV5pa55rOV44Gu5oOF
+5aCx44KS5pu05paw44GZ44KLDQoNCg0KDQoNCjLml6Xku6XlhoXjgavjgYrmlK/miZXjgYTmlrnm
+s5XjgYzlho3nmbvpjLLjgZXjgozjgarjgYTloLTlkIjjgIHjgYrlrqLmp5jjga7lronlhajjga7n
+grrjgIHjgqLjgqvjgqbjg7Pjg4jjga4g5Yip55So5Yi26ZmQ44KS44GV44Gb44Gm44GE44Gf44Gg
+IOOBjeOBvuOBmeOBruOBp+OAgg0K44G+44Gf44Gu44GU5Yip55So44KS44GK5b6F44Gh44GX44Gm
+44GK44KK44G+44GZ44CCDQpBbWF6b24uY28uanANCg0KDQoNCg0KDQoNCkFtYXpvbi5jby5qcCDj
+gafjga/jgIHjgqvjg7zjg4njga7mib/oqo3jgYzlvpfjgonjgozjgarjgYvjgaPjgZ/nkIbnlLHj
+ga7oqbPntLDjgpLnorroqo3jgafjgY3jgb7jgZvjgpPjgILjgq/jg6zjgrjjg4Pjg4jjgqvjg7zj
+g4nmg4XloLHjga7mm7TmlrDjgIHmlrDjgZfjgYTjgq/jg6zjgrjjg4Pjg4jjgqvjg7zjg4njga7o
+v73liqDjgavjgaTjgYTjgabjga/miYvpoIbjgpLjgZTnorroqo3jgY/jgaDjgZXjgYTjgIINCuOB
+k+OBrkXjg6Hjg7zjg6vjgqLjg4njg6zjgrnjga/phY3kv6HlsILnlKjjgafjgZnjgILjgZPjga7j
+g6Hjg4Pjgrvjg7zjgrjjgavov5Tkv6HjgZfjgarjgYTjgojjgYbjgYrpoZjjgYTjgYTjgZ/jgZfj
+gb7jgZnjgIINCg0KbWJtZWpsaTEzDQoNCg0KDQoNCg0KDQogCl9fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fClY5ZnMtZGV2ZWxvcGVyIG1haWxpbmcgbGlzdApW
+OWZzLWRldmVsb3BlckBsaXN0cy5zb3VyY2Vmb3JnZS5uZXQKaHR0cHM6Ly9saXN0cy5zb3VyY2Vm
+b3JnZS5uZXQvbGlzdHMvbGlzdGluZm8vdjlmcy1kZXZlbG9wZXIK
