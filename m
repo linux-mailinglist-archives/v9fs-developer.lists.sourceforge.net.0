@@ -2,137 +2,89 @@ Return-Path: <v9fs-developer-bounces@lists.sourceforge.net>
 X-Original-To: lists+v9fs-developer@lfdr.de
 Delivered-To: lists+v9fs-developer@lfdr.de
 Received: from lists.sourceforge.net (lists.sourceforge.net [216.105.38.7])
-	by mail.lfdr.de (Postfix) with ESMTPS id EDA682B5F51
-	for <lists+v9fs-developer@lfdr.de>; Tue, 17 Nov 2020 13:46:57 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 722F42B7BFE
+	for <lists+v9fs-developer@lfdr.de>; Wed, 18 Nov 2020 12:03:05 +0100 (CET)
 Received: from [127.0.0.1] (helo=sfs-ml-2.v29.lw.sourceforge.com)
 	by sfs-ml-2.v29.lw.sourceforge.com with esmtp (Exim 4.90_1)
 	(envelope-from <v9fs-developer-bounces@lists.sourceforge.net>)
-	id 1kf0Nq-0001Wn-RF; Tue, 17 Nov 2020 12:46:54 +0000
+	id 1kfLEt-0000GG-Da; Wed, 18 Nov 2020 11:03:03 +0000
 Received: from [172.30.20.202] (helo=mx.sourceforge.net)
  by sfs-ml-2.v29.lw.sourceforge.com with esmtps
  (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.90_1)
- (envelope-from <Yanfei.Xu@windriver.com>) id 1kf0Np-0001Wg-95
- for v9fs-developer@lists.sourceforge.net; Tue, 17 Nov 2020 12:46:53 +0000
+ (envelope-from <dhowells@redhat.com>) id 1kfLEs-0000G9-5D
+ for v9fs-developer@lists.sourceforge.net; Wed, 18 Nov 2020 11:03:02 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=sourceforge.net; s=x; h=MIME-Version:Content-Transfer-Encoding:Content-Type
- :In-Reply-To:Date:Message-ID:From:References:Cc:To:Subject:Sender:Reply-To:
- Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
- Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
+ d=sourceforge.net; s=x; h=Message-ID:Date:Content-Transfer-Encoding:
+ Content-ID:Content-Type:MIME-Version:Subject:cc:To:From:Sender:Reply-To:
+ Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
+ :Resent-Message-ID:In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:
  List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=13xhq310ClLS9mC0t/N7oe99MNGXWVTWSH1LZaOPagQ=; b=JaaherRSn+INQgDLZRDy/zlc5l
- VgfyHh31o3OnhAWlareJ/Fo2hqgAWqiUJadID4lW1+CIkE++sjvfSZuAlgX1S07b3NNoRwhHrJ02F
- DnsmsBzBEnP50iPXaN1O6BGx12gJHi2DVi5Ifu1oIBEM1WVcmps1ji5+5ZNQMYpNwT3g=;
+ bh=1HIp/U/TZE4BAd+dMTbZmNXkLjzlgjs2cjA7+Wvgbyk=; b=ASWQ2m6uuNMDrbjwhaL5PvXJJH
+ BQL0snN2ZUGtGX1i0Pyd7xGrwSMLmUwcoZ3zLWCvNN40IzHOizW5bwhiKbd85az5nA/RreRuvHbZj
+ abZw34bqwrZmnqCRz6cwHeO4wSDG0VBkbbvVA2Ptew73M1nrdIjjt2dspsSSOH14KdmE=;
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  ;
- h=MIME-Version:Content-Transfer-Encoding:Content-Type:In-Reply-To:Date:
- Message-ID:From:References:Cc:To:Subject:Sender:Reply-To:Content-ID:
- Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
- :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
+ h=Message-ID:Date:Content-Transfer-Encoding:Content-ID:Content-Type:
+ MIME-Version:Subject:cc:To:From:Sender:Reply-To:Content-Description:
+ Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+ In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
  List-Post:List-Owner:List-Archive;
- bh=13xhq310ClLS9mC0t/N7oe99MNGXWVTWSH1LZaOPagQ=; b=B8W8kUpCxGBHhkTzzLJzJY6Z+D
- ps5h93ijzcO+1lQ/6h/SBnf9LU5pLEkJXz9A/jbpjeYoxy9mBfzDbaA4mPNmcYPiTzWWpcu5AplPK
- dMPqFgcVMxbnkEVoqwXMX7zJRDKAtsKJle8CiQOY1O7R8ew0QTo1K2k6553MmAeLJTMk=;
-Received: from mail-mw2nam12on2070.outbound.protection.outlook.com
- ([40.107.244.70] helo=NAM12-MW2-obe.outbound.protection.outlook.com)
+ bh=1HIp/U/TZE4BAd+dMTbZmNXkLjzlgjs2cjA7+Wvgbyk=; b=QK/W6Vr0slezslslT7PQaAEwJG
+ 35jRzSuhz6IO1df6gzix8maqsUcX37xhqbl7xuXCUZ4Xti5x0F+MH0nF9d4T5gXjzwEgK2HXZSmuB
+ FwVFdlf0luU5ofYOA8SBl2QtLf6aSri31BFLQSP2K9Zg8/YZgDs9hTsgu2/wk8LKd4vc=;
+Received: from us-smtp-delivery-124.mimecast.com ([216.205.24.124])
  by sfi-mx-1.v28.lw.sourceforge.com with esmtps
- (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.92.2)
- id 1kf0Nh-00AA2K-OQ
- for v9fs-developer@lists.sourceforge.net; Tue, 17 Nov 2020 12:46:53 +0000
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=P+iBbr3vU2b6GptxLGOTZH6nnHNVhxZqEvcPymLbKugnKmX1yBKG8Zpt/GbMZy/odQG4uJAtEMaW6dPQsGNr3LbpMdIUIEt/f5dbd3yK+HIna5/HAvjs82+hLcZ5/JF96OFyK4Xoae/i6jfLkcx44GVYuAzoUwhBkOC5tQMQB0qiBsD0vbSQM+kgs2BHeSdBWGIcjUQLNm5QBahZlHphMWjGBDZviBe4S0H7HO68mJLi4nMco+o6Tsh0nJOTmrCLhNiH9HIgAxl7BEQsJnaUGYjmlNSdq82qWKFyaLEUJ26KecPVNeuD9s6zBdwsK4Ke0qRzCWcGlI3R1LsaIyNeOg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=13xhq310ClLS9mC0t/N7oe99MNGXWVTWSH1LZaOPagQ=;
- b=UKLmrrWWpI3JTxf6AEv8sxMVqpyb96jicU0PpaMVc4r7mQ+JfnEO1ClTycqKn7jpurj5+/DoAKM+ybDby/x4GsRi9PJTyck1n99+rqz5mozSjs/MAME6sYQZu6QoT7sHGN3gmxpCJmWsF3tcmXG5CcgJkAaVjBseCa6tpF/yb6j+6jesAYj8cvm5qclW+azXn4Nx4tab85r4NnxFG1g++3beDGD2fwC3YZoLOSSxdmK6gUvtkzP7o1C7dEFlfTtnDfa/wDRgReu3okM49EkgB7Nm/4lrpNrO4hsod2WuR1FMWz57MwPraX1qQfYv2xraBpaYFflPWH8/Rrm6H/56SQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=windriver.com; dmarc=pass action=none
- header.from=windriver.com; dkim=pass header.d=windriver.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=windriversystems.onmicrosoft.com;
- s=selector2-windriversystems-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=13xhq310ClLS9mC0t/N7oe99MNGXWVTWSH1LZaOPagQ=;
- b=BLxFhgwksBgh9dEi621EDGO2yWQ7OS5ZPf9imZYwURHa1oOp03LbB9IJtZonHb6SHB6jIzM+WHxmicdncX7xb74leno7urno7fZQ+9s2Y2DCcUbjmiEIfaYBf50dVm8XEueK3s5S+wBjKEhLh1VHUfGumwj9NbfAgRlKPsTI6SY=
-Authentication-Results: lists.sourceforge.net; dkim=none (message not signed)
- header.d=none; lists.sourceforge.net;
- dmarc=none action=none header.from=windriver.com;
-Received: from BY5PR11MB4241.namprd11.prod.outlook.com (2603:10b6:a03:1ca::13)
- by BYAPR11MB3480.namprd11.prod.outlook.com (2603:10b6:a03:79::27)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3564.25; Tue, 17 Nov
- 2020 12:46:38 +0000
-Received: from BY5PR11MB4241.namprd11.prod.outlook.com
- ([fe80::adbd:559a:4a78:f09b]) by BY5PR11MB4241.namprd11.prod.outlook.com
- ([fe80::adbd:559a:4a78:f09b%6]) with mapi id 15.20.3564.028; Tue, 17 Nov 2020
- 12:46:38 +0000
-To: Dmitry Vyukov <dvyukov@google.com>,
- syzbot <syzbot+3a0f6c96e37e347c6ba9@syzkaller.appspotmail.com>,
- Christoph Lameter <cl@linux.com>, Pekka Enberg <penberg@kernel.org>,
- David Rientjes <rientjes@google.com>, Joonsoo Kim <iamjoonsoo.kim@lge.com>,
- Andrew Morton <akpm@linux-foundation.org>, Linux-MM <linux-mm@kvack.org>
-References: <0000000000006ef45b05b436ddb4@google.com>
- <CACT4Y+aMw276FEUfS5+ZjJxxZqmFqM7=MnC7gWE9zn7vgha-AA@mail.gmail.com>
-From: "Xu, Yanfei" <yanfei.xu@windriver.com>
-Message-ID: <38f9ad29-36d0-da57-76f0-6a7ce4182774@windriver.com>
-Date: Tue, 17 Nov 2020 20:46:27 +0800
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.7.0
-In-Reply-To: <CACT4Y+aMw276FEUfS5+ZjJxxZqmFqM7=MnC7gWE9zn7vgha-AA@mail.gmail.com>
-Content-Language: en-US
-X-Originating-IP: [60.247.85.82]
-X-ClientProxiedBy: HK2PR0302CA0008.apcprd03.prod.outlook.com
- (2603:1096:202::18) To BY5PR11MB4241.namprd11.prod.outlook.com
- (2603:10b6:a03:1ca::13)
+ (TLSv1.2:ECDHE-RSA-AES256-SHA384:256) (Exim 4.92.2)
+ id 1kfLEb-00DFjv-Pd
+ for v9fs-developer@lists.sourceforge.net; Wed, 18 Nov 2020 11:03:02 +0000
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+ s=mimecast20190719; t=1605697356;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding;
+ bh=1HIp/U/TZE4BAd+dMTbZmNXkLjzlgjs2cjA7+Wvgbyk=;
+ b=U4B+1PxcXVOMYSiIJ5ex3roJcIOuSlFAorO8Nv/+2ErYK75F/f94+n8p46gI2ACQcx1n83
+ vZ6/nkhwMqWPX/kDA9KLoOLaAEQRXSgC7UjXqrU916odmp6z1sVglmimh1TfKAjSf3UCoh
+ UXD99VCno4lNgVtd8TiqlffKeurFIi4=
+Received: from mimecast-mx01.redhat.com (mimecast-mx01.redhat.com
+ [209.132.183.4]) (Using TLS) by relay.mimecast.com with ESMTP id
+ us-mta-505-QdQhRVZCPKiDXKuWq5FDJw-1; Wed, 18 Nov 2020 06:02:34 -0500
+X-MC-Unique: QdQhRVZCPKiDXKuWq5FDJw-1
+Received: from smtp.corp.redhat.com (int-mx06.intmail.prod.int.phx2.redhat.com
+ [10.5.11.16])
+ (using TLSv1.2 with cipher AECDH-AES256-SHA (256/256 bits))
+ (No client certificate requested)
+ by mimecast-mx01.redhat.com (Postfix) with ESMTPS id 151521008302;
+ Wed, 18 Nov 2020 11:02:33 +0000 (UTC)
+Received: from warthog.procyon.org.uk (ovpn-112-246.rdu2.redhat.com
+ [10.10.112.246])
+ by smtp.corp.redhat.com (Postfix) with ESMTP id 426CC5C1D7;
+ Wed, 18 Nov 2020 11:02:28 +0000 (UTC)
+Organization: Red Hat UK Ltd. Registered Address: Red Hat UK Ltd, Amberley
+ Place, 107-111 Peascod Street, Windsor, Berkshire, SI4 1TE, United
+ Kingdom.
+ Registered in England and Wales under Company Registration No. 3798903
+From: David Howells <dhowells@redhat.com>
+To: Dominique Martinet <asmadeus@codewreck.org>
 MIME-Version: 1.0
-X-MS-Exchange-MessageSentRepresentingType: 1
-Received: from [128.224.162.160] (60.247.85.82) by
- HK2PR0302CA0008.apcprd03.prod.outlook.com (2603:1096:202::18) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.3589.14 via Frontend Transport; Tue, 17 Nov 2020 12:46:33 +0000
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 36b4f726-bb30-4830-7fd1-08d88af6d26c
-X-MS-TrafficTypeDiagnostic: BYAPR11MB3480:
-X-Microsoft-Antispam-PRVS: <BYAPR11MB34800E967B4BEB72D8B824EAE4E20@BYAPR11MB3480.namprd11.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:2887;
-X-MS-Exchange-SenderADCheck: 1
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: Occ2qDAcKi2SNtEy9TUwmzHamRhtK1Fnkwe7LRBg9hXPbWeBQn07fIsn4n7Hx4a7qBH6m0ZhX9si/fxBh6pn7TAk+SRRtTP3F6a/SNOGfbQMRcCDLcE+Gv0rTDKeK5QKWKifD3m8g5dk71SbFn+iynyzIba8XnGpes/ES4IYqMnh/f7wscIdZWQL0vsuczctkth39gb3d6wHO2jxsYuyXxujIKnavECwi9gj7diUHxvyddT63279W+weKjftuWjgd+C9dWG+0vmvvU5GJvv32ZRwO4//Fkm/5CTdlMIJXHN5KdPdJYKu9xL3xr4f8TLV6ZAnnOg6DZBAQiqj+JbgpFFmmG15MkCD42tAElOO2x0fm0LlQWzf8cIuGkXjedohYzryX/QvYV5+SdzWDIUx0VtoBQzyHF/NIG05T6wpehBdjZCPKfKAvx7lW23SPsusVf3r9G8ExnMFO1qhZT7k2/bt8it9lPGiW2+/wqNeW9rKf2gYg0CyF22ymRURcKVJ
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:BY5PR11MB4241.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(4636009)(366004)(346002)(39850400004)(396003)(376002)(136003)(478600001)(956004)(83380400001)(5660300002)(86362001)(4326008)(2906002)(31696002)(316002)(2616005)(26005)(66556008)(966005)(66946007)(54906003)(6486002)(52116002)(8936002)(66476007)(186003)(16526019)(8676002)(53546011)(16576012)(36756003)(6706004)(7416002)(31686004)(6666004)(110136005)(99710200001)(78286007)(43740500002);
- DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData: Szwnn8eNufsWjKsiI7i5LiH+bOYnvk6FYHiWoYHLW6WTvLbbbj93SXmY/cRQWwBf7B43fAzW9Z0xIBrK9a54cn+EkfQU1mPI8tVS9Lfmuu0saO3Xz8oRbfwQG5GkHXbjbcdDTB1iYJ1jHiq0BjR9NSUZVpmVs/bQoAxiYrElAMC2e2IbxEnVcc4xn6dYomAj6PWcA97KDSDsrFuHlbJnR8mqTlgjdlziWxUD5EfrPk6KhNwRmk0bKtB3F3vtuTVqVFkh3gBhw0wbyiFUrGPLVQuSTq8axEiXggL2nzQRR9xY3voQr4II3UErsCLvqvUbtvB+EI5B7+Vv6xgHJYmet9Zbe+ul0DsLynLwS2teRunplkbDbMqT+z+SKETTW0/5q4MqSnc55fjhlN4ClEnFrPaxgsJfABy7BRGPWn0exLwVHnFm+fJriXJ6DH+jnArWfVzRSVgEHw6aYUqYEmSsvUWLip+oqa0des2eq01Bb/OcZ5W9AVenZYSGmWg4lMifk0TfkwB+LzBB2On8m+Z7cZ3gRl+uY0qgFi5gW8FT4HpB/c1srjRdniQik7EYFMyx34vivQicyyg8K+u4lQv4RMVFn2lGFA6vE3K5uxu/7lTTdnONQfZUyxRk/lRoaxyZ/MNKXwvscHKuskZBQCp1eQ==
-X-OriginatorOrg: windriver.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 36b4f726-bb30-4830-7fd1-08d88af6d26c
-X-MS-Exchange-CrossTenant-AuthSource: BY5PR11MB4241.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 17 Nov 2020 12:46:37.9633 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 8ddb2873-a1ad-4a18-ae4e-4644631433be
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: 226diERAg40T5pkjF3RiFeCA/mng4ACatReMSZrXVVD67+j1ex2/BCrNqeeVQ9XWEc1vs8rxvrUmq6rahzplFg==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BYAPR11MB3480
-X-Spam-Score: -0.0 (/)
+Content-ID: <1514085.1605697347.1@warthog.procyon.org.uk>
+Date: Wed, 18 Nov 2020 11:02:27 +0000
+Message-ID: <1514086.1605697347@warthog.procyon.org.uk>
+X-Scanned-By: MIMEDefang 2.79 on 10.5.11.16
+X-Spam-Score: -0.1 (/)
 X-Spam-Report: Spam Filtering performed by mx.sourceforge.net.
  See http://spamassassin.org/tag/ for more details.
- 0.0 URIBL_BLOCKED ADMINISTRATOR NOTICE: The query to URIBL was blocked.
- See
- http://wiki.apache.org/spamassassin/DnsBlocklists#dnsbl-block
- for more information. [URIs: googlegroups.com]
  -0.0 RCVD_IN_DNSWL_NONE     RBL: Sender listed at https://www.dnswl.org/, no
- trust [40.107.244.70 listed in list.dnswl.org]
- -0.0 RCVD_IN_MSPIKE_H2      RBL: Average reputation (+2)
- [40.107.244.70 listed in wl.mailspike.net]
- -0.0 SPF_HELO_PASS          SPF: HELO matches SPF record
- -0.0 SPF_PASS               SPF: sender matches SPF record
+ trust [216.205.24.124 listed in list.dnswl.org]
+ 0.0 SPF_HELO_NONE          SPF: HELO does not publish an SPF Record
+ -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from author's
+ domain
  -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
  0.1 DKIM_SIGNED            Message has a DKIM or DK signature,
  not necessarily valid
- 0.0 MSGID_FROM_MTA_HEADER  Message-Id was added by a relay
- -0.0 NICE_REPLY_A           Looks like a legit reply (A)
-X-Headers-End: 1kf0Nh-00AA2K-OQ
-Subject: Re: [V9fs-developer] KASAN: invalid-free in p9_client_create
+ -0.0 DKIMWL_WL_HIGH         DKIMwl.org - High trust sender
+X-Headers-End: 1kfLEb-00DFjv-Pd
+Subject: [V9fs-developer] [PATCH] 9p: Convert to new fscache API
 X-BeenThere: v9fs-developer@lists.sourceforge.net
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -145,185 +97,1141 @@ List-Help: <mailto:v9fs-developer-request@lists.sourceforge.net?subject=help>
 List-Subscribe: <https://lists.sourceforge.net/lists/listinfo/v9fs-developer>, 
  <mailto:v9fs-developer-request@lists.sourceforge.net?subject=subscribe>
 Cc: Latchesar Ionkov <lucho@ionkov.net>, Eric Van Hensbergen <ericvh@gmail.com>,
- netdev <netdev@vger.kernel.org>,
- syzkaller-bugs <syzkaller-bugs@googlegroups.com>,
- LKML <linux-kernel@vger.kernel.org>, v9fs-developer@lists.sourceforge.net,
- Jakub Kicinski <kuba@kernel.org>, David Miller <davem@davemloft.net>
-Content-Transfer-Encoding: base64
-Content-Type: text/plain; charset="utf-8"; Format="flowed"
+ dhowells@redhat.com, linux-cachefs@redhat.com, linux-fsdevel@vger.kernel.org,
+ v9fs-developer@lists.sourceforge.net
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: v9fs-developer-bounces@lists.sourceforge.net
 
-SG93IGFib3V0IHRoaXMgcGF0Y2g/IElmIGl0IGlzIGFwcHJvcHJpYXRlLCBJIHdpbGwgc2VuZCBh
-IHJlYWwgb25lLgoKICAgICBtbS9zbHViOiBmaXggc2xhYiBkb3VibGUtZnJlZSB3aGVuIHJlbGVh
-c2UgY2FsbGJhY2sgb2Ygc3lzZnMgdHJpZ2dlcgoKICAgICBTaWduZWQtb2ZmLWJ5OiBZYW5mZWkg
-WHUgPHlhbmZlaS54dUB3aW5kcml2ZXIuY29tPgoKZGlmZiAtLWdpdCBhL21tL3NsdWIuYyBiL21t
-L3NsdWIuYwppbmRleCA0MTQ4MjM1YmE1NTQuLmQxMGM0ZmJmOGM4NCAxMDA2NDQKLS0tIGEvbW0v
-c2x1Yi5jCisrKyBiL21tL3NsdWIuYwpAQCAtNTY1Myw3ICs1NjUzLDcgQEAgc3RhdGljIGludCBz
-eXNmc19zbGFiX2FkZChzdHJ1Y3Qga21lbV9jYWNoZSAqcykKICAgICAgICAgcy0+a29iai5rc2V0
-ID0ga3NldDsKICAgICAgICAgZXJyID0ga29iamVjdF9pbml0X2FuZF9hZGQoJnMtPmtvYmosICZz
-bGFiX2t0eXBlLCBOVUxMLCAiJXMiLCAKbmFtZSk7CiAgICAgICAgIGlmIChlcnIpIHsKLSAgICAg
-ICAgICAgICAgIGtvYmplY3RfcHV0KCZzLT5rb2JqKTsKKyAgICAgICAgICAgICAgIGtmcmVlX2Nv
-bnN0KCZzLT5rb2JqLm5hbWUpOwogICAgICAgICAgICAgICAgIGdvdG8gb3V0OwogICAgICAgICB9
-Ci0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0t
-LS0KQmVjYXVzZSBhIHByZXZpb3VzIHBhdGNoIGRkZTNjNmI3KG1tL3NsdWI6IGZpeCBhIG1lbW9y
-eSBsZWFrIGluIApzeXNmc19zbGFiX2FkZCgpKSBhZGRlZCBhIGtvYmplY3RfcHV0KCkgaW4gdGhl
-IGVycm9yIHBhdGggb2YgCmtvYmplY3RfaW5pdF9hbmRfYWRkKCkuIEl0IHJlc3VsdHMgdGhlIHJl
-bGVhc2UgY2FsbGJhY2sgb2Ygc3lzZnMsIHdoaWNoIAppcyBrbWVtX2NhY2hlX3JlbGVhc2UoKSwg
-aXMgdHJpZ2dlcmVkIHdoZW4gZ2V0IGludG8gdGhlIGVycm9yIHBhdGguCgpIb3dldmVyLCB3ZSB3
-aWxsIGFsc28gZnJlZSB0aGUgJ2ttZW1fY2FjaGUnIGFuZCAna21lbV9jYWNoZV9ub2RlJyBhbmQg
-CidrbWVtX2NhY2hlLT5uYW1lJyBhdCB0aGUgZXJyb3IgcGF0aCBvZiBjcmVhdGVfY2FjaGUoKSB3
-aGVuIAprb2JqZWN0X2luaXRfYW5kX2FkZCgpIHJldHVybnMgZmFpbHVyZS4gVGhhdCBtYWtlcyBk
-b3VibGUtZnJlZS4KCkFib3V0IHRoZSBwYXRjaCB3aGljaCBpbnRyb2R1Y2VkIHRoaXMgaXNzdWUs
-IEkgdGhpbmsgd2UgY291bGQgZml4IGl0IGJ5IApmcmVlaW5nIHRoZSBsZWFrZWQgbWVtb3J5IGRp
-cmVjdGx5IGluc3RlYWQgb2YgYWRkaW5nIGtvYmplY3RfcHV077yI77yJLgoKUmVnYXJkcywKWWFu
-ZmVpCgoKCk9uIDExLzE2LzIwIDc6MTEgUE0sIERtaXRyeSBWeXVrb3Ygd3JvdGU6Cj4gW1BsZWFz
-ZSBub3RlIHRoaXMgZS1tYWlsIGlzIGZyb20gYW4gRVhURVJOQUwgZS1tYWlsIGFkZHJlc3NdCj4g
-Cj4gT24gTW9uLCBOb3YgMTYsIDIwMjAgYXQgMTE6MzAgQU0gc3l6Ym90Cj4gPHN5emJvdCszYTBm
-NmM5NmUzN2UzNDdjNmJhOUBzeXprYWxsZXIuYXBwc3BvdG1haWwuY29tPiB3cm90ZToKPj4KPj4g
-SGVsbG8sCj4+Cj4+IHN5emJvdCBmb3VuZCB0aGUgZm9sbG93aW5nIGlzc3VlIG9uOgo+Pgo+PiBI
-RUFEIGNvbW1pdDogICAgOTJlZGM0YWUgQWRkIGxpbnV4LW5leHQgc3BlY2lmaWMgZmlsZXMgZm9y
-IDIwMjAxMTEzCj4+IGdpdCB0cmVlOiAgICAgICBsaW51eC1uZXh0Cj4+IGNvbnNvbGUgb3V0cHV0
-OiBodHRwczovL3N5emthbGxlci5hcHBzcG90LmNvbS94L2xvZy50eHQ/eD0xNDJmODgxNjUwMDAw
-MAo+PiBrZXJuZWwgY29uZmlnOiAgaHR0cHM6Ly9zeXprYWxsZXIuYXBwc3BvdC5jb20veC8uY29u
-ZmlnP3g9NzlhZDRmOGFkMmQ5NjE3Ngo+PiBkYXNoYm9hcmQgbGluazogaHR0cHM6Ly9zeXprYWxs
-ZXIuYXBwc3BvdC5jb20vYnVnP2V4dGlkPTNhMGY2Yzk2ZTM3ZTM0N2M2YmE5Cj4+IGNvbXBpbGVy
-OiAgICAgICBnY2MgKEdDQykgMTAuMS4wLXN5eiAyMDIwMDUwNwo+Pgo+PiBVbmZvcnR1bmF0ZWx5
-LCBJIGRvbid0IGhhdmUgYW55IHJlcHJvZHVjZXIgZm9yIHRoaXMgaXNzdWUgeWV0Lgo+Pgo+PiBJ
-TVBPUlRBTlQ6IGlmIHlvdSBmaXggdGhlIGlzc3VlLCBwbGVhc2UgYWRkIHRoZSBmb2xsb3dpbmcg
-dGFnIHRvIHRoZSBjb21taXQ6Cj4+IFJlcG9ydGVkLWJ5OiBzeXpib3QrM2EwZjZjOTZlMzdlMzQ3
-YzZiYTlAc3l6a2FsbGVyLmFwcHNwb3RtYWlsLmNvbQo+IAo+IExvb2tzIGxpa2UgYSByZWFsIGRv
-dWJsZSBmcmVlIGluIHNsYWIgY29kZS4gK01NIG1haW50YWluZXJzCj4gTm90ZSB0aGVyZSB3YXMg
-YSBwcmVjZWRpbmcga21hbGxvYyBmYWlsdXJlIGluIHN5c2ZzX3NsYWJfYWRkLgo+IAo+IAo+PiBS
-QlA6IDAwMDA3ZmEzNTgwNzZjYTAgUjA4OiAwMDAwMDAwMDIwMDAwMDgwIFIwOTogMDAwMDAwMDAw
-MDAwMDAwMAo+PiBSMTA6IDAwMDAwMDAwMDAwMDAwMDAgUjExOiAwMDAwMDAwMDAwMDAwMjQ2IFIx
-MjogMDAwMDAwMDAwMDAwMDAxZgo+PiBSMTM6IDAwMDA3ZmZmN2RjZjIyNGYgUjE0OiAwMDAwN2Zh
-MzU4MDc3OWMwIFIxNTogMDAwMDAwMDAwMTE4YmYyYwo+PiBrb2JqZWN0X2FkZF9pbnRlcm5hbCBm
-YWlsZWQgZm9yIDlwLWZjYWxsLWNhY2hlIChlcnJvcjogLTEyIHBhcmVudDogc2xhYikKPj4gPT09
-PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09
-PT09PT09Cj4+IEJVRzogS0FTQU46IGRvdWJsZS1mcmVlIG9yIGludmFsaWQtZnJlZSBpbiBzbGFi
-X2ZyZWUgbW0vc2x1Yi5jOjMxNTcgW2lubGluZV0KPj4gQlVHOiBLQVNBTjogZG91YmxlLWZyZWUg
-b3IgaW52YWxpZC1mcmVlIGluIGttZW1fY2FjaGVfZnJlZSsweDgyLzB4MzUwIG1tL3NsdWIuYzoz
-MTczCj4+Cj4+IENQVTogMCBQSUQ6IDE1OTgxIENvbW06IHN5ei1leGVjdXRvci41IE5vdCB0YWlu
-dGVkIDUuMTAuMC1yYzMtbmV4dC0yMDIwMTExMy1zeXprYWxsZXIgIzAKPj4gSGFyZHdhcmUgbmFt
-ZTogR29vZ2xlIEdvb2dsZSBDb21wdXRlIEVuZ2luZS9Hb29nbGUgQ29tcHV0ZSBFbmdpbmUsIEJJ
-T1MgR29vZ2xlIDAxLzAxLzIwMTEKPj4gQ2FsbCBUcmFjZToKPj4gICBfX2R1bXBfc3RhY2sgbGli
-L2R1bXBfc3RhY2suYzo3OSBbaW5saW5lXQo+PiAgIGR1bXBfc3RhY2srMHgxMDcvMHgxNjMgbGli
-L2R1bXBfc3RhY2suYzoxMjAKPj4gICBwcmludF9hZGRyZXNzX2Rlc2NyaXB0aW9uLmNvbnN0cHJv
-cC4wLmNvbGQrMHg1Yi8weDJmOCBtbS9rYXNhbi9yZXBvcnQuYzoyMzAKPj4gICBrYXNhbl9yZXBv
-cnRfaW52YWxpZF9mcmVlKzB4NTEvMHg4MCBtbS9rYXNhbi9yZXBvcnQuYzozNTUKPj4gICBfX19f
-a2FzYW5fc2xhYl9mcmVlKzB4MTAwLzB4MTEwIG1tL2thc2FuL2NvbW1vbi5jOjM1Mgo+PiAgIGth
-c2FuX3NsYWJfZnJlZSBpbmNsdWRlL2xpbnV4L2thc2FuLmg6MTk0IFtpbmxpbmVdCj4+ICAgc2xh
-Yl9mcmVlX2hvb2sgbW0vc2x1Yi5jOjE1NDggW2lubGluZV0KPj4gICBzbGFiX2ZyZWVfZnJlZWxp
-c3RfaG9vaysweDVkLzB4MTUwIG1tL3NsdWIuYzoxNTg2Cj4+ICAgc2xhYl9mcmVlIG1tL3NsdWIu
-YzozMTU3IFtpbmxpbmVdCj4+ICAga21lbV9jYWNoZV9mcmVlKzB4ODIvMHgzNTAgbW0vc2x1Yi5j
-OjMxNzMKPj4gICBjcmVhdGVfY2FjaGUgbW0vc2xhYl9jb21tb24uYzoyNzQgW2lubGluZV0KPj4g
-ICBrbWVtX2NhY2hlX2NyZWF0ZV91c2VyY29weSsweDJhYi8weDMwMCBtbS9zbGFiX2NvbW1vbi5j
-OjM1Nwo+PiAgIHA5X2NsaWVudF9jcmVhdGUrMHhjNGQvMHgxMGMwIG5ldC85cC9jbGllbnQuYzox
-MDYzCj4+ICAgdjlmc19zZXNzaW9uX2luaXQrMHgxZGQvMHgxNzcwIGZzLzlwL3Y5ZnMuYzo0MDYK
-Pj4gICB2OWZzX21vdW50KzB4NzkvMHg5YjAgZnMvOXAvdmZzX3N1cGVyLmM6MTI2Cj4+ICAgbGVn
-YWN5X2dldF90cmVlKzB4MTA1LzB4MjIwIGZzL2ZzX2NvbnRleHQuYzo1OTIKPj4gICB2ZnNfZ2V0
-X3RyZWUrMHg4OS8weDJmMCBmcy9zdXBlci5jOjE1NDkKPj4gICBkb19uZXdfbW91bnQgZnMvbmFt
-ZXNwYWNlLmM6Mjg5NiBbaW5saW5lXQo+PiAgIHBhdGhfbW91bnQrMHgxMmFlLzB4MWU3MCBmcy9u
-YW1lc3BhY2UuYzozMjI3Cj4+ICAgZG9fbW91bnQgZnMvbmFtZXNwYWNlLmM6MzI0MCBbaW5saW5l
-XQo+PiAgIF9fZG9fc3lzX21vdW50IGZzL25hbWVzcGFjZS5jOjM0NDggW2lubGluZV0KPj4gICBf
-X3NlX3N5c19tb3VudCBmcy9uYW1lc3BhY2UuYzozNDI1IFtpbmxpbmVdCj4+ICAgX194NjRfc3lz
-X21vdW50KzB4MjdmLzB4MzAwIGZzL25hbWVzcGFjZS5jOjM0MjUKPj4gICBkb19zeXNjYWxsXzY0
-KzB4MmQvMHg3MCBhcmNoL3g4Ni9lbnRyeS9jb21tb24uYzo0Ngo+PiAgIGVudHJ5X1NZU0NBTExf
-NjRfYWZ0ZXJfaHdmcmFtZSsweDQ0LzB4YTkKPj4gUklQOiAwMDMzOjB4NDVkZWI5Cj4+IENvZGU6
-IDBkIGI0IGZiIGZmIGMzIDY2IDJlIDBmIDFmIDg0IDAwIDAwIDAwIDAwIDAwIDY2IDkwIDQ4IDg5
-IGY4IDQ4IDg5IGY3IDQ4IDg5IGQ2IDQ4IDg5IGNhIDRkIDg5IGMyIDRkIDg5IGM4IDRjIDhiIDRj
-IDI0IDA4IDBmIDA1IDw0OD4gM2QgMDEgZjAgZmYgZmYgMGYgODMgZGIgYjMgZmIgZmYgYzMgNjYg
-MmUgMGYgMWYgODQgMDAgMDAgMDAgMDAKPj4gUlNQOiAwMDJiOjAwMDA3ZmEzNTgwNzZjNzggRUZM
-QUdTOiAwMDAwMDI0NiBPUklHX1JBWDogMDAwMDAwMDAwMDAwMDBhNQo+PiBSQVg6IGZmZmZmZmZm
-ZmZmZmZmZGEgUkJYOiAwMDAwMDAwMDAwMDIxODAwIFJDWDogMDAwMDAwMDAwMDQ1ZGViOQo+PiBS
-RFg6IDAwMDAwMDAwMjAwMDAxMDAgUlNJOiAwMDAwMDAwMDIwMDAwMDQwIFJESTogMDAwMDAwMDAw
-MDAwMDAwMAo+PiBSQlA6IDAwMDA3ZmEzNTgwNzZjYTAgUjA4OiAwMDAwMDAwMDIwMDAwMDgwIFIw
-OTogMDAwMDAwMDAwMDAwMDAwMAo+PiBSMTA6IDAwMDAwMDAwMDAwMDAwMDAgUjExOiAwMDAwMDAw
-MDAwMDAwMjQ2IFIxMjogMDAwMDAwMDAwMDAwMDAxZgo+PiBSMTM6IDAwMDA3ZmZmN2RjZjIyNGYg
-UjE0OiAwMDAwN2ZhMzU4MDc3OWMwIFIxNTogMDAwMDAwMDAwMTE4YmYyYwo+Pgo+PiBBbGxvY2F0
-ZWQgYnkgdGFzayAxNTk4MToKPj4gICBrYXNhbl9zYXZlX3N0YWNrKzB4MWIvMHg0MCBtbS9rYXNh
-bi9jb21tb24uYzozOQo+PiAgIGthc2FuX3NldF90cmFjayBtbS9rYXNhbi9jb21tb24uYzo0NyBb
-aW5saW5lXQo+PiAgIHNldF9hbGxvY19pbmZvIG1tL2thc2FuL2NvbW1vbi5jOjQwMyBbaW5saW5l
-XQo+PiAgIF9fX19rYXNhbl9rbWFsbG9jLmNvbnN0cHJvcC4wKzB4ODIvMHhhMCBtbS9rYXNhbi9j
-b21tb24uYzo0MzQKPj4gICBrYXNhbl9zbGFiX2FsbG9jIGluY2x1ZGUvbGludXgva2FzYW4uaDoy
-MTEgW2lubGluZV0KPj4gICBzbGFiX3Bvc3RfYWxsb2NfaG9vayBtbS9zbGFiLmg6NTEyIFtpbmxp
-bmVdCj4+ICAgc2xhYl9hbGxvY19ub2RlIG1tL3NsdWIuYzoyOTAzIFtpbmxpbmVdCj4+ICAgc2xh
-Yl9hbGxvYyBtbS9zbHViLmM6MjkxMSBbaW5saW5lXQo+PiAgIGttZW1fY2FjaGVfYWxsb2MrMHgx
-MmEvMHg0NzAgbW0vc2x1Yi5jOjI5MTYKPj4gICBrbWVtX2NhY2hlX3phbGxvYyBpbmNsdWRlL2xp
-bnV4L3NsYWIuaDo2NzIgW2lubGluZV0KPj4gICBjcmVhdGVfY2FjaGUgbW0vc2xhYl9jb21tb24u
-YzoyNTEgW2lubGluZV0KPj4gICBrbWVtX2NhY2hlX2NyZWF0ZV91c2VyY29weSsweDFhNi8weDMw
-MCBtbS9zbGFiX2NvbW1vbi5jOjM1Nwo+PiAgIHA5X2NsaWVudF9jcmVhdGUrMHhjNGQvMHgxMGMw
-IG5ldC85cC9jbGllbnQuYzoxMDYzCj4+ICAgdjlmc19zZXNzaW9uX2luaXQrMHgxZGQvMHgxNzcw
-IGZzLzlwL3Y5ZnMuYzo0MDYKPj4gICB2OWZzX21vdW50KzB4NzkvMHg5YjAgZnMvOXAvdmZzX3N1
-cGVyLmM6MTI2Cj4+ICAgbGVnYWN5X2dldF90cmVlKzB4MTA1LzB4MjIwIGZzL2ZzX2NvbnRleHQu
-Yzo1OTIKPj4gICB2ZnNfZ2V0X3RyZWUrMHg4OS8weDJmMCBmcy9zdXBlci5jOjE1NDkKPj4gICBk
-b19uZXdfbW91bnQgZnMvbmFtZXNwYWNlLmM6Mjg5NiBbaW5saW5lXQo+PiAgIHBhdGhfbW91bnQr
-MHgxMmFlLzB4MWU3MCBmcy9uYW1lc3BhY2UuYzozMjI3Cj4+ICAgZG9fbW91bnQgZnMvbmFtZXNw
-YWNlLmM6MzI0MCBbaW5saW5lXQo+PiAgIF9fZG9fc3lzX21vdW50IGZzL25hbWVzcGFjZS5jOjM0
-NDggW2lubGluZV0KPj4gICBfX3NlX3N5c19tb3VudCBmcy9uYW1lc3BhY2UuYzozNDI1IFtpbmxp
-bmVdCj4+ICAgX194NjRfc3lzX21vdW50KzB4MjdmLzB4MzAwIGZzL25hbWVzcGFjZS5jOjM0MjUK
-Pj4gICBkb19zeXNjYWxsXzY0KzB4MmQvMHg3MCBhcmNoL3g4Ni9lbnRyeS9jb21tb24uYzo0Ngo+
-PiAgIGVudHJ5X1NZU0NBTExfNjRfYWZ0ZXJfaHdmcmFtZSsweDQ0LzB4YTkKPj4KPj4gRnJlZWQg
-YnkgdGFzayAxNTk4MToKPj4gICBrYXNhbl9zYXZlX3N0YWNrKzB4MWIvMHg0MCBtbS9rYXNhbi9j
-b21tb24uYzozOQo+PiAgIGthc2FuX3NldF90cmFjaysweDFjLzB4MzAgbW0va2FzYW4vY29tbW9u
-LmM6NDcKPj4gICBrYXNhbl9zZXRfZnJlZV9pbmZvKzB4MjAvMHgzMCBtbS9rYXNhbi9nZW5lcmlj
-LmM6MzU5Cj4+ICAgX19fX2thc2FuX3NsYWJfZnJlZSsweGUxLzB4MTEwIG1tL2thc2FuL2NvbW1v
-bi5jOjM3Mwo+PiAgIGthc2FuX3NsYWJfZnJlZSBpbmNsdWRlL2xpbnV4L2thc2FuLmg6MTk0IFtp
-bmxpbmVdCj4+ICAgc2xhYl9mcmVlX2hvb2sgbW0vc2x1Yi5jOjE1NDggW2lubGluZV0KPj4gICBz
-bGFiX2ZyZWVfZnJlZWxpc3RfaG9vaysweDVkLzB4MTUwIG1tL3NsdWIuYzoxNTg2Cj4+ICAgc2xh
-Yl9mcmVlIG1tL3NsdWIuYzozMTU3IFtpbmxpbmVdCj4+ICAga21lbV9jYWNoZV9mcmVlKzB4ODIv
-MHgzNTAgbW0vc2x1Yi5jOjMxNzMKPj4gICBrb2JqZWN0X2NsZWFudXAgbGliL2tvYmplY3QuYzo3
-MDUgW2lubGluZV0KPj4gICBrb2JqZWN0X3JlbGVhc2UgbGliL2tvYmplY3QuYzo3MzYgW2lubGlu
-ZV0KPj4gICBrcmVmX3B1dCBpbmNsdWRlL2xpbnV4L2tyZWYuaDo2NSBbaW5saW5lXQo+PiAgIGtv
-YmplY3RfcHV0KzB4MWM4LzB4NTQwIGxpYi9rb2JqZWN0LmM6NzUzCj4+ICAgc3lzZnNfc2xhYl9h
-ZGQrMHgxNjQvMHgxZDAgbW0vc2x1Yi5jOjU2NTYKPj4gICBfX2ttZW1fY2FjaGVfY3JlYXRlKzB4
-NDcxLzB4NWEwIG1tL3NsdWIuYzo0NDc2Cj4+ICAgY3JlYXRlX2NhY2hlIG1tL3NsYWJfY29tbW9u
-LmM6MjYyIFtpbmxpbmVdCj4+ICAga21lbV9jYWNoZV9jcmVhdGVfdXNlcmNvcHkrMHgxZWQvMHgz
-MDAgbW0vc2xhYl9jb21tb24uYzozNTcKPj4gICBwOV9jbGllbnRfY3JlYXRlKzB4YzRkLzB4MTBj
-MCBuZXQvOXAvY2xpZW50LmM6MTA2Mwo+PiAgIHY5ZnNfc2Vzc2lvbl9pbml0KzB4MWRkLzB4MTc3
-MCBmcy85cC92OWZzLmM6NDA2Cj4+ICAgdjlmc19tb3VudCsweDc5LzB4OWIwIGZzLzlwL3Zmc19z
-dXBlci5jOjEyNgo+PiAgIGxlZ2FjeV9nZXRfdHJlZSsweDEwNS8weDIyMCBmcy9mc19jb250ZXh0
-LmM6NTkyCj4+ICAgdmZzX2dldF90cmVlKzB4ODkvMHgyZjAgZnMvc3VwZXIuYzoxNTQ5Cj4+ICAg
-ZG9fbmV3X21vdW50IGZzL25hbWVzcGFjZS5jOjI4OTYgW2lubGluZV0KPj4gICBwYXRoX21vdW50
-KzB4MTJhZS8weDFlNzAgZnMvbmFtZXNwYWNlLmM6MzIyNwo+PiAgIGRvX21vdW50IGZzL25hbWVz
-cGFjZS5jOjMyNDAgW2lubGluZV0KPj4gICBfX2RvX3N5c19tb3VudCBmcy9uYW1lc3BhY2UuYzoz
-NDQ4IFtpbmxpbmVdCj4+ICAgX19zZV9zeXNfbW91bnQgZnMvbmFtZXNwYWNlLmM6MzQyNSBbaW5s
-aW5lXQo+PiAgIF9feDY0X3N5c19tb3VudCsweDI3Zi8weDMwMCBmcy9uYW1lc3BhY2UuYzozNDI1
-Cj4+ICAgZG9fc3lzY2FsbF82NCsweDJkLzB4NzAgYXJjaC94ODYvZW50cnkvY29tbW9uLmM6NDYK
-Pj4gICBlbnRyeV9TWVNDQUxMXzY0X2FmdGVyX2h3ZnJhbWUrMHg0NC8weGE5Cj4+Cj4+IFRoZSBi
-dWdneSBhZGRyZXNzIGJlbG9uZ3MgdG8gdGhlIG9iamVjdCBhdCBmZmZmODg4MDEzYTQ1YjQwCj4+
-ICAgd2hpY2ggYmVsb25ncyB0byB0aGUgY2FjaGUga21lbV9jYWNoZSBvZiBzaXplIDIyNAo+PiBU
-aGUgYnVnZ3kgYWRkcmVzcyBpcyBsb2NhdGVkIDAgYnl0ZXMgaW5zaWRlIG9mCj4+ICAgMjI0LWJ5
-dGUgcmVnaW9uIFtmZmZmODg4MDEzYTQ1YjQwLCBmZmZmODg4MDEzYTQ1YzIwKQo+PiBUaGUgYnVn
-Z3kgYWRkcmVzcyBiZWxvbmdzIHRvIHRoZSBwYWdlOgo+PiBwYWdlOjAwMDAwMDAwY2ZiYmM3ZmYg
-cmVmY291bnQ6MSBtYXBjb3VudDowIG1hcHBpbmc6MDAwMDAwMDAwMDAwMDAwMCBpbmRleDoweGZm
-ZmY4ODgwMTNhNDVjODAgcGZuOjB4MTNhNDUKPj4gZmxhZ3M6IDB4ZmZmMDAwMDAwMDAyMDAoc2xh
-YikKPj4gcmF3OiAwMGZmZjAwMDAwMDAwMjAwIGRlYWQwMDAwMDAwMDAxMDAgZGVhZDAwMDAwMDAw
-MDEyMiBmZmZmODg4MDEwMDQxMDAwCj4+IHJhdzogZmZmZjg4ODAxM2E0NWM4MCAwMDAwMDAwMDgw
-MGMwMDA0IDAwMDAwMDAxZmZmZmZmZmYgMDAwMDAwMDAwMDAwMDAwMAo+PiBwYWdlIGR1bXBlZCBi
-ZWNhdXNlOiBrYXNhbjogYmFkIGFjY2VzcyBkZXRlY3RlZAo+Pgo+PiBNZW1vcnkgc3RhdGUgYXJv
-dW5kIHRoZSBidWdneSBhZGRyZXNzOgo+PiAgIGZmZmY4ODgwMTNhNDVhMDA6IGZiIGZiIGZiIGZi
-IGZiIGZiIGZiIGZiIGZiIGZiIGZiIGZiIGZiIGZiIGZiIGZiCj4+ICAgZmZmZjg4ODAxM2E0NWE4
-MDogZmIgZmIgZmIgZmIgZmIgZmIgZmIgZmIgZmIgZmIgZmIgZmIgZmMgZmMgZmMgZmMKPj4+IGZm
-ZmY4ODgwMTNhNDViMDA6IGZjIGZjIGZjIGZjIGZjIGZjIGZjIGZjIGZhIGZiIGZiIGZiIGZiIGZi
-IGZiIGZiCj4+ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgXgo+
-PiAgIGZmZmY4ODgwMTNhNDViODA6IGZiIGZiIGZiIGZiIGZiIGZiIGZiIGZiIGZiIGZiIGZiIGZi
-IGZiIGZiIGZiIGZiCj4+ICAgZmZmZjg4ODAxM2E0NWMwMDogZmIgZmIgZmIgZmIgZmMgZmMgZmMg
-ZmMgZmMgZmMgZmMgZmMgZmMgZmMgZmMgZmMKPj4gPT09PT09PT09PT09PT09PT09PT09PT09PT09
-PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09Cj4+Cj4+Cj4+IC0tLQo+PiBU
-aGlzIHJlcG9ydCBpcyBnZW5lcmF0ZWQgYnkgYSBib3QuIEl0IG1heSBjb250YWluIGVycm9ycy4K
-Pj4gU2VlIGh0dHBzOi8vZ29vLmdsL3Rwc21FSiBmb3IgbW9yZSBpbmZvcm1hdGlvbiBhYm91dCBz
-eXpib3QuCj4+IHN5emJvdCBlbmdpbmVlcnMgY2FuIGJlIHJlYWNoZWQgYXQgc3l6a2FsbGVyQGdv
-b2dsZWdyb3Vwcy5jb20uCj4+Cj4+IHN5emJvdCB3aWxsIGtlZXAgdHJhY2sgb2YgdGhpcyBpc3N1
-ZS4gU2VlOgo+PiBodHRwczovL2dvby5nbC90cHNtRUojc3RhdHVzIGZvciBob3cgdG8gY29tbXVu
-aWNhdGUgd2l0aCBzeXpib3QuCj4+Cj4+IC0tCj4+IFlvdSByZWNlaXZlZCB0aGlzIG1lc3NhZ2Ug
-YmVjYXVzZSB5b3UgYXJlIHN1YnNjcmliZWQgdG8gdGhlIEdvb2dsZSBHcm91cHMgInN5emthbGxl
-ci1idWdzIiBncm91cC4KPj4gVG8gdW5zdWJzY3JpYmUgZnJvbSB0aGlzIGdyb3VwIGFuZCBzdG9w
-IHJlY2VpdmluZyBlbWFpbHMgZnJvbSBpdCwgc2VuZCBhbiBlbWFpbCB0byBzeXprYWxsZXItYnVn
-cyt1bnN1YnNjcmliZUBnb29nbGVncm91cHMuY29tLgo+PiBUbyB2aWV3IHRoaXMgZGlzY3Vzc2lv
-biBvbiB0aGUgd2ViIHZpc2l0IGh0dHBzOi8vZ3JvdXBzLmdvb2dsZS5jb20vZC9tc2dpZC9zeXpr
-YWxsZXItYnVncy8wMDAwMDAwMDAwMDA2ZWY0NWIwNWI0MzZkZGI0JTQwZ29vZ2xlLmNvbS4KCgpf
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpWOWZzLWRldmVs
-b3BlciBtYWlsaW5nIGxpc3QKVjlmcy1kZXZlbG9wZXJAbGlzdHMuc291cmNlZm9yZ2UubmV0Cmh0
-dHBzOi8vbGlzdHMuc291cmNlZm9yZ2UubmV0L2xpc3RzL2xpc3RpbmZvL3Y5ZnMtZGV2ZWxvcGVy
-Cg==
+Hi Dominique,
+
+Here's a rough draft of a patch to convert 9P to use the rewritten fscache
+API.  It compiles, but I've no way to test it.  This is built on top of my
+fscache-iter branch:
+
+	https://git.kernel.org/pub/scm/linux/kernel/git/dhowells/linux-fs.git/log/?h=fscache-iter
+
+Notes:
+
+ (*) I've switched to use ITER_XATTR rather than ITER_BVEC in some places.
+
+ (*) I've added a pair of helper functions to get the cookie:
+
+	v9fs_inode_cookie()
+	v9fs_session_cache()
+
+     These return NULL if CONFIG_9P_FSCACHE=n.
+
+ (*) I've moved some of the fscache accesses inline.  Using the above helper
+     functions, it all compiles away due to NULL pointer checks in the header
+     file if fscache is disabled.
+
+ (*) 9P's readpage and readpages now just jump into the netfs helpers, as does
+     write_begin.  v9fs_req_issue_op() initiates the I/O on behalf of the
+     helpers.
+
+ (*) v9fs_write_begin() now returns the subpage and v9fs_write_end() goes back
+     out to the head page.  thp_size() is also used.  This should mean you
+     handle transparent huge pages (THPs) and can turn that on.
+
+ (*) I have made an assumption that 9p_client_read() and write can handle I/Os
+     larger than a page.  If this is not the case, v9fs_req_ops will need
+     clamp_length() implementing.
+
+ (*) The expand_readahead() and clamp_length() ops should perhaps be
+     implemented to align and trim with respect to maximum I/O size.
+
+ (*) iget and evict acquire and relinquish a cookie.
+
+ (*) open and release use and unuse that cookie.
+
+ (*) writepage writes the dirty data to the cache.
+
+ (*) setattr resizes the cache if necessary.
+
+ (*) The cache needs to be invalidated if a 3rd-party change happens, but I
+     haven't done that.
+
+ (*) With these changes, 9p should cache local changes too, not just data
+     read.
+
+ (*) If 9p supports DIO writes, it should invalidate a cache object with
+     FSCACHE_INVAL_DIO_WRITE when one happens - thereby stopping caching for
+     that file until all file handles on it are closed.
+
+David
+---
+diff --git a/fs/9p/Kconfig b/fs/9p/Kconfig
+index 66ca72422961..a9407693ef2d 100644
+--- a/fs/9p/Kconfig
++++ b/fs/9p/Kconfig
+@@ -13,7 +13,7 @@ config 9P_FS
+ if 9P_FS
+ config 9P_FSCACHE
+ 	bool "Enable 9P client caching support"
+-	depends on 9P_FS=m && FSCACHE_OLD || 9P_FS=y && FSCACHE_OLD=y
++	depends on 9P_FS=m || 9P_FS=y
+ 	help
+ 	  Choose Y here to enable persistent, read-only local
+ 	  caching support for 9p clients using FS-Cache
+diff --git a/fs/9p/cache.c b/fs/9p/cache.c
+index eb2151fb6049..7df06dac3fa8 100644
+--- a/fs/9p/cache.c
++++ b/fs/9p/cache.c
+@@ -40,11 +40,6 @@ int v9fs_random_cachetag(struct v9fs_session_info *v9ses)
+ 	return scnprintf(v9ses->cachetag, CACHETAG_LEN, "%lu", jiffies);
+ }
+ 
+-const struct fscache_cookie_def v9fs_cache_session_index_def = {
+-	.name		= "9P.session",
+-	.type		= FSCACHE_COOKIE_TYPE_INDEX,
+-};
+-
+ void v9fs_cache_session_get_cookie(struct v9fs_session_info *v9ses)
+ {
+ 	/* If no cache session tag was specified, we generate a random one. */
+@@ -58,47 +53,16 @@ void v9fs_cache_session_get_cookie(struct v9fs_session_info *v9ses)
+ 	}
+ 
+ 	v9ses->fscache = fscache_acquire_cookie(v9fs_cache_netfs.primary_index,
+-						&v9fs_cache_session_index_def,
++						FSCACHE_COOKIE_TYPE_INDEX,
++						"9P.session",
++						0, NULL,
+ 						v9ses->cachetag,
+ 						strlen(v9ses->cachetag),
+-						NULL, 0,
+-						v9ses, 0, true);
++						NULL, 0, 0);
+ 	p9_debug(P9_DEBUG_FSC, "session %p get cookie %p\n",
+ 		 v9ses, v9ses->fscache);
+ }
+ 
+-void v9fs_cache_session_put_cookie(struct v9fs_session_info *v9ses)
+-{
+-	p9_debug(P9_DEBUG_FSC, "session %p put cookie %p\n",
+-		 v9ses, v9ses->fscache);
+-	fscache_relinquish_cookie(v9ses->fscache, NULL, false);
+-	v9ses->fscache = NULL;
+-}
+-
+-static enum
+-fscache_checkaux v9fs_cache_inode_check_aux(void *cookie_netfs_data,
+-					    const void *buffer,
+-					    uint16_t buflen,
+-					    loff_t object_size)
+-{
+-	const struct v9fs_inode *v9inode = cookie_netfs_data;
+-
+-	if (buflen != sizeof(v9inode->qid.version))
+-		return FSCACHE_CHECKAUX_OBSOLETE;
+-
+-	if (memcmp(buffer, &v9inode->qid.version,
+-		   sizeof(v9inode->qid.version)))
+-		return FSCACHE_CHECKAUX_OBSOLETE;
+-
+-	return FSCACHE_CHECKAUX_OKAY;
+-}
+-
+-const struct fscache_cookie_def v9fs_cache_inode_index_def = {
+-	.name		= "9p.inode",
+-	.type		= FSCACHE_COOKIE_TYPE_DATAFILE,
+-	.check_aux	= v9fs_cache_inode_check_aux,
+-};
+-
+ void v9fs_cache_inode_get_cookie(struct inode *inode)
+ {
+ 	struct v9fs_inode *v9inode;
+@@ -108,231 +72,20 @@ void v9fs_cache_inode_get_cookie(struct inode *inode)
+ 		return;
+ 
+ 	v9inode = V9FS_I(inode);
+-	if (v9inode->fscache)
++	if (WARN_ON(v9inode->fscache))
+ 		return;
+ 
+ 	v9ses = v9fs_inode2v9ses(inode);
+-	v9inode->fscache = fscache_acquire_cookie(v9ses->fscache,
+-						  &v9fs_cache_inode_index_def,
++	v9inode->fscache = fscache_acquire_cookie(v9fs_session_cache(v9ses),
++						  FSCACHE_COOKIE_TYPE_DATAFILE,
++						  "9p.inode",
++						  0, NULL,
+ 						  &v9inode->qid.path,
+ 						  sizeof(v9inode->qid.path),
+ 						  &v9inode->qid.version,
+ 						  sizeof(v9inode->qid.version),
+-						  v9inode,
+-						  i_size_read(&v9inode->vfs_inode),
+-						  true);
++						  i_size_read(&v9inode->vfs_inode));
+ 
+ 	p9_debug(P9_DEBUG_FSC, "inode %p get cookie %p\n",
+ 		 inode, v9inode->fscache);
+ }
+-
+-void v9fs_cache_inode_put_cookie(struct inode *inode)
+-{
+-	struct v9fs_inode *v9inode = V9FS_I(inode);
+-
+-	if (!v9inode->fscache)
+-		return;
+-	p9_debug(P9_DEBUG_FSC, "inode %p put cookie %p\n",
+-		 inode, v9inode->fscache);
+-
+-	fscache_relinquish_cookie(v9inode->fscache, &v9inode->qid.version,
+-				  false);
+-	v9inode->fscache = NULL;
+-}
+-
+-void v9fs_cache_inode_flush_cookie(struct inode *inode)
+-{
+-	struct v9fs_inode *v9inode = V9FS_I(inode);
+-
+-	if (!v9inode->fscache)
+-		return;
+-	p9_debug(P9_DEBUG_FSC, "inode %p flush cookie %p\n",
+-		 inode, v9inode->fscache);
+-
+-	fscache_relinquish_cookie(v9inode->fscache, NULL, true);
+-	v9inode->fscache = NULL;
+-}
+-
+-void v9fs_cache_inode_set_cookie(struct inode *inode, struct file *filp)
+-{
+-	struct v9fs_inode *v9inode = V9FS_I(inode);
+-
+-	if (!v9inode->fscache)
+-		return;
+-
+-	mutex_lock(&v9inode->fscache_lock);
+-
+-	if ((filp->f_flags & O_ACCMODE) != O_RDONLY)
+-		v9fs_cache_inode_flush_cookie(inode);
+-	else
+-		v9fs_cache_inode_get_cookie(inode);
+-
+-	mutex_unlock(&v9inode->fscache_lock);
+-}
+-
+-void v9fs_cache_inode_reset_cookie(struct inode *inode)
+-{
+-	struct v9fs_inode *v9inode = V9FS_I(inode);
+-	struct v9fs_session_info *v9ses;
+-	struct fscache_cookie *old;
+-
+-	if (!v9inode->fscache)
+-		return;
+-
+-	old = v9inode->fscache;
+-
+-	mutex_lock(&v9inode->fscache_lock);
+-	fscache_relinquish_cookie(v9inode->fscache, NULL, true);
+-
+-	v9ses = v9fs_inode2v9ses(inode);
+-	v9inode->fscache = fscache_acquire_cookie(v9ses->fscache,
+-						  &v9fs_cache_inode_index_def,
+-						  &v9inode->qid.path,
+-						  sizeof(v9inode->qid.path),
+-						  &v9inode->qid.version,
+-						  sizeof(v9inode->qid.version),
+-						  v9inode,
+-						  i_size_read(&v9inode->vfs_inode),
+-						  true);
+-	p9_debug(P9_DEBUG_FSC, "inode %p revalidating cookie old %p new %p\n",
+-		 inode, old, v9inode->fscache);
+-
+-	mutex_unlock(&v9inode->fscache_lock);
+-}
+-
+-int __v9fs_fscache_release_page(struct page *page, gfp_t gfp)
+-{
+-	struct inode *inode = page->mapping->host;
+-	struct v9fs_inode *v9inode = V9FS_I(inode);
+-
+-	BUG_ON(!v9inode->fscache);
+-
+-	return fscache_maybe_release_page(v9inode->fscache, page, gfp);
+-}
+-
+-void __v9fs_fscache_invalidate_page(struct page *page)
+-{
+-	struct inode *inode = page->mapping->host;
+-	struct v9fs_inode *v9inode = V9FS_I(inode);
+-
+-	BUG_ON(!v9inode->fscache);
+-
+-	if (PageFsCache(page)) {
+-		fscache_wait_on_page_write(v9inode->fscache, page);
+-		BUG_ON(!PageLocked(page));
+-		fscache_uncache_page(v9inode->fscache, page);
+-	}
+-}
+-
+-static void v9fs_vfs_readpage_complete(struct page *page, void *data,
+-				       int error)
+-{
+-	if (!error)
+-		SetPageUptodate(page);
+-
+-	unlock_page(page);
+-}
+-
+-/**
+- * __v9fs_readpage_from_fscache - read a page from cache
+- *
+- * Returns 0 if the pages are in cache and a BIO is submitted,
+- * 1 if the pages are not in cache and -error otherwise.
+- */
+-
+-int __v9fs_readpage_from_fscache(struct inode *inode, struct page *page)
+-{
+-	int ret;
+-	const struct v9fs_inode *v9inode = V9FS_I(inode);
+-
+-	p9_debug(P9_DEBUG_FSC, "inode %p page %p\n", inode, page);
+-	if (!v9inode->fscache)
+-		return -ENOBUFS;
+-
+-	ret = fscache_read_or_alloc_page(v9inode->fscache,
+-					 page,
+-					 v9fs_vfs_readpage_complete,
+-					 NULL,
+-					 GFP_KERNEL);
+-	switch (ret) {
+-	case -ENOBUFS:
+-	case -ENODATA:
+-		p9_debug(P9_DEBUG_FSC, "page/inode not in cache %d\n", ret);
+-		return 1;
+-	case 0:
+-		p9_debug(P9_DEBUG_FSC, "BIO submitted\n");
+-		return ret;
+-	default:
+-		p9_debug(P9_DEBUG_FSC, "ret %d\n", ret);
+-		return ret;
+-	}
+-}
+-
+-/**
+- * __v9fs_readpages_from_fscache - read multiple pages from cache
+- *
+- * Returns 0 if the pages are in cache and a BIO is submitted,
+- * 1 if the pages are not in cache and -error otherwise.
+- */
+-
+-int __v9fs_readpages_from_fscache(struct inode *inode,
+-				  struct address_space *mapping,
+-				  struct list_head *pages,
+-				  unsigned *nr_pages)
+-{
+-	int ret;
+-	const struct v9fs_inode *v9inode = V9FS_I(inode);
+-
+-	p9_debug(P9_DEBUG_FSC, "inode %p pages %u\n", inode, *nr_pages);
+-	if (!v9inode->fscache)
+-		return -ENOBUFS;
+-
+-	ret = fscache_read_or_alloc_pages(v9inode->fscache,
+-					  mapping, pages, nr_pages,
+-					  v9fs_vfs_readpage_complete,
+-					  NULL,
+-					  mapping_gfp_mask(mapping));
+-	switch (ret) {
+-	case -ENOBUFS:
+-	case -ENODATA:
+-		p9_debug(P9_DEBUG_FSC, "pages/inodes not in cache %d\n", ret);
+-		return 1;
+-	case 0:
+-		BUG_ON(!list_empty(pages));
+-		BUG_ON(*nr_pages != 0);
+-		p9_debug(P9_DEBUG_FSC, "BIO submitted\n");
+-		return ret;
+-	default:
+-		p9_debug(P9_DEBUG_FSC, "ret %d\n", ret);
+-		return ret;
+-	}
+-}
+-
+-/**
+- * __v9fs_readpage_to_fscache - write a page to the cache
+- *
+- */
+-
+-void __v9fs_readpage_to_fscache(struct inode *inode, struct page *page)
+-{
+-	int ret;
+-	const struct v9fs_inode *v9inode = V9FS_I(inode);
+-
+-	p9_debug(P9_DEBUG_FSC, "inode %p page %p\n", inode, page);
+-	ret = fscache_write_page(v9inode->fscache, page,
+-				 i_size_read(&v9inode->vfs_inode), GFP_KERNEL);
+-	p9_debug(P9_DEBUG_FSC, "ret =  %d\n", ret);
+-	if (ret != 0)
+-		v9fs_uncache_page(inode, page);
+-}
+-
+-/*
+- * wait for a page to complete writing to the cache
+- */
+-void __v9fs_fscache_wait_on_page_write(struct inode *inode, struct page *page)
+-{
+-	const struct v9fs_inode *v9inode = V9FS_I(inode);
+-	p9_debug(P9_DEBUG_FSC, "inode %p page %p\n", inode, page);
+-	if (PageFsCache(page))
+-		fscache_wait_on_page_write(v9inode->fscache, page);
+-}
+diff --git a/fs/9p/cache.h b/fs/9p/cache.h
+index 00f107af443e..74be03ae7635 100644
+--- a/fs/9p/cache.h
++++ b/fs/9p/cache.h
+@@ -12,126 +12,19 @@
+ #include <linux/spinlock.h>
+ 
+ extern struct fscache_netfs v9fs_cache_netfs;
+-extern const struct fscache_cookie_def v9fs_cache_session_index_def;
+-extern const struct fscache_cookie_def v9fs_cache_inode_index_def;
+ 
+ extern void v9fs_cache_session_get_cookie(struct v9fs_session_info *v9ses);
+-extern void v9fs_cache_session_put_cookie(struct v9fs_session_info *v9ses);
+ 
+ extern void v9fs_cache_inode_get_cookie(struct inode *inode);
+-extern void v9fs_cache_inode_put_cookie(struct inode *inode);
+-extern void v9fs_cache_inode_flush_cookie(struct inode *inode);
+-extern void v9fs_cache_inode_set_cookie(struct inode *inode, struct file *filp);
+-extern void v9fs_cache_inode_reset_cookie(struct inode *inode);
+ 
+ extern int __v9fs_cache_register(void);
+ extern void __v9fs_cache_unregister(void);
+ 
+-extern int __v9fs_fscache_release_page(struct page *page, gfp_t gfp);
+-extern void __v9fs_fscache_invalidate_page(struct page *page);
+-extern int __v9fs_readpage_from_fscache(struct inode *inode,
+-					struct page *page);
+-extern int __v9fs_readpages_from_fscache(struct inode *inode,
+-					 struct address_space *mapping,
+-					 struct list_head *pages,
+-					 unsigned *nr_pages);
+-extern void __v9fs_readpage_to_fscache(struct inode *inode, struct page *page);
+-extern void __v9fs_fscache_wait_on_page_write(struct inode *inode,
+-					      struct page *page);
+-
+-static inline int v9fs_fscache_release_page(struct page *page,
+-					    gfp_t gfp)
+-{
+-	return __v9fs_fscache_release_page(page, gfp);
+-}
+-
+-static inline void v9fs_fscache_invalidate_page(struct page *page)
+-{
+-	__v9fs_fscache_invalidate_page(page);
+-}
+-
+-static inline int v9fs_readpage_from_fscache(struct inode *inode,
+-					     struct page *page)
+-{
+-	return __v9fs_readpage_from_fscache(inode, page);
+-}
+-
+-static inline int v9fs_readpages_from_fscache(struct inode *inode,
+-					      struct address_space *mapping,
+-					      struct list_head *pages,
+-					      unsigned *nr_pages)
+-{
+-	return __v9fs_readpages_from_fscache(inode, mapping, pages,
+-					     nr_pages);
+-}
+-
+-static inline void v9fs_readpage_to_fscache(struct inode *inode,
+-					    struct page *page)
+-{
+-	if (PageFsCache(page))
+-		__v9fs_readpage_to_fscache(inode, page);
+-}
+-
+-static inline void v9fs_uncache_page(struct inode *inode, struct page *page)
+-{
+-	struct v9fs_inode *v9inode = V9FS_I(inode);
+-	fscache_uncache_page(v9inode->fscache, page);
+-	BUG_ON(PageFsCache(page));
+-}
+-
+-static inline void v9fs_fscache_wait_on_page_write(struct inode *inode,
+-						   struct page *page)
+-{
+-	return __v9fs_fscache_wait_on_page_write(inode, page);
+-}
+-
+ #else /* CONFIG_9P_FSCACHE */
+ 
+ static inline void v9fs_cache_inode_get_cookie(struct inode *inode)
+ {
+ }
+ 
+-static inline void v9fs_cache_inode_put_cookie(struct inode *inode)
+-{
+-}
+-
+-static inline void v9fs_cache_inode_set_cookie(struct inode *inode, struct file *file)
+-{
+-}
+-
+-static inline int v9fs_fscache_release_page(struct page *page,
+-					    gfp_t gfp) {
+-	return 1;
+-}
+-
+-static inline void v9fs_fscache_invalidate_page(struct page *page) {}
+-
+-static inline int v9fs_readpage_from_fscache(struct inode *inode,
+-					     struct page *page)
+-{
+-	return -ENOBUFS;
+-}
+-
+-static inline int v9fs_readpages_from_fscache(struct inode *inode,
+-					      struct address_space *mapping,
+-					      struct list_head *pages,
+-					      unsigned *nr_pages)
+-{
+-	return -ENOBUFS;
+-}
+-
+-static inline void v9fs_readpage_to_fscache(struct inode *inode,
+-					    struct page *page)
+-{}
+-
+-static inline void v9fs_uncache_page(struct inode *inode, struct page *page)
+-{}
+-
+-static inline void v9fs_fscache_wait_on_page_write(struct inode *inode,
+-						   struct page *page)
+-{
+-	return;
+-}
+-
+ #endif /* CONFIG_9P_FSCACHE */
+ #endif /* _9P_CACHE_H */
+diff --git a/fs/9p/v9fs.c b/fs/9p/v9fs.c
+index 39def020a074..f7f9f2f055ec 100644
+--- a/fs/9p/v9fs.c
++++ b/fs/9p/v9fs.c
+@@ -467,7 +467,8 @@ struct p9_fid *v9fs_session_init(struct v9fs_session_info *v9ses,
+ 
+ #ifdef CONFIG_9P_FSCACHE
+ 	/* register the session for caching */
+-	v9fs_cache_session_get_cookie(v9ses);
++	if (v9ses->cache == CACHE_LOOSE || v9ses->cache == CACHE_FSCACHE)
++		v9fs_cache_session_get_cookie(v9ses);
+ #endif
+ 	spin_lock(&v9fs_sessionlist_lock);
+ 	list_add(&v9ses->slist, &v9fs_sessionlist);
+@@ -500,8 +501,7 @@ void v9fs_session_close(struct v9fs_session_info *v9ses)
+ 	}
+ 
+ #ifdef CONFIG_9P_FSCACHE
+-	if (v9ses->fscache)
+-		v9fs_cache_session_put_cookie(v9ses);
++	fscache_relinquish_cookie(v9fs_session_cache(v9ses), false);
+ 	kfree(v9ses->cachetag);
+ #endif
+ 	kfree(v9ses->uname);
+diff --git a/fs/9p/v9fs.h b/fs/9p/v9fs.h
+index 7b763776306e..b248586d7a2c 100644
+--- a/fs/9p/v9fs.h
++++ b/fs/9p/v9fs.h
+@@ -109,7 +109,6 @@ struct v9fs_session_info {
+ 
+ struct v9fs_inode {
+ #ifdef CONFIG_9P_FSCACHE
+-	struct mutex fscache_lock;
+ 	struct fscache_cookie *fscache;
+ #endif
+ 	struct p9_qid qid;
+@@ -124,6 +123,25 @@ static inline struct v9fs_inode *V9FS_I(const struct inode *inode)
+ 	return container_of(inode, struct v9fs_inode, vfs_inode);
+ }
+ 
++static inline struct fscache_cookie *v9fs_inode_cookie(struct v9fs_inode *v9inode)
++{
++#ifdef CONFIG_9P_FSCACHE
++	return v9inode->fscache;
++#else
++	return NULL;
++#endif	
++}
++
++static inline struct fscache_cookie *v9fs_session_cache(struct v9fs_session_info *v9ses)
++{
++#ifdef CONFIG_9P_FSCACHE
++	return v9ses->fscache;
++#else
++	return NULL;
++#endif	
++}
++
++
+ extern int v9fs_show_options(struct seq_file *m, struct dentry *root);
+ 
+ struct p9_fid *v9fs_session_init(struct v9fs_session_info *, const char *,
+diff --git a/fs/9p/vfs_addr.c b/fs/9p/vfs_addr.c
+index cce9ace651a2..ae093672c986 100644
+--- a/fs/9p/vfs_addr.c
++++ b/fs/9p/vfs_addr.c
+@@ -19,7 +19,7 @@
+ #include <linux/idr.h>
+ #include <linux/sched.h>
+ #include <linux/uio.h>
+-#include <linux/bvec.h>
++#include <linux/netfs.h>
+ #include <net/9p/9p.h>
+ #include <net/9p/client.h>
+ 
+@@ -29,89 +29,88 @@
+ #include "fid.h"
+ 
+ /**
+- * v9fs_fid_readpage - read an entire page in from 9P
+- *
+- * @fid: fid being read
+- * @page: structure to page
+- *
++ * v9fs_req_issue_op - Issue a read from 9P
++ * @subreq: The read to make
+  */
+-static int v9fs_fid_readpage(void *data, struct page *page)
++static void v9fs_req_issue_op(struct netfs_read_subrequest *subreq)
+ {
+-	struct p9_fid *fid = data;
+-	struct inode *inode = page->mapping->host;
+-	struct bio_vec bvec = {.bv_page = page, .bv_len = PAGE_SIZE};
++	struct netfs_read_request *rreq = subreq->rreq;
++	struct p9_fid *fid = rreq->netfs_priv;
+ 	struct iov_iter to;
++	loff_t pos = subreq->start + subreq->transferred;
++	size_t len = subreq->len   - subreq->transferred;
+ 	int retval, err;
+ 
+-	p9_debug(P9_DEBUG_VFS, "\n");
++	iov_iter_xarray(&to, READ, &rreq->mapping->i_pages, pos, len);
+ 
+-	BUG_ON(!PageLocked(page));
++	retval = p9_client_read(fid, pos, &to, &err);
++	if (retval)
++		subreq->error = retval;
++}
+ 
+-	retval = v9fs_readpage_from_fscache(inode, page);
+-	if (retval == 0)
+-		return retval;
++/**
++ * v9fs_init_rreq - Initialise a read request
++ * @rreq: The read request
++ * @file: The file being read from
++ */
++static void v9fs_init_rreq(struct netfs_read_request *rreq, struct file *file)
++{
++	struct v9fs_inode *v9inode = V9FS_I(rreq->inode);
+ 
+-	iov_iter_bvec(&to, READ, &bvec, 1, PAGE_SIZE);
++	rreq->netfs_priv = file->private_data;
++	if (v9fs_inode_cookie(v9inode))
++		rreq->cookie_debug_id = v9fs_inode_cookie(v9inode)->debug_id;
++}
+ 
+-	retval = p9_client_read(fid, page_offset(page), &to, &err);
+-	if (err) {
+-		v9fs_uncache_page(inode, page);
+-		retval = err;
+-		goto done;
+-	}
++/**
++ * v9fs_is_cache_enabled - Determine if caching is enabled for an inode
++ * @inode: The inode to check
++ */
++static bool v9fs_is_cache_enabled(struct inode *inode)
++{
++	struct fscache_cookie *cookie = v9fs_inode_cookie(V9FS_I(inode));
+ 
+-	zero_user(page, retval, PAGE_SIZE - retval);
+-	flush_dcache_page(page);
+-	SetPageUptodate(page);
++	return fscache_cookie_enabled(cookie) && !hlist_empty(&cookie->backing_objects);
++}
+ 
+-	v9fs_readpage_to_fscache(inode, page);
+-	retval = 0;
++/**
++ * v9fs_begin_cache_operation - Begin a cache operation for a read
++ * @rreq: The read request
++ */
++static int v9fs_begin_cache_operation(struct netfs_read_request *rreq)
++{
++	struct v9fs_inode *v9inode = V9FS_I(rreq->inode);
+ 
+-done:
+-	unlock_page(page);
+-	return retval;
++	return fscache_begin_operation(v9fs_inode_cookie(v9inode),
++				       &rreq->cache_resources,
++				       FSCACHE_WANT_PARAMS);
+ }
+ 
++static const struct netfs_read_request_ops v9fs_req_ops = {
++	.init_rreq		= v9fs_init_rreq,
++	.is_cache_enabled	= v9fs_is_cache_enabled,
++	.begin_cache_operation	= v9fs_begin_cache_operation,
++	.issue_op		= v9fs_req_issue_op,
++};
++
+ /**
+  * v9fs_vfs_readpage - read an entire page in from 9P
+- *
+  * @filp: file being read
+  * @page: structure to page
+  *
+  */
+-
+-static int v9fs_vfs_readpage(struct file *filp, struct page *page)
++static int v9fs_vfs_readpage(struct file *file, struct page *page)
+ {
+-	return v9fs_fid_readpage(filp->private_data, page);
++	return netfs_readpage(file, page, &v9fs_req_ops, NULL);
+ }
+ 
+ /**
+- * v9fs_vfs_readpages - read a set of pages from 9P
+- *
+- * @filp: file being read
+- * @mapping: the address space
+- * @pages: list of pages to read
+- * @nr_pages: count of pages to read
+- *
++ * v9fs_vfs_readahead - read a set of pages from 9P
++ * @ractl: The readahead parameters
+  */
+-
+-static int v9fs_vfs_readpages(struct file *filp, struct address_space *mapping,
+-			     struct list_head *pages, unsigned nr_pages)
++static void v9fs_vfs_readahead(struct readahead_control *ractl)
+ {
+-	int ret = 0;
+-	struct inode *inode;
+-
+-	inode = mapping->host;
+-	p9_debug(P9_DEBUG_VFS, "inode: %p file: %p\n", inode, filp);
+-
+-	ret = v9fs_readpages_from_fscache(inode, mapping, pages, &nr_pages);
+-	if (ret == 0)
+-		return ret;
+-
+-	ret = read_cache_pages(mapping, pages, v9fs_fid_readpage,
+-			filp->private_data);
+-	p9_debug(P9_DEBUG_VFS, "  = %d\n", ret);
+-	return ret;
++	netfs_readahead(ractl, &v9fs_req_ops, NULL);
+ }
+ 
+ /**
+@@ -124,7 +123,14 @@ static int v9fs_release_page(struct page *page, gfp_t gfp)
+ {
+ 	if (PagePrivate(page))
+ 		return 0;
+-	return v9fs_fscache_release_page(page, gfp);
++#ifdef CONFIG_AFS_FSCACHE
++	if (PageFsCache(page)) {
++		if (!(gfp & __GFP_DIRECT_RECLAIM) || !(gfp & __GFP_FS))
++			return 0;
++		wait_on_page_fscache(page);
++	}
++#endif
++	return 1;
+ }
+ 
+ /**
+@@ -137,21 +143,27 @@ static int v9fs_release_page(struct page *page, gfp_t gfp)
+ static void v9fs_invalidate_page(struct page *page, unsigned int offset,
+ 				 unsigned int length)
+ {
+-	/*
+-	 * If called with zero offset, we should release
+-	 * the private state assocated with the page
+-	 */
+-	if (offset == 0 && length == PAGE_SIZE)
+-		v9fs_fscache_invalidate_page(page);
++	wait_on_page_fscache(page);
++}
++
++static void v9fs_write_to_cache_done(void *priv, ssize_t transferred_or_error)
++{
++	struct v9fs_inode *v9inode = priv;
++
++	if (IS_ERR_VALUE(transferred_or_error) &&
++	    transferred_or_error != -ENOBUFS)
++		fscache_invalidate(v9fs_inode_cookie(v9inode),
++				   &v9inode->qid.version,
++				   i_size_read(&v9inode->vfs_inode), 0);
+ }
+ 
+ static int v9fs_vfs_writepage_locked(struct page *page)
+ {
+ 	struct inode *inode = page->mapping->host;
+ 	struct v9fs_inode *v9inode = V9FS_I(inode);
++	loff_t start = page_offset(page);
+ 	loff_t size = i_size_read(inode);
+ 	struct iov_iter from;
+-	struct bio_vec bvec;
+ 	int err, len;
+ 
+ 	if (page->index == size >> PAGE_SHIFT)
+@@ -159,17 +171,22 @@ static int v9fs_vfs_writepage_locked(struct page *page)
+ 	else
+ 		len = PAGE_SIZE;
+ 
+-	bvec.bv_page = page;
+-	bvec.bv_offset = 0;
+-	bvec.bv_len = len;
+-	iov_iter_bvec(&from, WRITE, &bvec, 1, len);
++	iov_iter_xarray(&from, WRITE, &page->mapping->i_pages, start, len);
+ 
+ 	/* We should have writeback_fid always set */
+ 	BUG_ON(!v9inode->writeback_fid);
+ 
+ 	set_page_writeback(page);
+ 
+-	p9_client_write(v9inode->writeback_fid, page_offset(page), &from, &err);
++	p9_client_write(v9inode->writeback_fid, start, &from, &err);
++
++	if (err == 0 &&
++	    fscache_cookie_enabled(v9fs_inode_cookie(v9inode)) &&
++	    TestSetPageFsCache(page)) {
++		fscache_write_to_cache(v9fs_inode_cookie(v9inode),
++				       page->mapping, start, len, size,
++				       v9fs_write_to_cache_done, v9inode);
++	}
+ 
+ 	end_page_writeback(page);
+ 	return err;
+@@ -205,14 +222,13 @@ static int v9fs_vfs_writepage(struct page *page, struct writeback_control *wbc)
+ static int v9fs_launder_page(struct page *page)
+ {
+ 	int retval;
+-	struct inode *inode = page->mapping->host;
+ 
+-	v9fs_fscache_wait_on_page_write(inode, page);
+ 	if (clear_page_dirty_for_io(page)) {
+ 		retval = v9fs_vfs_writepage_locked(page);
+ 		if (retval)
+ 			return retval;
+ 	}
++	wait_on_page_fscache(page);
+ 	return 0;
+ }
+ 
+@@ -256,35 +272,24 @@ static int v9fs_write_begin(struct file *filp, struct address_space *mapping,
+ 			    loff_t pos, unsigned len, unsigned flags,
+ 			    struct page **pagep, void **fsdata)
+ {
+-	int retval = 0;
++	int retval;
+ 	struct page *page;
+-	struct v9fs_inode *v9inode;
+-	pgoff_t index = pos >> PAGE_SHIFT;
+-	struct inode *inode = mapping->host;
+-
++	struct v9fs_inode *v9inode = V9FS_I(mapping->host);
+ 
+ 	p9_debug(P9_DEBUG_VFS, "filp %p, mapping %p\n", filp, mapping);
+ 
+-	v9inode = V9FS_I(inode);
+-start:
+-	page = grab_cache_page_write_begin(mapping, index, flags);
+-	if (!page) {
+-		retval = -ENOMEM;
+-		goto out;
+-	}
+ 	BUG_ON(!v9inode->writeback_fid);
+-	if (PageUptodate(page))
+-		goto out;
+ 
+-	if (len == PAGE_SIZE)
+-		goto out;
++	/* Prefetch area to be written into the cache if we're caching this
++	 * file.  We need to do this before we get a lock on the page in case
++	 * there's more than one writer competing for the same cache block.
++	 */
++	retval = netfs_write_begin(filp, mapping, pos, len, flags, &page, fsdata,
++				   &v9fs_req_ops, NULL);
++	if (retval < 0)
++		return retval;
+ 
+-	retval = v9fs_fid_readpage(v9inode->writeback_fid, page);
+-	put_page(page);
+-	if (!retval)
+-		goto start;
+-out:
+-	*pagep = page;
++	*pagep = find_subpage(page, pos / PAGE_SIZE);
+ 	return retval;
+ }
+ 
+@@ -293,7 +298,8 @@ static int v9fs_write_end(struct file *filp, struct address_space *mapping,
+ 			  struct page *page, void *fsdata)
+ {
+ 	loff_t last_pos = pos + copied;
+-	struct inode *inode = page->mapping->host;
++	struct inode *inode = mapping->host;
++	struct v9fs_inode *v9inode = V9FS_I(inode);
+ 
+ 	p9_debug(P9_DEBUG_VFS, "filp %p, mapping %p\n", filp, mapping);
+ 
+@@ -312,6 +318,7 @@ static int v9fs_write_end(struct file *filp, struct address_space *mapping,
+ 	if (last_pos > inode->i_size) {
+ 		inode_add_bytes(inode, last_pos - inode->i_size);
+ 		i_size_write(inode, last_pos);
++		fscache_update_cookie(v9fs_inode_cookie(v9inode), NULL, &last_pos);
+ 	}
+ 	set_page_dirty(page);
+ out:
+@@ -324,7 +331,7 @@ static int v9fs_write_end(struct file *filp, struct address_space *mapping,
+ 
+ const struct address_space_operations v9fs_addr_operations = {
+ 	.readpage = v9fs_vfs_readpage,
+-	.readpages = v9fs_vfs_readpages,
++	.readahead = v9fs_vfs_readahead,
+ 	.set_page_dirty = __set_page_dirty_nobuffers,
+ 	.writepage = v9fs_vfs_writepage,
+ 	.write_begin = v9fs_write_begin,
+diff --git a/fs/9p/vfs_dir.c b/fs/9p/vfs_dir.c
+index 674d22bf4f6f..eade5091654a 100644
+--- a/fs/9p/vfs_dir.c
++++ b/fs/9p/vfs_dir.c
+@@ -19,6 +19,7 @@
+ #include <linux/idr.h>
+ #include <linux/slab.h>
+ #include <linux/uio.h>
++#include <linux/fscache.h>
+ #include <net/9p/9p.h>
+ #include <net/9p/client.h>
+ 
+@@ -205,13 +206,23 @@ static int v9fs_dir_readdir_dotl(struct file *file, struct dir_context *ctx)
+ 
+ int v9fs_dir_release(struct inode *inode, struct file *filp)
+ {
++	struct v9fs_inode *v9inode = V9FS_I(inode);
+ 	struct p9_fid *fid;
+-
++	loff_t i_size;
++	
+ 	fid = filp->private_data;
+ 	p9_debug(P9_DEBUG_VFS, "inode: %p filp: %p fid: %d\n",
+ 		 inode, filp, fid ? fid->fid : -1);
+ 	if (fid)
+ 		p9_client_clunk(fid);
++
++	if ((filp->f_mode & FMODE_WRITE)) {
++		i_size = i_size_read(inode);
++		fscache_unuse_cookie(v9fs_inode_cookie(v9inode),
++				     &v9inode->qid.version, &i_size);
++	} else {
++		fscache_unuse_cookie(v9fs_inode_cookie(v9inode), NULL, NULL);
++	}
+ 	return 0;
+ }
+ 
+diff --git a/fs/9p/vfs_file.c b/fs/9p/vfs_file.c
+index b177fd3b1eb3..d6b393c223b6 100644
+--- a/fs/9p/vfs_file.c
++++ b/fs/9p/vfs_file.c
+@@ -94,8 +94,7 @@ int v9fs_file_open(struct inode *inode, struct file *file)
+ 		v9inode->writeback_fid = (void *) fid;
+ 	}
+ 	mutex_unlock(&v9inode->v_mutex);
+-	if (v9ses->cache == CACHE_LOOSE || v9ses->cache == CACHE_FSCACHE)
+-		v9fs_cache_inode_set_cookie(inode, file);
++	fscache_use_cookie(v9fs_inode_cookie(v9inode), file->f_mode & FMODE_WRITE);
+ 	return 0;
+ out_error:
+ 	p9_client_clunk(file->private_data);
+@@ -554,14 +553,27 @@ v9fs_vm_page_mkwrite(struct vm_fault *vmf)
+ 	p9_debug(P9_DEBUG_VFS, "page %p fid %lx\n",
+ 		 page, (unsigned long)filp->private_data);
+ 
++	v9inode = V9FS_I(inode);
++
++	/* Wait for the page to be written to the cache before we allow it to
++	 * be modified.  We then assume the entire page will need writing back.
++	 */
++#ifdef CONFIG_V9FS_FSCACHE
++	if (PageFsCache(page) &&
++	    wait_on_page_bit_killable(page, PG_fscache) < 0)
++		return VM_FAULT_RETRY;
++#endif
++
++	if (PageWriteback(page) &&
++	    wait_on_page_bit_killable(page, PG_writeback) < 0)
++		return VM_FAULT_RETRY;
++
+ 	/* Update file times before taking page lock */
+ 	file_update_time(filp);
+ 
+-	v9inode = V9FS_I(inode);
+-	/* make sure the cache has finished storing the page */
+-	v9fs_fscache_wait_on_page_write(inode, page);
+ 	BUG_ON(!v9inode->writeback_fid);
+-	lock_page(page);
++	if (lock_page_killable(page) < 0)
++		return VM_FAULT_RETRY;
+ 	if (page->mapping != inode->i_mapping)
+ 		goto out_unlock;
+ 	wait_for_stable_page(page);
+diff --git a/fs/9p/vfs_inode.c b/fs/9p/vfs_inode.c
+index ae0c38ad1fcb..4cdf4660d7c2 100644
+--- a/fs/9p/vfs_inode.c
++++ b/fs/9p/vfs_inode.c
+@@ -228,7 +228,6 @@ struct inode *v9fs_alloc_inode(struct super_block *sb)
+ 		return NULL;
+ #ifdef CONFIG_9P_FSCACHE
+ 	v9inode->fscache = NULL;
+-	mutex_init(&v9inode->fscache_lock);
+ #endif
+ 	v9inode->writeback_fid = NULL;
+ 	v9inode->cache_validity = 0;
+@@ -377,10 +376,12 @@ void v9fs_evict_inode(struct inode *inode)
+ 	struct v9fs_inode *v9inode = V9FS_I(inode);
+ 
+ 	truncate_inode_pages_final(&inode->i_data);
++	fscache_clear_inode_writeback(v9fs_inode_cookie(v9inode), inode,
++				      &v9inode->qid.version);
+ 	clear_inode(inode);
+ 	filemap_fdatawrite(&inode->i_data);
+ 
+-	v9fs_cache_inode_put_cookie(inode);
++	fscache_relinquish_cookie(v9fs_inode_cookie(v9inode), false);
+ 	/* clunk the fid stashed in writeback_fid */
+ 	if (v9inode->writeback_fid) {
+ 		p9_client_clunk(v9inode->writeback_fid);
+@@ -846,8 +847,7 @@ v9fs_vfs_atomic_open(struct inode *dir, struct dentry *dentry,
+ 		goto error;
+ 
+ 	file->private_data = fid;
+-	if (v9ses->cache == CACHE_LOOSE || v9ses->cache == CACHE_FSCACHE)
+-		v9fs_cache_inode_set_cookie(d_inode(dentry), file);
++	fscache_use_cookie(v9fs_inode_cookie(v9inode), file->f_mode & FMODE_WRITE);
+ 
+ 	file->f_mode |= FMODE_CREATED;
+ out:
+@@ -1035,6 +1035,8 @@ v9fs_vfs_getattr(const struct path *path, struct kstat *stat,
+ static int v9fs_vfs_setattr(struct dentry *dentry, struct iattr *iattr)
+ {
+ 	int retval;
++	struct inode *inode = d_inode(dentry);
++	struct v9fs_inode *v9inode = V9FS_I(inode);
+ 	struct v9fs_session_info *v9ses;
+ 	struct p9_fid *fid = NULL;
+ 	struct p9_wstat wstat;
+@@ -1078,20 +1080,22 @@ static int v9fs_vfs_setattr(struct dentry *dentry, struct iattr *iattr)
+ 
+ 	/* Write all dirty data */
+ 	if (d_is_reg(dentry))
+-		filemap_write_and_wait(d_inode(dentry)->i_mapping);
++		filemap_write_and_wait(inode->i_mapping);
+ 
+ 	retval = p9_client_wstat(fid, &wstat);
+ 	if (retval < 0)
+ 		return retval;
+ 
+ 	if ((iattr->ia_valid & ATTR_SIZE) &&
+-	    iattr->ia_size != i_size_read(d_inode(dentry)))
+-		truncate_setsize(d_inode(dentry), iattr->ia_size);
++	    iattr->ia_size != i_size_read(inode)) {
++		truncate_setsize(inode, iattr->ia_size);
++		fscache_resize_cookie(v9fs_inode_cookie(v9inode), iattr->ia_size);
++	}
+ 
+-	v9fs_invalidate_inode_attr(d_inode(dentry));
++	v9fs_invalidate_inode_attr(inode);
+ 
+-	setattr_copy(d_inode(dentry), iattr);
+-	mark_inode_dirty(d_inode(dentry));
++	setattr_copy(inode, iattr);
++	mark_inode_dirty(inode);
+ 	return 0;
+ }
+ 
+diff --git a/fs/9p/vfs_inode_dotl.c b/fs/9p/vfs_inode_dotl.c
+index 0028eccb665a..773ec75eefbe 100644
+--- a/fs/9p/vfs_inode_dotl.c
++++ b/fs/9p/vfs_inode_dotl.c
+@@ -340,8 +340,7 @@ v9fs_vfs_atomic_open_dotl(struct inode *dir, struct dentry *dentry,
+ 	if (err)
+ 		goto err_clunk_old_fid;
+ 	file->private_data = ofid;
+-	if (v9ses->cache == CACHE_LOOSE || v9ses->cache == CACHE_FSCACHE)
+-		v9fs_cache_inode_set_cookie(inode, file);
++	fscache_use_cookie(v9fs_inode_cookie(v9inode), file->f_mode & FMODE_WRITE);
+ 	file->f_mode |= FMODE_CREATED;
+ out:
+ 	v9fs_put_acl(dacl, pacl);
+diff --git a/fs/afs/inode.c b/fs/afs/inode.c
+index 10ef9c0f32ac..068e5c8e7586 100644
+--- a/fs/afs/inode.c
++++ b/fs/afs/inode.c
+@@ -786,6 +786,7 @@ int afs_drop_inode(struct inode *inode)
+  */
+ void afs_evict_inode(struct inode *inode)
+ {
++	struct afs_vnode_cache_aux aux;
+ 	struct afs_vnode *vnode = AFS_FS_I(inode);
+ 
+ 	_enter("{%llx:%llu.%d}",
+@@ -799,12 +800,8 @@ void afs_evict_inode(struct inode *inode)
+ 
+ 	truncate_inode_pages_final(&inode->i_data);
+ 
+-	if (inode->i_state & I_PINNING_FSCACHE_WB) {
+-		struct afs_vnode_cache_aux aux;
+-		loff_t i_size = i_size_read(&vnode->vfs_inode);
+-		aux.data_version = vnode->status.data_version;
+-		fscache_unuse_cookie(afs_vnode_cache(vnode), &aux, &i_size);
+-	}
++	aux.data_version = vnode->status.data_version;
++	fscache_clear_inode_writeback(afs_vnode_cache(vnode), inode, &aux);
+ 	clear_inode(inode);
+ 
+ 	while (!list_empty(&vnode->wb_keys)) {
+diff --git a/include/linux/fscache.h b/include/linux/fscache.h
+index 0613ccea88c1..f129c159e1c1 100644
+--- a/include/linux/fscache.h
++++ b/include/linux/fscache.h
+@@ -682,4 +682,24 @@ static inline void fscache_unpin_writeback(struct writeback_control *wbc,
+ 		fscache_unuse_cookie(cookie, NULL, NULL);
+ }
+ 
++/**
++ * fscache_clear_inode_writeback - Clear writeback resources pinned by an inode
++ * @cookie: The cookie referring to the cache object
++ * @inode: The inode to clean up
++ * @aux: Auxiliary data to apply to the inode
++ *
++ * Clear any writeback resources held by an inode when the inode is evicted.
++ * This must be called before clear_inode() is called.
++ */
++static inline void fscache_clear_inode_writeback(struct fscache_cookie *cookie,
++						 struct inode *inode,
++						 const void *aux)
++{
++	if (inode->i_state & I_PINNING_FSCACHE_WB) {
++		loff_t i_size = i_size_read(inode);
++		fscache_unuse_cookie(cookie, aux, &i_size);
++	}
++
++}
++
+ #endif /* _LINUX_FSCACHE_H */
+
+
+
+_______________________________________________
+V9fs-developer mailing list
+V9fs-developer@lists.sourceforge.net
+https://lists.sourceforge.net/lists/listinfo/v9fs-developer
