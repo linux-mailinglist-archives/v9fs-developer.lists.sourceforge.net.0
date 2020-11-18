@@ -2,89 +2,89 @@ Return-Path: <v9fs-developer-bounces@lists.sourceforge.net>
 X-Original-To: lists+v9fs-developer@lfdr.de
 Delivered-To: lists+v9fs-developer@lfdr.de
 Received: from lists.sourceforge.net (lists.sourceforge.net [216.105.38.7])
-	by mail.lfdr.de (Postfix) with ESMTPS id 722F42B7BFE
-	for <lists+v9fs-developer@lfdr.de>; Wed, 18 Nov 2020 12:03:05 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 58C1A2B7D0F
+	for <lists+v9fs-developer@lfdr.de>; Wed, 18 Nov 2020 12:54:27 +0100 (CET)
 Received: from [127.0.0.1] (helo=sfs-ml-2.v29.lw.sourceforge.com)
 	by sfs-ml-2.v29.lw.sourceforge.com with esmtp (Exim 4.90_1)
 	(envelope-from <v9fs-developer-bounces@lists.sourceforge.net>)
-	id 1kfLEt-0000GG-Da; Wed, 18 Nov 2020 11:03:03 +0000
+	id 1kfM2b-0002cJ-8T; Wed, 18 Nov 2020 11:54:25 +0000
 Received: from [172.30.20.202] (helo=mx.sourceforge.net)
  by sfs-ml-2.v29.lw.sourceforge.com with esmtps
  (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.90_1)
- (envelope-from <dhowells@redhat.com>) id 1kfLEs-0000G9-5D
- for v9fs-developer@lists.sourceforge.net; Wed, 18 Nov 2020 11:03:02 +0000
+ (envelope-from <dhowells@redhat.com>) id 1kfM2a-0002bg-1M
+ for v9fs-developer@lists.sourceforge.net; Wed, 18 Nov 2020 11:54:24 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
  d=sourceforge.net; s=x; h=Message-ID:Date:Content-Transfer-Encoding:
- Content-ID:Content-Type:MIME-Version:Subject:cc:To:From:Sender:Reply-To:
- Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
- :Resent-Message-ID:In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:
- List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=1HIp/U/TZE4BAd+dMTbZmNXkLjzlgjs2cjA7+Wvgbyk=; b=ASWQ2m6uuNMDrbjwhaL5PvXJJH
- BQL0snN2ZUGtGX1i0Pyd7xGrwSMLmUwcoZ3zLWCvNN40IzHOizW5bwhiKbd85az5nA/RreRuvHbZj
- abZw34bqwrZmnqCRz6cwHeO4wSDG0VBkbbvVA2Ptew73M1nrdIjjt2dspsSSOH14KdmE=;
+ Content-ID:Content-Type:MIME-Version:Subject:Cc:To:References:In-Reply-To:
+ From:Sender:Reply-To:Content-Description:Resent-Date:Resent-From:
+ Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:
+ List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
+ bh=2sAzeBAQB37niigITTiFSY+J9377eMLMfLJOYJfgUB4=; b=Nxj1rS+A/ydMgvXL545XzWrl9l
+ tWA+CjLTTKpNm2LCgAY08dz8OhkcHOWQmI2Cp2KB5Zc1MG12tj+7Wl1ZqnKWbFBEeXvla0qinCElo
+ qif8MMnNlUYONKsQCgWetVVrtvDd3Kzki9S76hfrGWqnPS/sXbFR2JQLL1s1evKt/7eM=;
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  ;
  h=Message-ID:Date:Content-Transfer-Encoding:Content-ID:Content-Type:
- MIME-Version:Subject:cc:To:From:Sender:Reply-To:Content-Description:
- Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
- In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
+ MIME-Version:Subject:Cc:To:References:In-Reply-To:From:Sender:Reply-To:
+ Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
+ :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
  List-Post:List-Owner:List-Archive;
- bh=1HIp/U/TZE4BAd+dMTbZmNXkLjzlgjs2cjA7+Wvgbyk=; b=QK/W6Vr0slezslslT7PQaAEwJG
- 35jRzSuhz6IO1df6gzix8maqsUcX37xhqbl7xuXCUZ4Xti5x0F+MH0nF9d4T5gXjzwEgK2HXZSmuB
- FwVFdlf0luU5ofYOA8SBl2QtLf6aSri31BFLQSP2K9Zg8/YZgDs9hTsgu2/wk8LKd4vc=;
-Received: from us-smtp-delivery-124.mimecast.com ([216.205.24.124])
+ bh=2sAzeBAQB37niigITTiFSY+J9377eMLMfLJOYJfgUB4=; b=euD68z7NXOjb+kOhU18gFUMdH4
+ pfAWu/PcXfAOsTAq2HqY1vPoZ0VykBgHw2ji6cs/oKSOkHH1UNbaqYr5OI7H5ES4KtIBmG0SPsAK/
+ 6ZsZnjBj0a8CqyIEffDEDjpzHfhlT3su/DVnaTmmfO1oomlbR82+Jj240DAzQOlLOiVQ=;
+Received: from us-smtp-delivery-124.mimecast.com ([63.128.21.124])
  by sfi-mx-1.v28.lw.sourceforge.com with esmtps
  (TLSv1.2:ECDHE-RSA-AES256-SHA384:256) (Exim 4.92.2)
- id 1kfLEb-00DFjv-Pd
- for v9fs-developer@lists.sourceforge.net; Wed, 18 Nov 2020 11:03:02 +0000
+ id 1kfLsK-00DMHd-8E
+ for v9fs-developer@lists.sourceforge.net; Wed, 18 Nov 2020 11:44:08 +0000
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
- s=mimecast20190719; t=1605697356;
+ s=mimecast20190719; t=1605699822;
  h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
  to:to:cc:cc:mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding;
- bh=1HIp/U/TZE4BAd+dMTbZmNXkLjzlgjs2cjA7+Wvgbyk=;
- b=U4B+1PxcXVOMYSiIJ5ex3roJcIOuSlFAorO8Nv/+2ErYK75F/f94+n8p46gI2ACQcx1n83
- vZ6/nkhwMqWPX/kDA9KLoOLaAEQRXSgC7UjXqrU916odmp6z1sVglmimh1TfKAjSf3UCoh
- UXD99VCno4lNgVtd8TiqlffKeurFIi4=
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references;
+ bh=2sAzeBAQB37niigITTiFSY+J9377eMLMfLJOYJfgUB4=;
+ b=HSqpm3ltXWy0EiZR1wiQUfYiYlbcA0SzFtXKR/fCOezwWleNVwuvg0bWxLuowzEhol5sVE
+ qicE36pOqIZFj+5zQpTF+gN4Sw8rqpp3A6lmFcMGusygAaxlwm+JRgrgTMxmGE6w7RDmSy
+ ecuwZldgbLB5VvmR2xL6o+mxkcaDd28=
 Received: from mimecast-mx01.redhat.com (mimecast-mx01.redhat.com
  [209.132.183.4]) (Using TLS) by relay.mimecast.com with ESMTP id
- us-mta-505-QdQhRVZCPKiDXKuWq5FDJw-1; Wed, 18 Nov 2020 06:02:34 -0500
-X-MC-Unique: QdQhRVZCPKiDXKuWq5FDJw-1
-Received: from smtp.corp.redhat.com (int-mx06.intmail.prod.int.phx2.redhat.com
- [10.5.11.16])
+ us-mta-176-b6NsaMvqM4qWdw0XSfcUeg-1; Wed, 18 Nov 2020 06:43:40 -0500
+X-MC-Unique: b6NsaMvqM4qWdw0XSfcUeg-1
+Received: from smtp.corp.redhat.com (int-mx04.intmail.prod.int.phx2.redhat.com
+ [10.5.11.14])
  (using TLSv1.2 with cipher AECDH-AES256-SHA (256/256 bits))
  (No client certificate requested)
- by mimecast-mx01.redhat.com (Postfix) with ESMTPS id 151521008302;
- Wed, 18 Nov 2020 11:02:33 +0000 (UTC)
+ by mimecast-mx01.redhat.com (Postfix) with ESMTPS id EFA621084C9A;
+ Wed, 18 Nov 2020 11:43:38 +0000 (UTC)
 Received: from warthog.procyon.org.uk (ovpn-112-246.rdu2.redhat.com
  [10.10.112.246])
- by smtp.corp.redhat.com (Postfix) with ESMTP id 426CC5C1D7;
- Wed, 18 Nov 2020 11:02:28 +0000 (UTC)
+ by smtp.corp.redhat.com (Postfix) with ESMTP id 38F7A5D9CA;
+ Wed, 18 Nov 2020 11:43:34 +0000 (UTC)
 Organization: Red Hat UK Ltd. Registered Address: Red Hat UK Ltd, Amberley
  Place, 107-111 Peascod Street, Windsor, Berkshire, SI4 1TE, United
  Kingdom.
  Registered in England and Wales under Company Registration No. 3798903
 From: David Howells <dhowells@redhat.com>
+In-Reply-To: <1514086.1605697347@warthog.procyon.org.uk>
+References: <1514086.1605697347@warthog.procyon.org.uk>
 To: Dominique Martinet <asmadeus@codewreck.org>
 MIME-Version: 1.0
-Content-ID: <1514085.1605697347.1@warthog.procyon.org.uk>
-Date: Wed, 18 Nov 2020 11:02:27 +0000
-Message-ID: <1514086.1605697347@warthog.procyon.org.uk>
-X-Scanned-By: MIMEDefang 2.79 on 10.5.11.16
-X-Spam-Score: -0.1 (/)
+Content-ID: <1517305.1605699813.1@warthog.procyon.org.uk>
+Date: Wed, 18 Nov 2020 11:43:33 +0000
+Message-ID: <1517306.1605699813@warthog.procyon.org.uk>
+X-Scanned-By: MIMEDefang 2.79 on 10.5.11.14
+X-Spam-Score: 0.0 (/)
 X-Spam-Report: Spam Filtering performed by mx.sourceforge.net.
  See http://spamassassin.org/tag/ for more details.
  -0.0 RCVD_IN_DNSWL_NONE     RBL: Sender listed at https://www.dnswl.org/, no
- trust [216.205.24.124 listed in list.dnswl.org]
+ trust [63.128.21.124 listed in list.dnswl.org]
+ 0.0 RCVD_IN_MSPIKE_H4      RBL: Very Good reputation (+4)
+ [63.128.21.124 listed in wl.mailspike.net]
  0.0 SPF_HELO_NONE          SPF: HELO does not publish an SPF Record
- -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from author's
- domain
- -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
- 0.1 DKIM_SIGNED            Message has a DKIM or DK signature,
- not necessarily valid
- -0.0 DKIMWL_WL_HIGH         DKIMwl.org - High trust sender
-X-Headers-End: 1kfLEb-00DFjv-Pd
-Subject: [V9fs-developer] [PATCH] 9p: Convert to new fscache API
+ 0.0 TIME_LIMIT_EXCEEDED    Exceeded time limit / deadline
+X-Headers-End: 1kfLsK-00DMHd-8E
+Subject: Re: [V9fs-developer] [PATCH] 9p: Convert to new fscache API
 X-BeenThere: v9fs-developer@lists.sourceforge.net
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -103,61 +103,8 @@ Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: v9fs-developer-bounces@lists.sourceforge.net
 
-Hi Dominique,
-
-Here's a rough draft of a patch to convert 9P to use the rewritten fscache
-API.  It compiles, but I've no way to test it.  This is built on top of my
-fscache-iter branch:
-
-	https://git.kernel.org/pub/scm/linux/kernel/git/dhowells/linux-fs.git/log/?h=fscache-iter
-
-Notes:
-
- (*) I've switched to use ITER_XATTR rather than ITER_BVEC in some places.
-
- (*) I've added a pair of helper functions to get the cookie:
-
-	v9fs_inode_cookie()
-	v9fs_session_cache()
-
-     These return NULL if CONFIG_9P_FSCACHE=n.
-
- (*) I've moved some of the fscache accesses inline.  Using the above helper
-     functions, it all compiles away due to NULL pointer checks in the header
-     file if fscache is disabled.
-
- (*) 9P's readpage and readpages now just jump into the netfs helpers, as does
-     write_begin.  v9fs_req_issue_op() initiates the I/O on behalf of the
-     helpers.
-
- (*) v9fs_write_begin() now returns the subpage and v9fs_write_end() goes back
-     out to the head page.  thp_size() is also used.  This should mean you
-     handle transparent huge pages (THPs) and can turn that on.
-
- (*) I have made an assumption that 9p_client_read() and write can handle I/Os
-     larger than a page.  If this is not the case, v9fs_req_ops will need
-     clamp_length() implementing.
-
- (*) The expand_readahead() and clamp_length() ops should perhaps be
-     implemented to align and trim with respect to maximum I/O size.
-
- (*) iget and evict acquire and relinquish a cookie.
-
- (*) open and release use and unuse that cookie.
-
- (*) writepage writes the dirty data to the cache.
-
- (*) setattr resizes the cache if necessary.
-
- (*) The cache needs to be invalidated if a 3rd-party change happens, but I
-     haven't done that.
-
- (*) With these changes, 9p should cache local changes too, not just data
-     read.
-
- (*) If 9p supports DIO writes, it should invalidate a cache object with
-     FSCACHE_INVAL_DIO_WRITE when one happens - thereby stopping caching for
-     that file until all file handles on it are closed.
+Apologies, I forgot to commit all the changes to my patch before posting it.
+There are a couple of additional changes to v9fs_write_end.
 
 David
 ---
@@ -674,7 +621,7 @@ index 7b763776306e..b248586d7a2c 100644
  
  struct p9_fid *v9fs_session_init(struct v9fs_session_info *, const char *,
 diff --git a/fs/9p/vfs_addr.c b/fs/9p/vfs_addr.c
-index cce9ace651a2..ae093672c986 100644
+index cce9ace651a2..c0882ad0f3bb 100644
 --- a/fs/9p/vfs_addr.c
 +++ b/fs/9p/vfs_addr.c
 @@ -19,7 +19,7 @@
@@ -927,7 +874,7 @@ index cce9ace651a2..ae093672c986 100644
  	return 0;
  }
  
-@@ -256,35 +272,24 @@ static int v9fs_write_begin(struct file *filp, struct address_space *mapping,
+@@ -256,44 +272,35 @@ static int v9fs_write_begin(struct file *filp, struct address_space *mapping,
  			    loff_t pos, unsigned len, unsigned flags,
  			    struct page **pagep, void **fsdata)
  {
@@ -974,9 +921,12 @@ index cce9ace651a2..ae093672c986 100644
  	return retval;
  }
  
-@@ -293,7 +298,8 @@ static int v9fs_write_end(struct file *filp, struct address_space *mapping,
- 			  struct page *page, void *fsdata)
+ static int v9fs_write_end(struct file *filp, struct address_space *mapping,
+ 			  loff_t pos, unsigned len, unsigned copied,
+-			  struct page *page, void *fsdata)
++			  struct page *subpage, void *fsdata)
  {
++	struct page *page = thp_head(subpage);
  	loff_t last_pos = pos + copied;
 -	struct inode *inode = page->mapping->host;
 +	struct inode *inode = mapping->host;
@@ -984,7 +934,16 @@ index cce9ace651a2..ae093672c986 100644
  
  	p9_debug(P9_DEBUG_VFS, "filp %p, mapping %p\n", filp, mapping);
  
-@@ -312,6 +318,7 @@ static int v9fs_write_end(struct file *filp, struct address_space *mapping,
+@@ -301,7 +308,7 @@ static int v9fs_write_end(struct file *filp, struct address_space *mapping,
+ 		if (unlikely(copied < len)) {
+ 			copied = 0;
+ 			goto out;
+-		} else if (len == PAGE_SIZE) {
++		} else if (len == thp_size(page)) {
+ 			SetPageUptodate(page);
+ 		}
+ 	}
+@@ -312,6 +319,7 @@ static int v9fs_write_end(struct file *filp, struct address_space *mapping,
  	if (last_pos > inode->i_size) {
  		inode_add_bytes(inode, last_pos - inode->i_size);
  		i_size_write(inode, last_pos);
@@ -992,7 +951,7 @@ index cce9ace651a2..ae093672c986 100644
  	}
  	set_page_dirty(page);
  out:
-@@ -324,7 +331,7 @@ static int v9fs_write_end(struct file *filp, struct address_space *mapping,
+@@ -324,7 +332,7 @@ static int v9fs_write_end(struct file *filp, struct address_space *mapping,
  
  const struct address_space_operations v9fs_addr_operations = {
  	.readpage = v9fs_vfs_readpage,
