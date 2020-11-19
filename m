@@ -2,86 +2,64 @@ Return-Path: <v9fs-developer-bounces@lists.sourceforge.net>
 X-Original-To: lists+v9fs-developer@lfdr.de
 Delivered-To: lists+v9fs-developer@lfdr.de
 Received: from lists.sourceforge.net (lists.sourceforge.net [216.105.38.7])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6221C2B801E
-	for <lists+v9fs-developer@lfdr.de>; Wed, 18 Nov 2020 16:11:34 +0100 (CET)
-Received: from [127.0.0.1] (helo=sfs-ml-2.v29.lw.sourceforge.com)
-	by sfs-ml-2.v29.lw.sourceforge.com with esmtp (Exim 4.90_1)
+	by mail.lfdr.de (Postfix) with ESMTPS id BF1222B9748
+	for <lists+v9fs-developer@lfdr.de>; Thu, 19 Nov 2020 17:07:28 +0100 (CET)
+Received: from [127.0.0.1] (helo=sfs-ml-4.v29.lw.sourceforge.com)
+	by sfs-ml-4.v29.lw.sourceforge.com with esmtp (Exim 4.90_1)
 	(envelope-from <v9fs-developer-bounces@lists.sourceforge.net>)
-	id 1kfP7M-00053O-Qp; Wed, 18 Nov 2020 15:11:32 +0000
+	id 1kfmT0-0007Xv-Tw; Thu, 19 Nov 2020 16:07:26 +0000
 Received: from [172.30.20.202] (helo=mx.sourceforge.net)
- by sfs-ml-2.v29.lw.sourceforge.com with esmtps
+ by sfs-ml-4.v29.lw.sourceforge.com with esmtps
  (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.90_1)
- (envelope-from <dhowells@redhat.com>) id 1kfOzZ-0004c6-Sf
- for v9fs-developer@lists.sourceforge.net; Wed, 18 Nov 2020 15:03:29 +0000
+ (envelope-from <asmadeus@notk.org>) id 1kfmSz-0007Xo-HG
+ for v9fs-developer@lists.sourceforge.net; Thu, 19 Nov 2020 16:07:25 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=sourceforge.net; s=x; h=Message-ID:Date:Content-ID:Content-Type:
- MIME-Version:Subject:Cc:To:References:In-Reply-To:From:Sender:Reply-To:
- Content-Transfer-Encoding:Content-Description:Resent-Date:Resent-From:
- Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:
- List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=H8m9xlk+wKmmL3enreHjDmbAIg8ywAmVm1AGESujBoc=; b=h72XfPTXeDB8sknXgnWTUiKdpb
- Ougw0sxQTaFhG/lyfpw7fWH8wmBGclfsEY+psklj4XwYk5WyPSh1U6qzXeVS7ddyGGU/44ZnZsgv8
- e4CkRuYWL77pGo+/eDZIVNXtx6Px/tcp4sxreQxlc0Do4ffmxsGEvZaQuUQrXGKf8hwk=;
+ d=sourceforge.net; s=x; h=References:In-Reply-To:Message-Id:Date:Subject:Cc:
+ To:From:Sender:Reply-To:MIME-Version:Content-Type:Content-Transfer-Encoding:
+ Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+ Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
+ List-Subscribe:List-Post:List-Owner:List-Archive;
+ bh=wnp7kYlwuZStjD6vk8suZ1iAGibt5LBJYqJazO3nkt8=; b=DzaaYu2nHePxI+VNTSurxAZbDG
+ uqdKbHleB5VmIbCBbtwajptFsoZvOyLknhs9HRLt/zEa+oqHX0JHDcbsFOjcnlENrN1f2Via8B8ux
+ PCOwaDeYVwgP/a8lgpTDNmZcTIu5JaxyHP9KpUwQSzFID7jfGwe6EVa8vPzIbHxhMIao=;
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  ;
- h=Message-ID:Date:Content-ID:Content-Type:MIME-Version:Subject:Cc:To:
- References:In-Reply-To:From:Sender:Reply-To:Content-Transfer-Encoding:
+ h=References:In-Reply-To:Message-Id:Date:Subject:Cc:To:From:Sender:Reply-To
+ :MIME-Version:Content-Type:Content-Transfer-Encoding:Content-ID:
  Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
  :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
  List-Post:List-Owner:List-Archive;
- bh=H8m9xlk+wKmmL3enreHjDmbAIg8ywAmVm1AGESujBoc=; b=fmA9crmveYc6IAaRQ9ejSKRttw
- CDzG5KVUNbztpYQBTDabhH3TXPmt3PuP6nn47AfGpErrKa4vaWuo2+RpNKyfKKHz+NkQ/Bn8Lv+LI
- fbF6WCS4LImpTYeYGpAxlpqb0smIdeFND4qo/X0SLdS5khPnlMmeYhZFcEIs2RsKGr1k=;
-Received: from us-smtp-delivery-124.mimecast.com ([63.128.21.124])
+ bh=wnp7kYlwuZStjD6vk8suZ1iAGibt5LBJYqJazO3nkt8=; b=e8HA22L+nRuDrIOFeeP5nfyj0v
+ y87h3BdaG7MqJ4VF+d2jxWxAgcUFEqoKNTZ6wcGxcTYUY/IcyN5NABbCqYzFCNeMkQMBnc5OPbNTp
+ o0xqFwZ+meicLg6Q2ivG0A28EJAEVhZKRO7OF8GIORFLK2v906H38AT+mExwWZODhvZw=;
+Received: from nautica.notk.org ([91.121.71.147])
  by sfi-mx-1.v28.lw.sourceforge.com with esmtps
- (TLSv1.2:ECDHE-RSA-AES256-SHA384:256) (Exim 4.92.2)
- id 1kfOzR-00DqCt-HX
- for v9fs-developer@lists.sourceforge.net; Wed, 18 Nov 2020 15:03:29 +0000
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
- s=mimecast20190719; t=1605711788;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:content-type:content-type:
- in-reply-to:in-reply-to:references:references;
- bh=H8m9xlk+wKmmL3enreHjDmbAIg8ywAmVm1AGESujBoc=;
- b=MRsQvDhezE9cKvHe9DKFQbclvBtG319sBILlaggCfh2u8MO5VOmBhkZx18eSqG4dz9sSWG
- dTx499X6IEIkGJutehmpHVc2YHg2zQpw4JI5eTZ2RUW0dcSqWTlZLfJh3XhS5KsHmDJTVq
- 2oNkvETS7udqyiCG0WZr6rGY8uBVSJw=
-Received: from mimecast-mx01.redhat.com (mimecast-mx01.redhat.com
- [209.132.183.4]) (Using TLS) by relay.mimecast.com with ESMTP id
- us-mta-176-ym6SNh0sMo-XNxsTHr83pg-1; Wed, 18 Nov 2020 10:03:04 -0500
-X-MC-Unique: ym6SNh0sMo-XNxsTHr83pg-1
-Received: from smtp.corp.redhat.com (int-mx07.intmail.prod.int.phx2.redhat.com
- [10.5.11.22])
- (using TLSv1.2 with cipher AECDH-AES256-SHA (256/256 bits))
- (No client certificate requested)
- by mimecast-mx01.redhat.com (Postfix) with ESMTPS id 4D809100C661;
- Wed, 18 Nov 2020 15:03:03 +0000 (UTC)
-Received: from warthog.procyon.org.uk (ovpn-112-246.rdu2.redhat.com
- [10.10.112.246])
- by smtp.corp.redhat.com (Postfix) with ESMTP id 1ACB510016DB;
- Wed, 18 Nov 2020 15:02:58 +0000 (UTC)
-Organization: Red Hat UK Ltd. Registered Address: Red Hat UK Ltd, Amberley
- Place, 107-111 Peascod Street, Windsor, Berkshire, SI4 1TE, United
- Kingdom.
- Registered in England and Wales under Company Registration No. 3798903
-From: David Howells <dhowells@redhat.com>
-In-Reply-To: <20201118141649.GA14211@nautica>
-References: <20201118141649.GA14211@nautica> <20201118124826.GA17850@nautica>
- <1514086.1605697347@warthog.procyon.org.uk>
- <1561011.1605706707@warthog.procyon.org.uk>
-To: Dominique Martinet <asmadeus@codewreck.org>
-MIME-Version: 1.0
-Content-ID: <1787399.1605711778.1@warthog.procyon.org.uk>
-Date: Wed, 18 Nov 2020 15:02:58 +0000
-Message-ID: <1787400.1605711778@warthog.procyon.org.uk>
-X-Scanned-By: MIMEDefang 2.84 on 10.5.11.22
-X-Spam-Score: -0.1 (/)
+ (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.92.2)
+ id 1kfmSw-0004lo-BJ
+ for v9fs-developer@lists.sourceforge.net; Thu, 19 Nov 2020 16:07:25 +0000
+Received: by nautica.notk.org (Postfix, from userid 1001)
+ id 94310C009; Thu, 19 Nov 2020 17:07:14 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=codewreck.org; s=2;
+ t=1605802034; bh=wnp7kYlwuZStjD6vk8suZ1iAGibt5LBJYqJazO3nkt8=;
+ h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
+ b=CcbtVURf8E4d6fjojEBxPljhoOmxJMjDM+Q0+opIWdb9YqqJEAfHi5LSOfb3zni7U
+ 2O3ITJMad9fwonq3dlKwO/pAU0ux5oebtPZNTtLIY3XUoF1iLFbJi6oPvTkpU7Y9bK
+ MHMXeXh8AdeXmtuuDNoXq+mFjBpt7NsRdOPgwtsRCy2cUGRuVJYRYFKPZYTK490F+G
+ rf6BHH416Z8e0lIvsrByeUg0qakuof8CpwSHX7DRic6oj9GXDXLnjmF13Du/x80jM/
+ h2sj7LgrbF5XVer76oo8OFiOX/YY17QY+fHeKGKErCELsXHjAErCG4UNNoeDzWu5Ig
+ d/bAtSGIp66rQ==
+From: Dominique Martinet <asmadeus@codewreck.org>
+To: 
+Date: Thu, 19 Nov 2020 17:06:50 +0100
+Message-Id: <1605802012-31133-1-git-send-email-asmadeus@codewreck.org>
+X-Mailer: git-send-email 1.7.10.4
+In-Reply-To: <20201103104116.GA19587@nautica>
+References: <20201103104116.GA19587@nautica>
+X-Spam-Score: 0.1 (/)
 X-Spam-Report: Spam Filtering performed by mx.sourceforge.net.
  See http://spamassassin.org/tag/ for more details.
- 0.0 URIBL_BLOCKED ADMINISTRATOR NOTICE: The query to URIBL was blocked.
- See
- http://wiki.apache.org/spamassassin/DnsBlocklists#dnsbl-block
- for more information. [URIs: codewreck.org]
+ 0.2 HEADER_FROM_DIFFERENT_DOMAINS From and EnvelopeFrom 2nd level mail
+ domains are different
  -0.0 SPF_PASS               SPF: sender matches SPF record
  0.0 SPF_HELO_NONE          SPF: HELO does not publish an SPF Record
  -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from author's
@@ -89,14 +67,9 @@ X-Spam-Report: Spam Filtering performed by mx.sourceforge.net.
  -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
  0.1 DKIM_SIGNED            Message has a DKIM or DK signature,
  not necessarily valid
- -0.0 RCVD_IN_DNSWL_NONE     RBL: Sender listed at https://www.dnswl.org/, no
- trust [63.128.21.124 listed in list.dnswl.org]
- 0.0 RCVD_IN_MSPIKE_H4      RBL: Very Good reputation (+4)
- [63.128.21.124 listed in wl.mailspike.net]
- 0.0 RCVD_IN_MSPIKE_WL      Mailspike good senders
- -0.0 DKIMWL_WL_HIGH         DKIMwl.org - High trust sender
-X-Headers-End: 1kfOzR-00DqCt-HX
-Subject: Re: [V9fs-developer] [PATCH] 9p: Convert to new fscache API
+X-Headers-End: 1kfmSw-0004lo-BJ
+Subject: [V9fs-developer] [PATCH 0/2] follow-up to 9p: fix race issue in fid
+ contention.
 X-BeenThere: v9fs-developer@lists.sourceforge.net
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -108,27 +81,42 @@ List-Post: <mailto:v9fs-developer@lists.sourceforge.net>
 List-Help: <mailto:v9fs-developer-request@lists.sourceforge.net?subject=help>
 List-Subscribe: <https://lists.sourceforge.net/lists/listinfo/v9fs-developer>, 
  <mailto:v9fs-developer-request@lists.sourceforge.net?subject=subscribe>
-Cc: Latchesar Ionkov <lucho@ionkov.net>, Eric Van Hensbergen <ericvh@gmail.com>,
- dhowells@redhat.com, linux-cachefs@redhat.com, linux-fsdevel@vger.kernel.org,
- v9fs-developer@lists.sourceforge.net
+Cc: lucho@ionkov.net, justin.he@arm.com, ericvh@gmail.com,
+ Jianyong Wu <jianyong.wu@arm.com>, qemu_oss@crudebyte.com, groug@kaod.org,
+ linux-kernel@vger.kernel.org, v9fs-developer@lists.sourceforge.net
+MIME-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: v9fs-developer-bounces@lists.sourceforge.net
 
-Dominique Martinet <asmadeus@codewreck.org> wrote:
+In case anyone wondered why the patch series isn't in -next yet, I ran into
+some troubles with non-none cache that the second patch appears to fix.
 
-> I take it the read helper would just iterate as long as there's data
-> still required to read, writing from THPs wouldn't do that?
+Also realized I hadn't sent the fixups I had meant Jianyong Wu to do, so
+sending both now (keeping it a separate patch) and will put to my next
+tree now, this time for real.
 
-Yep.  As long as you read some data, the helper will call you again if you
-didn't read everything.  subreq->transferred keeps track of what has been read
-so far.  You can also tell the helper just to clear the rest by setting
-NETFS_SREQ_CLEAR_TAIL.
+Hopefully not too many other bugs not uncovered... But only one way to
+find out, and I think refcounting 9p fid will allow some nice
+optimizations in the future if anyone cares to work on it...
 
-The helper tries to hide the pages from you as far as possible.  Using
-ITER_XARRAY hides that even more.
 
-David
+Onto fscache now...!
+
+
+Dominique Martinet (2):
+  9p: apply review requests for fid refcounting
+  9p: Fix writeback fid incorrectly being attached to dentry
+
+ fs/9p/fid.c             | 10 ++++------
+ fs/9p/fid.h             |  2 +-
+ fs/9p/vfs_file.c        |  6 +++---
+ include/net/9p/client.h |  2 +-
+ net/9p/client.c         |  4 ++--
+ 5 files changed, 11 insertions(+), 13 deletions(-)
+
+-- 
+2.28.0
 
 
 
