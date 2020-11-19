@@ -2,26 +2,26 @@ Return-Path: <v9fs-developer-bounces@lists.sourceforge.net>
 X-Original-To: lists+v9fs-developer@lfdr.de
 Delivered-To: lists+v9fs-developer@lfdr.de
 Received: from lists.sourceforge.net (lists.sourceforge.net [216.105.38.7])
-	by mail.lfdr.de (Postfix) with ESMTPS id BF1222B9748
-	for <lists+v9fs-developer@lfdr.de>; Thu, 19 Nov 2020 17:07:28 +0100 (CET)
-Received: from [127.0.0.1] (helo=sfs-ml-4.v29.lw.sourceforge.com)
-	by sfs-ml-4.v29.lw.sourceforge.com with esmtp (Exim 4.90_1)
+	by mail.lfdr.de (Postfix) with ESMTPS id 74AA52B9749
+	for <lists+v9fs-developer@lfdr.de>; Thu, 19 Nov 2020 17:07:41 +0100 (CET)
+Received: from [127.0.0.1] (helo=sfs-ml-2.v29.lw.sourceforge.com)
+	by sfs-ml-2.v29.lw.sourceforge.com with esmtp (Exim 4.90_1)
 	(envelope-from <v9fs-developer-bounces@lists.sourceforge.net>)
-	id 1kfmT0-0007Xv-Tw; Thu, 19 Nov 2020 16:07:26 +0000
+	id 1kfmTE-0006mc-2C; Thu, 19 Nov 2020 16:07:40 +0000
 Received: from [172.30.20.202] (helo=mx.sourceforge.net)
- by sfs-ml-4.v29.lw.sourceforge.com with esmtps
+ by sfs-ml-2.v29.lw.sourceforge.com with esmtps
  (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.90_1)
- (envelope-from <asmadeus@notk.org>) id 1kfmSz-0007Xo-HG
- for v9fs-developer@lists.sourceforge.net; Thu, 19 Nov 2020 16:07:25 +0000
+ (envelope-from <asmadeus@notk.org>) id 1kfmT3-0006mB-Hd
+ for v9fs-developer@lists.sourceforge.net; Thu, 19 Nov 2020 16:07:29 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
  d=sourceforge.net; s=x; h=References:In-Reply-To:Message-Id:Date:Subject:Cc:
  To:From:Sender:Reply-To:MIME-Version:Content-Type:Content-Transfer-Encoding:
  Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
  Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
  List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=wnp7kYlwuZStjD6vk8suZ1iAGibt5LBJYqJazO3nkt8=; b=DzaaYu2nHePxI+VNTSurxAZbDG
- uqdKbHleB5VmIbCBbtwajptFsoZvOyLknhs9HRLt/zEa+oqHX0JHDcbsFOjcnlENrN1f2Via8B8ux
- PCOwaDeYVwgP/a8lgpTDNmZcTIu5JaxyHP9KpUwQSzFID7jfGwe6EVa8vPzIbHxhMIao=;
+ bh=FgwVOGrQRgSaXC/c3SASSffjnbPG4AmXzCDcQORhByg=; b=fnbeSurhWogv6WoCgOM1fKPzoj
+ hYh0kCoGwajXYt/T3zvN/GEAZg26r6pe8UXLojjdn4nUz3zDxPfDGJiMM2U+I13R/mGwf6SOgmXZF
+ Q7KQWpCHj391JNzPzTbgcBdMyDN2iYDG2dEEpfxbGkfmJCTkKBRJrGOaFkup/AKJA2XI=;
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  ;
  h=References:In-Reply-To:Message-Id:Date:Subject:Cc:To:From:Sender:Reply-To
@@ -29,35 +29,40 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
  :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
  List-Post:List-Owner:List-Archive;
- bh=wnp7kYlwuZStjD6vk8suZ1iAGibt5LBJYqJazO3nkt8=; b=e8HA22L+nRuDrIOFeeP5nfyj0v
- y87h3BdaG7MqJ4VF+d2jxWxAgcUFEqoKNTZ6wcGxcTYUY/IcyN5NABbCqYzFCNeMkQMBnc5OPbNTp
- o0xqFwZ+meicLg6Q2ivG0A28EJAEVhZKRO7OF8GIORFLK2v906H38AT+mExwWZODhvZw=;
+ bh=FgwVOGrQRgSaXC/c3SASSffjnbPG4AmXzCDcQORhByg=; b=lCp563M9uQiGnBYRsyTkG0GG/A
+ s28AJhxipX6XfBCfUAflnHki9YqeSWtCKOMytL+nDsV9pvYiaoVYdcRdSAaeo0q56h2a2gltlsoMG
+ m5Hs5xV6DNZ/8gr2mgNnK4AKpuVn7WuCswp1u1xwavGdh9KaHcopAZRWZlafIjf0qPjo=;
 Received: from nautica.notk.org ([91.121.71.147])
- by sfi-mx-1.v28.lw.sourceforge.com with esmtps
+ by sfi-mx-3.v28.lw.sourceforge.com with esmtps
  (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.92.2)
- id 1kfmSw-0004lo-BJ
- for v9fs-developer@lists.sourceforge.net; Thu, 19 Nov 2020 16:07:25 +0000
+ id 1kfmSy-007jZi-SE
+ for v9fs-developer@lists.sourceforge.net; Thu, 19 Nov 2020 16:07:29 +0000
 Received: by nautica.notk.org (Postfix, from userid 1001)
- id 94310C009; Thu, 19 Nov 2020 17:07:14 +0100 (CET)
+ id 1EAA0C01A; Thu, 19 Nov 2020 17:07:18 +0100 (CET)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=codewreck.org; s=2;
- t=1605802034; bh=wnp7kYlwuZStjD6vk8suZ1iAGibt5LBJYqJazO3nkt8=;
+ t=1605802038; bh=FgwVOGrQRgSaXC/c3SASSffjnbPG4AmXzCDcQORhByg=;
  h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
- b=CcbtVURf8E4d6fjojEBxPljhoOmxJMjDM+Q0+opIWdb9YqqJEAfHi5LSOfb3zni7U
- 2O3ITJMad9fwonq3dlKwO/pAU0ux5oebtPZNTtLIY3XUoF1iLFbJi6oPvTkpU7Y9bK
- MHMXeXh8AdeXmtuuDNoXq+mFjBpt7NsRdOPgwtsRCy2cUGRuVJYRYFKPZYTK490F+G
- rf6BHH416Z8e0lIvsrByeUg0qakuof8CpwSHX7DRic6oj9GXDXLnjmF13Du/x80jM/
- h2sj7LgrbF5XVer76oo8OFiOX/YY17QY+fHeKGKErCELsXHjAErCG4UNNoeDzWu5Ig
- d/bAtSGIp66rQ==
+ b=0lf2G7K2lKoVaavnFtQbb1FO4UFaw1BEp0YxrN2XOn3AZ5fyAEVIgdytk1JxZEVGm
+ GUtMrTyYebQdVaU6k50motBOb38Fs7eQCE4opHi+UoekJsvpPZLSzTbdkzw0Z/2TeI
+ y2+YDcuWBsibkVM+nTTIuIxFHF0mpSmJYvvdQlATVf3Uva0t2hOp3wYXAPh+L62we5
+ 2DxbyUH6b3S6eWfS3C/053zpmfxTO+6glIBsUZv4X0xc+GxS0oognuVvMynVh6EOlu
+ eZSxiTJzysr9mNkiGKhAP8iz6kFnsYl7N6Q5+jcQr5gVUx0VIEm1Sk5i4PsWOeT9HB
+ bsz4V0Jvp0hmQ==
 From: Dominique Martinet <asmadeus@codewreck.org>
 To: 
-Date: Thu, 19 Nov 2020 17:06:50 +0100
-Message-Id: <1605802012-31133-1-git-send-email-asmadeus@codewreck.org>
+Date: Thu, 19 Nov 2020 17:06:51 +0100
+Message-Id: <1605802012-31133-2-git-send-email-asmadeus@codewreck.org>
 X-Mailer: git-send-email 1.7.10.4
-In-Reply-To: <20201103104116.GA19587@nautica>
+In-Reply-To: <1605802012-31133-1-git-send-email-asmadeus@codewreck.org>
 References: <20201103104116.GA19587@nautica>
-X-Spam-Score: 0.1 (/)
+ <1605802012-31133-1-git-send-email-asmadeus@codewreck.org>
+X-Spam-Score: 0.2 (/)
 X-Spam-Report: Spam Filtering performed by mx.sourceforge.net.
  See http://spamassassin.org/tag/ for more details.
+ 0.0 URIBL_BLOCKED ADMINISTRATOR NOTICE: The query to URIBL was blocked.
+ See
+ http://wiki.apache.org/spamassassin/DnsBlocklists#dnsbl-block
+ for more information. [URIs: codewreck.org]
  0.2 HEADER_FROM_DIFFERENT_DOMAINS From and EnvelopeFrom 2nd level mail
  domains are different
  -0.0 SPF_PASS               SPF: sender matches SPF record
@@ -67,9 +72,9 @@ X-Spam-Report: Spam Filtering performed by mx.sourceforge.net.
  -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
  0.1 DKIM_SIGNED            Message has a DKIM or DK signature,
  not necessarily valid
-X-Headers-End: 1kfmSw-0004lo-BJ
-Subject: [V9fs-developer] [PATCH 0/2] follow-up to 9p: fix race issue in fid
- contention.
+X-Headers-End: 1kfmSy-007jZi-SE
+Subject: [V9fs-developer] [PATCH 1/2] 9p: apply review requests for fid
+ refcounting
 X-BeenThere: v9fs-developer@lists.sourceforge.net
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -89,32 +94,121 @@ Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: v9fs-developer-bounces@lists.sourceforge.net
 
-In case anyone wondered why the patch series isn't in -next yet, I ran into
-some troubles with non-none cache that the second patch appears to fix.
+Fix style issues in parent commit ("apply review requests for fid
+refcounting"), no functional change.
 
-Also realized I hadn't sent the fixups I had meant Jianyong Wu to do, so
-sending both now (keeping it a separate patch) and will put to my next
-tree now, this time for real.
-
-Hopefully not too many other bugs not uncovered... But only one way to
-find out, and I think refcounting 9p fid will allow some nice
-optimizations in the future if anyone cares to work on it...
-
-
-Onto fscache now...!
-
-
-Dominique Martinet (2):
-  9p: apply review requests for fid refcounting
-  9p: Fix writeback fid incorrectly being attached to dentry
-
+Signed-off-by: Dominique Martinet <asmadeus@codewreck.org>
+---
  fs/9p/fid.c             | 10 ++++------
  fs/9p/fid.h             |  2 +-
- fs/9p/vfs_file.c        |  6 +++---
  include/net/9p/client.h |  2 +-
  net/9p/client.c         |  4 ++--
- 5 files changed, 11 insertions(+), 13 deletions(-)
+ 4 files changed, 8 insertions(+), 10 deletions(-)
 
+diff --git a/fs/9p/fid.c b/fs/9p/fid.c
+index 89643dabcdae..50118ec72a92 100644
+--- a/fs/9p/fid.c
++++ b/fs/9p/fid.c
+@@ -28,7 +28,6 @@
+ 
+ static inline void __add_fid(struct dentry *dentry, struct p9_fid *fid)
+ {
+-	atomic_set(&fid->count, 1);
+ 	hlist_add_head(&fid->dlist, (struct hlist_head *)&dentry->d_fsdata);
+ }
+ 
+@@ -62,7 +61,7 @@ static struct p9_fid *v9fs_fid_find_inode(struct inode *inode, kuid_t uid)
+ 		}
+ 	}
+ 	if (ret && !IS_ERR(ret))
+-		atomic_inc(&ret->count);
++		refcount_inc(&ret->count);
+ 	spin_unlock(&inode->i_lock);
+ 	return ret;
+ }
+@@ -77,7 +76,6 @@ static struct p9_fid *v9fs_fid_find_inode(struct inode *inode, kuid_t uid)
+ void v9fs_open_fid_add(struct inode *inode, struct p9_fid *fid)
+ {
+ 	spin_lock(&inode->i_lock);
+-	atomic_set(&fid->count, 1);
+ 	hlist_add_head(&fid->ilist, (struct hlist_head *)&inode->i_private);
+ 	spin_unlock(&inode->i_lock);
+ }
+@@ -110,7 +108,7 @@ static struct p9_fid *v9fs_fid_find(struct dentry *dentry, kuid_t uid, int any)
+ 		hlist_for_each_entry(fid, h, dlist) {
+ 			if (any || uid_eq(fid->uid, uid)) {
+ 				ret = fid;
+-				atomic_inc(&ret->count);
++				refcount_inc(&ret->count);
+ 				break;
+ 			}
+ 		}
+@@ -201,7 +199,7 @@ static struct p9_fid *v9fs_fid_lookup_with_uid(struct dentry *dentry,
+ 	}
+ 	/* If we are root ourself just return that */
+ 	if (dentry->d_sb->s_root == dentry) {
+-		atomic_inc(&fid->count);
++		refcount_inc(&fid->count);
+ 		return fid;
+ 	}
+ 	/*
+@@ -250,7 +248,7 @@ static struct p9_fid *v9fs_fid_lookup_with_uid(struct dentry *dentry,
+ 			fid = ERR_PTR(-ENOENT);
+ 		} else {
+ 			__add_fid(dentry, fid);
+-			atomic_inc(&fid->count);
++			refcount_inc(&fid->count);
+ 			spin_unlock(&dentry->d_lock);
+ 		}
+ 	}
+diff --git a/fs/9p/fid.h b/fs/9p/fid.h
+index 1fed96546728..f7f33509e169 100644
+--- a/fs/9p/fid.h
++++ b/fs/9p/fid.h
+@@ -28,7 +28,7 @@ static inline struct p9_fid *v9fs_fid_clone(struct dentry *dentry)
+ 	if (!fid || IS_ERR(fid))
+ 		return fid;
+ 
+-	nfid = p9_client_walk(fid, 0, NULL, 1);
++	nfid = clone_fid(fid);
+ 	p9_client_clunk(fid);
+ 	return nfid;
+ }
+diff --git a/include/net/9p/client.h b/include/net/9p/client.h
+index 58ed9bd306bd..e1c308d8d288 100644
+--- a/include/net/9p/client.h
++++ b/include/net/9p/client.h
+@@ -149,7 +149,7 @@ enum fid_source {
+ struct p9_fid {
+ 	struct p9_client *clnt;
+ 	u32 fid;
+-	atomic_t count;
++	refcount_t count;
+ 	int mode;
+ 	struct p9_qid qid;
+ 	u32 iounit;
+diff --git a/net/9p/client.c b/net/9p/client.c
+index a6c8a915e0d8..ba4910138c5b 100644
+--- a/net/9p/client.c
++++ b/net/9p/client.c
+@@ -901,7 +901,7 @@ static struct p9_fid *p9_fid_create(struct p9_client *clnt)
+ 	fid->clnt = clnt;
+ 	fid->rdir = NULL;
+ 	fid->fid = 0;
+-	atomic_set(&fid->count, 1);
++	refcount_set(&fid->count, 1);
+ 
+ 	idr_preload(GFP_KERNEL);
+ 	spin_lock_irq(&clnt->lock);
+@@ -1466,7 +1466,7 @@ int p9_client_clunk(struct p9_fid *fid)
+ 		dump_stack();
+ 		return 0;
+ 	}
+-	if (!atomic_dec_and_test(&fid->count))
++	if (!refcount_dec_and_test(&fid->count))
+ 		return 0;
+ 
+ again:
 -- 
 2.28.0
 
