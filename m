@@ -2,26 +2,26 @@ Return-Path: <v9fs-developer-bounces@lists.sourceforge.net>
 X-Original-To: lists+v9fs-developer@lfdr.de
 Delivered-To: lists+v9fs-developer@lfdr.de
 Received: from lists.sourceforge.net (lists.sourceforge.net [216.105.38.7])
-	by mail.lfdr.de (Postfix) with ESMTPS id 024912BAD0A
-	for <lists+v9fs-developer@lfdr.de>; Fri, 20 Nov 2020 16:08:21 +0100 (CET)
-Received: from [127.0.0.1] (helo=sfs-ml-2.v29.lw.sourceforge.com)
-	by sfs-ml-2.v29.lw.sourceforge.com with esmtp (Exim 4.90_1)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0AD6D2BACFD
+	for <lists+v9fs-developer@lfdr.de>; Fri, 20 Nov 2020 16:07:59 +0100 (CET)
+Received: from [127.0.0.1] (helo=sfs-ml-4.v29.lw.sourceforge.com)
+	by sfs-ml-4.v29.lw.sourceforge.com with esmtp (Exim 4.90_1)
 	(envelope-from <v9fs-developer-bounces@lists.sourceforge.net>)
-	id 1kg81L-0002XK-Pr; Fri, 20 Nov 2020 15:08:19 +0000
+	id 1kg80z-0001y0-Qf; Fri, 20 Nov 2020 15:07:57 +0000
 Received: from [172.30.20.202] (helo=mx.sourceforge.net)
- by sfs-ml-2.v29.lw.sourceforge.com with esmtps
+ by sfs-ml-4.v29.lw.sourceforge.com with esmtps
  (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.90_1)
- (envelope-from <dhowells@redhat.com>) id 1kg7zM-0002On-PE
- for v9fs-developer@lists.sourceforge.net; Fri, 20 Nov 2020 15:06:16 +0000
+ (envelope-from <dhowells@redhat.com>) id 1kg7zQ-0001tS-Bx
+ for v9fs-developer@lists.sourceforge.net; Fri, 20 Nov 2020 15:06:20 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
  d=sourceforge.net; s=x; h=Content-Transfer-Encoding:Content-Type:MIME-Version
  :References:In-Reply-To:Message-ID:Date:Cc:To:From:Subject:Sender:Reply-To:
  Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
  Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
  List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=sdKUXuKYWtVJHjOlbInbaNIJNT/e6Kclw7i3k6mZU6E=; b=G5ucGCJ9Tzy7PLhrmmgNK6NY9j
- bWvftWSGbMbFgVcL+bjCRF0vbw6pMmNKRsWX9kg6lhV99UCz6PfaA3A9CJFiO2klHi1hwDtRBjxzh
- d4Jopp9WXsVmRltuU5mQhEy/stvx8J5YRr8DIqdRfc3rosp+1Q69DEgbDXqDY/tqulCk=;
+ bh=3cmElf377VV5pCaI3ZacaDWr2Vk1dfkCNkh+Zy78XCE=; b=TenexfsxP77W8qAjzP2pLy1rQ5
+ zq2cFDpQkc9JduCG9C5QqRSrBeom61A+QYCfFsv6/NhJjqSDyu0BfUc4ZQT88y0Wy9DZ3JhtVRwLd
+ ZSYGxC54VK2QbGcaUMJqCVrSKuIAr3C2j8pD6eWcHdzaiIzEtzQPTyhRSfbds2T31q34=;
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  ;
  h=Content-Transfer-Encoding:Content-Type:MIME-Version:References:
@@ -29,38 +29,38 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
  :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
  List-Post:List-Owner:List-Archive;
- bh=sdKUXuKYWtVJHjOlbInbaNIJNT/e6Kclw7i3k6mZU6E=; b=AMgM/Emog9J8y8rV6Zd1+B+S3y
- mVoJW6YLChlZzHTpIrZQaBYdmgwP90EIkZqtWHFVKIj/C2NrxMpuNhoEGii2l25AoK6kbuxFsWoRZ
- 5rIFv1DcCafu71wanhzn8B0ZmioBbtvHzV90f0MkAhyenvON35tyeb3qpbrOZtvE/WRU=;
-Received: from us-smtp-delivery-124.mimecast.com ([216.205.24.124])
+ bh=3cmElf377VV5pCaI3ZacaDWr2Vk1dfkCNkh+Zy78XCE=; b=DrUg+hn/JUgbPFySEKxm+8MeJp
+ Iv6LcH6jig3mW3ChT1Z6FtE3/mXRRBCW74Xe2GSPbSFF2jTCeATGFgXzWZK9qE6n6bi/j2pKXQ4D8
+ X2PNe7cMT6yryuD0kss0GCbUYyBs5N4ndaTM/LDkNgui9piPeJC3JD1yOYMDoWWs1Kmk=;
+Received: from us-smtp-delivery-124.mimecast.com ([63.128.21.124])
  by sfi-mx-1.v28.lw.sourceforge.com with esmtps
  (TLSv1.2:ECDHE-RSA-AES256-SHA384:256) (Exim 4.92.2)
- id 1kg7zD-003Ai9-CQ
- for v9fs-developer@lists.sourceforge.net; Fri, 20 Nov 2020 15:06:14 +0000
+ id 1kg7zN-003Ajc-Q8
+ for v9fs-developer@lists.sourceforge.net; Fri, 20 Nov 2020 15:06:20 +0000
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
- s=mimecast20190719; t=1605884761;
+ s=mimecast20190719; t=1605884771;
  h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
  to:to:cc:cc:mime-version:mime-version:content-type:content-type:
  content-transfer-encoding:content-transfer-encoding:
  in-reply-to:in-reply-to:references:references;
- bh=sdKUXuKYWtVJHjOlbInbaNIJNT/e6Kclw7i3k6mZU6E=;
- b=eRvwSzamKAFa4qu3Hhz3icsZwFl0VFY+TCl8/RVPcXOZ/ZH1Ttzf0Adwq6gCmH6FNtMNSL
- P6aOX/NqNqo6+f57/5E0t0AkQ0q1pi0W3glQIbAOvnOoqlAdGkacON8XIN1y3Vpqa5yt6p
- XXNOjxZ4ntpyeuVmyYByl5a9uC4cbRY=
+ bh=3cmElf377VV5pCaI3ZacaDWr2Vk1dfkCNkh+Zy78XCE=;
+ b=VDm4iLJLK7XBZkoEzOrWil6EeuNPkhm0ZYWx53uaiziTvjE5vOC2D+Q6DSJbyWsrp82hBh
+ /aRJU4d3cq3iPxeMnHUrd9T21uDijKlvtmNY0cI/KD+rUauD8Pwr62+Y/DPhMrqPjuFcld
+ jzGUDUOAgrv5EAfFHeZNqMpBZWv6G5A=
 Received: from mimecast-mx01.redhat.com (mimecast-mx01.redhat.com
  [209.132.183.4]) (Using TLS) by relay.mimecast.com with ESMTP id
- us-mta-521-PGx-9_kYMYmz8WxJFoyJAg-1; Fri, 20 Nov 2020 10:05:57 -0500
-X-MC-Unique: PGx-9_kYMYmz8WxJFoyJAg-1
-Received: from smtp.corp.redhat.com (int-mx05.intmail.prod.int.phx2.redhat.com
- [10.5.11.15])
+ us-mta-10-DZ7F8qW9NdqT_zr_ech__A-1; Fri, 20 Nov 2020 10:06:09 -0500
+X-MC-Unique: DZ7F8qW9NdqT_zr_ech__A-1
+Received: from smtp.corp.redhat.com (int-mx02.intmail.prod.int.phx2.redhat.com
+ [10.5.11.12])
  (using TLSv1.2 with cipher AECDH-AES256-SHA (256/256 bits))
  (No client certificate requested)
- by mimecast-mx01.redhat.com (Postfix) with ESMTPS id 324C2107ACFC;
- Fri, 20 Nov 2020 15:05:55 +0000 (UTC)
+ by mimecast-mx01.redhat.com (Postfix) with ESMTPS id 1B098100C612;
+ Fri, 20 Nov 2020 15:06:08 +0000 (UTC)
 Received: from warthog.procyon.org.uk (ovpn-112-246.rdu2.redhat.com
  [10.10.112.246])
- by smtp.corp.redhat.com (Postfix) with ESMTP id 46B025D6CF;
- Fri, 20 Nov 2020 15:05:49 +0000 (UTC)
+ by smtp.corp.redhat.com (Postfix) with ESMTP id 4391F60C15;
+ Fri, 20 Nov 2020 15:06:01 +0000 (UTC)
 Organization: Red Hat UK Ltd. Registered Address: Red Hat UK Ltd, Amberley
  Place, 107-111 Peascod Street, Windsor, Berkshire, SI4 1TE, United
  Kingdom.
@@ -69,22 +69,22 @@ From: David Howells <dhowells@redhat.com>
 To: Trond Myklebust <trondmy@hammerspace.com>,
  Anna Schumaker <anna.schumaker@netapp.com>, Steve French <sfrench@samba.org>, 
  Dominique Martinet <asmadeus@codewreck.org>
-Date: Fri, 20 Nov 2020 15:05:48 +0000
-Message-ID: <160588474843.3465195.5446072310069374803.stgit@warthog.procyon.org.uk>
+Date: Fri, 20 Nov 2020 15:06:00 +0000
+Message-ID: <160588476042.3465195.6837847445880367183.stgit@warthog.procyon.org.uk>
 In-Reply-To: <160588455242.3465195.3214733858273019178.stgit@warthog.procyon.org.uk>
 References: <160588455242.3465195.3214733858273019178.stgit@warthog.procyon.org.uk>
 User-Agent: StGit/0.23
 MIME-Version: 1.0
-X-Scanned-By: MIMEDefang 2.79 on 10.5.11.15
+X-Scanned-By: MIMEDefang 2.79 on 10.5.11.12
 X-Spam-Score: -0.1 (/)
 X-Spam-Report: Spam Filtering performed by mx.sourceforge.net.
  See http://spamassassin.org/tag/ for more details.
  -0.0 RCVD_IN_DNSWL_NONE     RBL: Sender listed at https://www.dnswl.org/, no
- trust [216.205.24.124 listed in list.dnswl.org]
- 0.0 RCVD_IN_MSPIKE_H3      RBL: Good reputation (+3)
- [216.205.24.124 listed in wl.mailspike.net]
+ trust [63.128.21.124 listed in list.dnswl.org]
  -0.0 SPF_PASS               SPF: sender matches SPF record
  0.0 SPF_HELO_NONE          SPF: HELO does not publish an SPF Record
+ 0.0 RCVD_IN_MSPIKE_H4      RBL: Very Good reputation (+4)
+ [63.128.21.124 listed in wl.mailspike.net]
  -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from author's
  domain
  -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
@@ -92,8 +92,8 @@ X-Spam-Report: Spam Filtering performed by mx.sourceforge.net.
  not necessarily valid
  0.0 RCVD_IN_MSPIKE_WL      Mailspike good senders
  -0.0 DKIMWL_WL_HIGH         DKIMwl.org - High trust sender
-X-Headers-End: 1kg7zD-003Ai9-CQ
-Subject: [V9fs-developer] [RFC PATCH 15/76] fscache: Change %p in format
+X-Headers-End: 1kg7zN-003Ajc-Q8
+Subject: [V9fs-developer] [RFC PATCH 16/76] cachefiles: Change %p in format
  strings to something else
 X-BeenThere: v9fs-developer@lists.sourceforge.net
 X-Mailman-Version: 2.1.21
@@ -116,140 +116,251 @@ Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: v9fs-developer-bounces@lists.sourceforge.net
 
-Change plain %p in format strings in fscache code to something more useful,
-since %p is now hashed before printing and thus no longer matches the
-contents of an oops register dump.
+Change plain %p in format strings in cachefiles code to something more
+useful, since %p is now hashed before printing and thus no longer matches
+the contents of an oops register dump.
 
 Signed-off-by: David Howells <dhowells@redhat.com>
 ---
 
- fs/fscache/cache.c  |    8 ++++----
- fs/fscache/cookie.c |   16 +++++++---------
- fs/fscache/object.c |    1 -
- 3 files changed, 11 insertions(+), 14 deletions(-)
+ fs/cachefiles/bind.c      |    2 --
+ fs/cachefiles/interface.c |    6 +++---
+ fs/cachefiles/key.c       |    2 +-
+ fs/cachefiles/namei.c     |   46 +++++++++++++++++++++------------------------
+ fs/cachefiles/xattr.c     |    4 ++--
+ 5 files changed, 27 insertions(+), 33 deletions(-)
 
-diff --git a/fs/fscache/cache.c b/fs/fscache/cache.c
-index 92f747b72ec3..60fa68c7da3a 100644
---- a/fs/fscache/cache.c
-+++ b/fs/fscache/cache.c
-@@ -118,7 +118,7 @@ struct fscache_cache *fscache_select_cache_for_object(
- 			cache = NULL;
+diff --git a/fs/cachefiles/bind.c b/fs/cachefiles/bind.c
+index dfb14dbddf51..2e9d01a9d53f 100644
+--- a/fs/cachefiles/bind.c
++++ b/fs/cachefiles/bind.c
+@@ -108,8 +108,6 @@ static int cachefiles_daemon_add_cache(struct cachefiles_cache *cache)
+ 	atomic_set(&fsdef->usage, 1);
+ 	fsdef->type = FSCACHE_COOKIE_TYPE_INDEX;
  
- 		spin_unlock(&cookie->lock);
--		_leave(" = %p [parent]", cache);
-+		_leave(" = %s [parent]", cache ? cache->tag->name : "NULL");
- 		return cache;
- 	}
+-	_debug("- fsdef %p", fsdef);
+-
+ 	/* look up the directory at the root of the cache */
+ 	ret = kern_path(cache->rootdirname, LOOKUP_DIRECTORY, &path);
+ 	if (ret < 0)
+diff --git a/fs/cachefiles/interface.c b/fs/cachefiles/interface.c
+index 99f42d216ef7..7e10793352fd 100644
+--- a/fs/cachefiles/interface.c
++++ b/fs/cachefiles/interface.c
+@@ -27,7 +27,7 @@ static struct fscache_object *cachefiles_alloc_object(
  
-@@ -144,14 +144,14 @@ struct fscache_cache *fscache_select_cache_for_object(
- 	if (test_bit(FSCACHE_IOERROR, &tag->cache->flags))
- 		return NULL;
+ 	cache = container_of(_cache, struct cachefiles_cache, cache);
  
--	_leave(" = %p [specific]", tag->cache);
-+	_leave(" = %s [specific]", tag->name);
- 	return tag->cache;
+-	_enter("{%s},%p,", cache->cache.identifier, cookie);
++	_enter("{%s},%x,", cache->cache.identifier, cookie->debug_id);
  
- no_preference:
- 	/* netfs has no preference - just select first cache */
- 	cache = list_entry(fscache_cache_list.next,
- 			   struct fscache_cache, link);
--	_leave(" = %p [first]", cache);
-+	_leave(" = %s [first]", cache->tag->name);
- 	return cache;
- }
+ 	/* create a new object record and a temporary leaf image */
+ 	object = kmem_cache_alloc(cachefiles_object_jar, cachefiles_gfp);
+@@ -68,7 +68,7 @@ static struct fscache_object *cachefiles_alloc_object(
  
-@@ -324,7 +324,7 @@ static void fscache_withdraw_all_objects(struct fscache_cache *cache,
- 					    struct fscache_object, cache_link);
- 			list_move_tail(&object->cache_link, dying_objects);
+ 	object->lookup_key = key;
  
--			_debug("withdraw %p", object->cookie);
-+			_debug("withdraw %x", object->cookie->debug_id);
+-	_leave(" = %p [%s]", &object->fscache, key);
++	_leave(" = %x [%s]", object->fscache.debug_id, key);
+ 	return &object->fscache;
  
- 			/* This must be done under object_list_lock to prevent
- 			 * a race with fscache_drop_object().
-diff --git a/fs/fscache/cookie.c b/fs/fscache/cookie.c
-index aa33d16711e1..0346bc7f5818 100644
---- a/fs/fscache/cookie.c
-+++ b/fs/fscache/cookie.c
-@@ -369,7 +369,7 @@ void __fscache_enable_cookie(struct fscache_cookie *cookie,
- 			     bool (*can_enable)(void *data),
- 			     void *data)
- {
--	_enter("%p", cookie);
-+	_enter("%x", cookie->debug_id);
- 
- 	trace_fscache_enable(cookie);
- 
-@@ -464,10 +464,8 @@ static int fscache_acquire_non_index_cookie(struct fscache_cookie *cookie)
- 
- 	/* we may be required to wait for lookup to complete at this point */
- 	if (!fscache_defer_lookup) {
--		_debug("non-deferred lookup %p", &cookie->flags);
- 		wait_on_bit(&cookie->flags, FSCACHE_COOKIE_LOOKING_UP,
- 			    TASK_UNINTERRUPTIBLE);
--		_debug("complete");
- 		if (test_bit(FSCACHE_COOKIE_UNAVAILABLE, &cookie->flags))
- 			goto unavailable;
- 	}
-@@ -492,7 +490,7 @@ static int fscache_alloc_object(struct fscache_cache *cache,
- 	struct fscache_object *object;
+ nomem_key:
+@@ -301,7 +301,7 @@ static void cachefiles_sync_cache(struct fscache_cache *_cache)
+ 	const struct cred *saved_cred;
  	int ret;
  
--	_enter("%p,%p{%s}", cache, cookie, cookie->type_name);
-+	_enter("%s,%x{%s}", cache->tag->name, cookie->debug_id, cookie->type_name);
+-	_enter("%p", _cache);
++	_enter("%s", _cache->tag->name);
  
- 	spin_lock(&cookie->lock);
- 	hlist_for_each_entry(object, &cookie->backing_objects,
-@@ -668,7 +666,7 @@ EXPORT_SYMBOL(__fscache_invalidate);
-  */
- void __fscache_wait_on_invalidate(struct fscache_cookie *cookie)
- {
--	_enter("%p", cookie);
-+	_enter("%x", cookie->debug_id);
+ 	cache = container_of(_cache, struct cachefiles_cache, cache);
  
- 	wait_on_bit(&cookie->flags, FSCACHE_COOKIE_INVALIDATING,
- 		    TASK_UNINTERRUPTIBLE);
-@@ -723,7 +721,7 @@ void __fscache_disable_cookie(struct fscache_cookie *cookie,
- 	struct fscache_object *object;
- 	bool awaken = false;
+diff --git a/fs/cachefiles/key.c b/fs/cachefiles/key.c
+index be96f5fc5cac..7f94efc97e23 100644
+--- a/fs/cachefiles/key.c
++++ b/fs/cachefiles/key.c
+@@ -150,6 +150,6 @@ char *cachefiles_cook_key(const u8 *raw, int keylen, uint8_t type)
+ 	key[len++] = 0;
+ 	key[len] = 0;
  
--	_enter("%p,%u", cookie, invalidate);
-+	_enter("%x,%u", cookie->debug_id, invalidate);
+-	_leave(" = %p %d", key, len);
++	_leave(" = %s %d", key, len);
+ 	return key;
+ }
+diff --git a/fs/cachefiles/namei.c b/fs/cachefiles/namei.c
+index 924042e8cced..2f37451691b0 100644
+--- a/fs/cachefiles/namei.c
++++ b/fs/cachefiles/namei.c
+@@ -38,17 +38,17 @@ void __cachefiles_printk_object(struct cachefiles_object *object,
+ 	       object->fscache.events, object->fscache.event_mask);
+ 	pr_err("%sops=%u\n",
+ 	       prefix, object->fscache.n_ops);
+-	pr_err("%sparent=%p\n",
+-	       prefix, object->fscache.parent);
++	pr_err("%sparent=%x\n",
++	       prefix, object->fscache.parent ? object->fscache.parent->debug_id : 0);
  
- 	trace_fscache_disable(cookie);
+ 	spin_lock(&object->fscache.lock);
+ 	cookie = object->fscache.cookie;
+ 	if (cookie) {
+-		pr_err("%scookie=%p [pr=%p fl=%lx]\n",
++		pr_err("%scookie=%x [pr=%x fl=%lx]\n",
+ 		       prefix,
+-		       object->fscache.cookie,
+-		       object->fscache.cookie->parent,
+-		       object->fscache.cookie->flags);
++		       cookie->debug_id,
++		       cookie->parent ? cookie->parent->debug_id : 0,
++		       cookie->flags);
+ 		pr_err("%skey=[%u] '", prefix, cookie->key_len);
+ 		k = (cookie->key_len <= sizeof(cookie->inline_key)) ?
+ 			cookie->inline_key : cookie->key;
+@@ -108,7 +108,7 @@ static void cachefiles_mark_object_buried(struct cachefiles_cache *cache,
  
-@@ -808,8 +806,8 @@ void __fscache_relinquish_cookie(struct fscache_cookie *cookie,
- 		return;
+ 	/* found the dentry for  */
+ found_dentry:
+-	kdebug("preemptive burial: OBJ%x [%s] %p",
++	kdebug("preemptive burial: OBJ%x [%s] %pd",
+ 	       object->fscache.debug_id,
+ 	       object->fscache.state->name,
+ 	       dentry);
+@@ -138,7 +138,7 @@ static int cachefiles_mark_object_active(struct cachefiles_cache *cache,
+ 	struct rb_node **_p, *_parent = NULL;
+ 	struct dentry *dentry;
+ 
+-	_enter(",%p", object);
++	_enter(",%x", object->fscache.debug_id);
+ 
+ try_again:
+ 	write_lock(&cache->active_lock);
+@@ -296,8 +296,6 @@ static int cachefiles_bury_object(struct cachefiles_cache *cache,
+ 
+ 	_enter(",'%pd','%pd'", dir, rep);
+ 
+-	_debug("remove %p from %p", rep, dir);
+-
+ 	/* non-directories can just be unlinked */
+ 	if (!d_is_dir(rep)) {
+ 		_debug("unlink stale object");
+@@ -436,7 +434,7 @@ int cachefiles_delete_object(struct cachefiles_cache *cache,
+ 	struct dentry *dir;
+ 	int ret;
+ 
+-	_enter(",OBJ%x{%p}", object->fscache.debug_id, object->dentry);
++	_enter(",OBJ%x{%pd}", object->fscache.debug_id, object->dentry);
+ 
+ 	ASSERT(object->dentry);
+ 	ASSERT(d_backing_inode(object->dentry));
+@@ -489,7 +487,7 @@ int cachefiles_walk_to_object(struct cachefiles_object *parent,
+ 	const char *name;
+ 	int ret, nlen;
+ 
+-	_enter("OBJ%x{%p},OBJ%x,%s,",
++	_enter("OBJ%x{%pd},OBJ%x,%s,",
+ 	       parent->fscache.debug_id, parent->dentry,
+ 	       object->fscache.debug_id, key);
+ 
+@@ -534,7 +532,7 @@ int cachefiles_walk_to_object(struct cachefiles_object *parent,
+ 
+ 	inode = d_backing_inode(next);
+ 	trace_cachefiles_lookup(object, next, inode);
+-	_debug("next -> %p %s", next, inode ? "positive" : "negative");
++	_debug("next -> %pd %s", next, inode ? "positive" : "negative");
+ 
+ 	if (!key)
+ 		object->new = !inode;
+@@ -572,8 +570,8 @@ int cachefiles_walk_to_object(struct cachefiles_object *parent,
+ 			}
+ 			ASSERT(d_backing_inode(next));
+ 
+-			_debug("mkdir -> %p{%p{ino=%lu}}",
+-			       next, d_backing_inode(next), d_backing_inode(next)->i_ino);
++			_debug("mkdir -> %pd{ino=%lu}",
++			       next, d_backing_inode(next)->i_ino);
+ 
+ 		} else if (!d_can_lookup(next)) {
+ 			pr_err("inode %lu is not a directory\n",
+@@ -602,8 +600,8 @@ int cachefiles_walk_to_object(struct cachefiles_object *parent,
+ 
+ 			ASSERT(d_backing_inode(next));
+ 
+-			_debug("create -> %p{%p{ino=%lu}}",
+-			       next, d_backing_inode(next), d_backing_inode(next)->i_ino);
++			_debug("create -> %pd{ino=%lu}",
++			       next, d_backing_inode(next)->i_ino);
+ 
+ 		} else if (!d_can_lookup(next) &&
+ 			   !d_is_reg(next)
+@@ -772,7 +770,7 @@ struct dentry *cachefiles_get_directory(struct cachefiles_cache *cache,
+ 		goto lookup_error;
  	}
  
--	_enter("%p{%s,%d},%d",
--	       cookie, cookie->type_name,
-+	_enter("%x{%s,%d},%d",
-+	       cookie->debug_id, cookie->type_name,
- 	       atomic_read(&cookie->n_active), retire);
+-	_debug("subdir -> %p %s",
++	_debug("subdir -> %pd %s",
+ 	       subdir, d_backing_inode(subdir) ? "positive" : "negative");
  
- 	trace_fscache_relinquish(cookie, retire);
-@@ -859,7 +857,7 @@ void fscache_cookie_put(struct fscache_cookie *cookie,
- 	struct fscache_cookie *parent;
- 	int usage;
+ 	/* we need to create the subdir if it doesn't exist yet */
+@@ -798,10 +796,8 @@ struct dentry *cachefiles_get_directory(struct cachefiles_cache *cache,
+ 		}
+ 		ASSERT(d_backing_inode(subdir));
  
--	_enter("%p", cookie);
-+	_enter("%x", cookie->debug_id);
- 
- 	do {
- 		usage = atomic_dec_return(&cookie->usage);
-diff --git a/fs/fscache/object.c b/fs/fscache/object.c
-index 5d50976bf379..efdd5309d88e 100644
---- a/fs/fscache/object.c
-+++ b/fs/fscache/object.c
-@@ -519,7 +519,6 @@ void fscache_object_lookup_negative(struct fscache_object *object)
- 		set_bit(FSCACHE_COOKIE_NO_DATA_YET, &cookie->flags);
- 		clear_bit(FSCACHE_COOKIE_UNAVAILABLE, &cookie->flags);
- 
--		_debug("wake up lookup %p", &cookie->flags);
- 		clear_bit_unlock(FSCACHE_COOKIE_LOOKING_UP, &cookie->flags);
- 		wake_up_bit(&cookie->flags, FSCACHE_COOKIE_LOOKING_UP);
+-		_debug("mkdir -> %p{%p{ino=%lu}}",
+-		       subdir,
+-		       d_backing_inode(subdir),
+-		       d_backing_inode(subdir)->i_ino);
++		_debug("mkdir -> %pd{ino=%lu}",
++		       subdir, d_backing_inode(subdir)->i_ino);
  	}
+ 
+ 	inode_unlock(d_inode(dir));
+@@ -879,7 +875,7 @@ static struct dentry *cachefiles_check_active(struct cachefiles_cache *cache,
+ 	if (IS_ERR(victim))
+ 		goto lookup_error;
+ 
+-	//_debug("victim -> %p %s",
++	//_debug("victim -> %pd %s",
+ 	//       victim, d_backing_inode(victim) ? "positive" : "negative");
+ 
+ 	/* if the object is no longer there then we probably retired the object
+@@ -910,7 +906,7 @@ static struct dentry *cachefiles_check_active(struct cachefiles_cache *cache,
+ 
+ 	read_unlock(&cache->active_lock);
+ 
+-	//_leave(" = %p", victim);
++	//_leave(" = %pd", victim);
+ 	return victim;
+ 
+ object_in_use:
+@@ -956,7 +952,7 @@ int cachefiles_cull(struct cachefiles_cache *cache, struct dentry *dir,
+ 	if (IS_ERR(victim))
+ 		return PTR_ERR(victim);
+ 
+-	_debug("victim -> %p %s",
++	_debug("victim -> %pd %s",
+ 	       victim, d_backing_inode(victim) ? "positive" : "negative");
+ 
+ 	/* okay... the victim is not being used so we can cull it
+diff --git a/fs/cachefiles/xattr.c b/fs/cachefiles/xattr.c
+index a4f1eddebe6f..46913d4157dd 100644
+--- a/fs/cachefiles/xattr.c
++++ b/fs/cachefiles/xattr.c
+@@ -41,7 +41,7 @@ int cachefiles_check_object_type(struct cachefiles_object *object)
+ 	else
+ 		snprintf(type, 3, "%02x", object->fscache.cookie->type);
+ 
+-	_enter("%p{%s}", object, type);
++	_enter("%x{%s}", object->fscache.debug_id, type);
+ 
+ 	/* attempt to install a type label directly */
+ 	ret = vfs_setxattr(dentry, cachefiles_xattr_cache, type, 2,
+@@ -112,7 +112,7 @@ int cachefiles_set_object_xattr(struct cachefiles_object *object,
+ 	if (!dentry)
+ 		return -ESTALE;
+ 
+-	_enter("%p,#%d", object, len);
++	_enter("%x,#%d", object->fscache.debug_id, len);
+ 
+ 	buf = kmalloc(sizeof(struct cachefiles_xattr) + len, GFP_KERNEL);
+ 	if (!buf)
 
 
 
