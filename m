@@ -2,16 +2,16 @@ Return-Path: <v9fs-developer-bounces@lists.sourceforge.net>
 X-Original-To: lists+v9fs-developer@lfdr.de
 Delivered-To: lists+v9fs-developer@lfdr.de
 Received: from lists.sourceforge.net (lists.sourceforge.net [216.105.38.7])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4B9F72BADB3
-	for <lists+v9fs-developer@lfdr.de>; Fri, 20 Nov 2020 16:22:09 +0100 (CET)
-Received: from [127.0.0.1] (helo=sfs-ml-4.v29.lw.sourceforge.com)
-	by sfs-ml-4.v29.lw.sourceforge.com with esmtp (Exim 4.90_1)
+	by mail.lfdr.de (Postfix) with ESMTPS id E45BE2BADBF
+	for <lists+v9fs-developer@lfdr.de>; Fri, 20 Nov 2020 16:22:12 +0100 (CET)
+Received: from [127.0.0.1] (helo=sfs-ml-1.v29.lw.sourceforge.com)
+	by sfs-ml-1.v29.lw.sourceforge.com with esmtp (Exim 4.90_1)
 	(envelope-from <v9fs-developer-bounces@lists.sourceforge.net>)
-	id 1kg8Ei-0002hZ-27; Fri, 20 Nov 2020 15:22:08 +0000
+	id 1kg8El-0005wX-ML; Fri, 20 Nov 2020 15:22:11 +0000
 Received: from [172.30.20.202] (helo=mx.sourceforge.net)
- by sfs-ml-4.v29.lw.sourceforge.com with esmtps
+ by sfs-ml-1.v29.lw.sourceforge.com with esmtps
  (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.90_1)
- (envelope-from <dhowells@redhat.com>) id 1kg8D2-0002WH-EI
+ (envelope-from <dhowells@redhat.com>) id 1kg8D2-0005LJ-EH
  for v9fs-developer@lists.sourceforge.net; Fri, 20 Nov 2020 15:20:24 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
  d=sourceforge.net; s=x; h=Content-Transfer-Encoding:Content-Type:MIME-Version
@@ -19,9 +19,9 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
  Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
  Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
  List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=bIkx8tZwUOn3GO1HchdWNQxPfUS0TK2X8uwNc5x6YvQ=; b=QjPGZkEGkd45fPD3ipZngTBi8I
- HOCRAsn02Vbl5bq8PP6LGI4T5XbCCFQAO/DoY5tLpKQ7i5zpBpOMZ772+joUCcFUEY9u07+EncdZT
- 6mya0N7i7EPKrL2nVpfhT5pMoJhLtQlo5J6Yu5j6TTobw98EW3VGufOfNxBOMiLMrZCc=;
+ bh=GuEroWovClf2Gd9dj2EpHluDnXBhlEyesXJwX09INbk=; b=EqaS0BtSklGZR//Im/bD4GPrvd
+ xVO9FA5Fasfl/nebRCH6TKhW7vkh+PBHKH+QZys+6fLZYHraO1uva1bvirKh5s+a/zxxjfkZgBY8y
+ EawWb03jXR3neKvAiMk5s8wEJXn1cDwJxDJ1KcN8NPpFt5CjvyR3WIzgVm4iXajeYzac=;
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  ;
  h=Content-Transfer-Encoding:Content-Type:MIME-Version:References:
@@ -29,38 +29,38 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
  :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
  List-Post:List-Owner:List-Archive;
- bh=bIkx8tZwUOn3GO1HchdWNQxPfUS0TK2X8uwNc5x6YvQ=; b=dTFvUT5JKX1FrN+rBuQ/aS8yfM
- mSdfi7abz30DNbRwPr/sDCjKU1q/OvW7V6aeCt2ivXcEjpCgmXUtkUYhv7MtPY+Y7g+2V2f9kcGLm
- NblxCs3WrKVs8gJKUk3/N8LjELMPgJK18aetrecDSrWrNaHIlSOy0b+9L6TxvK4c3x5Q=;
-Received: from us-smtp-delivery-124.mimecast.com ([216.205.24.124])
+ bh=GuEroWovClf2Gd9dj2EpHluDnXBhlEyesXJwX09INbk=; b=ZKFMdCKDY5168++cBd6S8iEiWG
+ DNnfP2ARDsL/WrE4GU57Y1/bQaWEBHh7swjar3KsRB3s5YfOtrwjJe1YTPE2pwPG91NwGeK45Tf/N
+ yNzc9KtrlpeSOTeodguzyYbji7crpNsWpZ3Ko8ufzLLqWKMBGB77Pg9f26AwAWzMKmFk=;
+Received: from us-smtp-delivery-124.mimecast.com ([63.128.21.124])
  by sfi-mx-1.v28.lw.sourceforge.com with esmtps
  (TLSv1.2:ECDHE-RSA-AES256-SHA384:256) (Exim 4.92.2)
- id 1kg8CU-003Cc6-8Q
- for v9fs-developer@lists.sourceforge.net; Fri, 20 Nov 2020 15:20:02 +0000
+ id 1kg8Cc-003Ccw-MW
+ for v9fs-developer@lists.sourceforge.net; Fri, 20 Nov 2020 15:20:05 +0000
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
- s=mimecast20190719; t=1605885584;
+ s=mimecast20190719; t=1605885592;
  h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
  to:to:cc:cc:mime-version:mime-version:content-type:content-type:
  content-transfer-encoding:content-transfer-encoding:
  in-reply-to:in-reply-to:references:references;
- bh=bIkx8tZwUOn3GO1HchdWNQxPfUS0TK2X8uwNc5x6YvQ=;
- b=AKl9RK3JVQvVeYIfRkQfuLM/Ee0RTxKBtEeQKcT6kcBwS5vn7lO7UC3R7DQGcaNX9z8B/k
- ik+RQ3nMwzxHJd1aFsLhvjEwRcMVo7+jTKpft9qEY+2BxMnzXB/2oK5Rd9fqnUbgh3aIT9
- I/Iksa7YTMgleqFE8Rut4I93ylSmx84=
+ bh=GuEroWovClf2Gd9dj2EpHluDnXBhlEyesXJwX09INbk=;
+ b=GI5JYEToALtnTFb1l4QXReY4e6qA/xETBbLUIA87ODokTvIKsMfR7D2R3VOgK3j8ODHHo3
+ PiQ9Uv4EupzV/+rSiKW5v5COPkKHqUZzEM0QSFmQdCKD5+OAZSXYtUauOQnE9kkrw6xEaC
+ PuGDNfweIOA8F9zjhmVs2yveUYPVJjE=
 Received: from mimecast-mx01.redhat.com (mimecast-mx01.redhat.com
  [209.132.183.4]) (Using TLS) by relay.mimecast.com with ESMTP id
- us-mta-581-K-cx1Y4ePPmYDs1KCfDqfg-1; Fri, 20 Nov 2020 10:19:40 -0500
-X-MC-Unique: K-cx1Y4ePPmYDs1KCfDqfg-1
-Received: from smtp.corp.redhat.com (int-mx07.intmail.prod.int.phx2.redhat.com
- [10.5.11.22])
+ us-mta-518-zOHQpZgrMcWIL2Rf0top9w-1; Fri, 20 Nov 2020 10:19:49 -0500
+X-MC-Unique: zOHQpZgrMcWIL2Rf0top9w-1
+Received: from smtp.corp.redhat.com (int-mx05.intmail.prod.int.phx2.redhat.com
+ [10.5.11.15])
  (using TLSv1.2 with cipher AECDH-AES256-SHA (256/256 bits))
  (No client certificate requested)
- by mimecast-mx01.redhat.com (Postfix) with ESMTPS id 4480D80EDB3;
- Fri, 20 Nov 2020 15:19:38 +0000 (UTC)
+ by mimecast-mx01.redhat.com (Postfix) with ESMTPS id 2A30419251A1;
+ Fri, 20 Nov 2020 15:19:47 +0000 (UTC)
 Received: from warthog.procyon.org.uk (ovpn-112-246.rdu2.redhat.com
  [10.10.112.246])
- by smtp.corp.redhat.com (Postfix) with ESMTP id 2DC7710023AB;
- Fri, 20 Nov 2020 15:19:32 +0000 (UTC)
+ by smtp.corp.redhat.com (Postfix) with ESMTP id 4E5B95D6AD;
+ Fri, 20 Nov 2020 15:19:44 +0000 (UTC)
 Organization: Red Hat UK Ltd. Registered Address: Red Hat UK Ltd, Amberley
  Place, 107-111 Peascod Street, Windsor, Berkshire, SI4 1TE, United
  Kingdom.
@@ -69,20 +69,18 @@ From: David Howells <dhowells@redhat.com>
 To: Trond Myklebust <trondmy@hammerspace.com>,
  Anna Schumaker <anna.schumaker@netapp.com>, Steve French <sfrench@samba.org>, 
  Dominique Martinet <asmadeus@codewreck.org>
-Date: Fri, 20 Nov 2020 15:19:31 +0000
-Message-ID: <160588557132.3465195.5617528680363774731.stgit@warthog.procyon.org.uk>
+Date: Fri, 20 Nov 2020 15:19:43 +0000
+Message-ID: <160588558350.3465195.13840089242353769411.stgit@warthog.procyon.org.uk>
 In-Reply-To: <160588455242.3465195.3214733858273019178.stgit@warthog.procyon.org.uk>
 References: <160588455242.3465195.3214733858273019178.stgit@warthog.procyon.org.uk>
 User-Agent: StGit/0.23
 MIME-Version: 1.0
-X-Scanned-By: MIMEDefang 2.84 on 10.5.11.22
+X-Scanned-By: MIMEDefang 2.79 on 10.5.11.15
 X-Spam-Score: -0.1 (/)
 X-Spam-Report: Spam Filtering performed by mx.sourceforge.net.
  See http://spamassassin.org/tag/ for more details.
- -0.0 RCVD_IN_DNSWL_NONE     RBL: Sender listed at https://www.dnswl.org/, no
- trust [216.205.24.124 listed in list.dnswl.org]
- 0.0 RCVD_IN_MSPIKE_H3      RBL: Good reputation (+3)
- [216.205.24.124 listed in wl.mailspike.net]
+ 0.0 RCVD_IN_MSPIKE_H4      RBL: Very Good reputation (+4)
+ [63.128.21.124 listed in wl.mailspike.net]
  -0.0 SPF_PASS               SPF: sender matches SPF record
  0.0 SPF_HELO_NONE          SPF: HELO does not publish an SPF Record
  -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from author's
@@ -92,9 +90,9 @@ X-Spam-Report: Spam Filtering performed by mx.sourceforge.net.
  not necessarily valid
  0.0 RCVD_IN_MSPIKE_WL      Mailspike good senders
  -0.0 DKIMWL_WL_HIGH         DKIMwl.org - High trust sender
-X-Headers-End: 1kg8CU-003Cc6-8Q
-Subject: [V9fs-developer] [RFC PATCH 75/76] afs: Make afs_write_begin()
- return the THP subpage
+X-Headers-End: 1kg8Cc-003Ccw-MW
+Subject: [V9fs-developer] [RFC PATCH 76/76] afs: Fix speculative status
+ fetch going out of order wrt to modifications
 X-BeenThere: v9fs-developer@lists.sourceforge.net
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -116,41 +114,103 @@ Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: v9fs-developer-bounces@lists.sourceforge.net
 
-generic_perform_write() can't handle a THP, so we have to return the
-subpage of that THP from afs_write_begin() and then convert it back into
-the head on entry to afs_write_end().
+When doing a lookup in a directory, the afs filesystem uses a bulk status
+fetch to speculatively retrieve the statuses of up to 48 other vnodes found
+in the same directory and it will then either update extant inodes or
+create new ones - effectively doing 'lookup ahead'.
 
+To avoid the possibility of deadlocking itself, however, the filesystem
+doesn't lock all of those inodes; rather just the directory inode is locked
+(by the VFS).  When the operation completes, afs_inode_init_from_status()
+or afs_apply_status() is called, depending on whether the inode already
+exists, to commit the new status.
+
+A case exists, however, where the speculative status fetch operation may
+straddle a modification operation on one of those vnodes.  What can then
+happen is that the speculative bulk status RPC retrieves the old status,
+and whilst that is happening, the modification happens - which returns an
+updated status, then the modification status is committed, then we attempt
+to commit the speculative status.
+
+This results in something like the following being seen in dmesg:
+
+	kAFS: vnode modified {100058:861} 8->9 YFS.InlineBulkStatus
+
+showing that for vnode 861 on volume 100058, we saw YFS.InlineBulkStatus
+say that the vnode had data version 8 when we'd already recorded version 9
+due to a local modification.  This was causing the cache to be invalidated
+for that vnode when it shouldn't have been.  If it happens on a data file,
+this might lead to local changes being lost.
+
+Fix this by ignoring speculative status updates if the data version doesn't
+match the expected value.
+
+Note that it is possible to get a DV regression if a volume gets restored
+from a backup - but we should get a callback break in such a case that
+should trigger a recheck anyway.  It might be worth checking the volume
+creation time in the volsync info and, if a change is observed in that (as
+would happen on a restore), invalidate all caches associated with the
+volume.
+
+Fixes: 5cf9dd55a0ec ("afs: Prospectively look up extra files when doing a single lookup")
 Signed-off-by: David Howells <dhowells@redhat.com>
 ---
 
- fs/afs/write.c |    5 +++--
- 1 file changed, 3 insertions(+), 2 deletions(-)
+ fs/afs/dir.c      |    1 +
+ fs/afs/inode.c    |    8 ++++++++
+ fs/afs/internal.h |    1 +
+ 3 files changed, 10 insertions(+)
 
-diff --git a/fs/afs/write.c b/fs/afs/write.c
-index bab110c00abd..a88c6ae71868 100644
---- a/fs/afs/write.c
-+++ b/fs/afs/write.c
-@@ -81,7 +81,7 @@ int afs_write_begin(struct file *file, struct address_space *mapping,
- 			goto flush_conflicting_write;
+diff --git a/fs/afs/dir.c b/fs/afs/dir.c
+index 26ac5cfdf3af..157529b0e422 100644
+--- a/fs/afs/dir.c
++++ b/fs/afs/dir.c
+@@ -900,6 +900,7 @@ static struct inode *afs_do_lookup(struct inode *dir, struct dentry *dentry,
+ 				vp->cb_break_before = afs_calc_vnode_cb_break(vnode);
+ 				vp->vnode = vnode;
+ 				vp->put_vnode = true;
++				vp->speculative = true; /* vnode not locked */
+ 			}
+ 		}
+ 	}
+diff --git a/fs/afs/inode.c b/fs/afs/inode.c
+index 9d8f759f77f7..acb47a862893 100644
+--- a/fs/afs/inode.c
++++ b/fs/afs/inode.c
+@@ -295,6 +295,13 @@ void afs_vnode_commit_status(struct afs_operation *op, struct afs_vnode_param *v
+ 			op->flags &= ~AFS_OPERATION_DIR_CONFLICT;
+ 		}
+ 	} else if (vp->scb.have_status) {
++		if (vp->dv_before + vp->dv_delta != vp->scb.status.data_version &&
++		    vp->speculative)
++			/* Ignore the result of a speculative bulk status fetch
++			 * if it splits around a modification op, thereby
++			 * appearing to regress the data version.
++			 */
++			goto out;
+ 		afs_apply_status(op, vp);
+ 		if (vp->scb.have_cb)
+ 			afs_apply_callback(op, vp);
+@@ -306,6 +313,7 @@ void afs_vnode_commit_status(struct afs_operation *op, struct afs_vnode_param *v
+ 		}
  	}
  
--	*_page = page;
-+	*_page = find_subpage(page, pos / PAGE_SIZE);
- 	_leave(" = 0");
- 	return 0;
++out:
+ 	write_sequnlock(&vnode->cb_lock);
  
-@@ -110,9 +110,10 @@ int afs_write_begin(struct file *file, struct address_space *mapping,
-  */
- int afs_write_end(struct file *file, struct address_space *mapping,
- 		  loff_t pos, unsigned len, unsigned copied,
--		  struct page *page, void *fsdata)
-+		  struct page *subpage, void *fsdata)
- {
- 	struct afs_vnode *vnode = AFS_FS_I(file_inode(file));
-+	struct page *page = thp_head(subpage);
- 	unsigned long priv;
- 	unsigned int f, from = pos & (thp_size(page) - 1);
- 	unsigned int t, to = from + copied;
+ 	if (vp->scb.have_status)
+diff --git a/fs/afs/internal.h b/fs/afs/internal.h
+index e80fb6fe15b3..07471deeb6a8 100644
+--- a/fs/afs/internal.h
++++ b/fs/afs/internal.h
+@@ -760,6 +760,7 @@ struct afs_vnode_param {
+ 	bool			update_ctime:1;	/* Need to update the ctime */
+ 	bool			set_size:1;	/* Must update i_size */
+ 	bool			op_unlinked:1;	/* True if file was unlinked by op */
++	bool			speculative:1;	/* T if speculative status fetch (no vnode lock) */
+ };
+ 
+ /*
 
 
 
