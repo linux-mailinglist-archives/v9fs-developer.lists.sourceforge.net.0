@@ -2,79 +2,91 @@ Return-Path: <v9fs-developer-bounces@lists.sourceforge.net>
 X-Original-To: lists+v9fs-developer@lfdr.de
 Delivered-To: lists+v9fs-developer@lfdr.de
 Received: from lists.sourceforge.net (lists.sourceforge.net [216.105.38.7])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3C28D2B974A
-	for <lists+v9fs-developer@lfdr.de>; Thu, 19 Nov 2020 17:07:42 +0100 (CET)
-Received: from [127.0.0.1] (helo=sfs-ml-1.v29.lw.sourceforge.com)
-	by sfs-ml-1.v29.lw.sourceforge.com with esmtp (Exim 4.90_1)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1330A2BAC5E
+	for <lists+v9fs-developer@lfdr.de>; Fri, 20 Nov 2020 16:04:23 +0100 (CET)
+Received: from [127.0.0.1] (helo=sfs-ml-2.v29.lw.sourceforge.com)
+	by sfs-ml-2.v29.lw.sourceforge.com with esmtp (Exim 4.90_1)
 	(envelope-from <v9fs-developer-bounces@lists.sourceforge.net>)
-	id 1kfmTF-0001Ge-1Y; Thu, 19 Nov 2020 16:07:41 +0000
+	id 1kg7xU-0002FC-Hb; Fri, 20 Nov 2020 15:04:20 +0000
 Received: from [172.30.20.202] (helo=mx.sourceforge.net)
- by sfs-ml-1.v29.lw.sourceforge.com with esmtps
+ by sfs-ml-2.v29.lw.sourceforge.com with esmtps
  (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.90_1)
- (envelope-from <asmadeus@notk.org>) id 1kfmT8-0001Fm-MX
- for v9fs-developer@lists.sourceforge.net; Thu, 19 Nov 2020 16:07:34 +0000
+ (envelope-from <dhowells@redhat.com>) id 1kg7wJ-00027I-AG
+ for v9fs-developer@lists.sourceforge.net; Fri, 20 Nov 2020 15:03:07 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=sourceforge.net; s=x; h=References:In-Reply-To:Message-Id:Date:Subject:Cc:
- To:From:Sender:Reply-To:MIME-Version:Content-Type:Content-Transfer-Encoding:
- Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
- Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
+ d=sourceforge.net; s=x; h=Content-Transfer-Encoding:Content-Type:MIME-Version
+ :Message-ID:Date:Cc:To:From:Subject:Sender:Reply-To:Content-ID:
+ Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
+ :Resent-Message-ID:In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:
  List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=eK6/Q/abk4MPm5E1E9fU+K69kfbIstGf/YUDyuJZEG0=; b=FVCLkNjN4COLbkgV8x00q+L+Qb
- S4RARo0ggG2YIMYXYzYc+jUNpGTtTZ7vCRmHeUKdGltMT8RDCyLnKf9p1aAd0mSzgjWpwenfFfSEi
- MIQsBIV4FVjUB12rj2oPjRG4q5Qk8jiD+aB7i3hnQzchPXK5x7x6pGImTLsTRmBo1a5U=;
+ bh=AvzEbXkWDGq3m4j2v0MYXHV0NRfK51mv7g+MgzcU+jk=; b=V0mKJjvPsK9SwYI8gplVvKCEs+
+ efE5vQ8Y8KffCLTkIVdoNEJm/8awt09/c7E72euW55r+kTb1/MDyhuJhf+aHfelCFilS2dMe9LwL/
+ BtSOIzy5awwidLByuCCxc6ZDRC/9Kk+jy1M6mZYlc0MtTNYriumgLu/aj6YtTZOsEwiQ=;
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  ;
- h=References:In-Reply-To:Message-Id:Date:Subject:Cc:To:From:Sender:Reply-To
- :MIME-Version:Content-Type:Content-Transfer-Encoding:Content-ID:
- Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
- :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
- List-Post:List-Owner:List-Archive;
- bh=eK6/Q/abk4MPm5E1E9fU+K69kfbIstGf/YUDyuJZEG0=; b=SV4AZRAv/dB+7R7HLVXCoBcwbe
- fERE6XHmhpkLgcbKd+tnjOQ6OTNrDbaxHES1dQY4q2O3ZMTQ8HNbvQiuenStha5crZf5cYK3dZemH
- U3cA6jTsALQX6nFQmmAWvWlZAjucMuej3E2OVBqAxk9TBaPf1sqZESwypDQOJAj+JeYk=;
-Received: from nautica.notk.org ([91.121.71.147])
+ h=Content-Transfer-Encoding:Content-Type:MIME-Version:Message-ID:Date:Cc:To
+ :From:Subject:Sender:Reply-To:Content-ID:Content-Description:Resent-Date:
+ Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:
+ References:List-Id:List-Help:List-Unsubscribe:List-Subscribe:List-Post:
+ List-Owner:List-Archive; bh=AvzEbXkWDGq3m4j2v0MYXHV0NRfK51mv7g+MgzcU+jk=; b=Q
+ yJk/3g4A7FWX++1kr64P7ubmlpL3BB+3HflccbjjAUsV3z0pIEmWBoJJfMaYqCtbTIlM7DQK2HUIm
+ VukvdNOxHxHUer+UA5lxFFvDnRgB6VoMDePexAuYrSpDpABmtqULLygNlHJbbYZDHOzllUGT7XA8x
+ 0+0x9ZmXrDDOQrP8=;
+Received: from us-smtp-delivery-124.mimecast.com ([63.128.21.124])
  by sfi-mx-3.v28.lw.sourceforge.com with esmtps
- (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.92.2)
- id 1kfmSz-007jZq-6X
- for v9fs-developer@lists.sourceforge.net; Thu, 19 Nov 2020 16:07:34 +0000
-Received: by nautica.notk.org (Postfix, from userid 1001)
- id E42A7C01B; Thu, 19 Nov 2020 17:07:18 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=codewreck.org; s=2;
- t=1605802038; bh=eK6/Q/abk4MPm5E1E9fU+K69kfbIstGf/YUDyuJZEG0=;
- h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
- b=MqbGoote7pDVzt+aCgVzGUEojP1xi9hk+JdvrMw6yr+451nTk80Nt+DnBs5e+IbC7
- r8FIRiCE/TJOPXgv7OSuzIW5GvKyFDFQe18RJpSKPXVLCbRuOXcMlEbAj0SLwUTdfM
- BS9tsAXx5puT04bx0YSfIBWn7MSwuX5XHZTIdyHPxmYi3d1VWXGjkKasFj9K5t96ge
- /LmKup1BqrOjKs7iv5XCCy8YLXC3Exly515Y+FpJvUpBpaXxZIlVyVacicOad/e+Xi
- 7Lja1p76du44tIaL5wvbYX9N1aCaEJO/mDDRFm8mnrw3/hoOeKpD8TgEkAylAX5z5H
- muS8ALvu6vGUQ==
-From: Dominique Martinet <asmadeus@codewreck.org>
-To: 
-Date: Thu, 19 Nov 2020 17:06:52 +0100
-Message-Id: <1605802012-31133-3-git-send-email-asmadeus@codewreck.org>
-X-Mailer: git-send-email 1.7.10.4
-In-Reply-To: <1605802012-31133-1-git-send-email-asmadeus@codewreck.org>
-References: <20201103104116.GA19587@nautica>
- <1605802012-31133-1-git-send-email-asmadeus@codewreck.org>
-X-Spam-Score: 0.2 (/)
+ (TLSv1.2:ECDHE-RSA-AES256-SHA384:256) (Exim 4.92.2)
+ id 1kg7wC-00Abid-UG
+ for v9fs-developer@lists.sourceforge.net; Fri, 20 Nov 2020 15:03:07 +0000
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+ s=mimecast20190719; t=1605884574;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding;
+ bh=AvzEbXkWDGq3m4j2v0MYXHV0NRfK51mv7g+MgzcU+jk=;
+ b=VCGKaKH3ZMJR5r6AaNv0s/WbirUeJse5JPsBFHRlKiLK8yeEJngsUAPm8r/GrrmNgbqCZX
+ b2qzKQIqibUWnlY/xjyZVbnAqTQfAlcgQZUvjvDv0am2opZBIVc62HMLJxSRk4CwnZgng/
+ 44dAYlLXbC/ZMWJnYKsD0nZB+K+sXgg=
+Received: from mimecast-mx01.redhat.com (mimecast-mx01.redhat.com
+ [209.132.183.4]) (Using TLS) by relay.mimecast.com with ESMTP id
+ us-mta-328-i1aNzOicOSyMzP5ogeYp2g-1; Fri, 20 Nov 2020 10:02:44 -0500
+X-MC-Unique: i1aNzOicOSyMzP5ogeYp2g-1
+Received: from smtp.corp.redhat.com (int-mx02.intmail.prod.int.phx2.redhat.com
+ [10.5.11.12])
+ (using TLSv1.2 with cipher AECDH-AES256-SHA (256/256 bits))
+ (No client certificate requested)
+ by mimecast-mx01.redhat.com (Postfix) with ESMTPS id 3C1B263CC2;
+ Fri, 20 Nov 2020 15:02:41 +0000 (UTC)
+Received: from warthog.procyon.org.uk (ovpn-112-246.rdu2.redhat.com
+ [10.10.112.246])
+ by smtp.corp.redhat.com (Postfix) with ESMTP id 6061660C05;
+ Fri, 20 Nov 2020 15:02:33 +0000 (UTC)
+From: David Howells <dhowells@redhat.com>
+To: Trond Myklebust <trondmy@hammerspace.com>,
+ Anna Schumaker <anna.schumaker@netapp.com>, Steve French <sfrench@samba.org>, 
+ Dominique Martinet <asmadeus@codewreck.org>
+Date: Fri, 20 Nov 2020 15:02:32 +0000
+Message-ID: <160588455242.3465195.3214733858273019178.stgit@warthog.procyon.org.uk>
+User-Agent: StGit/0.23
+MIME-Version: 1.0
+X-Scanned-By: MIMEDefang 2.79 on 10.5.11.12
+X-Spam-Score: -0.1 (/)
 X-Spam-Report: Spam Filtering performed by mx.sourceforge.net.
  See http://spamassassin.org/tag/ for more details.
- 0.0 URIBL_BLOCKED ADMINISTRATOR NOTICE: The query to URIBL was blocked.
- See
- http://wiki.apache.org/spamassassin/DnsBlocklists#dnsbl-block
- for more information. [URIs: codewreck.org]
- 0.2 HEADER_FROM_DIFFERENT_DOMAINS From and EnvelopeFrom 2nd level mail
- domains are different
- -0.0 SPF_PASS               SPF: sender matches SPF record
+ -0.0 RCVD_IN_DNSWL_NONE     RBL: Sender listed at https://www.dnswl.org/, no
+ trust [63.128.21.124 listed in list.dnswl.org]
+ 0.0 RCVD_IN_MSPIKE_H4      RBL: Very Good reputation (+4)
+ [63.128.21.124 listed in wl.mailspike.net]
+ 0.0 SPF_NONE               SPF: sender does not publish an SPF Record
  0.0 SPF_HELO_NONE          SPF: HELO does not publish an SPF Record
  -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from author's
  domain
  -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
  0.1 DKIM_SIGNED            Message has a DKIM or DK signature,
  not necessarily valid
-X-Headers-End: 1kfmSz-007jZq-6X
-Subject: [V9fs-developer] [PATCH 2/2] 9p: Fix writeback fid incorrectly
- being attached to dentry
+ 0.0 RCVD_IN_MSPIKE_WL      Mailspike good senders
+ -0.0 DKIMWL_WL_HIGH         DKIMwl.org - High trust sender
+X-Headers-End: 1kg7wC-00Abid-UG
+Subject: [V9fs-developer] [RFC PATCH 00/76] fscache: Modernisation
 X-BeenThere: v9fs-developer@lists.sourceforge.net
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -86,58 +98,338 @@ List-Post: <mailto:v9fs-developer@lists.sourceforge.net>
 List-Help: <mailto:v9fs-developer-request@lists.sourceforge.net?subject=help>
 List-Subscribe: <https://lists.sourceforge.net/lists/listinfo/v9fs-developer>, 
  <mailto:v9fs-developer-request@lists.sourceforge.net?subject=subscribe>
-Cc: lucho@ionkov.net, justin.he@arm.com, ericvh@gmail.com,
- Jianyong Wu <jianyong.wu@arm.com>, qemu_oss@crudebyte.com, groug@kaod.org,
- linux-kernel@vger.kernel.org, v9fs-developer@lists.sourceforge.net
-MIME-Version: 1.0
+Cc: Latchesar Ionkov <lucho@ionkov.net>, linux-cifs@vger.kernel.org,
+ linux-nfs@vger.kernel.org, Jeff Layton <jlayton@redhat.com>,
+ Eric Van Hensbergen <ericvh@gmail.com>, Dave Wysochanski <dwysocha@redhat.com>,
+ Jeff Layton <jlayton@kernel.org>, linux-kernel@vger.kernel.org,
+ Matthew Wilcox <willy@infradead.org>,
+ Trond Myklebust <trond.myklebust@hammerspace.com>, dhowells@redhat.com,
+ ceph-devel@vger.kernel.org, linux-cachefs@redhat.com,
+ Alexander Viro <viro@zeniv.linux.org.uk>, linux-fsdevel@vger.kernel.org,
+ v9fs-developer@lists.sourceforge.net, Ilya Dryomov <idryomov@gmail.com>,
+ linux-afs@lists.infradead.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: v9fs-developer-bounces@lists.sourceforge.net
 
-v9fs_dir_release needs fid->ilist to have been initialized for filp's
-fid, not the inode's writeback fid's.
 
-With refcounting this can be improved on later but this appears to fix
-null deref issues.
+Here's a set of patches that modernises the fscache API by switching to use
+the kiocb interface to do async DIO to/from the cache rather than by
+snooping the pagecache of the backing filesystem - something that doesn't
+seem totally reliable.  This means that the cache uses a lot less memory
+than it did and is faster than it was.
 
-Fixes: xxx ("fs/9p: track open fids")
-Signed-off-by: Dominique Martinet <asmadeus@codewreck.org>
+A netfs helper library is provided that handles most of the readpage,
+readahead and write_begin ops on behalf of the filesystem.  This is
+intended to be used unconditionally by the filesystem and provides a common
+framework for doing caching, transparent huge pages (which works with AFS)
+and, in the future, possibly fscrypt.  It also allows the netfs and the
+cache to align, expand and slice up a read request from the VM in various
+ways; the netfs need only provide a function to read a stretch of data to
+the pagecache and the helper takes care of the rest.
+
+This patch series ports the AFS filesystem to the new API and disables
+caching in NFS, Ceph, CIFS and 9P.  Jeff Layton has a port for Ceph that is
+solid and Dave Wysochanski has one for NFS that is mostly solid.  I've
+given partial ports to 9P and CIFS to Dominique Martinet and Steve French
+respectively.
+
+-~-
+
+To this end, the fscache API has been massively overhauled.  Code that was
+using the old API is now disabled.  It's not practical to have the two APIs
+coexist because they have totally different ways of doing things, but must
+share common data.
+
+The following parts have been removed:
+
+    - The object state machine
+    - The I/O operation manager
+    - All non-transient references from fscache to the netfs's data
+    - All non-transient callbacks from fscache to the netfs
+    - The backing page I/O monitoring
+    - The tracking of netfs pages that fscache knows about
+    - The tracking of netfs pages that need writing to the cache
+    - The use of bmap to work out if a page is stored in the cache
+    - The copy of data to/from backing pages to netfs pages.
+
+Instead, the I/O to the cache is driven much more from the netfs and the
+netfs helpers.  There are a number of aspects to the I/O API:
+
+ (1) The lowest level I/O primitives just take an iov_iter and start async
+     DIO on the cache objects.  The caller gets a callback upon completion.
+     The PG_fscache bit is now just used to indicate that there's a write
+     to the cache in progress.  The cache will keep track in xattrs as to
+     what areas of the backing file are occupied.
+
+     - fscache_begin_operation(), fscache_end_operation()
+     - fscache_read() and fscache_write().
+
+ (2) The cookie that's obtained when an inode is set up must be 'used' when a
+     file is opened (with an indication as to whether it might be modified)
+     and 'unused' when it is done with.  At the point of unuse, the auxdata
+     and file size can be specified.
+
+     - fscache_use_cookie(), fscache_unuse_cookie()
+
+ (3) The cookie can be invalidated at any time, and new auxiliary data and a
+     new size provided.  Any in-progress I/O will either cause new I/O to
+     wait, or a replacement tmpfile will be created and the in-progress I/O
+     will just be abandoned.  The on-disk auxdata (in xattrs, say) are updated
+     lazily.
+
+     - fscache_invalidate()
+
+ (4) The netfs helpers for read are provided to combine the (1), (2) above
+     and do read-(re)issue to the network in the case that the data isn't
+     present or the cache fails.  This requires that an operation
+     descriptor be allocated and given some operations.  This needs to be
+     used for ->readpage(), ->readahead() and prefetching for
+     ->write_begin().  ->readpages() is obsolete and soon to go away.
+
+     - include/linux/netfs.h
+     - netfs_readpage(), netfs_readahead(), netfs_begin_write()
+
+ (5) There are some helpers to keep a cookie in use once a file has been
+     closed so that writeback can write to the cache.  write_inode and
+     evict inode need to clear this.
+
+     - fscache_set_page_dirty(), fscache_unpin_writeback()
+     - fscache_write_to_cache()
+
+I've also simplified the cookie management API to remove struct
+fscache_cookie_def.  Instead, the pertinent details are supplied when a
+cookie is created and the file size, key and auxdata are stored in the
+cookie.  Callbacks and backpointers are simply removed.
+
+I've added some pieces outside of the API also:
+
+ (1) An inode flag to mark a backing cachefile as being in use by the
+     kernel.  This prevents multiple caches mounted in the same directory
+     from fighting over the same files.  It can also be extended to exclude
+     other kernel users (such as swap) and could also be used to prevent
+     userspace interfering with the file.
+
+ (2) A new I/O iterator class, ITER_XARRAY, that iterates over the
+     specified byte range of an xarray.  The caller is required to make
+     sure that the pages don't evaporate under the callee (eg. pinning them
+     by PG_locked, PG_writeback, PG_fscache or usage count).
+
+     This is better than an ITER_BVEC as no allocation of bio_vec structs
+     is required since the xarray holds pointers to all the pages involved.
+
+ (3) Wait and unlock functions for PG_fscache.  These are in the core, so
+     no need to call into fscache for it.
+
+Future stuff:
+
+ (1) Avoid the need to double-truncate a backing file on relinquishment.
+     The first truncate cuts of rubbish data from the end so that it's not
+     retrieved in future; the second expands the EOF back out to DIO block
+     size.
+
+ (2) Add a write helper to improve on generic_perform_write(), allowing a
+     span of pages to be modified as a block and to take account of cache
+     granularity.
+
+ (3) Put in support for versioned monolithic objects (eg. AFS directories).
+
+ (4) Currently it cachefiles only caches large files up to 1GiB.  File data
+     beyond that isn't cached.  The problem here is that I'm using an xattr to
+     hold the content map, and xattrs may be limited in size and I've limited
+     myself to using a 512 byte xattr.  I can easily make it cache a
+     non-sparse file of any size with no map, but as soon as it becomes
+     sparse, I need a different strategy.
+
+ (5) Change the indexing strategy so that the culling mechanism is brought
+     into the kernel, rather than doing that in userspace, and use an index
+     table of files with a LRU list.
+
+ (6) Add support for throttling readahead when the server pushes back (cifs
+     credits).
+
+These patches can be found also on:
+
+	https://git.kernel.org/pub/scm/linux/kernel/git/dhowells/linux-fs.git/log/?h=fscache-iter
+
+David
 ---
-(note: fixes tag can't be filled here, will be corrected later)
- fs/9p/vfs_file.c | 6 +++---
- 1 file changed, 3 insertions(+), 3 deletions(-)
+David Howells (75):
+      nfs, cifs, ceph, 9p: Disable use of fscache prior to its rewrite
+      afs: Disable use of the fscache I/O routines
+      fscache: Add a cookie debug ID and use that in traces
+      fscache: Procfile to display cookies
+      fscache: Remove the old I/O API
+      fscache: Remove the netfs data from the cookie
+      fscache: Remove struct fscache_cookie_def
+      fscache: Remove store_limit* from struct fscache_object
+      fscache: Remove fscache_check_consistency()
+      fscache: Remove fscache_attr_changed()
+      fscache: Remove obsolete stats
+      fscache: Remove old I/O tracepoints
+      fscache: Temporarily disable fscache_invalidate()
+      fscache: Remove the I/O operation manager
+      fscache: Change %p in format strings to something else
+      cachefiles: Change %p in format strings to something else
+      iov_iter: Add ITER_XARRAY
+      vm: Add wait/unlock functions for PG_fscache
+      mm: Implement readahead_control pageset expansion
+      mm: Stop generic_file_buffered_read() from grabbing a superfluous page
+      vfs: Export rw_verify_area() for use by cachefiles
+      vfs: Provide S_CACHE_FILE inode flag
+      cachefiles: Remove tree of active files and use S_CACHE_FILE inode flag
+      fscache: Provide a simple thread pool for running ops asynchronously
+      fscache: Replace the object management state machine
+      fscache: Rewrite the I/O API based on iov_iter
+      fscache: Keep track of size of a file last set independently on the server
+      fscache, cachefiles: Fix disabled histogram warnings
+      fscache: Recast assertion in terms of cookie not being an index
+      vfs, fscache: Force ->write_inode() to occur if cookie pinned for writeback
+      fscache: Allow ->put_super() to be used to wait for cache operations
+      netfs: Make a netfs helper module
+      netfs: Provide readahead and readpage netfs helpers
+      netfs: Use the cache
+      fscache: read-helper: Add tracepoints
+      cachefiles: Remove some redundant checks on unsigned values
+      cachefiles: trace: Log coherency checks
+      cachefiles: Split cachefiles_drop_object() up a bit
+      cachefiles: Implement new fscache I/O backend API
+      cachefiles: Merge object->backer into object->dentry
+      cachefiles: Implement a content-present indicator and bitmap
+      cachefiles: Shape requests from the fscache read helper
+      cachefiles: Round the cachefile size up to DIO block size
+      cachefiles: Implement read and write parts of new I/O API
+      cachefiles: Add I/O tracepoints
+      fscache: Display cache-specific data in /proc/fs/fscache/objects
+      fscache: Remove more obsolete stats
+      fscache: Always create /proc/fs/fscache/stats if configured
+      netfs: Stats
+      fscache: New stats
+      fscache, cachefiles: Rewrite invalidation
+      fscache: Implement "will_modify" parameter on fscache_use_cookie()
+      fscache: Provide resize operation
+      fscache: Remove the update operation
+      afs: Pass page into dirty region helpers to provide THP size
+      afs: Print the operation debug_id when logging an unexpected data version
+      afs: Move key to afs_read struct
+      afs: Don't truncate iter during data fetch
+      afs: Log remote unmarshalling errors
+      afs: Set up the iov_iter before calling afs_extract_data()
+      afs: Use ITER_XARRAY for writing
+      afs: Wait on PG_fscache before modifying/releasing a page
+      afs: Extract writeback extension into its own function
+      afs: Prepare for use of THPs
+      afs: Use the fs operation ops to handle FetchData completion
+      afs: Use new fscache read helper API
+      netfs: Add write_begin helper
+      fscache: Add support for writing to the cache
+      afs: Use the fscache_write_begin() helper
+      afs: Copy local writes to the cache when writing to the server
+      afs: Invoke fscache_resize_cookie() when handling ATTR_SIZE for setattr
+      afs: Add O_DIRECT read support
+      afs: Skip truncation on the server of data we haven't written yet
+      afs: Make afs_write_begin() return the THP subpage
+      afs: Fix speculative status fetch going out of order wrt to modifications
 
-diff --git a/fs/9p/vfs_file.c b/fs/9p/vfs_file.c
-index b0ef225cecd0..c5e49c88688d 100644
---- a/fs/9p/vfs_file.c
-+++ b/fs/9p/vfs_file.c
-@@ -46,7 +46,7 @@ int v9fs_file_open(struct inode *inode, struct file *file)
- 	int err;
- 	struct v9fs_inode *v9inode;
- 	struct v9fs_session_info *v9ses;
--	struct p9_fid *fid;
-+	struct p9_fid *fid, *writeback_fid;
- 	int omode;
- 
- 	p9_debug(P9_DEBUG_VFS, "inode: %p file: %p\n", inode, file);
-@@ -85,13 +85,13 @@ int v9fs_file_open(struct inode *inode, struct file *file)
- 		 * because we want write after unlink usecase
- 		 * to work.
- 		 */
--		fid = v9fs_writeback_fid(file_dentry(file));
-+		writeback_fid = v9fs_writeback_fid(file_dentry(file));
- 		if (IS_ERR(fid)) {
- 			err = PTR_ERR(fid);
- 			mutex_unlock(&v9inode->v_mutex);
- 			goto out_error;
- 		}
--		v9inode->writeback_fid = (void *) fid;
-+		v9inode->writeback_fid = (void *) writeback_fid;
- 	}
- 	mutex_unlock(&v9inode->v_mutex);
- 	if (v9ses->cache == CACHE_LOOSE || v9ses->cache == CACHE_FSCACHE)
--- 
-2.28.0
+Jeff Layton (1):
+      fscache: disable cookie when doing an invalidation for DIO write
+
+
+ fs/Kconfig                        |    1 +
+ fs/Makefile                       |    1 +
+ fs/afs/Kconfig                    |    1 +
+ fs/afs/cache.c                    |   54 --
+ fs/afs/cell.c                     |    9 +-
+ fs/afs/dir.c                      |  226 ++++--
+ fs/afs/file.c                     |  562 +++++--------
+ fs/afs/fs_operation.c             |    4 +-
+ fs/afs/fsclient.c                 |  126 ++-
+ fs/afs/inode.c                    |  108 ++-
+ fs/afs/internal.h                 |   69 +-
+ fs/afs/rxrpc.c                    |  150 ++--
+ fs/afs/super.c                    |   25 +
+ fs/afs/volume.c                   |    9 +-
+ fs/afs/write.c                    |  819 +++++++++++--------
+ fs/afs/yfsclient.c                |   94 +--
+ fs/cachefiles/Makefile            |    3 +-
+ fs/cachefiles/bind.c              |   13 +-
+ fs/cachefiles/content-map.c       |  515 ++++++++++++
+ fs/cachefiles/daemon.c            |   10 +-
+ fs/cachefiles/interface.c         |  597 ++++++++------
+ fs/cachefiles/internal.h          |  155 ++--
+ fs/cachefiles/io.c                |  360 +++++++++
+ fs/cachefiles/key.c               |    2 +-
+ fs/cachefiles/main.c              |   12 +-
+ fs/cachefiles/namei.c             |  538 +++++--------
+ fs/cachefiles/rdwr.c              |  975 ----------------------
+ fs/cachefiles/xattr.c             |  271 +++----
+ fs/fs-writeback.c                 |    8 +
+ fs/fscache/Kconfig                |    2 +
+ fs/fscache/Makefile               |   10 +-
+ fs/fscache/cache.c                |  171 ++--
+ fs/fscache/cache_init.c           |  139 ++++
+ fs/fscache/cookie.c               |  939 ++++++++++------------
+ fs/fscache/dispatcher.c           |  151 ++++
+ fs/fscache/fsdef.c                |   56 +-
+ fs/fscache/histogram.c            |    2 +-
+ fs/fscache/internal.h             |  268 ++-----
+ fs/fscache/io.c                   |  390 +++++++++
+ fs/fscache/main.c                 |  151 +---
+ fs/fscache/netfs.c                |   10 +-
+ fs/fscache/obj.c                  |  360 +++++++++
+ fs/fscache/object-list.c          |  129 +--
+ fs/fscache/object.c               | 1133 --------------------------
+ fs/fscache/object_bits.c          |  120 +++
+ fs/fscache/operation.c            |  633 ---------------
+ fs/fscache/page.c                 | 1248 -----------------------------
+ fs/fscache/proc.c                 |   55 +-
+ fs/fscache/stats.c                |  233 ++----
+ fs/internal.h                     |    5 -
+ fs/netfs/Kconfig                  |   23 +
+ fs/netfs/Makefile                 |    5 +
+ fs/netfs/internal.h               |   97 +++
+ fs/netfs/read_helper.c            | 1125 ++++++++++++++++++++++++++
+ fs/netfs/stats.c                  |   57 ++
+ fs/nfs/fscache-index.c            |    4 +-
+ fs/read_write.c                   |    1 +
+ include/linux/fs.h                |    5 +
+ include/linux/fscache-cache.h     |  510 +++---------
+ include/linux/fscache-obsolete.h  |   13 +
+ include/linux/fscache.h           |  814 ++++++++-----------
+ include/linux/netfs.h             |  111 +++
+ include/linux/pagemap.h           |   16 +
+ include/linux/uio.h               |   11 +
+ include/linux/writeback.h         |    1 +
+ include/net/af_rxrpc.h            |    2 +-
+ include/trace/events/afs.h        |   74 +-
+ include/trace/events/cachefiles.h |  287 +++++--
+ include/trace/events/fscache.h    |  428 ++--------
+ include/trace/events/netfs.h      |  202 +++++
+ lib/iov_iter.c                    |  312 +++++++-
+ mm/filemap.c                      |   20 +
+ mm/readahead.c                    |   70 ++
+ net/rxrpc/recvmsg.c               |    9 +-
+ 74 files changed, 7421 insertions(+), 8698 deletions(-)
+ create mode 100644 fs/cachefiles/content-map.c
+ create mode 100644 fs/cachefiles/io.c
+ delete mode 100644 fs/cachefiles/rdwr.c
+ create mode 100644 fs/fscache/cache_init.c
+ create mode 100644 fs/fscache/dispatcher.c
+ create mode 100644 fs/fscache/io.c
+ create mode 100644 fs/fscache/obj.c
+ delete mode 100644 fs/fscache/object.c
+ create mode 100644 fs/fscache/object_bits.c
+ delete mode 100644 fs/fscache/operation.c
+ delete mode 100644 fs/fscache/page.c
+ create mode 100644 fs/netfs/Kconfig
+ create mode 100644 fs/netfs/Makefile
+ create mode 100644 fs/netfs/internal.h
+ create mode 100644 fs/netfs/read_helper.c
+ create mode 100644 fs/netfs/stats.c
+ create mode 100644 include/linux/fscache-obsolete.h
+ create mode 100644 include/linux/netfs.h
+ create mode 100644 include/trace/events/netfs.h
+
 
 
 
