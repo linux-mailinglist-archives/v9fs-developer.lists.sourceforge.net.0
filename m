@@ -2,26 +2,26 @@ Return-Path: <v9fs-developer-bounces@lists.sourceforge.net>
 X-Original-To: lists+v9fs-developer@lfdr.de
 Delivered-To: lists+v9fs-developer@lfdr.de
 Received: from lists.sourceforge.net (lists.sourceforge.net [216.105.38.7])
-	by mail.lfdr.de (Postfix) with ESMTPS id ADB042BAD58
-	for <lists+v9fs-developer@lfdr.de>; Fri, 20 Nov 2020 16:20:25 +0100 (CET)
-Received: from [127.0.0.1] (helo=sfs-ml-2.v29.lw.sourceforge.com)
-	by sfs-ml-2.v29.lw.sourceforge.com with esmtp (Exim 4.90_1)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6A0BF2BAD7E
+	for <lists+v9fs-developer@lfdr.de>; Fri, 20 Nov 2020 16:21:52 +0100 (CET)
+Received: from [127.0.0.1] (helo=sfs-ml-4.v29.lw.sourceforge.com)
+	by sfs-ml-4.v29.lw.sourceforge.com with esmtp (Exim 4.90_1)
 	(envelope-from <v9fs-developer-bounces@lists.sourceforge.net>)
-	id 1kg8D2-00034e-Fi; Fri, 20 Nov 2020 15:20:24 +0000
+	id 1kg8ER-0002bg-4d; Fri, 20 Nov 2020 15:21:51 +0000
 Received: from [172.30.20.202] (helo=mx.sourceforge.net)
- by sfs-ml-2.v29.lw.sourceforge.com with esmtps
+ by sfs-ml-4.v29.lw.sourceforge.com with esmtps
  (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.90_1)
- (envelope-from <dhowells@redhat.com>) id 1kg84R-0002hc-Pw
- for v9fs-developer@lists.sourceforge.net; Fri, 20 Nov 2020 15:11:31 +0000
+ (envelope-from <dhowells@redhat.com>) id 1kg84b-0002By-M1
+ for v9fs-developer@lists.sourceforge.net; Fri, 20 Nov 2020 15:11:41 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
  d=sourceforge.net; s=x; h=Content-Transfer-Encoding:Content-Type:MIME-Version
  :References:In-Reply-To:Message-ID:Date:Cc:To:From:Subject:Sender:Reply-To:
  Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
  Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
  List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=w/+8PT6hvdzsqumpIcFkRs+u8vk9juQnIN7YFLeVybY=; b=JnvneVMXeWeUq8t7B67Cryp2rp
- Me5j74RZXO8RjaEEjG5qQPyi59LHqt83XK6Fld2hUibIqYz7PA6c9gs9gio+BY69TdI6xmjWr+3wE
- iBY6VGCmSxZS48DjHePyU4JDOVt2cSHceEVLOXvSnEC8CZajOt1yIppuxfRJTwZ/GROE=;
+ bh=IdLhA7VYog4RsBFw7uKM9fTPMB0xRkDtxQls62wnyb0=; b=eMoULU3T8khcuWF71tulfm1ZPN
+ Q+bMZpx20MAcQz1QjR5dIXsgPQqeED6Ld3wx1ysyTdgudjBT2cmZ6MxL2O/CSzlosUtbYqNdDcovl
+ rgfAWDUlxNNw3w9z035xvyn1p7rdjG/fsM8t9cDAr0O7gXAivimN+XSZapb8TGRaTMVw=;
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  ;
  h=Content-Transfer-Encoding:Content-Type:MIME-Version:References:
@@ -29,38 +29,38 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
  :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
  List-Post:List-Owner:List-Archive;
- bh=w/+8PT6hvdzsqumpIcFkRs+u8vk9juQnIN7YFLeVybY=; b=A/6w71gRGDzlO6kOpZDYvvEJG5
- NxFvUqUQ20yuW9f1IVnEgslNpXCFX35j8sgzzKaiwtF7t0RgfYhAAgKokKAbkNLFvP7UZlSqvyLcq
- 0zcqy5DZbOcj5YKfAtnU076uD8zfxCeno+tg01sdPCGweFp/PX+GuFxtc2myC7BufhYo=;
-Received: from us-smtp-delivery-124.mimecast.com ([216.205.24.124])
- by sfi-mx-3.v28.lw.sourceforge.com with esmtps
+ bh=IdLhA7VYog4RsBFw7uKM9fTPMB0xRkDtxQls62wnyb0=; b=R5LZOGqswtLcYwZ1K0SZucszqV
+ 2uth8KD6HLTiW5aCdc3vpfG5hPG10sVDc2bVd1RMbFo3QBa7l4WRx65hc02rK6JdELI0CjSKRPdDt
+ jGr6Z2cZpYLSsLxbc7AC+gRVfOmvTpNLQASu9+f0FiH3Qzhwsc0t/0Is2n7e0e42UU2U=;
+Received: from us-smtp-delivery-124.mimecast.com ([63.128.21.124])
+ by sfi-mx-1.v28.lw.sourceforge.com with esmtps
  (TLSv1.2:ECDHE-RSA-AES256-SHA384:256) (Exim 4.92.2)
- id 1kg84I-00ActI-2p
- for v9fs-developer@lists.sourceforge.net; Fri, 20 Nov 2020 15:11:31 +0000
+ id 1kg84Z-003Bd6-NU
+ for v9fs-developer@lists.sourceforge.net; Fri, 20 Nov 2020 15:11:41 +0000
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
- s=mimecast20190719; t=1605885076;
+ s=mimecast20190719; t=1605885086;
  h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
  to:to:cc:cc:mime-version:mime-version:content-type:content-type:
  content-transfer-encoding:content-transfer-encoding:
  in-reply-to:in-reply-to:references:references;
- bh=w/+8PT6hvdzsqumpIcFkRs+u8vk9juQnIN7YFLeVybY=;
- b=PY1vuHzLgNAANIBJEKWHZXMwo/Wq1cV8qPi2yEJehaakS4lWTJcLKKU/QI97XkTjKym+B0
- UAjV8eo3+aPb5U/1vjcZhLJ2HA+QuyvXOqbB+mEPtnhR244iQDKVZtUPYZSz7wDhU2jz8J
- qOPEm5rJEhsNVVJt7JxleK2uH26RPmk=
+ bh=IdLhA7VYog4RsBFw7uKM9fTPMB0xRkDtxQls62wnyb0=;
+ b=HXWVcK+lNQluOybj1T1koPQBvQpPBEa3KrrGj0d/ZuxTQ91Xr8/TCScM/wlJwYO0JKW7A6
+ nQmVDPTlTEO9bp61NrwBJ5qIcPUJOu30AEllOdPb3WjXgnXC3stFbZ/VhzmUaXDJlxRhWU
+ u5SKOm74QnouZvP3fAitzdcJs5v+mHg=
 Received: from mimecast-mx01.redhat.com (mimecast-mx01.redhat.com
  [209.132.183.4]) (Using TLS) by relay.mimecast.com with ESMTP id
- us-mta-129-WU-p8fn4Pnq8RhluvRhokw-1; Fri, 20 Nov 2020 10:11:12 -0500
-X-MC-Unique: WU-p8fn4Pnq8RhluvRhokw-1
-Received: from smtp.corp.redhat.com (int-mx07.intmail.prod.int.phx2.redhat.com
- [10.5.11.22])
+ us-mta-270-Kgvq3fUrM7yZsfcOzCDFQw-1; Fri, 20 Nov 2020 10:11:23 -0500
+X-MC-Unique: Kgvq3fUrM7yZsfcOzCDFQw-1
+Received: from smtp.corp.redhat.com (int-mx01.intmail.prod.int.phx2.redhat.com
+ [10.5.11.11])
  (using TLSv1.2 with cipher AECDH-AES256-SHA (256/256 bits))
  (No client certificate requested)
- by mimecast-mx01.redhat.com (Postfix) with ESMTPS id 3B640801B1A;
- Fri, 20 Nov 2020 15:11:09 +0000 (UTC)
+ by mimecast-mx01.redhat.com (Postfix) with ESMTPS id 2864F1835A00;
+ Fri, 20 Nov 2020 15:11:21 +0000 (UTC)
 Received: from warthog.procyon.org.uk (ovpn-112-246.rdu2.redhat.com
  [10.10.112.246])
- by smtp.corp.redhat.com (Postfix) with ESMTP id 3C34110021B3;
- Fri, 20 Nov 2020 15:11:03 +0000 (UTC)
+ by smtp.corp.redhat.com (Postfix) with ESMTP id 4081F60BD8;
+ Fri, 20 Nov 2020 15:11:15 +0000 (UTC)
 Organization: Red Hat UK Ltd. Registered Address: Red Hat UK Ltd, Amberley
  Place, 107-111 Peascod Street, Windsor, Berkshire, SI4 1TE, United
  Kingdom.
@@ -69,22 +69,22 @@ From: David Howells <dhowells@redhat.com>
 To: Trond Myklebust <trondmy@hammerspace.com>,
  Anna Schumaker <anna.schumaker@netapp.com>, Steve French <sfrench@samba.org>, 
  Dominique Martinet <asmadeus@codewreck.org>
-Date: Fri, 20 Nov 2020 15:11:02 +0000
-Message-ID: <160588506244.3465195.14835834211702469652.stgit@warthog.procyon.org.uk>
+Date: Fri, 20 Nov 2020 15:11:14 +0000
+Message-ID: <160588507445.3465195.10709245323383602461.stgit@warthog.procyon.org.uk>
 In-Reply-To: <160588455242.3465195.3214733858273019178.stgit@warthog.procyon.org.uk>
 References: <160588455242.3465195.3214733858273019178.stgit@warthog.procyon.org.uk>
 User-Agent: StGit/0.23
 MIME-Version: 1.0
-X-Scanned-By: MIMEDefang 2.84 on 10.5.11.22
+X-Scanned-By: MIMEDefang 2.79 on 10.5.11.11
 X-Spam-Score: -0.1 (/)
 X-Spam-Report: Spam Filtering performed by mx.sourceforge.net.
  See http://spamassassin.org/tag/ for more details.
  -0.0 RCVD_IN_DNSWL_NONE     RBL: Sender listed at https://www.dnswl.org/, no
- trust [216.205.24.124 listed in list.dnswl.org]
- 0.0 RCVD_IN_MSPIKE_H3      RBL: Good reputation (+3)
- [216.205.24.124 listed in wl.mailspike.net]
+ trust [63.128.21.124 listed in list.dnswl.org]
  -0.0 SPF_PASS               SPF: sender matches SPF record
  0.0 SPF_HELO_NONE          SPF: HELO does not publish an SPF Record
+ 0.0 RCVD_IN_MSPIKE_H4      RBL: Very Good reputation (+4)
+ [63.128.21.124 listed in wl.mailspike.net]
  -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from author's
  domain
  -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
@@ -92,9 +92,9 @@ X-Spam-Report: Spam Filtering performed by mx.sourceforge.net.
  not necessarily valid
  0.0 RCVD_IN_MSPIKE_WL      Mailspike good senders
  -0.0 DKIMWL_WL_HIGH         DKIMwl.org - High trust sender
-X-Headers-End: 1kg84I-00ActI-2p
-Subject: [V9fs-developer] [RFC PATCH 39/76] cachefiles: Implement new
- fscache I/O backend API
+X-Headers-End: 1kg84Z-003Bd6-NU
+Subject: [V9fs-developer] [RFC PATCH 40/76] cachefiles: Merge object->backer
+ into object->dentry
 X-BeenThere: v9fs-developer@lists.sourceforge.net
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -116,204 +116,181 @@ Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: v9fs-developer-bounces@lists.sourceforge.net
 
-Implement the new fscache I/O backend API in cachefiles.  The
-cachefiles_object struct carries a non-accounted file to the cachefiles
-object (so that it doesn't cause ENFILE).
+Merge the object->backer pointer into the object->dentry pointer and assume
+that data objects are always going to be just regular files.
+
+object->dentry can then more easily be overridden later by invalidation
+without having two different things to update the xattrs on.
+
+object->old maintains a pointer to the old file so that we can unlink the
+it later.
 
 Signed-off-by: David Howells <dhowells@redhat.com>
 ---
 
- fs/cachefiles/Makefile    |    1 +
- fs/cachefiles/interface.c |   13 +++++++
- fs/cachefiles/internal.h  |   19 ++++++++++
- fs/cachefiles/io.c        |   85 +++++++++++++++++++++++++++++++++++++++++++++
- fs/cachefiles/namei.c     |    3 ++
- 5 files changed, 120 insertions(+), 1 deletion(-)
- create mode 100644 fs/cachefiles/io.c
+ fs/cachefiles/interface.c |   35 +++++++++++++++++------------------
+ fs/cachefiles/internal.h  |    2 +-
+ fs/cachefiles/io.c        |    4 ++--
+ fs/cachefiles/namei.c     |    4 +++-
+ 4 files changed, 23 insertions(+), 22 deletions(-)
 
-diff --git a/fs/cachefiles/Makefile b/fs/cachefiles/Makefile
-index 3455d3646547..d894d317d6e7 100644
---- a/fs/cachefiles/Makefile
-+++ b/fs/cachefiles/Makefile
-@@ -7,6 +7,7 @@ cachefiles-y := \
- 	bind.o \
- 	daemon.o \
- 	interface.o \
-+	io.o \
- 	key.o \
- 	main.o \
- 	namei.o \
 diff --git a/fs/cachefiles/interface.c b/fs/cachefiles/interface.c
-index 3f6d2be690bc..dc8c875223bb 100644
+index dc8c875223bb..7e8940a7fb55 100644
 --- a/fs/cachefiles/interface.c
 +++ b/fs/cachefiles/interface.c
-@@ -453,6 +453,18 @@ static unsigned int cachefiles_get_object_usage(const struct fscache_object *_ob
- 	return atomic_read(&object->usage);
- }
+@@ -171,16 +171,16 @@ static void cachefiles_update_object(struct fscache_object *_object)
+ 	cachefiles_begin_secure(cache, &saved_cred);
  
-+static const struct fscache_op_ops cachefiles_io_ops = {
-+	.wait_for_operation	= __fscache_wait_for_operation,
-+	.end_operation		= __fscache_end_operation,
-+	.read			= cachefiles_read,
-+	.write			= cachefiles_write,
-+};
-+
-+static void cachefiles_begin_operation(struct fscache_op_resources *opr)
-+{
-+	opr->ops = &cachefiles_io_ops;
-+}
-+
- const struct fscache_cache_ops cachefiles_cache_ops = {
- 	.name			= "cachefiles",
- 	.alloc_object		= cachefiles_alloc_object,
-@@ -466,4 +478,5 @@ const struct fscache_cache_ops cachefiles_cache_ops = {
- 	.put_object		= cachefiles_put_object,
- 	.get_object_usage	= cachefiles_get_object_usage,
- 	.sync_cache		= cachefiles_sync_cache,
-+	.begin_operation	= cachefiles_begin_operation,
- };
+ 	object_size = object->fscache.cookie->object_size;
+-	if (i_size_read(d_inode(object->backer)) > object_size) {
++	if (i_size_read(d_inode(object->dentry)) > object_size) {
+ 		struct path path = {
+ 			.mnt	= cache->mnt,
+-			.dentry	= object->backer
++			.dentry	= object->dentry
+ 		};
+-		_debug("trunc %llx -> %llx", i_size_read(d_inode(object->backer)), object_size);
++		_debug("trunc %llx -> %llx", i_size_read(d_inode(object->dentry)), object_size);
+ 		ret = vfs_truncate(&path, object_size);
+ 		if (ret < 0) {
+ 			cachefiles_io_error_obj(object, "Trunc-to-size failed");
+-			cachefiles_remove_object_xattr(cache, object->backer);
++			cachefiles_remove_object_xattr(cache, object->dentry);
+ 			goto out;
+ 		}
+ 	}
+@@ -219,9 +219,8 @@ static void cachefiles_clean_up_object(struct cachefiles_object *object,
+ 		fput(object->backing_file);
+ 	object->backing_file = NULL;
+ 
+-	if (object->backer != object->dentry)
+-		dput(object->backer);
+-	object->backer = NULL;
++	dput(object->old);
++	object->old = NULL;
+ 
+ 	cachefiles_unmark_inode_in_use(object, object->dentry);
+ 	dput(object->dentry);
+@@ -295,7 +294,7 @@ static void cachefiles_put_object(struct fscache_object *_object,
+ 	if (u == 0) {
+ 		_debug("- kill object OBJ%x", object->fscache.debug_id);
+ 
+-		ASSERTCMP(object->backer, ==, NULL);
++		ASSERTCMP(object->old, ==, NULL);
+ 		ASSERTCMP(object->dentry, ==, NULL);
+ 		ASSERTCMP(object->fscache.n_children, ==, 0);
+ 
+@@ -360,17 +359,17 @@ static int cachefiles_attr_changed(struct cachefiles_object *object)
+ 	if (ni_size == object->i_size)
+ 		return 0;
+ 
+-	if (!object->backer)
++	if (!object->dentry)
+ 		return -ENOBUFS;
+ 
+-	ASSERT(d_is_reg(object->backer));
++	ASSERT(d_is_reg(object->dentry));
+ 
+-	oi_size = i_size_read(d_backing_inode(object->backer));
++	oi_size = i_size_read(d_backing_inode(object->dentry));
+ 	if (oi_size == ni_size)
+ 		return 0;
+ 
+ 	cachefiles_begin_secure(cache, &saved_cred);
+-	inode_lock(d_inode(object->backer));
++	inode_lock(d_inode(object->dentry));
+ 
+ 	/* if there's an extension to a partial page at the end of the backing
+ 	 * file, we need to discard the partial page so that we pick up new
+@@ -379,17 +378,17 @@ static int cachefiles_attr_changed(struct cachefiles_object *object)
+ 		_debug("discard tail %llx", oi_size);
+ 		newattrs.ia_valid = ATTR_SIZE;
+ 		newattrs.ia_size = oi_size & PAGE_MASK;
+-		ret = notify_change(object->backer, &newattrs, NULL);
++		ret = notify_change(object->dentry, &newattrs, NULL);
+ 		if (ret < 0)
+ 			goto truncate_failed;
+ 	}
+ 
+ 	newattrs.ia_valid = ATTR_SIZE;
+ 	newattrs.ia_size = ni_size;
+-	ret = notify_change(object->backer, &newattrs, NULL);
++	ret = notify_change(object->dentry, &newattrs, NULL);
+ 
+ truncate_failed:
+-	inode_unlock(d_inode(object->backer));
++	inode_unlock(d_inode(object->dentry));
+ 	cachefiles_end_secure(cache, saved_cred);
+ 
+ 	if (ret == -EIO) {
+@@ -422,10 +421,10 @@ static bool cachefiles_invalidate_object(struct fscache_object *_object)
+ 	_enter("{OBJ%x},[%llu]",
+ 	       object->fscache.debug_id, (unsigned long long)ni_size);
+ 
+-	if (object->backer) {
+-		ASSERT(d_is_reg(object->backer));
++	if (object->dentry) {
++		ASSERT(d_is_reg(object->dentry));
+ 
+-		path.dentry = object->backer;
++		path.dentry = object->dentry;
+ 		path.mnt = cache->mnt;
+ 
+ 		cachefiles_begin_secure(cache, &saved_cred);
 diff --git a/fs/cachefiles/internal.h b/fs/cachefiles/internal.h
-index 16d15291a629..caa6dfbaf333 100644
+index caa6dfbaf333..2dab3ee386ad 100644
 --- a/fs/cachefiles/internal.h
 +++ b/fs/cachefiles/internal.h
-@@ -115,6 +115,22 @@ extern const struct fscache_cache_ops cachefiles_cache_ops;
- extern struct fscache_object *cachefiles_grab_object(struct fscache_object *_object,
- 						     enum fscache_obj_ref_trace why);
- 
-+/*
-+ * io.c
-+ */
-+extern int cachefiles_read(struct fscache_op_resources *opr,
-+			   loff_t start_pos,
-+			   struct iov_iter *iter,
-+			   bool seek_data,
-+			   fscache_io_terminated_t term_func,
-+			   void *term_func_priv);
-+extern int cachefiles_write(struct fscache_op_resources *opr,
-+			    loff_t start_pos,
-+			    struct iov_iter *iter,
-+			    fscache_io_terminated_t term_func,
-+			    void *term_func_priv);
-+extern bool cachefiles_open_object(struct cachefiles_object *obj);
-+
- /*
-  * key.c
-  */
-@@ -216,7 +232,8 @@ do {									\
- 									\
- 	___cache = container_of((object)->fscache.cache,		\
- 				struct cachefiles_cache, cache);	\
--	cachefiles_io_error(___cache, FMT, ##__VA_ARGS__);		\
-+	cachefiles_io_error(___cache, FMT " [o=%08x]", ##__VA_ARGS__,	\
-+			    object->fscache.debug_id);			\
- } while (0)
- 
- 
+@@ -35,7 +35,7 @@ extern unsigned cachefiles_debug;
+ struct cachefiles_object {
+ 	struct fscache_object		fscache;	/* fscache handle */
+ 	struct dentry			*dentry;	/* the file/dir representing this object */
+-	struct dentry			*backer;	/* backing file */
++	struct dentry			*old;		/* backing file */
+ 	struct file			*backing_file;	/* File open on backing storage */
+ 	loff_t				i_size;		/* object size */
+ 	atomic_t			usage;		/* object usage count */
 diff --git a/fs/cachefiles/io.c b/fs/cachefiles/io.c
-new file mode 100644
-index 000000000000..f1d5976aa28c
---- /dev/null
+index f1d5976aa28c..2d406d681597 100644
+--- a/fs/cachefiles/io.c
 +++ b/fs/cachefiles/io.c
-@@ -0,0 +1,85 @@
-+// SPDX-License-Identifier: GPL-2.0-or-later
-+/* Data I/O routines
-+ *
-+ * Copyright (C) 2020 Red Hat, Inc. All Rights Reserved.
-+ * Written by David Howells (dhowells@redhat.com)
-+ */
-+
-+#include <linux/mount.h>
-+#include <linux/slab.h>
-+#include <linux/file.h>
-+#include <linux/uio.h>
-+#include <linux/xattr.h>
-+#include "internal.h"
-+#include <trace/events/fscache.h>
-+
-+/*
-+ * Initiate a read from the cache.
-+ */
-+int cachefiles_read(struct fscache_op_resources *opr,
-+		    loff_t start_pos,
-+		    struct iov_iter *iter,
-+		    bool seek_data,
-+		    fscache_io_terminated_t term_func,
-+		    void *term_func_priv)
-+{
-+	fscache_wait_for_operation(opr, FSCACHE_WANT_READ);
-+	fscache_count_io_operation(opr->object->cookie);
-+	if (term_func)
-+		term_func(term_func_priv, -ENODATA);
-+	return -ENODATA;
-+}
-+
-+/*
-+ * Initiate a write to the cache.
-+ */
-+int cachefiles_write(struct fscache_op_resources *opr,
-+		     loff_t start_pos,
-+		     struct iov_iter *iter,
-+		     fscache_io_terminated_t term_func,
-+		     void *term_func_priv)
-+{
-+	fscache_wait_for_operation(opr, FSCACHE_WANT_WRITE);
-+	fscache_count_io_operation(opr->object->cookie);
-+	if (term_func)
-+		term_func(term_func_priv, -ENOBUFS);
-+	return -ENOBUFS;
-+}
-+
-+/*
-+ * Open a cache object.
-+ */
-+bool cachefiles_open_object(struct cachefiles_object *object)
-+{
-+	struct cachefiles_cache *cache =
-+		container_of(object->fscache.cache, struct cachefiles_cache, cache);
-+	struct file *file;
-+	struct path path;
-+
-+	path.mnt = cache->mnt;
-+	path.dentry = object->backer;
-+
-+	file = open_with_fake_path(&path,
-+				   O_RDWR | O_LARGEFILE | O_DIRECT,
-+				   d_backing_inode(object->backer),
-+				   cache->cache_cred);
-+	if (IS_ERR(file))
-+		goto error;
-+
-+	if (!S_ISREG(file_inode(file)->i_mode))
-+		goto error_file;
-+
-+	if (unlikely(!file->f_op->read_iter) ||
-+	    unlikely(!file->f_op->write_iter)) {
-+		pr_notice("Cache does not support read_iter and write_iter\n");
-+		goto error_file;
-+	}
-+
-+	object->backing_file = file;
-+	return true;
-+
-+error_file:
-+	fput(file);
-+error:
-+	return false;
-+}
+@@ -57,11 +57,11 @@ bool cachefiles_open_object(struct cachefiles_object *object)
+ 	struct path path;
+ 
+ 	path.mnt = cache->mnt;
+-	path.dentry = object->backer;
++	path.dentry = object->dentry;
+ 
+ 	file = open_with_fake_path(&path,
+ 				   O_RDWR | O_LARGEFILE | O_DIRECT,
+-				   d_backing_inode(object->backer),
++				   d_backing_inode(object->dentry),
+ 				   cache->cache_cred);
+ 	if (IS_ERR(file))
+ 		goto error;
 diff --git a/fs/cachefiles/namei.c b/fs/cachefiles/namei.c
-index 0a7e2031efa2..4b515054d92e 100644
+index 4b515054d92e..9f6c91cff55d 100644
 --- a/fs/cachefiles/namei.c
 +++ b/fs/cachefiles/namei.c
-@@ -490,6 +490,9 @@ bool cachefiles_walk_to_object(struct cachefiles_object *parent,
+@@ -486,7 +486,7 @@ bool cachefiles_walk_to_object(struct cachefiles_object *parent,
+ 				goto check_error;
+ 			}
+ 
+-			object->backer = object->dentry;
++			object->old = dget(object->dentry);
  		} else {
  			BUG(); // TODO: open file in data-class subdir
  		}
-+
-+		if (!cachefiles_open_object(object))
-+			goto check_error;
- 	}
+@@ -521,7 +521,9 @@ bool cachefiles_walk_to_object(struct cachefiles_object *parent,
+ 		cachefiles_unmark_inode_in_use(object, object->dentry);
+ 	cachefiles_mark_object_inactive(cache, object);
+ 	dput(object->dentry);
++	dput(object->old);
+ 	object->dentry = NULL;
++	object->old = NULL;
+ 	goto error_out;
  
- 	if (object->new)
+ lookup_error:
 
 
 
