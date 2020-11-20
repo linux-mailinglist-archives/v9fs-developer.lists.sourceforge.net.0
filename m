@@ -2,26 +2,26 @@ Return-Path: <v9fs-developer-bounces@lists.sourceforge.net>
 X-Original-To: lists+v9fs-developer@lfdr.de
 Delivered-To: lists+v9fs-developer@lfdr.de
 Received: from lists.sourceforge.net (lists.sourceforge.net [216.105.38.7])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0B7CF2BAD04
-	for <lists+v9fs-developer@lfdr.de>; Fri, 20 Nov 2020 16:08:03 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id D03792BAD07
+	for <lists+v9fs-developer@lfdr.de>; Fri, 20 Nov 2020 16:08:20 +0100 (CET)
 Received: from [127.0.0.1] (helo=sfs-ml-1.v29.lw.sourceforge.com)
 	by sfs-ml-1.v29.lw.sourceforge.com with esmtp (Exim 4.90_1)
 	(envelope-from <v9fs-developer-bounces@lists.sourceforge.net>)
-	id 1kg813-0002qT-N5; Fri, 20 Nov 2020 15:08:01 +0000
+	id 1kg81L-0002vY-Jn; Fri, 20 Nov 2020 15:08:19 +0000
 Received: from [172.30.20.202] (helo=mx.sourceforge.net)
  by sfs-ml-1.v29.lw.sourceforge.com with esmtps
  (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.90_1)
- (envelope-from <dhowells@redhat.com>) id 1kg7zk-0002Ty-Gl
- for v9fs-developer@lists.sourceforge.net; Fri, 20 Nov 2020 15:06:40 +0000
+ (envelope-from <dhowells@redhat.com>) id 1kg80z-0002V7-Lu
+ for v9fs-developer@lists.sourceforge.net; Fri, 20 Nov 2020 15:07:57 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
  d=sourceforge.net; s=x; h=Content-Transfer-Encoding:Content-Type:MIME-Version
  :References:In-Reply-To:Message-ID:Date:Cc:To:From:Subject:Sender:Reply-To:
  Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
  Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
  List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=9xwcEKuW4WfG4WiPWL1/gATo5sx7vYu1cDXiemYomFc=; b=SGz9rXjxIbJ7dwmex18FE9J1U9
- Sf/j2ieqFjAMOESgwAx0aOsWeIoyi/BOiYuP+lYX8Ng3t7Z6FaScZ4Ad/saA4oS3b4whaHkNc2x6W
- iAQZVsuGS2/PD1P65JrCqQF9gG8ruBNVjG34u9fuxGg+YZ2blC5PU9vaA+nhsEFaiGBw=;
+ bh=Qkm/e0rlz+ex0k24vJWE6EFN4cUfhFOX5aFRkHyuCPQ=; b=ihyeZt5VilY3Hgk1MQpHfWLec+
+ JqRXOCz49ojIi5mQk7e8dwGcmsuCL8gN+sfhdLlpUEW5T2qgFkjzh6PGiJutJAs+znaPs8iGQntND
+ bfibNf0xTo2J2+YsC60Iq/iTOXc/Gy5/QMRciCe5oYt2mbo6amQhQdlMT6OIT2q32z6M=;
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  ;
  h=Content-Transfer-Encoding:Content-Type:MIME-Version:References:
@@ -29,38 +29,38 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
  :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
  List-Post:List-Owner:List-Archive;
- bh=9xwcEKuW4WfG4WiPWL1/gATo5sx7vYu1cDXiemYomFc=; b=aP+X1abBY5WuMNEDIMMXLIoCIr
- ZtydHcFemwsQLFU3Zd1GqpKU/6VxrOxj9dju0S6350S8Jjozv2GINocJt8In829uLdJScsVhxqDhv
- h6p3NlXVoZDUh2DleBhLwFGXbqxn4iAaVa2GLB4xTNkTYWu2w/DBoCla0rMVhnNZFT0M=;
-Received: from us-smtp-delivery-124.mimecast.com ([63.128.21.124])
- by sfi-mx-3.v28.lw.sourceforge.com with esmtps
+ bh=Qkm/e0rlz+ex0k24vJWE6EFN4cUfhFOX5aFRkHyuCPQ=; b=DMlOIhq+qHAZ1P3ra5YoIAb+Fw
+ jg8fwzps2RvYhp6/FVTIdE7LuQeL6e0q1s9fUiY7SRA5Dqgki+Y7YXc328Biyixn6ewbuhMDeZ9PE
+ 48Sfjf0oAiTSkoY+lNWDhn7+EWowASE+/zCRfVmvoGZXU2v44E67MWJpj91PLmA+od5Q=;
+Received: from us-smtp-delivery-124.mimecast.com ([216.205.24.124])
+ by sfi-mx-1.v28.lw.sourceforge.com with esmtps
  (TLSv1.2:ECDHE-RSA-AES256-SHA384:256) (Exim 4.92.2)
- id 1kg7zg-00AcAl-JC
- for v9fs-developer@lists.sourceforge.net; Fri, 20 Nov 2020 15:06:40 +0000
+ id 1kg7zn-003AnT-1x
+ for v9fs-developer@lists.sourceforge.net; Fri, 20 Nov 2020 15:06:44 +0000
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
- s=mimecast20190719; t=1605884790;
+ s=mimecast20190719; t=1605884797;
  h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
  to:to:cc:cc:mime-version:mime-version:content-type:content-type:
  content-transfer-encoding:content-transfer-encoding:
  in-reply-to:in-reply-to:references:references;
- bh=9xwcEKuW4WfG4WiPWL1/gATo5sx7vYu1cDXiemYomFc=;
- b=BfoF4LWiAdrp6mOqwvG0EO3JbDTDgqT1aUqUiJmBGR+qH/s/DC0aIG6Y8rIpo3DSRrYka8
- itzJ2WFXyS++j/Q5t4dZjgzawUMJiL7Qr++KmVs6FA1sOJIjRB/0nzRVj0XzNJi2qVZYe2
- Hp0vGGl6e1IkUoqbGkYf6zsfCz0LqdQ=
+ bh=Qkm/e0rlz+ex0k24vJWE6EFN4cUfhFOX5aFRkHyuCPQ=;
+ b=LZU4fw0DuT3DVnOeT21c8UticKLug/a3GNZFY5yFFiB3u3LR5sZNgzt7D/j4sG6JQQRemo
+ ZRgpDafs32huHSpHy3lDuMkBR6mC/VuDRH2h34TXvuEpPA3+SyfG4WCWpfpsEqhmy6YSxD
+ hAvHZ2Ia4pztXIQGXrdFyS2w6+4GlkU=
 Received: from mimecast-mx01.redhat.com (mimecast-mx01.redhat.com
  [209.132.183.4]) (Using TLS) by relay.mimecast.com with ESMTP id
- us-mta-286-zZG0MiVdPFqRsaR6Ih6J4Q-1; Fri, 20 Nov 2020 10:06:26 -0500
-X-MC-Unique: zZG0MiVdPFqRsaR6Ih6J4Q-1
+ us-mta-581-7eBAHh8oPeGYxEzWYPuVMQ-1; Fri, 20 Nov 2020 10:06:35 -0500
+X-MC-Unique: 7eBAHh8oPeGYxEzWYPuVMQ-1
 Received: from smtp.corp.redhat.com (int-mx06.intmail.prod.int.phx2.redhat.com
  [10.5.11.16])
  (using TLSv1.2 with cipher AECDH-AES256-SHA (256/256 bits))
  (No client certificate requested)
- by mimecast-mx01.redhat.com (Postfix) with ESMTPS id 017188797DC;
- Fri, 20 Nov 2020 15:06:24 +0000 (UTC)
+ by mimecast-mx01.redhat.com (Postfix) with ESMTPS id E4D0C100C605;
+ Fri, 20 Nov 2020 15:06:32 +0000 (UTC)
 Received: from warthog.procyon.org.uk (ovpn-112-246.rdu2.redhat.com
  [10.10.112.246])
- by smtp.corp.redhat.com (Postfix) with ESMTP id 223A75C1D5;
- Fri, 20 Nov 2020 15:06:13 +0000 (UTC)
+ by smtp.corp.redhat.com (Postfix) with ESMTP id 10FA95C1D5;
+ Fri, 20 Nov 2020 15:06:29 +0000 (UTC)
 Organization: Red Hat UK Ltd. Registered Address: Red Hat UK Ltd, Amberley
  Place, 107-111 Peascod Street, Windsor, Berkshire, SI4 1TE, United
  Kingdom.
@@ -69,8 +69,8 @@ From: David Howells <dhowells@redhat.com>
 To: Trond Myklebust <trondmy@hammerspace.com>,
  Anna Schumaker <anna.schumaker@netapp.com>, Steve French <sfrench@samba.org>, 
  Dominique Martinet <asmadeus@codewreck.org>
-Date: Fri, 20 Nov 2020 15:06:13 +0000
-Message-ID: <160588477334.3465195.3608963255682568730.stgit@warthog.procyon.org.uk>
+Date: Fri, 20 Nov 2020 15:06:29 +0000
+Message-ID: <160588478922.3465195.5607105634825839113.stgit@warthog.procyon.org.uk>
 In-Reply-To: <160588455242.3465195.3214733858273019178.stgit@warthog.procyon.org.uk>
 References: <160588455242.3465195.3214733858273019178.stgit@warthog.procyon.org.uk>
 User-Agent: StGit/0.23
@@ -79,16 +79,12 @@ X-Scanned-By: MIMEDefang 2.79 on 10.5.11.16
 X-Spam-Score: -0.1 (/)
 X-Spam-Report: Spam Filtering performed by mx.sourceforge.net.
  See http://spamassassin.org/tag/ for more details.
- 0.0 URIBL_BLOCKED ADMINISTRATOR NOTICE: The query to URIBL was blocked.
- See
- http://wiki.apache.org/spamassassin/DnsBlocklists#dnsbl-block
- for more information. [URIs: infradead.org]
  -0.0 RCVD_IN_DNSWL_NONE     RBL: Sender listed at https://www.dnswl.org/, no
- trust [63.128.21.124 listed in list.dnswl.org]
- 0.0 RCVD_IN_MSPIKE_H4      RBL: Very Good reputation (+4)
- [63.128.21.124 listed in wl.mailspike.net]
+ trust [216.205.24.124 listed in list.dnswl.org]
  -0.0 SPF_PASS               SPF: sender matches SPF record
  0.0 SPF_HELO_NONE          SPF: HELO does not publish an SPF Record
+ 0.0 RCVD_IN_MSPIKE_H3      RBL: Good reputation (+3)
+ [216.205.24.124 listed in wl.mailspike.net]
  -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from author's
  domain
  -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
@@ -96,8 +92,9 @@ X-Spam-Report: Spam Filtering performed by mx.sourceforge.net.
  not necessarily valid
  0.0 RCVD_IN_MSPIKE_WL      Mailspike good senders
  -0.0 DKIMWL_WL_HIGH         DKIMwl.org - High trust sender
-X-Headers-End: 1kg7zg-00AcAl-JC
-Subject: [V9fs-developer] [RFC PATCH 17/76] iov_iter: Add ITER_XARRAY
+X-Headers-End: 1kg7zn-003AnT-1x
+Subject: [V9fs-developer] [RFC PATCH 18/76] vm: Add wait/unlock functions
+ for PG_fscache
 X-BeenThere: v9fs-developer@lists.sourceforge.net
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -119,642 +116,77 @@ Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: v9fs-developer-bounces@lists.sourceforge.net
 
-Add an iterator, ITER_XARRAY, that walks through a set of pages attached to
-an xarray, starting at a given page and offset and walking for the
-specified amount of bytes.  The iterator supports transparent huge pages.
-
-The caller must guarantee that the pages are all present and they must be
-locked using PG_locked, PG_writeback or PG_fscache to prevent them from
-going away or being migrated whilst they're being accessed.
-
-This is useful for copying data from socket buffers to inodes in network
-filesystems and for transferring data between those inodes and the cache
-using direct I/O.
-
-Whilst it is true that ITER_BVEC could be used instead, that would require
-a bio_vec array to be allocated to refer to all the pages - which should be
-redundant if inode->i_pages also points to all these pages.
+Add functions to unlock and wait for unlock of PG_fscache analogously with
+those for PG_lock.
 
 Signed-off-by: David Howells <dhowells@redhat.com>
-cc: Matthew Wilcox <willy@infradead.org>
 ---
 
- include/linux/uio.h |   11 ++
- lib/iov_iter.c      |  312 +++++++++++++++++++++++++++++++++++++++++++++++----
- 2 files changed, 300 insertions(+), 23 deletions(-)
+ include/linux/pagemap.h |   14 ++++++++++++++
+ mm/filemap.c            |   18 ++++++++++++++++++
+ 2 files changed, 32 insertions(+)
 
-diff --git a/include/linux/uio.h b/include/linux/uio.h
-index 72d88566694e..08b186df54ac 100644
---- a/include/linux/uio.h
-+++ b/include/linux/uio.h
-@@ -10,6 +10,7 @@
- #include <uapi/linux/uio.h>
+diff --git a/include/linux/pagemap.h b/include/linux/pagemap.h
+index e1e19c1f9ec9..67fe07096103 100644
+--- a/include/linux/pagemap.h
++++ b/include/linux/pagemap.h
+@@ -591,6 +591,7 @@ extern int __lock_page_async(struct page *page, struct wait_page_queue *wait);
+ extern int __lock_page_or_retry(struct page *page, struct mm_struct *mm,
+ 				unsigned int flags);
+ extern void unlock_page(struct page *page);
++extern void unlock_page_fscache(struct page *page);
  
- struct page;
-+struct address_space;
- struct pipe_inode_info;
- 
- struct kvec {
-@@ -24,6 +25,7 @@ enum iter_type {
- 	ITER_BVEC = 16,
- 	ITER_PIPE = 32,
- 	ITER_DISCARD = 64,
-+	ITER_XARRAY = 128,
- };
- 
- struct iov_iter {
-@@ -39,6 +41,7 @@ struct iov_iter {
- 		const struct iovec *iov;
- 		const struct kvec *kvec;
- 		const struct bio_vec *bvec;
-+		struct xarray *xarray;
- 		struct pipe_inode_info *pipe;
- 	};
- 	union {
-@@ -47,6 +50,7 @@ struct iov_iter {
- 			unsigned int head;
- 			unsigned int start_head;
- 		};
-+		loff_t xarray_start;
- 	};
- };
- 
-@@ -80,6 +84,11 @@ static inline bool iov_iter_is_discard(const struct iov_iter *i)
- 	return iov_iter_type(i) == ITER_DISCARD;
+ /*
+  * Return true if the page was successfully locked
+@@ -681,6 +682,19 @@ static inline int wait_on_page_locked_killable(struct page *page)
+ 	return wait_on_page_bit_killable(compound_head(page), PG_locked);
  }
- 
-+static inline bool iov_iter_is_xarray(const struct iov_iter *i)
-+{
-+	return iov_iter_type(i) == ITER_XARRAY;
-+}
-+
- static inline unsigned char iov_iter_rw(const struct iov_iter *i)
- {
- 	return i->type & (READ | WRITE);
-@@ -221,6 +230,8 @@ void iov_iter_bvec(struct iov_iter *i, unsigned int direction, const struct bio_
- void iov_iter_pipe(struct iov_iter *i, unsigned int direction, struct pipe_inode_info *pipe,
- 			size_t count);
- void iov_iter_discard(struct iov_iter *i, unsigned int direction, size_t count);
-+void iov_iter_xarray(struct iov_iter *i, unsigned int direction, struct xarray *xarray,
-+		     loff_t start, size_t count);
- ssize_t iov_iter_get_pages(struct iov_iter *i, struct page **pages,
- 			size_t maxsize, unsigned maxpages, size_t *start);
- ssize_t iov_iter_get_pages_alloc(struct iov_iter *i, struct page ***pages,
-diff --git a/lib/iov_iter.c b/lib/iov_iter.c
-index 1635111c5bd2..6edf0f290159 100644
---- a/lib/iov_iter.c
-+++ b/lib/iov_iter.c
-@@ -78,7 +78,44 @@
- 	}						\
- }
- 
--#define iterate_all_kinds(i, n, v, I, B, K) {			\
-+#define iterate_xarray(i, n, __v, skip, STEP) {		\
-+	struct page *head = NULL;				\
-+	size_t wanted = n, seg, offset;				\
-+	loff_t start = i->xarray_start + skip;			\
-+	pgoff_t index = start >> PAGE_SHIFT;			\
-+	int j;							\
-+								\
-+	XA_STATE(xas, i->xarray, index);			\
-+								\
-+	rcu_read_lock();						\
-+	xas_for_each(&xas, head, ULONG_MAX) {				\
-+		if (xas_retry(&xas, head))				\
-+			continue;					\
-+		if (WARN_ON(xa_is_value(head)))				\
-+			break;						\
-+		if (WARN_ON(PageHuge(head)))				\
-+			break;						\
-+		for (j = (head->index < index) ? index - head->index : 0; \
-+		     j < thp_nr_pages(head); j++) {			\
-+			__v.bv_page = head + j;				\
-+			offset = (i->xarray_start + skip) & ~PAGE_MASK;	\
-+			seg = PAGE_SIZE - offset;			\
-+			__v.bv_offset = offset;				\
-+			__v.bv_len = min(n, seg);			\
-+			(void)(STEP);					\
-+			n -= __v.bv_len;				\
-+			skip += __v.bv_len;				\
-+			if (n == 0)					\
-+				break;					\
-+		}							\
-+		if (n == 0)						\
-+			break;						\
-+	}							\
-+	rcu_read_unlock();					\
-+	n = wanted - n;						\
-+}
-+
-+#define iterate_all_kinds(i, n, v, I, B, K, X) {		\
- 	if (likely(n)) {					\
- 		size_t skip = i->iov_offset;			\
- 		if (unlikely(i->type & ITER_BVEC)) {		\
-@@ -90,6 +127,9 @@
- 			struct kvec v;				\
- 			iterate_kvec(i, n, v, kvec, skip, (K))	\
- 		} else if (unlikely(i->type & ITER_DISCARD)) {	\
-+		} else if (unlikely(i->type & ITER_XARRAY)) {	\
-+			struct bio_vec v;			\
-+			iterate_xarray(i, n, v, skip, (X));	\
- 		} else {					\
- 			const struct iovec *iov;		\
- 			struct iovec v;				\
-@@ -98,7 +138,7 @@
- 	}							\
- }
- 
--#define iterate_and_advance(i, n, v, I, B, K) {			\
-+#define iterate_and_advance(i, n, v, I, B, K, X) {		\
- 	if (unlikely(i->count < n))				\
- 		n = i->count;					\
- 	if (i->count) {						\
-@@ -123,6 +163,9 @@
- 			i->kvec = kvec;				\
- 		} else if (unlikely(i->type & ITER_DISCARD)) {	\
- 			skip += n;				\
-+		} else if (unlikely(i->type & ITER_XARRAY)) {	\
-+			struct bio_vec v;			\
-+			iterate_xarray(i, n, v, skip, (X))	\
- 		} else {					\
- 			const struct iovec *iov;		\
- 			struct iovec v;				\
-@@ -636,7 +679,9 @@ size_t _copy_to_iter(const void *addr, size_t bytes, struct iov_iter *i)
- 		copyout(v.iov_base, (from += v.iov_len) - v.iov_len, v.iov_len),
- 		memcpy_to_page(v.bv_page, v.bv_offset,
- 			       (from += v.bv_len) - v.bv_len, v.bv_len),
--		memcpy(v.iov_base, (from += v.iov_len) - v.iov_len, v.iov_len)
-+		memcpy(v.iov_base, (from += v.iov_len) - v.iov_len, v.iov_len),
-+		memcpy_to_page(v.bv_page, v.bv_offset,
-+			       (from += v.bv_len) - v.bv_len, v.bv_len)
- 	)
- 
- 	return bytes;
-@@ -752,6 +797,15 @@ size_t _copy_mc_to_iter(const void *addr, size_t bytes, struct iov_iter *i)
- 			bytes = curr_addr - s_addr - rem;
- 			return bytes;
- 		}
-+		}),
-+		({
-+		rem = copy_mc_to_page(v.bv_page, v.bv_offset,
-+				      (from += v.bv_len) - v.bv_len, v.bv_len);
-+		if (rem) {
-+			curr_addr = (unsigned long) from;
-+			bytes = curr_addr - s_addr - rem;
-+			return bytes;
-+		}
- 		})
- 	)
- 
-@@ -773,7 +827,9 @@ size_t _copy_from_iter(void *addr, size_t bytes, struct iov_iter *i)
- 		copyin((to += v.iov_len) - v.iov_len, v.iov_base, v.iov_len),
- 		memcpy_from_page((to += v.bv_len) - v.bv_len, v.bv_page,
- 				 v.bv_offset, v.bv_len),
--		memcpy((to += v.iov_len) - v.iov_len, v.iov_base, v.iov_len)
-+		memcpy((to += v.iov_len) - v.iov_len, v.iov_base, v.iov_len),
-+		memcpy_from_page((to += v.bv_len) - v.bv_len, v.bv_page,
-+				 v.bv_offset, v.bv_len)
- 	)
- 
- 	return bytes;
-@@ -799,7 +855,9 @@ bool _copy_from_iter_full(void *addr, size_t bytes, struct iov_iter *i)
- 		0;}),
- 		memcpy_from_page((to += v.bv_len) - v.bv_len, v.bv_page,
- 				 v.bv_offset, v.bv_len),
--		memcpy((to += v.iov_len) - v.iov_len, v.iov_base, v.iov_len)
-+		memcpy((to += v.iov_len) - v.iov_len, v.iov_base, v.iov_len),
-+		memcpy_from_page((to += v.bv_len) - v.bv_len, v.bv_page,
-+				 v.bv_offset, v.bv_len)
- 	)
- 
- 	iov_iter_advance(i, bytes);
-@@ -819,7 +877,9 @@ size_t _copy_from_iter_nocache(void *addr, size_t bytes, struct iov_iter *i)
- 					 v.iov_base, v.iov_len),
- 		memcpy_from_page((to += v.bv_len) - v.bv_len, v.bv_page,
- 				 v.bv_offset, v.bv_len),
--		memcpy((to += v.iov_len) - v.iov_len, v.iov_base, v.iov_len)
-+		memcpy((to += v.iov_len) - v.iov_len, v.iov_base, v.iov_len),
-+		memcpy_from_page((to += v.bv_len) - v.bv_len, v.bv_page,
-+				 v.bv_offset, v.bv_len)
- 	)
- 
- 	return bytes;
-@@ -854,7 +914,9 @@ size_t _copy_from_iter_flushcache(void *addr, size_t bytes, struct iov_iter *i)
- 		memcpy_page_flushcache((to += v.bv_len) - v.bv_len, v.bv_page,
- 				 v.bv_offset, v.bv_len),
- 		memcpy_flushcache((to += v.iov_len) - v.iov_len, v.iov_base,
--			v.iov_len)
-+			v.iov_len),
-+		memcpy_page_flushcache((to += v.bv_len) - v.bv_len, v.bv_page,
-+				 v.bv_offset, v.bv_len)
- 	)
- 
- 	return bytes;
-@@ -878,7 +940,9 @@ bool _copy_from_iter_full_nocache(void *addr, size_t bytes, struct iov_iter *i)
- 		0;}),
- 		memcpy_from_page((to += v.bv_len) - v.bv_len, v.bv_page,
- 				 v.bv_offset, v.bv_len),
--		memcpy((to += v.iov_len) - v.iov_len, v.iov_base, v.iov_len)
-+		memcpy((to += v.iov_len) - v.iov_len, v.iov_base, v.iov_len),
-+		memcpy_from_page((to += v.bv_len) - v.bv_len, v.bv_page,
-+				 v.bv_offset, v.bv_len)
- 	)
- 
- 	iov_iter_advance(i, bytes);
-@@ -915,7 +979,7 @@ size_t copy_page_to_iter(struct page *page, size_t offset, size_t bytes,
- {
- 	if (unlikely(!page_copy_sane(page, offset, bytes)))
- 		return 0;
--	if (i->type & (ITER_BVEC|ITER_KVEC)) {
-+	if (i->type & (ITER_BVEC | ITER_KVEC | ITER_XARRAY)) {
- 		void *kaddr = kmap_atomic(page);
- 		size_t wanted = copy_to_iter(kaddr + offset, bytes, i);
- 		kunmap_atomic(kaddr);
-@@ -938,7 +1002,7 @@ size_t copy_page_from_iter(struct page *page, size_t offset, size_t bytes,
- 		WARN_ON(1);
- 		return 0;
- 	}
--	if (i->type & (ITER_BVEC|ITER_KVEC)) {
-+	if (i->type & (ITER_BVEC | ITER_KVEC | ITER_XARRAY)) {
- 		void *kaddr = kmap_atomic(page);
- 		size_t wanted = _copy_from_iter(kaddr + offset, bytes, i);
- 		kunmap_atomic(kaddr);
-@@ -982,7 +1046,8 @@ size_t iov_iter_zero(size_t bytes, struct iov_iter *i)
- 	iterate_and_advance(i, bytes, v,
- 		clear_user(v.iov_base, v.iov_len),
- 		memzero_page(v.bv_page, v.bv_offset, v.bv_len),
--		memset(v.iov_base, 0, v.iov_len)
-+		memset(v.iov_base, 0, v.iov_len),
-+		memzero_page(v.bv_page, v.bv_offset, v.bv_len)
- 	)
- 
- 	return bytes;
-@@ -1006,7 +1071,9 @@ size_t iov_iter_copy_from_user_atomic(struct page *page,
- 		copyin((p += v.iov_len) - v.iov_len, v.iov_base, v.iov_len),
- 		memcpy_from_page((p += v.bv_len) - v.bv_len, v.bv_page,
- 				 v.bv_offset, v.bv_len),
--		memcpy((p += v.iov_len) - v.iov_len, v.iov_base, v.iov_len)
-+		memcpy((p += v.iov_len) - v.iov_len, v.iov_base, v.iov_len),
-+		memcpy_from_page((p += v.bv_len) - v.bv_len, v.bv_page,
-+				 v.bv_offset, v.bv_len)
- 	)
- 	kunmap_atomic(kaddr);
- 	return bytes;
-@@ -1077,7 +1144,12 @@ void iov_iter_advance(struct iov_iter *i, size_t size)
- 		i->count -= size;
- 		return;
- 	}
--	iterate_and_advance(i, size, v, 0, 0, 0)
-+	if (unlikely(iov_iter_is_xarray(i))) {
-+		i->iov_offset += size;
-+		i->count -= size;
-+		return;
-+	}
-+	iterate_and_advance(i, size, v, 0, 0, 0, 0)
- }
- EXPORT_SYMBOL(iov_iter_advance);
- 
-@@ -1121,7 +1193,12 @@ void iov_iter_revert(struct iov_iter *i, size_t unroll)
- 		return;
- 	}
- 	unroll -= i->iov_offset;
--	if (iov_iter_is_bvec(i)) {
-+	if (iov_iter_is_xarray(i)) {
-+		BUG(); /* We should never go beyond the start of the specified
-+			* range since we might then be straying into pages that
-+			* aren't pinned.
-+			*/
-+	} else if (iov_iter_is_bvec(i)) {
- 		const struct bio_vec *bvec = i->bvec;
- 		while (1) {
- 			size_t n = (--bvec)->bv_len;
-@@ -1158,9 +1235,9 @@ size_t iov_iter_single_seg_count(const struct iov_iter *i)
- 		return i->count;	// it is a silly place, anyway
- 	if (i->nr_segs == 1)
- 		return i->count;
--	if (unlikely(iov_iter_is_discard(i)))
-+	if (unlikely(iov_iter_is_discard(i) || iov_iter_is_xarray(i)))
- 		return i->count;
--	else if (iov_iter_is_bvec(i))
-+	if (iov_iter_is_bvec(i))
- 		return min(i->count, i->bvec->bv_len - i->iov_offset);
- 	else
- 		return min(i->count, i->iov->iov_len - i->iov_offset);
-@@ -1208,6 +1285,31 @@ void iov_iter_pipe(struct iov_iter *i, unsigned int direction,
- }
- EXPORT_SYMBOL(iov_iter_pipe);
  
 +/**
-+ * iov_iter_xarray - Initialise an I/O iterator to use the pages in an xarray
-+ * @i: The iterator to initialise.
-+ * @direction: The direction of the transfer.
-+ * @xarray: The xarray to access.
-+ * @start: The start file position.
-+ * @count: The size of the I/O buffer in bytes.
++ * wait_on_page_fscache - Wait for PG_fscache to be cleared on a page
++ * @page: The page
 + *
-+ * Set up an I/O iterator to either draw data out of the pages attached to an
-+ * inode or to inject data into those pages.  The pages *must* be prevented
-+ * from evaporation, either by taking a ref on them or locking them by the
-+ * caller.
++ * Wait for the fscache mark to be removed from a page, usually signifying the
++ * completion of a write from that page to the cache.
 + */
-+void iov_iter_xarray(struct iov_iter *i, unsigned int direction,
-+		     struct xarray *xarray, loff_t start, size_t count)
++static inline void wait_on_page_fscache(struct page *page)
 +{
-+	BUG_ON(direction & ~1);
-+	i->type = ITER_XARRAY | (direction & (READ | WRITE));
-+	i->xarray = xarray;
-+	i->xarray_start = start;
-+	i->count = count;
-+	i->iov_offset = 0;
++	if (PagePrivate2(page))
++		wait_on_page_bit(compound_head(page), PG_fscache);
 +}
-+EXPORT_SYMBOL(iov_iter_xarray);
++
+ extern void put_and_wait_on_page_locked(struct page *page);
+ 
+ void wait_on_page_writeback(struct page *page);
+diff --git a/mm/filemap.c b/mm/filemap.c
+index d5e7c2029d16..cfb753955e36 100644
+--- a/mm/filemap.c
++++ b/mm/filemap.c
+@@ -1466,6 +1466,24 @@ void unlock_page(struct page *page)
+ }
+ EXPORT_SYMBOL(unlock_page);
+ 
++/**
++ * unlock_page_fscache - Unlock a page pinned with PG_fscache
++ * @page: The page
++ *
++ * Unlocks the page and wakes up sleepers in wait_on_page_fscache().  Also
++ * wakes those waiting for the lock and writeback bits because the wakeup
++ * mechanism is shared.  But that's OK - those sleepers will just go back to
++ * sleep.
++ */
++void unlock_page_fscache(struct page *page)
++{
++	page = compound_head(page);
++	VM_BUG_ON_PAGE(!PagePrivate2(page), page);
++	clear_bit_unlock(PG_fscache, &page->flags);
++	wake_up_page_bit(page, PG_fscache);
++}
++EXPORT_SYMBOL(unlock_page_fscache);
 +
  /**
-  * iov_iter_discard - Initialise an I/O iterator that discards data
-  * @i: The iterator to initialise.
-@@ -1241,7 +1343,8 @@ unsigned long iov_iter_alignment(const struct iov_iter *i)
- 	iterate_all_kinds(i, size, v,
- 		(res |= (unsigned long)v.iov_base | v.iov_len, 0),
- 		res |= v.bv_offset | v.bv_len,
--		res |= (unsigned long)v.iov_base | v.iov_len
-+		res |= (unsigned long)v.iov_base | v.iov_len,
-+		res |= v.bv_offset | v.bv_len
- 	)
- 	return res;
- }
-@@ -1263,7 +1366,9 @@ unsigned long iov_iter_gap_alignment(const struct iov_iter *i)
- 		(res |= (!res ? 0 : (unsigned long)v.bv_offset) |
- 			(size != v.bv_len ? size : 0)),
- 		(res |= (!res ? 0 : (unsigned long)v.iov_base) |
--			(size != v.iov_len ? size : 0))
-+			(size != v.iov_len ? size : 0)),
-+		(res |= (!res ? 0 : (unsigned long)v.bv_offset) |
-+			(size != v.bv_len ? size : 0))
- 		);
- 	return res;
- }
-@@ -1313,6 +1418,75 @@ static ssize_t pipe_get_pages(struct iov_iter *i,
- 	return __pipe_get_pages(i, min(maxsize, capacity), pages, iter_head, start);
- }
- 
-+static ssize_t iter_xarray_copy_pages(struct page **pages, struct xarray *xa,
-+				       pgoff_t index, unsigned int nr_pages)
-+{
-+	XA_STATE(xas, xa, index);
-+	struct page *page;
-+	unsigned int ret = 0;
-+
-+	rcu_read_lock();
-+	for (page = xas_load(&xas); page; page = xas_next(&xas)) {
-+		if (xas_retry(&xas, page))
-+			continue;
-+
-+		/* Has the page moved or been split? */
-+		if (unlikely(page != xas_reload(&xas))) {
-+			xas_reset(&xas);
-+			continue;
-+		}
-+
-+		pages[ret] = find_subpage(page, xas.xa_index);
-+		get_page(pages[ret]);
-+		if (++ret == nr_pages)
-+			break;
-+	}
-+	rcu_read_unlock();
-+	return ret;
-+}
-+
-+static ssize_t iter_xarray_get_pages(struct iov_iter *i,
-+				     struct page **pages, size_t maxsize,
-+				     unsigned maxpages, size_t *_start_offset)
-+{
-+	unsigned nr, offset;
-+	pgoff_t index, count;
-+	size_t size = maxsize, actual;
-+	loff_t pos;
-+
-+	if (!size || !maxpages)
-+		return 0;
-+
-+	pos = i->xarray_start + i->iov_offset;
-+	index = pos >> PAGE_SHIFT;
-+	offset = pos & ~PAGE_MASK;
-+	*_start_offset = offset;
-+
-+	count = 1;
-+	if (size > PAGE_SIZE - offset) {
-+		size -= PAGE_SIZE - offset;
-+		count += size >> PAGE_SHIFT;
-+		size &= ~PAGE_MASK;
-+		if (size)
-+			count++;
-+	}
-+
-+	if (count > maxpages)
-+		count = maxpages;
-+
-+	nr = iter_xarray_copy_pages(pages, i->xarray, index, count);
-+	if (nr == 0)
-+		return 0;
-+
-+	actual = PAGE_SIZE * nr;
-+	actual -= offset;
-+	if (nr == count && size > 0) {
-+		unsigned last_offset = (nr > 1) ? 0 : offset;
-+		actual -= PAGE_SIZE - (last_offset + size);
-+	}
-+	return actual;
-+}
-+
- ssize_t iov_iter_get_pages(struct iov_iter *i,
- 		   struct page **pages, size_t maxsize, unsigned maxpages,
- 		   size_t *start)
-@@ -1322,6 +1496,8 @@ ssize_t iov_iter_get_pages(struct iov_iter *i,
- 
- 	if (unlikely(iov_iter_is_pipe(i)))
- 		return pipe_get_pages(i, pages, maxsize, maxpages, start);
-+	if (unlikely(iov_iter_is_xarray(i)))
-+		return iter_xarray_get_pages(i, pages, maxsize, maxpages, start);
- 	if (unlikely(iov_iter_is_discard(i)))
- 		return -EFAULT;
- 
-@@ -1348,7 +1524,8 @@ ssize_t iov_iter_get_pages(struct iov_iter *i,
- 		return v.bv_len;
- 	}),({
- 		return -EFAULT;
--	})
-+	}),
-+	0
- 	)
- 	return 0;
- }
-@@ -1392,6 +1569,51 @@ static ssize_t pipe_get_pages_alloc(struct iov_iter *i,
- 	return n;
- }
- 
-+static ssize_t iter_xarray_get_pages_alloc(struct iov_iter *i,
-+					   struct page ***pages, size_t maxsize,
-+					   size_t *_start_offset)
-+{
-+	struct page **p;
-+	unsigned nr, offset;
-+	pgoff_t index, count;
-+	size_t size = maxsize, actual;
-+	loff_t pos;
-+
-+	if (!size)
-+		return 0;
-+
-+	pos = i->xarray_start + i->iov_offset;
-+	index = pos >> PAGE_SHIFT;
-+	offset = pos & ~PAGE_MASK;
-+	*_start_offset = offset;
-+
-+	count = 1;
-+	if (size > PAGE_SIZE - offset) {
-+		size -= PAGE_SIZE - offset;
-+		count += size >> PAGE_SHIFT;
-+		size &= ~PAGE_MASK;
-+		if (size)
-+			count++;
-+	}
-+
-+	p = get_pages_array(count);
-+	if (!p)
-+		return -ENOMEM;
-+	*pages = p;
-+
-+	nr = iter_xarray_copy_pages(p, i->xarray, index, count);
-+	if (nr == 0)
-+		return 0;
-+
-+	actual = PAGE_SIZE * nr;
-+	actual -= offset;
-+	if (nr == count && size > 0) {
-+		unsigned last_offset = (nr > 1) ? 0 : offset;
-+		actual -= PAGE_SIZE - (last_offset + size);
-+	}
-+	return actual;
-+}
-+
- ssize_t iov_iter_get_pages_alloc(struct iov_iter *i,
- 		   struct page ***pages, size_t maxsize,
- 		   size_t *start)
-@@ -1403,6 +1625,8 @@ ssize_t iov_iter_get_pages_alloc(struct iov_iter *i,
- 
- 	if (unlikely(iov_iter_is_pipe(i)))
- 		return pipe_get_pages_alloc(i, pages, maxsize, start);
-+	if (unlikely(iov_iter_is_xarray(i)))
-+		return iter_xarray_get_pages_alloc(i, pages, maxsize, start);
- 	if (unlikely(iov_iter_is_discard(i)))
- 		return -EFAULT;
- 
-@@ -1435,7 +1659,7 @@ ssize_t iov_iter_get_pages_alloc(struct iov_iter *i,
- 		return v.bv_len;
- 	}),({
- 		return -EFAULT;
--	})
-+	}), 0
- 	)
- 	return 0;
- }
-@@ -1473,6 +1697,13 @@ size_t csum_and_copy_from_iter(void *addr, size_t bytes, __wsum *csum,
- 				      v.iov_base, v.iov_len,
- 				      sum, off);
- 		off += v.iov_len;
-+	}), ({
-+		char *p = kmap_atomic(v.bv_page);
-+		sum = csum_and_memcpy((to += v.bv_len) - v.bv_len,
-+				      p + v.bv_offset, v.bv_len,
-+				      sum, off);
-+		kunmap_atomic(p);
-+		off += v.bv_len;
- 	})
- 	)
- 	*csum = sum;
-@@ -1514,6 +1745,13 @@ bool csum_and_copy_from_iter_full(void *addr, size_t bytes, __wsum *csum,
- 				      v.iov_base, v.iov_len,
- 				      sum, off);
- 		off += v.iov_len;
-+	}), ({
-+		char *p = kmap_atomic(v.bv_page);
-+		sum = csum_and_memcpy((to += v.bv_len) - v.bv_len,
-+				      p + v.bv_offset, v.bv_len,
-+				      sum, off);
-+		kunmap_atomic(p);
-+		off += v.bv_len;
- 	})
- 	)
- 	*csum = sum;
-@@ -1559,6 +1797,13 @@ size_t csum_and_copy_to_iter(const void *addr, size_t bytes, void *csump,
- 				     (from += v.iov_len) - v.iov_len,
- 				     v.iov_len, sum, off);
- 		off += v.iov_len;
-+	}), ({
-+		char *p = kmap_atomic(v.bv_page);
-+		sum = csum_and_memcpy(p + v.bv_offset,
-+				      (from += v.bv_len) - v.bv_len,
-+				      v.bv_len, sum, off);
-+		kunmap_atomic(p);
-+		off += v.bv_len;
- 	})
- 	)
- 	*csum = sum;
-@@ -1608,6 +1853,21 @@ int iov_iter_npages(const struct iov_iter *i, int maxpages)
- 		npages = pipe_space_for_user(iter_head, pipe->tail, pipe);
- 		if (npages >= maxpages)
- 			return maxpages;
-+	} else if (unlikely(iov_iter_is_xarray(i))) {
-+		unsigned offset;
-+
-+		offset = (i->xarray_start + i->iov_offset) & ~PAGE_MASK;
-+
-+		npages = 1;
-+		if (size > PAGE_SIZE - offset) {
-+			size -= PAGE_SIZE - offset;
-+			npages += size >> PAGE_SHIFT;
-+			size &= ~PAGE_MASK;
-+			if (size)
-+				npages++;
-+		}
-+		if (npages >= maxpages)
-+			return maxpages;
- 	} else iterate_all_kinds(i, size, v, ({
- 		unsigned long p = (unsigned long)v.iov_base;
- 		npages += DIV_ROUND_UP(p + v.iov_len, PAGE_SIZE)
-@@ -1624,7 +1884,8 @@ int iov_iter_npages(const struct iov_iter *i, int maxpages)
- 			- p / PAGE_SIZE;
- 		if (npages >= maxpages)
- 			return maxpages;
--	})
-+	}),
-+	0
- 	)
- 	return npages;
- }
-@@ -1637,7 +1898,7 @@ const void *dup_iter(struct iov_iter *new, struct iov_iter *old, gfp_t flags)
- 		WARN_ON(1);
- 		return NULL;
- 	}
--	if (unlikely(iov_iter_is_discard(new)))
-+	if (unlikely(iov_iter_is_discard(new) || iov_iter_is_xarray(new)))
- 		return NULL;
- 	if (iov_iter_is_bvec(new))
- 		return new->bvec = kmemdup(new->bvec,
-@@ -1842,7 +2103,12 @@ int iov_iter_for_each_range(struct iov_iter *i, size_t bytes,
- 		kunmap(v.bv_page);
- 		err;}), ({
- 		w = v;
--		err = f(&w, context);})
-+		err = f(&w, context);}), ({
-+		w.iov_base = kmap(v.bv_page) + v.bv_offset;
-+		w.iov_len = v.bv_len;
-+		err = f(&w, context);
-+		kunmap(v.bv_page);
-+		err;})
- 	)
- 	return err;
- }
+  * end_page_writeback - end writeback against a page
+  * @page: the page
 
 
 
