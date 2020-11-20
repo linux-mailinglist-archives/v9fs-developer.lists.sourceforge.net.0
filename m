@@ -2,26 +2,26 @@ Return-Path: <v9fs-developer-bounces@lists.sourceforge.net>
 X-Original-To: lists+v9fs-developer@lfdr.de
 Delivered-To: lists+v9fs-developer@lfdr.de
 Received: from lists.sourceforge.net (lists.sourceforge.net [216.105.38.7])
-	by mail.lfdr.de (Postfix) with ESMTPS id 034222BAD53
-	for <lists+v9fs-developer@lfdr.de>; Fri, 20 Nov 2020 16:19:52 +0100 (CET)
-Received: from [127.0.0.1] (helo=sfs-ml-1.v29.lw.sourceforge.com)
-	by sfs-ml-1.v29.lw.sourceforge.com with esmtp (Exim 4.90_1)
+	by mail.lfdr.de (Postfix) with ESMTPS id ADB042BAD58
+	for <lists+v9fs-developer@lfdr.de>; Fri, 20 Nov 2020 16:20:25 +0100 (CET)
+Received: from [127.0.0.1] (helo=sfs-ml-2.v29.lw.sourceforge.com)
+	by sfs-ml-2.v29.lw.sourceforge.com with esmtp (Exim 4.90_1)
 	(envelope-from <v9fs-developer-bounces@lists.sourceforge.net>)
-	id 1kg8CU-0005I5-P6; Fri, 20 Nov 2020 15:19:50 +0000
+	id 1kg8D2-00034e-Fi; Fri, 20 Nov 2020 15:20:24 +0000
 Received: from [172.30.20.202] (helo=mx.sourceforge.net)
- by sfs-ml-1.v29.lw.sourceforge.com with esmtps
+ by sfs-ml-2.v29.lw.sourceforge.com with esmtps
  (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.90_1)
- (envelope-from <dhowells@redhat.com>) id 1kg84J-0003lG-QY
- for v9fs-developer@lists.sourceforge.net; Fri, 20 Nov 2020 15:11:23 +0000
+ (envelope-from <dhowells@redhat.com>) id 1kg84R-0002hc-Pw
+ for v9fs-developer@lists.sourceforge.net; Fri, 20 Nov 2020 15:11:31 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
  d=sourceforge.net; s=x; h=Content-Transfer-Encoding:Content-Type:MIME-Version
  :References:In-Reply-To:Message-ID:Date:Cc:To:From:Subject:Sender:Reply-To:
  Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
  Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
  List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=XT1pKpebF0gtVPrcMfWMCH+HF5vrTyJrwQ/BlskOnJ4=; b=HEFPlBZfLqbInxJtlXu2NeXgyV
- fO0dOD5s+oQBks7tB+t6k2Yn2lcga9fnFkeSMBhBtujgCqEmwGeW+k9WF9pXPoGYIizhII2CMr794
- M6mAlaV1WrMHXrogMp7RWrJmcFwkgFWX2GOZrd40ow1C/SYTWd3NIqGaYYzWX2yrP5tw=;
+ bh=w/+8PT6hvdzsqumpIcFkRs+u8vk9juQnIN7YFLeVybY=; b=JnvneVMXeWeUq8t7B67Cryp2rp
+ Me5j74RZXO8RjaEEjG5qQPyi59LHqt83XK6Fld2hUibIqYz7PA6c9gs9gio+BY69TdI6xmjWr+3wE
+ iBY6VGCmSxZS48DjHePyU4JDOVt2cSHceEVLOXvSnEC8CZajOt1yIppuxfRJTwZ/GROE=;
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  ;
  h=Content-Transfer-Encoding:Content-Type:MIME-Version:References:
@@ -29,38 +29,38 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
  :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
  List-Post:List-Owner:List-Archive;
- bh=XT1pKpebF0gtVPrcMfWMCH+HF5vrTyJrwQ/BlskOnJ4=; b=GM/mVKn1XB1SBIBiHBmj32fp7G
- 0V99JIUVHaLXmP5v89/DzHmqbUr2IZnL3t/jzRhDC7AUT43WcpBhr+rprnsiITdxszGq3jw7jD5aI
- pSoUNSJsB3qQyufw6snidOUeskPhy1O72Gx3Uw5PmWYTylxHCi8mJvFaWj2YPPQsY7tw=;
-Received: from us-smtp-delivery-124.mimecast.com ([63.128.21.124])
+ bh=w/+8PT6hvdzsqumpIcFkRs+u8vk9juQnIN7YFLeVybY=; b=A/6w71gRGDzlO6kOpZDYvvEJG5
+ NxFvUqUQ20yuW9f1IVnEgslNpXCFX35j8sgzzKaiwtF7t0RgfYhAAgKokKAbkNLFvP7UZlSqvyLcq
+ 0zcqy5DZbOcj5YKfAtnU076uD8zfxCeno+tg01sdPCGweFp/PX+GuFxtc2myC7BufhYo=;
+Received: from us-smtp-delivery-124.mimecast.com ([216.205.24.124])
  by sfi-mx-3.v28.lw.sourceforge.com with esmtps
  (TLSv1.2:ECDHE-RSA-AES256-SHA384:256) (Exim 4.92.2)
- id 1kg84C-00Acs2-1W
- for v9fs-developer@lists.sourceforge.net; Fri, 20 Nov 2020 15:11:23 +0000
+ id 1kg84I-00ActI-2p
+ for v9fs-developer@lists.sourceforge.net; Fri, 20 Nov 2020 15:11:31 +0000
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
- s=mimecast20190719; t=1605885062;
+ s=mimecast20190719; t=1605885076;
  h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
  to:to:cc:cc:mime-version:mime-version:content-type:content-type:
  content-transfer-encoding:content-transfer-encoding:
  in-reply-to:in-reply-to:references:references;
- bh=XT1pKpebF0gtVPrcMfWMCH+HF5vrTyJrwQ/BlskOnJ4=;
- b=BC+Qh3HNarX45G2jGNI8eEzQe/xAbDLedTnTZI3H0LphC5pb6diq1/BegLzD77YMaWrvK0
- ydU1W9l94hFsIKXypCHfO1Zg7his8WtZTMcrkghsT1aGgAPx4U53PKgaYHCmL6GYDyhMVC
- jh9nKFcYUQ4vujqgjIpMi7/Lly18fBc=
+ bh=w/+8PT6hvdzsqumpIcFkRs+u8vk9juQnIN7YFLeVybY=;
+ b=PY1vuHzLgNAANIBJEKWHZXMwo/Wq1cV8qPi2yEJehaakS4lWTJcLKKU/QI97XkTjKym+B0
+ UAjV8eo3+aPb5U/1vjcZhLJ2HA+QuyvXOqbB+mEPtnhR244iQDKVZtUPYZSz7wDhU2jz8J
+ qOPEm5rJEhsNVVJt7JxleK2uH26RPmk=
 Received: from mimecast-mx01.redhat.com (mimecast-mx01.redhat.com
  [209.132.183.4]) (Using TLS) by relay.mimecast.com with ESMTP id
- us-mta-574-8XWVxA1TMPCutCtX6J68gg-1; Fri, 20 Nov 2020 10:10:59 -0500
-X-MC-Unique: 8XWVxA1TMPCutCtX6J68gg-1
-Received: from smtp.corp.redhat.com (int-mx05.intmail.prod.int.phx2.redhat.com
- [10.5.11.15])
+ us-mta-129-WU-p8fn4Pnq8RhluvRhokw-1; Fri, 20 Nov 2020 10:11:12 -0500
+X-MC-Unique: WU-p8fn4Pnq8RhluvRhokw-1
+Received: from smtp.corp.redhat.com (int-mx07.intmail.prod.int.phx2.redhat.com
+ [10.5.11.22])
  (using TLSv1.2 with cipher AECDH-AES256-SHA (256/256 bits))
  (No client certificate requested)
- by mimecast-mx01.redhat.com (Postfix) with ESMTPS id 395FEC73A3;
- Fri, 20 Nov 2020 15:10:57 +0000 (UTC)
+ by mimecast-mx01.redhat.com (Postfix) with ESMTPS id 3B640801B1A;
+ Fri, 20 Nov 2020 15:11:09 +0000 (UTC)
 Received: from warthog.procyon.org.uk (ovpn-112-246.rdu2.redhat.com
  [10.10.112.246])
- by smtp.corp.redhat.com (Postfix) with ESMTP id A538E5D6AD;
- Fri, 20 Nov 2020 15:10:51 +0000 (UTC)
+ by smtp.corp.redhat.com (Postfix) with ESMTP id 3C34110021B3;
+ Fri, 20 Nov 2020 15:11:03 +0000 (UTC)
 Organization: Red Hat UK Ltd. Registered Address: Red Hat UK Ltd, Amberley
  Place, 107-111 Peascod Street, Windsor, Berkshire, SI4 1TE, United
  Kingdom.
@@ -69,20 +69,20 @@ From: David Howells <dhowells@redhat.com>
 To: Trond Myklebust <trondmy@hammerspace.com>,
  Anna Schumaker <anna.schumaker@netapp.com>, Steve French <sfrench@samba.org>, 
  Dominique Martinet <asmadeus@codewreck.org>
-Date: Fri, 20 Nov 2020 15:10:50 +0000
-Message-ID: <160588505087.3465195.3378506836842491220.stgit@warthog.procyon.org.uk>
+Date: Fri, 20 Nov 2020 15:11:02 +0000
+Message-ID: <160588506244.3465195.14835834211702469652.stgit@warthog.procyon.org.uk>
 In-Reply-To: <160588455242.3465195.3214733858273019178.stgit@warthog.procyon.org.uk>
 References: <160588455242.3465195.3214733858273019178.stgit@warthog.procyon.org.uk>
 User-Agent: StGit/0.23
 MIME-Version: 1.0
-X-Scanned-By: MIMEDefang 2.79 on 10.5.11.15
+X-Scanned-By: MIMEDefang 2.84 on 10.5.11.22
 X-Spam-Score: -0.1 (/)
 X-Spam-Report: Spam Filtering performed by mx.sourceforge.net.
  See http://spamassassin.org/tag/ for more details.
  -0.0 RCVD_IN_DNSWL_NONE     RBL: Sender listed at https://www.dnswl.org/, no
- trust [63.128.21.124 listed in list.dnswl.org]
- 0.0 RCVD_IN_MSPIKE_H4      RBL: Very Good reputation (+4)
- [63.128.21.124 listed in wl.mailspike.net]
+ trust [216.205.24.124 listed in list.dnswl.org]
+ 0.0 RCVD_IN_MSPIKE_H3      RBL: Good reputation (+3)
+ [216.205.24.124 listed in wl.mailspike.net]
  -0.0 SPF_PASS               SPF: sender matches SPF record
  0.0 SPF_HELO_NONE          SPF: HELO does not publish an SPF Record
  -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from author's
@@ -92,9 +92,9 @@ X-Spam-Report: Spam Filtering performed by mx.sourceforge.net.
  not necessarily valid
  0.0 RCVD_IN_MSPIKE_WL      Mailspike good senders
  -0.0 DKIMWL_WL_HIGH         DKIMwl.org - High trust sender
-X-Headers-End: 1kg84C-00Acs2-1W
-Subject: [V9fs-developer] [RFC PATCH 38/76] cachefiles: Split
- cachefiles_drop_object() up a bit
+X-Headers-End: 1kg84I-00ActI-2p
+Subject: [V9fs-developer] [RFC PATCH 39/76] cachefiles: Implement new
+ fscache I/O backend API
 X-BeenThere: v9fs-developer@lists.sourceforge.net
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -116,90 +116,204 @@ Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: v9fs-developer-bounces@lists.sourceforge.net
 
-Split cachefiles_drop_object() up a bit to make it easier to modify later.
+Implement the new fscache I/O backend API in cachefiles.  The
+cachefiles_object struct carries a non-accounted file to the cachefiles
+object (so that it doesn't cause ENFILE).
 
 Signed-off-by: David Howells <dhowells@redhat.com>
 ---
 
- fs/cachefiles/interface.c |   58 ++++++++++++++++++++++++++++++---------------
- 1 file changed, 39 insertions(+), 19 deletions(-)
+ fs/cachefiles/Makefile    |    1 +
+ fs/cachefiles/interface.c |   13 +++++++
+ fs/cachefiles/internal.h  |   19 ++++++++++
+ fs/cachefiles/io.c        |   85 +++++++++++++++++++++++++++++++++++++++++++++
+ fs/cachefiles/namei.c     |    3 ++
+ 5 files changed, 120 insertions(+), 1 deletion(-)
+ create mode 100644 fs/cachefiles/io.c
 
+diff --git a/fs/cachefiles/Makefile b/fs/cachefiles/Makefile
+index 3455d3646547..d894d317d6e7 100644
+--- a/fs/cachefiles/Makefile
++++ b/fs/cachefiles/Makefile
+@@ -7,6 +7,7 @@ cachefiles-y := \
+ 	bind.o \
+ 	daemon.o \
+ 	interface.o \
++	io.o \
+ 	key.o \
+ 	main.o \
+ 	namei.o \
 diff --git a/fs/cachefiles/interface.c b/fs/cachefiles/interface.c
-index e40118e65e25..3f6d2be690bc 100644
+index 3f6d2be690bc..dc8c875223bb 100644
 --- a/fs/cachefiles/interface.c
 +++ b/fs/cachefiles/interface.c
-@@ -192,6 +192,42 @@ static void cachefiles_update_object(struct fscache_object *_object)
- 	_leave("");
+@@ -453,6 +453,18 @@ static unsigned int cachefiles_get_object_usage(const struct fscache_object *_ob
+ 	return atomic_read(&object->usage);
  }
  
-+/*
-+ * Commit changes to the object as we drop it.
-+ */
-+static void cachefiles_commit_object(struct cachefiles_object *object,
-+				     struct cachefiles_cache *cache)
++static const struct fscache_op_ops cachefiles_io_ops = {
++	.wait_for_operation	= __fscache_wait_for_operation,
++	.end_operation		= __fscache_end_operation,
++	.read			= cachefiles_read,
++	.write			= cachefiles_write,
++};
++
++static void cachefiles_begin_operation(struct fscache_op_resources *opr)
 +{
++	opr->ops = &cachefiles_io_ops;
 +}
 +
+ const struct fscache_cache_ops cachefiles_cache_ops = {
+ 	.name			= "cachefiles",
+ 	.alloc_object		= cachefiles_alloc_object,
+@@ -466,4 +478,5 @@ const struct fscache_cache_ops cachefiles_cache_ops = {
+ 	.put_object		= cachefiles_put_object,
+ 	.get_object_usage	= cachefiles_get_object_usage,
+ 	.sync_cache		= cachefiles_sync_cache,
++	.begin_operation	= cachefiles_begin_operation,
+ };
+diff --git a/fs/cachefiles/internal.h b/fs/cachefiles/internal.h
+index 16d15291a629..caa6dfbaf333 100644
+--- a/fs/cachefiles/internal.h
++++ b/fs/cachefiles/internal.h
+@@ -115,6 +115,22 @@ extern const struct fscache_cache_ops cachefiles_cache_ops;
+ extern struct fscache_object *cachefiles_grab_object(struct fscache_object *_object,
+ 						     enum fscache_obj_ref_trace why);
+ 
 +/*
-+ * Finalise and object and close the VFS structs that we have.
++ * io.c
 + */
-+static void cachefiles_clean_up_object(struct cachefiles_object *object,
-+				       struct cachefiles_cache *cache,
-+				       bool invalidate)
-+{
-+	if (invalidate && &object->fscache != cache->cache.fsdef) {
-+		_debug("- inval object OBJ%x", object->fscache.debug_id);
-+		cachefiles_delete_object(cache, object);
-+	} else {
-+		cachefiles_commit_object(object, cache);
-+	}
-+
-+	/* close the filesystem stuff attached to the object */
-+	if (object->backing_file)
-+		fput(object->backing_file);
-+	object->backing_file = NULL;
-+
-+	if (object->backer != object->dentry)
-+		dput(object->backer);
-+	object->backer = NULL;
-+
-+	cachefiles_unmark_inode_in_use(object, object->dentry);
-+	dput(object->dentry);
-+	object->dentry = NULL;
-+}
++extern int cachefiles_read(struct fscache_op_resources *opr,
++			   loff_t start_pos,
++			   struct iov_iter *iter,
++			   bool seek_data,
++			   fscache_io_terminated_t term_func,
++			   void *term_func_priv);
++extern int cachefiles_write(struct fscache_op_resources *opr,
++			    loff_t start_pos,
++			    struct iov_iter *iter,
++			    fscache_io_terminated_t term_func,
++			    void *term_func_priv);
++extern bool cachefiles_open_object(struct cachefiles_object *obj);
 +
  /*
-  * discard the resources pinned by an object and effect retirement if
-  * requested
-@@ -223,25 +259,9 @@ static void cachefiles_drop_object(struct fscache_object *_object,
- 	 * before we set it up.
- 	 */
- 	if (object->dentry) {
--		if (invalidate && _object != cache->cache.fsdef) {
--			_debug("- inval object OBJ%x", object->fscache.debug_id);
--			cachefiles_begin_secure(cache, &saved_cred);
--			cachefiles_delete_object(cache, object);
--			cachefiles_end_secure(cache, saved_cred);
--		}
--
--		/* close the filesystem stuff attached to the object */
--		if (object->backing_file)
--			fput(object->backing_file);
--		object->backing_file = NULL;
--
--		if (object->backer != object->dentry)
--			dput(object->backer);
--		object->backer = NULL;
--
--		cachefiles_unmark_inode_in_use(object, object->dentry);
--		dput(object->dentry);
--		object->dentry = NULL;
-+		cachefiles_begin_secure(cache, &saved_cred);
-+		cachefiles_clean_up_object(object, cache, invalidate);
-+		cachefiles_end_secure(cache, saved_cred);
+  * key.c
+  */
+@@ -216,7 +232,8 @@ do {									\
+ 									\
+ 	___cache = container_of((object)->fscache.cache,		\
+ 				struct cachefiles_cache, cache);	\
+-	cachefiles_io_error(___cache, FMT, ##__VA_ARGS__);		\
++	cachefiles_io_error(___cache, FMT " [o=%08x]", ##__VA_ARGS__,	\
++			    object->fscache.debug_id);			\
+ } while (0)
+ 
+ 
+diff --git a/fs/cachefiles/io.c b/fs/cachefiles/io.c
+new file mode 100644
+index 000000000000..f1d5976aa28c
+--- /dev/null
++++ b/fs/cachefiles/io.c
+@@ -0,0 +1,85 @@
++// SPDX-License-Identifier: GPL-2.0-or-later
++/* Data I/O routines
++ *
++ * Copyright (C) 2020 Red Hat, Inc. All Rights Reserved.
++ * Written by David Howells (dhowells@redhat.com)
++ */
++
++#include <linux/mount.h>
++#include <linux/slab.h>
++#include <linux/file.h>
++#include <linux/uio.h>
++#include <linux/xattr.h>
++#include "internal.h"
++#include <trace/events/fscache.h>
++
++/*
++ * Initiate a read from the cache.
++ */
++int cachefiles_read(struct fscache_op_resources *opr,
++		    loff_t start_pos,
++		    struct iov_iter *iter,
++		    bool seek_data,
++		    fscache_io_terminated_t term_func,
++		    void *term_func_priv)
++{
++	fscache_wait_for_operation(opr, FSCACHE_WANT_READ);
++	fscache_count_io_operation(opr->object->cookie);
++	if (term_func)
++		term_func(term_func_priv, -ENODATA);
++	return -ENODATA;
++}
++
++/*
++ * Initiate a write to the cache.
++ */
++int cachefiles_write(struct fscache_op_resources *opr,
++		     loff_t start_pos,
++		     struct iov_iter *iter,
++		     fscache_io_terminated_t term_func,
++		     void *term_func_priv)
++{
++	fscache_wait_for_operation(opr, FSCACHE_WANT_WRITE);
++	fscache_count_io_operation(opr->object->cookie);
++	if (term_func)
++		term_func(term_func_priv, -ENOBUFS);
++	return -ENOBUFS;
++}
++
++/*
++ * Open a cache object.
++ */
++bool cachefiles_open_object(struct cachefiles_object *object)
++{
++	struct cachefiles_cache *cache =
++		container_of(object->fscache.cache, struct cachefiles_cache, cache);
++	struct file *file;
++	struct path path;
++
++	path.mnt = cache->mnt;
++	path.dentry = object->backer;
++
++	file = open_with_fake_path(&path,
++				   O_RDWR | O_LARGEFILE | O_DIRECT,
++				   d_backing_inode(object->backer),
++				   cache->cache_cred);
++	if (IS_ERR(file))
++		goto error;
++
++	if (!S_ISREG(file_inode(file)->i_mode))
++		goto error_file;
++
++	if (unlikely(!file->f_op->read_iter) ||
++	    unlikely(!file->f_op->write_iter)) {
++		pr_notice("Cache does not support read_iter and write_iter\n");
++		goto error_file;
++	}
++
++	object->backing_file = file;
++	return true;
++
++error_file:
++	fput(file);
++error:
++	return false;
++}
+diff --git a/fs/cachefiles/namei.c b/fs/cachefiles/namei.c
+index 0a7e2031efa2..4b515054d92e 100644
+--- a/fs/cachefiles/namei.c
++++ b/fs/cachefiles/namei.c
+@@ -490,6 +490,9 @@ bool cachefiles_walk_to_object(struct cachefiles_object *parent,
+ 		} else {
+ 			BUG(); // TODO: open file in data-class subdir
+ 		}
++
++		if (!cachefiles_open_object(object))
++			goto check_error;
  	}
  
- 	_leave("");
+ 	if (object->new)
 
 
 
