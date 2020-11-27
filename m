@@ -2,83 +2,81 @@ Return-Path: <v9fs-developer-bounces@lists.sourceforge.net>
 X-Original-To: lists+v9fs-developer@lfdr.de
 Delivered-To: lists+v9fs-developer@lfdr.de
 Received: from lists.sourceforge.net (lists.sourceforge.net [216.105.38.7])
-	by mail.lfdr.de (Postfix) with ESMTPS id ABA752C4E0C
-	for <lists+v9fs-developer@lfdr.de>; Thu, 26 Nov 2020 05:38:53 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 438EB2C65DD
+	for <lists+v9fs-developer@lfdr.de>; Fri, 27 Nov 2020 13:45:34 +0100 (CET)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.sourceforge.net; s=beta; h=Message-Id:Content-Transfer-Encoding:
-	Content-Type:Cc:Reply-To:From:List-Subscribe:List-Help:List-Post:List-Archive
-	:List-Unsubscribe:List-Id:Subject:Date:To:Content-Description:MIME-Version:
-	Sender:Content-ID:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:
-	Resent-Message-ID:In-Reply-To:References:List-Owner;
-	bh=iCl+8ufk+0hA7p8jPmh3RbHNfDVrnHtFYp5jOXtTe40=; b=mKfiNwruwoOPPRho+a237Yg4iV
-	buuRQ6/rRS2koqgM77cuYnu61mVfoGflQH+UHQOLtJ1xRMQFA1NdCYSpUGoFgDTfSk4I5T6+aUcFI
-	jAw7Pado5ESTD7lPKBBqFUq5+4QoX+wNx3bhCTNlXIPrV3B9+5GU7oCatNTTcJ2jQKyc=;
+	d=lists.sourceforge.net; s=beta; h=Content-Transfer-Encoding:Content-Type:
+	Reply-To:From:List-Subscribe:List-Help:List-Post:List-Archive:
+	List-Unsubscribe:List-Id:Subject:MIME-Version:Message-ID:Date:To:Sender:Cc:
+	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+	Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:List-Owner;
+	bh=twYpeVo4M4whC4BIrbb+YZun6WLKgWvWDPv5QM8Ds/c=; b=WBS9ms+MO+7CE11EHRrFrZgSup
+	gMqdjhf8ubgWt7hW4ix6m5N9vo+2XVCRIYh1GiM8RVn+YVvWzIHqVQufsnJ5O0k99Xt1bsWVeVfpl
+	/7PIsjzVUyBbM41/m2vpnpcvn0ZIg2qGGwwNke3mpx5Jlf0rSE9mT3zDLxvZwJ/VbUfs=;
 Received: from [127.0.0.1] (helo=sfs-ml-4.v29.lw.sourceforge.com)
 	by sfs-ml-4.v29.lw.sourceforge.com with esmtp (Exim 4.90_1)
 	(envelope-from <v9fs-developer-bounces@lists.sourceforge.net>)
-	id 1ki93T-0008SP-70; Thu, 26 Nov 2020 04:38:51 +0000
+	id 1kid7z-0002Zs-6c; Fri, 27 Nov 2020 12:45:31 +0000
 Received: from [172.30.20.202] (helo=mx.sourceforge.net)
  by sfs-ml-4.v29.lw.sourceforge.com with esmtps
  (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.90_1)
- (envelope-from <sales@getmailgoesbulk.life>) id 1ki93R-0008SI-KI
- for v9fs-developer@lists.sourceforge.net; Thu, 26 Nov 2020 04:38:50 +0000
+ (envelope-from <pt@hinewdubai.pw>) id 1kid7y-0002Zk-3t
+ for v9fs-developer@lists.sourceforge.net; Fri, 27 Nov 2020 12:45:30 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=sourceforge.net; s=x; h=Reply-To:Date:From:To:Subject:Content-Description:
- Content-Transfer-Encoding:MIME-Version:Content-Type:Sender:Message-ID:Cc:
- Content-ID:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:
- Resent-Message-ID:In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:
+ d=sourceforge.net; s=x; h=Content-Type:MIME-Version:Message-ID:Date:Subject:
+ To:From:Sender:Reply-To:Cc:Content-Transfer-Encoding:Content-ID:
+ Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
+ :Resent-Message-ID:In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:
  List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=4ogooD6J18spkrwYlsVcLBz0qISNAConOQYOtzkd21Y=; b=lqPcBYs0wZhyWwRoSTpbxBvrvr
- OsIf1pHg/gydD4tLslyjFMgCKim6mrqHDN/xK22sPPmxnT532A3QqCA4bc2SJ/uamO9ABaEbS4CYY
- RFdh8N6d9HQDKdzYBPsE0mzJ9zvR/wyDeZxkS/AkiXx1wM8ZREIyqU8pOcguqGObL4c8=;
+ bh=WhLTfXNKIxA+v1uByff3lXoTWRc3e4Dfognnpm7d4AM=; b=Y/+3h9ASTxjXcPYjGhcWkDU8RM
+ jn5WMC7zM4yFmXB1fzbW7yCI0kMi/3RBUB4ucmEZd3wrjMJC2w/dgWDcH85GsnJyL34OW1MhzhdQ5
+ KIsqDEUtF0YqJxwV0wbiAWE4LTev528Tp8r0vwfMvBDw782hrrnV6uZPH/eVVpeoZoV4=;
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
- ; h=Reply-To:Date:From:To:Subject:Content-Description:
- Content-Transfer-Encoding:MIME-Version:Content-Type:Sender:Message-ID:Cc:
- Content-ID:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:
- Resent-Message-ID:In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:
- List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=4ogooD6J18spkrwYlsVcLBz0qISNAConOQYOtzkd21Y=; b=hrfMYYNVoZyUhhWuuxxo3wdlC4
- qHoGrBS1QyzFEK5+8RwV7KlsFMs1m+5Eh0G4Pxa0xmvTKNspTQGLTvm59gdWVHhp8wo8WaLyAGFNO
- yRaU7GUt+ITzary876zhHrb+lHcP7ehi1XVSQgvcCe9PQeeT+gvsv74om0TV14JVyTHo=;
-Received: from getmailgoesbulk.life ([106.75.129.202])
+ ;
+ h=Content-Type:MIME-Version:Message-ID:Date:Subject:To:From:Sender:Reply-To
+ :Cc:Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+ Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:
+ References:List-Id:List-Help:List-Unsubscribe:List-Subscribe:List-Post:
+ List-Owner:List-Archive; bh=WhLTfXNKIxA+v1uByff3lXoTWRc3e4Dfognnpm7d4AM=; b=f
+ yqMYfmZBwOBX2nK3sE3XN96kxYHwZ7RMBYXdgu0vDhzQL3t6v/IBF3jBMOm3q5PlShKlejF9YU6KX
+ 8931h6mJB4q7n62oo3SNtF4tRLjA/SbtbmRiuqWITCWsYRxZCYgzrzYhxTu5BgTPaFpi/T6xfcW9c
+ hZEjGLw1TyhJ6p+g=;
+Received: from ns1.hinewdubai.pw ([104.168.245.162] helo=serve0.hinewdubai.pw)
  by sfi-mx-3.v28.lw.sourceforge.com with esmtps
  (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.92.2)
- id 1ki93M-0059n2-44
- for v9fs-developer@lists.sourceforge.net; Thu, 26 Nov 2020 04:38:49 +0000
-DKIM-Signature: v=1; a=rsa-sha1; c=relaxed/relaxed; s=default;
- d=getmailgoesbulk.life; 
- h=Content-Type:MIME-Version:Content-Transfer-Encoding:Content-Description:Subject:To:From:Date:Reply-To;
- i=sales@getmailgoesbulk.life; bh=NVQQjQ/r7MlCYpm18XasehD7GPU=;
- b=Jp5kEmPrDnjHRLCbGKibLAIma9Vkh/TYSItiZACBZFB+Kg/sRdO2GayDtZWkewboVkLnYcHzihFv
- DTlk0tpGGOO2rIxMv1sbc4+gpjP0ENiLWnmT0b2Q0IWDhAGvUUBiZxEC/zfwDyMxbaCJ7sKqraWr
- oyFg6zRqJdR8sJHBnRs=
-DomainKey-Signature: a=rsa-sha1; c=nofws; q=dns; s=default;
- d=getmailgoesbulk.life; 
- b=rq5lxZv+18P0LmcGqx/afr+inkjHSwDQj4fx0lkm00P5c8l/+GNosYmyZ5oyNMS0/ILeNwmcIBkc
- qtwvAq/Kyo0zD94gHvrVs4YuV4j1UttZ+a4pEN6Dh7d2ArIQZekWyX/NjPmQdDKl0j19R8RWvTJP
- ihu8V78Lr5N+dX6acHo=;
-MIME-Version: 1.0
-Content-Description: Mail message body
+ id 1kid7u-007Cc4-Oa
+ for v9fs-developer@lists.sourceforge.net; Fri, 27 Nov 2020 12:45:30 +0000
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; s=default;
+ d=hinewdubai.pw; 
+ h=From:To:Subject:Date:Message-ID:MIME-Version:Content-Type;
+ i=pt@hinewdubai.pw;
+ bh=WhLTfXNKIxA+v1uByff3lXoTWRc3e4Dfognnpm7d4AM=;
+ b=n+SAxaLpyvDqXT0xajSYhP5n7e8uZgctTrvGTMgPhf12pq+oxaqjtJZSbRN1y2oYYTIOqKuLOebz
+ +cktyEX6ntPt8m+7BgF8ZgLXeX0GOfS98VfuqqQgC2/25vuHmhvmwP3jOfutxCkG7+ptxjBQjB14
+ 4x3bBCfb5r3iB/Ljm4M=
 To: v9fs-developer@lists.sourceforge.net
-Date: Thu, 26 Nov 2020 12:38:27 +0800
-X-Spam-Score: 6.1 (++++++)
+Date: 27 Nov 2020 04:45:24 -0800
+Message-ID: <20201127044524.18C5FC62F77334A8@hinewdubai.pw>
+MIME-Version: 1.0
+X-Spam-Score: 1.4 (+)
 X-Spam-Report: Spam Filtering performed by mx.sourceforge.net.
  See http://spamassassin.org/tag/ for more details.
- -0.0 SPF_HELO_PASS          SPF: HELO matches SPF record
+ 0.0 URIBL_BLOCKED ADMINISTRATOR NOTICE: The query to URIBL was blocked.
+ See
+ http://wiki.apache.org/spamassassin/DnsBlocklists#dnsbl-block
+ for more information. [URIs: dweh.com]
+ 1.5 RCVD_IN_PSBL           RBL: Received via a relay in PSBL
+ [104.168.245.162 listed in psbl.surriel.com]
  -0.0 SPF_PASS               SPF: sender matches SPF record
- 0.2 FREEMAIL_REPLYTO_END_DIGIT Reply-To freemail username ends in digit
- (charleswjacksonjr662[at]outlook.com)
+ 0.0 SPF_HELO_NONE          SPF: HELO does not publish an SPF Record
  -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from author's
  domain
  -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
  0.1 DKIM_SIGNED            Message has a DKIM or DK signature,
  not necessarily valid
- 1.0 MISSING_MID            Missing Message-Id: header
- 0.0 LOTS_OF_MONEY          Huge... sums of money
- 2.5 MONEY_FREEMAIL_REPTO   Lots of money from someone using free email?
- 2.5 FREEMAIL_FORGED_REPLYTO Freemail in Reply-To, but not From
-X-Headers-End: 1ki93M-0059n2-44
-Subject: [V9fs-developer] Mr.Charles
+X-Headers-End: 1kid7u-007Cc4-Oa
+X-Content-Filtered-By: Mailman/MimeDel 2.1.21
+Subject: Re: [V9fs-developer] new order & signed Profoma Invoice
 X-BeenThere: v9fs-developer@lists.sourceforge.net
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -90,24 +88,28 @@ List-Post: <mailto:v9fs-developer@lists.sourceforge.net>
 List-Help: <mailto:v9fs-developer-request@lists.sourceforge.net?subject=help>
 List-Subscribe: <https://lists.sourceforge.net/lists/listinfo/v9fs-developer>, 
  <mailto:v9fs-developer-request@lists.sourceforge.net?subject=subscribe>
-From: sales--- via V9fs-developer <v9fs-developer@lists.sourceforge.net>
-Reply-To: charleswjacksonjr662@outlook.com
-Cc: sales@getmailgoesbulk.life
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+From: Anca Larisa Burneci via V9fs-developer
+ <v9fs-developer@lists.sourceforge.net>
+Reply-To: Anca Larisa Burneci <pt@hinewdubai.pw>
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: v9fs-developer-bounces@lists.sourceforge.net
-Message-Id: <E1ki93T-0008SP-70@sfs-ml-4.v29.lw.sourceforge.com>
 
-Mein Name ist Charles W. Jackson Jr. Ich gewann eine Spende von 343 Milioni=
-s US-Dollar Gewinner Jackpot. Ich leide derzeit an Hirntumor und wei=DF nic=
-ht, ob ich ihn =FCberlebe. Aus diesem Grund habe ich beschlossen, 1.500.000=
-Millionen Euro zu spenden, jede 6 Menschen auf der ganzen Welt f=FCr Sie un=
-d die Armen in Ihrer Gemeinschaft und Sie sind einer der gl=FCcklichen Mens=
-chen Bitte mailen Sie mir: f=FCr weitere Informationen, um meine Spende auf=
-richtig zu erhalten, =
+Hello Sir,
+ 
+Did you receive my last email?
+Please send confirmation of our new order attached urgently.
+Also see attached the signed Proforma Invoice of our last Order.
 
+Regards
 
 
+Anca Larisa Burneci
+DongweHealth Products Manufacture Co., Ltd.
+No.228 Shihui Rd, Songjiang,CAMBODIA
+Mobile: +81-13386019828
+Fax: +81-21-57784148
+E-mail: import@dweh.com
 _______________________________________________
 V9fs-developer mailing list
 V9fs-developer@lists.sourceforge.net
