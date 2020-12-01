@@ -2,60 +2,61 @@ Return-Path: <v9fs-developer-bounces@lists.sourceforge.net>
 X-Original-To: lists+v9fs-developer@lfdr.de
 Delivered-To: lists+v9fs-developer@lfdr.de
 Received: from lists.sourceforge.net (lists.sourceforge.net [216.105.38.7])
-	by mail.lfdr.de (Postfix) with ESMTPS id C46E12CA663
-	for <lists+v9fs-developer@lfdr.de>; Tue,  1 Dec 2020 15:58:04 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 62DE62CA6CE
+	for <lists+v9fs-developer@lfdr.de>; Tue,  1 Dec 2020 16:17:30 +0100 (CET)
 Received: from [127.0.0.1] (helo=sfs-ml-4.v29.lw.sourceforge.com)
 	by sfs-ml-4.v29.lw.sourceforge.com with esmtp (Exim 4.90_1)
 	(envelope-from <v9fs-developer-bounces@lists.sourceforge.net>)
-	id 1kk76Q-0003LE-QZ; Tue, 01 Dec 2020 14:58:02 +0000
+	id 1kk7PF-0004BF-0W; Tue, 01 Dec 2020 15:17:29 +0000
 Received: from [172.30.20.202] (helo=mx.sourceforge.net)
  by sfs-ml-4.v29.lw.sourceforge.com with esmtps
  (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.90_1)
- (envelope-from <asmadeus@notk.org>) id 1kk76P-0003L3-Rg
- for v9fs-developer@lists.sourceforge.net; Tue, 01 Dec 2020 14:58:01 +0000
+ (envelope-from <asmadeus@notk.org>) id 1kk7PC-0004B4-RD
+ for v9fs-developer@lists.sourceforge.net; Tue, 01 Dec 2020 15:17:26 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=sourceforge.net; s=x; h=In-Reply-To:Content-Transfer-Encoding:Content-Type:
- MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Sender:Reply-To:
+ d=sourceforge.net; s=x; h=In-Reply-To:Content-Type:MIME-Version:References:
+ Message-ID:Subject:Cc:To:From:Date:Sender:Reply-To:Content-Transfer-Encoding:
  Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
  Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
  List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=KWM9/yD4Vf2GzZmCpfsa4i12NAQl3U3t4hvjjC22bOg=; b=iY23OBi0b+HyAyj0Zj7m7t5XRd
- PBghF0MYTcCPfyLEP0u8Wy+fJ4rF9aSX/LjAsE0laIWKWFRXS92OcXlBclXOdw0Ix/vBGpAxNtho3
- F4QBTFqjwHkJ0NjzMfHciJmwiT7edky9Dw1mxkqew55fUohTtdQ2qTa4mQ57lpepXwKU=;
+ bh=W1804/WmEJKiPKMrETIzFsZscClPHYpVI3Xu7UowPbA=; b=VsCczE8P7LR5iUVqvFbZ1SCFSh
+ oFpbgVdfpuJC6nzkmI7jMFvL8l5OnrKSzyzvcOorNAL7EM4k5nYHjDrTG0X9hCsYYGT7eSTeqV1EO
+ 5pJ1Qt4J+RTK1sg14HDvCn/F6kZ7u6Yv1W+cNQtlv8q6/EP8Fky4qRNCloq6r/pMPkMY=;
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  ;
- h=In-Reply-To:Content-Transfer-Encoding:Content-Type:MIME-Version:
- References:Message-ID:Subject:Cc:To:From:Date:Sender:Reply-To:Content-ID:
+ h=In-Reply-To:Content-Type:MIME-Version:References:Message-ID:Subject:Cc:To
+ :From:Date:Sender:Reply-To:Content-Transfer-Encoding:Content-ID:
  Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
  :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
  List-Post:List-Owner:List-Archive;
- bh=KWM9/yD4Vf2GzZmCpfsa4i12NAQl3U3t4hvjjC22bOg=; b=ZS5g9E2kCZBX6+IQ7zWk3+EReq
- cAFboLfc83W86PqE38GXf16vJU0Byn0T5IOcNEuPwOETY/rYrGlFIi1L9EEQT/y5JQKMg4Gsmrxat
- cjY0mAwyNpbaD4I1DQDTZQyMDbZrTLZPIW6901a7qP2x3icOCsjn38cujS7I5l2HrBss=;
+ bh=W1804/WmEJKiPKMrETIzFsZscClPHYpVI3Xu7UowPbA=; b=JaruXY9h+Ztzmqafz9vpGoHR13
+ bCrGAGeCmSeei+wqXjW0I/avjCs6T/UZ/5607jK2Mu/5XPrJLoUN69XI3s3neNjeuzeu3a/o3uJ3j
+ k4EeQh3EwBOEvGBg9B4rqLiCsOJC13U9ooPFKBhVX/vHKWm0BtqHKKDjRtmv+OfXeAy8=;
 Received: from nautica.notk.org ([91.121.71.147])
- by sfi-mx-3.v28.lw.sourceforge.com with esmtps
+ by sfi-mx-1.v28.lw.sourceforge.com with esmtps
  (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.92.2)
- id 1kk76F-00E97B-QK
- for v9fs-developer@lists.sourceforge.net; Tue, 01 Dec 2020 14:58:01 +0000
+ id 1kk7P5-009LQc-Pz
+ for v9fs-developer@lists.sourceforge.net; Tue, 01 Dec 2020 15:17:26 +0000
 Received: by nautica.notk.org (Postfix, from userid 1001)
- id 9C8B2C009; Tue,  1 Dec 2020 15:57:43 +0100 (CET)
+ id 5E97BC009; Tue,  1 Dec 2020 16:17:13 +0100 (CET)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=codewreck.org; s=2;
- t=1606834663; bh=KWM9/yD4Vf2GzZmCpfsa4i12NAQl3U3t4hvjjC22bOg=;
+ t=1606835833; bh=W1804/WmEJKiPKMrETIzFsZscClPHYpVI3Xu7UowPbA=;
  h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
- b=MFKTVGZOh4oWAw0CakGRic0UDGpkp8pWIkr8bX5tDScoKsPIdHhLZAWk7YX8av9En
- mlfIhkeYy0qBFbIT23fFHxnHdHnNW2RP3QYYhvN40UAT1k/oKigfn5rXuYTYdCFo/u
- Uk/Y/NQ9nUNrFo5toEIyczPDT+ggFf72SRjtAFMByDL+EHqSaRz7leYda06Aa3V7fY
- xKJjo8o7sfWmrFr2M7TcGruAXAKoubEHJFdiiPXc+0n9rAb2qtKfU2zPnTDR5F2MMe
- 14G80x3mJEutD6kVcO3yL0lpLwdNl0Z5/J2KXRLk38BtUTk1ugGO/84EPtmqLydnMX
- UWifdvQnHNoZw==
-Date: Tue, 1 Dec 2020 15:57:28 +0100
+ b=bMNh4jh+h4C3tOWqO1+UCkfvkfxA/exRkYX3v1IDZEbBJISZZHYQwBBZV4HMD1AxJ
+ l8hTuf3oRSqZJdIK9x+XnEQPfouUtnBRf2ezXUemULE59mWF4OKDAIbJdRBqWrbJpd
+ COrSPeFg1ZdIp2W0mlvbcyo5zto3SNxzKEdElfeyNhh3awF5TnOjas5YJrI6llZ7kt
+ ngjDEAgYJmS9nK4l0WvmmlsoyfdEjByOkOfDWZ3Y5tk2F/+GgdDJKOP7mHb/9DAn5H
+ Y1w04hLHPXBoNGw/jucX4cAyji0OS8fNmq/28ZWrZRhVZYtrXVlM5aQl6Edj0Jus63
+ 3VL0z6h2MJd3g==
+Date: Tue, 1 Dec 2020 16:16:58 +0100
 From: Dominique Martinet <asmadeus@codewreck.org>
 To: Toke =?utf-8?Q?H=C3=B8iland-J=C3=B8rgensen?= <toke@redhat.com>
-Message-ID: <20201201145728.GA11144@nautica>
+Message-ID: <20201201151658.GA13180@nautica>
 References: <20201201135409.55510-1-toke@redhat.com>
+ <20201201145728.GA11144@nautica>
 MIME-Version: 1.0
 Content-Disposition: inline
-In-Reply-To: <20201201135409.55510-1-toke@redhat.com>
+In-Reply-To: <20201201145728.GA11144@nautica>
 User-Agent: Mutt/1.5.21 (2010-09-15)
 X-Spam-Score: 0.1 (/)
 X-Spam-Report: Spam Filtering performed by mx.sourceforge.net.
@@ -69,7 +70,7 @@ X-Spam-Report: Spam Filtering performed by mx.sourceforge.net.
  -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
  0.1 DKIM_SIGNED            Message has a DKIM or DK signature,
  not necessarily valid
-X-Headers-End: 1kk76F-00E97B-QK
+X-Headers-End: 1kk7P5-009LQc-Pz
 Subject: Re: [V9fs-developer] [PATCH] fs: 9p: add generic splice_read file
  operations
 X-BeenThere: v9fs-developer@lists.sourceforge.net
@@ -85,42 +86,38 @@ List-Subscribe: <https://lists.sourceforge.net/lists/listinfo/v9fs-developer>,
  <mailto:v9fs-developer-request@lists.sourceforge.net?subject=subscribe>
 Cc: Eric Van Hensbergen <ericvh@gmail.com>, Latchesar Ionkov <lucho@ionkov.net>,
  linux-kernel@vger.kernel.org, v9fs-developer@lists.sourceforge.net
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: v9fs-developer-bounces@lists.sourceforge.net
 
-VG9rZSBIw7hpbGFuZC1Kw7hyZ2Vuc2VuIHdyb3RlIG9uIFR1ZSwgRGVjIDAxLCAyMDIwOgo+IFRo
-ZSB2OWZzIGZpbGUgb3BlcmF0aW9ucyB3ZXJlIG1pc3NpbmcgdGhlIHNwbGljZV9yZWFkIG9wZXJh
-dGlvbnMsIHdoaWNoCj4gYnJlYWtzIHNlbmRmaWxlKCkgb2YgZmlsZXMgb24gc3VjaCBhIGZpbGVz
-eXN0ZW0uIEkgZGlzY292ZXJlZCB0aGlzIHdoaWxlCj4gdHJ5aW5nIHRvIGxvYWQgYW4gZUJQRiBw
-cm9ncmFtIHVzaW5nIGlwcm91dGUyIGluc2lkZSBhICd2aXJ0bWUnIGVudmlyb25tZW50Cj4gd2hp
-Y2ggdXNlcyA5cGZzIGZvciB0aGUgdmlydHVhbCBmaWxlIHN5c3RlbS4gaXByb3V0ZTIgcmVsaWVz
-IG9uIHNlbmRmaWxlKCkKPiB3aXRoIGFuIEFGX0FMRyBzb2NrZXQgdG8gaGFzaCBmaWxlcywgd2hp
-Y2ggd2FzIGVycm9yaW5nIG91dCBpbiB0aGUgdmlydHVhbAo+IGVudmlyb25tZW50Lgo+IAo+IFNp
-bmNlIGdlbmVyaWNfZmlsZV9zcGxpY2VfcmVhZCgpIHNlZW1zIHRvIGp1c3QgaW1wbGVtZW50IHNw
-bGljZV9yZWFkIGluCj4gdGVybXMgb2YgdGhlIHJlYWRfaXRlciBvcGVyYXRpb24sIEkgc2ltcGx5
-IGFkZGVkIHRoZSBnZW5lcmljIGltcGxlbWVudGF0aW9uCj4gdG8gdGhlIGZpbGUgb3BlcmF0aW9u
-cywgd2hpY2ggZml4ZWQgdGhlIGVycm9yIEkgd2FzIHNlZWluZy4gQSBxdWljayBncmVwCj4gaW5k
-aWNhdGVzIHRoYXQgdGhpcyBpcyB3aGF0IG1vc3Qgb3RoZXIgZmlsZSBzeXN0ZW1zIGRvIGFzIHdl
-bGwuCgpHb29kIGNhdGNoLCBtaWdodCBhcyB3ZWxsIGRvIHRoYXQuCkknbSBzdXJwcmlzZWQgeW91
-IGRpZG4ndCBoaXQgdGhlIHNhbWUgcHJvYmxlbSB3aXRoIHNwbGljZV93cml0ZT8KCkkgc2VlIGl0
-ZXJfZmlsZV9zcGxpY2Vfd3JpdGUgYmVpbmcgdXNlZCBmb3IgaXQgb24gbWFueSBmaWxlc3lzdGVt
-cywKaXQncyBwcm9iYWJseSBiZXR0ZXIgdG8gYWRkIGJvdGg/CgoKPiBUaGUgb25seSBjYXZlYXQg
-aXMgdGhhdCBteSB0ZXN0IGNhc2Ugd2FzIG9ubHkgaGl0dGluZyB0aGUKPiB2OWZzX2ZpbGVfb3Bl
-cmF0aW9uc19kb3RsIGltcGxlbWVudGF0aW9uLiBJIGFkZGVkIGl0IHRvIHRoZSBvdGhlciBmaWxl
-Cj4gb3BlcmF0aW9ucyBzdHJ1Y3RzIGFzIHdlbGwgYmVjYXVzZSBpdCBzZWVtZWQgbGlrZSB0aGUg
-c2Vuc2libGUgdGhpbmcgdG8gZG8KPiBnaXZlbiB0aGF0IHRoZXkgYWxsIGltcGxlbWVudCByZWFk
-X2l0ZXIsIGJ1dCB0aG9zZSBhcmUgb25seSBjb21waWxlIHRlc3RlZC4KClRoZSBsb2dpYyBpcyBj
-bG9zZSBlbm91Z2ggdGhhdCBpdCBzaG91bGQgd29yaywgSSdsbCBydW4gaXQgdGhyb3VnaCBpbgpj
-YWNoZWQgbW9kZSBhdCBsZWFzdCBmaXJzdCB0aG91Z2ggKGp1c3QgbW91bnQgd2l0aCBjYWNoZT1s
-b29zZSBvcgpjYWNoZT1mc2NhY2hlIHRvIGhpdCB2OWZzX2NhY2hlZF9maWxlX29wZXJhdGlvbnNf
-ZG90bCB5b3Vyc2VsZiBpZiB5b3UKd2FudCB0bykKbm9uLWRvdGwgb3BlcmF0aW9ucyBhcmUgaGFy
-ZGVyIHRvIHRlc3QsIEkgZG9uJ3QgaGF2ZSBhbnkgc2VydmVyCmNvbXBhdGlibGUgZWl0aGVyIHNv
-IHdlJ2xsIGhhdmUgdG8gdHJ1c3QgaXQgd29ya3MgY2xvc2UgZW5vdWdoLi4uCgoobm90ZSB5b3Ug
-Y2FuIHdyaXRlIGNvbW1lbnRzIHN1Y2ggYXMgdGhpcyBvbmUgYWZ0ZXIgdGhlIHRocmVlIGRhc2hl
-cwpsaW5lIGJlZm9yZSB0aGUgZGlmZiBjaHVuayBzbyBtYWludGFpbmVycyBjYW4gcmVwbHkgd2l0
-aG91dCBoYXZpbmcgaXQgaW4KY29tbWl0IG1lc3NhZ2UgaXRzZWxmKQoKLS0gCkRvbWluaXF1ZQoK
-Cl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fClY5ZnMtZGV2
-ZWxvcGVyIG1haWxpbmcgbGlzdApWOWZzLWRldmVsb3BlckBsaXN0cy5zb3VyY2Vmb3JnZS5uZXQK
-aHR0cHM6Ly9saXN0cy5zb3VyY2Vmb3JnZS5uZXQvbGlzdHMvbGlzdGluZm8vdjlmcy1kZXZlbG9w
-ZXIK
+Dominique Martinet wrote on Tue, Dec 01, 2020:
+> > Since generic_file_splice_read() seems to just implement splice_read in
+> > terms of the read_iter operation, I simply added the generic implementation
+> > to the file operations, which fixed the error I was seeing. A quick grep
+> > indicates that this is what most other file systems do as well.
+> 
+> Good catch, might as well do that.
+> I'm surprised you didn't hit the same problem with splice_write?
+> 
+> I see iter_file_splice_write being used for it on many filesystems,
+> it's probably better to add both?
+
+Yeah, I confirm both are needed (the second for the pipe -> fs side)
+
+This made me test copy_file_range, and it works with both as well (used
+not to)
+
+interestingly on older kernels this came as default somehow? I have
+splice working on 5.4.67 :/ so this broke somewhat recently...
+
+I'll add an extra patch with the second and take your patch.
+Thanks!
+
+-- 
+Dominique
+
+
+_______________________________________________
+V9fs-developer mailing list
+V9fs-developer@lists.sourceforge.net
+https://lists.sourceforge.net/lists/listinfo/v9fs-developer
