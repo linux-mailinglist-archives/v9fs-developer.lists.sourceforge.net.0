@@ -2,117 +2,105 @@ Return-Path: <v9fs-developer-bounces@lists.sourceforge.net>
 X-Original-To: lists+v9fs-developer@lfdr.de
 Delivered-To: lists+v9fs-developer@lfdr.de
 Received: from lists.sourceforge.net (lists.sourceforge.net [216.105.38.7])
-	by mail.lfdr.de (Postfix) with ESMTPS id 516DF2CAD7A
-	for <lists+v9fs-developer@lfdr.de>; Tue,  1 Dec 2020 21:38:02 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2693C2CB8BE
+	for <lists+v9fs-developer@lfdr.de>; Wed,  2 Dec 2020 10:25:48 +0100 (CET)
 Received: from [127.0.0.1] (helo=sfs-ml-1.v29.lw.sourceforge.com)
 	by sfs-ml-1.v29.lw.sourceforge.com with esmtp (Exim 4.90_1)
 	(envelope-from <v9fs-developer-bounces@lists.sourceforge.net>)
-	id 1kkCPQ-0002ru-AU; Tue, 01 Dec 2020 20:38:00 +0000
+	id 1kkOOP-0002o4-SB; Wed, 02 Dec 2020 09:25:45 +0000
 Received: from [172.30.20.202] (helo=mx.sourceforge.net)
  by sfs-ml-1.v29.lw.sourceforge.com with esmtps
  (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.90_1)
- (envelope-from <toke@redhat.com>) id 1kkCPP-0002ra-5V
- for v9fs-developer@lists.sourceforge.net; Tue, 01 Dec 2020 20:37:59 +0000
+ (envelope-from <3il3HXw8JAGcRWXLNWIFQFIeJfgLRFNQ.HTR@trix.bounces.google.com>)
+ id 1kkOOO-0002np-Eh
+ for v9fs-developer@lists.sourceforge.net; Wed, 02 Dec 2020 09:25:44 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=sourceforge.net; s=x; h=Content-Transfer-Encoding:Content-Type:MIME-Version
- :Message-ID:Date:References:In-Reply-To:Subject:Cc:To:From:Sender:Reply-To:
- Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
- Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
+ d=sourceforge.net; s=x; h=Content-Type:To:From:Subject:Date:Message-ID:
+ Reply-To:MIME-Version:Sender:Cc:Content-Transfer-Encoding:Content-ID:
+ Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
+ :Resent-Message-ID:In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:
  List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=sbKmbj2q3bXVVF2UGoGz1cN3aYCzV4bXk/zjzcW+Dng=; b=lRpUtrZ6fhS8orVFtv/kBU/Px9
- pCsSw0zzBy0laiJJcgIu1PBX3Wyv5NODt0w25wZ6l8mFmeqxu1lATndU1YYYuCBHGEQH8JQQl6LDh
- uFXENiG3ZOvSDyDjWHlByx4WucJqOkOAyvMid8k7LKpHMWsQ9xOm+Gg4Bakp8wvgen7Q=;
+ bh=KQ+qnHslXWKUUo2hvALh6V/NCAb6NdcUhsLoGP0QCic=; b=YMsAGVGES0tlEHACLvPyQ4tum+
+ ZyPubM7MY0MIqXj9Wach9W1yR6ocjrSeO/9PcTuilhVosNFiDC0blN1EVEfwZ/r1t0ppIlL16FPPq
+ Xqg1A6Gdv8ekKDh667e/vgwAA7yEE44V/6P0/ueOjEjC0rIsGP1+csZGjU1umXvyS49A=;
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  ;
- h=Content-Transfer-Encoding:Content-Type:MIME-Version:Message-ID:Date:
- References:In-Reply-To:Subject:Cc:To:From:Sender:Reply-To:Content-ID:
- Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
- :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
- List-Post:List-Owner:List-Archive;
- bh=sbKmbj2q3bXVVF2UGoGz1cN3aYCzV4bXk/zjzcW+Dng=; b=ciUkE/POOGVIlrwjwQriAoQ4tO
- AJ9pYNEypFisYpSig4lwSa7ZKQ045AgfC8xtDBwaMV8icMMi+VypgckckeH2jUGiWM7fSHboyS62E
- a+8b4DMZoEmduNVcKyDoGp+7mVBU2jaqgXIRwcvepA4S68v3vptso1EshGCqauzHxih0=;
-Received: from us-smtp-delivery-124.mimecast.com ([63.128.21.124])
+ h=Content-Type:To:From:Subject:Date:Message-ID:Reply-To:MIME-Version:Sender
+ :Cc:Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+ Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:
+ References:List-Id:List-Help:List-Unsubscribe:List-Subscribe:List-Post:
+ List-Owner:List-Archive; bh=KQ+qnHslXWKUUo2hvALh6V/NCAb6NdcUhsLoGP0QCic=; b=L
+ 4Y0VbFaEHx4r0N3X4OXrVSCOEJZXkrvENjvCVYI7IsvGNrLn4zbkYNN9DQ4/a5iD4f228aQwBZN/x
+ ZMetqPXScMAHgbum4xp+xVyHTTfchAWd6F5rFSJGZJ5F8y5jgHAGRihSrS+aXs9aRX7dbg9pGS9rI
+ tR8pQI3J4/8F5Zjw=;
+Received: from mail-vs1-f72.google.com ([209.85.217.72])
  by sfi-mx-1.v28.lw.sourceforge.com with esmtps
- (TLSv1.2:ECDHE-RSA-AES256-SHA384:256) (Exim 4.92.2)
- id 1kkCPK-009slh-Qu
- for v9fs-developer@lists.sourceforge.net; Tue, 01 Dec 2020 20:37:59 +0000
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
- s=mimecast20190719; t=1606855069;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references;
- bh=sbKmbj2q3bXVVF2UGoGz1cN3aYCzV4bXk/zjzcW+Dng=;
- b=Lw/6Oh7MHkYuc8KQF3s+FXblxo8eFATFL1Iw1NKuakAWOhwY821xe9XXI0FjhzEYcBQdNr
- UhGSCNLGZ94aBl2iOSXCBsBdoo5WkP4PgD+Rm/tZsf3GYcLad21zMt1qIHFvPtghR8YbuO
- /kjcDcAAp0RlhLIzMq9Ib27tolJcIRE=
-Received: from mail-ej1-f70.google.com (mail-ej1-f70.google.com
- [209.85.218.70]) (Using TLS) by relay.mimecast.com with ESMTP id
- us-mta-294-eky2GCATP82IlMeF0hZqcg-1; Tue, 01 Dec 2020 15:37:47 -0500
-X-MC-Unique: eky2GCATP82IlMeF0hZqcg-1
-Received: by mail-ej1-f70.google.com with SMTP id g18so1913453eje.1
+ (TLSv1.2:ECDHE-RSA-AES128-GCM-SHA256:128) (Exim 4.92.2)
+ id 1kkOOI-00B0jL-06
+ for v9fs-developer@lists.sourceforge.net; Wed, 02 Dec 2020 09:25:44 +0000
+Received: by mail-vs1-f72.google.com with SMTP id g12so247176vsm.5
  for <v9fs-developer@lists.sourceforge.net>;
- Tue, 01 Dec 2020 12:37:47 -0800 (PST)
+ Wed, 02 Dec 2020 01:25:37 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+ h=mime-version:reply-to:message-id:date:subject:from:to;
+ bh=KQ+qnHslXWKUUo2hvALh6V/NCAb6NdcUhsLoGP0QCic=;
+ b=PWPMQgKEkH2Efz8TTMNga1AahyYNyuUftgzMO4s26SmI7c6jixqEUNYLBIAAkskUJi
+ eVETHRUcIBlhXewGGUQQ5YdPSraFwb7IYfvwtQsTzdEXAx9f4VU5JdYzVhYdZiL3/taq
+ OyReIvcV+U4e8C43SyVB9jup8UTRAYMwKJjzVy9+PrpepOS5IVypdbro98mGy21yxsd6
+ mUEHecu1SUy1WnVCxWunY95SkGDCHh+mX1AxD0ZxU5/ng9FX5E79JES+GOw6RUuNQ5LR
+ EfBo7BGLJDlDkUl8tKkIQ2HoodFu/tf6ar3ruhZ0DKF89QWxB73jI4jRJ+RKFYZ13erz
+ bkwQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:from:to:cc:subject:in-reply-to:references:date
- :message-id:mime-version:content-transfer-encoding;
- bh=sbKmbj2q3bXVVF2UGoGz1cN3aYCzV4bXk/zjzcW+Dng=;
- b=ixncYFNn1MgopptiFqYb0FW0aUZEBzxUBPu5bnZe7BlFEDQQYLfi5Ct83j8lOY8D73
- g5BHcRjswY0k8sYsIPjfRPNV/3crnX2KtLG2Iz3XrpFz3+/tzxbq9U/zQ06JxJwXaiOi
- WqZifN7XAl40rNrCLQxd17qah7KruDyYmK91Ul6JOMxyWKD9g/JqvAdSqoKy+8qyaDlN
- 8bsWkZqW/2rdSnNlbmMIycEf47SC7Bqo2gBxo5Ii//f96Sh2IKsfH/ac5wU4Kd57Slzu
- 8zkPKKE1W2K1pa0EHfJs5EBdwyXKcsFO+AaN7E/59U/sbRl6uF2h6n7mAcyfPwd+svVV
- W3hw==
-X-Gm-Message-State: AOAM531Fj9Kb85fFg/6GgHeL9YVXUKbDVu79k72lat1y3eSUVR3ky1rJ
- h496A3xs34+bTB61smRhQDQz641vv337DmNwj2Cqqq24n69Qj2qX1kqcg6u3SRdaXmTQX3c2Nf8
- ixw5Ppt8P5Bsd+BnPEpLe6t2z/sfg8FSyDRs=
-X-Received: by 2002:a17:906:cc9c:: with SMTP id
- oq28mr4885646ejb.224.1606855066030; 
- Tue, 01 Dec 2020 12:37:46 -0800 (PST)
-X-Google-Smtp-Source: ABdhPJy6vxJmKHJ0YVxj6K63hN5ZVVl3SbRygXSOycPC+FEbzXuZ3rtlcfEyvNl8i5f5SUNgN2Hh0Q==
-X-Received: by 2002:a17:906:cc9c:: with SMTP id
- oq28mr4885636ejb.224.1606855065895; 
- Tue, 01 Dec 2020 12:37:45 -0800 (PST)
-Received: from alrua-x1.borgediget.toke.dk ([45.145.92.2])
- by smtp.gmail.com with ESMTPSA id y14sm428849edi.16.2020.12.01.12.37.45
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Tue, 01 Dec 2020 12:37:45 -0800 (PST)
-Received: by alrua-x1.borgediget.toke.dk (Postfix, from userid 1000)
- id 05B14182EF0; Tue,  1 Dec 2020 21:37:45 +0100 (CET)
-From: Toke =?utf-8?Q?H=C3=B8iland-J=C3=B8rgensen?= <toke@redhat.com>
-To: Dominique Martinet <asmadeus@codewreck.org>, asmadeus@codewreck.org
-In-Reply-To: <1606837496-21717-1-git-send-email-asmadeus@codewreck.org>
-References: <20201201151658.GA13180@nautica>
- <1606837496-21717-1-git-send-email-asmadeus@codewreck.org>
-X-Clacks-Overhead: GNU Terry Pratchett
-Date: Tue, 01 Dec 2020 21:37:44 +0100
-Message-ID: <87blfd1cvb.fsf@toke.dk>
+ h=x-gm-message-state:mime-version:reply-to:message-id:date:subject
+ :from:to;
+ bh=KQ+qnHslXWKUUo2hvALh6V/NCAb6NdcUhsLoGP0QCic=;
+ b=uiIq8r191YiAH/c5Mo8smHYFZzMFdY5lacNAV5m8Y+THcF+G3t8xV26tG6FrsiRcL6
+ ScM2qlaxLoFEg+eg8ssaMOkMWndaL6DoL7quollEN7yvcWTFuZh/UrdL6DIAq5leeFOr
+ 2iW4UY7RwgyWcBsjSLQs4EaVE5mS/e/oXbs2TSlrT3SgafoIMtQzNjh1/l+0LvzrDKXz
+ k1PBNM0PPDhqm7kHM6P/wnKcqREZIm1k24smg/NwcratlEJEe0ixlrT7sEY1OnQj68ZQ
+ nWWpg2182cVAa4+FTbiRImIqImYRegT6NaLTgsLsVztqMIAmIDs6uDXStf8cGkBd93Ay
+ jdlQ==
+X-Gm-Message-State: AOAM531k8hAgQNhmECQ/4NYA3z9EH3BtKFoLsGLiWHyK3ZJs+4xEOXcu
+ XbsOod08BWI9z0A4mCSxeLi6kQIwGSxEP+3oN558
 MIME-Version: 1.0
-Authentication-Results: relay.mimecast.com;
- auth=pass smtp.auth=CUSA124A263 smtp.mailfrom=toke@redhat.com
-X-Mimecast-Spam-Score: 0
-X-Mimecast-Originator: redhat.com
-X-Spam-Score: -1.6 (-)
+X-Received: by 2002:a67:e918:: with SMTP id c24mt812626vso.55.1606901130817;
+ Wed, 02 Dec 2020 01:25:30 -0800 (PST)
+X-No-Auto-Attachment: 1
+Message-ID: <000000000000179fa605b577d3c9@google.com>
+Date: Wed, 02 Dec 2020 09:25:32 +0000
+From: mrsgirdaladze01@gmail.com
+To: v9fs-developer@lists.sourceforge.net
+X-Spam-Score: 5.1 (+++++)
 X-Spam-Report: Spam Filtering performed by mx.sourceforge.net.
  See http://spamassassin.org/tag/ for more details.
- -0.0 RCVD_IN_DNSWL_NONE     RBL: Sender listed at https://www.dnswl.org/, no
- trust [63.128.21.124 listed in list.dnswl.org]
- 0.0 RCVD_IN_MSPIKE_H4      RBL: Very Good reputation (+4)
- [63.128.21.124 listed in wl.mailspike.net]
+ 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail provider
+ (mrsgirdaladze01[at]gmail.com)
+ 0.2 HEADER_FROM_DIFFERENT_DOMAINS From and EnvelopeFrom 2nd level mail
+ domains are different
  -0.0 SPF_PASS               SPF: sender matches SPF record
  0.0 SPF_HELO_NONE          SPF: HELO does not publish an SPF Record
+ 0.2 FREEMAIL_REPLYTO_END_DIGIT Reply-To freemail username ends in digit
+ (mrsgirdaladze01[at]gmail.com)
+ -0.0 RCVD_IN_MSPIKE_H2      RBL: Average reputation (+2)
+ [209.85.217.72 listed in wl.mailspike.net]
+ -0.0 RCVD_IN_DNSWL_NONE     RBL: Sender listed at https://www.dnswl.org/, no
+ trust [209.85.217.72 listed in list.dnswl.org]
+ 1.0 HTML_MESSAGE           BODY: HTML included in message
  -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from author's
  domain
  -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
  0.1 DKIM_SIGNED            Message has a DKIM or DK signature,
  not necessarily valid
- 0.0 RCVD_IN_MSPIKE_WL      Mailspike good senders
- -1.5 DKIMWL_WL_HIGH         DKIMwl.org - High trust sender
-X-Headers-End: 1kkCPK-009slh-Qu
-Subject: Re: [V9fs-developer] [PATCH] fs: 9p: add generic splice_write file
- operation
+ 0.2 FREEMAIL_FORGED_FROMDOMAIN 2nd level domains in From and EnvelopeFrom
+ freemail headers are different
+ 1.0 FREEMAIL_REPLYTO       Reply-To/From or Reply-To/body contain different
+ freemails
+ 0.0 ADVANCE_FEE_4_NEW      Appears to be advance fee fraud (Nigerian 419)
+ 2.5 GOOGLE_DOC_SUSP        Suspicious use of Google Docs
+X-Headers-End: 1kkOOI-00B0jL-06
+X-Content-Filtered-By: Mailman/MimeDel 2.1.21
+Subject: [V9fs-developer] Donation
 X-BeenThere: v9fs-developer@lists.sourceforge.net
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -124,20 +112,35 @@ List-Post: <mailto:v9fs-developer@lists.sourceforge.net>
 List-Help: <mailto:v9fs-developer-request@lists.sourceforge.net?subject=help>
 List-Subscribe: <https://lists.sourceforge.net/lists/listinfo/v9fs-developer>, 
  <mailto:v9fs-developer-request@lists.sourceforge.net?subject=subscribe>
-Cc: linux-fsdevel@vger.kernel.org, v9fs-developer@lists.sourceforge.net,
- linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="utf-8"
+Reply-To: mrsgirdaladze01@gmail.com
 Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="utf-8"; Format="flowed"; DelSp="yes"
 Errors-To: v9fs-developer-bounces@lists.sourceforge.net
 
-RG9taW5pcXVlIE1hcnRpbmV0IDxhc21hZGV1c0Bjb2Rld3JlY2sub3JnPiB3cml0ZXM6Cgo+IFRo
-ZSBkZWZhdWx0IHNwbGljZSBvcGVyYXRpb25zIGdvdCByZW1vdmVkIHJlY2VudGx5LCBhZGQgaXQg
-YmFjayB0byA5cAo+IHdpdGggaXRlcl9maWxlX3NwbGljZV93cml0ZSBsaWtlIG1hbnkgb3RoZXIg
-ZmlsZXN5c3RlbXMgZG8uCj4KPiBGaXhlczogMzZlMmM3NDIxZjAyICgiZnM6IGRvbid0IGFsbG93
-IHNwbGljZSByZWFkL3dyaXRlIHdpdGhvdXQgZXhwbGljaXQgb3BzIikKPiBDYzogVG9rZSBIw7hp
-bGFuZC1Kw7hyZ2Vuc2VuIDx0b2tlQHJlZGhhdC5jb20+Cj4gU2lnbmVkLW9mZi1ieTogRG9taW5p
-cXVlIE1hcnRpbmV0IDxhc21hZGV1c0Bjb2Rld3JlY2sub3JnPgoKRldJVzoKCkFja2VkLWJ5OiBU
-b2tlIEjDuGlsYW5kLUrDuHJnZW5zZW4gPHRva2VAcmVkaGF0LmNvbT4KCgoKX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KVjlmcy1kZXZlbG9wZXIgbWFpbGlu
-ZyBsaXN0ClY5ZnMtZGV2ZWxvcGVyQGxpc3RzLnNvdXJjZWZvcmdlLm5ldApodHRwczovL2xpc3Rz
-LnNvdXJjZWZvcmdlLm5ldC9saXN0cy9saXN0aW5mby92OWZzLWRldmVsb3Blcgo=
+SSd2ZSBpbnZpdGVkIHlvdSB0byBmaWxsIG91dCB0aGUgZm9sbG93aW5nIGZvcm06DQpDb250YWN0
+IGluZm9ybWF0aW9uDQoNClRvIGZpbGwgaXQgb3V0LCB2aXNpdDoNCmh0dHBzOi8vZG9jcy5nb29n
+bGUuY29tL2Zvcm1zL2QvZS8xRkFJcFFMU2RxVDN2bFZzbkttR0dnYTM2RlNoVGZQYmZCNHEtV3No
+WWloS3VEb2tibW1DTlZBQS92aWV3Zm9ybT92Yz0wJmFtcDtjPTAmYW1wO3c9MSZhbXA7ZmxyPTAm
+YW1wO3VzcD1tYWlsX2Zvcm1fbGluaw0KDQpEb25hdGlvbg0KTXkgRGVhciBGcmllbmQsDQpNeSBu
+YW1lIGlzIE1ycy5HaXJkYWxhZHplIEtydW1tZW5hY2hlcg0KSSYjMzk7bSBhbiBBbWVyaWNhbiBj
+dXJyZW50bHkgaG9zcGl0YWxpemVkIGluIGEgcHJpdmF0ZSBob3NwaXRhbD8NCk15IHB1cnBvc2Ug
+b2Ygd3JpdGluZyB0byB5b3UgaXMgYmVjYXVzZSBJIHdhcyBsZWQgYnkgdGhlIHNwaXJpdCBvZiBH
+b2QgdG8NCm9mZmVyIHlvdSB0aGUgbW9uZXkgdGhhdCBJIGFuZCBNeSBsYXRlIGh1c2JhbmQgaGF2
+ZSBpbiBvdXIgcHJpdmF0ZSBhY2NvdW50Lg0KDQpJ4oCZbSA3OSB5ZWFyIG9sZCBhbmQgbWF5ICBo
+YXZlIG5vIG5lZWQgZm9yIHRoZSBmdW5kLCBzaW5jZSBteSBkb2N0b3JzDQpoYXZlIG9mZmljaWFs
+bHkgZ2l2ZW4gbWUgYSBkYXRlIG9mIHN1cmdlcnkgYW5kIGFsc28gIGluZm9ybWVkIG1lIHRoYXQN
+Cm15IHN1cnZpdmFsIGR1cmluZyBteSBsYXN0IHN1cmdlcnkgd2lsbCBiZSBieSBoaXMgZ3JhY2Ug
+Y291cGxlIHdpdGgNCnRoZSBjdXJyZW50IHBhbmRlbWljIG9mIGNvcm9uYSB2aXJ1cy4NCg0KSSBh
+bmQgbXkgIGh1c2JhbmQgd2VyZSB0b2dldGhlciBmb3IgbWFueSB5ZWFycywgd2l0aG91dCBraWRz
+IG9mIG91ciBvd24uDQpJ4oCZbSBvZmZlcmluZyB5b3UgdGhpcyBzdW0gb2YgbW9uZXkgYXMgYSBk
+b25hdGlvbiBmb3IgdGhlIHdvcmsgb2YgR29kIGFuZA0KY2hhcml0eSBhbmQgdG8gdGFrZSBjYXJl
+IG9mIG9ycGhhbnMgYW5kIGhlbHAgdGhlIGxlc3MgcHJpdmlsZWdlZC4NCk1heSB0aGUgZ29vZCBM
+b3JkIGJsZXNzIHlvdSBhbmQgeW91ciBmYW1pbHkuDQoNCkkgd2lsbCBkaXJlY3QgeW91IG9uIGhv
+dyB0byByZWNlaXZlIHRoZSBmdW5kIG9uY2UgSSByZWNlaXZlIHlvdXINCnJlc3BvbnNlIHRvIG15
+IHJlcXVlc3QuLg0KQ29udGFjdCBtZSB0aHJvdWdoIG15IGVtYWlsIGFkZHJlc3M6ICBNcnNHaXJk
+YWxhZHplMUBvdXRsb29rLmNvbQ0KDQpQbGVhc2UgZG9uJiMzOTt0IGZhaWwgdG8gcGxhY2UgbWUg
+aW4geW91ciBkYWlseSBwcmF5ZXJzLA0KTXJzLkdpcmRhbGFkemUgS3J1bW1lbmFjaGVyDQoNCkdv
+b2dsZSBGb3JtczogQ3JlYXRlIGFuZCBhbmFseXplIHN1cnZleXMuDQoKX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KVjlmcy1kZXZlbG9wZXIgbWFpbGluZyBs
+aXN0ClY5ZnMtZGV2ZWxvcGVyQGxpc3RzLnNvdXJjZWZvcmdlLm5ldApodHRwczovL2xpc3RzLnNv
+dXJjZWZvcmdlLm5ldC9saXN0cy9saXN0aW5mby92OWZzLWRldmVsb3Blcgo=
