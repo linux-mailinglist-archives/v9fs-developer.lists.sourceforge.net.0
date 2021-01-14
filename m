@@ -2,73 +2,82 @@ Return-Path: <v9fs-developer-bounces@lists.sourceforge.net>
 X-Original-To: lists+v9fs-developer@lfdr.de
 Delivered-To: lists+v9fs-developer@lfdr.de
 Received: from lists.sourceforge.net (lists.sourceforge.net [216.105.38.7])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2DA3C2F659D
-	for <lists+v9fs-developer@lfdr.de>; Thu, 14 Jan 2021 17:20:50 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 061342F6996
+	for <lists+v9fs-developer@lfdr.de>; Thu, 14 Jan 2021 19:32:32 +0100 (CET)
 Received: from [127.0.0.1] (helo=sfs-ml-2.v29.lw.sourceforge.com)
 	by sfs-ml-2.v29.lw.sourceforge.com with esmtp (Exim 4.90_1)
 	(envelope-from <v9fs-developer-bounces@lists.sourceforge.net>)
-	id 1l05Me-0006bB-36; Thu, 14 Jan 2021 16:20:48 +0000
+	id 1l07Q5-0002df-NT; Thu, 14 Jan 2021 18:32:29 +0000
 Received: from [172.30.20.202] (helo=mx.sourceforge.net)
  by sfs-ml-2.v29.lw.sourceforge.com with esmtps
  (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.90_1)
- (envelope-from <willy@infradead.org>) id 1l05Mb-0006b1-Bj
- for v9fs-developer@lists.sourceforge.net; Thu, 14 Jan 2021 16:20:45 +0000
+ (envelope-from <inbox@leefallat.ca>) id 1l07Q4-0002dW-8T
+ for v9fs-developer@lists.sourceforge.net; Thu, 14 Jan 2021 18:32:28 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=sourceforge.net; s=x; h=In-Reply-To:Content-Type:MIME-Version:References:
- Message-ID:Subject:Cc:To:From:Date:Sender:Reply-To:Content-Transfer-Encoding:
- Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
- Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
- List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=L957m6SCsm4YfRvwt1RQwkHpsqdoGDsxSLN6pjGCXjg=; b=l5jmVmBfHQerHgPpJtgy0KvmyR
- 3bNpaNDH4683YX1coTTt/2kfaMWh47c1+P/uSFAd4jEInZ+FS5b8bzzAw5PqxRHLFNszuj/kCEi1j
- Xm/iEM/RUf7wW58dIAqfblUh6F27N7lD9NvFvxaOVd3viBWPUTWU0x1Gcf6qYWmoNxXg=;
+ d=sourceforge.net; s=x; h=Date:Content-Transfer-Encoding:MIME-Version:
+ Content-Type:References:In-Reply-To:To:From:Subject:Message-ID:Sender:
+ Reply-To:Cc:Content-ID:Content-Description:Resent-Date:Resent-From:
+ Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:
+ List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
+ bh=65RFbGF/4q2qm3PJssR8HH603shiRuOrpwNbpkVaOvU=; b=huDICqf0avBkM+GL9Wkwidj8Ge
+ xt9rmMiWbrlx4SSlznsC8YKC3y2uHhN49rkyyorE2mUoxGslcmQuN39fVsnsDEKY7vCqnfqE4tlbD
+ VgziyG8Hi/LGZYbl4wWfdthAo7zex0SkjIL3ivp1/Dxtzmf5tgWb9Lr1Zu2WSKifI3IU=;
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  ;
- h=In-Reply-To:Content-Type:MIME-Version:References:Message-ID:Subject:Cc:To
- :From:Date:Sender:Reply-To:Content-Transfer-Encoding:Content-ID:
+ h=Date:Content-Transfer-Encoding:MIME-Version:Content-Type:References:
+ In-Reply-To:To:From:Subject:Message-ID:Sender:Reply-To:Cc:Content-ID:
  Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
  :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
  List-Post:List-Owner:List-Archive;
- bh=L957m6SCsm4YfRvwt1RQwkHpsqdoGDsxSLN6pjGCXjg=; b=L4LZp4TUzvu9Mmd4UzZEN1Zaa7
- DVCBzze+Tw/3S3soXyKBFAB7ybXpx5Ys2zR/MObY3zs9zJRMT/A6igq0I5kpd5tpifRUuMdReHMKP
- e30gNRVSY4Valu9F1h/lVTZhnLGSagsyLC8doguRuHHevd6I4Wa5Kat9KcxC8kskfSPw=;
-Received: from casper.infradead.org ([90.155.50.34])
+ bh=65RFbGF/4q2qm3PJssR8HH603shiRuOrpwNbpkVaOvU=; b=QWrx5bEGZGoyvsTKYdDzwHLSCP
+ sa1B0llG/YcB7nxVtYT8ECZWpivNOXe2d1ylkLzzLrt8YS2WPhMXTl4lLuNHTIB+Y9rk+HlCig1YF
+ V8RK780cBWJRRkwpX1cM1pePIoMTgc3+gYZWSH/6oUu1woNcWy+LBZwzwJRHehlOqiOg=;
+Received: from out1.migadu.com ([91.121.223.63])
  by sfi-mx-1.v28.lw.sourceforge.com with esmtps
  (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.92.2)
- id 1l05MV-009KBq-62
- for v9fs-developer@lists.sourceforge.net; Thu, 14 Jan 2021 16:20:45 +0000
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=infradead.org; s=casper.20170209; h=In-Reply-To:Content-Type:MIME-Version:
- References:Message-ID:Subject:Cc:To:From:Date:Sender:Reply-To:
- Content-Transfer-Encoding:Content-ID:Content-Description;
- bh=L957m6SCsm4YfRvwt1RQwkHpsqdoGDsxSLN6pjGCXjg=; b=SwgoX4biWiRfNIkgGKBzF1hThh
- fgohm23xOlFZxJhSLZKiwJXvlpOT7mQ1aERIfxlbDnMSz8cAhA501/6QBLnf5vxFq+Kvg8w7lNzGu
- lKsu5VUh30ZpNT1bDp4PgQQDOAF2zDky3QBOcd8dN/XGAqJ/p2C2tMdWALZA6gQ+xCzpv+dn065rk
- 2TTrQt7lGJCVnnHfj+gY6z8VUTG1gzIwprxJtAF5iFkyufA4tU7Q2Fuvhh6wXdjjz4/2sT9ZCH6eX
- Aa9Hq52wo/tTnFG/QpwZVj0ONsXxVxsjndY/W8xQ7Zm0pIhz05bcYui4M6gozuphqFgWnJ9k7MeB2
- tBm+E3uQ==;
-Received: from willy by casper.infradead.org with local (Exim 4.94 #2 (Red Hat
- Linux)) id 1l05LN-007mRF-WF; Thu, 14 Jan 2021 16:19:41 +0000
-Date: Thu, 14 Jan 2021 16:19:29 +0000
-From: Matthew Wilcox <willy@infradead.org>
-To: David Howells <dhowells@redhat.com>
-Message-ID: <20210114161929.GQ35215@casper.infradead.org>
-References: <2758811.1610621106@warthog.procyon.org.uk>
+ id 1l07Pz-009wg1-W1
+ for v9fs-developer@lists.sourceforge.net; Thu, 14 Jan 2021 18:32:28 +0000
+Message-ID: <1f86c93f694d752786abb06d717cfa65afbc0cf9.camel@leefallat.ca>
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=leefallat.ca;
+ s=key1; t=1610648063;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references;
+ bh=65RFbGF/4q2qm3PJssR8HH603shiRuOrpwNbpkVaOvU=;
+ b=X6sHiAOtNFCDToTYvmbKTx7I79aMf+VBusRmL6+XOMO1w78Ytjx5HgXAVvljcKmwR1eIh0
+ FenkBDOcBADXdrEgMJkMmNz2nvewa447NuMnTO3/zV4e9tbJ56Sh927mm26UCnRQ8nhzPz
+ U1uAhFg0fPEcZ+nTboKgA4vGvnE7ugAvi0LTYG7tMnygbW/Egsr7i7WljKF/BGYx2PKw8g
+ M3Y7YFfc+2KFZoGNscNheulyD4lmAXdk3JkuDci0syPEhsYQV+vnRkvjQ0INDKGP8QteU7
+ EKUnLYT4mROznNMbkMsTV2bnyLGkNCLfwv6cXlmBNfIv6W5baAweewhB8FNyng==
+X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and
+ include these headers.
+From: Lee Fallat <inbox@leefallat.ca>
+To: v9fs-developer@lists.sourceforge.net
+In-Reply-To: <8348aae300bd225096231aeeb08ab92358385a08.camel@leefallat.ca>
+References: <8348aae300bd225096231aeeb08ab92358385a08.camel@leefallat.ca>
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <2758811.1610621106@warthog.procyon.org.uk>
+X-Migadu-Flow: FLOW_OUT
+X-Migadu-Auth-User: inbox@leefallat.ca
+Date: Thu, 14 Jan 2021 18:14:22 GMT
 X-Spam-Score: -0.1 (/)
 X-Spam-Report: Spam Filtering performed by mx.sourceforge.net.
  See http://spamassassin.org/tag/ for more details.
- 0.0 SPF_NONE               SPF: sender does not publish an SPF Record
+ -0.0 RCVD_IN_DNSWL_NONE     RBL: Sender listed at https://www.dnswl.org/, no
+ trust [91.121.223.63 listed in list.dnswl.org]
+ 0.0 RCVD_IN_MSPIKE_H4      RBL: Very Good reputation (+4)
+ [91.121.223.63 listed in wl.mailspike.net]
+ -0.0 SPF_PASS               SPF: sender matches SPF record
  0.0 SPF_HELO_NONE          SPF: HELO does not publish an SPF Record
  -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from author's
  domain
  -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
  0.1 DKIM_SIGNED            Message has a DKIM or DK signature,
  not necessarily valid
-X-Headers-End: 1l05MV-009KBq-62
-Subject: Re: [V9fs-developer] Redesigning and modernising fscache
+ 0.0 RCVD_IN_MSPIKE_WL      Mailspike good senders
+X-Headers-End: 1l07Pz-009wg1-W1
+Subject: Re: [V9fs-developer] v9fs not responsive with Rflush after single
+ Rreaddir
 X-BeenThere: v9fs-developer@lists.sourceforge.net
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -80,45 +89,12 @@ List-Post: <mailto:v9fs-developer@lists.sourceforge.net>
 List-Help: <mailto:v9fs-developer-request@lists.sourceforge.net?subject=help>
 List-Subscribe: <https://lists.sourceforge.net/lists/listinfo/v9fs-developer>, 
  <mailto:v9fs-developer-request@lists.sourceforge.net?subject=subscribe>
-Cc: linux-cifs@vger.kernel.org, linux-nfs@vger.kernel.org,
- linux-afs@lists.infradead.org, jlayton@redhat.com,
- Linus Torvalds <torvalds@linux-foundation.org>, dwysocha@redhat.com,
- dchinner@redhat.com, linux-kernel@vger.kernel.org,
- Trond Myklebust <trond.myklebust@hammerspace.com>,
- Steve French <sfrench@samba.org>, linux-cachefs@redhat.com,
- Anna Schumaker <anna.schumaker@netapp.com>, linux-fsdevel@vger.kernel.org,
- v9fs-developer@lists.sourceforge.net, ceph-devel@vger.kernel.org,
- Christoph Hellwig <hch@lst.de>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: v9fs-developer-bounces@lists.sourceforge.net
 
-On Thu, Jan 14, 2021 at 10:45:06AM +0000, David Howells wrote:
-> However, there've been some objections to the approach I've taken to
-> implementing this.  The way I've done it is to disable the use of fscache by
-> the five network filesystems that use it, remove much of the old code, put in
-> the reimplementation, then cut the filesystems over.  I.e. rip-and-replace.
-> It leaves unported filesystems unable to use it - but three of the five are
-> done (afs, ceph, nfs), and I've supplied partially-done patches for the other
-> two (9p, cifs).
-> 
-> It's been suggested that it's too hard to review this way and that either I
-> should go for a gradual phasing in or build the new one in parallel.  The
-> first is difficult because I want to change how almost everything in there
-> works - but the parts are tied together; the second is difficult because there
-> are areas that would *have* to overlap (the UAPI device file, the cache
-> storage, the cache size limits and at least some state for managing these), so
-> there would have to be interaction between the two variants.  One refinement
-> of the latter would be to make the two implementations mutually exclusive: you
-> can build one or the other, but not both.
+Does anyone know if at the very least this is intended?
 
-My reservation with "build fscache2" is that it's going to take some
-time to do, and I really want rid of ->readpages as soon as possible.
-
-What I'd like to see is netfs_readahead() existing as soon as possible,
-built on top of the current core.  Then filesystems can implement
-netfs_read_request_ops one by one, and they become insulated from the
-transition.
 
 
 _______________________________________________
