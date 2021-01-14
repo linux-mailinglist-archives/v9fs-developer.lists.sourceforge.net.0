@@ -2,74 +2,90 @@ Return-Path: <v9fs-developer-bounces@lists.sourceforge.net>
 X-Original-To: lists+v9fs-developer@lfdr.de
 Delivered-To: lists+v9fs-developer@lfdr.de
 Received: from lists.sourceforge.net (lists.sourceforge.net [216.105.38.7])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2E9822EFCBC
-	for <lists+v9fs-developer@lfdr.de>; Sat,  9 Jan 2021 02:32:10 +0100 (CET)
-Received: from [127.0.0.1] (helo=sfs-ml-1.v29.lw.sourceforge.com)
-	by sfs-ml-1.v29.lw.sourceforge.com with esmtp (Exim 4.90_1)
+	by mail.lfdr.de (Postfix) with ESMTPS id 9225C2F5F1D
+	for <lists+v9fs-developer@lfdr.de>; Thu, 14 Jan 2021 11:45:37 +0100 (CET)
+Received: from [127.0.0.1] (helo=sfs-ml-4.v29.lw.sourceforge.com)
+	by sfs-ml-4.v29.lw.sourceforge.com with esmtp (Exim 4.90_1)
 	(envelope-from <v9fs-developer-bounces@lists.sourceforge.net>)
-	id 1ky36t-0001MJ-PV; Sat, 09 Jan 2021 01:32:07 +0000
+	id 1l008F-0007Uz-DX; Thu, 14 Jan 2021 10:45:35 +0000
 Received: from [172.30.20.202] (helo=mx.sourceforge.net)
- by sfs-ml-1.v29.lw.sourceforge.com with esmtps
+ by sfs-ml-4.v29.lw.sourceforge.com with esmtps
  (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.90_1)
- (envelope-from <support@otichearing.com>) id 1ky36s-0001M4-71
- for v9fs-developer@lists.sourceforge.net; Sat, 09 Jan 2021 01:32:06 +0000
+ (envelope-from <dhowells@redhat.com>) id 1l008E-0007Uo-C9
+ for v9fs-developer@lists.sourceforge.net; Thu, 14 Jan 2021 10:45:34 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=sourceforge.net; s=x; h=Content-Transfer-Encoding:Content-Type:MIME-Version
- :Message-ID:Reply-To:From:Date:Subject:To:Sender:Cc:Content-ID:
+ d=sourceforge.net; s=x; h=Message-ID:Date:Content-ID:Content-Type:
+ MIME-Version:Subject:cc:To:From:Sender:Reply-To:Content-Transfer-Encoding:
  Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
  :Resent-Message-ID:In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:
  List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=tx+rC0u4jwDHHHCU/hCHax5uq5Ulpd7leYahtR3hIrE=; b=iEcE7/Dhck5QJGdwypZkxJp+Db
- jfQoId2lgP63wR1Ef0n4tKOEF1MCorkMfffRYlRHrSoIjFG9/+PuiVXM04ktkVsDrgtIQ1NeaXkcH
- B5MHjtz0hsQRF+MpxjT6qfZliBwcBOak+uyE7olnGQtlTvugAxrIKqSZsUZ1Lc8qqfyI=;
+ bh=NFAkK5CyoahxNRi5k7hi2fue0ERjnOdXOmjImxzpbMM=; b=UTVR0JgN+MqR9bGo/KwXtSgGBf
+ cmE93uPRSLQs4i/FnAu+P30q3u2fKUNfvHmt6OGPyiHXbz15N4h4cZM/TAThAzxxuVjyCJkuAuI+F
+ f4miPsf/FYnsTEshsxJzSHSXnW1oUqs5NzzcejeDiH2aq9KhlkJsymCbyKz7TzkxgHjo=;
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  ;
- h=Content-Transfer-Encoding:Content-Type:MIME-Version:Message-ID:Reply-To:
- From:Date:Subject:To:Sender:Cc:Content-ID:Content-Description:Resent-Date:
+ h=Message-ID:Date:Content-ID:Content-Type:MIME-Version:Subject:cc:To:From:
+ Sender:Reply-To:Content-Transfer-Encoding:Content-Description:Resent-Date:
  Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:
  References:List-Id:List-Help:List-Unsubscribe:List-Subscribe:List-Post:
- List-Owner:List-Archive; bh=tx+rC0u4jwDHHHCU/hCHax5uq5Ulpd7leYahtR3hIrE=; b=c
- jGCB7eK1bT1wjBzvT2EeF9rKVG1GbZate/WLZfArJT0dBXRgCN4S8g3WmmSEdAw+riRzcBw/oppeq
- ON/6COk3EQe8KNEi0z+vIOLK6vMY0zA5YJvxBxjaJBSXaX0zzUhfBbj6NUXwV33mkmRE3xHspPTS+
- cUDcz6eAUulQnO7I=;
-Received: from mail.otichearing.com ([202.181.196.249] helo=vm.otichearing.com)
- by sfi-mx-1.v28.lw.sourceforge.com with esmtps
- (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.92.2)
- id 1ky36n-001lXi-1v
- for v9fs-developer@lists.sourceforge.net; Sat, 09 Jan 2021 01:32:06 +0000
-Received: by vm.otichearing.com (Postfix, from userid 5004)
- id BD2C374C57EC; Sat,  9 Jan 2021 06:58:40 +0800 (HKT)
-To: v9fs-developer@lists.sourceforge.net
-X-PHP-Originating-Script: 5004:kbfcxuydnh.php
-Date: Fri, 8 Jan 2021 22:58:40 +0000
-From: El_Gordo_Primitiva <support@otichearing.com>
-Message-ID: <7877d252eea54a11bda5a4b777af4455@www.otichearing.com>
+ List-Owner:List-Archive; bh=NFAkK5CyoahxNRi5k7hi2fue0ERjnOdXOmjImxzpbMM=; b=a
+ QPqzwMutv7sMYI8x1mUyk5Z+6jAqsD37HYyEwq1TlGOX1bD0fr8SkSnCyqAi2JbhJrdUdFrbk0Yln
+ mPi9NcBvw8xCpHHwerIs+Tpo5OPs+CdIyizniTcQF5JaVo/qgGeRRO7670GGN5+tv4w80BgEC1Itl
+ A2uaD1wQoLOmDY9k=;
+Received: from us-smtp-delivery-124.mimecast.com ([216.205.24.124])
+ by sfi-mx-3.v28.lw.sourceforge.com with esmtps
+ (TLSv1.2:ECDHE-RSA-AES256-SHA384:256) (Exim 4.92.2)
+ id 1l0087-00FDjF-NO
+ for v9fs-developer@lists.sourceforge.net; Thu, 14 Jan 2021 10:45:34 +0000
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+ s=mimecast20190719; t=1610621120;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:content-type:content-type;
+ bh=NFAkK5CyoahxNRi5k7hi2fue0ERjnOdXOmjImxzpbMM=;
+ b=Fqm5uy2g0iAPsHVzQEfDSdygROmBUddvQgemhiYYCT7HCl41hwHq7fW+IsKCv41+W72A+P
+ gXbNi2RdQkAZ3nKk1JuTdebvyZWzQOQ+nQQigFCSikFSfmAPKgypvSACAuYIwkza3AO7QC
+ Y3sBE2FuwL8Wj7uXNPIFREThMUrEW94=
+Received: from mimecast-mx01.redhat.com (mimecast-mx01.redhat.com
+ [209.132.183.4]) (Using TLS) by relay.mimecast.com with ESMTP id
+ us-mta-547--bCAKj4MNqC10Gxu7zSNiA-1; Thu, 14 Jan 2021 05:45:16 -0500
+X-MC-Unique: -bCAKj4MNqC10Gxu7zSNiA-1
+Received: from smtp.corp.redhat.com (int-mx02.intmail.prod.int.phx2.redhat.com
+ [10.5.11.12])
+ (using TLSv1.2 with cipher AECDH-AES256-SHA (256/256 bits))
+ (No client certificate requested)
+ by mimecast-mx01.redhat.com (Postfix) with ESMTPS id 1179F80666B;
+ Thu, 14 Jan 2021 10:45:14 +0000 (UTC)
+Received: from warthog.procyon.org.uk (ovpn-112-8.rdu2.redhat.com
+ [10.10.112.8])
+ by smtp.corp.redhat.com (Postfix) with ESMTP id 9402F60C64;
+ Thu, 14 Jan 2021 10:45:06 +0000 (UTC)
+Organization: Red Hat UK Ltd. Registered Address: Red Hat UK Ltd, Amberley
+ Place, 107-111 Peascod Street, Windsor, Berkshire, SI4 1TE, United
+ Kingdom.
+ Registered in England and Wales under Company Registration No. 3798903
+From: David Howells <dhowells@redhat.com>
+To: linux-fsdevel@vger.kernel.org, linux-cachefs@redhat.com
 MIME-Version: 1.0
-X-Spam-Score: 6.4 (++++++)
+Content-ID: <2758810.1610621106.1@warthog.procyon.org.uk>
+Date: Thu, 14 Jan 2021 10:45:06 +0000
+Message-ID: <2758811.1610621106@warthog.procyon.org.uk>
+X-Scanned-By: MIMEDefang 2.79 on 10.5.11.12
+X-Spam-Score: -0.3 (/)
 X-Spam-Report: Spam Filtering performed by mx.sourceforge.net.
  See http://spamassassin.org/tag/ for more details.
- 0.0 URIBL_BLOCKED ADMINISTRATOR NOTICE: The query to URIBL was blocked.
- See
- http://wiki.apache.org/spamassassin/DnsBlocklists#dnsbl-block
- for more information. [URIs: email.com]
- 1.2 RCVD_IN_BL_SPAMCOP_NET RBL: Received via a relay in bl.spamcop.net
- [Blocked - see <https://www.spamcop.net/bl.shtml?202.181.196.249>]
- 1.5 RCVD_IN_PSBL           RBL: Received via a relay in PSBL
- [202.181.196.249 listed in psbl.surriel.com]
- 0.0 RCVD_IN_MSPIKE_L5      RBL: Very bad reputation (-5)
- [202.181.196.249 listed in bl.mailspike.net]
  -0.0 SPF_PASS               SPF: sender matches SPF record
  0.0 SPF_HELO_NONE          SPF: HELO does not publish an SPF Record
- 0.1 TRACKER_ID             BODY: Incorporates a tracking ID number
- 1.0 HTML_MESSAGE           BODY: HTML included in message
- 0.0 RCVD_IN_MSPIKE_BL      Mailspike blacklisted
- 2.5 FREEMAIL_FORGED_REPLYTO Freemail in Reply-To, but not From
- 0.0 PHP_ORIG_SCRIPT        Sent by bot & other signs
- 0.0 FILL_THIS_FORM         Fill in a form with personal information
- 0.0 T_FILL_THIS_FORM_LOAN  Answer loan question(s)
-X-Headers-End: 1ky36n-001lXi-1v
-X-Content-Filtered-By: Mailman/MimeDel 2.1.21
-Subject: [V9fs-developer] ESP
+ 0.0 RCVD_IN_MSPIKE_H3      RBL: Good reputation (+3)
+ [216.205.24.124 listed in wl.mailspike.net]
+ -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from author's
+ domain
+ -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+ 0.1 DKIM_SIGNED            Message has a DKIM or DK signature,
+ not necessarily valid
+ 0.0 RCVD_IN_MSPIKE_WL      Mailspike good senders
+ -0.2 DKIMWL_WL_HIGH         DKIMwl.org - High trust sender
+X-Headers-End: 1l0087-00FDjF-NO
+Subject: [V9fs-developer] Redesigning and modernising fscache
 X-BeenThere: v9fs-developer@lists.sourceforge.net
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -81,68 +97,153 @@ List-Post: <mailto:v9fs-developer@lists.sourceforge.net>
 List-Help: <mailto:v9fs-developer-request@lists.sourceforge.net?subject=help>
 List-Subscribe: <https://lists.sourceforge.net/lists/listinfo/v9fs-developer>, 
  <mailto:v9fs-developer-request@lists.sourceforge.net?subject=subscribe>
-Reply-To: DrEnriqueBlanco@mail.com
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Cc: Steve French <sfrench@samba.org>, linux-nfs@vger.kernel.org,
+ linux-afs@lists.infradead.org, jlayton@redhat.com, linux-cifs@vger.kernel.org,
+ Linus Torvalds <torvalds@linux-foundation.org>, dwysocha@redhat.com,
+ dchinner@redhat.com, linux-kernel@vger.kernel.org,
+ Matthew Wilcox <willy@infradead.org>,
+ Trond Myklebust <trond.myklebust@hammerspace.com>, dhowells@redhat.com,
+ Anna Schumaker <anna.schumaker@netapp.com>,
+ v9fs-developer@lists.sourceforge.net, ceph-devel@vger.kernel.org,
+ Christoph Hellwig <hch@lst.de>
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: v9fs-developer-bounces@lists.sourceforge.net
 
-CgoKCsKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
-oMKgwqDCoMKgwqDCoMKgwqDCoMKgIEVsX0dvcmRvX1ByaW1pdGl2YQoKY2FsbGUgZXN0YWJlbiBj
-b2xsYW50ZXMgMTIKCjI4MDE3IE1hZHJpZCBTcGFpbgoKVGVsbCAzNCA5MTEgMjMxIDExNyBmYXgs
-IDM0IDkxMiA5MTYgMzEzLgoKT2ZmaXppZWxsZSBtaXR0ZWlsdW5nCgpEZXMgcHLDpHNpZGVudGVu
-IGRlciBpbnRlcm5hdGlvbmFsZW4KClByb21vdGlvbi1nZXdpbm56dXRlaWx1bmcKClJlZmVyZW56
-bnVtbWVyOkVzcC8xNTI4NjExNAoKQmVhcmJlaXR1bmdzbnVtbWVyOjY2NTAwMgoKRW1haWwuYmls
-YmFvZ3JvdXBvQGdtYWlsLmNvbQoKwqAKCkd1dGVuIFRhZywKCsKgCgrCoMKgwqDCoMKgwqDCoMKg
-wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgT2ZmaXppZWxsZSBHZXdpbm5iZW5hY2hy
-aXRpZ3VuZwoKIFdpciBzaW5kIGVyZnJldXQgSWhuZW4gbWl0dGVpbGVuIHp1IGvDtm5uZW4sIGRh
-cyBkaWUgR2V3aW5ubGlzdGUgTG90dG8KClByb2dyYW1tIGFtIDE5LzEyLzIwMjAuIGVyc2NoaWVu
-ZW4gaXN0LiBEaWUgb2ZmaXppZWxsZSBMaXN0ZSBkZXIgR2V3aW5uZXIKCmVyc2NoaWVuIGFtIDA4
-LzAxLzIwMjEuIElociBOYW1lIHd1cmRlIGF1ZiBkZW0gTG9zIG1pdCBkZXIgTnVtbWVyOiAwMjUu
-CgoxMTQ2NDkgLjc1MCB1bmQgbWl0IGRlciBTZXJpZW5udW1tZXI6IDc5MTAyNi01NyByZWdpc3Ry
-aWVydC4gRGllCgpHbMO8Y2tzbnVtbWVyOiA0LTYtOS0xMS0xOS0yMyAqIDEwIGhhdCBpbiBkZXIg
-NC4gS2F0ZWdvcmllIGdld29ubmVuLgoKwqAKCiBTaWUgc2luZCBkYW1pdCBHZXdpbm5lciB2b246
-IDkzNS40NzAsMDAg4oKsIChOZXVuIEh1bmRlcnQgRsO8bmZ1bmRkcmVpc3NpZwoKVGF1c2VuZCBW
-aWVyaHVuZGVydCBVbmQgU2llYnppZyBFdXJvKS4gRGllIFN1bW1lIGVyZ2lidCBzaWNoIGF1cyBl
-aW5lcgoKR2V3aW5uYXVzc2Now7x0dHVuZyB2b24gRVVSTzogMTYuNjI2Ljg3MCwwMCAoU2VjaHpl
-aG4gTWlsbGlvbmVuIFNlY2hzaHVuZGVydAoKU2VjaHN1bmR6d2FuemlnIFRhdXNlbmQgQWNodGh1
-bmRlcnQgVW5kIFNpZWJ6aWcgRXVybykuIERpZSBTdW1tZSB3dXJkZSBkdXJjaAoKMTcgR2V3aW5u
-ZXIgYXVzIGRlciBnbGVpY2hlbiBLYXRlZ29yaWUgZ2V0ZWlsdC4gSGVyemxpY2hlbiBHbMO8Y2t3
-dW5zY2ghCgpEZXIgR2V3aW5uIGlzdCBiZWkgZWluZXIgU2ljaGVyaGVpdHNmaXJtYSBoaW50ZXJs
-ZWd0IHVuZCBpbiBpaHJlbSBOYW1lbgoKdmVyc2ljaGVydC4gVW0ga2VpbmUgS29tcGxpa2F0aW9u
-ZW4gYmVpIGRlciBBYndpY2tsdW5nIGRlciBBdXN6YWhsdW5nIHp1Cgp2ZXJ1cnNhY2hlbiBiaXR0
-ZW4gd2lyIFNpZSBkaWVzZSBvZmZpemllbGxlIE1pdHRlaWx1bmcgZGlza3JldCB6dSBiZWhhbmRl
-bG4sCgpzaWUgaXN0IFRlaWwgdW5zZXJlcyBTaWNoZXJoZWl0c3Byb3Rva29sbHMgdW5kIGdhcmFu
-dGllcnQgSWhuZW4gZWluZW4KCnJlaWJ1bmdsb3NlbiBBYmxhdWYuCgogRWlubWFsIGltIEphaHIg
-dmVyYW5zdGFsdGVuIHdpciBlaW5lIEF1c2xvc3VuZywgaW4gZGVyIGRpZSBHZXdpbm5lciB2b24K
-CnVuc2VyZW0gQ29tcHV0ZXIsIGF1cyA0NS4wMDAgTmFtZW4gYXVzIEFzaWVuLCBFdXJvcGEsIEF1
-c3RyYWxpZW4gdW5kIEFtZXJpa2EsCgpnZXpvZ2VuIHdlcmRlbi4KCkJpdHRlIGtvbnRha3RpZXJl
-biBTaWUgdW5zZXJlbiBBdXNsYW5kc3NhY2hiZWFyYmVpdGVyIERyLEVucmlxdWUgQmxhbmNvIGJl
-aQoKZGVyIFNpY2hlcmhlaXRmaXJtYSBHUlVQTyBCSUxCQU8gUy5MLiBUZWw6IDAwMzQgNjg1IDA5
-MSAyMjQuIEVtYWlsOgoKRW5yaXF1ZUJsYW5jb0Bwb3N0LmNvbQoKLkJpdHRlIGRlbmtlbiBTaWUg
-ZGFyYW4sIGplZGVyIEdld2lubmFuc3BydWNoIG11c3MgYmlzIHp1bSAyOS8wMS8yMDIxLgoKQW5n
-ZW1lbGRldGUgc2Vpbi4gSmVkZXIgbmljaHQgYW5nZW1lbGRldCBHZXdpbm5hbnNwcnVjaCB2ZXJm
-w6RsbHQgdW5kIGdlaHQKCnp1csO8Y2sgYW4gZGFzIE1JTklTVEVSSU8gREUgRUNPTk9NSUEgWSBI
-QUNJRU5EQS4gQml0dGUgZGVua2VuIHNpZSBhdWNoIGRhcmFuCgpkYXMgMTAlIElocmVzIGdld2lu
-bmVzIGFuIGRpZSBTaWNoZXJoZWl0c2Zpcm1hIEdSVVBPIEJJTEJBTyBTLkwuIGdlaHQuIE5hbWVu
-Cgp2ZXJzaWNoZXJ0IGlzdC4KCiBXSUNIVElHOiBVbSBWZXJ6w7ZnZXJ1bmdlbiB1bmQgS29tcGxp
-a2F0aW9uZW4genUgdmVybWVpZGVuLCBnZWJlbiBTaWUgYml0dGUKCmltbWVyIGRpZSBSZWZlcmVu
-ei0gdW5kIEJlYXJiZWl0dW5nc251bW1lciBhbi4gQWRyZXNzw6RuZGVydW5nZW4gdGVpbGVuIFNp
-ZQoKdW5zIGJpdHRlIHVtZ2VoZW5kIG1pdC4gQW5iZWkgZWluIEFubWVsZGVmb3JtdWxhciwgYml0
-dGUgYXVzZsO8bGxlbiB1bmQgcGVyCgpFbWFpbCBhbiBkaWUgU2ljaGVyaGVpdHNmaXJtYSBHUlVQ
-TyBCSUxCQU8gUy5MLm9uIEVtYWlsOgoKYWx2YXJvc2FuY2hlekBlbWFpbC5jb20KCnNjaGlja2Vu
-LgoKQml0dGUgRsO8bGxlbiBTaWUgRGllIFVudGVuIEFuZ2VnZWJlbmVuIERhdGVuIEF1czoKCigx
-KSBGcmF1IE9kZXIgSGVycjpfX19fX19fX19fX19fX19fX19fICgyKU5hbWU6X19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fCgooMykgVm9ybmFtZTpfX19fX19fX19fX19fX19fX19fX19fX19f
-XyAoNClBZHJlc3NlOl9fX19fX19fX19fX19fX19fX19fX19fX19fXwoKKDUpIFBsejpfX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX18gKDYpU3RhZHQ6X19fX19fX19fX19fX19fX19fX19fX19f
-X19fX18KCig3KSBHZWJ1cnRzZGF0dW06X19fX19fX19fX19fX19fX19fX19fICg4KU5hdGlvbmFs
-aXTDpHQ6X19fX19fX19fX19fX19fX19fX19fXwoKKDkpIFRlbGVmb246X19fX19fX19fX19fX19f
-X19fX19fX19fX18gKDEwKU1vYmlsOl9fX19fX19fX19fX19fX19fX19fX19fX19fX18KCigxMSkg
-RmF4Ol9fX19fX19fX19fX19fX19fX19fX19fX19fX19fICgxMilFbWFpbDpfX19fX19fX19fX19f
-X19fX19fX19fX19fX19fCgooMTMpIEJlcnVmOl9fX19fX19fX19fX19fX19fX19fX19fX19fXyAo
-MTQpU3ByYWNoZS9TOl9fX19fX19fX19fX19fX19fX19fX19fXwoKIERpZSBvYmVuIGdlbmFubnRl
-biwgQW5mb3JkZXJ1bmdlbiBzaW5kIGVyZm9yZGVybGljaC4gSGVyemxpY2hlCgpHbMO8Y2t3w7xu
-c2NoZSBub2NoIGVpbm1hbC4KCkNhcmwgRnJhbmNpc2NvIExlb24KClBSw4RTSURFTlQuCgoKCl9f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fClY5ZnMtZGV2ZWxv
-cGVyIG1haWxpbmcgbGlzdApWOWZzLWRldmVsb3BlckBsaXN0cy5zb3VyY2Vmb3JnZS5uZXQKaHR0
-cHM6Ly9saXN0cy5zb3VyY2Vmb3JnZS5uZXQvbGlzdHMvbGlzdGluZm8vdjlmcy1kZXZlbG9wZXIK
+Hi,
+
+I've been working on modernising fscache, primarily with help from Jeff Layton
+and Dave Wysochanski with porting Ceph and NFS to it, and with Willy helpfully
+reinventing the VM I/O interface beneath us;-).
+
+However, there've been some objections to the approach I've taken to
+implementing this.  The way I've done it is to disable the use of fscache by
+the five network filesystems that use it, remove much of the old code, put in
+the reimplementation, then cut the filesystems over.  I.e. rip-and-replace.
+It leaves unported filesystems unable to use it - but three of the five are
+done (afs, ceph, nfs), and I've supplied partially-done patches for the other
+two (9p, cifs).
+
+It's been suggested that it's too hard to review this way and that either I
+should go for a gradual phasing in or build the new one in parallel.  The
+first is difficult because I want to change how almost everything in there
+works - but the parts are tied together; the second is difficult because there
+are areas that would *have* to overlap (the UAPI device file, the cache
+storage, the cache size limits and at least some state for managing these), so
+there would have to be interaction between the two variants.  One refinement
+of the latter would be to make the two implementations mutually exclusive: you
+can build one or the other, but not both.
+
+However.  Given that I want to replace the on-disk format in cachefiles at
+some point, and change what the userspace component does, maybe I should
+create a new, separate UAPI interface and do the on-disk format change at the
+same time.  In which case, it makes sense to build a parallel variant
+
+
+Anyway, a bit of background into the why.  There are a number of things that
+need to be fixed in fscache/cachefiles:
+
+ (1) The use of bmap to test whether the backing fs contains a cache block.
+     This is not reliable in a modern extent-based filesystem as it can insert
+     and remove bridging blocks of zeros at will.
+
+     Having discussed this with Christoph Hellwig and Dave Chinner, I think I
+     that the cache really needs to keep track of this for itself.
+
+ (2) The use of pagecache waitlist snooping to find out if a backing
+     filesystem page has been updated yet.  I have the feeling that this is
+     not 100% reliable from untrackdownable bugs that seem to relate to this.
+
+     I really would rather be told directly by the backing fs that the op was
+     complete.  Switching over to kiocbs means that can be done.
+
+ (3) Having to go through the pagecache attached to the backing file, copying
+     data from it or using vfs_write() to write into it.  This doubles the
+     amount of pagecache required and adds a bunch of copies for good measure.
+
+     When I wrote the cachefiles caching backend, using direct I/O from within
+     the kernel wasn't possible - but, now that kiocbs are available, I can
+     actually do async DIO from the backing files to/from the netfs pages,
+     cutting out copies in both direction, and using the kiocb completion
+     function to tell me when it's done.
+
+ (4) fscache's structs have a number of pointers back into the netfs, which
+     makes it tricky if the netfs instance goes away whilst the cache is
+     active.
+
+     I really want no pointers back - apart from very transient I/O completion
+     callbacks.  I can store the metadata I need in the cookie.
+
+Modernising this affords the opportunity to make huge simplifications in the
+code (shaving off over 1000 lines, maybe as many as 3000).
+
+One thing I've done is to make a helper library that handles a number of
+features on behalf of a netfs if it wants to use the library:
+
+ (*) Local caching.
+
+ (*) Segmentation and shaping of read operations.
+
+     This takes a ->readahead() request from the VM and translates it into one
+     or more reads against the cache and the netfs, allowing both to
+     adjust/expand the size of the individual subops according to internal
+     alignments.
+
+     Allowing the cache to expand a read request to put it on a larger
+     granularity allows the cache to use less metadata to represent what it
+     contains.
+
+     It also provides a place to retry operations (something that's required
+     if a read against the cache fails and we need to send it to the server
+     instead).
+
+ (*) Transparent huge pages (Willy).
+
+ (*) A place to put fscrypt support (Jeff).
+
+We have the first three working - with some limitations - for afs, nfs and
+ceph, and I've produced partial patches for 9p and cifs. afs, nfs and ceph are
+able to handle xfstests with a cache now - which is something that the old
+fscache code will just explode with.
+
+
+So, as stated, much of that code is written and working.  However, if I do a
+complete replacement all the way out to userspace, there are further changes
+I'm thinking of making:
+
+ (*) Get rid of the ability to remove a cache that's in use.  This accounts
+     for a *lot* of the complexity in fscache.  All the synchronisation
+     required to effect the removal of a live cache at any time whilst it's
+     actually being used.
+
+ (*) Change cachefiles so that it uses an index file and a single data file
+     and perform culling by marking the index rather than deleting data files.
+     Culling would then be moved into the kernel.  cachefilesd is then
+     unnecessary, except to load the config and keep the cache open.
+
+     Moving the culling into an index would also make manual invalidation
+     easier.
+
+ (*) Rather than using cachefilesd to hold the cache open, do something akin
+     to swapon/swapoff to add and remove the cache.
+     
+     Attempting to remove an in-use cache would either fail EBUSY or mark the
+     cache to be removed when it becomes unused and not allow further new
+     users.
+
+ (*) Declare the size of the cache up front rather than declaring that it has
+     to maintain a certain amount of free space, reducing the cache to make
+     more space if the level drops.
+
+ (*) Merge cachefiles into fscache.  Give up the ability to have alternate
+     cache backends.  That would allow a bit more reduction in the complexity
+     and reduce the number of function pointers gone through.
+
+David
+
+
+
+_______________________________________________
+V9fs-developer mailing list
+V9fs-developer@lists.sourceforge.net
+https://lists.sourceforge.net/lists/listinfo/v9fs-developer
