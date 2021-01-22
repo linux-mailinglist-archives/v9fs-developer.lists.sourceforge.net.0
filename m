@@ -2,81 +2,103 @@ Return-Path: <v9fs-developer-bounces@lists.sourceforge.net>
 X-Original-To: lists+v9fs-developer@lfdr.de
 Delivered-To: lists+v9fs-developer@lfdr.de
 Received: from lists.sourceforge.net (lists.sourceforge.net [216.105.38.7])
-	by mail.lfdr.de (Postfix) with ESMTPS id C35E830080E
-	for <lists+v9fs-developer@lfdr.de>; Fri, 22 Jan 2021 17:02:02 +0100 (CET)
-Received: from [127.0.0.1] (helo=sfs-ml-1.v29.lw.sourceforge.com)
-	by sfs-ml-1.v29.lw.sourceforge.com with esmtp (Exim 4.90_1)
+	by mail.lfdr.de (Postfix) with ESMTPS id 92CE9300836
+	for <lists+v9fs-developer@lfdr.de>; Fri, 22 Jan 2021 17:07:19 +0100 (CET)
+Received: from [127.0.0.1] (helo=sfs-ml-4.v29.lw.sourceforge.com)
+	by sfs-ml-4.v29.lw.sourceforge.com with esmtp (Exim 4.90_1)
 	(envelope-from <v9fs-developer-bounces@lists.sourceforge.net>)
-	id 1l2ysq-0004au-O8; Fri, 22 Jan 2021 16:02:00 +0000
+	id 1l2yxy-0008Du-68; Fri, 22 Jan 2021 16:07:18 +0000
 Received: from [172.30.20.202] (helo=mx.sourceforge.net)
- by sfs-ml-1.v29.lw.sourceforge.com with esmtps
+ by sfs-ml-4.v29.lw.sourceforge.com with esmtps
  (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.90_1)
- (envelope-from <bfields@fieldses.org>) id 1l2ysp-0004ah-Lp
- for v9fs-developer@lists.sourceforge.net; Fri, 22 Jan 2021 16:01:59 +0000
+ (envelope-from <dhowells@redhat.com>) id 1l2yxt-0008Dh-Ja
+ for v9fs-developer@lists.sourceforge.net; Fri, 22 Jan 2021 16:07:13 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=sourceforge.net; s=x; h=In-Reply-To:Content-Type:MIME-Version:References:
- Message-ID:Subject:Cc:To:From:Date:Sender:Reply-To:Content-Transfer-Encoding:
- Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
- Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
- List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=C1uyBn2BQyVBzkzoIFDiDLUaJ4GVYrCTmuJOgOCNLm0=; b=czaH6YMw2sRgJHPCkp9cOoXho+
- r8LMWOQigNurEDu5JAyk2ryXDEAO1/GjgYZhCguUdyWRmBFL3plJiDCOdHy3xOizQ1jq0scQO6v/p
- Qllk4uKYPkIyag3tglTAWpwYdUvoau0FqhpEZTaC9Itt9nUnyeqMa2h/Ra/ntFApJPks=;
+ d=sourceforge.net; s=x; h=Message-ID:Date:Content-Transfer-Encoding:
+ Content-ID:Content-Type:MIME-Version:Subject:Cc:To:References:In-Reply-To:
+ From:Sender:Reply-To:Content-Description:Resent-Date:Resent-From:
+ Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:
+ List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
+ bh=LxEIC8hGatT2o24RK/5B1chyfP2tF4vZvBCyA+dON/4=; b=HbdTOeh3ieC6/RyDUr6ihacPhE
+ 0e1R47Q1JFjFV0syWE8q4KN/9Ikhg7r42LelBhZVxBrMPzXRgbKvkgJYC6npV7Ybg0KswAHWpMFjG
+ 2iafHaCJIrezcu/1EXe0MTu6Q9SA8FNALwYFr+ErU27y/H9hUOtkgJdfmuzahx0ebaQA=;
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  ;
- h=In-Reply-To:Content-Type:MIME-Version:References:Message-ID:Subject:Cc:To
- :From:Date:Sender:Reply-To:Content-Transfer-Encoding:Content-ID:
+ h=Message-ID:Date:Content-Transfer-Encoding:Content-ID:Content-Type:
+ MIME-Version:Subject:Cc:To:References:In-Reply-To:From:Sender:Reply-To:
  Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
  :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
  List-Post:List-Owner:List-Archive;
- bh=C1uyBn2BQyVBzkzoIFDiDLUaJ4GVYrCTmuJOgOCNLm0=; b=mYbKcjuYydqPM6py/36jFtoljK
- Mxseajw6IEkDzrVOtYjl9hQWT58bp233Ya56emn2Fdn1CBXqfrG4f7iYhjipsJDBz13EoFlbtVKxQ
- vij+wfNU41SIbhFf4NjaRLiql9GakdF8vBgE9vAfgWO911zbebYh6t/83J/zwD6aHF9A=;
-Received: from fieldses.org ([173.255.197.46])
- by sfi-mx-3.v28.lw.sourceforge.com with esmtps
- (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.92.2)
- id 1l2ysW-00Gi5c-II
- for v9fs-developer@lists.sourceforge.net; Fri, 22 Jan 2021 16:01:59 +0000
-Received: by fieldses.org (Postfix, from userid 2815)
- id 465896EA0; Fri, 22 Jan 2021 11:01:29 -0500 (EST)
-DKIM-Filter: OpenDKIM Filter v2.11.0 fieldses.org 465896EA0
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=fieldses.org;
- s=default; t=1611331289;
- bh=C1uyBn2BQyVBzkzoIFDiDLUaJ4GVYrCTmuJOgOCNLm0=;
- h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
- b=wS+CszPvgU+UvUOL7glyffz488y1gAW2j+6KJGj+4oMkNlv7gRF31pfQZjlqnHUT0
- 1yUos2dQdiC5ry8dTqU/3rvAsvNqyzNB3vhDLNVSC8R0w+7zf0DydKatw+L5rjSrFG
- VKX7er2E95K03LAilNk+NFD2lxGQVieg6S9d4xhI=
-Date: Fri, 22 Jan 2021 11:01:29 -0500
-From: "J. Bruce Fields" <bfields@fieldses.org>
-To: David Howells <dhowells@redhat.com>
-Message-ID: <20210122160129.GB18583@fieldses.org>
-References: <20210121190937.GE20964@fieldses.org>
- <20210121174306.GB20964@fieldses.org>
+ bh=LxEIC8hGatT2o24RK/5B1chyfP2tF4vZvBCyA+dON/4=; b=mGVrksyzR/TiqOeJ11ujPiuzR6
+ dYSysNG4oWOnc3vQjPk197MvoL9vjOtbLxxYY8ioxpepBfoqmnJvJKR8VHqb40EJBZURXFZCjynuF
+ 0QuAjJCivBBryVBaMuhx5yePLPajbOQjGAxdExl6/T8BtA6Dhn4UgAYkUwejx9eZFV4w=;
+Received: from us-smtp-delivery-124.mimecast.com ([216.205.24.124])
+ by sfi-mx-1.v28.lw.sourceforge.com with esmtps
+ (TLSv1.2:ECDHE-RSA-AES256-SHA384:256) (Exim 4.92.2)
+ id 1l2yxm-00AmlJ-66
+ for v9fs-developer@lists.sourceforge.net; Fri, 22 Jan 2021 16:07:13 +0000
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+ s=mimecast20190719; t=1611331620;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references;
+ bh=LxEIC8hGatT2o24RK/5B1chyfP2tF4vZvBCyA+dON/4=;
+ b=Y7hsAtYYnc/JZKobskOxYidVuXpQN6j3IN7ndP4R6BydWPRvYcm3Skf8pqdSDEXR4docl5
+ C+pNvBWbWEECx5m8walyTF6RTmA8ken3nXcA2tYq9w32NjBY+xZfmvFXBfs37URrPjVEEd
+ xU4RYIFGN2HBRB+5N6+IUlSS1WqbIx8=
+Received: from mimecast-mx01.redhat.com (mimecast-mx01.redhat.com
+ [209.132.183.4]) (Using TLS) by relay.mimecast.com with ESMTP id
+ us-mta-319-WxgM7MKlOBu2zSsKQiqVFw-1; Fri, 22 Jan 2021 11:06:58 -0500
+X-MC-Unique: WxgM7MKlOBu2zSsKQiqVFw-1
+Received: from smtp.corp.redhat.com (int-mx01.intmail.prod.int.phx2.redhat.com
+ [10.5.11.11])
+ (using TLSv1.2 with cipher AECDH-AES256-SHA (256/256 bits))
+ (No client certificate requested)
+ by mimecast-mx01.redhat.com (Postfix) with ESMTPS id 78A118144E0;
+ Fri, 22 Jan 2021 16:06:55 +0000 (UTC)
+Received: from warthog.procyon.org.uk (ovpn-115-23.rdu2.redhat.com
+ [10.10.115.23])
+ by smtp.corp.redhat.com (Postfix) with ESMTP id A07F418993;
+ Fri, 22 Jan 2021 16:06:47 +0000 (UTC)
+Organization: Red Hat UK Ltd. Registered Address: Red Hat UK Ltd, Amberley
+ Place, 107-111 Peascod Street, Windsor, Berkshire, SI4 1TE, United
+ Kingdom.
+ Registered in England and Wales under Company Registration No. 3798903
+From: David Howells <dhowells@redhat.com>
+In-Reply-To: <20210122160129.GB18583@fieldses.org>
+References: <20210122160129.GB18583@fieldses.org>
+ <20210121190937.GE20964@fieldses.org> <20210121174306.GB20964@fieldses.org>
  <20210121164645.GA20964@fieldses.org>
  <161118128472.1232039.11746799833066425131.stgit@warthog.procyon.org.uk>
  <1794286.1611248577@warthog.procyon.org.uk>
  <1851804.1611255313@warthog.procyon.org.uk>
  <1856291.1611259704@warthog.procyon.org.uk>
+To: "J. Bruce Fields" <bfields@fieldses.org>
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <1856291.1611259704@warthog.procyon.org.uk>
-User-Agent: Mutt/1.5.21 (2010-09-15)
-X-Spam-Score: -0.1 (/)
+Content-ID: <2085146.1611331606.1@warthog.procyon.org.uk>
+Date: Fri, 22 Jan 2021 16:06:46 +0000
+Message-ID: <2085147.1611331606@warthog.procyon.org.uk>
+X-Scanned-By: MIMEDefang 2.79 on 10.5.11.11
+X-Spam-Score: -0.3 (/)
 X-Spam-Report: Spam Filtering performed by mx.sourceforge.net.
  See http://spamassassin.org/tag/ for more details.
- 0.0 URIBL_BLOCKED ADMINISTRATOR NOTICE: The query to URIBL was blocked.
- See
- http://wiki.apache.org/spamassassin/DnsBlocklists#dnsbl-block
- for more information. [URIs: fieldses.org]
- -0.0 SPF_HELO_PASS          SPF: HELO matches SPF record
  -0.0 SPF_PASS               SPF: sender matches SPF record
+ 0.0 SPF_HELO_NONE          SPF: HELO does not publish an SPF Record
  -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from author's
  domain
  -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
  0.1 DKIM_SIGNED            Message has a DKIM or DK signature,
  not necessarily valid
-X-Headers-End: 1l2ysW-00Gi5c-II
+ 0.0 URIBL_BLOCKED ADMINISTRATOR NOTICE: The query to URIBL was blocked.
+ See
+ http://wiki.apache.org/spamassassin/DnsBlocklists#dnsbl-block
+ for more information. [URIs: fieldses.org]
+ 0.0 RCVD_IN_MSPIKE_H3      RBL: Good reputation (+3)
+ [216.205.24.124 listed in wl.mailspike.net]
+ 0.0 RCVD_IN_MSPIKE_WL      Mailspike good senders
+ -0.2 DKIMWL_WL_HIGH         DKIMwl.org - High trust sender
+X-Headers-End: 1l2yxm-00AmlJ-66
 Subject: Re: [V9fs-developer] [RFC][PATCH 00/25] Network fs helper library &
  fscache kiocb API
 X-BeenThere: v9fs-developer@lists.sourceforge.net
@@ -90,11 +112,11 @@ List-Post: <mailto:v9fs-developer@lists.sourceforge.net>
 List-Help: <mailto:v9fs-developer-request@lists.sourceforge.net?subject=help>
 List-Subscribe: <https://lists.sourceforge.net/lists/listinfo/v9fs-developer>, 
  <mailto:v9fs-developer-request@lists.sourceforge.net?subject=subscribe>
-Cc: David Wysochanski <dwysocha@redhat.com>, linux-cifs@vger.kernel.org,
+Cc: David Wysochanski <dwysocha@redhat.com>, Steve French <sfrench@samba.org>,
  linux-nfs@vger.kernel.org, Jeff Layton <jlayton@redhat.com>,
- Takashi Iwai <tiwai@suse.de>, linux-kernel@vger.kernel.org,
- Matthew Wilcox <willy@infradead.org>, linux-afs@lists.infradead.org,
- Steve French <sfrench@samba.org>, linux-cachefs@redhat.com,
+ linux-cifs@vger.kernel.org, Takashi Iwai <tiwai@suse.de>,
+ linux-kernel@vger.kernel.org, Matthew Wilcox <willy@infradead.org>,
+ linux-afs@lists.infradead.org, dhowells@redhat.com, linux-cachefs@redhat.com,
  Alexander Viro <viro@zeniv.linux.org.uk>,
  Trond Myklebust <trondmy@hammerspace.com>, linux-fsdevel@vger.kernel.org,
  v9fs-developer@lists.sourceforge.net, ceph-devel@vger.kernel.org,
@@ -103,17 +125,22 @@ Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: v9fs-developer-bounces@lists.sourceforge.net
 
-On Thu, Jan 21, 2021 at 08:08:24PM +0000, David Howells wrote:
-> J. Bruce Fields <bfields@fieldses.org> wrote:
-> > So, I'm still confused: there must be some case where we know fscache
-> > actually works reliably and doesn't corrupt your data, right?
+J. Bruce Fields <bfields@fieldses.org> wrote:
+
+> > J. Bruce Fields <bfields@fieldses.org> wrote:
+> > > So, I'm still confused: there must be some case where we know fscache
+> > > actually works reliably and doesn't corrupt your data, right?
+> > 
+> > Using ext2/3, for example.  I don't know under what circumstances xfs, ext4
+> > and btrfs might insert/remove blocks of zeros, but I'm told it can happen.
 > 
-> Using ext2/3, for example.  I don't know under what circumstances xfs, ext4
-> and btrfs might insert/remove blocks of zeros, but I'm told it can happen.
+> Do ext2/3 work well for fscache in other ways?
 
-Do ext2/3 work well for fscache in other ways?
+Ext3 shouldn't be a problem.  That's what I used when developing it.  I'm not
+sure if ext2 supports xattrs, though.
 
---b.
+David
+
 
 
 _______________________________________________
