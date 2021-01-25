@@ -2,63 +2,63 @@ Return-Path: <v9fs-developer-bounces@lists.sourceforge.net>
 X-Original-To: lists+v9fs-developer@lfdr.de
 Delivered-To: lists+v9fs-developer@lfdr.de
 Received: from lists.sourceforge.net (lists.sourceforge.net [216.105.38.7])
-	by mail.lfdr.de (Postfix) with ESMTPS id BE547301D1E
-	for <lists+v9fs-developer@lfdr.de>; Sun, 24 Jan 2021 16:17:01 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3CBCE3026C2
+	for <lists+v9fs-developer@lfdr.de>; Mon, 25 Jan 2021 16:17:09 +0100 (CET)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.sourceforge.net; s=beta; h=Message-Id:Content-Transfer-Encoding:
 	Content-Type:Cc:Reply-To:From:List-Subscribe:List-Help:List-Post:List-Archive
 	:List-Unsubscribe:List-Id:Subject:Date:To:Content-Description:MIME-Version:
 	Sender:Content-ID:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:
 	Resent-Message-ID:In-Reply-To:References:List-Owner;
-	bh=rhkyy0SfiTiH+SLmSqZqteKym+BSdjIT49iWrBR6rw8=; b=l7V5ZfWo15ex7tkxLB1ngM/kFN
-	6Yg/XT7VjypJ83bWG/Qyif0tWB8cT4y3WZWS/WOW16h0KDBnX+Ozcsl5X18ym5rNTZ2duptoxK2ML
-	YdjmXezKZT2mL9uTvRT4+asKVmx05LoMIGbdWgLJKoG6QpXZjFdNxc5D/onQ7wk2LVUE=;
+	bh=rhkyy0SfiTiH+SLmSqZqteKym+BSdjIT49iWrBR6rw8=; b=V332RpFLDfGyouEccaMsNs1tya
+	mfYm0Fado7d/Fy4aWExwPQdhtwh4rTJPXf4HhejANewIhS9i+AgMFH8icRnLTIUkQQHXlTNhWVY0B
+	FngMYEdrcve9i/aMbmrDhg4sEZBpjkJ9kPM6QBCkAia3yfb5MR1d54NH3fgkdgk2qKEs=;
 Received: from [127.0.0.1] (helo=sfs-ml-4.v29.lw.sourceforge.com)
 	by sfs-ml-4.v29.lw.sourceforge.com with esmtp (Exim 4.90_1)
 	(envelope-from <v9fs-developer-bounces@lists.sourceforge.net>)
-	id 1l3h8M-0008Rq-98; Sun, 24 Jan 2021 15:16:58 +0000
+	id 1l43c2-0007LE-Gc; Mon, 25 Jan 2021 15:17:06 +0000
 Received: from [172.30.20.202] (helo=mx.sourceforge.net)
  by sfs-ml-4.v29.lw.sourceforge.com with esmtps
  (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.90_1)
- (envelope-from <sales@aqucknews.life>) id 1l3h8L-0008Rj-Gc
- for v9fs-developer@lists.sourceforge.net; Sun, 24 Jan 2021 15:16:57 +0000
+ (envelope-from <sales@aqucknews.life>) id 1l43c1-0007L6-Bi
+ for v9fs-developer@lists.sourceforge.net; Mon, 25 Jan 2021 15:17:05 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
  d=sourceforge.net; s=x; h=Reply-To:Date:From:To:Subject:Content-Description:
  Content-Transfer-Encoding:MIME-Version:Content-Type:Sender:Message-ID:Cc:
  Content-ID:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:
  Resent-Message-ID:In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:
  List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=Hcd3Mcj37xuFt6bpykaoVKLMj/k1jF3cQMBr6UdVzpo=; b=NdsYC48cDyhyss9gVgDPtHEoVb
- 7ltlemhKB3TeWC0rZG1EObjRDe4idNXZC/9ramkFI7mod77pOlxe62ki3jAPq8XQjy6zJvt7UCLvo
- nI1muei/Wfia3LtvMgleKRyli+tJEcF39Fyj5/efB4fHcCjOMy1oPdGguuMdo9WH8j34=;
+ bh=Hcd3Mcj37xuFt6bpykaoVKLMj/k1jF3cQMBr6UdVzpo=; b=U/DNM4GPHmmjmD8n3V1Px/LcIC
+ +2jyat3/CaCBUlQocNihGDX2YRUJ/HpgBHDcEl9XeuUIa97NdlEZ7KcmAXhOGBGKWcg8zKK4vVuGf
+ sBigLvQwdNR1KThDCPwXacZlvWYLg+oEWa446FlxmT2CV2H/uALJ2AYTcYT+FfR8aPg4=;
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  ; h=Reply-To:Date:From:To:Subject:Content-Description:
  Content-Transfer-Encoding:MIME-Version:Content-Type:Sender:Message-ID:Cc:
  Content-ID:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:
  Resent-Message-ID:In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:
  List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=Hcd3Mcj37xuFt6bpykaoVKLMj/k1jF3cQMBr6UdVzpo=; b=ejKdN66II7fqfoQL9/H1e2uiZ5
- 2O6qWnSoWQA9mDHMJu36D0mfeNz2Fj0lQJ4TXDOtkKhCAtSbJWHQDmR9F5CTCCrC7tx3UQrv6lRxU
- qN2BCNXbqBBGg+YKi249PMZu05iIugnYLZ/tnayCU+tF19ItFDSESLDYWiFPisc9hys0=;
+ bh=Hcd3Mcj37xuFt6bpykaoVKLMj/k1jF3cQMBr6UdVzpo=; b=c2BwwHk9JYKnXEq51krv5aSfa2
+ rPWYumWligOTY2613mKKm7j8rU4MRCdpKBAokMPSpowbuOcfDWVFQEUzBQgURfyJht6N0e7hqTYQz
+ xio/CGnfPxTasogCEGge9/JmjyfblAW0et+i+QJZ7QgaxXYtWnPbn/jWXiUS+jIjueRI=;
 Received: from aqucknews.life ([106.75.129.228])
  by sfi-mx-1.v28.lw.sourceforge.com with esmtps
  (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.92.2)
- id 1l3h8G-00HT4j-UY
- for v9fs-developer@lists.sourceforge.net; Sun, 24 Jan 2021 15:16:57 +0000
+ id 1l43bw-002vj5-4T
+ for v9fs-developer@lists.sourceforge.net; Mon, 25 Jan 2021 15:17:05 +0000
 DKIM-Signature: v=1; a=rsa-sha1; c=relaxed/relaxed; s=default; d=aqucknews.life;
  h=Content-Type:MIME-Version:Content-Transfer-Encoding:Content-Description:Subject:To:From:Date:Reply-To;
  i=sales@aqucknews.life; bh=eqRtB57Z7AYWf3yX2PvA9phb5ng=;
- b=jjc/HBap6Hc/pesNJJSG1W8Cw7gg0fC57jjqbtY0KZ2RBNfeRpw3DCv8czs/mideY29+AZvTvhC3
- aEa1wJaotItIFWZasSITpg/3R9gxkmrmeej509hEJYe68fm33wxeJ83rDR1mGjqFokRMb75E0hmw
- /Fv7JGwNMxbGp8lQyhg=
+ b=CXQ6dEWKg6N4mC2WwfZgC1DePVYxvZYtVD3pIduHknLp1GZzfLH4nP6kFmodgDzwTh0NExVA5rrT
+ XI3oFgVaeJX7EKIf+WET9kThRsyPnHUDOt66QT9pxZE5nAnxbixHXNhJ0llhwqL1JGA/Q49ypk/A
+ TaYeG4qFWgWSPq234Oo=
 DomainKey-Signature: a=rsa-sha1; c=nofws; q=dns; s=default; d=aqucknews.life; 
- b=jBlQDMD1REij2zSYGZbLcWvajnvv+cYOGkK8rD3K/8/4sCoecI56+xi+qHjuIYB97KdUZhwtr6So
- RvPH15bI761JG3MDfAuMzyI0T6cPI0wXAoI3VO1oLbaAAZK+2eZlRWkWCh8juUPxON+aRAQQAdxe
- RG59vshWEII7kPE8Jks=;
+ b=ttHHxiDEpfREoxTt4R0EPOE+2Fms/BCz/AB81uB9v0Thg/It+uyu9ZYhOKff8A+PiWCKmeygxoyh
+ 41wDw8d2G2J/8A+wpG/7l9+fNeHPThGu7EWFSPTsOyO8mK59zBGVA8beyGpo2qBAMEZEwq/Vnu13
+ pWtfZF1y+3/ddID9o4M=;
 MIME-Version: 1.0
 Content-Description: Mail message body
 To: v9fs-developer@lists.sourceforge.net
-Date: Sun, 24 Jan 2021 23:16:26 +0800
+Date: Mon, 25 Jan 2021 23:16:47 +0800
 X-Spam-Score: 7.2 (+++++++)
 X-Spam-Report: Spam Filtering performed by mx.sourceforge.net.
  See http://spamassassin.org/tag/ for more details.
@@ -75,7 +75,7 @@ X-Spam-Report: Spam Filtering performed by mx.sourceforge.net.
  not necessarily valid
  1.0 MISSING_MID            Missing Message-Id: header
  2.5 FREEMAIL_FORGED_REPLYTO Freemail in Reply-To, but not From
-X-Headers-End: 1l3h8G-00HT4j-UY
+X-Headers-End: 1l43bw-002vj5-4T
 Subject: [V9fs-developer] my subject
 X-BeenThere: v9fs-developer@lists.sourceforge.net
 X-Mailman-Version: 2.1.21
@@ -94,7 +94,7 @@ Cc: sales@aqucknews.life
 Content-Type: text/plain; charset="iso-8859-1"
 Content-Transfer-Encoding: quoted-printable
 Errors-To: v9fs-developer-bounces@lists.sourceforge.net
-Message-Id: <E1l3h8M-0008Rq-98@sfs-ml-4.v29.lw.sourceforge.com>
+Message-Id: <E1l43c2-0007LE-Gc@sfs-ml-4.v29.lw.sourceforge.com>
 
 Hallo!
 
