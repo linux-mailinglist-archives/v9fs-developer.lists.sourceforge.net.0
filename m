@@ -2,26 +2,26 @@ Return-Path: <v9fs-developer-bounces@lists.sourceforge.net>
 X-Original-To: lists+v9fs-developer@lfdr.de
 Delivered-To: lists+v9fs-developer@lfdr.de
 Received: from lists.sourceforge.net (lists.sourceforge.net [216.105.38.7])
-	by mail.lfdr.de (Postfix) with ESMTPS id CB453302DCE
-	for <lists+v9fs-developer@lfdr.de>; Mon, 25 Jan 2021 22:33:51 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id DB5CD302DCF
+	for <lists+v9fs-developer@lfdr.de>; Mon, 25 Jan 2021 22:33:53 +0100 (CET)
 Received: from [127.0.0.1] (helo=sfs-ml-1.v29.lw.sourceforge.com)
 	by sfs-ml-1.v29.lw.sourceforge.com with esmtp (Exim 4.90_1)
 	(envelope-from <v9fs-developer-bounces@lists.sourceforge.net>)
-	id 1l49Uc-0001WY-Iz; Mon, 25 Jan 2021 21:33:50 +0000
+	id 1l49Ue-0001XC-L4; Mon, 25 Jan 2021 21:33:52 +0000
 Received: from [172.30.20.202] (helo=mx.sourceforge.net)
  by sfs-ml-1.v29.lw.sourceforge.com with esmtps
  (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.90_1)
- (envelope-from <dhowells@redhat.com>) id 1l49Ua-0001WH-PE
- for v9fs-developer@lists.sourceforge.net; Mon, 25 Jan 2021 21:33:48 +0000
+ (envelope-from <dhowells@redhat.com>) id 1l49Ud-0001Wv-Mu
+ for v9fs-developer@lists.sourceforge.net; Mon, 25 Jan 2021 21:33:51 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
  d=sourceforge.net; s=x; h=Content-Transfer-Encoding:Content-Type:MIME-Version
  :References:In-Reply-To:Message-ID:Date:Cc:To:From:Subject:Sender:Reply-To:
  Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
  Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
  List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=5MeaVBKU2dPMerR7O4J8xW6cBSAHhtlPgS9MjkPtZwE=; b=ahMBJOu2e3A6Wp7aIdWah5pS9x
- RVxU538QTCb6GPfukmTaadDQSDe7YtrV6wLXNaMVEihhGjWWjrkgaJuGYnNGioxa6iOFq8MjQUkH6
- W+09yVIgH7v+34srvEyd+WALryp7IOk//1Zt8P5jrFAFTRgp5lGGfxMCucX8M4bFy7us=;
+ bh=pYJgL9LK9rSIKWVgFalSzYYYdU21hFgzxSciVNpHbLQ=; b=TH2zMKTW+U3Q3H6bazDpf546tU
+ VyQ5fNZlhvYbHqcbjJ09/j3nejPwOiBi9gb4TsN3Ou67FOpUktxx/RqeeWo2euNywghbv3qBeZsAJ
+ 8PIWTAYNuM/WfZGp3BFmUugi9xzI/bAu6sw1ZAlvSmphGdGwRp8dH7gveAMYrtHr3tGg=;
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  ;
  h=Content-Transfer-Encoding:Content-Type:MIME-Version:References:
@@ -29,38 +29,38 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
  :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
  List-Post:List-Owner:List-Archive;
- bh=5MeaVBKU2dPMerR7O4J8xW6cBSAHhtlPgS9MjkPtZwE=; b=ZW/4LXKnHbIFOSdSSDC5TP7BHg
- dTVKul+0K4THIH5rDT7qkaarZFA55f2LeC4DywPPGQbEAtBaschQSS/lJ/XzAKbA/kWqU6DAkc/Pr
- V7TUstIdNRdZ9ahRGDh80Q/LAYYFW9jBKEZ5l4iKXIAKy3IMRxMGpnd0SH3jdSq23ay0=;
+ bh=pYJgL9LK9rSIKWVgFalSzYYYdU21hFgzxSciVNpHbLQ=; b=k9ubQTRmqBKT57PRKmBLVZZuSa
+ UP6J+y5TY1F+klWR4LW1jjBWn7pRc1Kl9e4O7qWdMA+mao3GKmv9mcI5s98khVzrYgN/Sx5uWjQ4x
+ dHB+aMGLSzPEn3ifrzjHUs5HVXZ5ylOwt0Fz97crXmjlVSEYCp1ffa0JHaTov3w8PWhI=;
 Received: from us-smtp-delivery-124.mimecast.com ([216.205.24.124])
- by sfi-mx-3.v28.lw.sourceforge.com with esmtps
+ by sfi-mx-1.v28.lw.sourceforge.com with esmtps
  (TLSv1.2:ECDHE-RSA-AES256-SHA384:256) (Exim 4.92.2)
- id 1l49UQ-007cTE-V7
- for v9fs-developer@lists.sourceforge.net; Mon, 25 Jan 2021 21:33:48 +0000
+ id 1l49Ua-003kbl-MZ
+ for v9fs-developer@lists.sourceforge.net; Mon, 25 Jan 2021 21:33:51 +0000
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
- s=mimecast20190719; t=1611610406;
+ s=mimecast20190719; t=1611610422;
  h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
  to:to:cc:cc:mime-version:mime-version:content-type:content-type:
  content-transfer-encoding:content-transfer-encoding:
  in-reply-to:in-reply-to:references:references;
- bh=5MeaVBKU2dPMerR7O4J8xW6cBSAHhtlPgS9MjkPtZwE=;
- b=ccTHcsJaZL4p4S6EXoPRsqAK3RkGqh0TIKJX7HX9zME5mWoPeA9HMPE47CO8FpIs3uuEur
- KmvMYddOAs2WOcVvpzQsgEtoKa7yMUZzGuST4gSzt1tRjlqY4E5MSKUMVRRa7oK6IMFe+a
- n9ithqy1NktOnEuONZfs3+a7qKVzk4w=
+ bh=pYJgL9LK9rSIKWVgFalSzYYYdU21hFgzxSciVNpHbLQ=;
+ b=WmRmB+0tPMkKpuBW00spPXOij4FdsnGZXzYTdAcjd5mboP3CraznIle6jSzQ2K2Aan9eu2
+ tG/DHz7302tpmkKyS5VWQplQD9Mw+GJdIxIZf0wf7KR7xrWOPqtb2t3Rg2FkiCr2jhhf/3
+ 54GMpczsJcFCALfK/NQHazIgRaBgbEs=
 Received: from mimecast-mx01.redhat.com (mimecast-mx01.redhat.com
  [209.132.183.4]) (Using TLS) by relay.mimecast.com with ESMTP id
- us-mta-13-9FKOK6ijPhKjxjkZcQkCeA-1; Mon, 25 Jan 2021 16:33:24 -0500
-X-MC-Unique: 9FKOK6ijPhKjxjkZcQkCeA-1
-Received: from smtp.corp.redhat.com (int-mx02.intmail.prod.int.phx2.redhat.com
- [10.5.11.12])
+ us-mta-483-BRdgQwU2Mu21iy-0CfjCxg-1; Mon, 25 Jan 2021 16:33:38 -0500
+X-MC-Unique: BRdgQwU2Mu21iy-0CfjCxg-1
+Received: from smtp.corp.redhat.com (int-mx05.intmail.prod.int.phx2.redhat.com
+ [10.5.11.15])
  (using TLSv1.2 with cipher AECDH-AES256-SHA (256/256 bits))
  (No client certificate requested)
- by mimecast-mx01.redhat.com (Postfix) with ESMTPS id 3D70059;
- Mon, 25 Jan 2021 21:33:22 +0000 (UTC)
+ by mimecast-mx01.redhat.com (Postfix) with ESMTPS id 8FECF8735C2;
+ Mon, 25 Jan 2021 21:33:36 +0000 (UTC)
 Received: from warthog.procyon.org.uk (ovpn-115-23.rdu2.redhat.com
  [10.10.115.23])
- by smtp.corp.redhat.com (Postfix) with ESMTP id 8B1CD60C5F;
- Mon, 25 Jan 2021 21:33:11 +0000 (UTC)
+ by smtp.corp.redhat.com (Postfix) with ESMTP id 401BB5D6AB;
+ Mon, 25 Jan 2021 21:33:28 +0000 (UTC)
 Organization: Red Hat UK Ltd. Registered Address: Red Hat UK Ltd, Amberley
  Place, 107-111 Peascod Street, Windsor, Berkshire, SI4 1TE, United
  Kingdom.
@@ -69,20 +69,20 @@ From: David Howells <dhowells@redhat.com>
 To: Trond Myklebust <trondmy@hammerspace.com>,
  Anna Schumaker <anna.schumaker@netapp.com>, Steve French <sfrench@samba.org>, 
  Dominique Martinet <asmadeus@codewreck.org>
-Date: Mon, 25 Jan 2021 21:33:10 +0000
-Message-ID: <161161039077.2537118.7986870854927176905.stgit@warthog.procyon.org.uk>
+Date: Mon, 25 Jan 2021 21:33:27 +0000
+Message-ID: <161161040747.2537118.11435394902674511430.stgit@warthog.procyon.org.uk>
 In-Reply-To: <161161025063.2537118.2009249444682241405.stgit@warthog.procyon.org.uk>
 References: <161161025063.2537118.2009249444682241405.stgit@warthog.procyon.org.uk>
 User-Agent: StGit/0.23
 MIME-Version: 1.0
-X-Scanned-By: MIMEDefang 2.79 on 10.5.11.12
+X-Scanned-By: MIMEDefang 2.79 on 10.5.11.15
 X-Spam-Score: -0.4 (/)
 X-Spam-Report: Spam Filtering performed by mx.sourceforge.net.
  See http://spamassassin.org/tag/ for more details.
- -0.0 SPF_PASS               SPF: sender matches SPF record
- 0.0 SPF_HELO_NONE          SPF: HELO does not publish an SPF Record
  0.0 RCVD_IN_MSPIKE_H3      RBL: Good reputation (+3)
  [216.205.24.124 listed in wl.mailspike.net]
+ -0.0 SPF_PASS               SPF: sender matches SPF record
+ 0.0 SPF_HELO_NONE          SPF: HELO does not publish an SPF Record
  -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from author's
  domain
  -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
@@ -90,9 +90,9 @@ X-Spam-Report: Spam Filtering performed by mx.sourceforge.net.
  not necessarily valid
  0.0 RCVD_IN_MSPIKE_WL      Mailspike good senders
  -0.3 DKIMWL_WL_HIGH         DKIMwl.org - High trust sender
-X-Headers-End: 1l49UQ-007cTE-V7
-Subject: [V9fs-developer] [PATCH 12/32] afs: Disable use of the fscache I/O
- routines
+X-Headers-End: 1l49Ua-003kbl-MZ
+Subject: [V9fs-developer] [PATCH 13/32] afs: Pass page into dirty region
+ helpers to provide THP size
 X-BeenThere: v9fs-developer@lists.sourceforge.net
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -115,327 +115,325 @@ Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: v9fs-developer-bounces@lists.sourceforge.net
 
-Disable use of the fscache I/O routined by the AFS filesystem.  It's about
-to transition to passing iov_iters down and fscache is about to have its
-I/O path to use iov_iter, so all that needs to change.
+Pass a pointer to the page being accessed into the dirty region helpers so
+that the size of the page can be determined in case it's a transparent huge
+page.
+
+This also required the page to be passed into the afs_page_dirty trace
+point - so there's no need to specifically pass in the index or private
+data as these can be retrieved directly from the page struct.
 
 Signed-off-by: David Howells <dhowells@redhat.com>
-cc: linux-afs@lists.infradead.org
 ---
 
- fs/afs/file.c  |  199 ++++++++++----------------------------------------------
- fs/afs/inode.c |    2 -
- fs/afs/write.c |   10 ---
- 3 files changed, 36 insertions(+), 175 deletions(-)
+ fs/afs/file.c              |   20 +++++++--------
+ fs/afs/internal.h          |   16 ++++++------
+ fs/afs/write.c             |   60 ++++++++++++++++++--------------------------
+ include/trace/events/afs.h |   23 ++++++++++-------
+ 4 files changed, 55 insertions(+), 64 deletions(-)
 
 diff --git a/fs/afs/file.c b/fs/afs/file.c
-index 85f5adf21aa0..6d43713fde01 100644
+index 6d43713fde01..21868bfc3a44 100644
 --- a/fs/afs/file.c
 +++ b/fs/afs/file.c
-@@ -203,24 +203,6 @@ void afs_put_read(struct afs_read *req)
- 	}
+@@ -515,8 +515,8 @@ static void afs_invalidate_dirty(struct page *page, unsigned int offset,
+ 		return;
+ 
+ 	/* We may need to shorten the dirty region */
+-	f = afs_page_dirty_from(priv);
+-	t = afs_page_dirty_to(priv);
++	f = afs_page_dirty_from(page, priv);
++	t = afs_page_dirty_to(page, priv);
+ 
+ 	if (t <= offset || f >= end)
+ 		return; /* Doesn't overlap */
+@@ -534,17 +534,17 @@ static void afs_invalidate_dirty(struct page *page, unsigned int offset,
+ 	if (f == t)
+ 		goto undirty;
+ 
+-	priv = afs_page_dirty(f, t);
++	priv = afs_page_dirty(page, f, t);
+ 	set_page_private(page, priv);
+-	trace_afs_page_dirty(vnode, tracepoint_string("trunc"), page->index, priv);
++	trace_afs_page_dirty(vnode, tracepoint_string("trunc"), page);
+ 	return;
+ 
+ undirty:
+-	trace_afs_page_dirty(vnode, tracepoint_string("undirty"), page->index, priv);
++	trace_afs_page_dirty(vnode, tracepoint_string("undirty"), page);
+ 	clear_page_dirty_for_io(page);
+ full_invalidate:
+-	priv = (unsigned long)detach_page_private(page);
+-	trace_afs_page_dirty(vnode, tracepoint_string("inval"), page->index, priv);
++	detach_page_private(page);
++	trace_afs_page_dirty(vnode, tracepoint_string("inval"), page);
  }
  
--#ifdef CONFIG_AFS_FSCACHE
--/*
-- * deal with notification that a page was read from the cache
-- */
--static void afs_file_readpage_read_complete(struct page *page,
--					    void *data,
--					    int error)
--{
--	_enter("%p,%p,%d", page, data, error);
--
--	/* if the read completes with an error, we just unlock the page and let
--	 * the VM reissue the readpage */
--	if (!error)
--		SetPageUptodate(page);
--	unlock_page(page);
--}
--#endif
--
- static void afs_fetch_data_success(struct afs_operation *op)
+ /*
+@@ -572,7 +572,6 @@ static void afs_invalidatepage(struct page *page, unsigned int offset,
+ static int afs_releasepage(struct page *page, gfp_t gfp_flags)
  {
- 	struct afs_vnode *vnode = op->file[0].vnode;
-@@ -288,89 +270,46 @@ int afs_page_filler(void *data, struct page *page)
- 	if (test_bit(AFS_VNODE_DELETED, &vnode->flags))
- 		goto error;
+ 	struct afs_vnode *vnode = AFS_FS_I(page->mapping->host);
+-	unsigned long priv;
  
--	/* is it cached? */
--#ifdef CONFIG_AFS_FSCACHE
--	ret = fscache_read_or_alloc_page(vnode->cache,
--					 page,
--					 afs_file_readpage_read_complete,
--					 NULL,
--					 GFP_KERNEL);
--#else
--	ret = -ENOBUFS;
--#endif
--	switch (ret) {
--		/* read BIO submitted (page in cache) */
--	case 0:
--		break;
--
--		/* page not yet cached */
--	case -ENODATA:
--		_debug("cache said ENODATA");
--		goto go_on;
--
--		/* page will not be cached */
--	case -ENOBUFS:
--		_debug("cache said ENOBUFS");
--
--		fallthrough;
--	default:
--	go_on:
--		req = kzalloc(struct_size(req, array, 1), GFP_KERNEL);
--		if (!req)
--			goto enomem;
--
--		/* We request a full page.  If the page is a partial one at the
--		 * end of the file, the server will return a short read and the
--		 * unmarshalling code will clear the unfilled space.
--		 */
--		refcount_set(&req->usage, 1);
--		req->pos = (loff_t)page->index << PAGE_SHIFT;
--		req->len = PAGE_SIZE;
--		req->nr_pages = 1;
--		req->pages = req->array;
--		req->pages[0] = page;
--		get_page(page);
--
--		/* read the contents of the file from the server into the
--		 * page */
--		ret = afs_fetch_data(vnode, key, req);
--		afs_put_read(req);
--
--		if (ret < 0) {
--			if (ret == -ENOENT) {
--				_debug("got NOENT from server"
--				       " - marking file deleted and stale");
--				set_bit(AFS_VNODE_DELETED, &vnode->flags);
--				ret = -ESTALE;
--			}
--
--#ifdef CONFIG_AFS_FSCACHE
--			fscache_uncache_page(vnode->cache, page);
--#endif
--			BUG_ON(PageFsCache(page));
--
--			if (ret == -EINTR ||
--			    ret == -ENOMEM ||
--			    ret == -ERESTARTSYS ||
--			    ret == -EAGAIN)
--				goto error;
--			goto io_error;
--		}
-+	req = kzalloc(struct_size(req, array, 1), GFP_KERNEL);
-+	if (!req)
-+		goto enomem;
- 
--		SetPageUptodate(page);
-+	/* We request a full page.  If the page is a partial one at the
-+	 * end of the file, the server will return a short read and the
-+	 * unmarshalling code will clear the unfilled space.
-+	 */
-+	refcount_set(&req->usage, 1);
-+	req->pos = (loff_t)page->index << PAGE_SHIFT;
-+	req->len = PAGE_SIZE;
-+	req->nr_pages = 1;
-+	req->pages = req->array;
-+	req->pages[0] = page;
-+	get_page(page);
-+
-+	/* read the contents of the file from the server into the
-+	 * page */
-+	ret = afs_fetch_data(vnode, key, req);
-+	afs_put_read(req);
- 
--		/* send the page to the cache */
--#ifdef CONFIG_AFS_FSCACHE
--		if (PageFsCache(page) &&
--		    fscache_write_page(vnode->cache, page, vnode->status.size,
--				       GFP_KERNEL) != 0) {
--			fscache_uncache_page(vnode->cache, page);
--			BUG_ON(PageFsCache(page));
-+	if (ret < 0) {
-+		if (ret == -ENOENT) {
-+			_debug("got NOENT from server"
-+			       " - marking file deleted and stale");
-+			set_bit(AFS_VNODE_DELETED, &vnode->flags);
-+			ret = -ESTALE;
- 		}
--#endif
--		unlock_page(page);
-+
-+		if (ret == -EINTR ||
-+		    ret == -ENOMEM ||
-+		    ret == -ERESTARTSYS ||
-+		    ret == -EAGAIN)
-+			goto error;
-+		goto io_error;
- 	}
- 
-+	SetPageUptodate(page);
-+	unlock_page(page);
-+
- 	_leave(" = 0");
- 	return 0;
- 
-@@ -416,23 +355,10 @@ static int afs_readpage(struct file *file, struct page *page)
-  */
- static void afs_readpages_page_done(struct afs_read *req)
- {
--#ifdef CONFIG_AFS_FSCACHE
--	struct afs_vnode *vnode = req->vnode;
--#endif
- 	struct page *page = req->pages[req->index];
- 
- 	req->pages[req->index] = NULL;
- 	SetPageUptodate(page);
--
--	/* send the page to the cache */
--#ifdef CONFIG_AFS_FSCACHE
--	if (PageFsCache(page) &&
--	    fscache_write_page(vnode->cache, page, vnode->status.size,
--			       GFP_KERNEL) != 0) {
--		fscache_uncache_page(vnode->cache, page);
--		BUG_ON(PageFsCache(page));
--	}
--#endif
- 	unlock_page(page);
- 	put_page(page);
- }
-@@ -491,9 +417,6 @@ static int afs_readpages_one(struct file *file, struct address_space *mapping,
- 		index = page->index;
- 		if (add_to_page_cache_lru(page, mapping, index,
- 					  readahead_gfp_mask(mapping))) {
--#ifdef CONFIG_AFS_FSCACHE
--			fscache_uncache_page(vnode->cache, page);
--#endif
- 			put_page(page);
- 			break;
- 		}
-@@ -526,9 +449,6 @@ static int afs_readpages_one(struct file *file, struct address_space *mapping,
- 	for (i = 0; i < req->nr_pages; i++) {
- 		page = req->pages[i];
- 		if (page) {
--#ifdef CONFIG_AFS_FSCACHE
--			fscache_uncache_page(vnode->cache, page);
--#endif
- 			SetPageError(page);
- 			unlock_page(page);
- 		}
-@@ -560,37 +480,6 @@ static int afs_readpages(struct file *file, struct address_space *mapping,
- 	}
- 
- 	/* attempt to read as many of the pages as possible */
--#ifdef CONFIG_AFS_FSCACHE
--	ret = fscache_read_or_alloc_pages(vnode->cache,
--					  mapping,
--					  pages,
--					  &nr_pages,
--					  afs_file_readpage_read_complete,
--					  NULL,
--					  mapping_gfp_mask(mapping));
--#else
--	ret = -ENOBUFS;
--#endif
--
--	switch (ret) {
--		/* all pages are being read from the cache */
--	case 0:
--		BUG_ON(!list_empty(pages));
--		BUG_ON(nr_pages != 0);
--		_leave(" = 0 [reading all]");
--		return 0;
--
--		/* there were pages that couldn't be read from the cache */
--	case -ENODATA:
--	case -ENOBUFS:
--		break;
--
--		/* other error */
--	default:
--		_leave(" = %d", ret);
--		return ret;
--	}
--
- 	while (!list_empty(pages)) {
- 		ret = afs_readpages_one(file, mapping, pages);
- 		if (ret < 0)
-@@ -670,17 +559,6 @@ static void afs_invalidatepage(struct page *page, unsigned int offset,
- 
- 	BUG_ON(!PageLocked(page));
- 
--#ifdef CONFIG_AFS_FSCACHE
--	/* we clean up only if the entire page is being invalidated */
--	if (offset == 0 && length == PAGE_SIZE) {
--		if (PageFsCache(page)) {
--			struct afs_vnode *vnode = AFS_FS_I(page->mapping->host);
--			fscache_wait_on_page_write(vnode->cache, page);
--			fscache_uncache_page(vnode->cache, page);
--		}
--	}
--#endif
--
- 	if (PagePrivate(page))
- 		afs_invalidate_dirty(page, offset, length);
- 
-@@ -702,13 +580,6 @@ static int afs_releasepage(struct page *page, gfp_t gfp_flags)
- 
+ 	_enter("{{%llx:%llu}[%lu],%lx},%x",
+ 	       vnode->fid.vid, vnode->fid.vnode, page->index, page->flags,
+@@ -581,9 +580,8 @@ static int afs_releasepage(struct page *page, gfp_t gfp_flags)
  	/* deny if page is being written to the cache and the caller hasn't
  	 * elected to wait */
--#ifdef CONFIG_AFS_FSCACHE
--	if (!fscache_maybe_release_page(vnode->cache, page, gfp_flags)) {
--		_leave(" = F [cache busy]");
--		return 0;
--	}
--#endif
--
  	if (PagePrivate(page)) {
- 		priv = (unsigned long)detach_page_private(page);
- 		trace_afs_page_dirty(vnode, tracepoint_string("rel"),
-diff --git a/fs/afs/inode.c b/fs/afs/inode.c
-index b0d7b892090d..48edd8d724d2 100644
---- a/fs/afs/inode.c
-+++ b/fs/afs/inode.c
-@@ -428,7 +428,7 @@ static void afs_get_inode_cache(struct afs_vnode *vnode)
- 	} __packed key;
- 	struct afs_vnode_cache_aux aux;
- 
--	if (vnode->status.type == AFS_FTYPE_DIR) {
-+	if (vnode->status.type != AFS_FTYPE_FILE) {
- 		vnode->cache = NULL;
- 		return;
+-		priv = (unsigned long)detach_page_private(page);
+-		trace_afs_page_dirty(vnode, tracepoint_string("rel"),
+-				     page->index, priv);
++		detach_page_private(page);
++		trace_afs_page_dirty(vnode, tracepoint_string("rel"), page);
  	}
+ 
+ 	/* indicate that the page can be released */
+diff --git a/fs/afs/internal.h b/fs/afs/internal.h
+index 0d150a29e39e..cd545e7dbfb8 100644
+--- a/fs/afs/internal.h
++++ b/fs/afs/internal.h
+@@ -875,31 +875,31 @@ struct afs_vnode_cache_aux {
+ #define __AFS_PAGE_PRIV_MMAPPED	0x8000UL
+ #endif
+ 
+-static inline unsigned int afs_page_dirty_resolution(void)
++static inline unsigned int afs_page_dirty_resolution(struct page *page)
+ {
+-	int shift = PAGE_SHIFT - (__AFS_PAGE_PRIV_SHIFT - 1);
++	int shift = thp_order(page) + PAGE_SHIFT - (__AFS_PAGE_PRIV_SHIFT - 1);
+ 	return (shift > 0) ? shift : 0;
+ }
+ 
+-static inline size_t afs_page_dirty_from(unsigned long priv)
++static inline size_t afs_page_dirty_from(struct page *page, unsigned long priv)
+ {
+ 	unsigned long x = priv & __AFS_PAGE_PRIV_MASK;
+ 
+ 	/* The lower bound is inclusive */
+-	return x << afs_page_dirty_resolution();
++	return x << afs_page_dirty_resolution(page);
+ }
+ 
+-static inline size_t afs_page_dirty_to(unsigned long priv)
++static inline size_t afs_page_dirty_to(struct page *page, unsigned long priv)
+ {
+ 	unsigned long x = (priv >> __AFS_PAGE_PRIV_SHIFT) & __AFS_PAGE_PRIV_MASK;
+ 
+ 	/* The upper bound is immediately beyond the region */
+-	return (x + 1) << afs_page_dirty_resolution();
++	return (x + 1) << afs_page_dirty_resolution(page);
+ }
+ 
+-static inline unsigned long afs_page_dirty(size_t from, size_t to)
++static inline unsigned long afs_page_dirty(struct page *page, size_t from, size_t to)
+ {
+-	unsigned int res = afs_page_dirty_resolution();
++	unsigned int res = afs_page_dirty_resolution(page);
+ 	from >>= res;
+ 	to = (to - 1) >> res;
+ 	return (to << __AFS_PAGE_PRIV_SHIFT) | from;
 diff --git a/fs/afs/write.c b/fs/afs/write.c
-index c9195fc67fd8..92eaa88000d7 100644
+index 92eaa88000d7..9d0cef35ecba 100644
 --- a/fs/afs/write.c
 +++ b/fs/afs/write.c
-@@ -847,9 +847,6 @@ vm_fault_t afs_page_mkwrite(struct vm_fault *vmf)
- 	/* Wait for the page to be written to the cache before we allow it to
- 	 * be modified.  We then assume the entire page will need writing back.
- 	 */
--#ifdef CONFIG_AFS_FSCACHE
--	fscache_wait_on_page_write(vnode->cache, vmf->page);
--#endif
+@@ -112,15 +112,14 @@ int afs_write_begin(struct file *file, struct address_space *mapping,
+ 	t = f = 0;
+ 	if (PagePrivate(page)) {
+ 		priv = page_private(page);
+-		f = afs_page_dirty_from(priv);
+-		t = afs_page_dirty_to(priv);
++		f = afs_page_dirty_from(page, priv);
++		t = afs_page_dirty_to(page, priv);
+ 		ASSERTCMP(f, <=, t);
+ 	}
  
- 	if (PageWriteback(vmf->page) &&
- 	    wait_on_page_bit_killable(vmf->page, PG_writeback) < 0)
-@@ -936,12 +933,5 @@ int afs_launder_page(struct page *page)
- 	priv = (unsigned long)detach_page_private(page);
- 	trace_afs_page_dirty(vnode, tracepoint_string("laundered"),
- 			     page->index, priv);
--
--#ifdef CONFIG_AFS_FSCACHE
--	if (PageFsCache(page)) {
--		fscache_wait_on_page_write(vnode->cache, page);
--		fscache_uncache_page(vnode->cache, page);
--	}
--#endif
+ 	if (f != t) {
+ 		if (PageWriteback(page)) {
+-			trace_afs_page_dirty(vnode, tracepoint_string("alrdy"),
+-					     page->index, priv);
++			trace_afs_page_dirty(vnode, tracepoint_string("alrdy"), page);
+ 			goto flush_conflicting_write;
+ 		}
+ 		/* If the file is being filled locally, allow inter-write
+@@ -204,21 +203,19 @@ int afs_write_end(struct file *file, struct address_space *mapping,
+ 
+ 	if (PagePrivate(page)) {
+ 		priv = page_private(page);
+-		f = afs_page_dirty_from(priv);
+-		t = afs_page_dirty_to(priv);
++		f = afs_page_dirty_from(page, priv);
++		t = afs_page_dirty_to(page, priv);
+ 		if (from < f)
+ 			f = from;
+ 		if (to > t)
+ 			t = to;
+-		priv = afs_page_dirty(f, t);
++		priv = afs_page_dirty(page, f, t);
+ 		set_page_private(page, priv);
+-		trace_afs_page_dirty(vnode, tracepoint_string("dirty+"),
+-				     page->index, priv);
++		trace_afs_page_dirty(vnode, tracepoint_string("dirty+"), page);
+ 	} else {
+-		priv = afs_page_dirty(from, to);
++		priv = afs_page_dirty(page, from, to);
+ 		attach_page_private(page, (void *)priv);
+-		trace_afs_page_dirty(vnode, tracepoint_string("dirty"),
+-				     page->index, priv);
++		trace_afs_page_dirty(vnode, tracepoint_string("dirty"), page);
+ 	}
+ 
+ 	set_page_dirty(page);
+@@ -321,7 +318,6 @@ static void afs_pages_written_back(struct afs_vnode *vnode,
+ 				   pgoff_t first, pgoff_t last)
+ {
+ 	struct pagevec pv;
+-	unsigned long priv;
+ 	unsigned count, loop;
+ 
+ 	_enter("{%llx:%llu},{%lx-%lx}",
+@@ -340,9 +336,9 @@ static void afs_pages_written_back(struct afs_vnode *vnode,
+ 		ASSERTCMP(pv.nr, ==, count);
+ 
+ 		for (loop = 0; loop < count; loop++) {
+-			priv = (unsigned long)detach_page_private(pv.pages[loop]);
++			detach_page_private(pv.pages[loop]);
+ 			trace_afs_page_dirty(vnode, tracepoint_string("clear"),
+-					     pv.pages[loop]->index, priv);
++					     pv.pages[loop]);
+ 			end_page_writeback(pv.pages[loop]);
+ 		}
+ 		first += count;
+@@ -516,15 +512,13 @@ static int afs_write_back_from_locked_page(struct address_space *mapping,
+ 	 */
+ 	start = primary_page->index;
+ 	priv = page_private(primary_page);
+-	offset = afs_page_dirty_from(priv);
+-	to = afs_page_dirty_to(priv);
+-	trace_afs_page_dirty(vnode, tracepoint_string("store"),
+-			     primary_page->index, priv);
++	offset = afs_page_dirty_from(primary_page, priv);
++	to = afs_page_dirty_to(primary_page, priv);
++	trace_afs_page_dirty(vnode, tracepoint_string("store"), primary_page);
+ 
+ 	WARN_ON(offset == to);
+ 	if (offset == to)
+-		trace_afs_page_dirty(vnode, tracepoint_string("WARN"),
+-				     primary_page->index, priv);
++		trace_afs_page_dirty(vnode, tracepoint_string("WARN"), primary_page);
+ 
+ 	if (start >= final_page ||
+ 	    (to < PAGE_SIZE && !test_bit(AFS_VNODE_NEW_CONTENT, &vnode->flags)))
+@@ -562,8 +556,8 @@ static int afs_write_back_from_locked_page(struct address_space *mapping,
+ 			}
+ 
+ 			priv = page_private(page);
+-			f = afs_page_dirty_from(priv);
+-			t = afs_page_dirty_to(priv);
++			f = afs_page_dirty_from(page, priv);
++			t = afs_page_dirty_to(page, priv);
+ 			if (f != 0 &&
+ 			    !test_bit(AFS_VNODE_NEW_CONTENT, &vnode->flags)) {
+ 				unlock_page(page);
+@@ -571,8 +565,7 @@ static int afs_write_back_from_locked_page(struct address_space *mapping,
+ 			}
+ 			to = t;
+ 
+-			trace_afs_page_dirty(vnode, tracepoint_string("store+"),
+-					     page->index, priv);
++			trace_afs_page_dirty(vnode, tracepoint_string("store+"), page);
+ 
+ 			if (!clear_page_dirty_for_io(page))
+ 				BUG();
+@@ -861,14 +854,13 @@ vm_fault_t afs_page_mkwrite(struct vm_fault *vmf)
+ 	 */
+ 	wait_on_page_writeback(vmf->page);
+ 
+-	priv = afs_page_dirty(0, PAGE_SIZE);
++	priv = afs_page_dirty(vmf->page, 0, PAGE_SIZE);
+ 	priv = afs_page_dirty_mmapped(priv);
+-	trace_afs_page_dirty(vnode, tracepoint_string("mkwrite"),
+-			     vmf->page->index, priv);
+ 	if (PagePrivate(vmf->page))
+ 		set_page_private(vmf->page, priv);
+ 	else
+ 		attach_page_private(vmf->page, (void *)priv);
++	trace_afs_page_dirty(vnode, tracepoint_string("mkwrite"), vmf->page);
+ 	file_update_time(file);
+ 
+ 	sb_end_pagefault(inode->i_sb);
+@@ -921,17 +913,15 @@ int afs_launder_page(struct page *page)
+ 		f = 0;
+ 		t = PAGE_SIZE;
+ 		if (PagePrivate(page)) {
+-			f = afs_page_dirty_from(priv);
+-			t = afs_page_dirty_to(priv);
++			f = afs_page_dirty_from(page, priv);
++			t = afs_page_dirty_to(page, priv);
+ 		}
+ 
+-		trace_afs_page_dirty(vnode, tracepoint_string("launder"),
+-				     page->index, priv);
++		trace_afs_page_dirty(vnode, tracepoint_string("launder"), page);
+ 		ret = afs_store_data(mapping, page->index, page->index, t, f, true);
+ 	}
+ 
+-	priv = (unsigned long)detach_page_private(page);
+-	trace_afs_page_dirty(vnode, tracepoint_string("laundered"),
+-			     page->index, priv);
++	detach_page_private(page);
++	trace_afs_page_dirty(vnode, tracepoint_string("laundered"), page);
  	return ret;
  }
+diff --git a/include/trace/events/afs.h b/include/trace/events/afs.h
+index 4a5cc8c64be3..9203cf6a8c53 100644
+--- a/include/trace/events/afs.h
++++ b/include/trace/events/afs.h
+@@ -969,30 +969,33 @@ TRACE_EVENT(afs_dir_check_failed,
+ 	    );
+ 
+ TRACE_EVENT(afs_page_dirty,
+-	    TP_PROTO(struct afs_vnode *vnode, const char *where,
+-		     pgoff_t page, unsigned long priv),
++	    TP_PROTO(struct afs_vnode *vnode, const char *where, struct page *page),
+ 
+-	    TP_ARGS(vnode, where, page, priv),
++	    TP_ARGS(vnode, where, page),
+ 
+ 	    TP_STRUCT__entry(
+ 		    __field(struct afs_vnode *,		vnode		)
+ 		    __field(const char *,		where		)
+ 		    __field(pgoff_t,			page		)
+-		    __field(unsigned long,		priv		)
++		    __field(unsigned long,		from		)
++		    __field(unsigned long,		to		)
+ 			     ),
+ 
+ 	    TP_fast_assign(
+ 		    __entry->vnode = vnode;
+ 		    __entry->where = where;
+-		    __entry->page = page;
+-		    __entry->priv = priv;
++		    __entry->page = page->index;
++		    __entry->from = afs_page_dirty_from(page, page->private);
++		    __entry->to = afs_page_dirty_to(page, page->private);
++		    __entry->to |= (afs_is_page_dirty_mmapped(page->private) ?
++				    (1UL << (BITS_PER_LONG - 1)) : 0);
+ 			   ),
+ 
+-	    TP_printk("vn=%p %lx %s %zx-%zx%s",
++	    TP_printk("vn=%p %lx %s %lx-%lx%s",
+ 		      __entry->vnode, __entry->page, __entry->where,
+-		      afs_page_dirty_from(__entry->priv),
+-		      afs_page_dirty_to(__entry->priv),
+-		      afs_is_page_dirty_mmapped(__entry->priv) ? " M" : "")
++		      __entry->from,
++		      __entry->to & ~(1UL << (BITS_PER_LONG - 1)),
++		      __entry->to & (1UL << (BITS_PER_LONG - 1)) ? " M" : "")
+ 	    );
+ 
+ TRACE_EVENT(afs_call_state,
 
 
 
