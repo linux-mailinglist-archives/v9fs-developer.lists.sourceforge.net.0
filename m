@@ -2,26 +2,26 @@ Return-Path: <v9fs-developer-bounces@lists.sourceforge.net>
 X-Original-To: lists+v9fs-developer@lfdr.de
 Delivered-To: lists+v9fs-developer@lfdr.de
 Received: from lists.sourceforge.net (lists.sourceforge.net [216.105.38.7])
-	by mail.lfdr.de (Postfix) with ESMTPS id E430F3032AD
-	for <lists+v9fs-developer@lfdr.de>; Tue, 26 Jan 2021 05:01:40 +0100 (CET)
-Received: from [127.0.0.1] (helo=sfs-ml-2.v29.lw.sourceforge.com)
-	by sfs-ml-2.v29.lw.sourceforge.com with esmtp (Exim 4.90_1)
+	by mail.lfdr.de (Postfix) with ESMTPS id EA0B23032B0
+	for <lists+v9fs-developer@lfdr.de>; Tue, 26 Jan 2021 05:06:54 +0100 (CET)
+Received: from [127.0.0.1] (helo=sfs-ml-1.v29.lw.sourceforge.com)
+	by sfs-ml-1.v29.lw.sourceforge.com with esmtp (Exim 4.90_1)
 	(envelope-from <v9fs-developer-bounces@lists.sourceforge.net>)
-	id 1l4FXu-0002OO-0N; Tue, 26 Jan 2021 04:01:38 +0000
+	id 1l4Fcz-00087C-Kb; Tue, 26 Jan 2021 04:06:53 +0000
 Received: from [172.30.20.202] (helo=mx.sourceforge.net)
- by sfs-ml-2.v29.lw.sourceforge.com with esmtps
+ by sfs-ml-1.v29.lw.sourceforge.com with esmtps
  (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.90_1)
- (envelope-from <willy@infradead.org>) id 1l4FXs-0002OF-1K
- for v9fs-developer@lists.sourceforge.net; Tue, 26 Jan 2021 04:01:36 +0000
+ (envelope-from <willy@infradead.org>) id 1l4Fcx-00086u-Mz
+ for v9fs-developer@lists.sourceforge.net; Tue, 26 Jan 2021 04:06:51 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
  d=sourceforge.net; s=x; h=In-Reply-To:Content-Type:MIME-Version:References:
  Message-ID:Subject:Cc:To:From:Date:Sender:Reply-To:Content-Transfer-Encoding:
  Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
  Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
  List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=hD2dihblVyt6KB5ToLRdOaDt4RozgYV/Q1Wqm2r3jOY=; b=cOdBJjMCI7fPj2sq/wGK5qeBVT
- od/KLsL3gMTg6+vV5aRCaGaFICadMQ7eibmoev1MLX3DZfhO42mUrmuZ944yGv10j65iJEVZDGt9D
- +HZIdjI7JjCFPw821P93OzIqX7NRRpjVKP+Gq1xhuV5Cc91ld6ij7v4oL1e1xa8Aa1Ac=;
+ bh=jq3N/pNATTXIAMrmJ6obiwvtVc5gjKpBnS3S5QeZ+pY=; b=BaXX2Gn6npuBn25fEd5w/BpXXM
+ zXP1S+8fhpXfm45J3dsiLrVjCQmucQ34RA3SRUW5dV2+nQLmEGVayles9ogDaPO07F/zUgIgk9Yu6
+ lCnFpMqrvVLGspzR10VA+o0uP1E7JnN6lv1BNbdpn/a1rVV5dFkbDYlA9Pd2iKR9IBCY=;
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  ;
  h=In-Reply-To:Content-Type:MIME-Version:References:Message-ID:Subject:Cc:To
@@ -29,35 +29,35 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
  :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
  List-Post:List-Owner:List-Archive;
- bh=hD2dihblVyt6KB5ToLRdOaDt4RozgYV/Q1Wqm2r3jOY=; b=a3z3Ci9XRdlDVjORVw/EL0QfoH
- 0w12lNI6IHKXlNgNOGysR1UKlioRlKz87gT59E2TMoEapUdXLiaK/Vm1WbAjUPASJ8ekBqIBFfQzE
- mb2CdYeoBZoTlNsn4vTFgalxncuHAvG3wIDOEtuIR4qrgnt77ip/GdoUOpWBSiPQk/NA=;
+ bh=jq3N/pNATTXIAMrmJ6obiwvtVc5gjKpBnS3S5QeZ+pY=; b=IWJVQLBakvUSuvsEKq+jKwTOcz
+ 19JH5FrzQhhwPTPmfRS/27AI+rvSQLWMfIg6x6fa9wfMBcX1xZeM24leUE8UHS057UvE/LeCzOHWE
+ bh31oWfLwFGdmlsdrL+aZin7Q9DUHtGoQ57y7taIZaKEHipIOrlzj8kP7j2fZXjaqLSA=;
 Received: from casper.infradead.org ([90.155.50.34])
  by sfi-mx-1.v28.lw.sourceforge.com with esmtps
  (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.92.2)
- id 1l4FXn-005J0H-6m
- for v9fs-developer@lists.sourceforge.net; Tue, 26 Jan 2021 04:01:35 +0000
+ id 1l4Fci-005JRf-Ta
+ for v9fs-developer@lists.sourceforge.net; Tue, 26 Jan 2021 04:06:51 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
  d=infradead.org; s=casper.20170209; h=In-Reply-To:Content-Type:MIME-Version:
  References:Message-ID:Subject:Cc:To:From:Date:Sender:Reply-To:
  Content-Transfer-Encoding:Content-ID:Content-Description;
- bh=hD2dihblVyt6KB5ToLRdOaDt4RozgYV/Q1Wqm2r3jOY=; b=szZsJUgSPGV0So2PjEzFyqt/aC
- GyEdr/UfGs5HvOaNfsGT7dgq77B941sKj9PgjAiBVacsv+FjgHkISHdLslYmTYf1TJpPBI4v4n8VN
- tCoGlH5IE+nObbCOW5VcGClxU5HrmAcNo6QfAyI2RNielNHDjb5Ua55lwdfhnweC/J6+4y17D+wK9
- HJx9AvKZcyAojIUH1mGBcP1Om+RT61Mn2SwfXusPhV5FNUh35gRES0yVHZrB37n89RJbSt+otpvLV
- I/8+MuqVC1vrReyVomu9bSFbG476zcpu3zwgqFXRU4fMPPp0xzdZk2918xuvVp2TtHUVwnsIA4aXb
- ohW+E04Q==;
+ bh=jq3N/pNATTXIAMrmJ6obiwvtVc5gjKpBnS3S5QeZ+pY=; b=k5jINKlmfQbKVkIc/QXlhf3x+a
+ KKgGtH3mPaUaM/OfdSzQ+q/lrTQwHicbG/JKAJXzk0VSiUhlqqPvKPVFRLaBTrRuO1/yfo8oXx4H7
+ l5bG5GO4+RnFNJfsM67J/D3YIEbQJo/k3q5HfWbJUgK5sd+tFUMejnRDHyDxk4LZuWyvCQDnB+gjq
+ zOKsiZ2Lv5B5lLMYuuMKn/gA2xwSBl2THbsXjL87EiEHQ8EhQ2ImbIqpEatXX2aFYhUkw9YYNfLrv
+ aarEqm3k+Xt/QvaRlG8bjW49UmSAtOfxlmHpnv165FYQ6iMzlCp2siLkBG/QSBVFjVvAWTbVZmcGv
+ JFMI27LA==;
 Received: from willy by casper.infradead.org with local (Exim 4.94 #2 (Red Hat
- Linux)) id 1l4FVp-0052nr-00; Tue, 26 Jan 2021 03:59:44 +0000
-Date: Tue, 26 Jan 2021 03:59:28 +0000
+ Linux)) id 1l4Fbo-0053Bl-Gu; Tue, 26 Jan 2021 04:05:43 +0000
+Date: Tue, 26 Jan 2021 04:05:40 +0000
 From: Matthew Wilcox <willy@infradead.org>
 To: David Howells <dhowells@redhat.com>
-Message-ID: <20210126035928.GJ308988@casper.infradead.org>
+Message-ID: <20210126040540.GK308988@casper.infradead.org>
 References: <161161025063.2537118.2009249444682241405.stgit@warthog.procyon.org.uk>
- <161161054970.2537118.5401048451896267742.stgit@warthog.procyon.org.uk>
+ <161161057357.2537118.6542184374596533032.stgit@warthog.procyon.org.uk>
 MIME-Version: 1.0
 Content-Disposition: inline
-In-Reply-To: <161161054970.2537118.5401048451896267742.stgit@warthog.procyon.org.uk>
+In-Reply-To: <161161057357.2537118.6542184374596533032.stgit@warthog.procyon.org.uk>
 X-Spam-Score: -0.1 (/)
 X-Spam-Report: Spam Filtering performed by mx.sourceforge.net.
  See http://spamassassin.org/tag/ for more details.
@@ -68,9 +68,9 @@ X-Spam-Report: Spam Filtering performed by mx.sourceforge.net.
  -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
  0.1 DKIM_SIGNED            Message has a DKIM or DK signature,
  not necessarily valid
-X-Headers-End: 1l4FXn-005J0H-6m
-Subject: Re: [V9fs-developer] [PATCH 25/32] NFS: Clean up nfs_readpage() and
- nfs_readpages()
+X-Headers-End: 1l4Fci-005JRf-Ta
+Subject: Re: [V9fs-developer] [PATCH 27/32] NFS: Refactor nfs_readpage() and
+ nfs_readpage_async() to use nfs_readdesc
 X-BeenThere: v9fs-developer@lists.sourceforge.net
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -94,12 +94,23 @@ Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: v9fs-developer-bounces@lists.sourceforge.net
 
-On Mon, Jan 25, 2021 at 09:35:49PM +0000, David Howells wrote:
-> -int nfs_readpage(struct file *file, struct page *page)
-> +int nfs_readpage(struct file *filp, struct page *page)
+On Mon, Jan 25, 2021 at 09:36:13PM +0000, David Howells wrote:
+> +int nfs_readpage_async(void *data, struct inode *inode,
+>  		       struct page *page)
+>  {
+> +	struct nfs_readdesc *desc = (struct nfs_readdesc *)data;
 
-I appreciate we're inconsistent between file and filp, but we're actually
-moving more towards file than filp.
+You don't need a cast to cast from void.
+
+> @@ -440,17 +439,16 @@ int nfs_readpages(struct file *filp, struct address_space *mapping,
+>  	if (ret == 0)
+>  		goto read_complete; /* all pages were read */
+>  
+> -	desc.pgio = &pgio;
+> -	nfs_pageio_init_read(&pgio, inode, false,
+> +	nfs_pageio_init_read(&desc.pgio, inode, false,
+
+I like what you've done here, embedding the pgio in the desc.
 
 
 
