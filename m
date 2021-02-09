@@ -2,101 +2,88 @@ Return-Path: <v9fs-developer-bounces@lists.sourceforge.net>
 X-Original-To: lists+v9fs-developer@lfdr.de
 Delivered-To: lists+v9fs-developer@lfdr.de
 Received: from lists.sourceforge.net (lists.sourceforge.net [216.105.38.7])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8E00D315877
-	for <lists+v9fs-developer@lfdr.de>; Tue,  9 Feb 2021 22:19:38 +0100 (CET)
-Received: from [127.0.0.1] (helo=sfs-ml-2.v29.lw.sourceforge.com)
-	by sfs-ml-2.v29.lw.sourceforge.com with esmtp (Exim 4.90_1)
+	by mail.lfdr.de (Postfix) with ESMTPS id AAB77315886
+	for <lists+v9fs-developer@lfdr.de>; Tue,  9 Feb 2021 22:25:54 +0100 (CET)
+Received: from [127.0.0.1] (helo=sfs-ml-1.v29.lw.sourceforge.com)
+	by sfs-ml-1.v29.lw.sourceforge.com with esmtp (Exim 4.90_1)
 	(envelope-from <v9fs-developer-bounces@lists.sourceforge.net>)
-	id 1l9aQ5-0001oo-D2; Tue, 09 Feb 2021 21:19:37 +0000
+	id 1l9aW8-0000bh-Mi; Tue, 09 Feb 2021 21:25:52 +0000
 Received: from [172.30.20.202] (helo=mx.sourceforge.net)
- by sfs-ml-2.v29.lw.sourceforge.com with esmtps
+ by sfs-ml-1.v29.lw.sourceforge.com with esmtps
  (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.90_1)
- (envelope-from <torvalds@linuxfoundation.org>) id 1l9aQ3-0001oa-Ks
- for v9fs-developer@lists.sourceforge.net; Tue, 09 Feb 2021 21:19:35 +0000
+ (envelope-from <dhowells@redhat.com>) id 1l9aW6-0000bM-RO
+ for v9fs-developer@lists.sourceforge.net; Tue, 09 Feb 2021 21:25:50 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=sourceforge.net; s=x; h=Content-Type:Cc:To:Subject:Message-ID:Date:From:
- In-Reply-To:References:MIME-Version:Sender:Reply-To:Content-Transfer-Encoding
- :Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
- Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
- List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=5NXrj70SaJJJRtMQWC0+3w4cmGywCfZjtndBL9rb8Bo=; b=OhA+b+cB4DJechXuxdgdT22fih
- JgX6skmbINBHEuNIcP/xQ01yNj+ERrdsuK0ajIy1p2tLdKfqdj2VkNFVfD6cmnO7L9tp9Thl72acx
- hcZwKIhRhl49gTDrL7qIy5fOjJmSgZi14h4SR3Zfl/+y/EOPZ1KGFohwl/+NkMoaxQxY=;
+ d=sourceforge.net; s=x; h=Message-ID:Date:Content-ID:Content-Type:
+ MIME-Version:Subject:Cc:To:References:In-Reply-To:From:Sender:Reply-To:
+ Content-Transfer-Encoding:Content-Description:Resent-Date:Resent-From:
+ Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:
+ List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
+ bh=njyj2XCXYGtI5AX/JV14IYXR8Ipi7RDaSVkhJ8oSglg=; b=lmVyWKaQzK3Q1P9sBgbyWHzMkQ
+ XcICiIhxbWnSHZIbs3xW+9cxsrdbLrFiUdTvYqxK8WMTWJ5Krbd+UAsm4RirMPAQLQJS43nbqb7ty
+ cjuwmXZpIYznvO2R7bELRev9S4ELYssQhY07EDhVCYhAjRF/ZhksnzpxYMcqLEVY+7SU=;
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  ;
- h=Content-Type:Cc:To:Subject:Message-ID:Date:From:In-Reply-To:References:
- MIME-Version:Sender:Reply-To:Content-Transfer-Encoding:Content-ID:
+ h=Message-ID:Date:Content-ID:Content-Type:MIME-Version:Subject:Cc:To:
+ References:In-Reply-To:From:Sender:Reply-To:Content-Transfer-Encoding:
  Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
  :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
  List-Post:List-Owner:List-Archive;
- bh=5NXrj70SaJJJRtMQWC0+3w4cmGywCfZjtndBL9rb8Bo=; b=C4jeQcO+c5gXn7u0ahcXEB4Hux
- UV854OF6QM84QBFK7Otp4xheEv0XqCZ/QnmbZy/PCoUH+g+1BBFwMJ5LbxmM5E0XgYQRlqZ6nJYDi
- XZjhz4NRd/IQ17ulEQi7gOFeSKnjH12FwknJqdYBmKBnvSJLNSUsR8GMyFGnp1lUecTM=;
-Received: from mail-lf1-f50.google.com ([209.85.167.50])
- by sfi-mx-1.v28.lw.sourceforge.com with esmtps
- (TLSv1.2:ECDHE-RSA-AES128-GCM-SHA256:128) (Exim 4.92.2)
- id 1l9aPu-000hId-FF
- for v9fs-developer@lists.sourceforge.net; Tue, 09 Feb 2021 21:19:35 +0000
-Received: by mail-lf1-f50.google.com with SMTP id p21so30540066lfu.11
- for <v9fs-developer@lists.sourceforge.net>;
- Tue, 09 Feb 2021 13:19:26 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=linux-foundation.org; s=google;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=5NXrj70SaJJJRtMQWC0+3w4cmGywCfZjtndBL9rb8Bo=;
- b=g8n7RWB/hph+MNS6KsfC0GffC4feoLtbwfzXkMDO5VGlvyK682yT02RPRIOW6hieUR
- nxG1Mlzbyp5mtI1Do4dwBB4pr2NfNtLSNxuXGIfX+Az+7iAT6uxAH+/kuEuPZoNDiHrT
- JX8A9+J4I4DIw7KDC1ACDk8XTP+nwuXWBZL+g=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc;
- bh=5NXrj70SaJJJRtMQWC0+3w4cmGywCfZjtndBL9rb8Bo=;
- b=EGzQgiFy0reHRyhiw5lL0B5eC2j1sDv1uYki9f5qCJ6pe2AnRcdYDspgp5hP3Iaole
- runHHhY27wsWoIbaTybU9uD3gqX9p7RL1qRmqFoE2hGDBNPH8azyVKA8oAixipYk9NHM
- SLa2yP4y/cNxYcfduBxl4bgqQmgPJ7l7kEeridZV7pDIU1SX/PVc64noDrykH6dQFaoE
- 3Ktj8AKbfB9OB0ARqIANDuWilaAVZ0nrGCDc4mbz8UP6de1sSN++jDNkdZkH3caKug+5
- iWawEWjjIlr0FQuN2JeFWQufzm/GCZD5+CGjTzo6YhGbGqtCQyiU2BVcWhgKyqUWSoaI
- g9Wg==
-X-Gm-Message-State: AOAM5326GzwdsWsvH6pW5+15frZcrxq2xM9E7CkFTRGnH73v2/uwMSGY
- NPuqhI/Ili5gAf6VJW2LwCUotsx+MyyHGQ==
-X-Google-Smtp-Source: ABdhPJxIZMQ3JdjpvU+YM2FsigKi0DHbgvCFUO3QoqxdStJJu9FDPVrWF2trNe7aiL61aA8h7xN8eA==
-X-Received: by 2002:a19:f00a:: with SMTP id p10mr14812099lfc.355.1612905559461; 
- Tue, 09 Feb 2021 13:19:19 -0800 (PST)
-Received: from mail-lj1-f179.google.com (mail-lj1-f179.google.com.
- [209.85.208.179])
- by smtp.gmail.com with ESMTPSA id a7sm2723506lfb.308.2021.02.09.13.19.17
- for <v9fs-developer@lists.sourceforge.net>
- (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Tue, 09 Feb 2021 13:19:17 -0800 (PST)
-Received: by mail-lj1-f179.google.com with SMTP id r23so68341ljh.1
- for <v9fs-developer@lists.sourceforge.net>;
- Tue, 09 Feb 2021 13:19:17 -0800 (PST)
-X-Received: by 2002:a2e:b1c8:: with SMTP id e8mr15253931lja.251.1612905557284; 
- Tue, 09 Feb 2021 13:19:17 -0800 (PST)
-MIME-Version: 1.0
-References: <591237.1612886997@warthog.procyon.org.uk>
- <CAHk-=wj-k86FOqAVQ4ScnBkX3YEKuMzqTEB2vixdHgovJpHc9w@mail.gmail.com>
- <20210209202134.GA308988@casper.infradead.org>
+ bh=njyj2XCXYGtI5AX/JV14IYXR8Ipi7RDaSVkhJ8oSglg=; b=Z5gAWNT6OjZhA1Ys5eT0pV64+0
+ PfwYb1QUGNNTpZzZPokeU1L+Teqdg+ON8Pa7ZtsOYCcsM1egSdn7TASl+NSRqXjApOaE113SIcFiT
+ 6L6TGcgJYegdMY/ML1aX3khl82d17pUChyhZihH/mFEmIGsssdCL2pbc3cZvrPMXqfu0=;
+Received: from us-smtp-delivery-124.mimecast.com ([63.128.21.124])
+ by sfi-mx-2.v28.lw.sourceforge.com with esmtps
+ (TLSv1.2:ECDHE-RSA-AES256-SHA384:256) (Exim 4.92.3)
+ id 1l9aVw-0003AB-SH
+ for v9fs-developer@lists.sourceforge.net; Tue, 09 Feb 2021 21:25:50 +0000
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+ s=mimecast20190719; t=1612905935;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+ in-reply-to:in-reply-to:references:references;
+ bh=njyj2XCXYGtI5AX/JV14IYXR8Ipi7RDaSVkhJ8oSglg=;
+ b=SgoM+oiTs+SjkimMNKUBXmrMn+GuDTYvwJHo58/V5xQspujOma25ioY7OaheB8v+SjSim9
+ VarEUeSzLuXEvzMtjwCzhXE813UY/x4VnXQmNC/xK3EsYN/yRIVjBXt649yWTi8QhWBmbh
+ 4jG+skmzousUa/ZDP0kd2TDo9RtcVDc=
+Received: from mimecast-mx01.redhat.com (mimecast-mx01.redhat.com
+ [209.132.183.4]) (Using TLS) by relay.mimecast.com with ESMTP id
+ us-mta-166-Ez0mEz_fP32izAfxafFp3w-1; Tue, 09 Feb 2021 16:25:32 -0500
+X-MC-Unique: Ez0mEz_fP32izAfxafFp3w-1
+Received: from smtp.corp.redhat.com (int-mx08.intmail.prod.int.phx2.redhat.com
+ [10.5.11.23])
+ (using TLSv1.2 with cipher AECDH-AES256-SHA (256/256 bits))
+ (No client certificate requested)
+ by mimecast-mx01.redhat.com (Postfix) with ESMTPS id B7E8FCC626;
+ Tue,  9 Feb 2021 21:25:30 +0000 (UTC)
+Received: from warthog.procyon.org.uk (ovpn-115-23.rdu2.redhat.com
+ [10.10.115.23])
+ by smtp.corp.redhat.com (Postfix) with ESMTP id E044519C78;
+ Tue,  9 Feb 2021 21:25:23 +0000 (UTC)
+Organization: Red Hat UK Ltd. Registered Address: Red Hat UK Ltd, Amberley
+ Place, 107-111 Peascod Street, Windsor, Berkshire, SI4 1TE, United
+ Kingdom.
+ Registered in England and Wales under Company Registration No. 3798903
+From: David Howells <dhowells@redhat.com>
 In-Reply-To: <20210209202134.GA308988@casper.infradead.org>
-From: Linus Torvalds <torvalds@linux-foundation.org>
-Date: Tue, 9 Feb 2021 13:19:01 -0800
-X-Gmail-Original-Message-ID: <CAHk-=wh+2gbF7XEjYc=HV9w_2uVzVf7vs60BPz0gFA=+pUm3ww@mail.gmail.com>
-Message-ID: <CAHk-=wh+2gbF7XEjYc=HV9w_2uVzVf7vs60BPz0gFA=+pUm3ww@mail.gmail.com>
+References: <20210209202134.GA308988@casper.infradead.org>
+ <591237.1612886997@warthog.procyon.org.uk>
+ <CAHk-=wj-k86FOqAVQ4ScnBkX3YEKuMzqTEB2vixdHgovJpHc9w@mail.gmail.com>
 To: Matthew Wilcox <willy@infradead.org>
-X-Spam-Score: 0.1 (/)
+MIME-Version: 1.0
+Content-ID: <618608.1612905923.1@warthog.procyon.org.uk>
+Date: Tue, 09 Feb 2021 21:25:23 +0000
+Message-ID: <618609.1612905923@warthog.procyon.org.uk>
+X-Scanned-By: MIMEDefang 2.84 on 10.5.11.23
+X-Spam-Score: -0.7 (/)
 X-Spam-Report: Spam Filtering performed by mx.sourceforge.net.
  See http://spamassassin.org/tag/ for more details.
- -0.0 RCVD_IN_DNSWL_NONE     RBL: Sender listed at https://www.dnswl.org/, no
- trust [209.85.167.50 listed in list.dnswl.org]
- 0.2 HEADER_FROM_DIFFERENT_DOMAINS From and EnvelopeFrom 2nd level mail
- domains are different
  0.0 URIBL_BLOCKED ADMINISTRATOR NOTICE: The query to URIBL was blocked.
  See
  http://wiki.apache.org/spamassassin/DnsBlocklists#dnsbl-block
  for more information. [URIs: infradead.org]
- -0.0 RCVD_IN_MSPIKE_H2      RBL: Average reputation (+2)
- [209.85.167.50 listed in wl.mailspike.net]
+ 0.0 RCVD_IN_MSPIKE_H4      RBL: Very Good reputation (+4)
+ [63.128.21.124 listed in wl.mailspike.net]
  -0.0 SPF_PASS               SPF: sender matches SPF record
  0.0 SPF_HELO_NONE          SPF: HELO does not publish an SPF Record
  -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from author's
@@ -104,7 +91,9 @@ X-Spam-Report: Spam Filtering performed by mx.sourceforge.net.
  -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
  0.1 DKIM_SIGNED            Message has a DKIM or DK signature,
  not necessarily valid
-X-Headers-End: 1l9aPu-000hId-FF
+ 0.0 RCVD_IN_MSPIKE_WL      Mailspike good senders
+ -0.6 DKIMWL_WL_HIGH         DKIMwl.org - High trust sender
+X-Headers-End: 1l9aVw-0003AB-SH
 Subject: Re: [V9fs-developer] [GIT PULL] fscache: I/O API modernisation and
  netfs helper library
 X-BeenThere: v9fs-developer@lists.sourceforge.net
@@ -122,40 +111,40 @@ Cc: Steve French <sfrench@samba.org>, "open list:NFS, SUNRPC,
  AND..." <linux-nfs@vger.kernel.org>, Jeff Layton <jlayton@redhat.com>,
  CIFS <linux-cifs@vger.kernel.org>, David Wysochanski <dwysocha@redhat.com>,
  Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
- linux-afs@lists.infradead.org, David Howells <dhowells@redhat.com>,
- linux-cachefs@redhat.com, Alexander Viro <viro@zeniv.linux.org.uk>,
+ linux-afs@lists.infradead.org, dhowells@redhat.com, linux-cachefs@redhat.com,
+ Alexander Viro <viro@zeniv.linux.org.uk>,
  Trond Myklebust <trondmy@hammerspace.com>,
  linux-fsdevel <linux-fsdevel@vger.kernel.org>,
  v9fs-developer@lists.sourceforge.net, ceph-devel@vger.kernel.org,
+ Linus Torvalds <torvalds@linux-foundation.org>,
  Anna Schumaker <anna.schumaker@netapp.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: v9fs-developer-bounces@lists.sourceforge.net
 
-On Tue, Feb 9, 2021 at 12:21 PM Matthew Wilcox <willy@infradead.org> wrote:
->
+Matthew Wilcox <willy@infradead.org> wrote:
+
 > Yeah, I have trouble with the private2 vs fscache bit too.  I've been
 > trying to persuade David that he doesn't actually need an fscache
 > bit at all; he can just increment the page's refcount to prevent it
 > from being freed while he writes data to the cache.
 
-Does the code not hold a refcount already?
+That's not what the bit is primarily being used for.  It's being used to
+prevent the starting of a second write to the cache whilst the first is in
+progress and also to prevent modification whilst DMA to the cache is in
+progress.  This isn't so obvious in this cut-down patchset, but comes more in
+to play with full caching of local writes in my fscache-iter branch.
 
-Honestly, the fact that writeback doesn't take a refcount, and then
-has magic "if writeback is set, don't free" code in other parts of the
-VM layer has been a problem already, when the wakeup ended up
-"leaking" from a previous page to a new allocation.
+I can't easily share PG_writeback for this because each bit covers a write to
+a different place.  PG_writeback covers the write to the server and PG_fscache
+the write to the cache.  These writes may get split up differently and will
+most likely finish at different times.
 
-I very much hope the fscache bit does not make similar mistakes,
-because the rest of the VM will _not_ have special "if fscache is set,
-then we won't do X" the way we do for writeback.
+If I have to share PG_writeback, that will mean storing both states for each
+page somewhere else and then "OR'ing" them together to drive PG_writeback.
 
-So I think the fscache code needs to hold a refcount regardless, and
-that the fscache bit is set the page has to have a reference.
+David
 
-So what are the current lifetime rules for the fscache bit?
-
-             Linus
 
 
 _______________________________________________
