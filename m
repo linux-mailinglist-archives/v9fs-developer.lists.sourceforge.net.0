@@ -2,26 +2,26 @@ Return-Path: <v9fs-developer-bounces@lists.sourceforge.net>
 X-Original-To: lists+v9fs-developer@lfdr.de
 Delivered-To: lists+v9fs-developer@lfdr.de
 Received: from lists.sourceforge.net (lists.sourceforge.net [216.105.38.7])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5713F31BD78
-	for <lists+v9fs-developer@lfdr.de>; Mon, 15 Feb 2021 16:49:33 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7616A31BD79
+	for <lists+v9fs-developer@lfdr.de>; Mon, 15 Feb 2021 16:49:58 +0100 (CET)
 Received: from [127.0.0.1] (helo=sfs-ml-1.v29.lw.sourceforge.com)
 	by sfs-ml-1.v29.lw.sourceforge.com with esmtp (Exim 4.90_1)
 	(envelope-from <v9fs-developer-bounces@lists.sourceforge.net>)
-	id 1lBg7w-0002HS-4l; Mon, 15 Feb 2021 15:49:32 +0000
+	id 1lBg8L-0002Oj-8v; Mon, 15 Feb 2021 15:49:57 +0000
 Received: from [172.30.20.202] (helo=mx.sourceforge.net)
  by sfs-ml-1.v29.lw.sourceforge.com with esmtps
  (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.90_1)
- (envelope-from <dhowells@redhat.com>) id 1lBg7q-0002DB-Ef
- for v9fs-developer@lists.sourceforge.net; Mon, 15 Feb 2021 15:49:26 +0000
+ (envelope-from <dhowells@redhat.com>) id 1lBg8K-0002OS-BA
+ for v9fs-developer@lists.sourceforge.net; Mon, 15 Feb 2021 15:49:56 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
  d=sourceforge.net; s=x; h=Content-Transfer-Encoding:Content-Type:MIME-Version
  :References:In-Reply-To:Message-ID:Date:Cc:To:From:Subject:Sender:Reply-To:
  Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
  Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
  List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=+Ma1jifx8c9sln++i63HLx2QkPzzZKsDVw7/yoiDNY0=; b=Ydd5Osjyj4kSdL3FCVGRB/Y5MM
- 70RdWIwLhmM5dgBSsw7zBDSNHYjgdrogkAJO7T3VATgYwPLl0pjNhRkjkFYF3YQg/uNGNjKpirM5k
- bI/WxXt0Rj5WAcPGvYLaEOI9lB8NyWdEtrq6UBQ/HJMqwR99uNIrKRG24qkQ37V68RIU=;
+ bh=vvo0QnG6NuMYhGBk++cS49qUvTc1qArUN+gLsARN+gc=; b=NRgNuP0jen3Mstr982H4U1n8qj
+ berC2KW2P1Y0O3RlWyNSPZub2Qndw6V5qLbbg30+zipYm16Njpy5NiBOxFss3segHvmE0u5ajVNsB
+ WqInRyZvY0wtYiwXGW/rg+Q0Vc61CfDnnYxv3/2/ZpuCRUYfLA6628RBsHl/W63/SBZg=;
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  ;
  h=Content-Transfer-Encoding:Content-Type:MIME-Version:References:
@@ -29,38 +29,38 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
  :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
  List-Post:List-Owner:List-Archive;
- bh=+Ma1jifx8c9sln++i63HLx2QkPzzZKsDVw7/yoiDNY0=; b=PWrz/A9DWrnFyzGC9ASP2nBPvR
- f6X1niK7234U/E0WTwZPaAkosHnNebgYNIbaM5iTsoQXAGwW7q6R9phG0PHuhNZ3D1Y7zGUHTzzoj
- TxaWqujEPy2OOOM72hgw21Ws55FgFVirY3KqG9rCg6gqQ0oDTSUTOllcJnpM6FWYeBBM=;
-Received: from us-smtp-delivery-124.mimecast.com ([216.205.24.124])
- by sfi-mx-1.v28.lw.sourceforge.com with esmtps
- (TLSv1.2:ECDHE-RSA-AES256-SHA384:256) (Exim 4.92.2)
- id 1lBg7V-009oKb-Ae
- for v9fs-developer@lists.sourceforge.net; Mon, 15 Feb 2021 15:49:26 +0000
+ bh=vvo0QnG6NuMYhGBk++cS49qUvTc1qArUN+gLsARN+gc=; b=MXD+xJvr/vakhrANP0dVug9HMK
+ ivASHsts7RFXr8Xy5crGpO+432RrXMPNuZpQrQ1EpRW/XjJS3fOi2+FCkcnx6qLMPBim7jKtVkQQ2
+ Gykx5pEmd9hBNHr1oiP6hOVKPMKDbRXUU3klxB2ZUTRHlvAeeDjN8ry36ntbPZvWTBp8=;
+Received: from us-smtp-delivery-124.mimecast.com ([63.128.21.124])
+ by sfi-mx-2.v28.lw.sourceforge.com with esmtps
+ (TLSv1.2:ECDHE-RSA-AES256-SHA384:256) (Exim 4.92.3)
+ id 1lBg7o-0006c6-0S
+ for v9fs-developer@lists.sourceforge.net; Mon, 15 Feb 2021 15:49:56 +0000
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
- s=mimecast20190719; t=1613404139;
+ s=mimecast20190719; t=1613404158;
  h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
  to:to:cc:cc:mime-version:mime-version:content-type:content-type:
  content-transfer-encoding:content-transfer-encoding:
  in-reply-to:in-reply-to:references:references;
- bh=+Ma1jifx8c9sln++i63HLx2QkPzzZKsDVw7/yoiDNY0=;
- b=Kv8BsMKp1e34O2uzbfRaV7gVjCk1uaAqpzQGWz4naZ0UAe5XXtDSGiPn+xW1k8SBuAQriE
- sECOnFy5DSNy/MZ4OXtRemFVa13W5PAVYuS9Zk/Uai0VA79Vi9DOmYD5l1FweTJefYjy+Y
- IEmZAEYcGUi+LOnXe20le3W1D6ZaQu0=
+ bh=vvo0QnG6NuMYhGBk++cS49qUvTc1qArUN+gLsARN+gc=;
+ b=giuAnz1zuEOdKptt4ooKAS0iLCfbZo5mItjMHUZcC0/22FQRmzqT4RWfTtHUrjnQu4qHCm
+ UUL7+CO65392UOoSiBUKKrsAHwVRxZ6keztrWlkIjB8fTBzKGrh3HGvx9WkGHIlaG+fRZJ
+ bWhZCOUo3U1G//rgHdMiVhx7ZG1J+cM=
 Received: from mimecast-mx01.redhat.com (mimecast-mx01.redhat.com
  [209.132.183.4]) (Using TLS) by relay.mimecast.com with ESMTP id
- us-mta-269-y1a_94veNferUpBG-rne-Q-1; Mon, 15 Feb 2021 10:48:57 -0500
-X-MC-Unique: y1a_94veNferUpBG-rne-Q-1
-Received: from smtp.corp.redhat.com (int-mx05.intmail.prod.int.phx2.redhat.com
- [10.5.11.15])
+ us-mta-350-ltvLwzF0O-uniQKMzYT7RQ-1; Mon, 15 Feb 2021 10:49:16 -0500
+X-MC-Unique: ltvLwzF0O-uniQKMzYT7RQ-1
+Received: from smtp.corp.redhat.com (int-mx04.intmail.prod.int.phx2.redhat.com
+ [10.5.11.14])
  (using TLSv1.2 with cipher AECDH-AES256-SHA (256/256 bits))
  (No client certificate requested)
- by mimecast-mx01.redhat.com (Postfix) with ESMTPS id C45D7100A690;
- Mon, 15 Feb 2021 15:48:55 +0000 (UTC)
+ by mimecast-mx01.redhat.com (Postfix) with ESMTPS id 72669801982;
+ Mon, 15 Feb 2021 15:49:13 +0000 (UTC)
 Received: from warthog.procyon.org.uk (ovpn-119-68.rdu2.redhat.com
  [10.10.119.68])
- by smtp.corp.redhat.com (Postfix) with ESMTP id E7E1E5B697;
- Mon, 15 Feb 2021 15:48:49 +0000 (UTC)
+ by smtp.corp.redhat.com (Postfix) with ESMTP id DBA995D9C0;
+ Mon, 15 Feb 2021 15:49:01 +0000 (UTC)
 Organization: Red Hat UK Ltd. Registered Address: Red Hat UK Ltd, Amberley
  Place, 107-111 Peascod Street, Windsor, Berkshire, SI4 1TE, United
  Kingdom.
@@ -69,22 +69,20 @@ From: David Howells <dhowells@redhat.com>
 To: Trond Myklebust <trondmy@hammerspace.com>,
  Anna Schumaker <anna.schumaker@netapp.com>, Steve French <sfrench@samba.org>, 
  Dominique Martinet <asmadeus@codewreck.org>
-Date: Mon, 15 Feb 2021 15:48:49 +0000
-Message-ID: <161340412903.1303470.6424701655031380012.stgit@warthog.procyon.org.uk>
+Date: Mon, 15 Feb 2021 15:49:01 +0000
+Message-ID: <161340414102.1303470.9078891484034668985.stgit@warthog.procyon.org.uk>
 In-Reply-To: <161340385320.1303470.2392622971006879777.stgit@warthog.procyon.org.uk>
 References: <161340385320.1303470.2392622971006879777.stgit@warthog.procyon.org.uk>
 User-Agent: StGit/0.23
 MIME-Version: 1.0
-X-Scanned-By: MIMEDefang 2.79 on 10.5.11.15
+X-Scanned-By: MIMEDefang 2.79 on 10.5.11.14
 X-Spam-Score: 0.0 (/)
 X-Spam-Report: Spam Filtering performed by mx.sourceforge.net.
  See http://spamassassin.org/tag/ for more details.
- 0.0 RCVD_IN_MSPIKE_H3      RBL: Good reputation (+3)
- [216.205.24.124 listed in wl.mailspike.net]
  0.0 TIME_LIMIT_EXCEEDED    Exceeded time limit / deadline
-X-Headers-End: 1lBg7V-009oKb-Ae
-Subject: [V9fs-developer] [PATCH 23/33] afs: Wait on PG_fscache before
- modifying/releasing a page
+X-Headers-End: 1lBg7o-0006c6-0S
+Subject: [V9fs-developer] [PATCH 24/33] afs: Extract writeback extension
+ into its own function
 X-BeenThere: v9fs-developer@lists.sourceforge.net
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -107,11 +105,8 @@ Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: v9fs-developer-bounces@lists.sourceforge.net
 
-PG_fscache is going to be used to indicate that a page is being written to
-the cache, and that the page should not be modified or released until it's
-finished.
-
-Make afs_invalidatepage() and afs_releasepage() wait for it.
+Extract writeback extension into its own function to break up the writeback
+function a bit.
 
 Signed-off-by: David Howells <dhowells@redhat.com>
 cc: linux-afs@lists.infradead.org
@@ -119,71 +114,153 @@ cc: linux-cachefs@redhat.com
 cc: linux-fsdevel@vger.kernel.org
 ---
 
- fs/afs/file.c  |    9 +++++++++
- fs/afs/write.c |   10 ++++++++++
- 2 files changed, 19 insertions(+)
+ fs/afs/write.c |  109 ++++++++++++++++++++++++++++++++++----------------------
+ 1 file changed, 67 insertions(+), 42 deletions(-)
 
-diff --git a/fs/afs/file.c b/fs/afs/file.c
-index f1bab69e99d4..acbc21a8c80e 100644
---- a/fs/afs/file.c
-+++ b/fs/afs/file.c
-@@ -594,6 +594,7 @@ static void afs_invalidatepage(struct page *page, unsigned int offset,
- 	if (PagePrivate(page))
- 		afs_invalidate_dirty(page, offset, length);
- 
-+	wait_on_page_fscache(page);
- 	_leave("");
- }
- 
-@@ -611,6 +612,14 @@ static int afs_releasepage(struct page *page, gfp_t gfp_flags)
- 
- 	/* deny if page is being written to the cache and the caller hasn't
- 	 * elected to wait */
-+#ifdef CONFIG_AFS_FSCACHE
-+	if (PageFsCache(page)) {
-+		if (!(gfp_flags & __GFP_DIRECT_RECLAIM) || !(gfp_flags & __GFP_FS))
-+			return false;
-+		wait_on_page_fscache(page);
-+	}
-+#endif
-+
- 	if (PagePrivate(page)) {
- 		detach_page_private(page);
- 		trace_afs_page_dirty(vnode, tracepoint_string("rel"), page);
 diff --git a/fs/afs/write.c b/fs/afs/write.c
-index dd4dc1c868b5..e1791de90478 100644
+index e1791de90478..89c804bfe253 100644
 --- a/fs/afs/write.c
 +++ b/fs/afs/write.c
-@@ -117,6 +117,10 @@ int afs_write_begin(struct file *file, struct address_space *mapping,
- 		SetPageUptodate(page);
- 	}
- 
-+#ifdef CONFIG_AFS_FSCACHE
-+	wait_on_page_fscache(page);
-+#endif
-+
- try_again:
- 	/* See if this page is already partially written in a way that we can
- 	 * merge the new write with.
-@@ -857,6 +861,11 @@ vm_fault_t afs_page_mkwrite(struct vm_fault *vmf)
- 	/* Wait for the page to be written to the cache before we allow it to
- 	 * be modified.  We then assume the entire page will need writing back.
- 	 */
-+#ifdef CONFIG_AFS_FSCACHE
-+	if (PageFsCache(vmf->page) &&
-+	    wait_on_page_bit_killable(vmf->page, PG_fscache) < 0)
-+		return VM_FAULT_RETRY;
-+#endif
- 
- 	if (PageWriteback(vmf->page) &&
- 	    wait_on_page_bit_killable(vmf->page, PG_writeback) < 0)
-@@ -948,5 +957,6 @@ int afs_launder_page(struct page *page)
- 
- 	detach_page_private(page);
- 	trace_afs_page_dirty(vnode, tracepoint_string("laundered"), page);
-+	wait_on_page_fscache(page);
- 	return ret;
+@@ -490,47 +490,25 @@ static int afs_store_data(struct afs_vnode *vnode, struct iov_iter *iter,
  }
+ 
+ /*
+- * Synchronously write back the locked page and any subsequent non-locked dirty
+- * pages.
++ * Extend the region to be written back to include subsequent contiguously
++ * dirty pages if possible, but don't sleep while doing so.
++ *
++ * If this page holds new content, then we can include filler zeros in the
++ * writeback.
+  */
+-static int afs_write_back_from_locked_page(struct address_space *mapping,
+-					   struct writeback_control *wbc,
+-					   struct page *primary_page,
+-					   pgoff_t final_page)
++static void afs_extend_writeback(struct address_space *mapping,
++				 struct afs_vnode *vnode,
++				 long *_count,
++				 pgoff_t start,
++				 pgoff_t final_page,
++				 unsigned *_offset,
++				 unsigned *_to,
++				 bool new_content)
+ {
+-	struct afs_vnode *vnode = AFS_FS_I(mapping->host);
+-	struct iov_iter iter;
+ 	struct page *pages[8], *page;
+-	unsigned long count, priv;
+-	unsigned n, offset, to, f, t;
+-	pgoff_t start, first, last;
+-	loff_t i_size, pos, end;
+-	int loop, ret;
+-
+-	_enter(",%lx", primary_page->index);
+-
+-	count = 1;
+-	if (test_set_page_writeback(primary_page))
+-		BUG();
+-
+-	/* Find all consecutive lockable dirty pages that have contiguous
+-	 * written regions, stopping when we find a page that is not
+-	 * immediately lockable, is not dirty or is missing, or we reach the
+-	 * end of the range.
+-	 */
+-	start = primary_page->index;
+-	priv = page_private(primary_page);
+-	offset = afs_page_dirty_from(primary_page, priv);
+-	to = afs_page_dirty_to(primary_page, priv);
+-	trace_afs_page_dirty(vnode, tracepoint_string("store"), primary_page);
+-
+-	WARN_ON(offset == to);
+-	if (offset == to)
+-		trace_afs_page_dirty(vnode, tracepoint_string("WARN"), primary_page);
+-
+-	if (start >= final_page ||
+-	    (to < PAGE_SIZE && !test_bit(AFS_VNODE_NEW_CONTENT, &vnode->flags)))
+-		goto no_more;
++	unsigned long count = *_count, priv;
++	unsigned offset = *_offset, to = *_to, n, f, t;
++	int loop;
+ 
+ 	start++;
+ 	do {
+@@ -551,8 +529,7 @@ static int afs_write_back_from_locked_page(struct address_space *mapping,
+ 
+ 		for (loop = 0; loop < n; loop++) {
+ 			page = pages[loop];
+-			if (to != PAGE_SIZE &&
+-			    !test_bit(AFS_VNODE_NEW_CONTENT, &vnode->flags))
++			if (to != PAGE_SIZE && !new_content)
+ 				break;
+ 			if (page->index > final_page)
+ 				break;
+@@ -566,8 +543,7 @@ static int afs_write_back_from_locked_page(struct address_space *mapping,
+ 			priv = page_private(page);
+ 			f = afs_page_dirty_from(page, priv);
+ 			t = afs_page_dirty_to(page, priv);
+-			if (f != 0 &&
+-			    !test_bit(AFS_VNODE_NEW_CONTENT, &vnode->flags)) {
++			if (f != 0 && !new_content) {
+ 				unlock_page(page);
+ 				break;
+ 			}
+@@ -593,6 +569,55 @@ static int afs_write_back_from_locked_page(struct address_space *mapping,
+ 	} while (start <= final_page && count < 65536);
+ 
+ no_more:
++	*_count = count;
++	*_offset = offset;
++	*_to = to;
++}
++
++/*
++ * Synchronously write back the locked page and any subsequent non-locked dirty
++ * pages.
++ */
++static int afs_write_back_from_locked_page(struct address_space *mapping,
++					   struct writeback_control *wbc,
++					   struct page *primary_page,
++					   pgoff_t final_page)
++{
++	struct afs_vnode *vnode = AFS_FS_I(mapping->host);
++	struct iov_iter iter;
++	unsigned long count, priv;
++	unsigned offset, to;
++	pgoff_t start, first, last;
++	loff_t i_size, pos, end;
++	bool new_content = test_bit(AFS_VNODE_NEW_CONTENT, &vnode->flags);
++	int ret;
++
++	_enter(",%lx", primary_page->index);
++
++	count = 1;
++	if (test_set_page_writeback(primary_page))
++		BUG();
++
++	/* Find all consecutive lockable dirty pages that have contiguous
++	 * written regions, stopping when we find a page that is not
++	 * immediately lockable, is not dirty or is missing, or we reach the
++	 * end of the range.
++	 */
++	start = primary_page->index;
++	priv = page_private(primary_page);
++	offset = afs_page_dirty_from(primary_page, priv);
++	to = afs_page_dirty_to(primary_page, priv);
++	trace_afs_page_dirty(vnode, tracepoint_string("store"), primary_page);
++
++	WARN_ON(offset == to);
++	if (offset == to)
++		trace_afs_page_dirty(vnode, tracepoint_string("WARN"), primary_page);
++
++	if (start < final_page &&
++	    (to == PAGE_SIZE || new_content))
++		afs_extend_writeback(mapping, vnode, &count, start, final_page,
++				     &offset, &to, new_content);
++
+ 	/* We now have a contiguous set of dirty pages, each with writeback
+ 	 * set; the first page is still locked at this point, but all the rest
+ 	 * have been unlocked.
 
 
 
