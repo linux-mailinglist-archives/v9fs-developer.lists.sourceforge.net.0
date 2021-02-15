@@ -2,111 +2,85 @@ Return-Path: <v9fs-developer-bounces@lists.sourceforge.net>
 X-Original-To: lists+v9fs-developer@lfdr.de
 Delivered-To: lists+v9fs-developer@lfdr.de
 Received: from lists.sourceforge.net (lists.sourceforge.net [216.105.38.7])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4A50331B3D1
-	for <lists+v9fs-developer@lfdr.de>; Mon, 15 Feb 2021 02:02:15 +0100 (CET)
-Received: from [127.0.0.1] (helo=sfs-ml-1.v29.lw.sourceforge.com)
-	by sfs-ml-1.v29.lw.sourceforge.com with esmtp (Exim 4.90_1)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8BD3731BD4B
+	for <lists+v9fs-developer@lfdr.de>; Mon, 15 Feb 2021 16:45:01 +0100 (CET)
+Received: from [127.0.0.1] (helo=sfs-ml-4.v29.lw.sourceforge.com)
+	by sfs-ml-4.v29.lw.sourceforge.com with esmtp (Exim 4.90_1)
 	(envelope-from <v9fs-developer-bounces@lists.sourceforge.net>)
-	id 1lBSHF-0004sE-4w; Mon, 15 Feb 2021 01:02:13 +0000
+	id 1lBg3V-000588-Lp; Mon, 15 Feb 2021 15:44:57 +0000
 Received: from [172.30.20.202] (helo=mx.sourceforge.net)
- by sfs-ml-1.v29.lw.sourceforge.com with esmtps
+ by sfs-ml-4.v29.lw.sourceforge.com with esmtps
  (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.90_1)
- (envelope-from <torvalds@linuxfoundation.org>) id 1lBSHE-0004rz-3j
- for v9fs-developer@lists.sourceforge.net; Mon, 15 Feb 2021 01:02:12 +0000
+ (envelope-from <dhowells@redhat.com>) id 1lBg3T-00057x-Vt
+ for v9fs-developer@lists.sourceforge.net; Mon, 15 Feb 2021 15:44:56 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=sourceforge.net; s=x; h=Content-Type:Cc:To:Subject:Message-ID:Date:From:
- In-Reply-To:References:MIME-Version:Sender:Reply-To:Content-Transfer-Encoding
- :Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
- Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
+ d=sourceforge.net; s=x; h=Content-Transfer-Encoding:Content-Type:MIME-Version
+ :Message-ID:Date:Cc:To:From:Subject:Sender:Reply-To:Content-ID:
+ Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
+ :Resent-Message-ID:In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:
  List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=8oLEqXUvdqy1QH/cRggvF58640ngzAUjBT8Tfk3Wjwg=; b=hmfkHUCirYuJTiOCMqPWxGzvgM
- 50sTWAhdIm604pe+TEZASWSEBFnZFFI02Y2BCNL4gCNSPJYFssEL4AMqK9JO2W5uQwzcLnx3Nqny3
- QzYfmZY//Z5GFM+FNlKngmfFZ6v3mBXALkh3GM/JZZtr2Yam1QA6kAXUBuloWi+ezqzs=;
+ bh=OUcau2RScLJC1sbBhCFeWAqe5oOjO8CLqdBwSyrKW/k=; b=fbRscsWV0YTQ8TQh8tS2zpgHVB
+ H9FkHN9qX/f5rqdJkepx5NUxrFPW/DF78ZHCiaA/sPW+s55a8tBMbkEj0DcsvuZPXDlayS2/SF/TU
+ f86U3SyziqW1KvPbNLaJ90lxEe8S51Q2hHAuXGbCPdTOWXirBSS20Nu2c5lg775QzxJo=;
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  ;
- h=Content-Type:Cc:To:Subject:Message-ID:Date:From:In-Reply-To:References:
- MIME-Version:Sender:Reply-To:Content-Transfer-Encoding:Content-ID:
- Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
- :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
- List-Post:List-Owner:List-Archive;
- bh=8oLEqXUvdqy1QH/cRggvF58640ngzAUjBT8Tfk3Wjwg=; b=JD4a7O5VXf/R39dV3y2RKugFfE
- ic1Zi01kg1b/NNVFHrKlLuWYna9wLtPLFJ/RFVTf6j0qhdVaGHgBbtb7NpiGWf9UyQZK0TcfG0Od6
- hONTjX7TndTF+AcAof3LqpjdjWVHMPsIpIx0p0evXqdF84MrE9VigyyC3oN1s4Gh+qQ8=;
-Received: from mail-lf1-f51.google.com ([209.85.167.51])
- by sfi-mx-2.v28.lw.sourceforge.com with esmtps
- (TLSv1.2:ECDHE-RSA-AES128-GCM-SHA256:128) (Exim 4.92.3)
- id 1lBSH1-0000Ww-Md
- for v9fs-developer@lists.sourceforge.net; Mon, 15 Feb 2021 01:02:11 +0000
-Received: by mail-lf1-f51.google.com with SMTP id f1so7849457lfu.3
- for <v9fs-developer@lists.sourceforge.net>;
- Sun, 14 Feb 2021 17:01:59 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=linux-foundation.org; s=google;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=8oLEqXUvdqy1QH/cRggvF58640ngzAUjBT8Tfk3Wjwg=;
- b=eb+VDAyVwB6RZ6vXNDSIXjjY5/KGJonBZpcw4InpSNpoqcKC9wCYBknhMsgf9sPklg
- GzCvnbIRKgTg7gtA7teRfKAGGFk9BR9qw3HHsG7GJ3+trFjsmHXqEUXRQMhyaGXIHFPG
- +BYG0bBsO6r2Y7DOTssLQQLnPqsDN5e1ysQAo=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc;
- bh=8oLEqXUvdqy1QH/cRggvF58640ngzAUjBT8Tfk3Wjwg=;
- b=tVpOR3etqXeMO8kVAugMnk+FOl/6j2KdGAJ9yDwx8/Z0tUcsc6YypLWpadFuMk5Suj
- X2nnxGlVJ0WUiUEc+chmA7fAE5e56hvArh1bJ1uZXJr/8xwfKa8Uxw1gPlR0bAwCe8ky
- 5Srfldleo68Kigja3KskySCIjXy3SQWxO2lxabJUP+HmkOaoPz8NyewaaEO2b2wG/Jlw
- cKU83zklyg+DbicVk/klV4mgK6MSgj7FyYFKzhrORbchSS/2wLv3Umn6fSYVmqdlTg0Y
- VkiLqEOJMJ7yzMvZ6H0ErHVys1mMM7bltXOZLPCcmcNN8NoTbMhHtVFfaPTV/ffbfsoW
- 04UA==
-X-Gm-Message-State: AOAM531HIKt+nlFuyaUomE05UFSyvwR7tlLrdS7guAl5NO1MUpN2Y5d9
- 53jkoCYsbCFKMDn3Pdnvgwio52CfsccGAQ==
-X-Google-Smtp-Source: ABdhPJx6iHA/5+LCfDOA6vb5ThjV+6lnYBzbaaOG9I8Q8xWmZT51zjjiDWOQ+eYFf8gPUjSWuxP/6w==
-X-Received: by 2002:ac2:491d:: with SMTP id n29mr7361856lfi.18.1613350912892; 
- Sun, 14 Feb 2021 17:01:52 -0800 (PST)
-Received: from mail-lj1-f175.google.com (mail-lj1-f175.google.com.
- [209.85.208.175])
- by smtp.gmail.com with ESMTPSA id a31sm3324320ljq.109.2021.02.14.17.01.52
- for <v9fs-developer@lists.sourceforge.net>
- (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Sun, 14 Feb 2021 17:01:52 -0800 (PST)
-Received: by mail-lj1-f175.google.com with SMTP id g11so5906756ljj.7
- for <v9fs-developer@lists.sourceforge.net>;
- Sun, 14 Feb 2021 17:01:52 -0800 (PST)
-X-Received: by 2002:a05:651c:112:: with SMTP id
- a18mr8181174ljb.465.1613350911576; 
- Sun, 14 Feb 2021 17:01:51 -0800 (PST)
+ h=Content-Transfer-Encoding:Content-Type:MIME-Version:Message-ID:Date:Cc:To
+ :From:Subject:Sender:Reply-To:Content-ID:Content-Description:Resent-Date:
+ Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:
+ References:List-Id:List-Help:List-Unsubscribe:List-Subscribe:List-Post:
+ List-Owner:List-Archive; bh=OUcau2RScLJC1sbBhCFeWAqe5oOjO8CLqdBwSyrKW/k=; b=E
+ EjykUIh8WcflNZ9LC1CpilGFnOMr16MzO7eJN6nC+Q5YyRppQNS9tYsgQAlOs9FYcf65+jNScqbtC
+ 1hgiXttOAo2IzH72xCc9Yp7ha4Zm3MZDxTnpsFGVrvDGAD3VmF8Z45bVeNBpa8YaM8I66CCHAN4T7
+ QDMzvYDXxM38X+FA=;
+Received: from us-smtp-delivery-124.mimecast.com ([216.205.24.124])
+ by sfi-mx-1.v28.lw.sourceforge.com with esmtps
+ (TLSv1.2:ECDHE-RSA-AES256-SHA384:256) (Exim 4.92.2)
+ id 1lBg3E-009o4E-79
+ for v9fs-developer@lists.sourceforge.net; Mon, 15 Feb 2021 15:44:55 +0000
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+ s=mimecast20190719; t=1613403868;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding;
+ bh=OUcau2RScLJC1sbBhCFeWAqe5oOjO8CLqdBwSyrKW/k=;
+ b=aKRRAT0XkQ4dzQv6Uq8SPMZbl7wOGK5G33jAK5jEnHigAg8PSIbS4se1nafW3dbO6OOTwv
+ /kzuba03qHiSnFuN4Yw6E/YEdLN5QA/xmjJVL93JrygI5NJmKlO2Vqh9XCaeN+NaCTFJhX
+ hVmucm8NGyYkstGu6lmlAHsMhZjqwck=
+Received: from mimecast-mx01.redhat.com (mimecast-mx01.redhat.com
+ [209.132.183.4]) (Using TLS) by relay.mimecast.com with ESMTP id
+ us-mta-357-TJr8slT8P9GEspE4LilBZQ-1; Mon, 15 Feb 2021 10:44:24 -0500
+X-MC-Unique: TJr8slT8P9GEspE4LilBZQ-1
+Received: from smtp.corp.redhat.com (int-mx03.intmail.prod.int.phx2.redhat.com
+ [10.5.11.13])
+ (using TLSv1.2 with cipher AECDH-AES256-SHA (256/256 bits))
+ (No client certificate requested)
+ by mimecast-mx01.redhat.com (Postfix) with ESMTPS id 736BB79EC2;
+ Mon, 15 Feb 2021 15:44:21 +0000 (UTC)
+Received: from warthog.procyon.org.uk (ovpn-119-68.rdu2.redhat.com
+ [10.10.119.68])
+ by smtp.corp.redhat.com (Postfix) with ESMTP id 38F3B608DB;
+ Mon, 15 Feb 2021 15:44:14 +0000 (UTC)
+From: David Howells <dhowells@redhat.com>
+To: Trond Myklebust <trondmy@hammerspace.com>,
+ Anna Schumaker <anna.schumaker@netapp.com>, Steve French <sfrench@samba.org>, 
+ Dominique Martinet <asmadeus@codewreck.org>
+Date: Mon, 15 Feb 2021 15:44:13 +0000
+Message-ID: <161340385320.1303470.2392622971006879777.stgit@warthog.procyon.org.uk>
+User-Agent: StGit/0.23
 MIME-Version: 1.0
-References: <CAHk-=wj-k86FOqAVQ4ScnBkX3YEKuMzqTEB2vixdHgovJpHc9w@mail.gmail.com>
- <591237.1612886997@warthog.procyon.org.uk>
- <1330473.1612974547@warthog.procyon.org.uk>
- <1330751.1612974783@warthog.procyon.org.uk>
- <CAHk-=wjgA-74ddehziVk=XAEMTKswPu1Yw4uaro1R3ibs27ztw@mail.gmail.com>
- <27816.1613085646@warthog.procyon.org.uk>
- <CAHk-=wi68OpbwBm6RCodhNUyg6x8N7vi5ufjRtosQSPy_EYqLA@mail.gmail.com>
- <860729.1613348577@warthog.procyon.org.uk>
-In-Reply-To: <860729.1613348577@warthog.procyon.org.uk>
-From: Linus Torvalds <torvalds@linux-foundation.org>
-Date: Sun, 14 Feb 2021 17:01:35 -0800
-X-Gmail-Original-Message-ID: <CAHk-=wh7xY3UF7zEc0BNVNjOox59jYBW-Gfi7=emm+BXPWc6nQ@mail.gmail.com>
-Message-ID: <CAHk-=wh7xY3UF7zEc0BNVNjOox59jYBW-Gfi7=emm+BXPWc6nQ@mail.gmail.com>
-To: David Howells <dhowells@redhat.com>
-X-Spam-Score: 0.1 (/)
+X-Scanned-By: MIMEDefang 2.79 on 10.5.11.13
+X-Spam-Score: -0.1 (/)
 X-Spam-Report: Spam Filtering performed by mx.sourceforge.net.
  See http://spamassassin.org/tag/ for more details.
- 0.2 HEADER_FROM_DIFFERENT_DOMAINS From and EnvelopeFrom 2nd level mail
- domains are different
- -0.0 RCVD_IN_DNSWL_NONE     RBL: Sender listed at https://www.dnswl.org/, no
- trust [209.85.167.51 listed in list.dnswl.org]
- -0.0 SPF_PASS               SPF: sender matches SPF record
- 0.0 SPF_HELO_NONE          SPF: HELO does not publish an SPF Record
  -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from author's
  domain
  -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
  0.1 DKIM_SIGNED            Message has a DKIM or DK signature,
  not necessarily valid
-X-Headers-End: 1lBSH1-0000Ww-Md
-Subject: Re: [V9fs-developer] [GIT PULL] fscache: I/O API modernisation and
- netfs helper library
+ 0.0 TIME_LIMIT_EXCEEDED    Exceeded time limit / deadline
+X-Headers-End: 1lBg3E-009o4E-79
+Subject: [V9fs-developer] [PATCH 00/33] Network fs helper library & fscache
+ kiocb API [ver #3]
 X-BeenThere: v9fs-developer@lists.sourceforge.net
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -118,101 +92,248 @@ List-Post: <mailto:v9fs-developer@lists.sourceforge.net>
 List-Help: <mailto:v9fs-developer-request@lists.sourceforge.net?subject=help>
 List-Subscribe: <https://lists.sourceforge.net/lists/listinfo/v9fs-developer>, 
  <mailto:v9fs-developer-request@lists.sourceforge.net?subject=subscribe>
-Cc: CIFS <linux-cifs@vger.kernel.org>, "open list:NFS, SUNRPC,
- AND..." <linux-nfs@vger.kernel.org>, Jeff Layton <jlayton@redhat.com>,
- David Wysochanski <dwysocha@redhat.com>,
- Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
- Matthew Wilcox <willy@infradead.org>, linux-afs@lists.infradead.org,
- Steve French <sfrench@samba.org>, linux-cachefs@redhat.com,
- Alexander Viro <viro@zeniv.linux.org.uk>,
- Trond Myklebust <trondmy@hammerspace.com>,
- linux-fsdevel <linux-fsdevel@vger.kernel.org>,
- v9fs-developer@lists.sourceforge.net, ceph-devel@vger.kernel.org,
- Anna Schumaker <anna.schumaker@netapp.com>
+Cc: linux-cifs@vger.kernel.org, linux-nfs@vger.kernel.org,
+ Jeff Layton <jlayton@redhat.com>, David Wysochanski <dwysocha@redhat.com>,
+ Jeff Layton <jlayton@kernel.org>, linux-kernel@vger.kernel.org,
+ "Matthew Wilcox \(Oracle\)" <willy@infradead.org>,
+ Christoph Hellwig <hch@lst.de>, dhowells@redhat.com, linux-mm@kvack.org,
+ linux-cachefs@redhat.com, Alexander Viro <viro@zeniv.linux.org.uk>,
+ linux-fsdevel@vger.kernel.org, v9fs-developer@lists.sourceforge.net,
+ ceph-devel@vger.kernel.org, Linus Torvalds <torvalds@linux-foundation.org>,
+ linux-afs@lists.infradead.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: v9fs-developer-bounces@lists.sourceforge.net
 
-On Sun, Feb 14, 2021 at 4:23 PM David Howells <dhowells@redhat.com> wrote:
->
-> Anyway, I have posted my fscache modernisation patches multiple times for
-> public review, I have tried to involve the wider community in aspects of the
-> development on public mailing lists and I have been including the maintainers
-> in to/cc.
 
-So then add those links and the cc's to the commit logs, so that I can
-*see* them.
+Here's a set of patches to do two things:
 
-I'm done with this discussion.
+ (1) Add a helper library to handle the new VM readahead interface.  This
+     is intended to be used unconditionally by the filesystem (whether or
+     not caching is enabled) and provides a common framework for doing
+     caching, transparent huge pages and, in the future, possibly fscrypt
+     and read bandwidth maximisation.  It also allows the netfs and the
+     cache to align, expand and slice up a read request from the VM in
+     various ways; the netfs need only provide a function to read a stretch
+     of data to the pagecache and the helper takes care of the rest.
 
-If I see a pull request from you, I DO NOT WANT TO HAVE TO HAVE A
-WEEK-LONG EMAIL THREAD ABOUT HOW I CANNOT SEE THAT IT HAS EVER SEEN
-ANY REVIEW.
+ (2) Add an alternative fscache/cachfiles I/O API that uses the kiocb
+     facility to do async DIO to transfer data to/from the netfs's pages,
+     rather than using readpage with wait queue snooping on one side and
+     vfs_write() on the other.  It also uses less memory, since it doesn't
+     do buffered I/O on the backing file.
 
-So if all I see is "Signed-off-by:" from you, I will promptly throw
-that pull request into the garbage, because it's just not worth my
-time to try to have to get you kicking and screaming to show that
-others have been involved.
+     Note that this uses SEEK_HOLE/SEEK_DATA to locate the data available
+     to be read from the cache.  Whilst this is an improvement from the
+     bmap interface, it still has a problem with regard to a modern
+     extent-based filesystem inserting or removing bridging blocks of
+     zeros.  Fixing that requires a much greater overhaul.
 
-Can you not understand that?
+This is a step towards overhauling the fscache API.  The change is opt-in
+on the part of the network filesystem.  A netfs should not try to mix the
+old and the new API because of conflicting ways of handling pages and the
+PG_fscache page flag and because it would be mixing DIO with buffered I/O.
+Further, the helper library can't be used with the old API.
 
-When I get that pull request, I need to see that yes, this has been
-reviewed, people have been involved, and yes, it's been in linux-next.
+This does not change any of the fscache cookie handling APIs or the way
+invalidation is done.
 
-I want to see "reviewed-by" and "tested-by", I want to see "cc", and I
-want to see links to submission threads with discussion showing that
-others actually were involved.
+In the near term, I intend to deprecate and remove the old I/O API
+(fscache_allocate_page{,s}(), fscache_read_or_alloc_page{,s}(),
+fscache_write_page() and fscache_uncache_page()) and eventually replace
+most of fscache/cachefiles with something simpler and easier to follow.
 
-I do *not* want to see just a single signed-off-by line from you, and
-then have to ask for "has anybody else actually seen this and reviewed
-it".
+The patchset contains five parts:
 
-Look, here's an entirely unrelated example from a single fairly recent
-trivial one-liner memory leak fix:
+ (1) Some helper patches, including provision of an ITER_XARRAY iov
+     iterator and a function to do readahead expansion.
 
-    Fixes: 87c715dcde63 ("scsi: scsi_debug: Add per_host_store option")
-    Link: https://lore.kernel.org/r/20210208111734.34034-1-mlombard@redhat.com
-    Acked-by: Douglas Gilbert <dgilbert@interlog.com>
-    Signed-off-by: Maurizio Lombardi <mlombard@redhat.com>
-    Signed-off-by: Martin K. Petersen <martin.petersen@oracle.com>
+ (2) Patches to add the netfs helper library.
 
-that's from a quite a trivial commit. Yes, it's trivial, but it could
-still be wrong, of course. And if somebody ever reports that it causes
-problems despite how simple it was, look at what I have: I have three
-people to contact, and I have a pointer to the actual original
-submission of the patch.
+ (3) A patch to add the fscache/cachefiles kiocb API.
 
-Do we have that for all our commits? No. But it's also not at all
-unusual any more, and in fact many commits have even more, with
-testing etc.
+ (4) Patches to add support in AFS for this.
 
-And yes, sometimes the test results and acks come back later after
-you've already pushed the changes out etc, and no, it's generally not
-worth rebasing for that - maybe others have now started to rely on
-whatever public branch you have. Which is why the "Link:" is useful,
-so that if things come in later, the discussion can still be found.
-But quite often, you shouldn't have pushed out some final branch
-before you've gotten at least *some* positive response from people, so
-I do kind of expect some "Acked-by" etc in the commit itself.
+ (5) Patches from Jeff Layton to add support in Ceph for this.
 
-THAT is what you need to aim for.
+Dave Wysochanski also has patches for NFS for this, though they're not
+included on this branch as there's an issue with PNFS.
 
-And yes, I'm picking on you. Because we've had this problem before.
-I've complained when you've sent me pull requests that don't even
-build, that you in fact had been told by linux-next didn't build, and
-you still sent them to me.
+With this, AFS without a cache passes all expected xfstests; with a cache,
+there's an extra failure, but that's also there before these patches.
+Fixing that probably requires a greater overhaul.  Ceph and NFS also pass
+the expected tests.
 
-And as a result, I've asked for more involvement from other people before.
+These patches can be found also on:
 
-So now I'm clarifying that requirement - I  absolutely need to see
-that it has actually seen testing, that it has seen other people being
-involved, and that it isn't just you throwing spaghetti at the wall to
-see what sticks.
+	https://git.kernel.org/pub/scm/linux/kernel/git/dhowells/linux-fs.git/log/?h=fscache-netfs-lib
 
-And I'm not going to do that for every pull request. I want to see
-that data *in* the pull request itself.
+For diffing reference, the tag for the 9th Feb pull request is
+fscache-ioapi-20210203 and can be found in the same repository.
 
-            Linus
+
+
+Changes
+=======
+
+ (v3) Rolled in the bug fixes.
+
+      Adjusted the functions that unlock and wait for PG_fscache according
+      to Linus's suggestion.
+
+      Hold a ref on a page when PG_fscache is set as per Linus's
+      suggestion.
+
+      Dropped NFS support and added Ceph support.
+
+ (v2) Fixed some bugs and added NFS support.
+
+
+References
+==========
+
+These patches have been published for review before, firstly as part of a
+larger set:
+
+Link: https://lore.kernel.org/linux-fsdevel/158861203563.340223.7585359869938129395.stgit@warthog.procyon.org.uk/
+
+Link: https://lore.kernel.org/linux-fsdevel/159465766378.1376105.11619976251039287525.stgit@warthog.procyon.org.uk/
+Link: https://lore.kernel.org/linux-fsdevel/159465784033.1376674.18106463693989811037.stgit@warthog.procyon.org.uk/
+Link: https://lore.kernel.org/linux-fsdevel/159465821598.1377938.2046362270225008168.stgit@warthog.procyon.org.uk/
+
+Link: https://lore.kernel.org/linux-fsdevel/160588455242.3465195.3214733858273019178.stgit@warthog.procyon.org.uk/
+
+Then as a cut-down set:
+
+Link: https://lore.kernel.org/linux-fsdevel/161118128472.1232039.11746799833066425131.stgit@warthog.procyon.org.uk/
+
+Link: https://lore.kernel.org/linux-fsdevel/161161025063.2537118.2009249444682241405.stgit@warthog.procyon.org.uk/
+
+
+Proposals/information about the design has been published here:
+
+Link: https://lore.kernel.org/lkml/24942.1573667720@warthog.procyon.org.uk/
+Link: https://lore.kernel.org/linux-fsdevel/2758811.1610621106@warthog.procyon.org.uk/
+Link: https://lore.kernel.org/linux-fsdevel/1441311.1598547738@warthog.procyon.org.uk/
+Link: https://lore.kernel.org/linux-fsdevel/160655.1611012999@warthog.procyon.org.uk/
+
+And requests for information:
+
+Link: https://lore.kernel.org/linux-fsdevel/3326.1579019665@warthog.procyon.org.uk/
+Link: https://lore.kernel.org/linux-fsdevel/4467.1579020509@warthog.procyon.org.uk/
+Link: https://lore.kernel.org/linux-fsdevel/3577430.1579705075@warthog.procyon.org.uk/
+
+The NFS parts, though not included here, have been tested by someone who's
+using fscache in production:
+
+Link: https://listman.redhat.com/archives/linux-cachefs/2020-December/msg00000.html
+
+I've posted partial patches to try and help 9p and cifs along:
+
+Link: https://lore.kernel.org/linux-fsdevel/1514086.1605697347@warthog.procyon.org.uk/
+Link: https://lore.kernel.org/linux-cifs/1794123.1605713481@warthog.procyon.org.uk/
+Link: https://lore.kernel.org/linux-fsdevel/241017.1612263863@warthog.procyon.org.uk/
+Link: https://lore.kernel.org/linux-cifs/270998.1612265397@warthog.procyon.org.uk/
+
+David
+---
+David Howells (27):
+      iov_iter: Add ITER_XARRAY
+      mm: Add an unlock function for PG_private_2/PG_fscache
+      mm: Implement readahead_control pageset expansion
+      vfs: Export rw_verify_area() for use by cachefiles
+      netfs: Make a netfs helper module
+      netfs, mm: Move PG_fscache helper funcs to linux/netfs.h
+      netfs, mm: Add unlock_page_fscache() and wait_on_page_fscache()
+      netfs: Provide readahead and readpage netfs helpers
+      netfs: Add tracepoints
+      netfs: Gather stats
+      netfs: Add write_begin helper
+      netfs: Define an interface to talk to a cache
+      netfs: Hold a ref on a page when PG_private_2 is set
+      fscache, cachefiles: Add alternate API to use kiocb for read/write to cache
+      afs: Disable use of the fscache I/O routines
+      afs: Pass page into dirty region helpers to provide THP size
+      afs: Print the operation debug_id when logging an unexpected data version
+      afs: Move key to afs_read struct
+      afs: Don't truncate iter during data fetch
+      afs: Log remote unmarshalling errors
+      afs: Set up the iov_iter before calling afs_extract_data()
+      afs: Use ITER_XARRAY for writing
+      afs: Wait on PG_fscache before modifying/releasing a page
+      afs: Extract writeback extension into its own function
+      afs: Prepare for use of THPs
+      afs: Use the fs operation ops to handle FetchData completion
+      afs: Use new fscache read helper API
+
+Jeff Layton (6):
+      ceph: disable old fscache readpage handling
+      ceph: rework PageFsCache handling
+      ceph: fix fscache invalidation
+      ceph: convert readpage to fscache read helper
+      ceph: plug write_begin into read helper
+      ceph: convert ceph_readpages to ceph_readahead
+
+
+ fs/Kconfig                    |    1 +
+ fs/Makefile                   |    1 +
+ fs/afs/Kconfig                |    1 +
+ fs/afs/dir.c                  |  225 ++++---
+ fs/afs/file.c                 |  470 ++++---------
+ fs/afs/fs_operation.c         |    4 +-
+ fs/afs/fsclient.c             |  108 +--
+ fs/afs/inode.c                |    7 +-
+ fs/afs/internal.h             |   58 +-
+ fs/afs/rxrpc.c                |  150 ++---
+ fs/afs/write.c                |  610 +++++++++--------
+ fs/afs/yfsclient.c            |   82 +--
+ fs/cachefiles/Makefile        |    1 +
+ fs/cachefiles/interface.c     |    5 +-
+ fs/cachefiles/internal.h      |    9 +
+ fs/cachefiles/rdwr2.c         |  412 ++++++++++++
+ fs/ceph/Kconfig               |    1 +
+ fs/ceph/addr.c                |  535 ++++++---------
+ fs/ceph/cache.c               |  125 ----
+ fs/ceph/cache.h               |  101 +--
+ fs/ceph/caps.c                |   10 +-
+ fs/ceph/inode.c               |    1 +
+ fs/ceph/super.h               |    1 +
+ fs/fscache/Kconfig            |    1 +
+ fs/fscache/Makefile           |    3 +-
+ fs/fscache/internal.h         |    3 +
+ fs/fscache/page.c             |    2 +-
+ fs/fscache/page2.c            |  117 ++++
+ fs/fscache/stats.c            |    1 +
+ fs/internal.h                 |    5 -
+ fs/netfs/Kconfig              |   23 +
+ fs/netfs/Makefile             |    5 +
+ fs/netfs/internal.h           |   97 +++
+ fs/netfs/read_helper.c        | 1169 +++++++++++++++++++++++++++++++++
+ fs/netfs/stats.c              |   59 ++
+ fs/read_write.c               |    1 +
+ include/linux/fs.h            |    1 +
+ include/linux/fscache-cache.h |    4 +
+ include/linux/fscache.h       |   40 +-
+ include/linux/netfs.h         |  195 ++++++
+ include/linux/pagemap.h       |    3 +
+ include/net/af_rxrpc.h        |    2 +-
+ include/trace/events/afs.h    |   74 +--
+ include/trace/events/netfs.h  |  201 ++++++
+ mm/filemap.c                  |   20 +
+ mm/readahead.c                |   70 ++
+ net/rxrpc/recvmsg.c           |    9 +-
+ 47 files changed, 3473 insertions(+), 1550 deletions(-)
+ create mode 100644 fs/cachefiles/rdwr2.c
+ create mode 100644 fs/fscache/page2.c
+ create mode 100644 fs/netfs/Kconfig
+ create mode 100644 fs/netfs/Makefile
+ create mode 100644 fs/netfs/internal.h
+ create mode 100644 fs/netfs/read_helper.c
+ create mode 100644 fs/netfs/stats.c
+ create mode 100644 include/linux/netfs.h
+ create mode 100644 include/trace/events/netfs.h
+
+
 
 
 _______________________________________________
