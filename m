@@ -2,96 +2,76 @@ Return-Path: <v9fs-developer-bounces@lists.sourceforge.net>
 X-Original-To: lists+v9fs-developer@lfdr.de
 Delivered-To: lists+v9fs-developer@lfdr.de
 Received: from lists.sourceforge.net (lists.sourceforge.net [216.105.38.7])
-	by mail.lfdr.de (Postfix) with ESMTPS id C68B731CA3B
-	for <lists+v9fs-developer@lfdr.de>; Tue, 16 Feb 2021 12:56:03 +0100 (CET)
-Received: from [127.0.0.1] (helo=sfs-ml-4.v29.lw.sourceforge.com)
-	by sfs-ml-4.v29.lw.sourceforge.com with esmtp (Exim 4.90_1)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5D2B231CB0C
+	for <lists+v9fs-developer@lfdr.de>; Tue, 16 Feb 2021 14:25:07 +0100 (CET)
+Received: from [127.0.0.1] (helo=sfs-ml-2.v29.lw.sourceforge.com)
+	by sfs-ml-2.v29.lw.sourceforge.com with esmtp (Exim 4.90_1)
 	(envelope-from <v9fs-developer-bounces@lists.sourceforge.net>)
-	id 1lByxV-0007yu-53; Tue, 16 Feb 2021 11:56:01 +0000
+	id 1lC0Lh-0000XQ-B1; Tue, 16 Feb 2021 13:25:05 +0000
 Received: from [172.30.20.202] (helo=mx.sourceforge.net)
- by sfs-ml-4.v29.lw.sourceforge.com with esmtps
+ by sfs-ml-2.v29.lw.sourceforge.com with esmtps
  (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.90_1)
- (envelope-from <dhowells@redhat.com>) id 1lByxT-0007yf-EW
- for v9fs-developer@lists.sourceforge.net; Tue, 16 Feb 2021 11:55:59 +0000
+ (envelope-from <willy@infradead.org>) id 1lC0Lf-0000XI-S1
+ for v9fs-developer@lists.sourceforge.net; Tue, 16 Feb 2021 13:25:03 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=sourceforge.net; s=x; h=Message-ID:Date:Content-ID:Content-Type:
- MIME-Version:Subject:Cc:To:References:In-Reply-To:From:Sender:Reply-To:
- Content-Transfer-Encoding:Content-Description:Resent-Date:Resent-From:
- Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:
- List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=3PmMMoMDLKUpdyWA+t3gfR/qM+zxf83cCXtDD4CspmY=; b=SC4RKrN0+3jDHnthKXD936Bgui
- zM9J+4ec+un0GEz5g3+GQ83Y5fpmkJLlcHE5U8PXPr3PkQ9Y9LILLU+xqbdJJsb9uA8U1rcjz5B3O
- 3kV53i5aOH6lbuCBu7NQdz7JuOGI8JmkELS3/94QPcC2h7/vOqmmUGvmqPghy6BFpBxY=;
+ d=sourceforge.net; s=x; h=In-Reply-To:Content-Type:MIME-Version:References:
+ Message-ID:Subject:Cc:To:From:Date:Sender:Reply-To:Content-Transfer-Encoding:
+ Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+ Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
+ List-Subscribe:List-Post:List-Owner:List-Archive;
+ bh=hgIp8cMPVwAuFQ5Q63EIotyWvfFSj1q5sKGA4WuuKGw=; b=brvrUB6o2VLp7qYGmfKSquhtuQ
+ q3KiBm7GQ00/RjfzhpYvOtRAwUVP3wzW9hiTAa/uZcE+dK6YmY1MQHUU+QAfDjAHamCccbLsd8kT8
+ kirjZs2+j7uvRyPAjI+Crt9o/a0Urkb0Q2u6JQEGOAXWGwgx+QDrnfd1x0eOibmX930g=;
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  ;
- h=Message-ID:Date:Content-ID:Content-Type:MIME-Version:Subject:Cc:To:
- References:In-Reply-To:From:Sender:Reply-To:Content-Transfer-Encoding:
+ h=In-Reply-To:Content-Type:MIME-Version:References:Message-ID:Subject:Cc:To
+ :From:Date:Sender:Reply-To:Content-Transfer-Encoding:Content-ID:
  Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
  :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
  List-Post:List-Owner:List-Archive;
- bh=3PmMMoMDLKUpdyWA+t3gfR/qM+zxf83cCXtDD4CspmY=; b=lE2Oewy5vcjUFVamuP1UwUgyGI
- k/enaY9Vo8b/ATdE7qPkPvtar8AOA3HhDFBrTd5/jG1IZqC++2NPcvkjG7V12tI1lXjDHk1Mws/h0
- dhNV6Nou5q013JPcRlJKlPnrw17wAT8gpjgxuJlbi5F65qyDYTGyfeg/+9Y1Dyz1kIB8=;
-Received: from us-smtp-delivery-124.mimecast.com ([216.205.24.124])
- by sfi-mx-2.v28.lw.sourceforge.com with esmtps
- (TLSv1.2:ECDHE-RSA-AES256-SHA384:256) (Exim 4.92.3)
- id 1lByxO-0004u6-AS
- for v9fs-developer@lists.sourceforge.net; Tue, 16 Feb 2021 11:55:59 +0000
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
- s=mimecast20190719; t=1613476546;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:content-type:content-type:
- in-reply-to:in-reply-to:references:references;
- bh=3PmMMoMDLKUpdyWA+t3gfR/qM+zxf83cCXtDD4CspmY=;
- b=QODGVnF+k8oWMPgtE7VYv4XTteTjdKqxE4Ux/ErXJtB3LpT5q0AKo4A8L3Di84bXb6pOH/
- kl3pqpQmEeiyx0Ts7wCf0dXGyoU93XipMQg3Z8xkWsNubm+uRAgJW24Cm9FbYHb9lmZe5w
- mogi8VnhpJKehfMSFWW7bqGsix+EjaE=
-Received: from mimecast-mx01.redhat.com (mimecast-mx01.redhat.com
- [209.132.183.4]) (Using TLS) by relay.mimecast.com with ESMTP id
- us-mta-353-fzPbbtGgPwedki1-150nhQ-1; Tue, 16 Feb 2021 06:55:44 -0500
-X-MC-Unique: fzPbbtGgPwedki1-150nhQ-1
-Received: from smtp.corp.redhat.com (int-mx07.intmail.prod.int.phx2.redhat.com
- [10.5.11.22])
- (using TLSv1.2 with cipher AECDH-AES256-SHA (256/256 bits))
- (No client certificate requested)
- by mimecast-mx01.redhat.com (Postfix) with ESMTPS id 75567801965;
- Tue, 16 Feb 2021 11:55:42 +0000 (UTC)
-Received: from warthog.procyon.org.uk (ovpn-119-68.rdu2.redhat.com
- [10.10.119.68])
- by smtp.corp.redhat.com (Postfix) with ESMTP id 1466410016FA;
- Tue, 16 Feb 2021 11:55:35 +0000 (UTC)
-Organization: Red Hat UK Ltd. Registered Address: Red Hat UK Ltd, Amberley
- Place, 107-111 Peascod Street, Windsor, Berkshire, SI4 1TE, United
- Kingdom.
- Registered in England and Wales under Company Registration No. 3798903
-From: David Howells <dhowells@redhat.com>
-In-Reply-To: <20210216102614.GA27555@lst.de>
-References: <20210216102614.GA27555@lst.de>
- <161340385320.1303470.2392622971006879777.stgit@warthog.procyon.org.uk>
- <161340390150.1303470.509630287091953754.stgit@warthog.procyon.org.uk>
+ bh=hgIp8cMPVwAuFQ5Q63EIotyWvfFSj1q5sKGA4WuuKGw=; b=imVkfbOiuABHyGzQGyCQqDgVQg
+ tr02/d7k/uqDXZgrYV6ywhYkNgjt6QyCE2N1rRMMwtFnvD7PZaUQnF+2gC2o6X0tBJPp+Ow3Qou73
+ JrnpTOyQcnf8MTqI9vbZxWLcVi3olWOxodPGycyanXfVu5vugfFkMyAreNH22XoqjMC8=;
+Received: from casper.infradead.org ([90.155.50.34])
+ by sfi-mx-1.v28.lw.sourceforge.com with esmtps
+ (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.92.2)
+ id 1lC0LX-00Atva-2D
+ for v9fs-developer@lists.sourceforge.net; Tue, 16 Feb 2021 13:25:03 +0000
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+ d=infradead.org; s=casper.20170209; h=In-Reply-To:Content-Type:MIME-Version:
+ References:Message-ID:Subject:Cc:To:From:Date:Sender:Reply-To:
+ Content-Transfer-Encoding:Content-ID:Content-Description;
+ bh=hgIp8cMPVwAuFQ5Q63EIotyWvfFSj1q5sKGA4WuuKGw=; b=ctbhiVSDQqbf2BoXqncvKXwa5V
+ yyZuAi6Jd2FD+1ogrQXZd4B3GkugraUEBxghjXti1sjtmIMBZbtRojFeQVOLvcSCNN7KWI8zGjHRB
+ aTbPwSH/89Xk8nb6cxXt7r/DpupCtu6PRowMHNCggqKOsYqrSAKydaABwFJxd50yJQZnTj8UdGVoW
+ V0fYtHecjoaTww/OoSZkKEThNGDBmEEDfNhjuoQuWlthj7jZ2lk6XmekUKGID08dGYnEgvpmu1c/k
+ v7MMetTzabs77GeK+SjHzRTKERB2iiyjh2pOZt5/wPCbJ4YKul+uZv2isOLBi843nry0+UN0Q914n
+ 9/DbbT1w==;
+Received: from willy by casper.infradead.org with local (Exim 4.94 #2 (Red Hat
+ Linux)) id 1lC0JX-00Gtih-RC; Tue, 16 Feb 2021 13:22:58 +0000
+Date: Tue, 16 Feb 2021 13:22:51 +0000
+From: Matthew Wilcox <willy@infradead.org>
 To: Christoph Hellwig <hch@lst.de>
+Message-ID: <20210216132251.GI2858050@casper.infradead.org>
+References: <161340385320.1303470.2392622971006879777.stgit@warthog.procyon.org.uk>
+ <161340389201.1303470.14353807284546854878.stgit@warthog.procyon.org.uk>
+ <20210216103215.GB27714@lst.de>
 MIME-Version: 1.0
-Content-ID: <1429649.1613476535.1@warthog.procyon.org.uk>
-Date: Tue, 16 Feb 2021 11:55:35 +0000
-Message-ID: <1429650.1613476535@warthog.procyon.org.uk>
-X-Scanned-By: MIMEDefang 2.84 on 10.5.11.22
+Content-Disposition: inline
+In-Reply-To: <20210216103215.GB27714@lst.de>
 X-Spam-Score: -0.1 (/)
 X-Spam-Report: Spam Filtering performed by mx.sourceforge.net.
  See http://spamassassin.org/tag/ for more details.
- 0.0 RCVD_IN_MSPIKE_H3      RBL: Good reputation (+3)
- [216.205.24.124 listed in wl.mailspike.net]
- -0.0 SPF_PASS               SPF: sender matches SPF record
+ 0.0 SPF_NONE               SPF: sender does not publish an SPF Record
  0.0 SPF_HELO_NONE          SPF: HELO does not publish an SPF Record
  -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from author's
  domain
  -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
  0.1 DKIM_SIGNED            Message has a DKIM or DK signature,
  not necessarily valid
- 0.0 RCVD_IN_MSPIKE_WL      Mailspike good senders
- -0.0 DKIMWL_WL_HIGH         DKIMwl.org - High trust sender
-X-Headers-End: 1lByxO-0004u6-AS
-Subject: Re: [V9fs-developer] [PATCH 04/33] vfs: Export rw_verify_area() for
- use by cachefiles
+X-Headers-End: 1lC0LX-00Atva-2D
+Subject: Re: [V9fs-developer] [PATCH 03/33] mm: Implement readahead_control
+ pageset expansion
 X-BeenThere: v9fs-developer@lists.sourceforge.net
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -106,8 +86,8 @@ List-Subscribe: <https://lists.sourceforge.net/lists/listinfo/v9fs-developer>,
 Cc: David Wysochanski <dwysocha@redhat.com>, Steve French <sfrench@samba.org>,
  linux-nfs@vger.kernel.org, Jeff Layton <jlayton@redhat.com>,
  linux-cifs@vger.kernel.org, linux-kernel@vger.kernel.org,
- Matthew Wilcox <willy@infradead.org>, linux-afs@lists.infradead.org,
- dhowells@redhat.com, linux-mm@kvack.org, linux-cachefs@redhat.com,
+ linux-afs@lists.infradead.org, David Howells <dhowells@redhat.com>,
+ linux-mm@kvack.org, linux-cachefs@redhat.com,
  Alexander Viro <viro@zeniv.linux.org.uk>,
  Trond Myklebust <trondmy@hammerspace.com>, linux-fsdevel@vger.kernel.org,
  v9fs-developer@lists.sourceforge.net, ceph-devel@vger.kernel.org,
@@ -116,27 +96,44 @@ Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: v9fs-developer-bounces@lists.sourceforge.net
 
-Christoph Hellwig <hch@lst.de> wrote:
-
-> > Export rw_verify_area() for so that cachefiles can use it before issuing
-> > call_read_iter() and call_write_iter() to effect async DIO operations
-> > against the cache.  This is analogous to aio_read() and aio_write().
+On Tue, Feb 16, 2021 at 11:32:15AM +0100, Christoph Hellwig wrote:
+> On Mon, Feb 15, 2021 at 03:44:52PM +0000, David Howells wrote:
+> > Provide a function, readahead_expand(), that expands the set of pages
+> > specified by a readahead_control object to encompass a revised area with a
+> > proposed size and length.
+> > 
+> > The proposed area must include all of the old area and may be expanded yet
+> > more by this function so that the edges align on (transparent huge) page
+> > boundaries as allocated.
+> > 
+> > The expansion will be cut short if a page already exists in either of the
+> > areas being expanded into.  Note that any expansion made in such a case is
+> > not rolled back.
+> > 
+> > This will be used by fscache so that reads can be expanded to cache granule
+> > boundaries, thereby allowing whole granules to be stored in the cache, but
+> > there are other potential users also.
 > 
-> I don't think this is the right thing to do.  Instead of calling
-> into ->read_iter / ->write_iter directly this should be using helpers.
+> So looking at linux-next this seems to have a user, but that user is
+> dead wood given that nothing implements ->expand_readahead.
 > 
-> What prevents you from using vfs_iocb_iter_read and
-> vfs_iocb_iter_write which seem the right level of abstraction for this?
+> Looking at the code structure I think netfs_readahead and
+> netfs_rreq_expand is a complete mess and needs to be turned upside
+> down, that is instead of calling back from netfs_readahead to the
+> calling file system, split it into a few helpers called by the
+> caller.
 
-I don't think they existed when I wrote this code.  Should aio use that too,
-btw?  I modelled my code on aio_read() and aio_write().
+That's funny, we modelled it after iomap.
 
-But I can certainly switch to using vfs_iocb_iter_read/write, though the
-trivial checks are redundant.  The fsnotify call, I guess I'm missing though
-(and is that missing in aio_read/write() also?).
+> But even after this can't we just expose the cache granule boundary
+> to the VM so that the read-ahead request gets setup correctly from
+> the very beginning?
 
-David
-
+The intent is that this be usable by filesystems which want to (for
+example) compress variable sized blocks.  So they won't know which pages
+they want to readahead until they're in their iomap actor routine,
+see that the extent they're in is compressed, and find out how large
+the extent is.
 
 
 _______________________________________________
