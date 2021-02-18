@@ -2,26 +2,26 @@ Return-Path: <v9fs-developer-bounces@lists.sourceforge.net>
 X-Original-To: lists+v9fs-developer@lfdr.de
 Delivered-To: lists+v9fs-developer@lfdr.de
 Received: from lists.sourceforge.net (lists.sourceforge.net [216.105.38.7])
-	by mail.lfdr.de (Postfix) with ESMTPS id B332631EB3D
-	for <lists+v9fs-developer@lfdr.de>; Thu, 18 Feb 2021 16:07:12 +0100 (CET)
-Received: from [127.0.0.1] (helo=sfs-ml-4.v29.lw.sourceforge.com)
-	by sfs-ml-4.v29.lw.sourceforge.com with esmtp (Exim 4.90_1)
+	by mail.lfdr.de (Postfix) with ESMTPS id 236F931EB63
+	for <lists+v9fs-developer@lfdr.de>; Thu, 18 Feb 2021 16:17:13 +0100 (CET)
+Received: from [127.0.0.1] (helo=sfs-ml-1.v29.lw.sourceforge.com)
+	by sfs-ml-1.v29.lw.sourceforge.com with esmtp (Exim 4.90_1)
 	(envelope-from <v9fs-developer-bounces@lists.sourceforge.net>)
-	id 1lCkta-0004Mq-BI; Thu, 18 Feb 2021 15:07:10 +0000
+	id 1lCl3H-0005jk-NB; Thu, 18 Feb 2021 15:17:11 +0000
 Received: from [172.30.20.202] (helo=mx.sourceforge.net)
- by sfs-ml-4.v29.lw.sourceforge.com with esmtps
+ by sfs-ml-1.v29.lw.sourceforge.com with esmtps
  (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.90_1)
- (envelope-from <marc.c.dionne@gmail.com>) id 1lCktZ-0004Mj-JY
- for v9fs-developer@lists.sourceforge.net; Thu, 18 Feb 2021 15:07:09 +0000
+ (envelope-from <marc.c.dionne@gmail.com>) id 1lCl3G-0005jT-0q
+ for v9fs-developer@lists.sourceforge.net; Thu, 18 Feb 2021 15:17:10 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
  d=sourceforge.net; s=x; h=Content-Type:Cc:To:Subject:Message-ID:Date:From:
  In-Reply-To:References:MIME-Version:Sender:Reply-To:Content-Transfer-Encoding
  :Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
  Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
  List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=O78uEHEfLc3RzIWydBI8NhLr0ai8VEAz3B7vJuFRrAU=; b=CVNIqtFyz6rjInomMgS6rSejBV
- oKOlvT1/nArBDCLbPWYco/HShdnWHzglKBJtunAWU/dI5Z9b5F/hoOwLG2uvPRoJMBk85MSB21FN3
- BqZvmloHshS72a1QZVlfpueEqJiTkI50VseQDKl3Af3Lh5T6zwhzSiZMdKvnYsY7GCiI=;
+ bh=O78uEHEfLc3RzIWydBI8NhLr0ai8VEAz3B7vJuFRrAU=; b=GdAxuiv25pzLupI2+xZz8EDrn2
+ PfBTNCi/AQFD5LjlG4mrKyPUSQyciNSgbZKsJVqE+Zn+6i3lyQEmEipruZfbcM6zHe/Anp+t4EzNC
+ W5T7F6lpRv6K2gdTJnk0ieOhlNRvtslVjkXKtc5TlynEX+aBmKP0B8Hd8owaO7auMl1E=;
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  ;
  h=Content-Type:Cc:To:Subject:Message-ID:Date:From:In-Reply-To:References:
@@ -29,45 +29,42 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
  :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
  List-Post:List-Owner:List-Archive;
- bh=O78uEHEfLc3RzIWydBI8NhLr0ai8VEAz3B7vJuFRrAU=; b=grmfGsvPNUB3oFlzGanKJ3pP5o
- iWb2dcJNvQz1oCoJxS9kI/d4FOwmgIOj/ZM2mJMsXMr3lqD9wmW5VSgHejwKbkDDo+MX3FbmzdJfD
- XItc7BqavgNdEyUr3VkEzSi6faSn7uNTY+Njq1fGwtjxj0Qd00skmIZ4xYW0vCn07NxM=;
-Received: from mail-ej1-f50.google.com ([209.85.218.50])
+ bh=O78uEHEfLc3RzIWydBI8NhLr0ai8VEAz3B7vJuFRrAU=; b=iuDPsboAuDTrC/a7UgEvqLeJb8
+ /Y2jk3AR7YCCVRnukD1HA2cf0c7lIafDqVbh/nLwiujF7RYqu7VOa4wZizdPupCg+iNupk/Bu9L7O
+ P+eurQF3UrSf2K3FSlps4AWHaDJF9X6UJdhu0pU9pQ5QPCOhhCvk4dEGRSBnCLtJoGtQ=;
+Received: from mail-wm1-f52.google.com ([209.85.128.52])
  by sfi-mx-2.v28.lw.sourceforge.com with esmtps
  (TLSv1.2:ECDHE-RSA-AES128-GCM-SHA256:128) (Exim 4.92.3)
- id 1lCktK-0007NG-Sf
- for v9fs-developer@lists.sourceforge.net; Thu, 18 Feb 2021 15:07:09 +0000
-Received: by mail-ej1-f50.google.com with SMTP id g5so6198666ejt.2
+ id 1lCl3A-0007jq-FQ
+ for v9fs-developer@lists.sourceforge.net; Thu, 18 Feb 2021 15:17:09 +0000
+Received: by mail-wm1-f52.google.com with SMTP id w4so4105306wmi.4
  for <v9fs-developer@lists.sourceforge.net>;
- Thu, 18 Feb 2021 07:06:54 -0800 (PST)
+ Thu, 18 Feb 2021 07:17:04 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc; bh=O78uEHEfLc3RzIWydBI8NhLr0ai8VEAz3B7vJuFRrAU=;
+ b=M/vKAtowq/1EQKfuCDlV8OqKd0CjpCNITBgOxBGn65pvSs4UfxbjFrAtbBdOC/LCeK
+ 2djhFcQh78OiRjanrtTohghE7v/ZjiBbrgX5Crk0nroEmQCoIL5VDlEeiL5tdlzzI3DO
+ UIP1q/lMAZynm504I/jq7MQdaYE0DivN4qewZFqgazLIa9s1Gx66Ovcys48AO9YkipKc
+ UIuiNH+caFC0b2XXh1mr2jTj39hF3J+nO17hyn3GtZwJTFzzRsN4+vkWBvHUVTbQM6O9
+ +Wkt00LpBZDmLYtqKYLK0kMsqvYRvKBVlPGOKvcBWPwW8y2MaeOCUyna/5xYK/R94fsh
+ Wfnw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:mime-version:references:in-reply-to:from:date
  :message-id:subject:to:cc;
  bh=O78uEHEfLc3RzIWydBI8NhLr0ai8VEAz3B7vJuFRrAU=;
- b=k37fXlI+pSOD9r/+BVR1fyIA1AD8LIV6DK/E4cpxLsV381a1WYKLeqDnkjGcq392T8
- GHPx0dYiUGKvmNlEJugLSxGz/sk2iWxCgDczRAn2pLVxWqSJOdALBe+tP5oNIjNKG8KE
- 0++nR2M7JJOUWoTp9B/rAo7hKXI78KdxDMKMJJQcxlNGzDAebQRDmib7EKWo9DB21iTU
- TMWyU5U7CGI1Djs89llaZjUZsYU2QuC6OrFfU2A8l6cS9wSR9Fk5Dm4c2fs6Z4x3ESEX
- tXI38TF99IWuwlfGI0079mnqNfXy7sJ3tF/MvhN6hOCIjnQ21x96soMi2LKUY5I7c2GJ
- jxtQ==
-X-Gm-Message-State: AOAM533ATA7MEn0NNnBo0oIp0nOFbkRTZY0t4Ts6Ub7zHjqNm9yhLPFF
- E34TE7UzNnsNYx8NJFIqx9hRTFnF0UF6GrZp
-X-Google-Smtp-Source: ABdhPJw0+0lax9xtI59r2bbHsWJ/+QKalpln1E66YhLtd7RNfvrM2ds/JONck1LYKHaCZweYPIMxIw==
-X-Received: by 2002:a17:906:8541:: with SMTP id
- h1mr4370160ejy.517.1613660808061; 
- Thu, 18 Feb 2021 07:06:48 -0800 (PST)
-Received: from mail-wm1-f43.google.com (mail-wm1-f43.google.com.
- [209.85.128.43])
- by smtp.gmail.com with ESMTPSA id o4sm2905338edw.78.2021.02.18.07.06.46
- for <v9fs-developer@lists.sourceforge.net>
- (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Thu, 18 Feb 2021 07:06:46 -0800 (PST)
-Received: by mail-wm1-f43.google.com with SMTP id w4so4076050wmi.4
- for <v9fs-developer@lists.sourceforge.net>;
- Thu, 18 Feb 2021 07:06:46 -0800 (PST)
-X-Received: by 2002:a1c:608b:: with SMTP id u133mr4070976wmb.149.1613660805792; 
- Thu, 18 Feb 2021 07:06:45 -0800 (PST)
+ b=bdS11n2QIMmL67cDuVDigpYCWwUn1NzrtBiPjARqTWgxgXIMu9ee/cVwsUD4Xpjzr0
+ HfsfnBa2dXIqUbPKY6pyXGOd2kR/VR4GryMxnuXtjbXycjLfEV20CMpsi0kKAOORCXqb
+ 7zri5QwPudN8giuDHcs+F09pMIsOSI6vSYsgbCs47ZUWUvwwV26+DU9xCwh+oF9xo5SI
+ vqb7WDuNc6sEieDm80IIjvTAy6mGT4y7lfv1i+gZSgALpt8TrzoYjBFMDyj1rju8sRJ9
+ hL+zQIv8DpYI9duXh6zhJvz3M2DPxnpddiXJ38Ra2TmZ/mV0wSXR7VEb5sCqOsrfO80c
+ 2GOQ==
+X-Gm-Message-State: AOAM533imftOzNF3ivDIaOQ9RDaThqpindoRbklIZ89EnWjyTNEdYd0e
+ 5phFuT8/NHB9LIGKPfVsdabvOYElQuHJ3AwUB6E=
+X-Google-Smtp-Source: ABdhPJzBksUspxbLUCKUvkOmckHW7dQioOF9DqXHoU4dt6/xOrHPrHFeVMokibswhF+xCJhXqtbBaD+c8tTOwBtB3K0=
+X-Received: by 2002:a1c:608b:: with SMTP id u133mr4115769wmb.149.1613661418089; 
+ Thu, 18 Feb 2021 07:16:58 -0800 (PST)
 MIME-Version: 1.0
 References: <20210216084230.GA23669@lst.de>
  <161340385320.1303470.2392622971006879777.stgit@warthog.procyon.org.uk>
@@ -75,32 +72,31 @@ References: <20210216084230.GA23669@lst.de>
  <1419965.1613467771@warthog.procyon.org.uk>
  <20210216093044.GA24615@lst.de> <2017129.1613656956@warthog.procyon.org.uk>
 In-Reply-To: <2017129.1613656956@warthog.procyon.org.uk>
-From: Marc Dionne <marc.dionne@auristor.com>
-Date: Thu, 18 Feb 2021 11:06:34 -0400
-X-Gmail-Original-Message-ID: <CAB9dFduOP9CEqmw2acxp5nYwcx0Zm+=oASJoMRrO_oAkA42YxA@mail.gmail.com>
-Message-ID: <CAB9dFduOP9CEqmw2acxp5nYwcx0Zm+=oASJoMRrO_oAkA42YxA@mail.gmail.com>
+From: Marc Dionne <marc.c.dionne@gmail.com>
+Date: Thu, 18 Feb 2021 11:16:46 -0400
+Message-ID: <CAB9dFdsLBm9za1DTBmLDm_JpCj5rhOCFck-A7gY_2sPPpPD1hQ@mail.gmail.com>
 To: David Howells <dhowells@redhat.com>
-X-Spam-Score: 0.5 (/)
+X-Spam-Score: -0.1 (/)
 X-Spam-Report: Spam Filtering performed by mx.sourceforge.net.
  See http://spamassassin.org/tag/ for more details.
- -0.0 RCVD_IN_DNSWL_NONE     RBL: Sender listed at https://www.dnswl.org/, no
- trust [209.85.218.50 listed in list.dnswl.org]
  0.0 URIBL_BLOCKED ADMINISTRATOR NOTICE: The query to URIBL was blocked.
  See
  http://wiki.apache.org/spamassassin/DnsBlocklists#dnsbl-block
- for more information. [URIs: lst.de]
+ for more information. [URIs: infradead.org]
  0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail provider
  (marc.c.dionne[at]gmail.com)
- 0.0 RCVD_IN_MSPIKE_H3      RBL: Good reputation (+3)
- [209.85.218.50 listed in wl.mailspike.net]
- 0.2 HEADER_FROM_DIFFERENT_DOMAINS From and EnvelopeFrom 2nd level mail
- domains are different
+ -0.0 RCVD_IN_DNSWL_NONE     RBL: Sender listed at https://www.dnswl.org/, no
+ trust [209.85.128.52 listed in list.dnswl.org]
+ -0.0 RCVD_IN_MSPIKE_H2      RBL: Average reputation (+2)
+ [209.85.128.52 listed in wl.mailspike.net]
  -0.0 SPF_PASS               SPF: sender matches SPF record
  0.0 SPF_HELO_NONE          SPF: HELO does not publish an SPF Record
- 0.0 RCVD_IN_MSPIKE_WL      Mailspike good senders
- 0.2 FREEMAIL_FORGED_FROMDOMAIN 2nd level domains in From and EnvelopeFrom
- freemail headers are different
-X-Headers-End: 1lCktK-0007NG-Sf
+ -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from author's
+ domain
+ -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+ 0.1 DKIM_SIGNED            Message has a DKIM or DK signature,
+ not necessarily valid
+X-Headers-End: 1lCl3A-0007jq-FQ
 Subject: Re: [V9fs-developer] [PATCH 34/33] netfs: Pass flag rather than use
  in_softirq()
 X-BeenThere: v9fs-developer@lists.sourceforge.net
