@@ -2,71 +2,85 @@ Return-Path: <v9fs-developer-bounces@lists.sourceforge.net>
 X-Original-To: lists+v9fs-developer@lfdr.de
 Delivered-To: lists+v9fs-developer@lfdr.de
 Received: from lists.sourceforge.net (lists.sourceforge.net [216.105.38.7])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1DA84323F6E
-	for <lists+v9fs-developer@lfdr.de>; Wed, 24 Feb 2021 16:17:40 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.sourceforge.net; s=beta; h=Content-Transfer-Encoding:Content-Type:Cc:
-	Reply-To:From:List-Subscribe:List-Help:List-Post:List-Archive:
-	List-Unsubscribe:List-Id:Subject:MIME-Version:References:In-Reply-To:
-	Message-ID:Date:To:Sender:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	 bh=ApH4K904lCY4MMpwgwG6zHYtf8ZH0rZ6pnTpwv+tBCM=; b=HtgCDgRfhKkobkIp4GKuP1nWh
-	TITDtnXulPKDlCAMvltEYY3ErVo2dQT1FhcTjEctOhsCWII2Q0hD6dcLjdw+UsmEkt/iNAeKUmyS+
-	9Z86DsZI6ZmdjVF0vTTxaokLRh0elzsPJ9gNDYLjFCEVB6DlNvleffHmq5RxjNtnJFPks=;
-Received: from [127.0.0.1] (helo=sfs-ml-2.v29.lw.sourceforge.com)
-	by sfs-ml-2.v29.lw.sourceforge.com with esmtp (Exim 4.90_1)
+	by mail.lfdr.de (Postfix) with ESMTPS id C8FD33240E8
+	for <lists+v9fs-developer@lfdr.de>; Wed, 24 Feb 2021 16:44:39 +0100 (CET)
+Received: from [127.0.0.1] (helo=sfs-ml-1.v29.lw.sourceforge.com)
+	by sfs-ml-1.v29.lw.sourceforge.com with esmtp (Exim 4.90_1)
 	(envelope-from <v9fs-developer-bounces@lists.sourceforge.net>)
-	id 1lEvuz-0008AB-Eh; Wed, 24 Feb 2021 15:17:37 +0000
+	id 1lEwL8-0007FW-Fo; Wed, 24 Feb 2021 15:44:38 +0000
 Received: from [172.30.20.202] (helo=mx.sourceforge.net)
- by sfs-ml-2.v29.lw.sourceforge.com with esmtps
+ by sfs-ml-1.v29.lw.sourceforge.com with esmtps
  (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.90_1)
- (envelope-from <qemu_oss@crudebyte.com>) id 1lEvuy-0008A3-5I
- for v9fs-developer@lists.sourceforge.net; Wed, 24 Feb 2021 15:17:36 +0000
+ (envelope-from <asmadeus@codewreck.org>) id 1lEwL6-0007Ee-8h
+ for v9fs-developer@lists.sourceforge.net; Wed, 24 Feb 2021 15:44:36 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=sourceforge.net; s=x; h=Content-Type:Content-Transfer-Encoding:MIME-Version
- :References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Sender:Reply-To:
+ d=sourceforge.net; s=x; h=In-Reply-To:Content-Type:MIME-Version:References:
+ Message-ID:Subject:Cc:To:From:Date:Sender:Reply-To:Content-Transfer-Encoding:
  Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
  Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
  List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=/y6xFzyCzw1KT1sJVP9w0ePufQ9CHZv14Yo6pv/8g4s=; b=iPx3kghuDsOd9PogjDiXwwOmA6
- Px/3ZhRdKTFYVbMgH/5mZ8AncwzXILT+qvhx51T5p4XsRewE6nPPyFeFngrt+4p1GOYNBAKyDSLzk
- RYOp4RsZRB1JKeREbyZWqJGTc4+EKgW8iBjvCUZ/IyKNouPmH8ACbRDWKEC+KRmu66GU=;
+ bh=ZV8jkMbY8El7E5ZFbA9docIbSkA9tEpu7hmt+4Awjko=; b=eWOfYVZb+q1C/jnrftwom3zw+Y
+ YtXQ0PpMfawOBPdDjdpQVSTtUEoGc7dQa2x5mGTrAGSboSNP2yge+eVQ9ncpgSpKjF6CBFuY5Yd7C
+ 6TifQa4iVwvqUiAyVSQASS2XCqRlIaQbvGjx0fXNtnpvm09/drH/2gXVMPvFn6Uu2h+g=;
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  ;
- h=Content-Type:Content-Transfer-Encoding:MIME-Version:References:
- In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Sender:Reply-To:Content-ID:
+ h=In-Reply-To:Content-Type:MIME-Version:References:Message-ID:Subject:Cc:To
+ :From:Date:Sender:Reply-To:Content-Transfer-Encoding:Content-ID:
  Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
  :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
  List-Post:List-Owner:List-Archive;
- bh=/y6xFzyCzw1KT1sJVP9w0ePufQ9CHZv14Yo6pv/8g4s=; b=OIrGcYHk27O22xGUfPI6FYVVDM
- daOIWO8ttvaittap3c6ApG/BCguLBb4vXvbS+wi8km81LxxGB3d5NAdz3WudcKvOegFk+guGMBgep
- PcMOmHia51QO4DpC+FvlRreMTkaQk2TtldyAgbJJJBuDd8MlIx8Nepz03w/jJ8o0LJZk=;
-Received: from kylie.crudebyte.com ([5.189.157.229])
- by sfi-mx-1.v28.lw.sourceforge.com with esmtps
- (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.92.2)
- id 1lEvul-003nov-Qx
- for v9fs-developer@lists.sourceforge.net; Wed, 24 Feb 2021 15:17:36 +0000
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=crudebyte.com; s=kylie; h=Content-Type:Content-Transfer-Encoding:
- MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:
- Content-ID:Content-Description;
- bh=/y6xFzyCzw1KT1sJVP9w0ePufQ9CHZv14Yo6pv/8g4s=; b=lPaezqxKKhgEdyb2GpcJ7yFIjl
- ztGSuf6Rn/WteaZ3Oj3ZwnFFAChUJWeyUEu6HxWonSS3LF0NsMJOWdTDPlC555Az9Mj7akIHAKR6x
- 6dOkznyj5KZLIwMGqrx9YaHAzP/xg/fCTm1WK2+DLoAY5owuBTzAKRXcNm+HMv9FAAxED/gW4bJL+
- zVkhnY/jF9pRj7LExnfAPhb0dMRYRijDKBZhKABA/SiHGQEu2R2748brJ8RlSLv+wFBuqNEjSS1o8
- czR7nVCx0qOipRdXf0VpW4fhCu4zU073NViCLWrk1bHGpq1zJVLaVARrhb4cWr+KqaLM/MXBWuPtc
- 2EvAOaM22f4fFSC6Uy60LZZXtzQ/AcqE3KfRaFk80lOaWd6fayTHA0urUjf1zo9ChDW7X5ZYsa5mZ
- kmJ5BGieBhfq/rdVpcarA5Yj1vj5FoiDIvzCwtl13AOqjhUYcXnJlJ6qzHI4CGKndxPxtJL4uDxZ2
- mhH4AObrOSAt9W871eHOq3ysC41NERxeecRhLYjAteTbwWWIVWpFWDMSCcqRuj9LAzCPXYdrA0MI2
- 8/yzb5pZmkMs6Mq0leUhZoAuNG8RbwQEkLiK9KIFiKkW94g7P8fc9a2hwTnI5LQY3Q9IOx9QulDCE
- eA6+C1b+0UcNYLQb8bPHu9yPveIsDMbEQA5tU4tAQ=;
-To: "Michael S. Tsirkin" <mst@redhat.com>
-Date: Wed, 24 Feb 2021 16:16:52 +0100
-Message-ID: <2006960.IAZaadA1hq@silver>
-In-Reply-To: <20210223090531-mutt-send-email-mst@kernel.org>
+ bh=ZV8jkMbY8El7E5ZFbA9docIbSkA9tEpu7hmt+4Awjko=; b=hRzcxlCVQKrlxxP+GUFmARQoPb
+ QnzlAV9XfHOLVnm6V4omOuZDYCM3UnMVsIDh5XRxdFT/oqKsUTQbiMai7DiqTtokZ+tru+AkZpURf
+ sKUBwVJpIp5b5Y7qlnYMFqLh0l87GFl4ZrGCxdm5hN3WMP24QhEtdRslsfTqOf9hiczc=;
+Received: from nautica.notk.org ([91.121.71.147])
+ by sfi-mx-2.v28.lw.sourceforge.com with esmtps
+ (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.92.3)
+ id 1lEwKs-0006x1-5R
+ for v9fs-developer@lists.sourceforge.net; Wed, 24 Feb 2021 15:44:36 +0000
+Received: by nautica.notk.org (Postfix, from userid 108)
+ id 9F27BC01D; Wed, 24 Feb 2021 16:44:14 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=codewreck.org; s=2;
+ t=1614181454; bh=ZV8jkMbY8El7E5ZFbA9docIbSkA9tEpu7hmt+4Awjko=;
+ h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+ b=VsE5jdr/5aZpQH+iy7jVXAIurhi3NlE749qCFkpkQQXTKLZ7EcdbMytdAVWvGLbO4
+ yrQl2sg3Ro42bSA3PZ21pohotim5n/cZtc3ZFmh09AqaoDUTXHVcRFeVW6yGo2By7D
+ dcRGux1GlLIY/yihtuj76PwQ1QCHm7YwA5wkVwI4Mw8OsuLfI2J2PX/dRALFf2NZ7b
+ LwBfghtJh8qE6qYp8dlWFJYbyYBSmGt09FUpPGOrt8vqt2ravJT4MUWgNLOBh+zQUr
+ +JXEiAqK+//aafD2H/UazGLSU64xrLP7QUUo5fTTfZh+4yenAAjlYn+cOIf3pGANRC
+ gyXblOwR/IiYg==
+X-Spam-Checker-Version: SpamAssassin 3.3.2 (2011-06-06) on nautica.notk.org
+X-Spam-Level: 
+X-Spam-Status: No, score=0.0 required=5.0 tests=UNPARSEABLE_RELAY
+ autolearn=unavailable version=3.3.2
+Received: from tyr.codewreck.org (localhost [127.0.0.1])
+ by nautica.notk.org (Postfix) with ESMTP id 99CC2C009;
+ Wed, 24 Feb 2021 16:44:13 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=codewreck.org; s=2;
+ t=1614181453; bh=ZV8jkMbY8El7E5ZFbA9docIbSkA9tEpu7hmt+4Awjko=;
+ h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+ b=Cg4V6oqyH5eIpG+vlgHKbC/pIbonfhxTTuPNEM6WTJnR05IOLD9CkddT/7KkI5nDu
+ f+oBz98aOjF7gyK2dZ942PyqTnmoTfh+l90ies6b/vyeHlujKtk4Y7svX2SlRSLGRd
+ 4IaQuFgM++MFYG/UMgGN5/wZ2xPwuzzOa2t1UMIrosD/6qDRgj54Z9svWmf2AtXOHJ
+ CpOlGz9izTLCorDbl+RwbVIPlLtnzpc2vRe0IiKyjFghHep3Eg9Wzb3d7+IBGOFqkM
+ vh2I58M9ZaHrZK++A8EtEZUzmCudlJxJP+t7J0A7Qo9pwTzEoEwlo06iKsFvNIZK+D
+ MQqJZQwLAoMVg==
+Received: from tyr.codewreck.org (localhost [127.0.0.1])
+ by tyr.codewreck.org (Postfix) with SMTP id 8618A281001;
+ Thu, 25 Feb 2021 00:44:12 +0900 (JST)
+Received: (from asmadeus@codewreck.org)
+ by tyr.codewreck.org (mini_sendmail/1.3.9 19Oct2015);
+ Thu, 25 Feb 2021 00:44:12 JST (sender asmadeus@tyr.codewreck.org)
+Date: Thu, 25 Feb 2021 00:43:57 +0900
+From: Dominique Martinet <asmadeus@codewreck.org>
+To: Christian Schoenebeck <qemu_oss@crudebyte.com>
+Message-ID: <20210224154357.GA12207@tyr>
 References: <20200918213436.GA3520@redhat.com> <6115734.fQeFoySBn5@silver>
  <20210223090531-mutt-send-email-mst@kernel.org>
+ <2006960.IAZaadA1hq@silver>
 MIME-Version: 1.0
+Content-Disposition: inline
+In-Reply-To: <2006960.IAZaadA1hq@silver>
+User-Agent: Mutt/1.10.1 (2018-07-13)
 X-Spam-Score: -0.1 (/)
 X-Spam-Report: Spam Filtering performed by mx.sourceforge.net.
  See http://spamassassin.org/tag/ for more details.
@@ -77,7 +91,8 @@ X-Spam-Report: Spam Filtering performed by mx.sourceforge.net.
  -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
  0.1 DKIM_SIGNED            Message has a DKIM or DK signature,
  not necessarily valid
-X-Headers-End: 1lEvul-003nov-Qx
+ 0.0 UNPARSEABLE_RELAY Informational: message has unparseable relay lines
+X-Headers-End: 1lEwKs-0006x1-5R
 Subject: Re: [V9fs-developer] Can not set high msize with virtio-9p (Was:
  Re: virtiofs vs 9p performance)
 X-BeenThere: v9fs-developer@lists.sourceforge.net
@@ -91,64 +106,60 @@ List-Post: <mailto:v9fs-developer@lists.sourceforge.net>
 List-Help: <mailto:v9fs-developer-request@lists.sourceforge.net?subject=help>
 List-Subscribe: <https://lists.sourceforge.net/lists/listinfo/v9fs-developer>, 
  <mailto:v9fs-developer-request@lists.sourceforge.net?subject=subscribe>
-From: Christian Schoenebeck via V9fs-developer
- <v9fs-developer@lists.sourceforge.net>
-Reply-To: Christian Schoenebeck <qemu_oss@crudebyte.com>
-Cc: "cdupontd@redhat.com" <cdupontd@redhat.com>, "Venegas Munoz,
- Jose Carlos" <jose.carlos.venegas.munoz@intel.com>, qemu-devel@nongnu.org,
- "Dr. David Alan Gilbert" <dgilbert@redhat.com>,
- virtio-fs-list <virtio-fs@redhat.com>, Greg Kurz <groug@kaod.org>,
- Stefan Hajnoczi <stefanha@redhat.com>, v9fs-developer@lists.sourceforge.net,
- "Shinde, Archana M" <archana.m.shinde@intel.com>,
- Vivek Goyal <vgoyal@redhat.com>
+Cc: "cdupontd@redhat.com" <cdupontd@redhat.com>,
+ "Michael S. Tsirkin" <mst@redhat.com>, "Venegas Munoz,
+ Jose Carlos" <jose.carlos.venegas.munoz@intel.com>, Greg Kurz <groug@kaod.org>,
+ qemu-devel@nongnu.org, virtio-fs-list <virtio-fs@redhat.com>,
+ Vivek Goyal <vgoyal@redhat.com>, Stefan Hajnoczi <stefanha@redhat.com>,
+ v9fs-developer@lists.sourceforge.net, "Shinde,
+ Archana M" <archana.m.shinde@intel.com>,
+ "Dr. David Alan Gilbert" <dgilbert@redhat.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: v9fs-developer-bounces@lists.sourceforge.net
 
-On Dienstag, 23. Februar 2021 15:07:31 CET Michael S. Tsirkin wrote:
-> > Michael, Dominique,
-> > 
-> > we are wondering here about the message size limitation of just 5 kiB in
-> > the 9p Linux client (using virtio transport) which imposes a performance
-> > bottleneck, introduced by this kernel commit:
-> > 
-> > commit b49d8b5d7007a673796f3f99688b46931293873e
-> > Author: Aneesh Kumar K.V <aneesh.kumar@linux.vnet.ibm.com>
-> > Date:   Wed Aug 17 16:56:04 2011 +0000
-> > 
-> >     net/9p: Fix kernel crash with msize 512K
-> >     
-> >     With msize equal to 512K (PAGE_SIZE * VIRTQUEUE_NUM), we hit multiple
-> >     crashes. This patch fix those.
-> >     
-> >     Signed-off-by: Aneesh Kumar K.V <aneesh.kumar@linux.vnet.ibm.com>
-> >     Signed-off-by: Eric Van Hensbergen <ericvh@gmail.com>
+Christian Schoenebeck wrote on Wed, Feb 24, 2021 at 04:16:52PM +0100:
+> Misapprehension + typo(s) in my previous message, sorry Michael. That's 500k 
+> of course (not 5k), yes.
 > 
-> Well the change I see is:
+> Let me rephrase that question: are you aware of something in virtio that would 
+> per se mandate an absolute hard coded message size limit (e.g. from virtio 
+> specs perspective or maybe some compatibility issue)?
 > 
-> -       .maxsize = PAGE_SIZE*VIRTQUEUE_NUM,
-> +       .maxsize = PAGE_SIZE * (VIRTQUEUE_NUM - 3),
-> 
-> 
-> so how come you say it changes 512K to 5K?
-> Looks more like 500K to me.
+> If not, we would try getting rid of that hard coded limit of the 9p client on 
+> kernel side in the first place, because the kernel's 9p client already has a 
+> dynamic runtime option 'msize' and that hard coded enforced limit (500k) is a 
+> performance bottleneck like I said.
 
-Misapprehension + typo(s) in my previous message, sorry Michael. That's 500k 
-of course (not 5k), yes.
+We could probably set it at init time through virtio_max_dma_size(vdev)
+like virtio_blk does (I just tried and get 2^64 so we can probably
+expect virtually no limit there)
 
-Let me rephrase that question: are you aware of something in virtio that would 
-per se mandate an absolute hard coded message size limit (e.g. from virtio 
-specs perspective or maybe some compatibility issue)?
-
-If not, we would try getting rid of that hard coded limit of the 9p client on 
-kernel side in the first place, because the kernel's 9p client already has a 
-dynamic runtime option 'msize' and that hard coded enforced limit (500k) is a 
-performance bottleneck like I said.
-
-Best regards,
-Christian Schoenebeck
+I'm not too familiar with virtio, feel free to try and if it works send
+me a patch -- the size drop from 512 to 500k is old enough that things
+probably have changed in the background since then.
 
 
+On the 9p side itself, unrelated to virtio, we don't want to make it
+*too* big as the client code doesn't use any scatter-gather and will
+want to allocate upfront contiguous buffers of the size that got
+negotiated -- that can get ugly quite fast, but we can leave it up to
+users to decide.
+One of my very-long-term goal would be to tend to that, if someone has
+cycles to work on it I'd gladly review any patch in that area.
+A possible implementation path would be to have transport define
+themselves if they support it or not and handle it accordingly until all
+transports migrated, so one wouldn't need to care about e.g. rdma or xen
+if you don't have hardware to test in the short term.
+
+The next best thing would be David's netfs helpers and sending
+concurrent requests if you use cache, but that's not merged yet either
+so it'll be a few cycles as well.
+
+
+Cheers,
+-- 
+Dominique
 
 
 _______________________________________________
