@@ -2,79 +2,88 @@ Return-Path: <v9fs-developer-bounces@lists.sourceforge.net>
 X-Original-To: lists+v9fs-developer@lfdr.de
 Delivered-To: lists+v9fs-developer@lfdr.de
 Received: from lists.sourceforge.net (lists.sourceforge.net [216.105.38.7])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3D43A3241F9
-	for <lists+v9fs-developer@lfdr.de>; Wed, 24 Feb 2021 17:21:46 +0100 (CET)
-Received: from [127.0.0.1] (helo=sfs-ml-4.v29.lw.sourceforge.com)
-	by sfs-ml-4.v29.lw.sourceforge.com with esmtp (Exim 4.90_1)
-	(envelope-from <v9fs-developer-bounces@lists.sourceforge.net>)
-	id 1lEwv2-0003bC-4a; Wed, 24 Feb 2021 16:21:44 +0000
-Received: from [172.30.20.202] (helo=mx.sourceforge.net)
- by sfs-ml-4.v29.lw.sourceforge.com with esmtps
- (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.90_1)
- (envelope-from <willy@infradead.org>) id 1lEwv0-0003b4-3p
- for v9fs-developer@lists.sourceforge.net; Wed, 24 Feb 2021 16:21:42 +0000
+	by mail.lfdr.de (Postfix) with ESMTPS id 0E11E326388
+	for <lists+v9fs-developer@lfdr.de>; Fri, 26 Feb 2021 14:50:54 +0100 (CET)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=sourceforge.net; s=x; h=In-Reply-To:Content-Type:MIME-Version:References:
- Message-ID:Subject:Cc:To:From:Date:Sender:Reply-To:Content-Transfer-Encoding:
+	d=lists.sourceforge.net; s=beta; h=Content-Transfer-Encoding:Content-Type:Cc:
+	Reply-To:From:List-Subscribe:List-Help:List-Post:List-Archive:
+	List-Unsubscribe:List-Id:Subject:MIME-Version:References:In-Reply-To:
+	Message-ID:Date:To:Sender:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
+	 bh=AQkjTYMUBlndrWft+F5FYU7HalzCjLrm/DOM0SQYNRs=; b=ekDMKqtzDfTgIR9B/AE4GVSOX
+	0fKDue8VtV6/El2+xKI5z++XBb+jV90syOsR85Ty791/CU1w65yyheFZZIKUYlpx3A5FFPY7jm4Vq
+	AVOEeCKvnKF30WQJGC6kG8xZwkpTCd6s+d4dNnW5XBy3pPMp96Mifrm07LHSoyWQEZ6aM=;
+Received: from [127.0.0.1] (helo=sfs-ml-2.v29.lw.sourceforge.com)
+	by sfs-ml-2.v29.lw.sourceforge.com with esmtp (Exim 4.90_1)
+	(envelope-from <v9fs-developer-bounces@lists.sourceforge.net>)
+	id 1lFdW6-0005X4-84; Fri, 26 Feb 2021 13:50:50 +0000
+Received: from [172.30.20.202] (helo=mx.sourceforge.net)
+ by sfs-ml-2.v29.lw.sourceforge.com with esmtps
+ (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.90_1)
+ (envelope-from <qemu_oss@crudebyte.com>) id 1lFdW4-0005Wt-UT
+ for v9fs-developer@lists.sourceforge.net; Fri, 26 Feb 2021 13:50:49 +0000
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+ d=sourceforge.net; s=x; h=Content-Type:Content-Transfer-Encoding:MIME-Version
+ :References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Sender:Reply-To:
  Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
  Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
  List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=1iUhtDEi+5CkGUvyZLsVBOnlGWt86U2HUz3W2iE42HY=; b=bWRuyBQ+vbcTX2QjdDsWgYez3e
- QMYSJauklkOIdh6Vc/rcSfoyH8sGaacjJiEOXnYFvLFCAMAZBijo296SCgDE9curJMzjYm2JfW8WP
- trFG+azCrvYao6pTPpPIaQcan4IMd971kfhEof7ptrM+C/sKlhSTWgOZpm/gMP+xb4rU=;
+ bh=2e0w9bgZX9ceOLnFwbCZcdSSKJ4HpLRegJcKrfQc0dQ=; b=PzK9/p/aC8CS9bc09Nd43FD5RW
+ +a8bQftSmIS4Vx0HD/rcr3MhMoGWZyr08b7BTH/Rampx+soZ0/qBb47A+0ML+RkIGF+zUEH5Ubevy
+ fxD0pk/4v3+VZp88knSF6G0wLik1NFDZxLj8a8nqnTxQpIgBht7KyZW6OlEylmgFB0pM=;
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  ;
- h=In-Reply-To:Content-Type:MIME-Version:References:Message-ID:Subject:Cc:To
- :From:Date:Sender:Reply-To:Content-Transfer-Encoding:Content-ID:
+ h=Content-Type:Content-Transfer-Encoding:MIME-Version:References:
+ In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Sender:Reply-To:Content-ID:
  Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
  :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
  List-Post:List-Owner:List-Archive;
- bh=1iUhtDEi+5CkGUvyZLsVBOnlGWt86U2HUz3W2iE42HY=; b=eyDBR2l9Y2+oI+/7WYbR6MyHmI
- 7oBr9K3YCROvWbHsugwi3jI7DVvrPGtSxmsqqDSKnRPWfZ5cvU34zw2XckM1st83k3VGsA1dQ9Y5h
- Uc6zKqlRz0s5IFsFCj3TEiln3e6uQe1dfFPCZrfULVAfDN5sSBivaeHFw3VQZ1eXJNuM=;
-Received: from casper.infradead.org ([90.155.50.34])
- by sfi-mx-1.v28.lw.sourceforge.com with esmtps
- (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.92.2)
- id 1lEwun-003qrb-HF
- for v9fs-developer@lists.sourceforge.net; Wed, 24 Feb 2021 16:21:41 +0000
+ bh=2e0w9bgZX9ceOLnFwbCZcdSSKJ4HpLRegJcKrfQc0dQ=; b=m/yb0YtNl7zUwFqd4hplmkBnc6
+ mJRXza++zw5hgmyX/cccMXJblKDo4BH9sRmua8NMeO2tuW9F52N4fTemxozadrcStAVvLoW1x5fbj
+ lLWgzCFFqUooGCZA0oB/1KU1P5Fqn+WWCqh2pjItr++mUUJLfPx1X/NRHAFkhwREHkA4=;
+Received: from kylie.crudebyte.com ([5.189.157.229])
+ by sfi-mx-2.v28.lw.sourceforge.com with esmtps
+ (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.92.3)
+ id 1lFdVr-0007Uc-De
+ for v9fs-developer@lists.sourceforge.net; Fri, 26 Feb 2021 13:50:46 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=infradead.org; s=casper.20170209; h=In-Reply-To:Content-Type:MIME-Version:
- References:Message-ID:Subject:Cc:To:From:Date:Sender:Reply-To:
- Content-Transfer-Encoding:Content-ID:Content-Description;
- bh=1iUhtDEi+5CkGUvyZLsVBOnlGWt86U2HUz3W2iE42HY=; b=LBROo6968UJXNWuvJt7SF366Zt
- iIP5QF+rM+aTNmUyr+hfxsInxV40EbrDM7j/il7G5o/9qtY6exZWs/T6Iqf772qHIppcDJMb1NJZn
- phm9I1J2568XEQfvf+XTA4PWCrbE7MeMmOEr5A3VlbG1kogSiPxU2i8TByW/7aipMq0msY8WHuFL+
- DgbfVbHfY0vuyMKSDHXFgyV2cRxWbSHN+hXpKc1fzxc12Mg6lodWqRBhNKxqAmvW0pWmI5sv5jOp2
- WtiPX3StG7iGvARSYw8+rEEGy4Za1PT4EW+UM1FP4DxZaZWq2K6vpiCflB6eB+DAqQEgWaA2XVibt
- +0Wh2msw==;
-Received: from willy by casper.infradead.org with local (Exim 4.94 #2 (Red Hat
- Linux)) id 1lEwRd-009aTu-W2; Wed, 24 Feb 2021 15:51:25 +0000
-Date: Wed, 24 Feb 2021 15:51:21 +0000
-From: Matthew Wilcox <willy@infradead.org>
-To: David Howells <dhowells@redhat.com>
-Message-ID: <20210224155121.GQ2858050@casper.infradead.org>
-References: <CAH2r5mv=PZk_wn2=b0VQcaom9TEw1MGLz+qB_Ktxxm2bnV9Nig@mail.gmail.com>
- <161340385320.1303470.2392622971006879777.stgit@warthog.procyon.org.uk>
- <9e49f96cd80eaf9c8ed267a7fbbcb4c6467ee790.camel@redhat.com>
- <CAH2r5mvPLivjuE=cbijzGSHOvx-hkWSWbcxpoBnJX-BR9pBskQ@mail.gmail.com>
- <20210216021015.GH2858050@casper.infradead.org>
- <3743319.1614173522@warthog.procyon.org.uk>
+ d=crudebyte.com; s=kylie; h=Content-Type:Content-Transfer-Encoding:
+ MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:
+ Content-ID:Content-Description;
+ bh=2e0w9bgZX9ceOLnFwbCZcdSSKJ4HpLRegJcKrfQc0dQ=; b=YWgHDkUwgMk+ORqfwaSSacR90s
+ yUHAANZ4y9UUBi2pE/7NP/jI6wFCfl295FLyCg1rlQgjcbxXNirbEEoSNa7s13nKu+0trfFrhT+3N
+ eALcLPubAP4trZfKELpdMR0JykXBAaB73M66Iei+YdDeTip2UmdSZcFCdgkzvzd+iN5ww30wduGo7
+ Mah+tOYpwaWCMEvvTCO9CUb+ve97o0Hdv2WXdM4IE6250UAxZAp1+ViadSNlu+BAhfWTGPQNP1I9L
+ CnM2waSqC/MITt7C75xbbQH9z/b6gWJJXBgK+ZOYgyvcHpPJCBztBCiTNVpA4/HmASfJghdoLMY3J
+ ismbuS6tKEosx2P0lFb2FC3nHrlswmPyJTfmuAkzGWQN/WA63tjzX7AzYi/QkUPdTnoO/hOQQ0CEu
+ ta4vNhy4OikYOz9ICXyfATIcFSSn7ht+sipgATwlwXe8MGle+WCLb6LVnlko0wr+JwIx53OEhOxr5
+ n76ms2MF44sg19YxKlFyyl1PjRzQVSohTkifTdnAHHckhfhiSKFn+nq8diybcIk0p9vHYtzjhvzWR
+ fUKR8uSFfXwKD63r/E5VfFLsHDurQ9aLpPDaNsTbUcxSeLGQvBou5wpeaKItJUHTVVVWhVEMYIv2A
+ ghJ+xMKTAAEVnpZoSTt0hdyvl6TV4b5S6jbSVKo44=;
+To: qemu-devel@nongnu.org
+Date: Fri, 26 Feb 2021 14:49:12 +0100
+Message-ID: <1918692.k70u9Ml6kK@silver>
+In-Reply-To: <20210224154357.GA12207@tyr>
+References: <20200918213436.GA3520@redhat.com> <2006960.IAZaadA1hq@silver>
+ <20210224154357.GA12207@tyr>
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <3743319.1614173522@warthog.procyon.org.uk>
 X-Spam-Score: -0.1 (/)
 X-Spam-Report: Spam Filtering performed by mx.sourceforge.net.
  See http://spamassassin.org/tag/ for more details.
- 0.0 SPF_NONE               SPF: sender does not publish an SPF Record
+ 0.0 URIBL_BLOCKED ADMINISTRATOR NOTICE: The query to URIBL was blocked.
+ See
+ http://wiki.apache.org/spamassassin/DnsBlocklists#dnsbl-block
+ for more information. [URIs: oasis-open.org]
+ -0.0 SPF_PASS               SPF: sender matches SPF record
  0.0 SPF_HELO_NONE          SPF: HELO does not publish an SPF Record
  -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from author's
  domain
  -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
  0.1 DKIM_SIGNED            Message has a DKIM or DK signature,
  not necessarily valid
-X-Headers-End: 1lEwun-003qrb-HF
-Subject: Re: [V9fs-developer] [PATCH 00/33] Network fs helper library &
- fscache kiocb API [ver #3]
+X-Headers-End: 1lFdVr-0007Uc-De
+Subject: Re: [V9fs-developer] Can not set high msize with virtio-9p (Was:
+ Re: virtiofs vs 9p performance)
 X-BeenThere: v9fs-developer@lists.sourceforge.net
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -86,96 +95,99 @@ List-Post: <mailto:v9fs-developer@lists.sourceforge.net>
 List-Help: <mailto:v9fs-developer-request@lists.sourceforge.net?subject=help>
 List-Subscribe: <https://lists.sourceforge.net/lists/listinfo/v9fs-developer>, 
  <mailto:v9fs-developer-request@lists.sourceforge.net?subject=subscribe>
-Cc: David Wysochanski <dwysocha@redhat.com>, CIFS <linux-cifs@vger.kernel.org>,
- linux-nfs <linux-nfs@vger.kernel.org>,
- William Kucharski <william.kucharski@oracle.com>,
- Jeff Layton <jlayton@redhat.com>, linux-mm <linux-mm@kvack.org>,
- Linus Torvalds <torvalds@linux-foundation.org>,
- LKML <linux-kernel@vger.kernel.org>, linux-afs@lists.infradead.org,
- Steve French <sfrench@samba.org>, Steve French <smfrench@gmail.com>,
- linux-cachefs@redhat.com, Alexander Viro <viro@zeniv.linux.org.uk>,
- Trond Myklebust <trondmy@hammerspace.com>,
- linux-fsdevel <linux-fsdevel@vger.kernel.org>,
- v9fs-developer@lists.sourceforge.net, ceph-devel@vger.kernel.org,
- Christoph Hellwig <hch@lst.de>, Anna Schumaker <anna.schumaker@netapp.com>
+From: Christian Schoenebeck via V9fs-developer
+ <v9fs-developer@lists.sourceforge.net>
+Reply-To: Christian Schoenebeck <qemu_oss@crudebyte.com>
+Cc: "Michael S. Tsirkin" <mst@redhat.com>, "Venegas Munoz,
+ Jose Carlos" <jose.carlos.venegas.munoz@intel.com>, Greg Kurz <groug@kaod.org>,
+ "cdupontd@redhat.com" <cdupontd@redhat.com>,
+ virtio-fs-list <virtio-fs@redhat.com>,
+ "Dr. David Alan Gilbert" <dgilbert@redhat.com>,
+ Stefan Hajnoczi <stefanha@redhat.com>, v9fs-developer@lists.sourceforge.net,
+ "Shinde, Archana M" <archana.m.shinde@intel.com>,
+ Vivek Goyal <vgoyal@redhat.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: v9fs-developer-bounces@lists.sourceforge.net
 
-On Wed, Feb 24, 2021 at 01:32:02PM +0000, David Howells wrote:
-> Steve French <smfrench@gmail.com> wrote:
+On Mittwoch, 24. Februar 2021 16:43:57 CET Dominique Martinet wrote:
+> Christian Schoenebeck wrote on Wed, Feb 24, 2021 at 04:16:52PM +0100:
+> > Misapprehension + typo(s) in my previous message, sorry Michael. That's
+> > 500k of course (not 5k), yes.
+> > 
+> > Let me rephrase that question: are you aware of something in virtio that
+> > would per se mandate an absolute hard coded message size limit (e.g. from
+> > virtio specs perspective or maybe some compatibility issue)?
+> > 
+> > If not, we would try getting rid of that hard coded limit of the 9p client
+> > on kernel side in the first place, because the kernel's 9p client already
+> > has a dynamic runtime option 'msize' and that hard coded enforced limit
+> > (500k) is a performance bottleneck like I said.
 > 
-> > This (readahead behavior improvements in Linux, on single large file
-> > sequential read workloads like cp or grep) gets particularly interesting
-> > with SMB3 as multichannel becomes more common.  With one channel having one
-> > readahead request pending on the network is suboptimal - but not as bad as
-> > when multichannel is negotiated. Interestingly in most cases two network
-> > connections to the same server (different TCP sockets,but the same mount,
-> > even in cases where only network adapter) can achieve better performance -
-> > but still significantly lags Windows (and probably other clients) as in
-> > Linux we don't keep multiple I/Os in flight at one time (unless different
-> > files are being read at the same time by different threads).
+> We could probably set it at init time through virtio_max_dma_size(vdev)
+> like virtio_blk does (I just tried and get 2^64 so we can probably
+> expect virtually no limit there)
 > 
-> I think it should be relatively straightforward to make the netfs_readahead()
-> function generate multiple read requests.  If I wasn't handed sufficient pages
-> by the VM upfront to do two or more read requests, I would need to do extra
-> expansion.  There are a couple of ways this could be done:
+> I'm not too familiar with virtio, feel free to try and if it works send
+> me a patch -- the size drop from 512 to 500k is old enough that things
+> probably have changed in the background since then.
 
-I don't think this is a job for netfs_readahead().  We can get into a
-similar situation with SSDs or RAID arrays where ideally we would have
-several outstanding readahead requests.
+Yes, agreed. I'm neither too familiar with virtio, nor with the Linux 9p
+client code yet. For that reason I consider a minimal invasive change as a
+first step at least. AFAICS a "split virtqueue" setup is currently used:
 
-If your drive is connected through a 1Gbps link (eg PCIe gen 1 x1) and
-has a latency of 10ms seek time, with one outstanding read, each read
-needs to be 12.5MB in size in order to saturate the bus.  If the device
-supports 128 outstanding commands, each read need only be 100kB.
+https://docs.oasis-open.org/virtio/virtio/v1.1/cs01/virtio-v1.1-cs01.html#x1-240006
 
-We need the core readahead code to handle this situation.  My suggestion
-for doing this is to send off an extra readahead request every time we
-hit a !Uptodate page.  It looks something like this (assuming the app
-is processing the data fast and always hits the !Uptodate case) ...
+Right now the client uses a hard coded amount of 128 elements. So what about
+replacing VIRTQUEUE_NUM by a variable which is initialized with a value
+according to the user's requested 'msize' option at init time?
 
-1. hit 0,
-	set readahead size to 64kB,
-	mark 32kB as Readahead, send read for 0-64kB
-	wait for 0-64kB to complete
-2. hit 32kB (Readahead), no reads outstanding
-	inc readahead size to 128kB,
-	mark 128kB as Readahead, send read for 64k-192kB
-3. hit 64kB (!Uptodate), one read outstanding
-	mark 256kB as Readahead, send read for 192-320kB
-	mark 384kB as Readahead, send read for 320-448kB
-	wait for 64-192kB to complete
-4. hit 128kB (Readahead), two reads outstanding
-	inc readahead size to 256kB,
-	mark 576kB as Readahead, send read for 448-704kB
-5. hit 192kB (!Uptodate), three reads outstanding
-	mark 832kB as Readahead, send read for 704-960kB
-	mark 1088kB as Readahead, send read for 960-1216kB
-	wait for 192-320kB to complete
-6. hit 256kB (Readahead), four reads outstanding
-	mark 1344kB as Readahead, send read for 1216-1472kB
-7. hit 320kB (!Uptodate), five reads outstanding
-	mark 1600kB as Readahead, send read for 1472-1728kB
-	mark 1856kB as Readahead, send read for 1728-1984kB
-	wait for 320-448kB to complete
-8. hit 384kB (Readahead), five reads outstanding
-	mark 2112kB as Readahead, send read for 1984-2240kB
-9. hit 448kB (!Uptodate), six reads outstanding
-	mark 2368kB as Readahead, send read for 2240-2496kB
-	mark 2624kB as Readahead, send read for 2496-2752kB
-	wait for 448-704kB to complete
-10. hit 576kB (Readahead), seven reads outstanding
-	mark 2880kB as Readahead, send read for 2752-3008kB
+According to the virtio specs the max. amount of elements in a virtqueue is
+32768. So 32768 * 4k = 128M as new upper limit would already be a significant
+improvement and would not require too many changes to the client code, right?
 
-...
+> On the 9p side itself, unrelated to virtio, we don't want to make it
+> *too* big as the client code doesn't use any scatter-gather and will
+> want to allocate upfront contiguous buffers of the size that got
+> negotiated -- that can get ugly quite fast, but we can leave it up to
+> users to decide.
 
-Once we stop hitting !Uptodate pages, we'll maintain the number of pages
-marked as Readahead, and thus keep the number of readahead requests
-at the level it determined was necessary to keep the link saturated.
-I think we may need to put a parallelism cap in the bdi so that a device
-which is just slow instead of at the end of a long fat pipe doesn't get
-overwhelmed with requests.
+With ugly you just mean that it's occupying this memory for good as long as
+the driver is loaded, or is there some runtime performance penalty as well to
+be aware of?
+
+> One of my very-long-term goal would be to tend to that, if someone has
+> cycles to work on it I'd gladly review any patch in that area.
+> A possible implementation path would be to have transport define
+> themselves if they support it or not and handle it accordingly until all
+> transports migrated, so one wouldn't need to care about e.g. rdma or xen
+> if you don't have hardware to test in the short term.
+
+Sounds like something that Greg suggested before for a slightly different,
+even though related issue: right now the default 'msize' on Linux client side
+is 8k, which really hurts performance wise as virtually all 9p messages have
+to be split into a huge number of request and response messages. OTOH you
+don't want to set this default value too high. So Greg noted that virtio could
+suggest a default msize, i.e. a value that would suit host's storage hardware
+appropriately.
+
+> The next best thing would be David's netfs helpers and sending
+> concurrent requests if you use cache, but that's not merged yet either
+> so it'll be a few cycles as well.
+
+So right now the Linux client is always just handling one request at a time;
+it sends a 9p request and waits for its response before processing the next
+request?
+
+If so, is there a reason to limit the planned concurrent request handling
+feature to one of the cached modes? I mean ordering of requests is already
+handled on 9p server side, so client could just pass all messages in a
+lite-weight way and assume server takes care of it.
+
+Best regards,
+Christian Schoenebeck
+
+
 
 
 _______________________________________________
