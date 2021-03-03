@@ -2,94 +2,90 @@ Return-Path: <v9fs-developer-bounces@lists.sourceforge.net>
 X-Original-To: lists+v9fs-developer@lfdr.de
 Delivered-To: lists+v9fs-developer@lfdr.de
 Received: from lists.sourceforge.net (lists.sourceforge.net [216.105.38.7])
-	by mail.lfdr.de (Postfix) with ESMTPS id 903DD32B8B9
-	for <lists+v9fs-developer@lfdr.de>; Wed,  3 Mar 2021 15:51:20 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id B96C932BF2F
+	for <lists+v9fs-developer@lfdr.de>; Thu,  4 Mar 2021 00:20:44 +0100 (CET)
 Received: from [127.0.0.1] (helo=sfs-ml-2.v29.lw.sourceforge.com)
 	by sfs-ml-2.v29.lw.sourceforge.com with esmtp (Exim 4.90_1)
 	(envelope-from <v9fs-developer-bounces@lists.sourceforge.net>)
-	id 1lHSqM-0007wB-QM; Wed, 03 Mar 2021 14:51:18 +0000
+	id 1lHanL-00072P-17; Wed, 03 Mar 2021 23:20:43 +0000
 Received: from [172.30.20.202] (helo=mx.sourceforge.net)
  by sfs-ml-2.v29.lw.sourceforge.com with esmtps
  (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.90_1)
- (envelope-from <asmadeus@gaia.codewreck.org>) id 1lHSqL-0007w1-12
- for v9fs-developer@lists.sourceforge.net; Wed, 03 Mar 2021 14:51:17 +0000
+ (envelope-from <dhowells@redhat.com>) id 1lHanC-000726-Vu
+ for v9fs-developer@lists.sourceforge.net; Wed, 03 Mar 2021 23:20:35 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=sourceforge.net; s=x; h=In-Reply-To:Content-Type:MIME-Version:References:
- Message-ID:Subject:Cc:To:From:Date:Sender:Reply-To:Content-Transfer-Encoding:
- Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
- Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
+ d=sourceforge.net; s=x; h=Message-ID:Date:Content-ID:Content-Type:
+ MIME-Version:Subject:Cc:To:From:Sender:Reply-To:Content-Transfer-Encoding:
+ Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
+ :Resent-Message-ID:In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:
  List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=fQlAUkOuVRvnCmYyJHQnsdaTj+GB9QJFxjaw/02FArU=; b=I9mjznMzXSNk3Mj0jk6PRhZ9FL
- Ygy/KmYOkpN8iuJWukwr4LXzxxKNPUuLFwIAJK8fTx//FgRJ4YAIE66FK2k1HgA/fEEI07Du4WNTx
- sYOtMySIOquZBDXRC63KTc5KKQarvif8wFo+ifs0l1ogF45HtLVYvZUptAEBFhIyRVnY=;
+ bh=gXOtBmgY5MdqpQGzSKCvOP3QkZbnNtvngwVGLI4VAgk=; b=kbNVn91wXbsVpI7ZnhZYxLG5gx
+ T6sxk8OflCuJFUf6rqioBv2x8rJBhRHTjZVE3LtI9HmN48AJyPesuJElX95zUaIWtcQfbMWPbu8Ya
+ FAChgoj98FP7vneI8kqlmwnwTAiz7BhLg8J5cQF/pD3uPdJGSdjXStRc4xnw3wdiRbiA=;
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  ;
- h=In-Reply-To:Content-Type:MIME-Version:References:Message-ID:Subject:Cc:To
- :From:Date:Sender:Reply-To:Content-Transfer-Encoding:Content-ID:
- Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
- :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
- List-Post:List-Owner:List-Archive;
- bh=fQlAUkOuVRvnCmYyJHQnsdaTj+GB9QJFxjaw/02FArU=; b=a2nUXyP5E1woOQlI7TXyta9vMj
- uf0eaNo3ZRCH9sVKvZ1hed0WgbVMFdOASdFI/cwSwsrNXOaD+zM7HUXj6fzogXld0fyRhXwoQSDLt
- V+ewAVMx5IDLZS/U/k7ap2vPOEu/Bd64NCjSmMZjFQ50Hq5oYksLH3k0BZdh0gfOE6ws=;
-Received: from nautica.notk.org ([91.121.71.147])
+ h=Message-ID:Date:Content-ID:Content-Type:MIME-Version:Subject:Cc:To:From:
+ Sender:Reply-To:Content-Transfer-Encoding:Content-Description:Resent-Date:
+ Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:
+ References:List-Id:List-Help:List-Unsubscribe:List-Subscribe:List-Post:
+ List-Owner:List-Archive; bh=gXOtBmgY5MdqpQGzSKCvOP3QkZbnNtvngwVGLI4VAgk=; b=e
+ 9gCTton0/hC9Tf0jN+Gu7ATKyeqAk7FXWZkkGk96BWZ1iC25tlCCI4rVMcCKDQf6grywN/dhS/wBy
+ BK0M5VkBQ7ejAnzoSJIuR2+cfD8lStoMfBORHuiA8c20F27956Y6mfBwzpjYMaXlj9NDID/WP1TNY
+ pxnLK3A4H96KAsBw=;
+Received: from us-smtp-delivery-124.mimecast.com ([216.205.24.124])
  by sfi-mx-2.v28.lw.sourceforge.com with esmtps
- (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.92.3)
- id 1lHSqB-0001wZ-K5
- for v9fs-developer@lists.sourceforge.net; Wed, 03 Mar 2021 14:51:16 +0000
-Received: by nautica.notk.org (Postfix, from userid 108)
- id 013DDC01B; Wed,  3 Mar 2021 15:50:59 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=codewreck.org; s=2;
- t=1614783060; bh=fQlAUkOuVRvnCmYyJHQnsdaTj+GB9QJFxjaw/02FArU=;
- h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
- b=y+Rv3TOnasepdxL9CYPPbmT0wkVPgbiOW5pr83KLlpLeiKW5M+lA+VqKAk7l+UloK
- rMxDpYVpPpJR6ZRMyRCchOaZNRD4PagqtKTlBk2FgOLuqgXqLTnMitubwOOOGeCyga
- wlwxY4wxjEUiDOreyUbVBHNkx92RoGlkZXBfD6noRu7R7+9IA0O4SAMil5LVG5qKk7
- Vkgkm2eUukcBcEGWdsBqvjvGfEI9hE9aczuU1PXlfdjC5HwnqQfvm9yGlR+k6wA1mB
- qwscVlT/ryKroSmTkISOGUHAtyss3I/8dEK80TnPN7Pme8QrvfbV76/LLD2BMMeV3t
- OsZUpT306/c5w==
-X-Spam-Checker-Version: SpamAssassin 3.3.2 (2011-06-06) on nautica.notk.org
-X-Spam-Level: 
-X-Spam-Status: No, score=0.0 required=5.0 tests=UNPARSEABLE_RELAY
- autolearn=unavailable version=3.3.2
-Received: from odin.codewreck.org (localhost [127.0.0.1])
- by nautica.notk.org (Postfix) with ESMTPS id 482B2C01B;
- Wed,  3 Mar 2021 15:50:55 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=codewreck.org; s=2;
- t=1614783058; bh=fQlAUkOuVRvnCmYyJHQnsdaTj+GB9QJFxjaw/02FArU=;
- h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
- b=pOc5LbuP6Goz5SUDII5yH3Lc2mepSP12ylieddAM9txE/ObglBx8guCJ7Y1kXVnP1
- Jjo40Re+CGfZrXrJocdp3drNNhyHItuhIzpLCzMIk0zQ+P0CrKa48K+l6Hq8+qVGJO
- OuV77YyzkmxAf5tJEfI1GVdChEscu/Jle9ETd4tECM3TEPtz9tNUifwkmX6YkTFU0B
- hB2Ev1GfgvGirYHBceNYfkkrOWdiSet8kvdLMTGtJX5+E38QUwGLMS9RQOHuoDofCJ
- 2HZNN/2Vpo8teakgC8YJRQd2zVieMxhbt+xHMxn/oVZwAs0nvB6qF2DVKEoXXYcMCE
- +YYm41XqO5/Fw==
-Received: from localhost (odin.codewreck.org [local])
- by odin.codewreck.org (OpenSMTPD) with ESMTPA id 56ceace3;
- Wed, 3 Mar 2021 14:50:52 +0000 (UTC)
-Date: Wed, 3 Mar 2021 23:50:37 +0900
-From: Dominique Martinet <asmadeus@codewreck.org>
-To: Christian Schoenebeck <qemu_oss@crudebyte.com>
-Message-ID: <YD+iPTKnOlF/HwlV@codewreck.org>
-References: <20200918213436.GA3520@redhat.com> <1918692.k70u9Ml6kK@silver>
- <YDmMXCxxOqo1xKgq@odin> <1805660.C9YIKG4Ep7@silver>
+ (TLSv1.2:ECDHE-RSA-AES256-SHA384:256) (Exim 4.92.3)
+ id 1lHan8-0003rC-6Q
+ for v9fs-developer@lists.sourceforge.net; Wed, 03 Mar 2021 23:20:34 +0000
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+ s=mimecast20190719; t=1614813623;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:content-type:content-type;
+ bh=gXOtBmgY5MdqpQGzSKCvOP3QkZbnNtvngwVGLI4VAgk=;
+ b=bgQl0gtbklU9TopgTmW0msAlobpNzR9scW7SHgTG0+y+30a/jUiG/WDC6Anm7S/MiQ6zpj
+ BBJUUrWaoPWY/xfIGPWjd9DmYlzLmRPowIJVtMz+sLqComEb3Ltu1dCNu0b1zR9rOWvSnX
+ klCJvs1uc8dhcoct1hppi2d9ufm1r8U=
+Received: from mimecast-mx01.redhat.com (mimecast-mx01.redhat.com
+ [209.132.183.4]) (Using TLS) by relay.mimecast.com with ESMTP id
+ us-mta-415-dv_IBc6QNiipp5PAUfyt4w-1; Wed, 03 Mar 2021 18:20:21 -0500
+X-MC-Unique: dv_IBc6QNiipp5PAUfyt4w-1
+Received: from smtp.corp.redhat.com (int-mx01.intmail.prod.int.phx2.redhat.com
+ [10.5.11.11])
+ (using TLSv1.2 with cipher AECDH-AES256-SHA (256/256 bits))
+ (No client certificate requested)
+ by mimecast-mx01.redhat.com (Postfix) with ESMTPS id ECB8D193578C;
+ Wed,  3 Mar 2021 23:20:18 +0000 (UTC)
+Received: from warthog.procyon.org.uk (ovpn-119-68.rdu2.redhat.com
+ [10.10.119.68])
+ by smtp.corp.redhat.com (Postfix) with ESMTP id E6AC612D7E;
+ Wed,  3 Mar 2021 23:20:12 +0000 (UTC)
+Organization: Red Hat UK Ltd. Registered Address: Red Hat UK Ltd, Amberley
+ Place, 107-111 Peascod Street, Windsor, Berkshire, SI4 1TE, United
+ Kingdom.
+ Registered in England and Wales under Company Registration No. 3798903
+From: David Howells <dhowells@redhat.com>
+To: linux-cachefs@redhat.com
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <1805660.C9YIKG4Ep7@silver>
+Content-ID: <2653260.1614813611.1@warthog.procyon.org.uk>
+Date: Wed, 03 Mar 2021 23:20:11 +0000
+Message-ID: <2653261.1614813611@warthog.procyon.org.uk>
+X-Scanned-By: MIMEDefang 2.79 on 10.5.11.11
 X-Spam-Score: -0.1 (/)
 X-Spam-Report: Spam Filtering performed by mx.sourceforge.net.
  See http://spamassassin.org/tag/ for more details.
- 0.0 SPF_NONE               SPF: sender does not publish an SPF Record
+ 0.0 RCVD_IN_MSPIKE_H3      RBL: Good reputation (+3)
+ [216.205.24.124 listed in wl.mailspike.net]
+ -0.0 SPF_PASS               SPF: sender matches SPF record
  0.0 SPF_HELO_NONE          SPF: HELO does not publish an SPF Record
  -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from author's
  domain
  -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
  0.1 DKIM_SIGNED            Message has a DKIM or DK signature,
  not necessarily valid
- 0.0 UNPARSEABLE_RELAY Informational: message has unparseable relay lines
-X-Headers-End: 1lHSqB-0001wZ-K5
-Subject: Re: [V9fs-developer] Can not set high msize with virtio-9p (Was:
- Re: virtiofs vs 9p performance)
+ 0.0 RCVD_IN_MSPIKE_WL      Mailspike good senders
+ -0.0 DKIMWL_WL_HIGH         DKIMwl.org - High trust sender
+X-Headers-End: 1lHan8-0003rC-6Q
+Subject: [V9fs-developer] fscache: Redesigning the on-disk cache
 X-BeenThere: v9fs-developer@lists.sourceforge.net
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -101,135 +97,168 @@ List-Post: <mailto:v9fs-developer@lists.sourceforge.net>
 List-Help: <mailto:v9fs-developer-request@lists.sourceforge.net?subject=help>
 List-Subscribe: <https://lists.sourceforge.net/lists/listinfo/v9fs-developer>, 
  <mailto:v9fs-developer-request@lists.sourceforge.net?subject=subscribe>
-Cc: "cdupontd@redhat.com" <cdupontd@redhat.com>,
- "Michael S. Tsirkin" <mst@redhat.com>, "Venegas Munoz,
- Jose Carlos" <jose.carlos.venegas.munoz@intel.com>, Greg Kurz <groug@kaod.org>,
- qemu-devel@nongnu.org, virtio-fs-list <virtio-fs@redhat.com>,
- Vivek Goyal <vgoyal@redhat.com>, Stefan Hajnoczi <stefanha@redhat.com>,
- v9fs-developer@lists.sourceforge.net, "Shinde,
- Archana M" <archana.m.shinde@intel.com>,
- "Dr. David Alan Gilbert" <dgilbert@redhat.com>
+Cc: "J. Bruce Fields" <bfields@fieldses.org>, linux-nfs@vger.kernel.org,
+ Jeff Layton <jlayton@redhat.com>, Christoph Hellwig <hch@infradead.org>,
+ linux-cifs@vger.kernel.org, David Wysochanski <dwysocha@redhat.com>,
+ linux-kernel@vger.kernel.org,
+ "Matthew Wilcox \(Oracle\)" <willy@infradead.org>, dhowells@redhat.com,
+ Alexander Viro <viro@zeniv.linux.org.uk>, Dave Chinner <dchinner@redhat.com>,
+ linux-fsdevel@vger.kernel.org, v9fs-developer@lists.sourceforge.net,
+ ceph-devel@vger.kernel.org, linux-afs@lists.infradead.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: v9fs-developer-bounces@lists.sourceforge.net
 
-Christian Schoenebeck wrote on Wed, Mar 03, 2021 at 03:04:21PM +0100:
-> > We can definitely increase the default, for all transports in my
-> > opinion.
-> > As a first step, 64 or 128k?
-> 
-> Just to throw some numbers first; when linearly reading a 12 GB file on guest 
-> (i.e. "time cat test.dat > /dev/null") on a test machine, these are the 
-> results that I get (cache=mmap):
-> 
-> msize=16k: 2min7s (95 MB/s)
-> msize=64k: 17s (706 MB/s)
-> msize=128k: 12s (1000 MB/s)
-> msize=256k: 8s (1500 MB/s)
-> msize=512k: 6.5s (1846 MB/s)
-> 
-> Personally I would raise the default msize value at least to 128k.
+I'm looking at redesigning the on-disk cache format used by fscache's
+cachefiles driver to try and eliminate the number of synchronous metadata
+operations done by the driver, to improve culling performance and to reduce
+the amount of opens/files open.  I also need to stop relying on the backing
+filesystem to track where I have data stored.
 
-Thanks for the numbers.
-I'm still a bit worried about too large chunks, let's go with 128k for
-now -- I'll send a couple of patches increasing the tcp max/default as
-well next week-ish.
+There are a number of options that I've considered:
 
-> > The bottleneck people generally complain about (and where things hurt)
-> > is if you have a single process reading then there is currently no
-> > readahead as far as I know, so reads are really sent one at a time,
-> > waiting for reply and sending next.
-> 
-> So that also means if you are running a multi-threaded app (in one process) on 
-> guest side, then none of its I/O requests are handled in parallel right now. 
-> It would be desirable to have parallel requests for multi-threaded apps as 
-> well.
+ (0) The current format lays out a directory tree, with directories for each
+     level of index (so in AFS's terms, you've got an overall "afs" dir
+     containing a dir for each cell.  In each cell dir, there's a dir for each
+     volume and within that there's a file for each afs vnode cached.  Extra
+     levels of directory are also interposed to reduce the number of entries
+     in a directory.
 
-threads are independant there as far as the kernel goes, if multiple
-threads issue IO in parallel it will be handled in parallel.
-(the exception would be "lightweight threads" which don't spawn actual
-OS thread, but in this case the IOs are generally sent asynchronously so
-that should work as well)
+     - Pathwalk cost to open a cache file.
+     - Netfs coherency data is in xattrs.
+     - Invalidation done by truncate or unlink.
+     - Uses backing filesystem metadata to keep track of present data.
+       - Determined by bmap() on the cache file.
+     - Culling performed by userspace daemon.
+     - Data file opened for every write.
+     - Read done by readpage without file.
 
-> Personally I don't find raw I/O the worst performance issue right now. As you 
-> can see from the numbers above, if 'msize' is raised and I/O being performed 
-> with large chunk sizes (e.g. 'cat' automatically uses a chunk size according 
-> to the iounit advertised by stat) then the I/O results are okay.
-> 
-> What hurts IMO the most in practice is the sluggish behaviour regarding 
-> dentries ATM. The following is with cache=mmap (on guest side):
-> 
-> $ time ls /etc/ > /dev/null
-> real    0m0.091s
-> user    0m0.000s
-> sys     0m0.044s
-> $ time ls -l /etc/ > /dev/null
-> real    0m0.259s
-> user    0m0.008s
-> sys     0m0.016s
-> $ ls -l /etc/ | wc -l
-> 113
-> $
+ (0a) As (0) but using SEEK_DATA/SEEK_HOLE instead of bmap and opening the
+      file for every whole operation (which may combine reads and writes).
 
-Yes, that is slow indeed.. Unfortunately cache=none/mmap means only open
-dentries are pinned, so that means a load of requests everytime.
+ (1) Structured the same as (0), but keeping an independent content map and
+     not relying on backing fs metadata.  Use a larger blocksize, say 256K, to
+     reduce the size of the content map.
 
-I was going to suggest something like readdirplus or prefetching
-directory entries attributes in parallel/background, but since we're not
-keeping any entries around we can't even do that in that mode.
+     - Netfs coherency data in xattrs.
+     - Invalidation done by tmpfile creation and link-replace.
+     - Content bitmap kept in xattr.
+       - Limited capacity.  Could use multiple bitmaps.
+       - Can skip the bitmap for a non-sparse file that we have all of.
+     - "Open" state kept in xattr.
+     - File is kept open
+     - Culling performed by userspace daemon.
+     - Cache file open whilst netfs file is open.
 
-> With cache=loose there is some improvement; on the first "ls" run (when its 
-> not in the dentry cache I assume) the results are similar. The subsequent runs 
-> then improve to around 50ms for "ls" and around 70ms for "ls -l". But that's 
-> still far from numbers I would expect.
+ (2) Structured the same as (1), but keeping an extent list instead of a
+     bitmap.
 
-I'm surprised cached mode is that slow though, that is worth
-investigating.
-With that time range we are definitely sending more requests to the
-server than I would expect for cache=loose, some stat revalidation
-perhaps? I thought there wasn't any.
+     - Content extent map kept in xattr.
+       - Limited capacity.
+       - Highly scattered extents use a lot of map space.
 
-I don't like cache=loose/fscache right now as the reclaim mechanism
-doesn't work well as far as I'm aware (I've heard reports of 9p memory
-usage growing ad nauseam in these modes), so while it's fine for
-short-lived VMs it can't really be used for long periods of time as
-is... That's been on my todo for a while too, but unfortunately no time
-for that.
+ (3) OpenAFS-style format.  One index file to look up {file_key,block#} and an
+     array of data files, each holding one block (e.g. a 256KiB-aligned chunk
+     of a file).  Each index entry has valid start/end offsets for easy
+     truncation.
 
+     The index has a hash to facilitate the lookup and an LRU that allows a
+     block to be recycled at any time.
 
-Ideally if that gets fixed, it really should be the default with some
-sort of cache revalidation like NFS does (if that hasn't changed, inode
-stats have a lifetime after which they get revalidated on access, and
-directory ctime changes lead to a fresh readdir) ; but we can't really
-do that right now if it "leaks".
+     - File keys, are highly variable in length and can be rather long,
+       particularly NFS FIDs.
+       - Might want a separate file index that maps file keys to a slot ID
+       	 that can then be used in the block index.
+     - Netfs coherency data in vnode index entry.
+     - Invalidation done by clearing matching entries in the index.
+       - Dead data files can be lazily unlinked or truncated or just
+         overwritten.
+     - Content mapping by lookup in block index hash table.
+       - Fine if the hash table is large and scatter is good.
+     - Potential coherency problem between indices and data file.
+     - Culling performed by block index LRU.
+     - Really want to retain entire block index in RAM.
+     - Data files are opened for every read/write.
 
-Some cap to the number of open fids could be appreciable as well
-perhaps, to spare server resources and keep internal lists short.
+ (4) Similar format to (3), but could put entirety of data in one file.
 
-> Keep in mind, even when you just open() & read() a file, then directory 
-> components have to be walked for checking ownership and permissions. I have 
-> seen huge slowdowns in deep directory structures for that reason.
+     - Data file open entire time cache online.
+     - Unused block bitmap.
+     - Can use fallocate to punch out dead blocks.
+     - Could put data file on blockdev.
 
-Yes, each component is walked one at a time. In theory the protocol
-allows opening a path with all components specified to a single walk and
-letting the server handle intermediate directories check, but the VFS
-doesn't allow that.
-Using relative paths or openat/fstatat/etc helps but many programs
-aren't very smart with that.. Note it's not just a problem with 9p
-though, even network filesystems with proper caching have a noticeable
-performance cost with deep directory trees.
+ (5) Similar idea to (4), but just have a file index and use block pointers
+     and indirection blocks instead.  Use an LRU in the file index and cull
+     whole files only, not individual blocks.
 
+     - File keys, are highly variable in length and can be rather long,
+       particularly NFS FIDs.
+     - Netfs coherency data in vnode index entry.
+     - Unused data block bitmap.
+     - Invalidation done by clearing entries in the file index.
+       - Data blocks must be recycled and returned to bitmap.
+       - Dead data blocks can be lazily punched out with fallocate.
+     - Potential coherency problem between index, pointers/indirection and
+       bitmap.
+     - Culling performed by file index LRU.
+     - Really want to retain entire file index and block bitmap in RAM.
+       - May be less memory than block index.
+     - Data file open entire time cache online.
+     - Could put data file on blockdev.
+     - If the block size is large, lots of dead space in indirection blocks.
 
-Anyway, there definitely is room for improvement; if you need ideas I
-have plenty but my time is more than limited right now and for the
-forseeable future... 9p work is purely on my freetime and there isn't
-much at the moment :(
+ (6) Similar to (5), but use extent lists rather than indirection blocks.
 
-I'll make time as necessary for reviews & tests but that's about as much
-as I can promise, sorry and good luck!
+     - Requires allocation of contiguous space to be worthwhile.
+     - Buddy allocator approach?
+       - Can always arbitrarily recycle buddies to make larger spaces - if we
+       	 can find them...
 
--- 
-Dominique
+ (7) Hybrid approach.  Stick the first block of every netfs file in one big
+     cache file.  For a lot of cases, that would suffice for the entire file
+     if the block size is large enough.  Store the tails of larger files in
+     separate files.
+
+     - File index with LRU.
+     - More complicated to manage.
+     - Fewer files open.
+
+So (0) is what's upstream.  I have (0a) implemented in my fscache-netfs-lib
+branch and (1) implemented in my fscache-iter branch.  However, it spends a
+lot of cpu time doing synchronous metadata ops, such as creating tmpfiles,
+link creation and setting xattrs, particularly when unmounting the filesystem
+or disabling the cache - both of which are done during shutdown.
+
+I'm leaning towards (4) or (5).  I could use extent maps, but I don't
+necessarily have a good idea of what access patterns I have to deal with till
+later.  With network filesystems that are going to read and cache large blocks
+(say 2MiB), extents would allow reduction of the metadata, particularly where
+it would span a bitmap.
+
+Using a block index (4) allows me to easily recycle a large chunk of cache in
+one go - even if it means arbitrarily kicking out blocks that weren't near the
+end of the LRU yet.
+
+Using block pointers and indirection blocks (5) means I only need this data in
+RAM when I need it; with the LRU management being done in the file index.
+
+Either way with (4) and (5), at least one index really needs to be resident in
+RAM to make LRU wangling efficient.  Also, I need to decide how to handle
+coherency management - setting an "in use" flag on the file index entry and
+flushing it before making any modifications might work.
+
+On the other hand, sticking with (1) or (2) makes it easier to add extra
+metadata very easily (say to handle disconnected operation), though it's
+harder to manage culling and manage the capacity of the cache.
+
+I have a suspicion that the answer is "it depends" and that the best choice is
+very much going to be workload dependent - and may even vary from volume to
+volume within the same workload.
+
+Any thoughts or better solutions?
+
+David
+
 
 
 _______________________________________________
