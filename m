@@ -2,149 +2,84 @@ Return-Path: <v9fs-developer-bounces@lists.sourceforge.net>
 X-Original-To: lists+v9fs-developer@lfdr.de
 Delivered-To: lists+v9fs-developer@lfdr.de
 Received: from lists.sourceforge.net (lists.sourceforge.net [216.105.38.7])
-	by mail.lfdr.de (Postfix) with ESMTPS id F05FB329D4C
-	for <lists+v9fs-developer@lfdr.de>; Tue,  2 Mar 2021 12:53:04 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id C1A0732B86E
+	for <lists+v9fs-developer@lfdr.de>; Wed,  3 Mar 2021 15:05:30 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+	d=lists.sourceforge.net; s=beta; h=Content-Transfer-Encoding:Content-Type:Cc:
+	Reply-To:From:List-Subscribe:List-Help:List-Post:List-Archive:
+	List-Unsubscribe:List-Id:Subject:MIME-Version:References:In-Reply-To:
+	Message-ID:Date:To:Sender:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
+	 bh=znzH6/cHIeS0LKAVC9fmuMg7oaYCo+H7HQrvhF9n2Ls=; b=DCypXliuijo0JJ4N8aMDVDxfh
+	AmTl4rqyqgyF4RiG/kTspxrCTR37xz8c09IsMTgBrExfWQuC9Kp4FHMQwRpeOkznFf88VrUxS8UKB
+	6hnRljOJdSPY1Hp3kXlzI1TENDX/AKNj8Upg1Xx8CnYwIUxUInG2c95sEWn8ylaE3493E=;
 Received: from [127.0.0.1] (helo=sfs-ml-4.v29.lw.sourceforge.com)
 	by sfs-ml-4.v29.lw.sourceforge.com with esmtp (Exim 4.90_1)
 	(envelope-from <v9fs-developer-bounces@lists.sourceforge.net>)
-	id 1lH3aH-00086W-Nb; Tue, 02 Mar 2021 11:53:01 +0000
+	id 1lHS80-0003rV-PS; Wed, 03 Mar 2021 14:05:28 +0000
 Received: from [172.30.20.202] (helo=mx.sourceforge.net)
  by sfs-ml-4.v29.lw.sourceforge.com with esmtps
  (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.90_1)
- (envelope-from <Jisheng.Zhang@synaptics.com>) id 1lH3aG-00086J-Mc
- for v9fs-developer@lists.sourceforge.net; Tue, 02 Mar 2021 11:53:00 +0000
+ (envelope-from <qemu_oss@crudebyte.com>) id 1lHS7o-0003qk-Rl
+ for v9fs-developer@lists.sourceforge.net; Wed, 03 Mar 2021 14:05:18 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=sourceforge.net; s=x; h=MIME-Version:Content-Transfer-Encoding:Content-Type
- :Message-ID:Subject:Cc:To:From:Date:Sender:Reply-To:Content-ID:
- Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
- :Resent-Message-ID:In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:
+ d=sourceforge.net; s=x; h=Content-Type:Content-Transfer-Encoding:MIME-Version
+ :References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Sender:Reply-To:
+ Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+ Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
  List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=a4XQrRfgAynun7UdTuK8NkI8AkgW2+MMxQU7TyEvfK0=; b=UNp/on0tkBNqN+MoQgMoX4iNFV
- WmW+FTERfaRUte+NGmjkKLtl8trh3HHAart/vkRJjeK3Nc+6iOUuPG7ZKGQIR6VgooAGLv36CGqBK
- VLlg9jnSDGCGOMbJA3pKqwP8vqLHcr4Uxqf6G+g2KiL4PGnsONo152RgpsGDnQMG0GlA=;
+ bh=vK60LVqZ1MizhW17MFO70pzqiivCnOEjbQpiOY4eEnQ=; b=OPplp+o3YQGMQEFjsi8ZTzaRTo
+ PF3n8FC3tZsskUMZXZbEBO3M75Jpiq+EFV9yJ1vj6GL0rLLkQrHGa6+YTUzPpyFuU7Uf/uDJkCw8n
+ mAVGuCGKOtSN8FtXdABGKKgLhFT2gbqZ7OL3WijcMPN8JVxEGvKoO28hVw9O7HHmVAk4=;
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  ;
- h=MIME-Version:Content-Transfer-Encoding:Content-Type:Message-ID:Subject:Cc
- :To:From:Date:Sender:Reply-To:Content-ID:Content-Description:Resent-Date:
- Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:
- References:List-Id:List-Help:List-Unsubscribe:List-Subscribe:List-Post:
- List-Owner:List-Archive; bh=a4XQrRfgAynun7UdTuK8NkI8AkgW2+MMxQU7TyEvfK0=; b=Q
- iPbJldBCONNGIp3wuv0S+1MzCtFi5liMAniekyekh+j+nlPbQApwU8JpktUgBIc2TLX0s9y58Pg2w
- IuI1eim1AkUJxzYRNyRKBXZHAO9TBgB3FLJ0HmLQfSwa7q2SWuBLh4RzwN4aGKyubWp5D3qzu/bsA
- DCG3WtRynp2vQzr0=;
-Received: from mail-eopbgr770084.outbound.protection.outlook.com
- ([40.107.77.84] helo=NAM02-SN1-obe.outbound.protection.outlook.com)
- by sfi-mx-2.v28.lw.sourceforge.com with esmtps
- (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.92.3)
- id 1lH3a6-0003uh-GR
- for v9fs-developer@lists.sourceforge.net; Tue, 02 Mar 2021 11:53:00 +0000
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=bIEMZWYEQGHjUnankgqPQc6/rDgUoO7vrBlUFOoVqa5ufYySouNT4djXV9cdaBdWel0KjLZ639gpxd3nOSBQVU52ajp/PMGjI5NUW1/Xbwb74l3KcCLcoHAZcWYzjQAevo6CrJDbQrLhx0TNV03S2kR0E6oLzt+a2koSRCAD9bzzgGeffWs77OCnnuhnPNr6JrZ56RzbX9upouTJY4y7EL1l8K0BZ1/a+YdsZfSWlKwq2vvAeIp5lw2CX4ddBA7xx5jMKhATIjp3Oir8hU6gPN3k0ouY3BCsZv0XTnVEcVLbqAEXQq7ZKCxaXRD12JEtj79UjOvoiqD4AuUkY6QqlA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=a4XQrRfgAynun7UdTuK8NkI8AkgW2+MMxQU7TyEvfK0=;
- b=C6rofvlOAzLb5Tk/1pN2HnJU5yZVowVCOSCyahTUaKZeBz5WY0x80cuNrR5UJ9gIG+KK286cKpeT7hRrhDLumM95UPHUxHbOeOGd4v7An1MEcr8AQm2BguWCm2aNg/YbRuZTtRL/LId/G0wAJuukY0evLsBUFC+loV8V0popV4MBmXWNe0FteInxnp3ZI9druoU2qMw0gjqvhNHaBAB7IbTtv8ZXqYKDvd+1jcnxgB+bLv7F3cwwfQzlkDHYz5cLgTkMhHhuqJKj6KMyriVunJkkdLR+isgRKeSwXtQPCi3NupVvT+hYOzRdPcLU6bHXNCN3Msh9ADW+a3EBGi6CXA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=synaptics.com; dmarc=pass action=none
- header.from=synaptics.com; dkim=pass header.d=synaptics.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=Synaptics.onmicrosoft.com; s=selector2-Synaptics-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=a4XQrRfgAynun7UdTuK8NkI8AkgW2+MMxQU7TyEvfK0=;
- b=lF3KRlGrP1Nafq5DK6urBkkArzfLBv9WyOd2r47eWAssNtFX2Rrt8fRkUgubicbdrnGOQ+QwAN+yENkWUhxV1HAL//+klMMMh69+hxrSTOtW+MgLx+G0nAz+a1hgAhJ3epqj09anQlpF4g1T2i75u6DVcK7fG5mjG2cSXY2KaYk=
-Authentication-Results: gmail.com; dkim=none (message not signed)
- header.d=none;gmail.com; dmarc=none action=none header.from=synaptics.com;
-Received: from BN3PR03MB2307.namprd03.prod.outlook.com
- (2a01:111:e400:7bb1::16) by BN6PR03MB2898.namprd03.prod.outlook.com
- (2603:10b6:404:117::15) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3890.20; Tue, 2 Mar
- 2021 09:19:46 +0000
-Received: from BN3PR03MB2307.namprd03.prod.outlook.com
- ([fe80::246d:2f3d:93bf:ee56]) by BN3PR03MB2307.namprd03.prod.outlook.com
- ([fe80::246d:2f3d:93bf:ee56%4]) with mapi id 15.20.3890.030; Tue, 2 Mar 2021
- 09:19:46 +0000
-Date: Tue, 2 Mar 2021 17:19:32 +0800
-From: Jisheng Zhang <Jisheng.Zhang@synaptics.com>
-To: Eric Van Hensbergen <ericvh@gmail.com>, Latchesar Ionkov
- <lucho@ionkov.net>, Dominique Martinet <asmadeus@codewreck.org>, "David S.
- Miller" <davem@davemloft.net>, Jakub Kicinski <kuba@kernel.org>
-Message-ID: <20210302171932.28e86231@xhacker.debian>
-X-Mailer: Claws Mail 3.17.8 (GTK+ 2.24.33; x86_64-pc-linux-gnu)
-X-Originating-IP: [192.147.44.204]
-X-ClientProxiedBy: BYAPR05CA0017.namprd05.prod.outlook.com
- (2603:10b6:a03:c0::30) To BN3PR03MB2307.namprd03.prod.outlook.com
- (2a01:111:e400:7bb1::16)
+ h=Content-Type:Content-Transfer-Encoding:MIME-Version:References:
+ In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Sender:Reply-To:Content-ID:
+ Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
+ :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
+ List-Post:List-Owner:List-Archive;
+ bh=vK60LVqZ1MizhW17MFO70pzqiivCnOEjbQpiOY4eEnQ=; b=MM7GpADujQCKY/8IMtNZYGa2oH
+ axZN92aGsYa/dFYK9z32g5NvrmGv+Zse9lbOAYQjeHmBL9bImRUH7VMZAayZHqXPmVzNoeiYVNkzy
+ fu029Fd1wyVKuEZn/czGuk9xUhozaB2oV6E7GR9svJfLphVczyCRpwv4I1NerBgJGMCU=;
+Received: from kylie.crudebyte.com ([5.189.157.229])
+ by sfi-mx-1.v28.lw.sourceforge.com with esmtps
+ (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.92.2)
+ id 1lHS7j-00CZM4-0p
+ for v9fs-developer@lists.sourceforge.net; Wed, 03 Mar 2021 14:05:16 +0000
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+ d=crudebyte.com; s=kylie; h=Content-Type:Content-Transfer-Encoding:
+ MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:
+ Content-ID:Content-Description;
+ bh=vK60LVqZ1MizhW17MFO70pzqiivCnOEjbQpiOY4eEnQ=; b=BhoDwYUpxPKYsSIrcxOSQn0Ye6
+ xoEKDA3F5AjYG7a9vuosWfQ1ARAEAW9NNdLjYixzHzr+D4Z+HZg6IbJJfQIiFb+bL/OsDOhDSVBDA
+ AaDkbzoOI0fnWcjmRSgUe8FLsG/OulyKqeVxfmsrMxu8OdLFuAP3+WcOGqnElUgIT+xpcMusNi/U9
+ //eG3/gOV9KS24Rb0WC/sj5o6g87YXj61vnyQl4y8SedEaLIJlZjsUkLtyL55NRZE4vCQEcbvNkGO
+ mRvGKFSUmRkrIZVxLbHFvXsEoB/ARjYsElLg85/T4XuLFbDmWQLIw7wmZyC3911oZGBD4rcvnFrBj
+ cSWQM5D3QeV6HJR1K6LbdcMXQsjoKX3U5/l/7uleEtRUGypRNOKvA24C8/W3ifZUJEpCRpdDTM9Yd
+ gBYeoViKxA46gY0p+vZ91Hrm6Wgn2mukuiNHhJnmh4+P/web1yFRWebDz12CkEfyRIH9VudNUkUeM
+ XkY7Mmg3Zgn6fZn+PXrhnXGLHzDs2asduD9CxWabIMJZ5x2rMlsOAUV5Bos12jL7ywEzmosyQ13y+
+ hQ53SkdqgBeK2qlXnSdc0VfjVyjkoVgBujQt8iFI3QWrdxbSdb9U6yVyp51f0cHfhz6rXJWdYJYyB
+ 981BUHDc4hgb3Xj9DoGVRGstUdoSbv1GwcGtoo6B4=;
+To: qemu-devel@nongnu.org
+Date: Wed, 03 Mar 2021 15:04:21 +0100
+Message-ID: <1805660.C9YIKG4Ep7@silver>
+In-Reply-To: <YDmMXCxxOqo1xKgq@odin>
+References: <20200918213436.GA3520@redhat.com> <1918692.k70u9Ml6kK@silver>
+ <YDmMXCxxOqo1xKgq@odin>
 MIME-Version: 1.0
-X-MS-Exchange-MessageSentRepresentingType: 1
-Received: from xhacker.debian (192.147.44.204) by
- BYAPR05CA0017.namprd05.prod.outlook.com (2603:10b6:a03:c0::30) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.3912.9 via Frontend Transport; Tue, 2 Mar 2021 09:19:43 +0000
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: c645eeee-38c8-44b7-c689-08d8dd5c5223
-X-MS-TrafficTypeDiagnostic: BN6PR03MB2898:
-X-Microsoft-Antispam-PRVS: <BN6PR03MB28984509C5F5634565970679ED999@BN6PR03MB2898.namprd03.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:741;
-X-MS-Exchange-SenderADCheck: 1
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: j/eYnTzyp2tcBtEavnRm4P7ywRxAW9AV04EB3w2p3SxQm9hKz5ggKKvFUgcB2dn7bET9QiI5IEiQjNibeTvQENMrmgHn9kCcCE0AWpDHKvqXyhwwid7aOYYiSS1Kpt0uYJtkC4RTVqF/Mj9can4LFbpOEeXxiZ23h6L9C8aUwRM31NqwWMkwLdu19b1DMZTW0hIgtA8wVUunOUhpZxteNpo0xnhpm7qSEiNNpZoAs4cMYffOEndf4Am1E3KVACPDLdbT8+FqFqe0do6cZmSnnfceV70s0bKhGgDxL9TPB3WVjN1XuXVu0Yb7waR/kRVgFnfBD/YoHNVe29K1bl+NHIwOYDP/AOdsHLK+cWW+hJWVQCYLx+sdaqT+SxDRNCN1diufYQXF48WnJGgkjj0aZ4IJCqK+lb4+l+b6qs2eandOZ8FYtc0PkoTWHnE3Hd3I55nazN+rYbObs+/ppDHhH8YUK88cvSI7xxW0tneEePfz1FySeT5XlFK0MfxP7J+SF/j3OzvS+Kmtm2VWjIP2Wg==
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:BN3PR03MB2307.namprd03.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(366004)(136003)(376002)(396003)(346002)(39860400002)(1076003)(2906002)(478600001)(9686003)(6666004)(66946007)(26005)(4326008)(66556008)(45080400002)(5660300002)(6506007)(55016002)(66476007)(86362001)(83380400001)(7696005)(8936002)(52116002)(8676002)(956004)(110136005)(16526019)(186003)(316002);
- DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData: =?us-ascii?Q?2KXOr78df4XWDyGplSklJzCQW+VidWBn5sq5Hvl6ROMksci6UBXrNsa6Pomp?=
- =?us-ascii?Q?Ux65NayhqN9Qlsz/PrqqrKyYYUCw30V7x4EdxBp9q0mdyWcZoU/N3AqeRj1D?=
- =?us-ascii?Q?eFJJ4y9SGPwjqJ2mp8Igo1mnBhNQ2kmdfzcB2Py79KPxlXHt0g0aWsyD8M2Y?=
- =?us-ascii?Q?W4UMg8S72salx9hfIQ9laHDHtGKc/E4dlhWqVyRuOF5wKxV39Z9uwjduhsc3?=
- =?us-ascii?Q?sV1kHG139HGpdJ97c1rOd++vlNqx/3Osr6K0G7wfCDXPzLPDcWHH2LnEciUH?=
- =?us-ascii?Q?b4hiwKvipkNKNA/vkiu0VB7iFi22i95VCUcC2neTE+qgCNPAhOZu0DnIDHJW?=
- =?us-ascii?Q?wh1BuY+Ss9cDr+5J/cnB9an1YYxAeuVLD96+EDzH0W2NWiLXspnj8aUGwHG5?=
- =?us-ascii?Q?8iamIhk16msl0XawW8lu+8s2vzFlcxs6ciDEx7jT3445rUEvGR7ujJACpeMc?=
- =?us-ascii?Q?6d3hyN+TiBh+4otbKUauF1nFWRZRxUYPfIGceGruNyxvzue7A17h0GS4V+qT?=
- =?us-ascii?Q?Zb6ROBfblc8Bx5SR6yz7lMPvQts5URDUKSOoe2C8t6sOS1d+AJQ098BnjoQp?=
- =?us-ascii?Q?0IoRd95XbiCfn1Efg3R8BYwRjC+knCm8odVcAQfqE05hxGU67ND7ElFA821e?=
- =?us-ascii?Q?gQaLx5PsRexafqgTxqn3fQcX2sIphVBADEXcuny0vIczzSNxpbBkCETTe/ST?=
- =?us-ascii?Q?FbY4sy2wtAiIsrOw5eeNYgCFYWSbHUEDWeO+Mdn19p5SOzesCdc0aOTvG9wM?=
- =?us-ascii?Q?gwOFAfQOcsfbH3ABzmB+x1iyjw9wdVrwVd8UFLIH8lNuqsw4DhNZa6Ejliwk?=
- =?us-ascii?Q?nGeo9QmPt4ZIhVeQcUbFhVJtdnxhLtm5hY05peNh7H4FwnmhW5UKj3sRelEU?=
- =?us-ascii?Q?EHTLwlo/tQeHziWG7PZ60tS+t9GfbokLFDFnQoZGfowyM3HKIByZoOPWSsVK?=
- =?us-ascii?Q?4XFw+wpUGilQCIuuq0TkEa8limTefsLujPqDBgC/PozB5t9PTV2fIhtn6ptj?=
- =?us-ascii?Q?Zq6bX9MjtCMlOkHEe5G1MAZrbnKUrw2s4XTEkCp70L+L1OQpZR2WFHiS2JuO?=
- =?us-ascii?Q?vx9QiB88BGj/80x7KG6f6B38jyC24gYc8RsLDhJaZ8h641D4LcABneO9xVC0?=
- =?us-ascii?Q?kTp1My8eQBD8nUAaNLqY1NMFZ4TqX+oh5qhcprq0wl90AP5n0rpqQ4JCRjUv?=
- =?us-ascii?Q?gLEOAzSl32bu5cPM7YIGwOw4Zyx+bmib86eR619NnXIo29mvcWf31tQiCJK9?=
- =?us-ascii?Q?I7ddI9rVTk9D4K4MM7GOnJaLfCBlbJbL8R6rL/GxD87IUao9p841Iw54ZoaP?=
- =?us-ascii?Q?4tXiUmy9kPqVlqDRF/VT3w+b?=
-X-OriginatorOrg: synaptics.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: c645eeee-38c8-44b7-c689-08d8dd5c5223
-X-MS-Exchange-CrossTenant-AuthSource: BN3PR03MB2307.namprd03.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 02 Mar 2021 09:19:46.0100 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 335d1fbc-2124-4173-9863-17e7051a2a0e
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: 5TgPBtFKRSFweAEEp3SatIvEen8WUV3nQFQTk2Cxfwev0jmGsg0E092lK5fsSMHiGEIXdkgKhU8QZc31pzhOAw==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BN6PR03MB2898
-X-Spam-Score: -0.0 (/)
+X-Spam-Score: -0.1 (/)
 X-Spam-Report: Spam Filtering performed by mx.sourceforge.net.
  See http://spamassassin.org/tag/ for more details.
- -0.0 RCVD_IN_DNSWL_NONE     RBL: Sender listed at https://www.dnswl.org/, no
- trust [40.107.77.84 listed in list.dnswl.org]
- 0.0 URIBL_BLOCKED ADMINISTRATOR NOTICE: The query to URIBL was blocked.
- See
- http://wiki.apache.org/spamassassin/DnsBlocklists#dnsbl-block
- for more information. [URIs: synaptics.com]
- -0.0 RCVD_IN_MSPIKE_H2      RBL: Average reputation (+2)
- [40.107.77.84 listed in wl.mailspike.net]
- -0.0 SPF_HELO_PASS          SPF: HELO matches SPF record
  -0.0 SPF_PASS               SPF: sender matches SPF record
+ 0.0 SPF_HELO_NONE          SPF: HELO does not publish an SPF Record
+ -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from author's
+ domain
  -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
  0.1 DKIM_SIGNED            Message has a DKIM or DK signature,
  not necessarily valid
- 0.0 MSGID_FROM_MTA_HEADER  Message-Id was added by a relay
-X-Headers-End: 1lH3a6-0003uh-GR
-Subject: [V9fs-developer] [PATCH v2] net: 9p: advance iov on empty read
+X-Headers-End: 1lHS7j-00CZM4-0p
+Subject: Re: [V9fs-developer] Can not set high msize with virtio-9p (Was:
+ Re: virtiofs vs 9p performance)
 X-BeenThere: v9fs-developer@lists.sourceforge.net
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -156,78 +91,165 @@ List-Post: <mailto:v9fs-developer@lists.sourceforge.net>
 List-Help: <mailto:v9fs-developer-request@lists.sourceforge.net?subject=help>
 List-Subscribe: <https://lists.sourceforge.net/lists/listinfo/v9fs-developer>, 
  <mailto:v9fs-developer-request@lists.sourceforge.net?subject=subscribe>
-Cc: v9fs-developer@lists.sourceforge.net, linux-kernel@vger.kernel.org,
- netdev@vger.kernel.org
+From: Christian Schoenebeck via V9fs-developer
+ <v9fs-developer@lists.sourceforge.net>
+Reply-To: Christian Schoenebeck <qemu_oss@crudebyte.com>
+Cc: "cdupontd@redhat.com" <cdupontd@redhat.com>,
+ "Michael S. Tsirkin" <mst@redhat.com>, "Venegas Munoz,
+ Jose Carlos" <jose.carlos.venegas.munoz@intel.com>, Greg Kurz <groug@kaod.org>,
+ "Dr. David Alan Gilbert" <dgilbert@redhat.com>,
+ virtio-fs-list <virtio-fs@redhat.com>, Stefan Hajnoczi <stefanha@redhat.com>,
+ v9fs-developer@lists.sourceforge.net, "Shinde,
+ Archana M" <archana.m.shinde@intel.com>, Vivek Goyal <vgoyal@redhat.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: v9fs-developer-bounces@lists.sourceforge.net
 
-I met below warning when cating a small size(about 80bytes) txt file
-on 9pfs(msize=2097152 is passed to 9p mount option), the reason is we
-miss iov_iter_advance() if the read count is 0 for zerocopy case, so
-we didn't truncate the pipe, then iov_iter_pipe() thinks the pipe is
-full. Fix it by removing the exception for 0 to ensure to call
-iov_iter_advance() even on empty read for zerocopy case.
+On Samstag, 27. Februar 2021 01:03:40 CET Dominique Martinet wrote:
+> Christian Schoenebeck wrote on Fri, Feb 26, 2021 at 02:49:12PM +0100:
+> > Right now the client uses a hard coded amount of 128 elements. So what
+> > about replacing VIRTQUEUE_NUM by a variable which is initialized with a
+> > value according to the user's requested 'msize' option at init time?
+> > 
+> > According to the virtio specs the max. amount of elements in a virtqueue
+> > is
+> > 32768. So 32768 * 4k = 128M as new upper limit would already be a
+> > significant improvement and would not require too many changes to the
+> > client code, right?
+> The current code inits the chan->sg at probe time (when driver is
+> loader) and not mount time, and it is currently embedded in the chan
+> struct, so that would need allocating at mount time (p9_client_create ;
+> either resizing if required or not sharing) but it doesn't sound too
+> intrusive yes.
+> 
+> I don't see more adherenences to VIRTQUEUE_NUM that would hurt trying.
 
-[    8.279568] WARNING: CPU: 0 PID: 39 at lib/iov_iter.c:1203 iov_iter_pipe+0x31/0x40
-[    8.280028] Modules linked in:
-[    8.280561] CPU: 0 PID: 39 Comm: cat Not tainted 5.11.0+ #6
-[    8.281260] RIP: 0010:iov_iter_pipe+0x31/0x40
-[    8.281974] Code: 2b 42 54 39 42 5c 76 22 c7 07 20 00 00 00 48 89 57 18 8b 42 50 48 c7 47 08 b
-[    8.283169] RSP: 0018:ffff888000cbbd80 EFLAGS: 00000246
-[    8.283512] RAX: 0000000000000010 RBX: ffff888000117d00 RCX: 0000000000000000
-[    8.283876] RDX: ffff88800031d600 RSI: 0000000000000000 RDI: ffff888000cbbd90
-[    8.284244] RBP: ffff888000cbbe38 R08: 0000000000000000 R09: ffff8880008d2058
-[    8.284605] R10: 0000000000000002 R11: ffff888000375510 R12: 0000000000000050
-[    8.284964] R13: ffff888000cbbe80 R14: 0000000000000050 R15: ffff88800031d600
-[    8.285439] FS:  00007f24fd8af600(0000) GS:ffff88803ec00000(0000) knlGS:0000000000000000
-[    8.285844] CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
-[    8.286150] CR2: 00007f24fd7d7b90 CR3: 0000000000c97000 CR4: 00000000000406b0
-[    8.286710] Call Trace:
-[    8.288279]  generic_file_splice_read+0x31/0x1a0
-[    8.289273]  ? do_splice_to+0x2f/0x90
-[    8.289511]  splice_direct_to_actor+0xcc/0x220
-[    8.289788]  ? pipe_to_sendpage+0xa0/0xa0
-[    8.290052]  do_splice_direct+0x8b/0xd0
-[    8.290314]  do_sendfile+0x1ad/0x470
-[    8.290576]  do_syscall_64+0x2d/0x40
-[    8.290818]  entry_SYSCALL_64_after_hwframe+0x44/0xa9
-[    8.291409] RIP: 0033:0x7f24fd7dca0a
-[    8.292511] Code: c3 0f 1f 80 00 00 00 00 4c 89 d2 4c 89 c6 e9 bd fd ff ff 0f 1f 44 00 00 31 8
-[    8.293360] RSP: 002b:00007ffc20932818 EFLAGS: 00000206 ORIG_RAX: 0000000000000028
-[    8.293800] RAX: ffffffffffffffda RBX: 0000000001000000 RCX: 00007f24fd7dca0a
-[    8.294153] RDX: 0000000000000000 RSI: 0000000000000003 RDI: 0000000000000001
-[    8.294504] RBP: 0000000000000003 R08: 0000000000000000 R09: 0000000000000000
-[    8.294867] R10: 0000000001000000 R11: 0000000000000206 R12: 0000000000000003
-[    8.295217] R13: 0000000000000001 R14: 0000000000000001 R15: 0000000000000000
-[    8.295782] ---[ end trace 63317af81b3ca24b ]---
+Ok, then I will look into changing this when I hopefully have some time in few 
+weeks.
 
-Signed-off-by: Jisheng Zhang <Jisheng.Zhang@synaptics.com>
----
-Since v1:
- - reword the commit msg
- - fix the issue by removing exception for 0 code path, thank Dominique!
+> > > On the 9p side itself, unrelated to virtio, we don't want to make it
+> > > *too* big as the client code doesn't use any scatter-gather and will
+> > > want to allocate upfront contiguous buffers of the size that got
+> > > negotiated -- that can get ugly quite fast, but we can leave it up to
+> > > users to decide.
+> > 
+> > With ugly you just mean that it's occupying this memory for good as long
+> > as
+> > the driver is loaded, or is there some runtime performance penalty as well
+> > to be aware of?
+> 
+> The main problem is memory fragmentation, see /proc/buddyinfo on various
+> systems.
+> After a fresh boot memory is quite clean and there is no problem
+> allocating 2MB contiguous buffers, but after a while depending on the
+> workload it can be hard to even allocate large buffers.
+> I've had that problem at work in the past with a RDMA driver that wanted
+> to allocate 256KB and could get that to fail quite reliably with our
+> workload, so it really depends on what the client does.
+> 
+> In the 9p case, the memory used to be allocated for good and per client
+> (= mountpoint), so if you had 15 9p mounts that could do e.g. 32
+> requests in parallel with 1MB buffers you could lock 500MB of idling
+> ram. I changed that to a dedicated slab a while ago, so that should no
+> longer be so much of a problem -- the slab will keep the buffers around
+> as well if used frequently so the performance hit wasn't bad even for
+> larger msizes
 
- net/9p/client.c | 4 ----
- 1 file changed, 4 deletions(-)
+Ah ok, good to know.
 
-diff --git a/net/9p/client.c b/net/9p/client.c
-index 4f62f299da0c..0a9019da18f3 100644
---- a/net/9p/client.c
-+++ b/net/9p/client.c
-@@ -1623,10 +1623,6 @@ p9_client_read_once(struct p9_fid *fid, u64 offset, struct iov_iter *to,
- 	}
- 
- 	p9_debug(P9_DEBUG_9P, "<<< RREAD count %d\n", count);
--	if (!count) {
--		p9_tag_remove(clnt, req);
--		return 0;
--	}
- 
- 	if (non_zc) {
- 		int n = copy_to_iter(dataptr, count, to);
--- 
-2.30.1
+BTW qemu now handles multiple filesystems below one 9p share correctly by 
+(optionally) remapping inode numbers from host side -> guest side 
+appropriately to prevent potential file ID collisions. This might reduce the 
+need to have a large amount of 9p mount points on guest side.
+
+For instance I am running entire guest systems entirely on one 9p mount point 
+as root fs that is. The guest system is divided into multiple filesystems on 
+host side (e.g. multiple zfs datasets), not on guest side.
+
+> > > One of my very-long-term goal would be to tend to that, if someone has
+> > > cycles to work on it I'd gladly review any patch in that area.
+> > > A possible implementation path would be to have transport define
+> > > themselves if they support it or not and handle it accordingly until all
+> > > transports migrated, so one wouldn't need to care about e.g. rdma or xen
+> > > if you don't have hardware to test in the short term.
+> > 
+> > Sounds like something that Greg suggested before for a slightly different,
+> > even though related issue: right now the default 'msize' on Linux client
+> > side is 8k, which really hurts performance wise as virtually all 9p
+> > messages have to be split into a huge number of request and response
+> > messages. OTOH you don't want to set this default value too high. So Greg
+> > noted that virtio could suggest a default msize, i.e. a value that would
+> > suit host's storage hardware appropriately.
+> 
+> We can definitely increase the default, for all transports in my
+> opinion.
+> As a first step, 64 or 128k?
+
+Just to throw some numbers first; when linearly reading a 12 GB file on guest 
+(i.e. "time cat test.dat > /dev/null") on a test machine, these are the 
+results that I get (cache=mmap):
+
+msize=16k: 2min7s (95 MB/s)
+msize=64k: 17s (706 MB/s)
+msize=128k: 12s (1000 MB/s)
+msize=256k: 8s (1500 MB/s)
+msize=512k: 6.5s (1846 MB/s)
+
+Personally I would raise the default msize value at least to 128k.
+
+> > > The next best thing would be David's netfs helpers and sending
+> > > concurrent requests if you use cache, but that's not merged yet either
+> > > so it'll be a few cycles as well.
+> > 
+> > So right now the Linux client is always just handling one request at a
+> > time; it sends a 9p request and waits for its response before processing
+> > the next request?
+> 
+> Requests are handled concurrently just fine - if you have multiple
+> processes all doing their things it will all go out in parallel.
+> 
+> The bottleneck people generally complain about (and where things hurt)
+> is if you have a single process reading then there is currently no
+> readahead as far as I know, so reads are really sent one at a time,
+> waiting for reply and sending next.
+
+So that also means if you are running a multi-threaded app (in one process) on 
+guest side, then none of its I/O requests are handled in parallel right now. 
+It would be desirable to have parallel requests for multi-threaded apps as 
+well.
+
+Personally I don't find raw I/O the worst performance issue right now. As you 
+can see from the numbers above, if 'msize' is raised and I/O being performed 
+with large chunk sizes (e.g. 'cat' automatically uses a chunk size according 
+to the iounit advertised by stat) then the I/O results are okay.
+
+What hurts IMO the most in practice is the sluggish behaviour regarding 
+dentries ATM. The following is with cache=mmap (on guest side):
+
+$ time ls /etc/ > /dev/null
+real    0m0.091s
+user    0m0.000s
+sys     0m0.044s
+$ time ls -l /etc/ > /dev/null
+real    0m0.259s
+user    0m0.008s
+sys     0m0.016s
+$ ls -l /etc/ | wc -l
+113
+$
+
+With cache=loose there is some improvement; on the first "ls" run (when its 
+not in the dentry cache I assume) the results are similar. The subsequent runs 
+then improve to around 50ms for "ls" and around 70ms for "ls -l". But that's 
+still far from numbers I would expect.
+
+Keep in mind, even when you just open() & read() a file, then directory 
+components have to be walked for checking ownership and permissions. I have 
+seen huge slowdowns in deep directory structures for that reason.
+
+Best regards,
+Christian Schoenebeck
+
 
 
 
