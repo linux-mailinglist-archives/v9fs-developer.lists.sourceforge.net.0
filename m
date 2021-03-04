@@ -2,97 +2,95 @@ Return-Path: <v9fs-developer-bounces@lists.sourceforge.net>
 X-Original-To: lists+v9fs-developer@lfdr.de
 Delivered-To: lists+v9fs-developer@lfdr.de
 Received: from lists.sourceforge.net (lists.sourceforge.net [216.105.38.7])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3FDB132CAAA
-	for <lists+v9fs-developer@lfdr.de>; Thu,  4 Mar 2021 04:01:39 +0100 (CET)
-Received: from [127.0.0.1] (helo=sfs-ml-2.v29.lw.sourceforge.com)
-	by sfs-ml-2.v29.lw.sourceforge.com with esmtp (Exim 4.90_1)
+	by mail.lfdr.de (Postfix) with ESMTPS id F21BA32D47C
+	for <lists+v9fs-developer@lfdr.de>; Thu,  4 Mar 2021 14:47:58 +0100 (CET)
+Received: from [127.0.0.1] (helo=sfs-ml-4.v29.lw.sourceforge.com)
+	by sfs-ml-4.v29.lw.sourceforge.com with esmtp (Exim 4.90_1)
 	(envelope-from <v9fs-developer-bounces@lists.sourceforge.net>)
-	id 1lHeF6-0008MD-Qm; Thu, 04 Mar 2021 03:01:36 +0000
+	id 1lHoKW-0001sV-Mo; Thu, 04 Mar 2021 13:47:52 +0000
 Received: from [172.30.20.202] (helo=mx.sourceforge.net)
- by sfs-ml-2.v29.lw.sourceforge.com with esmtps
+ by sfs-ml-4.v29.lw.sourceforge.com with esmtps
  (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.90_1)
- (envelope-from <asmadeus@gaia.codewreck.org>) id 1lHeF5-0008M5-JA
- for v9fs-developer@lists.sourceforge.net; Thu, 04 Mar 2021 03:01:35 +0000
+ (envelope-from <dhowells@redhat.com>) id 1lHoK9-0001rQ-El
+ for v9fs-developer@lists.sourceforge.net; Thu, 04 Mar 2021 13:47:29 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=sourceforge.net; s=x; h=In-Reply-To:Content-Type:MIME-Version:References:
- Message-ID:Subject:Cc:To:From:Date:Sender:Reply-To:Content-Transfer-Encoding:
- Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
- Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
- List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=5F7Z8p6mZsz3CvMl+8iJUXJXZOmn2B81gRz2UN5/6v0=; b=mIEOJuG4zgVM9xQj43kgLUFDkR
- CPnAnRAdsE74bUS4eEQAwfYgyhEBrJtI2zRSdQVg323eWxXaAbgyQTNJFuAU6wTfFHY0M314+BBTH
- ysvolFH9joBeXociyqtfoisVNcnZTQiyqthvsWDMkOg+jl4NLuTVtz5tFLxZ2kmVrbOA=;
+ d=sourceforge.net; s=x; h=Message-ID:Date:Content-Transfer-Encoding:
+ Content-ID:Content-Type:MIME-Version:Subject:Cc:To:References:In-Reply-To:
+ From:Sender:Reply-To:Content-Description:Resent-Date:Resent-From:
+ Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:
+ List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
+ bh=hNSJeU6DHgk1JDrXPc6wXwBH7UNAGKwi0d2+igWtU6Y=; b=mbknMyLdBOmS1qraM2RR20vbrq
+ 8+pQ60ToJNgj/R+Neg/iT+66LRrsbcWceCYxEIbqP+I0OsGK5l/cMnkygUo0snDdq4jx9z5E5d2jm
+ ynKE0FYMl2gncDV9yimnHR8807y4NNyioDG+a7q4ppxuAE7qvRM2/UNMMUnRQMlGfZ/4=;
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  ;
- h=In-Reply-To:Content-Type:MIME-Version:References:Message-ID:Subject:Cc:To
- :From:Date:Sender:Reply-To:Content-Transfer-Encoding:Content-ID:
+ h=Message-ID:Date:Content-Transfer-Encoding:Content-ID:Content-Type:
+ MIME-Version:Subject:Cc:To:References:In-Reply-To:From:Sender:Reply-To:
  Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
  :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
  List-Post:List-Owner:List-Archive;
- bh=5F7Z8p6mZsz3CvMl+8iJUXJXZOmn2B81gRz2UN5/6v0=; b=EWp8Gw+mh/IHNq21YXZyxnfR9E
- FyNhH+k+qGf2VfZ+koXQMFoanmP0Pt0y95r5Jy75YHbvUfRbEMuQl9Vjk7AG7xGElGa3mU5ohbf87
- MiU6Avi4iMmTkKmywtc4x3u3syN8JZUKcaYK7eIaZM6UcxsgptSB6lpXO2qyuc4YTw5g=;
-Received: from nautica.notk.org ([91.121.71.147])
- by sfi-mx-2.v28.lw.sourceforge.com with esmtps
- (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.92.3)
- id 1lHeF0-000304-Gv
- for v9fs-developer@lists.sourceforge.net; Thu, 04 Mar 2021 03:01:35 +0000
-Received: by nautica.notk.org (Postfix, from userid 108)
- id 1AAD6C01B; Thu,  4 Mar 2021 04:01:24 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=codewreck.org; s=2;
- t=1614826884; bh=5F7Z8p6mZsz3CvMl+8iJUXJXZOmn2B81gRz2UN5/6v0=;
- h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
- b=yykxb+BSKnII9f2bQitmnPBKTpaugho7q80WToHdviyQjTExF6RiKrnTChRe+4K5r
- ub+LVSQGM2H9bj0WYCGDqQUoaS44HoPhPs5t5ZlC7JF+L9K5oGoOGe7OXSN64a1oGY
- 5JbkmmClP1uT4Zyecl5gG/X8NokPAV3eiRUIhyGxENlkU1kK/GSp1vtnpR5RX7X12N
- I90XRfNFwItDUPk25GQkoGwKIN5bszpjRE2tS0FhsEWHbh8FxGQvWbB2w6JGbdYbfX
- YosteMEhC012WGkzHWTqNAg6qA4Fb+r17GY6AYN5mkbE7IeetAr7IH4m0qwgD0smdK
- YovYPZnv8YCoA==
-X-Spam-Checker-Version: SpamAssassin 3.3.2 (2011-06-06) on nautica.notk.org
-X-Spam-Level: 
-X-Spam-Status: No, score=0.0 required=5.0 tests=UNPARSEABLE_RELAY
- autolearn=unavailable version=3.3.2
-Received: from odin.codewreck.org (localhost [127.0.0.1])
- by nautica.notk.org (Postfix) with ESMTPS id 1936CC01B;
- Thu,  4 Mar 2021 04:01:20 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=codewreck.org; s=2;
- t=1614826883; bh=5F7Z8p6mZsz3CvMl+8iJUXJXZOmn2B81gRz2UN5/6v0=;
- h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
- b=lqgbDHyu5B2kFuEFvDsEwHmrwLGDI0ZTAMyOUJEqsy7GMHO2Wv83xF/EXUvt242K/
- lI4gQyAdbuKMqbhQC9tNOCApUMhZjrlqTkCgVQTUm3V9o3bS6FkQDBiG7Yi4EkMOiL
- 8mJet03MZv3adjHukzkTVbFOAJUDcMLwGhypIhiSjY4iZpZxacWYDHJPdK5zZcfXnG
- mQxK5JHQGYEX8tu4aP95z+Pd6pOfaA7Zxepz7BVVssrCqTQKVmNpIuJ7W3neG47KBk
- 0ZKG2hy6KqEWewRw5H2vQPYn0l4d3uGc83KCeCdOUfZY/qK/oEeeloyEm4W6H+jY4B
- qMZkPY9ykEZyw==
-Received: from localhost (odin.codewreck.org [local])
- by odin.codewreck.org (OpenSMTPD) with ESMTPA id c794a0c4;
- Thu, 4 Mar 2021 03:01:18 +0000 (UTC)
-Date: Thu, 4 Mar 2021 12:01:03 +0900
-From: asmadeus@codewreck.org
-To: davem@davemloft.net
-Message-ID: <YEBNb6MnQa7zRApd@codewreck.org>
-References: <20210302171932.28e86231@xhacker.debian>
- <161482020724.32353.3785422808049340949.git-patchwork-notify@kernel.org>
+ bh=hNSJeU6DHgk1JDrXPc6wXwBH7UNAGKwi0d2+igWtU6Y=; b=WSX8gBolQckQZEuUADsZLOSpVR
+ m09D6YoporTWvgpZ6qulka8sSU8obuVw5u5ZPbykrpa+1VwXktsRHDwi/bAahoGUcd8M9yaykWxr3
+ Lu4lUyxYgO4I3uAghacCx5mthRf85BqaFKN9idqaS5JqEa5XzITdNsLn6IW6+KllbPW8=;
+Received: from us-smtp-delivery-124.mimecast.com ([216.205.24.124])
+ by sfi-mx-1.v28.lw.sourceforge.com with esmtps
+ (TLSv1.2:ECDHE-RSA-AES256-SHA384:256) (Exim 4.92.2)
+ id 1lHoK1-00DqTo-U5
+ for v9fs-developer@lists.sourceforge.net; Thu, 04 Mar 2021 13:47:29 +0000
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+ s=mimecast20190719; t=1614865635;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references;
+ bh=hNSJeU6DHgk1JDrXPc6wXwBH7UNAGKwi0d2+igWtU6Y=;
+ b=SnjAsjpErilPN7UqsfPvyID4eHUhI97DdfqH6C27rpzEgZ4XX8+k3y8fOv/jX8xdlEVTbe
+ hYBBWHINrJpRx05l7CyqMnaOS/tsL2HMjhtWd7IuXrGtkYGtwFANUXhWvvI9JFrF/u5YFJ
+ e7ketTp5CzVunoohCB7NSRKFsjcTMvA=
+Received: from mimecast-mx01.redhat.com (mimecast-mx01.redhat.com
+ [209.132.183.4]) (Using TLS) by relay.mimecast.com with ESMTP id
+ us-mta-167-hcFeYL5qNHGg6spmwsZ5Zw-1; Thu, 04 Mar 2021 08:47:13 -0500
+X-MC-Unique: hcFeYL5qNHGg6spmwsZ5Zw-1
+Received: from smtp.corp.redhat.com (int-mx06.intmail.prod.int.phx2.redhat.com
+ [10.5.11.16])
+ (using TLSv1.2 with cipher AECDH-AES256-SHA (256/256 bits))
+ (No client certificate requested)
+ by mimecast-mx01.redhat.com (Postfix) with ESMTPS id 76E8BEC1A3;
+ Thu,  4 Mar 2021 13:47:11 +0000 (UTC)
+Received: from warthog.procyon.org.uk (ovpn-112-66.rdu2.redhat.com
+ [10.10.112.66])
+ by smtp.corp.redhat.com (Postfix) with ESMTP id D08AD5C1A1;
+ Thu,  4 Mar 2021 13:47:05 +0000 (UTC)
+Organization: Red Hat UK Ltd. Registered Address: Red Hat UK Ltd, Amberley
+ Place, 107-111 Peascod Street, Windsor, Berkshire, SI4 1TE, United
+ Kingdom.
+ Registered in England and Wales under Company Registration No. 3798903
+From: David Howells <dhowells@redhat.com>
+In-Reply-To: <2653261.1614813611@warthog.procyon.org.uk>
+References: <2653261.1614813611@warthog.procyon.org.uk>
+To: linux-cachefs@redhat.com
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <161482020724.32353.3785422808049340949.git-patchwork-notify@kernel.org>
+Content-ID: <2973222.1614865624.1@warthog.procyon.org.uk>
+Date: Thu, 04 Mar 2021 13:47:04 +0000
+Message-ID: <2973223.1614865624@warthog.procyon.org.uk>
+X-Scanned-By: MIMEDefang 2.79 on 10.5.11.16
 X-Spam-Score: -0.1 (/)
 X-Spam-Report: Spam Filtering performed by mx.sourceforge.net.
  See http://spamassassin.org/tag/ for more details.
- 0.0 URIBL_BLOCKED ADMINISTRATOR NOTICE: The query to URIBL was blocked.
- See
- http://wiki.apache.org/spamassassin/DnsBlocklists#dnsbl-block
- for more information. [URIs: codewreck.org]
- 0.0 SPF_NONE               SPF: sender does not publish an SPF Record
+ 0.0 RCVD_IN_MSPIKE_H3      RBL: Good reputation (+3)
+ [216.205.24.124 listed in wl.mailspike.net]
+ -0.0 SPF_PASS               SPF: sender matches SPF record
  0.0 SPF_HELO_NONE          SPF: HELO does not publish an SPF Record
  -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from author's
  domain
  -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
  0.1 DKIM_SIGNED            Message has a DKIM or DK signature,
  not necessarily valid
- 0.0 UNPARSEABLE_RELAY Informational: message has unparseable relay lines
-X-Headers-End: 1lHeF0-000304-Gv
-Subject: Re: [V9fs-developer] [PATCH v2] net: 9p: advance iov on empty read
+ 0.0 RCVD_IN_MSPIKE_WL      Mailspike good senders
+ -0.0 DKIMWL_WL_HIGH         DKIMwl.org - High trust sender
+X-Headers-End: 1lHoK1-00DqTo-U5
+Subject: [V9fs-developer] fscache: Redesigning the on-disk cache - LRU
+ handling
 X-BeenThere: v9fs-developer@lists.sourceforge.net
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -104,31 +102,63 @@ List-Post: <mailto:v9fs-developer@lists.sourceforge.net>
 List-Help: <mailto:v9fs-developer-request@lists.sourceforge.net?subject=help>
 List-Subscribe: <https://lists.sourceforge.net/lists/listinfo/v9fs-developer>, 
  <mailto:v9fs-developer-request@lists.sourceforge.net?subject=subscribe>
-Cc: lucho@ionkov.net, ericvh@gmail.com, netdev@vger.kernel.org,
- linux-kernel@vger.kernel.org, Jisheng Zhang <Jisheng.Zhang@synaptics.com>,
- kuba@kernel.org, v9fs-developer@lists.sourceforge.net
+Cc: "J. Bruce Fields" <bfields@fieldses.org>, linux-nfs@vger.kernel.org,
+ Jeff Layton <jlayton@redhat.com>, Christoph Hellwig <hch@infradead.org>,
+ linux-cifs@vger.kernel.org, David Wysochanski <dwysocha@redhat.com>,
+ linux-kernel@vger.kernel.org,
+ "Matthew Wilcox \(Oracle\)" <willy@infradead.org>, dhowells@redhat.com,
+ Alexander Viro <viro@zeniv.linux.org.uk>, Dave Chinner <dchinner@redhat.com>,
+ linux-fsdevel@vger.kernel.org, v9fs-developer@lists.sourceforge.net,
+ ceph-devel@vger.kernel.org, linux-afs@lists.infradead.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: v9fs-developer-bounces@lists.sourceforge.net
 
+David Howells <dhowells@redhat.com> wrote:
 
-patchwork-bot+netdevbpf@kernel.org wrote on Thu, Mar 04, 2021 at 01:10:07AM +0000:
-> This patch was applied to netdev/net.git
+> 
+>  (3) OpenAFS-style format.  One index file to look up {file_key,block#} and an
+>      array of data files, each holding one block (e.g. a 256KiB-aligned chunk
+>      of a file).  Each index entry has valid start/end offsets for easy
+>      truncation.
+> 
+>      The index has a hash to facilitate the lookup and an LRU that allows a
+>      block to be recycled at any time.
 
-thanks for taking the patch, I didn't take the time to reply yesterday
-after my bisect finally finished.
+The LRU would probably have to be a doubly-linked list so that entries can be
+removed from it easily.  This means typically touching two other entries,
+which might not be in the same page; further, if the entry is being freed,
+we'd need to excise it from the hash chain also, necessitating touching maybe
+two more entries - which might also be in different pages.
 
-I've got the culprit now, could you add the following?
+Maybe the LRU idea plus a free block bitmap could be combined, however.
 
-Signed-off-by: Dominique Martinet <asmadeus@codewreck.org>
-(or reviewed-by/tested-by, or just leave it out I'm not fussy)
-Fixes: cf03f316ad20 ("fs: 9p: add generic splice_read file operations")
-Cc: stable@vger.kernel.org # v5.11
+ (1) Say that there's a bit-pair map, with one bit pair per block.  The pair
+     is set to 0 when the block is free.  When the block is accessed, the pair
+     is set to 3.
 
+ (2) When we run out of free blocks (ie. pairs that are zero), we decrement
+     all the pairs and then look again.
 
-Cheers,
--- 
-Dominique
+ (3) Excision from the old hash chain would need to be done at allocation,
+     though it does give a block whose usage has been reduced to 0 the chance
+     to be resurrected.
+
+Possible variations on the theme could be:
+
+ (*) Set the pair to 2, not 3 when accessed.  Set the block to 3 to pin it;
+     the process of decrementing all the pairs would leave it at 3.
+
+ (*) Rather than decrementing all pairs at once, have a rotating window that
+     does a part of the map at once.
+
+ (*) If a round of decrementing doesn't reduce any pairs to zero, reject a
+     request for space.
+
+This would also work for a file index.
+
+David
+
 
 
 _______________________________________________
