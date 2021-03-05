@@ -2,85 +2,74 @@ Return-Path: <v9fs-developer-bounces@lists.sourceforge.net>
 X-Original-To: lists+v9fs-developer@lfdr.de
 Delivered-To: lists+v9fs-developer@lfdr.de
 Received: from lists.sourceforge.net (lists.sourceforge.net [216.105.38.7])
-	by mail.lfdr.de (Postfix) with ESMTPS id E5E8F32E52B
-	for <lists+v9fs-developer@lfdr.de>; Fri,  5 Mar 2021 10:47:17 +0100 (CET)
-Received: from [127.0.0.1] (helo=sfs-ml-2.v29.lw.sourceforge.com)
-	by sfs-ml-2.v29.lw.sourceforge.com with esmtp (Exim 4.90_1)
-	(envelope-from <v9fs-developer-bounces@lists.sourceforge.net>)
-	id 1lI73D-00080C-5d; Fri, 05 Mar 2021 09:47:15 +0000
-Received: from [172.30.20.202] (helo=mx.sourceforge.net)
- by sfs-ml-2.v29.lw.sourceforge.com with esmtps
- (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.90_1)
- (envelope-from <amir73il@gmail.com>) id 1lI73B-000804-8p
- for v9fs-developer@lists.sourceforge.net; Fri, 05 Mar 2021 09:47:13 +0000
+	by mail.lfdr.de (Postfix) with ESMTPS id E900032ED88
+	for <lists+v9fs-developer@lfdr.de>; Fri,  5 Mar 2021 15:58:27 +0100 (CET)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=sourceforge.net; s=x; h=Content-Type:Cc:To:Subject:Message-ID:Date:From:
- In-Reply-To:References:MIME-Version:Sender:Reply-To:Content-Transfer-Encoding
- :Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+	d=lists.sourceforge.net; s=beta; h=Content-Transfer-Encoding:Content-Type:Cc:
+	Reply-To:From:List-Subscribe:List-Help:List-Post:List-Archive:
+	List-Unsubscribe:List-Id:Subject:MIME-Version:References:In-Reply-To:
+	Message-ID:Date:To:Sender:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
+	 bh=bO2BV99H1GoeK7B2skPRhoO7e+Ev/k9BkEcY/85fhaY=; b=YrgnH28JMvWu/p23wkfh1PJgZ
+	it8swKyEpr1YTBkIrCu/CoPtv0CeXg/FGw/1twXqWsXa0Sym3fhACnk756Bf+ilpm1jpQTh0h9g9K
+	MuEZIDtKFG3My2dr4y8LWT5xvMn/o6joeoR731OYC5DZAObX0DX0XL4Ll2LSX4RfIF7ec=;
+Received: from [127.0.0.1] (helo=sfs-ml-4.v29.lw.sourceforge.com)
+	by sfs-ml-4.v29.lw.sourceforge.com with esmtp (Exim 4.90_1)
+	(envelope-from <v9fs-developer-bounces@lists.sourceforge.net>)
+	id 1lIBuM-0002Bm-1x; Fri, 05 Mar 2021 14:58:26 +0000
+Received: from [172.30.20.202] (helo=mx.sourceforge.net)
+ by sfs-ml-4.v29.lw.sourceforge.com with esmtps
+ (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.90_1)
+ (envelope-from <qemu_oss@crudebyte.com>) id 1lIBuJ-0002Bd-PJ
+ for v9fs-developer@lists.sourceforge.net; Fri, 05 Mar 2021 14:58:24 +0000
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+ d=sourceforge.net; s=x; h=Content-Type:Content-Transfer-Encoding:MIME-Version
+ :References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Sender:Reply-To:
+ Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
  Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
  List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=lC8zlzO4d9sCo2iAF0K+KJjctz9hWtNl5+a8xoEn6KM=; b=V4g27qPb8G58icwjwJ5lEoksej
- 3/C8ZInH5faJdCQca6T5m6sf3KMJDsDGj6pGWCKYipzTLeUKm4SDvlM14pzt54ufNmxfWSey4pd2/
- xB1AmyYyUVlDWMReavhxyB7Nb8oewb8vf2SJuLEIVk7kN63UYd/811T6pNI5NI0858I8=;
+ bh=OCjB31jRrF5NsAhYCmtmSA4VIvxUrAeSy4dF2aX7weE=; b=AZTNCzxpYVTZhBRgbAAG06+MPg
+ Grb54feRS53D9yHEdXx9V3a2vZ7xozc9KXip9OHGzuEOhNDGsYzfp5CPRTXa/OoO/XdFKCwxJO0zt
+ zmF4p06aQiwySBEym3qyYFGqBrWEoWZMKMaKAm5scNF/1faGDIr5WxMrTCt57YoMuqow=;
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  ;
- h=Content-Type:Cc:To:Subject:Message-ID:Date:From:In-Reply-To:References:
- MIME-Version:Sender:Reply-To:Content-Transfer-Encoding:Content-ID:
+ h=Content-Type:Content-Transfer-Encoding:MIME-Version:References:
+ In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Sender:Reply-To:Content-ID:
  Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
  :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
  List-Post:List-Owner:List-Archive;
- bh=lC8zlzO4d9sCo2iAF0K+KJjctz9hWtNl5+a8xoEn6KM=; b=a/M3Tqz9Iu8D2cPHUo42FYVLhm
- LP4lkvhYgNx4ucVLPztAwAm6f6KJI4pnkZPsKbUDk7NN40jLo5TKt13nQs+B7XiKXcZ9LOMTSyBDZ
- gDs7eYbqUfW0onu1F4Gj+oPdVq3BWDsjlfQqiA8te59NwqrZBzP2MaLTeqS5MsnYF+lU=;
-Received: from mail-il1-f175.google.com ([209.85.166.175])
+ bh=OCjB31jRrF5NsAhYCmtmSA4VIvxUrAeSy4dF2aX7weE=; b=d+bi9DGmCuM9i0HYmuUI9s6w8G
+ B70RK9h1BvWD6Tu+zgrpVhOZqhPku6xmHSDkjLvgXUgPn7Kd1+89DRqgmEmkhtiD9fqypuC7GyWyh
+ ObD8/ojEl9mmabIPH5VBDLYLF4/NJIMiBPb+qwOk6lbIy5n5fL3ZR/Qaldu34uCWLtVc=;
+Received: from kylie.crudebyte.com ([5.189.157.229])
  by sfi-mx-2.v28.lw.sourceforge.com with esmtps
- (TLSv1.2:ECDHE-RSA-AES128-GCM-SHA256:128) (Exim 4.92.3)
- id 1lI731-00066l-FN
- for v9fs-developer@lists.sourceforge.net; Fri, 05 Mar 2021 09:47:13 +0000
-Received: by mail-il1-f175.google.com with SMTP id z9so1427845iln.1
- for <v9fs-developer@lists.sourceforge.net>;
- Fri, 05 Mar 2021 01:47:03 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=lC8zlzO4d9sCo2iAF0K+KJjctz9hWtNl5+a8xoEn6KM=;
- b=i2qzEGac3XPgrmwqATg7vs33UeB3HMXXSReSnTkVXneQVd3GKQ1eNIV4IfWNSRfkcE
- DLwr84l4nYLLulaFsQGStlw/EgeC7WpGkU2AjYH2mcTfIlMCqMwDIuwADxrhV3zaDc/w
- PMTb28rk8pFzogQTuViBw+Xd5/XRXrndraO9zRwTEzyguICXw/eJWDgnl5nnXtWXD7Di
- Lc82h9MuPnroWugZng1019AiMijfsUJ7ah25YzjZDhsXz/joZiatnXmRdJs5GtUDdZ/m
- HZZp+RgNNpiGt4lICUtn75sQegDE7rt1UIJxpLWnZrRhy56GdDx/0fzT/RpuQjm7XchX
- n9QA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc;
- bh=lC8zlzO4d9sCo2iAF0K+KJjctz9hWtNl5+a8xoEn6KM=;
- b=AfGUasZXYGhD12swXQFf/b4EZnnPOGI5em0R/LLrxmFtfzhA+XQ4+hxkbgy9Wq5TEj
- rJVqYgzf9QhSIetkubqU9XbsogJ8rsYfp0t7ghEdi7W+XY1xCGPtfAfySVfxObilu0rP
- NiMA7v/LkvB3TYGyYfxxw1YHN+JZwrCKRTq+7GLgLDJqKDlrp3fVKwEyUdNcGTgvRPlZ
- AzKM5Ybr/aVrqDyjAUEB01MZYYZPqUh5YfN8rgIRIv/8YvmKnM0IivyJT4tN3QtTFHY2
- xcOyYktH5HPqBPkgo2u8o03Yjh1lP7hrAmQjOM3v5vnMUQYRt1lnROt8aX0KrddN+7ZM
- k8rA==
-X-Gm-Message-State: AOAM5333NLUw7uAQVzYTvaxyBESO4NBZTGXaZFmhLj+yIedYh7RNi+te
- N6CAKsrBwpR3ylglTgFZjcDW3EnniuprUQxhSF0=
-X-Google-Smtp-Source: ABdhPJzsjPPI76V+ifK/5cRmuhQcSx+F9xfxp+D6hQd7smAfVv8piF6gITprUwnhLkj/CwhgI90S8l7lugFNR/SBJqw=
-X-Received: by 2002:a92:da48:: with SMTP id p8mr7580193ilq.137.1614937617862; 
- Fri, 05 Mar 2021 01:46:57 -0800 (PST)
+ (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.92.3)
+ id 1lIBuD-0000GM-77
+ for v9fs-developer@lists.sourceforge.net; Fri, 05 Mar 2021 14:58:23 +0000
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+ d=crudebyte.com; s=kylie; h=Content-Type:Content-Transfer-Encoding:
+ MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:
+ Content-ID:Content-Description;
+ bh=OCjB31jRrF5NsAhYCmtmSA4VIvxUrAeSy4dF2aX7weE=; b=sLqe1Pbih/jz/xyAuBvBPoFBsX
+ Lqub8NbECl/fgrEO6t0p8MGw4E3LjqSvZr9JAECvlajv5y/Uo2kMqiwkQMD9wMqoUm5LdAL2/0+9W
+ YAIvLJgUjywZYz8PZWHay/zlxE1hE78v82QKGq/6VbrIDwq/0Rvd6QgkjiG8wf86dbwR6/2lGnWsk
+ ZNgu2d3QvoKVByDO9AODxqmXULSOnSD4t9XT5Fl65AClkz2JUzYurx86WwpGwpwrikgRar/swPShS
+ A39YnSYDuiGwWrV5WHBIbEEylC9mV+KwbWlnYxxKRzGBJz+zVwZnJ4/IhLebDiHG3N4gaV/OSkHhS
+ iuTL5m1jDcdUUOOc23ZV4myulZ8ZpYdD1nsYL/P2pGDkRw5/t2A6Lg4b6mcJIsbXVqsHVa37Ka1uG
+ ksFQQH/IzYjpKrFWycZ1XViULV3wifpJ+gftrEeNrn4UlNmqjXHKh/593oAhcp1+gEKny7tLtqIbn
+ 4FG66iZLGLUYu2V0yOMDeGkm9lY9R0qwQuBQpEdz2Y+bK5syOlCFmdnj4Ix88flGk/WN4Wd7rwN6X
+ v6vx9zkwB+37l8LEnByiWzwFEW0aijr1Uzc250bspwl7JG8q3630cucZQZ/c7J2XjgvD0j3RkwFKc
+ YeUIo62xMLePakdih9RxwtNQbQzqhGiEQ44BEdmA8=;
+To: qemu-devel@nongnu.org
+Date: Fri, 05 Mar 2021 15:57:17 +0100
+Message-ID: <32960057.KqypvAduHN@silver>
+In-Reply-To: <YD+iPTKnOlF/HwlV@codewreck.org>
+References: <20200918213436.GA3520@redhat.com> <1805660.C9YIKG4Ep7@silver>
+ <YD+iPTKnOlF/HwlV@codewreck.org>
 MIME-Version: 1.0
-References: <2653261.1614813611@warthog.procyon.org.uk>
-In-Reply-To: <2653261.1614813611@warthog.procyon.org.uk>
-From: Amir Goldstein <amir73il@gmail.com>
-Date: Fri, 5 Mar 2021 11:46:46 +0200
-Message-ID: <CAOQ4uxhxwKHLT559f8v5aFTheKgPUndzGufg0E58rkEqa9oQ3Q@mail.gmail.com>
-To: David Howells <dhowells@redhat.com>
 X-Spam-Score: -0.1 (/)
 X-Spam-Report: Spam Filtering performed by mx.sourceforge.net.
  See http://spamassassin.org/tag/ for more details.
- 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail provider
- (amir73il[at]gmail.com)
- -0.0 RCVD_IN_DNSWL_NONE     RBL: Sender listed at https://www.dnswl.org/, no
- trust [209.85.166.175 listed in list.dnswl.org]
- -0.0 RCVD_IN_MSPIKE_H2      RBL: Average reputation (+2)
- [209.85.166.175 listed in wl.mailspike.net]
  -0.0 SPF_PASS               SPF: sender matches SPF record
  0.0 SPF_HELO_NONE          SPF: HELO does not publish an SPF Record
  -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from author's
@@ -88,8 +77,9 @@ X-Spam-Report: Spam Filtering performed by mx.sourceforge.net.
  -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
  0.1 DKIM_SIGNED            Message has a DKIM or DK signature,
  not necessarily valid
-X-Headers-End: 1lI731-00066l-FN
-Subject: Re: [V9fs-developer] fscache: Redesigning the on-disk cache
+X-Headers-End: 1lIBuD-0000GM-77
+Subject: Re: [V9fs-developer] Can not set high msize with virtio-9p (Was:
+ Re: virtiofs vs 9p performance)
 X-BeenThere: v9fs-developer@lists.sourceforge.net
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -101,202 +91,194 @@ List-Post: <mailto:v9fs-developer@lists.sourceforge.net>
 List-Help: <mailto:v9fs-developer-request@lists.sourceforge.net?subject=help>
 List-Subscribe: <https://lists.sourceforge.net/lists/listinfo/v9fs-developer>, 
  <mailto:v9fs-developer-request@lists.sourceforge.net?subject=subscribe>
-Cc: Christoph Hellwig <hch@infradead.org>,
- Linux NFS Mailing List <linux-nfs@vger.kernel.org>,
- Jeff Layton <jlayton@redhat.com>, CIFS <linux-cifs@vger.kernel.org>,
- David Wysochanski <dwysocha@redhat.com>, Miklos Szeredi <miklos@szeredi.hu>,
- linux-kernel <linux-kernel@vger.kernel.org>,
- "Matthew Wilcox \(Oracle\)" <willy@infradead.org>,
- "J. Bruce Fields" <bfields@fieldses.org>, linux-cachefs@redhat.com,
- Alexander Viro <viro@zeniv.linux.org.uk>, Dave Chinner <dchinner@redhat.com>,
- linux-fsdevel <linux-fsdevel@vger.kernel.org>,
- v9fs-developer@lists.sourceforge.net, ceph-devel <ceph-devel@vger.kernel.org>,
- linux-afs@lists.infradead.org
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+From: Christian Schoenebeck via V9fs-developer
+ <v9fs-developer@lists.sourceforge.net>
+Reply-To: Christian Schoenebeck <qemu_oss@crudebyte.com>
+Cc: "Michael S. Tsirkin" <mst@redhat.com>, "Venegas Munoz,
+ Jose Carlos" <jose.carlos.venegas.munoz@intel.com>, Greg Kurz <groug@kaod.org>,
+ "cdupontd@redhat.com" <cdupontd@redhat.com>,
+ virtio-fs-list <virtio-fs@redhat.com>,
+ "Dr. David Alan Gilbert" <dgilbert@redhat.com>,
+ Stefan Hajnoczi <stefanha@redhat.com>, v9fs-developer@lists.sourceforge.net,
+ "Shinde, Archana M" <archana.m.shinde@intel.com>,
+ Vivek Goyal <vgoyal@redhat.com>
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 Errors-To: v9fs-developer-bounces@lists.sourceforge.net
 
-On Thu, Mar 4, 2021 at 4:10 PM David Howells <dhowells@redhat.com> wrote:
->
-> I'm looking at redesigning the on-disk cache format used by fscache's
-> cachefiles driver to try and eliminate the number of synchronous metadata
-> operations done by the driver, to improve culling performance and to reduce
-> the amount of opens/files open.  I also need to stop relying on the backing
-> filesystem to track where I have data stored.
->
-> There are a number of options that I've considered:
->
->  (0) The current format lays out a directory tree, with directories for each
->      level of index (so in AFS's terms, you've got an overall "afs" dir
->      containing a dir for each cell.  In each cell dir, there's a dir for each
->      volume and within that there's a file for each afs vnode cached.  Extra
->      levels of directory are also interposed to reduce the number of entries
->      in a directory.
->
->      - Pathwalk cost to open a cache file.
->      - Netfs coherency data is in xattrs.
->      - Invalidation done by truncate or unlink.
->      - Uses backing filesystem metadata to keep track of present data.
->        - Determined by bmap() on the cache file.
->      - Culling performed by userspace daemon.
->      - Data file opened for every write.
->      - Read done by readpage without file.
->
->  (0a) As (0) but using SEEK_DATA/SEEK_HOLE instead of bmap and opening the
->       file for every whole operation (which may combine reads and writes).
+On Mittwoch, 3. M=E4rz 2021 15:50:37 CET Dominique Martinet wrote:
+> Christian Schoenebeck wrote on Wed, Mar 03, 2021 at 03:04:21PM +0100:
+> > > We can definitely increase the default, for all transports in my
+> > > opinion.
+> > > As a first step, 64 or 128k?
+> > =
 
-I read that NFSv4 supports hole punching, so when using ->bmap() or SEEK_DATA
-to keep track of present data, it's hard to distinguish between an
-invalid cached range
-and a valid "cached hole".
-With ->fiemap() you can at least make the distinction between a non existing
-and an UNWRITTEN extent.
+> > Just to throw some numbers first; when linearly reading a 12 GB file on
+> > guest (i.e. "time cat test.dat > /dev/null") on a test machine, these a=
+re
+> > the results that I get (cache=3Dmmap):
+> > =
 
->
->  (1) Structured the same as (0), but keeping an independent content map and
->      not relying on backing fs metadata.  Use a larger blocksize, say 256K, to
->      reduce the size of the content map.
->
->      - Netfs coherency data in xattrs.
->      - Invalidation done by tmpfile creation and link-replace.
->      - Content bitmap kept in xattr.
->        - Limited capacity.  Could use multiple bitmaps.
->        - Can skip the bitmap for a non-sparse file that we have all of.
->      - "Open" state kept in xattr.
->      - File is kept open
->      - Culling performed by userspace daemon.
->      - Cache file open whilst netfs file is open.
->
->  (2) Structured the same as (1), but keeping an extent list instead of a
->      bitmap.
->
->      - Content extent map kept in xattr.
->        - Limited capacity.
->        - Highly scattered extents use a lot of map space.
->
->  (3) OpenAFS-style format.  One index file to look up {file_key,block#} and an
->      array of data files, each holding one block (e.g. a 256KiB-aligned chunk
->      of a file).  Each index entry has valid start/end offsets for easy
->      truncation.
->
->      The index has a hash to facilitate the lookup and an LRU that allows a
->      block to be recycled at any time.
->
->      - File keys, are highly variable in length and can be rather long,
->        particularly NFS FIDs.
->        - Might want a separate file index that maps file keys to a slot ID
->          that can then be used in the block index.
->      - Netfs coherency data in vnode index entry.
->      - Invalidation done by clearing matching entries in the index.
->        - Dead data files can be lazily unlinked or truncated or just
->          overwritten.
->      - Content mapping by lookup in block index hash table.
->        - Fine if the hash table is large and scatter is good.
->      - Potential coherency problem between indices and data file.
->      - Culling performed by block index LRU.
->      - Really want to retain entire block index in RAM.
->      - Data files are opened for every read/write.
->
->  (4) Similar format to (3), but could put entirety of data in one file.
->
->      - Data file open entire time cache online.
->      - Unused block bitmap.
->      - Can use fallocate to punch out dead blocks.
->      - Could put data file on blockdev.
->
->  (5) Similar idea to (4), but just have a file index and use block pointers
->      and indirection blocks instead.  Use an LRU in the file index and cull
->      whole files only, not individual blocks.
->
->      - File keys, are highly variable in length and can be rather long,
->        particularly NFS FIDs.
->      - Netfs coherency data in vnode index entry.
->      - Unused data block bitmap.
->      - Invalidation done by clearing entries in the file index.
->        - Data blocks must be recycled and returned to bitmap.
->        - Dead data blocks can be lazily punched out with fallocate.
->      - Potential coherency problem between index, pointers/indirection and
->        bitmap.
->      - Culling performed by file index LRU.
->      - Really want to retain entire file index and block bitmap in RAM.
->        - May be less memory than block index.
->      - Data file open entire time cache online.
->      - Could put data file on blockdev.
->      - If the block size is large, lots of dead space in indirection blocks.
->
->  (6) Similar to (5), but use extent lists rather than indirection blocks.
->
->      - Requires allocation of contiguous space to be worthwhile.
->      - Buddy allocator approach?
->        - Can always arbitrarily recycle buddies to make larger spaces - if we
->          can find them...
->
->  (7) Hybrid approach.  Stick the first block of every netfs file in one big
->      cache file.  For a lot of cases, that would suffice for the entire file
->      if the block size is large enough.  Store the tails of larger files in
->      separate files.
->
->      - File index with LRU.
->      - More complicated to manage.
->      - Fewer files open.
->
-> So (0) is what's upstream.  I have (0a) implemented in my fscache-netfs-lib
-> branch and (1) implemented in my fscache-iter branch.  However, it spends a
-> lot of cpu time doing synchronous metadata ops, such as creating tmpfiles,
-> link creation and setting xattrs, particularly when unmounting the filesystem
-> or disabling the cache - both of which are done during shutdown.
->
+> > msize=3D16k: 2min7s (95 MB/s)
+> > msize=3D64k: 17s (706 MB/s)
+> > msize=3D128k: 12s (1000 MB/s)
+> > msize=3D256k: 8s (1500 MB/s)
+> > msize=3D512k: 6.5s (1846 MB/s)
+> > =
 
-You didn't say much about crash consistency or durability requirements of the
-cache. Since cachefiles only syncs the cache on shutdown, I guess you
-rely on the hosting filesystem to provide the required ordering guarantees.
+> > Personally I would raise the default msize value at least to 128k.
+> =
 
-How does this work with write through network fs cache if the client system
-crashes but the write gets to the server? Client system get restart with older
-cached data because disk caches were not flushed before crash. Correct?
-Is that case handled? Are the caches invalidated on unclean shutdown?
+> Thanks for the numbers.
+> I'm still a bit worried about too large chunks, let's go with 128k for
+> now -- I'll send a couple of patches increasing the tcp max/default as
+> well next week-ish.
 
-Anyway, how are those ordering requirements going to be handled when
-entire indexing is in a file? You'd practically need to re-implement a
-filesystem
-journal or only write cache updates to a temp file that can be discarded at
-any time?
+Ok, sounds good!
 
-> I'm leaning towards (4) or (5).  I could use extent maps, but I don't
-> necessarily have a good idea of what access patterns I have to deal with till
-> later.  With network filesystems that are going to read and cache large blocks
-> (say 2MiB), extents would allow reduction of the metadata, particularly where
-> it would span a bitmap.
->
-> Using a block index (4) allows me to easily recycle a large chunk of cache in
-> one go - even if it means arbitrarily kicking out blocks that weren't near the
-> end of the LRU yet.
->
-> Using block pointers and indirection blocks (5) means I only need this data in
-> RAM when I need it; with the LRU management being done in the file index.
->
-> Either way with (4) and (5), at least one index really needs to be resident in
-> RAM to make LRU wangling efficient.  Also, I need to decide how to handle
-> coherency management - setting an "in use" flag on the file index entry and
-> flushing it before making any modifications might work.
->
-> On the other hand, sticking with (1) or (2) makes it easier to add extra
-> metadata very easily (say to handle disconnected operation), though it's
-> harder to manage culling and manage the capacity of the cache.
->
-> I have a suspicion that the answer is "it depends" and that the best choice is
-> very much going to be workload dependent - and may even vary from volume to
-> volume within the same workload.
->
-> Any thoughts or better solutions?
->
+> > Personally I don't find raw I/O the worst performance issue right now. =
+As
+> > you can see from the numbers above, if 'msize' is raised and I/O being
+> > performed with large chunk sizes (e.g. 'cat' automatically uses a chunk
+> > size according to the iounit advertised by stat) then the I/O results a=
+re
+> > okay.
+> > =
 
-If you come up with a useful generic implementation of a "file data overlay",
-overlayfs could also use it for "partial copy up" as well as for implementation
-of address space operations, so please keep that in mind.
+> > What hurts IMO the most in practice is the sluggish behaviour regarding
+> > dentries ATM. The following is with cache=3Dmmap (on guest side):
+> > =
 
-Thanks,
-Amir.
+> > $ time ls /etc/ > /dev/null
+> > real    0m0.091s
+> > user    0m0.000s
+> > sys     0m0.044s
+> > $ time ls -l /etc/ > /dev/null
+> > real    0m0.259s
+> > user    0m0.008s
+> > sys     0m0.016s
+> > $ ls -l /etc/ | wc -l
+> > 113
+> > $
+> =
+
+> Yes, that is slow indeed.. Unfortunately cache=3Dnone/mmap means only open
+> dentries are pinned, so that means a load of requests everytime.
+> =
+
+> I was going to suggest something like readdirplus or prefetching
+> directory entries attributes in parallel/background, but since we're not
+> keeping any entries around we can't even do that in that mode.
+> =
+
+> > With cache=3Dloose there is some improvement; on the first "ls" run (wh=
+en
+> > its
+> > not in the dentry cache I assume) the results are similar. The subseque=
+nt
+> > runs then improve to around 50ms for "ls" and around 70ms for "ls -l".
+> > But that's still far from numbers I would expect.
+> =
+
+> I'm surprised cached mode is that slow though, that is worth
+> investigating.
+> With that time range we are definitely sending more requests to the
+> server than I would expect for cache=3Dloose, some stat revalidation
+> perhaps? I thought there wasn't any.
+
+Yes, it looks like more 9p requests are sent than actually required for =
+
+readdir. But I haven't checked yet what's going on there in detail. That's =
+
+definitely on my todo list, because this readdir/stat/direntry issue ATM =
+
+really hurts the most IMO.
+
+> I don't like cache=3Dloose/fscache right now as the reclaim mechanism
+> doesn't work well as far as I'm aware (I've heard reports of 9p memory
+> usage growing ad nauseam in these modes), so while it's fine for
+> short-lived VMs it can't really be used for long periods of time as
+> is... That's been on my todo for a while too, but unfortunately no time
+> for that.
+
+Ok, that's new to me. But I fear the opposite is currently worse; with =
+
+cache=3Dmmap and running a VM for a longer time: 9p requests get slower and =
+
+slower, e.g. at a certain point you're waiting like 20s for one request. I =
+
+haven't investigated the cause here either yet. It may very well be an issu=
+e =
+
+on QEMU side: I have some doubts in the fid reclaim algorithm on 9p server =
+
+side which is using just a linked list. Maybe that list is growing to =
+
+ridiculous sizes and searching the list with O(n) starts to hurt after a =
+
+while.
+
+With cache=3Dloose I don't see such tremendous slowdowns even on long runs, =
+
+which might indicate that this symptom might indeed be due to a problem on =
+
+QEMU side.
+
+> Ideally if that gets fixed, it really should be the default with some
+> sort of cache revalidation like NFS does (if that hasn't changed, inode
+> stats have a lifetime after which they get revalidated on access, and
+> directory ctime changes lead to a fresh readdir) ; but we can't really
+> do that right now if it "leaks".
+> =
+
+> Some cap to the number of open fids could be appreciable as well
+> perhaps, to spare server resources and keep internal lists short.
+
+I just reviewed the fid reclaim code on 9p servers side to some extent beca=
+use =
+
+of a security issue on 9p server side in this area recently, but I haven't =
+
+really thought through nor captured the authors' original ideas behind it =
+
+entirely yet. I still have some question marks here. Maybe Greg feels the =
+
+same.
+
+Probably when support for macOS is added (also on my todo list), then the =
+
+amount of open fids needs to be limited anyway. Because macOS is much more =
+
+conservative and does not allow a large number of open files by default.
+
+> Anyway, there definitely is room for improvement; if you need ideas I
+> have plenty but my time is more than limited right now and for the
+> forseeable future... 9p work is purely on my freetime and there isn't
+> much at the moment :(
+> =
+
+> I'll make time as necessary for reviews & tests but that's about as much
+> as I can promise, sorry and good luck!
+
+I fear that applies to all developers right now. To my knowledge there is n=
+ot =
+
+a single developer either paid and/or able to spend reasonable large time =
+
+slices on 9p issues.
+
+From my side: my plans are to hunt down the worst 9p performance issues in =
+
+order of their impact, but like anybody else, when I find some free time =
+
+slices for that.
+
+#patience #optimistic
+
+Best regards,
+Christian Schoenebeck
+
+
 
 
 _______________________________________________
