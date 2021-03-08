@@ -2,26 +2,26 @@ Return-Path: <v9fs-developer-bounces@lists.sourceforge.net>
 X-Original-To: lists+v9fs-developer@lfdr.de
 Delivered-To: lists+v9fs-developer@lfdr.de
 Received: from lists.sourceforge.net (lists.sourceforge.net [216.105.38.7])
-	by mail.lfdr.de (Postfix) with ESMTPS id 701DE331A1A
-	for <lists+v9fs-developer@lfdr.de>; Mon,  8 Mar 2021 23:19:29 +0100 (CET)
-Received: from [127.0.0.1] (helo=sfs-ml-2.v29.lw.sourceforge.com)
-	by sfs-ml-2.v29.lw.sourceforge.com with esmtp (Exim 4.90_1)
+	by mail.lfdr.de (Postfix) with ESMTPS id 61CE4331A39
+	for <lists+v9fs-developer@lfdr.de>; Mon,  8 Mar 2021 23:33:05 +0100 (CET)
+Received: from [127.0.0.1] (helo=sfs-ml-4.v29.lw.sourceforge.com)
+	by sfs-ml-4.v29.lw.sourceforge.com with esmtp (Exim 4.90_1)
 	(envelope-from <v9fs-developer-bounces@lists.sourceforge.net>)
-	id 1lJODm-0005AX-JG; Mon, 08 Mar 2021 22:19:26 +0000
+	id 1lJOQx-0003gV-1L; Mon, 08 Mar 2021 22:33:03 +0000
 Received: from [172.30.20.202] (helo=mx.sourceforge.net)
- by sfs-ml-2.v29.lw.sourceforge.com with esmtps
+ by sfs-ml-4.v29.lw.sourceforge.com with esmtps
  (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.90_1)
- (envelope-from <david@fromorbit.com>) id 1lJODk-0005AQ-VS
- for v9fs-developer@lists.sourceforge.net; Mon, 08 Mar 2021 22:19:24 +0000
+ (envelope-from <david@fromorbit.com>) id 1lJOQu-0003gB-Up
+ for v9fs-developer@lists.sourceforge.net; Mon, 08 Mar 2021 22:33:01 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
  d=sourceforge.net; s=x; h=In-Reply-To:Content-Type:MIME-Version:References:
  Message-ID:Subject:Cc:To:From:Date:Sender:Reply-To:Content-Transfer-Encoding:
  Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
  Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
  List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=8wCm7lihTNHTQHGsgX49WqwYrtJxNkJzhPXxPQiwvVU=; b=hnK8oTLPwF5zs0yuuOKgfMrJa9
- D9zdUfrF9zoUy1Ebmp/IyGXuXOAg9+7xPj6pcVn+IjPwaoM1EHByLCP22i3pnuf+WozTeDCqJntMa
- X7kZBcd92ugb7/wOJQ83f2pejdFJ+k1qvymhqBaRycRdHLOljAckoWIVYsEyJakGuWCE=;
+ bh=h8KtOAI6LmIqmggR43vsot88dRdB8wN7kA3rvTj5nJY=; b=Zv07CTHO77W8lDo++2XLdx62fE
+ eAvHQ1wGvoZ894jEEYjB8jDptMxUAC/t+3WR2uiEG7/WTeXPftB+edQvyRTU1RuDop6OyrSQzFhi+
+ U7GFab5v8WhZJdjWcLI5T1iT2QP5hpg5+YJC1SAZ+ShBAG1rsvmCEJbAbZ8WedsauaTA=;
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  ;
  h=In-Reply-To:Content-Type:MIME-Version:References:Message-ID:Subject:Cc:To
@@ -29,42 +29,47 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
  :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
  List-Post:List-Owner:List-Archive;
- bh=8wCm7lihTNHTQHGsgX49WqwYrtJxNkJzhPXxPQiwvVU=; b=Xs7ipQ8ExiL0aCZ/8o7KsfHuIi
- vJNmrElqXXTMGJTpU/CWUSvKsmhaiStkhrJF24umWgrpoKyWayypiptMzEktPEZTC1TaMGlk4S4Si
- y+0ku7do/30Mw0C2yL1ebm3dKf2h4nHd/CskwrnHqPFnYfOFk5+TDpTp66xJKMUael4o=;
-Received: from mail104.syd.optusnet.com.au ([211.29.132.246])
- by sfi-mx-2.v28.lw.sourceforge.com with esmtp (Exim 4.92.3)
- id 1lJODb-0001ur-3H
- for v9fs-developer@lists.sourceforge.net; Mon, 08 Mar 2021 22:19:24 +0000
+ bh=h8KtOAI6LmIqmggR43vsot88dRdB8wN7kA3rvTj5nJY=; b=Kl8OcDTasdD/K2HdYR4m4omvVd
+ NAFVovuESexN5Buwdx4U3VR3UhVNW1n8UoXUVqR0v0rDNR6nK4VwBCumN2vUPKMFv4cDottgmjFke
+ faW16rhct8tVj6Xxq2FaIljAvFtC3aRio9n8jkgypFxd8NCduB9dLYaNwMuW/NLiLIk8=;
+Received: from mail105.syd.optusnet.com.au ([211.29.132.249])
+ by sfi-mx-1.v28.lw.sourceforge.com with esmtp (Exim 4.92.2)
+ id 1lJOQp-00257W-OZ
+ for v9fs-developer@lists.sourceforge.net; Mon, 08 Mar 2021 22:33:00 +0000
 Received: from dread.disaster.area (pa49-181-239-12.pa.nsw.optusnet.com.au
  [49.181.239.12])
- by mail104.syd.optusnet.com.au (Postfix) with ESMTPS id 29E148289A3;
- Tue,  9 Mar 2021 08:55:36 +1100 (AEDT)
+ by mail105.syd.optusnet.com.au (Postfix) with ESMTPS id 3A2521041A91;
+ Tue,  9 Mar 2021 09:32:48 +1100 (AEDT)
 Received: from dave by dread.disaster.area with local (Exim 4.92.3)
  (envelope-from <david@fromorbit.com>)
- id 1lJNqh-000HG4-6L; Tue, 09 Mar 2021 08:55:35 +1100
-Date: Tue, 9 Mar 2021 08:55:35 +1100
+ id 1lJOQh-000IZX-At; Tue, 09 Mar 2021 09:32:47 +1100
+Date: Tue, 9 Mar 2021 09:32:47 +1100
 From: Dave Chinner <david@fromorbit.com>
 To: David Howells <dhowells@redhat.com>
-Message-ID: <20210308215535.GA63242@dread.disaster.area>
-References: <CAOQ4uxhxwKHLT559f8v5aFTheKgPUndzGufg0E58rkEqa9oQ3Q@mail.gmail.com>
+Message-ID: <20210308223247.GB63242@dread.disaster.area>
+References: <CAOQ4uxjYWprb7trvamCx+DaP2yn8HCaZeZx1dSvPyFH2My303w@mail.gmail.com>
  <2653261.1614813611@warthog.procyon.org.uk>
+ <CAOQ4uxhxwKHLT559f8v5aFTheKgPUndzGufg0E58rkEqa9oQ3Q@mail.gmail.com>
  <517184.1615194835@warthog.procyon.org.uk>
+ <584529.1615202921@warthog.procyon.org.uk>
 MIME-Version: 1.0
 Content-Disposition: inline
-In-Reply-To: <517184.1615194835@warthog.procyon.org.uk>
+In-Reply-To: <584529.1615202921@warthog.procyon.org.uk>
 X-Optus-CM-Score: 0
 X-Optus-CM-Analysis: v=2.3 cv=YKPhNiOx c=1 sm=1 tr=0 cx=a_idp_d
  a=gO82wUwQTSpaJfP49aMSow==:117 a=gO82wUwQTSpaJfP49aMSow==:17
- a=kj9zAlcOel0A:10 a=dESyimp9J3IA:10 a=pGLkceISAAAA:8 a=7-415B0cAAAA:8
- a=tj5_YPy7viIAn9pg2yAA:9 a=CjuIK1q_8ugA:10 a=biEYGPWJfzWAr4FL6Ov7:22
+ a=kj9zAlcOel0A:10 a=dESyimp9J3IA:10 a=pGLkceISAAAA:8 a=07d9gI8wAAAA:8
+ a=7-415B0cAAAA:8 a=fLlyUv8SAob-akP86owA:9 a=CjuIK1q_8ugA:10
+ a=e2CUPOnPG4QKp8I52DXD:22 a=biEYGPWJfzWAr4FL6Ov7:22
+ a=BPzZvq435JnGatEyYwdK:22
 X-Spam-Score: 0.0 (/)
 X-Spam-Report: Spam Filtering performed by mx.sourceforge.net.
  See http://spamassassin.org/tag/ for more details.
  -0.0 SPF_HELO_PASS          SPF: HELO matches SPF record
  0.0 SPF_NONE               SPF: sender does not publish an SPF Record
-X-Headers-End: 1lJODb-0001ur-3H
-Subject: Re: [V9fs-developer] fscache: Redesigning the on-disk cache
+X-Headers-End: 1lJOQp-00257W-OZ
+Subject: Re: [V9fs-developer] Metadata writtenback notification? -- was Re:
+ fscache: Redesigning the on-disk cache
 X-BeenThere: v9fs-developer@lists.sourceforge.net
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -92,47 +97,99 @@ Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: v9fs-developer-bounces@lists.sourceforge.net
 
-On Mon, Mar 08, 2021 at 09:13:55AM +0000, David Howells wrote:
+On Mon, Mar 08, 2021 at 11:28:41AM +0000, David Howells wrote:
 > Amir Goldstein <amir73il@gmail.com> wrote:
 > 
-> > >  (0a) As (0) but using SEEK_DATA/SEEK_HOLE instead of bmap and opening the
-> > >       file for every whole operation (which may combine reads and writes).
+> > > But after I've written and sync'd the data, I set the xattr to mark the
+> > > file not open.  At the moment I'm doing this too lazily, only doing it
+> > > when a netfs file gets evicted or when the cache gets withdrawn, but I
+> > > really need to add a queue of objects to be sealed as they're closed.  The
+> > > balance is working out how often to do the sealing as something like a
+> > > shell script can do a lot of consecutive open/write/close ops.
 > > 
-> > I read that NFSv4 supports hole punching, so when using ->bmap() or SEEK_DATA
-> > to keep track of present data, it's hard to distinguish between an
-> > invalid cached range and a valid "cached hole".
+> > You could add an internal vfs API wait_for_multiple_inodes_to_be_synced().
+> > For example, xfs keeps the "LSN" on each inode, so once the transaction
+> > with some LSN has been committed, all the relevant inodes, if not dirty, can
+> > be declared as synced, without having to call fsync() on any file and without
+> > having to force transaction commit or any IO at all.
+> > 
+> > Since fscache takes care of submitting the IO, and it shouldn't care about any
+> > specific time that the data/metadata hits the disk(?), you can make use of the
+> > existing periodic writeback and rolling transaction commit and only ever need
+> > to wait for that to happen before marking cache files "closed".
+> > 
+> > There was a discussion about fsyncing a range of files on LSFMM [1].
+> > In the last comment on the article dchinner argues why we already have that
+> > API (and now also with io_uring(), but AFAIK, we do not have a useful
+> > wait_for_sync() API. And it doesn't need to be exposed to userspace at all.
+> > 
+> > [1] https://lwn.net/Articles/789024/
 > 
-> I wasn't exactly intending to permit caching over NFS.  That leads to fun
-> making sure that the superblock you're caching isn't the one that has the
-> cache in it.
-> 
-> However, we will need to handle hole-punching being done on a cached netfs,
-> even if that's just to completely invalidate the cache for that file.
-> 
-> > With ->fiemap() you can at least make the distinction between a non existing
-> > and an UNWRITTEN extent.
-> 
-> I can't use that for XFS, Ext4 or btrfs, I suspect.  Christoph and Dave's
-> assertion is that the cache can't rely on the backing filesystem's metadata
-> because these can arbitrarily insert or remove blocks of zeros to bridge or
-> split extents.
+> This sounds like an interesting idea.  Actually, what I probably want is a
+> notification to say that a particular object has been completely sync'd to
+> disk, metadata and all.
 
-Well, that's not the big problem. The issue that makes FIEMAP
-unusable for determining if there is user data present in a file is
-that on-disk extent maps aren't exactly coherent with in-memory user
-data state.
+This isn't hard to do yourself in the kernel. All it takes is a
+workqueue to run vfs_fsync() calls asynchronously and for the work
+to queue a local notification/wakeup when the fsync completes...
 
-That is, we can have a hole on disk with delalloc user data in
-memory.  There's user data in the file, just not on disk. Same goes
-for unwritten extents - there can be dirty data in memory over an
-unwritten extent, and it won't get converted to written until the
-data is written back and the filesystem runs a conversion
-transaction.
+That's all aio_fsync() does - the notification it queues on
+completion is the AIO completion event for userspace - so I think
+you could do this in about 50 lines of code if you really needed
+it...
 
-So, yeah, if you use FIEMAP to determine where data lies in a file
-that is being actively modified, you're going get corrupt data
-sooner rather than later.  SEEK_HOLE/DATA are coherent with in
-memory user data, so don't have this problem.
+> However, there are some performance problems are arising in my fscache-iter
+> branch:
+> 
+>  (1) It's doing a lot of synchronous metadata operations (tmpfile, truncate,
+>      setxattr).
+
+Async pipelines using unbound workqueues are your friend.
+> 
+>  (2) It's retaining a lot of open file structs on cache files.  Cachefiles
+>      opens the file when it's first asked to access it and retains that till
+>      the cookie is relinquished or the cache withdrawn (the file* doesn't
+>      contribute to ENFILE/EMFILE but it still eats memory).
+
+Sounds similar to the problem that the NFSd open file cache solves.
+(fs/nfsd/filecache.c)
+
+>  (3) Trimming excess data from the end of the cache file.  The problem with
+>      using DIO to write to the cache is that the write has to be rounded up to
+>      a multiple of the backing fs DIO blocksize,
+
+Actually, a multiple of the logical sector size of the backing
+device behind the backing filesystem.
+
+>      but if the file is truncated
+>      larger, that excess data now becomes part of the file.
+
+Keep the actual file size in your tracking xattr.
+
+>      Possibly it's sufficient to just clear the excess page space before
+>      writing, but that doesn't necessarily stop a writable mmap from
+>      scribbling on it.
+
+We can't stop mmap from scribbling in it. All filesystems have this
+problem, so to prevent data leaks we have to zero the post-eof tail
+region on every write of the EOF block, anyway.
+
+>  (4) Committing outstanding cache metadata at cache withdrawal or netfs
+>      unmount.  I've previously mentioned this: it ends up with a whole slew of
+>      synchronous metadata changes being committed to the cache in one go
+>      (truncates, fallocates, fsync, xattrs, unlink+link of tmpfile) - and this
+>      can take quite a long time.  The cache needs to be more proactive in
+>      getting stuff committed as it goes along.
+
+Workqueues give you an easy mechanism for async dispatch and
+concurrency for synchronous operations. This is a largely solved
+problem...
+
+>  (5) Attaching to an object requires a pathwalk to it (normally only two
+>      steps) and then reading various xattrs on it - all synchronous, but can
+>      be punted to a background threadpool.
+
+a.k.a. punting to a workqueue :)
 
 Cheers,
 
