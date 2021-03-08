@@ -2,96 +2,68 @@ Return-Path: <v9fs-developer-bounces@lists.sourceforge.net>
 X-Original-To: lists+v9fs-developer@lfdr.de
 Delivered-To: lists+v9fs-developer@lfdr.de
 Received: from lists.sourceforge.net (lists.sourceforge.net [216.105.38.7])
-	by mail.lfdr.de (Postfix) with ESMTPS id 111713316F7
-	for <lists+v9fs-developer@lfdr.de>; Mon,  8 Mar 2021 20:09:31 +0100 (CET)
-Received: from [127.0.0.1] (helo=sfs-ml-1.v29.lw.sourceforge.com)
-	by sfs-ml-1.v29.lw.sourceforge.com with esmtp (Exim 4.90_1)
+	by mail.lfdr.de (Postfix) with ESMTPS id 701DE331A1A
+	for <lists+v9fs-developer@lfdr.de>; Mon,  8 Mar 2021 23:19:29 +0100 (CET)
+Received: from [127.0.0.1] (helo=sfs-ml-2.v29.lw.sourceforge.com)
+	by sfs-ml-2.v29.lw.sourceforge.com with esmtp (Exim 4.90_1)
 	(envelope-from <v9fs-developer-bounces@lists.sourceforge.net>)
-	id 1lJLFw-0000sM-Sb; Mon, 08 Mar 2021 19:09:28 +0000
+	id 1lJODm-0005AX-JG; Mon, 08 Mar 2021 22:19:26 +0000
 Received: from [172.30.20.202] (helo=mx.sourceforge.net)
- by sfs-ml-1.v29.lw.sourceforge.com with esmtps
+ by sfs-ml-2.v29.lw.sourceforge.com with esmtps
  (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.90_1)
- (envelope-from <dhowells@redhat.com>) id 1lJLFv-0000s9-L1
- for v9fs-developer@lists.sourceforge.net; Mon, 08 Mar 2021 19:09:27 +0000
+ (envelope-from <david@fromorbit.com>) id 1lJODk-0005AQ-VS
+ for v9fs-developer@lists.sourceforge.net; Mon, 08 Mar 2021 22:19:24 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=sourceforge.net; s=x; h=Message-ID:Date:Content-Transfer-Encoding:
- Content-ID:Content-Type:MIME-Version:Subject:Cc:To:References:In-Reply-To:
- From:Sender:Reply-To:Content-Description:Resent-Date:Resent-From:
- Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:
- List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=pBhajOJHrx3P1bFfpTnaW+JD8S792IZZwlNpIQC5Q0g=; b=SdHnX4jpM/lf4w1ZtxLL6cCXg1
- cRVPRLw4PchtZw7SeFCi6QbRJKebF0VpaGuS2gnnlomMS0xhCCJef9DkFPbFhqRRnnqfmjxCJotC2
- 4p8SUE+ZNmUPDA5xwTjkeaQqRwgGxeTtTrz1SJJ+SCG7Z1oHPpjQaIQ2ylTg7ny0BNc0=;
+ d=sourceforge.net; s=x; h=In-Reply-To:Content-Type:MIME-Version:References:
+ Message-ID:Subject:Cc:To:From:Date:Sender:Reply-To:Content-Transfer-Encoding:
+ Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+ Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
+ List-Subscribe:List-Post:List-Owner:List-Archive;
+ bh=8wCm7lihTNHTQHGsgX49WqwYrtJxNkJzhPXxPQiwvVU=; b=hnK8oTLPwF5zs0yuuOKgfMrJa9
+ D9zdUfrF9zoUy1Ebmp/IyGXuXOAg9+7xPj6pcVn+IjPwaoM1EHByLCP22i3pnuf+WozTeDCqJntMa
+ X7kZBcd92ugb7/wOJQ83f2pejdFJ+k1qvymhqBaRycRdHLOljAckoWIVYsEyJakGuWCE=;
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  ;
- h=Message-ID:Date:Content-Transfer-Encoding:Content-ID:Content-Type:
- MIME-Version:Subject:Cc:To:References:In-Reply-To:From:Sender:Reply-To:
+ h=In-Reply-To:Content-Type:MIME-Version:References:Message-ID:Subject:Cc:To
+ :From:Date:Sender:Reply-To:Content-Transfer-Encoding:Content-ID:
  Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
  :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
  List-Post:List-Owner:List-Archive;
- bh=pBhajOJHrx3P1bFfpTnaW+JD8S792IZZwlNpIQC5Q0g=; b=BpqVi/kmOfIuo+TZi2yayNiU/3
- zf0yjE7MVc4cIsCp2m48FNuusa3s7BMILZJ9qrnWN97EQ1vt5XnFi7lvpNJoVXAkRusIbD973KVsF
- b33wsvL8vovsZBgZ2QfqV317QnXDJbd/OE8mm1UPANdTof2jR1zLpkwRxTtwcYuzw8c8=;
-Received: from us-smtp-delivery-124.mimecast.com ([216.205.24.124])
- by sfi-mx-1.v28.lw.sourceforge.com with esmtps
- (TLSv1.2:ECDHE-RSA-AES256-SHA384:256) (Exim 4.92.2)
- id 1lJLFe-001g4y-1x
- for v9fs-developer@lists.sourceforge.net; Mon, 08 Mar 2021 19:09:27 +0000
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
- s=mimecast20190719; t=1615230543;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references;
- bh=pBhajOJHrx3P1bFfpTnaW+JD8S792IZZwlNpIQC5Q0g=;
- b=Wa4JJmEsSW657KZboi0NuNYCQXrcQKQCtgdmsY34DNdoKDodEQNsFhO+K82qcz6gnXw3Am
- bYFm5nlw2LlXa7zv3+yRNJKop2+0AW3SkmncBdXUTIvmnY6QEqvJD0OH5QYAXX3wWi5faE
- px3MGm5oi5ZdKAjrcO5E9eXxvseaqnQ=
-Received: from mimecast-mx01.redhat.com (mimecast-mx01.redhat.com
- [209.132.183.4]) (Using TLS) by relay.mimecast.com with ESMTP id
- us-mta-285-mfpi1OsCPjKSNXMW3mY4Qw-1; Mon, 08 Mar 2021 14:09:02 -0500
-X-MC-Unique: mfpi1OsCPjKSNXMW3mY4Qw-1
-Received: from smtp.corp.redhat.com (int-mx08.intmail.prod.int.phx2.redhat.com
- [10.5.11.23])
- (using TLSv1.2 with cipher AECDH-AES256-SHA (256/256 bits))
- (No client certificate requested)
- by mimecast-mx01.redhat.com (Postfix) with ESMTPS id E8114801814;
- Mon,  8 Mar 2021 19:08:59 +0000 (UTC)
-Received: from warthog.procyon.org.uk (ovpn-118-152.rdu2.redhat.com
- [10.10.118.152])
- by smtp.corp.redhat.com (Postfix) with ESMTP id 9B45F19C79;
- Mon,  8 Mar 2021 19:08:53 +0000 (UTC)
-Organization: Red Hat UK Ltd. Registered Address: Red Hat UK Ltd, Amberley
- Place, 107-111 Peascod Street, Windsor, Berkshire, SI4 1TE, United
- Kingdom.
- Registered in England and Wales under Company Registration No. 3798903
-From: David Howells <dhowells@redhat.com>
-In-Reply-To: <20210308185410.GE7284@fieldses.org>
-References: <20210308185410.GE7284@fieldses.org>
- <CAOQ4uxhxwKHLT559f8v5aFTheKgPUndzGufg0E58rkEqa9oQ3Q@mail.gmail.com>
+ bh=8wCm7lihTNHTQHGsgX49WqwYrtJxNkJzhPXxPQiwvVU=; b=Xs7ipQ8ExiL0aCZ/8o7KsfHuIi
+ vJNmrElqXXTMGJTpU/CWUSvKsmhaiStkhrJF24umWgrpoKyWayypiptMzEktPEZTC1TaMGlk4S4Si
+ y+0ku7do/30Mw0C2yL1ebm3dKf2h4nHd/CskwrnHqPFnYfOFk5+TDpTp66xJKMUael4o=;
+Received: from mail104.syd.optusnet.com.au ([211.29.132.246])
+ by sfi-mx-2.v28.lw.sourceforge.com with esmtp (Exim 4.92.3)
+ id 1lJODb-0001ur-3H
+ for v9fs-developer@lists.sourceforge.net; Mon, 08 Mar 2021 22:19:24 +0000
+Received: from dread.disaster.area (pa49-181-239-12.pa.nsw.optusnet.com.au
+ [49.181.239.12])
+ by mail104.syd.optusnet.com.au (Postfix) with ESMTPS id 29E148289A3;
+ Tue,  9 Mar 2021 08:55:36 +1100 (AEDT)
+Received: from dave by dread.disaster.area with local (Exim 4.92.3)
+ (envelope-from <david@fromorbit.com>)
+ id 1lJNqh-000HG4-6L; Tue, 09 Mar 2021 08:55:35 +1100
+Date: Tue, 9 Mar 2021 08:55:35 +1100
+From: Dave Chinner <david@fromorbit.com>
+To: David Howells <dhowells@redhat.com>
+Message-ID: <20210308215535.GA63242@dread.disaster.area>
+References: <CAOQ4uxhxwKHLT559f8v5aFTheKgPUndzGufg0E58rkEqa9oQ3Q@mail.gmail.com>
  <2653261.1614813611@warthog.procyon.org.uk>
  <517184.1615194835@warthog.procyon.org.uk>
-To: "J. Bruce Fields" <bfields@fieldses.org>
 MIME-Version: 1.0
-Content-ID: <19638.1615230532.1@warthog.procyon.org.uk>
-Date: Mon, 08 Mar 2021 19:08:52 +0000
-Message-ID: <19639.1615230532@warthog.procyon.org.uk>
-X-Scanned-By: MIMEDefang 2.84 on 10.5.11.23
-X-Spam-Score: -0.3 (/)
+Content-Disposition: inline
+In-Reply-To: <517184.1615194835@warthog.procyon.org.uk>
+X-Optus-CM-Score: 0
+X-Optus-CM-Analysis: v=2.3 cv=YKPhNiOx c=1 sm=1 tr=0 cx=a_idp_d
+ a=gO82wUwQTSpaJfP49aMSow==:117 a=gO82wUwQTSpaJfP49aMSow==:17
+ a=kj9zAlcOel0A:10 a=dESyimp9J3IA:10 a=pGLkceISAAAA:8 a=7-415B0cAAAA:8
+ a=tj5_YPy7viIAn9pg2yAA:9 a=CjuIK1q_8ugA:10 a=biEYGPWJfzWAr4FL6Ov7:22
+X-Spam-Score: 0.0 (/)
 X-Spam-Report: Spam Filtering performed by mx.sourceforge.net.
  See http://spamassassin.org/tag/ for more details.
- 0.0 RCVD_IN_MSPIKE_H3      RBL: Good reputation (+3)
- [216.205.24.124 listed in wl.mailspike.net]
- -0.0 SPF_PASS               SPF: sender matches SPF record
- 0.0 SPF_HELO_NONE          SPF: HELO does not publish an SPF Record
- -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from author's
- domain
- -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
- 0.1 DKIM_SIGNED            Message has a DKIM or DK signature,
- not necessarily valid
- 0.0 RCVD_IN_MSPIKE_WL      Mailspike good senders
- -0.3 DKIMWL_WL_HIGH         DKIMwl.org - High trust sender
-X-Headers-End: 1lJLFe-001g4y-1x
+ -0.0 SPF_HELO_PASS          SPF: HELO matches SPF record
+ 0.0 SPF_NONE               SPF: sender does not publish an SPF Record
+X-Headers-End: 1lJODb-0001ur-3H
 Subject: Re: [V9fs-developer] fscache: Redesigning the on-disk cache
 X-BeenThere: v9fs-developer@lists.sourceforge.net
 X-Mailman-Version: 2.1.21
@@ -109,9 +81,10 @@ Cc: Christoph Hellwig <hch@infradead.org>,
  Jeff Layton <jlayton@redhat.com>, CIFS <linux-cifs@vger.kernel.org>,
  David Wysochanski <dwysocha@redhat.com>, Amir Goldstein <amir73il@gmail.com>,
  linux-kernel <linux-kernel@vger.kernel.org>,
- "Matthew Wilcox \(Oracle\)" <willy@infradead.org>, dhowells@redhat.com,
- Miklos Szeredi <miklos@szeredi.hu>, linux-cachefs@redhat.com,
- Alexander Viro <viro@zeniv.linux.org.uk>, Dave Chinner <dchinner@redhat.com>,
+ "Matthew Wilcox \(Oracle\)" <willy@infradead.org>,
+ "J. Bruce Fields" <bfields@fieldses.org>, Miklos Szeredi <miklos@szeredi.hu>,
+ linux-cachefs@redhat.com, Alexander Viro <viro@zeniv.linux.org.uk>,
+ Dave Chinner <dchinner@redhat.com>,
  linux-fsdevel <linux-fsdevel@vger.kernel.org>,
  v9fs-developer@lists.sourceforge.net, ceph-devel <ceph-devel@vger.kernel.org>,
  linux-afs@lists.infradead.org
@@ -119,31 +92,54 @@ Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: v9fs-developer-bounces@lists.sourceforge.net
 
-J. Bruce Fields <bfields@fieldses.org> wrote:
-
-> On Mon, Mar 08, 2021 at 09:13:55AM +0000, David Howells wrote:
-> > Amir Goldstein <amir73il@gmail.com> wrote:
-> > > With ->fiemap() you can at least make the distinction between a non existing
-> > > and an UNWRITTEN extent.
-> > 
-> > I can't use that for XFS, Ext4 or btrfs, I suspect.  Christoph and Dave's
-> > assertion is that the cache can't rely on the backing filesystem's metadata
-> > because these can arbitrarily insert or remove blocks of zeros to bridge or
-> > split extents.
+On Mon, Mar 08, 2021 at 09:13:55AM +0000, David Howells wrote:
+> Amir Goldstein <amir73il@gmail.com> wrote:
 > 
-> Could you instead make some sort of explicit contract with the
-> filesystem?  Maybe you'd flag it at mkfs time and query for it before
-> allowing a filesystem to be used for fscache.  You don't need every
-> filesystem to support fscache, right, just one acceptable one?
+> > >  (0a) As (0) but using SEEK_DATA/SEEK_HOLE instead of bmap and opening the
+> > >       file for every whole operation (which may combine reads and writes).
+> > 
+> > I read that NFSv4 supports hole punching, so when using ->bmap() or SEEK_DATA
+> > to keep track of present data, it's hard to distinguish between an
+> > invalid cached range and a valid "cached hole".
+> 
+> I wasn't exactly intending to permit caching over NFS.  That leads to fun
+> making sure that the superblock you're caching isn't the one that has the
+> cache in it.
+> 
+> However, we will need to handle hole-punching being done on a cached netfs,
+> even if that's just to completely invalidate the cache for that file.
+> 
+> > With ->fiemap() you can at least make the distinction between a non existing
+> > and an UNWRITTEN extent.
+> 
+> I can't use that for XFS, Ext4 or btrfs, I suspect.  Christoph and Dave's
+> assertion is that the cache can't rely on the backing filesystem's metadata
+> because these can arbitrarily insert or remove blocks of zeros to bridge or
+> split extents.
 
-I've asked about that, but the filesystem maintainers are reluctant to do
-that.
+Well, that's not the big problem. The issue that makes FIEMAP
+unusable for determining if there is user data present in a file is
+that on-disk extent maps aren't exactly coherent with in-memory user
+data state.
 
-Something might be possible in ext4 using direct access to jbd2, though I
-don't know exactly what facilities that offers.
+That is, we can have a hole on disk with delalloc user data in
+memory.  There's user data in the file, just not on disk. Same goes
+for unwritten extents - there can be dirty data in memory over an
+unwritten extent, and it won't get converted to written until the
+data is written back and the filesystem runs a conversion
+transaction.
 
-David
+So, yeah, if you use FIEMAP to determine where data lies in a file
+that is being actively modified, you're going get corrupt data
+sooner rather than later.  SEEK_HOLE/DATA are coherent with in
+memory user data, so don't have this problem.
 
+Cheers,
+
+Dave.
+-- 
+Dave Chinner
+david@fromorbit.com
 
 
 _______________________________________________
