@@ -2,101 +2,77 @@ Return-Path: <v9fs-developer-bounces@lists.sourceforge.net>
 X-Original-To: lists+v9fs-developer@lfdr.de
 Delivered-To: lists+v9fs-developer@lfdr.de
 Received: from lists.sourceforge.net (lists.sourceforge.net [216.105.38.7])
-	by mail.lfdr.de (Postfix) with ESMTPS id E09723344C9
-	for <lists+v9fs-developer@lfdr.de>; Wed, 10 Mar 2021 18:07:29 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0B691337553
+	for <lists+v9fs-developer@lfdr.de>; Thu, 11 Mar 2021 15:20:40 +0100 (CET)
 Received: from [127.0.0.1] (helo=sfs-ml-1.v29.lw.sourceforge.com)
 	by sfs-ml-1.v29.lw.sourceforge.com with esmtp (Exim 4.90_1)
 	(envelope-from <v9fs-developer-bounces@lists.sourceforge.net>)
-	id 1lK2Iy-0005n2-Km; Wed, 10 Mar 2021 17:07:28 +0000
+	id 1lKMB3-00013P-J7; Thu, 11 Mar 2021 14:20:37 +0000
 Received: from [172.30.20.202] (helo=mx.sourceforge.net)
  by sfs-ml-1.v29.lw.sourceforge.com with esmtps
  (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.90_1)
- (envelope-from <dhowells@redhat.com>) id 1lK2Iw-0005mY-Cf
- for v9fs-developer@lists.sourceforge.net; Wed, 10 Mar 2021 17:07:26 +0000
+ (envelope-from <info@ysedm.com.cn>) id 1lKMB2-000133-Bc
+ for v9fs-developer@lists.sourceforge.net; Thu, 11 Mar 2021 14:20:36 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=sourceforge.net; s=x; h=Content-Transfer-Encoding:Content-Type:MIME-Version
- :References:In-Reply-To:Message-ID:Date:Cc:To:From:Subject:Sender:Reply-To:
- Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
- Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
+ d=sourceforge.net; s=x; h=Message-ID:Content-Type:Mime-Version:Reply-To:
+ Subject:To:From:Date:Sender:Cc:Content-Transfer-Encoding:Content-ID:
+ Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
+ :Resent-Message-ID:In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:
  List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=/QrxkL5yU3bNKMVvjsOwNL+2HswH3DuEf3MKoAjRTHw=; b=Fb9Ty+Araa8oNKRkfHgrkPZ6kN
- fbrelpreF6wqqorYReDIlxKYDfAgcUbGqBlsRcytZSsxyDse+r/tVL7TOGMG/64x9JfVqFyb51QzI
- Gcurw/NRvrA9V9Y8HL64hqG+9gNb8exGkxt60RCpM9S2lIGs+WuY7DVdU3Lw8Tlt4WGY=;
+ bh=WCpO9qj9kMMmUAqwITyzcCR2SzFWM/71IIYtqLiZx3g=; b=AD8x7xtZ4sqzdk7FJG3PpVMRhM
+ e4jqEsx2hNQc+y0mXb6tqkENg1SOr/P+scfbv5IoGRtrndCKDQim85mQeVxGpAJ2W6WIsuc3Xxkao
+ QLRcmmTraX5OD+4UN3taw1/A+NKKBq91h+UtDEhnPV1AYqvXDaMtOEXMZ7uelyBzuU0Y=;
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  ;
- h=Content-Transfer-Encoding:Content-Type:MIME-Version:References:
- In-Reply-To:Message-ID:Date:Cc:To:From:Subject:Sender:Reply-To:Content-ID:
- Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
- :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
- List-Post:List-Owner:List-Archive;
- bh=/QrxkL5yU3bNKMVvjsOwNL+2HswH3DuEf3MKoAjRTHw=; b=MdDKo5IDNYxI2IYtX6nudwnP8d
- at68PsrB6GmBW0pjF84iBwVmK/Uz2b4U7bvpLS4fq9bzH0UYfgJLzkpjdUBYhbzWUxSeMr0/+PBX5
- JFc+yvbAA7LLefBdXG54/uyMa0HVBoq+ST2Q7AB8vjpCMg5DEZFPgqoAMWQnlwYD1bf8=;
-Received: from us-smtp-delivery-124.mimecast.com ([63.128.21.124])
- by sfi-mx-2.v28.lw.sourceforge.com with esmtps
- (TLSv1.2:ECDHE-RSA-AES256-SHA384:256) (Exim 4.92.3)
- id 1lK2Im-0003pL-84
- for v9fs-developer@lists.sourceforge.net; Wed, 10 Mar 2021 17:07:25 +0000
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
- s=mimecast20190719; t=1615396030;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references;
- bh=/QrxkL5yU3bNKMVvjsOwNL+2HswH3DuEf3MKoAjRTHw=;
- b=cScLYBZpFp1HVCoxRwQcFyydiq0bPA/MSk8qunbgHdN0PaGyzZOtq1Kl7bPDLSt4ZuLO/Y
- 6yItTBcrM92dXwWMXI+cMZxHtMPUV/CFuyWdB7EXtk2GJr58rg5asvem9tpvKvg57u5UAf
- Cw7PqgC7t+JI4yRNRGasdeDw+o8Zzu4=
-Received: from mimecast-mx01.redhat.com (mimecast-mx01.redhat.com
- [209.132.183.4]) (Using TLS) by relay.mimecast.com with ESMTP id
- us-mta-54-qyyWa-4pPuSOIVR5bFKa8A-1; Wed, 10 Mar 2021 12:00:48 -0500
-X-MC-Unique: qyyWa-4pPuSOIVR5bFKa8A-1
-Received: from smtp.corp.redhat.com (int-mx07.intmail.prod.int.phx2.redhat.com
- [10.5.11.22])
- (using TLSv1.2 with cipher AECDH-AES256-SHA (256/256 bits))
- (No client certificate requested)
- by mimecast-mx01.redhat.com (Postfix) with ESMTPS id CEAD757;
- Wed, 10 Mar 2021 17:00:45 +0000 (UTC)
-Received: from warthog.procyon.org.uk (ovpn-118-152.rdu2.redhat.com
- [10.10.118.152])
- by smtp.corp.redhat.com (Postfix) with ESMTP id ADBA810016FD;
- Wed, 10 Mar 2021 17:00:33 +0000 (UTC)
-Organization: Red Hat UK Ltd. Registered Address: Red Hat UK Ltd, Amberley
- Place, 107-111 Peascod Street, Windsor, Berkshire, SI4 1TE, United
- Kingdom.
- Registered in England and Wales under Company Registration No. 3798903
-From: David Howells <dhowells@redhat.com>
-To: Trond Myklebust <trondmy@hammerspace.com>,
- Anna Schumaker <anna.schumaker@netapp.com>, Steve French <sfrench@samba.org>, 
- Dominique Martinet <asmadeus@codewreck.org>
-Date: Wed, 10 Mar 2021 17:00:32 +0000
-Message-ID: <161539563244.286939.16537296241609909980.stgit@warthog.procyon.org.uk>
-In-Reply-To: <161539526152.286939.8589700175877370401.stgit@warthog.procyon.org.uk>
-References: <161539526152.286939.8589700175877370401.stgit@warthog.procyon.org.uk>
-User-Agent: StGit/0.23
-MIME-Version: 1.0
-X-Scanned-By: MIMEDefang 2.84 on 10.5.11.22
-X-Spam-Score: -0.3 (/)
+ h=Message-ID:Content-Type:Mime-Version:Reply-To:Subject:To:From:Date:Sender
+ :Cc:Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+ Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:
+ References:List-Id:List-Help:List-Unsubscribe:List-Subscribe:List-Post:
+ List-Owner:List-Archive; bh=WCpO9qj9kMMmUAqwITyzcCR2SzFWM/71IIYtqLiZx3g=; b=l
+ zTmSccQBhf9WxJnKByUzwXXSviP+ekFrPqR77S4Yp1U7grluL2LGoTDpdidN7qIgObH7c4Iypbtjv
+ pNB7G3jNhe4j4Da7NduaFVouZOoiPGYnIc7r9LpmefZRUD94KUS79WQC9GcsGM7dwQjWfmLpBK2HZ
+ XK3Bm0zP/SumrUdc=;
+Received: from [185.185.41.109] (helo=hu4.sosung.net)
+ by sfi-mx-1.v28.lw.sourceforge.com with esmtps
+ (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.92.2)
+ id 1lKMAc-00GSLd-Oa
+ for v9fs-developer@lists.sourceforge.net; Thu, 11 Mar 2021 14:20:36 +0000
+Received: from edm01.bossedm.com (edm01.chinaemail.cn [180.76.132.54])
+ by hu4.sosung.net (Postfix) with ESMTPS id 7B554375B0
+ for <v9fs-developer@lists.sourceforge.net>;
+ Thu, 11 Mar 2021 04:32:51 -0500 (EST)
+Received: from unknown (unknown [127.0.0.1])
+ by edm01.bossedm.com (Bossedm) with SMTP id 3AE961216FA
+ for <v9fs-developer@lists.sourceforge.net>;
+ Thu, 11 Mar 2021 17:32:49 +0800 (CST)
+Date: Thu, 11 Mar 2021 17:32:49 +0800 (CST)
+From: "=?utf-8?B?WXVtaSA=?=" <yumi@hardfindcomponents.com>
+To: <v9fs-developer@lists.sourceforge.net>
+Mime-Version: 1.0
+X-Notify-Mail: No
+Message-ID: <1858#76199#v9fs-developer@lists.sourceforge.net#b7685d8384c9a4ec01e29ab9bcfc16eb#1615455169020>
+X-Iszbb: Yes
+X-ZZY-MESSAGE-ID: FA202007B9587C0A000000000000C1E34960000000000800
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ysedm.com.cn; s=s9527; 
+ t=1615455169; bh=cG80tJ/tHUjETag3MvHQIHiCFIsZLIfZcCz9XRTczQY=; 
+ h=Date:From:Subject:Message-ID;
+ b=zNSj2C4+yo6165h7lasV4Ft1g9zgSf4nLcZp65PjHWnLEWVeYSGdqQcYofOB93oeJ
+ v87TBlGc6kKq34LfeZppVL0do2TNM8m5Zd05mFK3PbR4IiNLWX7t9EHjVIWRh9UU5E
+ nX3nG+KCi26yM1m/cAp0p9LfaYCwxuQtOn6+LUbU=
+X-Spam-Score: 0.3 (/)
 X-Spam-Report: Spam Filtering performed by mx.sourceforge.net.
  See http://spamassassin.org/tag/ for more details.
  0.0 URIBL_BLOCKED ADMINISTRATOR NOTICE: The query to URIBL was blocked.
  See
  http://wiki.apache.org/spamassassin/DnsBlocklists#dnsbl-block
- for more information. [URIs: infradead.org]
- 0.0 RCVD_IN_MSPIKE_H4      RBL: Very Good reputation (+4)
- [63.128.21.124 listed in wl.mailspike.net]
- -0.0 SPF_PASS               SPF: sender matches SPF record
- 0.0 SPF_HELO_NONE          SPF: HELO does not publish an SPF Record
- -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from author's
- domain
- -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
- 0.1 DKIM_SIGNED            Message has a DKIM or DK signature,
- not necessarily valid
- 0.0 RCVD_IN_MSPIKE_WL      Mailspike good senders
- -0.3 DKIMWL_WL_HIGH         DKIMwl.org - High trust sender
-X-Headers-End: 1lK2Im-0003pL-84
-Subject: [V9fs-developer] [PATCH v4 28/28] afs: Use the
- fscache_write_begin() helper
+ for more information. [URIs: ysedm.com.cn]
+ 0.2 HEADER_FROM_DIFFERENT_DOMAINS From and EnvelopeFrom 2nd level mail
+ domains are different
+ 0.0 TIME_LIMIT_EXCEEDED    Exceeded time limit / deadline
+X-Headers-End: 1lKMAc-00GSLd-Oa
+X-Content-Filtered-By: Mailman/MimeDel 2.1.21
+Subject: Re: [V9fs-developer] 
+ =?utf-8?q?=5Felectronics=5Fcomponents=5Fsupply?=
 X-BeenThere: v9fs-developer@lists.sourceforge.net
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -108,257 +84,48 @@ List-Post: <mailto:v9fs-developer@lists.sourceforge.net>
 List-Help: <mailto:v9fs-developer-request@lists.sourceforge.net?subject=help>
 List-Subscribe: <https://lists.sourceforge.net/lists/listinfo/v9fs-developer>, 
  <mailto:v9fs-developer-request@lists.sourceforge.net?subject=subscribe>
-Cc: linux-cifs@vger.kernel.org, linux-nfs@vger.kernel.org,
- Jeff Layton <jlayton@redhat.com>, David Wysochanski <dwysocha@redhat.com>,
- linux-kernel@vger.kernel.org,
- "Matthew Wilcox \(Oracle\)" <willy@infradead.org>, dhowells@redhat.com,
- linux-cachefs@redhat.com, Alexander Viro <viro@zeniv.linux.org.uk>,
- linux-fsdevel@vger.kernel.org, v9fs-developer@lists.sourceforge.net,
- ceph-devel@vger.kernel.org, linux-afs@lists.infradead.org
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Reply-To: yumi@hardfindcomponents.com
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: v9fs-developer-bounces@lists.sourceforge.net
 
-Make AFS use the new fscache_write_begin() helper to do the pre-reading
-required before the write.  If successful, the helper returns with the
-required page filled in and locked.  It may read more than just one page,
-expanding the read to meet cache granularity requirements as necessary.
-
-Note: A more advanced version of this could be made that does
-generic_perform_write() for a whole cache granule.  This would make it
-easier to avoid doing the download/read for the data to be overwritten.
-
-Signed-off-by: David Howells <dhowells@redhat.com>
-cc: linux-afs@lists.infradead.org
-cc: linux-cachefs@redhat.com
-cc: linux-fsdevel@vger.kernel.org
-Link: https://lore.kernel.org/r/160588546422.3465195.1546354372589291098.stgit@warthog.procyon.org.uk/ # rfc
----
-
- fs/afs/file.c     |   19 +++++++++
- fs/afs/internal.h |    1 
- fs/afs/write.c    |  108 ++++++-----------------------------------------------
- 3 files changed, 31 insertions(+), 97 deletions(-)
-
-diff --git a/fs/afs/file.c b/fs/afs/file.c
-index 99bb4649a306..cf2b664a68a5 100644
---- a/fs/afs/file.c
-+++ b/fs/afs/file.c
-@@ -334,6 +334,13 @@ static void afs_init_rreq(struct netfs_read_request *rreq, struct file *file)
- 	rreq->netfs_priv = key_get(afs_file_key(file));
- }
- 
-+static bool afs_is_cache_enabled(struct inode *inode)
-+{
-+	struct fscache_cookie *cookie = afs_vnode_cache(AFS_FS_I(inode));
-+
-+	return fscache_cookie_enabled(cookie) && !hlist_empty(&cookie->backing_objects);
-+}
-+
- static int afs_begin_cache_operation(struct netfs_read_request *rreq)
- {
- 	struct afs_vnode *vnode = AFS_FS_I(rreq->inode);
-@@ -341,14 +348,24 @@ static int afs_begin_cache_operation(struct netfs_read_request *rreq)
- 	return fscache_begin_read_operation(rreq, afs_vnode_cache(vnode));
- }
- 
-+static int afs_check_write_begin(struct file *file, loff_t pos, unsigned len,
-+				 struct page *page, void **_fsdata)
-+{
-+	struct afs_vnode *vnode = AFS_FS_I(file_inode(file));
-+
-+	return test_bit(AFS_VNODE_DELETED, &vnode->flags) ? -ESTALE : 0;
-+}
-+
- static void afs_priv_cleanup(struct address_space *mapping, void *netfs_priv)
- {
- 	key_put(netfs_priv);
- }
- 
--static const struct netfs_read_request_ops afs_req_ops = {
-+const struct netfs_read_request_ops afs_req_ops = {
- 	.init_rreq		= afs_init_rreq,
-+	.is_cache_enabled	= afs_is_cache_enabled,
- 	.begin_cache_operation	= afs_begin_cache_operation,
-+	.check_write_begin	= afs_check_write_begin,
- 	.issue_op		= afs_req_issue_op,
- 	.cleanup		= afs_priv_cleanup,
- };
-diff --git a/fs/afs/internal.h b/fs/afs/internal.h
-index 96b33d2e3116..9f4040724318 100644
---- a/fs/afs/internal.h
-+++ b/fs/afs/internal.h
-@@ -1045,6 +1045,7 @@ extern void afs_dynroot_depopulate(struct super_block *);
- extern const struct address_space_operations afs_fs_aops;
- extern const struct inode_operations afs_file_inode_operations;
- extern const struct file_operations afs_file_operations;
-+extern const struct netfs_read_request_ops afs_req_ops;
- 
- extern int afs_cache_wb_key(struct afs_vnode *, struct afs_file *);
- extern void afs_put_wb_key(struct afs_wb_key *);
-diff --git a/fs/afs/write.c b/fs/afs/write.c
-index e672833c99bc..b2e03de09c24 100644
---- a/fs/afs/write.c
-+++ b/fs/afs/write.c
-@@ -11,6 +11,8 @@
- #include <linux/pagemap.h>
- #include <linux/writeback.h>
- #include <linux/pagevec.h>
-+#include <linux/netfs.h>
-+#include <linux/fscache.h>
- #include "internal.h"
- 
- /*
-@@ -22,68 +24,6 @@ int afs_set_page_dirty(struct page *page)
- 	return __set_page_dirty_nobuffers(page);
- }
- 
--/*
-- * Handle completion of a read operation to fill a page.
-- */
--static void afs_fill_hole(struct afs_read *req)
--{
--	if (iov_iter_count(req->iter) > 0)
--		/* The read was short - clear the excess buffer. */
--		iov_iter_zero(iov_iter_count(req->iter), req->iter);
--}
--
--/*
-- * partly or wholly fill a page that's under preparation for writing
-- */
--static int afs_fill_page(struct file *file,
--			 loff_t pos, unsigned int len, struct page *page)
--{
--	struct afs_vnode *vnode = AFS_FS_I(file_inode(file));
--	struct afs_read *req;
--	size_t p;
--	void *data;
--	int ret;
--
--	_enter(",,%llu", (unsigned long long)pos);
--
--	if (pos >= vnode->vfs_inode.i_size) {
--		p = pos & ~PAGE_MASK;
--		ASSERTCMP(p + len, <=, PAGE_SIZE);
--		data = kmap(page);
--		memset(data + p, 0, len);
--		kunmap(page);
--		return 0;
--	}
--
--	req = kzalloc(sizeof(struct afs_read), GFP_KERNEL);
--	if (!req)
--		return -ENOMEM;
--
--	refcount_set(&req->usage, 1);
--	req->vnode	= vnode;
--	req->done	= afs_fill_hole;
--	req->key	= key_get(afs_file_key(file));
--	req->pos	= pos;
--	req->len	= len;
--	req->nr_pages	= 1;
--	req->iter	= &req->def_iter;
--	iov_iter_xarray(&req->def_iter, READ, &file->f_mapping->i_pages, pos, len);
--
--	ret = afs_fetch_data(vnode, req);
--	afs_put_read(req);
--	if (ret < 0) {
--		if (ret == -ENOENT) {
--			_debug("got NOENT from server"
--			       " - marking file deleted and stale");
--			set_bit(AFS_VNODE_DELETED, &vnode->flags);
--			ret = -ESTALE;
--		}
--	}
--
--	_leave(" = %d", ret);
--	return ret;
--}
--
- /*
-  * prepare to perform part of a write to a page
-  */
-@@ -102,24 +42,14 @@ int afs_write_begin(struct file *file, struct address_space *mapping,
- 	_enter("{%llx:%llu},%llx,%x",
- 	       vnode->fid.vid, vnode->fid.vnode, pos, len);
- 
--	page = grab_cache_page_write_begin(mapping, pos / PAGE_SIZE, flags);
--	if (!page)
--		return -ENOMEM;
--
--	if (!PageUptodate(page) && len != PAGE_SIZE) {
--		ret = afs_fill_page(file, pos & PAGE_MASK, PAGE_SIZE, page);
--		if (ret < 0) {
--			unlock_page(page);
--			put_page(page);
--			_leave(" = %d [prep]", ret);
--			return ret;
--		}
--		SetPageUptodate(page);
--	}
--
--#ifdef CONFIG_AFS_FSCACHE
--	wait_on_page_fscache(page);
--#endif
-+	/* Prefetch area to be written into the cache if we're caching this
-+	 * file.  We need to do this before we get a lock on the page in case
-+	 * there's more than one writer competing for the same cache block.
-+	 */
-+	ret = netfs_write_begin(file, mapping, pos, len, flags, &page, fsdata,
-+				&afs_req_ops, NULL);
-+	if (ret < 0)
-+		return ret;
- 
- 	index = page->index;
- 	from = pos - index * PAGE_SIZE;
-@@ -184,7 +114,6 @@ int afs_write_end(struct file *file, struct address_space *mapping,
- 	unsigned int f, from = pos & (thp_size(page) - 1);
- 	unsigned int t, to = from + copied;
- 	loff_t i_size, maybe_i_size;
--	int ret = 0;
- 
- 	_enter("{%llx:%llu},{%lx}",
- 	       vnode->fid.vid, vnode->fid.vnode, page->index);
-@@ -203,19 +132,7 @@ int afs_write_end(struct file *file, struct address_space *mapping,
- 		write_sequnlock(&vnode->cb_lock);
- 	}
- 
--	if (!PageUptodate(page)) {
--		if (copied < len) {
--			/* Try and load any missing data from the server.  The
--			 * unmarshalling routine will take care of clearing any
--			 * bits that are beyond the EOF.
--			 */
--			ret = afs_fill_page(file, pos + copied,
--					    len - copied, page);
--			if (ret < 0)
--				goto out;
--		}
--		SetPageUptodate(page);
--	}
-+	ASSERT(PageUptodate(page));
- 
- 	if (PagePrivate(page)) {
- 		priv = page_private(page);
-@@ -236,12 +153,11 @@ int afs_write_end(struct file *file, struct address_space *mapping,
- 
- 	if (set_page_dirty(page))
- 		_debug("dirtied %lx", page->index);
--	ret = copied;
- 
- out:
- 	unlock_page(page);
- 	put_page(page);
--	return ret;
-+	return copied;
- }
- 
- /*
-
-
-
-
-_______________________________________________
-V9fs-developer mailing list
-V9fs-developer@lists.sourceforge.net
-https://lists.sourceforge.net/lists/listinfo/v9fs-developer
+DQoNCg0KDQoNCg0KCQ0KCQkmbmJzcDsmbmJzcDtIYXJkJm5ic3A7RmluZCZuYnNwO0VsZWN0cm9u
+aWNzIEx0ZC4gDQoJDQoJDQoJCSZuYnNwOyANCgkNCgkNCgkJRGVhciBGcmllbmQsIA0KCQ0KCQ0K
+CQlUaGlzIGlzIFl1bWkgZnJvbSBIYXJkIEZpbmQgRWxlY3Ryb25pY3MgTHRkKHd3dy5oYXJkZmlu
+ZGVsZWN0cm9uaWNzLmNvbSkmbmJzcDt3aGljaCBpcyBhIHByb2Zlc3Npb25hbCBlbGVjdHJvbmlj
+cyBkaXN0cmlidXRvciB3aXRoIDEwIHllYXJzIG9mIGV4cGVyaWVuY2VzLiZuYnNwOw0KICANCgkN
+CgkNCgkJUmVjZW50bHkgDQptb3N0IG9mIG91ciBjdXN0b21lcnMgZnJvbSB5b3VyIGNvdW50cnkg
+dXN1YWxseSBidXkgYmVsb3cgcGFydHMgZnJvbSANCnVzOg0KDQpJQzombmJzcDtUSeOAgU1pY3Jv
+Y2hpcOOAgUFE44CBWGlsaW5444CBTlhQ44CBQWx0ZXJh44CBQ3lwcmVzc+OAgUxU44CBSVLjgIFN
+YXhpbeOAgVNhbkRpc2vjgIFGcmVlc2NhbGUuLg0KTUxDQyANCkNhcGFjaXRvciAmYW1wOyZuYnNw
+O1Jlc2lzdG9yOiZuYnNwO1lBR0VPIOOAgVNhbXN1bmfjgIFBVljjgIFNdXJhdGEuLg0KRGlvZGUg
+DQomYW1wO1RyYW5zaXN0b3I6Jm5ic3A7U1TjgIFWaXNoYXkuLg0KDQpQbHMgDQpjaGVjayBvdXIg
+aG90Jm5ic3A7b2ZmZXIsIHdhaXQmbmJzcDtmb3IgeW91ciBraW5kbHkgUkZROiAgDQoJDQoJDQoJ
+CQ0KUkMwNDAySlItMDcxS0wgMTBLL1IgWUFHRU8gMjAyMCsgMC4wMDEzdXNkIA0KUkMwNDAySlIt
+MDczSzNMIDEwSy9SIFlBR0VPIDIwMjArIDAuMDAwNnVzZCANClJDMDQwMkpSLTA3NEs3TCAxMEsv
+UiBZQUdFTyAyMDIwKyAwLjAwMDZ1c2QgDQpSQzA0MDJKUi0wNzEwS0wgMTBLL1IgWUFHRU8gMjAy
+MCsgMC4wMDA3NHVzZCANClJDMDQwMkpSLTA3MTVLTCAxMEsvUiBZQUdFTyAyMDIwKyAwLjAwMDZ1
+c2QgDQpSQzA0MDJKUi0wNzE4S0wgMTBLL1IgWUFHRU8gMjAyMCsgMC4wMDA2dXNkIA0KUkMwNDAy
+SlItMDcyMktMIDEwSy9SIFlBR0VPIDIwMjArIDAuMDAwNnVzZCANClJDMDQwMkpSLTA3MjdLTCAx
+MEsvUiBZQUdFTyAyMDIwKyAwLjAwMDZ1c2QgDQpSQzA0MDJKUi0wNzMzS0wgMTBLL1IgWUFHRU8g
+MjAyMCsgMC4wMDA2dXNkIA0KUkMwNDAySlItMDc0N0tMIDEwSy9SIFlBR0VPIDIwMjArIDAuMDAx
+MXVzZCANClJDMDYwM0pSLTA3NjhLTCAxMEsvUiBZQUdFTyAyMDIwKyAwLjAwMDZ1c2QgDQpSQzA0
+MDJKUi0wNzkxS0wgMTBLL1IgWUFHRU8gMjAyMCsgMC4wMDA2dXNkDQoNCiANCgkNCgkNCgkJIEtl
+ZXAgc21pbGluZyBldmVyeSBkYXkmbmJzcDsoKu+/oynvv6MpIA0KCQ0KCQ0KCQkmbmJzcDsgDQoJ
+DQoJDQoJCVl1bWkgDQoJDQoJDQoJCUFjY291bnQgDQpNYW5hZ2VyICANCgkNCgkNCgkJSGFyZCBG
+aW5kIEVsZWN0cm9uaWNzIEx0ZC4gDQoJDQoJDQoJCXNvdXJjaW5nIGhhcmQgZmluZCBlbGVjdHJv
+bmljIGNvbXBvbmVudHMgDQoJDQoJDQoJCQ0KMzE1LCBTaGFoZSBSb2QsIExvbmcgR2FuZyBEaXN0
+cmljdCwgU2hlbnpoZW4sIENOLCA1MTgwMDANClRlbDogKzg2LTc1NS04NDE4IDgxMDMmbmJzcDsm
+bmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJz
+cDsgIA0KCQ0KCQ0KCQlTa3lwZS9FbWFpbDogeXVtaUBoYXJkZmluZGVsZWN0cm9uaWNzLmNvbSAN
+CgkNCgkNCgkJTGlua2VkbG46IHd3dy5saW5rZWRpbi5jb20vaW4veXVtaS1nYW8gDQoJDQoJDQoJ
+CUZhY2Vib29rOiBmYWNlYm9vay5jb20vWXVtaWhhcmRmaW5kIA0KCQ0KCQ0KCQlXZWI6IGh0dHA6
+Ly93d3cuaGFyZGZpbmRlbGVjdHJvbmljcy5jb20vIA0KCQ0KCQ0KCQkmbmJzcDsgDQoJDQoJDQoJ
+CQ0KSWYgeW91IGRvbid0IHdhbnQgdG8gcmVjZWl2ZSB0aGlzIG1haWwsIHBscyByZXR1cm4gd2l0
+aCAicmVtb3ZlIiBvbiB0aGUgc3ViamVjdCBsaW5lLiANCgkNCgkNCgkJJm5ic3A7IA0KCQ0KDQoN
+Cg0KDQoJ5qGj6ZO6572R4oCU4oCU5Zyo57q/5paH5qGj5YWN6LS55aSE55CGIA0K5aaC5p6c5L2g
+5LiN5oOz5YaN5pS25Yiw6K+l5Lqn5ZOB55qE5o6o6I2Q6YKu5Lu277yM6K+354K55Ye76L+Z6YeM
+6YCA6K6iCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fClY5
+ZnMtZGV2ZWxvcGVyIG1haWxpbmcgbGlzdApWOWZzLWRldmVsb3BlckBsaXN0cy5zb3VyY2Vmb3Jn
+ZS5uZXQKaHR0cHM6Ly9saXN0cy5zb3VyY2Vmb3JnZS5uZXQvbGlzdHMvbGlzdGluZm8vdjlmcy1k
+ZXZlbG9wZXIK
