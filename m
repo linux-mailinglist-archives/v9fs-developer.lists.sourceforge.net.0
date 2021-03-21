@@ -2,74 +2,75 @@ Return-Path: <v9fs-developer-bounces@lists.sourceforge.net>
 X-Original-To: lists+v9fs-developer@lfdr.de
 Delivered-To: lists+v9fs-developer@lfdr.de
 Received: from lists.sourceforge.net (lists.sourceforge.net [216.105.38.7])
-	by mail.lfdr.de (Postfix) with ESMTPS id 12233343188
-	for <lists+v9fs-developer@lfdr.de>; Sun, 21 Mar 2021 07:48:52 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.sourceforge.net; s=beta; h=Content-Transfer-Encoding:Content-Type:Cc:
-	Reply-To:From:List-Subscribe:List-Help:List-Post:List-Archive:
-	List-Unsubscribe:List-Id:Subject:MIME-Version:Message-ID:Date:To:Sender:
-	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
-	Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:List-Owner;
-	bh=QVB0pPua0SypTxzVvJW76t8Dr2xKxCZRBZw0vJy5FkY=; b=DKA5lrwmX5iPEJqQnQg3tmKgE7
-	RnValAPnO7oJlU8JK+s26BHmQWZmfTNLMLqcbvfBtKxJKA/rHZ1jkAnxE5voX2VdnAe4OAaCu0zf+
-	oC3PfYma/7tivr+5jNhvMhwNlblTiv6Tb3jPvK7eJWYqIDIWSWMoa+4vzgBr2terhIZQ=;
-Received: from [127.0.0.1] (helo=sfs-ml-2.v29.lw.sourceforge.com)
-	by sfs-ml-2.v29.lw.sourceforge.com with esmtp (Exim 4.92.3)
+	by mail.lfdr.de (Postfix) with ESMTPS id 022E1343205
+	for <lists+v9fs-developer@lfdr.de>; Sun, 21 Mar 2021 11:54:21 +0100 (CET)
+Received: from [127.0.0.1] (helo=sfs-ml-4.v29.lw.sourceforge.com)
+	by sfs-ml-4.v29.lw.sourceforge.com with esmtp (Exim 4.90_1)
 	(envelope-from <v9fs-developer-bounces@lists.sourceforge.net>)
-	id 1lNrtJ-0005bT-Kb; Sun, 21 Mar 2021 06:48:49 +0000
+	id 1lNvit-0001zg-0O; Sun, 21 Mar 2021 10:54:19 +0000
 Received: from [172.30.20.202] (helo=mx.sourceforge.net)
- by sfs-ml-2.v29.lw.sourceforge.com with esmtps
- (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.92.3)
- (envelope-from <support@tout.vtu.bg>) id 1lNrtG-0005bJ-A1
- for v9fs-developer@lists.sourceforge.net; Sun, 21 Mar 2021 06:48:46 +0000
+ by sfs-ml-4.v29.lw.sourceforge.com with esmtps
+ (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.90_1)
+ (envelope-from <willy@infradead.org>) id 1lNvip-0001zU-1H
+ for v9fs-developer@lists.sourceforge.net; Sun, 21 Mar 2021 10:54:15 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=sourceforge.net; s=x; h=Content-Transfer-Encoding:Content-Type:MIME-Version
- :Message-ID:Reply-To:From:Date:Subject:To:Sender:Cc:Content-ID:
- Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
- :Resent-Message-ID:In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:
+ d=sourceforge.net; s=x; h=In-Reply-To:Content-Type:MIME-Version:References:
+ Message-ID:Subject:Cc:To:From:Date:Sender:Reply-To:Content-Transfer-Encoding:
+ Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+ Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
  List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=AUmF4XVY2ac5tTU3lr1LuXIlPx8+k+XB1+UmUGfJ3wM=; b=F0c05FhIJ2+g3SS/5abbKyBI9Y
- cByMa+KMLr0UAYfZG08ve7BUNs989OEtbNYOb/NY2dMy1tzmU6HCudnuCXW5xmz58h87HpFNK940P
- vb0FyvSlpyxJX/f7c5epPqRJfv7/maAzqZFjWreBZ0uEaHNwv/zUhN064Heih6QZtHB0=;
+ bh=IPWTpmNlwvQD2iMEaDZM4gbTBQw2JCKTcw+XHs6sAEA=; b=inLw9P7+cUljfjVND2cvq+LiGY
+ 2gQRoY2EwGH6skQK4mu1VnsfkdPYkfVdd8dryNeLZQgEjqmg2phOKPX7SewZ17sErovtomRhGaZ1J
+ fhrv0/jMzC+/CV4csFE3eu/6tYKinwQMo+goUaoFSe7rQyl4gZn+p+p//Kuz/t5zgkcE=;
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  ;
- h=Content-Transfer-Encoding:Content-Type:MIME-Version:Message-ID:Reply-To:
- From:Date:Subject:To:Sender:Cc:Content-ID:Content-Description:Resent-Date:
- Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:
- References:List-Id:List-Help:List-Unsubscribe:List-Subscribe:List-Post:
- List-Owner:List-Archive; bh=AUmF4XVY2ac5tTU3lr1LuXIlPx8+k+XB1+UmUGfJ3wM=; b=C
- K1HhyVW3ujpCOkT7hzuSAzN9uoND8vqCzUAVHyvaGjCg8BDi86QbT6Z0M1oQAd4+HJbFnjJTCzccZ
- Pc1FFZ3RVgWLYFXNjus07KAwy0pnKEeWdTbxDPFnPRCSuc92Dhc6fObgXj07xdRpPCHhzk2PuOrqa
- 3tksKDRhDPrL5ovg=;
-Received: from vtu.bg ([194.141.104.12] helo=websites2.vtu.bg)
+ h=In-Reply-To:Content-Type:MIME-Version:References:Message-ID:Subject:Cc:To
+ :From:Date:Sender:Reply-To:Content-Transfer-Encoding:Content-ID:
+ Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
+ :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
+ List-Post:List-Owner:List-Archive;
+ bh=IPWTpmNlwvQD2iMEaDZM4gbTBQw2JCKTcw+XHs6sAEA=; b=TG91LcH1u6RlJK4lbJ1MmVZOay
+ SHzDCU/SrHQTz87Mhhl9mnnltlPBttryssvD5vaRKL/SOSFCS/Y3a+5z3mJAyM7Hd2k4qhPbZ514K
+ 5zt8iV3cMqoX2Mpnb1IiI34Wn/RH8EQJYBhIUWcTgynjvui1hw46hMIFAjKvfCJ/bD+A=;
+Received: from casper.infradead.org ([90.155.50.34])
  by sfi-mx-1.v28.lw.sourceforge.com with esmtps
  (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.92.2)
- id 1lNrt8-008qU9-Vc
- for v9fs-developer@lists.sourceforge.net; Sun, 21 Mar 2021 06:48:46 +0000
-Received: by websites2.vtu.bg (Postfix, from userid 5008)
- id 88DFF3007CA; Sun, 21 Mar 2021 08:53:35 +0200 (EET)
-To: v9fs-developer@lists.sourceforge.net
-Date: Sun, 21 Mar 2021 08:53:35 +0200
-Message-ID: <b20ee98ed13c1a0015db0530e9e548a7@tout.vtu.bg>
+ id 1lNvik-009Zks-39
+ for v9fs-developer@lists.sourceforge.net; Sun, 21 Mar 2021 10:54:14 +0000
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+ d=infradead.org; s=casper.20170209; h=In-Reply-To:Content-Type:MIME-Version:
+ References:Message-ID:Subject:Cc:To:From:Date:Sender:Reply-To:
+ Content-Transfer-Encoding:Content-ID:Content-Description;
+ bh=IPWTpmNlwvQD2iMEaDZM4gbTBQw2JCKTcw+XHs6sAEA=; b=MycDLrIcd3ic8F/80A6VFdemDq
+ mP6wMKgaJ+5fZ8A/5UZohpMbjrn0frButsf5ebBykDEX/RU1WPXs8HsON7xXx/0rh1H8iKU1zW2Bo
+ gQnxM6q4iczEUtjYAhChY4xbcUghuUJ8SxLKS+Scas5RUAPIY1QVsjBRYZNB4Td9A/GdUbK+pGXzm
+ ZxqPcKHFmjWFBOpIOxuPGE2Ge3lH75MgJq4zOA4kCUIW8QztYln6orsFPBg70IOQjgwHxMTUkpQvT
+ sP5/cIEzN7DAaOGyHDRzy6+/swS96oUDvvYZzfmO85Y4+6qJHHEg0lpaPO9kP30HPHtXl8+ynO5/A
+ 9oZufQ3g==;
+Received: from willy by casper.infradead.org with local (Exim 4.94 #2 (Red Hat
+ Linux)) id 1lNvhl-007173-MX; Sun, 21 Mar 2021 10:53:12 +0000
+Date: Sun, 21 Mar 2021 10:53:09 +0000
+From: Matthew Wilcox <willy@infradead.org>
+To: David Howells <dhowells@redhat.com>
+Message-ID: <20210321105309.GG3420@casper.infradead.org>
+References: <161539526152.286939.8589700175877370401.stgit@warthog.procyon.org.uk>
+ <161539528910.286939.1252328699383291173.stgit@warthog.procyon.org.uk>
 MIME-Version: 1.0
-X-Spam-Score: 6.7 (++++++)
+Content-Disposition: inline
+In-Reply-To: <161539528910.286939.1252328699383291173.stgit@warthog.procyon.org.uk>
+X-Spam-Score: -0.1 (/)
 X-Spam-Report: Spam Filtering performed by mx.sourceforge.net.
  See http://spamassassin.org/tag/ for more details.
- 0.0 URIBL_BLOCKED ADMINISTRATOR NOTICE: The query to URIBL was blocked.
- See
- http://wiki.apache.org/spamassassin/DnsBlocklists#dnsbl-block
- for more information. [URIs: spainmail.com]
  0.0 SPF_NONE               SPF: sender does not publish an SPF Record
  0.0 SPF_HELO_NONE          SPF: HELO does not publish an SPF Record
- 1.0 HK_LOTTO               No description available.
- 0.0 LOTS_OF_MONEY          Huge... sums of money
- 2.5 FREEMAIL_FORGED_REPLYTO Freemail in Reply-To, but not From
- 0.6 MONEY_NOHTML           Lots of money in plain text
- 1.6 MONEY_FREEMAIL_REPTO   Lots of money from someone using free email?
- 0.0 T_FILL_THIS_FORM_FRAUD_PHISH Answer suspicious question(s)
- 1.0 FORM_FRAUD             Fill a form and a fraud phrase
-X-Headers-End: 1lNrt8-008qU9-Vc
-Subject: [V9fs-developer] Hallo und Guten Morgen/was zu tun schnell,,
+ -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from author's
+ domain
+ -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+ 0.1 DKIM_SIGNED            Message has a DKIM or DK signature,
+ not necessarily valid
+X-Headers-End: 1lNvik-009Zks-39
+Subject: Re: [V9fs-developer] [PATCH v4 02/28] mm: Add an unlock function
+ for PG_private_2/PG_fscache
 X-BeenThere: v9fs-developer@lists.sourceforge.net
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -81,101 +82,82 @@ List-Post: <mailto:v9fs-developer@lists.sourceforge.net>
 List-Help: <mailto:v9fs-developer-request@lists.sourceforge.net?subject=help>
 List-Subscribe: <https://lists.sourceforge.net/lists/listinfo/v9fs-developer>, 
  <mailto:v9fs-developer-request@lists.sourceforge.net?subject=subscribe>
-From: El Gordo de la primitiva lotterie spanien via V9fs-developer
- <v9fs-developer@lists.sourceforge.net>
-Reply-To: europromo.es.spain@europemail.com
-Cc: El Gordo de la primitiva lotterie spanien <support@tout.vtu.bg>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Cc: David Wysochanski <dwysocha@redhat.com>, linux-cifs@vger.kernel.org,
+ linux-nfs@vger.kernel.org, linux-afs@lists.infradead.org,
+ Jeff Layton <jlayton@redhat.com>, linux-kernel@vger.kernel.org,
+ Anna Schumaker <anna.schumaker@netapp.com>, Steve French <sfrench@samba.org>,
+ linux-mm@kvack.org, linux-cachefs@redhat.com,
+ Alexander Viro <viro@zeniv.linux.org.uk>,
+ Trond Myklebust <trondmy@hammerspace.com>, linux-fsdevel@vger.kernel.org,
+ v9fs-developer@lists.sourceforge.net, ceph-devel@vger.kernel.org,
+ Linus Torvalds <torvalds@linux-foundation.org>, Christoph Hellwig <hch@lst.de>
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: v9fs-developer-bounces@lists.sourceforge.net
 
-RWwgR29yZG8gZGUgbGEgcHJpbWl0aXZhICBsb3R0ZXJpZSBzcGFuaWVuICAgICAgICAgICAgICAg
-ICAgICAgICAgCkFkcmVzc2U6Q2FsbGUgZGVsIFByw61uY2lwZSBkZSBWZXJnYXJhLCAzOCwgMjgw
-MDEKTWFkcmlkIEVzcGHDsWFdICAgIApLb250YWt0IGF1Zm5laG1lbiB1bnRlcjpdIDM0NjAyIDgx
-MCAxODUgZmF4IDM0OTM1NDU3NDkwXQpFLW1haWw6XWFuc3BydWNoZ2V3aW5uLm1tdC5lc0BzcGFp
-bm1haWwuY29tXQoKQWt0ZW56ZWljaGVuOl1QMDkvMDEvMDIvMjAyMS5dCkxvc251bW1lcjpdIEVT
-UCA0NDQ3LzExNDY0MTE4ODAyMDFdCkRhdHVtOiAxNi8wMy8yMDIxXQoKSGFsbG8sICAgICAgICAK
-ICAgICAgICAgICAgICAgICAgCiAgICAgICAgICAgICAgICAgICAgICAgICAgICBPRkZJWklFTExF
-IE1JVFRFSUxVTkcsCkRpZXNlIEVsIEdvcmRvIGRlIGxhIFByaW1pdGl2YSBCb25hbnphICBMb3R0
-ZXJpZSB3dXJkZSB1bmQgTWluaXN0ZXJpbyBkZSBJbmR1c3RyaWEsIENvbWVyY2lvIHkgVHVyaXNt
-byAgZ2VzcG9uc2VydCB1bSBUb3VyaXNtdXMgaW4gU3BhbmllbiAgenUgZsO2cmRlcm4uCgpXaXIg
-c2luZCBlcmZyZXV0IElobmVuIG1pdCB6dSB0ZWlsZW4sIGRhc3MgZGllIEdld2lubmVyIGRlcyBT
-b25kZXIgU3BhbmlzaCBUb3VyaXNtdXMgUHJvbW90aW9uYWwgRHJhdyBiZWthbm50IGdlZ2ViZW4g
-d29yZGVuIHNpbmQuIERpZSBvZmZpemllbGxlIExpc3RlIGRlciBHZXdpbm5lciAgZXJzY2hpZW4g
-YW0gIFNhbXN0YWcgZGVyIDI3LzAyLzIwMjEuIAoKSWhyZSBlbWFpbCBhZHJlc3NlICBtaXQgZGVy
-IGFuaMOkbmdlbmRlbiBMb3NudW1tZXI6IEVTUCA0NDQ3LzExNDY0MTE4ODAyMDEgIHVuZCBtaXQg
-ZGVyIFNlcmllbm51bW1lcjogRVNQLzAxODgxMS0yMDIwIHpvZyBkaWUgR2zDvGNrc251bW1lcjog
-Ni4xNi4xOC4zMy40Ny41MSBCb251OjI5LEVsIEdvcmRvIGRlIGxhIFByaW1pdGl2YSAgTG90dGVy
-aWUgIDYgLzQ5IGluIGRlciAzLiBLYXRlZ29yaWUuCgpTaWUgc2luZCBkYW1pdCBnZXdpbm5lciB2
-b246IOKCrDk5MSwwMDAuMDAgRXVyby4gRGllIFN1bW1lIGVyZ2lidCBzaWNoIGF1cyBlaW5lciBH
-ZXdpbm5hdXNzY2jDvHR0dW5nIHZvbjog4oKsNjkzNywwMDAuMDAgRXVybywgZGllIGR1cmNoIGRp
-ZSBlcnN0ZW4gc2llYmVuICg3KSBHZXdpbm5lciBhdXMgZGVyIGdsZWljaGVuIEthdGVnb3JpZSBn
-ZXRlaWx0IHd1cmRlLiAgRGlyIGdld2lubiBpc3QgYmVpIGVpbmVyIHNpY2hlcmhlaXRzZmlybWEg
-aGludGVybGVndCB1bmQgaW4gaWhyZW4gbmFtZW4vZW1haWwgIHZlcnNpY2hlcnQuIHVtIGtlaW5l
-IGtvbXBsaWthdGlvbmVuIGJlaSBkZXIgYWJ3aWNrbHVuZyBkZXIgemFobHVuZyB6dSB2ZXJ1cnNh
-Y2hlbiBiaXR0ZW4gd2lyIHNpZSBkaWVzZSBvZmZpemllbGxlIG1pdHRlaWx1bmcgLCBkaXNrcmV0
-IHp1IGJlaGFuZGVsbi4sZXMgaXN0IGVpbiB0ZWlsIHVuc2VyZXMgc2ljaGVyaGVpdHNwcm90b2tv
-bGxzIHVuZCBnYXJhbnRpZXJ0IGlobmVuIGVpbmVuIHJlaWJ1bmdzbG9zZW4gQWJsYXVmLgoKQWxs
-ZSBnZXdpbm5lciB3dXJkZW4gcGVyIGNvbXB1dGVyIGF1cyBVcmxhdWJzaG90ZWxzLCBGbHVnZ2Vz
-ZWxsc2NoYWZ0ZW4gdW5kIFJlaXNlYsO8cm9zIG1haWxlbiBEYXRlbiB2b24gZsO8bmYgTWlsbGlv
-bmVuICg1MDAwMDAwKSBFbWFpbCBhZHJlc3NlbiBhdXNnZXfDpGhsdCwgYWxzIHRlaWwgdW5zZXJl
-ciBJbnRlcm5hdGlvbmFsZW4gdG91cmlzbXVzIHByb21vdGlvbiBwcm9ncmFtbXMsIHdlbGNoZXMg
-d2lyIGVpbm1hbCBpbSBqYWhyIHZlcmFuc3RhbHRlbiB1bSBUb3VyaXNtdXMgaW4gU3BhbmllbiB6
-dSBmw7ZyZGVybi4KCkJpdHRlIGtvbnRha3RpZXJlbiBzaWUgdW5zZXJlbiBhdXNsYW5kcyBzYWNo
-YmVhcmJlaXRlciBIZXJyIEdhYnJpZWwgIGJlaSBkZXIgc2ljaGVyaGVpdHNmaXJtYSBTYW50YWx1
-Y2lhIFNpY2hlcmhlaXRzZmlybWE6UGVyIEVtYWlsIGFuOmV1cm9wcm9tby5lcy5zcGFpbkBldXJv
-cGVtYWlsLmNvbSBvZGVyIGFucnVmZW46IDM0IDYwMiA4MTAgMTg1ICYgRmF4OiAgMzQgOTMxIDcw
-IDIxMjAsIHVtIElociBHZWxkIHNjaG5lbGwgenUgYmVrb21tZW4uCgpEZW5rZW4gU2llIGRhcmFu
-LCBqZWRlciBnZXdpbm5hbnNwcnVjaCBtdXNzIGJpcyB6dW0gMTMvMDQvMjAyMSBBbmdlbWVsZGV0
-ZSBzZWluLiBKZWRlciBuaWNodCBhbmdlbWVsZGV0IEdld2lubmFuc3BydWNoIHZlcmbDpGxsdCB1
-bmQgZ2VodCB6dXJ1Y2sgYW4gZGFzIFNwYW5pc2NoZSBTdGFhdHNrYXNzZS4KICAKV0lDSFRJRzog
-dW0gdmVyesO2Z2VydW5nZW4gdW5kIGtvbXBsaWthdGlvbmVuIHp1IHZlcm1laWRlbiwgYml0dGUg
-aW1tZXIgQWt0ZW56ZWljaGVuIGFuZ2ViZW4uICBBbmJlaSBlaW4gYW5tZWxkZWZvcm11bGFyLCBi
-aXR0ZSBhdXNmw7xsbGVuIHVuZCB6dXLDvGNrIFBlciBlbWFpbCBhbjpldXJvcHJvbW8uZXMuc3Bh
-aW5AZXVyb3BlbWFpbC5jb20gb2RlciBhbnJ1ZmVuOiAgMzQgNjAyIDgxMDE4NSAmIEZheDogIDM0
-IDkzMSA3MCAyMTIwIGRpZSBzaWNoZXJoZWl0c2Zpcm1hIFNhbnRhbHVjaWEgU2ljaGVyaGVpdHNm
-aXJtYS4KCkhFUlpMSUNIRU4gR0xVQ0tXVU5TQ0jigKYhCk1pdCBmcmV1bmRsaWNoZW4gR3LDvMOf
-ZW4KTUFSSUEgSElEQUxHTwpWSVpFUFLDhFNJREVOVElOCgpCw5xSTyxTQU5UQUxVQ0lBIFNFR1VS
-T1MgUy5BIEVzcGHDsWEgClBsYXphIEVzcGHDsWEsIDE1IC0gLTE2ICAgICAgICAgICAgICAgICAg
-ICAgICAgICAgIApNYWRyaWQsIDI4MDA4IEVzcGHDsWEKICAgICAgICAgICAgICAgICAgICAgICAg
-ICAKCkFOTUVMREVGT1JNVUxBUiBaVVIgR0VXSU5OQU5TUFJVQ0hTCl9fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX18gCkJpdHRlIGbDvGxsZW4gU2llIGRhcyBGb3JtdWxh
-ciBzb3JnZsOkbHRpZyBhdXMgdW5kIHNlbmRlbiBlcyBwZXIgZSBtYWlsOnNhbnRhbHVjaWEuc2cu
-ZXNAc3BhaW5tYWlsLmNvbSBhbiBkZXIgU2FudGFsdWNpYSBTaWNoZXJoZWl0c2Zpcm1hIG1pdCBL
-b3BpZSBJaHJlcyBQZXJzb25hbGF1c3dlaXNlcyBvZGVyIFJlaXNlcGFzc2VzLgoKCkdFV0lOTkJF
-VFJBRypfX19fX19fX19fQUtURU5aRUlDSEVOOipFU1AwOS8wMS8wMi8yMDIxCk5BTUU6Kl9fX19f
-X19fX19fX19fX19fX19fVk9STkFNRToqX19fX19fX19fX19fX19fX19fX19fX18KR0VCVVJUU0RB
-VFVNOipfX19fX19fX19fX19fX19fXypOQVRJT05BTEk6Kl9fX19fX19fX19fX19fX18KTE9TTlVN
-TUVSKl9fX19fX19fX19fX19fX19fX19fX18qR0xVQ0tTWkFITEVOOipfX19fX19fX19fX18KU1RS
-QVNTRSpfX19fX19fX19fX19fX19fX19fX19fX19fX19fKk5VTU1FUjoqX19fX19fX19fX19fX19f
-CldPSE5PUlQqX19fX19fX19fX19fX19fX1BPU1RMRUlUWkFIKl9fX19fX19fX18qTEFORCpfX19f
-X19fXwpURUxFRk9OKl9fX19fX19fX19fX0hBTkRZKl9fX19fX19fX19fX19GQVgqX19fX19fX19f
-X19fX19fX18KQkVGVUYqX19fX19fX19fX0ZBTUlFTElFTlNUQU5EKl9fX19fX19fX19fX19fXyog
-KEdFU0NITEVDSFQpCkVNQUlMKl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X18qVW50ZXJzY2hyaWZ0Kl8KICAKCldFTENIRSBaQUhMVU5HU0ZPUk0gQkVWT1JaVUdFTiBTSUU/
-ICAoQSkgQkFOS8OcQkVSV0VJU1VORzogIChCKSBCQVJTQ0hFQ0sgIApCQU5LREFURU4gU0lORCBO
-VVIgTk9UV0VORElHIFdFTk4gU0lFIFNJQ0ggRsOcUiBFSU5FIEJBTkvDnEJFUldFSVNVTkcgRU5U
-U0NISUVERU4gSEFCRU4uCgpOQU1FIERFUyBHRUxESU5TVElUVVRTOipfX19fX19fX19fX19fX19f
-X19fX19fX19fXwpLT05UT05VTU1FUjoqX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fXwpTV0lGVCBDT0RFOipfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpC
-QU5LIEFERFJFU1M6Kl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpURUxFRk9O
-TlVNTUVSOipfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpGQVg6IE5VTU1FUjoq
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwoKCiAgICBFUktMw4RSVU5HIERF
-UyBCRUfDnE5TVElHVEVOCklDSCBfX19fX19fX19fX19fX19fX19fX19fX19fX19CRVNUw4RUSUdF
-IEhJRVJNSVQsIERBU1MgQUxMRSBJTkZPUk1BVElPTkVOLCBLT1JSRUtUIFNJTkQsIFVORCBESUUg
-VkVSQU5TVEFMVEVSIERFUiBFbCBTUEFOSVNIIExPVFRFUlkgLyBTQU5UQUxVQ0lBIFNJQ0hFUkhF
-SVRTRklSTUEgTklDSFQgVkVSQU5UV09SVExJQ0ggR0VNQUNIVCBXRVJERU4sIFdFTk4gRVMgWlUg
-RUlORVIgVU5CRVJFQ0hUSUdURU4gWkFITFVORyBEVVJDSCBVTkdFTkFVRSBJTkZPUk1BVElPTkVO
-LCBESUUgSUNIIElOIERJRVNFTSBGT1JNVUxBUiBBTkdFQkUgS09NTVQuREFTUyAxMCUgUFJPVklT
-SU9OIERFUiBTQU5UQSBMVUNJQSBTRUNVUklUWSBDT01QQU5ZIEdFSD9SRU4sIFNPQkFMRCBTSUUg
-SUhSRU4gR0VXSU5OIEZPTkRTIEVSSEFMVEVOLiBESUVTRSBaRUhOIFBST1pFTlQgV0VSREVOIElI
-TkVOIFNPRk9SVCBaVVLDnENLR0VHRUJFTiwgU0lFIEVSSEFMVEVOIElIUkVOIEdFV0lOTiBBVUYg
-SUhSRU0gS09OVE8uIChBQ0hUVU5HIFdpciBiaXR0ZW4gU2llLCBhdWYgZGllc2UgRS1NYWlsLUFk
-cmVzc2UgenUgYW50d29ydGVuKHNhbnRhbHVjaWEuc2cuZXNAc3BhaW5tYWlsLmNvbSkgQsOcUk8t
-S09OVE9JTkZPUk1BVElPTkVOLUlCQU4gRVMxNyAyMTAwIDU2MjQgMTEwMiAwMDExIDc3MTkgU1dJ
-RlQgQ09ERTogQ0FJWEVTQkJYWFguICBLT05UT05BTUUsTEEgUExBQ0lUQSBERUwgTUlSQURPUiBT
-LkwgU1BBSU4uClVyaGViZXJyZWNodMKpIDIwMjAtMjAyMSBNdWx0aS1TdGFhdCBMb3R0ZXJpZSBW
-ZXJiYW5kLiBBbGxlIFJlY2h0ZQoKCgpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fXwpWOWZzLWRldmVsb3BlciBtYWlsaW5nIGxpc3QKVjlmcy1kZXZlbG9wZXJA
-bGlzdHMuc291cmNlZm9yZ2UubmV0Cmh0dHBzOi8vbGlzdHMuc291cmNlZm9yZ2UubmV0L2xpc3Rz
-L2xpc3RpbmZvL3Y5ZnMtZGV2ZWxvcGVyCg==
+On Wed, Mar 10, 2021 at 04:54:49PM +0000, David Howells wrote:
+> Add a function, unlock_page_private_2(), to unlock PG_private_2 analogous
+> to that of PG_lock.  Add a kerneldoc banner to that indicating the example
+> usage case.
+
+One of the things which confused me about this was ... where's the other
+side?  Where's lock_page_private_2()?  Then I found this:
+
+#ifdef CONFIG_AFS_FSCACHE
+        if (PageFsCache(page) &&
+            wait_on_page_bit_killable(page, PG_fscache) < 0)
+                return VM_FAULT_RETRY;
+#endif
+
+Please respect the comment!
+
+/*
+ * This is exported only for wait_on_page_locked/wait_on_page_writeback, etc.,
+ * and should not be used directly.
+ */
+extern void wait_on_page_bit(struct page *page, int bit_nr);
+extern int wait_on_page_bit_killable(struct page *page, int bit_nr);
+
+I think we need the exported API to be wait_on_page_private_2(), and
+AFS needs to not tinker in the guts of filemap.  Otherwise you miss
+out on bugfixes like c2407cf7d22d0c0d94cf20342b3b8f06f1d904e7 (see also
+https://lore.kernel.org/linux-fsdevel/20210320054104.1300774-4-willy@infradead.org/T/#u
+).
+
+That also brings up that there is no set_page_private_2().  I think
+that's OK -- you only set PageFsCache() immediately after reading the
+page from the server.  But I feel this "unlock_page_private_2" is actually
+"clear_page_private_2" -- ie it's equivalent to writeback, not to lock.
+
+> +++ b/mm/filemap.c
+> @@ -1432,6 +1432,26 @@ void unlock_page(struct page *page)
+>  }
+>  EXPORT_SYMBOL(unlock_page);
+>  
+> +/**
+> + * unlock_page_private_2 - Unlock a page that's locked with PG_private_2
+> + * @page: The page
+> + *
+> + * Unlocks a page that's locked with PG_private_2 and wakes up sleepers in
+> + * wait_on_page_private_2().
+> + *
+> + * This is, for example, used when a netfs page is being written to a local
+> + * disk cache, thereby allowing writes to the cache for the same page to be
+> + * serialised.
+> + */
+> +void unlock_page_private_2(struct page *page)
+> +{
+> +	page = compound_head(page);
+> +	VM_BUG_ON_PAGE(!PagePrivate2(page), page);
+> +	clear_bit_unlock(PG_private_2, &page->flags);
+> +	wake_up_page_bit(page, PG_private_2);
+> +}
+> +EXPORT_SYMBOL(unlock_page_private_2);
+> +
+>  /**
+
+
+_______________________________________________
+V9fs-developer mailing list
+V9fs-developer@lists.sourceforge.net
+https://lists.sourceforge.net/lists/listinfo/v9fs-developer
