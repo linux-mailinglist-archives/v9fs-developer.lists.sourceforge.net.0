@@ -2,74 +2,90 @@ Return-Path: <v9fs-developer-bounces@lists.sourceforge.net>
 X-Original-To: lists+v9fs-developer@lfdr.de
 Delivered-To: lists+v9fs-developer@lfdr.de
 Received: from lists.sourceforge.net (lists.sourceforge.net [216.105.38.7])
-	by mail.lfdr.de (Postfix) with ESMTPS id A2A13359E1D
-	for <lists+v9fs-developer@lfdr.de>; Fri,  9 Apr 2021 13:59:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 85986359E29
+	for <lists+v9fs-developer@lfdr.de>; Fri,  9 Apr 2021 14:01:20 +0200 (CEST)
 Received: from [127.0.0.1] (helo=sfs-ml-2.v29.lw.sourceforge.com)
 	by sfs-ml-2.v29.lw.sourceforge.com with esmtp (Exim 4.92.3)
 	(envelope-from <v9fs-developer-bounces@lists.sourceforge.net>)
-	id 1lUpnQ-0006cl-Ph; Fri, 09 Apr 2021 11:59:32 +0000
+	id 1lUpp8-0006r1-OA; Fri, 09 Apr 2021 12:01:18 +0000
 Received: from [172.30.20.202] (helo=mx.sourceforge.net)
  by sfs-ml-2.v29.lw.sourceforge.com with esmtps
  (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.92.3)
- (envelope-from <willy@infradead.org>) id 1lUpnO-0006VW-Tk
- for v9fs-developer@lists.sourceforge.net; Fri, 09 Apr 2021 11:59:31 +0000
+ (envelope-from <dhowells@redhat.com>) id 1lUpp6-0006qq-Qb
+ for v9fs-developer@lists.sourceforge.net; Fri, 09 Apr 2021 12:01:17 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=sourceforge.net; s=x; h=In-Reply-To:Content-Type:MIME-Version:References:
- Message-ID:Subject:Cc:To:From:Date:Sender:Reply-To:Content-Transfer-Encoding:
- Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
- Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
- List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=c1r8qKf2WZUBFC6KK+MUpMLPvRW0EBtQK/vl4+qTDxg=; b=Hdp5hPDi8vZyxUhVDKm15yuucP
- CRNDkjpxuk/ssH08IeHwq1rXeEe5r4vR2DRcfSzI9FIH35b13rddjLr6RkVvGrTQSgup0i3+fqBNb
- 9svER8BebYVs1Ql2PC6jy6V01tpB991nDfXSV6eX4i6s17jPURMK6ygz3W76jyrHDcEE=;
+ d=sourceforge.net; s=x; h=Message-ID:Date:Content-ID:Content-Type:
+ MIME-Version:Subject:Cc:To:References:In-Reply-To:From:Sender:Reply-To:
+ Content-Transfer-Encoding:Content-Description:Resent-Date:Resent-From:
+ Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:
+ List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
+ bh=WpLBLcM5HPbHBdhYvmuIcG5jaKMHS2dswa4uwPfKors=; b=hQ8w+90BeD1D+SjsjpbDJidJFd
+ RU1ojQ5C0h23+vzy50txL8cgdomZaPHZoTkwI5YPuTOyiELZP4dusxDstG1y5FdR9TZ61I5Oxe3Do
+ VrlM5JJEAgGqOPc6nPJQ/l8HPeiCy95kXZph3KkZvrZUBYi2gHpE6jd1qUyNecxFtPA0=;
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  ;
- h=In-Reply-To:Content-Type:MIME-Version:References:Message-ID:Subject:Cc:To
- :From:Date:Sender:Reply-To:Content-Transfer-Encoding:Content-ID:
+ h=Message-ID:Date:Content-ID:Content-Type:MIME-Version:Subject:Cc:To:
+ References:In-Reply-To:From:Sender:Reply-To:Content-Transfer-Encoding:
  Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
  :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
  List-Post:List-Owner:List-Archive;
- bh=c1r8qKf2WZUBFC6KK+MUpMLPvRW0EBtQK/vl4+qTDxg=; b=jKzibr809Tcu4CGOi+G6qCWVQP
- fl4fCgRGuvzev75Liu5o+XYVvI+Ucy6/QIeosCd/uxsM7PjjCm3nIWCm1fFXaDOSScIG/I8WaqMlq
- i6Bxrm1ypsdwRHEoCWQ/qRP6AOoOCmXRV8FdnQhh3ylPvvpTTvjvnr4yNd8gj/VgXuF0=;
-Received: from casper.infradead.org ([90.155.50.34])
+ bh=WpLBLcM5HPbHBdhYvmuIcG5jaKMHS2dswa4uwPfKors=; b=fs/6jHNZPi/ColpRhCpIqInLaM
+ bk3ITEGkHiMHIEuVY/xbuIrBu+Iq0I23aVwkkvabQY2WCy4m4i/A5R0HVtcGDfwkfB6TQfOmfeRSi
+ BqjLVjkWt4WZ25htvZF6x+yhV4mtzWlP79zYe+lij77IX/KCuOPeSaOw53ubq8ugJrbU=;
+Received: from us-smtp-delivery-124.mimecast.com ([216.205.24.124])
  by sfi-mx-1.v28.lw.sourceforge.com with esmtps
  (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.92.2)
- id 1lUpam-00A2Aq-Lu
- for v9fs-developer@lists.sourceforge.net; Fri, 09 Apr 2021 11:47:00 +0000
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=infradead.org; s=casper.20170209; h=In-Reply-To:Content-Type:MIME-Version:
- References:Message-ID:Subject:Cc:To:From:Date:Sender:Reply-To:
- Content-Transfer-Encoding:Content-ID:Content-Description;
- bh=c1r8qKf2WZUBFC6KK+MUpMLPvRW0EBtQK/vl4+qTDxg=; b=NOPeCLY4PZdlE1Sl+vERrsPYCI
- kaU09fmm4qGEaxVbWWYfFtOZ0dfLZ0wlHt1TzAnVRj0Z2OnnJiJQ0JujMFGZxOCpvd+X6kmCbo3AS
- s5+ioH0yGL6LgNWu2HItUFI8XLwGijzp9kyjepKmcaUnw64YW8EIvsTg/nnJn/u6n330Gve2P9cwj
- rXMtz0FIN995Nc8299Q4VfAqFO+HJOxpNwc+t30qega9f7aXSdDzrTspNvtwCRTmQ5YA6Ul7BgXXa
- UlbaHzCLXvvLEl1pr2Gck45gORD7uhzGD0ESWrGa2jpa3n0HxAGKyWlmP+ZsmPzLNoVPdMTj/I6Rm
- mdx5vNFA==;
-Received: from willy by casper.infradead.org with local (Exim 4.94 #2 (Red Hat
- Linux)) id 1lUpZI-000Iht-4A; Fri, 09 Apr 2021 11:45:05 +0000
-Date: Fri, 9 Apr 2021 12:44:56 +0100
-From: Matthew Wilcox <willy@infradead.org>
-To: David Howells <dhowells@redhat.com>
-Message-ID: <20210409114456.GT2531743@casper.infradead.org>
-References: <YG+s0iw5o91KQIlW@zeniv-ca.linux.org.uk>
- <161789062190.6155.12711584466338493050.stgit@warthog.procyon.org.uk>
- <161789064740.6155.11932541175173658065.stgit@warthog.procyon.org.uk>
- <289825.1617959345@warthog.procyon.org.uk>
+ id 1lUpok-00A9SK-RJ
+ for v9fs-developer@lists.sourceforge.net; Fri, 09 Apr 2021 12:01:16 +0000
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+ s=mimecast20190719; t=1617969648;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+ in-reply-to:in-reply-to:references:references;
+ bh=WpLBLcM5HPbHBdhYvmuIcG5jaKMHS2dswa4uwPfKors=;
+ b=FXlrOxZzlwiNbkcN++SN/hn3KEgesheIEHF5+68+RjGF6GQ1Rjms58k7v/BE0vMj5+1E0D
+ +gNfZIrQyaD3EinMA8fSa883FQ7WNLFqcHduV/68B7azWFDx10QUNjlDSQiermlvR3uoYN
+ x8jbCvCpwK0bB4xQIIuG4+S4fjs64ec=
+Received: from mimecast-mx01.redhat.com (mimecast-mx01.redhat.com
+ [209.132.183.4]) (Using TLS) by relay.mimecast.com with ESMTP id
+ us-mta-531-VXpQijEJOlSLOJb_BO2ZXA-1; Fri, 09 Apr 2021 08:00:46 -0400
+X-MC-Unique: VXpQijEJOlSLOJb_BO2ZXA-1
+Received: from smtp.corp.redhat.com (int-mx03.intmail.prod.int.phx2.redhat.com
+ [10.5.11.13])
+ (using TLSv1.2 with cipher AECDH-AES256-SHA (256/256 bits))
+ (No client certificate requested)
+ by mimecast-mx01.redhat.com (Postfix) with ESMTPS id 845A55B38D;
+ Fri,  9 Apr 2021 12:00:44 +0000 (UTC)
+Received: from warthog.procyon.org.uk (ovpn-119-35.rdu2.redhat.com
+ [10.10.119.35])
+ by smtp.corp.redhat.com (Postfix) with ESMTP id C29B160622;
+ Fri,  9 Apr 2021 12:00:41 +0000 (UTC)
+Organization: Red Hat UK Ltd. Registered Address: Red Hat UK Ltd, Amberley
+ Place, 107-111 Peascod Street, Windsor, Berkshire, SI4 1TE, United
+ Kingdom.
+ Registered in England and Wales under Company Registration No. 3798903
+From: David Howells <dhowells@redhat.com>
+In-Reply-To: <20210409111636.GR2531743@casper.infradead.org>
+References: <20210409111636.GR2531743@casper.infradead.org>
+ <CAHk-=wi_XrtTanTwoKs0jwnjhSvwpMYVDJ477VtjvvTXRjm5wQ@mail.gmail.com>
+ <161796595714.350846.1547688999823745763.stgit@warthog.procyon.org.uk>
+To: Matthew Wilcox <willy@infradead.org>
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <289825.1617959345@warthog.procyon.org.uk>
+Content-ID: <453416.1617969640.1@warthog.procyon.org.uk>
+Date: Fri, 09 Apr 2021 13:00:40 +0100
+Message-ID: <453417.1617969640@warthog.procyon.org.uk>
+X-Scanned-By: MIMEDefang 2.79 on 10.5.11.13
 X-Spam-Score: 0.0 (/)
 X-Spam-Report: Spam Filtering performed by mx.sourceforge.net.
  See http://spamassassin.org/tag/ for more details.
  0.0 URIBL_BLOCKED ADMINISTRATOR NOTICE: The query to URIBL was blocked.
  See
  http://wiki.apache.org/spamassassin/DnsBlocklists#dnsbl-block
- for more information. [URIs: linux.org.uk]
+ for more information. [URIs: infradead.org]
  0.0 TIME_LIMIT_EXCEEDED    Exceeded time limit / deadline
-X-Headers-End: 1lUpam-00A2Aq-Lu
-Subject: Re: [V9fs-developer] [PATCH v6 01/30] iov_iter: Add ITER_XARRAY
+X-Headers-End: 1lUpok-00A9SK-RJ
+Subject: Re: [V9fs-developer] [RFC PATCH 2/3] mm: Return bool from pagebit
+ test functions
 X-BeenThere: v9fs-developer@lists.sourceforge.net
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -81,46 +97,33 @@ List-Post: <mailto:v9fs-developer@lists.sourceforge.net>
 List-Help: <mailto:v9fs-developer-request@lists.sourceforge.net?subject=help>
 List-Subscribe: <https://lists.sourceforge.net/lists/listinfo/v9fs-developer>, 
  <mailto:v9fs-developer-request@lists.sourceforge.net?subject=subscribe>
-Cc: David Wysochanski <dwysocha@redhat.com>, linux-cifs@vger.kernel.org,
- linux-nfs@vger.kernel.org, Jeff Layton <jlayton@redhat.com>,
- linux-kernel@vger.kernel.org, Christoph Hellwig <hch@lst.de>,
- Steve French <sfrench@samba.org>, linux-mm@kvack.org, linux-cachefs@redhat.com,
- Al Viro <viro@zeniv.linux.org.uk>, Anna Schumaker <anna.schumaker@netapp.com>,
- linux-fsdevel@vger.kernel.org, v9fs-developer@lists.sourceforge.net,
- ceph-devel@vger.kernel.org, linux-afs@lists.infradead.org,
- Trond Myklebust <trond.myklebust@hammerspace.com>
+Cc: linux-cifs@vger.kernel.org, linux-nfs@vger.kernel.org, jlayton@kernel.org,
+ linux-kernel@vger.kernel.org, linux-afs@lists.infradead.org,
+ dhowells@redhat.com, linux-mm@kvack.org, ceph-devel@vger.kernel.org,
+ linux-cachefs@redhat.com, linux-fsdevel@vger.kernel.org,
+ v9fs-developer@lists.sourceforge.net, torvalds@linux-foundation.org,
+ hch@lst.de
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: v9fs-developer-bounces@lists.sourceforge.net
 
-On Fri, Apr 09, 2021 at 10:09:05AM +0100, David Howells wrote:
-> Al Viro <viro@zeniv.linux.org.uk> wrote:
-> 
-> > > +#define iterate_all_kinds(i, n, v, I, B, K, X) {		\
-> > 
-> > Do you have any users that would pass different B and X?
-> > 
-> > > @@ -1440,7 +1665,7 @@ ssize_t iov_iter_get_pages_alloc(struct iov_iter *i,
-> > >  		return v.bv_len;
-> > >  	}),({
-> > >  		return -EFAULT;
-> > > -	})
-> > > +	}), 0
-> > 
-> > Correction - users that might get that flavour.  This one explicitly checks
-> > for xarray and doesn't get to iterate_... in that case.
-> 
-> This is the case for iterate_all_kinds(), but not for iterate_and_advance().
-> 
-> See _copy_mc_to_iter() for example: that can return directly out of the middle
-> of the loop, so the X variant must drop the rcu_read_lock(), but the B variant
-> doesn't need to.  You also can't just use break to get out as the X variant
-> has a loop within a loop to handle iteration over the subelements of a THP.
+Matthew Wilcox <willy@infradead.org> wrote:
 
-"Why does it need a loop? bvecs can contain multi-page vectors"
-"memcpy_from_page can't handle that"
-"doesn't that mean that iterating over a bvec is already broken?"
-"yes"
+> On Fri, Apr 09, 2021 at 11:59:17AM +0100, David Howells wrote:
+> > Make functions that test page bits return a bool, not an int.  This means
+> > that the value is definitely 0 or 1 if they're used in arithmetic, rather
+> > than rely on test_bit() and friends to return this (though they probably
+> > should).
+> 
+> iirc i looked at doing this as part of the folio work, and it ended up
+> increasing the size of the kernel.  Did you run bloat-o-meter on the
+> result of doing this?
+
+Hmmm.  With my usual monolithic x86_64 kernel, it makes vmlinux text section
+100 bytes larger (19392347 rather than 19392247).  I can look into why.
+
+David
+
 
 
 _______________________________________________
