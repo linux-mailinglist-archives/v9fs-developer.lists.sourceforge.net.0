@@ -2,91 +2,97 @@ Return-Path: <v9fs-developer-bounces@lists.sourceforge.net>
 X-Original-To: lists+v9fs-developer@lfdr.de
 Delivered-To: lists+v9fs-developer@lfdr.de
 Received: from lists.sourceforge.net (lists.sourceforge.net [216.105.38.7])
-	by mail.lfdr.de (Postfix) with ESMTPS id CE0493598D9
-	for <lists+v9fs-developer@lfdr.de>; Fri,  9 Apr 2021 11:10:02 +0200 (CEST)
-Received: from [127.0.0.1] (helo=sfs-ml-1.v29.lw.sourceforge.com)
-	by sfs-ml-1.v29.lw.sourceforge.com with esmtp (Exim 4.90_1)
+	by mail.lfdr.de (Postfix) with ESMTPS id BD695359C80
+	for <lists+v9fs-developer@lfdr.de>; Fri,  9 Apr 2021 12:59:51 +0200 (CEST)
+Received: from [127.0.0.1] (helo=sfs-ml-2.v29.lw.sourceforge.com)
+	by sfs-ml-2.v29.lw.sourceforge.com with esmtp (Exim 4.92.3)
 	(envelope-from <v9fs-developer-bounces@lists.sourceforge.net>)
-	id 1lUn9M-000168-OK; Fri, 09 Apr 2021 09:10:00 +0000
+	id 1lUord-0003hu-Qp; Fri, 09 Apr 2021 10:59:49 +0000
 Received: from [172.30.20.202] (helo=mx.sourceforge.net)
- by sfs-ml-1.v29.lw.sourceforge.com with esmtps
- (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.90_1)
- (envelope-from <dhowells@redhat.com>) id 1lUn9L-00015i-1Y
- for v9fs-developer@lists.sourceforge.net; Fri, 09 Apr 2021 09:09:59 +0000
+ by sfs-ml-2.v29.lw.sourceforge.com with esmtps
+ (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.92.3)
+ (envelope-from <dhowells@redhat.com>) id 1lUorb-0003hk-8X
+ for v9fs-developer@lists.sourceforge.net; Fri, 09 Apr 2021 10:59:47 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=sourceforge.net; s=x; h=Message-ID:Date:Content-ID:Content-Type:
- MIME-Version:Subject:Cc:To:References:In-Reply-To:From:Sender:Reply-To:
- Content-Transfer-Encoding:Content-Description:Resent-Date:Resent-From:
- Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:
- List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=t4HrPUNe1C2/eoGUl35UTxwdBVeab2D940Ztg0ThcXw=; b=JNijKzn3qnDzbHAduCG2pJaAYC
- VYeoGK1xyDQyiShcPbUSlpPsulYmTdXIrj+wcMJxt5AGqvzTRmrzX3Au3hL2c7B6aXnGk0vBZGXUG
- yfYKu1t5QoXhFmzAA3x3PKXROXTQ/Xu0vaOa1nmqlyg+hpQeYX8nUC4T16yaChqcC8DE=;
+ d=sourceforge.net; s=x; h=Content-Transfer-Encoding:Content-Type:MIME-Version
+ :References:In-Reply-To:Message-ID:Date:Cc:To:From:Subject:Sender:Reply-To:
+ Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+ Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
+ List-Subscribe:List-Post:List-Owner:List-Archive;
+ bh=ANug4vbnIvWDaNTv8U2FRsQziGYv+4TJdFchOpNm0wI=; b=IWWAoYPtj0U7nEnYjeok6Y3GB8
+ 8/5PlbhPjgF6xldEogHC7xIu/dkQD1Dq3ssCHeeSVQ4OdePrtjf7U23DCsAbjLjTqRegdRgtoiZSX
+ EibiUnXf25b1wjwyf1ke/AY/LICdv6VnU8xicJJ7Cxtlh4Fns7gT4tMzR1MUAFA6NEPM=;
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  ;
- h=Message-ID:Date:Content-ID:Content-Type:MIME-Version:Subject:Cc:To:
- References:In-Reply-To:From:Sender:Reply-To:Content-Transfer-Encoding:
+ h=Content-Transfer-Encoding:Content-Type:MIME-Version:References:
+ In-Reply-To:Message-ID:Date:Cc:To:From:Subject:Sender:Reply-To:Content-ID:
  Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
  :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
  List-Post:List-Owner:List-Archive;
- bh=t4HrPUNe1C2/eoGUl35UTxwdBVeab2D940Ztg0ThcXw=; b=IuFPrnQaTh+WDmt6mwA92tsyLV
- oLefuhX/wk0NMAGVnmqELmq8LiFm1DM+0CoWJ682vVN3fNm+pQXQj/tjpoxZ1gLsQ85qxxje+3mLp
- Up+Jvc2k/atisIiC/b2C82/x7L52u2mEdcbwZWHDH1z4xZqojzE85UBrfqDrDXAJdaOA=;
+ bh=ANug4vbnIvWDaNTv8U2FRsQziGYv+4TJdFchOpNm0wI=; b=DRcmqzLMgy8GcdaDpKV9mdewgv
+ i89AWbrUr9u4tvFP6GCDzqItt0qKBT+jtgC206yT2nqswv9bOSxV+gjBImWET0sZS3gZTStGsi9sY
+ aCAfvcSPWPEKXrmwA2hzWhKweaT3KRsIAcDq2GAFJ2TGJ6+0Ra1JoXaorHMeVWavdg14=;
 Received: from us-smtp-delivery-124.mimecast.com ([216.205.24.124])
  by sfi-mx-1.v28.lw.sourceforge.com with esmtps
  (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.92.2)
- id 1lUn8k-009V87-St
- for v9fs-developer@lists.sourceforge.net; Fri, 09 Apr 2021 09:09:55 +0000
+ id 1lUorE-009x29-Is
+ for v9fs-developer@lists.sourceforge.net; Fri, 09 Apr 2021 10:59:46 +0000
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
- s=mimecast20190719; t=1617959357;
+ s=mimecast20190719; t=1617965958;
  h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
  to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
  in-reply-to:in-reply-to:references:references;
- bh=t4HrPUNe1C2/eoGUl35UTxwdBVeab2D940Ztg0ThcXw=;
- b=jVA6JXZoEM9wkcd0KGGOA2q8+u3ycuhjyKPPI83v5T4gw2E90JgWNAk0B8KWrlLfkpzGEV
- 2BhI9Us1zj1aE/WIdhMJ8BFJSmYU6QHWzB6j0Dbux8BKQFgOJTogITZXVYnDeg7Lzo4+Yi
- 8jp89GJQ1EQrRKdl+w16BFzlN9Yt0TA=
+ bh=ANug4vbnIvWDaNTv8U2FRsQziGYv+4TJdFchOpNm0wI=;
+ b=WTZrbOM1ZmUZGGwCih5zhtkT2c5Nl62xMyvDHdHpLOSGbUhP1ebnXcSZIlGacbp7ccS6fS
+ WnP14X7yvkuv0lBiGibOKKNIvKcahrCaqpFQoFaeVHxS2iboJb0wJZwKzrZi7OTFFBvL8S
+ 71xIVqyaMnTZ6asa2ucdW8/bkyw4+NI=
 Received: from mimecast-mx01.redhat.com (mimecast-mx01.redhat.com
  [209.132.183.4]) (Using TLS) by relay.mimecast.com with ESMTP id
- us-mta-315-DWcyR59bPNm8maj44EYDXw-1; Fri, 09 Apr 2021 05:09:15 -0400
-X-MC-Unique: DWcyR59bPNm8maj44EYDXw-1
-Received: from smtp.corp.redhat.com (int-mx04.intmail.prod.int.phx2.redhat.com
- [10.5.11.14])
+ us-mta-25-uRDoahl6No2zN7lOMrChuw-1; Fri, 09 Apr 2021 06:59:14 -0400
+X-MC-Unique: uRDoahl6No2zN7lOMrChuw-1
+Received: from smtp.corp.redhat.com (int-mx02.intmail.prod.int.phx2.redhat.com
+ [10.5.11.12])
  (using TLSv1.2 with cipher AECDH-AES256-SHA (256/256 bits))
  (No client certificate requested)
- by mimecast-mx01.redhat.com (Postfix) with ESMTPS id 455B9107ACC7;
- Fri,  9 Apr 2021 09:09:13 +0000 (UTC)
+ by mimecast-mx01.redhat.com (Postfix) with ESMTPS id E66D219611A0;
+ Fri,  9 Apr 2021 10:59:11 +0000 (UTC)
 Received: from warthog.procyon.org.uk (ovpn-119-35.rdu2.redhat.com
  [10.10.119.35])
- by smtp.corp.redhat.com (Postfix) with ESMTP id 529765D9E3;
- Fri,  9 Apr 2021 09:09:06 +0000 (UTC)
+ by smtp.corp.redhat.com (Postfix) with ESMTP id 65D2260BE5;
+ Fri,  9 Apr 2021 10:59:02 +0000 (UTC)
 Organization: Red Hat UK Ltd. Registered Address: Red Hat UK Ltd, Amberley
  Place, 107-111 Peascod Street, Windsor, Berkshire, SI4 1TE, United
  Kingdom.
  Registered in England and Wales under Company Registration No. 3798903
 From: David Howells <dhowells@redhat.com>
-In-Reply-To: <YG+s0iw5o91KQIlW@zeniv-ca.linux.org.uk>
-References: <YG+s0iw5o91KQIlW@zeniv-ca.linux.org.uk>
- <161789062190.6155.12711584466338493050.stgit@warthog.procyon.org.uk>
- <161789064740.6155.11932541175173658065.stgit@warthog.procyon.org.uk>
-To: Al Viro <viro@zeniv.linux.org.uk>
+To: torvalds@linux-foundation.org, willy@infradead.org
+Date: Fri, 09 Apr 2021 11:59:01 +0100
+Message-ID: <161796594154.350846.1787112929938233401.stgit@warthog.procyon.org.uk>
+In-Reply-To: <CAHk-=wi_XrtTanTwoKs0jwnjhSvwpMYVDJ477VtjvvTXRjm5wQ@mail.gmail.com>
+References: <CAHk-=wi_XrtTanTwoKs0jwnjhSvwpMYVDJ477VtjvvTXRjm5wQ@mail.gmail.com>
+User-Agent: StGit/0.23
 MIME-Version: 1.0
-Content-ID: <289824.1617959345.1@warthog.procyon.org.uk>
-Date: Fri, 09 Apr 2021 10:09:05 +0100
-Message-ID: <289825.1617959345@warthog.procyon.org.uk>
-X-Scanned-By: MIMEDefang 2.79 on 10.5.11.14
-X-Spam-Score: 0.0 (/)
+X-Scanned-By: MIMEDefang 2.79 on 10.5.11.12
+X-Spam-Score: -0.1 (/)
 X-Spam-Report: Spam Filtering performed by mx.sourceforge.net.
  See http://spamassassin.org/tag/ for more details.
  0.0 URIBL_BLOCKED ADMINISTRATOR NOTICE: The query to URIBL was blocked.
  See
  http://wiki.apache.org/spamassassin/DnsBlocklists#dnsbl-block
- for more information. [URIs: linux.org.uk]
+ for more information. [URIs: arndb.de]
  0.0 RCVD_IN_MSPIKE_H4      RBL: Very Good reputation (+4)
  [216.205.24.124 listed in wl.mailspike.net]
+ 0.0 SPF_HELO_NONE          SPF: HELO does not publish an SPF Record
+ -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from author's
+ domain
+ -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+ 0.1 DKIM_SIGNED            Message has a DKIM or DK signature,
+ not necessarily valid
+ 0.0 RCVD_IN_MSPIKE_WL      Mailspike good senders
  0.0 TIME_LIMIT_EXCEEDED    Exceeded time limit / deadline
-X-Headers-End: 1lUn8k-009V87-St
-Subject: Re: [V9fs-developer] [PATCH v6 01/30] iov_iter: Add ITER_XARRAY
+X-Headers-End: 1lUorE-009x29-Is
+Subject: [V9fs-developer] [RFC PATCH 1/3] Make the generic bitops return bool
 X-BeenThere: v9fs-developer@lists.sourceforge.net
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -98,46 +104,161 @@ List-Post: <mailto:v9fs-developer@lists.sourceforge.net>
 List-Help: <mailto:v9fs-developer-request@lists.sourceforge.net?subject=help>
 List-Subscribe: <https://lists.sourceforge.net/lists/listinfo/v9fs-developer>, 
  <mailto:v9fs-developer-request@lists.sourceforge.net?subject=subscribe>
-Cc: David Wysochanski <dwysocha@redhat.com>, linux-cifs@vger.kernel.org,
- linux-nfs@vger.kernel.org, Jeff Layton <jlayton@redhat.com>,
- Steve French <sfrench@samba.org>, linux-kernel@vger.kernel.org,
- "Matthew Wilcox \(Oracle\)" <willy@infradead.org>,
+Cc: linux-cifs@vger.kernel.org, linux-nfs@vger.kernel.org,
+ Arnd Bergmann <arnd@arndb.de>, linux-kernel@vger.kernel.org,
+ jlayton@kernel.org, Akinobu Mita <akinobu.mita@gmail.com>,
  linux-afs@lists.infradead.org, dhowells@redhat.com, linux-mm@kvack.org,
- linux-cachefs@redhat.com, Anna Schumaker <anna.schumaker@netapp.com>,
+ ceph-devel@vger.kernel.org, linux-cachefs@redhat.com,
  linux-fsdevel@vger.kernel.org, v9fs-developer@lists.sourceforge.net,
- ceph-devel@vger.kernel.org, Christoph Hellwig <hch@lst.de>,
- Trond Myklebust <trond.myklebust@hammerspace.com>
+ Will Deacon <will@kernel.org>, hch@lst.de
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: v9fs-developer-bounces@lists.sourceforge.net
 
-Al Viro <viro@zeniv.linux.org.uk> wrote:
+Make the generic bitops return bool when returning the value of a tested
+bit.
 
-> > +#define iterate_all_kinds(i, n, v, I, B, K, X) {		\
-> 
-> Do you have any users that would pass different B and X?
-> 
-> > @@ -1440,7 +1665,7 @@ ssize_t iov_iter_get_pages_alloc(struct iov_iter *i,
-> >  		return v.bv_len;
-> >  	}),({
-> >  		return -EFAULT;
-> > -	})
-> > +	}), 0
-> 
-> Correction - users that might get that flavour.  This one explicitly checks
-> for xarray and doesn't get to iterate_... in that case.
+Signed-off-by: David Howells <dhowells@redhat.com>
+cc: Linus Torvalds <torvalds@linux-foundation.org>
+cc: Matthew Wilcox <willy@infradead.org>
+cc: Akinobu Mita <akinobu.mita@gmail.com>
+cc: Arnd Bergmann <arnd@arndb.de>
+cc: Will Deacon <will@kernel.org>
+---
 
-This is the case for iterate_all_kinds(), but not for iterate_and_advance().
+ include/asm-generic/bitops/atomic.h     |    6 +++---
+ include/asm-generic/bitops/le.h         |   10 +++++-----
+ include/asm-generic/bitops/lock.h       |    4 ++--
+ include/asm-generic/bitops/non-atomic.h |    8 ++++----
+ 4 files changed, 14 insertions(+), 14 deletions(-)
 
-See _copy_mc_to_iter() for example: that can return directly out of the middle
-of the loop, so the X variant must drop the rcu_read_lock(), but the B variant
-doesn't need to.  You also can't just use break to get out as the X variant
-has a loop within a loop to handle iteration over the subelements of a THP.
+diff --git a/include/asm-generic/bitops/atomic.h b/include/asm-generic/bitops/atomic.h
+index 0e7316a86240..9b05e8634c09 100644
+--- a/include/asm-generic/bitops/atomic.h
++++ b/include/asm-generic/bitops/atomic.h
+@@ -29,7 +29,7 @@ static __always_inline void change_bit(unsigned int nr, volatile unsigned long *
+ 	atomic_long_xor(BIT_MASK(nr), (atomic_long_t *)p);
+ }
+ 
+-static inline int test_and_set_bit(unsigned int nr, volatile unsigned long *p)
++static inline bool test_and_set_bit(unsigned int nr, volatile unsigned long *p)
+ {
+ 	long old;
+ 	unsigned long mask = BIT_MASK(nr);
+@@ -42,7 +42,7 @@ static inline int test_and_set_bit(unsigned int nr, volatile unsigned long *p)
+ 	return !!(old & mask);
+ }
+ 
+-static inline int test_and_clear_bit(unsigned int nr, volatile unsigned long *p)
++static inline bool test_and_clear_bit(unsigned int nr, volatile unsigned long *p)
+ {
+ 	long old;
+ 	unsigned long mask = BIT_MASK(nr);
+@@ -55,7 +55,7 @@ static inline int test_and_clear_bit(unsigned int nr, volatile unsigned long *p)
+ 	return !!(old & mask);
+ }
+ 
+-static inline int test_and_change_bit(unsigned int nr, volatile unsigned long *p)
++static inline bool test_and_change_bit(unsigned int nr, volatile unsigned long *p)
+ {
+ 	long old;
+ 	unsigned long mask = BIT_MASK(nr);
+diff --git a/include/asm-generic/bitops/le.h b/include/asm-generic/bitops/le.h
+index 188d3eba3ace..33355cf288f6 100644
+--- a/include/asm-generic/bitops/le.h
++++ b/include/asm-generic/bitops/le.h
+@@ -50,7 +50,7 @@ extern unsigned long find_next_bit_le(const void *addr,
+ #error "Please fix <asm/byteorder.h>"
+ #endif
+ 
+-static inline int test_bit_le(int nr, const void *addr)
++static inline bool test_bit_le(int nr, const void *addr)
+ {
+ 	return test_bit(nr ^ BITOP_LE_SWIZZLE, addr);
+ }
+@@ -75,22 +75,22 @@ static inline void __clear_bit_le(int nr, void *addr)
+ 	__clear_bit(nr ^ BITOP_LE_SWIZZLE, addr);
+ }
+ 
+-static inline int test_and_set_bit_le(int nr, void *addr)
++static inline bool test_and_set_bit_le(int nr, void *addr)
+ {
+ 	return test_and_set_bit(nr ^ BITOP_LE_SWIZZLE, addr);
+ }
+ 
+-static inline int test_and_clear_bit_le(int nr, void *addr)
++static inline bool test_and_clear_bit_le(int nr, void *addr)
+ {
+ 	return test_and_clear_bit(nr ^ BITOP_LE_SWIZZLE, addr);
+ }
+ 
+-static inline int __test_and_set_bit_le(int nr, void *addr)
++static inline bool __test_and_set_bit_le(int nr, void *addr)
+ {
+ 	return __test_and_set_bit(nr ^ BITOP_LE_SWIZZLE, addr);
+ }
+ 
+-static inline int __test_and_clear_bit_le(int nr, void *addr)
++static inline bool __test_and_clear_bit_le(int nr, void *addr)
+ {
+ 	return __test_and_clear_bit(nr ^ BITOP_LE_SWIZZLE, addr);
+ }
+diff --git a/include/asm-generic/bitops/lock.h b/include/asm-generic/bitops/lock.h
+index 3ae021368f48..0e6acd059a59 100644
+--- a/include/asm-generic/bitops/lock.h
++++ b/include/asm-generic/bitops/lock.h
+@@ -15,8 +15,8 @@
+  * the returned value is 0.
+  * It can be used to implement bit locks.
+  */
+-static inline int test_and_set_bit_lock(unsigned int nr,
+-					volatile unsigned long *p)
++static inline bool test_and_set_bit_lock(unsigned int nr,
++					 volatile unsigned long *p)
+ {
+ 	long old;
+ 	unsigned long mask = BIT_MASK(nr);
+diff --git a/include/asm-generic/bitops/non-atomic.h b/include/asm-generic/bitops/non-atomic.h
+index 7e10c4b50c5d..7d916f677be3 100644
+--- a/include/asm-generic/bitops/non-atomic.h
++++ b/include/asm-generic/bitops/non-atomic.h
+@@ -55,7 +55,7 @@ static inline void __change_bit(int nr, volatile unsigned long *addr)
+  * If two examples of this operation race, one can appear to succeed
+  * but actually fail.  You must protect multiple accesses with a lock.
+  */
+-static inline int __test_and_set_bit(int nr, volatile unsigned long *addr)
++static inline bool __test_and_set_bit(int nr, volatile unsigned long *addr)
+ {
+ 	unsigned long mask = BIT_MASK(nr);
+ 	unsigned long *p = ((unsigned long *)addr) + BIT_WORD(nr);
+@@ -74,7 +74,7 @@ static inline int __test_and_set_bit(int nr, volatile unsigned long *addr)
+  * If two examples of this operation race, one can appear to succeed
+  * but actually fail.  You must protect multiple accesses with a lock.
+  */
+-static inline int __test_and_clear_bit(int nr, volatile unsigned long *addr)
++static inline bool __test_and_clear_bit(int nr, volatile unsigned long *addr)
+ {
+ 	unsigned long mask = BIT_MASK(nr);
+ 	unsigned long *p = ((unsigned long *)addr) + BIT_WORD(nr);
+@@ -85,7 +85,7 @@ static inline int __test_and_clear_bit(int nr, volatile unsigned long *addr)
+ }
+ 
+ /* WARNING: non atomic and it can be reordered! */
+-static inline int __test_and_change_bit(int nr,
++static inline bool __test_and_change_bit(int nr,
+ 					    volatile unsigned long *addr)
+ {
+ 	unsigned long mask = BIT_MASK(nr);
+@@ -101,7 +101,7 @@ static inline int __test_and_change_bit(int nr,
+  * @nr: bit number to test
+  * @addr: Address to start counting from
+  */
+-static inline int test_bit(int nr, const volatile unsigned long *addr)
++static inline bool test_bit(int nr, const volatile unsigned long *addr)
+ {
+ 	return 1UL & (addr[BIT_WORD(nr)] >> (nr & (BITS_PER_LONG-1)));
+ }
 
-But with iterate_all_kinds(), I could just drop the X parameter and use the B
-parameter for both, I think.
-
-David
 
 
 
