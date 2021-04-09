@@ -2,93 +2,91 @@ Return-Path: <v9fs-developer-bounces@lists.sourceforge.net>
 X-Original-To: lists+v9fs-developer@lfdr.de
 Delivered-To: lists+v9fs-developer@lfdr.de
 Received: from lists.sourceforge.net (lists.sourceforge.net [216.105.38.7])
-	by mail.lfdr.de (Postfix) with ESMTPS id F211835A291
-	for <lists+v9fs-developer@lfdr.de>; Fri,  9 Apr 2021 18:04:29 +0200 (CEST)
-Received: from [127.0.0.1] (helo=sfs-ml-2.v29.lw.sourceforge.com)
-	by sfs-ml-2.v29.lw.sourceforge.com with esmtp (Exim 4.92.3)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1CAC035A566
+	for <lists+v9fs-developer@lfdr.de>; Fri,  9 Apr 2021 20:11:43 +0200 (CEST)
+Received: from [127.0.0.1] (helo=sfs-ml-1.v29.lw.sourceforge.com)
+	by sfs-ml-1.v29.lw.sourceforge.com with esmtp (Exim 4.90_1)
 	(envelope-from <v9fs-developer-bounces@lists.sourceforge.net>)
-	id 1lUtcS-0003D4-EB; Fri, 09 Apr 2021 16:04:28 +0000
+	id 1lUvbZ-0006WP-5J; Fri, 09 Apr 2021 18:11:41 +0000
 Received: from [172.30.20.202] (helo=mx.sourceforge.net)
- by sfs-ml-2.v29.lw.sourceforge.com with esmtps
- (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.92.3)
- (envelope-from <dhowells@redhat.com>) id 1lUtcQ-0003Cs-Q0
- for v9fs-developer@lists.sourceforge.net; Fri, 09 Apr 2021 16:04:26 +0000
+ by sfs-ml-1.v29.lw.sourceforge.com with esmtps
+ (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.90_1)
+ (envelope-from <dhowells@redhat.com>) id 1lUvbX-0006W7-Jz
+ for v9fs-developer@lists.sourceforge.net; Fri, 09 Apr 2021 18:11:39 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=sourceforge.net; s=x; h=Message-ID:Date:Content-ID:Content-Type:
- MIME-Version:Subject:Cc:References:In-Reply-To:From:Sender:Reply-To:To:
- Content-Transfer-Encoding:Content-Description:Resent-Date:Resent-From:
- Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:
- List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=l/YtRHbaNxAvJJBbIoYtFy0sDOmcZWRbIs4MjOEQB/k=; b=WLB9BXowN0ks59i0y10aJDz7fB
- ds4Leu2A+30OVnNHOjoHOXh/qmL6xba8TsUgX4xFxqBioNpbewP8zKPuDsgmLnVlG5suzMqY9c/Yq
- eMknImvuU+LNkuW+QQfVS+Hge4r7egZpvr50tOfQwCJK7Rr9u1OZAVuyVNjxgWkveGIk=;
+ d=sourceforge.net; s=x; h=Content-Transfer-Encoding:Content-Type:MIME-Version
+ :References:In-Reply-To:Message-ID:Date:Cc:To:From:Subject:Sender:Reply-To:
+ Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+ Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
+ List-Subscribe:List-Post:List-Owner:List-Archive;
+ bh=RgtAbf2LjG2l+2155p4OwWEE/xnbluMbW9xCxJONACw=; b=ZCpN1c4Kx/vzDpF/l7ULXxNbMc
+ rBEjqSzcByDeDw+lsSm3P21j/wihnGbvLNqZ0U/Qx4Wvjz/uYRk8l0pWYhTDI4FicZWZteKQ03AT6
+ LXoCChtnV3cx4hNtw9bC9QF9rv+LJZEC2GIaLr6Zy3BwGZCrPsAuJWwOjChBUk7ZTiIk=;
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  ;
- h=Message-ID:Date:Content-ID:Content-Type:MIME-Version:Subject:Cc:
- References:In-Reply-To:From:Sender:Reply-To:To:Content-Transfer-Encoding:
+ h=Content-Transfer-Encoding:Content-Type:MIME-Version:References:
+ In-Reply-To:Message-ID:Date:Cc:To:From:Subject:Sender:Reply-To:Content-ID:
  Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
  :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
  List-Post:List-Owner:List-Archive;
- bh=l/YtRHbaNxAvJJBbIoYtFy0sDOmcZWRbIs4MjOEQB/k=; b=TjUABV3LHAWrjd9S/54Gkxs9x7
- iNr5am42eQ9dq/vRrvg45NJws1WeObxwjv+lQAXTafTEfmGFJ5GIYxcdiWDxnqzcqFVnObsi8t5JY
- +Kbm+xzBHqIzsFCZCtm6bcFF2S4XMZNTI0yRa3OzaliM1pGYDg6RQbfVz9JmEsj/pSFc=;
+ bh=RgtAbf2LjG2l+2155p4OwWEE/xnbluMbW9xCxJONACw=; b=LE6IM8aKmDBxtbiFiGax5QTgwp
+ YiMbv/9kf5qx1ZeuRST1fkxBPJa6xOr5tUVVAm1E4HlSu6D3ibfHtC1Zb6DcZcjrfNDYHfCfg0qm+
+ UT7PPe+aLknROIpcTfns8cZnPQ5OftRR6Td1+x0uhLAP0nnHn5KMPBLOA1u6C3FyiegM=;
 Received: from us-smtp-delivery-124.mimecast.com ([216.205.24.124])
  by sfi-mx-2.v28.lw.sourceforge.com with esmtps
  (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.92.3)
- id 1lUtc0-0004oc-Tx
- for v9fs-developer@lists.sourceforge.net; Fri, 09 Apr 2021 16:04:22 +0000
+ id 1lUvb6-0004w7-Jf
+ for v9fs-developer@lists.sourceforge.net; Fri, 09 Apr 2021 18:11:37 +0000
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
- s=mimecast20190719; t=1617984234;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:to:
- cc:cc:mime-version:mime-version:content-type:content-type:
+ s=mimecast20190719; t=1617991865;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
  in-reply-to:in-reply-to:references:references;
- bh=l/YtRHbaNxAvJJBbIoYtFy0sDOmcZWRbIs4MjOEQB/k=;
- b=MbrfZzL3UIdk1KlQ+svyyTKMeUegGG/KBL3rYz3j2jDCKEa/nqOQnTHQfWVmflzacwsbJY
- Wbc1fIs9mFrmSUafO5ymi07fjJpkclY0YgF7xPO/TjBiFPhpKXkHtMPsyWHAWbYx3cV/5S
- cvZ5dIlEG4XYKCNxKQLrj9jvJnoObFE=
+ bh=RgtAbf2LjG2l+2155p4OwWEE/xnbluMbW9xCxJONACw=;
+ b=MBhVUn3IB9egZD8vCVWDZM/536LcrEoBOQJH0HAsydfG4KHe2G7BMrCe+5nGd8WLH8JrZk
+ M/5pKeOLeQOtYRTTd5201Ck0+M6hq//CVcD9cYv2GZPUBFZbLgEW//4IbXr9ota06rjL0J
+ eXQ993QNklGpMDxLOj37Mhp/v8smfNw=
 Received: from mimecast-mx01.redhat.com (mimecast-mx01.redhat.com
  [209.132.183.4]) (Using TLS) by relay.mimecast.com with ESMTP id
- us-mta-569-VKd9VOlPMEOH6PW381t7Pg-1; Fri, 09 Apr 2021 12:03:50 -0400
-X-MC-Unique: VKd9VOlPMEOH6PW381t7Pg-1
-Received: from smtp.corp.redhat.com (int-mx06.intmail.prod.int.phx2.redhat.com
- [10.5.11.16])
+ us-mta-533-TK3YSBC1OvymhxW-Xrgfww-1; Fri, 09 Apr 2021 14:11:03 -0400
+X-MC-Unique: TK3YSBC1OvymhxW-Xrgfww-1
+Received: from smtp.corp.redhat.com (int-mx07.intmail.prod.int.phx2.redhat.com
+ [10.5.11.22])
  (using TLSv1.2 with cipher AECDH-AES256-SHA (256/256 bits))
  (No client certificate requested)
- by mimecast-mx01.redhat.com (Postfix) with ESMTPS id 54C20801814;
- Fri,  9 Apr 2021 16:03:48 +0000 (UTC)
+ by mimecast-mx01.redhat.com (Postfix) with ESMTPS id 6DF2D18766D0;
+ Fri,  9 Apr 2021 18:11:01 +0000 (UTC)
 Received: from warthog.procyon.org.uk (ovpn-119-35.rdu2.redhat.com
  [10.10.119.35])
- by smtp.corp.redhat.com (Postfix) with ESMTP id E36435C1D5;
- Fri,  9 Apr 2021 16:03:38 +0000 (UTC)
+ by smtp.corp.redhat.com (Postfix) with ESMTP id BEDCA10016FD;
+ Fri,  9 Apr 2021 18:10:54 +0000 (UTC)
 Organization: Red Hat UK Ltd. Registered Address: Red Hat UK Ltd, Amberley
  Place, 107-111 Peascod Street, Windsor, Berkshire, SI4 1TE, United
  Kingdom.
  Registered in England and Wales under Company Registration No. 3798903
 From: David Howells <dhowells@redhat.com>
-In-Reply-To: <625171.1617971734@warthog.procyon.org.uk>
-References: <625171.1617971734@warthog.procyon.org.uk>
- <20210409111636.GR2531743@casper.infradead.org>
- <CAHk-=wi_XrtTanTwoKs0jwnjhSvwpMYVDJ477VtjvvTXRjm5wQ@mail.gmail.com>
- <161796595714.350846.1547688999823745763.stgit@warthog.procyon.org.uk>
+To: viro@zeniv.linux.org.uk
+Date: Fri, 09 Apr 2021 19:10:53 +0100
+Message-ID: <161799185391.847742.2598422794034740322.stgit@warthog.procyon.org.uk>
+In-Reply-To: <YG+s0iw5o91KQIlW@zeniv-ca.linux.org.uk>
+References: <YG+s0iw5o91KQIlW@zeniv-ca.linux.org.uk>
+User-Agent: StGit/0.23
 MIME-Version: 1.0
-Content-ID: <838189.1617984218.1@warthog.procyon.org.uk>
-Date: Fri, 09 Apr 2021 17:03:38 +0100
-Message-ID: <838190.1617984218@warthog.procyon.org.uk>
-X-Scanned-By: MIMEDefang 2.79 on 10.5.11.16
-X-Spam-Score: 1.1 (+)
+X-Scanned-By: MIMEDefang 2.84 on 10.5.11.22
+X-Spam-Score: -0.1 (/)
 X-Spam-Report: Spam Filtering performed by mx.sourceforge.net.
  See http://spamassassin.org/tag/ for more details.
  0.0 SPF_HELO_NONE          SPF: HELO does not publish an SPF Record
- 1.2 MISSING_HEADERS        Missing To: header
  -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from author's
  domain
  -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
  0.1 DKIM_SIGNED            Message has a DKIM or DK signature,
  not necessarily valid
  0.0 TIME_LIMIT_EXCEEDED    Exceeded time limit / deadline
-X-Headers-End: 1lUtc0-0004oc-Tx
-Subject: Re: [V9fs-developer] [RFC PATCH 2/3] mm: Return bool from pagebit
- test functions
+X-Headers-End: 1lUvb6-0004w7-Jf
+Subject: [V9fs-developer] [RFC PATCH 1/2] iov_iter: Remove
+ iov_iter_for_each_range()
 X-BeenThere: v9fs-developer@lists.sourceforge.net
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -101,30 +99,73 @@ List-Help: <mailto:v9fs-developer-request@lists.sourceforge.net?subject=help>
 List-Subscribe: <https://lists.sourceforge.net/lists/listinfo/v9fs-developer>, 
  <mailto:v9fs-developer-request@lists.sourceforge.net?subject=subscribe>
 Cc: linux-cifs@vger.kernel.org, linux-nfs@vger.kernel.org, jlayton@kernel.org,
- linux-kernel@vger.kernel.org, Matthew Wilcox <willy@infradead.org>,
+ linux-kernel@vger.kernel.org, willy@infradead.org,
  linux-afs@lists.infradead.org, dhowells@redhat.com, linux-mm@kvack.org,
- ceph-devel@vger.kernel.org, linux-cachefs@redhat.com,
- linux-fsdevel@vger.kernel.org, v9fs-developer@lists.sourceforge.net,
- torvalds@linux-foundation.org, hch@lst.de
+ linux-cachefs@redhat.com, linux-fsdevel@vger.kernel.org,
+ v9fs-developer@lists.sourceforge.net, ceph-devel@vger.kernel.org, hch@lst.de
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: v9fs-developer-bounces@lists.sourceforge.net
 
-David Howells <dhowells@redhat.com> wrote:
+Remove iov_iter_for_each_range() as it's no longer used with the removal of
+lustre.
 
-> add/remove: 2/2 grow/shrink: 15/16 up/down: 408/-599 (-191)
-> Function                                     old     new   delta
-> iomap_write_end_inline                         -     128    +128
+Signed-off-by: David Howells <dhowells@redhat.com>
+---
 
-I can get rid of the iomap_write_end_inline() increase for my config by
-marking it __always_inline, thereby getting:
+ include/linux/uio.h |    4 ----
+ lib/iov_iter.c      |   27 ---------------------------
+ 2 files changed, 31 deletions(-)
 
-add/remove: 1/2 grow/shrink: 15/15 up/down: 280/-530 (-250)
+diff --git a/include/linux/uio.h b/include/linux/uio.h
+index 5f5ffc45d4aa..221c256304d4 100644
+--- a/include/linux/uio.h
++++ b/include/linux/uio.h
+@@ -295,8 +295,4 @@ ssize_t __import_iovec(int type, const struct iovec __user *uvec,
+ int import_single_range(int type, void __user *buf, size_t len,
+ 		 struct iovec *iov, struct iov_iter *i);
+ 
+-int iov_iter_for_each_range(struct iov_iter *i, size_t bytes,
+-			    int (*f)(struct kvec *vec, void *context),
+-			    void *context);
+-
+ #endif
+diff --git a/lib/iov_iter.c b/lib/iov_iter.c
+index f808c625c11e..93e9838c128d 100644
+--- a/lib/iov_iter.c
++++ b/lib/iov_iter.c
+@@ -2094,30 +2094,3 @@ int import_single_range(int rw, void __user *buf, size_t len,
+ 	return 0;
+ }
+ EXPORT_SYMBOL(import_single_range);
+-
+-int iov_iter_for_each_range(struct iov_iter *i, size_t bytes,
+-			    int (*f)(struct kvec *vec, void *context),
+-			    void *context)
+-{
+-	struct kvec w;
+-	int err = -EINVAL;
+-	if (!bytes)
+-		return 0;
+-
+-	iterate_all_kinds(i, bytes, v, -EINVAL, ({
+-		w.iov_base = kmap(v.bv_page) + v.bv_offset;
+-		w.iov_len = v.bv_len;
+-		err = f(&w, context);
+-		kunmap(v.bv_page);
+-		err;}), ({
+-		w = v;
+-		err = f(&w, context);}), ({
+-		w.iov_base = kmap(v.bv_page) + v.bv_offset;
+-		w.iov_len = v.bv_len;
+-		err = f(&w, context);
+-		kunmap(v.bv_page);
+-		err;})
+-	)
+-	return err;
+-}
+-EXPORT_SYMBOL(iov_iter_for_each_range);
 
-It seems that the decision whether or not to inline iomap_write_end_inline()
-is affected by the switch to bool.
-
-David
 
 
 
