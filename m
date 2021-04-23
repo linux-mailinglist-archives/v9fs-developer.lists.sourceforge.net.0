@@ -2,26 +2,26 @@ Return-Path: <v9fs-developer-bounces@lists.sourceforge.net>
 X-Original-To: lists+v9fs-developer@lfdr.de
 Delivered-To: lists+v9fs-developer@lfdr.de
 Received: from lists.sourceforge.net (lists.sourceforge.net [216.105.38.7])
-	by mail.lfdr.de (Postfix) with ESMTPS id 993D636A67C
-	for <lists+v9fs-developer@lfdr.de>; Sun, 25 Apr 2021 12:13:30 +0200 (CEST)
-Received: from [127.0.0.1] (helo=sfs-ml-2.v29.lw.sourceforge.com)
-	by sfs-ml-2.v29.lw.sourceforge.com with esmtp (Exim 4.92.3)
+	by mail.lfdr.de (Postfix) with ESMTPS id CACDE36A687
+	for <lists+v9fs-developer@lfdr.de>; Sun, 25 Apr 2021 12:14:25 +0200 (CEST)
+Received: from [127.0.0.1] (helo=sfs-ml-4.v29.lw.sourceforge.com)
+	by sfs-ml-4.v29.lw.sourceforge.com with esmtp (Exim 4.90_1)
 	(envelope-from <v9fs-developer-bounces@lists.sourceforge.net>)
-	id 1lablY-0001jL-Nh; Sun, 25 Apr 2021 10:13:28 +0000
+	id 1labmR-000232-LV; Sun, 25 Apr 2021 10:14:23 +0000
 Received: from [172.30.20.202] (helo=mx.sourceforge.net)
- by sfs-ml-2.v29.lw.sourceforge.com with esmtps
- (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.92.3)
- (envelope-from <dhowells@redhat.com>) id 1labkf-0001fD-P5
- for v9fs-developer@lists.sourceforge.net; Sun, 25 Apr 2021 10:12:33 +0000
+ by sfs-ml-4.v29.lw.sourceforge.com with esmtps
+ (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.90_1)
+ (envelope-from <dhowells@redhat.com>) id 1labla-0001zj-PC
+ for v9fs-developer@lists.sourceforge.net; Sun, 25 Apr 2021 10:13:30 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
  d=sourceforge.net; s=x; h=Content-Transfer-Encoding:Content-Type:MIME-Version
  :References:In-Reply-To:Message-ID:Date:Cc:To:From:Subject:Sender:Reply-To:
  Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
  Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
  List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=LG44Vu+7DqKU2tfMX0bvhBbcVZPivE1mwTtQd6zVSuA=; b=S65VqOagKAKDInjK5xeYD3y4c5
- KfqoPzmzF+x2dLxdMhD9prxCaDkjhBjRzrcCmNcYqT+3ZfkDShi898s5aXeKRpqsKClYgyx7AAAQB
- dG4KUNACgiKSMDdAduBfUitYuwWT3ddB4P8LUJLO5HVugc4fboKA+dUXzHifkzRDv8yM=;
+ bh=kZezZuXA12pnDd++Mp5igwSoki8j2HQedTroqRa90gg=; b=RzOO3Naps49tcJCzKITQE2NZza
+ gC59ZqnN+0xMoUWbjsi9YLli0BTJDlaa0xIJVd6Y+PoiT0lJZxqkU5mxjzsdQpL6xn/JALFbLJl9K
+ 7DLuLT7StilMc9edXi2NtchGHtE+IWQ9ZWrI72t/150ZBX9fviKIImr1zC7fIdzwfYPo=;
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  ;
  h=Content-Transfer-Encoding:Content-Type:MIME-Version:References:
@@ -29,58 +29,58 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
  :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
  List-Post:List-Owner:List-Archive;
- bh=LG44Vu+7DqKU2tfMX0bvhBbcVZPivE1mwTtQd6zVSuA=; b=FshvwwK0gWwcd4SQ63RkNlHMT7
- ZD/ttlN9Gpc5bR1K4WtyjSSXGvEu/6vxqkMxLy5sX3MRm3gmlUHHex0uCVxdNLKTBYXY0uBTybn5+
- 99SqRjULOXyuA1/z78a0bP6NPp3IAhAGrd7enQvDGuALDpzbUKf3aKDjbXja2y5kb4L8=;
-Received: from us-smtp-delivery-124.mimecast.com ([216.205.24.124])
+ bh=kZezZuXA12pnDd++Mp5igwSoki8j2HQedTroqRa90gg=; b=gMS+krzlwrqmy6tfdQAB4sq9Qn
+ q8r1uXdGPu05NS52ouN7fAb1evuERYLUq2RGjRo2vd8sQxW9CEIKuqYZf251BOvndE9cwb4Cmdpac
+ gmnGw9oMPQ4RKCVjYTtXTmx8TeWtVh1ZcUZmD/jqPdbo1UohhEMmZMltmULT3QvBl8Bc=;
+Received: from us-smtp-delivery-124.mimecast.com ([170.10.133.124])
  by sfi-mx-2.v28.lw.sourceforge.com with esmtps
  (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.92.3)
- id 1labkX-00079C-Ef
- for v9fs-developer@lists.sourceforge.net; Sun, 25 Apr 2021 10:12:33 +0000
+ id 1lablU-0007N8-SS
+ for v9fs-developer@lists.sourceforge.net; Sun, 25 Apr 2021 10:13:31 +0000
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
- s=mimecast20190719; t=1619345539;
+ s=mimecast20190719; t=1619345599;
  h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
  to:to:cc:cc:mime-version:mime-version:content-type:content-type:
  content-transfer-encoding:content-transfer-encoding:
  in-reply-to:in-reply-to:references:references;
- bh=LG44Vu+7DqKU2tfMX0bvhBbcVZPivE1mwTtQd6zVSuA=;
- b=jQ+B8d7tSyFKfEojwC81i9exDIr+pIB/Ea9/rFijdZ+y/9hRWf2w97IWEgue5tfa9X8qTl
- SYuAwN+qvADKCRcwC9Ab9+1Pbm7HY1Xz3vnQrr5LBBlU05TwmsF/IoavckTmL/viAoGapJ
- HLSlFlsKEolWudjmaWJ8kgsN6Xk5qv4=
+ bh=kZezZuXA12pnDd++Mp5igwSoki8j2HQedTroqRa90gg=;
+ b=NgPq3RvxhWp1Wi3Y0FJoVbjb5jTFZqCicRuPOOvm/sZ5Y/RlNEf3OYqfJUrla1uuN89U5T
+ wO+b5CZjtPtu3RjK+3ucrJQzZLwgwU+D7+yeDI+10MU+E/r8wTnMRJEYHpx20tyslGWQ/o
+ uyvw37kveQZEh4bsAksN7MUdDrAIduI=
 Received: from mimecast-mx01.redhat.com (mimecast-mx01.redhat.com
  [209.132.183.4]) (Using TLS) by relay.mimecast.com with ESMTP id
- us-mta-120-fmIopLrwOCCmfIQVcEOecQ-1; Fri, 23 Apr 2021 09:32:31 -0400
-X-MC-Unique: fmIopLrwOCCmfIQVcEOecQ-1
-Received: from smtp.corp.redhat.com (int-mx07.intmail.prod.int.phx2.redhat.com
- [10.5.11.22])
+ us-mta-192-B0zFbeL-MsSoVotjKD1wag-1; Fri, 23 Apr 2021 09:32:45 -0400
+X-MC-Unique: B0zFbeL-MsSoVotjKD1wag-1
+Received: from smtp.corp.redhat.com (int-mx04.intmail.prod.int.phx2.redhat.com
+ [10.5.11.14])
  (using TLSv1.2 with cipher AECDH-AES256-SHA (256/256 bits))
  (No client certificate requested)
- by mimecast-mx01.redhat.com (Postfix) with ESMTPS id 97E4B83DD22;
- Fri, 23 Apr 2021 13:32:29 +0000 (UTC)
+ by mimecast-mx01.redhat.com (Postfix) with ESMTPS id 0401B83DD21;
+ Fri, 23 Apr 2021 13:32:44 +0000 (UTC)
 Received: from warthog.procyon.org.uk (ovpn-112-124.rdu2.redhat.com
  [10.10.112.124])
- by smtp.corp.redhat.com (Postfix) with ESMTP id DFB1710023AC;
- Fri, 23 Apr 2021 13:32:22 +0000 (UTC)
+ by smtp.corp.redhat.com (Postfix) with ESMTP id 929935DDAD;
+ Fri, 23 Apr 2021 13:32:35 +0000 (UTC)
 Organization: Red Hat UK Ltd. Registered Address: Red Hat UK Ltd, Amberley
  Place, 107-111 Peascod Street, Windsor, Berkshire, SI4 1TE, United
  Kingdom.
  Registered in England and Wales under Company Registration No. 3798903
 From: David Howells <dhowells@redhat.com>
 To: linux-fsdevel@vger.kernel.org
-Date: Fri, 23 Apr 2021 14:32:22 +0100
-Message-ID: <161918474210.3145707.16113309208436461484.stgit@warthog.procyon.org.uk>
+Date: Fri, 23 Apr 2021 14:32:34 +0100
+Message-ID: <161918475483.3145707.16895916870392318058.stgit@warthog.procyon.org.uk>
 In-Reply-To: <161918446704.3145707.14418606303992174310.stgit@warthog.procyon.org.uk>
 References: <161918446704.3145707.14418606303992174310.stgit@warthog.procyon.org.uk>
 User-Agent: StGit/0.23
 MIME-Version: 1.0
-X-Scanned-By: MIMEDefang 2.84 on 10.5.11.22
+X-Scanned-By: MIMEDefang 2.79 on 10.5.11.14
 X-Spam-Score: -0.3 (/)
 X-Spam-Report: Spam Filtering performed by mx.sourceforge.net.
  See http://spamassassin.org/tag/ for more details.
- -0.0 RCVD_IN_MSPIKE_H4      RBL: Very Good reputation (+4)
- [216.205.24.124 listed in wl.mailspike.net]
  -0.0 SPF_PASS               SPF: sender matches SPF record
  0.0 SPF_HELO_NONE          SPF: HELO does not publish an SPF Record
+ -0.0 RCVD_IN_MSPIKE_H4      RBL: Very Good reputation (+4)
+ [170.10.133.124 listed in wl.mailspike.net]
  -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from author's
  domain
  -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
@@ -88,9 +88,9 @@ X-Spam-Report: Spam Filtering performed by mx.sourceforge.net.
  not necessarily valid
  -0.0 RCVD_IN_MSPIKE_WL      Mailspike good senders
  -0.2 DKIMWL_WL_HIGH         DKIMwl.org - High trust sender
-X-Headers-End: 1labkX-00079C-Ef
-Subject: [V9fs-developer] [PATCH v7 19/31] afs: Pass page into dirty region
- helpers to provide THP size
+X-Headers-End: 1lablU-0007N8-SS
+Subject: [V9fs-developer] [PATCH v7 20/31] afs: Print the operation debug_id
+ when logging an unexpected data version
 X-BeenThere: v9fs-developer@lists.sourceforge.net
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -115,336 +115,46 @@ Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: v9fs-developer-bounces@lists.sourceforge.net
 
-Pass a pointer to the page being accessed into the dirty region helpers so
-that the size of the page can be determined in case it's a transparent huge
-page.
-
-This also required the page to be passed into the afs_page_dirty trace
-point - so there's no need to specifically pass in the index or private
-data as these can be retrieved directly from the page struct.
+Print the afs_operation debug_id when logging an unexpected change in the
+data version.  This allows the logged message to be matched against
+tracelines.
 
 Signed-off-by: David Howells <dhowells@redhat.com>
 Tested-By: Marc Dionne <marc.dionne@auristor.com>
 cc: linux-afs@lists.infradead.org
 cc: linux-cachefs@redhat.com
 cc: linux-fsdevel@vger.kernel.org
-Link: https://lore.kernel.org/r/160588527183.3465195.16107942526481976308.stgit@warthog.procyon.org.uk/ # rfc
-Link: https://lore.kernel.org/r/161118144921.1232039.11377711180492625929.stgit@warthog.procyon.org.uk/ # rfc
-Link: https://lore.kernel.org/r/161161040747.2537118.11435394902674511430.stgit@warthog.procyon.org.uk/ # v2
-Link: https://lore.kernel.org/r/161340404553.1303470.11414163641767769882.stgit@warthog.procyon.org.uk/ # v3
-Link: https://lore.kernel.org/r/161539548385.286939.8864598314493255313.stgit@warthog.procyon.org.uk/ # v4
-Link: https://lore.kernel.org/r/161653804285.2770958.3497360004849598038.stgit@warthog.procyon.org.uk/ # v5
-Link: https://lore.kernel.org/r/161789087043.6155.16922142208140170528.stgit@warthog.procyon.org.uk/ # v6
+Link: https://lore.kernel.org/r/160588528377.3465195.2206051235095182302.stgit@warthog.procyon.org.uk/ # rfc
+Link: https://lore.kernel.org/r/161118146111.1232039.11398082422487058312.stgit@warthog.procyon.org.uk/ # rfc
+Link: https://lore.kernel.org/r/161161042180.2537118.2471333561661033316.stgit@warthog.procyon.org.uk/ # v2
+Link: https://lore.kernel.org/r/161340405772.1303470.3877167548944248214.stgit@warthog.procyon.org.uk/ # v3
+Link: https://lore.kernel.org/r/161539549628.286939.15234870409714613954.stgit@warthog.procyon.org.uk/ # v4
+Link: https://lore.kernel.org/r/161653805530.2770958.15120507632529970934.stgit@warthog.procyon.org.uk/ # v5
+Link: https://lore.kernel.org/r/161789088290.6155.3494369629853673866.stgit@warthog.procyon.org.uk/ # v6
 ---
 
- fs/afs/file.c              |   20 +++++++--------
- fs/afs/internal.h          |   16 ++++++------
- fs/afs/write.c             |   60 ++++++++++++++++++--------------------------
- include/trace/events/afs.h |   23 ++++++++++-------
- 4 files changed, 55 insertions(+), 64 deletions(-)
+ fs/afs/inode.c |    5 +++--
+ 1 file changed, 3 insertions(+), 2 deletions(-)
 
-diff --git a/fs/afs/file.c b/fs/afs/file.c
-index 314f6a9517c7..f1bae0b0a9c0 100644
---- a/fs/afs/file.c
-+++ b/fs/afs/file.c
-@@ -514,8 +514,8 @@ static void afs_invalidate_dirty(struct page *page, unsigned int offset,
- 		return;
+diff --git a/fs/afs/inode.c b/fs/afs/inode.c
+index 8de6f05987b4..a4bb3ac762be 100644
+--- a/fs/afs/inode.c
++++ b/fs/afs/inode.c
+@@ -214,11 +214,12 @@ static void afs_apply_status(struct afs_operation *op,
  
- 	/* We may need to shorten the dirty region */
--	f = afs_page_dirty_from(priv);
--	t = afs_page_dirty_to(priv);
-+	f = afs_page_dirty_from(page, priv);
-+	t = afs_page_dirty_to(page, priv);
+ 	if (vp->dv_before + vp->dv_delta != status->data_version) {
+ 		if (test_bit(AFS_VNODE_CB_PROMISED, &vnode->flags))
+-			pr_warn("kAFS: vnode modified {%llx:%llu} %llx->%llx %s\n",
++			pr_warn("kAFS: vnode modified {%llx:%llu} %llx->%llx %s (op=%x)\n",
+ 				vnode->fid.vid, vnode->fid.vnode,
+ 				(unsigned long long)vp->dv_before + vp->dv_delta,
+ 				(unsigned long long)status->data_version,
+-				op->type ? op->type->name : "???");
++				op->type ? op->type->name : "???",
++				op->debug_id);
  
- 	if (t <= offset || f >= end)
- 		return; /* Doesn't overlap */
-@@ -533,17 +533,17 @@ static void afs_invalidate_dirty(struct page *page, unsigned int offset,
- 	if (f == t)
- 		goto undirty;
- 
--	priv = afs_page_dirty(f, t);
-+	priv = afs_page_dirty(page, f, t);
- 	set_page_private(page, priv);
--	trace_afs_page_dirty(vnode, tracepoint_string("trunc"), page->index, priv);
-+	trace_afs_page_dirty(vnode, tracepoint_string("trunc"), page);
- 	return;
- 
- undirty:
--	trace_afs_page_dirty(vnode, tracepoint_string("undirty"), page->index, priv);
-+	trace_afs_page_dirty(vnode, tracepoint_string("undirty"), page);
- 	clear_page_dirty_for_io(page);
- full_invalidate:
--	priv = (unsigned long)detach_page_private(page);
--	trace_afs_page_dirty(vnode, tracepoint_string("inval"), page->index, priv);
-+	detach_page_private(page);
-+	trace_afs_page_dirty(vnode, tracepoint_string("inval"), page);
- }
- 
- /*
-@@ -571,7 +571,6 @@ static void afs_invalidatepage(struct page *page, unsigned int offset,
- static int afs_releasepage(struct page *page, gfp_t gfp_flags)
- {
- 	struct afs_vnode *vnode = AFS_FS_I(page->mapping->host);
--	unsigned long priv;
- 
- 	_enter("{{%llx:%llu}[%lu],%lx},%x",
- 	       vnode->fid.vid, vnode->fid.vnode, page->index, page->flags,
-@@ -580,9 +579,8 @@ static int afs_releasepage(struct page *page, gfp_t gfp_flags)
- 	/* deny if page is being written to the cache and the caller hasn't
- 	 * elected to wait */
- 	if (PagePrivate(page)) {
--		priv = (unsigned long)detach_page_private(page);
--		trace_afs_page_dirty(vnode, tracepoint_string("rel"),
--				     page->index, priv);
-+		detach_page_private(page);
-+		trace_afs_page_dirty(vnode, tracepoint_string("rel"), page);
- 	}
- 
- 	/* indicate that the page can be released */
-diff --git a/fs/afs/internal.h b/fs/afs/internal.h
-index 1627b1872812..fd437d4722b5 100644
---- a/fs/afs/internal.h
-+++ b/fs/afs/internal.h
-@@ -875,31 +875,31 @@ struct afs_vnode_cache_aux {
- #define __AFS_PAGE_PRIV_MMAPPED	0x8000UL
- #endif
- 
--static inline unsigned int afs_page_dirty_resolution(void)
-+static inline unsigned int afs_page_dirty_resolution(struct page *page)
- {
--	int shift = PAGE_SHIFT - (__AFS_PAGE_PRIV_SHIFT - 1);
-+	int shift = thp_order(page) + PAGE_SHIFT - (__AFS_PAGE_PRIV_SHIFT - 1);
- 	return (shift > 0) ? shift : 0;
- }
- 
--static inline size_t afs_page_dirty_from(unsigned long priv)
-+static inline size_t afs_page_dirty_from(struct page *page, unsigned long priv)
- {
- 	unsigned long x = priv & __AFS_PAGE_PRIV_MASK;
- 
- 	/* The lower bound is inclusive */
--	return x << afs_page_dirty_resolution();
-+	return x << afs_page_dirty_resolution(page);
- }
- 
--static inline size_t afs_page_dirty_to(unsigned long priv)
-+static inline size_t afs_page_dirty_to(struct page *page, unsigned long priv)
- {
- 	unsigned long x = (priv >> __AFS_PAGE_PRIV_SHIFT) & __AFS_PAGE_PRIV_MASK;
- 
- 	/* The upper bound is immediately beyond the region */
--	return (x + 1) << afs_page_dirty_resolution();
-+	return (x + 1) << afs_page_dirty_resolution(page);
- }
- 
--static inline unsigned long afs_page_dirty(size_t from, size_t to)
-+static inline unsigned long afs_page_dirty(struct page *page, size_t from, size_t to)
- {
--	unsigned int res = afs_page_dirty_resolution();
-+	unsigned int res = afs_page_dirty_resolution(page);
- 	from >>= res;
- 	to = (to - 1) >> res;
- 	return (to << __AFS_PAGE_PRIV_SHIFT) | from;
-diff --git a/fs/afs/write.c b/fs/afs/write.c
-index 901bd2ee2dd0..babc84dd9719 100644
---- a/fs/afs/write.c
-+++ b/fs/afs/write.c
-@@ -112,15 +112,14 @@ int afs_write_begin(struct file *file, struct address_space *mapping,
- 	t = f = 0;
- 	if (PagePrivate(page)) {
- 		priv = page_private(page);
--		f = afs_page_dirty_from(priv);
--		t = afs_page_dirty_to(priv);
-+		f = afs_page_dirty_from(page, priv);
-+		t = afs_page_dirty_to(page, priv);
- 		ASSERTCMP(f, <=, t);
- 	}
- 
- 	if (f != t) {
- 		if (PageWriteback(page)) {
--			trace_afs_page_dirty(vnode, tracepoint_string("alrdy"),
--					     page->index, priv);
-+			trace_afs_page_dirty(vnode, tracepoint_string("alrdy"), page);
- 			goto flush_conflicting_write;
- 		}
- 		/* If the file is being filled locally, allow inter-write
-@@ -204,21 +203,19 @@ int afs_write_end(struct file *file, struct address_space *mapping,
- 
- 	if (PagePrivate(page)) {
- 		priv = page_private(page);
--		f = afs_page_dirty_from(priv);
--		t = afs_page_dirty_to(priv);
-+		f = afs_page_dirty_from(page, priv);
-+		t = afs_page_dirty_to(page, priv);
- 		if (from < f)
- 			f = from;
- 		if (to > t)
- 			t = to;
--		priv = afs_page_dirty(f, t);
-+		priv = afs_page_dirty(page, f, t);
- 		set_page_private(page, priv);
--		trace_afs_page_dirty(vnode, tracepoint_string("dirty+"),
--				     page->index, priv);
-+		trace_afs_page_dirty(vnode, tracepoint_string("dirty+"), page);
- 	} else {
--		priv = afs_page_dirty(from, to);
-+		priv = afs_page_dirty(page, from, to);
- 		attach_page_private(page, (void *)priv);
--		trace_afs_page_dirty(vnode, tracepoint_string("dirty"),
--				     page->index, priv);
-+		trace_afs_page_dirty(vnode, tracepoint_string("dirty"), page);
- 	}
- 
- 	set_page_dirty(page);
-@@ -321,7 +318,6 @@ static void afs_pages_written_back(struct afs_vnode *vnode,
- 				   pgoff_t first, pgoff_t last)
- {
- 	struct pagevec pv;
--	unsigned long priv;
- 	unsigned count, loop;
- 
- 	_enter("{%llx:%llu},{%lx-%lx}",
-@@ -340,9 +336,9 @@ static void afs_pages_written_back(struct afs_vnode *vnode,
- 		ASSERTCMP(pv.nr, ==, count);
- 
- 		for (loop = 0; loop < count; loop++) {
--			priv = (unsigned long)detach_page_private(pv.pages[loop]);
-+			detach_page_private(pv.pages[loop]);
- 			trace_afs_page_dirty(vnode, tracepoint_string("clear"),
--					     pv.pages[loop]->index, priv);
-+					     pv.pages[loop]);
- 			end_page_writeback(pv.pages[loop]);
- 		}
- 		first += count;
-@@ -516,15 +512,13 @@ static int afs_write_back_from_locked_page(struct address_space *mapping,
- 	 */
- 	start = primary_page->index;
- 	priv = page_private(primary_page);
--	offset = afs_page_dirty_from(priv);
--	to = afs_page_dirty_to(priv);
--	trace_afs_page_dirty(vnode, tracepoint_string("store"),
--			     primary_page->index, priv);
-+	offset = afs_page_dirty_from(primary_page, priv);
-+	to = afs_page_dirty_to(primary_page, priv);
-+	trace_afs_page_dirty(vnode, tracepoint_string("store"), primary_page);
- 
- 	WARN_ON(offset == to);
- 	if (offset == to)
--		trace_afs_page_dirty(vnode, tracepoint_string("WARN"),
--				     primary_page->index, priv);
-+		trace_afs_page_dirty(vnode, tracepoint_string("WARN"), primary_page);
- 
- 	if (start >= final_page ||
- 	    (to < PAGE_SIZE && !test_bit(AFS_VNODE_NEW_CONTENT, &vnode->flags)))
-@@ -562,8 +556,8 @@ static int afs_write_back_from_locked_page(struct address_space *mapping,
- 			}
- 
- 			priv = page_private(page);
--			f = afs_page_dirty_from(priv);
--			t = afs_page_dirty_to(priv);
-+			f = afs_page_dirty_from(page, priv);
-+			t = afs_page_dirty_to(page, priv);
- 			if (f != 0 &&
- 			    !test_bit(AFS_VNODE_NEW_CONTENT, &vnode->flags)) {
- 				unlock_page(page);
-@@ -571,8 +565,7 @@ static int afs_write_back_from_locked_page(struct address_space *mapping,
- 			}
- 			to = t;
- 
--			trace_afs_page_dirty(vnode, tracepoint_string("store+"),
--					     page->index, priv);
-+			trace_afs_page_dirty(vnode, tracepoint_string("store+"), page);
- 
- 			if (!clear_page_dirty_for_io(page))
- 				BUG();
-@@ -860,14 +853,13 @@ vm_fault_t afs_page_mkwrite(struct vm_fault *vmf)
- 	 */
- 	wait_on_page_writeback(vmf->page);
- 
--	priv = afs_page_dirty(0, PAGE_SIZE);
-+	priv = afs_page_dirty(vmf->page, 0, PAGE_SIZE);
- 	priv = afs_page_dirty_mmapped(priv);
--	trace_afs_page_dirty(vnode, tracepoint_string("mkwrite"),
--			     vmf->page->index, priv);
- 	if (PagePrivate(vmf->page))
- 		set_page_private(vmf->page, priv);
- 	else
- 		attach_page_private(vmf->page, (void *)priv);
-+	trace_afs_page_dirty(vnode, tracepoint_string("mkwrite"), vmf->page);
- 	file_update_time(file);
- 
- 	sb_end_pagefault(inode->i_sb);
-@@ -920,17 +912,15 @@ int afs_launder_page(struct page *page)
- 		f = 0;
- 		t = PAGE_SIZE;
- 		if (PagePrivate(page)) {
--			f = afs_page_dirty_from(priv);
--			t = afs_page_dirty_to(priv);
-+			f = afs_page_dirty_from(page, priv);
-+			t = afs_page_dirty_to(page, priv);
- 		}
- 
--		trace_afs_page_dirty(vnode, tracepoint_string("launder"),
--				     page->index, priv);
-+		trace_afs_page_dirty(vnode, tracepoint_string("launder"), page);
- 		ret = afs_store_data(mapping, page->index, page->index, t, f, true);
- 	}
- 
--	priv = (unsigned long)detach_page_private(page);
--	trace_afs_page_dirty(vnode, tracepoint_string("laundered"),
--			     page->index, priv);
-+	detach_page_private(page);
-+	trace_afs_page_dirty(vnode, tracepoint_string("laundered"), page);
- 	return ret;
- }
-diff --git a/include/trace/events/afs.h b/include/trace/events/afs.h
-index 4a5cc8c64be3..9203cf6a8c53 100644
---- a/include/trace/events/afs.h
-+++ b/include/trace/events/afs.h
-@@ -969,30 +969,33 @@ TRACE_EVENT(afs_dir_check_failed,
- 	    );
- 
- TRACE_EVENT(afs_page_dirty,
--	    TP_PROTO(struct afs_vnode *vnode, const char *where,
--		     pgoff_t page, unsigned long priv),
-+	    TP_PROTO(struct afs_vnode *vnode, const char *where, struct page *page),
- 
--	    TP_ARGS(vnode, where, page, priv),
-+	    TP_ARGS(vnode, where, page),
- 
- 	    TP_STRUCT__entry(
- 		    __field(struct afs_vnode *,		vnode		)
- 		    __field(const char *,		where		)
- 		    __field(pgoff_t,			page		)
--		    __field(unsigned long,		priv		)
-+		    __field(unsigned long,		from		)
-+		    __field(unsigned long,		to		)
- 			     ),
- 
- 	    TP_fast_assign(
- 		    __entry->vnode = vnode;
- 		    __entry->where = where;
--		    __entry->page = page;
--		    __entry->priv = priv;
-+		    __entry->page = page->index;
-+		    __entry->from = afs_page_dirty_from(page, page->private);
-+		    __entry->to = afs_page_dirty_to(page, page->private);
-+		    __entry->to |= (afs_is_page_dirty_mmapped(page->private) ?
-+				    (1UL << (BITS_PER_LONG - 1)) : 0);
- 			   ),
- 
--	    TP_printk("vn=%p %lx %s %zx-%zx%s",
-+	    TP_printk("vn=%p %lx %s %lx-%lx%s",
- 		      __entry->vnode, __entry->page, __entry->where,
--		      afs_page_dirty_from(__entry->priv),
--		      afs_page_dirty_to(__entry->priv),
--		      afs_is_page_dirty_mmapped(__entry->priv) ? " M" : "")
-+		      __entry->from,
-+		      __entry->to & ~(1UL << (BITS_PER_LONG - 1)),
-+		      __entry->to & (1UL << (BITS_PER_LONG - 1)) ? " M" : "")
- 	    );
- 
- TRACE_EVENT(afs_call_state,
+ 		vnode->invalid_before = status->data_version;
+ 		if (vnode->status.type == AFS_FTYPE_DIR) {
 
 
 
