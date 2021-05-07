@@ -2,94 +2,90 @@ Return-Path: <v9fs-developer-bounces@lists.sourceforge.net>
 X-Original-To: lists+v9fs-developer@lfdr.de
 Delivered-To: lists+v9fs-developer@lfdr.de
 Received: from lists.sourceforge.net (lists.sourceforge.net [216.105.38.7])
-	by mail.lfdr.de (Postfix) with ESMTPS id 72CC2375FAD
-	for <lists+v9fs-developer@lfdr.de>; Fri,  7 May 2021 07:24:12 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.sourceforge.net; s=beta; h=Content-Transfer-Encoding:Content-Type:
-	Reply-To:From:List-Subscribe:List-Help:List-Post:List-Archive:
-	List-Unsubscribe:List-Id:Subject:Mime-Version:Message-ID:To:Date:Sender:Cc:
-	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
-	Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:List-Owner;
-	bh=kvRBE+m07hj1CN5jR6YoeYsEsK0mDPgB5gwZ5rwGfLk=; b=f7tibK2VK8TXrQnkXtGaD2ke2e
-	OKZwPe9fg2upWnIP8Bo6MkdFVDY22BEIL7kR/0MLiCzQwOSc2Dad82bgsfGa4ce2Tdz0ivq0tlHYX
-	s9w4gxxSW1pRoICOHDPtd9m1hCgdzOXaxrCUN3oT5zsbZzrpaieafMH05fcNeEeJkAGE=;
+	by mail.lfdr.de (Postfix) with ESMTPS id 7F3E83764A0
+	for <lists+v9fs-developer@lfdr.de>; Fri,  7 May 2021 13:41:58 +0200 (CEST)
 Received: from [127.0.0.1] (helo=sfs-ml-2.v29.lw.sourceforge.com)
 	by sfs-ml-2.v29.lw.sourceforge.com with esmtp (Exim 4.92.3)
 	(envelope-from <v9fs-developer-bounces@lists.sourceforge.net>)
-	id 1lesy9-0001Cy-5C; Fri, 07 May 2021 05:24:09 +0000
+	id 1leyrk-0001kY-08; Fri, 07 May 2021 11:41:56 +0000
 Received: from [172.30.20.202] (helo=mx.sourceforge.net)
  by sfs-ml-2.v29.lw.sourceforge.com with esmtps
  (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.92.3)
- (envelope-from <infos@franchementoui.store>) id 1lesy7-0001Cr-DM
- for v9fs-developer@lists.sourceforge.net; Fri, 07 May 2021 05:24:07 +0000
+ (envelope-from <asmadeus@codewreck.org>) id 1leyrh-0001kP-Ag
+ for v9fs-developer@lists.sourceforge.net; Fri, 07 May 2021 11:41:53 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=sourceforge.net; s=x; h=Content-Transfer-Encoding:Content-Type:Mime-Version
- :List-Unsubscribe:Message-ID:Subject:Reply-To:From:To:Date:Sender:Cc:
- Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
- Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:List-Id:
- List-Help:List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=OLnsQwejsSxd4A9y9D6YXbBTjWhll4ltTDxuRTNtbNo=; b=AwpbaUm1KxlHM5oclJvUKXDIj7
- VVsjAuZaAbSFZyZr2UBfOyLQuKtjnlA9F52lMM6+0fr8+Ck9d6wde7PPPfyYbYNOZq9fdB1bvhIxY
- ZZF+SHdrzzZZr90lEGplYThdPJU/9d9Uv40GVtqJQhJGaM6AZi2jP5i2c3qqcLzu06Lw=;
+ d=sourceforge.net; s=x; h=Content-Type:MIME-Version:Message-ID:Subject:Cc:To:
+ From:Date:Sender:Reply-To:Content-Transfer-Encoding:Content-ID:
+ Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
+ :Resent-Message-ID:In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:
+ List-Subscribe:List-Post:List-Owner:List-Archive;
+ bh=zvATbqtXXc7IsxVxA0GntM900lZ5dWmrvpd9rsWT9w0=; b=He+2GVQ9QSarybAyOFE1hTqYrc
+ HQyebXgj6b2AcnlkNdpUA+0WtIOBD9nNZljL3B6m2kdDlnXwjOl23FzCFLQ8ne3Rb8Heqh+OXFWWC
+ KoeiBcbsEG7j96vgLI08NOyf/V2oP5SzSMcM22J5kdWpJrE4u3KJLh+4jzK1UHUlASxA=;
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  ;
- h=Content-Transfer-Encoding:Content-Type:Mime-Version:List-Unsubscribe:
- Message-ID:Subject:Reply-To:From:To:Date:Sender:Cc:Content-ID:
- Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
- :Resent-Message-ID:In-Reply-To:References:List-Id:List-Help:List-Subscribe:
- List-Post:List-Owner:List-Archive;
- bh=OLnsQwejsSxd4A9y9D6YXbBTjWhll4ltTDxuRTNtbNo=; b=EX2Y8Tr1MBBGVoZF+ddx5McM4q
- OrTwKEgTWn3GNNL2e+RbEe/htPB7V4TfnV22VaQ6C5MAemnXr5A1jO9cQSfLvfQHO+7Y/iBQizjB/
- GHzKYgBrvLLDO8aWPgXCL3waMTveSNpO/Tzwixc2OGrERSvn++etPWmTm3D4K8Dyi8nw=;
-Received: from smtp.franchementoui.store ([152.228.143.213])
+ h=Content-Type:MIME-Version:Message-ID:Subject:Cc:To:From:Date:Sender:
+ Reply-To:Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date
+ :Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:
+ References:List-Id:List-Help:List-Unsubscribe:List-Subscribe:List-Post:
+ List-Owner:List-Archive; bh=zvATbqtXXc7IsxVxA0GntM900lZ5dWmrvpd9rsWT9w0=; b=M
+ MUUybIO5Ez/22bsVhJN7zqI2FZRxA869y/mRMJQ2xW7rIYqi5e3eO+BRTpf5KFqDZj2wtppx9rlvf
+ uMXt8XiigYz/Xb6pPycJOnrBosbfXHDSCuUH+COa6orFVSl+adD8cdxfESc61YRjLcXhtzr3oWRJQ
+ YhqxTxdsHe5kt+Mw=;
+Received: from nautica.notk.org ([91.121.71.147])
  by sfi-mx-2.v28.lw.sourceforge.com with esmtps
  (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.92.3)
- id 1lesy0-0007iq-1h
- for v9fs-developer@lists.sourceforge.net; Fri, 07 May 2021 05:24:07 +0000
-Date: Fri, 7 May 2021 07:23:45 +0200
-Authentication-Results: smtp.franchementoui.store; dkim=pass (2048-bit key;
- unprotected) header.d=franchementoui.store header.i=infos@franchementoui.store
- header.b="DI1EvNyo"; dkim-atps=neutral
-To: v9fs-developer@lists.sourceforge.net
-Message-ID: <1620365025.a783de973f802e33accff02e7bf48f91@franchementoui.store>
-X-Priority: 3
-List-Unsubscribe-Post: List-Unsubscribe=One-Click
-Mime-Version: 1.0
-DKIM-Signature: v=1; a=rsa-sha1; q=dns/txt; l=8063; s=mail;
- t=1620365025; c=relaxed/simple; h=From:To:Subject;
- d=franchementoui.store; i=infos@franchementoui.store;
- z=From:=20Accountancy=20services=20<infos@franchementoui.store>
- |To:=20v9fs-developer@lists.sourceforge.net
- |Subject:=20ONE=20MONTHLY=20FEE;
- bh=vjzuDP8ovb9itWNHZuVm9FyKWSw=;
- b=DI1EvNyo1lJyRk1RPGrpQw2pAqhPMNp5M9or/hIYXA7UgDnBhfX1ADKZ9LfeolfAQ1eafCQQ4xzeMv0J3zBMtCpw5KAXk45aq0tYk2qe7bZqRxWYDwt/EVK/sLv2t0nDmBJrYllQHFqfmuWT4knWGBz0WZmvyOWH3za8Yufh2uAXqDOuMzvVb/Np/VddX7iAu0NPOWvZAS2A9Kd3VLsaBW5O2XZTHGb2ABpKqQSyud/90yJOenO8YkRCbvBpkyUV+a0o7vO6Uc5A4zbQHKE1SROByWCyV9llURCmVNsxvCvy1YILGsIl9o6aWdMZf97KDuUS1zcHSATHkfsZRnHI3A==
-X-Spam-Score: 5.4 (+++++)
+ id 1leyrc-00032S-16
+ for v9fs-developer@lists.sourceforge.net; Fri, 07 May 2021 11:41:53 +0000
+Received: by nautica.notk.org (Postfix, from userid 108)
+ id 30F35C01A; Fri,  7 May 2021 13:41:41 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=codewreck.org; s=2;
+ t=1620387701; bh=zvATbqtXXc7IsxVxA0GntM900lZ5dWmrvpd9rsWT9w0=;
+ h=Date:From:To:Cc:Subject:From;
+ b=v0Jh5EbN+PulqnWxfAH+EdbojiDxLithjdxVXCc5xRdY25JlnrELULCeRe2A6ffPn
+ FS4f5B6gAwTELE8YIv4QtZxOgut2robOwrQpaaoo1oXL3IziOwPQ7d0Z4dq+7lbGwM
+ jb/oHQxrvgYLFEmE1FnlFmeRF8ypWkolKz/Tk0uS3zyhZEQeAFLBAjGCRncP1PmcWW
+ oyCKf71v7V36cFtQBgZ3QaL3nO171omWfbVHMfb+TttijIkNhg5wJYmHo8hiYfqbAb
+ sjCmewoLGBjQsDt0IjBkb9LPt2rySUGn6em1qPDahOnL8iSSoiolrT3bSieJy1cXsy
+ hcGAK7us+xbOg==
+X-Spam-Checker-Version: SpamAssassin 3.3.2 (2011-06-06) on nautica.notk.org
+X-Spam-Level: 
+X-Spam-Status: No, score=0.0 required=5.0 tests=UNPARSEABLE_RELAY
+ autolearn=unavailable version=3.3.2
+Received: from odin.codewreck.org (localhost [127.0.0.1])
+ by nautica.notk.org (Postfix) with ESMTPS id 60F4EC009;
+ Fri,  7 May 2021 13:41:39 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=codewreck.org; s=2;
+ t=1620387700; bh=zvATbqtXXc7IsxVxA0GntM900lZ5dWmrvpd9rsWT9w0=;
+ h=Date:From:To:Cc:Subject:From;
+ b=xqQabC3bbqBEr7Y9dmTzyk7+j28C/8IqZKPSMVyvKDmmKO+mQSZVyvQvgxYGhlCMD
+ KoYTYduzLqB6XORWVUKHOp7ag2U+ydsgXC+lUKFcBZviRrutK8KTiKzEAAuv2l/ScK
+ 9IlmJ8cRF3m043Bgx3tNvROcsQbWVWQOT2xNDVmpNCb8l7twiwifnIUDYivD2/+6MM
+ PYaWdt/GXpqdRqjcIyeVwQjVEBUt9iJUd3Ow/WR+bc2ttUyOqpHQVKTJOsusV3PPbZ
+ 1An5Q6yp2yGH1/U448puvlWYRg4Z9u8OqjFWJfwYnj91wQnk+G9lJpAa5WeajXNesU
+ aIxj865pfT0SQ==
+Received: from localhost (odin.codewreck.org [local])
+ by odin.codewreck.org (OpenSMTPD) with ESMTPA id f221fc19;
+ Fri, 7 May 2021 11:41:36 +0000 (UTC)
+Date: Fri, 7 May 2021 20:41:21 +0900
+From: Dominique Martinet <asmadeus@codewreck.org>
+To: Linus Torvalds <torvalds@linux-foundation.org>
+Message-ID: <YJUnYXZBd1hpwW6G@codewreck.org>
+MIME-Version: 1.0
+Content-Disposition: inline
+X-Spam-Score: -0.1 (/)
 X-Spam-Report: Spam Filtering performed by mx.sourceforge.net.
  See http://spamassassin.org/tag/ for more details.
- 1.9 URIBL_ABUSE_SURBL Contains an URL listed in the ABUSE SURBL blocklist
- [URIs: laissonsladiffusion.tech]
- 0.0 URIBL_BLOCKED ADMINISTRATOR NOTICE: The query to URIBL was blocked.
- See
- http://wiki.apache.org/spamassassin/DnsBlocklists#dnsbl-block
- for more information. [URIs: laissonsladiffusion.tech]
- 0.5 SUBJ_ALL_CAPS          Subject is all capitals
  -0.0 SPF_PASS               SPF: sender matches SPF record
  0.0 SPF_HELO_NONE          SPF: HELO does not publish an SPF Record
- 1.0 HTML_MESSAGE           BODY: HTML included in message
- 0.0 HTML_FONT_LOW_CONTRAST BODY: HTML font color similar or identical to
- background
  -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from author's
  domain
  -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
  0.1 DKIM_SIGNED            Message has a DKIM or DK signature,
  not necessarily valid
- 0.5 RAZOR2_CHECK           Listed in Razor2 (http://razor.sf.net/)
- 1.5 RAZOR2_CF_RANGE_51_100 Razor2 gives confidence level above 50%
- [cf: 100]
- 0.0 T_REMOTE_IMAGE         Message contains an external image
-X-Headers-End: 1lesy0-0007iq-1h
-X-Content-Filtered-By: Mailman/MimeDel 2.1.21
-Subject: [V9fs-developer] ONE MONTHLY FEE
+ 0.0 UNPARSEABLE_RELAY Informational: message has unparseable relay lines
+X-Headers-End: 1leyrc-00032S-16
+Subject: [V9fs-developer] [GIT PULL] 9p update for 5.13-rc1
 X-BeenThere: v9fs-developer@lists.sourceforge.net
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -101,75 +97,52 @@ List-Post: <mailto:v9fs-developer@lists.sourceforge.net>
 List-Help: <mailto:v9fs-developer-request@lists.sourceforge.net?subject=help>
 List-Subscribe: <https://lists.sourceforge.net/lists/listinfo/v9fs-developer>, 
  <mailto:v9fs-developer-request@lists.sourceforge.net?subject=subscribe>
-From: Accountancy services via V9fs-developer
- <v9fs-developer@lists.sourceforge.net>
-Reply-To: infos@franchementoui.store
+Cc: linux-fsdevel@vger.kernel.org, netdev@vger.kernel.org,
+ linux-kernel@vger.kernel.org, v9fs-developer@lists.sourceforge.net
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: v9fs-developer-bounces@lists.sourceforge.net
 
+Hi Linux,
+
+sorry for the late request, this is trivial enough and should probably
+not have waited for the next cycle...
+I had forgotten to add a Cc to stable for the fix and didn't want to
+amend the commit at the last minute, will send them a mail after this
+has been merged.
 
 
+The following changes since commit a5e13c6df0e41702d2b2c77c8ad41677ebb065b3:
 
+  Linux 5.12-rc5 (2021-03-28 15:48:16 -0700)
 
+are available in the Git repository at:
 
-Unlimited Accountancy Services
-One Monthly FEE
+  https://github.com/martinetd/linux tags/9p-for-5.13-rc1
 
+for you to fetch changes up to f8b139e2f24112f4e21f1eb02c7fc7600fea4b8d:
 
-Quote Online To See How Much
-You Should Be Paying
+  fs: 9p: fix v9fs_file_open writeback fid error check (2021-03-31 07:02:47 +0900)
 
+----------------------------------------------------------------
+9p for 5.13-rc1
 
-We quote online based on company turnover and transactions.
-Quote Now.
+an error handling fix and const optimization
 
+----------------------------------------------------------------
+Rikard Falkeborn (1):
+      9p: Constify static struct v9fs_attr_group
 
-Unlimited Accountancy Services Include:
+Yang Yingliang (1):
+      fs: 9p: fix v9fs_file_open writeback fid error check
 
-Unlimited Telephone Support
-Unlimited Email Support (3 Hour Response)
-Dedicated Accountant
-Monthly Bookkeeping/Reconciliation
-Quarterly VAT Returns
-Company Annual Accounts
-Company Tax Return
-Self-Assessment Tax Returns
-Submission of Confirmation Statement
-Xero Software
-Xero Training
-Company Incorporation (if required)
-VAT Registration (if required)
-PAYE Registration (if required)
-CIS Registration (if required)
-Financial Reference (e.g. Mortgage)
-Access to Business Funding
-Monthly Management Information
+ fs/9p/v9fs.c     | 2 +-
+ fs/9p/vfs_file.c | 4 ++--
+ 2 files changed, 3 insertions(+), 3 deletions(-)
 
-Tired of unexpected
-accountancy fees?
-Get unlimited services
-and Support for
-One Monthly fee
-
-
-
-
-
-
-
-
-
-
-
-This e-mail is brought to you by an independent e-mail marketing company.
-
-
-
-Follow this link to stop receiving messages about ACCOUNTANCY SERVICES.
-You have the right of access, rectification, opposition and consent, which you have access on this web page: Privacy policy.
-You are receiving this message on your email address because you are in our list of managers and professionals.
-A SCPM - 5 Avenue du General de Gaulle - SAINT MANDE - France - R.C.S. 814 073 060 CRETEIL
+Thanks,
+-- 
+Dominique
 
 
 _______________________________________________
