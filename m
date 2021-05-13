@@ -2,95 +2,74 @@ Return-Path: <v9fs-developer-bounces@lists.sourceforge.net>
 X-Original-To: lists+v9fs-developer@lfdr.de
 Delivered-To: lists+v9fs-developer@lfdr.de
 Received: from lists.sourceforge.net (lists.sourceforge.net [216.105.38.7])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9FBDD37F5E9
-	for <lists+v9fs-developer@lfdr.de>; Thu, 13 May 2021 12:50:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id D8B7237F8EB
+	for <lists+v9fs-developer@lfdr.de>; Thu, 13 May 2021 15:39:34 +0200 (CEST)
 Received: from [127.0.0.1] (helo=sfs-ml-4.v29.lw.sourceforge.com)
 	by sfs-ml-4.v29.lw.sourceforge.com with esmtp (Exim 4.90_1)
 	(envelope-from <v9fs-developer-bounces@lists.sourceforge.net>)
-	id 1lh8uu-0000Qo-FK; Thu, 13 May 2021 10:50:08 +0000
+	id 1lhBYp-00085z-4Y; Thu, 13 May 2021 13:39:31 +0000
 Received: from [172.30.20.202] (helo=mx.sourceforge.net)
  by sfs-ml-4.v29.lw.sourceforge.com with esmtps
  (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.90_1)
- (envelope-from <dhowells@redhat.com>) id 1lh8us-0000Qg-Ma
- for v9fs-developer@lists.sourceforge.net; Thu, 13 May 2021 10:50:06 +0000
+ (envelope-from <willy@infradead.org>) id 1lhBYn-00085o-1i
+ for v9fs-developer@lists.sourceforge.net; Thu, 13 May 2021 13:39:29 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=sourceforge.net; s=x; h=Content-Transfer-Encoding:Content-Type:MIME-Version
- :Message-ID:Date:Cc:To:From:Subject:Sender:Reply-To:Content-ID:
- Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
- :Resent-Message-ID:In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:
+ d=sourceforge.net; s=x; h=In-Reply-To:Content-Type:MIME-Version:References:
+ Message-ID:Subject:Cc:To:From:Date:Sender:Reply-To:Content-Transfer-Encoding:
+ Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+ Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
  List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=ZS4a0+Jk376Mr3TJs35RHyvhDzgETMPw7mZbIknYFVM=; b=E4rZOhep2XMxaKciB1xRlndnSz
- F7VYzwxx4fZJU8rIdMg19CU9dplHAF2uGPKVEaurP9AH2XTfm+2bzvFYyHvq+8eNy1KUksJFpiCHu
- h27xPUqk8DEKaOfoj8r6/6GKRCYccXp7tsA2OH5JUsY6geRM/AukBWMP9QIjFCtl2o7k=;
+ bh=7qdcsekCpDC0XbH1OXVUDI58yFo8Z7At/i6/i0XMALI=; b=YIGFBABmjWEceYcFxkbpH8Umna
+ LoXunn5V+WaLTJc3yVdcqUlrzOuT2EwQMEHRNx0PcmFwfHRbftVW7F8XhL/XcioUpHNcOUyF3KS/3
+ qv7Fyh8RAtRAW95eQlBYuYlg8mPdt48NmdQQ7txtLC5eKMYvcmZ+LqS5SsSw5xb66w7o=;
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  ;
- h=Content-Transfer-Encoding:Content-Type:MIME-Version:Message-ID:Date:Cc:To
- :From:Subject:Sender:Reply-To:Content-ID:Content-Description:Resent-Date:
- Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:
- References:List-Id:List-Help:List-Unsubscribe:List-Subscribe:List-Post:
- List-Owner:List-Archive; bh=ZS4a0+Jk376Mr3TJs35RHyvhDzgETMPw7mZbIknYFVM=; b=Z
- OaO/RU7/IGOEk1ZvtsYrcdmtc9w/+81yxIbKwxk0gqbDMhbvsIeBrqJOBgyCLliuj7rVPknhmSUVR
- TGEcd8cEmXyx7S9XnYv6ek/SMrsqJMnK2AFUlqblnghY0thYsN56pwNbjwAXIwFBiYlBDcXi8yYns
- 2HGZFI51lIdCi8MM=;
-Received: from us-smtp-delivery-124.mimecast.com ([170.10.133.124])
- by sfi-mx-2.v28.lw.sourceforge.com with esmtps
- (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.92.3)
- id 1lh8uj-0007F2-HC
- for v9fs-developer@lists.sourceforge.net; Thu, 13 May 2021 10:50:07 +0000
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
- s=mimecast20190719; t=1620902992;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding;
- bh=ZS4a0+Jk376Mr3TJs35RHyvhDzgETMPw7mZbIknYFVM=;
- b=PfPUkBR1qvY/fI+mm0phlWPub6ofQ+Afr28BQLkgfyrPiDq2eBQaZjlr/NyNP+hbZ27s5p
- s94DBe5X6s7NNHis24lFVtVSRCX+6URTt9KNoSEqWoizOH7rSJKZK48B2xJZml0H/EMqes
- Gh8wigB2xzZ7vXhfsddRPToHQ0Sa6Tk=
-Received: from mimecast-mx01.redhat.com (mimecast-mx01.redhat.com
- [209.132.183.4]) (Using TLS) by relay.mimecast.com with ESMTP id
- us-mta-582-vHRUTM0TNbSjfnRG3vysog-1; Thu, 13 May 2021 06:49:48 -0400
-X-MC-Unique: vHRUTM0TNbSjfnRG3vysog-1
-Received: from smtp.corp.redhat.com (int-mx06.intmail.prod.int.phx2.redhat.com
- [10.5.11.16])
- (using TLSv1.2 with cipher AECDH-AES256-SHA (256/256 bits))
- (No client certificate requested)
- by mimecast-mx01.redhat.com (Postfix) with ESMTPS id 66DD3100945F;
- Thu, 13 May 2021 10:49:47 +0000 (UTC)
-Received: from warthog.procyon.org.uk (unknown [10.33.36.3])
- by smtp.corp.redhat.com (Postfix) with ESMTP id 2374B1B058;
- Thu, 13 May 2021 10:49:41 +0000 (UTC)
-Organization: Red Hat UK Ltd. Registered Address: Red Hat UK Ltd, Amberley
- Place, 107-111 Peascod Street, Windsor, Berkshire, SI4 1TE, United
- Kingdom.
- Registered in England and Wales under Company Registration No. 3798903
-From: David Howells <dhowells@redhat.com>
-To: geert@linux-m68k.org
-Date: Thu, 13 May 2021 11:49:41 +0100
-Message-ID: <162090298141.3166007.2971118149366779916.stgit@warthog.procyon.org.uk>
-User-Agent: StGit/0.23
+ h=In-Reply-To:Content-Type:MIME-Version:References:Message-ID:Subject:Cc:To
+ :From:Date:Sender:Reply-To:Content-Transfer-Encoding:Content-ID:
+ Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
+ :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
+ List-Post:List-Owner:List-Archive;
+ bh=7qdcsekCpDC0XbH1OXVUDI58yFo8Z7At/i6/i0XMALI=; b=hVdk/FPEZ828VTNGj7dDMUsk9m
+ 6n8YcB6ZFagC520eyEUw93N/tb5AjglKRjZ1eEMX8Osp36ltgPNQ7ZsFVsHS6qR+PYHz4wA4/rLih
+ NNsGCirYICRa4UDa5AW2zFu/7NQAPkzJh5VIqL3CGXUqF2PyI5i+MKkeRdiLMvd5O4Ww=;
+Received: from casper.infradead.org ([90.155.50.34])
+ by sfi-mx-1.v28.lw.sourceforge.com with esmtps
+ (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.92.2)
+ id 1lhBYh-006mCH-SW
+ for v9fs-developer@lists.sourceforge.net; Thu, 13 May 2021 13:39:30 +0000
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+ d=infradead.org; s=casper.20170209; h=In-Reply-To:Content-Type:MIME-Version:
+ References:Message-ID:Subject:Cc:To:From:Date:Sender:Reply-To:
+ Content-Transfer-Encoding:Content-ID:Content-Description;
+ bh=7qdcsekCpDC0XbH1OXVUDI58yFo8Z7At/i6/i0XMALI=; b=tfkCjdPhG2JWyiamQqLUcVIUaa
+ XIAK/k2n62tt+Wbf/46OEwAYMQmA+a7bxfjCQNJeofqSoJn1tx8g09UAvpof8TiISSa9sOFxVSN8w
+ nCvW92rZta0Ztby0RSYVTKYOkyXuxIu5khMZE9L+bS3UvMSj+aeeIUOr7y/BZ0s3moMIBGnmRaaSy
+ 08Fy6gD4Ww+T7IVNTy+9uiKfwl9bw9+Ie3saiCuYJSsI+W//LBbl1U4U9o+0MyqTusGI62zeRBaCe
+ sAGJMylp/ZwrTaXz1ygWi77JLYrKiU3A1rF9dV6x19gN9MMMDWs8rVF6qFAXnGsUza3T3lvP2KglO
+ Sl13Etjw==;
+Received: from willy by casper.infradead.org with local (Exim 4.94 #2 (Red Hat
+ Linux)) id 1lhBU3-009Sko-72; Thu, 13 May 2021 13:35:00 +0000
+Date: Thu, 13 May 2021 14:34:35 +0100
+From: Matthew Wilcox <willy@infradead.org>
+To: Steve French <smfrench@gmail.com>
+Message-ID: <YJ0q6/Oe5yJ+H+Tn@casper.infradead.org>
+References: <YJvwVq3Gl35RQrIe@casper.infradead.org>
+ <CAH2r5msOQsdeknBdTsfMXYzrb5=NuKEBPc4WD1CkYp10t19Guw@mail.gmail.com>
 MIME-Version: 1.0
-X-Scanned-By: MIMEDefang 2.79 on 10.5.11.16
-X-Spam-Score: -0.8 (/)
+Content-Disposition: inline
+In-Reply-To: <CAH2r5msOQsdeknBdTsfMXYzrb5=NuKEBPc4WD1CkYp10t19Guw@mail.gmail.com>
+X-Spam-Score: -0.1 (/)
 X-Spam-Report: Spam Filtering performed by mx.sourceforge.net.
  See http://spamassassin.org/tag/ for more details.
- 0.0 URIBL_BLOCKED ADMINISTRATOR NOTICE: The query to URIBL was blocked.
- See
- http://wiki.apache.org/spamassassin/DnsBlocklists#dnsbl-block
- for more information. [URIs: infradead.org]
- -0.0 SPF_PASS               SPF: sender matches SPF record
+ 0.0 SPF_NONE               SPF: sender does not publish an SPF Record
  0.0 SPF_HELO_NONE          SPF: HELO does not publish an SPF Record
  -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from author's
  domain
  -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
  0.1 DKIM_SIGNED            Message has a DKIM or DK signature,
  not necessarily valid
- 0.0 RCVD_IN_MSPIKE_H4      RBL: Very Good reputation (+4)
- [170.10.133.124 listed in wl.mailspike.net]
- 0.0 RCVD_IN_MSPIKE_WL      Mailspike good senders
- -0.7 DKIMWL_WL_HIGH         DKIMwl.org - High trust sender
-X-Headers-End: 1lh8uj-0007F2-HC
-Subject: [V9fs-developer] [PATCH] netfs: Make CONFIG_NETFS_SUPPORT
- auto-selected rather than manual
+X-Headers-End: 1lhBYh-006mCH-SW
+Subject: Re: [V9fs-developer] Removing readpages aop
 X-BeenThere: v9fs-developer@lists.sourceforge.net
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -102,49 +81,46 @@ List-Post: <mailto:v9fs-developer@lists.sourceforge.net>
 List-Help: <mailto:v9fs-developer-request@lists.sourceforge.net?subject=help>
 List-Subscribe: <https://lists.sourceforge.net/lists/listinfo/v9fs-developer>, 
  <mailto:v9fs-developer-request@lists.sourceforge.net?subject=subscribe>
-Cc: linux-cifs@vger.kernel.org, linux-nfs@vger.kernel.org, dhowells@redhat.com,
- linux-mm@kvack.org, linux-cachefs@redhat.com, linux-fsdevel@vger.kernel.org,
- v9fs-developer@lists.sourceforge.net, ceph-devel@vger.kernel.org,
- linux-afs@lists.infradead.org
+Cc: linux-fsdevel <linux-fsdevel@vger.kernel.org>,
+ CIFS <linux-cifs@vger.kernel.org>, linux-nfs <linux-nfs@vger.kernel.org>,
+ v9fs-developer@lists.sourceforge.net
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: v9fs-developer-bounces@lists.sourceforge.net
 
-Make the netfs helper library selected automatically by the things that use
-it rather than being manually configured, even though it's required.
+On Wed, May 12, 2021 at 02:28:41PM -0500, Steve French wrote:
+> I don't have any objections as long as:
+> - we see at least mild performance benefit (or at least we are
+> confident that no performance loss)
 
-Fixes: 3a5829fefd3b ("netfs: Make a netfs helper module")
-Reported-by: Geert Uytterhoeven <geert@linux-m68k.org>
-Signed-off-by: David Howells <dhowells@redhat.com>
-cc: linux-mm@kvack.org
-cc: linux-cachefs@redhat.com
-cc: linux-afs@lists.infradead.org
-cc: linux-nfs@vger.kernel.org
-cc: linux-cifs@vger.kernel.org
-cc: ceph-devel@vger.kernel.org
-cc: v9fs-developer@lists.sourceforge.net
-cc: linux-fsdevel@vger.kernel.org
-Link: https://lore.kernel.org/r/CAMuHMdXJZ7iNQE964CdBOU=vRKVMFzo=YF_eiwsGgqzuvZ+TuA@mail.gmail.com
----
+Nobody's complained of a performance loss in the other ~30 filesystems
+which have already been converted (some almost a year ago).  And CIFS
+has one of the more convoluted readpages implementation, so I'd expect
+a higher likelihood of a performance gain from CIFS.
 
- fs/netfs/Kconfig |    2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+> - it passes regression tests (the usual xfstest bucket)
+> - it doesn't complicate the code too much (sounds like it actually
+> might simplify it, but needs a little more work)
+> - make sure that the usual tuning parms still work (e.g. "rsize" and
+> "rasize" mount options) or we can figure out a sane way to autotune
+> readhead so those wouldn't be needed for any workload
 
-diff --git a/fs/netfs/Kconfig b/fs/netfs/Kconfig
-index 578112713703..b4db21022cb4 100644
---- a/fs/netfs/Kconfig
-+++ b/fs/netfs/Kconfig
-@@ -1,7 +1,7 @@
- # SPDX-License-Identifier: GPL-2.0-only
- 
- config NETFS_SUPPORT
--	tristate "Support for network filesystem high-level I/O"
-+	tristate
- 	help
- 	  This option enables support for network filesystems, including
- 	  helpers for high-level buffered I/O, abstracting out read
+One of the enhancements added as part of the recent netfs merge
+was readahead_expand().  Take a look at it and see if it works for you.
 
+> But currently since we get the most benefit from multichannel (as that
+> allows even better parallelization of i/o) ... I have been focused on
+> various multichannel issues (low credit situations, reconnect, fall
+> back to different channels when weird errors, adjusting channels
+> dynamically when server adds or removes adapters on the fly) for the
+> short term
 
+Understood.  Only so many hours in the day.
+
+I think
+https://lore.kernel.org/linux-fsdevel/1794123.1605713481@warthog.procyon.org.uk/
+is the most recent version, but as Dave notes, it needs attention from
+somebody who knows the CIFS code better.
 
 
 _______________________________________________
