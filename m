@@ -2,91 +2,91 @@ Return-Path: <v9fs-developer-bounces@lists.sourceforge.net>
 X-Original-To: lists+v9fs-developer@lfdr.de
 Delivered-To: lists+v9fs-developer@lfdr.de
 Received: from lists.sourceforge.net (lists.sourceforge.net [216.105.38.7])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3EEF73828DF
-	for <lists+v9fs-developer@lfdr.de>; Mon, 17 May 2021 11:55:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 33853382A62
+	for <lists+v9fs-developer@lfdr.de>; Mon, 17 May 2021 12:57:18 +0200 (CEST)
 Received: from [127.0.0.1] (helo=sfs-ml-4.v29.lw.sourceforge.com)
 	by sfs-ml-4.v29.lw.sourceforge.com with esmtp (Exim 4.90_1)
 	(envelope-from <v9fs-developer-bounces@lists.sourceforge.net>)
-	id 1liZyU-0003Wj-0P; Mon, 17 May 2021 09:55:46 +0000
+	id 1liavy-0006ZP-6c; Mon, 17 May 2021 10:57:14 +0000
 Received: from [172.30.20.202] (helo=mx.sourceforge.net)
  by sfs-ml-4.v29.lw.sourceforge.com with esmtps
  (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.90_1)
- (envelope-from <asmadeus@codewreck.org>) id 1liZyS-0003WY-Fn
- for v9fs-developer@lists.sourceforge.net; Mon, 17 May 2021 09:55:44 +0000
+ (envelope-from <xieyongji@bytedance.com>) id 1liavx-0006ZH-5M
+ for v9fs-developer@lists.sourceforge.net; Mon, 17 May 2021 10:57:13 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=sourceforge.net; s=x; h=In-Reply-To:Content-Type:MIME-Version:References:
- Message-ID:Subject:Cc:To:From:Date:Sender:Reply-To:Content-Transfer-Encoding:
- Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+ d=sourceforge.net; s=x; h=Content-Type:Cc:To:Subject:Message-ID:Date:From:
+ In-Reply-To:References:MIME-Version:Sender:Reply-To:Content-Transfer-Encoding
+ :Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
  Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
  List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=iGA5eSg+mjfIWtklRF7HSD5WpIudKPdX6AmBTYCPB8g=; b=KE8G/IeYwVnwJTQeZGMmon8ZmD
- G2mKrYzFExgxK3k8jN1keg2NfdKqBXEmc7BHAn9RH4LdIMZG+6gkQLfUdzMtEB9x+IiwGRpmAD2Ds
- BBkSrA/R0LKnPkzjxd/TXin9tzrziuaW1rr5hugOxnaTO/5MVdI25BGDwA5ZodzM6FxA=;
+ bh=o3PHrt9OnWYQ4pmyri9gi+eqTsu2aHBAA4k1sqajL94=; b=EhKTSN+p4czzbGcPNdWvVqdABW
+ iB2SnfRRbOZAo3PsdJXwfz24ezDQoe0U7TC13J5AWWNrMpAgu/pWIyNB134yA8/MUJEP/yeGFhQkm
+ CNHy0d6w9SXpqyt1FlpwQp7r6QpqJ+JOYRc3fLoAAE7O8tC3MmPPtWp5Oy2TVzPC0kR0=;
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  ;
- h=In-Reply-To:Content-Type:MIME-Version:References:Message-ID:Subject:Cc:To
- :From:Date:Sender:Reply-To:Content-Transfer-Encoding:Content-ID:
+ h=Content-Type:Cc:To:Subject:Message-ID:Date:From:In-Reply-To:References:
+ MIME-Version:Sender:Reply-To:Content-Transfer-Encoding:Content-ID:
  Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
  :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
  List-Post:List-Owner:List-Archive;
- bh=iGA5eSg+mjfIWtklRF7HSD5WpIudKPdX6AmBTYCPB8g=; b=gn9ep1GJenB3K0ct9WWSdZumf0
- 0dR60AfdpS4uTIW2yXg/Q0HjjIQ7p9/Q+QdKVfR/cZKdHOa603bVWWaS19xnvilOnpt8eFGzyzPod
- T5vXwvw9WYUk/FQidi50PIfx8YDVXNZkBaePoKoc4EsQ/e9L9/Yr/ErDqqfudszoUbUE=;
-Received: from nautica.notk.org ([91.121.71.147])
+ bh=o3PHrt9OnWYQ4pmyri9gi+eqTsu2aHBAA4k1sqajL94=; b=aRgKWkKcCsBoZPe3OG3WwjYvO7
+ BOcLw92CijE+KuD4GWeg6wE2Fu34kNpeNS3WhyTcjSDuQZ9dG8VlACP3Nls/Vo5psqbFRbBpJVS9J
+ dH5m2aSvD9xNulWMZonXODndM99WFPJ3MU23uaJqMHGrRYfU0ZYYqJ1AK7NJzOvB7XFE=;
+Received: from mail-lj1-f173.google.com ([209.85.208.173])
  by sfi-mx-1.v28.lw.sourceforge.com with esmtps
- (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.92.2)
- id 1liZyP-00BICz-4X
- for v9fs-developer@lists.sourceforge.net; Mon, 17 May 2021 09:55:46 +0000
-Received: by nautica.notk.org (Postfix, from userid 108)
- id 2D7A1C01B; Mon, 17 May 2021 11:55:32 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=codewreck.org; s=2;
- t=1621245332; bh=iGA5eSg+mjfIWtklRF7HSD5WpIudKPdX6AmBTYCPB8g=;
- h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
- b=SGmjDd+6RsTbV4emCbR4gw3SkQDoD+eYX4su0RY20iS3iK2LxXVrZrmtbyes4yOqX
- yC1Q5LaKuXc1NI4KYedS0ZT7230HuqgdCRO4bFLhGiWOTz5iZS5RBCFKHKbsVM3c9S
- 93JuKG+csGcOHSQ6N/YwXbeqNApjoMbQudp/IptdZAzPHLRR2cszfD5Rw2/Zs23AHa
- EtFy5OLLnvAAqOh4sXIND7TpoXi5QLx+CjzBL+JFsyDqaBrRENzMCt+io+STPJNXSU
- VcyWyHTlsFmMZ2j6EV9ClLRJR0+X758AYVc9tSuA7otAoGE2DLTXAaAZA7w6Ianhrj
- 7ae16Z0tCkC+Q==
-X-Spam-Checker-Version: SpamAssassin 3.3.2 (2011-06-06) on nautica.notk.org
-X-Spam-Level: 
-X-Spam-Status: No, score=0.0 required=5.0 tests=UNPARSEABLE_RELAY
- autolearn=unavailable version=3.3.2
-Received: from odin.codewreck.org (localhost [127.0.0.1])
- by nautica.notk.org (Postfix) with ESMTPS id 2D8D8C01B;
- Mon, 17 May 2021 11:55:29 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=codewreck.org; s=2;
- t=1621245331; bh=iGA5eSg+mjfIWtklRF7HSD5WpIudKPdX6AmBTYCPB8g=;
- h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
- b=JeQjdANHXOZW0xK7N2g342pEnK9Wk/zFm2MvsiDnabxxpLnCGFuWUDUS6cEbBr2EO
- MqtxQgmAWH4aeB01H8ufPmZ6JCnub5obWHV8U8XE2S2T3nrc3XuNsG69onrf4Arsm7
- O89cmDHEYTpnnuHipIvLL8NNkDDD+6yKD2S7zoWz0dvOpCjMOKi7F6ekyVWiOHTr/v
- wdPRjLBZ18g9zBDIzgBdZLV78PB7AW8YNnDW+gbEIIm+QK38++hJlcNSRowpYkFsU0
- 4t4a9wUzAPCUVBCyalqPqFB5Y6SsoN1oglMlDzxeeJNdbKpJKxmSpgGEENQGyC/cKW
- 427wlmgkKsGNg==
-Received: from localhost (odin.codewreck.org [local])
- by odin.codewreck.org (OpenSMTPD) with ESMTPA id e628bed6;
- Mon, 17 May 2021 09:55:27 +0000 (UTC)
-Date: Mon, 17 May 2021 18:55:12 +0900
-From: asmadeus@codewreck.org
-To: Xie Yongji <xieyongji@bytedance.com>
-Message-ID: <YKI9gHMjbz8nAvYp@codewreck.org>
-References: <20210517083557.172-1-xieyongji@bytedance.com>
+ (TLSv1.2:ECDHE-RSA-AES128-GCM-SHA256:128) (Exim 4.92.2)
+ id 1liavp-00BLxD-NS
+ for v9fs-developer@lists.sourceforge.net; Mon, 17 May 2021 10:57:15 +0000
+Received: by mail-lj1-f173.google.com with SMTP id e2so325419ljk.4
+ for <v9fs-developer@lists.sourceforge.net>;
+ Mon, 17 May 2021 03:57:05 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=bytedance-com.20150623.gappssmtp.com; s=20150623;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc; bh=o3PHrt9OnWYQ4pmyri9gi+eqTsu2aHBAA4k1sqajL94=;
+ b=TN/2E4qAf5H2eY04svEUzPhzsxXWz+hCFjJgCpFBGgHNszkEG8/B5Dj2n9wO8+XcnT
+ n9C9jYWdyJ1kqd+24O26R0eRvXp/ijIH8zdZXyQN9LP3NJ59RDpCfAznlfpud+lmQ4Ov
+ xZcY5M28IUUh9XeyiqNxU71RHPXHuV8jPY1WtVVNKIG4fAAC9JDqHZbcz40JUZG9L8J0
+ EtUGyjZ6Nmm48cjclUnagOpY+hS6UsQgF6WBabZx/j1FcDXt5n5GJbHWPQPSN96yXssF
+ tg9vGbjGTR0sGxrDLC2zCnWsOsceV3NUXkothDpasExrMQ0Q+E3ObASfqs8sPEBLp0bp
+ mSPA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc;
+ bh=o3PHrt9OnWYQ4pmyri9gi+eqTsu2aHBAA4k1sqajL94=;
+ b=P79LvwNCnFk6byg2AGBQr1HOd2Jghn5RBYeN8yZ1TsNvR2uqwk+Dr9rPIUrgDe9+aC
+ qksb7zD/1Tl528K36a2dF5+GDdeyaG/4zdNC3oYq1LlXqUygM/uT9/YE3AHx4vraqIz0
+ SsZAcTd3bdF3FYt0CC3YA6Ggkfnt0oVZ04rTtyAnhvOzqM87wxNueVhNQvmV2pM/z0Ng
+ FUBxfNo1Z8pkbVWHVhEVF6hLnLLhGcGg1qul2Y77ZXgRE2PYoEiznReOok/V9FHNWd/O
+ 9dNeo2qb/Jo8i2GVkkBF3oLvnM7y99zMN5m+aPu8+ldR8AOnARp0buZ+FboCDMorHhlO
+ y8kA==
+X-Gm-Message-State: AOAM5331qPOKYanfHZLDJvyulimr7RPY5/v9mopb6PgGhJ9o0XVemYR9
+ er2VlTN0s4Owq5u+zwUiLAbLVbRB0sZ1/E9PAwzT661APw==
+X-Google-Smtp-Source: ABdhPJyHdS/eLnCrE5Sk2uzSQ0KmKYA9aE3vrQTk2avVn1N79P3dfi+GDFY16zkW+js7/1HTTSa3uAKclstNxBm58P8=
+X-Received: by 2002:aa7:cd55:: with SMTP id v21mr120416edw.344.1621247532679; 
+ Mon, 17 May 2021 03:32:12 -0700 (PDT)
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20210517083557.172-1-xieyongji@bytedance.com>
-X-Spam-Score: -0.1 (/)
+References: <20210517083557.172-1-xieyongji@bytedance.com>
+ <YKI9gHMjbz8nAvYp@codewreck.org>
+In-Reply-To: <YKI9gHMjbz8nAvYp@codewreck.org>
+From: Yongji Xie <xieyongji@bytedance.com>
+Date: Mon, 17 May 2021 18:32:01 +0800
+Message-ID: <CACycT3vayYaBhcui8889CDyrL_5DPezCkTA88SJ3e0Di021JEg@mail.gmail.com>
+To: asmadeus@codewreck.org
+X-Spam-Score: -0.0 (/)
 X-Spam-Report: Spam Filtering performed by mx.sourceforge.net.
  See http://spamassassin.org/tag/ for more details.
+ -0.0 RCVD_IN_DNSWL_NONE     RBL: Sender listed at https://www.dnswl.org/, no
+ trust [209.85.208.173 listed in list.dnswl.org]
+ -0.0 RCVD_IN_MSPIKE_H2      RBL: Average reputation (+2)
+ [209.85.208.173 listed in wl.mailspike.net]
  -0.0 SPF_PASS               SPF: sender matches SPF record
  0.0 SPF_HELO_NONE          SPF: HELO does not publish an SPF Record
- -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from author's
- domain
  -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
  0.1 DKIM_SIGNED            Message has a DKIM or DK signature,
  not necessarily valid
- 0.0 UNPARSEABLE_RELAY Informational: message has unparseable relay lines
-X-Headers-End: 1liZyP-00BICz-4X
+X-Headers-End: 1liavp-00BLxD-NS
 Subject: Re: [V9fs-developer] [PATCH] 9p/trans_virtio: Remove sysfs file on
  probe failure
 X-BeenThere: v9fs-developer@lists.sourceforge.net
@@ -100,21 +100,24 @@ List-Post: <mailto:v9fs-developer@lists.sourceforge.net>
 List-Help: <mailto:v9fs-developer-request@lists.sourceforge.net?subject=help>
 List-Subscribe: <https://lists.sourceforge.net/lists/listinfo/v9fs-developer>, 
  <mailto:v9fs-developer-request@lists.sourceforge.net?subject=subscribe>
-Cc: ericvh@gmail.com, lucho@ionkov.net, linux-kernel@vger.kernel.org,
+Cc: ericvh@gmail.com, lucho@ionkov.net,
+ linux-kernel <linux-kernel@vger.kernel.org>,
  v9fs-developer@lists.sourceforge.net
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: v9fs-developer-bounces@lists.sourceforge.net
 
-Xie Yongji wrote on Mon, May 17, 2021 at 04:35:57PM +0800:
-> This ensures we don't leak the sysfs file if we failed to
-> allocate chan->vc_wq during probe.
+On Mon, May 17, 2021 at 5:55 PM <asmadeus@codewreck.org> wrote:
+>
+> Xie Yongji wrote on Mon, May 17, 2021 at 04:35:57PM +0800:
+> > This ensures we don't leak the sysfs file if we failed to
+> > allocate chan->vc_wq during probe.
+>
+> Right.
+> I'll add a Fixed tag and take to -next shortly
+>
 
-Right.
-I'll add a Fixed tag and take to -next shortly
-
--- 
-Dominique
+Thanks!
 
 
 _______________________________________________
