@@ -2,49 +2,89 @@ Return-Path: <v9fs-developer-bounces@lists.sourceforge.net>
 X-Original-To: lists+v9fs-developer@lfdr.de
 Delivered-To: lists+v9fs-developer@lfdr.de
 Received: from lists.sourceforge.net (lists.sourceforge.net [216.105.38.7])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6568938387D
-	for <lists+v9fs-developer@lfdr.de>; Mon, 17 May 2021 17:56:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7F8B7383BFA
+	for <lists+v9fs-developer@lfdr.de>; Mon, 17 May 2021 20:12:23 +0200 (CEST)
 Received: from [127.0.0.1] (helo=sfs-ml-1.v29.lw.sourceforge.com)
 	by sfs-ml-1.v29.lw.sourceforge.com with esmtp (Exim 4.90_1)
 	(envelope-from <v9fs-developer-bounces@lists.sourceforge.net>)
-	id 1lifbk-0002jD-UK; Mon, 17 May 2021 15:56:40 +0000
+	id 1lihj2-00023d-Pg; Mon, 17 May 2021 18:12:20 +0000
 Received: from [172.30.20.202] (helo=mx.sourceforge.net)
  by sfs-ml-1.v29.lw.sourceforge.com with esmtps
  (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.90_1)
- (envelope-from <lhenriques@suse.de>) id 1lifbj-0002ir-7k
- for v9fs-developer@lists.sourceforge.net; Mon, 17 May 2021 15:56:39 +0000
+ (envelope-from <aneesh.kumar@linux.ibm.com>) id 1lihir-00021y-3n
+ for v9fs-developer@lists.sourceforge.net; Mon, 17 May 2021 18:12:09 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=sourceforge.net; s=x; h=Content-Type:MIME-Version:Message-ID:In-Reply-To:
- Date:References:Subject:Cc:To:From:Sender:Reply-To:Content-Transfer-Encoding:
+ d=sourceforge.net; s=x; h=MIME-Version:Content-Transfer-Encoding:Content-Type
+ :In-Reply-To:Date:Message-ID:From:References:Cc:To:Subject:Sender:Reply-To:
  Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
  Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
  List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=U+HTIqJtyQj8YDrcG+aLKMROcae8ycUQgIfg0hXbkrQ=; b=krLG4NDSsrxBLEn4KvQeyDVeFU
- cjMzRU2kXuVB4VjQlI3ZteKKetGewDf9PjkXCLXiMUhbz4om8/4XTH6sijjo01x8XLbyqyfLdzcdr
- ykzH+ojJjBR03UJNyJ6ONaaEGVcvvtj0fXSwYX84nMviGlPKsozes3cbRUEqELyDVLj8=;
+ bh=IH6PheY3FVLfkb4B496KXTcuSLs3nDYFjkhoA1+u0Us=; b=K5EeebkL4CbC55APRAzXvn+VxY
+ /ErP0WqJxrs4GJbllxdxc9BoUi4iSnH5SoJNf/T2QUplbIJAeUxvVQLooCcz9Y5k2tsZczyKl8CIy
+ 5QBsEDgIF4goRms98C41md6AG9APNRTrRhB2y1HdsaQiEPgq25/CxmbhlGICJaLcS2us=;
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  ;
- h=Content-Type:MIME-Version:Message-ID:In-Reply-To:Date:References:Subject:
- Cc:To:From:Sender:Reply-To:Content-Transfer-Encoding:Content-ID:
+ h=MIME-Version:Content-Transfer-Encoding:Content-Type:In-Reply-To:Date:
+ Message-ID:From:References:Cc:To:Subject:Sender:Reply-To:Content-ID:
  Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
  :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
  List-Post:List-Owner:List-Archive;
- bh=U+HTIqJtyQj8YDrcG+aLKMROcae8ycUQgIfg0hXbkrQ=; b=HTz2wH5gdbj3jpm0kqLiI8cWP3
- aKrc0x+U3P+kOHHyU8/QJ3URQpwGjfqBWJuGufx5YtKuVU4jvbA1PU36SlNto78a4q1TBu8Mwuz2S
- HtOa7Eiv0X7Sjkh7zOKA50m79ZxIzZigVNYQ6RjxjD52yN5KRUZ3FtLVhRknKQu4FhgA=;
-Received: from mx2.suse.de ([195.135.220.15])
+ bh=IH6PheY3FVLfkb4B496KXTcuSLs3nDYFjkhoA1+u0Us=; b=JsvrPKndIsSFII/A9PRNNQnFqJ
+ kxn4/KpBLzK/AZ/Ax+5zkUFx8MPoHiInnYdDYvsaZE03XlQHqCzQkGugDw0lQp+OqiuxXB37OlAxK
+ //D+uLcTn7opC7BpFoNHpgOJLhkz3xVApY+EbeUxiw4YvjTaCB/GjQWRV8dfI6FZWh/s=;
+Received: from mx0a-001b2d01.pphosted.com ([148.163.156.1])
  by sfi-mx-1.v28.lw.sourceforge.com with esmtps
- (TLSv1.2:ECDHE-RSA-AES128-GCM-SHA256:128) (Exim 4.92.2)
- id 1lifbc-00Bczz-0h
- for v9fs-developer@lists.sourceforge.net; Mon, 17 May 2021 15:56:39 +0000
-X-Virus-Scanned: by amavisd-new at test-mx.suse.de
-Received: from relay2.suse.de (unknown [195.135.221.27])
- by mx2.suse.de (Postfix) with ESMTP id AFD2AAE93;
- Mon, 17 May 2021 15:56:25 +0000 (UTC)
-Received: from localhost (brahms [local])
- by brahms (OpenSMTPD) with ESMTPA id 68c11d86;
- Mon, 17 May 2021 15:56:24 +0000 (UTC)
-From: Luis Henriques <lhenriques@suse.de>
+ (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.92.2)
+ id 1lihin-00Bk0P-SB
+ for v9fs-developer@lists.sourceforge.net; Mon, 17 May 2021 18:12:09 +0000
+Received: from pps.filterd (m0098404.ppops.net [127.0.0.1])
+ by mx0a-001b2d01.pphosted.com (8.16.0.43/8.16.0.43) with SMTP id
+ 14HHY9HK109359; Mon, 17 May 2021 13:39:47 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ibm.com;
+ h=subject : to : cc :
+ references : from : message-id : date : in-reply-to : content-type :
+ content-transfer-encoding : mime-version; s=pp1;
+ bh=IH6PheY3FVLfkb4B496KXTcuSLs3nDYFjkhoA1+u0Us=;
+ b=S7+866xZ99W6Nb8X1Eb4nrgjHCtGi0PCZrc2kh8n0xvdE2AmibpOU/02nYhya6F7Lxm3
+ tY6AaDXScZjSPXK+X+kfoFsSZyOdVong+RFtS1bvO8DUywQQGDwdR4/q4Z5fwVyjRlLh
+ IhkH8FYiMcV/QxrVwA7KBtGhfLOpI/g3nvyVTCbABrWl89FPKEIXAFvXTOCWFmKiIaH6
+ U8MvleKY1kdJc69G9zDKWa7BSmDOWPfdqsNDlniSH3DFtUPO+6sysju1z8kkEX9bmEf7
+ aLilwuxbnCO+wRqehYXdaCrOVkZYrYO+h2jgmDotlT4BIMJNMxby4wiedF9LtQzygxJu Ng== 
+Received: from pps.reinject (localhost [127.0.0.1])
+ by mx0a-001b2d01.pphosted.com with ESMTP id 38kuwn2125-1
+ (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+ Mon, 17 May 2021 13:39:46 -0400
+Received: from m0098404.ppops.net (m0098404.ppops.net [127.0.0.1])
+ by pps.reinject (8.16.0.43/8.16.0.43) with SMTP id 14HHYKOC110072;
+ Mon, 17 May 2021 13:39:46 -0400
+Received: from ppma01fra.de.ibm.com (46.49.7a9f.ip4.static.sl-reverse.com
+ [159.122.73.70])
+ by mx0a-001b2d01.pphosted.com with ESMTP id 38kuwn211j-1
+ (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+ Mon, 17 May 2021 13:39:46 -0400
+Received: from pps.filterd (ppma01fra.de.ibm.com [127.0.0.1])
+ by ppma01fra.de.ibm.com (8.16.0.43/8.16.0.43) with SMTP id 14HHZSUV020452;
+ Mon, 17 May 2021 17:39:43 GMT
+Received: from b06cxnps4076.portsmouth.uk.ibm.com
+ (d06relay13.portsmouth.uk.ibm.com [9.149.109.198])
+ by ppma01fra.de.ibm.com with ESMTP id 38j5x80jeg-1
+ (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+ Mon, 17 May 2021 17:39:43 +0000
+Received: from d06av25.portsmouth.uk.ibm.com (d06av25.portsmouth.uk.ibm.com
+ [9.149.105.61])
+ by b06cxnps4076.portsmouth.uk.ibm.com (8.14.9/8.14.9/NCO v10.0) with ESMTP id
+ 14HHdfF938928704
+ (version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
+ Mon, 17 May 2021 17:39:41 GMT
+Received: from d06av25.portsmouth.uk.ibm.com (unknown [127.0.0.1])
+ by IMSVA (Postfix) with ESMTP id 6F11811C050;
+ Mon, 17 May 2021 17:39:41 +0000 (GMT)
+Received: from d06av25.portsmouth.uk.ibm.com (unknown [127.0.0.1])
+ by IMSVA (Postfix) with ESMTP id 069D311C04C;
+ Mon, 17 May 2021 17:39:40 +0000 (GMT)
+Received: from [9.199.40.240] (unknown [9.199.40.240])
+ by d06av25.portsmouth.uk.ibm.com (Postfix) with ESMTP;
+ Mon, 17 May 2021 17:39:39 +0000 (GMT)
 To: Dominique Martinet <asmadeus@codewreck.org>
 References: <YJvb9S8uxV2X45Cu@zeniv-ca.linux.org.uk>
  <YJvJWj/CEyEUWeIu@codewreck.org> <87tun8z2nd.fsf@suse.de>
@@ -53,21 +93,40 @@ References: <YJvb9S8uxV2X45Cu@zeniv-ca.linux.org.uk>
  <2891612.1620824231@warthog.procyon.org.uk>
  <2919958.1620828730@warthog.procyon.org.uk> <87bl9dwb1r.fsf@suse.de>
  <YJ7oxGY/eosPvCiA@codewreck.org>
-Date: Mon, 17 May 2021 16:56:24 +0100
-In-Reply-To: <YJ7oxGY/eosPvCiA@codewreck.org> (Dominique Martinet's message of
- "Sat, 15 May 2021 06:16:52 +0900")
-Message-ID: <87eee5wdzr.fsf@suse.de>
+From: "Aneesh Kumar K.V" <aneesh.kumar@linux.ibm.com>
+Message-ID: <4a83552c-742d-e327-b810-7da43b913daf@linux.ibm.com>
+Date: Mon, 17 May 2021 23:09:39 +0530
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.10.1
+In-Reply-To: <YJ7oxGY/eosPvCiA@codewreck.org>
+Content-Language: en-US
+X-TM-AS-GCONF: 00
+X-Proofpoint-ORIG-GUID: d_x-4vcUZJyzkfdaWd_VWvKhWfGYRIva
+X-Proofpoint-GUID: nPgOaz1VVqqUygAfFeohAPRUHEioqNlO
+X-Proofpoint-UnRewURL: 0 URL was un-rewritten
 MIME-Version: 1.0
+X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:6.0.391, 18.0.761
+ definitions=2021-05-17_08:2021-05-17,
+ 2021-05-17 signatures=0
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ mlxscore=0 lowpriorityscore=0
+ malwarescore=0 spamscore=0 bulkscore=0 mlxlogscore=999 priorityscore=1501
+ impostorscore=0 phishscore=0 clxscore=1011 adultscore=0 suspectscore=0
+ classifier=spam adjust=0 reason=mlx scancount=1 engine=8.12.0-2104190000
+ definitions=main-2105170117
 X-Spam-Score: 0.0 (/)
 X-Spam-Report: Spam Filtering performed by mx.sourceforge.net.
  See http://spamassassin.org/tag/ for more details.
+ 0.0 RCVD_IN_MSPIKE_H4      RBL: Very Good reputation (+4)
+ [148.163.156.1 listed in wl.mailspike.net]
  -0.0 SPF_PASS               SPF: sender matches SPF record
  0.0 SPF_HELO_NONE          SPF: HELO does not publish an SPF Record
- 0.0 RCVD_IN_MSPIKE_H3      RBL: Good reputation (+3)
- [195.135.220.15 listed in wl.mailspike.net]
+ -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+ 0.1 DKIM_SIGNED            Message has a DKIM or DK signature,
+ not necessarily valid
  0.0 RCVD_IN_MSPIKE_WL      Mailspike good senders
- 0.0 UNPARSEABLE_RELAY Informational: message has unparseable relay lines
-X-Headers-End: 1lifbc-00Bczz-0h
+ -0.0 NICE_REPLY_A           Looks like a legit reply (A)
+X-Headers-End: 1lihin-00Bk0P-SB
 Subject: Re: [V9fs-developer] What sort of inode state does ->evict_inode()
  expect to see? [was Re: 9p: fscache duplicate cookie]
 X-BeenThere: v9fs-developer@lists.sourceforge.net
@@ -82,138 +141,50 @@ List-Help: <mailto:v9fs-developer-request@lists.sourceforge.net?subject=help>
 List-Subscribe: <https://lists.sourceforge.net/lists/listinfo/v9fs-developer>, 
  <mailto:v9fs-developer-request@lists.sourceforge.net?subject=subscribe>
 Cc: Latchesar Ionkov <lucho@ionkov.net>, Eric Van Hensbergen <ericvh@gmail.com>,
- "Aneesh Kumar K.V" <aneesh.kumar@linux.ibm.com>,
- David Howells <dhowells@redhat.com>, Al Viro <viro@zeniv.linux.org.uk>,
- linux-fsdevel@vger.kernel.org, v9fs-developer@lists.sourceforge.net
-Content-Type: text/plain; charset="us-ascii"
+ Luis Henriques <lhenriques@suse.de>, David Howells <dhowells@redhat.com>,
+ Al Viro <viro@zeniv.linux.org.uk>, linux-fsdevel@vger.kernel.org,
+ v9fs-developer@lists.sourceforge.net
 Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Errors-To: v9fs-developer-bounces@lists.sourceforge.net
 
-Dominique Martinet <asmadeus@codewreck.org> writes:
-
+On 5/15/21 2:46 AM, Dominique Martinet wrote:
 > Hi Aneesh,
->
+> 
 > I'm going to rely on your memory here... A long, long time ago (2011!),
 > you've authored this commit:
 > -------
 > commit ed80fcfac2565fa866d93ba14f0e75de17a8223e
 > Author: Aneesh Kumar K.V <aneesh.kumar@linux.vnet.ibm.com>
 > Date:   Wed Jul 6 16:32:31 2011 +0530
->
->     fs/9p: Always ask new inode in create
->     
->     This make sure we don't end up reusing the unlinked inode object.
->     The ideal way is to use inode i_generation. But i_generation is
->     not available in userspace always.
->     
->     Signed-off-by: Aneesh Kumar K.V <aneesh.kumar@linux.vnet.ibm.com>
->     Signed-off-by: Eric Van Hensbergen <ericvh@gmail.com>
+> 
+>      fs/9p: Always ask new inode in create
+>      
+>      This make sure we don't end up reusing the unlinked inode object.
+>      The ideal way is to use inode i_generation. But i_generation is
+>      not available in userspace always.
+>      
+>      Signed-off-by: Aneesh Kumar K.V <aneesh.kumar@linux.vnet.ibm.com>
+>      Signed-off-by: Eric Van Hensbergen <ericvh@gmail.com>
 > -------
->
+> 
 > Do you happen to remember or know *why* you wanted to make sure we don't
 > reuse the unlinked inode object?
+> 
 >
-> I'm asking because that's causing problems with (at least) fscache
-> cookie, iget5_locked() gets us a new inode in v9fs_qid_iget_dotl()
-> and tries to get a new cookie before the evict has happened and
-> relinquished the former inode's.
-> There's also problems with coherency in sight -- evict is also in charge
-> of flushing all dirty pages, so the new inode can in theory issue IO and
-> read from server data which has been written by another process on the
-> same client and while 9p isn't known for coherency with multiple clients
-> it's a different story with a single one! (didn't reproduce that one)
->
-> Anyway, it'd be great to know why you did that so we can try another
-> workaround.
-> In theory I'd love to have qemu and others export fsid + a fhandle from
-> name_to_handle_at that includes i_generation and full inode number in
-> the qid path, but we're limited by the 64bits of the protocol so it's a
-> tough one... In practice I don't see generation being used all that much
-> by filesystems to reuse inode numbers though, so wondering which is the
-> most problematic?
->
->
->
-> You can find the rest of the thread here if you're not subscribed to
-> v9fs-developer or linux-fsdevel:
-> https://lkml.kernel.org/r/87czu45gcs.fsf@suse.de
->
->
->
-> Luis Henriques wrote on Fri, May 14, 2021 at 05:10:56PM +0100:
->> So, from our last chat on IRC, we have the following happening:
->> 
->> v9fs_vfs_atomic_open_dotl
->>   v9fs_vfs_lookup
->>     v9fs_get_new_inode_from_fid
->>       v9fs_inode_from_fid_dotl
->>         v9fs_qid_iget_dotl
->> 
->> At this point, iget5_locked() gets called with the test function set to
->> v9fs_test_new_inode_dotl(), which *always* returns 0.  It's still not
->> clear to me why commit ed80fcfac256 ("fs/9p: Always ask new inode in
->> create") has introduced this behavior but even if that's not correct, we
->> still have a race regarding cookies handling, right?
->> 
->> I'm still seeing:
->> 
->> CPU0                     CPU1
->> v9fs_drop_inode          ...
->> v9fs_evict_inode         /* atomic_open */
->>                          v9fs_cache_inode_get_cookie <= COLLISION
->> fscache_relinquish
->
-> Do you mean you still have that problem after ed80fcfac256 has been
-> reverted?
 
-No, I couldn't reproduce the issue after changing v9fs_qid_iget_dotl() to
-never use v9fs_test_new_inode_dotl in the iget5_locked() test.  (So,
-technically I didn't reverted that commit but the effect should be the
-same.)
+Sorry, I don't recall all the details, hence some of these details may 
+not be correct. I did look at the archives to see if we have email 
+discussions around the change. I found the below related email thread.
 
->> So, the question remains: would it be possible to do the relinquish
->> earlier (->drop_inode)?  Or is 9p really shooting itself in the foot by
->> forcing iget5_locked() to always create a new inode here?
->
-> Ugh that is the kind of things I don't want to experiment with...
-> ->drop_inode() seems to be called with i_lock taken and meant to be just
-> a test, not something that can wait, but from what I'm reading it might
-> be possible to set I_WILL_FREE, drop the lock, do our stuff and reaquire
-> the lock at the end.. perhaps? It looks like inode lookup will just loop
-> around on ilookup5_nowait while I_WILL_FREE is set so new inodes can't
-> be taken at this point, it's a de-facto spin lock with iget5_locked and
-> friends.
-> I have no idea what will break though, I'd really rather leave it to the
-> vfs and have 9p do the right thing with inode recycling.
+https://lore.kernel.org/lkml/1310402460-5098-1-git-send-email-aneesh.kumar@linux.vnet.ibm.com/
 
-Right, the fscache code would definitely need to be changed in this case.
-Which makes me wonder if the following would be possible/acceptable:
 
-Add a function fscache_reliquish_cookie_begin() that would set
-FSCACHE_COOKIE_RELINQUISHING (currently unused AFAICS) in the cookie
-flag.  This would allow ->drop_inode() to signal that a cookie is about to
-be relinquished.
+IIRC, this was to avoid picking up wrong inode from the hash? So a 
+create is a new object and we want to actually avoid any comparison?
+Hence pass a test function that always return false?
 
-Then, fscache_hash_cookie() could do something like:
-
- 	hlist_bl_lock(h);
- 	hlist_bl_for_each_entry(cursor, p, h, hash_link) {
--		if (fscache_compare_cookie(candidate, cursor) == 0)
-+		if ((fscache_compare_cookie(candidate, cursor) == 0) &&
-+		    (!test_bit(FSCACHE_COOKIE_RELINQUISHING, &cursor->flags)))
- 			goto collision;
- 	}
-
-Yeah, I'm sure the logic in fscache_acquire_cookie() would need to be
-reworked and the old cookie would need to be removed from the list so that
-the new one could be inserted.  And probably other places in the fscache
-code would need to take the _RELINQUISHING flag into account.  But I guess
-something like this could fix the race (although I'm not familiar with the
-fscache code and this idea may be utterly wrong).
-
-Cheers,
--- 
-Luis
+-aneesh
 
 
 _______________________________________________
