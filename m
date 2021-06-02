@@ -2,84 +2,73 @@ Return-Path: <v9fs-developer-bounces@lists.sourceforge.net>
 X-Original-To: lists+v9fs-developer@lfdr.de
 Delivered-To: lists+v9fs-developer@lfdr.de
 Received: from lists.sourceforge.net (lists.sourceforge.net [216.105.38.7])
-	by mail.lfdr.de (Postfix) with ESMTPS id 589A33907E3
-	for <lists+v9fs-developer@lfdr.de>; Tue, 25 May 2021 19:36:46 +0200 (CEST)
-Received: from [127.0.0.1] (helo=sfs-ml-1.v29.lw.sourceforge.com)
-	by sfs-ml-1.v29.lw.sourceforge.com with esmtp (Exim 4.90_1)
+	by mail.lfdr.de (Postfix) with ESMTPS id 16359398140
+	for <lists+v9fs-developer@lfdr.de>; Wed,  2 Jun 2021 08:41:35 +0200 (CEST)
+Received: from [127.0.0.1] (helo=sfs-ml-4.v29.lw.sourceforge.com)
+	by sfs-ml-4.v29.lw.sourceforge.com with esmtp (Exim 4.90_1)
 	(envelope-from <v9fs-developer-bounces@lists.sourceforge.net>)
-	id 1llayx-00076u-MZ; Tue, 25 May 2021 17:36:43 +0000
+	id 1loKZG-0008E9-8M; Wed, 02 Jun 2021 06:41:30 +0000
 Received: from [172.30.20.202] (helo=mx.sourceforge.net)
- by sfs-ml-1.v29.lw.sourceforge.com with esmtps
+ by sfs-ml-4.v29.lw.sourceforge.com with esmtps
  (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.90_1)
- (envelope-from <pr-tracker-bot@kernel.org>) id 1llayw-00076Y-HA
- for v9fs-developer@lists.sourceforge.net; Tue, 25 May 2021 17:36:42 +0000
+ (envelope-from <zhengyongjun3@huawei.com>) id 1loKZD-0008E1-VR
+ for v9fs-developer@lists.sourceforge.net; Wed, 02 Jun 2021 06:41:27 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=sourceforge.net; s=x; h=Cc:To:Date:Message-Id:References:In-Reply-To:From:
- Subject:Sender:Reply-To:MIME-Version:Content-Type:Content-Transfer-Encoding:
- Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
- Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
+ d=sourceforge.net; s=x; h=Content-Type:Content-Transfer-Encoding:MIME-Version
+ :Message-ID:Date:Subject:CC:To:From:Sender:Reply-To:Content-ID:
+ Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
+ :Resent-Message-ID:In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:
  List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=WaAC99DZRgHhqHJgH00NEs83xp7UR6IuDDmd4hOKrP8=; b=hVSPZFCRoh6Zwxmbtf2fdCyECl
- vx7ZK7rjD68Hx1HMa1t4Rjpixm7FvjziHw43Rr9szFx6jaNLL28aYJQt/cN6xe5n9pA7LWwz4qiON
- zX+t7HXywKaWrMDRPWE6QGhfEFvrLgRORwFGM3aYMEkCqyT2mIP20Z2PGxIuE0Qyo68Y=;
+ bh=puTcBeJVanyQ6a0QNoFjjTr9Q2tCc6EQX3Bej79nkUc=; b=k+DbAMiN8wUsS0wNcdEi7VCSgk
+ EMVYwFWg1VNiZdCrbG7422Yx6Tmib3HOz56ntxhQuQ5TrUugl+qgog3ke0/6nmN4DFfDV1tvm9j6O
+ IfQhaKyhrkPfboLocmz/oG20MJYGgyBjDLSGlSGJFKjGXsxDgk1ms+lycRi1Kr/xOJzA=;
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  ;
- h=Cc:To:Date:Message-Id:References:In-Reply-To:From:Subject:Sender:Reply-To
- :MIME-Version:Content-Type:Content-Transfer-Encoding:Content-ID:
- Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
- :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
- List-Post:List-Owner:List-Archive;
- bh=WaAC99DZRgHhqHJgH00NEs83xp7UR6IuDDmd4hOKrP8=; b=c3ASiwoiPbkroPJ/COLvO7aEoL
- aGndgXjKxnoGn8c4s2rCHKBNFxyYRcmfJqrObxpCtrGMhHm355jzXFYIoxko8BS+I68SA3+u4NLpW
- J+QuMFAiKgwu52MoPjvPb+bGVoclbbrG+OsDte+1O+aYGFQE4VRKdwxUBZBdMy7w9pPI=;
-Received: from mail.kernel.org ([198.145.29.99])
+ h=Content-Type:Content-Transfer-Encoding:MIME-Version:Message-ID:Date:
+ Subject:CC:To:From:Sender:Reply-To:Content-ID:Content-Description:Resent-Date
+ :Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:
+ References:List-Id:List-Help:List-Unsubscribe:List-Subscribe:List-Post:
+ List-Owner:List-Archive; bh=puTcBeJVanyQ6a0QNoFjjTr9Q2tCc6EQX3Bej79nkUc=; b=I
+ jBDT27mSOTBdFKc2DiSs+CHQ6S+uVWw63DMwvowNGQs41huPeFBl56PSjQ81tcI3WH+QsIDDKgQXH
+ 2H0Lra/Njt9eBBHqhtjyrYfxdukuaNzj84CanmKUeV4usOgVAJ2izivNgxKjkHqFaXQV0hZStfmx+
+ MhMGHwd7HaKjcpTM=;
+Received: from szxga03-in.huawei.com ([45.249.212.189])
  by sfi-mx-1.v28.lw.sourceforge.com with esmtps
- (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.92.2)
- id 1llayl-005btu-Gn
- for v9fs-developer@lists.sourceforge.net; Tue, 25 May 2021 17:36:43 +0000
-Received: by mail.kernel.org (Postfix) with ESMTPS id D808E61157;
- Tue, 25 May 2021 17:36:22 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1621964182;
- bh=LskCapKtyB8RvSvFDfob6jRHdNLRDzxTgT9OF4bwRiI=;
- h=Subject:From:In-Reply-To:References:Date:To:Cc:From;
- b=Ny9MBHfnFRBWDZ5MaAeHH23HUW1HtoA9ZG0uLesxIxrOzDxzq5Gadxv2HQz/Yhqh0
- pusvJG8wsNSJq0TglpUrg1uQbQmSGfZ4dnLomTqhchJRsIYOQF7LMUGyvDx71bWGa5
- PETGfYUjgVBZiAog9xmPRfGhn/0IDwEYA4LEisITlNPo9vN/0Mp/RI/nqE/Ejxzkcm
- oCK0BqSAQr6i5ety5eL3kWRNgq7DGhnSgtra3Sch8HOHDbBeAc31ruhd1S+rOyx9/N
- cX/pi3MeCA4BSGwcfwDcjuUA+DiO9bvQkVYAqCGHHYtkzymrl8QwzqKS7x/rDi+whW
- vGZhk8ikkDIww==
-Received: from pdx-korg-docbuild-2.ci.codeaurora.org (localhost.localdomain
- [127.0.0.1])
- by pdx-korg-docbuild-2.ci.codeaurora.org (Postfix) with ESMTP id C8A19608B8;
- Tue, 25 May 2021 17:36:22 +0000 (UTC)
-From: pr-tracker-bot@kernel.org
-In-Reply-To: <4007708.1621947662@warthog.procyon.org.uk>
-References: <4007708.1621947662@warthog.procyon.org.uk>
-X-PR-Tracked-List-Id: <ceph-devel.vger.kernel.org>
-X-PR-Tracked-Message-Id: <4007708.1621947662@warthog.procyon.org.uk>
-X-PR-Tracked-Remote: git://git.kernel.org/pub/scm/linux/kernel/git/dhowells/linux-fs.git
- tags/netfs-lib-fixes-20200525
-X-PR-Tracked-Commit-Id: b71c791254ff5e78a124c8949585dccd9e225e06
-X-PR-Merge-Tree: torvalds/linux.git
-X-PR-Merge-Refname: refs/heads/master
-X-PR-Merge-Commit-Id: ad9f25d338605d26acedcaf3ba5fab5ca26f1c10
-Message-Id: <162196418275.15660.9511112826045891745.pr-tracker-bot@kernel.org>
-Date: Tue, 25 May 2021 17:36:22 +0000
-To: David Howells <dhowells@redhat.com>
-X-Spam-Score: -0.5 (/)
+ (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.92.3)
+ id 1loKZ3-006qKv-KR
+ for v9fs-developer@lists.sourceforge.net; Wed, 02 Jun 2021 06:41:30 +0000
+Received: from dggeme760-chm.china.huawei.com (unknown [172.30.72.55])
+ by szxga03-in.huawei.com (SkyGuard) with ESMTP id 4Fvzpq62dQz67Lm;
+ Wed,  2 Jun 2021 14:37:23 +0800 (CST)
+Received: from localhost.localdomain (10.175.104.82) by
+ dggeme760-chm.china.huawei.com (10.3.19.106) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id
+ 15.1.2176.2; Wed, 2 Jun 2021 14:41:06 +0800
+From: Zheng Yongjun <zhengyongjun3@huawei.com>
+To: <ericvh@gmail.com>, <lucho@ionkov.net>, <asmadeus@codewreck.org>,
+ <davem@davemloft.net>, <kuba@kernel.org>,
+ <v9fs-developer@lists.sourceforge.net>, <netdev@vger.kernel.org>,
+ <linux-kernel@vger.kernel.org>
+Date: Wed, 2 Jun 2021 14:54:42 +0800
+Message-ID: <20210602065442.104765-1-zhengyongjun3@huawei.com>
+X-Mailer: git-send-email 2.25.1
+MIME-Version: 1.0
+X-Originating-IP: [10.175.104.82]
+X-ClientProxiedBy: dggems704-chm.china.huawei.com (10.3.19.181) To
+ dggeme760-chm.china.huawei.com (10.3.19.106)
+X-CFilter-Loop: Reflected
+X-Spam-Score: 0.0 (/)
 X-Spam-Report: Spam Filtering performed by mx.sourceforge.net.
  See http://spamassassin.org/tag/ for more details.
+ 0.0 URIBL_BLOCKED ADMINISTRATOR NOTICE: The query to URIBL was blocked.
+ See
+ http://wiki.apache.org/spamassassin/DnsBlocklists#dnsbl-block
+ for more information. [URIs: huawei.com]
  -0.0 SPF_PASS               SPF: sender matches SPF record
  0.0 SPF_HELO_NONE          SPF: HELO does not publish an SPF Record
- -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from author's
- domain
- -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
- 0.1 DKIM_SIGNED            Message has a DKIM or DK signature,
- not necessarily valid
- -0.4 DKIMWL_WL_HIGH         DKIMwl.org - High trust sender
-X-Headers-End: 1llayl-005btu-Gn
-Subject: Re: [V9fs-developer] [GIT PULL] netfs: Fixes
+X-Headers-End: 1loKZ3-006qKv-KR
+Subject: [V9fs-developer] [PATCH net-next] 9p/trans_virtio: Fix spelling
+ mistakes
 X-BeenThere: v9fs-developer@lists.sourceforge.net
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -91,29 +80,54 @@ List-Post: <mailto:v9fs-developer@lists.sourceforge.net>
 List-Help: <mailto:v9fs-developer-request@lists.sourceforge.net?subject=help>
 List-Subscribe: <https://lists.sourceforge.net/lists/listinfo/v9fs-developer>, 
  <mailto:v9fs-developer-request@lists.sourceforge.net?subject=subscribe>
-Cc: linux-cifs@vger.kernel.org, linux-nfs@vger.kernel.org,
- linux-kernel@vger.kernel.org, willy@infradead.org, dhowells@redhat.com,
- linux-mm@kvack.org, linux-cachefs@redhat.com, geert@linux-m68k.org,
- linux-fsdevel@vger.kernel.org, v9fs-developer@lists.sourceforge.net,
- ceph-devel@vger.kernel.org, torvalds@linux-foundation.org,
- linux-afs@lists.infradead.org
-MIME-Version: 1.0
+Cc: Zheng Yongjun <zhengyongjun3@huawei.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: v9fs-developer-bounces@lists.sourceforge.net
 
-The pull request you sent on Tue, 25 May 2021 14:01:02 +0100:
+reseting  ==> resetting
+alloced  ==> allocated
+accomodate  ==> accommodate
 
-> git://git.kernel.org/pub/scm/linux/kernel/git/dhowells/linux-fs.git tags/netfs-lib-fixes-20200525
+Signed-off-by: Zheng Yongjun <zhengyongjun3@huawei.com>
+---
+ net/9p/trans_virtio.c | 6 +++---
+ 1 file changed, 3 insertions(+), 3 deletions(-)
 
-has been merged into torvalds/linux.git:
-https://git.kernel.org/torvalds/c/ad9f25d338605d26acedcaf3ba5fab5ca26f1c10
-
-Thank you!
-
+diff --git a/net/9p/trans_virtio.c b/net/9p/trans_virtio.c
+index 93f2f8654882..2bbd7dce0f1d 100644
+--- a/net/9p/trans_virtio.c
++++ b/net/9p/trans_virtio.c
+@@ -99,7 +99,7 @@ static unsigned int rest_of_page(void *data)
+  * @client: client instance
+  *
+  * This reclaims a channel by freeing its resources and
+- * reseting its inuse flag.
++ * resetting its inuse flag.
+  *
+  */
+ 
+@@ -463,7 +463,7 @@ p9_virtio_zc_request(struct p9_client *client, struct p9_req_t *req,
+ 	 * For example TREAD have 11.
+ 	 * 11 is the read/write header = PDU Header(7) + IO Size (4).
+ 	 * Arrange in such a way that server places header in the
+-	 * alloced memory and payload onto the user buffer.
++	 * allocated memory and payload onto the user buffer.
+ 	 */
+ 	in = pack_sg_list(chan->sg, out,
+ 			  VIRTQUEUE_NUM, req->rc.sdata, in_hdr_len);
+@@ -760,7 +760,7 @@ static struct p9_trans_module p9_virtio_trans = {
+ 	.cancelled = p9_virtio_cancelled,
+ 	/*
+ 	 * We leave one entry for input and one entry for response
+-	 * headers. We also skip one more entry to accomodate, address
++	 * headers. We also skip one more entry to accommodate, address
+ 	 * that are not at page boundary, that can result in an extra
+ 	 * page in zero copy.
+ 	 */
 -- 
-Deet-doot-dot, I am a bot.
-https://korg.docs.kernel.org/prtracker.html
+2.25.1
+
 
 
 _______________________________________________
