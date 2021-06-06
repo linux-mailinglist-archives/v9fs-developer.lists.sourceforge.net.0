@@ -2,103 +2,92 @@ Return-Path: <v9fs-developer-bounces@lists.sourceforge.net>
 X-Original-To: lists+v9fs-developer@lfdr.de
 Delivered-To: lists+v9fs-developer@lfdr.de
 Received: from lists.sourceforge.net (lists.sourceforge.net [216.105.38.7])
-	by mail.lfdr.de (Postfix) with ESMTPS id D9D5939D2CB
-	for <lists+v9fs-developer@lfdr.de>; Mon,  7 Jun 2021 04:05:53 +0200 (CEST)
-Received: from [127.0.0.1] (helo=sfs-ml-1.v29.lw.sourceforge.com)
-	by sfs-ml-1.v29.lw.sourceforge.com with esmtp (Exim 4.90_1)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4C78439D2D3
+	for <lists+v9fs-developer@lfdr.de>; Mon,  7 Jun 2021 04:12:56 +0200 (CEST)
+Received: from [127.0.0.1] (helo=sfs-ml-4.v29.lw.sourceforge.com)
+	by sfs-ml-4.v29.lw.sourceforge.com with esmtp (Exim 4.90_1)
 	(envelope-from <v9fs-developer-bounces@lists.sourceforge.net>)
-	id 1lq4eF-0002PD-Bx; Mon, 07 Jun 2021 02:05:51 +0000
+	id 1lq4l2-0006FV-0k; Mon, 07 Jun 2021 02:12:52 +0000
 Received: from [172.30.20.202] (helo=mx.sourceforge.net)
- by sfs-ml-1.v29.lw.sourceforge.com with esmtps
+ by sfs-ml-4.v29.lw.sourceforge.com with esmtps
  (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.90_1)
- (envelope-from <changbin.du@gmail.com>) id 1lq4eD-0002Oj-Kl
- for v9fs-developer@lists.sourceforge.net; Mon, 07 Jun 2021 02:05:49 +0000
+ (envelope-from <asmadeus@codewreck.org>) id 1lq4l0-0006FN-Dp
+ for v9fs-developer@lists.sourceforge.net; Mon, 07 Jun 2021 02:12:50 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=sourceforge.net; s=x; h=Content-Transfer-Encoding:MIME-Version:References:
- In-Reply-To:Message-Id:Date:Subject:Cc:To:From:Sender:Reply-To:Content-Type:
+ d=sourceforge.net; s=x; h=In-Reply-To:Content-Type:MIME-Version:References:
+ Message-ID:Subject:Cc:To:From:Date:Sender:Reply-To:Content-Transfer-Encoding:
  Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
  Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
  List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=c8rDwOCs/qvqUrVaJWT4oCzeNMNghRW2CXnXA/uwULs=; b=hHbhvx82gYpKueVg9lFq87tcwh
- b1EUSO7GYTkzY8YNzGo/vM4PbzrOdxwahVAOrWiBmBtLXd9lw6C/ZJVMzTQbSUdXl4flUgqTTLxpU
- ZPdzq5ZSdnL5C1k9yji6hXbX3LHw2qosUb5m6lJdHNUCLBQ5o19v7zXWXjA4WcHUaLJs=;
+ bh=a1qmuhTbRMTd0aB2zPF4gCLCyeO0G69jA1FO5xmsoZE=; b=cL7WM4gsFg/AqWx7Zl70a+J2Pc
+ u1LJHpivF5vE2qiNuzWZWcZm11/B3Yc9QdYzaCnDPQRbqjGH1wYpKOOeIhrn3qOp5hq2mERF4v07d
+ YzG1G1nhw9JWyNz6JNRKo0on2e3kgtncPA7Oo4W1WdBrkkvYxYyXP6h1LQ0YiLp9Nq3w=;
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  ;
- h=Content-Transfer-Encoding:MIME-Version:References:In-Reply-To:Message-Id:
- Date:Subject:Cc:To:From:Sender:Reply-To:Content-Type:Content-ID:
+ h=In-Reply-To:Content-Type:MIME-Version:References:Message-ID:Subject:Cc:To
+ :From:Date:Sender:Reply-To:Content-Transfer-Encoding:Content-ID:
  Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
  :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
  List-Post:List-Owner:List-Archive;
- bh=c8rDwOCs/qvqUrVaJWT4oCzeNMNghRW2CXnXA/uwULs=; b=GszbgzmcQ1QT6SzTbxUmuLxyFN
- uPSTKqibrPkbt1Rtz90binKwMQKS/COzxUsoRHbdPgXQrM2W5yoTPKhmF7Fb2CeDv6SjDh8njZr6V
- CMb3wLdK600I2Hg4kQV+yPztPeFwO1OmI0DqRPY2nErxcU1r/Xitu0+U7JpUPKMK9Vj0=;
-Received: from mail-oi1-f182.google.com ([209.85.167.182])
+ bh=a1qmuhTbRMTd0aB2zPF4gCLCyeO0G69jA1FO5xmsoZE=; b=Vwr4b+HWly8f+eK4cKWFgxE5Gl
+ gd2t2hnPXHmaTtzNIVIzCENcwsxyJYWNyUrxIC6zJVj0EUm9X0pkaYdKtAFsD7SLYI0NRFHxPGemZ
+ zcNWuAwODakzP5kOF2cTSFxajsp85+XOegXeZw+6IeLQCk6KDCUC2DxlK7NLyhlxNdjU=;
+Received: from nautica.notk.org ([91.121.71.147])
  by sfi-mx-2.v28.lw.sourceforge.com with esmtps
- (TLSv1.2:ECDHE-RSA-AES128-GCM-SHA256:128) (Exim 4.92.3)
- id 1lq4eA-00073p-1Q
- for v9fs-developer@lists.sourceforge.net; Mon, 07 Jun 2021 02:05:49 +0000
-Received: by mail-oi1-f182.google.com with SMTP id x196so16136790oif.10
- for <v9fs-developer@lists.sourceforge.net>;
- Sun, 06 Jun 2021 19:05:46 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=from:to:cc:subject:date:message-id:in-reply-to:references
- :mime-version:content-transfer-encoding;
- bh=c8rDwOCs/qvqUrVaJWT4oCzeNMNghRW2CXnXA/uwULs=;
- b=NAMhti0iGnyYoOQxQe7n3zDhPjVtGhsVK1sUvt3/EWKV/UgkZ8XBFCSR0QW/k2O0bq
- LsTLxjamOWKy7Qc8Q2A7Xi2fndywKB7Kg0jLyzVHHFprLd1cmnwXe7YZgDbQ3+y00AjC
- ZUOltjmqcWgeR2G7PIQfPRsd9YYEt0WcbCKy7jlH6VpRMcvB71ishIcud3TUI8OQ9v11
- Yg3e06GWtsFMn8PFCKa2kcaznDrxODdM7UwHShZfsAnjKWnz2aM/dc8F8vfNJtPvy9LZ
- DphKKgI2Guce21GGK9zsr6wGoLvTGesw24YNPf3mLtABvyDd9BGegbN2kgkgXcXZSx1I
- CMAQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
- :references:mime-version:content-transfer-encoding;
- bh=c8rDwOCs/qvqUrVaJWT4oCzeNMNghRW2CXnXA/uwULs=;
- b=KsbcqomEHgW+b6pPMKc1gfaSxk+iQgp7OkRLgCiIv25KIWga3nZWS2IeQS55VPfQFp
- PDec5syFUWPVuabxFNALSSNqgZRzmST9edtKhN6cVQ5+IeTD+uAgcryt7rjkZLgrzyq8
- Af7lQ7pA4ttCsnK/GiuoLHbbeAvbCuJZS8ceXi6NK47nY1cLShsdnHeCfHvm6RWgBJOg
- V/KfZraZWnzHaArvtQwG3vRRuOve+asVaVJXhWu56XF0mcntDMKvNeA9UeoSZwf8yfJr
- gyEExegRYdywSDRViEDXFt1mvG/V0fJjE0Qa5kgR1WqplRTF75T9F3oPsrdFLoQr2JmB
- fm2A==
-X-Gm-Message-State: AOAM5332Qc6d8aUc6MydSf3ZedYXpayGPeINQIXaWe0QcJT7lKY7D/Ne
- zF4Npg3QHHmMiNa3TTJM90svTTT2JArQPg==
-X-Google-Smtp-Source: ABdhPJzgZiGmcmCja5+87+P6qv3f+mJNF6Id2o/OPS+p3VoRsEGB/7ma0b9XDKcCmaqJWqF1hN3KZQ==
-X-Received: by 2002:a17:90b:318:: with SMTP id
- ay24mr27930330pjb.150.1623020987977; 
- Sun, 06 Jun 2021 16:09:47 -0700 (PDT)
-Received: from WRT-WX9.. ([141.164.41.4])
- by smtp.gmail.com with ESMTPSA id f15sm6775672pgg.23.2021.06.06.16.09.41
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Sun, 06 Jun 2021 16:09:47 -0700 (PDT)
-From: Changbin Du <changbin.du@gmail.com>
-To: Eric Van Hensbergen <ericvh@gmail.com>,
- Latchesar Ionkov <lucho@ionkov.net>,
- Dominique Martinet <asmadeus@codewreck.org>
-Date: Mon,  7 Jun 2021 07:09:20 +0800
-Message-Id: <20210606230922.77268-2-changbin.du@gmail.com>
-X-Mailer: git-send-email 2.30.2
-In-Reply-To: <20210606230922.77268-1-changbin.du@gmail.com>
+ (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.92.3)
+ id 1lq4kr-0000Cx-3u
+ for v9fs-developer@lists.sourceforge.net; Mon, 07 Jun 2021 02:12:52 +0000
+Received: by nautica.notk.org (Postfix, from userid 108)
+ id EA817C01E; Mon,  7 Jun 2021 01:46:16 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=codewreck.org; s=2;
+ t=1623023176; bh=a1qmuhTbRMTd0aB2zPF4gCLCyeO0G69jA1FO5xmsoZE=;
+ h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+ b=NmGfezxeJxwOv5BqY9/PwoWrqOmWeXpy4pgg8FwqU8JyewqKx7hNYFUMDHz3YoPh8
+ 1jpdGB/jSDuHGZ9dUe1d6LIKlSLIzLEn5Znd4VvwmlymnEsDgxDL5HSGjlF/bo40uz
+ 2cIZsnL4VrqetV5fK193sTj9TgYCYi/0D3cefGZSEmTMLdnM1mYlYZdCzbGz1ogZ18
+ zLKyCNgQQlMCP7zgq0+K60q9QLjcB/3vXroyZP1OKHDnotfyvNVOfWXDtkDqJ7wbOy
+ nKj9b1Y5Xxe3Zke07nBZD57v7smNkhuT8caOzTTRBvBVU3uUi7tWHQR/yA6DN3JqNW
+ x02F9A+nqxh2w==
+X-Spam-Checker-Version: SpamAssassin 3.3.2 (2011-06-06) on nautica.notk.org
+X-Spam-Level: 
+X-Spam-Status: No, score=0.0 required=5.0 tests=UNPARSEABLE_RELAY
+ autolearn=unavailable version=3.3.2
+Received: from odin.codewreck.org (localhost [127.0.0.1])
+ by nautica.notk.org (Postfix) with ESMTPS id DB4DCC009;
+ Mon,  7 Jun 2021 01:46:13 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=codewreck.org; s=2;
+ t=1623023176; bh=a1qmuhTbRMTd0aB2zPF4gCLCyeO0G69jA1FO5xmsoZE=;
+ h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+ b=NmGfezxeJxwOv5BqY9/PwoWrqOmWeXpy4pgg8FwqU8JyewqKx7hNYFUMDHz3YoPh8
+ 1jpdGB/jSDuHGZ9dUe1d6LIKlSLIzLEn5Znd4VvwmlymnEsDgxDL5HSGjlF/bo40uz
+ 2cIZsnL4VrqetV5fK193sTj9TgYCYi/0D3cefGZSEmTMLdnM1mYlYZdCzbGz1ogZ18
+ zLKyCNgQQlMCP7zgq0+K60q9QLjcB/3vXroyZP1OKHDnotfyvNVOfWXDtkDqJ7wbOy
+ nKj9b1Y5Xxe3Zke07nBZD57v7smNkhuT8caOzTTRBvBVU3uUi7tWHQR/yA6DN3JqNW
+ x02F9A+nqxh2w==
+Received: from localhost (odin.codewreck.org [local])
+ by odin.codewreck.org (OpenSMTPD) with ESMTPA id 38eba9d2;
+ Sun, 6 Jun 2021 23:46:10 +0000 (UTC)
+Date: Mon, 7 Jun 2021 08:45:55 +0900
+From: Dominique Martinet <asmadeus@codewreck.org>
+To: Changbin Du <changbin.du@gmail.com>
+Message-ID: <YL1eM+mzjuggDvqp@codewreck.org>
 References: <20210606230922.77268-1-changbin.du@gmail.com>
 MIME-Version: 1.0
+Content-Disposition: inline
+In-Reply-To: <20210606230922.77268-1-changbin.du@gmail.com>
 X-Spam-Score: -0.1 (/)
 X-Spam-Report: Spam Filtering performed by mx.sourceforge.net.
  See http://spamassassin.org/tag/ for more details.
- 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail provider
- (changbin.du[at]gmail.com)
- -0.0 RCVD_IN_DNSWL_NONE     RBL: Sender listed at https://www.dnswl.org/, no
- trust [209.85.167.182 listed in list.dnswl.org]
  -0.0 SPF_PASS               SPF: sender matches SPF record
  0.0 SPF_HELO_NONE          SPF: HELO does not publish an SPF Record
- -0.0 RCVD_IN_MSPIKE_H2      RBL: Average reputation (+2)
- [209.85.167.182 listed in wl.mailspike.net]
  -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from author's
  domain
  -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
  0.1 DKIM_SIGNED            Message has a DKIM or DK signature,
  not necessarily valid
-X-Headers-End: 1lq4eA-00073p-1Q
-Subject: [V9fs-developer] [PATCH v3 1/3] 9p: add support for root file
+ 0.0 UNPARSEABLE_RELAY Informational: message has unparseable relay lines
+X-Headers-End: 1lq4kr-0000Cx-3u
+Subject: Re: [V9fs-developer] [PATCH v3 0/3] 9p: add support for root file
  systems
 X-BeenThere: v9fs-developer@lists.sourceforge.net
 X-Mailman-Version: 2.1.21
@@ -111,249 +100,47 @@ List-Post: <mailto:v9fs-developer@lists.sourceforge.net>
 List-Help: <mailto:v9fs-developer-request@lists.sourceforge.net?subject=help>
 List-Subscribe: <https://lists.sourceforge.net/lists/listinfo/v9fs-developer>, 
  <mailto:v9fs-developer-request@lists.sourceforge.net?subject=subscribe>
-Cc: linux-doc@vger.kernel.org, Jonathan Corbet <corbet@lwn.net>,
+Cc: Latchesar Ionkov <lucho@ionkov.net>, linux-doc@vger.kernel.org,
+ Eric Van Hensbergen <ericvh@gmail.com>, Jonathan Corbet <corbet@lwn.net>,
  linux-kernel@vger.kernel.org, "Enrico Weigelt,
- metux IT consult" <lkml@metux.net>, v9fs-developer@lists.sourceforge.net,
- Changbin Du <changbin.du@gmail.com>
+ metux IT consult" <lkml@metux.net>, v9fs-developer@lists.sourceforge.net
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: v9fs-developer-bounces@lists.sourceforge.net
 
-This introduces a new kernel command-line option called 'v9fsroot='
-which will tell the kernel to mount the root file system by
-utilizing the 9p protocol.
+Changbin Du wrote on Mon, Jun 07, 2021 at 07:09:19AM +0800:
+> Just like cifs and nfs, this short series enables rootfs support for 9p.
+> Bellow is an example which mounts v9fs with tag 'r' as rootfs in qemu
+> guest via virtio transport.
+> 
+>   $ qemu-system-x86_64 -enable-kvm -cpu host -m 1024 \
+>         -virtfs local,path=$rootfs_dir,mount_tag=r,security_model=passthrough,id=r \
+>         -kernel /path/to/linux/arch/x86/boot/bzImage -nographic \
+>         -append "root=/dev/v9fs v9fsroot=r,trans=virtio rw console=ttyS0 3"
 
-This allows us to mount host folder as rootfs for guest linux in qemu.
-Bellow is an example which mounts v9fs with tag 'r' as rootfs in qemu
-guest via virtio transport.
+Thanks for rebasing -- I haven't forgotten, just been otherwise busy.
 
-  $ qemu-system-x86_64 -enable-kvm -cpu host -m 1024 \
-      -virtfs local,path=$rootfs_dir,mount_tag=r,security_model=passthrough,id=r \
-      -kernel /path/to/linux/arch/x86/boot/bzImage -nographic \
-      -append "root=/dev/v9fs v9fsroot=r,trans=virtio rw console=ttyS0 3"
+Will make time for this and the netfs rework over the next couple of
+weeks.
 
-Signed-off-by: Changbin Du <changbin.du@gmail.com>
 
----
-v2:
-  o use pr_err instead of printk.
-  o ROOT_DEV is only set after checking.
-  o cleanup DEFAULT_MNT_OPTS.
-  o do not retry mount for fd and virtio transport.
----
- MAINTAINERS              |  5 ++++
- fs/9p/Kconfig            |  6 ++++
- fs/9p/Makefile           |  1 +
- fs/9p/v9fsroot.c         | 64 ++++++++++++++++++++++++++++++++++++++++
- include/linux/root_dev.h |  1 +
- init/do_mounts.c         | 55 ++++++++++++++++++++++++++++++++++
- 6 files changed, 132 insertions(+)
- create mode 100644 fs/9p/v9fsroot.c
+Just a couple of notes:
 
-diff --git a/MAINTAINERS b/MAINTAINERS
-index b706dd20ff2b..35b2c8f614d0 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -239,6 +239,11 @@ F:	include/trace/events/9p.h
- F:	include/uapi/linux/virtio_9p.h
- F:	net/9p/
- 
-+9P FILE SYSTEM ROOTFS SUPPORT
-+R:	Changbin Du <changbin.du@gmail.com>
-+S:	Supported
-+F:	fs/9p/v9fsroot.c
-+
- A8293 MEDIA DRIVER
- M:	Antti Palosaari <crope@iki.fi>
- L:	linux-media@vger.kernel.org
-diff --git a/fs/9p/Kconfig b/fs/9p/Kconfig
-index 09fd4a185fd2..71c5a49f9a27 100644
---- a/fs/9p/Kconfig
-+++ b/fs/9p/Kconfig
-@@ -42,3 +42,9 @@ config 9P_FS_SECURITY
- 
- 	  If you are not using a security module that requires using
- 	  extended attributes for file security labels, say N.
-+
-+config 9P_FS_ROOT
-+	bool "9p root file system"
-+	depends on 9P_FS=y
-+	help
-+	  Enables root file system support over 9p protocol.
-diff --git a/fs/9p/Makefile b/fs/9p/Makefile
-index e7800a5c7395..bc2a4ef10049 100644
---- a/fs/9p/Makefile
-+++ b/fs/9p/Makefile
-@@ -15,3 +15,4 @@ obj-$(CONFIG_9P_FS) := 9p.o
- 
- 9p-$(CONFIG_9P_FSCACHE) += cache.o
- 9p-$(CONFIG_9P_FS_POSIX_ACL) += acl.o
-+9p-$(CONFIG_9P_FS_ROOT) += v9fsroot.o
-diff --git a/fs/9p/v9fsroot.c b/fs/9p/v9fsroot.c
-new file mode 100644
-index 000000000000..6c9f7e335c1a
---- /dev/null
-+++ b/fs/9p/v9fsroot.c
-@@ -0,0 +1,64 @@
-+// SPDX-License-Identifier: GPL-2.0
-+/*
-+ * 9p root file system support
-+ *
-+ * Copyright (c) 2021 Changbin Du <changbin.du@gmail.com>
-+ */
-+#include <linux/init.h>
-+#include <linux/fs.h>
-+#include <linux/types.h>
-+#include <linux/ctype.h>
-+#include <linux/string.h>
-+#include <linux/root_dev.h>
-+#include <linux/kernel.h>
-+
-+static char root_dev[2048] __initdata = "";
-+static char root_opts[1024] __initdata = "";
-+
-+/* v9fsroot=<path>[,options] */
-+static int __init v9fs_root_setup(char *line)
-+{
-+	char *s;
-+	int len;
-+
-+	if (strlen(line) >= 1) {
-+		/* make s point to ',' or '\0' at end of line */
-+		s = strchrnul(line, ',');
-+		/* len is strlen(unc) + '\0' */
-+		len = s - line + 1;
-+		if (len > sizeof(root_dev)) {
-+			pr_err("Root-V9FS: path too long\n");
-+			return 1;
-+		}
-+		strscpy(root_dev, line, len);
-+
-+		if (*s) {
-+			int n = snprintf(root_opts,
-+					 sizeof(root_opts), "%s",
-+					 s + 1);
-+			if (n >= sizeof(root_opts)) {
-+				pr_err("Root-V9FS: mount options string too long\n");
-+				root_opts[sizeof(root_opts)-1] = '\0';
-+				return 1;
-+			}
-+		}
-+	}
-+
-+	ROOT_DEV = Root_V9FS;
-+	return 1;
-+}
-+
-+__setup("v9fsroot=", v9fs_root_setup);
-+
-+int __init v9fs_root_data(char **dev, char **opts)
-+{
-+	if (!root_dev[0]) {
-+		pr_err("Root-V9FS: no rootdev specified\n");
-+		return -1;
-+	}
-+
-+	*dev = root_dev;
-+	*opts = root_opts;
-+
-+	return 0;
-+}
-diff --git a/include/linux/root_dev.h b/include/linux/root_dev.h
-index 4e78651371ba..becd0ee2ff87 100644
---- a/include/linux/root_dev.h
-+++ b/include/linux/root_dev.h
-@@ -9,6 +9,7 @@
- enum {
- 	Root_NFS = MKDEV(UNNAMED_MAJOR, 255),
- 	Root_CIFS = MKDEV(UNNAMED_MAJOR, 254),
-+	Root_V9FS = MKDEV(UNNAMED_MAJOR, 253),
- 	Root_RAM0 = MKDEV(RAMDISK_MAJOR, 0),
- 	Root_RAM1 = MKDEV(RAMDISK_MAJOR, 1),
- 	Root_FD0 = MKDEV(FLOPPY_MAJOR, 0),
-diff --git a/init/do_mounts.c b/init/do_mounts.c
-index a78e44ee6adb..952e91f6efcb 100644
---- a/init/do_mounts.c
-+++ b/init/do_mounts.c
-@@ -287,6 +287,8 @@ dev_t name_to_dev_t(const char *name)
- 		return Root_NFS;
- 	if (strcmp(name, "/dev/cifs") == 0)
- 		return Root_CIFS;
-+	if (strcmp(name, "/dev/v9fs") == 0)
-+		return Root_V9FS;
- 	if (strcmp(name, "/dev/ram") == 0)
- 		return Root_RAM0;
- #ifdef CONFIG_BLOCK
-@@ -536,6 +538,52 @@ static int __init mount_cifs_root(void)
- }
- #endif
- 
-+#ifdef CONFIG_9P_FS_ROOT
-+
-+extern int v9fs_root_data(char **dev, char **opts);
-+
-+#define V9FSROOT_TIMEOUT_MIN	5
-+#define V9FSROOT_TIMEOUT_MAX	30
-+#define V9FSROOT_RETRY_MAX	5
-+
-+static bool v9fs_should_retry(char *mount_opts)
-+{
-+	if (strstr(mount_opts, "trans=virtio") || strstr(mount_opts, "trans=fd"))
-+		return false;
-+	return true;
-+}
-+
-+static int __init mount_v9fs_root(void)
-+{
-+	char *root_dev, *root_data;
-+	unsigned int timeout = V9FSROOT_TIMEOUT_MIN;
-+	bool should_retry;
-+	int try, err;
-+
-+	err = v9fs_root_data(&root_dev, &root_data);
-+	if (err != 0)
-+		return 0;
-+
-+	should_retry = v9fs_should_retry(root_data);
-+	for (try = 1; ; try++) {
-+		err = do_mount_root(root_dev, "9p",
-+				    root_mountflags, root_data);
-+		if (err == 0)
-+			return 1;
-+
-+		if (!should_retry || try > V9FSROOT_RETRY_MAX)
-+			break;
-+
-+		/* Wait, in case the server refused us immediately */
-+		ssleep(timeout);
-+		timeout <<= 1;
-+		if (timeout > V9FSROOT_TIMEOUT_MAX)
-+			timeout = V9FSROOT_TIMEOUT_MAX;
-+	}
-+	return 0;
-+}
-+#endif
-+
- void __init mount_root(void)
- {
- #ifdef CONFIG_ROOT_NFS
-@@ -552,6 +600,13 @@ void __init mount_root(void)
- 		return;
- 	}
- #endif
-+#ifdef CONFIG_9P_FS_ROOT
-+	if (ROOT_DEV == Root_V9FS) {
-+		if (!mount_v9fs_root())
-+			pr_err("VFS: Unable to mount root fs via 9p.\n");
-+		return;
-+	}
-+#endif
- #ifdef CONFIG_BLOCK
- 	{
- 		int err = create_dev("/dev/root", ROOT_DEV);
+linux-fsdevel@vger is still not in Cc of the patches, and they weren't
+for any other version except for one of my replies, so it might be worth
+resending just for them as it touches do_mounts.c / root_dev.h
+
+
+>  MAINTAINERS                                 |  8 ++-
+
+I don't think it's worth adding yourself as MAINTAINERS for this, will
+likely strip it out (I know I'm the one who asked for your help if
+people have problems with this, but we should keep contacts simple)
+I'll forward you requests when they come if it's not trivial and you're
+not subscribed to the v9fs-developer@sf list
+
 -- 
-2.30.2
-
+Dominique
 
 
 _______________________________________________
