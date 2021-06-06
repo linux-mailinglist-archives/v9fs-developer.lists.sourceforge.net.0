@@ -2,26 +2,26 @@ Return-Path: <v9fs-developer-bounces@lists.sourceforge.net>
 X-Original-To: lists+v9fs-developer@lfdr.de
 Delivered-To: lists+v9fs-developer@lfdr.de
 Received: from lists.sourceforge.net (lists.sourceforge.net [216.105.38.7])
-	by mail.lfdr.de (Postfix) with ESMTPS id A8EA339D2B8
-	for <lists+v9fs-developer@lfdr.de>; Mon,  7 Jun 2021 03:48:27 +0200 (CEST)
-Received: from [127.0.0.1] (helo=sfs-ml-2.v29.lw.sourceforge.com)
-	by sfs-ml-2.v29.lw.sourceforge.com with esmtp (Exim 4.92.3)
+	by mail.lfdr.de (Postfix) with ESMTPS id D9D5939D2CB
+	for <lists+v9fs-developer@lfdr.de>; Mon,  7 Jun 2021 04:05:53 +0200 (CEST)
+Received: from [127.0.0.1] (helo=sfs-ml-1.v29.lw.sourceforge.com)
+	by sfs-ml-1.v29.lw.sourceforge.com with esmtp (Exim 4.90_1)
 	(envelope-from <v9fs-developer-bounces@lists.sourceforge.net>)
-	id 1lq4NL-0005ol-Pf; Mon, 07 Jun 2021 01:48:23 +0000
+	id 1lq4eF-0002PD-Bx; Mon, 07 Jun 2021 02:05:51 +0000
 Received: from [172.30.20.202] (helo=mx.sourceforge.net)
- by sfs-ml-2.v29.lw.sourceforge.com with esmtps
- (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.92.3)
- (envelope-from <changbin.du@gmail.com>) id 1lq4NJ-0005oX-Mi
- for v9fs-developer@lists.sourceforge.net; Mon, 07 Jun 2021 01:48:21 +0000
+ by sfs-ml-1.v29.lw.sourceforge.com with esmtps
+ (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.90_1)
+ (envelope-from <changbin.du@gmail.com>) id 1lq4eD-0002Oj-Kl
+ for v9fs-developer@lists.sourceforge.net; Mon, 07 Jun 2021 02:05:49 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
  d=sourceforge.net; s=x; h=Content-Transfer-Encoding:MIME-Version:References:
  In-Reply-To:Message-Id:Date:Subject:Cc:To:From:Sender:Reply-To:Content-Type:
  Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
  Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
  List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=ZECU1hyLVhQ0N+f9XI70I4J7ouuREDQIplmH8m1W4O0=; b=es+E0OQ2NbirBJDh8cTMMFAPRY
- 0sdPp/YWMn16w0+NadXMcQpI7HENu9z+cdudpJ2w4mnzd3576QYiIM6F7yd/8MRiYGfHL1Pezu3dg
- I15Qne+nClriWkPXQKNB52uWIcTi5YP38AV24uXpo/uRWhqhFI9yZIIExQBrZzCC6uNo=;
+ bh=c8rDwOCs/qvqUrVaJWT4oCzeNMNghRW2CXnXA/uwULs=; b=hHbhvx82gYpKueVg9lFq87tcwh
+ b1EUSO7GYTkzY8YNzGo/vM4PbzrOdxwahVAOrWiBmBtLXd9lw6C/ZJVMzTQbSUdXl4flUgqTTLxpU
+ ZPdzq5ZSdnL5C1k9yji6hXbX3LHw2qosUb5m6lJdHNUCLBQ5o19v7zXWXjA4WcHUaLJs=;
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  ;
  h=Content-Transfer-Encoding:MIME-Version:References:In-Reply-To:Message-Id:
@@ -29,54 +29,54 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
  :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
  List-Post:List-Owner:List-Archive;
- bh=ZECU1hyLVhQ0N+f9XI70I4J7ouuREDQIplmH8m1W4O0=; b=WytssTyDrhPvqfBXBfVrA2oBRC
- 51frImW9yzMKwh78S1Yd5dW8usvS+epr/Bj8ryVtY6Z/ItQCQnARHGH5mtyJKqUX6ivlUdGTOlCOp
- dJ6Ke81fu5Ghmx6RQeWUT7v6WqIRqFgn/sGlk8MQNZ1SVWxBz0pm7I/MJFxlKM/OrSus=;
-Received: from mail-pl1-f173.google.com ([209.85.214.173])
- by sfi-mx-1.v28.lw.sourceforge.com with esmtps
+ bh=c8rDwOCs/qvqUrVaJWT4oCzeNMNghRW2CXnXA/uwULs=; b=GszbgzmcQ1QT6SzTbxUmuLxyFN
+ uPSTKqibrPkbt1Rtz90binKwMQKS/COzxUsoRHbdPgXQrM2W5yoTPKhmF7Fb2CeDv6SjDh8njZr6V
+ CMb3wLdK600I2Hg4kQV+yPztPeFwO1OmI0DqRPY2nErxcU1r/Xitu0+U7JpUPKMK9Vj0=;
+Received: from mail-oi1-f182.google.com ([209.85.167.182])
+ by sfi-mx-2.v28.lw.sourceforge.com with esmtps
  (TLSv1.2:ECDHE-RSA-AES128-GCM-SHA256:128) (Exim 4.92.3)
- id 1lq4NG-00Bi0s-Fb
- for v9fs-developer@lists.sourceforge.net; Mon, 07 Jun 2021 01:48:23 +0000
-Received: by mail-pl1-f173.google.com with SMTP id c13so7791356plz.0
+ id 1lq4eA-00073p-1Q
+ for v9fs-developer@lists.sourceforge.net; Mon, 07 Jun 2021 02:05:49 +0000
+Received: by mail-oi1-f182.google.com with SMTP id x196so16136790oif.10
  for <v9fs-developer@lists.sourceforge.net>;
- Sun, 06 Jun 2021 18:48:18 -0700 (PDT)
+ Sun, 06 Jun 2021 19:05:46 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
  h=from:to:cc:subject:date:message-id:in-reply-to:references
  :mime-version:content-transfer-encoding;
- bh=ZECU1hyLVhQ0N+f9XI70I4J7ouuREDQIplmH8m1W4O0=;
- b=haUJDGuQWHq5YmEUB2WfHb9icntfo7knpg7VbBQgYzUQKCiIXG3U7JBU7GzOReMSjV
- 8BiM4CwMjLNCUUqW4JqMCI8dsLY4xZOryphC4vuG9cVLq211jMMGlJaSQv++eI/GhhJN
- z4aKXwxrGJymSwLJMk9cTx1ONXB1cRBgdcYOoG+2jsClE0kzenu4bDpjQ39sBjgMam4S
- 4sPyKAIKengDEjKJ2ZCLRk0+bM2eif83iz2MeYG8xTdwwaTY5/gyAXWY83CL3mzOU7UZ
- 2cToJvNap5us8E9uHLzt6LaJosGP5rxRXQudZ3ZALIZBszqGiJhWKCaygLQKJDLS4XX2
- L9QA==
+ bh=c8rDwOCs/qvqUrVaJWT4oCzeNMNghRW2CXnXA/uwULs=;
+ b=NAMhti0iGnyYoOQxQe7n3zDhPjVtGhsVK1sUvt3/EWKV/UgkZ8XBFCSR0QW/k2O0bq
+ LsTLxjamOWKy7Qc8Q2A7Xi2fndywKB7Kg0jLyzVHHFprLd1cmnwXe7YZgDbQ3+y00AjC
+ ZUOltjmqcWgeR2G7PIQfPRsd9YYEt0WcbCKy7jlH6VpRMcvB71ishIcud3TUI8OQ9v11
+ Yg3e06GWtsFMn8PFCKa2kcaznDrxODdM7UwHShZfsAnjKWnz2aM/dc8F8vfNJtPvy9LZ
+ DphKKgI2Guce21GGK9zsr6wGoLvTGesw24YNPf3mLtABvyDd9BGegbN2kgkgXcXZSx1I
+ CMAQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
  :references:mime-version:content-transfer-encoding;
- bh=ZECU1hyLVhQ0N+f9XI70I4J7ouuREDQIplmH8m1W4O0=;
- b=bdwflFuEWtqxBS9sesko77CeLyG3/osZtEfrG15Y7rSSZfSK7qzsniTpyjI6c4jqav
- WNvD+//lcXDuWTn0d/jUmGUHiIH0EogXhdjMcfw+G50UQX550gKEz38n5fxS5t0iyrlc
- bRKECV4wkRFr4WcWpa4yL88khT13eo2NhzBqiNEh0lOsSIsbdonmAgHvuQ+JMnyzhDfC
- AM21NxRDkHSc+RcenHg4vb/Wt/ws1/GUD3iTBZJC04fniPbKfF2wui/iDqVM5kvBiYHd
- C3NGE0DSxZ8Iw5ER3A+l9v0tSPw5IfY348pwD0e8pK2jV6I8f+P85LAbvlpqR5KyMSl7
- ZaqQ==
-X-Gm-Message-State: AOAM533ca1SRHI/+U8VLAHY6GqoNkoMV3NxyEBFjCjvzr+PEf4vml2OV
- HxVzrQsk/RDKMLecaxal6m6uKAuJMm3TeQ==
-X-Google-Smtp-Source: ABdhPJzkD/YoZsDgMrwOfbOPHQUVN6m5e4E4JOzyke2xiAjlFiNdNIpHpKp85iONY4AZRLDxhNkk+w==
-X-Received: by 2002:a17:902:b218:b029:f4:4b88:a44a with SMTP id
- t24-20020a170902b218b02900f44b88a44amr15379885plr.52.1623021001446; 
- Sun, 06 Jun 2021 16:10:01 -0700 (PDT)
+ bh=c8rDwOCs/qvqUrVaJWT4oCzeNMNghRW2CXnXA/uwULs=;
+ b=KsbcqomEHgW+b6pPMKc1gfaSxk+iQgp7OkRLgCiIv25KIWga3nZWS2IeQS55VPfQFp
+ PDec5syFUWPVuabxFNALSSNqgZRzmST9edtKhN6cVQ5+IeTD+uAgcryt7rjkZLgrzyq8
+ Af7lQ7pA4ttCsnK/GiuoLHbbeAvbCuJZS8ceXi6NK47nY1cLShsdnHeCfHvm6RWgBJOg
+ V/KfZraZWnzHaArvtQwG3vRRuOve+asVaVJXhWu56XF0mcntDMKvNeA9UeoSZwf8yfJr
+ gyEExegRYdywSDRViEDXFt1mvG/V0fJjE0Qa5kgR1WqplRTF75T9F3oPsrdFLoQr2JmB
+ fm2A==
+X-Gm-Message-State: AOAM5332Qc6d8aUc6MydSf3ZedYXpayGPeINQIXaWe0QcJT7lKY7D/Ne
+ zF4Npg3QHHmMiNa3TTJM90svTTT2JArQPg==
+X-Google-Smtp-Source: ABdhPJzgZiGmcmCja5+87+P6qv3f+mJNF6Id2o/OPS+p3VoRsEGB/7ma0b9XDKcCmaqJWqF1hN3KZQ==
+X-Received: by 2002:a17:90b:318:: with SMTP id
+ ay24mr27930330pjb.150.1623020987977; 
+ Sun, 06 Jun 2021 16:09:47 -0700 (PDT)
 Received: from WRT-WX9.. ([141.164.41.4])
- by smtp.gmail.com with ESMTPSA id f15sm6775672pgg.23.2021.06.06.16.09.55
+ by smtp.gmail.com with ESMTPSA id f15sm6775672pgg.23.2021.06.06.16.09.41
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Sun, 06 Jun 2021 16:10:01 -0700 (PDT)
+ Sun, 06 Jun 2021 16:09:47 -0700 (PDT)
 From: Changbin Du <changbin.du@gmail.com>
 To: Eric Van Hensbergen <ericvh@gmail.com>,
  Latchesar Ionkov <lucho@ionkov.net>,
  Dominique Martinet <asmadeus@codewreck.org>
-Date: Mon,  7 Jun 2021 07:09:22 +0800
-Message-Id: <20210606230922.77268-4-changbin.du@gmail.com>
+Date: Mon,  7 Jun 2021 07:09:20 +0800
+Message-Id: <20210606230922.77268-2-changbin.du@gmail.com>
 X-Mailer: git-send-email 2.30.2
 In-Reply-To: <20210606230922.77268-1-changbin.du@gmail.com>
 References: <20210606230922.77268-1-changbin.du@gmail.com>
@@ -87,19 +87,19 @@ X-Spam-Report: Spam Filtering performed by mx.sourceforge.net.
  0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail provider
  (changbin.du[at]gmail.com)
  -0.0 RCVD_IN_DNSWL_NONE     RBL: Sender listed at https://www.dnswl.org/, no
- trust [209.85.214.173 listed in list.dnswl.org]
+ trust [209.85.167.182 listed in list.dnswl.org]
  -0.0 SPF_PASS               SPF: sender matches SPF record
  0.0 SPF_HELO_NONE          SPF: HELO does not publish an SPF Record
- -0.0 RCVD_IN_MSPIKE_H3      RBL: Good reputation (+3)
- [209.85.214.173 listed in wl.mailspike.net]
+ -0.0 RCVD_IN_MSPIKE_H2      RBL: Average reputation (+2)
+ [209.85.167.182 listed in wl.mailspike.net]
  -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from author's
  domain
  -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
  0.1 DKIM_SIGNED            Message has a DKIM or DK signature,
  not necessarily valid
- -0.0 RCVD_IN_MSPIKE_WL      Mailspike good senders
-X-Headers-End: 1lq4NG-00Bi0s-Fb
-Subject: [V9fs-developer] [PATCH v3 3/3] 9p: doc: add v9fsroot description
+X-Headers-End: 1lq4eA-00073p-1Q
+Subject: [V9fs-developer] [PATCH v3 1/3] 9p: add support for root file
+ systems
 X-BeenThere: v9fs-developer@lists.sourceforge.net
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -119,95 +119,238 @@ Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: v9fs-developer-bounces@lists.sourceforge.net
 
-This documentation is modified from cifs/cifsroot.rst.
+This introduces a new kernel command-line option called 'v9fsroot='
+which will tell the kernel to mount the root file system by
+utilizing the 9p protocol.
+
+This allows us to mount host folder as rootfs for guest linux in qemu.
+Bellow is an example which mounts v9fs with tag 'r' as rootfs in qemu
+guest via virtio transport.
+
+  $ qemu-system-x86_64 -enable-kvm -cpu host -m 1024 \
+      -virtfs local,path=$rootfs_dir,mount_tag=r,security_model=passthrough,id=r \
+      -kernel /path/to/linux/arch/x86/boot/bzImage -nographic \
+      -append "root=/dev/v9fs v9fsroot=r,trans=virtio rw console=ttyS0 3"
 
 Signed-off-by: Changbin Du <changbin.du@gmail.com>
----
- Documentation/filesystems/v9fs/index.rst    |  1 +
- Documentation/filesystems/v9fs/v9fsroot.rst | 52 +++++++++++++++++++++
- MAINTAINERS                                 |  1 +
- 3 files changed, 54 insertions(+)
- create mode 100644 Documentation/filesystems/v9fs/v9fsroot.rst
 
-diff --git a/Documentation/filesystems/v9fs/index.rst b/Documentation/filesystems/v9fs/index.rst
-index a1e45b89e2a2..65e1ceb04c9c 100644
---- a/Documentation/filesystems/v9fs/index.rst
-+++ b/Documentation/filesystems/v9fs/index.rst
-@@ -9,3 +9,4 @@ v9fs
-    :numbered:
- 
-    9p
-+   v9fsroot
-diff --git a/Documentation/filesystems/v9fs/v9fsroot.rst b/Documentation/filesystems/v9fs/v9fsroot.rst
-new file mode 100644
-index 000000000000..ce6b3c85e301
---- /dev/null
-+++ b/Documentation/filesystems/v9fs/v9fsroot.rst
-@@ -0,0 +1,52 @@
-+.. SPDX-License-Identifier: GPL-2.0
-+
-+==========================================
-+Mounting root file system via v9fs (9p.ko)
-+==========================================
-+
-+:Author: Changbin Du <changbin.du@gmail.com>
-+
-+The CONFIG_9P_FS_ROOT option enables experimental root file system
-+support for v9fs.
-+
-+It introduces a new kernel command-line option called 'v9fsroot='
-+which will tell the kernel to mount the root file system by
-+utilizing the 9p protocol.
-+
-+
-+Kernel command line
-+===================
-+
-+::
-+
-+    root=/dev/v9fs
-+
-+This is just a virtual device that basically tells the kernel to mount
-+the root file system via 9p protocol.
-+
-+::
-+
-+    v9fsroot=<path>[,options]
-+
-+Enables the kernel to mount the root file system via 9p specified in this
-+option.
-+
-+path
-+	Could be a remote file server, Plan 9 From User Space applications
-+	or mount tag of virtio transport.
-+
-+options
-+	Optional mount options.
-+
-+Examples
-+========
-+Test it under QEMU on a kernel built with CONFIG_9P_FS_ROOT and
-+CONFIG_IP_PNP options enabled::
-+
-+    # qemu-system-x86_64 -enable-kvm -cpu host -m 1024 \
-+    -virtfs local,path=$rootfs_dir,mount_tag=r,security_model=passthrough,id=r \
-+    -kernel /path/to/linux/arch/x86/boot/bzImage -nographic \
-+    -append "root=/dev/v9fs v9fsroot=r,trans=virtio rw console=ttyS0 3"
-+
-+The above example mounts v9fs with tag 'r' as rootfs in qemu guest via
-+virtio transport.
+---
+v2:
+  o use pr_err instead of printk.
+  o ROOT_DEV is only set after checking.
+  o cleanup DEFAULT_MNT_OPTS.
+  o do not retry mount for fd and virtio transport.
+---
+ MAINTAINERS              |  5 ++++
+ fs/9p/Kconfig            |  6 ++++
+ fs/9p/Makefile           |  1 +
+ fs/9p/v9fsroot.c         | 64 ++++++++++++++++++++++++++++++++++++++++
+ include/linux/root_dev.h |  1 +
+ init/do_mounts.c         | 55 ++++++++++++++++++++++++++++++++++
+ 6 files changed, 132 insertions(+)
+ create mode 100644 fs/9p/v9fsroot.c
+
 diff --git a/MAINTAINERS b/MAINTAINERS
-index 3da44eef1471..dfcee6dfe182 100644
+index b706dd20ff2b..35b2c8f614d0 100644
 --- a/MAINTAINERS
 +++ b/MAINTAINERS
-@@ -243,6 +243,7 @@ F:	net/9p/
- R:	Changbin Du <changbin.du@gmail.com>
- S:	Supported
- F:	fs/9p/v9fsroot.c
-+F:	Documentation/filesystems/v9fs/v9fsroot.rst
+@@ -239,6 +239,11 @@ F:	include/trace/events/9p.h
+ F:	include/uapi/linux/virtio_9p.h
+ F:	net/9p/
  
++9P FILE SYSTEM ROOTFS SUPPORT
++R:	Changbin Du <changbin.du@gmail.com>
++S:	Supported
++F:	fs/9p/v9fsroot.c
++
  A8293 MEDIA DRIVER
  M:	Antti Palosaari <crope@iki.fi>
+ L:	linux-media@vger.kernel.org
+diff --git a/fs/9p/Kconfig b/fs/9p/Kconfig
+index 09fd4a185fd2..71c5a49f9a27 100644
+--- a/fs/9p/Kconfig
++++ b/fs/9p/Kconfig
+@@ -42,3 +42,9 @@ config 9P_FS_SECURITY
+ 
+ 	  If you are not using a security module that requires using
+ 	  extended attributes for file security labels, say N.
++
++config 9P_FS_ROOT
++	bool "9p root file system"
++	depends on 9P_FS=y
++	help
++	  Enables root file system support over 9p protocol.
+diff --git a/fs/9p/Makefile b/fs/9p/Makefile
+index e7800a5c7395..bc2a4ef10049 100644
+--- a/fs/9p/Makefile
++++ b/fs/9p/Makefile
+@@ -15,3 +15,4 @@ obj-$(CONFIG_9P_FS) := 9p.o
+ 
+ 9p-$(CONFIG_9P_FSCACHE) += cache.o
+ 9p-$(CONFIG_9P_FS_POSIX_ACL) += acl.o
++9p-$(CONFIG_9P_FS_ROOT) += v9fsroot.o
+diff --git a/fs/9p/v9fsroot.c b/fs/9p/v9fsroot.c
+new file mode 100644
+index 000000000000..6c9f7e335c1a
+--- /dev/null
++++ b/fs/9p/v9fsroot.c
+@@ -0,0 +1,64 @@
++// SPDX-License-Identifier: GPL-2.0
++/*
++ * 9p root file system support
++ *
++ * Copyright (c) 2021 Changbin Du <changbin.du@gmail.com>
++ */
++#include <linux/init.h>
++#include <linux/fs.h>
++#include <linux/types.h>
++#include <linux/ctype.h>
++#include <linux/string.h>
++#include <linux/root_dev.h>
++#include <linux/kernel.h>
++
++static char root_dev[2048] __initdata = "";
++static char root_opts[1024] __initdata = "";
++
++/* v9fsroot=<path>[,options] */
++static int __init v9fs_root_setup(char *line)
++{
++	char *s;
++	int len;
++
++	if (strlen(line) >= 1) {
++		/* make s point to ',' or '\0' at end of line */
++		s = strchrnul(line, ',');
++		/* len is strlen(unc) + '\0' */
++		len = s - line + 1;
++		if (len > sizeof(root_dev)) {
++			pr_err("Root-V9FS: path too long\n");
++			return 1;
++		}
++		strscpy(root_dev, line, len);
++
++		if (*s) {
++			int n = snprintf(root_opts,
++					 sizeof(root_opts), "%s",
++					 s + 1);
++			if (n >= sizeof(root_opts)) {
++				pr_err("Root-V9FS: mount options string too long\n");
++				root_opts[sizeof(root_opts)-1] = '\0';
++				return 1;
++			}
++		}
++	}
++
++	ROOT_DEV = Root_V9FS;
++	return 1;
++}
++
++__setup("v9fsroot=", v9fs_root_setup);
++
++int __init v9fs_root_data(char **dev, char **opts)
++{
++	if (!root_dev[0]) {
++		pr_err("Root-V9FS: no rootdev specified\n");
++		return -1;
++	}
++
++	*dev = root_dev;
++	*opts = root_opts;
++
++	return 0;
++}
+diff --git a/include/linux/root_dev.h b/include/linux/root_dev.h
+index 4e78651371ba..becd0ee2ff87 100644
+--- a/include/linux/root_dev.h
++++ b/include/linux/root_dev.h
+@@ -9,6 +9,7 @@
+ enum {
+ 	Root_NFS = MKDEV(UNNAMED_MAJOR, 255),
+ 	Root_CIFS = MKDEV(UNNAMED_MAJOR, 254),
++	Root_V9FS = MKDEV(UNNAMED_MAJOR, 253),
+ 	Root_RAM0 = MKDEV(RAMDISK_MAJOR, 0),
+ 	Root_RAM1 = MKDEV(RAMDISK_MAJOR, 1),
+ 	Root_FD0 = MKDEV(FLOPPY_MAJOR, 0),
+diff --git a/init/do_mounts.c b/init/do_mounts.c
+index a78e44ee6adb..952e91f6efcb 100644
+--- a/init/do_mounts.c
++++ b/init/do_mounts.c
+@@ -287,6 +287,8 @@ dev_t name_to_dev_t(const char *name)
+ 		return Root_NFS;
+ 	if (strcmp(name, "/dev/cifs") == 0)
+ 		return Root_CIFS;
++	if (strcmp(name, "/dev/v9fs") == 0)
++		return Root_V9FS;
+ 	if (strcmp(name, "/dev/ram") == 0)
+ 		return Root_RAM0;
+ #ifdef CONFIG_BLOCK
+@@ -536,6 +538,52 @@ static int __init mount_cifs_root(void)
+ }
+ #endif
+ 
++#ifdef CONFIG_9P_FS_ROOT
++
++extern int v9fs_root_data(char **dev, char **opts);
++
++#define V9FSROOT_TIMEOUT_MIN	5
++#define V9FSROOT_TIMEOUT_MAX	30
++#define V9FSROOT_RETRY_MAX	5
++
++static bool v9fs_should_retry(char *mount_opts)
++{
++	if (strstr(mount_opts, "trans=virtio") || strstr(mount_opts, "trans=fd"))
++		return false;
++	return true;
++}
++
++static int __init mount_v9fs_root(void)
++{
++	char *root_dev, *root_data;
++	unsigned int timeout = V9FSROOT_TIMEOUT_MIN;
++	bool should_retry;
++	int try, err;
++
++	err = v9fs_root_data(&root_dev, &root_data);
++	if (err != 0)
++		return 0;
++
++	should_retry = v9fs_should_retry(root_data);
++	for (try = 1; ; try++) {
++		err = do_mount_root(root_dev, "9p",
++				    root_mountflags, root_data);
++		if (err == 0)
++			return 1;
++
++		if (!should_retry || try > V9FSROOT_RETRY_MAX)
++			break;
++
++		/* Wait, in case the server refused us immediately */
++		ssleep(timeout);
++		timeout <<= 1;
++		if (timeout > V9FSROOT_TIMEOUT_MAX)
++			timeout = V9FSROOT_TIMEOUT_MAX;
++	}
++	return 0;
++}
++#endif
++
+ void __init mount_root(void)
+ {
+ #ifdef CONFIG_ROOT_NFS
+@@ -552,6 +600,13 @@ void __init mount_root(void)
+ 		return;
+ 	}
+ #endif
++#ifdef CONFIG_9P_FS_ROOT
++	if (ROOT_DEV == Root_V9FS) {
++		if (!mount_v9fs_root())
++			pr_err("VFS: Unable to mount root fs via 9p.\n");
++		return;
++	}
++#endif
+ #ifdef CONFIG_BLOCK
+ 	{
+ 		int err = create_dev("/dev/root", ROOT_DEV);
 -- 
 2.30.2
 
