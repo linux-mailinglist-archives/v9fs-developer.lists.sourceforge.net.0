@@ -2,70 +2,85 @@ Return-Path: <v9fs-developer-bounces@lists.sourceforge.net>
 X-Original-To: lists+v9fs-developer@lfdr.de
 Delivered-To: lists+v9fs-developer@lfdr.de
 Received: from lists.sourceforge.net (lists.sourceforge.net [216.105.38.7])
-	by mail.lfdr.de (Postfix) with ESMTPS id 937C739AFDA
-	for <lists+v9fs-developer@lfdr.de>; Fri,  4 Jun 2021 03:32:51 +0200 (CEST)
-Received: from [127.0.0.1] (helo=sfs-ml-4.v29.lw.sourceforge.com)
-	by sfs-ml-4.v29.lw.sourceforge.com with esmtp (Exim 4.90_1)
+	by mail.lfdr.de (Postfix) with ESMTPS id B5C9239D282
+	for <lists+v9fs-developer@lfdr.de>; Mon,  7 Jun 2021 03:09:45 +0200 (CEST)
+Received: from [127.0.0.1] (helo=sfs-ml-2.v29.lw.sourceforge.com)
+	by sfs-ml-2.v29.lw.sourceforge.com with esmtp (Exim 4.92.3)
 	(envelope-from <v9fs-developer-bounces@lists.sourceforge.net>)
-	id 1loyhZ-0004XP-Q8; Fri, 04 Jun 2021 01:32:45 +0000
+	id 1lq3ls-0002uW-Pj; Mon, 07 Jun 2021 01:09:40 +0000
 Received: from [172.30.20.202] (helo=mx.sourceforge.net)
- by sfs-ml-4.v29.lw.sourceforge.com with esmtps
- (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.90_1)
- (envelope-from <zhengyongjun3@huawei.com>) id 1loyhY-0004XH-KT
- for v9fs-developer@lists.sourceforge.net; Fri, 04 Jun 2021 01:32:44 +0000
+ by sfs-ml-2.v29.lw.sourceforge.com with esmtps
+ (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.92.3)
+ (envelope-from <lkp@intel.com>) id 1lq3lq-0002uN-TI
+ for v9fs-developer@lists.sourceforge.net; Mon, 07 Jun 2021 01:09:38 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=sourceforge.net; s=x; h=Content-Type:Content-Transfer-Encoding:MIME-Version
- :Message-ID:Date:Subject:CC:To:From:Sender:Reply-To:Content-ID:
- Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
- :Resent-Message-ID:In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:
+ d=sourceforge.net; s=x; h=In-Reply-To:Content-Type:MIME-Version:References:
+ Message-ID:Subject:Cc:To:From:Date:Sender:Reply-To:Content-Transfer-Encoding:
+ Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+ Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
  List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=PcvCuEzUbtyGkCuT+z2GLpJcqtZkSn9tHKBX4mK0m7Q=; b=BXPbiP+y+zXwlMvMTSM2MrmUrD
- PseYgpB5B4yCLM5p1V5GPKTFqjzVToffUzEb2fltTmP1mef6O63GuZxStvOlHv6ez6ee8Nv17oNqy
- E0IlLPENKRcjSF/4lXQgkMBf4jDat64nAWrNqjcvrz9oCoEGtneyF0vxRJMBPzm74rVo=;
+ bh=uW43Dc7OANqr87R2PWUgai2A4XAyMPdgKOCROTqWewk=; b=UpupandCf3bunUv7dWO8xjOsQl
+ Cqr0iKZqPVe8Mobp2sTMnV3bxtli9pDGUGdpPVRMD1xri0QQEgeV/SKBomzz97MiU4/yA0BlJ7bGw
+ t8gEO9FyFc1Ajb5KvLeQdw3ACRp507oYLGiHK6+NLa//GezBO4fUZo4Iqwine+GgKDC8=;
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  ;
- h=Content-Type:Content-Transfer-Encoding:MIME-Version:Message-ID:Date:
- Subject:CC:To:From:Sender:Reply-To:Content-ID:Content-Description:Resent-Date
- :Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:
- References:List-Id:List-Help:List-Unsubscribe:List-Subscribe:List-Post:
- List-Owner:List-Archive; bh=PcvCuEzUbtyGkCuT+z2GLpJcqtZkSn9tHKBX4mK0m7Q=; b=K
- OOiZBfcmMt9D2T+EeXl/Gu6Ai2bPJ06widCE/epzkED+NPVN7HyA0yXQSZs3cEiuki7Ib5WHLZHvL
- V70NIL+xGoFT4bj5zjFED7UMT7uXMyaZhlCXBY8xEvCJFGKqwNJgK51j2VsLUb0nW0rOHp7nIO3Ez
- fuUQ8ZyTyxVYJlXY=;
-Received: from szxga02-in.huawei.com ([45.249.212.188])
- by sfi-mx-1.v28.lw.sourceforge.com with esmtps
+ h=In-Reply-To:Content-Type:MIME-Version:References:Message-ID:Subject:Cc:To
+ :From:Date:Sender:Reply-To:Content-Transfer-Encoding:Content-ID:
+ Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
+ :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
+ List-Post:List-Owner:List-Archive;
+ bh=uW43Dc7OANqr87R2PWUgai2A4XAyMPdgKOCROTqWewk=; b=Y2Z7VFas1wzmitA0vnoIfp/ilx
+ 3DffnkPbg5u9AgKFrpORIllMEP7+InjCSxv2MN6HZpjIbXewso6pfYJkIpkXz72bhn2TPFON7t7FU
+ rjABJHhXYBDAA5SGajPdZQy7Ei/ST8mMd+jOPR8RVUFVsVOfLcwv5pmMWSwrOvUd9Y5Q=;
+Received: from [192.55.52.120] (helo=mga04.intel.com)
+ by sfi-mx-2.v28.lw.sourceforge.com with esmtps
  (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.92.3)
- id 1loyhT-009eHy-Ci
- for v9fs-developer@lists.sourceforge.net; Fri, 04 Jun 2021 01:32:47 +0000
-Received: from dggeme760-chm.china.huawei.com (unknown [172.30.72.57])
- by szxga02-in.huawei.com (SkyGuard) with ESMTP id 4Fx4tf6fclz6v2N;
- Fri,  4 Jun 2021 09:29:30 +0800 (CST)
-Received: from localhost.localdomain (10.175.104.82) by
- dggeme760-chm.china.huawei.com (10.3.19.106) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id
- 15.1.2176.2; Fri, 4 Jun 2021 09:32:29 +0800
-From: Zheng Yongjun <zhengyongjun3@huawei.com>
-To: <ericvh@gmail.com>, <lucho@ionkov.net>, <asmadeus@codewreck.org>,
- <v9fs-developer@lists.sourceforge.net>, <linux-kernel@vger.kernel.org>
-Date: Fri, 4 Jun 2021 09:46:08 +0800
-Message-ID: <20210604014608.2086576-1-zhengyongjun3@huawei.com>
-X-Mailer: git-send-email 2.25.1
+ id 1lq3lh-0002j5-PW
+ for v9fs-developer@lists.sourceforge.net; Mon, 07 Jun 2021 01:09:38 +0000
+IronPort-SDR: RXwwXOzBXfSlJt02CrPgk1/ty8u2U2pspJVRgg3H5WqdauVGiDQj8b2uWq7OowuwRv/KUsqnOu
+ skw9UAAfS3Ng==
+X-IronPort-AV: E=McAfee;i="6200,9189,10007"; a="202685398"
+X-IronPort-AV: E=Sophos;i="5.83,254,1616482800"; 
+ d="gz'50?scan'50,208,50";a="202685398"
+Received: from fmsmga003.fm.intel.com ([10.253.24.29])
+ by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 06 Jun 2021 18:07:45 -0700
+IronPort-SDR: a7pTNWoz33kObCSVvVUXOIDsbs3Dz9oWKoZp37OB+xjxM3wUI1/WuszOkrnf35bO+3O10+o9ef
+ MQwxP4+1HB3A==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.83,254,1616482800"; 
+ d="gz'50?scan'50,208,50";a="476040369"
+Received: from lkp-server02.sh.intel.com (HELO 1ec8406c5392) ([10.239.97.151])
+ by FMSMGA003.fm.intel.com with ESMTP; 06 Jun 2021 18:07:42 -0700
+Received: from kbuild by 1ec8406c5392 with local (Exim 4.92)
+ (envelope-from <lkp@intel.com>)
+ id 1lq3jx-00087c-ED; Mon, 07 Jun 2021 01:07:41 +0000
+Date: Mon, 7 Jun 2021 09:06:54 +0800
+From: kernel test robot <lkp@intel.com>
+To: Changbin Du <changbin.du@gmail.com>,
+ Eric Van Hensbergen <ericvh@gmail.com>,
+ Latchesar Ionkov <lucho@ionkov.net>,
+ Dominique Martinet <asmadeus@codewreck.org>
+Message-ID: <202106070913.SLIBAxBQ-lkp@intel.com>
+References: <20210606230922.77268-2-changbin.du@gmail.com>
 MIME-Version: 1.0
-X-Originating-IP: [10.175.104.82]
-X-ClientProxiedBy: dggems704-chm.china.huawei.com (10.3.19.181) To
- dggeme760-chm.china.huawei.com (10.3.19.106)
-X-CFilter-Loop: Reflected
-X-Spam-Score: 0.0 (/)
+In-Reply-To: <20210606230922.77268-2-changbin.du@gmail.com>
+User-Agent: Mutt/1.10.1 (2018-07-13)
+X-Spam-Score: 1.7 (+)
 X-Spam-Report: Spam Filtering performed by mx.sourceforge.net.
  See http://spamassassin.org/tag/ for more details.
- 0.0 URIBL_BLOCKED ADMINISTRATOR NOTICE: The query to URIBL was blocked.
- See
- http://wiki.apache.org/spamassassin/DnsBlocklists#dnsbl-block
- for more information. [URIs: huawei.com]
+ 0.1 URIBL_SBL_A Contains URL's A record listed in the Spamhaus SBL
+ blocklist [URIs: raw.githubusercontent.com]
+ 0.6 URIBL_SBL Contains an URL's NS IP listed in the Spamhaus SBL
+ blocklist [URIs: raw.githubusercontent.com]
  -0.0 SPF_PASS               SPF: sender matches SPF record
  0.0 SPF_HELO_NONE          SPF: HELO does not publish an SPF Record
-X-Headers-End: 1loyhT-009eHy-Ci
-Subject: [V9fs-developer] [PATCH -next] 9p: Fix spelling mistakes
+ 1.0 RDNS_NONE Delivered to internal network by a host with no rDNS
+X-Headers-End: 1lq3lh-0002j5-PW
+Content-Disposition: inline
+X-Content-Filtered-By: Mailman/MimeDel 2.1.21
+Subject: Re: [V9fs-developer] [PATCH v3 1/3] 9p: add support for root file
+ systems
 X-BeenThere: v9fs-developer@lists.sourceforge.net
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -77,161 +92,57 @@ List-Post: <mailto:v9fs-developer@lists.sourceforge.net>
 List-Help: <mailto:v9fs-developer-request@lists.sourceforge.net?subject=help>
 List-Subscribe: <https://lists.sourceforge.net/lists/listinfo/v9fs-developer>, 
  <mailto:v9fs-developer-request@lists.sourceforge.net?subject=subscribe>
-Cc: Zheng Yongjun <zhengyongjun3@huawei.com>
+Cc: kbuild-all@lists.01.org, linux-doc@vger.kernel.org,
+ Jonathan Corbet <corbet@lwn.net>, linux-kernel@vger.kernel.org,
+ "Enrico Weigelt, metux IT consult" <lkml@metux.net>,
+ v9fs-developer@lists.sourceforge.net, Changbin Du <changbin.du@gmail.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: v9fs-developer-bounces@lists.sourceforge.net
 
-Fix some spelling mistakes in comments:
-functon  ==> function
-parallely  ==> parallelly
-contians  ==> contains
-incase  ==> in case
-trasnport  ==> transport
-creat  ==> create
-assocated  ==> associated
+Hi Changbin,
 
-Signed-off-by: Zheng Yongjun <zhengyongjun3@huawei.com>
+I love your patch! Perhaps something to improve:
+
+[auto build test WARNING on lwn/docs-next]
+[also build test WARNING on linus/master v5.13-rc5 next-20210604]
+[cannot apply to v9fs/for-next]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch]
+
+url:    https://github.com/0day-ci/linux/commits/Changbin-Du/9p-add-support-for-root-file-systems/20210607-071229
+base:   git://git.lwn.net/linux-2.6 docs-next
+config: arm-allyesconfig (attached as .config)
+compiler: arm-linux-gnueabi-gcc (GCC) 9.3.0
+reproduce (this is a W=1 build):
+        wget https://raw.githubusercontent.com/intel/lkp-tests/master/sbin/make.cross -O ~/bin/make.cross
+        chmod +x ~/bin/make.cross
+        # https://github.com/0day-ci/linux/commit/96098f751038703cc0fda4f018236d240a86930d
+        git remote add linux-review https://github.com/0day-ci/linux
+        git fetch --no-tags linux-review Changbin-Du/9p-add-support-for-root-file-systems/20210607-071229
+        git checkout 96098f751038703cc0fda4f018236d240a86930d
+        # save the attached .config to linux build tree
+        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=gcc-9.3.0 make.cross ARCH=arm 
+
+If you fix the issue, kindly add following tag as appropriate
+Reported-by: kernel test robot <lkp@intel.com>
+
+All warnings (new ones prefixed by >>):
+
+>> fs/9p/v9fsroot.c:53:12: warning: no previous prototype for 'v9fs_root_data' [-Wmissing-prototypes]
+      53 | int __init v9fs_root_data(char **dev, char **opts)
+         |            ^~~~~~~~~~~~~~
+
+
+vim +/v9fs_root_data +53 fs/9p/v9fsroot.c
+
+    52	
+  > 53	int __init v9fs_root_data(char **dev, char **opts)
+
 ---
- fs/9p/v9fs.c           | 2 +-
- fs/9p/vfs_addr.c       | 4 ++--
- fs/9p/vfs_dentry.c     | 2 +-
- fs/9p/vfs_file.c       | 4 ++--
- fs/9p/vfs_inode.c      | 4 ++--
- fs/9p/vfs_inode_dotl.c | 4 ++--
- fs/9p/vfs_super.c      | 2 +-
- 7 files changed, 11 insertions(+), 11 deletions(-)
-
-diff --git a/fs/9p/v9fs.c b/fs/9p/v9fs.c
-index cdb99507ef33..c4a7b78adcb5 100644
---- a/fs/9p/v9fs.c
-+++ b/fs/9p/v9fs.c
-@@ -689,7 +689,7 @@ static int __init init_v9fs(void)
- {
- 	int err;
- 	pr_info("Installing v9fs 9p2000 file system support\n");
--	/* TODO: Setup list of registered trasnport modules */
-+	/* TODO: Setup list of registered transport modules */
- 
- 	err = v9fs_cache_register();
- 	if (err < 0) {
-diff --git a/fs/9p/vfs_addr.c b/fs/9p/vfs_addr.c
-index cce9ace651a2..c4dd6e8e3a80 100644
---- a/fs/9p/vfs_addr.c
-+++ b/fs/9p/vfs_addr.c
-@@ -2,7 +2,7 @@
- /*
-  *  linux/fs/9p/vfs_addr.c
-  *
-- * This file contians vfs address (mmap) ops for 9P2000.
-+ * This file contains vfs address (mmap) ops for 9P2000.
-  *
-  *  Copyright (C) 2005 by Eric Van Hensbergen <ericvh@gmail.com>
-  *  Copyright (C) 2002 by Ron Minnich <rminnich@lanl.gov>
-@@ -139,7 +139,7 @@ static void v9fs_invalidate_page(struct page *page, unsigned int offset,
- {
- 	/*
- 	 * If called with zero offset, we should release
--	 * the private state assocated with the page
-+	 * the private state associated with the page
- 	 */
- 	if (offset == 0 && length == PAGE_SIZE)
- 		v9fs_fscache_invalidate_page(page);
-diff --git a/fs/9p/vfs_dentry.c b/fs/9p/vfs_dentry.c
-index 4b4292123b3d..749238381343 100644
---- a/fs/9p/vfs_dentry.c
-+++ b/fs/9p/vfs_dentry.c
-@@ -2,7 +2,7 @@
- /*
-  *  linux/fs/9p/vfs_dentry.c
-  *
-- * This file contians vfs dentry ops for the 9P2000 protocol.
-+ * This file contains vfs dentry ops for the 9P2000 protocol.
-  *
-  *  Copyright (C) 2004 by Eric Van Hensbergen <ericvh@gmail.com>
-  *  Copyright (C) 2002 by Ron Minnich <rminnich@lanl.gov>
-diff --git a/fs/9p/vfs_file.c b/fs/9p/vfs_file.c
-index 59c32c9b799f..51f22f8c6820 100644
---- a/fs/9p/vfs_file.c
-+++ b/fs/9p/vfs_file.c
-@@ -2,7 +2,7 @@
- /*
-  *  linux/fs/9p/vfs_file.c
-  *
-- * This file contians vfs file ops for 9P2000.
-+ * This file contains vfs file ops for 9P2000.
-  *
-  *  Copyright (C) 2004 by Eric Van Hensbergen <ericvh@gmail.com>
-  *  Copyright (C) 2002 by Ron Minnich <rminnich@lanl.gov>
-@@ -223,7 +223,7 @@ static int v9fs_file_do_lock(struct file *filp, int cmd, struct file_lock *fl)
- 
- out_unlock:
- 	/*
--	 * incase server returned error for lock request, revert
-+	 * in case server returned error for lock request, revert
- 	 * it locally
- 	 */
- 	if (res < 0 && fl->fl_type != F_UNLCK) {
-diff --git a/fs/9p/vfs_inode.c b/fs/9p/vfs_inode.c
-index 795706520b5e..bbf93906c38f 100644
---- a/fs/9p/vfs_inode.c
-+++ b/fs/9p/vfs_inode.c
-@@ -505,7 +505,7 @@ static int v9fs_at_to_dotl_flags(int flags)
- }
- 
- /**
-- * v9fs_dec_count - helper functon to drop i_nlink.
-+ * v9fs_dec_count - helper function to drop i_nlink.
-  *
-  * If a directory had nlink <= 2 (including . and ..), then we should not drop
-  * the link count, which indicates the underlying exported fs doesn't maintain
-@@ -778,7 +778,7 @@ struct dentry *v9fs_vfs_lookup(struct inode *dir, struct dentry *dentry,
- 	 * If we had a rename on the server and a parallel lookup
- 	 * for the new name, then make sure we instantiate with
- 	 * the new name. ie look up for a/b, while on server somebody
--	 * moved b under k and client parallely did a lookup for
-+	 * moved b under k and client parallelly did a lookup for
- 	 * k/b.
- 	 */
- 	res = d_splice_alias(inode, dentry);
-diff --git a/fs/9p/vfs_inode_dotl.c b/fs/9p/vfs_inode_dotl.c
-index e1c0240b51c0..58a491b5f877 100644
---- a/fs/9p/vfs_inode_dotl.c
-+++ b/fs/9p/vfs_inode_dotl.c
-@@ -281,14 +281,14 @@ v9fs_vfs_atomic_open_dotl(struct inode *dir, struct dentry *dentry,
- 	/* Update mode based on ACL value */
- 	err = v9fs_acl_mode(dir, &mode, &dacl, &pacl);
- 	if (err) {
--		p9_debug(P9_DEBUG_VFS, "Failed to get acl values in creat %d\n",
-+		p9_debug(P9_DEBUG_VFS, "Failed to get acl values in create %d\n",
- 			 err);
- 		goto error;
- 	}
- 	err = p9_client_create_dotl(ofid, name, v9fs_open_to_dotl_flags(flags),
- 				    mode, gid, &qid);
- 	if (err < 0) {
--		p9_debug(P9_DEBUG_VFS, "p9_client_open_dotl failed in creat %d\n",
-+		p9_debug(P9_DEBUG_VFS, "p9_client_open_dotl failed in create %d\n",
- 			 err);
- 		goto error;
- 	}
-diff --git a/fs/9p/vfs_super.c b/fs/9p/vfs_super.c
-index 5fce6e30bc5a..50816e6fb4e2 100644
---- a/fs/9p/vfs_super.c
-+++ b/fs/9p/vfs_super.c
-@@ -2,7 +2,7 @@
- /*
-  *  linux/fs/9p/vfs_super.c
-  *
-- * This file contians superblock ops for 9P2000. It is intended that
-+ * This file contains superblock ops for 9P2000. It is intended that
-  * you mount this file system on directories.
-  *
-  *  Copyright (C) 2004 by Eric Van Hensbergen <ericvh@gmail.com>
--- 
-2.25.1
-
-
+0-DAY CI Kernel Test Service, Intel Corporation
+https://lists.01.org/hyperkitty/list/kbuild-all@lists.01.org
 
 _______________________________________________
 V9fs-developer mailing list
