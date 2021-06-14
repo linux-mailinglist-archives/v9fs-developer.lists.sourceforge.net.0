@@ -2,26 +2,26 @@ Return-Path: <v9fs-developer-bounces@lists.sourceforge.net>
 X-Original-To: lists+v9fs-developer@lfdr.de
 Delivered-To: lists+v9fs-developer@lfdr.de
 Received: from lists.sourceforge.net (lists.sourceforge.net [216.105.38.7])
-	by mail.lfdr.de (Postfix) with ESMTPS id 432793A581B
-	for <lists+v9fs-developer@lfdr.de>; Sun, 13 Jun 2021 13:56:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 03FB53A5B46
+	for <lists+v9fs-developer@lfdr.de>; Mon, 14 Jun 2021 03:10:00 +0200 (CEST)
 Received: from [127.0.0.1] (helo=sfs-ml-1.v29.lw.sourceforge.com)
 	by sfs-ml-1.v29.lw.sourceforge.com with esmtp (Exim 4.90_1)
 	(envelope-from <v9fs-developer-bounces@lists.sourceforge.net>)
-	id 1lsOjV-0003v8-Ts; Sun, 13 Jun 2021 11:56:53 +0000
+	id 1lsb6x-00020e-JY; Mon, 14 Jun 2021 01:09:55 +0000
 Received: from [172.30.20.202] (helo=mx.sourceforge.net)
  by sfs-ml-1.v29.lw.sourceforge.com with esmtps
  (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.90_1)
- (envelope-from <asmadeus@codewreck.org>) id 1lsOjU-0003uj-JQ
- for v9fs-developer@lists.sourceforge.net; Sun, 13 Jun 2021 11:56:52 +0000
+ (envelope-from <changbin.du@gmail.com>) id 1lsb6w-00020T-Lf
+ for v9fs-developer@lists.sourceforge.net; Mon, 14 Jun 2021 01:09:54 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
  d=sourceforge.net; s=x; h=In-Reply-To:Content-Type:MIME-Version:References:
  Message-ID:Subject:Cc:To:From:Date:Sender:Reply-To:Content-Transfer-Encoding:
  Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
  Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
  List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=F3BhzyU8+ZAUVp/ArSoFhHPVCMPYqmG5jjoHGqzU654=; b=AsEz/+gCYrF+MCD3BiWQdBrHJw
- +AbfXInFpU53NhzhOh55GKZrgxN0jRup1jOT4Z54Sc07QYMrUMdJvD5LuypsguB9B86JjNagH5Hm9
- I6iF27E1O2BYJLhxKWytO/a6fm+3n0gGwzGyF9NlERQDOqs4MWQ8xE74NLSSmSbIqNn4=;
+ bh=lfTRNFalgvE8W3BaBubJpxlJYdBX6Ni/M9RnLGhDGdg=; b=QNOuRT7GId3NEp9b9vzrtEt2hq
+ 4lN+Mn8uMDe6ywxTasWKgtoJ8ZLXrrfTrHeFbz7PxL+coT6UJRJJXkcxa1SWu32tmtMKksrc58SQn
+ QnJ3OwaHpU5IahuDatqfQw86rU1P6pHHbAwlRPB+Xdtu4xL6frGKlN+4AzHAuuPF0wLw=;
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  ;
  h=In-Reply-To:Content-Type:MIME-Version:References:Message-ID:Subject:Cc:To
@@ -29,59 +29,65 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
  :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
  List-Post:List-Owner:List-Archive;
- bh=F3BhzyU8+ZAUVp/ArSoFhHPVCMPYqmG5jjoHGqzU654=; b=WhKsu4kFOBdPxQtJGOzrw6Hs3r
- hTAjtP8di0wklsrT++45WI7reWKu66mI7QCrQ4N7VJeDLhkRF/v0gwxJcJ/1yO2C597m+wr3wTLYr
- qPpF0Y+27tN3xZPiNxqo75HdKPNI3OmMZy+zQhzLnpvouVusznfLPXOKSlfKZkgf1M0c=;
-Received: from nautica.notk.org ([91.121.71.147])
- by sfi-mx-1.v28.lw.sourceforge.com with esmtps
- (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.92.3)
- id 1lsOjM-007Y5l-Kz
- for v9fs-developer@lists.sourceforge.net; Sun, 13 Jun 2021 11:56:53 +0000
-Received: by nautica.notk.org (Postfix, from userid 108)
- id 397F3C020; Sun, 13 Jun 2021 13:56:37 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=codewreck.org; s=2;
- t=1623585397; bh=F3BhzyU8+ZAUVp/ArSoFhHPVCMPYqmG5jjoHGqzU654=;
- h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
- b=hsHcteU+yTXCmagMp/ZvaR7MOtzeoY42MPWlWePrHFwMvVxzj+NBguPOX3j5IRl0v
- PvpIbNVbC0qb2P0ISXKZ8vLiepehmhB/q9m14RHid7zqvMPTVtMS0yAN1q2k5xFJNx
- Mo37imLm7D0oxfmI16wxi1S4hdd06ixKzstZoUW1yZuNvX8FFQ6EWCMJVMGaV9I5wV
- wBrW/OMwDFpOjGJPaIUj61SeyFJ7PgQprTrD1JW/gP9MeiqJ/0csXBSItWU044vB0C
- VF61k/p0qiIL4E7GRXDcvwPIoBo254UWXyaVqduzeag4rbZ5I/aZsnhfkkyTA6K62o
- KnvPCWRqvxQFQ==
-X-Spam-Checker-Version: SpamAssassin 3.3.2 (2011-06-06) on nautica.notk.org
-X-Spam-Level: 
-X-Spam-Status: No, score=0.0 required=5.0 tests=UNPARSEABLE_RELAY
- autolearn=unavailable version=3.3.2
-Received: from odin.codewreck.org (localhost [127.0.0.1])
- by nautica.notk.org (Postfix) with ESMTPS id A1F46C01E;
- Sun, 13 Jun 2021 13:56:30 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=codewreck.org; s=2;
- t=1623585396; bh=F3BhzyU8+ZAUVp/ArSoFhHPVCMPYqmG5jjoHGqzU654=;
- h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
- b=fS20xlzkSeVSvCIjVgE/luNDX2wo7pgI9R105WOsr5EC+9UCz5uzqxuT0u+mkfQyf
- UCasP35f8tv9p2dQQDHpzA18y8soqL1LGJxQ77DYVFtrvDlmNqj1sfKAer55nKuCV7
- VV/7eeZA2ZIT6Failx+p3OItQycI26GEBWf4HJ5rekyNaS3iGlIlfSwSg4X/LXRuMk
- QzQQe4nuyf/TWhdI75gmZZuGSbgDsufQXtDHQORL7IX3XPZ4B+OwO1mkFSJLsapxpl
- 7tNrBah4+fP4ZBdPDWKlj1LRnswpTxGoLuTnfPiltmWZYTkfKAIBWH2GSbY7TNWzUX
- 6EHSJWw7gfzKg==
-Received: from localhost (odin.codewreck.org [local])
- by odin.codewreck.org (OpenSMTPD) with ESMTPA id ca0fbf5c;
- Sun, 13 Jun 2021 11:56:26 +0000 (UTC)
-Date: Sun, 13 Jun 2021 20:56:11 +0900
-From: Dominique Martinet <asmadeus@codewreck.org>
-To: Stefan Hajnoczi <stefanha@redhat.com>
-Message-ID: <YMXyW0KXc3HqdUAj@codewreck.org>
-References: <20210608153524.GB504497@redhat.com>
- <YMCPPCbjbRoPAEcL@stefanha-x1.localdomain>
- <20210609154543.GA579806@redhat.com>
- <YMHKZhfT0CUgeLno@stefanha-x1.localdomain>
- <YMHOXn2cpGh1T9vz@codewreck.org>
+ bh=lfTRNFalgvE8W3BaBubJpxlJYdBX6Ni/M9RnLGhDGdg=; b=adVC+rMrWjLSOmcbH5B5dAdm3I
+ MmNPxZebWB1AZw3+KXJNlBwJDflosIjs4LzuBaYQACa/rneD2gcZqw81th4exp26n1aHthcAZehlN
+ eBio+vwplgW6mEri9g4cRi+w40PJ9fDTxf9XaneSUflF5UR8c0Q+iiuBsH9qrSY0+2hM=;
+Received: from mail-pf1-f169.google.com ([209.85.210.169])
+ by sfi-mx-2.v28.lw.sourceforge.com with esmtps
+ (TLSv1.2:ECDHE-RSA-AES128-GCM-SHA256:128) (Exim 4.92.3)
+ id 1lsb6m-0001zk-Tz
+ for v9fs-developer@lists.sourceforge.net; Mon, 14 Jun 2021 01:09:54 +0000
+Received: by mail-pf1-f169.google.com with SMTP id z26so9335134pfj.5
+ for <v9fs-developer@lists.sourceforge.net>;
+ Sun, 13 Jun 2021 18:09:46 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+ h=date:from:to:cc:subject:message-id:references:mime-version
+ :content-disposition:in-reply-to;
+ bh=lfTRNFalgvE8W3BaBubJpxlJYdBX6Ni/M9RnLGhDGdg=;
+ b=giJUOc64A/HReLaviyDuLGgkjEioiHD2twGRkxCH2mil9TuqvPeHO8TPDcMQ3LUbT7
+ xJA7Jozne4xmbp/w3x68hJ/5VyG/u/3TfbBTeRqEuU335lR7KTMDYoRDIDGaIm/28JMO
+ fzI6R38pdIBZo6Xv3uU13gxuzQvLcEMMlfekdSOe2HOk6wSR3ZzG55RYaVaKCD/3xRWT
+ WNiFFUleWT83HkijsPXrc6vgjgkz+XOzeQRY6wEYN6bMKtBR51hLBcTHZwWVsrZdBSKU
+ 1tVH1T4KDxLoyBk1RFZ/6ZHd7OVBi1vN6jI96lGEGNU5bhzlKiy2958fW2BSQQun3pug
+ fbnw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+ :mime-version:content-disposition:in-reply-to;
+ bh=lfTRNFalgvE8W3BaBubJpxlJYdBX6Ni/M9RnLGhDGdg=;
+ b=cO8+AtlMXukC7RJ5lJYmZcRa2vGP9nL4b4HskAZE9Srp59VnMMxIZcZwlc1/UP6gGB
+ OrkCBGROS9H//bTM6zq0VRzy+HHXgFmO87Z9/xIpEb7qyIt/ijiVH98wOowk5ZIEmoeU
+ cbHzGx/Gqz2xw1yxufg34W12zjtzDfaq5xVgF7uQFcGqieg/JfsH5sHarLnPCTe+5PaE
+ quVr2DOl/vz3w+o8WfO8njfbotNyNk7N9F34q1ZIUdE4l5+12f1d2Kus5XVTffVQNdl3
+ DXDQFfIZm5CeKrHI3ThwrsUzDdcEMrVux5vGsYIIuWZWiD46+ft6skM5RAVm+jsW7P2Q
+ VsvA==
+X-Gm-Message-State: AOAM5308NO/rZyRRnPZDxSu/1llugDSBo7gHVUoYEzlt9ypFfyOoBIlU
+ TTUi27u5R5bX2w3LNIqEpTM=
+X-Google-Smtp-Source: ABdhPJyXxemMmvRcWWFjy/8zrZR5cT5hqRdDgziWJi6fwTFTllyV7zTq3nilU3KOGZZEE747GyXaig==
+X-Received: by 2002:a63:5f46:: with SMTP id t67mr14925506pgb.37.1623632980544; 
+ Sun, 13 Jun 2021 18:09:40 -0700 (PDT)
+Received: from mail.google.com ([141.164.41.4])
+ by smtp.gmail.com with ESMTPSA id t1sm10303269pjs.20.2021.06.13.18.09.33
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Sun, 13 Jun 2021 18:09:39 -0700 (PDT)
+Date: Mon, 14 Jun 2021 09:09:29 +0800
+From: Changbin Du <changbin.du@gmail.com>
+To: kernel test robot <lkp@intel.com>
+Message-ID: <20210614010929.mwvmpdy3dv7k2xnh@mail.google.com>
+References: <20210606230922.77268-2-changbin.du@gmail.com>
+ <202106070913.SLIBAxBQ-lkp@intel.com>
 MIME-Version: 1.0
 Content-Disposition: inline
-In-Reply-To: <YMHOXn2cpGh1T9vz@codewreck.org>
+In-Reply-To: <202106070913.SLIBAxBQ-lkp@intel.com>
 X-Spam-Score: -0.1 (/)
 X-Spam-Report: Spam Filtering performed by mx.sourceforge.net.
  See http://spamassassin.org/tag/ for more details.
+ 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail provider
+ (changbin.du[at]gmail.com)
+ -0.0 RCVD_IN_MSPIKE_H3      RBL: Good reputation (+3)
+ [209.85.210.169 listed in wl.mailspike.net]
+ -0.0 RCVD_IN_DNSWL_NONE     RBL: Sender listed at https://www.dnswl.org/, no
+ trust [209.85.210.169 listed in list.dnswl.org]
  -0.0 SPF_PASS               SPF: sender matches SPF record
  0.0 SPF_HELO_NONE          SPF: HELO does not publish an SPF Record
  -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from author's
@@ -89,10 +95,10 @@ X-Spam-Report: Spam Filtering performed by mx.sourceforge.net.
  -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
  0.1 DKIM_SIGNED            Message has a DKIM or DK signature,
  not necessarily valid
- 0.0 UNPARSEABLE_RELAY Informational: message has unparseable relay lines
-X-Headers-End: 1lsOjM-007Y5l-Kz
-Subject: Re: [V9fs-developer] [PATCH] init/do_mounts.c: Add
- root="fstag:<tag>" syntax for root device
+ -0.0 RCVD_IN_MSPIKE_WL      Mailspike good senders
+X-Headers-End: 1lsb6m-0001zk-Tz
+Subject: Re: [V9fs-developer] [PATCH v3 1/3] 9p: add support for root file
+ systems
 X-BeenThere: v9fs-developer@lists.sourceforge.net
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -104,99 +110,68 @@ List-Post: <mailto:v9fs-developer@lists.sourceforge.net>
 List-Help: <mailto:v9fs-developer-request@lists.sourceforge.net?subject=help>
 List-Subscribe: <https://lists.sourceforge.net/lists/listinfo/v9fs-developer>, 
  <mailto:v9fs-developer-request@lists.sourceforge.net?subject=subscribe>
-Cc: David Howells <dhowells@redhat.com>, Miklos Szeredi <miklos@szeredi.hu>,
- Richard Weinberger <richard.weinberger@gmail.com>,
- linux kernel mailing list <linux-kernel@vger.kernel.org>, dgilbert@redhat.com,
- virtio-fs@redhat.com, viro@zeniv.linux.org.uk,
- Christoph Hellwig <hch@infradead.org>, linux-fsdevel@vger.kernel.org,
- v9fs-developer@lists.sourceforge.net, Vivek Goyal <vgoyal@redhat.com>
+Cc: Latchesar Ionkov <lucho@ionkov.net>, kbuild-all@lists.01.org,
+ Jonathan Corbet <corbet@lwn.net>, Eric Van Hensbergen <ericvh@gmail.com>,
+ linux-doc@vger.kernel.org, linux-kernel@vger.kernel.org, "Enrico Weigelt,
+ metux IT consult" <lkml@metux.net>, v9fs-developer@lists.sourceforge.net,
+ Changbin Du <changbin.du@gmail.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: v9fs-developer-bounces@lists.sourceforge.net
 
-Dominique Martinet wrote on Thu, Jun 10, 2021 at 05:33:34PM +0900:
-> Stefan Hajnoczi wrote on Thu, Jun 10, 2021 at 09:16:38AM +0100:
-> > virtio-9p should be simple. I'm not sure how much additional setup the
-> > other 9p transports require. TCP and RDMA seem doable if there are
-> > kernel parameters to configure things before the root file system is
-> > mounted.
+On Mon, Jun 07, 2021 at 09:06:54AM +0800, kernel test robot wrote:
+> Hi Changbin,
 > 
-> For TCP, we can probably piggyback on what nfs does for this, see the
-> ip= parameter in Documentation/admin-guide/nfs/nfsroot.rst -- it lives
-> in net/ipv4/ipconfig.c so should just work out of the box
+> I love your patch! Perhaps something to improve:
+> 
+> [auto build test WARNING on lwn/docs-next]
+> [also build test WARNING on linus/master v5.13-rc5 next-20210604]
+> [cannot apply to v9fs/for-next]
+> [If your patch is applied to the wrong git tree, kindly drop us a note.
+> And when submitting patch, we suggest to use '--base' as documented in
+> https://git-scm.com/docs/git-format-patch]
+> 
+> url:    https://github.com/0day-ci/linux/commits/Changbin-Du/9p-add-support-for-root-file-systems/20210607-071229
+> base:   git://git.lwn.net/linux-2.6 docs-next
+> config: arm-allyesconfig (attached as .config)
+> compiler: arm-linux-gnueabi-gcc (GCC) 9.3.0
+> reproduce (this is a W=1 build):
+>         wget https://raw.githubusercontent.com/intel/lkp-tests/master/sbin/make.cross -O ~/bin/make.cross
+>         chmod +x ~/bin/make.cross
+>         # https://github.com/0day-ci/linux/commit/96098f751038703cc0fda4f018236d240a86930d
+>         git remote add linux-review https://github.com/0day-ci/linux
+>         git fetch --no-tags linux-review Changbin-Du/9p-add-support-for-root-file-systems/20210607-071229
+>         git checkout 96098f751038703cc0fda4f018236d240a86930d
+>         # save the attached .config to linux build tree
+>         COMPILER_INSTALL_PATH=$HOME/0day COMPILER=gcc-9.3.0 make.cross ARCH=arm 
+> 
+> If you fix the issue, kindly add following tag as appropriate
+> Reported-by: kernel test robot <lkp@intel.com>
+> 
+> All warnings (new ones prefixed by >>):
+> 
+> >> fs/9p/v9fsroot.c:53:12: warning: no previous prototype for 'v9fs_root_data' [-Wmissing-prototypes]
+>       53 | int __init v9fs_root_data(char **dev, char **opts)
+>          |            ^~~~~~~~~~~~~~
+>
+This just follows the existing rootfs support manner. This function doesn't have
+a dedicated header file to place. So I think we can ignore this warning.
 
-Hm, just tried and it doesn't quite work for some reason -- in this
-stack trace:
- kthread_should_stop+0x71/0xb0
- wait_woken+0x182/0x1c0
- __inet_stream_connect+0x48a/0xc00
- inet_stream_connect+0x53/0xa0
- p9_fd_create_tcp+0x2d6/0x420
- p9_client_create+0x7bc/0x11d0
- v9fs_session_init+0x1cd/0x1220
- v9fs_mount+0x8c/0x870
- legacy_get_tree+0xef/0x1d0
- vfs_get_tree+0x83/0x240
- path_mount+0xda3/0x1800
- init_mount+0x98/0xdd
- do_mount_root+0xe0/0x255
- mount_root+0x47/0xd7
- prepare_namespace+0x136/0x165
- kernel_init+0xd/0x123
- ret_from_fork+0x22/0x30
-
-current->set_child_tid is null, causing a null deref when checking
-&to_kthread(current)->flags
-
-It does work with nfsroot though so even if this doesn't look 9p
-specific I guess I'll need to debug that eventually, but this can
-be done later... I'm guessing they don't use the same connect() function
-as 9p's is ipv4-specific (ugh) and that needs fixing eventually anyway.
-
-For reference this is relevant part of kernel command line I used for
-tcp:
-root=fstag:x.y.z.t rootflags=trans=tcp,aname=rootfs rootfstype=9p ip=dhcp
-
-(and ip=dhcp requires CONFIG_IP_PNP_DHCP=y)
-
-
-
-Virtio does work quite well though and that's good enough for me -- I
-was going to suggest also documenting increasing the msize (setting
-e.g. rootflags=msize=262144) but we really ought to increase the
-default, that came up recently and since no patch was sent I kind of
-forgot... Will do that now.
-
+> 
+> vim +/v9fs_root_data +53 fs/9p/v9fsroot.c
+> 
+>     52	
+>   > 53	int __init v9fs_root_data(char **dev, char **opts)
+> 
+> ---
+> 0-DAY CI Kernel Test Service, Intel Corporation
+> https://lists.01.org/hyperkitty/list/kbuild-all@lists.01.org
 
 
-@Vivek - I personally don't really care much, but would tend to prefer
-your v2 (without fstag:) from a user perspective the later is definitely
-better but I don't really like the static nobdev_filesystems array --
-I'd bite the bullet and use FS_REQUIRES_DEV (and move this part of the
-code just a bit below after the root_wait check just in case it matters,
-but at that point if something would mount with /dev/root but not with
-the raw root=argument then they probably do require a device!)
 
-It could also be gated by a config option like e.g. CONFIG_ROOT_NFS and
-others all are to make sure it doesn't impact anyone who doesn't want to
-be impacted - I'm sure some people want to make sure their device
-doesn't boot off a weird root if someone manages to change kernel params
-so would want a way of disabling the option...
-
-
-Well, if you keep the array, please add 9p to the list and resend as a
-proper patch so I can reply with tested-by/reviewed-by tags on something
-more final.
-
-
-Also, matter-of-factedly, how is this going to be picked up?
-Is the plan to send it directly to Linus as part of the next virtiofs
-PR? Going through Al Viro?
-
-
-Thanks,
 -- 
-Dominique
+Cheers,
+Changbin Du
 
 
 _______________________________________________
