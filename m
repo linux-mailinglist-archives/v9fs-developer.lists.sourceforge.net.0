@@ -2,96 +2,76 @@ Return-Path: <v9fs-developer-bounces@lists.sourceforge.net>
 X-Original-To: lists+v9fs-developer@lfdr.de
 Delivered-To: lists+v9fs-developer@lfdr.de
 Received: from lists.sourceforge.net (lists.sourceforge.net [216.105.38.7])
-	by mail.lfdr.de (Postfix) with ESMTPS id 41FCA3ADC82
-	for <lists+v9fs-developer@lfdr.de>; Sun, 20 Jun 2021 06:16:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 04FFA3ADDF2
+	for <lists+v9fs-developer@lfdr.de>; Sun, 20 Jun 2021 12:20:52 +0200 (CEST)
 Received: from [127.0.0.1] (helo=sfs-ml-4.v29.lw.sourceforge.com)
 	by sfs-ml-4.v29.lw.sourceforge.com with esmtp (Exim 4.90_1)
 	(envelope-from <v9fs-developer-bounces@lists.sourceforge.net>)
-	id 1luot1-00014U-Em; Sun, 20 Jun 2021 04:16:43 +0000
+	id 1luuZJ-0003y7-T2; Sun, 20 Jun 2021 10:20:45 +0000
 Received: from [172.30.20.202] (helo=mx.sourceforge.net)
  by sfs-ml-4.v29.lw.sourceforge.com with esmtps
  (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.90_1)
- (envelope-from <asmadeus@codewreck.org>) id 1luosz-00014J-6n
- for v9fs-developer@lists.sourceforge.net; Sun, 20 Jun 2021 04:16:41 +0000
+ (envelope-from <support@der-waeschekorb.de>) id 1luuZI-0003xz-8d
+ for v9fs-developer@lists.sourceforge.net; Sun, 20 Jun 2021 10:20:44 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=sourceforge.net; s=x; h=In-Reply-To:Content-Type:MIME-Version:References:
- Message-ID:Subject:Cc:To:From:Date:Sender:Reply-To:Content-Transfer-Encoding:
- Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
- Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
+ d=sourceforge.net; s=x; h=Content-Transfer-Encoding:Content-Type:MIME-Version
+ :Message-ID:Reply-To:From:Date:Subject:To:Sender:Cc:Content-ID:
+ Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
+ :Resent-Message-ID:In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:
  List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=wUAkVBtqwfhJ7JoQkwq9bvrQXDVb65OWrBZQsHRhhGk=; b=UpWE9/uoNo9uitB1nIe4ynV2nr
- s4zE7cSiPIeF9C9sTCu4Dau3TyxQnPC9Ck69qTVIGXkAiQOWNerNeFnfTvJ1x6pTqgMxezSOx+Hvp
- rg4zc5EsMy1LPtAP8xnw3QCq3JPGjWaalIquLVslDBdCnzD9d5omzThXhd29JQ3bc+RM=;
+ bh=Tl6JrmZca5qdauad2p4fbTlY/mD8S1B1eIbibYltexo=; b=WSsBkiPy3amH4OqBYnY4XZCaAo
+ AY91Dk1beSsbChFXjfLqz0grco54VWLMEJ+hecbE0QjMaInwCFwOh1PgsKQZUsOQ/r3kurl9VRh2L
+ iiASpkTio4c3v5eBfxbSFexuBKJM3ywoyZWtbV1JLm3zz1LtGK8u4JBo9os39EfvvXgI=;
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  ;
- h=In-Reply-To:Content-Type:MIME-Version:References:Message-ID:Subject:Cc:To
- :From:Date:Sender:Reply-To:Content-Transfer-Encoding:Content-ID:
- Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
- :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
- List-Post:List-Owner:List-Archive;
- bh=wUAkVBtqwfhJ7JoQkwq9bvrQXDVb65OWrBZQsHRhhGk=; b=Ol4zc8fc2tEksD+DvAOvOqvW9I
- dAznqU5NJPwZI/nM1TbRs72BczFT5lEb+vgOAQjW/BDYWqacj4S0+CvofvsON58dujbPbABc9dKzs
- gP3ju1cNcscPr8E7ykxjnfM2YbFrO6J5x8W3kRmiLqzZCw+o/kOjW9wXU9eTFTeErwdk=;
-Received: from nautica.notk.org ([91.121.71.147])
+ h=Content-Transfer-Encoding:Content-Type:MIME-Version:Message-ID:Reply-To:
+ From:Date:Subject:To:Sender:Cc:Content-ID:Content-Description:Resent-Date:
+ Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:
+ References:List-Id:List-Help:List-Unsubscribe:List-Subscribe:List-Post:
+ List-Owner:List-Archive; bh=Tl6JrmZca5qdauad2p4fbTlY/mD8S1B1eIbibYltexo=; b=G
+ +qnvE4t7p41Mc9agoEVFMBXcmX0q5vLzqhYleVC+MC6r68M19guwuPgZdSyd9RgTxT7akd/DB17+7
+ TSOPyX1m17eMXrfaz2AFCan9lKMLtT3ZcrjRZo3D1ec0CQLeERccFbWo1GAolfAG/fDD5vsUYcT/s
+ 5uDaiVSFEXAE8f8Y=;
+Received: from emita.mittwald.de ([188.94.250.251])
  by sfi-mx-1.v28.lw.sourceforge.com with esmtps
  (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.92.3)
- id 1luosn-00HRpw-Aj
- for v9fs-developer@lists.sourceforge.net; Sun, 20 Jun 2021 04:16:44 +0000
-Received: by nautica.notk.org (Postfix, from userid 108)
- id D70CBC01E; Sun, 20 Jun 2021 06:16:21 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=codewreck.org; s=2;
- t=1624162581; bh=wUAkVBtqwfhJ7JoQkwq9bvrQXDVb65OWrBZQsHRhhGk=;
- h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
- b=rw/Bq/90XsaB85pNFF1RD9+J7un4DGc7XizbsZd3aBHggPwXHshcIZWzugNdAKylH
- Tr+EyWKWltslAGOurmYpNJ7Igielcp4xVj1aIGxCG9lp52WRZX5WzacKICABnQ0tX1
- rPs+Tvu/CHR+1E1syZyn2ewaMjBJ3/2id9OFQFOSEHf7mct9MkPbVDDlAx2rU9iT2f
- OPGFd5VQTspFNOeft9kvS/3T6nZMGUuzcKLD14AmJh3H2JYaLqCQHoZGb7qShNl+MD
- mGAdag9jDPmKbZEHxtE7ttT2+5BoN19HiG8BKtpIlnYFBuq2kLvKyu5u47L1KaBBPv
- VZp/ysmXm2LWw==
-X-Spam-Checker-Version: SpamAssassin 3.3.2 (2011-06-06) on nautica.notk.org
-X-Spam-Level: 
-X-Spam-Status: No, score=0.0 required=5.0 tests=UNPARSEABLE_RELAY
- autolearn=unavailable version=3.3.2
-Received: from odin.codewreck.org (localhost [127.0.0.1])
- by nautica.notk.org (Postfix) with ESMTPS id 2B37CC009;
- Sun, 20 Jun 2021 06:16:18 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=codewreck.org; s=2;
- t=1624162581; bh=wUAkVBtqwfhJ7JoQkwq9bvrQXDVb65OWrBZQsHRhhGk=;
- h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
- b=rw/Bq/90XsaB85pNFF1RD9+J7un4DGc7XizbsZd3aBHggPwXHshcIZWzugNdAKylH
- Tr+EyWKWltslAGOurmYpNJ7Igielcp4xVj1aIGxCG9lp52WRZX5WzacKICABnQ0tX1
- rPs+Tvu/CHR+1E1syZyn2ewaMjBJ3/2id9OFQFOSEHf7mct9MkPbVDDlAx2rU9iT2f
- OPGFd5VQTspFNOeft9kvS/3T6nZMGUuzcKLD14AmJh3H2JYaLqCQHoZGb7qShNl+MD
- mGAdag9jDPmKbZEHxtE7ttT2+5BoN19HiG8BKtpIlnYFBuq2kLvKyu5u47L1KaBBPv
- VZp/ysmXm2LWw==
-Received: from localhost (odin.codewreck.org [local])
- by odin.codewreck.org (OpenSMTPD) with ESMTPA id ed6bbf56;
- Sun, 20 Jun 2021 04:16:15 +0000 (UTC)
-Date: Sun, 20 Jun 2021 13:16:00 +0900
-From: Dominique Martinet <asmadeus@codewreck.org>
-To: Changbin Du <changbin.du@gmail.com>
-Message-ID: <YM7BAM5lK7NRVZ7n@codewreck.org>
-References: <20210606230922.77268-1-changbin.du@gmail.com>
- <YMcaEq95T+1GxZz2@localhost> <YMca+N0UiGNZ1lSm@codewreck.org>
- <YMcfKqbCq7ZWAyaO@localhost>
- <20210620033659.s7rohai7dzwpgjur@mail.google.com>
+ id 1luuZG-000GZd-H3
+ for v9fs-developer@lists.sourceforge.net; Sun, 20 Jun 2021 10:20:48 +0000
+Received: from ovm7272 (ovm7272.internal [172.16.50.186])
+ by emita.mittwald.de (Postfix) with ESMTP id 3938DE1AB5
+ for <v9fs-developer@lists.sourceforge.net>;
+ Sun, 20 Jun 2021 12:20:36 +0200 (CEST)
+To: v9fs-developer@lists.sourceforge.net
+X-PHP-Originating-Script: 1913838:m.php
+Date: Sun, 20 Jun 2021 12:20:36 +0200
+From: Advert Unit <support@der-waeschekorb.de>
+Message-ID: <2d44a966147ed4dce5ed5a3fdc70b3b9@der-waeschekorb.de>
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20210620033659.s7rohai7dzwpgjur@mail.google.com>
-X-Spam-Score: -0.1 (/)
+X-Sender: p388270
+X-Spam-Level: ***
+X-Rspamd-Queue-Id: 3938DE1AB5
+X-Spamd-Result: default: False [3.65 / 9.00]; ARC_NA(0.00)[];
+ HAS_REPLYTO(0.00)[surestrt@gmail.com]; FROM_HAS_DN(0.00)[];
+ TO_MATCH_ENVRCPT_ALL(0.00)[]; HAS_X_POS(0.00)[];
+ REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
+ FREEMAIL_REPLYTO(1.00)[gmail.com];
+ MIME_GOOD(-0.10)[text/plain]; RCPT_COUNT_ONE(0.00)[1];
+ TO_DN_NONE(0.00)[]; RCVD_COUNT_ZERO(0.00)[0];
+ FROM_EQ_ENVFROM(0.00)[]; MIME_TRACE(0.00)[0:+];
+ R_MIXED_CHARSET(0.25)[]; MID_RHS_MATCH_FROM(0.00)[];
+ X_PHPOS_FAKE(2.50)[]
+X-Rspamd-Server: rspamd-emita
+X-Spam-Score: 2.5 (++)
 X-Spam-Report: Spam Filtering performed by mx.sourceforge.net.
  See http://spamassassin.org/tag/ for more details.
+ -0.0 RCVD_IN_MSPIKE_H3      RBL: Good reputation (+3)
+ [188.94.250.251 listed in wl.mailspike.net]
  -0.0 SPF_PASS               SPF: sender matches SPF record
  0.0 SPF_HELO_NONE          SPF: HELO does not publish an SPF Record
- -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from author's
- domain
- -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
- 0.1 DKIM_SIGNED            Message has a DKIM or DK signature,
- not necessarily valid
- 0.0 UNPARSEABLE_RELAY Informational: message has unparseable relay lines
-X-Headers-End: 1luosn-00HRpw-Aj
-Subject: Re: [V9fs-developer] [PATCH v3 0/3] 9p: add support for root file
- systems
+ -0.0 RCVD_IN_MSPIKE_WL      Mailspike good senders
+ 2.5 FREEMAIL_FORGED_REPLYTO Freemail in Reply-To, but not From
+X-Headers-End: 1luuZG-000GZd-H3
+Subject: [V9fs-developer] Darlehensangebot..... jetzt bewerben1
 X-BeenThere: v9fs-developer@lists.sourceforge.net
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -103,33 +83,15 @@ List-Post: <mailto:v9fs-developer@lists.sourceforge.net>
 List-Help: <mailto:v9fs-developer-request@lists.sourceforge.net?subject=help>
 List-Subscribe: <https://lists.sourceforge.net/lists/listinfo/v9fs-developer>, 
  <mailto:v9fs-developer-request@lists.sourceforge.net?subject=subscribe>
-Cc: Eric Van Hensbergen <ericvh@gmail.com>, Latchesar Ionkov <lucho@ionkov.net>,
- v9fs-developer@lists.sourceforge.net, Josh Triplett <josh@joshtriplett.org>,
- linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Reply-To: surestrt@gmail.com
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: v9fs-developer-bounces@lists.sourceforge.net
 
-Changbin Du wrote on Sun, Jun 20, 2021 at 11:36:59AM +0800:
-> The main problem is we lack a generic handing for non-block rootdev. I think
-> maybe we can unify all of above.
-
-We're already going in that direction, please have a look at the threads
-on fsdevel:
-(new patch by Christoph)
-https://lore.kernel.org/linux-fsdevel/20210617153649.1886693-1-hch@lst.de/
-
-(older threads I linked earlier)
-https://lore.kernel.org/linux-fsdevel/20210608153524.GB504497@redhat.com/
-
-
-I think it's getting there, Christoph should send a v2 addressing Vivek
-remarks that will likely get picked up.
--- 
-Dominique
-
-
-_______________________________________________
-V9fs-developer mailing list
-V9fs-developer@lists.sourceforge.net
-https://lists.sourceforge.net/lists/listinfo/v9fs-developer
+QnJhdWNoZW4gU2llIGVpbmVuIEludmVzdG9yPwpTaWUgYmVuw7Z0aWdlbiBlaW4gR2VzY2jDpGZ0
+cy0gb2RlciBQcml2YXRkYXJsZWhlbj8KTcO2Y2h0ZW4gU2llIElociBVbnRlcm5laG1lbiByZWZp
+bmFuemllcmVuPwpGw7xyIHdlaXRlcmUgSW5mb3JtYXRpb25lbiBrb250YWt0aWVyZW4gU2llIHVu
+cyBwZXIgRS1NYWlsOiBzdXJlc3RydEBnbWFpbC5jb20KCgoKX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX18KVjlmcy1kZXZlbG9wZXIgbWFpbGluZyBsaXN0ClY5
+ZnMtZGV2ZWxvcGVyQGxpc3RzLnNvdXJjZWZvcmdlLm5ldApodHRwczovL2xpc3RzLnNvdXJjZWZv
+cmdlLm5ldC9saXN0cy9saXN0aW5mby92OWZzLWRldmVsb3Blcgo=
