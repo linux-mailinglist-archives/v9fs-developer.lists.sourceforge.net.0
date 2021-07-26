@@ -2,79 +2,66 @@ Return-Path: <v9fs-developer-bounces@lists.sourceforge.net>
 X-Original-To: lists+v9fs-developer@lfdr.de
 Delivered-To: lists+v9fs-developer@lfdr.de
 Received: from lists.sourceforge.net (lists.sourceforge.net [216.105.38.7])
-	by mail.lfdr.de (Postfix) with ESMTPS id B9F923D56EE
-	for <lists+v9fs-developer@lfdr.de>; Mon, 26 Jul 2021 11:59:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 19DC13D68B0
+	for <lists+v9fs-developer@lfdr.de>; Mon, 26 Jul 2021 23:31:03 +0200 (CEST)
 Received: from [127.0.0.1] (helo=sfs-ml-2.v29.lw.sourceforge.com)
 	by sfs-ml-2.v29.lw.sourceforge.com with esmtp (Exim 4.92.3)
 	(envelope-from <v9fs-developer-bounces@lists.sourceforge.net>)
-	id 1m7xNz-0006pF-A8; Mon, 26 Jul 2021 09:58:59 +0000
+	id 1m88Bh-0004Pu-0P; Mon, 26 Jul 2021 21:31:01 +0000
 Received: from [172.30.20.202] (helo=mx.sourceforge.net)
  by sfs-ml-2.v29.lw.sourceforge.com with esmtps
  (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.92.3)
- (envelope-from <dhowells@redhat.com>) id 1m7xNx-0006p7-Qy
- for v9fs-developer@lists.sourceforge.net; Mon, 26 Jul 2021 09:58:57 +0000
+ (envelope-from <sstabellini@kernel.org>) id 1m88Bf-0004Pn-Tj
+ for v9fs-developer@lists.sourceforge.net; Mon, 26 Jul 2021 21:31:00 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=sourceforge.net; s=x; h=Content-Transfer-Encoding:Content-Type:MIME-Version
- :Message-ID:Date:Cc:To:From:Subject:Sender:Reply-To:Content-ID:
- Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
- :Resent-Message-ID:In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:
+ d=sourceforge.net; s=x; h=Content-Type:MIME-Version:References:Message-ID:
+ In-Reply-To:Subject:cc:To:From:Date:Sender:Reply-To:Content-Transfer-Encoding
+ :Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+ Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
  List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=emyki0erESW+WqQBrbNucdtV0c/SeusEDE/79NVl018=; b=M3bNeaw+ZrO7KRkgHCveUWKidY
- /BQeqIC6bcTwIhd+cyanp7drrpcdmQnAzeUGrXozPEYYmmI2msm7TONxckVtFgB20fWh9IcXx4Dpp
- IlFrZa1htMoJEVfwdlbwjWRCrr4SydU99raYtuwSiRGLsUWKQy6KRTTb6cqm5I/oi6Mw=;
+ bh=di7cEwYJsl/AxoOq/susMPtv/1UXA9kiGLH5WkEqG+s=; b=VCTpthYGKjiLKiNumWd2OMFLq6
+ xDkeiWNrlfOLI2ZDPEB9FUKC7g3b/AZAHj2twlbs9vsnFup07U4TPg1/z6MG1RB06tHR4xv0KoY8k
+ 6m2P35hD5/00ChIzmN9NgvpymLyuDx1bmduHdiJPzuf00jfEn9GqY2aJvIm7RN30LxKY=;
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  ;
- h=Content-Transfer-Encoding:Content-Type:MIME-Version:Message-ID:Date:Cc:To
- :From:Subject:Sender:Reply-To:Content-ID:Content-Description:Resent-Date:
- Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:
- References:List-Id:List-Help:List-Unsubscribe:List-Subscribe:List-Post:
- List-Owner:List-Archive; bh=emyki0erESW+WqQBrbNucdtV0c/SeusEDE/79NVl018=; b=k
- XasC7cuGjUw8JSfUOme/vz/ZCE2PwFHWAeT2Yiq9kdHjxPI7YzdPgWiaOwi9duPy943Belrpfr521
- 8Ts2bvGKwL/QaXjuX2NvtInzBvrsZkTcX4/9UqldKbxfw1HyRbtYk9PJ6QXRiOofjXyWuGeIw7dxY
- YcOdBr+ozSG4s1Q0=;
-Received: from us-smtp-delivery-124.mimecast.com ([216.205.24.124])
+ h=Content-Type:MIME-Version:References:Message-ID:In-Reply-To:Subject:cc:To
+ :From:Date:Sender:Reply-To:Content-Transfer-Encoding:Content-ID:
+ Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
+ :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
+ List-Post:List-Owner:List-Archive;
+ bh=di7cEwYJsl/AxoOq/susMPtv/1UXA9kiGLH5WkEqG+s=; b=gu211HW9oLMYaj4sJDlwkyaaWk
+ qBf6SInvh/uFiz+cViyaXPKY+TtUrFYdizKQd2H19ZQ7p775UZOOJXNknNqFI8VUda16NNPC5mYSl
+ bLnmItcsJH5BQmzKNY7fEfkwXuKcuununXfC92/BULUA4dgaRBwqgvqI+nBuzfLirDS4=;
+Received: from mail.kernel.org ([198.145.29.99])
  by sfi-mx-2.v28.lw.sourceforge.com with esmtps
  (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.92.3)
- id 1m7xNr-0005ky-Eu
- for v9fs-developer@lists.sourceforge.net; Mon, 26 Jul 2021 09:58:57 +0000
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
- s=mimecast20190719; t=1627293525;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding;
- bh=emyki0erESW+WqQBrbNucdtV0c/SeusEDE/79NVl018=;
- b=eG9rKAGumxPFFgQ+6sASlXXPDh48K+Cne9QTXDH+fVQrlHaiQmPW1+ebXAXr0yCB29oeOd
- RhGnnnfgc9pteCtn7x1XLgULlJamCpZti9S4t3uAH6L4XpYSLHNHg3jUwIsr8PQtIm9Dl7
- 1G/o0lSSd0TxVKX4lO9tTtxpLDsuQuk=
-Received: from mimecast-mx01.redhat.com (mimecast-mx01.redhat.com
- [209.132.183.4]) (Using TLS) by relay.mimecast.com with ESMTP id
- us-mta-337-Gc7iHYrsNBOOMq8W_WShOg-1; Mon, 26 Jul 2021 05:58:41 -0400
-X-MC-Unique: Gc7iHYrsNBOOMq8W_WShOg-1
-Received: from smtp.corp.redhat.com (int-mx01.intmail.prod.int.phx2.redhat.com
- [10.5.11.11])
- (using TLSv1.2 with cipher AECDH-AES256-SHA (256/256 bits))
- (No client certificate requested)
- by mimecast-mx01.redhat.com (Postfix) with ESMTPS id BEC05C7440;
- Mon, 26 Jul 2021 09:58:39 +0000 (UTC)
-Received: from warthog.procyon.org.uk (unknown [10.22.16.89])
- by smtp.corp.redhat.com (Postfix) with ESMTP id 25662797C0;
- Mon, 26 Jul 2021 09:58:33 +0000 (UTC)
-Organization: Red Hat UK Ltd. Registered Address: Red Hat UK Ltd, Amberley
- Place, 107-111 Peascod Street, Windsor, Berkshire, SI4 1TE, United
- Kingdom.
- Registered in England and Wales under Company Registration No. 3798903
-From: David Howells <dhowells@redhat.com>
-To: linux-cachefs@redhat.com
-Date: Mon, 26 Jul 2021 10:58:33 +0100
-Message-ID: <162729351325.813557.9242842205308443901.stgit@warthog.procyon.org.uk>
-User-Agent: StGit/0.23
+ id 1m88Bb-0004As-I4
+ for v9fs-developer@lists.sourceforge.net; Mon, 26 Jul 2021 21:30:59 +0000
+Received: by mail.kernel.org (Postfix) with ESMTPSA id E5B8C60F6B;
+ Mon, 26 Jul 2021 21:30:44 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+ s=k20201202; t=1627335045;
+ bh=10sumWN6KbuT6Bm4qG/cts13R1eLADJ18/WfByzAeGs=;
+ h=Date:From:To:cc:Subject:In-Reply-To:References:From;
+ b=Qnm4bnw50azM1D1dMwCqm5ptC3S/j1h5Z0cBjmlIcP5NPuh+X9gt4fF9/ABBZV6D+
+ 2nEaKThLrbUKediyIMqJxAn6iUblKyjXsZaVlP27lt0Yd1WDcY+AYHsbc+qKd1Fn9P
+ HjT8TsxDJBw2WE4+f33fSnw66hvdPKEARchNVDuwYY51Tuwzh6xPceTNMSlj0lPwuK
+ Tcxy+IGN1VoV1haxQF40g/uNJ5HWgG7rCHR9ZJKucSfkMx+PYEeLIISWffeLlikCOU
+ iLjUZi2+DjiC7yH2c+JGyB+dGWAzcfMWrNOX8b/vPLNrEbzRDEnWiBEdVBL0WgtYTI
+ iVss8A5X/hBBQ==
+Date: Mon, 26 Jul 2021 14:30:44 -0700 (PDT)
+From: Stefano Stabellini <sstabellini@kernel.org>
+X-X-Sender: sstabellini@sstabellini-ThinkPad-T480s
+To: asmadeus@codewreck.org
+In-Reply-To: <YP3NqQ5NGF7phCQh@codewreck.org>
+Message-ID: <alpine.DEB.2.21.2107261357210.10122@sstabellini-ThinkPad-T480s>
+References: <20210725175103.56731-1-harshvardhan.jha@oracle.com>
+ <YP3NqQ5NGF7phCQh@codewreck.org>
+User-Agent: Alpine 2.21 (DEB 202 2017-01-01)
 MIME-Version: 1.0
-X-Scanned-By: MIMEDefang 2.79 on 10.5.11.11
-X-Spam-Score: -1.1 (-)
+X-Spam-Score: -0.8 (/)
 X-Spam-Report: Spam Filtering performed by mx.sourceforge.net.
  See http://spamassassin.org/tag/ for more details.
- 0.0 RCVD_IN_MSPIKE_H4      RBL: Very Good reputation (+4)
- [216.205.24.124 listed in wl.mailspike.net]
  -0.0 SPF_PASS               SPF: sender matches SPF record
  0.0 SPF_HELO_NONE          SPF: HELO does not publish an SPF Record
  -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from author's
@@ -82,12 +69,10 @@ X-Spam-Report: Spam Filtering performed by mx.sourceforge.net.
  -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
  0.1 DKIM_SIGNED            Message has a DKIM or DK signature,
  not necessarily valid
- 0.0 RCVD_IN_MSPIKE_WL      Mailspike good senders
  -0.7 DKIMWL_WL_HIGH         DKIMwl.org - High trust sender
- -0.3 AWL AWL: Adjusted score from AWL reputation of From: address
-X-Headers-End: 1m7xNr-0005ky-Eu
-Subject: [V9fs-developer] [PATCH] netfs: Fix READ/WRITE confusion when
- calling iov_iter_xarray()
+X-Headers-End: 1m88Bb-0004As-I4
+Subject: Re: [V9fs-developer] [PATCH] 9p/xen: Fix end of loop tests for
+ list_for_each_entry
 X-BeenThere: v9fs-developer@lists.sourceforge.net
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -99,50 +84,69 @@ List-Post: <mailto:v9fs-developer@lists.sourceforge.net>
 List-Help: <mailto:v9fs-developer-request@lists.sourceforge.net?subject=help>
 List-Subscribe: <https://lists.sourceforge.net/lists/listinfo/v9fs-developer>, 
  <mailto:v9fs-developer-request@lists.sourceforge.net?subject=subscribe>
-Cc: linux-cifs@vger.kernel.org, linux-nfs@vger.kernel.org,
- Jeff Layton <jlayton@kernel.org>, linux-kernel@vger.kernel.org,
- dhowells@redhat.com, linux-mm@kvack.org, linux-fsdevel@vger.kernel.org,
- v9fs-developer@lists.sourceforge.net, ceph-devel@vger.kernel.org,
- linux-afs@lists.infradead.org
+Cc: lucho@ionkov.net, Stefano Stabellini <sstabellini@kernel.org>,
+ ericvh@gmail.com, netdev@vger.kernel.org, linux-kernel@vger.kernel.org,
+ Harshvardhan Jha <harshvardhan.jha@oracle.com>,
+ v9fs-developer@lists.sourceforge.net, kuba@kernel.org, davem@davemloft.net
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: v9fs-developer-bounces@lists.sourceforge.net
 
-Fix netfs_clear_unread() to pass READ to iov_iter_xarray() instead of WRITE
-(the flag is about the operation accessing the buffer, not what sort of
-access it is doing to the buffer).
+On Mon, 26 Jul 2021, asmadeus@codewreck.org wrote:
+> Harshvardhan Jha wrote on Sun, Jul 25, 2021 at 11:21:03PM +0530:
+> > The list_for_each_entry() iterator, "priv" in this code, can never be
+> > NULL so the warning would never be printed.
+> 
+> hm? priv won't be NULL but priv->client won't be client, so it will
+> return -EINVAL alright in practice?
+> 
+> This does fix an invalid read after the list head, so there's a real
+> bug, but the commit message needs fixing.
 
-Fixes: 3d3c95046742 ("netfs: Provide readahead and readpage netfs helpers")
-Signed-off-by: David Howells <dhowells@redhat.com>
-cc: Jeff Layton <jlayton@kernel.org>
-cc: linux-cachefs@redhat.com
-cc: linux-afs@lists.infradead.org
-cc: ceph-devel@vger.kernel.org
-cc: linux-cifs@vger.kernel.org
-cc: linux-nfs@vger.kernel.org
-cc: v9fs-developer@lists.sourceforge.net
-cc: linux-fsdevel@vger.kernel.org
-cc: linux-mm@kvack.org
----
-
- fs/netfs/read_helper.c |    2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
-
-diff --git a/fs/netfs/read_helper.c b/fs/netfs/read_helper.c
-index 0b6cd3b8734c..994ec22d4040 100644
---- a/fs/netfs/read_helper.c
-+++ b/fs/netfs/read_helper.c
-@@ -150,7 +150,7 @@ static void netfs_clear_unread(struct netfs_read_subrequest *subreq)
- {
- 	struct iov_iter iter;
- 
--	iov_iter_xarray(&iter, WRITE, &subreq->rreq->mapping->i_pages,
-+	iov_iter_xarray(&iter, READ, &subreq->rreq->mapping->i_pages,
- 			subreq->start + subreq->transferred,
- 			subreq->len   - subreq->transferred);
- 	iov_iter_zero(iov_iter_count(&iter), &iter);
+Agreed
 
 
+> > Signed-off-by: Harshvardhan Jha <harshvardhan.jha@oracle.com>
+> > ---
+> > From static analysis.  Not tested.
+> 
+> +Stefano in To - I also can't test xen right now :/
+> This looks functional to me but if you have a bit of time to spare just
+> a mount test can't hurt.
+
+Yes, I did test it successfully. Aside from the commit messaged to be
+reworded:
+
+Reviewed-by: Stefano Stabellini <sstabellini@kernel.org>
+Tested-by: Stefano Stabellini <sstabellini@kernel.org>
+
+
+> > ---
+> >  net/9p/trans_xen.c | 4 ++--
+> >  1 file changed, 2 insertions(+), 2 deletions(-)
+> > 
+> > diff --git a/net/9p/trans_xen.c b/net/9p/trans_xen.c
+> > index f4fea28e05da..3ec1a51a6944 100644
+> > --- a/net/9p/trans_xen.c
+> > +++ b/net/9p/trans_xen.c
+> > @@ -138,7 +138,7 @@ static bool p9_xen_write_todo(struct xen_9pfs_dataring *ring, RING_IDX size)
+> >  
+> >  static int p9_xen_request(struct p9_client *client, struct p9_req_t *p9_req)
+> >  {
+> > -	struct xen_9pfs_front_priv *priv = NULL;
+> > +	struct xen_9pfs_front_priv *priv;
+> >  	RING_IDX cons, prod, masked_cons, masked_prod;
+> >  	unsigned long flags;
+> >  	u32 size = p9_req->tc.size;
+> > @@ -151,7 +151,7 @@ static int p9_xen_request(struct p9_client *client, struct p9_req_t *p9_req)
+> >  			break;
+> >  	}
+> >  	read_unlock(&xen_9pfs_lock);
+> > -	if (!priv || priv->client != client)
+> > +	if (list_entry_is_head(priv, &xen_9pfs_devs, list))
+> >  		return -EINVAL;
+> >  
+> >  	num = p9_req->tc.tag % priv->num_rings;
 
 
 _______________________________________________
