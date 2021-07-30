@@ -2,67 +2,60 @@ Return-Path: <v9fs-developer-bounces@lists.sourceforge.net>
 X-Original-To: lists+v9fs-developer@lfdr.de
 Delivered-To: lists+v9fs-developer@lfdr.de
 Received: from lists.sourceforge.net (lists.sourceforge.net [216.105.38.7])
-	by mail.lfdr.de (Postfix) with ESMTPS id 977BF3DA72C
-	for <lists+v9fs-developer@lfdr.de>; Thu, 29 Jul 2021 17:08:41 +0200 (CEST)
-Received: from [127.0.0.1] (helo=sfs-ml-1.v29.lw.sourceforge.com)
-	by sfs-ml-1.v29.lw.sourceforge.com with esmtp (Exim 4.90_1)
+	by mail.lfdr.de (Postfix) with ESMTPS id A7E923DB090
+	for <lists+v9fs-developer@lfdr.de>; Fri, 30 Jul 2021 03:20:14 +0200 (CEST)
+Received: from [127.0.0.1] (helo=sfs-ml-2.v29.lw.sourceforge.com)
+	by sfs-ml-2.v29.lw.sourceforge.com with esmtp (Exim 4.92.3)
 	(envelope-from <v9fs-developer-bounces@lists.sourceforge.net>)
-	id 1m97eI-0003Yk-P1; Thu, 29 Jul 2021 15:08:38 +0000
+	id 1m9HC8-0005LC-6W; Fri, 30 Jul 2021 01:20:12 +0000
 Received: from [172.30.20.202] (helo=mx.sourceforge.net)
- by sfs-ml-1.v29.lw.sourceforge.com with esmtps
- (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.90_1)
- (envelope-from <SRS0=h9KE=MV=ubuntu.com=christian.brauner@kernel.org>)
- id 1m97eH-0003YK-6M
- for v9fs-developer@lists.sourceforge.net; Thu, 29 Jul 2021 15:08:37 +0000
+ by sfs-ml-2.v29.lw.sourceforge.com with esmtps
+ (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.92.3)
+ (envelope-from <viro@ftp.linux.org.uk>) id 1m9HC7-0005L4-6k
+ for v9fs-developer@lists.sourceforge.net; Fri, 30 Jul 2021 01:20:11 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=sourceforge.net; s=x; h=In-Reply-To:Content-Type:MIME-Version:References:
- Message-ID:Subject:Cc:To:From:Date:Sender:Reply-To:Content-Transfer-Encoding:
- Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
- Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
- List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=ewf6Ble6MZ+h2+ZkHN604BJ4A/sxYTRvX86G+B/60Ac=; b=cW/0r3FiaOxSyHDwK6svNRiI1q
- /yqdViWBtTCkpnATx7B9RI898y3rQZuAddQn+N68LDXt2bJVSr6vbWEVrbPUbWEi5wOVXFW0x8xNg
- dFYxnm7/KuqFCpBzEk3wOEn/C0JPMrBoHzPTz6Uq7K6tCUskt2FD4KlWiSffdlVaxe+k=;
+ d=sourceforge.net; s=x; h=Sender:In-Reply-To:Content-Type:MIME-Version:
+ References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
+ Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+ Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:
+ List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
+ bh=JYcuKD2pIftTR8v09CiToeASzTAC9BkeRb44uQy7La0=; b=FXuLOoZNBTPkzfi9SD/zt0c5q
+ 4txyNc3dp05UKmgshgVlroUmSBRC22m6gcAi/Xs3bRW2Fq/SxrdoctQNWKUbAmDyeQ48HSDWhOT+M
+ oFTla5b6VOV11Yxj2pdw71yIOVH+mxGidVkxXth60BTY5wuOhJ2JRjPRBAPF+xuAw/v0g=;
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  ;
- h=In-Reply-To:Content-Type:MIME-Version:References:Message-ID:Subject:Cc:To
- :From:Date:Sender:Reply-To:Content-Transfer-Encoding:Content-ID:
+ h=Sender:In-Reply-To:Content-Type:MIME-Version:References:Message-ID:
+ Subject:Cc:To:From:Date:Reply-To:Content-Transfer-Encoding:Content-ID:
  Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
  :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
  List-Post:List-Owner:List-Archive;
- bh=ewf6Ble6MZ+h2+ZkHN604BJ4A/sxYTRvX86G+B/60Ac=; b=PIrrtXMzl/7EAM2InZucBWyMIw
- UIc/aUXYBddG6R5tU+daBE937rlyTgFGm6516mSJxkyLLo1Tjfhpr/Ij5lyOWct8yrreN4QKgZnRR
- kFXmZZq98rD57+uZle69lSV+qEO956Lr8iY9tmXCj9NDfAl9qPgE2hxKmw5Uv9smJkFk=;
-Received: from mail.kernel.org ([198.145.29.99])
+ bh=JYcuKD2pIftTR8v09CiToeASzTAC9BkeRb44uQy7La0=; b=GNVgIIdEqlu5nLkC/am7AzRL6v
+ IYwWZ8xZ0esSaw1jhXJ+uVNe0FPrEryRwu64cggSf7RKHJzWQzahVDoRqgcaKzcQe9GIzkFCdhAfj
+ p9QYv+ZGIyuYMxi4X1BU5Q47tB/o46/SxJXcrNrekqx7tPFVpHzq/TtO9xM9vETtB8AA=;
+Received: from zeniv-ca.linux.org.uk ([142.44.231.140])
  by sfi-mx-2.v28.lw.sourceforge.com with esmtps
  (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.92.3)
- id 1m97e7-00085l-UQ
- for v9fs-developer@lists.sourceforge.net; Thu, 29 Jul 2021 15:08:37 +0000
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 2E90D60EBC;
- Thu, 29 Jul 2021 15:08:19 +0000 (UTC)
-Date: Thu, 29 Jul 2021 17:08:16 +0200
-From: Christian Brauner <christian.brauner@ubuntu.com>
+ id 1m9HBz-0006RB-V8
+ for v9fs-developer@lists.sourceforge.net; Fri, 30 Jul 2021 01:20:11 +0000
+Received: from viro by zeniv-ca.linux.org.uk with local (Exim 4.94.2 #2 (Red
+ Hat Linux)) id 1m9Gpn-0053HG-6t; Fri, 30 Jul 2021 00:57:07 +0000
+Date: Fri, 30 Jul 2021 00:57:07 +0000
+From: Al Viro <viro@zeniv.linux.org.uk>
 To: Vivek Goyal <vgoyal@redhat.com>
-Message-ID: <20210729150816.jg5brzgt7nndhtdi@wittgenstein>
+Message-ID: <YQNOY9H/6mJMWRNN@zeniv-ca.linux.org.uk>
 References: <20210714202321.59729-1-vgoyal@redhat.com>
+ <20210714202321.59729-4-vgoyal@redhat.com>
 MIME-Version: 1.0
 Content-Disposition: inline
-In-Reply-To: <20210714202321.59729-1-vgoyal@redhat.com>
-X-Spam-Score: -0.0 (/)
+In-Reply-To: <20210714202321.59729-4-vgoyal@redhat.com>
+X-Spam-Score: 0.0 (/)
 X-Spam-Report: Spam Filtering performed by mx.sourceforge.net.
  See http://spamassassin.org/tag/ for more details.
- 0.0 URIBL_BLOCKED ADMINISTRATOR NOTICE: The query to URIBL was blocked.
- See
- http://wiki.apache.org/spamassassin/DnsBlocklists#dnsbl-block
- for more information. [URIs: ubuntu.com]
- 0.2 HEADER_FROM_DIFFERENT_DOMAINS From and EnvelopeFrom 2nd level mail
- domains are different
- -0.0 SPF_PASS               SPF: sender matches SPF record
+ 0.0 SPF_NONE               SPF: sender does not publish an SPF Record
  0.0 SPF_HELO_NONE          SPF: HELO does not publish an SPF Record
- -0.2 AWL AWL: Adjusted score from AWL reputation of From: address
-X-Headers-End: 1m97e7-00085l-UQ
-Subject: Re: [V9fs-developer] [PATCH v3 0/3] support booting of arbitrary
- non-blockdevice file systems
+X-Headers-End: 1m9HBz-0006RB-V8
+Subject: Re: [V9fs-developer] [PATCH v3 3/3] fs: simplify
+ get_filesystem_list / get_all_fs_names
 X-BeenThere: v9fs-developer@lists.sourceforge.net
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -75,35 +68,38 @@ List-Help: <mailto:v9fs-developer-request@lists.sourceforge.net?subject=help>
 List-Subscribe: <https://lists.sourceforge.net/lists/listinfo/v9fs-developer>, 
  <mailto:v9fs-developer-request@lists.sourceforge.net?subject=subscribe>
 Cc: miklos@szeredi.hu, linux-kernel@vger.kernel.org, virtio-fs@redhat.com,
- viro@zeniv.linux.org.uk, stefanha@redhat.com, linux-fsdevel@vger.kernel.org,
+ stefanha@redhat.com, linux-fsdevel@vger.kernel.org,
  v9fs-developer@lists.sourceforge.net, hch@lst.de
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: v9fs-developer-bounces@lists.sourceforge.net
 
-On Wed, Jul 14, 2021 at 04:23:18PM -0400, Vivek Goyal wrote:
-> Hi,
-> 
-> This is V3 of patches. Christoph had posted V2 here.
-> 
-> https://lore.kernel.org/linux-fsdevel/20210621062657.3641879-1-hch@lst.de/
-> 
-> There was a small issue in last patch series that list_bdev_fs_names()
-> did not put an extra '\0' at the end as current callers were expecting.
-> 
-> To fix this, I have modified list_bdev_fs_names() and split_fs_names()
-> to return number of null terminated strings they have parsed. And
-> modified callers to use that to loop through strings (instead of
-> relying on an extra null at the end).
-> 
-> Christoph was finding it hard to find time so I took his patches, 
-> added my changes in patch3 and reposting the patch series.
-> 
-> I have tested it with 9p, virtiofs and ext4 filesystems as rootfs
-> and it works for me.
+On Wed, Jul 14, 2021 at 04:23:21PM -0400, Vivek Goyal wrote:
 
-lgtm,
-Acked-by: Christian Brauner <christian.brauner@ubuntu.com>
+> +static int __init split_fs_names(char *page, char *names)
+>  {
+> +	int count = 0;
+> +	char *p = page;
+>  
+> +	strcpy(p, root_fs_names);
+> +	while (*p++) {
+> +		if (p[-1] == ',')
+> +			p[-1] = '\0';
+>  	}
+> +	*p = '\0';
+> +
+> +	for (p = page; *p; p += strlen(p)+1)
+> +		count++;
+>  
+> +	return count;
+>  }
+
+Ummm....  The last part makes no sense - it counts '\0' in the array
+pointed to be page, until the first double '\0' in there.  All of
+which had been put there by the loop immediately prior to that one...
+
+Incidentally, it treats stray ,, in root_fs_names as termination;
+is that intentional?
 
 
 _______________________________________________
