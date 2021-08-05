@@ -2,97 +2,113 @@ Return-Path: <v9fs-developer-bounces@lists.sourceforge.net>
 X-Original-To: lists+v9fs-developer@lfdr.de
 Delivered-To: lists+v9fs-developer@lfdr.de
 Received: from lists.sourceforge.net (lists.sourceforge.net [216.105.38.7])
-	by mail.lfdr.de (Postfix) with ESMTPS id ACD6E3E19A7
-	for <lists+v9fs-developer@lfdr.de>; Thu,  5 Aug 2021 18:36:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id E09F83E1B60
+	for <lists+v9fs-developer@lfdr.de>; Thu,  5 Aug 2021 20:34:19 +0200 (CEST)
 Received: from [127.0.0.1] (helo=sfs-ml-1.v29.lw.sourceforge.com)
 	by sfs-ml-1.v29.lw.sourceforge.com with esmtp (Exim 4.90_1)
 	(envelope-from <v9fs-developer-bounces@lists.sourceforge.net>)
-	id 1mBgM2-0007dh-RN; Thu, 05 Aug 2021 16:36:22 +0000
+	id 1mBiCA-0005uc-M1; Thu, 05 Aug 2021 18:34:18 +0000
 Received: from [172.30.20.202] (helo=mx.sourceforge.net)
  by sfs-ml-1.v29.lw.sourceforge.com with esmtps
  (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.90_1)
- (envelope-from <dhowells@redhat.com>) id 1mBgLu-0007cq-AY
- for v9fs-developer@lists.sourceforge.net; Thu, 05 Aug 2021 16:36:14 +0000
+ (envelope-from <torvalds@linuxfoundation.org>) id 1mBiBw-0005hB-IY
+ for v9fs-developer@lists.sourceforge.net; Thu, 05 Aug 2021 18:34:04 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=sourceforge.net; s=x; h=Message-ID:Date:Content-ID:Content-Type:
- MIME-Version:References:Subject:Cc:To:From:Sender:Reply-To:
- Content-Transfer-Encoding:Content-Description:Resent-Date:Resent-From:
- Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:List-Id:
- List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=cqiBhFIK0kAqQNHfo/GucN8GfiLKs6hRFMJo5oTIZHg=; b=gicJzRtvT0zGtIOoumafppDP+
- wq0aHVc6nYYuUZoUcwWlzoFf+nFp16F+bf9zOUOwtol4oe9BNEVbMOGadsPA3bvV0u6yGAn4MwN+M
- eirZUONh2N/T/lV4QfMwraA1EcOqAAIJCvUPoYKVGYYOsNExpqQ/oAONSq8Xzt5Q9XSrM=;
+ d=sourceforge.net; s=x; h=Content-Type:Cc:To:Subject:Message-ID:Date:From:
+ In-Reply-To:References:MIME-Version:Sender:Reply-To:Content-Transfer-Encoding
+ :Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+ Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
+ List-Subscribe:List-Post:List-Owner:List-Archive;
+ bh=kSMSzayyNT2YehjLQ2Cwc0r8HqyEvjniy8Pw7lCSffg=; b=dDwJSYVdVmIgbGJOV+lKTTPv+T
+ 1B4U336Uq8L/q92zeK126jP5ynhQlDd/ynm7AyVWHqpX8qlcktGYiCkv6yJOu4TZb0kOcdZdsSMJN
+ tGbjNKa2ypilZi4xeAlZQJow+xpJ6oX11YS0DyYgxjo+LWqdmBO0WO0HjnVVBMNfcYOo=;
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  ;
- h=Message-ID:Date:Content-ID:Content-Type:MIME-Version:References:Subject:
- Cc:To:From:Sender:Reply-To:Content-Transfer-Encoding:Content-Description:
- Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
- In-Reply-To:List-Id:List-Help:List-Unsubscribe:List-Subscribe:List-Post:
- List-Owner:List-Archive; bh=cqiBhFIK0kAqQNHfo/GucN8GfiLKs6hRFMJo5oTIZHg=; b=D
- zoggRrnc2a6Y8BZgVYht9tr6YvBFIeAs4sQfeWLvVr1mJlSTsE8tW8Dd7L0bLxPunsF2CxQHMRJMB
- /pR8TTak71IYIHeTDu+45IJ2sDoox1POmdmQoPb5+29w60LgPmmZHqbpXgjxSW4Lxw35jtFRQGnT2
- DvO+OQNGzv4JsZMQ=;
-Received: from us-smtp-delivery-124.mimecast.com ([170.10.133.124])
- by sfi-mx-1.v28.lw.sourceforge.com with esmtps
- (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.92.3)
- id 1mBgLk-00DXug-9k
- for v9fs-developer@lists.sourceforge.net; Thu, 05 Aug 2021 16:36:14 +0000
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
- s=mimecast20190719; t=1628181353;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:content-type:content-type:
- references:references; bh=cqiBhFIK0kAqQNHfo/GucN8GfiLKs6hRFMJo5oTIZHg=;
- b=Zo7rgPPA6Kp1XzQG+zcuXeVE4nQug89E3TmBGYlB0WESl1BWOjOKU822qkzJAvfed8oXz7
- j/LujaOun+dzqENHx3NXupAHxhgs63JgtPAGdhyqTGCLWjzOyU6+RN1Rr6a6bVxUGS2kTK
- xG2sl4PaDB3QYCM3IbXeWTJ5E0CoAxc=
-Received: from mimecast-mx01.redhat.com (mimecast-mx01.redhat.com
- [209.132.183.4]) (Using TLS) by relay.mimecast.com with ESMTP id
- us-mta-420-OwRpS98qMZeNyIhOZrpXfg-1; Thu, 05 Aug 2021 12:35:47 -0400
-X-MC-Unique: OwRpS98qMZeNyIhOZrpXfg-1
-Received: from smtp.corp.redhat.com (int-mx06.intmail.prod.int.phx2.redhat.com
- [10.5.11.16])
- (using TLSv1.2 with cipher AECDH-AES256-SHA (256/256 bits))
- (No client certificate requested)
- by mimecast-mx01.redhat.com (Postfix) with ESMTPS id C19FFCC623;
- Thu,  5 Aug 2021 16:35:38 +0000 (UTC)
-Received: from warthog.procyon.org.uk (unknown [10.22.32.7])
- by smtp.corp.redhat.com (Postfix) with ESMTP id 1A1BA5C1A1;
- Thu,  5 Aug 2021 16:35:33 +0000 (UTC)
-Organization: Red Hat UK Ltd. Registered Address: Red Hat UK Ltd, Amberley
- Place, 107-111 Peascod Street, Windsor, Berkshire, SI4 1TE, United
- Kingdom.
- Registered in England and Wales under Company Registration No. 3798903
-From: David Howells <dhowells@redhat.com>
-To: Anna Schumaker <anna.schumaker@netapp.com>,
- Trond Myklebust <trond.myklebust@hammerspace.com>,
- Jeff Layton <jlayton@redhat.com>, Steve French <sfrench@samba.org>,
- Dominique Martinet <asmadeus@codewreck.org>,
- Mike Marshall <hubcap@omnibond.com>, Miklos Szeredi <miklos@szeredi.hu>
+ h=Content-Type:Cc:To:Subject:Message-ID:Date:From:In-Reply-To:References:
+ MIME-Version:Sender:Reply-To:Content-Transfer-Encoding:Content-ID:
+ Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
+ :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
+ List-Post:List-Owner:List-Archive;
+ bh=kSMSzayyNT2YehjLQ2Cwc0r8HqyEvjniy8Pw7lCSffg=; b=i0CwjxlwumqhKuqYLLkPnV/IhN
+ 0oYV08eDQkpsCvtz43279Av4vdrZuwGSNUCmPhahQGF775r8m/lLkyCFjo/IiOMzjaOKfHorPnRSe
+ Is52Bt8RLTUH8KjzoT02qbTc1rbMRHbT2ZMfMOZj9khKDbmyhpglUr9B5ZmhV8F1XugI=;
+Received: from mail-ed1-f44.google.com ([209.85.208.44])
+ by sfi-mx-2.v28.lw.sourceforge.com with esmtps
+ (TLSv1.2:ECDHE-RSA-AES128-GCM-SHA256:128) (Exim 4.92.3)
+ id 1mBiBe-0007Z8-U0
+ for v9fs-developer@lists.sourceforge.net; Thu, 05 Aug 2021 18:33:57 +0000
+Received: by mail-ed1-f44.google.com with SMTP id y12so9712595edo.6
+ for <v9fs-developer@lists.sourceforge.net>;
+ Thu, 05 Aug 2021 11:33:46 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=linux-foundation.org; s=google;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc; bh=kSMSzayyNT2YehjLQ2Cwc0r8HqyEvjniy8Pw7lCSffg=;
+ b=CjeV+4n++fBbfbgUnSajYHMZzSgIGQ/AzXROF+Y4CaB/aORGEHsRe4pUpEJVdYpwfB
+ NmAZXoNyQn6JPxdWXpyZnM00VCUOuYnkUNerNg1Ng90I+xulwoWK81gZiomswCGM8sp6
+ nIAp7+gezxOviLaRF+m3bsJwsaKOi0OIDRvRA=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc;
+ bh=kSMSzayyNT2YehjLQ2Cwc0r8HqyEvjniy8Pw7lCSffg=;
+ b=I1g0l2CCs1PksdmWE9mA0W9TVfiVcpJorG5C3Ts0aEnv1XPduMhl1rxbdG4bR1UIiB
+ hrPZ0PMB8ZG8lPvzAO/H/L3BHZpxJVrRkz00HqsvC/IhviSk0oWyjbIk6pfKtYw0bXZh
+ KZNaovoR+z+rzYiN3FjyLEkjuhoqVltUlxaPUkdmn2w23aC6w2kw+RYlKKefcenp+QVD
+ xpvFpcSqGiO3ticJgHsqYmslX00L5LH4xG6OFcIQ59FNOTFnqAxrcqlXbQQEe6RjIsA1
+ 9djzU3qZ7Td0DBCIhLqSiizrNCyqe993wbD6QdYZColvmzIcZ0xyoh0CoDZwPpif8K3o
+ QcYg==
+X-Gm-Message-State: AOAM532ruTwhk9TtQLGAEtSBjqcCeJoKTtWzatlOhssz1VYjYtrWkXOG
+ qFJDzE0vIrqHSlH3uzMhC5DB5E+V6C35mOiRpso=
+X-Google-Smtp-Source: ABdhPJy9/Ds2DiAtv1IPk/redvNGuK0k/4tNcBvFDq0c5+AgR+MCvBz3wx9bWYH4utqsBXcBmop49g==
+X-Received: by 2002:a17:906:1f82:: with SMTP id
+ t2mr5811197ejr.499.1628184828020; 
+ Thu, 05 Aug 2021 10:33:48 -0700 (PDT)
+Received: from mail-ej1-f48.google.com (mail-ej1-f48.google.com.
+ [209.85.218.48])
+ by smtp.gmail.com with ESMTPSA id t24sm2631174eds.60.2021.08.05.10.33.47
+ for <v9fs-developer@lists.sourceforge.net>
+ (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+ Thu, 05 Aug 2021 10:33:47 -0700 (PDT)
+Received: by mail-ej1-f48.google.com with SMTP id gs8so10775065ejc.13
+ for <v9fs-developer@lists.sourceforge.net>;
+ Thu, 05 Aug 2021 10:33:47 -0700 (PDT)
+X-Received: by 2002:a05:6512:2388:: with SMTP id
+ c8mr4369071lfv.201.1628184441363; 
+ Thu, 05 Aug 2021 10:27:21 -0700 (PDT)
+MIME-Version: 1.0
 References: <YQv+iwmhhZJ+/ndc@casper.infradead.org>
  <YQvpDP/tdkG4MMGs@casper.infradead.org>
  <YQvbiCubotHz6cN7@casper.infradead.org>
  <1017390.1628158757@warthog.procyon.org.uk>
  <1170464.1628168823@warthog.procyon.org.uk>
  <1186271.1628174281@warthog.procyon.org.uk>
-MIME-Version: 1.0
-Content-ID: <1219712.1628181333.1@warthog.procyon.org.uk>
-Date: Thu, 05 Aug 2021 17:35:33 +0100
-Message-ID: <1219713.1628181333@warthog.procyon.org.uk>
-X-Scanned-By: MIMEDefang 2.79 on 10.5.11.16
-X-Spam-Score: -0.8 (/)
+ <1219713.1628181333@warthog.procyon.org.uk>
+In-Reply-To: <1219713.1628181333@warthog.procyon.org.uk>
+From: Linus Torvalds <torvalds@linux-foundation.org>
+Date: Thu, 5 Aug 2021 10:27:05 -0700
+X-Gmail-Original-Message-ID: <CAHk-=wjyEk9EuYgE3nBnRCRd_AmRYVOGACEjt0X33QnORd5-ig@mail.gmail.com>
+Message-ID: <CAHk-=wjyEk9EuYgE3nBnRCRd_AmRYVOGACEjt0X33QnORd5-ig@mail.gmail.com>
+To: David Howells <dhowells@redhat.com>
+X-Spam-Score: 0.1 (/)
 X-Spam-Report: Spam Filtering performed by mx.sourceforge.net.
  See http://spamassassin.org/tag/ for more details.
+ 0.2 HEADER_FROM_DIFFERENT_DOMAINS From and EnvelopeFrom 2nd level mail
+ domains are different
  -0.0 SPF_PASS               SPF: sender matches SPF record
  0.0 SPF_HELO_NONE          SPF: HELO does not publish an SPF Record
+ -0.0 RCVD_IN_MSPIKE_H2      RBL: Average reputation (+2)
+ [209.85.208.44 listed in wl.mailspike.net]
+ -0.0 RCVD_IN_DNSWL_NONE     RBL: Sender listed at https://www.dnswl.org/, no
+ trust [209.85.208.44 listed in list.dnswl.org]
  -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from author's
  domain
  -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
  0.1 DKIM_SIGNED            Message has a DKIM or DK signature,
  not necessarily valid
- -0.7 DKIMWL_WL_HIGH         DKIMwl.org - High trust sender
-X-Headers-End: 1mBgLk-00DXug-9k
-Subject: [V9fs-developer] Canvassing for network filesystem write size vs
- page size
+X-Headers-End: 1mBiBe-0007Z8-U0
+Subject: Re: [V9fs-developer] Canvassing for network filesystem write size
+ vs page size
 X-BeenThere: v9fs-developer@lists.sourceforge.net
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -104,91 +120,66 @@ List-Post: <mailto:v9fs-developer@lists.sourceforge.net>
 List-Help: <mailto:v9fs-developer-request@lists.sourceforge.net?subject=help>
 List-Subscribe: <https://lists.sourceforge.net/lists/listinfo/v9fs-developer>, 
  <mailto:v9fs-developer-request@lists.sourceforge.net?subject=subscribe>
-Cc: Shyam Prasad N <nspmangalore@gmail.com>, linux-cifs@vger.kernel.org,
- linux-nfs@vger.kernel.org, linux-kernel@vger.kernel.org,
- "Matthew Wilcox \(Oracle\)" <willy@infradead.org>, dhowells@redhat.com,
- linux-mm@kvack.org, linux-cachefs@redhat.com, linux-fsdevel@vger.kernel.org,
+Cc: Shyam Prasad N <nspmangalore@gmail.com>, CIFS <linux-cifs@vger.kernel.org>,
+ "open list:NFS, SUNRPC, AND..." <linux-nfs@vger.kernel.org>,
+ linux-afs@lists.infradead.org, Jeff Layton <jlayton@redhat.com>,
+ Miklos Szeredi <miklos@szeredi.hu>,
+ Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+ "Matthew Wilcox \(Oracle\)" <willy@infradead.org>,
+ Trond Myklebust <trond.myklebust@hammerspace.com>,
+ Steve French <sfrench@samba.org>, Linux-MM <linux-mm@kvack.org>,
+ linux-cachefs@redhat.com, linux-fsdevel <linux-fsdevel@vger.kernel.org>,
  v9fs-developer@lists.sourceforge.net, ceph-devel@vger.kernel.org,
- Linus Torvalds <torvalds@linux-foundation.org>, linux-afs@lists.infradead.org,
- devel@lists.orangefs.org
+ Anna Schumaker <anna.schumaker@netapp.com>, devel@lists.orangefs.org,
+ Mike Marshall <hubcap@omnibond.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: v9fs-developer-bounces@lists.sourceforge.net
 
-With Willy's upcoming folio changes, from a filesystem point of view, we're
-going to be looking at folios instead of pages, where:
+On Thu, Aug 5, 2021 at 9:36 AM David Howells <dhowells@redhat.com> wrote:
+>
+> Some network filesystems, however, currently keep track of which byte ranges
+> are modified within a dirty page (AFS does; NFS seems to also) and only write
+> out the modified data.
 
- - a folio is a contiguous collection of pages;
+NFS definitely does. I haven't used NFS in two decades, but I worked
+on some of the code (read: I made nfs use the page cache both for
+reading and writing) back in my Transmeta days, because NFSv2 was the
+default filesystem setup back then.
 
- - each page in the folio might be standard PAGE_SIZE page (4K or 64K, say) or
-   a huge pages (say 2M each);
+See fs/nfs/write.c, although I have to admit that I don't recognize
+that code any more.
 
- - a folio has one dirty flag and one writeback flag that applies to all
-   constituent pages;
+It's fairly important to be able to do streaming writes without having
+to read the old contents for some loads. And read-modify-write cycles
+are death for performance, so you really want to coalesce writes until
+you have the whole page.
 
- - a complete folio currently is limited to PMD_SIZE or order 8, but could
-   theoretically go up to about 2GiB before various integer fields have to be
-   modified (not to mention the memory allocator).
+That said, I suspect it's also *very* filesystem-specific, to the
+point where it might not be worth trying to do in some generic manner.
 
-Willy is arguing that network filesystems should, except in certain very
-special situations (eg. O_SYNC), only write whole folios (limited to EOF).
+In particular, NFS had things like interesting credential issues, so
+if you have multiple concurrent writers that used different 'struct
+file *' to write to the file, you can't just mix the writes. You have
+to sync the writes from one writer before you start the writes for the
+next one, because one might succeed and the other not.
 
-Some network filesystems, however, currently keep track of which byte ranges
-are modified within a dirty page (AFS does; NFS seems to also) and only write
-out the modified data.
+So you can't just treat it as some random "page cache with dirty byte
+extents". You really have to be careful about credentials, timeouts,
+etc, and the pending writes have to keep a fair amount of state
+around.
 
-Also, there are limits to the maximum RPC payload sizes, so writing back large
-pages may necessitate multiple writes, possibly to multiple servers.
+At least that was the case two decades ago.
 
-What I'm trying to do is collate each network filesystem's properties (I'm
-including FUSE in that).
+[ goes off and looks. See "nfs_write_begin()" and friends in
+fs/nfs/file.c for some of the examples of these things, althjough it
+looks like the code is less aggressive about avoding the
+read-modify-write case than I thought I remembered, and only does it
+for write-only opens ]
 
-So we have the following filesystems:
+               Linus
 
- Plan9
- - Doesn't track bytes
- - Only writes single pages
-
- AFS
- - Max RPC payload theoretically ~5.5 TiB (OpenAFS), ~16EiB (Auristor/kAFS)
- - kAFS (Linux kernel)
-   - Tracks bytes, only writes back what changed
-   - Writes from up to 65535 contiguous pages.
- - OpenAFS/Auristor (UNIX/Linux)
-   - Deal with cache-sized blocks (configurable, but something from 8K to 2M),
-     reads and writes in these blocks
- - OpenAFS/Auristor (Windows)
-   - Track bytes, write back only what changed
-
- Ceph
- - File divided into objects (typically 2MiB in size), which may be scattered
-   over multiple servers.
- - Max RPC size is therefore object size.
- - Doesn't track bytes.
-
- CIFS/SMB
- - Writes back just changed bytes immediately under some circumstances
- - Doesn't track bytes and writes back whole pages otherwise.
- - SMB3 has a max RPC size of 16MiB, with a default of 4MiB
-
- FUSE
- - Doesn't track bytes.
- - Max 'RPC' size of 256 pages (I think).
-
- NFS
- - Tracks modified bytes within a page.
- - Max RPC size of 1MiB.
- - Files may be constructed of objects scattered over different servers.
-
- OrangeFS
- - Doesn't track bytes.
- - Multipage writes possible.
-
-If you could help me fill in the gaps, that would be great.
-
-Thanks,
-David
-
+            Linus
 
 
 _______________________________________________
