@@ -2,73 +2,91 @@ Return-Path: <v9fs-developer-bounces@lists.sourceforge.net>
 X-Original-To: lists+v9fs-developer@lfdr.de
 Delivered-To: lists+v9fs-developer@lfdr.de
 Received: from lists.sourceforge.net (lists.sourceforge.net [216.105.38.7])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1F73E3F2E07
-	for <lists+v9fs-developer@lfdr.de>; Fri, 20 Aug 2021 16:25:22 +0200 (CEST)
-Received: from [127.0.0.1] (helo=sfs-ml-4.v29.lw.sourceforge.com)
-	by sfs-ml-4.v29.lw.sourceforge.com with esmtp (Exim 4.90_1)
+	by mail.lfdr.de (Postfix) with ESMTPS id C5FC63F302A
+	for <lists+v9fs-developer@lfdr.de>; Fri, 20 Aug 2021 17:51:08 +0200 (CEST)
+Received: from [127.0.0.1] (helo=sfs-ml-2.v29.lw.sourceforge.com)
+	by sfs-ml-2.v29.lw.sourceforge.com with esmtp (Exim 4.92.3)
 	(envelope-from <v9fs-developer-bounces@lists.sourceforge.net>)
-	id 1mH5SS-0001Ep-OO; Fri, 20 Aug 2021 14:25:20 +0000
+	id 1mH6nS-0000sN-Mt; Fri, 20 Aug 2021 15:51:06 +0000
 Received: from [172.30.20.202] (helo=mx.sourceforge.net)
- by sfs-ml-4.v29.lw.sourceforge.com with esmtps
- (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.90_1)
- (envelope-from <bfields@fieldses.org>) id 1mH5SL-0001Ed-Sn
- for v9fs-developer@lists.sourceforge.net; Fri, 20 Aug 2021 14:25:13 +0000
+ by sfs-ml-2.v29.lw.sourceforge.com with esmtps
+ (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.92.3)
+ (envelope-from <jlayton@kernel.org>) id 1mH6nR-0000sG-Td
+ for v9fs-developer@lists.sourceforge.net; Fri, 20 Aug 2021 15:51:05 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=sourceforge.net; s=x; h=In-Reply-To:Content-Type:MIME-Version:References:
- Message-ID:Subject:Cc:To:From:Date:Sender:Reply-To:Content-Transfer-Encoding:
+ d=sourceforge.net; s=x; h=Content-Transfer-Encoding:MIME-Version:Content-Type
+ :References:In-Reply-To:Date:Cc:To:From:Subject:Message-ID:Sender:Reply-To:
  Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
  Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
  List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=wY8RC3nRl8mw74fg4RiQly9sGS6KY5S4e1kT6ficbDo=; b=IlCbWcJbc7U2VitD8QA0A9xcyl
- ecIYaJtDdotxGnyeIX1wQcARQXsHyN4TiO6CuarCZxLdfOMEXBjRMnnItoKQPR4o3Sxh23g+eGOXV
- TWu9feGLCOcy8muOhQCOk11vqsQTgzdI1wZTBCiJZW200tshKgMV7rReKLTRGIq8+yfc=;
+ bh=PpEycLsHT+2JDvLXnUW0fGicSeqGurTmhaJ4myvEoSI=; b=NqQPAeUrXypOVckJdOfNODCD95
+ P3xU3CmLiVIAEm83+kjWXmBaDxRYCYaAmNWuJ+qOrP45K59b+Igu2haRdvdiFN6+BSnkc1Zy+bACQ
+ 83ps+LqVYy2A//7MT0+jo/h+2JbL4jokvYDHi7hSz9iQgIVsf/XPkcwPsPr/rvkrqJqY=;
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  ;
- h=In-Reply-To:Content-Type:MIME-Version:References:Message-ID:Subject:Cc:To
- :From:Date:Sender:Reply-To:Content-Transfer-Encoding:Content-ID:
+ h=Content-Transfer-Encoding:MIME-Version:Content-Type:References:
+ In-Reply-To:Date:Cc:To:From:Subject:Message-ID:Sender:Reply-To:Content-ID:
  Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
  :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
  List-Post:List-Owner:List-Archive;
- bh=wY8RC3nRl8mw74fg4RiQly9sGS6KY5S4e1kT6ficbDo=; b=Pas8hAGKw4DI64hGsHEfGN7Sdg
- Ut05Pm09sB/B01HWS1NySEY+JiyisTuK3wpwtKJBBGep0lRYonaDlaBQMGTZw7keKz5ldtQ6GPhKG
- fk4HqPTc+4LLLN9eU4TTnEPIAijXAficxZz8Kg4aDpm7pwL3hXxIVV3ChMHN6Lep545Q=;
-Received: from fieldses.org ([173.255.197.46])
- by sfi-mx-2.v28.lw.sourceforge.com with esmtps
+ bh=PpEycLsHT+2JDvLXnUW0fGicSeqGurTmhaJ4myvEoSI=; b=d2MZGRklemBQHbpWZU/te88Xlw
+ aylufdkHxBRIlYUT1sbShFDgBJeDeX4ru2Ci4xn0vT2LImeIX5F+xTDcrAkYYr0VN1UQvRJ2EgLND
+ UuFX3x0EUCzORP+fwV9mAG9OT/YPpaGF47fa3+Z7T3QqFB19O9saG0zKBeAKaQA6MlZ8=;
+Received: from mail.kernel.org ([198.145.29.99])
+ by sfi-mx-1.v28.lw.sourceforge.com with esmtps
  (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.92.3)
- id 1mH5SB-0000Gc-U2
- for v9fs-developer@lists.sourceforge.net; Fri, 20 Aug 2021 14:25:13 +0000
-Received: by fieldses.org (Postfix, from userid 2815)
- id 0D0065BAF; Fri, 20 Aug 2021 10:09:03 -0400 (EDT)
-DKIM-Filter: OpenDKIM Filter v2.11.0 fieldses.org 0D0065BAF
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=fieldses.org;
- s=default; t=1629468543;
- bh=wY8RC3nRl8mw74fg4RiQly9sGS6KY5S4e1kT6ficbDo=;
- h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
- b=uLNQrICJHtuq70LWUUqRVgWozgalJ08WFOOsOZqBRr7hBYe8itNg2uNRHfsX8hV9w
- iqbK/sRw2HXqb1WneQoev11t5SeB+7ucMp6ayp/tLrKmxHPhmbqboCVfkuJrHpOG7M
- yUwi7bYbplF6X0LxX0UaNOAxpOKbsXq8dEkfIV4U=
-Date: Fri, 20 Aug 2021 10:09:03 -0400
-From: "J. Bruce Fields" <bfields@fieldses.org>
-To: Jeff Layton <jlayton@kernel.org>
-Message-ID: <20210820140903.GA18096@fieldses.org>
+ id 1mH6nL-00CuFj-6v
+ for v9fs-developer@lists.sourceforge.net; Fri, 20 Aug 2021 15:51:05 +0000
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 22846610FF;
+ Fri, 20 Aug 2021 15:50:52 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+ s=k20201202; t=1629474653;
+ bh=sIZQJdeQo+NqJE2KGZmLQeNMkwh4uu//4yYwZFjD3y0=;
+ h=Subject:From:To:Cc:Date:In-Reply-To:References:From;
+ b=s09SvCLj1uqQUR0Q5tbmN47Tw8m3PlRFK5qq3kSZrfBVGIMEr+BE0NMWEMv8T3zw3
+ QOCUJjIVPNRSYvWeS3+W5A9lnkBBBze0wcOYnRayZEfK5L+fAd5NPiE34iT76qjhWD
+ rVXPOHQdVKvj7Kfqw9qu4uSNMjkY+6TzWBXg2a5dgz+G6q3DDrbm6X0HWqL8pi6hT0
+ Vo5nAgWfNzZrRK9otPZV0FaLalhhxjWyHJ/M6jA0R9FbctN7cEX3XjfwpD7iq71ZJN
+ wg0nYiJw3K8hy/0P5lcC/ZMjeepEHoWOnV6RboA3vgkwhqo7e1uogwGwI8RDzLlshM
+ 21E/WCrTBZhDA==
+Message-ID: <7efb04fe6e0c867e7c87d75cf3349221b08b4210.camel@kernel.org>
+From: Jeff Layton <jlayton@kernel.org>
+To: David Laight <David.Laight@ACULAB.COM>, "torvalds@linux-foundation.org"
+ <torvalds@linux-foundation.org>, "linux-fsdevel@vger.kernel.org"
+ <linux-fsdevel@vger.kernel.org>, "linux-kernel@vger.kernel.org"
+ <linux-kernel@vger.kernel.org>
+Date: Fri, 20 Aug 2021 11:50:51 -0400
+In-Reply-To: <c1318459eaab436aacb225982c49c4b4@AcuMS.aculab.com>
 References: <20210820135707.171001-1-jlayton@kernel.org>
+ <20210820135707.171001-2-jlayton@kernel.org>
+ <c1318459eaab436aacb225982c49c4b4@AcuMS.aculab.com>
+User-Agent: Evolution 3.40.4 (3.40.4-1.fc34) 
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20210820135707.171001-1-jlayton@kernel.org>
-User-Agent: Mutt/1.5.21 (2010-09-15)
-X-Spam-Score: -0.1 (/)
-X-Spam-Report: Spam Filtering performed by mx.sourceforge.net.
- See http://spamassassin.org/tag/ for more details.
- -0.0 SPF_HELO_PASS          SPF: HELO matches SPF record
- -0.0 SPF_PASS               SPF: sender matches SPF record
- -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from author's
- domain
- -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
- 0.1 DKIM_SIGNED            Message has a DKIM or DK signature,
- not necessarily valid
-X-Headers-End: 1mH5SB-0000Gc-U2
-Subject: Re: [V9fs-developer] [PATCH v2 0/2] fs: remove support for
- mandatory locking
+X-Spam-Score: -4.8 (----)
+X-Spam-Report: Spam detection software,
+ running on the system "util-spamd-1.v13.lw.sourceforge.com", 
+ has NOT identified this incoming email as spam.  The original
+ message has been attached to this so you can view it or label
+ similar future email.  If you have any questions, see
+ the administrator of that system for details.
+ Content preview:  On Fri, 2021-08-20 at 15:49 +0000,
+ David Laight wrote: > From:
+ Jeff Layton > > Sent: 20 August 2021 14:57 > > > > We've had
+ CONFIG_MANDATORY_FILE_LOCKING
+ since 2015 and a lot of distros > > have disab [...] 
+ Content analysis details:   (-4.8 points, 6.0 required)
+ pts rule name              description
+ ---- ---------------------- --------------------------------------------------
+ -5.0 RCVD_IN_DNSWL_HI       RBL: Sender listed at https://www.dnswl.org/,
+ high trust [198.145.29.99 listed in list.dnswl.org]
+ 0.0 SPF_HELO_NONE          SPF: HELO does not publish an SPF Record
+ 0.0 T_SPF_TEMPERROR        SPF: test of record failed (temperror)
+ 0.1 DKIM_SIGNED            Message has a DKIM or DK signature, not necessarily
+ valid
+ 0.1 DKIM_INVALID           DKIM or DK signature exists, but is not valid
+X-Headers-End: 1mH6nL-00CuFj-6v
+Subject: Re: [V9fs-developer] [PATCH v2 1/2] fs: warn about impending
+ deprecation of mandatory locks
 X-BeenThere: v9fs-developer@lists.sourceforge.net
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -80,60 +98,77 @@ List-Post: <mailto:v9fs-developer@lists.sourceforge.net>
 List-Help: <mailto:v9fs-developer-request@lists.sourceforge.net?subject=help>
 List-Subscribe: <https://lists.sourceforge.net/lists/listinfo/v9fs-developer>, 
  <mailto:v9fs-developer-request@lists.sourceforge.net?subject=subscribe>
-Cc: linux-nfs@vger.kernel.org, david@redhat.com, linux-doc@vger.kernel.org,
- linux-kernel@vger.kernel.org, willy@infradead.org, w@1wt.eu,
- cluster-devel@redhat.com, linux-mm@kvack.org, rostedt@goodmis.org,
- ebiederm@xmission.com, luto@kernel.org, linux-fsdevel@vger.kernel.org,
- v9fs-developer@lists.sourceforge.net, torvalds@linux-foundation.org,
- linux-afs@lists.infradead.org, ocfs2-devel@oss.oracle.com,
- viro@zeniv.linux.org.uk
+Cc: "bfields@fieldses.org" <bfields@fieldses.org>,
+ "linux-nfs@vger.kernel.org" <linux-nfs@vger.kernel.org>,
+ "linux-doc@vger.kernel.org" <linux-doc@vger.kernel.org>,
+ "david@redhat.com" <david@redhat.com>,
+ "stable@vger.kernel.org" <stable@vger.kernel.org>,
+ "willy@infradead.org" <willy@infradead.org>, "w@1wt.eu" <w@1wt.eu>,
+ "cluster-devel@redhat.com" <cluster-devel@redhat.com>,
+ "linux-mm@kvack.org" <linux-mm@kvack.org>,
+ "rostedt@goodmis.org" <rostedt@goodmis.org>,
+ "viro@zeniv.linux.org.uk" <viro@zeniv.linux.org.uk>,
+ "luto@kernel.org" <luto@kernel.org>,
+ "v9fs-developer@lists.sourceforge.net" <v9fs-developer@lists.sourceforge.net>,
+ "linux-afs@lists.infradead.org" <linux-afs@lists.infradead.org>,
+ "ocfs2-devel@oss.oracle.com" <ocfs2-devel@oss.oracle.com>,
+ "ebiederm@xmission.com" <ebiederm@xmission.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: v9fs-developer-bounces@lists.sourceforge.net
 
-On Fri, Aug 20, 2021 at 09:57:05AM -0400, Jeff Layton wrote:
-> The first patch in this series adds a new warning that should pop on
-> kernels have mandatory locking enabled when someone mounts a filesystem
-> with -o mand. The second patch removes support for mandatory locking
-> altogether.
+On Fri, 2021-08-20 at 15:49 +0000, David Laight wrote:
+> From: Jeff Layton
+> > Sent: 20 August 2021 14:57
+> > 
+> > We've had CONFIG_MANDATORY_FILE_LOCKING since 2015 and a lot of distros
+> > have disabled it. Warn the stragglers that still use "-o mand" that
+> > we'll be dropping support for that mount option.
+> > 
+> > Cc: stable@vger.kernel.org
+> > Signed-off-by: Jeff Layton <jlayton@kernel.org>
+> > ---
+> >  fs/namespace.c | 8 ++++++++
+> >  1 file changed, 8 insertions(+)
+> > 
+> > diff --git a/fs/namespace.c b/fs/namespace.c
+> > index ab4174a3c802..ffab0bb1e649 100644
+> > --- a/fs/namespace.c
+> > +++ b/fs/namespace.c
+> > @@ -1716,8 +1716,16 @@ static inline bool may_mount(void)
+> >  }
+> > 
+> >  #ifdef	CONFIG_MANDATORY_FILE_LOCKING
+> > +static bool warned_mand;
+> >  static inline bool may_mandlock(void)
+> >  {
+> > +	if (!warned_mand) {
+> > +		warned_mand = true;
+> > +		pr_warn("======================================================\n");
+> > +		pr_warn("WARNING: the mand mount option is being deprecated and\n");
+> > +		pr_warn("         will be removed in v5.15!\n");
+> > +		pr_warn("======================================================\n");
+> > +	}
+> >  	return capable(CAP_SYS_ADMIN);
+> >  }
 > 
-> What I think we probably want to do is apply the first to v5.14 before
-> it ships and allow the new warning to trickle out into stable kernels.
-> Then we can merge the second patch in v5.15 to go ahead and remove it.
+> If that is called more than once you don't want the 'inline'.
+> I doubt it matters is not inlined - hardly a hot path.
 > 
-> Sound like a plan?
+> 	David
+> 
+> -
+> Registered Address Lakeside, Bramley Road, Mount Farm, Milton Keynes, MK1 1PT, UK
+> Registration No: 1397386 (Wales)
+> 
 
-Sounds good to me.--b.
+ACK. Of course. That really needs to not be inline. I'll fix that up in
+my tree.
 
-> 
-> Jeff Layton (2):
->   fs: warn about impending deprecation of mandatory locks
->   fs: remove mandatory file locking support
-> 
->  .../filesystems/mandatory-locking.rst         | 188 ------------------
->  fs/9p/vfs_file.c                              |  12 --
->  fs/Kconfig                                    |  10 -
->  fs/afs/flock.c                                |   4 -
->  fs/ceph/locks.c                               |   3 -
->  fs/gfs2/file.c                                |   3 -
->  fs/locks.c                                    | 116 +----------
->  fs/namei.c                                    |   4 +-
->  fs/namespace.c                                |  31 +--
->  fs/nfs/file.c                                 |   4 -
->  fs/nfsd/nfs4state.c                           |  13 --
->  fs/nfsd/vfs.c                                 |  15 --
->  fs/ocfs2/locks.c                              |   4 -
->  fs/open.c                                     |   8 +-
->  fs/read_write.c                               |   7 -
->  fs/remap_range.c                              |  10 -
->  include/linux/fs.h                            |  84 --------
->  mm/mmap.c                                     |   6 -
->  mm/nommu.c                                    |   3 -
->  19 files changed, 20 insertions(+), 505 deletions(-)
->  delete mode 100644 Documentation/filesystems/mandatory-locking.rst
-> 
-> -- 
-> 2.31.1
+Thanks!
+-- 
+Jeff Layton <jlayton@kernel.org>
+
 
 
 _______________________________________________
