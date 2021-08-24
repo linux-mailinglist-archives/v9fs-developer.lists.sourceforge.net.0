@@ -2,26 +2,26 @@ Return-Path: <v9fs-developer-bounces@lists.sourceforge.net>
 X-Original-To: lists+v9fs-developer@lfdr.de
 Delivered-To: lists+v9fs-developer@lfdr.de
 Received: from lists.sourceforge.net (lists.sourceforge.net [216.105.38.7])
-	by mail.lfdr.de (Postfix) with ESMTPS id 26D563F5EFB
-	for <lists+v9fs-developer@lfdr.de>; Tue, 24 Aug 2021 15:25:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1EC103F5EFE
+	for <lists+v9fs-developer@lfdr.de>; Tue, 24 Aug 2021 15:25:30 +0200 (CEST)
 Received: from [127.0.0.1] (helo=sfs-ml-2.v29.lw.sourceforge.com)
 	by sfs-ml-2.v29.lw.sourceforge.com with esmtp (Exim 4.92.3)
 	(envelope-from <v9fs-developer-bounces@lists.sourceforge.net>)
-	id 1mIWQa-0005ez-Eg; Tue, 24 Aug 2021 13:25:20 +0000
+	id 1mIWQi-0005fg-J1; Tue, 24 Aug 2021 13:25:28 +0000
 Received: from [172.30.20.202] (helo=mx.sourceforge.net)
  by sfs-ml-2.v29.lw.sourceforge.com with esmtps
  (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.92.3)
- (envelope-from <dhowells@redhat.com>) id 1mIWQW-0005el-TU
- for v9fs-developer@lists.sourceforge.net; Tue, 24 Aug 2021 13:25:16 +0000
+ (envelope-from <dhowells@redhat.com>) id 1mIWQh-0005fV-EH
+ for v9fs-developer@lists.sourceforge.net; Tue, 24 Aug 2021 13:25:27 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
  d=sourceforge.net; s=x; h=Content-Transfer-Encoding:Content-Type:MIME-Version
  :References:In-Reply-To:Message-ID:Date:Cc:To:From:Subject:Sender:Reply-To:
  Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
  Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
  List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=h2Qta3tolraxtrizV7nWCzmHIjkmwUURhMGBy2rmL/A=; b=bkYgZfjHX14HY5++aPhRsdcSdK
- g5uD5hXEFzXBpFXONYN3ZeOt5fSEUMRnEKt+TZZaHQ7oAtq1IZZhQMIpUob16LlHIrywOpOnKo6mX
- iB1lQYSb67U5otJlf2YgH2hODgYKf3pbIJZVyJE3VYDmYgqkPhxNU207oF+pSfyZKHRw=;
+ bh=cNZW0ivzSdTIMqYZ/P56bn4MgYgT0PqC66BpRe9VjPw=; b=ZzsfSGAbAKebdiTPHj7SGR1Mzp
+ V6oFpUClOGvQOCDdHRTmpna11XY8iAGE6u1KXigSXSBiZctJAMaVSiTgEyZEoIMUXeOfiNZ0dg46d
+ +7enF4Amqse8ghKb1n0AlRa0R5hglBa7Ehy3vY72sQiOgFdXnK4mE+8hGCWYLhQH12jM=;
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  ;
  h=Content-Transfer-Encoding:Content-Type:MIME-Version:References:
@@ -29,50 +29,50 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
  :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
  List-Post:List-Owner:List-Archive;
- bh=h2Qta3tolraxtrizV7nWCzmHIjkmwUURhMGBy2rmL/A=; b=brBamHpa2kaxJ7XsP9xkC8WQKz
- Z93nScxXkPU1mq4xT7up7p4nZQ4wSPEdc2PWj5PHtg1u/4KKnhQ1AyuifBsNKHQP7khJZOclYW+v1
- BDDJ7bp8oATmMlRK7ZGm2qXexJQQCu0xvAKjh3pzIXB47HBnZ2FQvpllz/hIdxmVK76A=;
-Received: from us-smtp-delivery-124.mimecast.com ([170.10.133.124])
+ bh=cNZW0ivzSdTIMqYZ/P56bn4MgYgT0PqC66BpRe9VjPw=; b=WnOMLS613P2fXn07ZKIuyXXnW9
+ vkeZqtxgVTCLmQtf1XmJx90DtfAAfeWnMwKRg6eCm/iMiC5nKzwOgJaZvWaWRgrjx2JZQYawljQsp
+ 7rH0uygZCFhQ5YO4lO37SyAEScAR7KFGe/wfqHqcY0KZ0cnGnNLX/E743/Nkjy1s/Z4k=;
+Received: from us-smtp-delivery-124.mimecast.com ([216.205.24.124])
  by sfi-mx-1.v28.lw.sourceforge.com with esmtps
  (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.92.3)
- id 1mIWQV-00GtRH-Su
- for v9fs-developer@lists.sourceforge.net; Tue, 24 Aug 2021 13:25:16 +0000
+ id 1mIWQg-00GtSJ-JX
+ for v9fs-developer@lists.sourceforge.net; Tue, 24 Aug 2021 13:25:27 +0000
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
- s=mimecast20190719; t=1629811509;
+ s=mimecast20190719; t=1629811520;
  h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
  to:to:cc:cc:mime-version:mime-version:content-type:content-type:
  content-transfer-encoding:content-transfer-encoding:
  in-reply-to:in-reply-to:references:references;
- bh=h2Qta3tolraxtrizV7nWCzmHIjkmwUURhMGBy2rmL/A=;
- b=YCCTUMpk/KJMRwj8pPvs91kkyQVZKgQhJ4FfMfcDyTO1l+lTnGfVnSdsMEd+xrY0TbPX2X
- 34rNo0+bYOlcLQcBrfbC50xOf20wznsx5ohx4S2xjKGjOwf1NljD/kimNUM3eWd3PkkVHn
- SOsZGnHMrduM9s8Fe2T+WQ58vNU2GdQ=
+ bh=cNZW0ivzSdTIMqYZ/P56bn4MgYgT0PqC66BpRe9VjPw=;
+ b=TPV1lWWeff0tiv3gYHHVNz20+vqlC6g4FAaPItiy7P+JqJoOU55DNHvWYF7G9DrD9yaZkG
+ fu803Mlffilb9PW1Oo4KZ8+3K3bfZf8Y1DDLkMvcrlOIkh3oka9U2zrce4yVqLoeAhHs6m
+ wXvdBobwZ///40oJeo7lA/zA/a3DCuw=
 Received: from mimecast-mx01.redhat.com (mimecast-mx01.redhat.com
  [209.132.183.4]) (Using TLS) by relay.mimecast.com with ESMTP id
- us-mta-538-Y926XhEaO66XEOrzBoN50Q-1; Tue, 24 Aug 2021 09:25:08 -0400
-X-MC-Unique: Y926XhEaO66XEOrzBoN50Q-1
-Received: from smtp.corp.redhat.com (int-mx02.intmail.prod.int.phx2.redhat.com
- [10.5.11.12])
+ us-mta-407-fN-5zsEQP-GDHncAoP0bIg-1; Tue, 24 Aug 2021 09:25:19 -0400
+X-MC-Unique: fN-5zsEQP-GDHncAoP0bIg-1
+Received: from smtp.corp.redhat.com (int-mx04.intmail.prod.int.phx2.redhat.com
+ [10.5.11.14])
  (using TLSv1.2 with cipher AECDH-AES256-SHA (256/256 bits))
  (No client certificate requested)
- by mimecast-mx01.redhat.com (Postfix) with ESMTPS id 505201082921;
- Tue, 24 Aug 2021 13:25:06 +0000 (UTC)
+ by mimecast-mx01.redhat.com (Postfix) with ESMTPS id 8DFEF8799E0;
+ Tue, 24 Aug 2021 13:25:17 +0000 (UTC)
 Received: from warthog.procyon.org.uk (unknown [10.33.36.86])
- by smtp.corp.redhat.com (Postfix) with ESMTP id 01E6D60C05;
- Tue, 24 Aug 2021 13:24:59 +0000 (UTC)
+ by smtp.corp.redhat.com (Postfix) with ESMTP id 6A5495DA61;
+ Tue, 24 Aug 2021 13:25:12 +0000 (UTC)
 Organization: Red Hat UK Ltd. Registered Address: Red Hat UK Ltd, Amberley
  Place, 107-111 Peascod Street, Windsor, Berkshire, SI4 1TE, United
  Kingdom.
  Registered in England and Wales under Company Registration No. 3798903
 From: David Howells <dhowells@redhat.com>
 To: "Matthew Wilcox (Oracle)" <willy@infradead.org>
-Date: Tue, 24 Aug 2021 14:24:59 +0100
-Message-ID: <162981149911.1901565.17776700811659843340.stgit@warthog.procyon.org.uk>
+Date: Tue, 24 Aug 2021 14:25:11 +0100
+Message-ID: <162981151155.1901565.7010079316994382707.stgit@warthog.procyon.org.uk>
 In-Reply-To: <162981147473.1901565.1455657509200944265.stgit@warthog.procyon.org.uk>
 References: <162981147473.1901565.1455657509200944265.stgit@warthog.procyon.org.uk>
 User-Agent: StGit/0.23
 MIME-Version: 1.0
-X-Scanned-By: MIMEDefang 2.79 on 10.5.11.12
+X-Scanned-By: MIMEDefang 2.79 on 10.5.11.14
 X-Spam-Score: -1.6 (-)
 X-Spam-Report: Spam detection software,
  running on the system "util-spamd-1.v13.lw.sourceforge.com", 
@@ -80,17 +80,19 @@ X-Spam-Report: Spam detection software,
  message has been attached to this so you can view it or label
  similar future email.  If you have any questions, see
  the administrator of that system for details.
- Content preview:  Add a function, folio_change_private(), that will change the
- private data attached to a folio, without the need to twiddle the private
- bit or the refcount. It assumes that folio_add_private() has alre [...] 
+ Content preview:  Add a convenience function, folio_inode() that will get the
+ host inode from a folio's mapping. Signed-off-by: David Howells
+ <dhowells@redhat.com>
+ --- include/linux/pagemap.h | 14 ++++++++++++++ mm/page-writeback.c | 2 +-
+ 2 files changed, 15 insertions(+), 1 deletion(-) 
  Content analysis details:   (-1.6 points, 6.0 required)
  pts rule name              description
  ---- ---------------------- --------------------------------------------------
- -0.0 RCVD_IN_MSPIKE_H2      RBL: Average reputation (+2)
- [170.10.133.124 listed in wl.mailspike.net]
  -0.7 RCVD_IN_DNSWL_LOW      RBL: Sender listed at https://www.dnswl.org/,
- low trust [170.10.133.124 listed in list.dnswl.org]
+ low trust [216.205.24.124 listed in list.dnswl.org]
  -0.0 SPF_PASS               SPF: sender matches SPF record
+ -0.0 RCVD_IN_MSPIKE_H2      RBL: Average reputation (+2)
+ [216.205.24.124 listed in wl.mailspike.net]
  0.0 SPF_HELO_NONE          SPF: HELO does not publish an SPF Record
  -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
  -0.1 DKIM_VALID_EF          Message has a valid DKIM or DK signature from
@@ -99,9 +101,9 @@ X-Spam-Report: Spam detection software,
  author's domain
  0.1 DKIM_SIGNED            Message has a DKIM or DK signature, not necessarily
  valid -0.7 DKIMWL_WL_HIGH         DKIMwl.org - High trust sender
-X-Headers-End: 1mIWQV-00GtRH-Su
-Subject: [V9fs-developer] [PATCH 2/6] folio: Add a function to change the
- private data attached to a folio
+X-Headers-End: 1mIWQg-00GtSJ-JX
+Subject: [V9fs-developer] [PATCH 3/6] folio: Add a function to get the host
+ inode for a folio
 X-BeenThere: v9fs-developer@lists.sourceforge.net
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -123,48 +125,54 @@ Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: v9fs-developer-bounces@lists.sourceforge.net
 
-Add a function, folio_change_private(), that will change the private data
-attached to a folio, without the need to twiddle the private bit or the
-refcount.  It assumes that folio_add_private() has already been called on
-the page.
+Add a convenience function, folio_inode() that will get the host inode from
+a folio's mapping.
 
 Signed-off-by: David Howells <dhowells@redhat.com>
-Reviewed-by: Matthew Wilcox (Oracle) <willy@infradead.org>
 ---
 
- include/linux/pagemap.h |   19 +++++++++++++++++++
- 1 file changed, 19 insertions(+)
+ include/linux/pagemap.h |   14 ++++++++++++++
+ mm/page-writeback.c     |    2 +-
+ 2 files changed, 15 insertions(+), 1 deletion(-)
 
 diff --git a/include/linux/pagemap.h b/include/linux/pagemap.h
-index f55d8d9001a9..c8d336e62177 100644
+index c8d336e62177..115b4f831e7d 100644
 --- a/include/linux/pagemap.h
 +++ b/include/linux/pagemap.h
-@@ -229,6 +229,25 @@ static inline void folio_attach_private(struct folio *folio, void *data)
- 	folio_set_private(folio);
+@@ -203,6 +203,20 @@ static inline struct address_space *page_mapping_file(struct page *page)
+ 	return folio_mapping(folio);
  }
  
 +/**
-+ * folio_change_private - Change private data on a folio.
-+ * @folio: Folio to change the data on.
-+ * @data: Data to set on the folio.
++ * folio_inode - Get the host inode for this folio.
++ * @folio: The folio.
 + *
-+ * Change the private data attached to a folio and return the old
-+ * data.  The page must previously have had data attached and the data
-+ * must be detached before the folio will be freed.
++ * For folios which are in the page cache, return the inode that is hosting
++ * this folio belongs to.
 + *
-+ * Return: Data that was previously attached to the folio.
++ * Do not call this for folios which aren't in the page cache.
 + */
-+static inline void *folio_change_private(struct folio *folio, void *data)
++static inline struct inode *folio_inode(struct folio *folio)
 +{
-+	void *old = folio_get_private(folio);
-+
-+	folio->private = data;
-+	return old;
++	return folio_file_mapping(folio)->host;
 +}
 +
- /**
-  * folio_detach_private - Detach private data from a folio.
-  * @folio: Folio to detach data from.
+ static inline bool page_cache_add_speculative(struct page *page, int count)
+ {
+ 	VM_BUG_ON_PAGE(PageTail(page), page);
+diff --git a/mm/page-writeback.c b/mm/page-writeback.c
+index 86b90173baf8..f750946d11f7 100644
+--- a/mm/page-writeback.c
++++ b/mm/page-writeback.c
+@@ -2918,7 +2918,7 @@ EXPORT_SYMBOL_GPL(folio_wait_writeback_killable);
+  */
+ void folio_wait_stable(struct folio *folio)
+ {
+-	if (folio->mapping->host->i_sb->s_iflags & SB_I_STABLE_WRITES)
++	if (folio_inode(folio)->i_sb->s_iflags & SB_I_STABLE_WRITES)
+ 		folio_wait_writeback(folio);
+ }
+ EXPORT_SYMBOL_GPL(folio_wait_stable);
 
 
 
