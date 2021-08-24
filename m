@@ -2,65 +2,75 @@ Return-Path: <v9fs-developer-bounces@lists.sourceforge.net>
 X-Original-To: lists+v9fs-developer@lfdr.de
 Delivered-To: lists+v9fs-developer@lfdr.de
 Received: from lists.sourceforge.net (lists.sourceforge.net [216.105.38.7])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6E21E3F5BED
-	for <lists+v9fs-developer@lfdr.de>; Tue, 24 Aug 2021 12:22:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 49F323F5EF1
+	for <lists+v9fs-developer@lfdr.de>; Tue, 24 Aug 2021 15:25:07 +0200 (CEST)
 Received: from [127.0.0.1] (helo=sfs-ml-2.v29.lw.sourceforge.com)
 	by sfs-ml-2.v29.lw.sourceforge.com with esmtp (Exim 4.92.3)
 	(envelope-from <v9fs-developer-bounces@lists.sourceforge.net>)
-	id 1mITZ9-0007pV-O3; Tue, 24 Aug 2021 10:21:59 +0000
+	id 1mIWQF-0005dt-AS; Tue, 24 Aug 2021 13:24:59 +0000
 Received: from [172.30.20.202] (helo=mx.sourceforge.net)
  by sfs-ml-2.v29.lw.sourceforge.com with esmtps
  (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.92.3)
- (envelope-from <jlayton@kernel.org>) id 1mITZ8-0007pO-Nm
- for v9fs-developer@lists.sourceforge.net; Tue, 24 Aug 2021 10:21:58 +0000
+ (envelope-from <dhowells@redhat.com>) id 1mIWQE-0005dm-3l
+ for v9fs-developer@lists.sourceforge.net; Tue, 24 Aug 2021 13:24:58 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=sourceforge.net; s=x; h=Content-Transfer-Encoding:MIME-Version:Content-Type
- :References:In-Reply-To:Date:Cc:To:From:Subject:Message-ID:Sender:Reply-To:
- Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
- Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
+ d=sourceforge.net; s=x; h=Content-Transfer-Encoding:Content-Type:MIME-Version
+ :Message-ID:Date:Cc:To:From:Subject:Sender:Reply-To:Content-ID:
+ Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
+ :Resent-Message-ID:In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:
  List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=BPVqVzHLOhxVLKI+d5hCjLggk43D5U+VOGs9+TkiZhY=; b=mpl+5O861V/ibOgPn8ZRBAr2cD
- O0QrIZ1XB2dgVUzIJJFi8EaV0ta1tjYM5H3kIKcVCMh5VMhHxJV2aUy8fGDwKUW22DcYwLZxPE49E
- GnyWTjTZzUa6Au/DEtvy55MMn1q4lXiRmOKfuyZmIidPPSvD7B1l3gpoejgSd2+ghkmM=;
+ bh=UJrfd86tR0Yk7ZIVAdwqtRJBEFVA/ho7C/JF2A2SL3I=; b=chzXAWJDhpMCu5OFxFUEMBgMlK
+ tBbvj++cD0TNkC0SZBZmdPYpEYVghwtmIQKQtrmNtYTYJ9qSUP+e1sjxiNL40oK/oAHIucXMvwimt
+ IlYNp2zy5FlE3NnrzHMsUhRrCQk3PQAp3jafj/HnJ3LyGkyFxcdZyDW5KDkgs7zbF+yw=;
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  ;
- h=Content-Transfer-Encoding:MIME-Version:Content-Type:References:
- In-Reply-To:Date:Cc:To:From:Subject:Message-ID:Sender:Reply-To:Content-ID:
- Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
- :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
- List-Post:List-Owner:List-Archive;
- bh=BPVqVzHLOhxVLKI+d5hCjLggk43D5U+VOGs9+TkiZhY=; b=J4lBYyRMszzFQNufM+AcPCmPiT
- hL7eNOXXVkyBc5HhM3HZF5wPr1Ks3U4jv4aZ4w+r03mDInPIi4CBChpfwzYI9e0wdFzSQqKnbfIFw
- /WMYmuoeSiz3sWjr+aUAJleTfr1GpTqBEPe2ypO0Q8UoWUhYYdsYttE51bltIZFufOMo=;
-Received: from mail.kernel.org ([198.145.29.99])
+ h=Content-Transfer-Encoding:Content-Type:MIME-Version:Message-ID:Date:Cc:To
+ :From:Subject:Sender:Reply-To:Content-ID:Content-Description:Resent-Date:
+ Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:
+ References:List-Id:List-Help:List-Unsubscribe:List-Subscribe:List-Post:
+ List-Owner:List-Archive; bh=UJrfd86tR0Yk7ZIVAdwqtRJBEFVA/ho7C/JF2A2SL3I=; b=m
+ jmCrP8CgkZv51kO8cD/6/pxK4HFfHSlrMYf/eet0dwxlbBnnW3fUaorrNujDzoC9WHvTiPKGfbyax
+ /mkTHDUN0WCXpkQ1Gvlj43eNFQLdp6Akl30f5DDQkb2GQ/lm4/yGz4yjfqVZEUGJCYlBPFxL9pfs4
+ buCt2MruNZwsE4AU=;
+Received: from us-smtp-delivery-124.mimecast.com ([170.10.133.124])
  by sfi-mx-2.v28.lw.sourceforge.com with esmtps
  (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.92.3)
- id 1mITZ7-00084i-5g
- for v9fs-developer@lists.sourceforge.net; Tue, 24 Aug 2021 10:21:58 +0000
-Received: by mail.kernel.org (Postfix) with ESMTPSA id DF2CA6127B;
- Tue, 24 Aug 2021 10:21:46 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1629800507;
- bh=xJCfJs8RZmn3g/5lvkqUBr+gT+oZyrinafGUL3DOSGY=;
- h=Subject:From:To:Cc:Date:In-Reply-To:References:From;
- b=UJeIZHkNabA/L55+6x0syo7gdCEu9epNSQ03c0pEBoeJfwy99uzx6mOk9RuVeHtS5
- NE065IYoJnQDrt6IL555JCq+P+bjr47h2B5SFk1R/9XaycamagLuVm11uREAS4VliH
- elNC8qxKW92ASuerZ8iRF2wZ+MWaEjKGqdhlhCpD9Mt4XfBf7mWHpvPnwLFOufXMl0
- hZKtDgLHrctGOaljfF0J/SiicoER9aKhVm4cNs27SZVZDEHo+cfaj8nL2l/9BaC2FM
- hmxGbdoclA2JLqhYZwbJXatX+f/RqvJ45KXju07sSXiUnXGBaw2iyNDn48clDjcC3m
- sKcXYq6XMuQtg==
-Message-ID: <9fdf35533dab9ae95947bcc3709d14a268b14368.camel@kernel.org>
-From: Jeff Layton <jlayton@kernel.org>
-To: asmadeus@codewreck.org, cgel.zte@gmail.com
-Date: Tue, 24 Aug 2021 06:21:45 -0400
-In-Reply-To: <YSSl4tPGeowannmy@codewreck.org>
-References: <20210824074503.62333-1-ran.xiaokai@zte.com.cn>
- <YSSl4tPGeowannmy@codewreck.org>
-User-Agent: Evolution 3.40.4 (3.40.4-1.fc34) 
+ id 1mIWQA-0001R1-6I
+ for v9fs-developer@lists.sourceforge.net; Tue, 24 Aug 2021 13:24:58 +0000
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+ s=mimecast20190719; t=1629811487;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding;
+ bh=UJrfd86tR0Yk7ZIVAdwqtRJBEFVA/ho7C/JF2A2SL3I=;
+ b=IMddWUQJv+GHo0K+1WGugOwVjxGHbpn6AvZ4hPEAXJcxk47G/BMyzZ1RXGYRouuI840K6m
+ dejIPLkEKu7oZvLA4z28SAMDLC1i9uL+1pI5ndLaOwpQFaSmTzOYPGhkOvi8dN93AXa/Lk
+ 94+MUdO+O5TaZVa3CqN4q0N8LmQWF/A=
+Received: from mimecast-mx01.redhat.com (mimecast-mx01.redhat.com
+ [209.132.183.4]) (Using TLS) by relay.mimecast.com with ESMTP id
+ us-mta-316-6xbBUESKNQCq4Y_eoBj7LA-1; Tue, 24 Aug 2021 09:24:44 -0400
+X-MC-Unique: 6xbBUESKNQCq4Y_eoBj7LA-1
+Received: from smtp.corp.redhat.com (int-mx08.intmail.prod.int.phx2.redhat.com
+ [10.5.11.23])
+ (using TLSv1.2 with cipher AECDH-AES256-SHA (256/256 bits))
+ (No client certificate requested)
+ by mimecast-mx01.redhat.com (Postfix) with ESMTPS id 4A0DD801A92;
+ Tue, 24 Aug 2021 13:24:42 +0000 (UTC)
+Received: from warthog.procyon.org.uk (unknown [10.33.36.86])
+ by smtp.corp.redhat.com (Postfix) with ESMTP id C0C583AA2;
+ Tue, 24 Aug 2021 13:24:35 +0000 (UTC)
+From: David Howells <dhowells@redhat.com>
+To: "Matthew Wilcox (Oracle)" <willy@infradead.org>
+Date: Tue, 24 Aug 2021 14:24:34 +0100
+Message-ID: <162981147473.1901565.1455657509200944265.stgit@warthog.procyon.org.uk>
+User-Agent: StGit/0.23
 MIME-Version: 1.0
+X-Scanned-By: MIMEDefang 2.84 on 10.5.11.23
 X-Spam-Score: -0.8 (/)
 X-Spam-Report: Spam Filtering performed by mx.sourceforge.net.
  See http://spamassassin.org/tag/ for more details.
+ -0.0 RCVD_IN_MSPIKE_H2      RBL: Average reputation (+2)
+ [170.10.133.124 listed in wl.mailspike.net]
  -0.0 SPF_PASS               SPF: sender matches SPF record
  0.0 SPF_HELO_NONE          SPF: HELO does not publish an SPF Record
  -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from author's
@@ -69,9 +79,9 @@ X-Spam-Report: Spam Filtering performed by mx.sourceforge.net.
  0.1 DKIM_SIGNED            Message has a DKIM or DK signature,
  not necessarily valid
  -0.7 DKIMWL_WL_HIGH         DKIMwl.org - High trust sender
-X-Headers-End: 1mITZ7-00084i-5g
-Subject: Re: [V9fs-developer] [PATCH] fs: 9q: remove unnecessary label
- "out_err"
+X-Headers-End: 1mIWQA-0001R1-6I
+Subject: [V9fs-developer] [PATCH 0/6] netfs, afs, ceph: Support folios,
+ at least partially
 X-BeenThere: v9fs-developer@lists.sourceforge.net
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -83,64 +93,53 @@ List-Post: <mailto:v9fs-developer@lists.sourceforge.net>
 List-Help: <mailto:v9fs-developer-request@lists.sourceforge.net?subject=help>
 List-Subscribe: <https://lists.sourceforge.net/lists/listinfo/v9fs-developer>, 
  <mailto:v9fs-developer-request@lists.sourceforge.net?subject=subscribe>
-Cc: lucho@ionkov.net, ericvh@gmail.com, Zeal Robot <zealci@zte.com.cn>,
- linux-kernel@vger.kernel.org, ran.xiaokai@zte.com.cn,
- v9fs-developer@lists.sourceforge.net
+Cc: linux-cifs@vger.kernel.org, linux-nfs@vger.kernel.org,
+ Jeffrey Altman <jaltman@auristor.com>, Jeff Layton <jlayton@redhat.com>,
+ linux-mm@kvack.org, Jeff Layton <jlayton@kernel.org>,
+ linux-kernel@vger.kernel.org, dhowells@redhat.com,
+ linux-fsdevel@vger.kernel.org, linux-cachefs@redhat.com,
+ v9fs-developer@lists.sourceforge.net, Marc Dionne <marc.dionne@auristor.com>,
+ ceph-devel@vger.kernel.org, Ilya Dryomov <idryomov@gmail.com>,
+ linux-afs@lists.infradead.org, devel@lists.orangefs.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: v9fs-developer-bounces@lists.sourceforge.net
 
-On Tue, 2021-08-24 at 16:55 +0900, asmadeus@codewreck.org wrote:
-> cgel.zte@gmail.com wrote on Tue, Aug 24, 2021 at 12:45:03AM -0700:
-> > From: CGEL <ran.xiaokai@zte.com.cn>
-> > 
-> > due to commit 798b2ae3cd58 ("Merge remote-tracking branch
-> > 'file-locks/locks-next'"), label "out_err" should be removed to
-> > avoid build warning.
-> 
-> That commit is not in master (it's a linux-next commit), you cannot
-> refer to a commit id that hasn't been merged in commit messages.
-> Also given it's a trivial merge commit so please take a minute to find
-> the real culprit (fs: remove mandatory file locking support) next time.
-> 
-> 
-> Given it's not merged yet, Jeff can still fix his patch in his branch,
-> I've added him to recipients -- can you remove the label?
-> I've never used mandatory file locking myself so I'll admit I didn't
-> really look at your patch the other day...
-> 
 
-Yep, I've already fixed this in my branch. The next linux-next merge
-should have it. We'll probably merge the patch in v5.15, so hopefully
-any pain and merge conflicts will be short-lived...
+Here's a set of patches to convert netfs and afs to use folios and to
+provide sufficient conversion for ceph that it can continue to use the
+netfs library.  Jeff Layton is working on fully converting ceph.
 
-Thanks,
-Jeff
+This based on top of part of Matthew Wilcox's folio changes[1]
 
-> > 
-> > Reported-by: Zeal Robot <zealci@zte.com.cn>
-> > Signed-off-by: CGEL <ran.xiaokai@zte.com.cn>
-> > ---
-> >  fs/9p/vfs_file.c | 2 +-
-> >  1 file changed, 1 insertion(+), 1 deletion(-)
-> > 
-> > diff --git a/fs/9p/vfs_file.c b/fs/9p/vfs_file.c
-> > index 978666530d8e..d2d83163d6b0 100644
-> > --- a/fs/9p/vfs_file.c
-> > +++ b/fs/9p/vfs_file.c
-> > @@ -319,7 +319,7 @@ static int v9fs_file_lock_dotl(struct file *filp, int cmd, struct file_lock *fl)
-> >  		ret = v9fs_file_getlock(filp, fl);
-> >  	else
-> >  		ret = -EINVAL;
-> > -out_err:
-> > +
-> >  	return ret;
-> >  }
-> 
-> Thanks,
+David
 
--- 
-Jeff Layton <jlayton@kernel.org>
+Link: https://git.infradead.org/users/willy/pagecache.git/shortlog/refs/heads/for-next [1]
+Link: https://lore.kernel.org/r/2408234.1628687271@warthog.procyon.org.uk/ # v0
+---
+David Howells (6):
+      afs: Fix afs_launder_page() to set correct start file position
+      folio: Add a function to change the private data attached to a folio
+      folio: Add a function to get the host inode for a folio
+      afs: Sort out symlink reading
+      netfs, afs, ceph: Use folios
+      afs: Use folios in directory handling
+
+
+ fs/afs/dir.c               | 229 +++++++++++--------------
+ fs/afs/dir_edit.c          | 154 ++++++++---------
+ fs/afs/file.c              |  82 +++++----
+ fs/afs/inode.c             |   6 +-
+ fs/afs/internal.h          |  49 +++---
+ fs/afs/write.c             | 333 ++++++++++++++++++-------------------
+ fs/ceph/addr.c             |  80 ++++-----
+ fs/netfs/read_helper.c     | 165 +++++++++---------
+ include/linux/netfs.h      |  12 +-
+ include/linux/pagemap.h    |  33 ++++
+ include/trace/events/afs.h |  21 +--
+ mm/page-writeback.c        |   2 +-
+ 12 files changed, 584 insertions(+), 582 deletions(-)
+
 
 
 
