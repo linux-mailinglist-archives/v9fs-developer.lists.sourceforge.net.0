@@ -2,26 +2,26 @@ Return-Path: <v9fs-developer-bounces@lists.sourceforge.net>
 X-Original-To: lists+v9fs-developer@lfdr.de
 Delivered-To: lists+v9fs-developer@lfdr.de
 Received: from lists.sourceforge.net (lists.sourceforge.net [216.105.38.7])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0A7C83F603B
-	for <lists+v9fs-developer@lfdr.de>; Tue, 24 Aug 2021 16:24:21 +0200 (CEST)
-Received: from [127.0.0.1] (helo=sfs-ml-1.v29.lw.sourceforge.com)
-	by sfs-ml-1.v29.lw.sourceforge.com with esmtp (Exim 4.90_1)
+	by mail.lfdr.de (Postfix) with ESMTPS id E1F333F6042
+	for <lists+v9fs-developer@lfdr.de>; Tue, 24 Aug 2021 16:25:33 +0200 (CEST)
+Received: from [127.0.0.1] (helo=sfs-ml-4.v29.lw.sourceforge.com)
+	by sfs-ml-4.v29.lw.sourceforge.com with esmtp (Exim 4.90_1)
 	(envelope-from <v9fs-developer-bounces@lists.sourceforge.net>)
-	id 1mIXLe-0004NJ-TT; Tue, 24 Aug 2021 14:24:18 +0000
+	id 1mIXMq-0000kP-3I; Tue, 24 Aug 2021 14:25:32 +0000
 Received: from [172.30.20.202] (helo=mx.sourceforge.net)
- by sfs-ml-1.v29.lw.sourceforge.com with esmtps
+ by sfs-ml-4.v29.lw.sourceforge.com with esmtps
  (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.90_1)
- (envelope-from <jlayton@redhat.com>) id 1mIXLe-0004N4-3S
- for v9fs-developer@lists.sourceforge.net; Tue, 24 Aug 2021 14:24:18 +0000
+ (envelope-from <jlayton@redhat.com>) id 1mIXMo-0000kE-TZ
+ for v9fs-developer@lists.sourceforge.net; Tue, 24 Aug 2021 14:25:30 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
  d=sourceforge.net; s=x; h=Content-Transfer-Encoding:Content-Type:MIME-Version
  :References:In-Reply-To:Date:Cc:To:From:Subject:Message-ID:Sender:Reply-To:
  Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
  Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
  List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=rXM+IBI3cANg1BoBFaXjt+OJ0V+p5mrya6klP9WdYlA=; b=H4/q4C220F0Tle9VljFahpnLzQ
- Za0NttmUCTN4GaS8ZE/sBMNWK21UkbdXSz7PjpEu33Ic9H2ll2ire6cbUBQ5cmpnRIXsz6j5I2+tK
- kiPs9FOqF96ANMU33foXGm6Z9E+NNfeVXZrOsVh2MoUceyf5kx+m6Qhn0Xg9dAG/NVIc=;
+ bh=jS4DMiYMJEvLKBLFhfVXQbwK/7O32UF1dBTczqvLw1Y=; b=kk6udQhmTR5rld+8VnFnTZpb8a
+ mlEOG+aikVX32oR3J99ipqUyM813uoOeF1ex0iClLGqih5Kgf26d7C8g8QrvCwkegcJTikkCc6ouf
+ 6lsxexdCXGLzyBDSK6nRklU/2z8OUYux8xZphWpg1KxG3mcevjP1gf5HQUMlxPnVyvX4=;
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  ;
  h=Content-Transfer-Encoding:Content-Type:MIME-Version:References:
@@ -29,85 +29,99 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
  :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
  List-Post:List-Owner:List-Archive;
- bh=rXM+IBI3cANg1BoBFaXjt+OJ0V+p5mrya6klP9WdYlA=; b=a2jy6fBPFWLIbQldfCyKwzOfyk
- MqH0ug8Qdki0EQ4XhHMeLgjpNGJEJ/D49I88gxmL0wgkRr/wuwmBv4qt8qf7ryH5qSJGuAhI7XTrQ
- 4zwfho4VO5qQoOAS5y6HtuDaJH1yIvWINghThYeE19K2uLf0g8Qm7rsiterlEILuWgiI=;
-Received: from us-smtp-delivery-124.mimecast.com ([170.10.133.124])
- by sfi-mx-2.v28.lw.sourceforge.com with esmtps
+ bh=jS4DMiYMJEvLKBLFhfVXQbwK/7O32UF1dBTczqvLw1Y=; b=hq5bGEUdBXfMI2JVFVll+bdpWN
+ YlvnIbiSMwEJJcwkh4ct7B9L1waJVYXkEhfpRcUyE2O4eMs4vqVDBTJdD0/HM4TrGmyYVhym9kCAk
+ ROGislOvx+4Y5+uOEyWIJlDgaOvvAac43idu3ETezsDOHsuqAfYCqRUtju7XqLeC2QBc=;
+Received: from us-smtp-delivery-124.mimecast.com ([216.205.24.124])
+ by sfi-mx-1.v28.lw.sourceforge.com with esmtps
  (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.92.3)
- id 1mIXLc-0005Mq-3D
- for v9fs-developer@lists.sourceforge.net; Tue, 24 Aug 2021 14:24:18 +0000
+ id 1mIXMn-00GxAS-N5
+ for v9fs-developer@lists.sourceforge.net; Tue, 24 Aug 2021 14:25:30 +0000
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
- s=mimecast20190719; t=1629815047;
+ s=mimecast20190719; t=1629815123;
  h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
  to:to:cc:cc:mime-version:mime-version:content-type:content-type:
  content-transfer-encoding:content-transfer-encoding:
  in-reply-to:in-reply-to:references:references;
- bh=rXM+IBI3cANg1BoBFaXjt+OJ0V+p5mrya6klP9WdYlA=;
- b=blgt5QHXN/+r0Gs60xHNTw07lsppJhxUMHtAuTHPRo0dFyWuev2QX8zEOIr/sT7KPIkoX7
- ChaYocHJqiX5rUpr93oZdeUcIRKj1/89PiyfG2aNSVGOmLpxmZiWZ6WmMXXtjKbH3vD4is
- r8ymLnghpL8QCkhILdjWGg8bMvPBEWA=
-Received: from mail-qv1-f72.google.com (mail-qv1-f72.google.com
- [209.85.219.72]) (Using TLS) by relay.mimecast.com with ESMTP id
- us-mta-4-lRAvsL7tOZiC4nhOaQkmLw-1; Tue, 24 Aug 2021 10:24:06 -0400
-X-MC-Unique: lRAvsL7tOZiC4nhOaQkmLw-1
-Received: by mail-qv1-f72.google.com with SMTP id
- h14-20020a0cffce000000b00372ea3f12a5so1273000qvv.9
+ bh=jS4DMiYMJEvLKBLFhfVXQbwK/7O32UF1dBTczqvLw1Y=;
+ b=BlaFjdHzjk9Eerzt1bRAubbkSEHUstJp9RWZzfMtvLjEHqLlt/LQbAgnVXgBXaqup+dls+
+ hUffbufSCi7yr4+nzrVF/kO4kRbJdHzLPPGwkcs2Gi5xbZW7DA9AQK+gS/mZpqYk5d+3ct
+ 2N3RgowYBcc4TUNlq4OqBqs0WKMs/+A=
+Received: from mail-qv1-f70.google.com (mail-qv1-f70.google.com
+ [209.85.219.70]) (Using TLS) by relay.mimecast.com with ESMTP id
+ us-mta-499-yv5iaBsNPjKHdtCnzeSJOg-1; Tue, 24 Aug 2021 10:25:22 -0400
+X-MC-Unique: yv5iaBsNPjKHdtCnzeSJOg-1
+Received: by mail-qv1-f70.google.com with SMTP id
+ h14-20020a0cffce000000b00372ea3f12a5so1275544qvv.9
  for <v9fs-developer@lists.sourceforge.net>;
- Tue, 24 Aug 2021 07:24:06 -0700 (PDT)
+ Tue, 24 Aug 2021 07:25:22 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:message-id:subject:from:to:cc:date:in-reply-to
  :references:user-agent:mime-version:content-transfer-encoding;
- bh=rXM+IBI3cANg1BoBFaXjt+OJ0V+p5mrya6klP9WdYlA=;
- b=QYutMD6DISTjC8U0RNmJInsbsgVooIZYAi2pykRFUtIeOkwJLJJWrBMNP/mfdPCEuc
- JE0rNTjN1J2nnIZM1aHucYzR3IdDbP3ZuqZCTB0Hs6zpXhOxeGCjb120P4v5bWRKmYhC
- lccI8/QFxEPlHWCGhX1WH79hhJcqj+EmV3o2x7rciUGDSUX9asZv/JzphPzLSumIuAsL
- WpbLYsIb/EC6o6RO+MIB6Uqxwi5GzG5DhpwfFv8dvIlNrE203rjYG03EmW/BgeXSKtoc
- IuxsrbEY7TYaWoxMqP6tgRgv+qiyQVOrp4NzzijB9KBiKxoCxdW4x6rv/wAZQNglNc5U
- 6Phg==
-X-Gm-Message-State: AOAM530iKwIOwmA3ZzaigtX4TOprUiPSLI1MZ1CwrHIZG92BPIOn6G7v
- 7yyDN94IWzyHykrH94boFJmEqxOId7aN7IVGC6MAauq1sIc4zxdknAX7xoPkV1lM4TA+U+Ld9Gn
- QSMP0Z4Wg6i7469sSLzJrZPZ/nb8hcl/YxWs=
-X-Received: by 2002:ae9:ea19:: with SMTP id f25mr8455948qkg.341.1629815045876; 
- Tue, 24 Aug 2021 07:24:05 -0700 (PDT)
-X-Google-Smtp-Source: ABdhPJz0k36wj5zNWxDPPKfaTblHo9ascSv6RZDAgZIszilZOADFHpaoZorFodsGnWRqf0RVmvNYxA==
-X-Received: by 2002:ae9:ea19:: with SMTP id f25mr8455927qkg.341.1629815045702; 
- Tue, 24 Aug 2021 07:24:05 -0700 (PDT)
+ bh=jS4DMiYMJEvLKBLFhfVXQbwK/7O32UF1dBTczqvLw1Y=;
+ b=nuh50wsxsFSPs7+zuPeHXAvIeYulggkZmVAUUstyy78BPccJFhJxLsdxUYnbG9+1tA
+ 106eZQ1Z9N1E7fp2V3FNAHw4VXjxL1Xwch7BPPcLPo/+0U6vv4OuH0MboPGs3Fia9FUi
+ dUuGi4N75WinVJ0CRpdqE0HeB3XTzEGSKumtXUaFzrlNptAppwHJ8kBGjtBx9Z04PSj3
+ E9hOJVZGeWtsFxkcIVdGRSKMBrG+px7XsE3SWWaawjDDpqhK/XrENaVECn9CQNDAf75+
+ cTDaoz/8hAj36Kt3hxqxolYxbmUU9BXOYHu7OE4cUZyb0CDXyS4F3i2QloWddsqoNQRy
+ BR+w==
+X-Gm-Message-State: AOAM5332qWJnSr/brEd/f6OrAJH57fA+qZ+f5pqjtMm8kqFDMJEfzyKC
+ P1S+833qaKou8j1DxMpfBGqbxj05ALQS3QOLEHyI5IgflnxgZYo3qd+rNWOsFsLNfjHlkRSp9NM
+ o7aNlkLvb4R24+USYUDLoJ9cbB7JfvLbPxJE=
+X-Received: by 2002:a05:620a:4050:: with SMTP id
+ i16mr25621274qko.90.1629815121783; 
+ Tue, 24 Aug 2021 07:25:21 -0700 (PDT)
+X-Google-Smtp-Source: ABdhPJyw/vN4HfM869zB70GdhFgvXTyrDBhnvRbUsGuCtjTO3eGJIomB0OdYM13LOc5okIw+BG25bQ==
+X-Received: by 2002:a05:620a:4050:: with SMTP id
+ i16mr25621249qko.90.1629815121635; 
+ Tue, 24 Aug 2021 07:25:21 -0700 (PDT)
 Received: from [192.168.1.3] (68-20-15-154.lightspeed.rlghnc.sbcglobal.net.
  [68.20.15.154])
- by smtp.gmail.com with ESMTPSA id f29sm273492qtv.34.2021.08.24.07.24.04
+ by smtp.gmail.com with ESMTPSA id w20sm10217864qkj.116.2021.08.24.07.25.20
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Tue, 24 Aug 2021 07:24:05 -0700 (PDT)
-Message-ID: <6370d0a74c3ceb79c53305a64ba7a982d16d34b4.camel@redhat.com>
+ Tue, 24 Aug 2021 07:25:21 -0700 (PDT)
+Message-ID: <01c442d2b3aff85e0e95bfefb44ac6e77eb3373f.camel@redhat.com>
 From: Jeff Layton <jlayton@redhat.com>
 To: David Howells <dhowells@redhat.com>, linux-cachefs@redhat.com
-Date: Tue, 24 Aug 2021 10:24:04 -0400
-In-Reply-To: <162431203107.2908479.3259582550347000088.stgit@warthog.procyon.org.uk>
+Date: Tue, 24 Aug 2021 10:25:20 -0400
+In-Reply-To: <162431188431.2908479.14031376932042135080.stgit@warthog.procyon.org.uk>
 References: <162431188431.2908479.14031376932042135080.stgit@warthog.procyon.org.uk>
- <162431203107.2908479.3259582550347000088.stgit@warthog.procyon.org.uk>
 User-Agent: Evolution 3.40.4 (3.40.4-1.fc34)
 MIME-Version: 1.0
 Authentication-Results: relay.mimecast.com;
  auth=pass smtp.auth=CUSA124A263 smtp.mailfrom=jlayton@redhat.com
 X-Mimecast-Spam-Score: 0
 X-Mimecast-Originator: redhat.com
-X-Spam-Score: -0.8 (/)
-X-Spam-Report: Spam Filtering performed by mx.sourceforge.net.
- See http://spamassassin.org/tag/ for more details.
+X-Spam-Score: -1.6 (-)
+X-Spam-Report: Spam detection software,
+ running on the system "util-spamd-1.v13.lw.sourceforge.com", 
+ has NOT identified this incoming email as spam.  The original
+ message has been attached to this so you can view it or label
+ similar future email.  If you have any questions, see
+ the administrator of that system for details.
+ Content preview:  On Mon, 2021-06-21 at 22:44 +0100, David Howells wrote: >
+ Here are some patches that perform some preparatory work for the fscache >
+ rewrite that's being worked on. These include: > > (1) Always selec [...]
+ Content analysis details:   (-1.6 points, 6.0 required)
+ pts rule name              description
+ ---- ---------------------- --------------------------------------------------
+ -0.7 RCVD_IN_DNSWL_LOW      RBL: Sender listed at https://www.dnswl.org/,
+ low trust [216.205.24.124 listed in list.dnswl.org]
+ -0.0 RCVD_IN_MSPIKE_H2      RBL: Average reputation (+2)
+ [216.205.24.124 listed in wl.mailspike.net]
  -0.0 SPF_PASS               SPF: sender matches SPF record
  0.0 SPF_HELO_NONE          SPF: HELO does not publish an SPF Record
- -0.0 RCVD_IN_MSPIKE_H2      RBL: Average reputation (+2)
- [170.10.133.124 listed in wl.mailspike.net]
- -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from author's
- domain
  -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
- 0.1 DKIM_SIGNED            Message has a DKIM or DK signature,
- not necessarily valid
- -0.7 DKIMWL_WL_HIGH         DKIMwl.org - High trust sender
-X-Headers-End: 1mIXLc-0005Mq-3D
-Subject: Re: [V9fs-developer] [PATCH 11/12] fscache: Fix
- fscache_cookie_put() to not deref after dec
+ -0.1 DKIM_VALID_EF          Message has a valid DKIM or DK signature from
+ envelope-from domain
+ -0.1 DKIM_VALID_AU          Message has a valid DKIM or DK signature from
+ author's domain
+ 0.1 DKIM_SIGNED            Message has a DKIM or DK signature, not necessarily
+ valid -0.7 DKIMWL_WL_HIGH         DKIMwl.org - High trust sender
+X-Headers-End: 1mIXMn-00GxAS-N5
+Subject: Re: [V9fs-developer] [PATCH 00/12] fscache: Some prep work for
+ fscache rewrite
 X-BeenThere: v9fs-developer@lists.sourceforge.net
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -128,146 +142,99 @@ Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: v9fs-developer-bounces@lists.sourceforge.net
 
-On Mon, 2021-06-21 at 22:47 +0100, David Howells wrote:
-> fscache_cookie_put() accesses the cookie it has just put inside the
-> tracepoint that monitors the change - but this is something it's not
-> allowed to do if we didn't reduce the count to zero.
-
-Do you mean "if the count went to zero." ?
-
+On Mon, 2021-06-21 at 22:44 +0100, David Howells wrote:
+> Here are some patches that perform some preparatory work for the fscache
+> rewrite that's being worked on.  These include:
 > 
-> Fix this by dropping most of those values from the tracepoint and grabbing
-> the cookie debug ID before doing the dec.
+>  (1) Always select netfs stats when enabling fscache stats since they're
+>      displayed through the same procfile.
 > 
-> Also take the opportunity to switch over the usage and where arguments on
-> the tracepoint to put the reason last.
+>  (2) Add a cookie debug ID that can be used in tracepoints instead of a
+>      pointer and cache it in the netfs_cache_resources struct rather than
+>      in the netfs_read_request struct to make it more available.
 > 
-> Signed-off-by: David Howells <dhowells@redhat.com>
+>  (3) Use file_inode() in cachefiles rather than dereferencing file->f_inode
+>      directly.
+> 
+>  (4) Provide a procfile to display fscache cookies.
+> 
+>  (5) Remove the fscache and cachefiles histogram procfiles.
+> 
+>  (6) Remove the fscache object list procfile.
+> 
+>  (7) Avoid using %p in fscache and cachefiles as the value is hashed and
+>      not comparable to the register dump in an oops trace.
+> 
+>  (8) Fix the cookie hash function to actually achieve useful dispersion.
+> 
+>  (9) Fix fscache_cookie_put() so that it doesn't dereference the cookie
+>      pointer in the tracepoint after the refcount has been decremented
+>      (we're only allowed to do that if we decremented it to zero).
+> 
+> (10) Use refcount_t rather than atomic_t for the fscache_cookie refcount.
+> 
+> The patches can be found on this branch:
+> 
+> 	http://git.kernel.org/cgit/linux/kernel/git/dhowells/linux-fs.git/log/?h=fscache-next
+> 
+> David
 > ---
+> David Howells (12):
+>       fscache: Select netfs stats if fscache stats are enabled
+>       netfs: Move cookie debug ID to struct netfs_cache_resources
+>       cachefiles: Use file_inode() rather than accessing ->f_inode
+>       fscache: Add a cookie debug ID and use that in traces
+>       fscache: Procfile to display cookies
+>       fscache, cachefiles: Remove the histogram stuff
+>       fscache: Remove the object list procfile
+>       fscache: Change %p in format strings to something else
+>       cachefiles: Change %p in format strings to something else
+>       fscache: Fix cookie key hashing
+>       fscache: Fix fscache_cookie_put() to not deref after dec
+>       fscache: Use refcount_t for the cookie refcount instead of atomic_t
 > 
->  fs/fscache/cookie.c            |   10 ++++++----
->  fs/fscache/internal.h          |    2 +-
->  fs/fscache/netfs.c             |    2 +-
->  include/trace/events/fscache.h |   24 +++++++-----------------
->  4 files changed, 15 insertions(+), 23 deletions(-)
 > 
-> diff --git a/fs/fscache/cookie.c b/fs/fscache/cookie.c
-> index 2558814193e9..6df3732cf1b4 100644
-> --- a/fs/fscache/cookie.c
-> +++ b/fs/fscache/cookie.c
-> @@ -225,8 +225,8 @@ struct fscache_cookie *fscache_hash_cookie(struct fscache_cookie *candidate)
->  
->  collision:
->  	if (test_and_set_bit(FSCACHE_COOKIE_ACQUIRED, &cursor->flags)) {
-> -		trace_fscache_cookie(cursor, fscache_cookie_collision,
-> -				     atomic_read(&cursor->usage));
-> +		trace_fscache_cookie(cursor->debug_id, atomic_read(&cursor->usage),
-> +				     fscache_cookie_collision);
->  		pr_err("Duplicate cookie detected\n");
->  		fscache_print_cookie(cursor, 'O');
->  		fscache_print_cookie(candidate, 'N');
-> @@ -305,7 +305,8 @@ struct fscache_cookie *__fscache_acquire_cookie(
->  
->  	cookie = fscache_hash_cookie(candidate);
->  	if (!cookie) {
-> -		trace_fscache_cookie(candidate, fscache_cookie_discard, 1);
-> +		trace_fscache_cookie(candidate->debug_id, 1,
-> +				     fscache_cookie_discard);
->  		goto out;
->  	}
->  
-> @@ -866,8 +867,9 @@ void fscache_cookie_put(struct fscache_cookie *cookie,
->  	_enter("%x", cookie->debug_id);
->  
->  	do {
-> +		unsigned int cookie_debug_id = cookie->debug_id;
->  		usage = atomic_dec_return(&cookie->usage);
-> -		trace_fscache_cookie(cookie, where, usage);
-> +		trace_fscache_cookie(cookie_debug_id, usage, where);
->  
->  		if (usage > 0)
->  			return;
-> diff --git a/fs/fscache/internal.h b/fs/fscache/internal.h
-> index a49136c63e4b..345105dbbfd1 100644
-> --- a/fs/fscache/internal.h
-> +++ b/fs/fscache/internal.h
-> @@ -291,7 +291,7 @@ static inline void fscache_cookie_get(struct fscache_cookie *cookie,
->  {
->  	int usage = atomic_inc_return(&cookie->usage);
->  
-> -	trace_fscache_cookie(cookie, where, usage);
-> +	trace_fscache_cookie(cookie->debug_id, usage, where);
->  }
->  
->  /*
-> diff --git a/fs/fscache/netfs.c b/fs/fscache/netfs.c
-> index cce92216fa28..d6bdb7b5e723 100644
-> --- a/fs/fscache/netfs.c
-> +++ b/fs/fscache/netfs.c
-> @@ -37,7 +37,7 @@ int __fscache_register_netfs(struct fscache_netfs *netfs)
->  	if (!cookie)
->  		goto already_registered;
->  	if (cookie != candidate) {
-> -		trace_fscache_cookie(candidate, fscache_cookie_discard, 1);
-> +		trace_fscache_cookie(candidate->debug_id, 1, fscache_cookie_discard);
->  		fscache_free_cookie(candidate);
->  	}
->  
-> diff --git a/include/trace/events/fscache.h b/include/trace/events/fscache.h
-> index 0b9e058aba4d..55b8802740fa 100644
-> --- a/include/trace/events/fscache.h
-> +++ b/include/trace/events/fscache.h
-> @@ -160,37 +160,27 @@ fscache_cookie_traces;
->  
->  
->  TRACE_EVENT(fscache_cookie,
-> -	    TP_PROTO(struct fscache_cookie *cookie,
-> -		     enum fscache_cookie_trace where,
-> -		     int usage),
-> +	    TP_PROTO(unsigned int cookie_debug_id,
-> +		     int usage,
-> +		     enum fscache_cookie_trace where),
->  
-> -	    TP_ARGS(cookie, where, usage),
-> +	    TP_ARGS(cookie_debug_id, usage, where),
->  
->  	    TP_STRUCT__entry(
->  		    __field(unsigned int,		cookie		)
-> -		    __field(unsigned int,		parent		)
->  		    __field(enum fscache_cookie_trace,	where		)
->  		    __field(int,			usage		)
-> -		    __field(int,			n_children	)
-> -		    __field(int,			n_active	)
-> -		    __field(u8,				flags		)
->  			     ),
->  
->  	    TP_fast_assign(
-> -		    __entry->cookie	= cookie->debug_id;
-> -		    __entry->parent	= cookie->parent ? cookie->parent->debug_id : 0;
-> +		    __entry->cookie	= cookie_debug_id;
->  		    __entry->where	= where;
->  		    __entry->usage	= usage;
-> -		    __entry->n_children	= atomic_read(&cookie->n_children);
-> -		    __entry->n_active	= atomic_read(&cookie->n_active);
-> -		    __entry->flags	= cookie->flags;
->  			   ),
->  
-> -	    TP_printk("%s c=%08x u=%d p=%08x Nc=%d Na=%d f=%02x",
-> +	    TP_printk("%s c=%08x u=%d",
->  		      __print_symbolic(__entry->where, fscache_cookie_traces),
-> -		      __entry->cookie, __entry->usage,
-> -		      __entry->parent, __entry->n_children, __entry->n_active,
-> -		      __entry->flags)
-> +		      __entry->cookie, __entry->usage)
->  	    );
->  
->  TRACE_EVENT(fscache_netfs,
+>  fs/cachefiles/Kconfig             |  19 --
+>  fs/cachefiles/Makefile            |   2 -
+>  fs/cachefiles/bind.c              |   2 -
+>  fs/cachefiles/interface.c         |   6 +-
+>  fs/cachefiles/internal.h          |  25 --
+>  fs/cachefiles/io.c                |   6 +-
+>  fs/cachefiles/key.c               |   2 +-
+>  fs/cachefiles/main.c              |   7 -
+>  fs/cachefiles/namei.c             |  61 ++---
+>  fs/cachefiles/proc.c              | 114 --------
+>  fs/cachefiles/xattr.c             |   4 +-
+>  fs/fscache/Kconfig                |  24 --
+>  fs/fscache/Makefile               |   2 -
+>  fs/fscache/cache.c                |  11 +-
+>  fs/fscache/cookie.c               | 201 +++++++++++----
+>  fs/fscache/fsdef.c                |   3 +-
+>  fs/fscache/histogram.c            |  87 -------
+>  fs/fscache/internal.h             |  57 +---
+>  fs/fscache/main.c                 |  39 +++
+>  fs/fscache/netfs.c                |   2 +-
+>  fs/fscache/object-list.c          | 414 ------------------------------
+>  fs/fscache/object.c               |   8 -
+>  fs/fscache/operation.c            |   3 -
+>  fs/fscache/page.c                 |   6 -
+>  fs/fscache/proc.c                 |  20 +-
+>  include/linux/fscache-cache.h     |   4 -
+>  include/linux/fscache.h           |   4 +-
+>  include/linux/netfs.h             |   2 +-
+>  include/trace/events/cachefiles.h |  68 ++---
+>  include/trace/events/fscache.h    | 160 ++++++------
+>  include/trace/events/netfs.h      |   2 +-
+>  31 files changed, 367 insertions(+), 998 deletions(-)
+>  delete mode 100644 fs/cachefiles/proc.c
+>  delete mode 100644 fs/fscache/histogram.c
+>  delete mode 100644 fs/fscache/object-list.c
 > 
 > 
 
-Patch itself looks fine though.
--- 
-Jeff Layton <jlayton@redhat.com>
+This all looks good (modulo a nitpicky changelog comment). You can add:
+
+Reviewed-by: Jeff Layton <jlayton@redhat.com>
 
 
 
