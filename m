@@ -2,108 +2,95 @@ Return-Path: <v9fs-developer-bounces@lists.sourceforge.net>
 X-Original-To: lists+v9fs-developer@lfdr.de
 Delivered-To: lists+v9fs-developer@lfdr.de
 Received: from lists.sourceforge.net (lists.sourceforge.net [216.105.38.7])
-	by mail.lfdr.de (Postfix) with ESMTPS id 748443F9775
-	for <lists+v9fs-developer@lfdr.de>; Fri, 27 Aug 2021 11:44:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 9CC8E3F9902
+	for <lists+v9fs-developer@lfdr.de>; Fri, 27 Aug 2021 14:31:53 +0200 (CEST)
 Received: from [127.0.0.1] (helo=sfs-ml-4.v29.lw.sourceforge.com)
 	by sfs-ml-4.v29.lw.sourceforge.com with esmtp (Exim 4.90_1)
 	(envelope-from <v9fs-developer-bounces@lists.sourceforge.net>)
-	id 1mJYPi-0007ET-6F; Fri, 27 Aug 2021 09:44:42 +0000
+	id 1mJb1S-00028Q-Ty; Fri, 27 Aug 2021 12:31:50 +0000
 Received: from [172.30.20.202] (helo=mx.sourceforge.net)
  by sfs-ml-4.v29.lw.sourceforge.com with esmtps
  (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.90_1)
- (envelope-from <dhowells@redhat.com>) id 1mJYPh-0007EN-Bq
- for v9fs-developer@lists.sourceforge.net; Fri, 27 Aug 2021 09:44:41 +0000
+ (envelope-from <dhowells@redhat.com>) id 1mJb1S-00028G-0X
+ for v9fs-developer@lists.sourceforge.net; Fri, 27 Aug 2021 12:31:50 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=sourceforge.net; s=x; h=Content-Transfer-Encoding:Content-Type:MIME-Version
- :References:In-Reply-To:Message-ID:Date:Cc:To:From:Subject:Sender:Reply-To:
- Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
- Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
- List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=gt3cNpgnPnlnGTHhbBV3QVTTqpuF38OZnnwBo6/e2Z4=; b=O1q7vYdxc8iyq9XK58i2/GDvAg
- 9aZVjW4zx0RNjxTkuGB/9AWzikGPI6sc2DokhQ9UB+4htnSIRjOWD1uOidyI1n+RT2nYPgWCn3hYN
- POx0ztY4RUofZqGRlD0AAzi1C5ljCTzmbXAN940HzDQLm7QtC4kb6qfkPcSYMiJ4L+9A=;
+ d=sourceforge.net; s=x; h=Message-ID:Date:Content-Transfer-Encoding:
+ Content-ID:Content-Type:MIME-Version:Subject:Cc:To:References:In-Reply-To:
+ From:Sender:Reply-To:Content-Description:Resent-Date:Resent-From:
+ Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:
+ List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
+ bh=d3KUkFru2tejgFAWQZhtpos3ilYaMv4T3AywQvnrGWY=; b=Sb51IoUHWXI1Xzx51wV4ttjqox
+ 68sQUD2Cp8GvUSPSlUUVDhFzg4dkbgsM9BIsuihztUfjJBshAS26THOLdGttXfo6yupncYIjW2WOx
+ ewb5iQQWt/gZtG1+VqfDiEHWhjs9iDAIJVNyRCQHj98WunNYQXLxI/TiHOVi/R8NrKVU=;
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  ;
- h=Content-Transfer-Encoding:Content-Type:MIME-Version:References:
- In-Reply-To:Message-ID:Date:Cc:To:From:Subject:Sender:Reply-To:Content-ID:
+ h=Message-ID:Date:Content-Transfer-Encoding:Content-ID:Content-Type:
+ MIME-Version:Subject:Cc:To:References:In-Reply-To:From:Sender:Reply-To:
  Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
  :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
  List-Post:List-Owner:List-Archive;
- bh=gt3cNpgnPnlnGTHhbBV3QVTTqpuF38OZnnwBo6/e2Z4=; b=cNyPSYUb+OZT68O1L0yu2vA4iD
- vyAy94GFsjJPvPUIQtah/tMjh5WCJC3Lq0IfZLcdEi/vL6rB5itxD0UEDxVYT5X/4XJc722PNMl+K
- yToBeUQ5ui0SDH4g2DDpn2FFYoSHdU5X6ea1toXlgOCNgORvYmF5/uzrhqpXnG2faIrw=;
+ bh=d3KUkFru2tejgFAWQZhtpos3ilYaMv4T3AywQvnrGWY=; b=Sm1DIy0d6LFIMvxYYwFAGP9LFA
+ 8iubhYE5uUxXCpYbG9sWRRgxmVbBpeev9rdyv+XngzEFauBMArjui5o50JR/6T5MZgytTNoUxnJZh
+ npy5t5zyeYhno6Rj17zFjIOMe6Yi5p2d/rjpxrszfUIYPGjSr/a/LuQVFGc/5tSuYqiA=;
 Received: from us-smtp-delivery-124.mimecast.com ([170.10.133.124])
- by sfi-mx-1.v28.lw.sourceforge.com with esmtps
+ by sfi-mx-2.v28.lw.sourceforge.com with esmtps
  (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.92.3)
- id 1mJYPf-0032z6-V9
- for v9fs-developer@lists.sourceforge.net; Fri, 27 Aug 2021 09:44:41 +0000
+ id 1mJb1O-0006cZ-8R
+ for v9fs-developer@lists.sourceforge.net; Fri, 27 Aug 2021 12:31:49 +0000
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
- s=mimecast20190719; t=1630057474;
+ s=mimecast20190719; t=1630067500;
  h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
  to:to:cc:cc:mime-version:mime-version:content-type:content-type:
  content-transfer-encoding:content-transfer-encoding:
  in-reply-to:in-reply-to:references:references;
- bh=gt3cNpgnPnlnGTHhbBV3QVTTqpuF38OZnnwBo6/e2Z4=;
- b=MN1I8rfH9ksh9qu24lWYHosN6yqOnz+C34/8awgbN9US5HjKAdd1Qi5oT/VBIzW4a/EfrG
- UXP66hywkJr05aaXt5cVPpHCD/zaCa5rz50tfydiG5/d2+vjpoFrrWjNpcjthg7eIyUtS1
- HcJIuGxQeQ3oW0u/j9v2+NdXp9b6ST0=
+ bh=d3KUkFru2tejgFAWQZhtpos3ilYaMv4T3AywQvnrGWY=;
+ b=U2GASZymd3ZIWeE1QOI3uFVBLB4ATkCh3z2L5pfBdeQUcoR1qmDRivlD2xNQoETnA/fe1U
+ R9oi2haGG+GK6rO1RVXDxJoj7OuVLDT3pvLqpV9+8Pm7hgnhgNz4/Fw+FEDEGJnSpsUAAQ
+ a1M122hj4tph9gOvfmgrEdnXIFnLiz0=
 Received: from mimecast-mx01.redhat.com (mimecast-mx01.redhat.com
  [209.132.183.4]) (Using TLS) by relay.mimecast.com with ESMTP id
- us-mta-180-xHajqhRZMGO4nCwQ6vi3Tw-1; Fri, 27 Aug 2021 05:44:32 -0400
-X-MC-Unique: xHajqhRZMGO4nCwQ6vi3Tw-1
-Received: from smtp.corp.redhat.com (int-mx07.intmail.prod.int.phx2.redhat.com
- [10.5.11.22])
+ us-mta-196-f4nEQs2oP1-fovr00uWqoQ-1; Fri, 27 Aug 2021 08:31:38 -0400
+X-MC-Unique: f4nEQs2oP1-fovr00uWqoQ-1
+Received: from smtp.corp.redhat.com (int-mx03.intmail.prod.int.phx2.redhat.com
+ [10.5.11.13])
  (using TLSv1.2 with cipher AECDH-AES256-SHA (256/256 bits))
  (No client certificate requested)
- by mimecast-mx01.redhat.com (Postfix) with ESMTPS id 82E4C94EE1;
- Fri, 27 Aug 2021 09:44:30 +0000 (UTC)
+ by mimecast-mx01.redhat.com (Postfix) with ESMTPS id EDF6B100806B;
+ Fri, 27 Aug 2021 12:31:36 +0000 (UTC)
 Received: from warthog.procyon.org.uk (unknown [10.33.36.36])
- by smtp.corp.redhat.com (Postfix) with ESMTP id 11992100AE35;
- Fri, 27 Aug 2021 09:44:22 +0000 (UTC)
+ by smtp.corp.redhat.com (Postfix) with ESMTP id 2C604608BA;
+ Fri, 27 Aug 2021 12:31:30 +0000 (UTC)
 Organization: Red Hat UK Ltd. Registered Address: Red Hat UK Ltd, Amberley
  Place, 107-111 Peascod Street, Windsor, Berkshire, SI4 1TE, United
  Kingdom.
  Registered in England and Wales under Company Registration No. 3798903
 From: David Howells <dhowells@redhat.com>
-To: "Matthew Wilcox (Oracle)" <willy@infradead.org>
-Date: Fri, 27 Aug 2021 10:44:22 +0100
-Message-ID: <163005746215.2472992.8321380998443828308.stgit@warthog.procyon.org.uk>
-In-Reply-To: <163005740700.2472992.12365214290752300378.stgit@warthog.procyon.org.uk>
-References: <163005740700.2472992.12365214290752300378.stgit@warthog.procyon.org.uk>
-User-Agent: StGit/0.23
+In-Reply-To: <162431193544.2908479.17556704572948300790.stgit@warthog.procyon.org.uk>
+References: <162431193544.2908479.17556704572948300790.stgit@warthog.procyon.org.uk>
+ <162431188431.2908479.14031376932042135080.stgit@warthog.procyon.org.uk>
+To: linux-cachefs@redhat.com, marc.dionne@auristor.com
 MIME-Version: 1.0
-X-Scanned-By: MIMEDefang 2.84 on 10.5.11.22
-X-Spam-Score: -1.6 (-)
-X-Spam-Report: Spam detection software,
- running on the system "util-spamd-1.v13.lw.sourceforge.com", 
- has NOT identified this incoming email as spam.  The original
- message has been attached to this so you can view it or label
- similar future email.  If you have any questions, see
- the administrator of that system for details.
- Content preview: Convert the AFS directory handling code to use folios. With
- these changes, afs passes -g quick xfstests. Signed-off-by: David Howells
- <dhowells@redhat.com> cc: Matthew Wilcox (Oracle) <willy@infradead.org> cc:
- Jeff Layton <jlayton@kernel.org> cc: Marc Dionne <marc.dionne@auristor.com>
- cc: Ilya Dryomov <i [...] 
- Content analysis details:   (-1.6 points, 6.0 required)
- pts rule name              description
- ---- ---------------------- --------------------------------------------------
+Content-ID: <2512395.1630067489.1@warthog.procyon.org.uk>
+Date: Fri, 27 Aug 2021 13:31:29 +0100
+Message-ID: <2512396.1630067489@warthog.procyon.org.uk>
+X-Scanned-By: MIMEDefang 2.79 on 10.5.11.13
+X-Spam-Score: -0.8 (/)
+X-Spam-Report: Spam Filtering performed by mx.sourceforge.net.
+ See http://spamassassin.org/tag/ for more details.
  -0.0 RCVD_IN_MSPIKE_H2      RBL: Average reputation (+2)
  [170.10.133.124 listed in wl.mailspike.net]
- -0.7 RCVD_IN_DNSWL_LOW      RBL: Sender listed at https://www.dnswl.org/,
- low trust [170.10.133.124 listed in list.dnswl.org]
  -0.0 SPF_PASS               SPF: sender matches SPF record
  0.0 SPF_HELO_NONE          SPF: HELO does not publish an SPF Record
+ -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from author's
+ domain
  -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
- -0.1 DKIM_VALID_EF          Message has a valid DKIM or DK signature from
- envelope-from domain
- -0.1 DKIM_VALID_AU          Message has a valid DKIM or DK signature from
- author's domain
- 0.1 DKIM_SIGNED            Message has a DKIM or DK signature, not necessarily
- valid -0.7 DKIMWL_WL_HIGH         DKIMwl.org - High trust sender
-X-Headers-End: 1mJYPf-0032z6-V9
-Subject: [V9fs-developer] [PATCH v2 6/6] afs: Use folios in directory
- handling
+ 0.1 DKIM_SIGNED            Message has a DKIM or DK signature,
+ not necessarily valid
+ -0.7 DKIMWL_WL_HIGH         DKIMwl.org - High trust sender
+ 0.0 AWL AWL: Adjusted score from AWL reputation of From: address
+X-Headers-End: 1mJb1O-0006cZ-8R
+Subject: [V9fs-developer] [PATCH v2 04/12] fscache: Add a cookie debug ID
+ and use that in traces
 X-BeenThere: v9fs-developer@lists.sourceforge.net
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -115,754 +102,791 @@ List-Post: <mailto:v9fs-developer@lists.sourceforge.net>
 List-Help: <mailto:v9fs-developer-request@lists.sourceforge.net?subject=help>
 List-Subscribe: <https://lists.sourceforge.net/lists/listinfo/v9fs-developer>, 
  <mailto:v9fs-developer-request@lists.sourceforge.net?subject=subscribe>
-Cc: linux-cifs@vger.kernel.org, linux-nfs@vger.kernel.org, linux-mm@kvack.org,
- Jeff Layton <jlayton@kernel.org>, linux-kernel@vger.kernel.org,
- linux-afs@lists.infradead.org, dhowells@redhat.com,
- linux-fsdevel@vger.kernel.org, linux-cachefs@redhat.com,
- Marc Dionne <marc.dionne@auristor.com>, v9fs-developer@lists.sourceforge.net,
- ceph-devel@vger.kernel.org, Ilya Dryomov <idryomov@gmail.com>,
- devel@lists.orangefs.org
+Cc: Steve French <sfrench@samba.org>, linux-nfs@vger.kernel.org,
+ linux-afs@lists.infradead.org, Jeff Layton <jlayton@redhat.com>,
+ linux-cifs@vger.kernel.org, linux-kernel@vger.kernel.org,
+ Anna Schumaker <anna.schumaker@netapp.com>, dhowells@redhat.com,
+ linux-fsdevel@vger.kernel.org, v9fs-developer@lists.sourceforge.net,
+ ceph-devel@vger.kernel.org, David Wysochanski <dwysocha@redhat.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: v9fs-developer-bounces@lists.sourceforge.net
 
-Convert the AFS directory handling code to use folios.
+    
+Add a cookie debug ID and use that in traces and in procfiles rather than
+displaying the (hashed) pointer to the cookie.  This is easier to correlate
+and we don't lose anything when interpreting oops output since that shows
+unhashed addresses and registers that aren't comparable to the hashed
+values.
 
-With these changes, afs passes -g quick xfstests.
+Changes:
+
+ver #2:
+ - Fix the fscache_op tracepoint to handle a NULL cookie pointer.
 
 Signed-off-by: David Howells <dhowells@redhat.com>
-cc: Matthew Wilcox (Oracle) <willy@infradead.org>
-cc: Jeff Layton <jlayton@kernel.org>
-cc: Marc Dionne <marc.dionne@auristor.com>
-cc: Ilya Dryomov <idryomov@gmail.com>
-cc: linux-afs@lists.infradead.org
-cc: ceph-devel@vger.kernel.org
+Reviewed-by: Jeff Layton <jlayton@redhat.com>
 cc: linux-cachefs@redhat.com
-Link: https://lore.kernel.org/r/162877312172.3085614.992850861791211206.stgit@warthog.procyon.org.uk/
-Link: https://lore.kernel.org/r/162981154845.1901565.2078707403143240098.stgit@warthog.procyon.org.uk/
+Link: https://lore.kernel.org/r/158861210988.340223.11688464116498247790.stgit@warthog.procyon.org.uk/ # rfc
+Link: https://lore.kernel.org/r/159465769844.1376105.14119502774019865432.stgit@warthog.procyon.org.uk/
+Link: https://lore.kernel.org/r/160588459097.3465195.1273313637721852165.stgit@warthog.procyon.org.uk/ # rfc
+Link: https://lore.kernel.org/r/162431193544.2908479.17556704572948300790.stgit@warthog.procyon.org.uk/
 ---
+ fs/fscache/cookie.c               |   29 ++++++---
+ fs/fscache/fsdef.c                |    1 
+ fs/fscache/object-list.c          |   14 ++--
+ include/linux/fscache.h           |    1 
+ include/trace/events/cachefiles.h |   68 +++++++++++-----------
+ include/trace/events/fscache.h    |  116 +++++++++++++++++++-------------------
+ 6 files changed, 121 insertions(+), 108 deletions(-)
 
- fs/afs/dir.c      |  229 ++++++++++++++++++++++-------------------------------
- fs/afs/dir_edit.c |  154 ++++++++++++++++++------------------
- 2 files changed, 174 insertions(+), 209 deletions(-)
-
-diff --git a/fs/afs/dir.c b/fs/afs/dir.c
-index 78719f2f567e..0c2e83311242 100644
---- a/fs/afs/dir.c
-+++ b/fs/afs/dir.c
-@@ -103,13 +103,13 @@ struct afs_lookup_cookie {
+diff --git a/fs/fscache/cookie.c b/fs/fscache/cookie.c
+index 751bc5b1cddf..f2be98d2c64d 100644
+--- a/fs/fscache/cookie.c
++++ b/fs/fscache/cookie.c
+@@ -29,21 +29,29 @@ static int fscache_attach_object(struct fscache_cookie *cookie,
+ 
+ static void fscache_print_cookie(struct fscache_cookie *cookie, char prefix)
+ {
+-	struct hlist_node *object;
++	struct fscache_object *object;
++	struct hlist_node *o;
+ 	const u8 *k;
+ 	unsigned loop;
+ 
+-	pr_err("%c-cookie c=%p [p=%p fl=%lx nc=%u na=%u]\n",
+-	       prefix, cookie, cookie->parent, cookie->flags,
++	pr_err("%c-cookie c=%08x [p=%08x fl=%lx nc=%u na=%u]\n",
++	       prefix,
++	       cookie->debug_id,
++	       cookie->parent ? cookie->parent->debug_id : 0,
++	       cookie->flags,
+ 	       atomic_read(&cookie->n_children),
+ 	       atomic_read(&cookie->n_active));
+-	pr_err("%c-cookie d=%p n=%p\n",
+-	       prefix, cookie->def, cookie->netfs_data);
++	pr_err("%c-cookie d=%p{%s} n=%p\n",
++	       prefix,
++	       cookie->def,
++	       cookie->def ? cookie->def->name : "?",
++	       cookie->netfs_data);
+ 
+-	object = READ_ONCE(cookie->backing_objects.first);
+-	if (object)
+-		pr_err("%c-cookie o=%p\n",
+-		       prefix, hlist_entry(object, struct fscache_object, cookie_link));
++	o = READ_ONCE(cookie->backing_objects.first);
++	if (o) {
++		object = hlist_entry(o, struct fscache_object, cookie_link);
++		pr_err("%c-cookie o=%u\n", prefix, object->debug_id);
++	}
+ 
+ 	pr_err("%c-key=[%u] '", prefix, cookie->key_len);
+ 	k = (cookie->key_len <= sizeof(cookie->inline_key)) ?
+@@ -129,6 +137,8 @@ static long fscache_compare_cookie(const struct fscache_cookie *a,
+ 	return memcmp(ka, kb, a->key_len);
+ }
+ 
++static atomic_t fscache_cookie_debug_id = ATOMIC_INIT(1);
++
+ /*
+  * Allocate a cookie.
+  */
+@@ -163,6 +173,7 @@ struct fscache_cookie *fscache_alloc_cookie(
+ 
+ 	atomic_set(&cookie->usage, 1);
+ 	atomic_set(&cookie->n_children, 0);
++	cookie->debug_id = atomic_inc_return(&fscache_cookie_debug_id);
+ 
+ 	/* We keep the active count elevated until relinquishment to prevent an
+ 	 * attempt to wake up every time the object operations queue quiesces.
+diff --git a/fs/fscache/fsdef.c b/fs/fscache/fsdef.c
+index 09ed8795ad86..5f8f6fe243fe 100644
+--- a/fs/fscache/fsdef.c
++++ b/fs/fscache/fsdef.c
+@@ -45,6 +45,7 @@ static struct fscache_cookie_def fscache_fsdef_index_def = {
  };
  
- /*
-- * Drop the refs that we're holding on the pages we were reading into.  We've
-+ * Drop the refs that we're holding on the folios we were reading into.  We've
-  * got refs on the first nr_pages pages.
-  */
- static void afs_dir_read_cleanup(struct afs_read *req)
- {
- 	struct address_space *mapping = req->vnode->vfs_inode.i_mapping;
--	struct page *page;
-+	struct folio *folio;
- 	pgoff_t last = req->nr_pages - 1;
- 
- 	XA_STATE(xas, &mapping->i_pages, 0);
-@@ -118,65 +118,56 @@ static void afs_dir_read_cleanup(struct afs_read *req)
- 		return;
- 
- 	rcu_read_lock();
--	xas_for_each(&xas, page, last) {
--		if (xas_retry(&xas, page))
-+	xas_for_each(&xas, folio, last) {
-+		if (xas_retry(&xas, folio))
- 			continue;
--		BUG_ON(xa_is_value(page));
--		BUG_ON(PageCompound(page));
--		ASSERTCMP(page->mapping, ==, mapping);
-+		BUG_ON(xa_is_value(folio));
-+		ASSERTCMP(folio_file_mapping(folio), ==, mapping);
- 
--		put_page(page);
-+		folio_put(folio);
+ struct fscache_cookie fscache_fsdef_index = {
++	.debug_id	= 1,
+ 	.usage		= ATOMIC_INIT(1),
+ 	.n_active	= ATOMIC_INIT(1),
+ 	.lock		= __SPIN_LOCK_UNLOCKED(fscache_fsdef_index.lock),
+diff --git a/fs/fscache/object-list.c b/fs/fscache/object-list.c
+index e106a1a1600d..1a0dc32c0a33 100644
+--- a/fs/fscache/object-list.c
++++ b/fs/fscache/object-list.c
+@@ -170,7 +170,7 @@ static int fscache_objlist_show(struct seq_file *m, void *v)
+ 	if ((unsigned long) v == 1) {
+ 		seq_puts(m, "OBJECT   PARENT   STAT CHLDN OPS OOP IPR EX READS"
+ 			 " EM EV FL S"
+-			 " | NETFS_COOKIE_DEF TY FL NETFS_DATA");
++			 " | COOKIE   NETFS_COOKIE_DEF TY FL NETFS_DATA");
+ 		if (config & (FSCACHE_OBJLIST_CONFIG_KEY |
+ 			      FSCACHE_OBJLIST_CONFIG_AUX))
+ 			seq_puts(m, "       ");
+@@ -189,7 +189,7 @@ static int fscache_objlist_show(struct seq_file *m, void *v)
+ 	if ((unsigned long) v == 2) {
+ 		seq_puts(m, "======== ======== ==== ===== === === === == ====="
+ 			 " == == == ="
+-			 " | ================ == == ================");
++			 " | ======== ================ == === ================");
+ 		if (config & (FSCACHE_OBJLIST_CONFIG_KEY |
+ 			      FSCACHE_OBJLIST_CONFIG_AUX))
+ 			seq_puts(m, " ================");
+@@ -231,9 +231,9 @@ static int fscache_objlist_show(struct seq_file *m, void *v)
  	}
  
- 	rcu_read_unlock();
- }
+ 	seq_printf(m,
+-		   "%8x %8x %s %5u %3u %3u %3u %2u %5u %2lx %2lx %2lx %1x | ",
++		   "%08x %08x %s %5u %3u %3u %3u %2u %5u %2lx %2lx %2lx %1x | ",
+ 		   obj->debug_id,
+-		   obj->parent ? obj->parent->debug_id : -1,
++		   obj->parent ? obj->parent->debug_id : UINT_MAX,
+ 		   obj->state->short_name,
+ 		   obj->n_children,
+ 		   obj->n_ops,
+@@ -246,7 +246,7 @@ static int fscache_objlist_show(struct seq_file *m, void *v)
+ 		   obj->flags,
+ 		   work_busy(&obj->work));
  
- /*
-- * check that a directory page is valid
-+ * check that a directory folio is valid
-  */
--static bool afs_dir_check_page(struct afs_vnode *dvnode, struct page *page,
--			       loff_t i_size)
-+static bool afs_dir_check_folio(struct afs_vnode *dvnode, struct folio *folio,
-+				loff_t i_size)
- {
--	struct afs_xdr_dir_page *dbuf;
--	loff_t latter, off;
--	int tmp, qty;
-+	union afs_xdr_dir_block *block;
-+	size_t offset, size;
-+	loff_t pos;
+-	if (fscache_use_cookie(obj)) {
++	if (obj->cookie) {
+ 		uint16_t keylen = 0, auxlen = 0;
  
--	/* Determine how many magic numbers there should be in this page, but
-+	/* Determine how many magic numbers there should be in this folio, but
- 	 * we must take care because the directory may change size under us.
- 	 */
--	off = page_offset(page);
--	if (i_size <= off)
-+	pos = folio_pos(folio);
-+	if (i_size <= pos)
- 		goto checked;
- 
--	latter = i_size - off;
--	if (latter >= PAGE_SIZE)
--		qty = PAGE_SIZE;
--	else
--		qty = latter;
--	qty /= sizeof(union afs_xdr_dir_block);
--
--	/* check them */
--	dbuf = kmap_atomic(page);
--	for (tmp = 0; tmp < qty; tmp++) {
--		if (dbuf->blocks[tmp].hdr.magic != AFS_DIR_MAGIC) {
--			printk("kAFS: %s(%lx): bad magic %d/%d is %04hx\n",
--			       __func__, dvnode->vfs_inode.i_ino, tmp, qty,
--			       ntohs(dbuf->blocks[tmp].hdr.magic));
--			trace_afs_dir_check_failed(dvnode, off, i_size);
--			kunmap(page);
-+	size = min_t(loff_t, folio_size(folio), i_size - pos);
-+	for (offset = 0; offset < size; offset += sizeof(*block)) {
-+		block = kmap_local_folio(folio, offset);
-+		if (block->hdr.magic != AFS_DIR_MAGIC) {
-+			printk("kAFS: %s(%lx): [%llx] bad magic %zx/%zx is %04hx\n",
-+			       __func__, dvnode->vfs_inode.i_ino,
-+			       pos, offset, size, ntohs(block->hdr.magic));
-+			trace_afs_dir_check_failed(dvnode, pos + offset, i_size);
-+			kunmap_local(block);
- 			trace_afs_file_error(dvnode, -EIO, afs_file_error_dir_bad_magic);
- 			goto error;
- 		}
- 
- 		/* Make sure each block is NUL terminated so we can reasonably
--		 * use string functions on it.  The filenames in the page
-+		 * use string functions on it.  The filenames in the folio
- 		 * *should* be NUL-terminated anyway.
- 		 */
--		((u8 *)&dbuf->blocks[tmp])[AFS_DIR_BLOCK_SIZE - 1] = 0;
--	}
--
--	kunmap_atomic(dbuf);
-+		((u8 *)block)[AFS_DIR_BLOCK_SIZE - 1] = 0;
- 
-+		kunmap_local(block);
-+	}
- checked:
- 	afs_stat_v(dvnode, n_read_dir);
- 	return true;
-@@ -190,11 +181,11 @@ static bool afs_dir_check_page(struct afs_vnode *dvnode, struct page *page,
-  */
- static void afs_dir_dump(struct afs_vnode *dvnode, struct afs_read *req)
- {
--	struct afs_xdr_dir_page *dbuf;
-+	union afs_xdr_dir_block *block;
- 	struct address_space *mapping = dvnode->vfs_inode.i_mapping;
--	struct page *page;
--	unsigned int i, qty = PAGE_SIZE / sizeof(union afs_xdr_dir_block);
-+	struct folio *folio;
- 	pgoff_t last = req->nr_pages - 1;
-+	size_t offset, size;
- 
- 	XA_STATE(xas, &mapping->i_pages, 0);
- 
-@@ -205,30 +196,28 @@ static void afs_dir_dump(struct afs_vnode *dvnode, struct afs_read *req)
- 		req->pos, req->nr_pages,
- 		req->iter->iov_offset,  iov_iter_count(req->iter));
- 
--	xas_for_each(&xas, page, last) {
--		if (xas_retry(&xas, page))
-+	xas_for_each(&xas, folio, last) {
-+		if (xas_retry(&xas, folio))
- 			continue;
- 
--		BUG_ON(PageCompound(page));
--		BUG_ON(page->mapping != mapping);
--
--		dbuf = kmap_atomic(page);
--		for (i = 0; i < qty; i++) {
--			union afs_xdr_dir_block *block = &dbuf->blocks[i];
-+		BUG_ON(folio_file_mapping(folio) != mapping);
- 
--			pr_warn("[%02lx] %32phN\n", page->index * qty + i, block);
-+		size = min_t(loff_t, folio_size(folio), req->actual_len - folio_pos(folio));
-+		for (offset = 0; offset < size; offset += sizeof(*block)) {
-+			block = kmap_local_folio(folio, offset);
-+			pr_warn("[%02lx] %32phN\n", folio_index(folio) + offset, block);
-+			kunmap_local(block);
- 		}
--		kunmap_atomic(dbuf);
- 	}
- }
- 
- /*
-- * Check all the pages in a directory.  All the pages are held pinned.
-+ * Check all the blocks in a directory.  All the folios are held pinned.
-  */
- static int afs_dir_check(struct afs_vnode *dvnode, struct afs_read *req)
- {
- 	struct address_space *mapping = dvnode->vfs_inode.i_mapping;
--	struct page *page;
-+	struct folio *folio;
- 	pgoff_t last = req->nr_pages - 1;
- 	int ret = 0;
- 
-@@ -238,14 +227,13 @@ static int afs_dir_check(struct afs_vnode *dvnode, struct afs_read *req)
- 		return 0;
- 
- 	rcu_read_lock();
--	xas_for_each(&xas, page, last) {
--		if (xas_retry(&xas, page))
-+	xas_for_each(&xas, folio, last) {
-+		if (xas_retry(&xas, folio))
- 			continue;
- 
--		BUG_ON(PageCompound(page));
--		BUG_ON(page->mapping != mapping);
-+		BUG_ON(folio_file_mapping(folio) != mapping);
- 
--		if (!afs_dir_check_page(dvnode, page, req->file_size)) {
-+		if (!afs_dir_check_folio(dvnode, folio, req->actual_len)) {
- 			afs_dir_dump(dvnode, req);
- 			ret = -EIO;
- 			break;
-@@ -274,15 +262,16 @@ static int afs_dir_open(struct inode *inode, struct file *file)
- 
- /*
-  * Read the directory into the pagecache in one go, scrubbing the previous
-- * contents.  The list of pages is returned, pinning them so that they don't
-+ * contents.  The list of folios is returned, pinning them so that they don't
-  * get reclaimed during the iteration.
-  */
- static struct afs_read *afs_read_dir(struct afs_vnode *dvnode, struct key *key)
- 	__acquires(&dvnode->validate_lock)
- {
-+	struct address_space *mapping = dvnode->vfs_inode.i_mapping;
- 	struct afs_read *req;
- 	loff_t i_size;
--	int nr_pages, i, n;
-+	int nr_pages, i;
- 	int ret;
- 
- 	_enter("");
-@@ -320,43 +309,30 @@ static struct afs_read *afs_read_dir(struct afs_vnode *dvnode, struct key *key)
- 	req->iter = &req->def_iter;
- 
- 	/* Fill in any gaps that we might find where the memory reclaimer has
--	 * been at work and pin all the pages.  If there are any gaps, we will
-+	 * been at work and pin all the folios.  If there are any gaps, we will
- 	 * need to reread the entire directory contents.
- 	 */
- 	i = req->nr_pages;
- 	while (i < nr_pages) {
--		struct page *pages[8], *page;
--
--		n = find_get_pages_contig(dvnode->vfs_inode.i_mapping, i,
--					  min_t(unsigned int, nr_pages - i,
--						ARRAY_SIZE(pages)),
--					  pages);
--		_debug("find %u at %u/%u", n, i, nr_pages);
--
--		if (n == 0) {
--			gfp_t gfp = dvnode->vfs_inode.i_mapping->gfp_mask;
-+		struct folio *folio;
- 
-+		folio = filemap_get_folio(mapping, i);
-+		if (!folio) {
- 			if (test_and_clear_bit(AFS_VNODE_DIR_VALID, &dvnode->flags))
- 				afs_stat_v(dvnode, n_inval);
- 
- 			ret = -ENOMEM;
--			page = __page_cache_alloc(gfp);
--			if (!page)
-+			folio = __filemap_get_folio(mapping,
-+						    i, FGP_LOCK | FGP_CREAT,
-+						    mapping->gfp_mask);
-+			if (!folio)
- 				goto error;
--			ret = add_to_page_cache_lru(page,
--						    dvnode->vfs_inode.i_mapping,
--						    i, gfp);
--			if (ret < 0)
--				goto error;
--
--			attach_page_private(page, (void *)1);
--			unlock_page(page);
--			req->nr_pages++;
--			i++;
--		} else {
--			req->nr_pages += n;
--			i += n;
-+			folio_attach_private(folio, (void *)1);
-+			folio_unlock(folio);
- 		}
-+
-+		req->nr_pages += folio_nr_pages(folio);
-+		i += folio_nr_pages(folio);
- 	}
- 
- 	/* If we're going to reload, we need to lock all the pages to prevent
-@@ -424,7 +400,7 @@ static int afs_dir_iterate_block(struct afs_vnode *dvnode,
- 	size_t nlen;
- 	int tmp;
- 
--	_enter("%u,%x,%p,,",(unsigned)ctx->pos,blkoff,block);
-+	_enter("%llx,%x", ctx->pos, blkoff);
- 
- 	curr = (ctx->pos - blkoff) / sizeof(union afs_xdr_dirent);
- 
-@@ -513,12 +489,10 @@ static int afs_dir_iterate(struct inode *dir, struct dir_context *ctx,
- 			   struct key *key, afs_dataversion_t *_dir_version)
- {
- 	struct afs_vnode *dvnode = AFS_FS_I(dir);
--	struct afs_xdr_dir_page *dbuf;
- 	union afs_xdr_dir_block *dblock;
- 	struct afs_read *req;
--	struct page *page;
--	unsigned blkoff, limit;
--	void __rcu **slot;
-+	struct folio *folio;
-+	unsigned offset, size;
- 	int ret;
- 
- 	_enter("{%lu},%u,,", dir->i_ino, (unsigned)ctx->pos);
-@@ -540,43 +514,30 @@ static int afs_dir_iterate(struct inode *dir, struct dir_context *ctx,
- 	/* walk through the blocks in sequence */
- 	ret = 0;
- 	while (ctx->pos < req->actual_len) {
--		blkoff = ctx->pos & ~(sizeof(union afs_xdr_dir_block) - 1);
--
--		/* Fetch the appropriate page from the directory and re-add it
-+		/* Fetch the appropriate folio from the directory and re-add it
- 		 * to the LRU.  We have all the pages pinned with an extra ref.
- 		 */
--		rcu_read_lock();
--		page = NULL;
--		slot = radix_tree_lookup_slot(&dvnode->vfs_inode.i_mapping->i_pages,
--					      blkoff / PAGE_SIZE);
--		if (slot)
--			page = radix_tree_deref_slot(slot);
--		rcu_read_unlock();
--		if (!page) {
-+		folio = __filemap_get_folio(dir->i_mapping, ctx->pos / PAGE_SIZE,
-+					    FGP_ACCESSED, 0);
-+		if (!folio) {
- 			ret = afs_bad(dvnode, afs_file_error_dir_missing_page);
+ 		switch (cookie->type) {
+@@ -263,7 +263,8 @@ static int fscache_objlist_show(struct seq_file *m, void *v)
  			break;
  		}
--		mark_page_accessed(page);
  
--		limit = blkoff & ~(PAGE_SIZE - 1);
-+		offset = round_down(ctx->pos, sizeof(*dblock)) - folio_file_pos(folio);
-+		size = min_t(loff_t, folio_size(folio),
-+			     req->actual_len - folio_file_pos(folio));
- 
--		dbuf = kmap(page);
--
--		/* deal with the individual blocks stashed on this page */
- 		do {
--			dblock = &dbuf->blocks[(blkoff % PAGE_SIZE) /
--					       sizeof(union afs_xdr_dir_block)];
--			ret = afs_dir_iterate_block(dvnode, ctx, dblock, blkoff);
--			if (ret != 1) {
--				kunmap(page);
-+			dblock = kmap_local_folio(folio, offset);
-+			ret = afs_dir_iterate_block(dvnode, ctx, dblock,
-+						    folio_file_pos(folio) + offset);
-+			kunmap_local(dblock);
-+			if (ret != 1)
- 				goto out;
--			}
- 
--			blkoff += sizeof(union afs_xdr_dir_block);
-+		} while (offset += sizeof(*dblock), offset < size);
- 
--		} while (ctx->pos < dir->i_size && blkoff < limit);
--
--		kunmap(page);
- 		ret = 0;
- 	}
- 
-@@ -2056,42 +2017,42 @@ static int afs_rename(struct user_namespace *mnt_userns, struct inode *old_dir,
- }
- 
- /*
-- * Release a directory page and clean up its private state if it's not busy
-- * - return true if the page can now be released, false if not
-+ * Release a directory folio and clean up its private state if it's not busy
-+ * - return true if the folio can now be released, false if not
-  */
--static int afs_dir_releasepage(struct page *page, gfp_t gfp_flags)
-+static int afs_dir_releasepage(struct page *subpage, gfp_t gfp_flags)
- {
--	struct afs_vnode *dvnode = AFS_FS_I(page->mapping->host);
-+	struct folio *folio = page_folio(subpage);
-+	struct afs_vnode *dvnode = AFS_FS_I(folio_inode(folio));
- 
--	_enter("{{%llx:%llu}[%lu]}", dvnode->fid.vid, dvnode->fid.vnode, page->index);
-+	_enter("{{%llx:%llu}[%lu]}", dvnode->fid.vid, dvnode->fid.vnode, folio_index(folio));
- 
--	detach_page_private(page);
-+	folio_detach_private(folio);
- 
- 	/* The directory will need reloading. */
- 	if (test_and_clear_bit(AFS_VNODE_DIR_VALID, &dvnode->flags))
- 		afs_stat_v(dvnode, n_relpg);
--	return 1;
-+	return true;
- }
- 
- /*
-- * invalidate part or all of a page
-- * - release a page and clean up its private data if offset is 0 (indicating
-- *   the entire page)
-+ * Invalidate part or all of a folio.
-  */
--static void afs_dir_invalidatepage(struct page *page, unsigned int offset,
-+static void afs_dir_invalidatepage(struct page *subpage, unsigned int offset,
- 				   unsigned int length)
- {
--	struct afs_vnode *dvnode = AFS_FS_I(page->mapping->host);
-+	struct folio *folio = page_folio(subpage);
-+	struct afs_vnode *dvnode = AFS_FS_I(folio_inode(folio));
- 
--	_enter("{%lu},%u,%u", page->index, offset, length);
-+	_enter("{%lu},%u,%u", folio_index(folio), offset, length);
- 
--	BUG_ON(!PageLocked(page));
-+	BUG_ON(!folio_test_locked(folio));
- 
- 	/* The directory will need reloading. */
- 	if (test_and_clear_bit(AFS_VNODE_DIR_VALID, &dvnode->flags))
- 		afs_stat_v(dvnode, n_inval);
- 
--	/* we clean up only if the entire page is being invalidated */
--	if (offset == 0 && length == thp_size(page))
--		detach_page_private(page);
-+	/* we clean up only if the entire folio is being invalidated */
-+	if (offset == 0 && length == folio_size(folio))
-+		folio_detach_private(folio);
- }
-diff --git a/fs/afs/dir_edit.c b/fs/afs/dir_edit.c
-index f4600c1353ad..5a9098a82830 100644
---- a/fs/afs/dir_edit.c
-+++ b/fs/afs/dir_edit.c
-@@ -104,6 +104,25 @@ static void afs_clear_contig_bits(union afs_xdr_dir_block *block,
- 	block->hdr.bitmap[7] &= ~(u8)(mask >> 7 * 8);
- }
- 
-+/*
-+ * Get a new directory folio.
-+ */
-+static struct folio *afs_dir_get_folio(struct afs_vnode *vnode, pgoff_t index)
-+{
-+	struct address_space *mapping = vnode->vfs_inode.i_mapping;
-+	struct folio *folio;
-+
-+	folio = __filemap_get_folio(mapping, index,
-+				    FGP_LOCK | FGP_ACCESSED | FGP_CREAT,
-+				    mapping->gfp_mask);
-+	if (!folio)
-+		clear_bit(AFS_VNODE_DIR_VALID, &vnode->flags);
-+	else if (folio && !folio_test_private(folio))
-+		folio_attach_private(folio, (void *)1);
-+	    
-+	return folio;
-+}
-+
- /*
-  * Scan a directory block looking for a dirent of the right name.
-  */
-@@ -188,13 +207,11 @@ void afs_edit_dir_add(struct afs_vnode *vnode,
- 		      enum afs_edit_dir_reason why)
- {
- 	union afs_xdr_dir_block *meta, *block;
--	struct afs_xdr_dir_page *meta_page, *dir_page;
- 	union afs_xdr_dirent *de;
--	struct page *page0, *page;
-+	struct folio *folio0, *folio;
- 	unsigned int need_slots, nr_blocks, b;
- 	pgoff_t index;
- 	loff_t i_size;
--	gfp_t gfp;
- 	int slot;
- 
- 	_enter(",,{%d,%s},", name->len, name->name);
-@@ -206,10 +223,8 @@ void afs_edit_dir_add(struct afs_vnode *vnode,
- 		return;
- 	}
- 
--	gfp = vnode->vfs_inode.i_mapping->gfp_mask;
--	page0 = find_or_create_page(vnode->vfs_inode.i_mapping, 0, gfp);
--	if (!page0) {
--		clear_bit(AFS_VNODE_DIR_VALID, &vnode->flags);
-+	folio0 = afs_dir_get_folio(vnode, 0);
-+	if (!folio0) {
- 		_leave(" [fgp]");
- 		return;
- 	}
-@@ -217,42 +232,35 @@ void afs_edit_dir_add(struct afs_vnode *vnode,
- 	/* Work out how many slots we're going to need. */
- 	need_slots = afs_dir_calc_slots(name->len);
- 
--	meta_page = kmap(page0);
--	meta = &meta_page->blocks[0];
-+	meta = kmap_local_folio(folio0, 0);
- 	if (i_size == 0)
- 		goto new_directory;
- 	nr_blocks = i_size / AFS_DIR_BLOCK_SIZE;
- 
--	/* Find a block that has sufficient slots available.  Each VM page
-+	/* Find a block that has sufficient slots available.  Each folio
- 	 * contains two or more directory blocks.
- 	 */
- 	for (b = 0; b < nr_blocks + 1; b++) {
--		/* If the directory extended into a new page, then we need to
--		 * tack a new page on the end.
-+		/* If the directory extended into a new folio, then we need to
-+		 * tack a new folio on the end.
- 		 */
- 		index = b / AFS_DIR_BLOCKS_PER_PAGE;
--		if (index == 0) {
--			page = page0;
--			dir_page = meta_page;
--		} else {
--			if (nr_blocks >= AFS_DIR_MAX_BLOCKS)
--				goto error;
--			gfp = vnode->vfs_inode.i_mapping->gfp_mask;
--			page = find_or_create_page(vnode->vfs_inode.i_mapping,
--						   index, gfp);
--			if (!page)
-+		if (nr_blocks >= AFS_DIR_MAX_BLOCKS)
-+			goto error;
-+		if (index >= folio_nr_pages(folio0)) {
-+			folio = afs_dir_get_folio(vnode, index);
-+			if (!folio)
- 				goto error;
--			if (!PagePrivate(page))
--				attach_page_private(page, (void *)1);
--			dir_page = kmap(page);
-+		} else {
-+			folio = folio0;
+-		seq_printf(m, "%-16s %s %2lx %16p",
++		seq_printf(m, "%08x %-16s %s %3lx %16p",
++			   cookie->debug_id,
+ 			   cookie->def->name,
+ 			   type,
+ 			   cookie->flags,
+@@ -292,7 +293,6 @@ static int fscache_objlist_show(struct seq_file *m, void *v)
  		}
  
-+		block = kmap_local_folio(folio, b * AFS_DIR_BLOCK_SIZE - folio_file_pos(folio));
-+
- 		/* Abandon the edit if we got a callback break. */
- 		if (!test_bit(AFS_VNODE_DIR_VALID, &vnode->flags))
- 			goto invalidated;
- 
--		block = &dir_page->blocks[b % AFS_DIR_BLOCKS_PER_PAGE];
--
- 		_debug("block %u: %2u %3u %u",
- 		       b,
- 		       (b < AFS_DIR_BLOCKS_WITH_CTR) ? meta->meta.alloc_ctrs[b] : 99,
-@@ -266,7 +274,7 @@ void afs_edit_dir_add(struct afs_vnode *vnode,
- 			i_size_write(&vnode->vfs_inode, (b + 1) * AFS_DIR_BLOCK_SIZE);
- 		}
- 
--		/* Only lower dir pages have a counter in the header. */
-+		/* Only lower dir blocks have a counter in the header. */
- 		if (b >= AFS_DIR_BLOCKS_WITH_CTR ||
- 		    meta->meta.alloc_ctrs[b] >= need_slots) {
- 			/* We need to try and find one or more consecutive
-@@ -279,10 +287,10 @@ void afs_edit_dir_add(struct afs_vnode *vnode,
- 			}
- 		}
- 
--		if (page != page0) {
--			unlock_page(page);
--			kunmap(page);
--			put_page(page);
-+		kunmap_local(block);
-+		if (folio != folio0) {
-+			folio_unlock(folio);
-+			folio_put(folio);
- 		}
+ 		seq_puts(m, "\n");
+-		fscache_unuse_cookie(obj);
+ 	} else {
+ 		seq_puts(m, "<no_netfs>\n");
  	}
+diff --git a/include/linux/fscache.h b/include/linux/fscache.h
+index abc1c4737fb8..ba58c427cf9a 100644
+--- a/include/linux/fscache.h
++++ b/include/linux/fscache.h
+@@ -126,6 +126,7 @@ struct fscache_cookie {
+ 	atomic_t			usage;		/* number of users of this cookie */
+ 	atomic_t			n_children;	/* number of children of this cookie */
+ 	atomic_t			n_active;	/* number of active users of netfs ptrs */
++	unsigned int			debug_id;
+ 	spinlock_t			lock;
+ 	spinlock_t			stores_lock;	/* lock on page store tree */
+ 	struct hlist_head		backing_objects; /* object(s) backing this file/index */
+diff --git a/include/trace/events/cachefiles.h b/include/trace/events/cachefiles.h
+index 5d9de24cb9c0..9a448fe9355d 100644
+--- a/include/trace/events/cachefiles.h
++++ b/include/trace/events/cachefiles.h
+@@ -78,20 +78,20 @@ TRACE_EVENT(cachefiles_ref,
  
-@@ -298,8 +306,8 @@ void afs_edit_dir_add(struct afs_vnode *vnode,
- 	i_size = AFS_DIR_BLOCK_SIZE;
- 	i_size_write(&vnode->vfs_inode, i_size);
- 	slot = AFS_DIR_RESV_BLOCKS0;
--	page = page0;
--	block = meta;
-+	folio = folio0;
-+	block = kmap_local_folio(folio, 0);
- 	nr_blocks = 1;
- 	b = 0;
+ 	    /* Note that obj may be NULL */
+ 	    TP_STRUCT__entry(
+-		    __field(struct cachefiles_object *,		obj		)
+-		    __field(struct fscache_cookie *,		cookie		)
++		    __field(unsigned int,			obj		)
++		    __field(unsigned int,			cookie		)
+ 		    __field(enum cachefiles_obj_ref_trace,	why		)
+ 		    __field(int,				usage		)
+ 			     ),
  
-@@ -318,10 +326,10 @@ void afs_edit_dir_add(struct afs_vnode *vnode,
+ 	    TP_fast_assign(
+-		    __entry->obj	= obj;
+-		    __entry->cookie	= cookie;
++		    __entry->obj	= obj->fscache.debug_id;
++		    __entry->cookie	= cookie->debug_id;
+ 		    __entry->usage	= usage;
+ 		    __entry->why	= why;
+ 			   ),
  
- 	/* Adjust the bitmap. */
- 	afs_set_contig_bits(block, slot, need_slots);
--	if (page != page0) {
--		unlock_page(page);
--		kunmap(page);
--		put_page(page);
-+	kunmap_local(block);
-+	if (folio != folio0) {
-+		folio_unlock(folio);
-+		folio_put(folio);
- 	}
+-	    TP_printk("c=%p o=%p u=%d %s",
++	    TP_printk("c=%08x o=%08x u=%d %s",
+ 		      __entry->cookie, __entry->obj, __entry->usage,
+ 		      __print_symbolic(__entry->why, cachefiles_obj_ref_traces))
+ 	    );
+@@ -104,18 +104,18 @@ TRACE_EVENT(cachefiles_lookup,
+ 	    TP_ARGS(obj, de, inode),
  
- 	/* Adjust the allocation counter. */
-@@ -333,18 +341,19 @@ void afs_edit_dir_add(struct afs_vnode *vnode,
- 	_debug("Insert %s in %u[%u]", name->name, b, slot);
+ 	    TP_STRUCT__entry(
+-		    __field(struct cachefiles_object *,	obj	)
++		    __field(unsigned int,		obj	)
+ 		    __field(struct dentry *,		de	)
+ 		    __field(struct inode *,		inode	)
+ 			     ),
  
- out_unmap:
--	unlock_page(page0);
--	kunmap(page0);
--	put_page(page0);
-+	kunmap_local(meta);
-+	folio_unlock(folio0);
-+	folio_put(folio0);
- 	_leave("");
- 	return;
+ 	    TP_fast_assign(
+-		    __entry->obj	= obj;
++		    __entry->obj	= obj->fscache.debug_id;
+ 		    __entry->de		= de;
+ 		    __entry->inode	= inode;
+ 			   ),
  
- invalidated:
- 	trace_afs_edit_dir(vnode, why, afs_edit_dir_create_inval, 0, 0, 0, 0, name->name);
- 	clear_bit(AFS_VNODE_DIR_VALID, &vnode->flags);
--	if (page != page0) {
--		kunmap(page);
--		put_page(page);
-+	kunmap_local(block);
-+	if (folio != folio0) {
-+		folio_unlock(folio);
-+		folio_put(folio);
- 	}
- 	goto out_unmap;
+-	    TP_printk("o=%p d=%p i=%p",
++	    TP_printk("o=%08x d=%p i=%p",
+ 		      __entry->obj, __entry->de, __entry->inode)
+ 	    );
  
-@@ -364,10 +373,9 @@ void afs_edit_dir_add(struct afs_vnode *vnode,
- void afs_edit_dir_remove(struct afs_vnode *vnode,
- 			 struct qstr *name, enum afs_edit_dir_reason why)
- {
--	struct afs_xdr_dir_page *meta_page, *dir_page;
- 	union afs_xdr_dir_block *meta, *block;
- 	union afs_xdr_dirent *de;
--	struct page *page0, *page;
-+	struct folio *folio0, *folio;
- 	unsigned int need_slots, nr_blocks, b;
- 	pgoff_t index;
- 	loff_t i_size;
-@@ -384,9 +392,8 @@ void afs_edit_dir_remove(struct afs_vnode *vnode,
- 	}
- 	nr_blocks = i_size / AFS_DIR_BLOCK_SIZE;
+@@ -126,18 +126,18 @@ TRACE_EVENT(cachefiles_mkdir,
+ 	    TP_ARGS(obj, de, ret),
  
--	page0 = find_lock_page(vnode->vfs_inode.i_mapping, 0);
--	if (!page0) {
--		clear_bit(AFS_VNODE_DIR_VALID, &vnode->flags);
-+	folio0 = afs_dir_get_folio(vnode, 0);
-+	if (!folio0) {
- 		_leave(" [fgp]");
- 		return;
- 	}
-@@ -394,30 +401,27 @@ void afs_edit_dir_remove(struct afs_vnode *vnode,
- 	/* Work out how many slots we're going to discard. */
- 	need_slots = afs_dir_calc_slots(name->len);
+ 	    TP_STRUCT__entry(
+-		    __field(struct cachefiles_object *,	obj	)
++		    __field(unsigned int,		obj	)
+ 		    __field(struct dentry *,		de	)
+ 		    __field(int,			ret	)
+ 			     ),
  
--	meta_page = kmap(page0);
--	meta = &meta_page->blocks[0];
-+	meta = kmap_local_folio(folio0, 0);
+ 	    TP_fast_assign(
+-		    __entry->obj	= obj;
++		    __entry->obj	= obj->fscache.debug_id;
+ 		    __entry->de		= de;
+ 		    __entry->ret	= ret;
+ 			   ),
  
--	/* Find a page that has sufficient slots available.  Each VM page
-+	/* Find a block that has sufficient slots available.  Each folio
- 	 * contains two or more directory blocks.
- 	 */
- 	for (b = 0; b < nr_blocks; b++) {
- 		index = b / AFS_DIR_BLOCKS_PER_PAGE;
--		if (index != 0) {
--			page = find_lock_page(vnode->vfs_inode.i_mapping, index);
--			if (!page)
-+		if (index >= folio_nr_pages(folio0)) {
-+			folio = afs_dir_get_folio(vnode, index);
-+			if (!folio)
- 				goto error;
--			dir_page = kmap(page);
- 		} else {
--			page = page0;
--			dir_page = meta_page;
-+			folio = folio0;
- 		}
+-	    TP_printk("o=%p d=%p r=%u",
++	    TP_printk("o=%08x d=%p r=%u",
+ 		      __entry->obj, __entry->de, __entry->ret)
+ 	    );
  
-+		block = kmap_local_folio(folio, b * AFS_DIR_BLOCK_SIZE - folio_file_pos(folio));
-+
- 		/* Abandon the edit if we got a callback break. */
- 		if (!test_bit(AFS_VNODE_DIR_VALID, &vnode->flags))
- 			goto invalidated;
+@@ -148,18 +148,18 @@ TRACE_EVENT(cachefiles_create,
+ 	    TP_ARGS(obj, de, ret),
  
--		block = &dir_page->blocks[b % AFS_DIR_BLOCKS_PER_PAGE];
--
- 		if (b > AFS_DIR_BLOCKS_WITH_CTR ||
- 		    meta->meta.alloc_ctrs[b] <= AFS_DIR_SLOTS_PER_BLOCK - 1 - need_slots) {
- 			slot = afs_dir_scan_block(block, name, b);
-@@ -425,10 +429,10 @@ void afs_edit_dir_remove(struct afs_vnode *vnode,
- 				goto found_dirent;
- 		}
+ 	    TP_STRUCT__entry(
+-		    __field(struct cachefiles_object *,	obj	)
++		    __field(unsigned int,		obj	)
+ 		    __field(struct dentry *,		de	)
+ 		    __field(int,			ret	)
+ 			     ),
  
--		if (page != page0) {
--			unlock_page(page);
--			kunmap(page);
--			put_page(page);
-+		kunmap_local(block);
-+		if (folio != folio0) {
-+			folio_unlock(folio);
-+			folio_put(folio);
- 		}
- 	}
+ 	    TP_fast_assign(
+-		    __entry->obj	= obj;
++		    __entry->obj	= obj->fscache.debug_id;
+ 		    __entry->de		= de;
+ 		    __entry->ret	= ret;
+ 			   ),
  
-@@ -449,10 +453,10 @@ void afs_edit_dir_remove(struct afs_vnode *vnode,
+-	    TP_printk("o=%p d=%p r=%u",
++	    TP_printk("o=%08x d=%p r=%u",
+ 		      __entry->obj, __entry->de, __entry->ret)
+ 	    );
  
- 	/* Adjust the bitmap. */
- 	afs_clear_contig_bits(block, slot, need_slots);
--	if (page != page0) {
--		unlock_page(page);
--		kunmap(page);
--		put_page(page);
-+	kunmap_local(block);
-+	if (folio != folio0) {
-+		folio_unlock(folio);
-+		folio_put(folio);
- 	}
+@@ -172,18 +172,18 @@ TRACE_EVENT(cachefiles_unlink,
  
- 	/* Adjust the allocation counter. */
-@@ -464,9 +468,9 @@ void afs_edit_dir_remove(struct afs_vnode *vnode,
- 	_debug("Remove %s from %u[%u]", name->name, b, slot);
+ 	    /* Note that obj may be NULL */
+ 	    TP_STRUCT__entry(
+-		    __field(struct cachefiles_object *,	obj		)
++		    __field(unsigned int,		obj		)
+ 		    __field(struct dentry *,		de		)
+ 		    __field(enum fscache_why_object_killed, why		)
+ 			     ),
  
- out_unmap:
--	unlock_page(page0);
--	kunmap(page0);
--	put_page(page0);
-+	kunmap_local(meta);
-+	folio_unlock(folio0);
-+	folio_put(folio0);
- 	_leave("");
- 	return;
+ 	    TP_fast_assign(
+-		    __entry->obj	= obj;
++		    __entry->obj	= obj->fscache.debug_id;
+ 		    __entry->de		= de;
+ 		    __entry->why	= why;
+ 			   ),
  
-@@ -474,10 +478,10 @@ void afs_edit_dir_remove(struct afs_vnode *vnode,
- 	trace_afs_edit_dir(vnode, why, afs_edit_dir_delete_inval,
- 			   0, 0, 0, 0, name->name);
- 	clear_bit(AFS_VNODE_DIR_VALID, &vnode->flags);
--	if (page != page0) {
--		unlock_page(page);
--		kunmap(page);
--		put_page(page);
-+	kunmap_local(block);
-+	if (folio != folio0) {
-+		folio_unlock(folio);
-+		folio_put(folio);
- 	}
- 	goto out_unmap;
+-	    TP_printk("o=%p d=%p w=%s",
++	    TP_printk("o=%08x d=%p w=%s",
+ 		      __entry->obj, __entry->de,
+ 		      __print_symbolic(__entry->why, cachefiles_obj_kill_traces))
+ 	    );
+@@ -198,20 +198,20 @@ TRACE_EVENT(cachefiles_rename,
  
-
+ 	    /* Note that obj may be NULL */
+ 	    TP_STRUCT__entry(
+-		    __field(struct cachefiles_object *,	obj		)
++		    __field(unsigned int,		obj		)
+ 		    __field(struct dentry *,		de		)
+ 		    __field(struct dentry *,		to		)
+ 		    __field(enum fscache_why_object_killed, why		)
+ 			     ),
+ 
+ 	    TP_fast_assign(
+-		    __entry->obj	= obj;
++		    __entry->obj	= obj->fscache.debug_id;
+ 		    __entry->de		= de;
+ 		    __entry->to		= to;
+ 		    __entry->why	= why;
+ 			   ),
+ 
+-	    TP_printk("o=%p d=%p t=%p w=%s",
++	    TP_printk("o=%08x d=%p t=%p w=%s",
+ 		      __entry->obj, __entry->de, __entry->to,
+ 		      __print_symbolic(__entry->why, cachefiles_obj_kill_traces))
+ 	    );
+@@ -224,16 +224,16 @@ TRACE_EVENT(cachefiles_mark_active,
+ 
+ 	    /* Note that obj may be NULL */
+ 	    TP_STRUCT__entry(
+-		    __field(struct cachefiles_object *,	obj		)
++		    __field(unsigned int,		obj		)
+ 		    __field(struct dentry *,		de		)
+ 			     ),
+ 
+ 	    TP_fast_assign(
+-		    __entry->obj	= obj;
++		    __entry->obj	= obj->fscache.debug_id;
+ 		    __entry->de		= de;
+ 			   ),
+ 
+-	    TP_printk("o=%p d=%p",
++	    TP_printk("o=%08x d=%p",
+ 		      __entry->obj, __entry->de)
+ 	    );
+ 
+@@ -246,22 +246,22 @@ TRACE_EVENT(cachefiles_wait_active,
+ 
+ 	    /* Note that obj may be NULL */
+ 	    TP_STRUCT__entry(
+-		    __field(struct cachefiles_object *,	obj		)
++		    __field(unsigned int,		obj		)
++		    __field(unsigned int,		xobj		)
+ 		    __field(struct dentry *,		de		)
+-		    __field(struct cachefiles_object *,	xobj		)
+ 		    __field(u16,			flags		)
+ 		    __field(u16,			fsc_flags	)
+ 			     ),
+ 
+ 	    TP_fast_assign(
+-		    __entry->obj	= obj;
++		    __entry->obj	= obj->fscache.debug_id;
+ 		    __entry->de		= de;
+-		    __entry->xobj	= xobj;
++		    __entry->xobj	= xobj->fscache.debug_id;
+ 		    __entry->flags	= xobj->flags;
+ 		    __entry->fsc_flags	= xobj->fscache.flags;
+ 			   ),
+ 
+-	    TP_printk("o=%p d=%p wo=%p wf=%x wff=%x",
++	    TP_printk("o=%08x d=%p wo=%08x wf=%x wff=%x",
+ 		      __entry->obj, __entry->de, __entry->xobj,
+ 		      __entry->flags, __entry->fsc_flags)
+ 	    );
+@@ -275,18 +275,18 @@ TRACE_EVENT(cachefiles_mark_inactive,
+ 
+ 	    /* Note that obj may be NULL */
+ 	    TP_STRUCT__entry(
+-		    __field(struct cachefiles_object *,	obj		)
++		    __field(unsigned int,		obj		)
+ 		    __field(struct dentry *,		de		)
+ 		    __field(struct inode *,		inode		)
+ 			     ),
+ 
+ 	    TP_fast_assign(
+-		    __entry->obj	= obj;
++		    __entry->obj	= obj->fscache.debug_id;
+ 		    __entry->de		= de;
+ 		    __entry->inode	= inode;
+ 			   ),
+ 
+-	    TP_printk("o=%p d=%p i=%p",
++	    TP_printk("o=%08x d=%p i=%p",
+ 		      __entry->obj, __entry->de, __entry->inode)
+ 	    );
+ 
+@@ -299,18 +299,18 @@ TRACE_EVENT(cachefiles_mark_buried,
+ 
+ 	    /* Note that obj may be NULL */
+ 	    TP_STRUCT__entry(
+-		    __field(struct cachefiles_object *,	obj		)
++		    __field(unsigned int,		obj		)
+ 		    __field(struct dentry *,		de		)
+ 		    __field(enum fscache_why_object_killed, why		)
+ 			     ),
+ 
+ 	    TP_fast_assign(
+-		    __entry->obj	= obj;
++		    __entry->obj	= obj->fscache.debug_id;
+ 		    __entry->de		= de;
+ 		    __entry->why	= why;
+ 			   ),
+ 
+-	    TP_printk("o=%p d=%p w=%s",
++	    TP_printk("o=%08x d=%p w=%s",
+ 		      __entry->obj, __entry->de,
+ 		      __print_symbolic(__entry->why, cachefiles_obj_kill_traces))
+ 	    );
+diff --git a/include/trace/events/fscache.h b/include/trace/events/fscache.h
+index d16fe6ed78a2..33d1fd5d0383 100644
+--- a/include/trace/events/fscache.h
++++ b/include/trace/events/fscache.h
+@@ -167,8 +167,8 @@ TRACE_EVENT(fscache_cookie,
+ 	    TP_ARGS(cookie, where, usage),
+ 
+ 	    TP_STRUCT__entry(
+-		    __field(struct fscache_cookie *,	cookie		)
+-		    __field(struct fscache_cookie *,	parent		)
++		    __field(unsigned int,		cookie		)
++		    __field(unsigned int,		parent		)
+ 		    __field(enum fscache_cookie_trace,	where		)
+ 		    __field(int,			usage		)
+ 		    __field(int,			n_children	)
+@@ -177,8 +177,8 @@ TRACE_EVENT(fscache_cookie,
+ 			     ),
+ 
+ 	    TP_fast_assign(
+-		    __entry->cookie	= cookie;
+-		    __entry->parent	= cookie->parent;
++		    __entry->cookie	= cookie->debug_id;
++		    __entry->parent	= cookie->parent ? cookie->parent->debug_id : 0;
+ 		    __entry->where	= where;
+ 		    __entry->usage	= usage;
+ 		    __entry->n_children	= atomic_read(&cookie->n_children);
+@@ -186,7 +186,7 @@ TRACE_EVENT(fscache_cookie,
+ 		    __entry->flags	= cookie->flags;
+ 			   ),
+ 
+-	    TP_printk("%s c=%p u=%d p=%p Nc=%d Na=%d f=%02x",
++	    TP_printk("%s c=%08x u=%d p=%08x Nc=%d Na=%d f=%02x",
+ 		      __print_symbolic(__entry->where, fscache_cookie_traces),
+ 		      __entry->cookie, __entry->usage,
+ 		      __entry->parent, __entry->n_children, __entry->n_active,
+@@ -199,17 +199,17 @@ TRACE_EVENT(fscache_netfs,
+ 	    TP_ARGS(netfs),
+ 
+ 	    TP_STRUCT__entry(
+-		    __field(struct fscache_cookie *,	cookie		)
++		    __field(unsigned int,		cookie		)
+ 		    __array(char,			name, 8		)
+ 			     ),
+ 
+ 	    TP_fast_assign(
+-		    __entry->cookie		= netfs->primary_index;
++		    __entry->cookie		= netfs->primary_index->debug_id;
+ 		    strncpy(__entry->name, netfs->name, 8);
+ 		    __entry->name[7]		= 0;
+ 			   ),
+ 
+-	    TP_printk("c=%p n=%s",
++	    TP_printk("c=%08x n=%s",
+ 		      __entry->cookie, __entry->name)
+ 	    );
+ 
+@@ -219,8 +219,8 @@ TRACE_EVENT(fscache_acquire,
+ 	    TP_ARGS(cookie),
+ 
+ 	    TP_STRUCT__entry(
+-		    __field(struct fscache_cookie *,	cookie		)
+-		    __field(struct fscache_cookie *,	parent		)
++		    __field(unsigned int,		cookie		)
++		    __field(unsigned int,		parent		)
+ 		    __array(char,			name, 8		)
+ 		    __field(int,			p_usage		)
+ 		    __field(int,			p_n_children	)
+@@ -228,8 +228,8 @@ TRACE_EVENT(fscache_acquire,
+ 			     ),
+ 
+ 	    TP_fast_assign(
+-		    __entry->cookie		= cookie;
+-		    __entry->parent		= cookie->parent;
++		    __entry->cookie		= cookie->debug_id;
++		    __entry->parent		= cookie->parent->debug_id;
+ 		    __entry->p_usage		= atomic_read(&cookie->parent->usage);
+ 		    __entry->p_n_children	= atomic_read(&cookie->parent->n_children);
+ 		    __entry->p_flags		= cookie->parent->flags;
+@@ -237,7 +237,7 @@ TRACE_EVENT(fscache_acquire,
+ 		    __entry->name[7]		= 0;
+ 			   ),
+ 
+-	    TP_printk("c=%p p=%p pu=%d pc=%d pf=%02x n=%s",
++	    TP_printk("c=%08x p=%08x pu=%d pc=%d pf=%02x n=%s",
+ 		      __entry->cookie, __entry->parent, __entry->p_usage,
+ 		      __entry->p_n_children, __entry->p_flags, __entry->name)
+ 	    );
+@@ -248,8 +248,8 @@ TRACE_EVENT(fscache_relinquish,
+ 	    TP_ARGS(cookie, retire),
+ 
+ 	    TP_STRUCT__entry(
+-		    __field(struct fscache_cookie *,	cookie		)
+-		    __field(struct fscache_cookie *,	parent		)
++		    __field(unsigned int,		cookie		)
++		    __field(unsigned int,		parent		)
+ 		    __field(int,			usage		)
+ 		    __field(int,			n_children	)
+ 		    __field(int,			n_active	)
+@@ -258,8 +258,8 @@ TRACE_EVENT(fscache_relinquish,
+ 			     ),
+ 
+ 	    TP_fast_assign(
+-		    __entry->cookie	= cookie;
+-		    __entry->parent	= cookie->parent;
++		    __entry->cookie	= cookie->debug_id;
++		    __entry->parent	= cookie->parent->debug_id;
+ 		    __entry->usage	= atomic_read(&cookie->usage);
+ 		    __entry->n_children	= atomic_read(&cookie->n_children);
+ 		    __entry->n_active	= atomic_read(&cookie->n_active);
+@@ -267,7 +267,7 @@ TRACE_EVENT(fscache_relinquish,
+ 		    __entry->retire	= retire;
+ 			   ),
+ 
+-	    TP_printk("c=%p u=%d p=%p Nc=%d Na=%d f=%02x r=%u",
++	    TP_printk("c=%08x u=%d p=%08x Nc=%d Na=%d f=%02x r=%u",
+ 		      __entry->cookie, __entry->usage,
+ 		      __entry->parent, __entry->n_children, __entry->n_active,
+ 		      __entry->flags, __entry->retire)
+@@ -279,7 +279,7 @@ TRACE_EVENT(fscache_enable,
+ 	    TP_ARGS(cookie),
+ 
+ 	    TP_STRUCT__entry(
+-		    __field(struct fscache_cookie *,	cookie		)
++		    __field(unsigned int,		cookie		)
+ 		    __field(int,			usage		)
+ 		    __field(int,			n_children	)
+ 		    __field(int,			n_active	)
+@@ -287,14 +287,14 @@ TRACE_EVENT(fscache_enable,
+ 			     ),
+ 
+ 	    TP_fast_assign(
+-		    __entry->cookie	= cookie;
++		    __entry->cookie	= cookie->debug_id;
+ 		    __entry->usage	= atomic_read(&cookie->usage);
+ 		    __entry->n_children	= atomic_read(&cookie->n_children);
+ 		    __entry->n_active	= atomic_read(&cookie->n_active);
+ 		    __entry->flags	= cookie->flags;
+ 			   ),
+ 
+-	    TP_printk("c=%p u=%d Nc=%d Na=%d f=%02x",
++	    TP_printk("c=%08x u=%d Nc=%d Na=%d f=%02x",
+ 		      __entry->cookie, __entry->usage,
+ 		      __entry->n_children, __entry->n_active, __entry->flags)
+ 	    );
+@@ -305,7 +305,7 @@ TRACE_EVENT(fscache_disable,
+ 	    TP_ARGS(cookie),
+ 
+ 	    TP_STRUCT__entry(
+-		    __field(struct fscache_cookie *,	cookie		)
++		    __field(unsigned int,		cookie		)
+ 		    __field(int,			usage		)
+ 		    __field(int,			n_children	)
+ 		    __field(int,			n_active	)
+@@ -313,14 +313,14 @@ TRACE_EVENT(fscache_disable,
+ 			     ),
+ 
+ 	    TP_fast_assign(
+-		    __entry->cookie	= cookie;
++		    __entry->cookie	= cookie->debug_id;
+ 		    __entry->usage	= atomic_read(&cookie->usage);
+ 		    __entry->n_children	= atomic_read(&cookie->n_children);
+ 		    __entry->n_active	= atomic_read(&cookie->n_active);
+ 		    __entry->flags	= cookie->flags;
+ 			   ),
+ 
+-	    TP_printk("c=%p u=%d Nc=%d Na=%d f=%02x",
++	    TP_printk("c=%08x u=%d Nc=%d Na=%d f=%02x",
+ 		      __entry->cookie, __entry->usage,
+ 		      __entry->n_children, __entry->n_active, __entry->flags)
+ 	    );
+@@ -333,8 +333,8 @@ TRACE_EVENT(fscache_osm,
+ 	    TP_ARGS(object, state, wait, oob, event_num),
+ 
+ 	    TP_STRUCT__entry(
+-		    __field(struct fscache_cookie *,	cookie		)
+-		    __field(struct fscache_object *,	object		)
++		    __field(unsigned int,		cookie		)
++		    __field(unsigned int,		object		)
+ 		    __array(char,			state, 8	)
+ 		    __field(bool,			wait		)
+ 		    __field(bool,			oob		)
+@@ -342,15 +342,15 @@ TRACE_EVENT(fscache_osm,
+ 			     ),
+ 
+ 	    TP_fast_assign(
+-		    __entry->cookie		= object->cookie;
+-		    __entry->object		= object;
++		    __entry->cookie		= object->cookie->debug_id;
++		    __entry->object		= object->debug_id;
+ 		    __entry->wait		= wait;
+ 		    __entry->oob		= oob;
+ 		    __entry->event_num		= event_num;
+ 		    memcpy(__entry->state, state->short_name, 8);
+ 			   ),
+ 
+-	    TP_printk("c=%p o=%p %s %s%sev=%d",
++	    TP_printk("c=%08x o=%08d %s %s%sev=%d",
+ 		      __entry->cookie,
+ 		      __entry->object,
+ 		      __entry->state,
+@@ -370,18 +370,18 @@ TRACE_EVENT(fscache_page,
+ 	    TP_ARGS(cookie, page, why),
+ 
+ 	    TP_STRUCT__entry(
+-		    __field(struct fscache_cookie *,	cookie		)
++		    __field(unsigned int,		cookie		)
+ 		    __field(pgoff_t,			page		)
+ 		    __field(enum fscache_page_trace,	why		)
+ 			     ),
+ 
+ 	    TP_fast_assign(
+-		    __entry->cookie		= cookie;
++		    __entry->cookie		= cookie->debug_id;
+ 		    __entry->page		= page->index;
+ 		    __entry->why		= why;
+ 			   ),
+ 
+-	    TP_printk("c=%p %s pg=%lx",
++	    TP_printk("c=%08x %s pg=%lx",
+ 		      __entry->cookie,
+ 		      __print_symbolic(__entry->why, fscache_page_traces),
+ 		      __entry->page)
+@@ -394,20 +394,20 @@ TRACE_EVENT(fscache_check_page,
+ 	    TP_ARGS(cookie, page, val, n),
+ 
+ 	    TP_STRUCT__entry(
+-		    __field(struct fscache_cookie *,	cookie		)
++		    __field(unsigned int,		cookie		)
+ 		    __field(void *,			page		)
+ 		    __field(void *,			val		)
+ 		    __field(int,			n		)
+ 			     ),
+ 
+ 	    TP_fast_assign(
+-		    __entry->cookie		= cookie;
++		    __entry->cookie		= cookie->debug_id;
+ 		    __entry->page		= page;
+ 		    __entry->val		= val;
+ 		    __entry->n			= n;
+ 			   ),
+ 
+-	    TP_printk("c=%p pg=%p val=%p n=%d",
++	    TP_printk("c=%08x pg=%p val=%p n=%d",
+ 		      __entry->cookie, __entry->page, __entry->val, __entry->n)
+ 	    );
+ 
+@@ -417,14 +417,14 @@ TRACE_EVENT(fscache_wake_cookie,
+ 	    TP_ARGS(cookie),
+ 
+ 	    TP_STRUCT__entry(
+-		    __field(struct fscache_cookie *,	cookie		)
++		    __field(unsigned int,		cookie		)
+ 			     ),
+ 
+ 	    TP_fast_assign(
+-		    __entry->cookie		= cookie;
++		    __entry->cookie		= cookie->debug_id;
+ 			   ),
+ 
+-	    TP_printk("c=%p", __entry->cookie)
++	    TP_printk("c=%08x", __entry->cookie)
+ 	    );
+ 
+ TRACE_EVENT(fscache_op,
+@@ -434,18 +434,18 @@ TRACE_EVENT(fscache_op,
+ 	    TP_ARGS(cookie, op, why),
+ 
+ 	    TP_STRUCT__entry(
+-		    __field(struct fscache_cookie *,	cookie		)
+-		    __field(struct fscache_operation *,	op		)
++		    __field(unsigned int,		cookie		)
++		    __field(unsigned int,		op		)
+ 		    __field(enum fscache_op_trace,	why		)
+ 			     ),
+ 
+ 	    TP_fast_assign(
+-		    __entry->cookie		= cookie;
+-		    __entry->op			= op;
++		    __entry->cookie		= cookie ? cookie->debug_id : 0;
++		    __entry->op			= op->debug_id;
+ 		    __entry->why		= why;
+ 			   ),
+ 
+-	    TP_printk("c=%p op=%p %s",
++	    TP_printk("c=%08x op=%08x %s",
+ 		      __entry->cookie, __entry->op,
+ 		      __print_symbolic(__entry->why, fscache_op_traces))
+ 	    );
+@@ -457,20 +457,20 @@ TRACE_EVENT(fscache_page_op,
+ 	    TP_ARGS(cookie, page, op, what),
+ 
+ 	    TP_STRUCT__entry(
+-		    __field(struct fscache_cookie *,	cookie		)
++		    __field(unsigned int,		cookie		)
++		    __field(unsigned int,		op		)
+ 		    __field(pgoff_t,			page		)
+-		    __field(struct fscache_operation *,	op		)
+ 		    __field(enum fscache_page_op_trace,	what		)
+ 			     ),
+ 
+ 	    TP_fast_assign(
+-		    __entry->cookie		= cookie;
++		    __entry->cookie		= cookie->debug_id;
+ 		    __entry->page		= page ? page->index : 0;
+-		    __entry->op			= op;
++		    __entry->op			= op->debug_id;
+ 		    __entry->what		= what;
+ 			   ),
+ 
+-	    TP_printk("c=%p %s pg=%lx op=%p",
++	    TP_printk("c=%08x %s pg=%lx op=%08x",
+ 		      __entry->cookie,
+ 		      __print_symbolic(__entry->what, fscache_page_op_traces),
+ 		      __entry->page, __entry->op)
+@@ -483,20 +483,20 @@ TRACE_EVENT(fscache_wrote_page,
+ 	    TP_ARGS(cookie, page, op, ret),
+ 
+ 	    TP_STRUCT__entry(
+-		    __field(struct fscache_cookie *,	cookie		)
++		    __field(unsigned int,		cookie		)
++		    __field(unsigned int,		op		)
+ 		    __field(pgoff_t,			page		)
+-		    __field(struct fscache_operation *,	op		)
+ 		    __field(int,			ret		)
+ 			     ),
+ 
+ 	    TP_fast_assign(
+-		    __entry->cookie		= cookie;
++		    __entry->cookie		= cookie->debug_id;
+ 		    __entry->page		= page->index;
+-		    __entry->op			= op;
++		    __entry->op			= op->debug_id;
+ 		    __entry->ret		= ret;
+ 			   ),
+ 
+-	    TP_printk("c=%p pg=%lx op=%p ret=%d",
++	    TP_printk("c=%08x pg=%lx op=%08x ret=%d",
+ 		      __entry->cookie, __entry->page, __entry->op, __entry->ret)
+ 	    );
+ 
+@@ -507,22 +507,22 @@ TRACE_EVENT(fscache_gang_lookup,
+ 	    TP_ARGS(cookie, op, results, n, store_limit),
+ 
+ 	    TP_STRUCT__entry(
+-		    __field(struct fscache_cookie *,	cookie		)
+-		    __field(struct fscache_operation *,	op		)
++		    __field(unsigned int,		cookie		)
++		    __field(unsigned int,		op		)
+ 		    __field(pgoff_t,			results0	)
+ 		    __field(int,			n		)
+ 		    __field(pgoff_t,			store_limit	)
+ 			     ),
+ 
+ 	    TP_fast_assign(
+-		    __entry->cookie		= cookie;
+-		    __entry->op			= op;
++		    __entry->cookie		= cookie->debug_id;
++		    __entry->op			= op->debug_id;
+ 		    __entry->results0		= results[0] ? ((struct page *)results[0])->index : (pgoff_t)-1;
+ 		    __entry->n			= n;
+ 		    __entry->store_limit	= store_limit;
+ 			   ),
+ 
+-	    TP_printk("c=%p op=%p r0=%lx n=%d sl=%lx",
++	    TP_printk("c=%08x op=%08x r0=%lx n=%d sl=%lx",
+ 		      __entry->cookie, __entry->op, __entry->results0, __entry->n,
+ 		      __entry->store_limit)
+ 	    );
 
 
 
