@@ -2,26 +2,26 @@ Return-Path: <v9fs-developer-bounces@lists.sourceforge.net>
 X-Original-To: lists+v9fs-developer@lfdr.de
 Delivered-To: lists+v9fs-developer@lfdr.de
 Received: from lists.sourceforge.net (lists.sourceforge.net [216.105.38.7])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4E8BE414E4F
-	for <lists+v9fs-developer@lfdr.de>; Wed, 22 Sep 2021 18:46:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id BAB64414E50
+	for <lists+v9fs-developer@lfdr.de>; Wed, 22 Sep 2021 18:46:10 +0200 (CEST)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.sourceforge.net; s=beta; h=Content-Transfer-Encoding:Content-Type:
 	MIME-Version:Cc:Reply-To:From:List-Subscribe:List-Help:List-Post:List-Archive
 	:List-Unsubscribe:List-Id:Subject:To:Date:References:In-Reply-To:Message-Id:
 	Sender:Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
 	Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=NPl84BJAqD9atZ0BKhR+z2aAhUgVYPsira0sqLdFM0w=; b=BFNyNnMjTNZTbK1lU4C/RMQLJT
-	2o48kzuoY7BZoCaYBBuV28dium77c0CUxrTqsm/CwEObUkOgYafZygpOJQ0TTpWPzvp+7dn2VNMmB
-	BJ5UXJDzy7m7qyOSRqMg/+CooejvGwyWRhB2iRVjtGwzth/xcrLKuQQI7kwX/HHKyuMA=;
-Received: from [127.0.0.1] (helo=sfs-ml-1.v29.lw.sourceforge.com)
-	by sfs-ml-1.v29.lw.sourceforge.com with esmtp (Exim 4.90_1)
+	bh=U5julhbsheGnN9nKI5vs0ZWdofCxxTmP+nDIywvCtIY=; b=C4Ssd4bUf77VRbUF/f6jIyR1Ll
+	T2cG5dSSwEZXJyZp67zKmst0tZQsunNe+kx3UuofB6zcteVZXKiYVjHAZ7siUqAUx4z03xbn36OO6
+	yPVWTpUq1csL8FCM3w7YavE9gIJhx2RdIw5VKM6muO+0fPXCDV5aLN+t3lVPbSEalV8U=;
+Received: from [127.0.0.1] (helo=sfs-ml-2.v29.lw.sourceforge.com)
+	by sfs-ml-2.v29.lw.sourceforge.com with esmtp (Exim 4.92.3)
 	(envelope-from <v9fs-developer-bounces@lists.sourceforge.net>)
-	id 1mT5Nn-0003WY-3e; Wed, 22 Sep 2021 16:46:07 +0000
+	id 1mT5Np-0006CJ-F8; Wed, 22 Sep 2021 16:46:09 +0000
 Received: from [172.30.20.202] (helo=mx.sourceforge.net)
- by sfs-ml-1.v29.lw.sourceforge.com with esmtps
- (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.90_1)
- (envelope-from <925da76c58d67372307e5f516989600c96831c3a@lizzy.crudebyte.com>)
- id 1mT5Nm-0003WG-5M
+ by sfs-ml-2.v29.lw.sourceforge.com with esmtps
+ (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.92.3)
+ (envelope-from <36abf4c1ed348b1ef8ed38655f875942e0103d7f@lizzy.crudebyte.com>)
+ id 1mT5Nm-0006CA-Ib
  for v9fs-developer@lists.sourceforge.net; Wed, 22 Sep 2021 16:46:06 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
  d=sourceforge.net; s=x; h=Cc:To:Subject:Date:From:References:In-Reply-To:
@@ -29,9 +29,9 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
  Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
  Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:
  List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=Cqx/q/n6hrY5Ps1ipX2QJFZ34qH2P2+3lxddoYfsBeQ=; b=fKAux6qb9KWvRum4t+upZx/Kd
- vQ/whUV/mWu2GDQ8j0R2l9QLH97E+2mSKmln8Mp3jbTFMFfoCaId0nzCekiFrQTz1Y7zPgESBCjma
- glXPogzL0qNl89rrppV326BVFeRSTMOAJgIY1FFbLOAy/Am3XjQVW+ZoemIQUeCZg7MbE=;
+ bh=Dg1gjIRekS8zgEvTByPnswl6ttfsf5eNF+Ja+K6B/K4=; b=hQl6UpgrS3XZjXSfm5G4m0OnO
+ eiOTs/plZCh2ycAoRkZAX3mUDVxsfIbaCbk3x/fHJGMJHG/BfLOgAFmTX3rmahw6Ed5DV+GuPW2dg
+ QvjT67cm8XaaS4uunn3Ri22HKpA3Sg4/52ExoDlqzHbhgnL6Pjjh8QQOPB9BlGgAi0yYM=;
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  ;
  h=Cc:To:Subject:Date:From:References:In-Reply-To:Message-Id:Sender:Reply-To
@@ -39,27 +39,27 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
  :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
  List-Post:List-Owner:List-Archive;
- bh=Cqx/q/n6hrY5Ps1ipX2QJFZ34qH2P2+3lxddoYfsBeQ=; b=Ife0wTMKUONxDsZCTwglJP899x
- 5tLVn3OULiP2ZNI5hcaFt3UIGcsWHXipfVH4kRVtm8qea5B1nY9MtOC2jq3wBxashEEtd0BLMQ3i3
- zbAhB4EzdP3JiQ0b0Nzms9mdTrdAtp3qmhSO6w4JNcE07keyzanvFwVSDyl4ALdFFWxg=;
+ bh=Dg1gjIRekS8zgEvTByPnswl6ttfsf5eNF+Ja+K6B/K4=; b=a3getbMBnL/mpbTeTAjBD4J0O9
+ Br6wHSZAkH7Tu3/NkKKOlPBBglZDz99bLdqwSS7tUTy7H0f3gq+gyunC+LsbNZV8pTJbxY7kr5qrF
+ /6m9gC7GrnCxSb3dlLCrQmOYPUCC/IQ7hY58V27Z1DpG81q9JX87kxuA864SlVEqkgnM=;
 Received: from lizzy.crudebyte.com ([91.194.90.13])
  by sfi-mx-2.v28.lw.sourceforge.com with esmtps
  (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.92.3)
- id 1mT5Nj-0000vW-26
+ id 1mT5Nm-0000vl-2J
  for v9fs-developer@lists.sourceforge.net; Wed, 22 Sep 2021 16:46:06 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
  d=crudebyte.com; s=lizzy; h=Cc:To:Subject:Date:From:References:In-Reply-To:
  Message-Id:Content-Type:Content-Transfer-Encoding:MIME-Version:Content-ID:
- Content-Description; bh=Cqx/q/n6hrY5Ps1ipX2QJFZ34qH2P2+3lxddoYfsBeQ=; b=mS6zR
- z5uI18mxP9aneaQmW2ScNP5w9aJrE0brLyb0fF88Ano26r4RFmTqHe+OVNDntbY37Dxf3WGyIrfOj
- jCFfvJn117/nbx41ncBrYYL6ASfnQ7LRRVHcz0dJd5DFjDJieB8AfyT69VoZD8crr+pclNXNuLsok
- DV23p6ewKwIiw8oi0Xm8wUWP8IDJsxGNi+o6Mq+WVGcoiMNYPz2lo6GzA9C+b5bKKooDG8BxdZfcM
- UwkMk9dKbIq2iqBuyHBfC8YG5gWl2ySeDOuzpW9X42EPz1n52xyk7q724xhzbysqOvQM76m3rG0+Z
- eiIuC6INFp8Vkpnpz8N9bdqw9XJ1g==;
-Message-Id: <925da76c58d67372307e5f516989600c96831c3a.1632327421.git.linux_oss@crudebyte.com>
+ Content-Description; bh=Dg1gjIRekS8zgEvTByPnswl6ttfsf5eNF+Ja+K6B/K4=; b=B70xc
+ uz9FsxzNWTVlK0LqahSpPkrSpaIVnDtzCLAqdxK11Yay5C42weL1/WPTVnEeseH45GHOpjBPm5XUm
+ UHLlX2GoMGIbSTchqd++dnpyaFByccQt8bYIs+tmqFWKPfIh0zeJoLSM9GZAR2YoP/Xf2tHOATPK+
+ znZwDGcgwBo4BWxyCwEyrZUXdfJ3LRfCAt2ICWDIigoNtb+UyRLVKzDpcTEHnDP+kgDM8I9jezhxq
+ Gx4JzCxMR2rgWMXkBqTGOsYE/65RIsjSCUWVqMnfF4e8Z0a3RDH1dNAFZL5yOO5Y8sE9ih2IB8ofY
+ s10h6YlbIn2z3P1QbOj/2CrNrhiAA==;
+Message-Id: <36abf4c1ed348b1ef8ed38655f875942e0103d7f.1632327421.git.linux_oss@crudebyte.com>
 In-Reply-To: <cover.1632327421.git.linux_oss@crudebyte.com>
 References: <cover.1632327421.git.linux_oss@crudebyte.com>
-Date: Wed, 22 Sep 2021 18:00:21 +0200
+Date: Wed, 22 Sep 2021 18:00:24 +0200
 To: v9fs-developer@lists.sourceforge.net
 X-Spam-Score: -0.2 (/)
 X-Spam-Report: Spam detection software,
@@ -68,9 +68,12 @@ X-Spam-Report: Spam detection software,
  message has been attached to this so you can view it or label
  similar future email.  If you have any questions, see
  the administrator of that system for details.
- Content preview:  If user supplied a large value with the 'msize' option, then
- client would silently limit that 'msize' value to the maximum value supported
- by transport. That's a bit confusing for users of not having [...] 
+ Content preview: The scatter gather list in struct virtio_chan currently
+ resides
+ as compile-time constant size array directly within the contiguous struct
+ virtio_chan's memory space. Separate memory space and allocation of the
+ scatter
+ gather list from memory space and allocation of struct virtio_chan. 
  Content analysis details:   (-0.2 points, 6.0 required)
  pts rule name              description
  ---- ---------------------- --------------------------------------------------
@@ -83,9 +86,9 @@ X-Spam-Report: Spam detection software,
  envelope-from domain
  -0.1 DKIM_VALID_AU          Message has a valid DKIM or DK signature from
  author's domain
-X-Headers-End: 1mT5Nj-0000vW-26
-Subject: [V9fs-developer] [PATCH v3 1/7] net/9p: show error message if user
- 'msize' cannot be satisfied
+X-Headers-End: 1mT5Nm-0000vl-2J
+Subject: [V9fs-developer] [PATCH v3 2/7] 9p/trans_virtio: separate
+ allocation of scatter gather list
 X-BeenThere: v9fs-developer@lists.sourceforge.net
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -108,37 +111,63 @@ Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: v9fs-developer-bounces@lists.sourceforge.net
 
-If user supplied a large value with the 'msize' option, then
-client would silently limit that 'msize' value to the maximum
-value supported by transport. That's a bit confusing for users
-of not having any indication why the preferred 'msize' value
-could not be satisfied.
+The scatter gather list in struct virtio_chan currently
+resides as compile-time constant size array directly within the
+contiguous struct virtio_chan's memory space.
 
-Reported-by: Vivek Goyal <vgoyal@redhat.com>
+Separate memory space and allocation of the scatter gather list
+from memory space and allocation of struct virtio_chan.
+
 Signed-off-by: Christian Schoenebeck <linux_oss@crudebyte.com>
 ---
- net/9p/client.c | 7 ++++++-
- 1 file changed, 6 insertions(+), 1 deletion(-)
+ net/9p/trans_virtio.c | 13 ++++++++++++-
+ 1 file changed, 12 insertions(+), 1 deletion(-)
 
-diff --git a/net/9p/client.c b/net/9p/client.c
-index 213f12ed76cd..4f4fd2098a30 100644
---- a/net/9p/client.c
-+++ b/net/9p/client.c
-@@ -1044,8 +1044,13 @@ struct p9_client *p9_client_create(const char *dev_name, char *options)
- 	if (err)
- 		goto put_trans;
+diff --git a/net/9p/trans_virtio.c b/net/9p/trans_virtio.c
+index 490a4c900339..1dbe2e921bb8 100644
+--- a/net/9p/trans_virtio.c
++++ b/net/9p/trans_virtio.c
+@@ -77,7 +77,7 @@ struct virtio_chan {
+ 	 */
+ 	unsigned long p9_max_pages;
+ 	/* Scatterlist: can be too big for stack. */
+-	struct scatterlist sg[VIRTQUEUE_NUM];
++	struct scatterlist *sg;
+ 	/**
+ 	 * @tag: name to identify a mount null terminated
+ 	 */
+@@ -574,6 +574,14 @@ static int p9_virtio_probe(struct virtio_device *vdev)
+ 		goto fail;
+ 	}
  
--	if (clnt->msize > clnt->trans_mod->maxsize)
-+	if (clnt->msize > clnt->trans_mod->maxsize) {
- 		clnt->msize = clnt->trans_mod->maxsize;
-+		pr_info("Limiting 'msize' to %d as this is the maximum "
-+			"supported by transport %s\n",
-+			clnt->msize, clnt->trans_mod->name
-+		);
++	chan->sg = kmalloc_array(VIRTQUEUE_NUM,
++				 sizeof(struct scatterlist), GFP_KERNEL);
++	if (!chan->sg) {
++		pr_err("Failed to allocate virtio 9P channel\n");
++		err = -ENOMEM;
++		goto out_free_chan_shallow;
 +	}
++
+ 	chan->vdev = vdev;
  
- 	if (clnt->msize < 4096) {
- 		p9_debug(P9_DEBUG_ERROR,
+ 	/* We expect one virtqueue, for requests. */
+@@ -635,6 +643,8 @@ static int p9_virtio_probe(struct virtio_device *vdev)
+ out_free_vq:
+ 	vdev->config->del_vqs(vdev);
+ out_free_chan:
++	kfree(chan->sg);
++out_free_chan_shallow:
+ 	kfree(chan);
+ fail:
+ 	return err;
+@@ -728,6 +738,7 @@ static void p9_virtio_remove(struct virtio_device *vdev)
+ 	kobject_uevent(&(vdev->dev.kobj), KOBJ_CHANGE);
+ 	kfree(chan->tag);
+ 	kfree(chan->vc_wq);
++	kfree(chan->sg);
+ 	kfree(chan);
+ 
+ }
 -- 
 2.20.1
 
