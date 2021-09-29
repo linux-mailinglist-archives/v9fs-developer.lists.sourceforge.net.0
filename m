@@ -2,104 +2,85 @@ Return-Path: <v9fs-developer-bounces@lists.sourceforge.net>
 X-Original-To: lists+v9fs-developer@lfdr.de
 Delivered-To: lists+v9fs-developer@lfdr.de
 Received: from lists.sourceforge.net (lists.sourceforge.net [216.105.38.7])
-	by mail.lfdr.de (Postfix) with ESMTPS id 37AF241AB0C
-	for <lists+v9fs-developer@lfdr.de>; Tue, 28 Sep 2021 10:50:18 +0200 (CEST)
-Received: from [127.0.0.1] (helo=sfs-ml-2.v29.lw.sourceforge.com)
-	by sfs-ml-2.v29.lw.sourceforge.com with esmtp (Exim 4.92.3)
-	(envelope-from <v9fs-developer-bounces@lists.sourceforge.net>)
-	id 1mV8oa-0005JR-0z; Tue, 28 Sep 2021 08:50:16 +0000
-Received: from [172.30.20.202] (helo=mx.sourceforge.net)
- by sfs-ml-2.v29.lw.sourceforge.com with esmtps
- (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.92.3)
- (envelope-from <dhowells@redhat.com>) id 1mV8oY-0005JG-Ic
- for v9fs-developer@lists.sourceforge.net; Tue, 28 Sep 2021 08:50:14 +0000
+	by mail.lfdr.de (Postfix) with ESMTPS id DACB841B110
+	for <lists+v9fs-developer@lfdr.de>; Tue, 28 Sep 2021 15:45:18 +0200 (CEST)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=sourceforge.net; s=x; h=Content-Transfer-Encoding:Content-Type:MIME-Version
- :Message-ID:Date:Cc:To:From:Subject:Sender:Reply-To:Content-ID:
+	d=lists.sourceforge.net; s=beta; h=Content-Transfer-Encoding:Content-Type:
+	Reply-To:From:List-Subscribe:List-Help:List-Post:List-Archive:
+	List-Unsubscribe:List-Id:Subject:MIME-Version:Message-ID:Date:To:Sender:Cc:
+	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+	Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:List-Owner;
+	bh=d6z1pGQqrOAu47EjUSu+R/kevSE0CubvHER7vrN+ecI=; b=jOXKv85HStsTMFRdVMal4IuxvW
+	VsejSC5aAsWFcjfojh5P4esBrB4xrMNw/fZtXZ06XS7ZisWreunOYMhuBpF+KD1Ewmli8xjku+DLM
+	j0deMPT1KA+kmQxjfXY+bQX8QmRRZj8oIzFJ46NBgYx916ggjYV4L/8urYWBRmSFhfqg=;
+Received: from [127.0.0.1] (helo=sfs-ml-1.v29.lw.sourceforge.com)
+	by sfs-ml-1.v29.lw.sourceforge.com with esmtp (Exim 4.90_1)
+	(envelope-from <v9fs-developer-bounces@lists.sourceforge.net>)
+	id 1mVDQ4-0005Ig-Hd; Tue, 28 Sep 2021 13:45:16 +0000
+Received: from [172.30.20.202] (helo=mx.sourceforge.net)
+ by sfs-ml-1.v29.lw.sourceforge.com with esmtps
+ (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.90_1)
+ (envelope-from <mail@wg5oecm.cn>) id 1mVDQ2-0005ID-Ke
+ for v9fs-developer@lists.sourceforge.net; Tue, 28 Sep 2021 13:45:14 +0000
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+ d=sourceforge.net; s=x; h=Content-Type:MIME-Version:Message-ID:Date:Subject:
+ To:From:Sender:Reply-To:Cc:Content-Transfer-Encoding:Content-ID:
  Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
  :Resent-Message-ID:In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:
  List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=GzDX+vQGQswidEJZ9asw0Hf411IrZwGPqiRkhkcHu/Y=; b=fr4AS05iR1jRJwzEO8Zc20WDPL
- 5z52Gy+J8GUT+OTQB1zBwenuev/wyINYn6E4oXtp2sW/b8GXq5GKUps7klj5sf3JghlYO/Kb/3moP
- mYe8dDbTv6gGg6fdVrI1WP9qYHp5geWn44VGB5TBT7HZWLOxBT4ybIGlHrxxIQGaNPug=;
+ bh=B82O4V+7jArmmooy2vCkP0yOZ3Q2BPz6GV8bKzYIAPM=; b=JIYhph7XzQoX5ZLyLHCCx4AChm
+ jOiwrGVyj/5rBNNiot/OSmCrQvnPKDfvYHmoBpmn7PbwCRGa+9AG5n4qpGwx0KEsE22y/vLtPaWFD
+ ECsan48dGP/4iW88fSUgDa3yIVa7cNqBDskVGW0PVnD3FpzWNMoF8W4iLKc0xITgOjlE=;
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  ;
- h=Content-Transfer-Encoding:Content-Type:MIME-Version:Message-ID:Date:Cc:To
- :From:Subject:Sender:Reply-To:Content-ID:Content-Description:Resent-Date:
+ h=Content-Type:MIME-Version:Message-ID:Date:Subject:To:From:Sender:Reply-To
+ :Cc:Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
  Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:
  References:List-Id:List-Help:List-Unsubscribe:List-Subscribe:List-Post:
- List-Owner:List-Archive; bh=GzDX+vQGQswidEJZ9asw0Hf411IrZwGPqiRkhkcHu/Y=; b=I
- zOHzN3t5oDarUDB8nv6nTxly7UirZM8cBxKnhwMZGl2Nnvly2Z5I2JSH7BzlW/aYQ7OLoyD/tg0Tt
- gC5MOhDW3szqBaBeS/Vs7rbC5g9XQOqYwj2gpSSgntfwog8KXM0vFrEq7Vyc+h7eQu95JwvZX5u9W
- UVS9ZuoJldme0fP8=;
-Received: from us-smtp-delivery-124.mimecast.com ([170.10.133.124])
+ List-Owner:List-Archive; bh=B82O4V+7jArmmooy2vCkP0yOZ3Q2BPz6GV8bKzYIAPM=; b=C
+ SJFd2VC3YnoL14eV7UR5LnygXNwOBehbt3jxY0zMUt2XxX+Ry9FKIAoyZcacx0rdZ2Hh4LbL5UQoQ
+ Il0uIm58MLr7s68382DBZxNhaujiqaowuyQPCkLGPJK+6GkNfj8eQUIafDfsiZ9oEwS/HFLtzoj6h
+ uSB9Z4WsJk5eLXGQ=;
+Received: from [45.156.26.175] (helo=wg5oecm.cn)
  by sfi-mx-1.v28.lw.sourceforge.com with esmtps
  (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.92.3)
- id 1mV8oW-0095MN-Q6
- for v9fs-developer@lists.sourceforge.net; Tue, 28 Sep 2021 08:50:14 +0000
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
- s=mimecast20190719; t=1632819006;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding;
- bh=GzDX+vQGQswidEJZ9asw0Hf411IrZwGPqiRkhkcHu/Y=;
- b=bs07Y54XvWyhnZ75iIkYMAkHdUDGyZLJ6Uw3uKHBKgm6K2U9pBkSgR4l72qqzziELMHzOp
- ByrQG8q4WiVvUoYuP1YR0ZUH5TG6cEgZAbuCMzntGSz24tH0KlOuSk6F5hI4KzF2y2Rj1Q
- kwlt9ej0k3ngLrQG1g4Jd4MIssdXYq0=
-Received: from mimecast-mx01.redhat.com (mimecast-mx01.redhat.com
- [209.132.183.4]) (Using TLS) by relay.mimecast.com with ESMTP id
- us-mta-338-3ueACyZEMPq7Doa0vDnGLA-1; Tue, 28 Sep 2021 04:50:02 -0400
-X-MC-Unique: 3ueACyZEMPq7Doa0vDnGLA-1
-Received: from smtp.corp.redhat.com (int-mx06.intmail.prod.int.phx2.redhat.com
- [10.5.11.16])
- (using TLSv1.2 with cipher AECDH-AES256-SHA (256/256 bits))
- (No client certificate requested)
- by mimecast-mx01.redhat.com (Postfix) with ESMTPS id 0B1411084686;
- Tue, 28 Sep 2021 08:50:01 +0000 (UTC)
-Received: from warthog.procyon.org.uk (unknown [10.33.36.44])
- by smtp.corp.redhat.com (Postfix) with ESMTP id E2C075C1C5;
- Tue, 28 Sep 2021 08:49:57 +0000 (UTC)
-Organization: Red Hat UK Ltd. Registered Address: Red Hat UK Ltd, Amberley
- Place, 107-111 Peascod Street, Windsor, Berkshire, SI4 1TE, United
- Kingdom.
- Registered in England and Wales under Company Registration No. 3798903
-From: David Howells <dhowells@redhat.com>
-To: torvalds@linux-foundation.org
-Date: Tue, 28 Sep 2021 09:49:57 +0100
-Message-ID: <163281899704.2790286.9177774252843775348.stgit@warthog.procyon.org.uk>
-User-Agent: StGit/0.23
+ id 1mVDPy-009X1v-Fy
+ for v9fs-developer@lists.sourceforge.net; Tue, 28 Sep 2021 13:45:14 +0000
+Received: from wveu (unknown [185.202.103.212])
+ by wg5oecm.cn (Postfix) with ESMTPA id D33E3346B5C7
+ for <v9fs-developer@lists.sourceforge.net>;
+ Tue, 28 Sep 2021 21:44:22 +0800 (CST)
+To: v9fs-developer <v9fs-developer@lists.sourceforge.net>
+Date: Tue, 28 Sep 2021 21:40:29 -0800
+Message-ID: <0042ace29a0b$98d95d1a$b38f2e12$@wveu>
 MIME-Version: 1.0
-X-Scanned-By: MIMEDefang 2.79 on 10.5.11.16
-X-Spam-Score: -1.6 (-)
-X-Spam-Report: Spam detection software,
- running on the system "util-spamd-1.v13.lw.sourceforge.com", 
+X-Mailer: Microsoft Outlook 16.0
+X-Spam-Score: 3.8 (+++)
+X-Spam-Report: Spam detection software, running on the system "util-spamd-1.v13.lw.sourceforge.com",
  has NOT identified this incoming email as spam.  The original
  message has been attached to this so you can view it or label
  similar future email.  If you have any questions, see
  the administrator of that system for details.
- Content preview: Deal with some warnings generated from make W=1: (1)
- Add/remove/fix
- kerneldoc parameters descriptions. (2) afs_sillyrename() isn't an API
- functions, so remove the kerneldoc annotation. 
- Content analysis details:   (-1.6 points, 6.0 required)
- pts rule name              description
+ 
+ Content preview:  客様の注文とamazonアカウントを停止させていただいております、請求先住所が変更されたなど。アカウントにログインして画面の指示に従うことで�
+    [...] 
+ 
+ Content analysis details:   (3.8 points, 6.0 required)
+ 
+  pts rule name              description
  ---- ---------------------- --------------------------------------------------
- -0.7 RCVD_IN_DNSWL_LOW      RBL: Sender listed at https://www.dnswl.org/,
- low trust [170.10.133.124 listed in list.dnswl.org]
- -0.0 RCVD_IN_MSPIKE_H2      RBL: Average reputation (+2)
- [170.10.133.124 listed in wl.mailspike.net]
- 0.0 SPF_HELO_NONE          SPF: HELO does not publish an SPF Record
+  0.0 URIBL_PH_SURBL         Contains an URL listed in the PH SURBL blocklist
+                             [URIs: jpbkgp.cn]
+  2.5 DATE_IN_FUTURE_12_24   Date: is 12 to 24 hours after Received:
+                             date
+ -0.0 SPF_HELO_PASS          SPF: HELO matches SPF record
  -0.0 SPF_PASS               SPF: sender matches SPF record
- -0.1 DKIM_VALID_AU          Message has a valid DKIM or DK signature from
- author's domain
- -0.1 DKIM_VALID_EF          Message has a valid DKIM or DK signature from
- envelope-from domain
- -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
- 0.1 DKIM_SIGNED            Message has a DKIM or DK signature, not necessarily
- valid -0.7 DKIMWL_WL_HIGH         DKIMwl.org - High trust sender
-X-Headers-End: 1mV8oW-0095MN-Q6
-Subject: [V9fs-developer] [RFC PATCH v2] fscache, 9p, afs,
- nfs: Deal with some warnings from W=1
+  0.0 HTML_MESSAGE           BODY: HTML included in message
+  1.3 RDNS_NONE              Delivered to internal network by a host with no rDNS
+X-Headers-End: 1mVDPy-009X1v-Fy
+X-Content-Filtered-By: Mailman/MimeDel 2.1.21
+Subject: [V9fs-developer] =?utf-8?b?44CQQW1hem9u44CR5rOo5paH54q25rOB44KS?=
+ =?utf-8?b?44GU56K66KqN44GP44Gg44GV44GE?=
 X-BeenThere: v9fs-developer@lists.sourceforge.net
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -111,485 +92,24 @@ List-Post: <mailto:v9fs-developer@lists.sourceforge.net>
 List-Help: <mailto:v9fs-developer-request@lists.sourceforge.net?subject=help>
 List-Subscribe: <https://lists.sourceforge.net/lists/listinfo/v9fs-developer>, 
  <mailto:v9fs-developer-request@lists.sourceforge.net?subject=subscribe>
-Cc: linux-nfs@vger.kernel.org, linux-afs@lists.infradead.org,
- linux-doc@vger.kernel.org, Jeff Layton <jlayton@kernel.org>,
- linux-kernel@vger.kernel.org, Anna Schumaker <anna.schumaker@netapp.com>,
- dhowells@redhat.com, linux-fsdevel@vger.kernel.org,
- Marc Dionne <marc.dionne@auristor.com>, v9fs-developer@lists.sourceforge.net,
- Mauro Carvalho Chehab <mchehab@kernel.org>,
- Trond Myklebust <trond.myklebust@hammerspace.com>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+From: "Amazon.co.jp via V9fs-developer" <v9fs-developer@lists.sourceforge.net>
+Reply-To: "Amazon.co.jp" <mail@wg5oecm.cn>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: v9fs-developer-bounces@lists.sourceforge.net
 
-Deal with some warnings generated from make W=1:
-
- (1) Add/remove/fix kerneldoc parameters descriptions.
-
- (2) afs_sillyrename() isn't an API functions, so remove the kerneldoc
-     annotation.
-
- (3) The fscache object CREATE_OBJECT work state isn't used, so remove it.
-
- (4) Move __add_fid() from between v9fs_fid_add() and its comment.
-
- (5) 9p's caches_show() doesn't really make sense as an API function, show
-     remove the kerneldoc annotation.  It's also not prefixed with 'v9fs_'.
-
-Signed-off-by: David Howells <dhowells@redhat.com>
-Reviewed-by: Dominique Martinet <asmadeus@codewreck.org>
-cc: Jeff Layton <jlayton@kernel.org>
-cc: Marc Dionne <marc.dionne@auristor.com>
-cc: Trond Myklebust <trond.myklebust@hammerspace.com>
-cc: Anna Schumaker <anna.schumaker@netapp.com>
-cc: Mauro Carvalho Chehab <mchehab@kernel.org>
-cc: v9fs-developer@lists.sourceforge.net
-cc: linux-afs@lists.infradead.org
-cc: linux-nfs@vger.kernel.org
-cc: linux-fsdevel@vger.kernel.org
-cc: linux-doc@vger.kernel.org
----
-
- fs/9p/fid.c            |   14 +++++++-------
- fs/9p/v9fs.c           |    8 +++-----
- fs/9p/vfs_addr.c       |   15 ++++++++++-----
- fs/9p/vfs_file.c       |   33 ++++++++++++---------------------
- fs/9p/vfs_inode.c      |   24 ++++++++++++++++--------
- fs/9p/vfs_inode_dotl.c |   11 +++++++++--
- fs/afs/dir_silly.c     |    4 ++--
- fs/fscache/object.c    |    2 +-
- fs/fscache/operation.c |    3 +++
- fs/nfs_common/grace.c  |    1 -
- 10 files changed, 63 insertions(+), 52 deletions(-)
-
-diff --git a/fs/9p/fid.c b/fs/9p/fid.c
-index 9d9de62592be..b8863dd0de5c 100644
---- a/fs/9p/fid.c
-+++ b/fs/9p/fid.c
-@@ -19,18 +19,18 @@
- #include "v9fs_vfs.h"
- #include "fid.h"
- 
-+static inline void __add_fid(struct dentry *dentry, struct p9_fid *fid)
-+{
-+	hlist_add_head(&fid->dlist, (struct hlist_head *)&dentry->d_fsdata);
-+}
-+
-+
- /**
-  * v9fs_fid_add - add a fid to a dentry
-  * @dentry: dentry that the fid is being added to
-  * @fid: fid to add
-  *
-  */
--
--static inline void __add_fid(struct dentry *dentry, struct p9_fid *fid)
--{
--	hlist_add_head(&fid->dlist, (struct hlist_head *)&dentry->d_fsdata);
--}
--
- void v9fs_fid_add(struct dentry *dentry, struct p9_fid *fid)
- {
- 	spin_lock(&dentry->d_lock);
-@@ -67,7 +67,7 @@ static struct p9_fid *v9fs_fid_find_inode(struct inode *inode, kuid_t uid)
- 
- /**
-  * v9fs_open_fid_add - add an open fid to an inode
-- * @dentry: inode that the fid is being added to
-+ * @inode: inode that the fid is being added to
-  * @fid: fid to add
-  *
-  */
-diff --git a/fs/9p/v9fs.c b/fs/9p/v9fs.c
-index cdb99507ef33..2e0fa7c932db 100644
---- a/fs/9p/v9fs.c
-+++ b/fs/9p/v9fs.c
-@@ -155,6 +155,7 @@ int v9fs_show_options(struct seq_file *m, struct dentry *root)
- /**
-  * v9fs_parse_options - parse mount options into session structure
-  * @v9ses: existing v9fs session information
-+ * @opts: The mount option string
-  *
-  * Return 0 upon success, -ERRNO upon failure.
-  */
-@@ -542,12 +543,9 @@ extern int v9fs_error_init(void);
- static struct kobject *v9fs_kobj;
- 
- #ifdef CONFIG_9P_FSCACHE
--/**
-- * caches_show - list caches associated with a session
-- *
-- * Returns the size of buffer written.
-+/*
-+ * List caches associated with a session
-  */
--
- static ssize_t caches_show(struct kobject *kobj,
- 			   struct kobj_attribute *attr,
- 			   char *buf)
-diff --git a/fs/9p/vfs_addr.c b/fs/9p/vfs_addr.c
-index 15017b7ce8f8..cff99f5c05e3 100644
---- a/fs/9p/vfs_addr.c
-+++ b/fs/9p/vfs_addr.c
-@@ -61,7 +61,7 @@ static void v9fs_init_rreq(struct netfs_read_request *rreq, struct file *file)
- }
- 
- /**
-- * v9fs_req_ceanup - Cleanup request initialized by v9fs_init_rreq
-+ * v9fs_req_cleanup - Cleanup request initialized by v9fs_init_rreq
-  * @mapping: unused mapping of request to cleanup
-  * @priv: private data to cleanup, a fid, guaranted non-null.
-  */
-@@ -104,7 +104,7 @@ static const struct netfs_read_request_ops v9fs_req_ops = {
- 
- /**
-  * v9fs_vfs_readpage - read an entire page in from 9P
-- * @filp: file being read
-+ * @file: file being read
-  * @page: structure to page
-  *
-  */
-@@ -124,6 +124,8 @@ static void v9fs_vfs_readahead(struct readahead_control *ractl)
- 
- /**
-  * v9fs_release_page - release the private state associated with a page
-+ * @page: The page to be released
-+ * @gfp: The caller's allocation restrictions
-  *
-  * Returns 1 if the page can be released, false otherwise.
-  */
-@@ -144,9 +146,9 @@ static int v9fs_release_page(struct page *page, gfp_t gfp)
- 
- /**
-  * v9fs_invalidate_page - Invalidate a page completely or partially
-- *
-- * @page: structure to page
-- * @offset: offset in the page
-+ * @page: The page to be invalidated
-+ * @offset: offset of the invalidated region
-+ * @length: length of the invalidated region
-  */
- 
- static void v9fs_invalidate_page(struct page *page, unsigned int offset,
-@@ -206,6 +208,8 @@ static int v9fs_vfs_writepage(struct page *page, struct writeback_control *wbc)
- 
- /**
-  * v9fs_launder_page - Writeback a dirty page
-+ * @page: The page to be cleaned up
-+ *
-  * Returns 0 on success.
-  */
- 
-@@ -225,6 +229,7 @@ static int v9fs_launder_page(struct page *page)
- /**
-  * v9fs_direct_IO - 9P address space operation for direct I/O
-  * @iocb: target I/O control block
-+ * @iter: The data/buffer to use
-  *
-  * The presence of v9fs_direct_IO() in the address space ops vector
-  * allowes open() O_DIRECT flags which would have failed otherwise.
-diff --git a/fs/9p/vfs_file.c b/fs/9p/vfs_file.c
-index 7ed76a4c18f1..80052497f00f 100644
---- a/fs/9p/vfs_file.c
-+++ b/fs/9p/vfs_file.c
-@@ -359,14 +359,11 @@ static int v9fs_file_flock_dotl(struct file *filp, int cmd,
- }
- 
- /**
-- * v9fs_file_read - read from a file
-- * @filp: file pointer to read
-- * @udata: user data buffer to read data into
-- * @count: size of buffer
-- * @offset: offset at which to read data
-+ * v9fs_file_read_iter - read from a file
-+ * @iocb: The operation parameters
-+ * @to: The buffer to read into
-  *
-  */
--
- static ssize_t
- v9fs_file_read_iter(struct kiocb *iocb, struct iov_iter *to)
- {
-@@ -388,11 +385,9 @@ v9fs_file_read_iter(struct kiocb *iocb, struct iov_iter *to)
- }
- 
- /**
-- * v9fs_file_write - write to a file
-- * @filp: file pointer to write
-- * @data: data buffer to write data from
-- * @count: size of buffer
-- * @offset: offset at which to write data
-+ * v9fs_file_write_iter - write to a file
-+ * @iocb: The operation parameters
-+ * @from: The data to write
-  *
-  */
- static ssize_t
-@@ -574,11 +569,9 @@ v9fs_vm_page_mkwrite(struct vm_fault *vmf)
- }
- 
- /**
-- * v9fs_mmap_file_read - read from a file
-- * @filp: file pointer to read
-- * @data: user data buffer to read data into
-- * @count: size of buffer
-- * @offset: offset at which to read data
-+ * v9fs_mmap_file_read_iter - read from a file
-+ * @iocb: The operation parameters
-+ * @to: The buffer to read into
-  *
-  */
- static ssize_t
-@@ -589,11 +582,9 @@ v9fs_mmap_file_read_iter(struct kiocb *iocb, struct iov_iter *to)
- }
- 
- /**
-- * v9fs_mmap_file_write - write to a file
-- * @filp: file pointer to write
-- * @data: data buffer to write data from
-- * @count: size of buffer
-- * @offset: offset at which to write data
-+ * v9fs_mmap_file_write_iter - write to a file
-+ * @iocb: The operation parameters
-+ * @from: The data to write
-  *
-  */
- static ssize_t
-diff --git a/fs/9p/vfs_inode.c b/fs/9p/vfs_inode.c
-index 795706520b5e..08f48b70a741 100644
---- a/fs/9p/vfs_inode.c
-+++ b/fs/9p/vfs_inode.c
-@@ -218,7 +218,7 @@ v9fs_blank_wstat(struct p9_wstat *wstat)
- 
- /**
-  * v9fs_alloc_inode - helper function to allocate an inode
-- *
-+ * @sb: The superblock to allocate the inode from
-  */
- struct inode *v9fs_alloc_inode(struct super_block *sb)
- {
-@@ -238,7 +238,7 @@ struct inode *v9fs_alloc_inode(struct super_block *sb)
- 
- /**
-  * v9fs_free_inode - destroy an inode
-- *
-+ * @inode: The inode to be freed
-  */
- 
- void v9fs_free_inode(struct inode *inode)
-@@ -343,7 +343,7 @@ int v9fs_init_inode(struct v9fs_session_info *v9ses,
-  * v9fs_get_inode - helper function to setup an inode
-  * @sb: superblock
-  * @mode: mode to setup inode with
-- *
-+ * @rdev: The device numbers to set
-  */
- 
- struct inode *v9fs_get_inode(struct super_block *sb, umode_t mode, dev_t rdev)
-@@ -369,7 +369,7 @@ struct inode *v9fs_get_inode(struct super_block *sb, umode_t mode, dev_t rdev)
- }
- 
- /**
-- * v9fs_clear_inode - release an inode
-+ * v9fs_evict_inode - Remove an inode from the inode cache
-  * @inode: inode to release
-  *
-  */
-@@ -665,14 +665,15 @@ v9fs_create(struct v9fs_session_info *v9ses, struct inode *dir,
- 
- /**
-  * v9fs_vfs_create - VFS hook to create a regular file
-+ * @mnt_userns: The user namespace of the mount
-+ * @dir: The parent directory
-+ * @dentry: The name of file to be created
-+ * @mode: The UNIX file mode to set
-+ * @excl: True if the file must not yet exist
-  *
-  * open(.., O_CREAT) is handled in v9fs_vfs_atomic_open().  This is only called
-  * for mknod(2).
-  *
-- * @dir: directory inode that is being created
-- * @dentry:  dentry that is being deleted
-- * @mode: create permissions
-- *
-  */
- 
- static int
-@@ -696,6 +697,7 @@ v9fs_vfs_create(struct user_namespace *mnt_userns, struct inode *dir,
- 
- /**
-  * v9fs_vfs_mkdir - VFS mkdir hook to create a directory
-+ * @mnt_userns: The user namespace of the mount
-  * @dir:  inode that is being unlinked
-  * @dentry: dentry that is being unlinked
-  * @mode: mode for new directory
-@@ -900,10 +902,12 @@ int v9fs_vfs_rmdir(struct inode *i, struct dentry *d)
- 
- /**
-  * v9fs_vfs_rename - VFS hook to rename an inode
-+ * @mnt_userns: The user namespace of the mount
-  * @old_dir:  old dir inode
-  * @old_dentry: old dentry
-  * @new_dir: new dir inode
-  * @new_dentry: new dentry
-+ * @flags: RENAME_* flags
-  *
-  */
- 
-@@ -1009,6 +1013,7 @@ v9fs_vfs_rename(struct user_namespace *mnt_userns, struct inode *old_dir,
- 
- /**
-  * v9fs_vfs_getattr - retrieve file metadata
-+ * @mnt_userns: The user namespace of the mount
-  * @path: Object to query
-  * @stat: metadata structure to populate
-  * @request_mask: Mask of STATX_xxx flags indicating the caller's interests
-@@ -1050,6 +1055,7 @@ v9fs_vfs_getattr(struct user_namespace *mnt_userns, const struct path *path,
- 
- /**
-  * v9fs_vfs_setattr - set file metadata
-+ * @mnt_userns: The user namespace of the mount
-  * @dentry: file whose metadata to set
-  * @iattr: metadata assignment structure
-  *
-@@ -1285,6 +1291,7 @@ static int v9fs_vfs_mkspecial(struct inode *dir, struct dentry *dentry,
- 
- /**
-  * v9fs_vfs_symlink - helper function to create symlinks
-+ * @mnt_userns: The user namespace of the mount
-  * @dir: directory inode containing symlink
-  * @dentry: dentry for symlink
-  * @symname: symlink data
-@@ -1340,6 +1347,7 @@ v9fs_vfs_link(struct dentry *old_dentry, struct inode *dir,
- 
- /**
-  * v9fs_vfs_mknod - create a special file
-+ * @mnt_userns: The user namespace of the mount
-  * @dir: inode destination for new link
-  * @dentry: dentry for file
-  * @mode: mode for creation
-diff --git a/fs/9p/vfs_inode_dotl.c b/fs/9p/vfs_inode_dotl.c
-index e1c0240b51c0..01b9e1281a29 100644
---- a/fs/9p/vfs_inode_dotl.c
-+++ b/fs/9p/vfs_inode_dotl.c
-@@ -37,7 +37,10 @@ v9fs_vfs_mknod_dotl(struct user_namespace *mnt_userns, struct inode *dir,
- 		    struct dentry *dentry, umode_t omode, dev_t rdev);
- 
- /**
-- * v9fs_get_fsgid_for_create - Helper function to get the gid for creating a
-+ * v9fs_get_fsgid_for_create - Helper function to get the gid for a new object
-+ * @dir_inode: The directory inode
-+ *
-+ * Helper function to get the gid for creating a
-  * new file system object. This checks the S_ISGID to determine the owning
-  * group of the new file system object.
-  */
-@@ -211,12 +214,13 @@ int v9fs_open_to_dotl_flags(int flags)
- 
- /**
-  * v9fs_vfs_create_dotl - VFS hook to create files for 9P2000.L protocol.
-+ * @mnt_userns: The user namespace of the mount
-  * @dir: directory inode that is being created
-  * @dentry:  dentry that is being deleted
-  * @omode: create permissions
-+ * @excl: True if the file must not yet exist
-  *
-  */
--
- static int
- v9fs_vfs_create_dotl(struct user_namespace *mnt_userns, struct inode *dir,
- 		     struct dentry *dentry, umode_t omode, bool excl)
-@@ -361,6 +365,7 @@ v9fs_vfs_atomic_open_dotl(struct inode *dir, struct dentry *dentry,
- 
- /**
-  * v9fs_vfs_mkdir_dotl - VFS mkdir hook to create a directory
-+ * @mnt_userns: The user namespace of the mount
-  * @dir:  inode that is being unlinked
-  * @dentry: dentry that is being unlinked
-  * @omode: mode for new directory
-@@ -537,6 +542,7 @@ static int v9fs_mapped_iattr_valid(int iattr_valid)
- 
- /**
-  * v9fs_vfs_setattr_dotl - set file metadata
-+ * @mnt_userns: The user namespace of the mount
-  * @dentry: file whose metadata to set
-  * @iattr: metadata assignment structure
-  *
-@@ -816,6 +822,7 @@ v9fs_vfs_link_dotl(struct dentry *old_dentry, struct inode *dir,
- 
- /**
-  * v9fs_vfs_mknod_dotl - create a special file
-+ * @mnt_userns: The user namespace of the mount
-  * @dir: inode destination for new link
-  * @dentry: dentry for file
-  * @omode: mode for creation
-diff --git a/fs/afs/dir_silly.c b/fs/afs/dir_silly.c
-index dae9a57d7ec0..45cfd50a9521 100644
---- a/fs/afs/dir_silly.c
-+++ b/fs/afs/dir_silly.c
-@@ -86,8 +86,8 @@ static int afs_do_silly_rename(struct afs_vnode *dvnode, struct afs_vnode *vnode
- 	return afs_do_sync_operation(op);
- }
- 
--/**
-- * afs_sillyrename - Perform a silly-rename of a dentry
-+/*
-+ * Perform silly-rename of a dentry.
-  *
-  * AFS is stateless and the server doesn't know when the client is holding a
-  * file open.  To prevent application problems when a file is unlinked while
-diff --git a/fs/fscache/object.c b/fs/fscache/object.c
-index d7eab46dd826..86ad941726f7 100644
---- a/fs/fscache/object.c
-+++ b/fs/fscache/object.c
-@@ -77,7 +77,6 @@ static WORK_STATE(INIT_OBJECT,		"INIT", fscache_initialise_object);
- static WORK_STATE(PARENT_READY,		"PRDY", fscache_parent_ready);
- static WORK_STATE(ABORT_INIT,		"ABRT", fscache_abort_initialisation);
- static WORK_STATE(LOOK_UP_OBJECT,	"LOOK", fscache_look_up_object);
--static WORK_STATE(CREATE_OBJECT,	"CRTO", fscache_look_up_object);
- static WORK_STATE(OBJECT_AVAILABLE,	"AVBL", fscache_object_available);
- static WORK_STATE(JUMPSTART_DEPS,	"JUMP", fscache_jumpstart_dependents);
- 
-@@ -907,6 +906,7 @@ static void fscache_dequeue_object(struct fscache_object *object)
-  * @object: The object to ask about
-  * @data: The auxiliary data for the object
-  * @datalen: The size of the auxiliary data
-+ * @object_size: The size of the object according to the server.
-  *
-  * This function consults the netfs about the coherency state of an object.
-  * The caller must be holding a ref on cookie->n_active (held by
-diff --git a/fs/fscache/operation.c b/fs/fscache/operation.c
-index 433877107700..e002cdfaf3cc 100644
---- a/fs/fscache/operation.c
-+++ b/fs/fscache/operation.c
-@@ -22,7 +22,10 @@ static void fscache_operation_dummy_cancel(struct fscache_operation *op)
- 
- /**
-  * fscache_operation_init - Do basic initialisation of an operation
-+ * @cookie: The cookie to operate on
-  * @op: The operation to initialise
-+ * @processor: The function to perform the operation
-+ * @cancel: A function to handle operation cancellation
-  * @release: The release function to assign
-  *
-  * Do basic initialisation of an operation.  The caller must still set flags,
-diff --git a/fs/nfs_common/grace.c b/fs/nfs_common/grace.c
-index edec45831585..0a9b72685f98 100644
---- a/fs/nfs_common/grace.c
-+++ b/fs/nfs_common/grace.c
-@@ -42,7 +42,6 @@ EXPORT_SYMBOL_GPL(locks_start_grace);
- 
- /**
-  * locks_end_grace
-- * @net: net namespace that this lock manager belongs to
-  * @lm: who this grace period is for
-  *
-  * Call this function to state that the given lock manager is ready to
-
-
-
-
-_______________________________________________
-V9fs-developer mailing list
-V9fs-developer@lists.sourceforge.net
-https://lists.sourceforge.net/lists/listinfo/v9fs-developer
+IA0KDQogDQoNCg0KIA0KDQogDQoNCiANCg0KIA0KDQogDQog5a6i5qeY44Gu5rOo5paH44GoYW1h
+em9u44Ki44Kr44Km44Oz44OI44KS5YGc5q2i44GV44Gb44Gm44GE44Gf44Gg44GE44Gm44GK44KK
+44G+44GZ44CB6KuL5rGC5YWI5L2P5omA44GM5aSJ5pu044GV44KM44Gf44Gq44Gp44CC44Ki44Kr
+44Km44Oz44OI44Gr44Ot44Kw44Kk44Oz44GX44Gm55S76Z2i44Gu5oyH56S644Gr5b6T44GG44GT
+44Go44Gn44CB44Ki44Kr44Km44Oz44OI44Gu5YGc5q2i54q25oWL44KS6Kej6Zmk44GX44Gm44GE
+44Gf44Gg44GR44G+44GZ44CCIOS4i+iusFVSTOOCiOOCiuOCouOCq+OCpuODs+ODiOazqOaWh+aD
+heWgseOCkuOBlOeiuuiqjeOBvuOBn+OBr+WkieabtOOAgg0KW+azqOaWh+eVquWPt10gNTQ2MzIx
+MjQ1LTIwMjEwOTI4LTc2MjRb5bqX6IiX5Y+X5LuY5pel5pmCXSAyMDIxLzA5LzI4W+OBiuaUr+aJ
+leOBhOaWueazlV0g44Kv44Os44K444OD44OI44Kr44O844OJ5rG65riIIA0KICDnorroqo3nlKjj
+gqLjgqvjgqbjg7Pjg4gNCg0KICAgQW1hem9uLmNvLmpw44Gu44G+44Gf44Gu44GU5Yip55So44KS
+44GK5b6F44Gh44GX44Gm44GK44KK44G+44GZ44CCICAgwqkgMTk5Ni0yMDIxLCBBbWF6b24uY29t
+LCBJbmMuIG9yIGl0cyBhZmZpbGlhdGVzDQogDQoNCg0KDQoKX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX18KVjlmcy1kZXZlbG9wZXIgbWFpbGluZyBsaXN0ClY5
+ZnMtZGV2ZWxvcGVyQGxpc3RzLnNvdXJjZWZvcmdlLm5ldApodHRwczovL2xpc3RzLnNvdXJjZWZv
+cmdlLm5ldC9saXN0cy9saXN0aW5mby92OWZzLWRldmVsb3Blcgo=
