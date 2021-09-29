@@ -2,85 +2,74 @@ Return-Path: <v9fs-developer-bounces@lists.sourceforge.net>
 X-Original-To: lists+v9fs-developer@lfdr.de
 Delivered-To: lists+v9fs-developer@lfdr.de
 Received: from lists.sourceforge.net (lists.sourceforge.net [216.105.38.7])
-	by mail.lfdr.de (Postfix) with ESMTPS id DACB841B110
-	for <lists+v9fs-developer@lfdr.de>; Tue, 28 Sep 2021 15:45:18 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.sourceforge.net; s=beta; h=Content-Transfer-Encoding:Content-Type:
-	Reply-To:From:List-Subscribe:List-Help:List-Post:List-Archive:
-	List-Unsubscribe:List-Id:Subject:MIME-Version:Message-ID:Date:To:Sender:Cc:
-	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
-	Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:List-Owner;
-	bh=d6z1pGQqrOAu47EjUSu+R/kevSE0CubvHER7vrN+ecI=; b=jOXKv85HStsTMFRdVMal4IuxvW
-	VsejSC5aAsWFcjfojh5P4esBrB4xrMNw/fZtXZ06XS7ZisWreunOYMhuBpF+KD1Ewmli8xjku+DLM
-	j0deMPT1KA+kmQxjfXY+bQX8QmRRZj8oIzFJ46NBgYx916ggjYV4L/8urYWBRmSFhfqg=;
-Received: from [127.0.0.1] (helo=sfs-ml-1.v29.lw.sourceforge.com)
-	by sfs-ml-1.v29.lw.sourceforge.com with esmtp (Exim 4.90_1)
+	by mail.lfdr.de (Postfix) with ESMTPS id 28DD441CDB5
+	for <lists+v9fs-developer@lfdr.de>; Wed, 29 Sep 2021 23:03:11 +0200 (CEST)
+Received: from [127.0.0.1] (helo=sfs-ml-4.v29.lw.sourceforge.com)
+	by sfs-ml-4.v29.lw.sourceforge.com with esmtp (Exim 4.90_1)
 	(envelope-from <v9fs-developer-bounces@lists.sourceforge.net>)
-	id 1mVDQ4-0005Ig-Hd; Tue, 28 Sep 2021 13:45:16 +0000
+	id 1mVgjM-00070u-Rk; Wed, 29 Sep 2021 21:03:08 +0000
 Received: from [172.30.20.202] (helo=mx.sourceforge.net)
- by sfs-ml-1.v29.lw.sourceforge.com with esmtps
+ by sfs-ml-4.v29.lw.sourceforge.com with esmtps
  (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.90_1)
- (envelope-from <mail@wg5oecm.cn>) id 1mVDQ2-0005ID-Ke
- for v9fs-developer@lists.sourceforge.net; Tue, 28 Sep 2021 13:45:14 +0000
+ (envelope-from <jaccs7@jaccs.co.jp>) id 1mVgjL-00070o-6x
+ for v9fs-developer@lists.sourceforge.net; Wed, 29 Sep 2021 21:03:07 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=sourceforge.net; s=x; h=Content-Type:MIME-Version:Message-ID:Date:Subject:
- To:From:Sender:Reply-To:Cc:Content-Transfer-Encoding:Content-ID:
+ d=sourceforge.net; s=x; h=Content-Transfer-Encoding:Content-Type:MIME-Version
+ :Date:Subject:To:From:Message-ID:Sender:Reply-To:Cc:Content-ID:
  Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
  :Resent-Message-ID:In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:
  List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=B82O4V+7jArmmooy2vCkP0yOZ3Q2BPz6GV8bKzYIAPM=; b=JIYhph7XzQoX5ZLyLHCCx4AChm
- jOiwrGVyj/5rBNNiot/OSmCrQvnPKDfvYHmoBpmn7PbwCRGa+9AG5n4qpGwx0KEsE22y/vLtPaWFD
- ECsan48dGP/4iW88fSUgDa3yIVa7cNqBDskVGW0PVnD3FpzWNMoF8W4iLKc0xITgOjlE=;
+ bh=9zkE/2aEF50ZIhFl6mk4PktPub0Tnf2R/C2wNWDMnEI=; b=bcMVBLzBsXrymO7+eYb+sJJZEl
+ y3tyt95vMH7K4nSRdSsK4COJnx8JX4qCzZc6qy/P2i/QNDubSMkWpv/7pSoX4B3ZvtPooqt48aBCc
+ kBJclOsH4XJ1Dr8bhqy1PGKYoHBVlvDQtCKlGlAQ1z1E50+LhMb9d6SH8zsuXQAsFC5I=;
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  ;
- h=Content-Type:MIME-Version:Message-ID:Date:Subject:To:From:Sender:Reply-To
- :Cc:Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+ h=Content-Transfer-Encoding:Content-Type:MIME-Version:Date:Subject:To:From:
+ Message-ID:Sender:Reply-To:Cc:Content-ID:Content-Description:Resent-Date:
  Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:
  References:List-Id:List-Help:List-Unsubscribe:List-Subscribe:List-Post:
- List-Owner:List-Archive; bh=B82O4V+7jArmmooy2vCkP0yOZ3Q2BPz6GV8bKzYIAPM=; b=C
- SJFd2VC3YnoL14eV7UR5LnygXNwOBehbt3jxY0zMUt2XxX+Ry9FKIAoyZcacx0rdZ2Hh4LbL5UQoQ
- Il0uIm58MLr7s68382DBZxNhaujiqaowuyQPCkLGPJK+6GkNfj8eQUIafDfsiZ9oEwS/HFLtzoj6h
- uSB9Z4WsJk5eLXGQ=;
-Received: from [45.156.26.175] (helo=wg5oecm.cn)
- by sfi-mx-1.v28.lw.sourceforge.com with esmtps
- (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.92.3)
- id 1mVDPy-009X1v-Fy
- for v9fs-developer@lists.sourceforge.net; Tue, 28 Sep 2021 13:45:14 +0000
-Received: from wveu (unknown [185.202.103.212])
- by wg5oecm.cn (Postfix) with ESMTPA id D33E3346B5C7
- for <v9fs-developer@lists.sourceforge.net>;
- Tue, 28 Sep 2021 21:44:22 +0800 (CST)
-To: v9fs-developer <v9fs-developer@lists.sourceforge.net>
-Date: Tue, 28 Sep 2021 21:40:29 -0800
-Message-ID: <0042ace29a0b$98d95d1a$b38f2e12$@wveu>
+ List-Owner:List-Archive; bh=9zkE/2aEF50ZIhFl6mk4PktPub0Tnf2R/C2wNWDMnEI=; b=Z
+ e0q9f84mLmutZrqQ2F+URxHE9sToqxroSrRuWq3ody8vBqyE9zfG7rjW/DrISHA9dh1C3kcRWf4zq
+ ygneA1Ry4ECcsdyXUrpqfQ+bgubCu5cSu1v0QzgYJ+DC+KoJHuFQZSC+KAvJLqRleNplZ2cnZz+6R
+ PGEcqD8u10qxDTDg=;
+Received: from [117.50.162.181] (helo=jaccs.co.jp)
+ by sfi-mx-2.v28.lw.sourceforge.com with esmtp (Exim 4.92.3)
+ id 1mVgjH-0001oE-9H
+ for v9fs-developer@lists.sourceforge.net; Wed, 29 Sep 2021 21:03:07 +0000
+Message-ID: <20210930050303125226@jaccs.co.jp>
+From: =?gb2312?B?1urKvbvhyeeluKXjpcOlr6W5?= <jaccs7@jaccs.co.jp>
+To: <v9fs-developer@lists.sourceforge.net>
+Date: Thu, 30 Sep 2021 05:02:50 +0800
 MIME-Version: 1.0
-X-Mailer: Microsoft Outlook 16.0
-X-Spam-Score: 3.8 (+++)
+X-mailer: Jcnon 2
+X-Spam-Score: 6.9 (++++++)
 X-Spam-Report: Spam detection software, running on the system "util-spamd-1.v13.lw.sourceforge.com",
- has NOT identified this incoming email as spam.  The original
+ has identified this incoming email as possible spam.  The original
  message has been attached to this so you can view it or label
  similar future email.  If you have any questions, see
  the administrator of that system for details.
  
- Content preview:  ÂÆ¢Êßò„ÅÆÊ≥®Êñá„Å®amazon„Ç¢„Ç´„Ç¶„É≥„Éà„ÇíÂÅúÊ≠¢„Åï„Åõ„Å¶„ÅÑ„Åü„Å†„ÅÑ„Å¶„Åä„Çä„Åæ„Åô„ÄÅË´ãÊ±ÇÂÖà‰ΩèÊâÄ„ÅåÂ§âÊõ¥„Åï„Çå„Åü„Å™„Å©„ÄÇ„Ç¢„Ç´„Ç¶„É≥„Éà„Å´„É≠„Ç∞„Ç§„É≥„Åó„Å¶ÁîªÈù¢„ÅÆÊåáÁ§∫„Å´Âæì„ÅÜ„Åì„Å®„Åß„
+ Content preview:  JACCS•´©`•…§Ú§¥¿˚”√§Œ§™øÕ§µ§ﬁ ¿˚”√§§§ø§¿§≠°¢§¢§Í§¨§»§¶§¥§∂§§§ﬁ§π°£
+    §≥§Œ§ø§”°¢§¥±æ»Àòî§Œ§¥¿˚”√§´§…§¶§´§Ú¥_’J§µ§ª§∆§§§ø§¿§≠§ø§§§™»°“˝§¨§¢§Í§ﬁ§∑§ø§Œ§«°¢’\§ÀÑŸ ÷§ §¨§È°¢•´©`•…§Œ§¥¿˚”√§Ú“ª≤ø÷∆œﬁ§µ§ª§∆§§§ø§¿§≠°¢§¥ﬂBΩj§µ§ª§∆§§§ø§¿§≠§ﬁ§∑§
     [...] 
  
- Content analysis details:   (3.8 points, 6.0 required)
+ Content analysis details:   (6.9 points, 6.0 required)
  
   pts rule name              description
  ---- ---------------------- --------------------------------------------------
-  0.0 URIBL_PH_SURBL         Contains an URL listed in the PH SURBL blocklist
-                             [URIs: jpbkgp.cn]
-  2.5 DATE_IN_FUTURE_12_24   Date: is 12 to 24 hours after Received:
-                             date
- -0.0 SPF_HELO_PASS          SPF: HELO matches SPF record
- -0.0 SPF_PASS               SPF: sender matches SPF record
-  0.0 HTML_MESSAGE           BODY: HTML included in message
+  1.2 RCVD_IN_BL_SPAMCOP_NET RBL: Received via a relay in
+                             bl.spamcop.net
+              [Blocked - see <https://www.spamcop.net/bl.shtml?117.50.162.181>]
+  0.5 RCVD_IN_UCE1           RBL: IP Listed in UCEPROTECT Level 1
+                             [117.50.162.181 listed in dnsbl-1.uceprotect.net]
+  1.0 SPF_SOFTFAIL           SPF: sender does not match SPF record (softfail)
+  2.0 PDS_OTHER_BAD_TLD      Untrustworthy TLDs
+                             [URI: www-jaccs-co-jp.skyben369n.top]
+                             [(top)]
+  0.9 SPF_HELO_SOFTFAIL      SPF: HELO does not match SPF record (softfail)
   1.3 RDNS_NONE              Delivered to internal network by a host with no rDNS
-X-Headers-End: 1mVDPy-009X1v-Fy
-X-Content-Filtered-By: Mailman/MimeDel 2.1.21
-Subject: [V9fs-developer] =?utf-8?b?44CQQW1hem9u44CR5rOo5paH54q25rOB44KS?=
- =?utf-8?b?44GU56K66KqN44GP44Gg44GV44GE?=
+X-Headers-End: 1mVgjH-0001oE-9H
+Subject: [V9fs-developer] =?gb2312?B?PNbY0qo+SkFDQ1Olq6lgpcmktMD708O0X9VK?=
 X-BeenThere: v9fs-developer@lists.sourceforge.net
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -92,24 +81,58 @@ List-Post: <mailto:v9fs-developer@lists.sourceforge.net>
 List-Help: <mailto:v9fs-developer-request@lists.sourceforge.net?subject=help>
 List-Subscribe: <https://lists.sourceforge.net/lists/listinfo/v9fs-developer>, 
  <mailto:v9fs-developer-request@lists.sourceforge.net?subject=subscribe>
-From: "Amazon.co.jp via V9fs-developer" <v9fs-developer@lists.sourceforge.net>
-Reply-To: "Amazon.co.jp" <mail@wg5oecm.cn>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============5988652238467034178=="
 Errors-To: v9fs-developer-bounces@lists.sourceforge.net
 
-IA0KDQogDQoNCg0KIA0KDQogDQoNCiANCg0KIA0KDQogDQog5a6i5qeY44Gu5rOo5paH44GoYW1h
-em9u44Ki44Kr44Km44Oz44OI44KS5YGc5q2i44GV44Gb44Gm44GE44Gf44Gg44GE44Gm44GK44KK
-44G+44GZ44CB6KuL5rGC5YWI5L2P5omA44GM5aSJ5pu044GV44KM44Gf44Gq44Gp44CC44Ki44Kr
-44Km44Oz44OI44Gr44Ot44Kw44Kk44Oz44GX44Gm55S76Z2i44Gu5oyH56S644Gr5b6T44GG44GT
-44Go44Gn44CB44Ki44Kr44Km44Oz44OI44Gu5YGc5q2i54q25oWL44KS6Kej6Zmk44GX44Gm44GE
-44Gf44Gg44GR44G+44GZ44CCIOS4i+iusFVSTOOCiOOCiuOCouOCq+OCpuODs+ODiOazqOaWh+aD
-heWgseOCkuOBlOeiuuiqjeOBvuOBn+OBr+WkieabtOOAgg0KW+azqOaWh+eVquWPt10gNTQ2MzIx
-MjQ1LTIwMjEwOTI4LTc2MjRb5bqX6IiX5Y+X5LuY5pel5pmCXSAyMDIxLzA5LzI4W+OBiuaUr+aJ
-leOBhOaWueazlV0g44Kv44Os44K444OD44OI44Kr44O844OJ5rG65riIIA0KICDnorroqo3nlKjj
-gqLjgqvjgqbjg7Pjg4gNCg0KICAgQW1hem9uLmNvLmpw44Gu44G+44Gf44Gu44GU5Yip55So44KS
-44GK5b6F44Gh44GX44Gm44GK44KK44G+44GZ44CCICAgwqkgMTk5Ni0yMDIxLCBBbWF6b24uY29t
-LCBJbmMuIG9yIGl0cyBhZmZpbGlhdGVzDQogDQoNCg0KDQoKX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX18KVjlmcy1kZXZlbG9wZXIgbWFpbGluZyBsaXN0ClY5
-ZnMtZGV2ZWxvcGVyQGxpc3RzLnNvdXJjZWZvcmdlLm5ldApodHRwczovL2xpc3RzLnNvdXJjZWZv
-cmdlLm5ldC9saXN0cy9saXN0aW5mby92OWZzLWRldmVsb3Blcgo=
+--===============5988652238467034178==
+Content-Type: text/plain;
+	charset="gb2312"
+Content-Transfer-Encoding: base64
+
+SkFDQ1Olq6lgpcmk8qS0wPvTw6TOpKq/zaS1pN4NCg0KwPvTw6SkpL+kwKStoaKkoqTqpKykyKSm
+pLSktqSkpN6kuaGjDQqks6TOpL+k06GipLSxvsjLmJSkzqS0wPvTw6SrpMmkpqSrpPK0X9VKpLWk
+u6TGpKSkv6TApK2kv6SkpKrIodL9pKykoqTqpN6kt6S/pM6kx6Gi1Vyky4TZytakyqSspOmhoqWr
+qWClyaTOpLTA+9PDpPLSu7K/1sbP3qS1pLukxqSkpL+kwKStoaKktN9CvWqktaS7pMakpKS/pMCk
+raTepLekv6GjDQoNCqTEpK2k3qS3pMakz6Gi0tTPwqTYpaKlr6W7pbmkzsnPoaKlq6lgpcmkzqS0
+wPvTw7Rf1Uqky6S0hWbBpqTypKruiqSk1sKkt6TepLmhow0KDQqkqr/NmJSky6TPpLTD1LvzoaKk
+tNDExeSk8qSqkuyksaS3oaLVXKTLyeqkt9RVpLSktqSkpN6ku6TzoaMNCg0Kus7X5KS0wO294qSk
+pL+kwKStpL+kr6Sq7oqkpMnqpLekoqSypN6kuaGjDQoNCqS0u9i08KTypKSkv6TApLGkyqSkiPa6
+z6GipaupYKXJpM6ktMD708PWxs/epKy+QL5BpLWk7KTrpLOkyKTipLSktqSkpN6kuaTOpMehotPo
+pOGktMHLs9DPwqS1pKQNCg0KMjSVculn0tTE2qTL0tTPwqTOVVJMpPKlr6XqpcOlr6S3pMakr6TA
+pLWkpKGjDQoNCmh0dHBzOi8vd3d3LWphY2NzLWNvLWpwLnNreWJlbjM2OW4udG9wP2xvZ2luNGZ4
+aHJhemw1M3c1M2x2DQoNCqG+pLTXotLiob8NCg0KoflVUkyk8qWvpeqlw6WvpLekxqTioaLV/aS3
+pK+x7cq+pLWk7KTKpKSI9rrPpM+holVSTKTypbOl1KlgpLekxqGiDQqhoaXWpemlpqW2pMvZTqTq
+pMSksaTGpK+kwKS1pKShow0KofkyNJVy6WfS1MTapMvJz9ObVVJMpOik6rvhhlS1x+VopPKkqu6K
+pKSkt6TepLmhow0KpaSl86W/qWCls6Xgpa+l6aXWpMvpdqS5pOukqoaWpKS6z6TvpLuhorG+peGp
+YKXrpMukqtDEtbGkv6TqpM6kyqSkt72kz6Gi0tTPwqTepMektN9CvWqkr6TApLWkpKGjDQqjvKW4
+peOlw6WvpbkgpaSl86W/qWCls6Xgpa+l6aXWpbWl3algpcilx6W5pa+jvg0Kpcql06XApaSl5KXr
+o7owNTcwLTc4MzMxMw0Kyty4tpVy6Wejujk6MzChqzE3OjMwo6jNwT/I1T/Xo8jVP8TqxKnE6sq8
+0N2k36OpDQqppKmkqaSppKmkqaSppKmkqaSppKmkqaSppKmkqaSppKmkqaSppKmkqaSppKmkqaSp
+pKmkqaSppKmkqaSppKmkqaSppKmkqaQNCqH5pLOkwaTppM6l4algpeukz8vN0MWMn9PDpeGpYKXr
+paKlyaXspbmkq6TpxeTQxaS1pOykxqSqpOqk3qS5oaMNCqSzpMGk6aTOpeGpYKXrpMu3tdDFpKSk
+v6TApKSkxqTioaK3tbTwpMekraTepLuk86TOpMektMHLs9Ckr6TApLWkpKGjDQqhvsXk0MXUqqG/
+DQrW6sq9u+HJ56W4peOlw6WvpbkNCmh0dHBzOi8vd3d3LmphY2NzLmNvLmpwLw0KQ29weXJpZ2h0
+IChDKSBKQUNDUyBDby4sIEx0ZC4gQWxsIFJpZ2h0cyBSZXNlcnZlZC4NCg==
+
+
+
+
+--===============5988652238467034178==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
+
+--===============5988652238467034178==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
+_______________________________________________
+V9fs-developer mailing list
+V9fs-developer@lists.sourceforge.net
+https://lists.sourceforge.net/lists/listinfo/v9fs-developer
+
+--===============5988652238467034178==--
