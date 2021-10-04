@@ -2,80 +2,103 @@ Return-Path: <v9fs-developer-bounces@lists.sourceforge.net>
 X-Original-To: lists+v9fs-developer@lfdr.de
 Delivered-To: lists+v9fs-developer@lfdr.de
 Received: from lists.sourceforge.net (lists.sourceforge.net [216.105.38.7])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5A26C420024
-	for <lists+v9fs-developer@lfdr.de>; Sun,  3 Oct 2021 07:08:31 +0200 (CEST)
-Received: from [127.0.0.1] (helo=sfs-ml-2.v29.lw.sourceforge.com)
-	by sfs-ml-2.v29.lw.sourceforge.com with esmtp (Exim 4.92.3)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2EDEC42092B
+	for <lists+v9fs-developer@lfdr.de>; Mon,  4 Oct 2021 12:13:39 +0200 (CEST)
+Received: from [127.0.0.1] (helo=sfs-ml-4.v29.lw.sourceforge.com)
+	by sfs-ml-4.v29.lw.sourceforge.com with esmtp (Exim 4.90_1)
 	(envelope-from <v9fs-developer-bounces@lists.sourceforge.net>)
-	id 1mWtje-0005wC-8j; Sun, 03 Oct 2021 05:08:26 +0000
+	id 1mXKyV-000833-LR; Mon, 04 Oct 2021 10:13:35 +0000
 Received: from [172.30.20.202] (helo=mx.sourceforge.net)
- by sfs-ml-2.v29.lw.sourceforge.com with esmtps
- (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.92.3)
- (envelope-from <luisfernandezfirm@consultant.com>)
- id 1mWtjd-0005w5-6d
- for v9fs-developer@lists.sourceforge.net; Sun, 03 Oct 2021 05:08:25 +0000
+ by sfs-ml-4.v29.lw.sourceforge.com with esmtps
+ (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.90_1)
+ (envelope-from <dhowells@redhat.com>) id 1mXKyM-00082r-0S
+ for v9fs-developer@lists.sourceforge.net; Mon, 04 Oct 2021 10:13:26 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=sourceforge.net; s=x; h=Content-Transfer-Encoding:Content-Type:MIME-Version
- :Message-ID:Date:Subject:To:From:Reply-To:Sender:Cc:Content-ID:
+ d=sourceforge.net; s=x; h=Message-ID:Date:Content-Transfer-Encoding:
+ Content-ID:Content-Type:MIME-Version:Subject:Cc:To:From:Sender:Reply-To:
  Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
  :Resent-Message-ID:In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:
  List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=sCMH7XdukD2QF64zOzkDIU6b/1A5tUuARoy2AYg/jzI=; b=bAAmY1mJDEdSx7PfxwquDwRQzF
- zc8e2ApL1ap/LzaVXUmUsesQQBTNi4u7mTp0UH8lxgUH5IAUU1/Gh5Qz4axsaHXbfWfCSHyIODVnY
- Z6PWslV8To5QspIfUP6DViY5vNKSBpUzAcR81F6m5NVimDDFlnpit0rbUVUz6Ix3jXMQ=;
+ bh=uCf9+2XTU54Gj/OtnQlqxxYbAga8gRYYuCZmIxMpfzQ=; b=VrgJT83MsHk7d7RncmB4q5ucGi
+ REkMVcWeEQa4QzmI+Ypz8BUqRT/DqwyzYv4KQ9JOmTnJwIbyXkFceYqg8sKOpQzjEVkXmn3zc2a3J
+ y/DE7mwdVoAQJWNuoJ1lkVl6rQPuqbX3oUNI71aBFSdmRHL4mmLqxRF6x3MYI2GYfZbQ=;
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  ;
- h=Content-Transfer-Encoding:Content-Type:MIME-Version:Message-ID:Date:
- Subject:To:From:Reply-To:Sender:Cc:Content-ID:Content-Description:Resent-Date
- :Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:
- References:List-Id:List-Help:List-Unsubscribe:List-Subscribe:List-Post:
- List-Owner:List-Archive; bh=sCMH7XdukD2QF64zOzkDIU6b/1A5tUuARoy2AYg/jzI=; b=c
- NHx7M48FwCGhgmIBwLgLqmQre3o5V6KVLHL9HsFUvBuh08OtPO+ofndPNnTexgrjTRoV1dGxhjGvN
- cTtBp59/R4jEcCMxjmerxuS0uL4vVJkhjEV5UeUbKrdJwO+dXT0om36LmGnX5bnV3FGy0xkrBJJ2m
- bLlVFCJZJCtdB4hc=;
-Received: from [157.230.36.98] (helo=bizcloud-tokai-kyowa.co.jp)
- by sfi-mx-1.v28.lw.sourceforge.com with esmtp (Exim 4.92.3)
- id 1mWtjc-001fp2-CS
- for v9fs-developer@lists.sourceforge.net; Sun, 03 Oct 2021 05:08:25 +0000
-Received: from [5.135.230.141] (bizcloud-tokai-kyowa.co.jp [IPv6:::1])
- by bizcloud-tokai-kyowa.co.jp (Postfix) with ESMTP id A235F28B0EA
- for <v9fs-developer@lists.sourceforge.net>;
- Sun,  3 Oct 2021 05:03:27 +0000 (UTC)
-From: Luis Fernandez <luisfernandezfirm@consultant.com>
-To: v9fs-developer@lists.sourceforge.net
-Date: 2 Oct 2021 22:03:25 -0700
-Message-ID: <20211002220325.A6CE9BE5B553FD3B@consultant.com>
+ h=Message-ID:Date:Content-Transfer-Encoding:Content-ID:Content-Type:
+ MIME-Version:Subject:Cc:To:From:Sender:Reply-To:Content-Description:
+ Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+ In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
+ List-Post:List-Owner:List-Archive;
+ bh=uCf9+2XTU54Gj/OtnQlqxxYbAga8gRYYuCZmIxMpfzQ=; b=bnYwKT+lQ21ygSvEHDSVl1WcUL
+ AcRQPyKbSYpOY17Ye3+1xYJiuhHByBqQIMeoi9AmCe65po6ytBBPl6vvtUKo/6sx1nWMZ2twFi+hO
+ RnLVHSRhoWx03PiRgNVIhK2yVo03PEiGWNybG5RFnYdPg5Ita9tkAeQN9TsSYFiD2AVQ=;
+Received: from us-smtp-delivery-124.mimecast.com ([170.10.133.124])
+ by sfi-mx-2.v28.lw.sourceforge.com with esmtps
+ (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.92.3)
+ id 1mXKyF-0007fq-IP
+ for v9fs-developer@lists.sourceforge.net; Mon, 04 Oct 2021 10:13:20 +0000
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+ s=mimecast20190719; t=1633342393;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding;
+ bh=uCf9+2XTU54Gj/OtnQlqxxYbAga8gRYYuCZmIxMpfzQ=;
+ b=TU2G2PxL3WP84wwxT9n2nRmoygrlBiwsQS7Q4oYpgH7sRwxDsiOt6n03aYkav4ZkCpmcR5
+ ZRO2MfdgJeytX3l8W6z54e1zDPVljQ3vG5SI4cLUdgU2mRqDcg6LVX7armjkM0LH8MWG8L
+ Ca1qg0aqRNm9z8GvkM88170T63oddhA=
+Received: from mimecast-mx01.redhat.com (mimecast-mx01.redhat.com
+ [209.132.183.4]) (Using TLS) by relay.mimecast.com with ESMTP id
+ us-mta-100-jdCcP78sMda25iVAq9LBIg-1; Mon, 04 Oct 2021 06:13:12 -0400
+X-MC-Unique: jdCcP78sMda25iVAq9LBIg-1
+Received: from smtp.corp.redhat.com (int-mx06.intmail.prod.int.phx2.redhat.com
+ [10.5.11.16])
+ (using TLSv1.2 with cipher AECDH-AES256-SHA (256/256 bits))
+ (No client certificate requested)
+ by mimecast-mx01.redhat.com (Postfix) with ESMTPS id 90A531006AA3;
+ Mon,  4 Oct 2021 10:13:10 +0000 (UTC)
+Received: from warthog.procyon.org.uk (unknown [10.33.36.44])
+ by smtp.corp.redhat.com (Postfix) with ESMTP id 2FC5E5C1BB;
+ Mon,  4 Oct 2021 10:13:07 +0000 (UTC)
+Organization: Red Hat UK Ltd. Registered Address: Red Hat UK Ltd, Amberley
+ Place, 107-111 Peascod Street, Windsor, Berkshire, SI4 1TE, United
+ Kingdom.
+ Registered in England and Wales under Company Registration No. 3798903
+From: David Howells <dhowells@redhat.com>
+To: torvalds@linux-foundation.org
 MIME-Version: 1.0
-X-Spam-Score: 8.0 (++++++++)
+Content-ID: <270323.1633342386.1@warthog.procyon.org.uk>
+Date: Mon, 04 Oct 2021 11:13:06 +0100
+Message-ID: <270324.1633342386@warthog.procyon.org.uk>
+X-Scanned-By: MIMEDefang 2.79 on 10.5.11.16
+X-Spam-Score: -1.6 (-)
 X-Spam-Report: Spam detection software,
  running on the system "util-spamd-1.v13.lw.sourceforge.com", 
- has identified this incoming email as possible spam.  The original
+ has NOT identified this incoming email as spam.  The original
  message has been attached to this so you can view it or label
  similar future email.  If you have any questions, see
  the administrator of that system for details.
- Content preview:  Good day, I have an investment proposal that I would like
- to discuss with you. I await your urgent response so that I will explain more
- regarding this awesome Investment Opportunity. Regards, 
- Content analysis details:   (8.0 points, 6.0 required)
+ Content preview:  Hi Linus, Do you want patches that quash warnings from W=1
+ (mostly kerneldoc warnings in comments in this case[1]) at this point in
+ the cycle, or would you rather they waited till the next merge window? 
+ Content analysis details:   (-1.6 points, 6.0 required)
  pts rule name              description
  ---- ---------------------- --------------------------------------------------
- 0.9 SPF_FAIL               SPF: sender does not match SPF record (fail)
- [SPF failed: Please see http://www.openspf.org/Why?s=mfrom;
- id=luisfernandezfirm%40consultant.com; ip=157.230.36.98;
- r=util-spamd-1.v13.lw.sourceforge.com]
+ -0.7 RCVD_IN_DNSWL_LOW      RBL: Sender listed at https://www.dnswl.org/,
+ low trust [170.10.133.124 listed in list.dnswl.org]
+ -0.0 RCVD_IN_MSPIKE_H2      RBL: Average reputation (+2)
+ [170.10.133.124 listed in wl.mailspike.net]
  0.0 SPF_HELO_NONE          SPF: HELO does not publish an SPF Record
- 0.0 FREEMAIL_FROM          Sender email is commonly abused enduser mail
- provider [luisfernandezfirm[at]consultant.com]
- 1.3 RDNS_NONE Delivered to internal network by a host with no rDNS
- 0.9 URG_BIZ                Contains urgent matter
- 1.0 FREEMAIL_REPLYTO       Reply-To/From or Reply-To/body contain
- different freemails
- 0.0 SPOOFED_FREEMAIL_NO_RDNS From SPOOFED_FREEMAIL and no rDNS
- 1.3 SPOOFED_FREEMAIL       No description available.
- 2.5 SPOOFED_FREEM_REPTO    Forged freemail sender with freemail
- reply-to
-X-Headers-End: 1mWtjc-001fp2-CS
-Subject: Re: [V9fs-developer] Investment Proposal
+ -0.0 SPF_PASS               SPF: sender matches SPF record
+ -0.1 DKIM_VALID_AU          Message has a valid DKIM or DK signature from
+ author's domain
+ -0.1 DKIM_VALID_EF          Message has a valid DKIM or DK signature from
+ envelope-from domain
+ -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+ 0.1 DKIM_SIGNED            Message has a DKIM or DK signature, not necessarily
+ valid -0.7 DKIMWL_WL_HIGH         DKIMwl.org - High trust sender
+X-Headers-End: 1mXKyF-0007fq-IP
+Subject: [V9fs-developer] Do you want warning quashing patches at this point
+ in the cycle?
 X-BeenThere: v9fs-developer@lists.sourceforge.net
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -87,20 +110,27 @@ List-Post: <mailto:v9fs-developer@lists.sourceforge.net>
 List-Help: <mailto:v9fs-developer-request@lists.sourceforge.net?subject=help>
 List-Subscribe: <https://lists.sourceforge.net/lists/listinfo/v9fs-developer>, 
  <mailto:v9fs-developer-request@lists.sourceforge.net?subject=subscribe>
-Reply-To: luisfernandezconsultant@gmail.com
+Cc: linux-nfs@vger.kernel.org, linux-afs@lists.infradead.org,
+ linux-doc@vger.kernel.org, Jeff Layton <jlayton@kernel.org>,
+ linux-kernel@vger.kernel.org, Anna Schumaker <anna.schumaker@netapp.com>,
+ dhowells@redhat.com, linux-fsdevel@vger.kernel.org,
+ Marc Dionne <marc.dionne@auristor.com>, v9fs-developer@lists.sourceforge.net,
+ Mauro Carvalho Chehab <mchehab@kernel.org>,
+ Trond Myklebust <trond.myklebust@hammerspace.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: v9fs-developer-bounces@lists.sourceforge.net
 
-Good day,
+Hi Linus,
 
-I have an investment proposal that I would like to discuss with 
-you. I await your urgent response so that I will explain more 
-regarding this awesome Investment Opportunity.
+Do you want patches that quash warnings from W=1 (mostly kerneldoc warnings in
+comments in this case[1]) at this point in the cycle, or would you rather they
+waited till the next merge window?
 
-Regards,
+David
 
-Luis Fernandez
+[1] https://lore.kernel.org/r/163281899704.2790286.9177774252843775348.stgit@warthog.procyon.org.uk/
+
 
 
 _______________________________________________
