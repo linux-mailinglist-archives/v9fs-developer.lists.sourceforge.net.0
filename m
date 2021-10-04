@@ -2,103 +2,118 @@ Return-Path: <v9fs-developer-bounces@lists.sourceforge.net>
 X-Original-To: lists+v9fs-developer@lfdr.de
 Delivered-To: lists+v9fs-developer@lfdr.de
 Received: from lists.sourceforge.net (lists.sourceforge.net [216.105.38.7])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2EDEC42092B
-	for <lists+v9fs-developer@lfdr.de>; Mon,  4 Oct 2021 12:13:39 +0200 (CEST)
-Received: from [127.0.0.1] (helo=sfs-ml-4.v29.lw.sourceforge.com)
-	by sfs-ml-4.v29.lw.sourceforge.com with esmtp (Exim 4.90_1)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3C0C04214B8
+	for <lists+v9fs-developer@lfdr.de>; Mon,  4 Oct 2021 19:03:45 +0200 (CEST)
+Received: from [127.0.0.1] (helo=sfs-ml-1.v29.lw.sourceforge.com)
+	by sfs-ml-1.v29.lw.sourceforge.com with esmtp (Exim 4.90_1)
 	(envelope-from <v9fs-developer-bounces@lists.sourceforge.net>)
-	id 1mXKyV-000833-LR; Mon, 04 Oct 2021 10:13:35 +0000
+	id 1mXRNO-0000zV-V9; Mon, 04 Oct 2021 17:03:42 +0000
 Received: from [172.30.20.202] (helo=mx.sourceforge.net)
- by sfs-ml-4.v29.lw.sourceforge.com with esmtps
+ by sfs-ml-1.v29.lw.sourceforge.com with esmtps
  (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.90_1)
- (envelope-from <dhowells@redhat.com>) id 1mXKyM-00082r-0S
- for v9fs-developer@lists.sourceforge.net; Mon, 04 Oct 2021 10:13:26 +0000
+ (envelope-from <torvalds@linuxfoundation.org>) id 1mXRNN-0000zG-Ch
+ for v9fs-developer@lists.sourceforge.net; Mon, 04 Oct 2021 17:03:41 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=sourceforge.net; s=x; h=Message-ID:Date:Content-Transfer-Encoding:
- Content-ID:Content-Type:MIME-Version:Subject:Cc:To:From:Sender:Reply-To:
- Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
- :Resent-Message-ID:In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:
+ d=sourceforge.net; s=x; h=Content-Type:Cc:To:Subject:Message-ID:Date:From:
+ In-Reply-To:References:MIME-Version:Sender:Reply-To:Content-Transfer-Encoding
+ :Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+ Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
  List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=uCf9+2XTU54Gj/OtnQlqxxYbAga8gRYYuCZmIxMpfzQ=; b=VrgJT83MsHk7d7RncmB4q5ucGi
- REkMVcWeEQa4QzmI+Ypz8BUqRT/DqwyzYv4KQ9JOmTnJwIbyXkFceYqg8sKOpQzjEVkXmn3zc2a3J
- y/DE7mwdVoAQJWNuoJ1lkVl6rQPuqbX3oUNI71aBFSdmRHL4mmLqxRF6x3MYI2GYfZbQ=;
+ bh=4nD/CqNzR9E4HGpSddngZ7NQXINMID609Z0nuYAzxVQ=; b=Qc7PFBw7cWQtcE3y3svtx16oX6
+ k7vVXbEMvbIMGFVcECiUBR464V9lSE0dWH1NAocn7ooDaAE1Hl6ZcAUhqFP4A2Hsjo4ziAv/7G+sq
+ 9OI5R+OLAbFXAxreXozjrIPcXlXl9PSywUHAye97J6POELMTYE0FBlfyyG7PX7vD72ww=;
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  ;
- h=Message-ID:Date:Content-Transfer-Encoding:Content-ID:Content-Type:
- MIME-Version:Subject:Cc:To:From:Sender:Reply-To:Content-Description:
- Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
- In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
+ h=Content-Type:Cc:To:Subject:Message-ID:Date:From:In-Reply-To:References:
+ MIME-Version:Sender:Reply-To:Content-Transfer-Encoding:Content-ID:
+ Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
+ :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
  List-Post:List-Owner:List-Archive;
- bh=uCf9+2XTU54Gj/OtnQlqxxYbAga8gRYYuCZmIxMpfzQ=; b=bnYwKT+lQ21ygSvEHDSVl1WcUL
- AcRQPyKbSYpOY17Ye3+1xYJiuhHByBqQIMeoi9AmCe65po6ytBBPl6vvtUKo/6sx1nWMZ2twFi+hO
- RnLVHSRhoWx03PiRgNVIhK2yVo03PEiGWNybG5RFnYdPg5Ita9tkAeQN9TsSYFiD2AVQ=;
-Received: from us-smtp-delivery-124.mimecast.com ([170.10.133.124])
- by sfi-mx-2.v28.lw.sourceforge.com with esmtps
- (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.92.3)
- id 1mXKyF-0007fq-IP
- for v9fs-developer@lists.sourceforge.net; Mon, 04 Oct 2021 10:13:20 +0000
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
- s=mimecast20190719; t=1633342393;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding;
- bh=uCf9+2XTU54Gj/OtnQlqxxYbAga8gRYYuCZmIxMpfzQ=;
- b=TU2G2PxL3WP84wwxT9n2nRmoygrlBiwsQS7Q4oYpgH7sRwxDsiOt6n03aYkav4ZkCpmcR5
- ZRO2MfdgJeytX3l8W6z54e1zDPVljQ3vG5SI4cLUdgU2mRqDcg6LVX7armjkM0LH8MWG8L
- Ca1qg0aqRNm9z8GvkM88170T63oddhA=
-Received: from mimecast-mx01.redhat.com (mimecast-mx01.redhat.com
- [209.132.183.4]) (Using TLS) by relay.mimecast.com with ESMTP id
- us-mta-100-jdCcP78sMda25iVAq9LBIg-1; Mon, 04 Oct 2021 06:13:12 -0400
-X-MC-Unique: jdCcP78sMda25iVAq9LBIg-1
-Received: from smtp.corp.redhat.com (int-mx06.intmail.prod.int.phx2.redhat.com
- [10.5.11.16])
- (using TLSv1.2 with cipher AECDH-AES256-SHA (256/256 bits))
- (No client certificate requested)
- by mimecast-mx01.redhat.com (Postfix) with ESMTPS id 90A531006AA3;
- Mon,  4 Oct 2021 10:13:10 +0000 (UTC)
-Received: from warthog.procyon.org.uk (unknown [10.33.36.44])
- by smtp.corp.redhat.com (Postfix) with ESMTP id 2FC5E5C1BB;
- Mon,  4 Oct 2021 10:13:07 +0000 (UTC)
-Organization: Red Hat UK Ltd. Registered Address: Red Hat UK Ltd, Amberley
- Place, 107-111 Peascod Street, Windsor, Berkshire, SI4 1TE, United
- Kingdom.
- Registered in England and Wales under Company Registration No. 3798903
-From: David Howells <dhowells@redhat.com>
-To: torvalds@linux-foundation.org
+ bh=4nD/CqNzR9E4HGpSddngZ7NQXINMID609Z0nuYAzxVQ=; b=NQ5SEl7xzUo3sK2Tlg32yhZSsM
+ TTYLqIqc+hfn2ibEhYP3t3jKUw3BRV/YgIc4nl1XPIgJH6hEcdT2s4maArUo33L0gi9DVtVwxv2M5
+ ImVwfEAy9fQAGm8t1rGM9Gmf/MtXfOiV8Y1xuOx9tD4cHK+799Wis3QIzw8vR34r4dxI=;
+Received: from mail-qt1-f173.google.com ([209.85.160.173])
+ by sfi-mx-1.v28.lw.sourceforge.com with esmtps
+ (TLSv1.2:ECDHE-RSA-AES128-GCM-SHA256:128) (Exim 4.92.3)
+ id 1mXRNL-004x9m-BU
+ for v9fs-developer@lists.sourceforge.net; Mon, 04 Oct 2021 17:03:41 +0000
+Received: by mail-qt1-f173.google.com with SMTP id l13so16539213qtv.3
+ for <v9fs-developer@lists.sourceforge.net>;
+ Mon, 04 Oct 2021 10:03:39 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=linux-foundation.org; s=google;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc; bh=4nD/CqNzR9E4HGpSddngZ7NQXINMID609Z0nuYAzxVQ=;
+ b=EhHEBOBGv3jAdd0eEwTEevENTAb2AhyLvwesYd92iZLWqj7mTTdpBBgs4KL47AQ0oH
+ ZwglecIE1krknfq1btMK26sMK70sIco+nuL8EtgDkDN9ePohB2tzfYyBZi//yhabNZMZ
+ QP2aeujeABcZR46+NAT9doCWdbaRbYrX5zVHc=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20210112;
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc;
+ bh=4nD/CqNzR9E4HGpSddngZ7NQXINMID609Z0nuYAzxVQ=;
+ b=UybSA9ckFiykbAw0wthrjUyo+V7ywJxyXAGN2sYHuSWMwqEZwXegG/vQ+iSWI53cCt
+ ONgvhXx9QaMirgPaE6BGiB9rsduGpIhgQ6g6WZhsw46ygOVXTcKE9ptSx9ODhrSWCQyH
+ q7E+lsGXmvqQ7oMlBFIzraYjZDFh37vxcdqFlN5I/+7jyCp87IT1u2tYnnpeLwVs9i87
+ Iil3YBF+TUM4nVcdszr4AfacD2e0chsSMvYqF2Fq6Ux9U1A+4gu3nRmbU2mQPU1Uuz/a
+ bY97nnniTaXQwGm7yljhF6s3E5jg+EaHjV3dCj+Vz9Sfhzq9SiFoJqVgHpJYJQIyH3kl
+ dsLQ==
+X-Gm-Message-State: AOAM530EHTIzq6ESnU1M6yA0P61chjmtWTx9FBAdqhv4PgchMBESzW2t
+ ycHEv3tT6ox/wrEeAGq0feawWlwmqqqjYK3l
+X-Google-Smtp-Source: ABdhPJw+Au72TCtizWm1KMHYm4/CsRGZ05yACYggHbaA8k12TywF+j+PVVXkC0peT4yAtjP4c+PN5Q==
+X-Received: by 2002:ac8:40dd:: with SMTP id f29mr14770766qtm.266.1633365530311; 
+ Mon, 04 Oct 2021 09:38:50 -0700 (PDT)
+Received: from mail-lf1-f50.google.com (mail-lf1-f50.google.com.
+ [209.85.167.50])
+ by smtp.gmail.com with ESMTPSA id w7sm9339841qtc.29.2021.10.04.09.38.49
+ for <v9fs-developer@lists.sourceforge.net>
+ (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+ Mon, 04 Oct 2021 09:38:50 -0700 (PDT)
+Received: by mail-lf1-f50.google.com with SMTP id u18so74384147lfd.12
+ for <v9fs-developer@lists.sourceforge.net>;
+ Mon, 04 Oct 2021 09:38:49 -0700 (PDT)
+X-Received: by 2002:a2e:1510:: with SMTP id s16mr16602800ljd.56.1633365528411; 
+ Mon, 04 Oct 2021 09:38:48 -0700 (PDT)
 MIME-Version: 1.0
-Content-ID: <270323.1633342386.1@warthog.procyon.org.uk>
-Date: Mon, 04 Oct 2021 11:13:06 +0100
-Message-ID: <270324.1633342386@warthog.procyon.org.uk>
-X-Scanned-By: MIMEDefang 2.79 on 10.5.11.16
-X-Spam-Score: -1.6 (-)
+References: <270324.1633342386@warthog.procyon.org.uk>
+In-Reply-To: <270324.1633342386@warthog.procyon.org.uk>
+From: Linus Torvalds <torvalds@linux-foundation.org>
+Date: Mon, 4 Oct 2021 09:38:32 -0700
+X-Gmail-Original-Message-ID: <CAHk-=wj-ANpwDnAJ0HAdbwyti7Z6aBBJT6JEbkta9VjaF30Tcw@mail.gmail.com>
+Message-ID: <CAHk-=wj-ANpwDnAJ0HAdbwyti7Z6aBBJT6JEbkta9VjaF30Tcw@mail.gmail.com>
+To: David Howells <dhowells@redhat.com>
+X-Spam-Score: 0.2 (/)
 X-Spam-Report: Spam detection software,
  running on the system "util-spamd-1.v13.lw.sourceforge.com", 
  has NOT identified this incoming email as spam.  The original
  message has been attached to this so you can view it or label
  similar future email.  If you have any questions, see
  the administrator of that system for details.
- Content preview:  Hi Linus, Do you want patches that quash warnings from W=1
- (mostly kerneldoc warnings in comments in this case[1]) at this point in
- the cycle, or would you rather they waited till the next merge window? 
- Content analysis details:   (-1.6 points, 6.0 required)
+ Content preview:  On Mon, Oct 4,
+ 2021 at 3:13 AM David Howells <dhowells@redhat.com>
+ wrote: > > Do you want patches that quash warnings from W=1 For W=1? No.
+ The kerneldoc ones might be ok, but actual code fixes have historically been
+ problematic because W=1 sometimes warns for perfectly good code (and then
+ people "fix" it to not warn, and introduce actual [...] 
+ Content analysis details:   (0.2 points, 6.0 required)
  pts rule name              description
  ---- ---------------------- --------------------------------------------------
- -0.7 RCVD_IN_DNSWL_LOW      RBL: Sender listed at https://www.dnswl.org/,
- low trust [170.10.133.124 listed in list.dnswl.org]
- -0.0 RCVD_IN_MSPIKE_H2      RBL: Average reputation (+2)
- [170.10.133.124 listed in wl.mailspike.net]
+ 0.2 HEADER_FROM_DIFFERENT_DOMAINS From and EnvelopeFrom 2nd level
+ mail domains are different
+ -0.0 RCVD_IN_DNSWL_NONE     RBL: Sender listed at https://www.dnswl.org/,
+ no trust [209.85.160.173 listed in list.dnswl.org]
  0.0 SPF_HELO_NONE          SPF: HELO does not publish an SPF Record
  -0.0 SPF_PASS               SPF: sender matches SPF record
+ 0.0 RCVD_IN_MSPIKE_H3      RBL: Good reputation (+3)
+ [209.85.160.173 listed in wl.mailspike.net]
  -0.1 DKIM_VALID_AU          Message has a valid DKIM or DK signature from
  author's domain
- -0.1 DKIM_VALID_EF          Message has a valid DKIM or DK signature from
- envelope-from domain
  -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
  0.1 DKIM_SIGNED            Message has a DKIM or DK signature, not necessarily
- valid -0.7 DKIMWL_WL_HIGH         DKIMwl.org - High trust sender
-X-Headers-End: 1mXKyF-0007fq-IP
-Subject: [V9fs-developer] Do you want warning quashing patches at this point
- in the cycle?
+ valid 0.0 RCVD_IN_MSPIKE_WL      Mailspike good senders
+X-Headers-End: 1mXRNL-004x9m-BU
+Subject: Re: [V9fs-developer] Do you want warning quashing patches at this
+ point in the cycle?
 X-BeenThere: v9fs-developer@lists.sourceforge.net
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -110,10 +125,13 @@ List-Post: <mailto:v9fs-developer@lists.sourceforge.net>
 List-Help: <mailto:v9fs-developer-request@lists.sourceforge.net?subject=help>
 List-Subscribe: <https://lists.sourceforge.net/lists/listinfo/v9fs-developer>, 
  <mailto:v9fs-developer-request@lists.sourceforge.net?subject=subscribe>
-Cc: linux-nfs@vger.kernel.org, linux-afs@lists.infradead.org,
- linux-doc@vger.kernel.org, Jeff Layton <jlayton@kernel.org>,
- linux-kernel@vger.kernel.org, Anna Schumaker <anna.schumaker@netapp.com>,
- dhowells@redhat.com, linux-fsdevel@vger.kernel.org,
+Cc: "open list:NFS, SUNRPC, AND..." <linux-nfs@vger.kernel.org>,
+ linux-afs@lists.infradead.org,
+ "open list:DOCUMENTATION" <linux-doc@vger.kernel.org>,
+ Jeff Layton <jlayton@kernel.org>,
+ Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+ Anna Schumaker <anna.schumaker@netapp.com>,
+ linux-fsdevel <linux-fsdevel@vger.kernel.org>,
  Marc Dionne <marc.dionne@auristor.com>, v9fs-developer@lists.sourceforge.net,
  Mauro Carvalho Chehab <mchehab@kernel.org>,
  Trond Myklebust <trond.myklebust@hammerspace.com>
@@ -121,16 +139,18 @@ Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: v9fs-developer-bounces@lists.sourceforge.net
 
-Hi Linus,
+On Mon, Oct 4, 2021 at 3:13 AM David Howells <dhowells@redhat.com> wrote:
+>
+> Do you want patches that quash warnings from W=1
 
-Do you want patches that quash warnings from W=1 (mostly kerneldoc warnings in
-comments in this case[1]) at this point in the cycle, or would you rather they
-waited till the next merge window?
+For W=1? No.
 
-David
+The kerneldoc ones might be ok, but actual code fixes have
+historically been problematic because W=1 sometimes warns for
+perfectly good code (and then people "fix" it to not warn, and
+introduce actual bugs).
 
-[1] https://lore.kernel.org/r/163281899704.2790286.9177774252843775348.stgit@warthog.procyon.org.uk/
-
+           Linus
 
 
 _______________________________________________
