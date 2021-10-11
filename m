@@ -2,114 +2,99 @@ Return-Path: <v9fs-developer-bounces@lists.sourceforge.net>
 X-Original-To: lists+v9fs-developer@lfdr.de
 Delivered-To: lists+v9fs-developer@lfdr.de
 Received: from lists.sourceforge.net (lists.sourceforge.net [216.105.38.7])
-	by mail.lfdr.de (Postfix) with ESMTPS id F3F0C428011
-	for <lists+v9fs-developer@lfdr.de>; Sun, 10 Oct 2021 10:37:02 +0200 (CEST)
-Received: from [127.0.0.1] (helo=sfs-ml-4.v29.lw.sourceforge.com)
-	by sfs-ml-4.v29.lw.sourceforge.com with esmtp (Exim 4.90_1)
+	by mail.lfdr.de (Postfix) with ESMTPS id 486974285AF
+	for <lists+v9fs-developer@lfdr.de>; Mon, 11 Oct 2021 06:08:44 +0200 (CEST)
+Received: from [127.0.0.1] (helo=sfs-ml-1.v29.lw.sourceforge.com)
+	by sfs-ml-1.v29.lw.sourceforge.com with esmtp (Exim 4.90_1)
 	(envelope-from <v9fs-developer-bounces@lists.sourceforge.net>)
-	id 1mZUKK-0004KZ-GR; Sun, 10 Oct 2021 08:37:00 +0000
+	id 1mZmcD-0008Uz-VD; Mon, 11 Oct 2021 04:08:41 +0000
 Received: from [172.30.20.202] (helo=mx.sourceforge.net)
- by sfs-ml-4.v29.lw.sourceforge.com with esmtps
+ by sfs-ml-1.v29.lw.sourceforge.com with esmtps
  (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.90_1)
- (envelope-from <asmadeus@codewreck.org>) id 1mZUKF-0004KM-Jl
- for v9fs-developer@lists.sourceforge.net; Sun, 10 Oct 2021 08:36:55 +0000
+ (envelope-from
+ <0107017c6d897b46-5c187a34-3da8-403f-9389-82a075b7caaf-000000@eu-central-1.amazonses.com>)
+ id 1mZmcC-0008Uj-0j
+ for v9fs-developer@lists.sourceforge.net; Mon, 11 Oct 2021 04:08:40 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=sourceforge.net; s=x; h=In-Reply-To:Content-Type:MIME-Version:References:
- Message-ID:Subject:Cc:To:From:Date:Sender:Reply-To:Content-Transfer-Encoding:
+ d=sourceforge.net; s=x; h=List-Unsubscribe:Content-Type:MIME-Version:To:
+ Reply-To:From:Subject:Date:Message-ID:Sender:Cc:Content-Transfer-Encoding:
  Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
- Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
- List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=PygQilpGLXQp/m5q/cQ5cIzutlJQqkg4SJFesAi9P8M=; b=BzcQND3D4+FGgRoqdx6mkYZ0OI
- WJfXyI2+Fd68ZTPkwnDzfzdFZ/Q8kUWSTNhdvsffVplNx+oNsbpv+Jp+LepmgP1b0za2KepzN5/5o
- /i2H7gcjG4OK7eAwY+2is6DBEhuUhCMyMdcBZRfPuCbyB/LUyWK8G6cPL95ZVAMh7Drw=;
+ Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:List-Id:
+ List-Help:List-Subscribe:List-Post:List-Owner:List-Archive;
+ bh=LL8tnNDcyijK6jRcIYIpxBHnCnzVvmJYwYqm8TGAPcg=; b=kklgjIqjOgArI9yAWJfMuNVhiF
+ 8eDi5/TRjlcKr2dro/Hvy8oB/As0hfN62XTTj+xoJ0xM43pEdG8LXnCPY0bY6f1PKeFgFd5i9C4ol
+ FU3/BYZJH/7KiLTQ1Idx9FXQ3tD61enIxZVKMq/bjWBBR4TjdBUY/IKKq2LQAQLgfbZ8=;
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  ;
- h=In-Reply-To:Content-Type:MIME-Version:References:Message-ID:Subject:Cc:To
- :From:Date:Sender:Reply-To:Content-Transfer-Encoding:Content-ID:
- Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
- :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
- List-Post:List-Owner:List-Archive;
- bh=PygQilpGLXQp/m5q/cQ5cIzutlJQqkg4SJFesAi9P8M=; b=OrSwrrJZibEqODi1H+jzawjnrQ
- TxrLO8ZMq8mtGVJ27DJ4yFGGusfdWxJyceAD7ADUWNN4Or9wqgfMJGlmjKUaI8XdSG8nKp1TwdRK8
- ijCWj88jc5/XiGqOrLCoqQZyFKZ/YdQfG1z74IdPYIfTOLT5//DqDIUGQw9T2u1ufITY=;
-Received: from nautica.notk.org ([91.121.71.147])
- by sfi-mx-2.v28.lw.sourceforge.com with esmtps
- (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.92.3)
- id 1mZUKC-00080u-TZ
- for v9fs-developer@lists.sourceforge.net; Sun, 10 Oct 2021 08:36:55 +0000
-Received: by nautica.notk.org (Postfix, from userid 108)
- id D4ACBC023; Sun, 10 Oct 2021 10:36:43 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=codewreck.org; s=2;
- t=1633855003; bh=PygQilpGLXQp/m5q/cQ5cIzutlJQqkg4SJFesAi9P8M=;
- h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
- b=YZJxMa5/7JNeCyd0S8Fm3XyI59WOFsyPlo9o2wGxHSqP9WGQYJ/SrATCy1QtsVlwj
- FQWj7adpuKzkit//dY7FO31RRagywr0LLYB+BrxNHKLObxBm4HQxuoU8EORxtmqyvB
- w7XfAHZTdQM/QsFhaUe6nqajDDQ46u81ePrhdMnkjmMIZdl0rR2PJoErI2Pd0CNfKE
- upAO8W0tJjUs2KqGUiNeF2fMrDTkRjJJRsLFpWCEzPtgMMEqx98tBCrg3bIExEN9hb
- QAlB0F6dbC7iiJUdXVsELVH6rqON6LArRZqNuiPWXPB8p64ctqCHHAfZl8aKA0TDSJ
- ncWNUTThWRqHg==
-X-Spam-Checker-Version: SpamAssassin 3.3.2 (2011-06-06) on nautica.notk.org
-X-Spam-Level: **
-X-Spam-Status: No, score=2.5 required=5.0 tests=SORTED_RECIPS,
- UNPARSEABLE_RELAY autolearn=no version=3.3.2
-Received: from odin.codewreck.org (localhost [127.0.0.1])
- by nautica.notk.org (Postfix) with ESMTPS id 29F4AC01F;
- Sun, 10 Oct 2021 10:36:39 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=codewreck.org; s=2;
- t=1633855003; bh=PygQilpGLXQp/m5q/cQ5cIzutlJQqkg4SJFesAi9P8M=;
- h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
- b=YZJxMa5/7JNeCyd0S8Fm3XyI59WOFsyPlo9o2wGxHSqP9WGQYJ/SrATCy1QtsVlwj
- FQWj7adpuKzkit//dY7FO31RRagywr0LLYB+BrxNHKLObxBm4HQxuoU8EORxtmqyvB
- w7XfAHZTdQM/QsFhaUe6nqajDDQ46u81ePrhdMnkjmMIZdl0rR2PJoErI2Pd0CNfKE
- upAO8W0tJjUs2KqGUiNeF2fMrDTkRjJJRsLFpWCEzPtgMMEqx98tBCrg3bIExEN9hb
- QAlB0F6dbC7iiJUdXVsELVH6rqON6LArRZqNuiPWXPB8p64ctqCHHAfZl8aKA0TDSJ
- ncWNUTThWRqHg==
-Received: from localhost (odin.codewreck.org [local])
- by odin.codewreck.org (OpenSMTPD) with ESMTPA id 1d23b4bb;
- Sun, 10 Oct 2021 08:36:36 +0000 (UTC)
-Date: Sun, 10 Oct 2021 17:36:21 +0900
-From: asmadeus@codewreck.org
-To: syzbot <syzbot+06472778c97ed94af66d@syzkaller.appspotmail.com>
-Message-ID: <YWKmBWfBS3oshQ/z@codewreck.org>
-References: <000000000000baddc805cdf928c3@google.com>
+ h=List-Unsubscribe:Content-Type:MIME-Version:To:Reply-To:From:Subject:Date:
+ Message-ID:Sender:Cc:Content-Transfer-Encoding:Content-ID:Content-Description
+ :Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+ In-Reply-To:References:List-Id:List-Help:List-Subscribe:List-Post:List-Owner:
+ List-Archive; bh=LL8tnNDcyijK6jRcIYIpxBHnCnzVvmJYwYqm8TGAPcg=; b=SHoyF6xzw/XQ
+ PZX+6ghxqyaTaII6dvV/2Hsw7f6MpFqLxlwOL/Uv4xPSQhvcbyF8t+Tbn9DLVWnNVzlEvvY5/tOzy
+ ynoRWi3zEOh50qjb9B0bHeFHpMppw3hSki1WD4eHn7+azWivR2jZmJdpp3HzvVnm+w6QbdYobVZE6
+ dBXq4=;
+Received: from b227-249.smtp-out.eu-central-1.amazonses.com ([69.169.227.249])
+ by sfi-mx-1.v28.lw.sourceforge.com with esmtps
+ (TLSv1.2:ECDHE-RSA-AES128-SHA256:128) (Exim 4.92.3)
+ id 1mZmc7-001lhV-FN
+ for v9fs-developer@lists.sourceforge.net; Mon, 11 Oct 2021 04:08:39 +0000
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/simple;
+ s=azn2h6rx57537id7wxygi2kd6pvhrgz3; d=eko-med.ro; t=1633925299;
+ h=Sender:Message-ID:Date:Subject:From:Reply-To:To:MIME-Version:Content-Type:List-Unsubscribe;
+ bh=I3ahdE2bA7OrsdyeeGFHNpm94fxgWPi+9yGk5HPSqqU=;
+ b=FtUHQpJwXW/3kBBDl1QBpC8vVGdDzkPSBZrbN0374EQTFOpmiDLt1OMaDxX5LKJC
+ k2SAM3ZkyJ52p625As9zfVlIxZxdmrOkea4Uk7u4sEbursi3z92k7q5zaUO05wLWqPr
+ vBpzRmmzAMGaz5Vk6tlsc9jevyg70O0E6PXEtGmg=
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/simple;
+ s=54ecsf3zk7z4mwxwwox7z7bg6e5gwjsz; d=amazonses.com; t=1633925299;
+ h=Sender:Message-ID:Date:Subject:From:Reply-To:To:MIME-Version:Content-Type:List-Unsubscribe:Feedback-ID;
+ bh=I3ahdE2bA7OrsdyeeGFHNpm94fxgWPi+9yGk5HPSqqU=;
+ b=BIo07xnXEUSaQguNEH434sG5AQ57ZghB8mJF9UzIpqdLI0FgTj2+37em5VpnmC2l
+ evYvMAmApQWHG3XhtDAXYWrggcTqXswanHzn/fkmTknvTjJwLq4qy2uLWcgW/YZ+Rj9
+ HXzqKc1Gq0RzB69DS0Yz+9fOkN7PQfgfLdGS8skY=
+Message-ID: <0107017c6d897b46-5c187a34-3da8-403f-9389-82a075b7caaf-000000@eu-central-1.amazonses.com>
+Date: Mon, 11 Oct 2021 04:08:19 +0000
+From: Teste covid-19 <office@eko-med.ro>
+To: "" <v9fs-developer@lists.sourceforge.net>
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <000000000000baddc805cdf928c3@google.com>
-X-Spam-Score: 2.3 (++)
+Feedback-ID: 1.eu-central-1.N8GLPrwMW4DEokEt/uX8R5Dj6lDs1dpqTZ0OFMrLAAo=:AmazonSES
+X-SES-Outgoing: 2021.10.11-69.169.227.249
+X-Spam-Score: 4.5 (++++)
 X-Spam-Report: Spam detection software,
  running on the system "util-spamd-1.v13.lw.sourceforge.com", 
  has NOT identified this incoming email as spam.  The original
  message has been attached to this so you can view it or label
  similar future email.  If you have any questions, see
  the administrator of that system for details.
- Content preview: Question for people who know about KMSAN: which of the
- backtrace
- or the 'Local variable' message should I trust? syzbot wrote on Sat, Oct
- 09, 2021 at 10:48:17PM -0700: >
- =====================================================
- > BUG: KMSAN: uninit-value in p9pdu_vreadf net/9p/protocol.c:147 [inline]
- > BUG: KMSAN: u [...] 
- Content analysis details:   (2.3 points, 6.0 required)
+ Content preview: [FarmersMarket-Top]
+ [eko-med](https://eko-med.ro?mailpoet_router&endpoint=track&action=click&data=WzY1NTg0OSwiYzdxbzNucDczYW9zc2NjNDRva2djYzQwY2tvZ3NzZzAiLCIyMyIsIjRiZjFjY2QyZjMwMCIsZmFsc2Vd)
+ PESTE 500 MILIOANE DE PRODUSE ANTI-COVID 19 VANDUTE IN TOATA EUROPA 
+ Content analysis details:   (4.5 points, 6.0 required)
  pts rule name              description
  ---- ---------------------- --------------------------------------------------
- 0.0 URIBL_BLOCKED          ADMINISTRATOR NOTICE: The query to URIBL was
- blocked.  See
- http://wiki.apache.org/spamassassin/DnsBlocklists#dnsbl-block
- for more information. [URIs: codewreck.org]
+ -0.0 RCVD_IN_DNSWL_NONE     RBL: Sender listed at https://www.dnswl.org/,
+ no trust [69.169.227.249 listed in list.dnswl.org]
+ 0.2 HEADER_FROM_DIFFERENT_DOMAINS From and EnvelopeFrom 2nd level
+ mail domains are different
  0.0 SPF_HELO_NONE          SPF: HELO does not publish an SPF Record
- 2.5 SORTED_RECIPS          Recipient list is sorted by address
  -0.0 SPF_PASS               SPF: sender matches SPF record
+ 0.0 HTML_MESSAGE           BODY: HTML included in message
  -0.1 DKIM_VALID_AU          Message has a valid DKIM or DK signature from
  author's domain
  -0.1 DKIM_VALID_EF          Message has a valid DKIM or DK signature from
  envelope-from domain
  -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
  0.1 DKIM_SIGNED            Message has a DKIM or DK signature, not necessarily
- valid
- 0.0 UNPARSEABLE_RELAY      Informational: message has unparseable relay
- lines
-X-Headers-End: 1mZUKC-00080u-TZ
-Subject: Re: [V9fs-developer] [syzbot] KMSAN: uninit-value in p9pdu_readf
+ valid 2.0 PYZOR_CHECK            Listed in Pyzor
+ (https://pyzor.readthedocs.io/en/latest/)
+ 0.0 T_KAM_HTML_FONT_INVALID Test for Invalidly Named or Formatted
+ Colors in HTML
+ 2.5 URI_WP_HACKED_2        URI for compromised WordPress site, possible
+ malware
+X-Headers-End: 1mZmc7-001lhV-FN
+X-Content-Filtered-By: Mailman/MimeDel 2.1.21
+Subject: [V9fs-developer] Teste 4 in 1 anti-covid-19 pentru toate tulpinile
 X-BeenThere: v9fs-developer@lists.sourceforge.net
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -121,75 +106,86 @@ List-Post: <mailto:v9fs-developer@lists.sourceforge.net>
 List-Help: <mailto:v9fs-developer-request@lists.sourceforge.net?subject=help>
 List-Subscribe: <https://lists.sourceforge.net/lists/listinfo/v9fs-developer>, 
  <mailto:v9fs-developer-request@lists.sourceforge.net?subject=subscribe>
-Cc: lucho@ionkov.net, ericvh@gmail.com, netdev@vger.kernel.org,
- syzkaller-bugs@googlegroups.com, linux-kernel@vger.kernel.org,
- glider@google.com, v9fs-developer@lists.sourceforge.net, kuba@kernel.org,
- davem@davemloft.net
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Reply-To: Office | eko-med ro <office@eko-med.ro>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: v9fs-developer-bounces@lists.sourceforge.net
 
-Question for people who know about KMSAN: which of the backtrace or the
-'Local variable' message should I trust?
-
-syzbot wrote on Sat, Oct 09, 2021 at 10:48:17PM -0700:
-> =====================================================
-> BUG: KMSAN: uninit-value in p9pdu_vreadf net/9p/protocol.c:147 [inline]
-> BUG: KMSAN: uninit-value in p9pdu_readf+0x46cf/0x4fc0 net/9p/protocol.c:526
->  p9pdu_vreadf net/9p/protocol.c:147 [inline]
->  p9pdu_readf+0x46cf/0x4fc0 net/9p/protocol.c:526
->  p9pdu_vreadf net/9p/protocol.c:198 [inline]
->  p9pdu_readf+0x2080/0x4fc0 net/9p/protocol.c:526
->  p9_client_stat+0x2b3/0x710 net/9p/client.c:1724
->  v9fs_mount+0xc14/0x12c0 fs/9p/vfs_super.c:170
-
-would be 'len' in p9pdu_vreadf, which has to be set as far as I can understand:
-> uint16_t len;
-> 
-> errcode = p9pdu_readf(pdu, proto_version,
->                                 "w", &len);
-> if (errcode)
->         break;
-> 
-> *sptr = kmalloc(len + 1, GFP_NOFS);
-
-with relevant part of p9pdu_readf being:
-> case 'w':{
->                int16_t *val = va_arg(ap, int16_t *);
->                __le16 le_val;
->                if (pdu_read(pdu, &le_val, sizeof(le_val))) {
->                        errcode = -EFAULT;
->                        break;
->                }
->                *val = le16_to_cpu(le_val);
->        }
-> ...
-> return errcode;
-
-e.g. either len or errcode should be set...
-
-But:
-> Local variable ----ecode@p9_check_errors created at:
->  p9_check_errors+0x68/0xb90 net/9p/client.c:506
->  p9_client_rpc+0xd90/0x1410 net/9p/client.c:801
-
-is something totally different, p9_client_rpc happens before the
-p9pdu_readf call in p9_client_stat, and ecode is local to
-p9_check_errors, I don't see how it could get that far.
-
-Note that inspecting p9_check_errors manually, there is a case where
-ecode is returned (indirectly through err = -ecode) without being
-initialized, so I will send a patch for that at least, but I have no
-idea if that is what has been reported and it should be trivial to
-reproduce so I do not see why syzbot does not have a reproducer -- it
-retries running the last program that triggered the error before sending
-the report, right?
-
--- 
-Dominique Martinet | Asmadeus
-
-
-_______________________________________________
-V9fs-developer mailing list
-V9fs-developer@lists.sourceforge.net
-https://lists.sourceforge.net/lists/listinfo/v9fs-developer
+W0Zhcm1lcnNNYXJrZXQtVG9wXQoKW2Vrby1tZWRdKGh0dHBzOi8vZWtvLW1lZC5ybz9tYWlscG9l
+dF9yb3V0ZXImZW5kcG9pbnQ9dHJhY2smYWN0aW9uPWNsaWNrJmRhdGE9V3pZMU5UZzBPU3dpWXpk
+eGJ6TnVjRGN6WVc5emMyTmpORFJ2YTJkall6UXdZMnR2WjNOelp6QWlMQ0l5TXlJc0lqUmlaakZq
+WTJReVpqTXdNQ0lzWm1Gc2MyVmQpCgpQRVNURSA1MDAgTUlMSU9BTkUgREUgUFJPRFVTRQpBTlRJ
+LUNPVklEIDE5ClZBTkRVVEUgSU4gVE9BVEEgRVVST1BBCgpPZmVydGEgbm9hc3RyYSBjdXByaW5k
+ZToKLSBwcm9kdXNlIGFudGktY292aWQgMTkKLSBkaXNwb3ppdGl2ZSBtZWRpY2FsZSBhdml6YXRl
+IE1TCi0gZ2FtYSBIaWd5ZW5pdW0KX19fX18KT0ZGSUNFQEVLT0dST1VQLlJPCk9GRklDRUBFS08t
+TUVELlJPCis0IDA3NzEgNjc1IDI0MAoKW0NhcHR1cmHMhiBkZSBlY3JhbiBkaW4gMjAyMS0wOS0x
+MyBsYSAxNC40Ni4yM10oaHR0cHM6Ly9la28tbWVkLnJvP21haWxwb2V0X3JvdXRlciZlbmRwb2lu
+dD10cmFjayZhY3Rpb249Y2xpY2smZGF0YT1XelkxTlRnME9Td2lZemR4YnpOdWNEY3pZVzl6YzJO
+ak5EUnZhMmRqWXpRd1kydHZaM056WnpBaUxDSXlNeUlzSWpSaVpqRmpZMlF5WmpNd01DSXNabUZz
+YzJWZCkKCkVLT0dST1VQLlJPIGlzIGFuIGludGVybmF0aW9uYWwgVFJBREUgY29tcGFueSB3aXRo
+IGFyZWFzIG9mIGFjdGlvbiBpbiBkaWZmZXJlbnQgcmVnaW9ucyBvZiB0aGUgd29ybGQuCkFzayBm
+b3IgYSBwcmljZSBxdW90ZSBhbmQgeW91IHdpbGwgYmUgYW5zd2VyZWQgaW4gYSBtYXhpbXVtIG9m
+IDQ4IGhvdXJzLgoKWzEzNjAwLXJlbW92ZWJnLXByZXZpZXddKGh0dHBzOi8vZWtvLW1lZC5ybz9t
+YWlscG9ldF9yb3V0ZXImZW5kcG9pbnQ9dHJhY2smYWN0aW9uPWNsaWNrJmRhdGE9V3pZMU5UZzBP
+U3dpWXpkeGJ6TnVjRGN6WVc5emMyTmpORFJ2YTJkall6UXdZMnR2WjNOelp6QWlMQ0l5TXlJc0lt
+WTBNR1F5WldKbVpXTm1aaUlzWm1Gc2MyVmQpCgo4LDUgbGVpLCB0dmEgemVybwpPUklDRSBURVNU
+IGFudGktY292aWQgMTkKCltOZWdvY2lhemEgcHJldHVyaWxlIHRlbGVmb25pY10oaHR0cHM6Ly9l
+a28tbWVkLnJvP21haWxwb2V0X3JvdXRlciZlbmRwb2ludD10cmFjayZhY3Rpb249Y2xpY2smZGF0
+YT1XelkxTlRnME9Td2lZemR4YnpOdWNEY3pZVzl6YzJOak5EUnZhMmRqWXpRd1kydHZaM056WnpB
+aUxDSXlNeUlzSW1ZME1HUXlaV0ptWldObVppSXNabUZzYzJWZCkKCltDYXB0dXJhzIZfZGVfZWNy
+YW5fZGluXzIwMjEtMDktMTNfbGFfMTQuNTYuMDMtcmVtb3ZlYmctcHJldmlld10oaHR0cHM6Ly9l
+a28tbWVkLnJvP21haWxwb2V0X3JvdXRlciZlbmRwb2ludD10cmFjayZhY3Rpb249Y2xpY2smZGF0
+YT1XelkxTlRnME9Td2lZemR4YnpOdWNEY3pZVzl6YzJOak5EUnZhMmRqWXpRd1kydHZaM056WnpB
+aUxDSXlNeUlzSW1ZME1HUXlaV0ptWldObVppSXNabUZzYzJWZCkKCjAsMTUgbGVpK3R2YQpPUklD
+RSBNQVNDQSBtZWRpY2FsYQoKW05lZ29jaWF6YSBwcmV0dXJpbGUgdGVsZWZvbmljXShodHRwczov
+L2Vrby1tZWQucm8/bWFpbHBvZXRfcm91dGVyJmVuZHBvaW50PXRyYWNrJmFjdGlvbj1jbGljayZk
+YXRhPVd6WTFOVGcwT1N3aVl6ZHhiek51Y0RjellXOXpjMk5qTkRSdmEyZGpZelF3WTJ0dlozTnpa
+ekFpTENJeU15SXNJbVkwTUdReVpXSm1aV05tWmlJc1ptRnNjMlZkKQoKW0NhcHR1cmHMhl9kZV9l
+Y3Jhbl9kaW5fMjAyMS0wOS0xM19sYV8xNC41OC4zNC1yZW1vdmViZy1wcmV2aWV3XShodHRwczov
+L2Vrby1tZWQucm8/bWFpbHBvZXRfcm91dGVyJmVuZHBvaW50PXRyYWNrJmFjdGlvbj1jbGljayZk
+YXRhPVd6WTFOVGcwT1N3aVl6ZHhiek51Y0RjellXOXpjMk5qTkRSdmEyZGpZelF3WTJ0dlozTnpa
+ekFpTENJeU15SXNJbVkwTUdReVpXSm1aV05tWmlJc1ptRnNjMlZkKQoKMTkgbGVpICsgdHZhCk9S
+SUNFIFBST0RVUyBhbnRpLWNvdmlkIDE5CgpbTmVnb2NpYXphIHByZXR1cmlsZSB0ZWxlZm9uaWNd
+KGh0dHBzOi8vZWtvLW1lZC5ybz9tYWlscG9ldF9yb3V0ZXImZW5kcG9pbnQ9dHJhY2smYWN0aW9u
+PWNsaWNrJmRhdGE9V3pZMU5UZzBPU3dpWXpkeGJ6TnVjRGN6WVc5emMyTmpORFJ2YTJkall6UXdZ
+MnR2WjNOelp6QWlMQ0l5TXlJc0ltWTBNR1F5WldKbVpXTm1aaUlzWm1Gc2MyVmQpCgpbQ2FwdHVy
+YcyGIGRlIGVjcmFuIGRpbiAyMDIxLTA5LTEzIGxhIDE1LjAxLjE3XShodHRwczovL2Vrby1tZWQu
+cm8/bWFpbHBvZXRfcm91dGVyJmVuZHBvaW50PXRyYWNrJmFjdGlvbj1jbGljayZkYXRhPVd6WTFO
+VGcwT1N3aVl6ZHhiek51Y0RjellXOXpjMk5qTkRSdmEyZGpZelF3WTJ0dlozTnpaekFpTENJeU15
+SXNJalJpWmpGalkyUXlaak13TUNJc1ptRnNjMlZkKQoKQ2VyZSBvZmVydGEgSGlnZW55dW0KCltO
+ZWdvY2lhemEgcHJldHVyaWxlXShodHRwczovL2Vrby1tZWQucm8/bWFpbHBvZXRfcm91dGVyJmVu
+ZHBvaW50PXRyYWNrJmFjdGlvbj1jbGljayZkYXRhPVd6WTFOVGcwT1N3aVl6ZHhiek51Y0RjellX
+OXpjMk5qTkRSdmEyZGpZelF3WTJ0dlozTnpaekFpTENJeU15SXNJalJpWmpGalkyUXlaak13TUNJ
+c1ptRnNjMlZkKQoKW0NhcHR1cmHMhiBkZSBlY3JhbiBkaW4gMjAyMS0wOS0xMyBsYSAxNS4wMS4y
+Nl0oaHR0cHM6Ly9la28tbWVkLnJvP21haWxwb2V0X3JvdXRlciZlbmRwb2ludD10cmFjayZhY3Rp
+b249Y2xpY2smZGF0YT1XelkxTlRnME9Td2lZemR4YnpOdWNEY3pZVzl6YzJOak5EUnZhMmRqWXpR
+d1kydHZaM056WnpBaUxDSXlNeUlzSWpSaVpqRmpZMlF5WmpNd01DSXNabUZzYzJWZCkKCkNlcmUg
+b2ZlcnRhIGNvbXBsZXRhCgpbTmVnb2NpYXphIHByZXR1cmlsZV0oaHR0cHM6Ly9la28tbWVkLnJv
+P21haWxwb2V0X3JvdXRlciZlbmRwb2ludD10cmFjayZhY3Rpb249Y2xpY2smZGF0YT1XelkxTlRn
+ME9Td2lZemR4YnpOdWNEY3pZVzl6YzJOak5EUnZhMmRqWXpRd1kydHZaM056WnpBaUxDSXlNeUlz
+SWpSaVpqRmpZMlF5WmpNd01DSXNabUZzYzJWZCkKCltDYXB0dXJhzIYgZGUgZWNyYW4gZGluIDIw
+MjEtMDktMTMgbGEgMTUuMDEuMzRdKGh0dHBzOi8vZWtvLW1lZC5ybz9tYWlscG9ldF9yb3V0ZXIm
+ZW5kcG9pbnQ9dHJhY2smYWN0aW9uPWNsaWNrJmRhdGE9V3pZMU5UZzBPU3dpWXpkeGJ6TnVjRGN6
+WVc5emMyTmpORFJ2YTJkall6UXdZMnR2WjNOelp6QWlMQ0l5TXlJc0lqUmlaakZqWTJReVpqTXdN
+Q0lzWm1Gc2MyVmQpCgpPcmljZSBhcGFyYXQgbWVkaWNhbAoKW0NlcmUgb2ZlcnRhIHBlIG1haWxd
+KGh0dHBzOi8vZWtvLW1lZC5ybz9tYWlscG9ldF9yb3V0ZXImZW5kcG9pbnQ9dHJhY2smYWN0aW9u
+PWNsaWNrJmRhdGE9V3pZMU5UZzBPU3dpWXpkeGJ6TnVjRGN6WVc5emMyTmpORFJ2YTJkall6UXdZ
+MnR2WjNOelp6QWlMQ0l5TXlJc0lqUmlaakZqWTJReVpqTXdNQ0lzWm1Gc2MyVmQpCgpbZWtvLW1l
+ZF0KCltmYWNlYm9va10oaHR0cHM6Ly9la28tbWVkLnJvP21haWxwb2V0X3JvdXRlciZlbmRwb2lu
+dD10cmFjayZhY3Rpb249Y2xpY2smZGF0YT1XelkxTlRnME9Td2lZemR4YnpOdWNEY3pZVzl6YzJO
+ak5EUnZhMmRqWXpRd1kydHZaM056WnpBaUxDSXlNeUlzSWpreU5EUXdPRGN6TkRBMU1TSXNabUZz
+YzJWZCkgW2luc3RhZ3JhbV0oaHR0cHM6Ly9la28tbWVkLnJvP21haWxwb2V0X3JvdXRlciZlbmRw
+b2ludD10cmFjayZhY3Rpb249Y2xpY2smZGF0YT1XelkxTlRnME9Td2lZemR4YnpOdWNEY3pZVzl6
+YzJOak5EUnZhMmRqWXpRd1kydHZaM056WnpBaUxDSXlNeUlzSW1RM1pUQXdNRGM1TkdaaU1pSXNa
+bUZzYzJWZCkKW1Vuc3Vic2NyaWJlXShodHRwczovL2Vrby1tZWQucm8/bWFpbHBvZXRfcm91dGVy
+JmVuZHBvaW50PXRyYWNrJmFjdGlvbj1jbGljayZkYXRhPVd6WTFOVGcwT1N3aVl6ZHhiek51Y0Rj
+ellXOXpjMk5qTkRSdmEyZGpZelF3WTJ0dlozTnpaekFpTENJeU15SXNJakppTnpoaVpXTm1aREE0
+WVNJc1ptRnNjMlZkKSB8IFtNYW5hZ2UgeW91ciBzdWJzY3JpcHRpb25dKGh0dHBzOi8vZWtvLW1l
+ZC5ybz9tYWlscG9ldF9yb3V0ZXImZW5kcG9pbnQ9dHJhY2smYWN0aW9uPWNsaWNrJmRhdGE9V3pZ
+MU5UZzBPU3dpWXpkeGJ6TnVjRGN6WVc5emMyTmpORFJ2YTJkall6UXdZMnR2WjNOelp6QWlMQ0l5
+TXlJc0lqTmxOakk1TVdKak1XVTBZeUlzWm1Gc2MyVmQpCkFkZCB5b3VyIHBvc3RhbCBhZGRyZXNz
+IGhlcmUhCl9fX19fXwpvZmZpY2VAZWtvZ3JvdXAucm8KKzQgMDc3MSA2NzUgMjQwCgpbRmFybWVy
+c01hcmtldC1Cb3R0b21dCgpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fXwpWOWZzLWRldmVsb3BlciBtYWlsaW5nIGxpc3QKVjlmcy1kZXZlbG9wZXJAbGlzdHMu
+c291cmNlZm9yZ2UubmV0Cmh0dHBzOi8vbGlzdHMuc291cmNlZm9yZ2UubmV0L2xpc3RzL2xpc3Rp
+bmZvL3Y5ZnMtZGV2ZWxvcGVyCg==
