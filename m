@@ -2,94 +2,70 @@ Return-Path: <v9fs-developer-bounces@lists.sourceforge.net>
 X-Original-To: lists+v9fs-developer@lfdr.de
 Delivered-To: lists+v9fs-developer@lfdr.de
 Received: from lists.sourceforge.net (lists.sourceforge.net [216.105.38.7])
-	by mail.lfdr.de (Postfix) with ESMTPS id F2AE9431365
-	for <lists+v9fs-developer@lfdr.de>; Mon, 18 Oct 2021 11:24:31 +0200 (CEST)
-Received: from [127.0.0.1] (helo=sfs-ml-2.v29.lw.sourceforge.com)
-	by sfs-ml-2.v29.lw.sourceforge.com with esmtp (Exim 4.92.3)
+	by mail.lfdr.de (Postfix) with ESMTPS id 66E40432032
+	for <lists+v9fs-developer@lfdr.de>; Mon, 18 Oct 2021 16:50:43 +0200 (CEST)
+Received: from [127.0.0.1] (helo=sfs-ml-1.v29.lw.sourceforge.com)
+	by sfs-ml-1.v29.lw.sourceforge.com with esmtp (Exim 4.90_1)
 	(envelope-from <v9fs-developer-bounces@lists.sourceforge.net>)
-	id 1mcOsf-0001NX-0o; Mon, 18 Oct 2021 09:24:29 +0000
+	id 1mcTyL-0004yx-51; Mon, 18 Oct 2021 14:50:41 +0000
 Received: from [172.30.20.202] (helo=mx.sourceforge.net)
- by sfs-ml-2.v29.lw.sourceforge.com with esmtps
- (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.92.3)
- (envelope-from <sgarzare@redhat.com>) id 1mcOsd-0001NK-4N
- for v9fs-developer@lists.sourceforge.net; Mon, 18 Oct 2021 09:24:27 +0000
+ by sfs-ml-1.v29.lw.sourceforge.com with esmtps
+ (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.90_1)
+ (envelope-from <dhowells@redhat.com>) id 1mcTyI-0004yQ-Vx
+ for v9fs-developer@lists.sourceforge.net; Mon, 18 Oct 2021 14:50:39 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=sourceforge.net; s=x; h=Content-Type:In-Reply-To:MIME-Version:References:
- Message-ID:Subject:Cc:To:From:Date:Sender:Reply-To:Content-Transfer-Encoding:
- Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
- Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
+ d=sourceforge.net; s=x; h=Content-Transfer-Encoding:Content-Type:MIME-Version
+ :Message-ID:Date:Cc:To:From:Subject:Sender:Reply-To:Content-ID:
+ Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
+ :Resent-Message-ID:In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:
  List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=tcERYHsACD8OiG9LERSlpQxmHuHdSGg0GMtHO86OE84=; b=QdnO4poyXszSt54++bLhYosT0s
- 3XmUH2btjoELu85lZxdJVhi74M4nO/O4X3anT1sQe+9BX2+RyqRIvmReRhivL9anvmTXhCTonP4uS
- l3z10bFhYB2s2zJCfn6F9CwqkDnRlza58sbb+e7eRwkEjNFCFhv8/ffqGljnaKmlrdzM=;
+ bh=fTrNJzajY75aEFgr0IJAERmH1kp8ApEHhoqq1c9QWjk=; b=fQKcG/yVnZEX9iPz7QwvEi8dl6
+ LO2/nJ3rf3MaB+e7lCZaBljsfXOpy8zJA+Xn18FQuSNwyy+TYdryLgLJCtG0SJX3tTPo9MB/XM93M
+ N48Qn3SzAlLV/1mhEacv0yKXwzMd3Yy/4AWAHIvxU9fOZFRFwLIRreDRH0V3cAceFYmc=;
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  ;
- h=Content-Type:In-Reply-To:MIME-Version:References:Message-ID:Subject:Cc:To
- :From:Date:Sender:Reply-To:Content-Transfer-Encoding:Content-ID:
- Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
- :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
- List-Post:List-Owner:List-Archive;
- bh=tcERYHsACD8OiG9LERSlpQxmHuHdSGg0GMtHO86OE84=; b=ZpGn8IX1kmMFUIKSvqtqtDX1It
- giMKHgPDBi9t2n58NStzNslKoEuy7Ev4mjvY5flQWgViCKL3H81VALJUZ64XcAaypzkIbJioZmeeP
- TFEKMjZpekHQMLYGs5KfPLdp2YKbfnn92YNCeKfII2KEwx9dP20xqjtUR759YGwNNeK8=;
-Received: from us-smtp-delivery-124.mimecast.com ([216.205.24.124])
+ h=Content-Transfer-Encoding:Content-Type:MIME-Version:Message-ID:Date:Cc:To
+ :From:Subject:Sender:Reply-To:Content-ID:Content-Description:Resent-Date:
+ Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:
+ References:List-Id:List-Help:List-Unsubscribe:List-Subscribe:List-Post:
+ List-Owner:List-Archive; bh=fTrNJzajY75aEFgr0IJAERmH1kp8ApEHhoqq1c9QWjk=; b=L
+ pKm0kUD8CPVuShQaYCPFC+5BmeEbK/uH8Hyd+QOjiptw/LhTRXS9ohc3D4HFoBzyYOJdMdlEIbWXH
+ zl+1ULcV1prhqijEYRAz7g+HK5vfKqVkH4Ej5zsdiExQeW9bjTo1JSkn6xdVSr+Uq9LRAUhhN0F7b
+ uiy72VOer9a0Lk5k=;
+Received: from us-smtp-delivery-124.mimecast.com ([170.10.133.124])
  by sfi-mx-2.v28.lw.sourceforge.com with esmtps
  (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.92.3)
- id 1mcOsY-0008Ps-VC
- for v9fs-developer@lists.sourceforge.net; Mon, 18 Oct 2021 09:24:27 +0000
+ id 1mcTyH-0002yu-LH
+ for v9fs-developer@lists.sourceforge.net; Mon, 18 Oct 2021 14:50:38 +0000
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
- s=mimecast20190719; t=1634549056;
+ s=mimecast20190719; t=1634568631;
  h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
  to:to:cc:cc:mime-version:mime-version:content-type:content-type:
- in-reply-to:in-reply-to:references:references;
- bh=tcERYHsACD8OiG9LERSlpQxmHuHdSGg0GMtHO86OE84=;
- b=hrENfsHvHa7ijddrAdywkk3CuWIrpUjb8t1ZhjdgdWxvG7zkpMcArJoY4r5z5bw7Y/DNxK
- VEoxtzf/n1bq0CK3lsmfYRYTl65M5vQ+Z6DxTcmxjNvptMdnTnT5AbDzZRUdaeEsyg9lIU
- CeCeGeP22g33wF0BvoGcvDg6826Vsgk=
-Received: from mail-ed1-f72.google.com (mail-ed1-f72.google.com
- [209.85.208.72]) (Using TLS) by relay.mimecast.com with ESMTP id
- us-mta-313-GGnNYlsgM7yqvhBTdamS4A-1; Mon, 18 Oct 2021 05:24:15 -0400
-X-MC-Unique: GGnNYlsgM7yqvhBTdamS4A-1
-Received: by mail-ed1-f72.google.com with SMTP id
- u23-20020a50a417000000b003db23c7e5e2so13809049edb.8
- for <v9fs-developer@lists.sourceforge.net>;
- Mon, 18 Oct 2021 02:24:15 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20210112;
- h=x-gm-message-state:date:from:to:cc:subject:message-id:references
- :mime-version:content-disposition:in-reply-to;
- bh=tcERYHsACD8OiG9LERSlpQxmHuHdSGg0GMtHO86OE84=;
- b=t0fzdgBHl3Mxbkol8wTkFhwidxDHHJfoNAw71RJHWfqQ7xPKAr5KDe5y5diuwCcgHQ
- cWOTmb1WuS4xPfKJ73+JEuJQqECNcgXhn4PBgPywgQLrBTOgtM4ckBByl44gQFo8t2p2
- MwfWLRiEYpDjfHiPBJj6R1fTCBGLBSL2ge5uvB1PhjWAB16ECUHC/2ZTi8OeJVCbmUaP
- dBrHXat/Q9XUDvkAAkiGMkvanE3zqTvMdXgZ5NZ7jaQuCJj/yTKCS2G0vOvdtlYf6h9c
- tm3ab1StSThb1RIYFC1hoYQjEMcEgBqqk1+21LR2L7yEF6qLc/V6fyksalpLWlURfNae
- Seeg==
-X-Gm-Message-State: AOAM5319awEEDpedDEsOuKyNkDP3++6ac4pUcgy+jVBhqxSgXaHAI8Bk
- nhv+kiGmcCHO53L+JMYpIBWKBTn+8qn8ThtNyJ+nW5H8ZY01HY0UFnVw9rjRbL73y7z8J4NTwan
- 7oymeuBrCruD3kjZYlW5tNzkchhi4L/CvgmE=
-X-Received: by 2002:a50:9d8e:: with SMTP id w14mr42193550ede.74.1634549054563; 
- Mon, 18 Oct 2021 02:24:14 -0700 (PDT)
-X-Google-Smtp-Source: ABdhPJxUJYrHxvUXjdPELjIDpPtrZ181C1I4vTJbRWD4jS3vqGv74zCzzGw5AmjDAdcPLpxevcG2mg==
-X-Received: by 2002:a50:9d8e:: with SMTP id w14mr42193472ede.74.1634549054384; 
- Mon, 18 Oct 2021 02:24:14 -0700 (PDT)
-Received: from steredhat (host-79-34-250-211.business.telecomitalia.it.
- [79.34.250.211])
- by smtp.gmail.com with ESMTPSA id lm14sm8629911ejb.24.2021.10.18.02.24.11
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Mon, 18 Oct 2021 02:24:13 -0700 (PDT)
-Date: Mon, 18 Oct 2021 11:24:10 +0200
-From: Stefano Garzarella <sgarzare@redhat.com>
-To: "Michael S. Tsirkin" <mst@redhat.com>
-Message-ID: <20211018092410.t5hilzz7kbto2mhy@steredhat>
-References: <20211013105226.20225-1-mst@redhat.com>
+ content-transfer-encoding:content-transfer-encoding;
+ bh=fTrNJzajY75aEFgr0IJAERmH1kp8ApEHhoqq1c9QWjk=;
+ b=hK5ITbgmAFYVFlH01DXUCaKrr0h7a5xOEYD9AOV3ZBehrOSaeekj1KGtJun5H4SodTLJXl
+ wxlnJO80ZLjWFB7m+UxGzUFhEBGwQvS1M1luLOk6+fTi/2k0i31xSlIPimelEqislGnke/
+ b0DINVsjInPlPXkV4ju7ACA4Rz8cWKE=
+Received: from mimecast-mx01.redhat.com (mimecast-mx01.redhat.com
+ [209.132.183.4]) (Using TLS) by relay.mimecast.com with ESMTP id
+ us-mta-494-PW9s4UWuPtah2KXKgvmwwA-1; Mon, 18 Oct 2021 10:50:30 -0400
+X-MC-Unique: PW9s4UWuPtah2KXKgvmwwA-1
+Received: from smtp.corp.redhat.com (int-mx05.intmail.prod.int.phx2.redhat.com
+ [10.5.11.15])
+ (using TLSv1.2 with cipher AECDH-AES256-SHA (256/256 bits))
+ (No client certificate requested)
+ by mimecast-mx01.redhat.com (Postfix) with ESMTPS id E5D1180A5C4;
+ Mon, 18 Oct 2021 14:50:26 +0000 (UTC)
+Received: from warthog.procyon.org.uk (unknown [10.33.36.19])
+ by smtp.corp.redhat.com (Postfix) with ESMTP id A7E005F4F5;
+ Mon, 18 Oct 2021 14:50:16 +0000 (UTC)
+From: David Howells <dhowells@redhat.com>
+To: linux-cachefs@redhat.com
+Date: Mon, 18 Oct 2021 15:50:15 +0100
+Message-ID: <163456861570.2614702.14754548462706508617.stgit@warthog.procyon.org.uk>
+User-Agent: StGit/0.23
 MIME-Version: 1.0
-In-Reply-To: <20211013105226.20225-1-mst@redhat.com>
-Authentication-Results: relay.mimecast.com;
- auth=pass smtp.auth=CUSA124A263 smtp.mailfrom=sgarzare@redhat.com
-X-Mimecast-Spam-Score: 0
-X-Mimecast-Originator: redhat.com
-Content-Disposition: inline
+X-Scanned-By: MIMEDefang 2.79 on 10.5.11.15
 X-Spam-Score: -1.6 (-)
 X-Spam-Report: Spam detection software,
  running on the system "util-spamd-1.v13.lw.sourceforge.com", 
@@ -97,16 +73,17 @@ X-Spam-Report: Spam detection software,
  message has been attached to this so you can view it or label
  similar future email.  If you have any questions, see
  the administrator of that system for details.
- Content preview:  On Wed, Oct 13, 2021 at 06:55:31AM -0400, Michael S. Tsirkin
- wrote: >This will enable cleanups down the road. >The idea is to disable
- cbs, then add "flush_queued_cbs" callback >as a parameter, this wa [...] 
+ Content preview: Here's a set of patches that rewrites and simplifies the
+ fscache
+ index API to remove the complex operation scheduling and object state machine
+ in favour of something much smaller and simpler. It is bu [...] 
  Content analysis details:   (-1.6 points, 6.0 required)
  pts rule name              description
  ---- ---------------------- --------------------------------------------------
  -0.7 RCVD_IN_DNSWL_LOW      RBL: Sender listed at https://www.dnswl.org/,
- low trust [216.205.24.124 listed in list.dnswl.org]
+ low trust [170.10.133.124 listed in list.dnswl.org]
  -0.0 RCVD_IN_MSPIKE_H2      RBL: Average reputation (+2)
- [216.205.24.124 listed in wl.mailspike.net]
+ [170.10.133.124 listed in wl.mailspike.net]
  0.0 SPF_HELO_NONE          SPF: HELO does not publish an SPF Record
  -0.0 SPF_PASS               SPF: sender matches SPF record
  -0.1 DKIM_VALID_AU          Message has a valid DKIM or DK signature from
@@ -115,9 +92,13 @@ X-Spam-Report: Spam detection software,
  envelope-from domain
  -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
  0.1 DKIM_SIGNED            Message has a DKIM or DK signature, not necessarily
- valid -0.7 DKIMWL_WL_HIGH         DKIMwl.org - High trust sender
-X-Headers-End: 1mcOsY-0008Ps-VC
-Subject: Re: [V9fs-developer] [PATCH RFC] virtio: wrap config->reset calls
+ valid
+ 0.0 T_FILL_THIS_FORM_SHORT Fill in a short form with personal
+ information
+ -0.7 DKIMWL_WL_HIGH         DKIMwl.org - High trust sender
+X-Headers-End: 1mcTyH-0002yu-LH
+Subject: [V9fs-developer] [PATCH 00/67] fscache: Rewrite index API and
+ management system
 X-BeenThere: v9fs-developer@lists.sourceforge.net
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -129,84 +110,316 @@ List-Post: <mailto:v9fs-developer@lists.sourceforge.net>
 List-Help: <mailto:v9fs-developer-request@lists.sourceforge.net?subject=help>
 List-Subscribe: <https://lists.sourceforge.net/lists/listinfo/v9fs-developer>, 
  <mailto:v9fs-developer-request@lists.sourceforge.net?subject=subscribe>
-Cc: Latchesar Ionkov <lucho@ionkov.net>, nvdimm@lists.linux.dev,
- Stefan Hajnoczi <stefanha@redhat.com>, kvm@vger.kernel.org,
- David Hildenbrand <david@redhat.com>, David Airlie <airlied@linux.ie>,
- Viresh Kumar <vireshk@kernel.org>, Jason Wang <jasowang@redhat.com>,
- linux-remoteproc@vger.kernel.org, alsa-devel@alsa-project.org,
- dri-devel@lists.freedesktop.org, Bjorn Andersson <bjorn.andersson@linaro.org>,
- netdev@vger.kernel.org, Gerd Hoffmann <kraxel@redhat.com>,
- linux-scsi@vger.kernel.org, Will Deacon <will@kernel.org>,
- v9fs-developer@lists.sourceforge.net,
- Anton Ivanov <anton.ivanov@cambridgegreys.com>,
- Jean-Philippe Brucker <jean-philippe@linaro.org>,
- Linus Walleij <linus.walleij@linaro.org>, Dave Jiang <dave.jiang@intel.com>,
- Herbert Xu <herbert@gondor.apana.org.au>, linux-arm-kernel@lists.infradead.org,
- Miklos Szeredi <miklos@szeredi.hu>, Richard Weinberger <richard@nod.at>,
- Bartosz Golaszewski <brgl@bgdev.pl>, Takashi Iwai <tiwai@suse.com>,
- Gonglei <arei.gonglei@huawei.com>, Kalle Valo <kvalo@codeaurora.org>,
- "Martin K. Petersen" <martin.petersen@oracle.com>,
- "James E.J. Bottomley" <jejb@linux.ibm.com>, Jakub Kicinski <kuba@kernel.org>,
- Ira Weiny <ira.weiny@intel.com>, virtualization@lists.linux-foundation.org,
- Jeff Dike <jdike@addtoit.com>, Vivek Goyal <vgoyal@redhat.com>,
- linux-crypto@vger.kernel.org, Ohad Ben-Cohen <ohad@wizery.com>,
- Johan Hedberg <johan.hedberg@gmail.com>, Arnd Bergmann <arnd@arndb.de>,
- Amit Shah <amit@kernel.org>, Eric Van Hensbergen <ericvh@gmail.com>,
- Marcel Holtmann <marcel@holtmann.org>, linux-um@lists.infradead.org,
- linux-block@vger.kernel.org, Vishal Verma <vishal.l.verma@intel.com>,
- Luiz Augusto von Dentz <luiz.dentz@gmail.com>, Matt Mackall <mpm@selenic.com>,
- Dan Williams <dan.j.williams@intel.com>, Jaroslav Kysela <perex@perex.cz>,
- Cristian Marussi <cristian.marussi@arm.com>, Jens Axboe <axboe@kernel.dk>,
- Jie Deng <jie.deng@intel.com>, Mathieu Poirier <mathieu.poirier@linaro.org>,
- linux-gpio@vger.kernel.org, Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- linux-wireless@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-i2c@vger.kernel.org, linux-bluetooth@vger.kernel.org,
- iommu@lists.linux-foundation.org,
- Anton Yakovlev <anton.yakovlev@opensynergy.com>,
- Daniel Vetter <daniel@ffwll.ch>, Sudeep Holla <sudeep.holla@arm.com>,
- linux-fsdevel@vger.kernel.org, Paolo Bonzini <pbonzini@redhat.com>,
- Johannes Berg <johannes@sipsolutions.net>, "Enrico Weigelt,
- metux IT consult" <info@metux.net>, "David S. Miller" <davem@davemloft.net>,
- Joerg Roedel <joro@8bytes.org>
+Cc: Latchesar Ionkov <lucho@ionkov.net>, dhowells@redhat.com,
+ linux-mm@kvack.org, Marc Dionne <marc.dionne@auristor.com>,
+ linux-afs@lists.infradead.org, Shyam Prasad N <nspmangalore@gmail.com>,
+ linux-cifs@vger.kernel.org, Jeff Layton <jlayton@redhat.com>,
+ Matthew Wilcox <willy@infradead.org>,
+ Trond Myklebust <trondmy@hammerspace.com>,
+ v9fs-developer@lists.sourceforge.net, Ilya Dryomov <idryomov@gmail.com>,
+ Kent Overstreet <kent.overstreet@gmail.com>,
+ Eric Van Hensbergen <ericvh@gmail.com>,
+ Alexander Viro <viro@zeniv.linux.org.uk>, ceph-devel@vger.kernel.org,
+ Trond Myklebust <trond.myklebust@hammerspace.com>, linux-nfs@vger.kernel.org,
+ Dave Wysochanski <dwysocha@redhat.com>, Jeff Layton <jlayton@kernel.org>,
+ linux-kernel@vger.kernel.org, Steve French <sfrench@samba.org>,
+ linux-fsdevel@vger.kernel.org, Omar Sandoval <osandov@osandov.com>,
+ Linus Torvalds <torvalds@linux-foundation.org>,
+ Anna Schumaker <anna.schumaker@netapp.com>
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Errors-To: v9fs-developer-bounces@lists.sourceforge.net
 
-On Wed, Oct 13, 2021 at 06:55:31AM -0400, Michael S. Tsirkin wrote:
->This will enable cleanups down the road.
->The idea is to disable cbs, then add "flush_queued_cbs" callback
->as a parameter, this way drivers can flush any work
->queued after callbacks have been disabled.
->
->Signed-off-by: Michael S. Tsirkin <mst@redhat.com>
->---
-> arch/um/drivers/virt-pci.c                 | 2 +-
-> drivers/block/virtio_blk.c                 | 4 ++--
-> drivers/bluetooth/virtio_bt.c              | 2 +-
-> drivers/char/hw_random/virtio-rng.c        | 2 +-
-> drivers/char/virtio_console.c              | 4 ++--
-> drivers/crypto/virtio/virtio_crypto_core.c | 8 ++++----
-> drivers/firmware/arm_scmi/virtio.c         | 2 +-
-> drivers/gpio/gpio-virtio.c                 | 2 +-
-> drivers/gpu/drm/virtio/virtgpu_kms.c       | 2 +-
-> drivers/i2c/busses/i2c-virtio.c            | 2 +-
-> drivers/iommu/virtio-iommu.c               | 2 +-
-> drivers/net/caif/caif_virtio.c             | 2 +-
-> drivers/net/virtio_net.c                   | 4 ++--
-> drivers/net/wireless/mac80211_hwsim.c      | 2 +-
-> drivers/nvdimm/virtio_pmem.c               | 2 +-
-> drivers/rpmsg/virtio_rpmsg_bus.c           | 2 +-
-> drivers/scsi/virtio_scsi.c                 | 2 +-
-> drivers/virtio/virtio.c                    | 5 +++++
-> drivers/virtio/virtio_balloon.c            | 2 +-
-> drivers/virtio/virtio_input.c              | 2 +-
-> drivers/virtio/virtio_mem.c                | 2 +-
-> fs/fuse/virtio_fs.c                        | 4 ++--
-> include/linux/virtio.h                     | 1 +
-> net/9p/trans_virtio.c                      | 2 +-
-> net/vmw_vsock/virtio_transport.c           | 4 ++--
 
-Reviewed-by: Stefano Garzarella <sgarzare@redhat.com>
+Here's a set of patches that rewrites and simplifies the fscache index API
+to remove the complex operation scheduling and object state machine in
+favour of something much smaller and simpler.  It is built on top of the
+set of patches that removes the old API[1].
+
+The operation scheduling API was intended to handle sequencing of cache
+operations, which were all required (where possible) to run asynchronously
+in parallel with the operations being done by the network filesystem, while
+allowing the cache to be brought online and offline and interrupt service
+with invalidation.
+
+However, with the advent of the tmpfile capacity in the VFS, an opportunity
+arises to do invalidation much more easily, without having to wait for I/O
+that's actually in progress: Cachefiles can simply cut over its file
+pointer for the backing object attached to a cookie and abandon the
+in-progress I/O, dismissing it upon completion.
+
+Future work there would involve using Omar Sandoval's vfs_link() with
+AT_LINK_REPLACE[2] to allow an extant file to be displaced by a new hard
+link from a tmpfile as currently I have to unlink the old file first.
+
+These patches can also simplify the object state handling as I/O operations
+to the cache don't all have to be brought to a stop in order to invalidate
+a file.  To that end, and with an eye on to writing a new backing cache
+model in the future, I've taken the opportunity to simplify the indexing
+structure.
+
+I've separated the index cookie concept from the file cookie concept by
+type now.  The former is now called a "volume cookie" (struct
+fscache_volume) and there is a container of file cookies.  There are then
+just the two levels.  All the index cookieage is collapsed into a single
+volume cookie, and this has a single printable string as a key.  For
+instance, an AFS volume would have a key of something like
+"afs,example.com,1000555", combining the filesystem name, cell name and
+volume ID.  This is freeform, but must not have '/' chars in it.
+
+I've also eliminated all pointers back from fscache into the network
+filesystem.  This required the duplication of a little bit of data in the
+cookie (cookie key, coherency data and file size), but it's not actually
+that much.  This gets rid of problems with making sure we keep netfs data
+structures around so that the cache can access them.
+
+I have changed afs throughout the patch series, but I also have patches for
+9p, nfs and cifs.  Jeff Layton is handling ceph support.
+
+
+BITS THAT MAY BE CONTROVERSIAL
+==============================
+
+There are some bits I've added that may be controversial:
+
+ (1) I've provided a flag, S_KERNEL_FILE, that cachefiles uses to check if
+     a files is already being used by some other kernel service (e.g. a
+     duplicate cachefiles cache in the same directory) and reject it if it
+     is.  This isn't entirely necessary, but it helps prevent accidental
+     data corruption.
+
+     I don't want to use S_SWAPFILE as that has other effects, but quite
+     possibly swapon() should set S_KERNEL_FILE too.
+
+     Note that it doesn't prevent userspace from interfering, though
+     perhaps it should.
+
+ (2) Cachefiles wants to keep the backing file for a cookie open whilst we
+     might need to write to it from network filesystem writeback.  The
+     problem is that the network filesystem unuses its cookie when its file
+     is closed, and so we have nothing pinning the cachefiles file open and
+     it will get closed automatically after a short time to avoid
+     EMFILE/ENFILE problems.
+
+     Reopening the cache file, however, is a problem if this is being done
+     due to writeback triggered by exit().  Some filesystems will oops if
+     we try to open a file in that context because they want to access
+     current->fs or suchlike.
+
+     To get around this, I added the following:
+
+     (A) An inode flag, I_PINNING_FSCACHE_WB, to be set on a network
+     	 filesystem inode to indicate that we have a usage count on the
+     	 cookie caching that inode.
+
+     (B) A flag in struct writeback_control, unpinned_fscache_wb, that is
+     	 set when __writeback_single_inode() clears the last dirty page
+     	 from i_pages - at which point it clears I_PINNING_FSCACHE_WB and
+     	 sets this flag.
+
+	 This has to be done here so that clearing I_PINNING_FSCACHE_WB can
+	 be done atomically with the check of PAGECACHE_TAG_DIRTY that
+	 clears I_DIRTY_PAGES.
+
+     (C) A function, fscache_set_page_dirty(), which if it is not set, sets
+     	 I_PINNING_FSCACHE_WB and calls fscache_use_cookie() to pin the
+     	 cache resources.
+
+     (D) A function, fscache_unpin_writeback(), to be called by
+     	 ->write_inode() to unuse the cookie.
+
+     (E) A function, fscache_clear_inode_writeback(), to be called when the
+     	 inode is evicted, before clear_inode() is called.  This cleans up
+     	 any lingering I_PINNING_FSCACHE_WB.
+
+     The network filesystem can then use these tools to make sure that
+     fscache_write_to_cache() can write locally modified data to the cache
+     as well as to the server.
+
+     For the future, I'm working on write helpers for netfs lib that should
+     allow this facility to be removed by keeping track of the dirty
+     regions separately - but that's incomplete at the moment and is also
+     going to be affected by folios, one way or another, since it deals
+     with pages.
+
+
+These patches can be found also on:
+
+	https://git.kernel.org/pub/scm/linux/kernel/git/dhowells/linux-fs.git/log/?h=fscache-rewrite-indexing
+
+David
+
+Link: https://lore.kernel.org/r/163363935000.1980952.15279841414072653108.stgit@warthog.procyon.org.uk [1]
+Link: https://lore.kernel.org/r/cover.1580251857.git.osandov@fb.com/ [2]
+
+---
+Dave Wysochanski (3):
+      NFS: Convert fscache_acquire_cookie and fscache_relinquish_cookie
+      NFS: Convert fscache_enable_cookie and fscache_disable_cookie
+      NFS: Convert fscache invalidation and update aux_data and i_size
+
+David Howells (63):
+      mm: Stop filemap_read() from grabbing a superfluous page
+      vfs: Provide S_KERNEL_FILE inode flag
+      vfs, fscache: Force ->write_inode() to occur if cookie pinned for writeback
+      afs: Handle len being extending over page end in write_begin/write_end
+      afs: Fix afs_write_end() to handle len > page size
+      nfs, cifs, ceph, 9p: Disable use of fscache prior to its rewrite
+      fscache: Remove the netfs data from the cookie
+      fscache: Remove struct fscache_cookie_def
+      fscache: Remove store_limit* from struct fscache_object
+      fscache: Remove fscache_check_consistency()
+      fscache: Remove fscache_attr_changed()
+      fscache: Remove obsolete stats
+      fscache: Remove old I/O tracepoints
+      fscache: Temporarily disable fscache_invalidate()
+      fscache: Disable fscache_begin_operation()
+      fscache: Remove the I/O operation manager
+      fscache: Rename fscache_cookie_{get,put,see}()
+      cachefiles: Remove tree of active files and use S_CACHE_FILE inode flag
+      cachefiles: Don't set an xattr on the root of the cache
+      cachefiles: Remove some redundant checks on unsigned values
+      cachefiles: Prevent inode from going away when burying a dentry
+      cachefiles: Simplify the pathwalk and save the filename for an object
+      cachefiles: trace: Improve the lookup tracepoint
+      cachefiles: Remove separate backer dentry from cachefiles_object
+      cachefiles: Fold fscache_object into cachefiles_object
+      cachefiles: Change to storing file* rather than dentry*
+      cachefiles: trace: Log coherency checks
+      cachefiles: Trace truncations
+      cachefiles: Trace read and write operations
+      cachefiles: Round the cachefile size up to DIO block size
+      cachefiles: Don't use XATTR_ flags with vfs_setxattr()
+      fscache: Replace the object management state machine
+      cachefiles: Trace decisions in cachefiles_prepare_read()
+      cachefiles: Make cachefiles_write_prepare() check for space
+      fscache: Automatically close a file that's been unused for a while
+      fscache: Add stats for the cookie commit LRU
+      fscache: Move fscache_update_cookie() complete inline
+      fscache: Remove more obsolete stats
+      fscache: Note the object size during invalidation
+      vfs, fscache: Force ->write_inode() to occur if cookie pinned for writeback
+      afs: Render cache cookie key as big endian
+      cachefiles: Use tmpfile/link
+      fscache: Rewrite invalidation
+      cachefiles: Simplify the file lookup/creation/check code
+      fscache: Provide resize operation
+      cachefiles: Put more information in the xattr attached to the cache file
+      fscache: Implement "will_modify" parameter on fscache_use_cookie()
+      fscache: Add support for writing to the cache
+      fscache: Make fscache_clear_page_bits() conditional on cookie
+      fscache: Make fscache_write_to_cache() conditional on cookie
+      afs: Copy local writes to the cache when writing to the server
+      afs: Invoke fscache_resize_cookie() when handling ATTR_SIZE for setattr
+      afs: Add O_DIRECT read support
+      afs: Skip truncation on the server of data we haven't written yet
+      afs: Make afs_write_begin() return the THP subpage
+      cachefiles, afs: Drive FSCACHE_COOKIE_NO_DATA_TO_READ
+      nfs: Convert to new fscache volume/cookie API
+      9p: Use fscache indexing rewrite and reenable caching
+      9p: Copy local writes to the cache when writing to the server
+      netfs: Display the netfs inode number in the netfs_read tracepoint
+      cachefiles: Add tracepoints to log errors from ops on the backing fs
+      cachefiles: Add error injection support
+      cifs: Support fscache indexing rewrite (untested)
+
+Jeff Layton (1):
+      fscache: disable cookie when doing an invalidation for DIO write
+
+
+ fs/9p/cache.c                     |  184 +----
+ fs/9p/cache.h                     |   23 +-
+ fs/9p/v9fs.c                      |   14 +-
+ fs/9p/v9fs.h                      |   13 +-
+ fs/9p/vfs_addr.c                  |   55 +-
+ fs/9p/vfs_dir.c                   |   13 +-
+ fs/9p/vfs_file.c                  |    7 +-
+ fs/9p/vfs_inode.c                 |   24 +-
+ fs/9p/vfs_inode_dotl.c            |    3 +-
+ fs/9p/vfs_super.c                 |    3 +
+ fs/afs/Makefile                   |    3 -
+ fs/afs/cache.c                    |   68 --
+ fs/afs/cell.c                     |   12 -
+ fs/afs/file.c                     |   83 +-
+ fs/afs/fsclient.c                 |   18 +-
+ fs/afs/inode.c                    |  101 ++-
+ fs/afs/internal.h                 |   36 +-
+ fs/afs/main.c                     |   14 -
+ fs/afs/super.c                    |    1 +
+ fs/afs/volume.c                   |   15 +-
+ fs/afs/write.c                    |  170 +++-
+ fs/afs/yfsclient.c                |   12 +-
+ fs/cachefiles/Kconfig             |    8 +
+ fs/cachefiles/Makefile            |    3 +
+ fs/cachefiles/bind.c              |  186 +++--
+ fs/cachefiles/daemon.c            |   20 +-
+ fs/cachefiles/error_inject.c      |   46 ++
+ fs/cachefiles/interface.c         |  660 +++++++--------
+ fs/cachefiles/internal.h          |  191 +++--
+ fs/cachefiles/io.c                |  310 +++++--
+ fs/cachefiles/key.c               |  203 +++--
+ fs/cachefiles/main.c              |   20 +-
+ fs/cachefiles/namei.c             |  978 ++++++++++------------
+ fs/cachefiles/volume.c            |  128 +++
+ fs/cachefiles/xattr.c             |  367 +++------
+ fs/ceph/Kconfig                   |    2 +-
+ fs/cifs/Makefile                  |    2 +-
+ fs/cifs/cache.c                   |  105 ---
+ fs/cifs/cifsfs.c                  |   11 +-
+ fs/cifs/cifsglob.h                |    5 +-
+ fs/cifs/connect.c                 |    3 -
+ fs/cifs/file.c                    |   37 +-
+ fs/cifs/fscache.c                 |  201 ++---
+ fs/cifs/fscache.h                 |   51 +-
+ fs/cifs/inode.c                   |   18 +-
+ fs/fs-writeback.c                 |    8 +
+ fs/fscache/Kconfig                |    4 +
+ fs/fscache/Makefile               |    6 +-
+ fs/fscache/cache.c                |  541 ++++++-------
+ fs/fscache/cookie.c               | 1262 ++++++++++++++---------------
+ fs/fscache/fsdef.c                |   98 ---
+ fs/fscache/internal.h             |  213 +----
+ fs/fscache/io.c                   |  405 ++++++---
+ fs/fscache/main.c                 |  134 +--
+ fs/fscache/netfs.c                |   74 --
+ fs/fscache/object.c               | 1123 -------------------------
+ fs/fscache/operation.c            |  633 ---------------
+ fs/fscache/page.c                 |   84 --
+ fs/fscache/proc.c                 |   43 +-
+ fs/fscache/stats.c                |  202 ++---
+ fs/fscache/volume.c               |  449 ++++++++++
+ fs/netfs/read_helper.c            |    2 +-
+ fs/nfs/Makefile                   |    2 +-
+ fs/nfs/client.c                   |    4 -
+ fs/nfs/direct.c                   |    2 +
+ fs/nfs/file.c                     |    7 +-
+ fs/nfs/fscache-index.c            |  114 ---
+ fs/nfs/fscache.c                  |  264 ++----
+ fs/nfs/fscache.h                  |   89 +-
+ fs/nfs/inode.c                    |   11 +-
+ fs/nfs/super.c                    |    7 +-
+ fs/nfs/write.c                    |    1 +
+ include/linux/fs.h                |    4 +
+ include/linux/fscache-cache.h     |  463 +++--------
+ include/linux/fscache.h           |  626 +++++++-------
+ include/linux/netfs.h             |    4 +-
+ include/linux/nfs_fs_sb.h         |    9 +-
+ include/linux/writeback.h         |    1 +
+ include/trace/events/cachefiles.h |  483 ++++++++---
+ include/trace/events/fscache.h    |  631 +++++++--------
+ include/trace/events/netfs.h      |    5 +-
+ 81 files changed, 5140 insertions(+), 7295 deletions(-)
+ delete mode 100644 fs/afs/cache.c
+ create mode 100644 fs/cachefiles/error_inject.c
+ create mode 100644 fs/cachefiles/volume.c
+ delete mode 100644 fs/cifs/cache.c
+ delete mode 100644 fs/fscache/fsdef.c
+ delete mode 100644 fs/fscache/netfs.c
+ delete mode 100644 fs/fscache/object.c
+ delete mode 100644 fs/fscache/operation.c
+ create mode 100644 fs/fscache/volume.c
+ delete mode 100644 fs/nfs/fscache-index.c
+
 
 
 
