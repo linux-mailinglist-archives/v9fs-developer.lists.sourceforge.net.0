@@ -2,26 +2,26 @@ Return-Path: <v9fs-developer-bounces@lists.sourceforge.net>
 X-Original-To: lists+v9fs-developer@lfdr.de
 Delivered-To: lists+v9fs-developer@lfdr.de
 Received: from lists.sourceforge.net (lists.sourceforge.net [216.105.38.7])
-	by mail.lfdr.de (Postfix) with ESMTPS id 90434437D3E
-	for <lists+v9fs-developer@lfdr.de>; Fri, 22 Oct 2021 21:02:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 032F9437D3F
+	for <lists+v9fs-developer@lfdr.de>; Fri, 22 Oct 2021 21:02:46 +0200 (CEST)
 Received: from [127.0.0.1] (helo=sfs-ml-1.v29.lw.sourceforge.com)
 	by sfs-ml-1.v29.lw.sourceforge.com with esmtp (Exim 4.90_1)
 	(envelope-from <v9fs-developer-bounces@lists.sourceforge.net>)
-	id 1mdzoS-0003bE-9v; Fri, 22 Oct 2021 19:02:44 +0000
+	id 1mdzoS-0003bR-MM; Fri, 22 Oct 2021 19:02:44 +0000
 Received: from [172.30.20.202] (helo=mx.sourceforge.net)
  by sfs-ml-1.v29.lw.sourceforge.com with esmtps
  (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.90_1)
- (envelope-from <dhowells@redhat.com>) id 1mdzoL-0003Zn-2E
- for v9fs-developer@lists.sourceforge.net; Fri, 22 Oct 2021 19:02:37 +0000
+ (envelope-from <dhowells@redhat.com>) id 1mdzoM-0003ad-8c
+ for v9fs-developer@lists.sourceforge.net; Fri, 22 Oct 2021 19:02:38 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
  d=sourceforge.net; s=x; h=Content-Transfer-Encoding:Content-Type:MIME-Version
  :References:In-Reply-To:Message-ID:Date:Cc:To:From:Subject:Sender:Reply-To:
  Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
  Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
  List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=pTKUPqqhLn13oYPq3rhi9ijm3zwM7t7uFhQagyxsqOg=; b=S2AWiFee4A84pHzGsgPz7HoBL9
- Md3vJUTRe+7k7riO/oOmG4+Pn193cXcVz9c1PbF0kYp7qsF1/YjkfUwqZSg076E2hNRFhoV/cf+HI
- xKF0hJ3GJ/otSwdEwvwBMXCuj4hIago0GW5MQO1mRSa7Wui4xjSE8kjuXNMeXxa/M0NI=;
+ bh=rbeUDRvfOB2aZ1sHCO5D2RGmW9kgUvKEDFff366LXY4=; b=WwVNvi8hwdiHzDPb8QttBKCwx4
+ xLF4mAVTHKj0Rd4Y4jLms2k/gJ8gKf1vhUJdk3MWsyAD+QA18wF5yMXsyS0uXav3pndX82IsH5dgs
+ EjnymTpYmVtfwpw//JXOmm6zDBUGWtxuBg9LQfvjVqmCxEgPEmo1HU/k8HFxHcHItxf0=;
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  ;
  h=Content-Transfer-Encoding:Content-Type:MIME-Version:References:
@@ -29,45 +29,45 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
  :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
  List-Post:List-Owner:List-Archive;
- bh=pTKUPqqhLn13oYPq3rhi9ijm3zwM7t7uFhQagyxsqOg=; b=lZYMeh8mr0hgUL4JJWjPLYTTQg
- yzpCvse3dDwRdhvz2ePiwwy1IWL/hKhHev6Hdk9oEWY2X9qB9tUYpoXMFhfQkM7rmydNtinLqBZCS
- 7WM+jT706wQ62SvHr9010XC1TDdB4a3h3DsqsgCmRgoCHpbLrtE3sYvOfSlc/5vFRSY4=;
+ bh=rbeUDRvfOB2aZ1sHCO5D2RGmW9kgUvKEDFff366LXY4=; b=VArZcxqfg4Y5aAH+GO+bJD2GM7
+ gvIqO1Fe0weci/eN4FCA52++B8eJ0+oPzlkttlPRfC17TEGdN8rHiEKaDHUldaykuFXdWOjApKpAT
+ a/qNcIFLeZuuKiw+ih3NMGoomFxfvnruqNrb+NtnUAuzKSlXvz7TPcKHNv+RmZFA7p7k=;
 Received: from us-smtp-delivery-124.mimecast.com ([170.10.133.124])
  by sfi-mx-1.v28.lw.sourceforge.com with esmtps
  (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.92.3)
- id 1mdzoC-00CHH8-Bo
- for v9fs-developer@lists.sourceforge.net; Fri, 22 Oct 2021 19:02:29 +0000
+ id 1mdzoL-00CHHR-Fg
+ for v9fs-developer@lists.sourceforge.net; Fri, 22 Oct 2021 19:02:38 +0000
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
- s=mimecast20190719; t=1634929342;
+ s=mimecast20190719; t=1634929351;
  h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
  to:to:cc:cc:mime-version:mime-version:content-type:content-type:
  content-transfer-encoding:content-transfer-encoding:
  in-reply-to:in-reply-to:references:references;
- bh=pTKUPqqhLn13oYPq3rhi9ijm3zwM7t7uFhQagyxsqOg=;
- b=E6PxVDQPRzDb2eXNUFvDICTJ9fT2aAInReMDbEZvP2V7k34cwT2OBTfdxKRApDDziUX1Ka
- xbiSUETMounIet2RUzi3jvBAE9au22sZ30JG3tot8QhBEjEaHY4JjP++6d+84EQZKpgMlb
- 6BUjMMcZ24xfkGsgF3Vbrlf/6RovBP8=
+ bh=rbeUDRvfOB2aZ1sHCO5D2RGmW9kgUvKEDFff366LXY4=;
+ b=E1hLd5ydNfBElZk/GtkqOp5sQiB1OTaSdsNyhFslfm/vsQ3QHbe9Bi3g0M6QxvyCAeUaS7
+ rQP3chipLt+TBgfL4QElR817BMOtHFM6VO+NauTcmadZMXFmzKUWxwxRUr9rBVuORyFfH7
+ vq9KeAR6R/efiwP4y3xchI+wcDNSdkA=
 Received: from mimecast-mx01.redhat.com (mimecast-mx01.redhat.com
  [209.132.183.4]) (Using TLS) by relay.mimecast.com with ESMTP id
- us-mta-246-pHBC_Mw6NYuUtO8ZZgTlOw-1; Fri, 22 Oct 2021 15:02:19 -0400
-X-MC-Unique: pHBC_Mw6NYuUtO8ZZgTlOw-1
+ us-mta-456-GJhCiyf0PZGta_LRvW2QGg-1; Fri, 22 Oct 2021 15:02:28 -0400
+X-MC-Unique: GJhCiyf0PZGta_LRvW2QGg-1
 Received: from smtp.corp.redhat.com (int-mx06.intmail.prod.int.phx2.redhat.com
  [10.5.11.16])
  (using TLSv1.2 with cipher AECDH-AES256-SHA (256/256 bits))
  (No client certificate requested)
- by mimecast-mx01.redhat.com (Postfix) with ESMTPS id E4E2318D6A25;
- Fri, 22 Oct 2021 19:02:16 +0000 (UTC)
+ by mimecast-mx01.redhat.com (Postfix) with ESMTPS id 230C1806688;
+ Fri, 22 Oct 2021 19:02:26 +0000 (UTC)
 Received: from warthog.procyon.org.uk (unknown [10.33.36.19])
- by smtp.corp.redhat.com (Postfix) with ESMTP id D30CC5C1A3;
- Fri, 22 Oct 2021 19:02:03 +0000 (UTC)
+ by smtp.corp.redhat.com (Postfix) with ESMTP id EBBDE5C1A3;
+ Fri, 22 Oct 2021 19:02:22 +0000 (UTC)
 Organization: Red Hat UK Ltd. Registered Address: Red Hat UK Ltd, Amberley
  Place, 107-111 Peascod Street, Windsor, Berkshire, SI4 1TE, United
  Kingdom.
  Registered in England and Wales under Company Registration No. 3798903
 From: David Howells <dhowells@redhat.com>
 To: linux-cachefs@redhat.com
-Date: Fri, 22 Oct 2021 20:02:03 +0100
-Message-ID: <163492932300.1038219.13528401231144480258.stgit@warthog.procyon.org.uk>
+Date: Fri, 22 Oct 2021 20:02:22 +0100
+Message-ID: <163492934215.1038219.4516739049966201721.stgit@warthog.procyon.org.uk>
 In-Reply-To: <163492911924.1038219.13107463173777870713.stgit@warthog.procyon.org.uk>
 References: <163492911924.1038219.13107463173777870713.stgit@warthog.procyon.org.uk>
 User-Agent: StGit/0.23
@@ -80,11 +80,12 @@ X-Spam-Report: Spam detection software,
  message has been attached to this so you can view it or label
  similar future email.  If you have any questions, see
  the administrator of that system for details.
- Content preview: Add a pair of helper functions to pin/unpin a cache that
- we're
- wanting to do a high-level access to (such as creating or removing a volume).
- Signed-off-by: David Howells <dhowells@redhat.com> cc:
- linux-cachefs@redhat.com --- 
+ Content preview:  Add a pair of helper functions to manage access to a volume, 
+ pinning the volume in place for the duration to prevent cache withdrawal
+ from removing it: bool fscache_begin_volume_access(struct fscache_volume
+ *volume, enum fscache_access_trace why);
+ void fscache_end_volume_access(struct fscache_volume
+ *volume, enum fscache_access_trace why); 
  Content analysis details:   (-1.6 points, 6.0 required)
  pts rule name              description
  ---- ---------------------- --------------------------------------------------
@@ -101,8 +102,8 @@ X-Spam-Report: Spam detection software,
  -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
  0.1 DKIM_SIGNED            Message has a DKIM or DK signature, not necessarily
  valid -0.7 DKIMWL_WL_HIGH         DKIMwl.org - High trust sender
-X-Headers-End: 1mdzoC-00CHH8-Bo
-Subject: [V9fs-developer] [PATCH v2 12/53] fscache: Implement cache-level
+X-Headers-End: 1mdzoL-00CHHR-Fg
+Subject: [V9fs-developer] [PATCH v2 13/53] fscache: Implement volume-level
  access helpers
 X-BeenThere: v9fs-developer@lists.sourceforge.net
 X-Mailman-Version: 2.1.21
@@ -128,158 +129,166 @@ Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: v9fs-developer-bounces@lists.sourceforge.net
 
-Add a pair of helper functions to pin/unpin a cache that we're wanting to
-do a high-level access to (such as creating or removing a volume).
+Add a pair of helper functions to manage access to a volume, pinning the
+volume in place for the duration to prevent cache withdrawal from removing
+it:
+
+	bool fscache_begin_volume_access(struct fscache_volume *volume,
+					 enum fscache_access_trace why);
+	void fscache_end_volume_access(struct fscache_volume *volume,
+				       enum fscache_access_trace why);
+
+The first is intended for internal use only, but the second will be used by
+the cache backend also.
 
 Signed-off-by: David Howells <dhowells@redhat.com>
 cc: linux-cachefs@redhat.com
 ---
 
- fs/fscache/cache.c             |   37 ++++++++++++++++++++++++++++++++++++
  fs/fscache/internal.h          |    2 ++
- fs/fscache/main.c              |    2 ++
- include/trace/events/fscache.h |   41 ++++++++++++++++++++++++++++++++++++++++
- 4 files changed, 82 insertions(+)
+ fs/fscache/main.c              |    1 +
+ fs/fscache/volume.c            |   47 ++++++++++++++++++++++++++++++++++++++++
+ include/linux/fscache-cache.h  |    3 +++
+ include/trace/events/fscache.h |   30 ++++++++++++++++++++++++++
+ 5 files changed, 83 insertions(+)
 
-diff --git a/fs/fscache/cache.c b/fs/fscache/cache.c
-index da08e29ee5b9..3cde698c5015 100644
---- a/fs/fscache/cache.c
-+++ b/fs/fscache/cache.c
-@@ -171,6 +171,43 @@ void fscache_put_cache(struct fscache_cache *cache,
+diff --git a/fs/fscache/internal.h b/fs/fscache/internal.h
+index 5546c24d18d8..18f9a408a4f4 100644
+--- a/fs/fscache/internal.h
++++ b/fs/fscache/internal.h
+@@ -107,6 +107,8 @@ struct fscache_volume *fscache_get_volume(struct fscache_volume *volume,
+ 					  enum fscache_volume_trace where);
+ void fscache_put_volume(struct fscache_volume *volume,
+ 			enum fscache_volume_trace where);
++bool fscache_begin_volume_access(struct fscache_volume *volume,
++				 enum fscache_access_trace why);
+ void fscache_create_volume(struct fscache_volume *volume, bool wait);
+ 
+ 
+diff --git a/fs/fscache/main.c b/fs/fscache/main.c
+index e1f14b29cff4..6a024c45eb0b 100644
+--- a/fs/fscache/main.c
++++ b/fs/fscache/main.c
+@@ -22,6 +22,7 @@ MODULE_PARM_DESC(fscache_debug,
+ 		 "FS-Cache debugging mask");
+ 
+ EXPORT_TRACEPOINT_SYMBOL(fscache_access_cache);
++EXPORT_TRACEPOINT_SYMBOL(fscache_access_volume);
+ 
+ struct workqueue_struct *fscache_wq;
+ EXPORT_SYMBOL(fscache_wq);
+diff --git a/fs/fscache/volume.c b/fs/fscache/volume.c
+index 924851888f18..d539d6ec2664 100644
+--- a/fs/fscache/volume.c
++++ b/fs/fscache/volume.c
+@@ -33,6 +33,53 @@ static void fscache_see_volume(struct fscache_volume *volume,
+ 	trace_fscache_volume(volume->debug_id, ref, where);
  }
- EXPORT_SYMBOL(fscache_put_cache);
  
 +/*
-+ * Get an increment on a cache's access counter if the cache is live to prevent
-+ * it from going away whilst we're accessing it.
++ * Pin the cache behind a volume so that we can access it.
 + */
-+bool fscache_begin_cache_access(struct fscache_cache *cache, enum fscache_access_trace why)
++static void __fscache_begin_volume_access(struct fscache_volume *volume,
++					  enum fscache_access_trace why)
 +{
 +	int n_accesses;
 +
-+	if (!fscache_cache_is_live(cache))
-+		return false;
++	n_accesses = atomic_inc_return(&volume->n_accesses);
++	smp_mb__after_atomic();
++	trace_fscache_access_volume(volume->debug_id, refcount_read(&volume->ref),
++				    n_accesses, why);
++}
 +
-+	n_accesses = atomic_inc_return(&cache->n_accesses);
-+	smp_mb__after_atomic(); /* Reread live flag after n_accesses */
-+	trace_fscache_access_cache(cache->debug_id, refcount_read(&cache->ref),
-+				   n_accesses, why);
-+	if (!fscache_cache_is_live(cache)) {
-+		fscache_end_cache_access(cache, fscache_access_unlive);
++/*
++ * If the cache behind a volume is live, pin it so that we can access it.
++ */
++bool fscache_begin_volume_access(struct fscache_volume *volume,
++				 enum fscache_access_trace why)
++{
++	if (!fscache_cache_is_live(volume->cache))
++		return false;
++	__fscache_begin_volume_access(volume, why);
++	if (!fscache_cache_is_live(volume->cache)) {
++		fscache_end_volume_access(volume, fscache_access_unlive);
 +		return false;
 +	}
 +	return true;
 +}
 +
 +/*
-+ * Drop an increment on a cache's access counter.
++ * Mark the end of an access on a volume.
 + */
-+void fscache_end_cache_access(struct fscache_cache *cache, enum fscache_access_trace why)
++void fscache_end_volume_access(struct fscache_volume *volume,
++			       enum fscache_access_trace why)
 +{
 +	int n_accesses;
 +
 +	smp_mb__before_atomic();
-+	n_accesses = atomic_dec_return(&cache->n_accesses);
-+	trace_fscache_access_cache(cache->debug_id, refcount_read(&cache->ref),
-+				   n_accesses, why);
++	n_accesses = atomic_dec_return(&volume->n_accesses);
++	trace_fscache_access_volume(volume->debug_id, refcount_read(&volume->ref),
++				    n_accesses, why);
 +	if (n_accesses == 0)
-+		wake_up_var(&cache->n_accesses);
++		wake_up_var(&volume->n_accesses);
 +}
++EXPORT_SYMBOL(fscache_end_volume_access);
 +
- #ifdef CONFIG_PROC_FS
- static const char fscache_cache_states[NR__FSCACHE_CACHE_STATE] = "-PAEW";
+ static long fscache_compare_volume(const struct fscache_volume *a,
+ 				   const struct fscache_volume *b)
+ {
+diff --git a/include/linux/fscache-cache.h b/include/linux/fscache-cache.h
+index e075cca1a30d..7db4dda74951 100644
+--- a/include/linux/fscache-cache.h
++++ b/include/linux/fscache-cache.h
+@@ -77,6 +77,9 @@ extern struct fscache_cache *fscache_acquire_cache(const char *name);
+ extern void fscache_put_cache(struct fscache_cache *cache,
+ 			      enum fscache_cache_trace where);
  
-diff --git a/fs/fscache/internal.h b/fs/fscache/internal.h
-index 9daacd7de9ea..5546c24d18d8 100644
---- a/fs/fscache/internal.h
-+++ b/fs/fscache/internal.h
-@@ -23,6 +23,8 @@
- #ifdef CONFIG_PROC_FS
- extern const struct seq_operations fscache_caches_seq_ops;
- #endif
-+bool fscache_begin_cache_access(struct fscache_cache *cache, enum fscache_access_trace why);
-+void fscache_end_cache_access(struct fscache_cache *cache, enum fscache_access_trace why);
- struct fscache_cache *fscache_lookup_cache(const char *name, bool is_cache);
- 
- /*
-diff --git a/fs/fscache/main.c b/fs/fscache/main.c
-index fad9c1933987..e1f14b29cff4 100644
---- a/fs/fscache/main.c
-+++ b/fs/fscache/main.c
-@@ -21,6 +21,8 @@ module_param_named(debug, fscache_debug, uint,
- MODULE_PARM_DESC(fscache_debug,
- 		 "FS-Cache debugging mask");
- 
-+EXPORT_TRACEPOINT_SYMBOL(fscache_access_cache);
++extern void fscache_end_volume_access(struct fscache_volume *volume,
++				      enum fscache_access_trace why);
 +
- struct workqueue_struct *fscache_wq;
- EXPORT_SYMBOL(fscache_wq);
- 
+ extern struct fscache_cookie *fscache_get_cookie(struct fscache_cookie *cookie,
+ 						 enum fscache_cookie_trace where);
+ extern void fscache_put_cookie(struct fscache_cookie *cookie,
 diff --git a/include/trace/events/fscache.h b/include/trace/events/fscache.h
-index cfa4c153c72b..d09d7e3ac86c 100644
+index d09d7e3ac86c..4b35fe9cd906 100644
 --- a/include/trace/events/fscache.h
 +++ b/include/trace/events/fscache.h
-@@ -59,6 +59,12 @@ enum fscache_cookie_trace {
- 	fscache_cookie_see_work,
+@@ -40,6 +40,7 @@ enum fscache_volume_trace {
+ 	fscache_volume_put_relinquish,
+ 	fscache_volume_see_create_work,
+ 	fscache_volume_see_hash_wake,
++	fscache_volume_wait_create_work,
  };
  
-+enum fscache_access_trace {
-+	fscache_access_cache_pin,
-+	fscache_access_cache_unpin,
-+	fscache_access_unlive,
-+};
-+
- #endif
- 
- /*
-@@ -101,6 +107,11 @@ enum fscache_cookie_trace {
- 	EM(fscache_cookie_see_withdraw,		"-   x-wth")		\
- 	E_(fscache_cookie_see_work,		"-   work ")
- 
-+#define fscache_access_traces		\
-+	EM(fscache_access_cache_pin,		"PIN   cache  ")	\
-+	EM(fscache_access_cache_unpin,		"UNPIN cache  ")	\
-+	E_(fscache_access_unlive,		"END   unlive ")
-+
- /*
-  * Export enum symbols via userspace.
-  */
-@@ -112,6 +123,7 @@ enum fscache_cookie_trace {
- fscache_cache_traces;
- fscache_volume_traces;
- fscache_cookie_traces;
-+fscache_access_traces;
- 
- /*
-  * Now redefine the EM() and E_() macros to map the enums to the strings that
-@@ -198,6 +210,35 @@ TRACE_EVENT(fscache_cookie,
- 		      __entry->ref)
+ enum fscache_cookie_trace {
+@@ -239,6 +240,35 @@ TRACE_EVENT(fscache_access_cache,
+ 		      __entry->n_accesses)
  	    );
  
-+TRACE_EVENT(fscache_access_cache,
-+	    TP_PROTO(unsigned int cache_debug_id,
++TRACE_EVENT(fscache_access_volume,
++	    TP_PROTO(unsigned int volume_debug_id,
 +		     int ref,
 +		     int n_accesses,
 +		     enum fscache_access_trace why),
 +
-+	    TP_ARGS(cache_debug_id, ref, n_accesses, why),
++	    TP_ARGS(volume_debug_id, ref, n_accesses, why),
 +
 +	    TP_STRUCT__entry(
-+		    __field(unsigned int,		cache		)
++		    __field(unsigned int,		volume		)
 +		    __field(int,			ref		)
 +		    __field(int,			n_accesses	)
 +		    __field(enum fscache_access_trace,	why		)
 +			     ),
 +
 +	    TP_fast_assign(
-+		    __entry->cache	= cache_debug_id;
++		    __entry->volume	= volume_debug_id;
 +		    __entry->ref	= ref;
 +		    __entry->n_accesses	= n_accesses;
 +		    __entry->why	= why;
 +			   ),
 +
-+	    TP_printk("C=%08x %s r=%d a=%d",
-+		      __entry->cache,
++	    TP_printk("V=%08x %s r=%d a=%d",
++		      __entry->volume,
 +		      __print_symbolic(__entry->why, fscache_access_traces),
 +		      __entry->ref,
 +		      __entry->n_accesses)
