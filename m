@@ -2,91 +2,108 @@ Return-Path: <v9fs-developer-bounces@lists.sourceforge.net>
 X-Original-To: lists+v9fs-developer@lfdr.de
 Delivered-To: lists+v9fs-developer@lfdr.de
 Received: from lists.sourceforge.net (lists.sourceforge.net [216.105.38.7])
-	by mail.lfdr.de (Postfix) with ESMTPS id 35942436E8A
-	for <lists+v9fs-developer@lfdr.de>; Fri, 22 Oct 2021 01:52:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id CC0FD437090
+	for <lists+v9fs-developer@lfdr.de>; Fri, 22 Oct 2021 05:50:37 +0200 (CEST)
 Received: from [127.0.0.1] (helo=sfs-ml-1.v29.lw.sourceforge.com)
 	by sfs-ml-1.v29.lw.sourceforge.com with esmtp (Exim 4.90_1)
 	(envelope-from <v9fs-developer-bounces@lists.sourceforge.net>)
-	id 1mdhrA-0003JX-HV; Thu, 21 Oct 2021 23:52:20 +0000
+	id 1mdlZj-0006DU-8P; Fri, 22 Oct 2021 03:50:35 +0000
 Received: from [172.30.20.202] (helo=mx.sourceforge.net)
  by sfs-ml-1.v29.lw.sourceforge.com with esmtps
  (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.90_1)
- (envelope-from <jlayton@kernel.org>) id 1mdhr9-0003JK-23
- for v9fs-developer@lists.sourceforge.net; Thu, 21 Oct 2021 23:52:19 +0000
+ (envelope-from
+ <0107017ca61f0965-53f91d99-a563-4ce0-8cc0-ffdc796b0f6e-000000@eu-central-1.amazonses.com>)
+ id 1mdlZh-0006DF-KL
+ for v9fs-developer@lists.sourceforge.net; Fri, 22 Oct 2021 03:50:33 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=sourceforge.net; s=x; h=Content-Transfer-Encoding:MIME-Version:Content-Type
- :References:In-Reply-To:Date:Cc:To:From:Subject:Message-ID:Sender:Reply-To:
+ d=sourceforge.net; s=x; h=List-Unsubscribe:Content-Type:MIME-Version:To:
+ Reply-To:From:Subject:Date:Message-ID:Sender:Cc:Content-Transfer-Encoding:
  Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
- Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
- List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=vfk9QTysokdDsULFKqjANCjNBEkXOreqiGK8CxamuRo=; b=eUcjtguRPo6xFtU9u7yGRBlZuF
- 6N6iDlkztgmOcvJvm57c6K9xU5KNC/K8IMfKTJr3eYFndC3+IGT5Ud/S1Pwj8TYWroHyYVQxI8pXi
- z1W/wMSavdXvghB23LfGEqRiqFkJVqf/rKVRHaa+3wzIMgIbV2uX8PxdOVlahX3jKE70=;
+ Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:List-Id:
+ List-Help:List-Subscribe:List-Post:List-Owner:List-Archive;
+ bh=Qdg2u6eS/wNGkRb1E3JJeXxVyuEj+JCLGCsDYGp1pPw=; b=MssRgdZWHosLPadl+CyTN2Q8hy
+ JbfdmIE+4+cUnOkIBx1fC1/Nm44JHmrQTjy8W8bTHvgC17FB1DWBVXpSLTBrJuzo2GP8SmB0zaV1Z
+ WfjTg8dE+qysBNVOmDn4z6Bn09QxLEuv0uLVvZzzSsduZMmcJUCbYSnYMzYVtxShdZ1g=;
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  ;
- h=Content-Transfer-Encoding:MIME-Version:Content-Type:References:
- In-Reply-To:Date:Cc:To:From:Subject:Message-ID:Sender:Reply-To:Content-ID:
- Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
- :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
- List-Post:List-Owner:List-Archive;
- bh=vfk9QTysokdDsULFKqjANCjNBEkXOreqiGK8CxamuRo=; b=kyVSD+zCAamhnSRXPuu2jnbtEl
- wqon9TXQwMoTtrMW+xEvCiGq1+UmsjE8Qh2Iy5wLNV1EJjAFy2LCo0LMjjSvQTlbJ+Zq64Lk0RBeV
- cErad/HMhz1Auegx0lJecnkIRAFf6MZkk7sHs/ai0BZ0U3ztfH7ChkUCLemZvtzRc2IA=;
-Received: from mail.kernel.org ([198.145.29.99])
+ h=List-Unsubscribe:Content-Type:MIME-Version:To:Reply-To:From:Subject:Date:
+ Message-ID:Sender:Cc:Content-Transfer-Encoding:Content-ID:Content-Description
+ :Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+ In-Reply-To:References:List-Id:List-Help:List-Subscribe:List-Post:List-Owner:
+ List-Archive; bh=Qdg2u6eS/wNGkRb1E3JJeXxVyuEj+JCLGCsDYGp1pPw=; b=F3Rmqh70XGnA
+ nlGxddMavOVz6uNbeqIzIDMf5wGLJPpJqCew6ip+1k2n9Ig4fzLeR+pG67dmf4do65HKVb98+AM67
+ 0pnBxWzS8DKI80NdXPlTcOn31//ievGvEMbqiM7vF/WBxgW62UFdPoG4syYM2PD6roXsnSnukCFwf
+ gYpHc=;
+Received: from b227-249.smtp-out.eu-central-1.amazonses.com ([69.169.227.249])
  by sfi-mx-1.v28.lw.sourceforge.com with esmtps
- (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.92.3)
- id 1mdhr4-00B51L-87
- for v9fs-developer@lists.sourceforge.net; Thu, 21 Oct 2021 23:52:18 +0000
-Received: by mail.kernel.org (Postfix) with ESMTPSA id D7B706120C;
- Thu, 21 Oct 2021 23:43:31 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1634859814;
- bh=LE+sfzEXJlFl8jCsBBJvLQfsmo8JPatvzUNz5xSZVrk=;
- h=Subject:From:To:Cc:Date:In-Reply-To:References:From;
- b=TgMVshk590paFQtbeK7zsyr4l/2uZp8+iGE+Is7GOaqOs2fjIWdb1db0zUOZCD1D/
- qSIki3hnjNZxvH7hMUKP6OCN5hbiVGAv2XjSk4Vu4n2Brz1rBVrshn8bHukAQnfRRv
- anWSmxVujkZB4+3Vgc3zvaFf1bGC7CzMWQKe6CW34pKn5QSZJPQUjgeysNPUEJswMd
- t7htnv6dWAlApcY9+r9kUWKJKLIl3BAtQDDX9NUsRBx84qp+9TOpGx1yTzQZkj0kpU
- RPr0UXaSlLtDfKfBNDv1hq7rgvpN1ibPs6YRxvIs06BNymtP6Gi5hn9pZzMvTMTSzN
- l5WRtdh7ClJ1A==
-Message-ID: <d70b28fb4392ac1aafb1b21d1b8da061be16104c.camel@kernel.org>
-From: Jeff Layton <jlayton@kernel.org>
-To: Steve French <smfrench@gmail.com>, Omar Sandoval <osandov@osandov.com>
-Date: Thu, 21 Oct 2021 19:43:30 -0400
-In-Reply-To: <CAH2r5msO7-QCXv6JQj2Tado9ZoWAHRkgq6-En18PeKSXFDdBLw@mail.gmail.com>
-References: <163456861570.2614702.14754548462706508617.stgit@warthog.procyon.org.uk>
- <YXHntB2O0ACr0pbz@relinquished.localdomain>
- <CAH2r5msO7-QCXv6JQj2Tado9ZoWAHRkgq6-En18PeKSXFDdBLw@mail.gmail.com>
-User-Agent: Evolution 3.40.4 (3.40.4-2.fc34) 
+ (TLSv1.2:ECDHE-RSA-AES128-SHA256:128) (Exim 4.92.3)
+ id 1mdlZf-00BIMA-8r
+ for v9fs-developer@lists.sourceforge.net; Fri, 22 Oct 2021 03:50:33 +0000
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/simple;
+ s=chhfa7u27a4tep4llzorwkggr6ld47ie; d=eko.com.ro; t=1634874624;
+ h=Sender:Message-ID:Date:Subject:From:Reply-To:To:MIME-Version:Content-Type:List-Unsubscribe;
+ bh=Z4/NHOjPEfGkEBqUVe7cdB/2hWMrE7FtEThSBVtDTZk=;
+ b=DaXVEIK68ZwvKyjxoYgW0xPIZHYfxxRhy7rrcDhDRs140ZQATdRGeBK5r3Uk+Yq7
+ fBVOCKTWINMJ48ipUIiDDrQa9InH8W+wNfwdUogQVybZ8L+IauwX7c+3LgH+8ZI916W
+ fFeXnr+DzvuuN7D7Zb5ZJxkbHa6x3BDd0h1BcTPosoXjKH/gCHVqzmmKa//tb2LwMs3
+ aeU4dHW/OfKIUIWbwqgYur6RwhuXeQWqyolHwD62Z/YNpxF9holyJHq69pbR1kVhUAR
+ Xr+zamWiTANNVmkDhcd8s9mqS8fPzZj/Jtuia7HhDBA51+qV/R9hFRoEpEMMH97/kfZ
+ 5z599nE2qg==
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/simple;
+ s=54ecsf3zk7z4mwxwwox7z7bg6e5gwjsz; d=amazonses.com; t=1634874624;
+ h=Sender:Message-ID:Date:Subject:From:Reply-To:To:MIME-Version:Content-Type:List-Unsubscribe:Feedback-ID;
+ bh=Z4/NHOjPEfGkEBqUVe7cdB/2hWMrE7FtEThSBVtDTZk=;
+ b=fP4+8uCKSjoWSEUDIISPnL7GyREkye+g55ixi+bQop0dpeFE6GZkQw8dPOhk1Geq
+ rGs1fZOted9lZfbaMl9exr6M4wEO+xaEwVR8UEn+gNkVjeKI0kxJVsjpYd7lKSti441
+ s8YwkLyL5fEPSWl3ZeuJ1eWKUsqnQy2kwEjgYEpQ=
+Message-ID: <0107017ca61f0965-53f91d99-a563-4ce0-8cc0-ffdc796b0f6e-000000@eu-central-1.amazonses.com>
+Date: Fri, 22 Oct 2021 03:50:24 +0000
+From: Office <office@eko.com.ro>
+To: "" <v9fs-developer@lists.sourceforge.net>
 MIME-Version: 1.0
-X-Spam-Score: -5.9 (-----)
+Feedback-ID: 1.eu-central-1.N8GLPrwMW4DEokEt/uX8R5Dj6lDs1dpqTZ0OFMrLAAo=:AmazonSES
+X-SES-Outgoing: 2021.10.22-69.169.227.249
+X-Spam-Score: 6.5 (++++++)
 X-Spam-Report: Spam detection software,
  running on the system "util-spamd-1.v13.lw.sourceforge.com", 
- has NOT identified this incoming email as spam.  The original
+ has identified this incoming email as possible spam.  The original
  message has been attached to this so you can view it or label
  similar future email.  If you have any questions, see
  the administrator of that system for details.
- Content preview:  On Thu, 2021-10-21 at 18:15 -0500, Steve French wrote: > On
- Thu, Oct 21, 2021 at 5:21 PM Omar Sandoval <osandov@osandov.com> wrote: >
- > > > On Mon, Oct 18, 2021 at 03:50:15PM +0100, David Howells wrot [...] 
- Content analysis details:   (-5.9 points, 6.0 required)
+ Content preview: [FarmersMarket-Top]
+ [eko-med](https://ekogroup.com.ro?mailpoet_router&endpoint=track&action=click&data=WzE0MzAwNSwibmlxaWF6cXMzYjQ0MGNjZ2s0YzRrNDRzOG9jZ2NrYzQiLCI0NCIsIjg4OTVmM2FlODRlMCIsZmFsc2Vd)
+ PESTE 500 MILIOANE DE PRODUSE ANTI-COVID 19 VANDUTE IN TOATA EUROPA 
+ Content analysis details:   (6.5 points, 6.0 required)
  pts rule name              description
  ---- ---------------------- --------------------------------------------------
+ 0.0 URIBL_BLOCKED          ADMINISTRATOR NOTICE: The query to URIBL was
+ blocked.  See
+ http://wiki.apache.org/spamassassin/DnsBlocklists#dnsbl-block
+ for more information. [URIs: eko-med.ro]
+ -0.0 RCVD_IN_DNSWL_NONE     RBL: Sender listed at https://www.dnswl.org/,
+ no trust [69.169.227.249 listed in list.dnswl.org]
+ 0.2 HEADER_FROM_DIFFERENT_DOMAINS From and EnvelopeFrom 2nd level
+ mail domains are different
  0.0 SPF_HELO_NONE          SPF: HELO does not publish an SPF Record
  -0.0 SPF_PASS               SPF: sender matches SPF record
+ 1.9 URIBL_ABUSE_SURBL      Contains an URL listed in the ABUSE SURBL
+ blocklist [URIs: eko-med.ro]
+ 0.0 HTML_MESSAGE           BODY: HTML included in message
  -0.1 DKIM_VALID_AU          Message has a valid DKIM or DK signature from
  author's domain
  -0.1 DKIM_VALID_EF          Message has a valid DKIM or DK signature from
  envelope-from domain
  -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
  0.1 DKIM_SIGNED            Message has a DKIM or DK signature, not necessarily
- valid
- -5.0 RCVD_IN_DNSWL_HI       RBL: Sender listed at https://www.dnswl.org/,
- high trust [198.145.29.99 listed in list.dnswl.org]
- -0.7 DKIMWL_WL_HIGH         DKIMwl.org - High trust sender
-X-Headers-End: 1mdhr4-00B51L-87
-Subject: Re: [V9fs-developer] [PATCH 00/67] fscache: Rewrite index API and
- management system
+ valid 2.0 PYZOR_CHECK            Listed in Pyzor
+ (https://pyzor.readthedocs.io/en/latest/)
+ 0.0 T_KAM_HTML_FONT_INVALID Test for Invalidly Named or Formatted
+ Colors in HTML
+ 2.5 URI_WP_HACKED_2        URI for compromised WordPress site, possible
+ malware
+X-Headers-End: 1mdlZf-00BIMA-8r
+X-Content-Filtered-By: Mailman/MimeDel 2.1.21
+Subject: [V9fs-developer] Oxiometre 23 lei+tva, 10.000 buc pe stoc
 X-BeenThere: v9fs-developer@lists.sourceforge.net
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -98,59 +115,81 @@ List-Post: <mailto:v9fs-developer@lists.sourceforge.net>
 List-Help: <mailto:v9fs-developer-request@lists.sourceforge.net?subject=help>
 List-Subscribe: <https://lists.sourceforge.net/lists/listinfo/v9fs-developer>, 
  <mailto:v9fs-developer-request@lists.sourceforge.net?subject=subscribe>
-Cc: Latchesar Ionkov <lucho@ionkov.net>, David Howells <dhowells@redhat.com>,
- linux-mm <linux-mm@kvack.org>, Marc Dionne <marc.dionne@auristor.com>,
- linux-afs@lists.infradead.org, Shyam Prasad N <nspmangalore@gmail.com>,
- CIFS <linux-cifs@vger.kernel.org>, Matthew Wilcox <willy@infradead.org>,
- linux-cachefs@redhat.com, Trond Myklebust <trondmy@hammerspace.com>,
- v9fs-developer@lists.sourceforge.net, Ilya Dryomov <idryomov@gmail.com>,
- Kent Overstreet <kent.overstreet@gmail.com>,
- Eric Van Hensbergen <ericvh@gmail.com>, Al Viro <viro@zeniv.linux.org.uk>,
- ceph-devel <ceph-devel@vger.kernel.org>,
- Trond Myklebust <trond.myklebust@hammerspace.com>,
- linux-nfs <linux-nfs@vger.kernel.org>, Dave Wysochanski <dwysocha@redhat.com>,
- LKML <linux-kernel@vger.kernel.org>, Steve French <sfrench@samba.org>,
- linux-fsdevel <linux-fsdevel@vger.kernel.org>,
- Linus Torvalds <torvalds@linux-foundation.org>,
- Anna Schumaker <anna.schumaker@netapp.com>
+Reply-To: Office <office@ekogroup.ro>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: v9fs-developer-bounces@lists.sourceforge.net
 
-On Thu, 2021-10-21 at 18:15 -0500, Steve French wrote:
-> On Thu, Oct 21, 2021 at 5:21 PM Omar Sandoval <osandov@osandov.com> wrote:
-> > 
-> > On Mon, Oct 18, 2021 at 03:50:15PM +0100, David Howells wrote:
-> > However, with the advent of the tmpfile capacity in the VFS, an opportunity
-> > arises to do invalidation much more easily, without having to wait for I/O
-> > that's actually in progress: Cachefiles can simply cut over its file
-> > pointer for the backing object attached to a cookie and abandon the
-> > in-progress I/O, dismissing it upon completion.
-> 
-> Have changes been made to O_TMPFILE?  It is problematic for network filesystems
-> because it is not an atomic operation, and would be great if it were possible
-> to create a tmpfile and open it atomically (at the file system level).
-> 
-> Currently it results in creating a tmpfile (which results in
-> opencreate then close)
-> immediately followed by reopening the tmpfile which is somewhat counter to
-> the whole idea of a tmpfile (ie that it is deleted when closed) since
-> the syscall results
-> in two opens ie open(create)/close/open/close
-> 
-> 
+[FarmersMarket-Top]
 
-In this case, O_TMPFILE is being used on the cachefiles backing store,
-and that usually isn't deployed on a netfs. That said, Steve does have a
-good point...
+[eko-med](https://ekogroup.com.ro?mailpoet_router&endpoint=track&action=click&data=WzE0MzAwNSwibmlxaWF6cXMzYjQ0MGNjZ2s0YzRrNDRzOG9jZ2NrYzQiLCI0NCIsIjg4OTVmM2FlODRlMCIsZmFsc2Vd)
 
-What happens if you do end up without O_TMPFILE support on the backing
-store? Probably just opting to not cache in that case is fine. Does
-cachefiles just shut down in that situation?
--- 
-Jeff Layton <jlayton@kernel.org>
+PESTE 500 MILIOANE DE PRODUSE
+ANTI-COVID 19
+VANDUTE IN TOATA EUROPA
 
+Oferta noastra cuprinde:
+- produse anti-covid 19
+- dispozitive medicale avizate MS
+- gama Higyenium
+_____
+OFFICE@EKOGROUP.RO
+OFFICE@EKO-MED.RO
++4 0771 675 240
 
+[iamge1](https://ekogroup.com.ro?mailpoet_router&endpoint=track&action=click&data=WzE0MzAwNSwibmlxaWF6cXMzYjQ0MGNjZ2s0YzRrNDRzOG9jZ2NrYzQiLCI0NCIsIjg4OTVmM2FlODRlMCIsZmFsc2Vd)
+
+EKOGROUP.RO is an international TRADE company with areas of action in different regions of the world.
+Ask for a price quote and you will be answered in a maximum of 48 hours.
+
+[teste covid](https://ekogroup.com.ro?mailpoet_router&endpoint=track&action=click&data=WzE0MzAwNSwibmlxaWF6cXMzYjQ0MGNjZ2s0YzRrNDRzOG9jZ2NrYzQiLCI0NCIsIjFiOGY5NjMyZWJiYiIsZmFsc2Vd)
+
+12 lei, tva zero
+ORICE TEST anti-covid 19
+
+[Negociaza preturile telefonic](https://ekogroup.com.ro?mailpoet_router&endpoint=track&action=click&data=WzE0MzAwNSwibmlxaWF6cXMzYjQ0MGNjZ2s0YzRrNDRzOG9jZ2NrYzQiLCI0NCIsIjFiOGY5NjMyZWJiYiIsZmFsc2Vd)
+
+[Masca medicala](https://ekogroup.com.ro?mailpoet_router&endpoint=track&action=click&data=WzE0MzAwNSwibmlxaWF6cXMzYjQ0MGNjZ2s0YzRrNDRzOG9jZ2NrYzQiLCI0NCIsIjFiOGY5NjMyZWJiYiIsZmFsc2Vd)
+
+0,15 lei+tva
+ORICE MASCA medicala
+
+[Negociaza preturile telefonic](https://ekogroup.com.ro?mailpoet_router&endpoint=track&action=click&data=WzE0MzAwNSwibmlxaWF6cXMzYjQ0MGNjZ2s0YzRrNDRzOG9jZ2NrYzQiLCI0NCIsIjFiOGY5NjMyZWJiYiIsZmFsc2Vd)
+
+[masca medicala](https://ekogroup.com.ro?mailpoet_router&endpoint=track&action=click&data=WzE0MzAwNSwibmlxaWF6cXMzYjQ0MGNjZ2s0YzRrNDRzOG9jZ2NrYzQiLCI0NCIsIjFiOGY5NjMyZWJiYiIsZmFsc2Vd)
+
+23 lei + tva
+ORICE PRODUS covid 19
+
+[Negociaza preturile telefonic](https://ekogroup.com.ro?mailpoet_router&endpoint=track&action=click&data=WzE0MzAwNSwibmlxaWF6cXMzYjQ0MGNjZ2s0YzRrNDRzOG9jZ2NrYzQiLCI0NCIsIjFiOGY5NjMyZWJiYiIsZmFsc2Vd)
+
+[Higenyum](https://ekogroup.com.ro?mailpoet_router&endpoint=track&action=click&data=WzE0MzAwNSwibmlxaWF6cXMzYjQ0MGNjZ2s0YzRrNDRzOG9jZ2NrYzQiLCI0NCIsIjg4OTVmM2FlODRlMCIsZmFsc2Vd)
+
+Cere oferta Higenyum
+
+[Negociaza preturile](https://ekogroup.com.ro?mailpoet_router&endpoint=track&action=click&data=WzE0MzAwNSwibmlxaWF6cXMzYjQ0MGNjZ2s0YzRrNDRzOG9jZ2NrYzQiLCI0NCIsIjg4OTVmM2FlODRlMCIsZmFsc2Vd)
+
+[Produse covid](https://ekogroup.com.ro?mailpoet_router&endpoint=track&action=click&data=WzE0MzAwNSwibmlxaWF6cXMzYjQ0MGNjZ2s0YzRrNDRzOG9jZ2NrYzQiLCI0NCIsIjg4OTVmM2FlODRlMCIsZmFsc2Vd)
+
+Cere oferta completa
+
+[Negociaza preturile](https://ekogroup.com.ro?mailpoet_router&endpoint=track&action=click&data=WzE0MzAwNSwibmlxaWF6cXMzYjQ0MGNjZ2s0YzRrNDRzOG9jZ2NrYzQiLCI0NCIsIjg4OTVmM2FlODRlMCIsZmFsc2Vd)
+
+[Produse medicale](https://ekogroup.com.ro?mailpoet_router&endpoint=track&action=click&data=WzE0MzAwNSwibmlxaWF6cXMzYjQ0MGNjZ2s0YzRrNDRzOG9jZ2NrYzQiLCI0NCIsIjg4OTVmM2FlODRlMCIsZmFsc2Vd)
+
+Orice aparat medical
+
+[Cere oferta pe mail](https://ekogroup.com.ro?mailpoet_router&endpoint=track&action=click&data=WzE0MzAwNSwibmlxaWF6cXMzYjQ0MGNjZ2s0YzRrNDRzOG9jZ2NrYzQiLCI0NCIsIjg4OTVmM2FlODRlMCIsZmFsc2Vd)
+
+[eko-med](https://ekogroup.com.ro?mailpoet_router&endpoint=track&action=click&data=WzE0MzAwNSwibmlxaWF6cXMzYjQ0MGNjZ2s0YzRrNDRzOG9jZ2NrYzQiLCI0NCIsIjg4OTVmM2FlODRlMCIsZmFsc2Vd)
+
+[facebook](https://ekogroup.com.ro?mailpoet_router&endpoint=track&action=click&data=WzE0MzAwNSwibmlxaWF6cXMzYjQ0MGNjZ2s0YzRrNDRzOG9jZ2NrYzQiLCI0NCIsImM2Y2MxMjdhNWVkYSIsZmFsc2Vd) [instagram](https://ekogroup.com.ro?mailpoet_router&endpoint=track&action=click&data=WzE0MzAwNSwibmlxaWF6cXMzYjQ0MGNjZ2s0YzRrNDRzOG9jZ2NrYzQiLCI0NCIsIjg5MTI5ZTM1NzZmNiIsZmFsc2Vd)
+[Unsubscribe](https://ekogroup.com.ro?mailpoet_router&endpoint=track&action=click&data=WzE0MzAwNSwibmlxaWF6cXMzYjQ0MGNjZ2s0YzRrNDRzOG9jZ2NrYzQiLCI0NCIsIjgyM2JmMmJlYzNmOSIsZmFsc2Vd) | [Manage your subscription](https://ekogroup.com.ro?mailpoet_router&endpoint=track&action=click&data=WzE0MzAwNSwibmlxaWF6cXMzYjQ0MGNjZ2s0YzRrNDRzOG9jZ2NrYzQiLCI0NCIsIjQyNDY0YmVmY2ExNyIsZmFsc2Vd)
+______
+office@ekogroup.ro
++4 0771 675 240
+
+[FarmersMarket-Bottom]
 
 _______________________________________________
 V9fs-developer mailing list
