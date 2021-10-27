@@ -2,17 +2,17 @@ Return-Path: <v9fs-developer-bounces@lists.sourceforge.net>
 X-Original-To: lists+v9fs-developer@lfdr.de
 Delivered-To: lists+v9fs-developer@lfdr.de
 Received: from lists.sourceforge.net (lists.sourceforge.net [216.105.38.7])
-	by mail.lfdr.de (Postfix) with ESMTPS id DB23E43CDA1
-	for <lists+v9fs-developer@lfdr.de>; Wed, 27 Oct 2021 17:34:13 +0200 (CEST)
-Received: from [127.0.0.1] (helo=sfs-ml-2.v29.lw.sourceforge.com)
-	by sfs-ml-2.v29.lw.sourceforge.com with esmtp (Exim 4.94.2)
+	by mail.lfdr.de (Postfix) with ESMTPS id DDE2843CDB0
+	for <lists+v9fs-developer@lfdr.de>; Wed, 27 Oct 2021 17:35:23 +0200 (CEST)
+Received: from [127.0.0.1] (helo=sfs-ml-4.v29.lw.sourceforge.com)
+	by sfs-ml-4.v29.lw.sourceforge.com with esmtp (Exim 4.94.2)
 	(envelope-from <v9fs-developer-bounces@lists.sourceforge.net>)
-	id 1mfkwM-00008J-9t; Wed, 27 Oct 2021 15:34:10 +0000
+	id 1mfkxX-0004QO-RQ; Wed, 27 Oct 2021 15:35:22 +0000
 Received: from [172.30.20.202] (helo=mx.sourceforge.net)
- by sfs-ml-2.v29.lw.sourceforge.com with esmtps (TLS1.2) tls
+ by sfs-ml-4.v29.lw.sourceforge.com with esmtps (TLS1.2) tls
  TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384 (Exim 4.94.2)
- (envelope-from <tms@cmcglobal.com.vn>) id 1mfkwJ-000088-7r
- for v9fs-developer@lists.sourceforge.net; Wed, 27 Oct 2021 15:34:09 +0000
+ (envelope-from <tms@cmcglobal.com.vn>) id 1mfkxL-0004Q7-ED
+ for v9fs-developer@lists.sourceforge.net; Wed, 27 Oct 2021 15:35:10 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
  d=sourceforge.net; s=x; h=Content-Type:Message-ID:Mime-Version:Subject:To:
  From:Date:Sender:Reply-To:Cc:Content-Transfer-Encoding:Content-ID:
@@ -33,10 +33,10 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  YTot5SeP3SN8ukvEqgAGnsuL2lFIAWvBxNrW8i+h88rdnVEqIZiN/1jX4dd4ax9JtQwIHeKZCTU++
  VvNuRCGaampIXBDU=;
 Received: from mail.cmcglobal.com.vn ([45.122.253.6])
- by sfi-mx-2.v28.lw.sourceforge.com with esmtps
+ by sfi-mx-1.v28.lw.sourceforge.com with esmtps
  (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.92.3)
- id 1mfkqS-0004Ro-Pd
- for v9fs-developer@lists.sourceforge.net; Wed, 27 Oct 2021 15:34:07 +0000
+ id 1mfkx2-001gPr-7t
+ for v9fs-developer@lists.sourceforge.net; Wed, 27 Oct 2021 15:35:02 +0000
 Received: from localhost (localhost [127.0.0.1])
  by mail.cmcglobal.com.vn (Postfix) with ESMTP id 667C49B4827E
  for <v9fs-developer@lists.sourceforge.net>;
@@ -76,7 +76,46 @@ X-Has-Attach: no
 X-Mailer: Foxmail 7, 0, 1, 91[cn]
 Mime-Version: 1.0
 Message-ID: <202110272327444624435@cmcglobal.com.vn>
-X-Headers-End: 1mfkqS-0004Ro-Pd
+X-Spam-Score: 7.0 (+++++++)
+X-Spam-Report: Spam detection software, running on the system "util-spamd-2.v13.lw.sourceforge.com",
+ has identified this incoming email as possible spam.  The original
+ message has been attached to this so you can view it or label
+ similar future email.  If you have any questions, see
+ the administrator of that system for details.
+ 
+ Content preview:  用户v9fs-developer@lists.sourceforge.net 维护原因提升邮件安全使用级别,邮箱容量不够使用,登录邮箱存在卡顿,发信速递比较慢。
+    注意事项请收到此邮件的人员立即升级,以免影响你的正常使用,或重要文件丢失,若不进行升级系统将自动删除该用户信息,请熟悉！
+    操作指示 请点这里� [...] 
+ 
+ Content analysis details:   (7.0 points, 6.0 required)
+ 
+  pts rule name              description
+ ---- ---------------------- --------------------------------------------------
+  3.6 RCVD_IN_SBL_CSS        RBL: Received via a relay in Spamhaus SBL-CSS
+                             [122.5.65.124 listed in zen.spamhaus.org]
+  0.0 URIBL_BLOCKED          ADMINISTRATOR NOTICE: The query to URIBL was
+                             blocked.  See
+                             http://wiki.apache.org/spamassassin/DnsBlocklists#dnsbl-block
+                              for more information.
+                             [URIs: youxianghs.work]
+ -0.0 SPF_HELO_PASS          SPF: HELO matches SPF record
+ -0.0 SPF_PASS               SPF: sender matches SPF record
+  0.1 PDS_OTHER_BAD_TLD      Untrustworthy TLDs
+                             [URI: qwmail.youxianghs.work (work)]
+  0.0 HTML_MESSAGE           BODY: HTML included in message
+  0.0 HTML_FONT_FACE_BAD     BODY: HTML font face is not a word
+  0.7 MPART_ALT_DIFF         BODY: HTML and text parts are different
+ -0.1 DKIM_VALID_AU          Message has a valid DKIM or DK signature from
+                             author's domain
+ -0.1 DKIM_VALID             Message has at least one valid DKIM or DK signature
+ -0.1 DKIM_VALID_EF          Message has a valid DKIM or DK signature from
+                             envelope-from domain
+  0.1 DKIM_SIGNED            Message has a DKIM or DK signature, not necessarily
+                             valid
+  2.0 PYZOR_CHECK            Listed in Pyzor
+                             (https://pyzor.readthedocs.io/en/latest/)
+  0.8 FSL_BULK_SIG           Bulk signature with no Unsubscribe
+X-Headers-End: 1mfkx2-001gPr-7t
 X-Content-Filtered-By: Mailman/MimeDel 2.1.21
 Subject: [V9fs-developer] =?utf-8?b?6K+35rOo5oSP77yB5YWs5Y+457u05oqk6YCa?=
  =?utf-8?b?55+l?=
