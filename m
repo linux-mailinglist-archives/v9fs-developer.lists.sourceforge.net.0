@@ -2,54 +2,54 @@ Return-Path: <v9fs-developer-bounces@lists.sourceforge.net>
 X-Original-To: lists+v9fs-developer@lfdr.de
 Delivered-To: lists+v9fs-developer@lfdr.de
 Received: from lists.sourceforge.net (lists.sourceforge.net [216.105.38.7])
-	by mail.lfdr.de (Postfix) with ESMTPS id E66A84410AB
-	for <lists+v9fs-developer@lfdr.de>; Sun, 31 Oct 2021 21:02:32 +0100 (CET)
-Received: from [127.0.0.1] (helo=sfs-ml-1.v29.lw.sourceforge.com)
-	by sfs-ml-1.v29.lw.sourceforge.com with esmtp (Exim 4.94.2)
+	by mail.lfdr.de (Postfix) with ESMTPS id 97CFD4410B2
+	for <lists+v9fs-developer@lfdr.de>; Sun, 31 Oct 2021 21:03:35 +0100 (CET)
+Received: from [127.0.0.1] (helo=sfs-ml-4.v29.lw.sourceforge.com)
+	by sfs-ml-4.v29.lw.sourceforge.com with esmtp (Exim 4.94.2)
 	(envelope-from <v9fs-developer-bounces@lists.sourceforge.net>)
-	id 1mhH2E-0005wK-DR; Sun, 31 Oct 2021 20:02:29 +0000
+	id 1mhH3G-00039a-2n; Sun, 31 Oct 2021 20:03:34 +0000
 Received: from [172.30.20.202] (helo=mx.sourceforge.net)
- by sfs-ml-1.v29.lw.sourceforge.com with esmtps (TLS1.2) tls
+ by sfs-ml-4.v29.lw.sourceforge.com with esmtps (TLS1.2) tls
  TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384 (Exim 4.94.2)
- (envelope-from <support-amazon.jp@r46j8x0.cn>) id 1mhH2A-0005wD-Vi
- for v9fs-developer@lists.sourceforge.net; Sun, 31 Oct 2021 20:02:26 +0000
+ (envelope-from <support-amazon.jp@w1z5pv5.cn>) id 1mhH3A-00039P-5v
+ for v9fs-developer@lists.sourceforge.net; Sun, 31 Oct 2021 20:03:28 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
  d=sourceforge.net; s=x; h=Content-Type:Mime-Version:Message-ID:Subject:To:
  From:Date:Sender:Reply-To:Cc:Content-Transfer-Encoding:Content-ID:
  Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
  :Resent-Message-ID:In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:
  List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=3wNPV+LG7rK2lyifPu33Z05vqg1vKro77mGEyP1FXKg=; b=nCWZ2E8mmy8q0EMOsC9u00BRLs
- tBL5wyRDljuNv/m3OeO1VCeGufA1eeKJWY8NJTzrt+kStvrCdFgVFKsTXhPPbMZUn5eFgjes5t0J4
- bXxW/lIolM9ForHEpPbaQaBbwMXKzpYCRnhscCORmC3LVuM6ZONKFWvOmvTK1Z/Ecewo=;
+ bh=pAdgt9XF021K/+XumTCuIx1BRRK9K33fhfhcaKha36w=; b=Zs283PEOXp0ATN5t0/vWoPQrCk
+ cKYqLt/V4hTa5LuXG2JJdLPw9JAxCviitHZULKmjzBlZRXR7pgfBdgBXcKQPKDVGlYSVYf5OGZKnA
+ 5/lHkBmhE7FQu43MLlLy4VlFnbgoeqbE0uQiW2zULhjKvhJw9dlTH9Xp5WPhQgNnUkjo=;
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  ;
  h=Content-Type:Mime-Version:Message-ID:Subject:To:From:Date:Sender:Reply-To
  :Cc:Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
  Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:
  References:List-Id:List-Help:List-Unsubscribe:List-Subscribe:List-Post:
- List-Owner:List-Archive; bh=3wNPV+LG7rK2lyifPu33Z05vqg1vKro77mGEyP1FXKg=; b=N
- ag1yPYS3e10bwBMHPNVhrploesLi/IsKNuX0TfCgP+AW7CSjHOeT9fW8RxzSu9RjlEeQCOANXh7iC
- KnP5DQBL6Hiy7ox+giTEZyLnQnse2JNxFw3VyEeqaQ3VCbr5YincTpT3NjT204qYxCF8VxbOnyiiC
- lSflpWg4A6FfkEyo=;
-Received: from r46j8x0.cn ([117.50.172.170] helo=mail.r46j8x0.cn)
- by sfi-mx-1.v28.lw.sourceforge.com with esmtps
+ List-Owner:List-Archive; bh=pAdgt9XF021K/+XumTCuIx1BRRK9K33fhfhcaKha36w=; b=P
+ 90fhahlRJ44T1BKwMldGEGIb4DEEtF8yOHmdMLXryyqSKIrdEQZLaWmaUsjf8c8f7DGx+BG7zr0Lg
+ /DAvtfwT9dX5yvylhWUYkYknv8qtjPAVb/Ab5bx4cFdkfjRsOmokIKWwtWAS6wgJBzVQZbpxiGbg9
+ a7uxCdFwo8l9bWZ8=;
+Received: from w1z5pv5.cn ([117.50.172.175] helo=mail.w1z5pv5.cn)
+ by sfi-mx-2.v28.lw.sourceforge.com with esmtps
  (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.92.3)
- id 1mhH21-009Bys-Hg
- for v9fs-developer@lists.sourceforge.net; Sun, 31 Oct 2021 20:02:25 +0000
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; s=default; d=r46j8x0.cn; 
+ id 1mhH33-0007qH-Is
+ for v9fs-developer@lists.sourceforge.net; Sun, 31 Oct 2021 20:03:28 +0000
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; s=default; d=w1z5pv5.cn; 
  h=Date:From:To:Subject:Message-ID:Mime-Version:Content-Type;
- i=support-amazon.jp@r46j8x0.cn;
- bh=3wNPV+LG7rK2lyifPu33Z05vqg1vKro77mGEyP1FXKg=;
- b=Rry3fctvRMkl/0d3fPwL5MnQ1+uLdBqx0svArtHNSgilLHMuBpap6kki8KDXe3A5uuxy7Nwvz6Rh
- X6jUQkYRmGthx/w9JUv6MJI0N5UbSNsLEcR7j3S4qrS1cjfBxyy3fwG3sWHhQrpHDf/+7LF+9eqa
- HhJevsiMYA2d3RaF7uw=
-Date: Mon, 1 Nov 2021 04:42:09 +0900
-From: "Amazon.co.jp" <support-amazon.jp@r46j8x0.cn>
+ i=support-amazon.jp@w1z5pv5.cn;
+ bh=pAdgt9XF021K/+XumTCuIx1BRRK9K33fhfhcaKha36w=;
+ b=HnMH3jvh4E5SEqunLyulu132kBkEN1Mep3mhklUjDkzTxJC77Ko+A/0xjo/dsTM2BF4sn8M5zD91
+ Jqq2dzAuD7pIQIc1pU/ShkCxRJNaRGjg2N1j0MR4YsP+zsn2Fvn5wZCpzwngfrp3+mDXDglKqkA/
+ zd1IErQj4TM8uCrETfE=
+Date: Mon, 1 Nov 2021 05:03:32 +0900
+From: "Amazon.co.jp" <support-amazon.jp@w1z5pv5.cn>
 To: <v9fs-developer@lists.sourceforge.net>
-Message-ID: <20211101044219672661@r46j8x0.cn>
+Message-ID: <20211101050341574626@w1z5pv5.cn>
 Mime-Version: 1.0
-X-Spam-Score: 3.5 (+++)
+X-Spam-Score: -0.2 (/)
 X-Spam-Report: Spam detection software, running on the system "util-spamd-2.v13.lw.sourceforge.com",
  has NOT identified this incoming email as spam.  The original
  message has been attached to this so you can view it or label
@@ -60,7 +60,7 @@ X-Spam-Report: Spam detection software, running on the system "util-spamd-2.v13.
     ご利用の Amazon アカウントで異常な活動が検出されたため、アカウントを一時保留にし�
     [...] 
  
- Content analysis details:   (3.5 points, 6.0 required)
+ Content analysis details:   (-0.2 points, 6.0 required)
  
   pts rule name              description
  ---- ---------------------- --------------------------------------------------
@@ -69,11 +69,6 @@ X-Spam-Report: Spam detection software, running on the system "util-spamd-2.v13.
                              http://wiki.apache.org/spamassassin/DnsBlocklists#dnsbl-block
                               for more information.
                              [URIs: ax1x.com]
-  3.6 RCVD_IN_SBL_CSS        RBL: Received via a relay in Spamhaus SBL-CSS
-                             [117.50.172.170 listed in zen.spamhaus.org]
-  0.1 URIBL_CSS_A            Contains URL's A record listed in the Spamhaus CSS
-                             blocklist
-                             [URIs: r46j8x0.cn]
   0.0 SPF_HELO_NONE          SPF: HELO does not publish an SPF Record
  -0.0 SPF_PASS               SPF: sender matches SPF record
   0.0 HTML_MESSAGE           BODY: HTML included in message
@@ -84,7 +79,7 @@ X-Spam-Report: Spam detection software, running on the system "util-spamd-2.v13.
  -0.1 DKIM_VALID_AU          Message has a valid DKIM or DK signature from
                              author's domain
  -0.1 DKIM_VALID             Message has at least one valid DKIM or DK signature
-X-Headers-End: 1mhH21-009Bys-Hg
+X-Headers-End: 1mhH33-0007qH-Is
 X-Content-Filtered-By: Mailman/MimeDel 2.1.21
 Subject: [V9fs-developer] =?utf-8?b?44CQQW1hem9u44CR44Ki44Kr44Km44Oz44OI?=
 	=?utf-8?b?44Gu5Yip55So54q25rOB44KS44GU56K66KqN44GP44Gg44GV44GE?=
