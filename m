@@ -2,86 +2,95 @@ Return-Path: <v9fs-developer-bounces@lists.sourceforge.net>
 X-Original-To: lists+v9fs-developer@lfdr.de
 Delivered-To: lists+v9fs-developer@lfdr.de
 Received: from lists.sourceforge.net (lists.sourceforge.net [216.105.38.7])
-	by mail.lfdr.de (Postfix) with ESMTPS id 50761443013
-	for <lists+v9fs-developer@lfdr.de>; Tue,  2 Nov 2021 15:16:19 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4D11D4430CA
+	for <lists+v9fs-developer@lfdr.de>; Tue,  2 Nov 2021 15:49:46 +0100 (CET)
 Received: from [127.0.0.1] (helo=sfs-ml-1.v29.lw.sourceforge.com)
 	by sfs-ml-1.v29.lw.sourceforge.com with esmtp (Exim 4.94.2)
 	(envelope-from <v9fs-developer-bounces@lists.sourceforge.net>)
-	id 1mhuaJ-0006Qw-0l; Tue, 02 Nov 2021 14:16:17 +0000
+	id 1mhv6f-0003GU-6M; Tue, 02 Nov 2021 14:49:44 +0000
 Received: from [172.30.20.202] (helo=mx.sourceforge.net)
  by sfs-ml-1.v29.lw.sourceforge.com with esmtps (TLS1.2) tls
  TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384 (Exim 4.94.2)
- (envelope-from <dominique.martinet@codewreck.org>)
- id 1mhuaI-0006Qm-EF
- for v9fs-developer@lists.sourceforge.net; Tue, 02 Nov 2021 14:16:17 +0000
+ (envelope-from <linux@weissschuh.net>) id 1mhv6e-0003GK-0n
+ for v9fs-developer@lists.sourceforge.net; Tue, 02 Nov 2021 14:49:42 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=sourceforge.net; s=x; h=Content-Transfer-Encoding:MIME-Version:References:
- In-Reply-To:Message-Id:Date:Subject:Cc:To:From:Sender:Reply-To:Content-Type:
+ d=sourceforge.net; s=x; h=In-Reply-To:Content-Transfer-Encoding:Content-Type:
+ MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Sender:Reply-To:
  Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
  Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
  List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=eNkC3i76BHgMBfrSRssAFvVJTxkYznWrmGCv+l1LvbE=; b=hmdOoc8OqAo3SIpGjPdkbEWwyG
- OdLQu6m5W/GO3uL4/8kvqSj84QjnIxl6Gn/4yBROSdpsRxX0GveLObtC8MVWIKjUW8sxxS4pNoAk+
- 64gqqq/7quaXZXnIKfy3zV5gKP0K6+IFY3M7lqfWtMXkDiNEoD92yJafchlXbV3Vtdqw=;
+ bh=aSA4IXULHGLPk8YalRsAvTmj4k6mEmRTXUgNwCcGRt0=; b=LzUnfAYr8vyaajnFKjlsLXPsOf
+ VWEasKwTC/Wj/VHwUGP22e+ttyigJRPqUJ8GBJW67jeCN2P6r5MFNz+xkJzIhe4pdL9oqcbJut8RE
+ 9dcoBvcrNvwp5LUykQVVBZAu7l6RgPoGOvDBS4geCSJYmggjqh+a3pcJ0sDhGeQ/IBX0=;
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  ;
- h=Content-Transfer-Encoding:MIME-Version:References:In-Reply-To:Message-Id:
- Date:Subject:Cc:To:From:Sender:Reply-To:Content-Type:Content-ID:
+ h=In-Reply-To:Content-Transfer-Encoding:Content-Type:MIME-Version:
+ References:Message-ID:Subject:Cc:To:From:Date:Sender:Reply-To:Content-ID:
  Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
  :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
  List-Post:List-Owner:List-Archive;
- bh=eNkC3i76BHgMBfrSRssAFvVJTxkYznWrmGCv+l1LvbE=; b=DLikJVptMHz69Vw802lCkuOLfb
- PAeh/36ijy6DP5lSuewA0l4MOScy0bUVFAcf+YxZA1tL2BQQJ/aN1526pLfz+H6+5XMEtilMSGJR2
- bwubQzADvxiVu7IUL6OnJs1BdKqUiyqcCI6IyRDoDBsVwiMpJBneMREVfa+Q6A9xcXKY=;
-Received: from nautica.notk.org ([91.121.71.147])
+ bh=aSA4IXULHGLPk8YalRsAvTmj4k6mEmRTXUgNwCcGRt0=; b=a96olrYXLnXgiCN23Ia1+Bpp1n
+ 8mwEEt+Q33nWr7ZBA63Bmz17qrLglgsofK5jOO1dnEX3XT79hJxCnigM8yNAUYah0+Wrap+HPj+ou
+ XcjFZB6wc47hbP29trEycKLkRGIvOzz/NX55hN/IU4rOAs4I7ixWNPYZWVk7BJ4Dten4=;
+Received: from todd.t-8ch.de ([159.69.126.157])
  by sfi-mx-1.v28.lw.sourceforge.com with esmtps
  (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.92.3)
- id 1mhuaG-00EysN-44
- for v9fs-developer@lists.sourceforge.net; Tue, 02 Nov 2021 14:16:17 +0000
-Received: by nautica.notk.org (Postfix, from userid 108)
- id 07171C01E; Tue,  2 Nov 2021 15:08:33 +0100 (CET)
-X-Spam-Checker-Version: SpamAssassin 3.3.2 (2011-06-06) on nautica.notk.org
-X-Spam-Level: 
-X-Spam-Status: No, score=0.0 required=5.0 tests=UNPARSEABLE_RELAY
- autolearn=unavailable version=3.3.2
-Received: from odin.codewreck.org (localhost [127.0.0.1])
- by nautica.notk.org (Postfix) with ESMTPS id 433CEC009;
- Tue,  2 Nov 2021 15:08:28 +0100 (CET)
-Received: from localhost (odin.codewreck.org [local])
- by odin.codewreck.org (OpenSMTPD) with ESMTPA id 4a9f868c;
- Tue, 2 Nov 2021 13:46:12 +0000 (UTC)
-From: Dominique Martinet <dominique.martinet@atmark-techno.com>
-To: v9fs-developer@lists.sourceforge.net
-Date: Tue,  2 Nov 2021 22:46:08 +0900
-Message-Id: <20211102134608.1588018-5-dominique.martinet@atmark-techno.com>
-X-Mailer: git-send-email 2.32.0
-In-Reply-To: <20211102134608.1588018-1-dominique.martinet@atmark-techno.com>
-References: <20211102134608.1588018-1-dominique.martinet@atmark-techno.com>
+ id 1mhv6a-00F1fs-VP
+ for v9fs-developer@lists.sourceforge.net; Tue, 02 Nov 2021 14:49:42 +0000
+Date: Tue, 2 Nov 2021 15:49:32 +0100
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=weissschuh.net;
+ s=mail; t=1635864573;
+ bh=ZGMvUOgROs39Y2IRIABQgQtjLMkOhIgv7EWo6kdBvL4=;
+ h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+ b=WtoiCs3Ok0L6ElJs1cv+gVEIMDUM6+ZcXvWMRUR/2708Hh8iZYYUswLpgbAM/oU3P
+ 5Nbv3nAUsr/mOdTy0Pf1QOjg01OL0FzDJzHewkqfzbqVX2nIAvb05Uu6ycf8lat9uZ
+ RHoBDMnEBpynIWVofT6yXipDAoq9UFbhcOGCg7xc=
+From: Thomas =?utf-8?Q?Wei=C3=9Fschuh?= <linux@weissschuh.net>
+To: Dominique Martinet <asmadeus@codewreck.org>
+Message-ID: <ddf6b6c9-1d9b-4378-b2ee-b7ac4a622010@t-8ch.de>
+References: <20211017134611.4330-1-linux@weissschuh.net>
+ <YYEYMt543Hg+Hxzy@codewreck.org>
+ <922a4843-c7b0-4cdc-b2a6-33bf089766e4@t-8ch.de>
+ <YYEmOcEf5fjDyM67@codewreck.org>
 MIME-Version: 1.0
-X-Spam-Score: 0.2 (/)
-X-Spam-Report: Spam detection software,
- running on the system "util-spamd-1.v13.lw.sourceforge.com", 
+Content-Type: multipart/mixed; boundary="2rCd6YTQfhfeI0Ff"
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <YYEmOcEf5fjDyM67@codewreck.org>
+Jabber-ID: thomas@t-8ch.de
+X-Accept: text/plain, text/html;q=0.2, text/*;q=0.1
+X-Accept-Language: en-us, en;q=0.8, de-de;q=0.7, de;q=0.6
+X-Spam-Score: -0.2 (/)
+X-Spam-Report: Spam detection software, running on the system "util-spamd-1.v13.lw.sourceforge.com",
  has NOT identified this incoming email as spam.  The original
  message has been attached to this so you can view it or label
  similar future email.  If you have any questions, see
  the administrator of that system for details.
- Content preview:  From: Dominique Martinet <asmadeus@codewreck.org> This is
- also a checkpatch warning fix but this one might have implications so keeping
- it separate Signed-off-by: Dominique Martinet <asmadeus@codewreck.org> ---
- fs/9p/vfs_inode.c | 13 +++++++++---- 1 file changed, 9 insertions(+),
- 4 deletions(-)
- Content analysis details:   (0.2 points, 6.0 required)
- pts rule name              description
+ 
+ Content preview:  On 2021-11-02 20:51+0900, Dominique Martinet wrote: > Thomas
+    Weißschuh wrote on Tue, Nov 02, 2021 at 11:59:32AM +0100: > > On 2021-11-02
+    19:51+0900, Dominique Martinet wrote: > > > Sorry for the late [...] 
+ 
+ Content analysis details:   (-0.2 points, 6.0 required)
+ 
+  pts rule name              description
  ---- ---------------------- --------------------------------------------------
- 0.0 SPF_HELO_NONE          SPF: HELO does not publish an SPF Record
+  0.0 URIBL_BLOCKED          ADMINISTRATOR NOTICE: The query to URIBL was
+                             blocked.  See
+                             http://wiki.apache.org/spamassassin/DnsBlocklists#dnsbl-block
+                              for more information.
+                             [URIs: weissschuh.net]
+  0.0 SPF_HELO_NONE          SPF: HELO does not publish an SPF Record
  -0.0 SPF_PASS               SPF: sender matches SPF record
- 0.2 HEADER_FROM_DIFFERENT_DOMAINS From and EnvelopeFrom 2nd level
- mail domains are different
- 0.0 UNPARSEABLE_RELAY      Informational: message has unparseable relay
- lines
-X-Headers-End: 1mhuaG-00EysN-44
-Subject: [V9fs-developer] [PATCH 4/4] 9p p9mode2perm: remove useless strlcpy
- and check sscanf return code
+ -0.1 DKIM_VALID             Message has at least one valid DKIM or DK signature
+  0.1 DKIM_SIGNED            Message has a DKIM or DK signature, not necessarily
+                             valid
+ -0.1 DKIM_VALID_AU          Message has a valid DKIM or DK signature from
+                             author's domain
+ -0.1 DKIM_VALID_EF          Message has a valid DKIM or DK signature from
+                             envelope-from domain
+X-Headers-End: 1mhv6a-00F1fs-VP
+Subject: Re: [V9fs-developer] [PATCH] net/9p: autoload transport modules
 X-BeenThere: v9fs-developer@lists.sourceforge.net
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -93,61 +102,174 @@ List-Post: <mailto:v9fs-developer@lists.sourceforge.net>
 List-Help: <mailto:v9fs-developer-request@lists.sourceforge.net?subject=help>
 List-Subscribe: <https://lists.sourceforge.net/lists/listinfo/v9fs-developer>, 
  <mailto:v9fs-developer-request@lists.sourceforge.net?subject=subscribe>
-Cc: Eric Van Hensbergen <ericvh@gmail.com>, netdev@vger.kernel.org,
- linux-kernel@vger.kernel.org, Latchesar Ionkov <lucho@ionkov.net>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Cc: Latchesar Ionkov <lucho@ionkov.net>, Eric Van Hensbergen <ericvh@gmail.com>,
+ netdev@vger.kernel.org, linux-kernel@vger.kernel.org,
+ Jakub Kicinski <kuba@kernel.org>, v9fs-developer@lists.sourceforge.net,
+ "David S. Miller" <davem@davemloft.net>
 Errors-To: v9fs-developer-bounces@lists.sourceforge.net
 
-From: Dominique Martinet <asmadeus@codewreck.org>
 
-This is also a checkpatch warning fix but this one might have implications
-so keeping it separate
+--2rCd6YTQfhfeI0Ff
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
 
-Signed-off-by: Dominique Martinet <asmadeus@codewreck.org>
----
- fs/9p/vfs_inode.c | 13 +++++++++----
- 1 file changed, 9 insertions(+), 4 deletions(-)
+On 2021-11-02 20:51+0900, Dominique Martinet wrote:
+> Thomas Weißschuh wrote on Tue, Nov 02, 2021 at 11:59:32AM +0100:
+> > On 2021-11-02 19:51+0900, Dominique Martinet wrote:
+> > > Sorry for the late reply
+> > > 
+> > > Thomas Weißschuh wrote on Sun, Oct 17, 2021 at 03:46:11PM +0200:
+> > > > Automatically load transport modules based on the trans= parameter
+> > > > passed to mount.
+> > > > The removes the requirement for the user to know which module to use.
+> > > 
+> > > This looks good to me, I'll test this briefly on differnet config (=y,
+> > > =m) and submit to Linus this week for the next cycle.
+> > 
+> > Thanks. Could you also fix up the typo in the commit message when applying?
+> > ("The removes" -> "This removes")
+> 
+> Sure, done -- I hadn't even noticed it..
+> 
+> > > Makes me wonder why trans_fd is included in 9pnet and not in a 9pnet-fd
+> > > or 9pnet-tcp module but that'll be for another time...
+> > 
+> > To prepare for the moment when those transport modules are split into their own
+> > module(s), we could already add MODULE_ALIAS_9P() calls to net/9p/trans_fd.c.
+> 
+> I guess it wouldn't hurt to have 9p-tcp 9p-unix and 9p-fd aliases to the
+> 9pnet module, but iirc these transports were more closely tied to the
+> rest of 9pnet than the rest so it might take a while to do and I don't
+> have much time for this right now...
+> I'd rather not prepare for something I'll likely never get onto, so
+> let's do this if there is progress.
+> 
+> Of course if you'd like to have a look that'd be more than welcome :-)
 
-diff --git a/fs/9p/vfs_inode.c b/fs/9p/vfs_inode.c
-index 139dfee23b98..328c338ff304 100644
---- a/fs/9p/vfs_inode.c
-+++ b/fs/9p/vfs_inode.c
-@@ -109,7 +109,7 @@ static int p9mode2perm(struct v9fs_session_info *v9ses,
- static umode_t p9mode2unixmode(struct v9fs_session_info *v9ses,
- 			       struct p9_wstat *stat, dev_t *rdev)
+If you are still testing anyways, you could also try the attached patch.
+(It requires the autload patch)
+
+It builds fine and I see no reason for it not to work.
+
+Thomas
+
+--2rCd6YTQfhfeI0Ff
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: attachment; filename="9p-transport-fd-module.patch"
+
+diff --git a/include/net/9p/9p.h b/include/net/9p/9p.h
+index 03614de86942..f420f8cb378d 100644
+--- a/include/net/9p/9p.h
++++ b/include/net/9p/9p.h
+@@ -553,6 +553,4 @@ struct p9_fcall {
+ int p9_errstr2errno(char *errstr, int len);
+ 
+ int p9_error_init(void);
+-int p9_trans_fd_init(void);
+-void p9_trans_fd_exit(void);
+ #endif /* NET_9P_H */
+diff --git a/net/9p/Makefile b/net/9p/Makefile
+index aa0a5641e5d0..b7d2ea495f65 100644
+--- a/net/9p/Makefile
++++ b/net/9p/Makefile
+@@ -1,5 +1,6 @@
+ # SPDX-License-Identifier: GPL-2.0
+ obj-$(CONFIG_NET_9P) := 9pnet.o
++obj-$(CONFIG_NET_9P) += 9pnet_fd.o
+ obj-$(CONFIG_NET_9P_XEN) += 9pnet_xen.o
+ obj-$(CONFIG_NET_9P_VIRTIO) += 9pnet_virtio.o
+ obj-$(CONFIG_NET_9P_RDMA) += 9pnet_rdma.o
+@@ -9,9 +10,11 @@ obj-$(CONFIG_NET_9P_RDMA) += 9pnet_rdma.o
+ 	client.o \
+ 	error.o \
+ 	protocol.o \
+-	trans_fd.o \
+ 	trans_common.o \
+ 
++9pnet_fd-objs := \
++	trans_fd.o \
++
+ 9pnet_virtio-objs := \
+ 	trans_virtio.o \
+ 
+diff --git a/net/9p/mod.c b/net/9p/mod.c
+index 5126566850bd..dee263f8e361 100644
+--- a/net/9p/mod.c
++++ b/net/9p/mod.c
+@@ -164,7 +164,6 @@ static int __init init_p9(void)
+ 
+ 	p9_error_init();
+ 	pr_info("Installing 9P2000 support\n");
+-	p9_trans_fd_init();
+ 
+ 	return ret;
+ }
+@@ -178,7 +177,6 @@ static void __exit exit_p9(void)
  {
--	int res;
-+	int res, r;
- 	u32 mode = stat->mode;
+ 	pr_info("Unloading 9P2000 support\n");
  
- 	*rdev = 0;
-@@ -127,11 +127,16 @@ static umode_t p9mode2unixmode(struct v9fs_session_info *v9ses,
- 		res |= S_IFIFO;
- 	else if ((mode & P9_DMDEVICE) && (v9fs_proto_dotu(v9ses))
- 		 && (v9ses->nodev == 0)) {
--		char type = 0, ext[32];
-+		char type = 0;
- 		int major = -1, minor = -1;
+-	p9_trans_fd_exit();
+ 	p9_client_exit();
+ }
  
--		strlcpy(ext, stat->extension, sizeof(ext));
--		sscanf(ext, "%c %i %i", &type, &major, &minor);
-+		r = sscanf(stat->extension, "%c %i %i", &type, &major, &minor);
-+		if (r != 3) {
-+			p9_debug(P9_DEBUG_ERROR,
-+				 "invalid device string, umode will be bogus: %s\n",
-+				 stat->extension);
-+			return res;
-+		}
- 		switch (type) {
- 		case 'c':
- 			res |= S_IFCHR;
--- 
-2.31.1
+diff --git a/net/9p/trans_fd.c b/net/9p/trans_fd.c
+index 007bbcc68010..ff95bdf8baa5 100644
+--- a/net/9p/trans_fd.c
++++ b/net/9p/trans_fd.c
+@@ -1092,6 +1092,7 @@ static struct p9_trans_module p9_tcp_trans = {
+ 	.show_options = p9_fd_show_options,
+ 	.owner = THIS_MODULE,
+ };
++MODULE_ALIAS_9P("tcp");
+ 
+ static struct p9_trans_module p9_unix_trans = {
+ 	.name = "unix",
+@@ -1105,6 +1106,7 @@ static struct p9_trans_module p9_unix_trans = {
+ 	.show_options = p9_fd_show_options,
+ 	.owner = THIS_MODULE,
+ };
++MODULE_ALIAS_9P("unix");
+ 
+ static struct p9_trans_module p9_fd_trans = {
+ 	.name = "fd",
+@@ -1118,6 +1120,7 @@ static struct p9_trans_module p9_fd_trans = {
+ 	.show_options = p9_fd_show_options,
+ 	.owner = THIS_MODULE,
+ };
++MODULE_ALIAS_9P("fd");
+ 
+ /**
+  * p9_poll_workfn - poll worker thread
+@@ -1167,3 +1170,10 @@ void p9_trans_fd_exit(void)
+ 	v9fs_unregister_trans(&p9_unix_trans);
+ 	v9fs_unregister_trans(&p9_fd_trans);
+ }
++
++module_init(p9_trans_fd_init);
++module_exit(p9_trans_fd_exit);
++
++MODULE_AUTHOR("Eric Van Hensbergen <ericvh@gmail.com>");
++MODULE_DESCRIPTION("Filedescriptor Transport for 9P");
++MODULE_LICENSE("GPL");
+
+--2rCd6YTQfhfeI0Ff
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
 
 
+--2rCd6YTQfhfeI0Ff
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
 
 _______________________________________________
 V9fs-developer mailing list
 V9fs-developer@lists.sourceforge.net
 https://lists.sourceforge.net/lists/listinfo/v9fs-developer
+
+--2rCd6YTQfhfeI0Ff--
+
