@@ -2,110 +2,113 @@ Return-Path: <v9fs-developer-bounces@lists.sourceforge.net>
 X-Original-To: lists+v9fs-developer@lfdr.de
 Delivered-To: lists+v9fs-developer@lfdr.de
 Received: from lists.sourceforge.net (lists.sourceforge.net [216.105.38.7])
-	by mail.lfdr.de (Postfix) with ESMTPS id 938F944298B
-	for <lists+v9fs-developer@lfdr.de>; Tue,  2 Nov 2021 09:32:13 +0100 (CET)
-Received: from [127.0.0.1] (helo=sfs-ml-4.v29.lw.sourceforge.com)
-	by sfs-ml-4.v29.lw.sourceforge.com with esmtp (Exim 4.94.2)
+	by mail.lfdr.de (Postfix) with ESMTPS id 06C60442BDD
+	for <lists+v9fs-developer@lfdr.de>; Tue,  2 Nov 2021 11:52:08 +0100 (CET)
+Received: from [127.0.0.1] (helo=sfs-ml-1.v29.lw.sourceforge.com)
+	by sfs-ml-1.v29.lw.sourceforge.com with esmtp (Exim 4.94.2)
 	(envelope-from <v9fs-developer-bounces@lists.sourceforge.net>)
-	id 1mhpDI-0005aK-1b; Tue, 02 Nov 2021 08:32:12 +0000
+	id 1mhrOg-00083L-TG; Tue, 02 Nov 2021 10:52:05 +0000
 Received: from [172.30.20.202] (helo=mx.sourceforge.net)
- by sfs-ml-4.v29.lw.sourceforge.com with esmtps (TLS1.2) tls
+ by sfs-ml-1.v29.lw.sourceforge.com with esmtps (TLS1.2) tls
  TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384 (Exim 4.94.2)
- (envelope-from <dhowells@redhat.com>) id 1mhpDG-0005Zu-E1
- for v9fs-developer@lists.sourceforge.net; Tue, 02 Nov 2021 08:32:10 +0000
+ (envelope-from <asmadeus@codewreck.org>) id 1mhrOf-0007rs-7i
+ for v9fs-developer@lists.sourceforge.net; Tue, 02 Nov 2021 10:52:04 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=sourceforge.net; s=x; h=Content-Transfer-Encoding:Content-Type:MIME-Version
- :References:In-Reply-To:Message-ID:Date:Cc:To:From:Subject:Sender:Reply-To:
+ d=sourceforge.net; s=x; h=In-Reply-To:Content-Transfer-Encoding:Content-Type:
+ MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Sender:Reply-To:
  Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
  Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
  List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=wryKG268pAsFldey6woa8f2OljhFBrbELoppag/eFr0=; b=B46tN7DUjL+oIfhVKcJzJtGp/Y
- 6Q2q0I19rcsSUd2zWqhxmbFyDftwdg2TSfSRLkhGKHIPH4FHZypo1L9AhwrZDiqvtvfotxEvSbmxF
- qzBi9q35b5IDt/m3dX084rVHs6wFcFDt7J7JI5NQo7XBUGTTjutf85iApt/NppHmQfAk=;
+ bh=/+rgwyKj69Vlkv0On+QcUYGVMOPrFUm5qkV/iCdjSuE=; b=jExmsce45BcY0cKYciD5nV9mOh
+ dxvBxjSaBA6f8UmXl2+AvAskIetijlHFIt970NfBkRlbaqF8/pH+R3rSpfTmb5ZX06BagLRbr8nKh
+ Nf86N9pPruQl4KSYEhdgJjYnZ9GDOs+6/jMfUmOz8aPHXiaerjBB5bkBp77zb1Xi3GcY=;
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  ;
- h=Content-Transfer-Encoding:Content-Type:MIME-Version:References:
- In-Reply-To:Message-ID:Date:Cc:To:From:Subject:Sender:Reply-To:Content-ID:
+ h=In-Reply-To:Content-Transfer-Encoding:Content-Type:MIME-Version:
+ References:Message-ID:Subject:Cc:To:From:Date:Sender:Reply-To:Content-ID:
  Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
  :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
  List-Post:List-Owner:List-Archive;
- bh=wryKG268pAsFldey6woa8f2OljhFBrbELoppag/eFr0=; b=dO5GQqsFIxQ5sS+UYfzHI7ZlXW
- j5RrNzrQWUzMbTxRfSFNXaGJoaeMYZYaqM0x0POhtJby4ED4YycGGRhGN1b9MTGdK7kZUBRSjb/6Z
- msEHw8Ec2uzbcX6zFmuLIOaWu8NntoqQ7K18100+OP3V6foUbb6nIHDohbNRz3EsJYMk=;
-Received: from us-smtp-delivery-124.mimecast.com ([170.10.129.124])
- by sfi-mx-2.v28.lw.sourceforge.com with esmtps
+ bh=/+rgwyKj69Vlkv0On+QcUYGVMOPrFUm5qkV/iCdjSuE=; b=Vtb4EAShvIRO3xv1dhpaL6ZtnY
+ 9JuqvoqAfCJTMocanYHi4+nMZtvpecC3zrRjxV1LJ+u3Z1DDWSdWp/Rl1juew5BvYPYkQbxHgX5pb
+ vW6I52MejzlF8RbwwycyC1HiLN/8Gq/6aucKMFCgkhCDjb0J/g3n5GmsFJY2CI+gL7YU=;
+Received: from nautica.notk.org ([91.121.71.147])
+ by sfi-mx-1.v28.lw.sourceforge.com with esmtps
  (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.92.3)
- id 1mhpD9-0003Ha-S5
- for v9fs-developer@lists.sourceforge.net; Tue, 02 Nov 2021 08:32:06 +0000
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
- s=mimecast20190719; t=1635841917;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references;
- bh=wryKG268pAsFldey6woa8f2OljhFBrbELoppag/eFr0=;
- b=hPXdyo1sjWyZhGEu9bXBF4E9VPkFxcIQ+5ZP1Cx3sTnKm1rOw5QObe/pTKozvDeyNxWkLv
- aGJh8xcX16TnfEFMV7ZoWnBdMmcgFyCIMhTaC+3Vnu83zoHchLl4jWZjl+6jvMr+kP0YaA
- n9UXKeVL70MaKBuT9QPDJq8qGKuxDSU=
-Received: from mimecast-mx01.redhat.com (mimecast-mx01.redhat.com
- [209.132.183.4]) (Using TLS) by relay.mimecast.com with ESMTP id
- us-mta-201-ds66MMfVMQOV5n7JZOIxAA-1; Tue, 02 Nov 2021 04:31:54 -0400
-X-MC-Unique: ds66MMfVMQOV5n7JZOIxAA-1
-Received: from smtp.corp.redhat.com (int-mx07.intmail.prod.int.phx2.redhat.com
- [10.5.11.22])
- (using TLSv1.2 with cipher AECDH-AES256-SHA (256/256 bits))
- (No client certificate requested)
- by mimecast-mx01.redhat.com (Postfix) with ESMTPS id 0F8F78066EB;
- Tue,  2 Nov 2021 08:31:52 +0000 (UTC)
-Received: from warthog.procyon.org.uk (unknown [10.33.36.19])
- by smtp.corp.redhat.com (Postfix) with ESMTP id 66171100763D;
- Tue,  2 Nov 2021 08:31:45 +0000 (UTC)
-Organization: Red Hat UK Ltd. Registered Address: Red Hat UK Ltd, Amberley
- Place, 107-111 Peascod Street, Windsor, Berkshire, SI4 1TE, United
- Kingdom.
- Registered in England and Wales under Company Registration No. 3798903
-From: David Howells <dhowells@redhat.com>
-To: "Matthew Wilcox (Oracle)" <willy@infradead.org>
-Date: Tue, 02 Nov 2021 08:31:44 +0000
-Message-ID: <163584190457.4023316.10544419117563104940.stgit@warthog.procyon.org.uk>
-In-Reply-To: <163584174921.4023316.8927114426959755223.stgit@warthog.procyon.org.uk>
-References: <163584174921.4023316.8927114426959755223.stgit@warthog.procyon.org.uk>
-User-Agent: StGit/0.23
+ id 1mhrOa-00Em9I-Ut
+ for v9fs-developer@lists.sourceforge.net; Tue, 02 Nov 2021 10:52:03 +0000
+Received: by nautica.notk.org (Postfix, from userid 108)
+ id 58D6AC020; Tue,  2 Nov 2021 11:51:54 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=codewreck.org; s=2;
+ t=1635850314; bh=/+rgwyKj69Vlkv0On+QcUYGVMOPrFUm5qkV/iCdjSuE=;
+ h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+ b=Bllg/2urLxMrhi0EQ9vJE7hUT0j+9sipszv0uG4cD9GuneRFwaENHv+XPEAdtgpQ3
+ BVZFTpfit0eEaeAj9ywQWv/smY2YtZf/mN1EftGrFsHzhC67p51Ja+zi9mOki67ikU
+ bdIOsRWgYttAr8XixlwRIvmTM5QPJPhvaYQl+i4PciRR/q6EjKgIK9zuCcXtvpzGCT
+ F6cNTJrPC0PmYKCC1kkyGGVZkhrhgSGZvmFlOFrzcqKJS7YGgoDKwgS5dJxErfmMuV
+ dFziBQSpjp8J7wMtEcSa8ZcvMgc3mDpa8Bk+q/Hu3wSrbpkD3bkf3uCZvblDuGHCiN
+ D2l1P2++pR8Rw==
+X-Spam-Checker-Version: SpamAssassin 3.3.2 (2011-06-06) on nautica.notk.org
+X-Spam-Level: 
+X-Spam-Status: No, score=0.0 required=5.0 tests=UNPARSEABLE_RELAY
+ autolearn=unavailable version=3.3.2
+Received: from odin.codewreck.org (localhost [127.0.0.1])
+ by nautica.notk.org (Postfix) with ESMTPS id 7322BC009;
+ Tue,  2 Nov 2021 11:51:50 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=codewreck.org; s=2;
+ t=1635850312; bh=/+rgwyKj69Vlkv0On+QcUYGVMOPrFUm5qkV/iCdjSuE=;
+ h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+ b=VMaB08Hu6Foyxs/pdMDPS6K8Al/e8m6rZ0Eoedy5eGGFg0BtzkXXkdvbiOhcja/bN
+ nuUiCNQjIatikUFrmzTeCECJFWeWKEKzGxeMzs+Apt97UYqRG/ckfOhZmPwhsvD0zk
+ WquzyAbppLOCo4qmbE1QJQ596SSnNxFVctkKlsxx71fQmYCyHTx61PGM5W+vV19UBR
+ Y8CZYyWKlsHYEuE5CFwrqz/p2Gm5JZns92Z2k90P8+brOGfJojqbgPBRaRuGg3JP0P
+ 3yPeY9Oedsw7HTF2llivfdcWzb2wcY1P7/YE8RP9ZLuG5ZIzMw+4GplxnYfmp2hV/p
+ f8wa6F+jyfD+g==
+Received: from localhost (odin.codewreck.org [local])
+ by odin.codewreck.org (OpenSMTPD) with ESMTPA id b13de0de;
+ Tue, 2 Nov 2021 10:51:45 +0000 (UTC)
+Date: Tue, 2 Nov 2021 19:51:30 +0900
+From: Dominique Martinet <asmadeus@codewreck.org>
+To: Thomas =?utf-8?Q?Wei=C3=9Fschuh?= <linux@weissschuh.net>
+Message-ID: <YYEYMt543Hg+Hxzy@codewreck.org>
+References: <20211017134611.4330-1-linux@weissschuh.net>
 MIME-Version: 1.0
-X-Scanned-By: MIMEDefang 2.84 on 10.5.11.22
-X-Spam-Score: -1.6 (-)
-X-Spam-Report: Spam detection software,
- running on the system "util-spamd-1.v13.lw.sourceforge.com", 
+Content-Disposition: inline
+In-Reply-To: <20211017134611.4330-1-linux@weissschuh.net>
+X-Spam-Score: -0.2 (/)
+X-Spam-Report: Spam detection software, running on the system "util-spamd-1.v13.lw.sourceforge.com",
  has NOT identified this incoming email as spam.  The original
  message has been attached to this so you can view it or label
  similar future email.  If you have any questions, see
  the administrator of that system for details.
- Content preview: Convert the AFS directory handling code to use folios. With
- these changes, afs passes -g quick xfstests. Signed-off-by: David Howells
- <dhowells@redhat.com> cc: Matthew Wilcox (Oracle) <willy@infradead.org> cc:
- Jeff Layton <jlayton@kernel.org> cc: Marc Dionne <marc.dionne@auristor.com>
- cc: Ilya Dryomov <i [...] 
- Content analysis details:   (-1.6 points, 6.0 required)
- pts rule name              description
+ 
+ Content preview:  Hi, Sorry for the late reply Thomas Weißschuh wrote on Sun,
+    Oct 17, 2021 at 03:46:11PM +0200: > Automatically load transport modules
+   based on the trans= parameter > passed to mount. > The removes the requirement
+    for the user to [...] 
+ 
+ Content analysis details:   (-0.2 points, 6.0 required)
+ 
+  pts rule name              description
  ---- ---------------------- --------------------------------------------------
- -0.7 RCVD_IN_DNSWL_LOW      RBL: Sender listed at https://www.dnswl.org/,
- low trust [170.10.129.124 listed in list.dnswl.org]
- 0.0 SPF_HELO_NONE          SPF: HELO does not publish an SPF Record
+  0.0 URIBL_BLOCKED          ADMINISTRATOR NOTICE: The query to URIBL was
+                             blocked.  See
+                             http://wiki.apache.org/spamassassin/DnsBlocklists#dnsbl-block
+                              for more information.
+                             [URIs: codewreck.org]
+  0.0 SPF_HELO_NONE          SPF: HELO does not publish an SPF Record
  -0.0 SPF_PASS               SPF: sender matches SPF record
- 0.0 RCVD_IN_MSPIKE_H4      RBL: Very Good reputation (+4)
- [170.10.129.124 listed in wl.mailspike.net]
- -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
- 0.1 DKIM_SIGNED            Message has a DKIM or DK signature, not necessarily
- valid
+ -0.1 DKIM_VALID             Message has at least one valid DKIM or DK signature
+  0.1 DKIM_SIGNED            Message has a DKIM or DK signature, not necessarily
+                             valid
  -0.1 DKIM_VALID_AU          Message has a valid DKIM or DK signature from
- author's domain
+                             author's domain
  -0.1 DKIM_VALID_EF          Message has a valid DKIM or DK signature from
- envelope-from domain
- 0.0 RCVD_IN_MSPIKE_WL      Mailspike good senders
- -0.7 DKIMWL_WL_HIGH         DKIMwl.org - High trust sender
-X-Headers-End: 1mhpD9-0003Ha-S5
-Subject: [V9fs-developer] [PATCH v3 6/6] afs: Use folios in directory
- handling
+                             envelope-from domain
+  0.0 UNPARSEABLE_RELAY      Informational: message has unparseable relay
+                             lines
+X-Headers-End: 1mhrOa-00Em9I-Ut
+Subject: Re: [V9fs-developer] [PATCH] net/9p: autoload transport modules
 X-BeenThere: v9fs-developer@lists.sourceforge.net
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -117,759 +120,24 @@ List-Post: <mailto:v9fs-developer@lists.sourceforge.net>
 List-Help: <mailto:v9fs-developer-request@lists.sourceforge.net?subject=help>
 List-Subscribe: <https://lists.sourceforge.net/lists/listinfo/v9fs-developer>, 
  <mailto:v9fs-developer-request@lists.sourceforge.net?subject=subscribe>
-Cc: linux-cifs@vger.kernel.org, linux-nfs@vger.kernel.org, linux-mm@kvack.org,
- Jeff Layton <jlayton@kernel.org>, linux-kernel@vger.kernel.org,
- linux-afs@lists.infradead.org, dhowells@redhat.com,
- linux-fsdevel@vger.kernel.org, linux-cachefs@redhat.com,
- Marc Dionne <marc.dionne@auristor.com>, v9fs-developer@lists.sourceforge.net,
- ceph-devel@vger.kernel.org, Ilya Dryomov <idryomov@gmail.com>,
- devel@lists.orangefs.org
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Cc: Latchesar Ionkov <lucho@ionkov.net>, Eric Van Hensbergen <ericvh@gmail.com>,
+ netdev@vger.kernel.org, linux-kernel@vger.kernel.org,
+ Jakub Kicinski <kuba@kernel.org>, v9fs-developer@lists.sourceforge.net,
+ "David S. Miller" <davem@davemloft.net>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: v9fs-developer-bounces@lists.sourceforge.net
 
-Convert the AFS directory handling code to use folios.
-
-With these changes, afs passes -g quick xfstests.
-
-Signed-off-by: David Howells <dhowells@redhat.com>
-cc: Matthew Wilcox (Oracle) <willy@infradead.org>
-cc: Jeff Layton <jlayton@kernel.org>
-cc: Marc Dionne <marc.dionne@auristor.com>
-cc: Ilya Dryomov <idryomov@gmail.com>
-cc: linux-afs@lists.infradead.org
-cc: ceph-devel@vger.kernel.org
-cc: linux-cachefs@redhat.com
-Link: https://lore.kernel.org/r/162877312172.3085614.992850861791211206.stgit@warthog.procyon.org.uk/
-Link: https://lore.kernel.org/r/162981154845.1901565.2078707403143240098.stgit@warthog.procyon.org.uk/
-Link: https://lore.kernel.org/r/163005746215.2472992.8321380998443828308.stgit@warthog.procyon.org.uk/ # v2
----
-
- fs/afs/dir.c      |  229 ++++++++++++++++++++++-------------------------------
- fs/afs/dir_edit.c |  154 ++++++++++++++++++------------------
- 2 files changed, 174 insertions(+), 209 deletions(-)
-
-diff --git a/fs/afs/dir.c b/fs/afs/dir.c
-index 4579bbda4634..da9b4f8577a1 100644
---- a/fs/afs/dir.c
-+++ b/fs/afs/dir.c
-@@ -103,13 +103,13 @@ struct afs_lookup_cookie {
- };
- 
- /*
-- * Drop the refs that we're holding on the pages we were reading into.  We've
-+ * Drop the refs that we're holding on the folios we were reading into.  We've
-  * got refs on the first nr_pages pages.
-  */
- static void afs_dir_read_cleanup(struct afs_read *req)
- {
- 	struct address_space *mapping = req->vnode->vfs_inode.i_mapping;
--	struct page *page;
-+	struct folio *folio;
- 	pgoff_t last = req->nr_pages - 1;
- 
- 	XA_STATE(xas, &mapping->i_pages, 0);
-@@ -118,65 +118,56 @@ static void afs_dir_read_cleanup(struct afs_read *req)
- 		return;
- 
- 	rcu_read_lock();
--	xas_for_each(&xas, page, last) {
--		if (xas_retry(&xas, page))
-+	xas_for_each(&xas, folio, last) {
-+		if (xas_retry(&xas, folio))
- 			continue;
--		BUG_ON(xa_is_value(page));
--		BUG_ON(PageCompound(page));
--		ASSERTCMP(page->mapping, ==, mapping);
-+		BUG_ON(xa_is_value(folio));
-+		ASSERTCMP(folio_file_mapping(folio), ==, mapping);
- 
--		put_page(page);
-+		folio_put(folio);
- 	}
- 
- 	rcu_read_unlock();
- }
- 
- /*
-- * check that a directory page is valid
-+ * check that a directory folio is valid
-  */
--static bool afs_dir_check_page(struct afs_vnode *dvnode, struct page *page,
--			       loff_t i_size)
-+static bool afs_dir_check_folio(struct afs_vnode *dvnode, struct folio *folio,
-+				loff_t i_size)
- {
--	struct afs_xdr_dir_page *dbuf;
--	loff_t latter, off;
--	int tmp, qty;
-+	union afs_xdr_dir_block *block;
-+	size_t offset, size;
-+	loff_t pos;
- 
--	/* Determine how many magic numbers there should be in this page, but
-+	/* Determine how many magic numbers there should be in this folio, but
- 	 * we must take care because the directory may change size under us.
- 	 */
--	off = page_offset(page);
--	if (i_size <= off)
-+	pos = folio_pos(folio);
-+	if (i_size <= pos)
- 		goto checked;
- 
--	latter = i_size - off;
--	if (latter >= PAGE_SIZE)
--		qty = PAGE_SIZE;
--	else
--		qty = latter;
--	qty /= sizeof(union afs_xdr_dir_block);
--
--	/* check them */
--	dbuf = kmap_atomic(page);
--	for (tmp = 0; tmp < qty; tmp++) {
--		if (dbuf->blocks[tmp].hdr.magic != AFS_DIR_MAGIC) {
--			printk("kAFS: %s(%lx): bad magic %d/%d is %04hx\n",
--			       __func__, dvnode->vfs_inode.i_ino, tmp, qty,
--			       ntohs(dbuf->blocks[tmp].hdr.magic));
--			trace_afs_dir_check_failed(dvnode, off, i_size);
--			kunmap(page);
-+	size = min_t(loff_t, folio_size(folio), i_size - pos);
-+	for (offset = 0; offset < size; offset += sizeof(*block)) {
-+		block = kmap_local_folio(folio, offset);
-+		if (block->hdr.magic != AFS_DIR_MAGIC) {
-+			printk("kAFS: %s(%lx): [%llx] bad magic %zx/%zx is %04hx\n",
-+			       __func__, dvnode->vfs_inode.i_ino,
-+			       pos, offset, size, ntohs(block->hdr.magic));
-+			trace_afs_dir_check_failed(dvnode, pos + offset, i_size);
-+			kunmap_local(block);
- 			trace_afs_file_error(dvnode, -EIO, afs_file_error_dir_bad_magic);
- 			goto error;
- 		}
- 
- 		/* Make sure each block is NUL terminated so we can reasonably
--		 * use string functions on it.  The filenames in the page
-+		 * use string functions on it.  The filenames in the folio
- 		 * *should* be NUL-terminated anyway.
- 		 */
--		((u8 *)&dbuf->blocks[tmp])[AFS_DIR_BLOCK_SIZE - 1] = 0;
--	}
--
--	kunmap_atomic(dbuf);
-+		((u8 *)block)[AFS_DIR_BLOCK_SIZE - 1] = 0;
- 
-+		kunmap_local(block);
-+	}
- checked:
- 	afs_stat_v(dvnode, n_read_dir);
- 	return true;
-@@ -190,11 +181,11 @@ static bool afs_dir_check_page(struct afs_vnode *dvnode, struct page *page,
-  */
- static void afs_dir_dump(struct afs_vnode *dvnode, struct afs_read *req)
- {
--	struct afs_xdr_dir_page *dbuf;
-+	union afs_xdr_dir_block *block;
- 	struct address_space *mapping = dvnode->vfs_inode.i_mapping;
--	struct page *page;
--	unsigned int i, qty = PAGE_SIZE / sizeof(union afs_xdr_dir_block);
-+	struct folio *folio;
- 	pgoff_t last = req->nr_pages - 1;
-+	size_t offset, size;
- 
- 	XA_STATE(xas, &mapping->i_pages, 0);
- 
-@@ -205,30 +196,28 @@ static void afs_dir_dump(struct afs_vnode *dvnode, struct afs_read *req)
- 		req->pos, req->nr_pages,
- 		req->iter->iov_offset,  iov_iter_count(req->iter));
- 
--	xas_for_each(&xas, page, last) {
--		if (xas_retry(&xas, page))
-+	xas_for_each(&xas, folio, last) {
-+		if (xas_retry(&xas, folio))
- 			continue;
- 
--		BUG_ON(PageCompound(page));
--		BUG_ON(page->mapping != mapping);
--
--		dbuf = kmap_atomic(page);
--		for (i = 0; i < qty; i++) {
--			union afs_xdr_dir_block *block = &dbuf->blocks[i];
-+		BUG_ON(folio_file_mapping(folio) != mapping);
- 
--			pr_warn("[%02lx] %32phN\n", page->index * qty + i, block);
-+		size = min_t(loff_t, folio_size(folio), req->actual_len - folio_pos(folio));
-+		for (offset = 0; offset < size; offset += sizeof(*block)) {
-+			block = kmap_local_folio(folio, offset);
-+			pr_warn("[%02lx] %32phN\n", folio_index(folio) + offset, block);
-+			kunmap_local(block);
- 		}
--		kunmap_atomic(dbuf);
- 	}
- }
- 
- /*
-- * Check all the pages in a directory.  All the pages are held pinned.
-+ * Check all the blocks in a directory.  All the folios are held pinned.
-  */
- static int afs_dir_check(struct afs_vnode *dvnode, struct afs_read *req)
- {
- 	struct address_space *mapping = dvnode->vfs_inode.i_mapping;
--	struct page *page;
-+	struct folio *folio;
- 	pgoff_t last = req->nr_pages - 1;
- 	int ret = 0;
- 
-@@ -238,14 +227,13 @@ static int afs_dir_check(struct afs_vnode *dvnode, struct afs_read *req)
- 		return 0;
- 
- 	rcu_read_lock();
--	xas_for_each(&xas, page, last) {
--		if (xas_retry(&xas, page))
-+	xas_for_each(&xas, folio, last) {
-+		if (xas_retry(&xas, folio))
- 			continue;
- 
--		BUG_ON(PageCompound(page));
--		BUG_ON(page->mapping != mapping);
-+		BUG_ON(folio_file_mapping(folio) != mapping);
- 
--		if (!afs_dir_check_page(dvnode, page, req->file_size)) {
-+		if (!afs_dir_check_folio(dvnode, folio, req->actual_len)) {
- 			afs_dir_dump(dvnode, req);
- 			ret = -EIO;
- 			break;
-@@ -274,15 +262,16 @@ static int afs_dir_open(struct inode *inode, struct file *file)
- 
- /*
-  * Read the directory into the pagecache in one go, scrubbing the previous
-- * contents.  The list of pages is returned, pinning them so that they don't
-+ * contents.  The list of folios is returned, pinning them so that they don't
-  * get reclaimed during the iteration.
-  */
- static struct afs_read *afs_read_dir(struct afs_vnode *dvnode, struct key *key)
- 	__acquires(&dvnode->validate_lock)
- {
-+	struct address_space *mapping = dvnode->vfs_inode.i_mapping;
- 	struct afs_read *req;
- 	loff_t i_size;
--	int nr_pages, i, n;
-+	int nr_pages, i;
- 	int ret;
- 
- 	_enter("");
-@@ -320,43 +309,30 @@ static struct afs_read *afs_read_dir(struct afs_vnode *dvnode, struct key *key)
- 	req->iter = &req->def_iter;
- 
- 	/* Fill in any gaps that we might find where the memory reclaimer has
--	 * been at work and pin all the pages.  If there are any gaps, we will
-+	 * been at work and pin all the folios.  If there are any gaps, we will
- 	 * need to reread the entire directory contents.
- 	 */
- 	i = req->nr_pages;
- 	while (i < nr_pages) {
--		struct page *pages[8], *page;
--
--		n = find_get_pages_contig(dvnode->vfs_inode.i_mapping, i,
--					  min_t(unsigned int, nr_pages - i,
--						ARRAY_SIZE(pages)),
--					  pages);
--		_debug("find %u at %u/%u", n, i, nr_pages);
--
--		if (n == 0) {
--			gfp_t gfp = dvnode->vfs_inode.i_mapping->gfp_mask;
-+		struct folio *folio;
- 
-+		folio = filemap_get_folio(mapping, i);
-+		if (!folio) {
- 			if (test_and_clear_bit(AFS_VNODE_DIR_VALID, &dvnode->flags))
- 				afs_stat_v(dvnode, n_inval);
- 
- 			ret = -ENOMEM;
--			page = __page_cache_alloc(gfp);
--			if (!page)
-+			folio = __filemap_get_folio(mapping,
-+						    i, FGP_LOCK | FGP_CREAT,
-+						    mapping->gfp_mask);
-+			if (!folio)
- 				goto error;
--			ret = add_to_page_cache_lru(page,
--						    dvnode->vfs_inode.i_mapping,
--						    i, gfp);
--			if (ret < 0)
--				goto error;
--
--			attach_page_private(page, (void *)1);
--			unlock_page(page);
--			req->nr_pages++;
--			i++;
--		} else {
--			req->nr_pages += n;
--			i += n;
-+			folio_attach_private(folio, (void *)1);
-+			folio_unlock(folio);
- 		}
-+
-+		req->nr_pages += folio_nr_pages(folio);
-+		i += folio_nr_pages(folio);
- 	}
- 
- 	/* If we're going to reload, we need to lock all the pages to prevent
-@@ -424,7 +400,7 @@ static int afs_dir_iterate_block(struct afs_vnode *dvnode,
- 	size_t nlen;
- 	int tmp;
- 
--	_enter("%u,%x,%p,,",(unsigned)ctx->pos,blkoff,block);
-+	_enter("%llx,%x", ctx->pos, blkoff);
- 
- 	curr = (ctx->pos - blkoff) / sizeof(union afs_xdr_dirent);
- 
-@@ -513,12 +489,10 @@ static int afs_dir_iterate(struct inode *dir, struct dir_context *ctx,
- 			   struct key *key, afs_dataversion_t *_dir_version)
- {
- 	struct afs_vnode *dvnode = AFS_FS_I(dir);
--	struct afs_xdr_dir_page *dbuf;
- 	union afs_xdr_dir_block *dblock;
- 	struct afs_read *req;
--	struct page *page;
--	unsigned blkoff, limit;
--	void __rcu **slot;
-+	struct folio *folio;
-+	unsigned offset, size;
- 	int ret;
- 
- 	_enter("{%lu},%u,,", dir->i_ino, (unsigned)ctx->pos);
-@@ -540,43 +514,30 @@ static int afs_dir_iterate(struct inode *dir, struct dir_context *ctx,
- 	/* walk through the blocks in sequence */
- 	ret = 0;
- 	while (ctx->pos < req->actual_len) {
--		blkoff = ctx->pos & ~(sizeof(union afs_xdr_dir_block) - 1);
--
--		/* Fetch the appropriate page from the directory and re-add it
-+		/* Fetch the appropriate folio from the directory and re-add it
- 		 * to the LRU.  We have all the pages pinned with an extra ref.
- 		 */
--		rcu_read_lock();
--		page = NULL;
--		slot = radix_tree_lookup_slot(&dvnode->vfs_inode.i_mapping->i_pages,
--					      blkoff / PAGE_SIZE);
--		if (slot)
--			page = radix_tree_deref_slot(slot);
--		rcu_read_unlock();
--		if (!page) {
-+		folio = __filemap_get_folio(dir->i_mapping, ctx->pos / PAGE_SIZE,
-+					    FGP_ACCESSED, 0);
-+		if (!folio) {
- 			ret = afs_bad(dvnode, afs_file_error_dir_missing_page);
- 			break;
- 		}
--		mark_page_accessed(page);
- 
--		limit = blkoff & ~(PAGE_SIZE - 1);
-+		offset = round_down(ctx->pos, sizeof(*dblock)) - folio_file_pos(folio);
-+		size = min_t(loff_t, folio_size(folio),
-+			     req->actual_len - folio_file_pos(folio));
- 
--		dbuf = kmap(page);
--
--		/* deal with the individual blocks stashed on this page */
- 		do {
--			dblock = &dbuf->blocks[(blkoff % PAGE_SIZE) /
--					       sizeof(union afs_xdr_dir_block)];
--			ret = afs_dir_iterate_block(dvnode, ctx, dblock, blkoff);
--			if (ret != 1) {
--				kunmap(page);
-+			dblock = kmap_local_folio(folio, offset);
-+			ret = afs_dir_iterate_block(dvnode, ctx, dblock,
-+						    folio_file_pos(folio) + offset);
-+			kunmap_local(dblock);
-+			if (ret != 1)
- 				goto out;
--			}
- 
--			blkoff += sizeof(union afs_xdr_dir_block);
-+		} while (offset += sizeof(*dblock), offset < size);
- 
--		} while (ctx->pos < dir->i_size && blkoff < limit);
--
--		kunmap(page);
- 		ret = 0;
- 	}
- 
-@@ -2037,42 +1998,42 @@ static int afs_rename(struct user_namespace *mnt_userns, struct inode *old_dir,
- }
- 
- /*
-- * Release a directory page and clean up its private state if it's not busy
-- * - return true if the page can now be released, false if not
-+ * Release a directory folio and clean up its private state if it's not busy
-+ * - return true if the folio can now be released, false if not
-  */
--static int afs_dir_releasepage(struct page *page, gfp_t gfp_flags)
-+static int afs_dir_releasepage(struct page *subpage, gfp_t gfp_flags)
- {
--	struct afs_vnode *dvnode = AFS_FS_I(page->mapping->host);
-+	struct folio *folio = page_folio(subpage);
-+	struct afs_vnode *dvnode = AFS_FS_I(folio_inode(folio));
- 
--	_enter("{{%llx:%llu}[%lu]}", dvnode->fid.vid, dvnode->fid.vnode, page->index);
-+	_enter("{{%llx:%llu}[%lu]}", dvnode->fid.vid, dvnode->fid.vnode, folio_index(folio));
- 
--	detach_page_private(page);
-+	folio_detach_private(folio);
- 
- 	/* The directory will need reloading. */
- 	if (test_and_clear_bit(AFS_VNODE_DIR_VALID, &dvnode->flags))
- 		afs_stat_v(dvnode, n_relpg);
--	return 1;
-+	return true;
- }
- 
- /*
-- * invalidate part or all of a page
-- * - release a page and clean up its private data if offset is 0 (indicating
-- *   the entire page)
-+ * Invalidate part or all of a folio.
-  */
--static void afs_dir_invalidatepage(struct page *page, unsigned int offset,
-+static void afs_dir_invalidatepage(struct page *subpage, unsigned int offset,
- 				   unsigned int length)
- {
--	struct afs_vnode *dvnode = AFS_FS_I(page->mapping->host);
-+	struct folio *folio = page_folio(subpage);
-+	struct afs_vnode *dvnode = AFS_FS_I(folio_inode(folio));
- 
--	_enter("{%lu},%u,%u", page->index, offset, length);
-+	_enter("{%lu},%u,%u", folio_index(folio), offset, length);
- 
--	BUG_ON(!PageLocked(page));
-+	BUG_ON(!folio_test_locked(folio));
- 
- 	/* The directory will need reloading. */
- 	if (test_and_clear_bit(AFS_VNODE_DIR_VALID, &dvnode->flags))
- 		afs_stat_v(dvnode, n_inval);
- 
--	/* we clean up only if the entire page is being invalidated */
--	if (offset == 0 && length == thp_size(page))
--		detach_page_private(page);
-+	/* we clean up only if the entire folio is being invalidated */
-+	if (offset == 0 && length == folio_size(folio))
-+		folio_detach_private(folio);
- }
-diff --git a/fs/afs/dir_edit.c b/fs/afs/dir_edit.c
-index 540b9fc96824..d98e109ecee9 100644
---- a/fs/afs/dir_edit.c
-+++ b/fs/afs/dir_edit.c
-@@ -104,6 +104,25 @@ static void afs_clear_contig_bits(union afs_xdr_dir_block *block,
- 	block->hdr.bitmap[7] &= ~(u8)(mask >> 7 * 8);
- }
- 
-+/*
-+ * Get a new directory folio.
-+ */
-+static struct folio *afs_dir_get_folio(struct afs_vnode *vnode, pgoff_t index)
-+{
-+	struct address_space *mapping = vnode->vfs_inode.i_mapping;
-+	struct folio *folio;
-+
-+	folio = __filemap_get_folio(mapping, index,
-+				    FGP_LOCK | FGP_ACCESSED | FGP_CREAT,
-+				    mapping->gfp_mask);
-+	if (!folio)
-+		clear_bit(AFS_VNODE_DIR_VALID, &vnode->flags);
-+	else if (folio && !folio_test_private(folio))
-+		folio_attach_private(folio, (void *)1);
-+
-+	return folio;
-+}
-+
- /*
-  * Scan a directory block looking for a dirent of the right name.
-  */
-@@ -188,13 +207,11 @@ void afs_edit_dir_add(struct afs_vnode *vnode,
- 		      enum afs_edit_dir_reason why)
- {
- 	union afs_xdr_dir_block *meta, *block;
--	struct afs_xdr_dir_page *meta_page, *dir_page;
- 	union afs_xdr_dirent *de;
--	struct page *page0, *page;
-+	struct folio *folio0, *folio;
- 	unsigned int need_slots, nr_blocks, b;
- 	pgoff_t index;
- 	loff_t i_size;
--	gfp_t gfp;
- 	int slot;
- 
- 	_enter(",,{%d,%s},", name->len, name->name);
-@@ -206,10 +223,8 @@ void afs_edit_dir_add(struct afs_vnode *vnode,
- 		return;
- 	}
- 
--	gfp = vnode->vfs_inode.i_mapping->gfp_mask;
--	page0 = find_or_create_page(vnode->vfs_inode.i_mapping, 0, gfp);
--	if (!page0) {
--		clear_bit(AFS_VNODE_DIR_VALID, &vnode->flags);
-+	folio0 = afs_dir_get_folio(vnode, 0);
-+	if (!folio0) {
- 		_leave(" [fgp]");
- 		return;
- 	}
-@@ -217,42 +232,35 @@ void afs_edit_dir_add(struct afs_vnode *vnode,
- 	/* Work out how many slots we're going to need. */
- 	need_slots = afs_dir_calc_slots(name->len);
- 
--	meta_page = kmap(page0);
--	meta = &meta_page->blocks[0];
-+	meta = kmap_local_folio(folio0, 0);
- 	if (i_size == 0)
- 		goto new_directory;
- 	nr_blocks = i_size / AFS_DIR_BLOCK_SIZE;
- 
--	/* Find a block that has sufficient slots available.  Each VM page
-+	/* Find a block that has sufficient slots available.  Each folio
- 	 * contains two or more directory blocks.
- 	 */
- 	for (b = 0; b < nr_blocks + 1; b++) {
--		/* If the directory extended into a new page, then we need to
--		 * tack a new page on the end.
-+		/* If the directory extended into a new folio, then we need to
-+		 * tack a new folio on the end.
- 		 */
- 		index = b / AFS_DIR_BLOCKS_PER_PAGE;
--		if (index == 0) {
--			page = page0;
--			dir_page = meta_page;
--		} else {
--			if (nr_blocks >= AFS_DIR_MAX_BLOCKS)
--				goto error;
--			gfp = vnode->vfs_inode.i_mapping->gfp_mask;
--			page = find_or_create_page(vnode->vfs_inode.i_mapping,
--						   index, gfp);
--			if (!page)
-+		if (nr_blocks >= AFS_DIR_MAX_BLOCKS)
-+			goto error;
-+		if (index >= folio_nr_pages(folio0)) {
-+			folio = afs_dir_get_folio(vnode, index);
-+			if (!folio)
- 				goto error;
--			if (!PagePrivate(page))
--				attach_page_private(page, (void *)1);
--			dir_page = kmap(page);
-+		} else {
-+			folio = folio0;
- 		}
- 
-+		block = kmap_local_folio(folio, b * AFS_DIR_BLOCK_SIZE - folio_file_pos(folio));
-+
- 		/* Abandon the edit if we got a callback break. */
- 		if (!test_bit(AFS_VNODE_DIR_VALID, &vnode->flags))
- 			goto invalidated;
- 
--		block = &dir_page->blocks[b % AFS_DIR_BLOCKS_PER_PAGE];
--
- 		_debug("block %u: %2u %3u %u",
- 		       b,
- 		       (b < AFS_DIR_BLOCKS_WITH_CTR) ? meta->meta.alloc_ctrs[b] : 99,
-@@ -266,7 +274,7 @@ void afs_edit_dir_add(struct afs_vnode *vnode,
- 			afs_set_i_size(vnode, (b + 1) * AFS_DIR_BLOCK_SIZE);
- 		}
- 
--		/* Only lower dir pages have a counter in the header. */
-+		/* Only lower dir blocks have a counter in the header. */
- 		if (b >= AFS_DIR_BLOCKS_WITH_CTR ||
- 		    meta->meta.alloc_ctrs[b] >= need_slots) {
- 			/* We need to try and find one or more consecutive
-@@ -279,10 +287,10 @@ void afs_edit_dir_add(struct afs_vnode *vnode,
- 			}
- 		}
- 
--		if (page != page0) {
--			unlock_page(page);
--			kunmap(page);
--			put_page(page);
-+		kunmap_local(block);
-+		if (folio != folio0) {
-+			folio_unlock(folio);
-+			folio_put(folio);
- 		}
- 	}
- 
-@@ -298,8 +306,8 @@ void afs_edit_dir_add(struct afs_vnode *vnode,
- 	i_size = AFS_DIR_BLOCK_SIZE;
- 	afs_set_i_size(vnode, i_size);
- 	slot = AFS_DIR_RESV_BLOCKS0;
--	page = page0;
--	block = meta;
-+	folio = folio0;
-+	block = kmap_local_folio(folio, 0);
- 	nr_blocks = 1;
- 	b = 0;
- 
-@@ -318,10 +326,10 @@ void afs_edit_dir_add(struct afs_vnode *vnode,
- 
- 	/* Adjust the bitmap. */
- 	afs_set_contig_bits(block, slot, need_slots);
--	if (page != page0) {
--		unlock_page(page);
--		kunmap(page);
--		put_page(page);
-+	kunmap_local(block);
-+	if (folio != folio0) {
-+		folio_unlock(folio);
-+		folio_put(folio);
- 	}
- 
- 	/* Adjust the allocation counter. */
-@@ -333,18 +341,19 @@ void afs_edit_dir_add(struct afs_vnode *vnode,
- 	_debug("Insert %s in %u[%u]", name->name, b, slot);
- 
- out_unmap:
--	unlock_page(page0);
--	kunmap(page0);
--	put_page(page0);
-+	kunmap_local(meta);
-+	folio_unlock(folio0);
-+	folio_put(folio0);
- 	_leave("");
- 	return;
- 
- invalidated:
- 	trace_afs_edit_dir(vnode, why, afs_edit_dir_create_inval, 0, 0, 0, 0, name->name);
- 	clear_bit(AFS_VNODE_DIR_VALID, &vnode->flags);
--	if (page != page0) {
--		kunmap(page);
--		put_page(page);
-+	kunmap_local(block);
-+	if (folio != folio0) {
-+		folio_unlock(folio);
-+		folio_put(folio);
- 	}
- 	goto out_unmap;
- 
-@@ -364,10 +373,9 @@ void afs_edit_dir_add(struct afs_vnode *vnode,
- void afs_edit_dir_remove(struct afs_vnode *vnode,
- 			 struct qstr *name, enum afs_edit_dir_reason why)
- {
--	struct afs_xdr_dir_page *meta_page, *dir_page;
- 	union afs_xdr_dir_block *meta, *block;
- 	union afs_xdr_dirent *de;
--	struct page *page0, *page;
-+	struct folio *folio0, *folio;
- 	unsigned int need_slots, nr_blocks, b;
- 	pgoff_t index;
- 	loff_t i_size;
-@@ -384,9 +392,8 @@ void afs_edit_dir_remove(struct afs_vnode *vnode,
- 	}
- 	nr_blocks = i_size / AFS_DIR_BLOCK_SIZE;
- 
--	page0 = find_lock_page(vnode->vfs_inode.i_mapping, 0);
--	if (!page0) {
--		clear_bit(AFS_VNODE_DIR_VALID, &vnode->flags);
-+	folio0 = afs_dir_get_folio(vnode, 0);
-+	if (!folio0) {
- 		_leave(" [fgp]");
- 		return;
- 	}
-@@ -394,30 +401,27 @@ void afs_edit_dir_remove(struct afs_vnode *vnode,
- 	/* Work out how many slots we're going to discard. */
- 	need_slots = afs_dir_calc_slots(name->len);
- 
--	meta_page = kmap(page0);
--	meta = &meta_page->blocks[0];
-+	meta = kmap_local_folio(folio0, 0);
- 
--	/* Find a page that has sufficient slots available.  Each VM page
-+	/* Find a block that has sufficient slots available.  Each folio
- 	 * contains two or more directory blocks.
- 	 */
- 	for (b = 0; b < nr_blocks; b++) {
- 		index = b / AFS_DIR_BLOCKS_PER_PAGE;
--		if (index != 0) {
--			page = find_lock_page(vnode->vfs_inode.i_mapping, index);
--			if (!page)
-+		if (index >= folio_nr_pages(folio0)) {
-+			folio = afs_dir_get_folio(vnode, index);
-+			if (!folio)
- 				goto error;
--			dir_page = kmap(page);
- 		} else {
--			page = page0;
--			dir_page = meta_page;
-+			folio = folio0;
- 		}
- 
-+		block = kmap_local_folio(folio, b * AFS_DIR_BLOCK_SIZE - folio_file_pos(folio));
-+
- 		/* Abandon the edit if we got a callback break. */
- 		if (!test_bit(AFS_VNODE_DIR_VALID, &vnode->flags))
- 			goto invalidated;
- 
--		block = &dir_page->blocks[b % AFS_DIR_BLOCKS_PER_PAGE];
--
- 		if (b > AFS_DIR_BLOCKS_WITH_CTR ||
- 		    meta->meta.alloc_ctrs[b] <= AFS_DIR_SLOTS_PER_BLOCK - 1 - need_slots) {
- 			slot = afs_dir_scan_block(block, name, b);
-@@ -425,10 +429,10 @@ void afs_edit_dir_remove(struct afs_vnode *vnode,
- 				goto found_dirent;
- 		}
- 
--		if (page != page0) {
--			unlock_page(page);
--			kunmap(page);
--			put_page(page);
-+		kunmap_local(block);
-+		if (folio != folio0) {
-+			folio_unlock(folio);
-+			folio_put(folio);
- 		}
- 	}
- 
-@@ -449,10 +453,10 @@ void afs_edit_dir_remove(struct afs_vnode *vnode,
- 
- 	/* Adjust the bitmap. */
- 	afs_clear_contig_bits(block, slot, need_slots);
--	if (page != page0) {
--		unlock_page(page);
--		kunmap(page);
--		put_page(page);
-+	kunmap_local(block);
-+	if (folio != folio0) {
-+		folio_unlock(folio);
-+		folio_put(folio);
- 	}
- 
- 	/* Adjust the allocation counter. */
-@@ -464,9 +468,9 @@ void afs_edit_dir_remove(struct afs_vnode *vnode,
- 	_debug("Remove %s from %u[%u]", name->name, b, slot);
- 
- out_unmap:
--	unlock_page(page0);
--	kunmap(page0);
--	put_page(page0);
-+	kunmap_local(meta);
-+	folio_unlock(folio0);
-+	folio_put(folio0);
- 	_leave("");
- 	return;
- 
-@@ -474,10 +478,10 @@ void afs_edit_dir_remove(struct afs_vnode *vnode,
- 	trace_afs_edit_dir(vnode, why, afs_edit_dir_delete_inval,
- 			   0, 0, 0, 0, name->name);
- 	clear_bit(AFS_VNODE_DIR_VALID, &vnode->flags);
--	if (page != page0) {
--		unlock_page(page);
--		kunmap(page);
--		put_page(page);
-+	kunmap_local(block);
-+	if (folio != folio0) {
-+		folio_unlock(folio);
-+		folio_put(folio);
- 	}
- 	goto out_unmap;
- 
-
-
-
-
-_______________________________________________
-V9fs-developer mailing list
-V9fs-developer@lists.sourceforge.net
-https://lists.sourceforge.net/lists/listinfo/v9fs-developer
+SGksCgpTb3JyeSBmb3IgdGhlIGxhdGUgcmVwbHkKClRob21hcyBXZWnDn3NjaHVoIHdyb3RlIG9u
+IFN1biwgT2N0IDE3LCAyMDIxIGF0IDAzOjQ2OjExUE0gKzAyMDA6Cj4gQXV0b21hdGljYWxseSBs
+b2FkIHRyYW5zcG9ydCBtb2R1bGVzIGJhc2VkIG9uIHRoZSB0cmFucz0gcGFyYW1ldGVyCj4gcGFz
+c2VkIHRvIG1vdW50Lgo+IFRoZSByZW1vdmVzIHRoZSByZXF1aXJlbWVudCBmb3IgdGhlIHVzZXIg
+dG8ga25vdyB3aGljaCBtb2R1bGUgdG8gdXNlLgoKVGhpcyBsb29rcyBnb29kIHRvIG1lLCBJJ2xs
+IHRlc3QgdGhpcyBicmllZmx5IG9uIGRpZmZlcm5ldCBjb25maWcgKD15LAo9bSkgYW5kIHN1Ym1p
+dCB0byBMaW51cyB0aGlzIHdlZWsgZm9yIHRoZSBuZXh0IGN5Y2xlLgoKTWFrZXMgbWUgd29uZGVy
+IHdoeSB0cmFuc19mZCBpcyBpbmNsdWRlZCBpbiA5cG5ldCBhbmQgbm90IGluIGEgOXBuZXQtZmQK
+b3IgOXBuZXQtdGNwIG1vZHVsZSBidXQgdGhhdCdsbCBiZSBmb3IgYW5vdGhlciB0aW1lLi4uCi0t
+IApEb21pbmlxdWUKCgpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fXwpWOWZzLWRldmVsb3BlciBtYWlsaW5nIGxpc3QKVjlmcy1kZXZlbG9wZXJAbGlzdHMuc291
+cmNlZm9yZ2UubmV0Cmh0dHBzOi8vbGlzdHMuc291cmNlZm9yZ2UubmV0L2xpc3RzL2xpc3RpbmZv
+L3Y5ZnMtZGV2ZWxvcGVyCg==
