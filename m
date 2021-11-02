@@ -2,17 +2,17 @@ Return-Path: <v9fs-developer-bounces@lists.sourceforge.net>
 X-Original-To: lists+v9fs-developer@lfdr.de
 Delivered-To: lists+v9fs-developer@lfdr.de
 Received: from lists.sourceforge.net (lists.sourceforge.net [216.105.38.7])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2416E443014
-	for <lists+v9fs-developer@lfdr.de>; Tue,  2 Nov 2021 15:16:23 +0100 (CET)
-Received: from [127.0.0.1] (helo=sfs-ml-2.v29.lw.sourceforge.com)
-	by sfs-ml-2.v29.lw.sourceforge.com with esmtp (Exim 4.94.2)
+	by mail.lfdr.de (Postfix) with ESMTPS id 50761443013
+	for <lists+v9fs-developer@lfdr.de>; Tue,  2 Nov 2021 15:16:19 +0100 (CET)
+Received: from [127.0.0.1] (helo=sfs-ml-1.v29.lw.sourceforge.com)
+	by sfs-ml-1.v29.lw.sourceforge.com with esmtp (Exim 4.94.2)
 	(envelope-from <v9fs-developer-bounces@lists.sourceforge.net>)
-	id 1mhuaL-0007hM-Ki; Tue, 02 Nov 2021 14:16:21 +0000
+	id 1mhuaJ-0006Qw-0l; Tue, 02 Nov 2021 14:16:17 +0000
 Received: from [172.30.20.202] (helo=mx.sourceforge.net)
- by sfs-ml-2.v29.lw.sourceforge.com with esmtps (TLS1.2) tls
+ by sfs-ml-1.v29.lw.sourceforge.com with esmtps (TLS1.2) tls
  TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384 (Exim 4.94.2)
  (envelope-from <dominique.martinet@codewreck.org>)
- id 1mhuaH-0007hE-A5
+ id 1mhuaI-0006Qm-EF
  for v9fs-developer@lists.sourceforge.net; Tue, 02 Nov 2021 14:16:17 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
  d=sourceforge.net; s=x; h=Content-Transfer-Encoding:MIME-Version:References:
@@ -20,9 +20,9 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
  Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
  Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
  List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=OXmhSK6YwjHI18cQ+mPVDWYRcDiydqbyIVRqWbX2hjA=; b=SNIMHgdwfYuq7m8lLtldEQtMEp
- gB9v9YNYFXjycDQNvGh2KnBwjHppnd8KWmVbZdTWKbgGOzluvVlYGL2akt+QxenrjkWwTxuQeT4Hz
- LpNrZkVL1ax0VH7YtcsgoTgWnjSjkKESXO7CAsB7EFjxW2o5wEXsCSaT/MLq1iHX5q14=;
+ bh=eNkC3i76BHgMBfrSRssAFvVJTxkYznWrmGCv+l1LvbE=; b=hmdOoc8OqAo3SIpGjPdkbEWwyG
+ OdLQu6m5W/GO3uL4/8kvqSj84QjnIxl6Gn/4yBROSdpsRxX0GveLObtC8MVWIKjUW8sxxS4pNoAk+
+ 64gqqq/7quaXZXnIKfy3zV5gKP0K6+IFY3M7lqfWtMXkDiNEoD92yJafchlXbV3Vtdqw=;
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  ;
  h=Content-Transfer-Encoding:MIME-Version:References:In-Reply-To:Message-Id:
@@ -30,30 +30,30 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
  :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
  List-Post:List-Owner:List-Archive;
- bh=OXmhSK6YwjHI18cQ+mPVDWYRcDiydqbyIVRqWbX2hjA=; b=Uz8kjuSGMX+hW9gL/xaXeegZb8
- kdTRBQcT+015L0qFS8l244+70gu7RIdxQq2iLH9RpFgys5e4UB3mRMSXiN74NQ4zNKWDUgYdhuw6g
- csHDj1Y9PO2WSYngfymv+EPgz9y2gbt/Um6+J8P/FFMfYkbbvS2aN4d8TXnRcur42RlI=;
+ bh=eNkC3i76BHgMBfrSRssAFvVJTxkYznWrmGCv+l1LvbE=; b=DLikJVptMHz69Vw802lCkuOLfb
+ PAeh/36ijy6DP5lSuewA0l4MOScy0bUVFAcf+YxZA1tL2BQQJ/aN1526pLfz+H6+5XMEtilMSGJR2
+ bwubQzADvxiVu7IUL6OnJs1BdKqUiyqcCI6IyRDoDBsVwiMpJBneMREVfa+Q6A9xcXKY=;
 Received: from nautica.notk.org ([91.121.71.147])
  by sfi-mx-1.v28.lw.sourceforge.com with esmtps
  (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.92.3)
- id 1mhuaG-00EysO-41
+ id 1mhuaG-00EysN-44
  for v9fs-developer@lists.sourceforge.net; Tue, 02 Nov 2021 14:16:17 +0000
 Received: by nautica.notk.org (Postfix, from userid 108)
- id E6FCEC01B; Tue,  2 Nov 2021 15:08:28 +0100 (CET)
+ id 07171C01E; Tue,  2 Nov 2021 15:08:33 +0100 (CET)
 X-Spam-Checker-Version: SpamAssassin 3.3.2 (2011-06-06) on nautica.notk.org
 X-Spam-Level: 
 X-Spam-Status: No, score=0.0 required=5.0 tests=UNPARSEABLE_RELAY
  autolearn=unavailable version=3.3.2
 Received: from odin.codewreck.org (localhost [127.0.0.1])
- by nautica.notk.org (Postfix) with ESMTPS id E5AFFC009;
- Tue,  2 Nov 2021 15:08:25 +0100 (CET)
+ by nautica.notk.org (Postfix) with ESMTPS id 433CEC009;
+ Tue,  2 Nov 2021 15:08:28 +0100 (CET)
 Received: from localhost (odin.codewreck.org [local])
- by odin.codewreck.org (OpenSMTPD) with ESMTPA id 27490f23;
+ by odin.codewreck.org (OpenSMTPD) with ESMTPA id 4a9f868c;
  Tue, 2 Nov 2021 13:46:12 +0000 (UTC)
 From: Dominique Martinet <dominique.martinet@atmark-techno.com>
 To: v9fs-developer@lists.sourceforge.net
-Date: Tue,  2 Nov 2021 22:46:07 +0900
-Message-Id: <20211102134608.1588018-4-dominique.martinet@atmark-techno.com>
+Date: Tue,  2 Nov 2021 22:46:08 +0900
+Message-Id: <20211102134608.1588018-5-dominique.martinet@atmark-techno.com>
 X-Mailer: git-send-email 2.32.0
 In-Reply-To: <20211102134608.1588018-1-dominique.martinet@atmark-techno.com>
 References: <20211102134608.1588018-1-dominique.martinet@atmark-techno.com>
@@ -66,10 +66,10 @@ X-Spam-Report: Spam detection software,
  similar future email.  If you have any questions, see
  the administrator of that system for details.
  Content preview:  From: Dominique Martinet <asmadeus@codewreck.org> This is
- also a checkpatch change, but this one might have more implications so keeping
- this separate Signed-off-by: Dominique Martinet <asmadeus@codewreck.org>
- --- fs/9p/v9fs.c | 13 +++++++------ 1 file changed, 7 insertions(+),
- 6 deletions(-)
+ also a checkpatch warning fix but this one might have implications so keeping
+ it separate Signed-off-by: Dominique Martinet <asmadeus@codewreck.org> ---
+ fs/9p/vfs_inode.c | 13 +++++++++---- 1 file changed, 9 insertions(+),
+ 4 deletions(-)
  Content analysis details:   (0.2 points, 6.0 required)
  pts rule name              description
  ---- ---------------------- --------------------------------------------------
@@ -79,9 +79,9 @@ X-Spam-Report: Spam detection software,
  mail domains are different
  0.0 UNPARSEABLE_RELAY      Informational: message has unparseable relay
  lines
-X-Headers-End: 1mhuaG-00EysO-41
-Subject: [V9fs-developer] [PATCH 3/4] 9p v9fs_parse_options: replace
- simple_strtoul with kstrtouint
+X-Headers-End: 1mhuaG-00EysN-44
+Subject: [V9fs-developer] [PATCH 4/4] 9p p9mode2perm: remove useless strlcpy
+ and check sscanf return code
 X-BeenThere: v9fs-developer@lists.sourceforge.net
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -101,46 +101,47 @@ Errors-To: v9fs-developer-bounces@lists.sourceforge.net
 
 From: Dominique Martinet <asmadeus@codewreck.org>
 
-This is also a checkpatch change, but this one might have more implications
-so keeping this separate
+This is also a checkpatch warning fix but this one might have implications
+so keeping it separate
 
 Signed-off-by: Dominique Martinet <asmadeus@codewreck.org>
 ---
- fs/9p/v9fs.c | 13 +++++++------
- 1 file changed, 7 insertions(+), 6 deletions(-)
+ fs/9p/vfs_inode.c | 13 +++++++++----
+ 1 file changed, 9 insertions(+), 4 deletions(-)
 
-diff --git a/fs/9p/v9fs.c b/fs/9p/v9fs.c
-index d92e5fdae111..e32dd5f7721b 100644
---- a/fs/9p/v9fs.c
-+++ b/fs/9p/v9fs.c
-@@ -164,7 +164,7 @@ static int v9fs_parse_options(struct v9fs_session_info *v9ses, char *opts)
- 	substring_t args[MAX_OPT_ARGS];
- 	char *p;
- 	int option = 0;
--	char *s, *e;
-+	char *s;
- 	int ret = 0;
+diff --git a/fs/9p/vfs_inode.c b/fs/9p/vfs_inode.c
+index 139dfee23b98..328c338ff304 100644
+--- a/fs/9p/vfs_inode.c
++++ b/fs/9p/vfs_inode.c
+@@ -109,7 +109,7 @@ static int p9mode2perm(struct v9fs_session_info *v9ses,
+ static umode_t p9mode2unixmode(struct v9fs_session_info *v9ses,
+ 			       struct p9_wstat *stat, dev_t *rdev)
+ {
+-	int res;
++	int res, r;
+ 	u32 mode = stat->mode;
  
- 	/* setup defaults */
-@@ -321,12 +321,13 @@ static int v9fs_parse_options(struct v9fs_session_info *v9ses, char *opts)
- 				v9ses->flags |= V9FS_ACCESS_CLIENT;
- 			} else {
- 				uid_t uid;
-+
- 				v9ses->flags |= V9FS_ACCESS_SINGLE;
--				uid = simple_strtoul(s, &e, 10);
--				if (*e != '\0') {
--					ret = -EINVAL;
--					pr_info("Unknown access argument %s\n",
--						s);
-+				r = kstrtouint(s, 10, &uid);
-+				if (r) {
-+					ret = r;
-+					pr_info("Unknown access argument %s: %d\n",
-+						s, r);
- 					kfree(s);
- 					continue;
- 				}
+ 	*rdev = 0;
+@@ -127,11 +127,16 @@ static umode_t p9mode2unixmode(struct v9fs_session_info *v9ses,
+ 		res |= S_IFIFO;
+ 	else if ((mode & P9_DMDEVICE) && (v9fs_proto_dotu(v9ses))
+ 		 && (v9ses->nodev == 0)) {
+-		char type = 0, ext[32];
++		char type = 0;
+ 		int major = -1, minor = -1;
+ 
+-		strlcpy(ext, stat->extension, sizeof(ext));
+-		sscanf(ext, "%c %i %i", &type, &major, &minor);
++		r = sscanf(stat->extension, "%c %i %i", &type, &major, &minor);
++		if (r != 3) {
++			p9_debug(P9_DEBUG_ERROR,
++				 "invalid device string, umode will be bogus: %s\n",
++				 stat->extension);
++			return res;
++		}
+ 		switch (type) {
+ 		case 'c':
+ 			res |= S_IFCHR;
 -- 
 2.31.1
 
