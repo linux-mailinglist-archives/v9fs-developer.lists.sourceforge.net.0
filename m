@@ -2,26 +2,26 @@ Return-Path: <v9fs-developer-bounces@lists.sourceforge.net>
 X-Original-To: lists+v9fs-developer@lfdr.de
 Delivered-To: lists+v9fs-developer@lfdr.de
 Received: from lists.sourceforge.net (lists.sourceforge.net [216.105.38.7])
-	by mail.lfdr.de (Postfix) with ESMTPS id 06C60442BDD
-	for <lists+v9fs-developer@lfdr.de>; Tue,  2 Nov 2021 11:52:08 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8F6E0442BFF
+	for <lists+v9fs-developer@lfdr.de>; Tue,  2 Nov 2021 11:59:54 +0100 (CET)
 Received: from [127.0.0.1] (helo=sfs-ml-1.v29.lw.sourceforge.com)
 	by sfs-ml-1.v29.lw.sourceforge.com with esmtp (Exim 4.94.2)
 	(envelope-from <v9fs-developer-bounces@lists.sourceforge.net>)
-	id 1mhrOg-00083L-TG; Tue, 02 Nov 2021 10:52:05 +0000
+	id 1mhrWE-00014I-3D; Tue, 02 Nov 2021 10:59:52 +0000
 Received: from [172.30.20.202] (helo=mx.sourceforge.net)
  by sfs-ml-1.v29.lw.sourceforge.com with esmtps (TLS1.2) tls
  TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384 (Exim 4.94.2)
- (envelope-from <asmadeus@codewreck.org>) id 1mhrOf-0007rs-7i
- for v9fs-developer@lists.sourceforge.net; Tue, 02 Nov 2021 10:52:04 +0000
+ (envelope-from <linux@weissschuh.net>) id 1mhrWD-000148-Fv
+ for v9fs-developer@lists.sourceforge.net; Tue, 02 Nov 2021 10:59:52 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
  d=sourceforge.net; s=x; h=In-Reply-To:Content-Transfer-Encoding:Content-Type:
  MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Sender:Reply-To:
  Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
  Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
  List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=/+rgwyKj69Vlkv0On+QcUYGVMOPrFUm5qkV/iCdjSuE=; b=jExmsce45BcY0cKYciD5nV9mOh
- dxvBxjSaBA6f8UmXl2+AvAskIetijlHFIt970NfBkRlbaqF8/pH+R3rSpfTmb5ZX06BagLRbr8nKh
- Nf86N9pPruQl4KSYEhdgJjYnZ9GDOs+6/jMfUmOz8aPHXiaerjBB5bkBp77zb1Xi3GcY=;
+ bh=2ASguvbY+iXi8FjWwMvh7ZKXDX1Pp5+swkGc3FrzWmg=; b=k3eMl0ul6UZniztQlJpTwOGb8q
+ 4geOq4WBv2p3T/42RUOJO1HCPoKMG5ctXcJVNBfhcuvxlozLM0rKn4hAnbmdhEDSiKSxoSn+vfr1q
+ G/e1RvTg9hraHAZAc4JaIe1UwyT2Ivlr10Dd0zfK++QseQtWu7geXyijZ6+ysqoz60ME=;
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  ;
  h=In-Reply-To:Content-Transfer-Encoding:Content-Type:MIME-Version:
@@ -29,52 +29,33 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
  :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
  List-Post:List-Owner:List-Archive;
- bh=/+rgwyKj69Vlkv0On+QcUYGVMOPrFUm5qkV/iCdjSuE=; b=Vtb4EAShvIRO3xv1dhpaL6ZtnY
- 9JuqvoqAfCJTMocanYHi4+nMZtvpecC3zrRjxV1LJ+u3Z1DDWSdWp/Rl1juew5BvYPYkQbxHgX5pb
- vW6I52MejzlF8RbwwycyC1HiLN/8Gq/6aucKMFCgkhCDjb0J/g3n5GmsFJY2CI+gL7YU=;
-Received: from nautica.notk.org ([91.121.71.147])
- by sfi-mx-1.v28.lw.sourceforge.com with esmtps
+ bh=2ASguvbY+iXi8FjWwMvh7ZKXDX1Pp5+swkGc3FrzWmg=; b=IMksHQ++A8oxZkQkCFRJ/aYWnm
+ xaWtYPv0RzkGldf+BAwMe1wioIxrswTHdybS9qrEYPHLTpq0S5Pe8iywvPRFPpTYgCTstL2YMiigZ
+ mp8KUGpkf8IO8pdjCn3CoYws56ClyzPV6nVhc9OXlw6+cL8HRUKtz61c4iIkjYbbcEJs=;
+Received: from todd.t-8ch.de ([159.69.126.157])
+ by sfi-mx-2.v28.lw.sourceforge.com with esmtps
  (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.92.3)
- id 1mhrOa-00Em9I-Ut
- for v9fs-developer@lists.sourceforge.net; Tue, 02 Nov 2021 10:52:03 +0000
-Received: by nautica.notk.org (Postfix, from userid 108)
- id 58D6AC020; Tue,  2 Nov 2021 11:51:54 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=codewreck.org; s=2;
- t=1635850314; bh=/+rgwyKj69Vlkv0On+QcUYGVMOPrFUm5qkV/iCdjSuE=;
+ id 1mhrWA-0003pl-R5
+ for v9fs-developer@lists.sourceforge.net; Tue, 02 Nov 2021 10:59:52 +0000
+Date: Tue, 2 Nov 2021 11:59:32 +0100
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=weissschuh.net;
+ s=mail; t=1635850778;
+ bh=EQgH6iFqsqRpn3YWDSWz+nzr9GGk1LqsgNBEiOd9Bno=;
  h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
- b=Bllg/2urLxMrhi0EQ9vJE7hUT0j+9sipszv0uG4cD9GuneRFwaENHv+XPEAdtgpQ3
- BVZFTpfit0eEaeAj9ywQWv/smY2YtZf/mN1EftGrFsHzhC67p51Ja+zi9mOki67ikU
- bdIOsRWgYttAr8XixlwRIvmTM5QPJPhvaYQl+i4PciRR/q6EjKgIK9zuCcXtvpzGCT
- F6cNTJrPC0PmYKCC1kkyGGVZkhrhgSGZvmFlOFrzcqKJS7YGgoDKwgS5dJxErfmMuV
- dFziBQSpjp8J7wMtEcSa8ZcvMgc3mDpa8Bk+q/Hu3wSrbpkD3bkf3uCZvblDuGHCiN
- D2l1P2++pR8Rw==
-X-Spam-Checker-Version: SpamAssassin 3.3.2 (2011-06-06) on nautica.notk.org
-X-Spam-Level: 
-X-Spam-Status: No, score=0.0 required=5.0 tests=UNPARSEABLE_RELAY
- autolearn=unavailable version=3.3.2
-Received: from odin.codewreck.org (localhost [127.0.0.1])
- by nautica.notk.org (Postfix) with ESMTPS id 7322BC009;
- Tue,  2 Nov 2021 11:51:50 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=codewreck.org; s=2;
- t=1635850312; bh=/+rgwyKj69Vlkv0On+QcUYGVMOPrFUm5qkV/iCdjSuE=;
- h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
- b=VMaB08Hu6Foyxs/pdMDPS6K8Al/e8m6rZ0Eoedy5eGGFg0BtzkXXkdvbiOhcja/bN
- nuUiCNQjIatikUFrmzTeCECJFWeWKEKzGxeMzs+Apt97UYqRG/ckfOhZmPwhsvD0zk
- WquzyAbppLOCo4qmbE1QJQ596SSnNxFVctkKlsxx71fQmYCyHTx61PGM5W+vV19UBR
- Y8CZYyWKlsHYEuE5CFwrqz/p2Gm5JZns92Z2k90P8+brOGfJojqbgPBRaRuGg3JP0P
- 3yPeY9Oedsw7HTF2llivfdcWzb2wcY1P7/YE8RP9ZLuG5ZIzMw+4GplxnYfmp2hV/p
- f8wa6F+jyfD+g==
-Received: from localhost (odin.codewreck.org [local])
- by odin.codewreck.org (OpenSMTPD) with ESMTPA id b13de0de;
- Tue, 2 Nov 2021 10:51:45 +0000 (UTC)
-Date: Tue, 2 Nov 2021 19:51:30 +0900
-From: Dominique Martinet <asmadeus@codewreck.org>
-To: Thomas =?utf-8?Q?Wei=C3=9Fschuh?= <linux@weissschuh.net>
-Message-ID: <YYEYMt543Hg+Hxzy@codewreck.org>
+ b=YOsujDQuLI5Pd5A72ogB7lsJe//g7lv4F5YHhFsroauupNNiSYRf3RnB3z3hImV1d
+ jSzB/ucHxWr7yBQtfAr8cPdjktzgkQUlw7wcPYyucv3hdtlWK3fmGvjRDh4DUpipbb
+ 4mPVMzAS4ahegxuObHfWUhr1nYJdRED7cyGNQYLo=
+From: Thomas =?utf-8?Q?Wei=C3=9Fschuh?= <linux@weissschuh.net>
+To: Dominique Martinet <asmadeus@codewreck.org>
+Message-ID: <922a4843-c7b0-4cdc-b2a6-33bf089766e4@t-8ch.de>
 References: <20211017134611.4330-1-linux@weissschuh.net>
+ <YYEYMt543Hg+Hxzy@codewreck.org>
 MIME-Version: 1.0
 Content-Disposition: inline
-In-Reply-To: <20211017134611.4330-1-linux@weissschuh.net>
+In-Reply-To: <YYEYMt543Hg+Hxzy@codewreck.org>
+Jabber-ID: thomas@t-8ch.de
+X-Accept: text/plain, text/html;q=0.2, text/*;q=0.1
+X-Accept-Language: en-us, en;q=0.8, de-de;q=0.7, de;q=0.6
 X-Spam-Score: -0.2 (/)
 X-Spam-Report: Spam detection software, running on the system "util-spamd-1.v13.lw.sourceforge.com",
  has NOT identified this incoming email as spam.  The original
@@ -82,10 +63,10 @@ X-Spam-Report: Spam detection software, running on the system "util-spamd-1.v13.
  similar future email.  If you have any questions, see
  the administrator of that system for details.
  
- Content preview:  Hi, Sorry for the late reply Thomas Weißschuh wrote on Sun,
-    Oct 17, 2021 at 03:46:11PM +0200: > Automatically load transport modules
-   based on the trans= parameter > passed to mount. > The removes the requirement
-    for the user to [...] 
+ Content preview:  Hi, On 2021-11-02 19:51+0900, Dominique Martinet wrote: >
+   Sorry for the late reply > > Thomas Weißschuh wrote on Sun, Oct 17, 2021
+   at 03:46:11PM +0200: > > Automatically load transport modules based on t [...]
+    
  
  Content analysis details:   (-0.2 points, 6.0 required)
  
@@ -95,7 +76,7 @@ X-Spam-Report: Spam detection software, running on the system "util-spamd-1.v13.
                              blocked.  See
                              http://wiki.apache.org/spamassassin/DnsBlocklists#dnsbl-block
                               for more information.
-                             [URIs: codewreck.org]
+                             [URIs: weissschuh.net]
   0.0 SPF_HELO_NONE          SPF: HELO does not publish an SPF Record
  -0.0 SPF_PASS               SPF: sender matches SPF record
  -0.1 DKIM_VALID             Message has at least one valid DKIM or DK signature
@@ -105,9 +86,7 @@ X-Spam-Report: Spam detection software, running on the system "util-spamd-1.v13.
                              author's domain
  -0.1 DKIM_VALID_EF          Message has a valid DKIM or DK signature from
                              envelope-from domain
-  0.0 UNPARSEABLE_RELAY      Informational: message has unparseable relay
-                             lines
-X-Headers-End: 1mhrOa-00Em9I-Ut
+X-Headers-End: 1mhrWA-0003pl-R5
 Subject: Re: [V9fs-developer] [PATCH] net/9p: autoload transport modules
 X-BeenThere: v9fs-developer@lists.sourceforge.net
 X-Mailman-Version: 2.1.21
@@ -128,16 +107,22 @@ Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: base64
 Errors-To: v9fs-developer-bounces@lists.sourceforge.net
 
-SGksCgpTb3JyeSBmb3IgdGhlIGxhdGUgcmVwbHkKClRob21hcyBXZWnDn3NjaHVoIHdyb3RlIG9u
-IFN1biwgT2N0IDE3LCAyMDIxIGF0IDAzOjQ2OjExUE0gKzAyMDA6Cj4gQXV0b21hdGljYWxseSBs
-b2FkIHRyYW5zcG9ydCBtb2R1bGVzIGJhc2VkIG9uIHRoZSB0cmFucz0gcGFyYW1ldGVyCj4gcGFz
-c2VkIHRvIG1vdW50Lgo+IFRoZSByZW1vdmVzIHRoZSByZXF1aXJlbWVudCBmb3IgdGhlIHVzZXIg
-dG8ga25vdyB3aGljaCBtb2R1bGUgdG8gdXNlLgoKVGhpcyBsb29rcyBnb29kIHRvIG1lLCBJJ2xs
-IHRlc3QgdGhpcyBicmllZmx5IG9uIGRpZmZlcm5ldCBjb25maWcgKD15LAo9bSkgYW5kIHN1Ym1p
-dCB0byBMaW51cyB0aGlzIHdlZWsgZm9yIHRoZSBuZXh0IGN5Y2xlLgoKTWFrZXMgbWUgd29uZGVy
-IHdoeSB0cmFuc19mZCBpcyBpbmNsdWRlZCBpbiA5cG5ldCBhbmQgbm90IGluIGEgOXBuZXQtZmQK
-b3IgOXBuZXQtdGNwIG1vZHVsZSBidXQgdGhhdCdsbCBiZSBmb3IgYW5vdGhlciB0aW1lLi4uCi0t
-IApEb21pbmlxdWUKCgpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fXwpWOWZzLWRldmVsb3BlciBtYWlsaW5nIGxpc3QKVjlmcy1kZXZlbG9wZXJAbGlzdHMuc291
-cmNlZm9yZ2UubmV0Cmh0dHBzOi8vbGlzdHMuc291cmNlZm9yZ2UubmV0L2xpc3RzL2xpc3RpbmZv
-L3Y5ZnMtZGV2ZWxvcGVyCg==
+SGksCgpPbiAyMDIxLTExLTAyIDE5OjUxKzA5MDAsIERvbWluaXF1ZSBNYXJ0aW5ldCB3cm90ZToK
+PiBTb3JyeSBmb3IgdGhlIGxhdGUgcmVwbHkKPiAKPiBUaG9tYXMgV2Vpw59zY2h1aCB3cm90ZSBv
+biBTdW4sIE9jdCAxNywgMjAyMSBhdCAwMzo0NjoxMVBNICswMjAwOgo+ID4gQXV0b21hdGljYWxs
+eSBsb2FkIHRyYW5zcG9ydCBtb2R1bGVzIGJhc2VkIG9uIHRoZSB0cmFucz0gcGFyYW1ldGVyCj4g
+PiBwYXNzZWQgdG8gbW91bnQuCj4gPiBUaGUgcmVtb3ZlcyB0aGUgcmVxdWlyZW1lbnQgZm9yIHRo
+ZSB1c2VyIHRvIGtub3cgd2hpY2ggbW9kdWxlIHRvIHVzZS4KPiAKPiBUaGlzIGxvb2tzIGdvb2Qg
+dG8gbWUsIEknbGwgdGVzdCB0aGlzIGJyaWVmbHkgb24gZGlmZmVybmV0IGNvbmZpZyAoPXksCj4g
+PW0pIGFuZCBzdWJtaXQgdG8gTGludXMgdGhpcyB3ZWVrIGZvciB0aGUgbmV4dCBjeWNsZS4KClRo
+YW5rcy4gQ291bGQgeW91IGFsc28gZml4IHVwIHRoZSB0eXBvIGluIHRoZSBjb21taXQgbWVzc2Fn
+ZSB3aGVuIGFwcGx5aW5nPwooIlRoZSByZW1vdmVzIiAtPiAiVGhpcyByZW1vdmVzIikKCj4gTWFr
+ZXMgbWUgd29uZGVyIHdoeSB0cmFuc19mZCBpcyBpbmNsdWRlZCBpbiA5cG5ldCBhbmQgbm90IGlu
+IGEgOXBuZXQtZmQKPiBvciA5cG5ldC10Y3AgbW9kdWxlIGJ1dCB0aGF0J2xsIGJlIGZvciBhbm90
+aGVyIHRpbWUuLi4KClRvIHByZXBhcmUgZm9yIHRoZSBtb21lbnQgd2hlbiB0aG9zZSB0cmFuc3Bv
+cnQgbW9kdWxlcyBhcmUgc3BsaXQgaW50byB0aGVpciBvd24KbW9kdWxlKHMpLCB3ZSBjb3VsZCBh
+bHJlYWR5IGFkZCBNT0RVTEVfQUxJQVNfOVAoKSBjYWxscyB0byBuZXQvOXAvdHJhbnNfZmQuYy4K
+ClRob21hcwoKCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+ClY5ZnMtZGV2ZWxvcGVyIG1haWxpbmcgbGlzdApWOWZzLWRldmVsb3BlckBsaXN0cy5zb3VyY2Vm
+b3JnZS5uZXQKaHR0cHM6Ly9saXN0cy5zb3VyY2Vmb3JnZS5uZXQvbGlzdHMvbGlzdGluZm8vdjlm
+cy1kZXZlbG9wZXIK
