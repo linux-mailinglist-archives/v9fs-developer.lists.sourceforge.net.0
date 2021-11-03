@@ -2,26 +2,26 @@ Return-Path: <v9fs-developer-bounces@lists.sourceforge.net>
 X-Original-To: lists+v9fs-developer@lfdr.de
 Delivered-To: lists+v9fs-developer@lfdr.de
 Received: from lists.sourceforge.net (lists.sourceforge.net [216.105.38.7])
-	by mail.lfdr.de (Postfix) with ESMTPS id C149A44424C
-	for <lists+v9fs-developer@lfdr.de>; Wed,  3 Nov 2021 14:23:07 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 096D8444364
+	for <lists+v9fs-developer@lfdr.de>; Wed,  3 Nov 2021 15:25:26 +0100 (CET)
 Received: from [127.0.0.1] (helo=sfs-ml-2.v29.lw.sourceforge.com)
 	by sfs-ml-2.v29.lw.sourceforge.com with esmtp (Exim 4.94.2)
 	(envelope-from <v9fs-developer-bounces@lists.sourceforge.net>)
-	id 1miGEK-000645-31; Wed, 03 Nov 2021 13:23:04 +0000
+	id 1miHCd-0001A1-2P; Wed, 03 Nov 2021 14:25:23 +0000
 Received: from [172.30.20.202] (helo=mx.sourceforge.net)
  by sfs-ml-2.v29.lw.sourceforge.com with esmtps (TLS1.2) tls
  TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384 (Exim 4.94.2)
- (envelope-from <willy@infradead.org>) id 1miGEI-00063x-MJ
- for v9fs-developer@lists.sourceforge.net; Wed, 03 Nov 2021 13:23:02 +0000
+ (envelope-from <willy@infradead.org>) id 1miHCa-00019q-Gm
+ for v9fs-developer@lists.sourceforge.net; Wed, 03 Nov 2021 14:25:20 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
  d=sourceforge.net; s=x; h=In-Reply-To:Content-Type:MIME-Version:References:
  Message-ID:Subject:Cc:To:From:Date:Sender:Reply-To:Content-Transfer-Encoding:
  Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
  Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
  List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=z83BEBMepikQKZaP7EwgKglGj7+Xl9d+0OspVk4dFzg=; b=lSlA1ymxNc6fhBtnSsuFfQBUNy
- YDLIGsTlpd4LeJ0Q/wWj/k/2C9+XIBH5rUSWNIB58VzWgxYizHTj0ZFPgIrl6RcfI6CHSVYW2vuxi
- RUkcgFo7K8lbcFQr1xf3ZfEp7YkoGQiBhwjWepw18ME28uRR+ZGGhrjuCnI5cb7URib0=;
+ bh=MHA8/5DT9+P3H8EQ2DoH0Mu3SBzybKb1RrICo62RwQ4=; b=DyyadgXXD71tuVbFOuqmrD5Mch
+ Clzinl0z7DNlIR7jqPrbGinLMY3T5At6nj2F/jRlsO7boy6NXDq5SPEEHKuUqkuOaf8bmBD346cTL
+ Y3mfjLOk7b/ulL3NLo4ZRpA1OLZTwE3fLJEPPREBI4N6Jr68tk25gT2RC3NqLGXBhs6c=;
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  ;
  h=In-Reply-To:Content-Type:MIME-Version:References:Message-ID:Subject:Cc:To
@@ -29,35 +29,35 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
  :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
  List-Post:List-Owner:List-Archive;
- bh=z83BEBMepikQKZaP7EwgKglGj7+Xl9d+0OspVk4dFzg=; b=Abx6Tks4rnItmgR7fNkgbAnQAU
- HL7k3+rKCxfttDAm/WvxZhLEWrL2qUxI30d1dvhNCCmKYbqHsVDOM7yjr0t/LoRQz4n5lkP5nTpzB
- 5PGiuGjydwyTupWSSJ5z4dI5thq6ZTV2saMl9lbG1pJjd5nmPhOW8ddBsgF4O6i31ylo=;
+ bh=MHA8/5DT9+P3H8EQ2DoH0Mu3SBzybKb1RrICo62RwQ4=; b=g3xaKKJmM/lYkgihTt0j+Nny8W
+ NMz3aknNtO6c0Rm3gG/0t6Ucs21vZPlgR3ImlmVxPw69NxsT/HL7VUi479P7mQv71nx/QOW1WX/WZ
+ i1TX4n5r8Nlw+se5juWJjE2KT1fTFgLr/ZB9TrcUfa3EoldUyV2pX29a4nAfO7+jvY1U=;
 Received: from casper.infradead.org ([90.155.50.34])
- by sfi-mx-1.v28.lw.sourceforge.com with esmtps
+ by sfi-mx-2.v28.lw.sourceforge.com with esmtps
  (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.92.3)
- id 1miGED-00GXVn-3L
- for v9fs-developer@lists.sourceforge.net; Wed, 03 Nov 2021 13:23:02 +0000
+ id 1miHCY-00026w-AU
+ for v9fs-developer@lists.sourceforge.net; Wed, 03 Nov 2021 14:25:20 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
  d=infradead.org; s=casper.20170209; h=In-Reply-To:Content-Type:MIME-Version:
  References:Message-ID:Subject:Cc:To:From:Date:Sender:Reply-To:
  Content-Transfer-Encoding:Content-ID:Content-Description;
- bh=z83BEBMepikQKZaP7EwgKglGj7+Xl9d+0OspVk4dFzg=; b=L4/mKn8kutBEl0TkUQJ6klzqsR
- qLPAy5ZFYF3BO83gwwJmwULBp+Q9KJL7eUjjz9niSU/Kx2FoHaQQyz3wAv9aoOwRIC5MlhtOI53Wg
- Bml8n9+v0exM+gHGB6surId2PyAY+bjT7Urkd+4DSWGAxCHtN0qmFc8kZKmH5mBIyJm8LnUX8uv5M
- qkGgWMP8CxZtf3mAjlCqC4+XT2CADd17BtoHE5OP6og3XM0iKsRCRRwybK/G/RxoTOwY5M6R/i3oi
- /e6KirRaXVvvsJxSX6zm3lEi6xYqN2IGYM5POKKxd5LfgDMSq0S8uEFElxfvBIALagP4KkypLu889
- CmGxnfIQ==;
+ bh=MHA8/5DT9+P3H8EQ2DoH0Mu3SBzybKb1RrICo62RwQ4=; b=t9eJNkfzrgV+QiZqspfhcfToYC
+ 3Ec3SF3Q9ZLFQr4jT4+hVBAtuUAKgl1oeoJE6scE4G7P3IEjD2W/m5e99yCHLHHqSDI4E6rXc3JMg
+ w4hmwDJRapYDTm+u3lLY6FNZbczw88eT0WhKs9l37aOExnpxsFT0/MIanKBtIqeteHjLCUNpHkY3t
+ 6V8IAR1xpI1GYombL4N7TBPf8hVo3yBjiDFh6Q6ZiaTO73ciucIzhdBOKDW+BOs+2QBbEDNk1eJ27
+ 55B12uY/pzWiNJcJpqjIYYeUkBZkGAu0Sd3MqWEnqhWN6VDdSlaDtEesmkfjbJgM/JJGlieavLNzj
+ 4sxQUXrw==;
 Received: from willy by casper.infradead.org with local (Exim 4.94.2 #2 (Red
- Hat Linux)) id 1miG7U-005DZJ-PP; Wed, 03 Nov 2021 13:16:32 +0000
-Date: Wed, 3 Nov 2021 13:16:00 +0000
+ Hat Linux)) id 1miH8f-005FeW-AM; Wed, 03 Nov 2021 14:21:52 +0000
+Date: Wed, 3 Nov 2021 14:21:17 +0000
 From: Matthew Wilcox <willy@infradead.org>
 To: David Howells <dhowells@redhat.com>
-Message-ID: <YYKLkBwQdtn4ja+i@casper.infradead.org>
+Message-ID: <YYKa3bfQZxK5/wDN@casper.infradead.org>
 References: <163584174921.4023316.8927114426959755223.stgit@warthog.procyon.org.uk>
- <163584184628.4023316.9386282630968981869.stgit@warthog.procyon.org.uk>
+ <163584187452.4023316.500389675405550116.stgit@warthog.procyon.org.uk>
 MIME-Version: 1.0
 Content-Disposition: inline
-In-Reply-To: <163584184628.4023316.9386282630968981869.stgit@warthog.procyon.org.uk>
+In-Reply-To: <163584187452.4023316.500389675405550116.stgit@warthog.procyon.org.uk>
 X-Spam-Score: -0.2 (/)
 X-Spam-Report: Spam detection software,
  running on the system "util-spamd-1.v13.lw.sourceforge.com", 
@@ -65,12 +65,10 @@ X-Spam-Report: Spam detection software,
  message has been attached to this so you can view it or label
  similar future email.  If you have any questions, see
  the administrator of that system for details.
- Content preview:  On Tue, Nov 02, 2021 at 08:30:46AM +0000,
+ Content preview:  On Tue, Nov 02, 2021 at 08:31:14AM +0000,
  David Howells wrote:
- > Add a convenience function, folio_inode() that will get the host inode
- from > a folio's mapping. I'm not opposed, but it only saves two characters,
- so I'm not entirely sure it justifies its existance. On the other hand,
- folio_inode() is clear about what it does. 
+ > -static int v9fs_vfs_writepage_locked(struct page *page) > +static int
+ v9fs_vfs_write_folio_locked(struct folio *folio) > { > - struct [...] 
  Content analysis details:   (-0.2 points, 6.0 required)
  pts rule name              description
  ---- ---------------------- --------------------------------------------------
@@ -87,9 +85,8 @@ X-Spam-Report: Spam detection software,
  author's domain
  -0.1 DKIM_VALID_EF          Message has a valid DKIM or DK signature from
  envelope-from domain
-X-Headers-End: 1miGED-00GXVn-3L
-Subject: Re: [V9fs-developer] [PATCH v3 4/6] folio: Add a function to get
- the host inode for a folio
+X-Headers-End: 1miHCY-00026w-AU
+Subject: Re: [V9fs-developer] [PATCH v3 5/6] netfs, 9p, afs, ceph: Use folios
 X-BeenThere: v9fs-developer@lists.sourceforge.net
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -101,35 +98,74 @@ List-Post: <mailto:v9fs-developer@lists.sourceforge.net>
 List-Help: <mailto:v9fs-developer-request@lists.sourceforge.net?subject=help>
 List-Subscribe: <https://lists.sourceforge.net/lists/listinfo/v9fs-developer>, 
  <mailto:v9fs-developer-request@lists.sourceforge.net?subject=subscribe>
-Cc: linux-cifs@vger.kernel.org, linux-nfs@vger.kernel.org,
+Cc: linux-cifs@vger.kernel.org, linux-nfs@vger.kernel.org, linux-mm@kvack.org,
  Jeff Layton <jlayton@kernel.org>, linux-kernel@vger.kernel.org,
- linux-mm@kvack.org, ceph-devel@vger.kernel.org, linux-cachefs@redhat.com,
- linux-fsdevel@vger.kernel.org, v9fs-developer@lists.sourceforge.net,
- Ilya Dryomov <idryomov@gmail.com>, linux-afs@lists.infradead.org,
- devel@lists.orangefs.org
+ linux-fsdevel@vger.kernel.org, ceph-devel@vger.kernel.org,
+ linux-cachefs@redhat.com, Marc Dionne <marc.dionne@auristor.com>,
+ v9fs-developer@lists.sourceforge.net, Ilya Dryomov <idryomov@gmail.com>,
+ linux-afs@lists.infradead.org, devel@lists.orangefs.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: v9fs-developer-bounces@lists.sourceforge.net
 
-On Tue, Nov 02, 2021 at 08:30:46AM +0000, David Howells wrote:
-> Add a convenience function, folio_inode() that will get the host inode from
-> a folio's mapping.
+On Tue, Nov 02, 2021 at 08:31:14AM +0000, David Howells wrote:
+> -static int v9fs_vfs_writepage_locked(struct page *page)
+> +static int v9fs_vfs_write_folio_locked(struct folio *folio)
+>  {
+> -	struct inode *inode = page->mapping->host;
+> +	struct inode *inode = folio_inode(folio);
+>  	struct v9fs_inode *v9inode = V9FS_I(inode);
+> -	loff_t start = page_offset(page);
+> +	loff_t start = folio_pos(folio);
+>  	loff_t size = i_size_read(inode);
+>  	struct iov_iter from;
+> -	int err, len;
+> +	size_t gran = folio_size(folio), len;
+> +	int err;
+>  
+> -	if (page->index == size >> PAGE_SHIFT)
+> -		len = size & ~PAGE_MASK;
+> -	else
+> -		len = PAGE_SIZE;
+> +	len = (size >= start + gran) ? gran : size - start;
 
-I'm not opposed, but it only saves two characters, so I'm not entirely
-sure it justifies its existance.  On the other hand, folio_inode() is
-clear about what it does.
+This seems like the most complicated way to write this ... how about:
 
-> + * For folios which are in the page cache, return the inode that is hosting
-> + * this folio belongs to.
+        size_t len = min_t(loff_t, isize - start, folio_size(folio));
 
-This looks like an editing mistake.  Either you meant
-'return the inode that hosts this folio' or
-'return the inode this folio belongs to'
-(and i prefer the second).
+> @@ -322,23 +322,24 @@ static void afs_req_issue_op(struct netfs_read_subrequest *subreq)
+>  
+>  static int afs_symlink_readpage(struct file *file, struct page *page)
+>  {
+> -	struct afs_vnode *vnode = AFS_FS_I(page->mapping->host);
+> +	struct afs_vnode *vnode = AFS_FS_I(page_mapping(page)->host);
 
-With that grammo fixed,
+How does swap end up calling readpage on a symlink?
 
-Reviewed-by: Matthew Wilcox (Oracle) <willy@infradead.org>
+>  	ret = afs_fetch_data(fsreq->vnode, fsreq);
+> -	page_endio(page, false, ret);
+> +	page_endio(&folio->page, false, ret);
+
+We need a folio_endio() ...
+
+>  int afs_write_end(struct file *file, struct address_space *mapping,
+>  		  loff_t pos, unsigned len, unsigned copied,
+> -		  struct page *page, void *fsdata)
+> +		  struct page *subpage, void *fsdata)
+>  {
+> +	struct folio *folio = page_folio(subpage);
+>  	struct afs_vnode *vnode = AFS_FS_I(file_inode(file));
+>  	unsigned long priv;
+> -	unsigned int f, from = pos & (thp_size(page) - 1);
+> +	unsigned int f, from = pos & (folio_size(folio) - 1);
+
+Isn't that:
+
+	size_t from = offset_in_folio(folio, pos);
+
+(not that i think we're getting folios larger than 4GB any time soon,
+but it'd be nice to be prepared for it)
+
 
 
 _______________________________________________
