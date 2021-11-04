@@ -2,107 +2,109 @@ Return-Path: <v9fs-developer-bounces@lists.sourceforge.net>
 X-Original-To: lists+v9fs-developer@lfdr.de
 Delivered-To: lists+v9fs-developer@lfdr.de
 Received: from lists.sourceforge.net (lists.sourceforge.net [216.105.38.7])
-	by mail.lfdr.de (Postfix) with ESMTPS id A7725444FFA
-	for <lists+v9fs-developer@lfdr.de>; Thu,  4 Nov 2021 09:14:19 +0100 (CET)
-Received: from [127.0.0.1] (helo=sfs-ml-1.v29.lw.sourceforge.com)
-	by sfs-ml-1.v29.lw.sourceforge.com with esmtp (Exim 4.94.2)
+	by mail.lfdr.de (Postfix) with ESMTPS id 869E2445298
+	for <lists+v9fs-developer@lfdr.de>; Thu,  4 Nov 2021 13:03:47 +0100 (CET)
+Received: from [127.0.0.1] (helo=sfs-ml-4.v29.lw.sourceforge.com)
+	by sfs-ml-4.v29.lw.sourceforge.com with esmtp (Exim 4.94.2)
 	(envelope-from <v9fs-developer-bounces@lists.sourceforge.net>)
-	id 1miXt4-0004pY-0g; Thu, 04 Nov 2021 08:14:16 +0000
+	id 1mibT6-0005rk-8k; Thu, 04 Nov 2021 12:03:44 +0000
 Received: from [172.30.20.202] (helo=mx.sourceforge.net)
- by sfs-ml-1.v29.lw.sourceforge.com with esmtps (TLS1.2) tls
- TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384 (Exim 4.94.2) (envelope-from
- <0107017cea03052c-008190d0-7375-4095-b29b-800eea1e628a-000000@eu-central-1.amazonses.com>)
- id 1miXsv-0004pC-BA
- for v9fs-developer@lists.sourceforge.net; Thu, 04 Nov 2021 08:14:08 +0000
+ by sfs-ml-4.v29.lw.sourceforge.com with esmtps (TLS1.2) tls
+ TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384 (Exim 4.94.2)
+ (envelope-from <asmadeus@codewreck.org>) id 1mibT4-0005re-Oi
+ for v9fs-developer@lists.sourceforge.net; Thu, 04 Nov 2021 12:03:42 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=sourceforge.net; s=x; h=List-Unsubscribe:Content-Type:MIME-Version:To:
- Reply-To:From:Subject:Date:Message-ID:Sender:Cc:Content-Transfer-Encoding:
- Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
- Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:List-Id:
- List-Help:List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=Nwr84tuMvv7VhPn3bte1P2ojICaFk42EmXHoULbLqS0=; b=P3fHpJFMCFycOB2odSnV7/Lpyr
- yBNK84JnqNX00qaOTgzWWD9NnIs1GrB+3HwhwlWcQz+chXl7GrDifLtF+YxY8Zdi2EKXqfR1Gtjnc
- YJ4UX0f/b4kBs+SaGO+I8FhbOHVu1EL3U00JRRR1Vh87M1EU1VK0uXUn/0TdSbe5M4VM=;
+ d=sourceforge.net; s=x; h=Content-Transfer-Encoding:MIME-Version:Message-Id:
+ Date:Subject:Cc:To:From:Sender:Reply-To:Content-Type:Content-ID:
+ Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
+ :Resent-Message-ID:In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:
+ List-Subscribe:List-Post:List-Owner:List-Archive;
+ bh=xEp8eFxtEqQ43xgpMlcvKwbaMDG5dHvhWTnvg8NkLBw=; b=ix2BpS01YINMVIKkSHRVOFDEch
+ 8UUZzTkoHxok62QOt66VHqQ+tCchX38mNmvNxhxxBTJ39eA5Chc4hKLQBUUVngXXL6CcKcQg5Rljn
+ 1Q6Kb0X3DBofGELhWUoAFL1Qj4muR5JFV1RFTksRYnhevht4zQNkEWVoCBrGfxMiGKDg=;
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  ;
- h=List-Unsubscribe:Content-Type:MIME-Version:To:Reply-To:From:Subject:Date:
- Message-ID:Sender:Cc:Content-Transfer-Encoding:Content-ID:Content-Description
- :Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
- In-Reply-To:References:List-Id:List-Help:List-Subscribe:List-Post:List-Owner:
- List-Archive; bh=Nwr84tuMvv7VhPn3bte1P2ojICaFk42EmXHoULbLqS0=; b=l3UHs9jEeBQj
- 3f1OH4wm2fZsz3iGafBPNF7bFiGxInUSmhfutRcdYZje/CCSJnFw4QquhGJ3iH1INqFAolL/Y8Y5s
- uFdpbo/XGjzVrT9cL5xY/4gv4H6NfIsdE29M+qw6r6U9TRkBGxnM3dyEOrootzR5oncOd/7j7O3JZ
- rRadM=;
-Received: from b227-249.smtp-out.eu-central-1.amazonses.com ([69.169.227.249])
- by sfi-mx-1.v28.lw.sourceforge.com with esmtps
- (TLSv1.2:ECDHE-RSA-AES128-SHA256:128) (Exim 4.92.3)
- id 1miXss-0019QK-LH
- for v9fs-developer@lists.sourceforge.net; Thu, 04 Nov 2021 08:14:07 +0000
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/simple;
- s=dh6xal75kxiwng2e7n6gpavtu5jej2gs; d=eko-promo.ro; t=1636013639;
- h=Sender:Message-ID:Date:Subject:From:Reply-To:To:MIME-Version:Content-Type:List-Unsubscribe;
- bh=oKd1fTUcCTJFH/jc7O6oXi5m+Z/iTEbFHYeOc0SUZME=;
- b=a/LrUHYNo+EoyxryC+SFQ4R4xIc2FYhl0LwaOmzTvViVosh9A3i1njnFqa0bUap0
- RsYoJ1T+6lfH0v43vEblriUmgWnYVWJXmCcsImKNfH0iFB1dD9f9Z2AuHR0XwHKnJhD
- SfsoThwIVAzraRXn/1D3kUH+GwuHolkEWQqTUaFY=
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/simple;
- s=54ecsf3zk7z4mwxwwox7z7bg6e5gwjsz; d=amazonses.com; t=1636013639;
- h=Sender:Message-ID:Date:Subject:From:Reply-To:To:MIME-Version:Content-Type:List-Unsubscribe:Feedback-ID;
- bh=oKd1fTUcCTJFH/jc7O6oXi5m+Z/iTEbFHYeOc0SUZME=;
- b=G9Cis7qMQOEGUMJrUvEJTmz1ZEgiXXq0orMVtvLSIEr0k6LPXvSqcva4HwaxDdAz
- McQA+pwKSvqXhNhXwIFcV1cR5jQb08tVqWWrYqiNZ1PD4B4P0cSRdx+gV206yyl6/gM
- em/BGPhimVCtLn2uNqkKwL2Ea6yZwfoFJf4CQQgw=
-Message-ID: <0107017cea03052c-008190d0-7375-4095-b29b-800eea1e628a-000000@eu-central-1.amazonses.com>
-Date: Thu, 4 Nov 2021 08:13:58 +0000
-From: Office <office@eko-promo.ro>
-To: "" <v9fs-developer@lists.sourceforge.net>
+ h=Content-Transfer-Encoding:MIME-Version:Message-Id:Date:Subject:Cc:To:From
+ :Sender:Reply-To:Content-Type:Content-ID:Content-Description:Resent-Date:
+ Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:
+ References:List-Id:List-Help:List-Unsubscribe:List-Subscribe:List-Post:
+ List-Owner:List-Archive; bh=xEp8eFxtEqQ43xgpMlcvKwbaMDG5dHvhWTnvg8NkLBw=; b=D
+ w9tehfd7FjVj4Ku6OiRaCvKqu7TXDFTtJOlpd3h5LS72pBRXlL3kGvQOB2KmkBcRZqRCdESRE4HXA
+ t7UruUSLejeWfsMdLrgFzJyvp3JYjP8AAOpuAYlI/NxyO1uGgMCFcmRPZGU5r/+RfRaI78L3JZh3j
+ m3GSyS1wDe3U3GSU=;
+Received: from nautica.notk.org ([91.121.71.147])
+ by sfi-mx-2.v28.lw.sourceforge.com with esmtps
+ (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.92.3)
+ id 1mibT2-0000FX-HR
+ for v9fs-developer@lists.sourceforge.net; Thu, 04 Nov 2021 12:03:42 +0000
+Received: by nautica.notk.org (Postfix, from userid 108)
+ id A087FC01C; Thu,  4 Nov 2021 13:03:33 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=codewreck.org; s=2;
+ t=1636027413; bh=xEp8eFxtEqQ43xgpMlcvKwbaMDG5dHvhWTnvg8NkLBw=;
+ h=From:To:Cc:Subject:Date:From;
+ b=DBioh2kBx6je4xU5+OgqXNFWzSjw79Xsx0zjPANwMBeA2Ng2KvVEf62E3GRbKHMYn
+ aZgPaHFw/JJxOUfwpqdhrSJTEg7KC0K3tarzpjrwU9W9u//kTXKR6+wJ5IabYj9c05
+ KFHm87wASIlDv+SNer4blwYIbBudpRnRYKGwiIngpQnyq0+xxToiXCBrL9dc66JGFI
+ OeLCuZpUifIGL7IfkG8bt+L/BLT4YsXDdpR6HdBnuT/qydd7HfoNLwz1rTSQhD09ft
+ s3q4Pc0GCiyEHq5sRz7h6Tq+Mu6BJrGEBEJBbrYSMyugLkaA8PxHpXnlaSTmBKqnMg
+ d6igRQkCvyg3w==
+X-Spam-Checker-Version: SpamAssassin 3.3.2 (2011-06-06) on nautica.notk.org
+X-Spam-Level: 
+X-Spam-Status: No, score=0.0 required=5.0 tests=UNPARSEABLE_RELAY
+ autolearn=unavailable version=3.3.2
+Received: from odin.codewreck.org (localhost [127.0.0.1])
+ by nautica.notk.org (Postfix) with ESMTPS id 2F842C009;
+ Thu,  4 Nov 2021 13:03:30 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=codewreck.org; s=2;
+ t=1636027412; bh=xEp8eFxtEqQ43xgpMlcvKwbaMDG5dHvhWTnvg8NkLBw=;
+ h=From:To:Cc:Subject:Date:From;
+ b=HiYHZzGwd0llRNmCIWnxzCGSuip8RAMEY2pKPvXvtE+nHShoQBGO5TKng2Ls+KWhA
+ nj10x0d4LTLtGvpn819JD3JVlB6OXovKoZAUCueEY784x168gwJPX/mU2YIBO37MDb
+ d8WOarI02Pb2G7lS6AgAOzAbU0lLss1aoxNh6r6rBA6Ph+2sN5Nrm6Ci9GJQ9QnH0X
+ z0bmYtkRiZkcscOOwXx/n5eurvXu3kIptQaCxY9UwPFW4dcIqPeDjhnCNGTcDmwqJy
+ ygqbmWKT5KyA8aXhbwyf6zRej+Hsi6w+goOCNv4oxN7QWNfor3poDIBcYLp4pBbM9t
+ /HNuxPGK59LGg==
+Received: from localhost (odin.codewreck.org [local])
+ by odin.codewreck.org (OpenSMTPD) with ESMTPA id ffda33dd;
+ Thu, 4 Nov 2021 12:03:27 +0000 (UTC)
+From: Dominique Martinet <asmadeus@codewreck.org>
+To: v9fs-developer@lists.sourceforge.net
+Date: Thu,  4 Nov 2021 21:03:23 +0900
+Message-Id: <20211104120323.2189376-1-asmadeus@codewreck.org>
+X-Mailer: git-send-email 2.32.0
 MIME-Version: 1.0
-Feedback-ID: 1.eu-central-1.N8GLPrwMW4DEokEt/uX8R5Dj6lDs1dpqTZ0OFMrLAAo=:AmazonSES
-X-SES-Outgoing: 2021.11.04-69.169.227.249
-X-Spam-Score: 2.6 (++)
-X-Spam-Report: Spam detection software, running on the system "util-spamd-1.v13.lw.sourceforge.com",
+X-Spam-Score: -0.2 (/)
+X-Spam-Report: Spam detection software,
+ running on the system "util-spamd-1.v13.lw.sourceforge.com", 
  has NOT identified this incoming email as spam.  The original
  message has been attached to this so you can view it or label
  similar future email.  If you have any questions, see
  the administrator of that system for details.
- 
- Content preview:  [Vizualizează asta în navigatorul tău.](https://ekogroup.com.ro?mailpoet_router&endpoint=track&action=click&data=WzE0MzAwNSwibmlxaWF6cXMzYjQ0MGNjZ2s0YzRrNDRzOG9jZ2NrYzQiLCI1OCIsImQxOWVhYzkwZmU4MSIs
-    [...] 
- 
- Content analysis details:   (2.6 points, 6.0 required)
- 
-  pts rule name              description
+ Content preview: having a readahead of 128k with a msize of 128k (with
+ overhead)
+ lead to reading 124+4k everytime, making two roundtrips needlessly. tune
+ readahead according to msize when cache is enabled for better performance 
+ Content analysis details:   (-0.2 points, 6.0 required)
+ pts rule name              description
  ---- ---------------------- --------------------------------------------------
-  0.0 URIBL_BLOCKED          ADMINISTRATOR NOTICE: The query to URIBL was
-                             blocked.  See
-                             http://wiki.apache.org/spamassassin/DnsBlocklists#dnsbl-block
-                              for more information.
-                             [URIs: eko-promo.ro]
- -0.0 RCVD_IN_DNSWL_NONE     RBL: Sender listed at https://www.dnswl.org/,
-                              no trust
-                             [69.169.227.249 listed in list.dnswl.org]
- -0.0 RCVD_IN_MSPIKE_H2      RBL: Average reputation (+2)
-                             [69.169.227.249 listed in wl.mailspike.net]
-  0.0 SPF_HELO_NONE          SPF: HELO does not publish an SPF Record
+ 0.0 URIBL_BLOCKED          ADMINISTRATOR NOTICE: The query to URIBL was
+ blocked.  See
+ http://wiki.apache.org/spamassassin/DnsBlocklists#dnsbl-block
+ for more information. [URIs: codewreck.org]
+ 0.0 SPF_HELO_NONE          SPF: HELO does not publish an SPF Record
  -0.0 SPF_PASS               SPF: sender matches SPF record
-  0.2 HEADER_FROM_DIFFERENT_DOMAINS From and EnvelopeFrom 2nd level
-                             mail domains are different
-  0.0 HTML_MESSAGE           BODY: HTML included in message
- -0.1 DKIM_VALID             Message has at least one valid DKIM or DK signature
-  0.1 DKIM_SIGNED            Message has a DKIM or DK signature, not necessarily
-                             valid
+ -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+ 0.1 DKIM_SIGNED            Message has a DKIM or DK signature, not necessarily
+ valid
  -0.1 DKIM_VALID_AU          Message has a valid DKIM or DK signature from
-                             author's domain
+ author's domain
  -0.1 DKIM_VALID_EF          Message has a valid DKIM or DK signature from
-                             envelope-from domain
-  0.0 T_KAM_HTML_FONT_INVALID Test for Invalidly Named or Formatted
-                             Colors in HTML
-  0.0 T_REMOTE_IMAGE         Message contains an external image
-  2.5 URI_WP_HACKED_2        URI for compromised WordPress site, possible
-                             malware
-X-Headers-End: 1miXss-0019QK-LH
-X-Content-Filtered-By: Mailman/MimeDel 2.1.21
-Subject: [V9fs-developer] Tot ce sa poate personaliza, noi putem face
+ envelope-from domain
+ 0.0 UNPARSEABLE_RELAY      Informational: message has unparseable relay
+ lines
+X-Headers-End: 1mibT2-0000FX-HR
+Subject: [V9fs-developer] [PATCH] 9p: set readahead and io size according to
+ maxsize
 X-BeenThere: v9fs-developer@lists.sourceforge.net
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -114,67 +116,43 @@ List-Post: <mailto:v9fs-developer@lists.sourceforge.net>
 List-Help: <mailto:v9fs-developer-request@lists.sourceforge.net?subject=help>
 List-Subscribe: <https://lists.sourceforge.net/lists/listinfo/v9fs-developer>, 
  <mailto:v9fs-developer-request@lists.sourceforge.net?subject=subscribe>
-Reply-To: Office <office@eko-promo.ro>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Cc: Latchesar Ionkov <lucho@ionkov.net>, Eric Van Hensbergen <ericvh@gmail.com>,
+ linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: v9fs-developer-bounces@lists.sourceforge.net
 
-W1ZpenVhbGl6ZWF6xIMgYXN0YSDDrm4gbmF2aWdhdG9ydWwgdMSDdS5dKGh0dHBzOi8vZWtvZ3Jv
-dXAuY29tLnJvP21haWxwb2V0X3JvdXRlciZlbmRwb2ludD10cmFjayZhY3Rpb249Y2xpY2smZGF0
-YT1XekUwTXpBd05Td2libWx4YVdGNmNYTXpZalEwTUdOaloyczBZelJyTkRSek9HOWpaMk5yWXpR
-aUxDSTFPQ0lzSW1ReE9XVmhZemt3Wm1VNE1TSXNabUZzYzJWZCkKCltGYXJtZXJzTWFya2V0LVRv
-cF0KCltla28tcHJvbW9dKGh0dHBzOi8vZWtvZ3JvdXAuY29tLnJvP21haWxwb2V0X3JvdXRlciZl
-bmRwb2ludD10cmFjayZhY3Rpb249Y2xpY2smZGF0YT1XekUwTXpBd05Td2libWx4YVdGNmNYTXpZ
-alEwTUdOaloyczBZelJyTkRSek9HOWpaMk5yWXpRaUxDSTFPQ0lzSWpaa1pHTXpaRGt5WVRVd09T
-SXNabUZzYzJWZCkKClRPVCBDRSBTRSBQRVJTT05BTElaRVpBCgpQRU5UUlUgQ09NUEFOSUEgVEEK
-ClZBIFBVTkVNIExBIERJU1BPWklUSUU6Ci0gcHJvZHVzZSBkaW4gdG9hdGUgY2F0YWxvYWdlbGUg
-cGlldGlpCi0gZ3JhZmljYQotIHBlcnNvbmFsaXphcmUKLSBsaXZyYXJlIGltZWRpYXRhIHBlbnRy
-dSBjYW50aXRhdGkgbWFyaQpfX19fX18KCkNlcmUgbyBvZmVydGEgc2kgY29udmluZ2UtdGUhCgpb
-Q2FwdHVyYcyGIGRlIGVjcmFuIGRpbiAyMDIxLTA5LTE2IGxhIDEzLjM5LjUwXShodHRwczovL2Vr
-b2dyb3VwLmNvbS5ybz9tYWlscG9ldF9yb3V0ZXImZW5kcG9pbnQ9dHJhY2smYWN0aW9uPWNsaWNr
-JmRhdGE9V3pFME16QXdOU3dpYm1seGFXRjZjWE16WWpRME1HTmpaMnMwWXpSck5EUnpPRzlqWjJO
-cll6UWlMQ0kxT0NJc0lqWmtaR016WkRreVlUVXdPU0lzWm1Gc2MyVmQpCltXaGF0c0FwcC1JbWFn
-ZS0yMDIxLTA4LTA5LWF0LTE0LjE0LjM0XShodHRwczovL2Vrb2dyb3VwLmNvbS5ybz9tYWlscG9l
-dF9yb3V0ZXImZW5kcG9pbnQ9dHJhY2smYWN0aW9uPWNsaWNrJmRhdGE9V3pFME16QXdOU3dpYm1s
-eGFXRjZjWE16WWpRME1HTmpaMnMwWXpSck5EUnpPRzlqWjJOcll6UWlMQ0kxT0NJc0lqWmtaR016
-WkRreVlUVXdPU0lzWm1Gc2MyVmQpCgpvZmZpY2VAZWtvLXByb21vLnJvCnd3dy5la28tcHJvbW8u
-cm8KCltVUzIwLVlMLmpwZ10oaHR0cHM6Ly9la29ncm91cC5jb20ucm8/bWFpbHBvZXRfcm91dGVy
-JmVuZHBvaW50PXRyYWNrJmFjdGlvbj1jbGljayZkYXRhPVd6RTBNekF3TlN3aWJtbHhhV0Y2Y1hN
-ellqUTBNR05qWjJzMFl6UnJORFJ6T0c5aloyTnJZelFpTENJMU9DSXNJalprWkdNelpEa3lZVFV3
-T1NJc1ptRnNjMlZkKQoKW0NFUkUgT0ZFUlRBIFBFIE1BSUxdKGh0dHBzOi8vZWtvZ3JvdXAuY29t
-LnJvP21haWxwb2V0X3JvdXRlciZlbmRwb2ludD10cmFjayZhY3Rpb249Y2xpY2smZGF0YT1XekUw
-TXpBd05Td2libWx4YVdGNmNYTXpZalEwTUdOaloyczBZelJyTkRSek9HOWpaMk5yWXpRaUxDSTFP
-Q0lzSWpaa1pHTXpaRGt5WVRVd09TSXNabUZzYzJWZCkKCltQQjIyLVlMLmpwZ10oaHR0cHM6Ly9l
-a29ncm91cC5jb20ucm8/bWFpbHBvZXRfcm91dGVyJmVuZHBvaW50PXRyYWNrJmFjdGlvbj1jbGlj
-ayZkYXRhPVd6RTBNekF3TlN3aWJtbHhhV0Y2Y1hNellqUTBNR05qWjJzMFl6UnJORFJ6T0c5aloy
-TnJZelFpTENJMU9DSXNJalprWkdNelpEa3lZVFV3T1NJc1ptRnNjMlZkKQoKW0NFUkUgT0ZFUlRB
-IFBFIE1BSUxdKGh0dHBzOi8vZWtvZ3JvdXAuY29tLnJvP21haWxwb2V0X3JvdXRlciZlbmRwb2lu
-dD10cmFjayZhY3Rpb249Y2xpY2smZGF0YT1XekUwTXpBd05Td2libWx4YVdGNmNYTXpZalEwTUdO
-aloyczBZelJyTkRSek9HOWpaMk5yWXpRaUxDSTFPQ0lzSWpaa1pHTXpaRGt5WVRVd09TSXNabUZz
-YzJWZCkKCltESjJTLVlMLmpwZ10oaHR0cHM6Ly9la29ncm91cC5jb20ucm8/bWFpbHBvZXRfcm91
-dGVyJmVuZHBvaW50PXRyYWNrJmFjdGlvbj1jbGljayZkYXRhPVd6RTBNekF3TlN3aWJtbHhhV0Y2
-Y1hNellqUTBNR05qWjJzMFl6UnJORFJ6T0c5aloyTnJZelFpTENJMU9DSXNJalprWkdNelpEa3lZ
-VFV3T1NJc1ptRnNjMlZkKQoKW0NFUkUgT0ZFUlRBIFBFIE1BSUxdKGh0dHBzOi8vZWtvZ3JvdXAu
-Y29tLnJvP21haWxwb2V0X3JvdXRlciZlbmRwb2ludD10cmFjayZhY3Rpb249Y2xpY2smZGF0YT1X
-ekUwTXpBd05Td2libWx4YVdGNmNYTXpZalEwTUdOaloyczBZelJyTkRSek9HOWpaMk5yWXpRaUxD
-STFPQ0lzSWpaa1pHTXpaRGt5WVRVd09TSXNabUZzYzJWZCkKCltla28tcHJvbW9dKGh0dHBzOi8v
-ZWtvZ3JvdXAuY29tLnJvP21haWxwb2V0X3JvdXRlciZlbmRwb2ludD10cmFjayZhY3Rpb249Y2xp
-Y2smZGF0YT1XekUwTXpBd05Td2libWx4YVdGNmNYTXpZalEwTUdOaloyczBZelJyTkRSek9HOWpa
-Mk5yWXpRaUxDSTFPQ0lzSWpaa1pHTXpaRGt5WVRVd09TSXNabUZzYzJWZCkKCltmYWNlYm9va10o
-aHR0cHM6Ly9la29ncm91cC5jb20ucm8/bWFpbHBvZXRfcm91dGVyJmVuZHBvaW50PXRyYWNrJmFj
-dGlvbj1jbGljayZkYXRhPVd6RTBNekF3TlN3aWJtbHhhV0Y2Y1hNellqUTBNR05qWjJzMFl6UnJO
-RFJ6T0c5aloyTnJZelFpTENJMU9DSXNJbVpsWVRnd1pUWTVZelUxTWlJc1ptRnNjMlZkKSBbaW5z
-dGFncmFtXShodHRwczovL2Vrb2dyb3VwLmNvbS5ybz9tYWlscG9ldF9yb3V0ZXImZW5kcG9pbnQ9
-dHJhY2smYWN0aW9uPWNsaWNrJmRhdGE9V3pFME16QXdOU3dpYm1seGFXRjZjWE16WWpRME1HTmpa
-MnMwWXpSck5EUnpPRzlqWjJOcll6UWlMQ0kxT0NJc0ltRmtNR05tT1dRNU56SmhOU0lzWm1Gc2My
-VmQpCltEZXphYm9uYXJlXShodHRwczovL2Vrb2dyb3VwLmNvbS5ybz9tYWlscG9ldF9yb3V0ZXIm
-ZW5kcG9pbnQ9dHJhY2smYWN0aW9uPWNsaWNrJmRhdGE9V3pFME16QXdOU3dpYm1seGFXRjZjWE16
-WWpRME1HTmpaMnMwWXpSck5EUnpPRzlqWjJOcll6UWlMQ0kxT0NJc0ltTmpaR1U1WkdSa056YzFZ
-aUlzWm1Gc2MyVmQpIHwgW0FkbWluaXN0cmVhesSDLcibaSBhYm9uYW1lbnR1bF0oaHR0cHM6Ly9l
-a29ncm91cC5jb20ucm8/bWFpbHBvZXRfcm91dGVyJmVuZHBvaW50PXRyYWNrJmFjdGlvbj1jbGlj
-ayZkYXRhPVd6RTBNekF3TlN3aWJtbHhhV0Y2Y1hNellqUTBNR05qWjJzMFl6UnJORFJ6T0c5aloy
-TnJZelFpTENJMU9DSXNJamcxWWprd1lXRTFZV00zTmlJc1ptRnNjMlZkKQoKb2ZmaWNlQGVrby1w
-cm9tby5ybwp3d3cuZWtvLXByb21vLnJvCgpbRmFybWVyc01hcmtldC1Cb3R0b21dCgpfX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpWOWZzLWRldmVsb3BlciBt
-YWlsaW5nIGxpc3QKVjlmcy1kZXZlbG9wZXJAbGlzdHMuc291cmNlZm9yZ2UubmV0Cmh0dHBzOi8v
-bGlzdHMuc291cmNlZm9yZ2UubmV0L2xpc3RzL2xpc3RpbmZvL3Y5ZnMtZGV2ZWxvcGVyCg==
+having a readahead of 128k with a msize of 128k (with overhead) lead to
+reading 124+4k everytime, making two roundtrips needlessly.
+
+tune readahead according to msize when cache is enabled for better
+performance
+
+Signed-off-by: Dominique Martinet <asmadeus@codewreck.org>
+---
+ fs/9p/vfs_super.c | 3 +++
+ 1 file changed, 3 insertions(+)
+
+diff --git a/fs/9p/vfs_super.c b/fs/9p/vfs_super.c
+index c6028af51925..b0632f4e337f 100644
+--- a/fs/9p/vfs_super.c
++++ b/fs/9p/vfs_super.c
+@@ -79,6 +79,9 @@ v9fs_fill_super(struct super_block *sb, struct v9fs_session_info *v9ses,
+ 	if (!v9ses->cache) {
+ 		sb->s_bdi->ra_pages = 0;
+ 		sb->s_bdi->io_pages = 0;
++	} else {
++		sb->s_bdi->ra_pages = v9ses->maxdata >> PAGE_SHIFT;
++		sb->s_bdi->io_pages = v9ses->maxdata >> PAGE_SHIFT;
+ 	}
+ 
+ 	sb->s_flags |= SB_ACTIVE | SB_DIRSYNC;
+-- 
+2.31.1
+
+
+
+_______________________________________________
+V9fs-developer mailing list
+V9fs-developer@lists.sourceforge.net
+https://lists.sourceforge.net/lists/listinfo/v9fs-developer
