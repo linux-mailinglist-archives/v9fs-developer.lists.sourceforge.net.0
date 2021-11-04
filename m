@@ -2,95 +2,100 @@ Return-Path: <v9fs-developer-bounces@lists.sourceforge.net>
 X-Original-To: lists+v9fs-developer@lfdr.de
 Delivered-To: lists+v9fs-developer@lfdr.de
 Received: from lists.sourceforge.net (lists.sourceforge.net [216.105.38.7])
-	by mail.lfdr.de (Postfix) with ESMTPS id 869E2445298
-	for <lists+v9fs-developer@lfdr.de>; Thu,  4 Nov 2021 13:03:47 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 9AE2B44555E
+	for <lists+v9fs-developer@lfdr.de>; Thu,  4 Nov 2021 15:33:08 +0100 (CET)
 Received: from [127.0.0.1] (helo=sfs-ml-4.v29.lw.sourceforge.com)
 	by sfs-ml-4.v29.lw.sourceforge.com with esmtp (Exim 4.94.2)
 	(envelope-from <v9fs-developer-bounces@lists.sourceforge.net>)
-	id 1mibT6-0005rk-8k; Thu, 04 Nov 2021 12:03:44 +0000
+	id 1midne-0005Nz-7d; Thu, 04 Nov 2021 14:33:06 +0000
 Received: from [172.30.20.202] (helo=mx.sourceforge.net)
  by sfs-ml-4.v29.lw.sourceforge.com with esmtps (TLS1.2) tls
  TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384 (Exim 4.94.2)
- (envelope-from <asmadeus@codewreck.org>) id 1mibT4-0005re-Oi
- for v9fs-developer@lists.sourceforge.net; Thu, 04 Nov 2021 12:03:42 +0000
+ (envelope-from <dhowells@redhat.com>) id 1midnS-0005NL-UL
+ for v9fs-developer@lists.sourceforge.net; Thu, 04 Nov 2021 14:32:54 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=sourceforge.net; s=x; h=Content-Transfer-Encoding:MIME-Version:Message-Id:
- Date:Subject:Cc:To:From:Sender:Reply-To:Content-Type:Content-ID:
- Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
- :Resent-Message-ID:In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:
- List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=xEp8eFxtEqQ43xgpMlcvKwbaMDG5dHvhWTnvg8NkLBw=; b=ix2BpS01YINMVIKkSHRVOFDEch
- 8UUZzTkoHxok62QOt66VHqQ+tCchX38mNmvNxhxxBTJ39eA5Chc4hKLQBUUVngXXL6CcKcQg5Rljn
- 1Q6Kb0X3DBofGELhWUoAFL1Qj4muR5JFV1RFTksRYnhevht4zQNkEWVoCBrGfxMiGKDg=;
+ d=sourceforge.net; s=x; h=Message-ID:Date:Content-Transfer-Encoding:
+ Content-ID:Content-Type:MIME-Version:Subject:Cc:To:References:In-Reply-To:
+ From:Sender:Reply-To:Content-Description:Resent-Date:Resent-From:
+ Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:
+ List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
+ bh=OPjgKPP44SXIrxLx8CNgjbtemUL2QQQynBIl4LnWo2g=; b=W7Wxnm6pTkPrsunghnP5Ocunyu
+ v193Y4k40vgI95TLMKi7ccse6D7BUifhp2oqM26Yq8RYKXI745gtCmyyqzWJQkTaoBPts41t4Lio2
+ 7mc/w3713AFbVCCpT4ote0ni/ygGr4pccHaGFglbhLymBDXjCj1XyaEsaxIxnZ7nMtaE=;
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  ;
- h=Content-Transfer-Encoding:MIME-Version:Message-Id:Date:Subject:Cc:To:From
- :Sender:Reply-To:Content-Type:Content-ID:Content-Description:Resent-Date:
- Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:
- References:List-Id:List-Help:List-Unsubscribe:List-Subscribe:List-Post:
- List-Owner:List-Archive; bh=xEp8eFxtEqQ43xgpMlcvKwbaMDG5dHvhWTnvg8NkLBw=; b=D
- w9tehfd7FjVj4Ku6OiRaCvKqu7TXDFTtJOlpd3h5LS72pBRXlL3kGvQOB2KmkBcRZqRCdESRE4HXA
- t7UruUSLejeWfsMdLrgFzJyvp3JYjP8AAOpuAYlI/NxyO1uGgMCFcmRPZGU5r/+RfRaI78L3JZh3j
- m3GSyS1wDe3U3GSU=;
-Received: from nautica.notk.org ([91.121.71.147])
- by sfi-mx-2.v28.lw.sourceforge.com with esmtps
+ h=Message-ID:Date:Content-Transfer-Encoding:Content-ID:Content-Type:
+ MIME-Version:Subject:Cc:To:References:In-Reply-To:From:Sender:Reply-To:
+ Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
+ :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
+ List-Post:List-Owner:List-Archive;
+ bh=OPjgKPP44SXIrxLx8CNgjbtemUL2QQQynBIl4LnWo2g=; b=EnIM+O6/1X5UNy9KyaYJMObd4o
+ sVKnbmrbr1LMFAn0vYIw2Q6qRwGaGRMJydaI+0IhjAeGmgHBC9pp1JesqTDlwSQGInSD8FY4AFXs+
+ NBmoT2ATgcLkji4fuozLZxl87qoSurxskUya7ixWmhElcUtRaQJkZu7qVuOKivqVgNGI=;
+Received: from us-smtp-delivery-124.mimecast.com ([216.205.24.124])
+ by sfi-mx-1.v28.lw.sourceforge.com with esmtps
  (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.92.3)
- id 1mibT2-0000FX-HR
- for v9fs-developer@lists.sourceforge.net; Thu, 04 Nov 2021 12:03:42 +0000
-Received: by nautica.notk.org (Postfix, from userid 108)
- id A087FC01C; Thu,  4 Nov 2021 13:03:33 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=codewreck.org; s=2;
- t=1636027413; bh=xEp8eFxtEqQ43xgpMlcvKwbaMDG5dHvhWTnvg8NkLBw=;
- h=From:To:Cc:Subject:Date:From;
- b=DBioh2kBx6je4xU5+OgqXNFWzSjw79Xsx0zjPANwMBeA2Ng2KvVEf62E3GRbKHMYn
- aZgPaHFw/JJxOUfwpqdhrSJTEg7KC0K3tarzpjrwU9W9u//kTXKR6+wJ5IabYj9c05
- KFHm87wASIlDv+SNer4blwYIbBudpRnRYKGwiIngpQnyq0+xxToiXCBrL9dc66JGFI
- OeLCuZpUifIGL7IfkG8bt+L/BLT4YsXDdpR6HdBnuT/qydd7HfoNLwz1rTSQhD09ft
- s3q4Pc0GCiyEHq5sRz7h6Tq+Mu6BJrGEBEJBbrYSMyugLkaA8PxHpXnlaSTmBKqnMg
- d6igRQkCvyg3w==
-X-Spam-Checker-Version: SpamAssassin 3.3.2 (2011-06-06) on nautica.notk.org
-X-Spam-Level: 
-X-Spam-Status: No, score=0.0 required=5.0 tests=UNPARSEABLE_RELAY
- autolearn=unavailable version=3.3.2
-Received: from odin.codewreck.org (localhost [127.0.0.1])
- by nautica.notk.org (Postfix) with ESMTPS id 2F842C009;
- Thu,  4 Nov 2021 13:03:30 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=codewreck.org; s=2;
- t=1636027412; bh=xEp8eFxtEqQ43xgpMlcvKwbaMDG5dHvhWTnvg8NkLBw=;
- h=From:To:Cc:Subject:Date:From;
- b=HiYHZzGwd0llRNmCIWnxzCGSuip8RAMEY2pKPvXvtE+nHShoQBGO5TKng2Ls+KWhA
- nj10x0d4LTLtGvpn819JD3JVlB6OXovKoZAUCueEY784x168gwJPX/mU2YIBO37MDb
- d8WOarI02Pb2G7lS6AgAOzAbU0lLss1aoxNh6r6rBA6Ph+2sN5Nrm6Ci9GJQ9QnH0X
- z0bmYtkRiZkcscOOwXx/n5eurvXu3kIptQaCxY9UwPFW4dcIqPeDjhnCNGTcDmwqJy
- ygqbmWKT5KyA8aXhbwyf6zRej+Hsi6w+goOCNv4oxN7QWNfor3poDIBcYLp4pBbM9t
- /HNuxPGK59LGg==
-Received: from localhost (odin.codewreck.org [local])
- by odin.codewreck.org (OpenSMTPD) with ESMTPA id ffda33dd;
- Thu, 4 Nov 2021 12:03:27 +0000 (UTC)
-From: Dominique Martinet <asmadeus@codewreck.org>
-To: v9fs-developer@lists.sourceforge.net
-Date: Thu,  4 Nov 2021 21:03:23 +0900
-Message-Id: <20211104120323.2189376-1-asmadeus@codewreck.org>
-X-Mailer: git-send-email 2.32.0
+ id 1midnL-001VaT-D4
+ for v9fs-developer@lists.sourceforge.net; Thu, 04 Nov 2021 14:32:51 +0000
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+ s=mimecast20190719; t=1636036360;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references;
+ bh=OPjgKPP44SXIrxLx8CNgjbtemUL2QQQynBIl4LnWo2g=;
+ b=HhWKadzg/tLnrtT+RskucLhmJhKnJHdP41++LpzMlJ2wiXu4FWBsN+IHAg+ygmt8gWM4eD
+ eH0lXZ94KOabjqsotct2l4uAmECMXUvE7a9y3jRy7sbuDrMBNOYrq+Wdvw2yzUM77v+WGh
+ bxoz6WofEPzCdK+aY+CZyty4urm8a/Q=
+Received: from mimecast-mx01.redhat.com (mimecast-mx01.redhat.com
+ [209.132.183.4]) (Using TLS) by relay.mimecast.com with ESMTP id
+ us-mta-321-jIvx4JasMH27MVkeYdVBDA-1; Thu, 04 Nov 2021 10:32:37 -0400
+X-MC-Unique: jIvx4JasMH27MVkeYdVBDA-1
+Received: from smtp.corp.redhat.com (int-mx05.intmail.prod.int.phx2.redhat.com
+ [10.5.11.15])
+ (using TLSv1.2 with cipher AECDH-AES256-SHA (256/256 bits))
+ (No client certificate requested)
+ by mimecast-mx01.redhat.com (Postfix) with ESMTPS id 5890F87D548;
+ Thu,  4 Nov 2021 14:32:35 +0000 (UTC)
+Received: from warthog.procyon.org.uk (unknown [10.33.36.144])
+ by smtp.corp.redhat.com (Postfix) with ESMTP id 22BD856A94;
+ Thu,  4 Nov 2021 14:32:18 +0000 (UTC)
+Organization: Red Hat UK Ltd. Registered Address: Red Hat UK Ltd, Amberley
+ Place, 107-111 Peascod Street, Windsor, Berkshire, SI4 1TE, United
+ Kingdom.
+ Registered in England and Wales under Company Registration No. 3798903
+From: David Howells <dhowells@redhat.com>
+In-Reply-To: <YYK4YKCnDyoJx5eW@casper.infradead.org>
+References: <YYK4YKCnDyoJx5eW@casper.infradead.org>
+ <YYKa3bfQZxK5/wDN@casper.infradead.org>
+ <163584174921.4023316.8927114426959755223.stgit@warthog.procyon.org.uk>
+ <163584187452.4023316.500389675405550116.stgit@warthog.procyon.org.uk>
+ <1038257.1635951492@warthog.procyon.org.uk>
+To: Matthew Wilcox <willy@infradead.org>
 MIME-Version: 1.0
-X-Spam-Score: -0.2 (/)
+Content-ID: <1760414.1636036338.1@warthog.procyon.org.uk>
+Date: Thu, 04 Nov 2021 14:32:18 +0000
+Message-ID: <1760415.1636036338@warthog.procyon.org.uk>
+X-Scanned-By: MIMEDefang 2.79 on 10.5.11.15
+X-Spam-Score: -1.6 (-)
 X-Spam-Report: Spam detection software,
  running on the system "util-spamd-1.v13.lw.sourceforge.com", 
  has NOT identified this incoming email as spam.  The original
  message has been attached to this so you can view it or label
  similar future email.  If you have any questions, see
  the administrator of that system for details.
- Content preview: having a readahead of 128k with a msize of 128k (with
- overhead)
- lead to reading 124+4k everytime, making two roundtrips needlessly. tune
- readahead according to msize when cache is enabled for better performance 
- Content analysis details:   (-0.2 points, 6.0 required)
+ Content preview:  Matthew Wilcox <willy@infradead.org> wrote: > On Wed, Nov
+ 03, 2021 at 02:58:12PM +0000,
+ David Howells wrote: > > Matthew Wilcox <willy@infradead.org>
+ wrote: > > > > > > + len = (size >= start + gran) ? gran : size - start;
+ > > > > > > This seem [...] 
+ Content analysis details:   (-1.6 points, 6.0 required)
  pts rule name              description
  ---- ---------------------- --------------------------------------------------
- 0.0 URIBL_BLOCKED          ADMINISTRATOR NOTICE: The query to URIBL was
- blocked.  See
- http://wiki.apache.org/spamassassin/DnsBlocklists#dnsbl-block
- for more information. [URIs: codewreck.org]
+ -0.7 RCVD_IN_DNSWL_LOW      RBL: Sender listed at https://www.dnswl.org/,
+ low trust [216.205.24.124 listed in list.dnswl.org]
+ -0.0 RCVD_IN_MSPIKE_H2      RBL: Average reputation (+2)
+ [216.205.24.124 listed in wl.mailspike.net]
  0.0 SPF_HELO_NONE          SPF: HELO does not publish an SPF Record
  -0.0 SPF_PASS               SPF: sender matches SPF record
  -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
@@ -100,11 +105,9 @@ X-Spam-Report: Spam detection software,
  author's domain
  -0.1 DKIM_VALID_EF          Message has a valid DKIM or DK signature from
  envelope-from domain
- 0.0 UNPARSEABLE_RELAY      Informational: message has unparseable relay
- lines
-X-Headers-End: 1mibT2-0000FX-HR
-Subject: [V9fs-developer] [PATCH] 9p: set readahead and io size according to
- maxsize
+ -0.7 DKIMWL_WL_HIGH         DKIMwl.org - High trust sender
+X-Headers-End: 1midnL-001VaT-D4
+Subject: Re: [V9fs-developer] [PATCH v3 5/6] netfs, 9p, afs, ceph: Use folios
 X-BeenThere: v9fs-developer@lists.sourceforge.net
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -116,39 +119,56 @@ List-Post: <mailto:v9fs-developer@lists.sourceforge.net>
 List-Help: <mailto:v9fs-developer-request@lists.sourceforge.net?subject=help>
 List-Subscribe: <https://lists.sourceforge.net/lists/listinfo/v9fs-developer>, 
  <mailto:v9fs-developer-request@lists.sourceforge.net?subject=subscribe>
-Cc: Latchesar Ionkov <lucho@ionkov.net>, Eric Van Hensbergen <ericvh@gmail.com>,
- linux-kernel@vger.kernel.org
+Cc: linux-cifs@vger.kernel.org, linux-nfs@vger.kernel.org, linux-mm@kvack.org,
+ Jeff Layton <jlayton@kernel.org>, linux-kernel@vger.kernel.org,
+ dhowells@redhat.com, linux-fsdevel@vger.kernel.org, ceph-devel@vger.kernel.org,
+ linux-cachefs@redhat.com, Marc Dionne <marc.dionne@auristor.com>,
+ v9fs-developer@lists.sourceforge.net, Ilya Dryomov <idryomov@gmail.com>,
+ linux-afs@lists.infradead.org, devel@lists.orangefs.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: v9fs-developer-bounces@lists.sourceforge.net
 
-having a readahead of 128k with a msize of 128k (with overhead) lead to
-reading 124+4k everytime, making two roundtrips needlessly.
+Matthew Wilcox <willy@infradead.org> wrote:
 
-tune readahead according to msize when cache is enabled for better
-performance
+> On Wed, Nov 03, 2021 at 02:58:12PM +0000, David Howells wrote:
+> > Matthew Wilcox <willy@infradead.org> wrote:
+> > 
+> > > > +	len = (size >= start + gran) ? gran : size - start;
+> > > 
+> > > This seems like the most complicated way to write this ... how about:
+> > > 
+> > >         size_t len = min_t(loff_t, isize - start, folio_size(folio));
+> > 
+> > I was trying to hedge against isize-start going negative.  Can this code race
+> > against truncate?  truncate_setsize() changes i_size *before* invalidating the
+> > pages.
+> 
+> We should check for isize < start separately, and skip the writeback
+> entirely.
 
-Signed-off-by: Dominique Martinet <asmadeus@codewreck.org>
----
- fs/9p/vfs_super.c | 3 +++
- 1 file changed, 3 insertions(+)
+So, something like the following
 
-diff --git a/fs/9p/vfs_super.c b/fs/9p/vfs_super.c
-index c6028af51925..b0632f4e337f 100644
---- a/fs/9p/vfs_super.c
-+++ b/fs/9p/vfs_super.c
-@@ -79,6 +79,9 @@ v9fs_fill_super(struct super_block *sb, struct v9fs_session_info *v9ses,
- 	if (!v9ses->cache) {
- 		sb->s_bdi->ra_pages = 0;
- 		sb->s_bdi->io_pages = 0;
-+	} else {
-+		sb->s_bdi->ra_pages = v9ses->maxdata >> PAGE_SHIFT;
-+		sb->s_bdi->io_pages = v9ses->maxdata >> PAGE_SHIFT;
- 	}
- 
- 	sb->s_flags |= SB_ACTIVE | SB_DIRSYNC;
--- 
-2.31.1
+	static int v9fs_vfs_write_folio_locked(struct folio *folio)
+	{
+		struct inode *inode = folio_inode(folio);
+		struct v9fs_inode *v9inode = V9FS_I(inode);
+		loff_t start = folio_pos(folio);
+		loff_t i_size = i_size_read(inode);
+		struct iov_iter from;
+		size_t len = folio_size(folio);
+		int err;
+
+		if (start >= i_size)
+			return 0; /* Simultaneous truncation occurred */
+
+		len = min_t(loff_t, i_size - start, len);
+
+		iov_iter_xarray(&from, ..., start, len);
+		...
+	}
+
+David
 
 
 
