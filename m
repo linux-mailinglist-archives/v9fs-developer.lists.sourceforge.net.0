@@ -2,26 +2,26 @@ Return-Path: <v9fs-developer-bounces@lists.sourceforge.net>
 X-Original-To: lists+v9fs-developer@lfdr.de
 Delivered-To: lists+v9fs-developer@lfdr.de
 Received: from lists.sourceforge.net (lists.sourceforge.net [216.105.38.7])
-	by mail.lfdr.de (Postfix) with ESMTPS id B0927449BFD
-	for <lists+v9fs-developer@lfdr.de>; Mon,  8 Nov 2021 19:50:52 +0100 (CET)
-Received: from [127.0.0.1] (helo=sfs-ml-4.v29.lw.sourceforge.com)
-	by sfs-ml-4.v29.lw.sourceforge.com with esmtp (Exim 4.94.2)
+	by mail.lfdr.de (Postfix) with ESMTPS id 10303449EB0
+	for <lists+v9fs-developer@lfdr.de>; Mon,  8 Nov 2021 23:32:30 +0100 (CET)
+Received: from [127.0.0.1] (helo=sfs-ml-2.v29.lw.sourceforge.com)
+	by sfs-ml-2.v29.lw.sourceforge.com with esmtp (Exim 4.94.2)
 	(envelope-from <v9fs-developer-bounces@lists.sourceforge.net>)
-	id 1mk9jG-0007g1-73; Mon, 08 Nov 2021 18:50:50 +0000
+	id 1mkDBj-0004hp-NC; Mon, 08 Nov 2021 22:32:27 +0000
 Received: from [172.30.20.202] (helo=mx.sourceforge.net)
- by sfs-ml-4.v29.lw.sourceforge.com with esmtps (TLS1.2) tls
+ by sfs-ml-2.v29.lw.sourceforge.com with esmtps (TLS1.2) tls
  TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384 (Exim 4.94.2)
- (envelope-from <linux@weissschuh.net>) id 1mk9jE-0007fv-Ef
- for v9fs-developer@lists.sourceforge.net; Mon, 08 Nov 2021 18:50:48 +0000
+ (envelope-from <asmadeus@codewreck.org>) id 1mkDBi-0004hj-C2
+ for v9fs-developer@lists.sourceforge.net; Mon, 08 Nov 2021 22:32:26 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
  d=sourceforge.net; s=x; h=In-Reply-To:Content-Transfer-Encoding:Content-Type:
  MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Sender:Reply-To:
  Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
  Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
  List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=z00A43K3LCe5IH/2fEoUqJj7f2Dd16xMECNnuAExluI=; b=FRNbS79N8ke0JR9sq7DHLWDHJ8
- O4z8YIbZ2b5MAxMETI39DiC4UqR+A2j1C8VkjbUGkBd/ERb1O52JTqBv1EJcg5NHBCnOGd58i1bOt
- UHtjFJBWkNqrDWcw9+l2RmoQMLFgM6zsneKFu2aYjZ8JTfUyPqIq3zslbxaMxYK7PzaI=;
+ bh=zud7OdEIkTpD43LRPIbRcXq7+R/QWPBlGp1XNQjDQTw=; b=aBCaYLwtyxYuYWX5QcoyDry+7k
+ 4MKGqhadnJBn6i/9eqnx2Z7tEvypS5Cfc1HIq1jDdoYfeJSqVwUMlv5IGWrRToHjlzKF1fQ2mFIM2
+ daoxF/Lz8Nd+3PCEWizIQ9mRjrpT0SjFL5T8FDXLcII9KKf7rFnRTwEpi/y0VHOShKOU=;
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  ;
  h=In-Reply-To:Content-Transfer-Encoding:Content-Type:MIME-Version:
@@ -29,33 +29,54 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
  :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
  List-Post:List-Owner:List-Archive;
- bh=z00A43K3LCe5IH/2fEoUqJj7f2Dd16xMECNnuAExluI=; b=Suu/2iSBJX5zhGiEMACTELWGxe
- g9cQ0GQGhGtkTMc0xBdMGAzFd3i725btnfF5xRiolVyxUIjfkzDF4Fzjbib8Ili7AqJzwCYK5eDjI
- 2+Wg8iAae3jFK+GEVs/H0oFWoKbBCnVavdaXtNoRgmV6SgbNy529NE4fe6B2dQ3CbmHY=;
-Received: from todd.t-8ch.de ([159.69.126.157])
- by sfi-mx-1.v28.lw.sourceforge.com with esmtps
+ bh=zud7OdEIkTpD43LRPIbRcXq7+R/QWPBlGp1XNQjDQTw=; b=NME3dSjbb51QnOnMxBVJGy6z0F
+ HtLzaZ47GknCSs9uxMpfk7Msqy2OMoYi5WLwCR5uBrL0M5puMPsB/XrJqYpQNzaeVoQWqtbdobevd
+ QHNmI03mRlahSafWIgQK3CgQAzBItYXBu2jEm7ZtAaFN614fZh4T0v2gHaClSAmfCfqg=;
+Received: from nautica.notk.org ([91.121.71.147])
+ by sfi-mx-2.v28.lw.sourceforge.com with esmtps
  (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.92.3)
- id 1mk9jC-006Nfq-0N
- for v9fs-developer@lists.sourceforge.net; Mon, 08 Nov 2021 18:50:48 +0000
-Date: Mon, 8 Nov 2021 19:50:34 +0100
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=weissschuh.net;
- s=mail; t=1636397436;
- bh=L6MFlY7fncI7DTAhySExlSyQ36N0y6PwyRwcayAnt6s=;
+ id 1mkDBf-0002GP-82
+ for v9fs-developer@lists.sourceforge.net; Mon, 08 Nov 2021 22:32:26 +0000
+Received: by nautica.notk.org (Postfix, from userid 108)
+ id 147D6C01D; Mon,  8 Nov 2021 23:32:14 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=codewreck.org; s=2;
+ t=1636410734; bh=zud7OdEIkTpD43LRPIbRcXq7+R/QWPBlGp1XNQjDQTw=;
  h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
- b=ATxD+/7NQrBK6w98+St8hye1dyDqJ/XVefzz3A+E4wsY/9IPnPcEuie7Bx8TdpWPk
- 4J+viPttbySzEI1AQl+GCBK8rdPh9ml/P3cCzMXsdQE5e1rtNKA2oja7w51XSXuTau
- 3SrTnH6BZR2VbxLua9Vr1Ycbxmyv6lrMv4SP2qXU=
-From: Thomas =?utf-8?Q?Wei=C3=9Fschuh?= <linux@weissschuh.net>
-To: Dominique Martinet <asmadeus@codewreck.org>
-Message-ID: <c2a33fa1-30b0-4f19-808f-3bd0316a4ed8@t-8ch.de>
+ b=YSwAC1Ld+GyuvCjOOo79KBMLWXQ3WMg7p2uSSU+bRtTDPRue+1gwnrlcZOQzZHgwr
+ oczWHEQL4oGs5Tc11NNNhWdgTks1dtDYuD5pbjWGXTX0c0PN6xgfXNGQs6/CGleEHf
+ KbQOvDle99VCOpwv4vIJS2dSKmyvYPaGfT5d3ecJafBXu3jY+GP1QVDalAN7/ifF6H
+ UbMticei3nPs9E6vN47PToiFTf9OHrfjGQ21rBcMHjUFDASmZ4U47TJzFn1Aveuvnm
+ yqbad62IFy8ZzjvAvPYr8hLIZ3HSE2FrmSHj6YGY7bS7yqIjKLn2jh0S4aIgUo7Xt/
+ sBkZkVqYthxGg==
+X-Spam-Checker-Version: SpamAssassin 3.3.2 (2011-06-06) on nautica.notk.org
+X-Spam-Level: 
+X-Spam-Status: No, score=0.0 required=5.0 tests=UNPARSEABLE_RELAY
+ autolearn=unavailable version=3.3.2
+Received: from odin.codewreck.org (localhost [127.0.0.1])
+ by nautica.notk.org (Postfix) with ESMTPS id DD4FFC009;
+ Mon,  8 Nov 2021 23:32:10 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=codewreck.org; s=2;
+ t=1636410733; bh=zud7OdEIkTpD43LRPIbRcXq7+R/QWPBlGp1XNQjDQTw=;
+ h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+ b=pfnrVCuPOHphpsheOYkQIMC63MpA6sG2wtcv+JDOBIQenja8mFJvwh06DRVXs9wPm
+ SpiE6EnhQJqz2kJDsaMgxBWt0xOm9DDSV16INlsPlAtYJCOb7gw0CLRoBo1cJeiHz8
+ 9I2UR2d7aPpr3p9O0R5uKXzn14r5dBQiO8Vfi/MucEwuGrxNMC9Sme0afi/l2fBlFc
+ 0wPe7KNArqacoQ6yzKSAROyqDJlKHS5QWnkq05z+A53w7B5GF+xEQetsstLN9nAxXJ
+ RgI6fXUBnwufQlCGYPzx46MqBZYVcE48Un3fhZ9LR5gCUijbpibjCzWByCh/OkMIDQ
+ Jl6u2lYAhrbDg==
+Received: from localhost (odin.codewreck.org [local])
+ by odin.codewreck.org (OpenSMTPD) with ESMTPA id e697cf90;
+ Mon, 8 Nov 2021 22:32:08 +0000 (UTC)
+Date: Tue, 9 Nov 2021 07:31:52 +0900
+From: Dominique Martinet <asmadeus@codewreck.org>
+To: Thomas =?utf-8?Q?Wei=C3=9Fschuh?= <linux@weissschuh.net>
+Message-ID: <YYmlWC9k9jU/JXri@codewreck.org>
 References: <20211103193823.111007-1-linux@weissschuh.net>
  <20211103193823.111007-5-linux@weissschuh.net>
+ <c2a33fa1-30b0-4f19-808f-3bd0316a4ed8@t-8ch.de>
 MIME-Version: 1.0
 Content-Disposition: inline
-In-Reply-To: <20211103193823.111007-5-linux@weissschuh.net>
-Jabber-ID: thomas@t-8ch.de
-X-Accept: text/plain, text/html;q=0.2, text/*;q=0.1
-X-Accept-Language: en-us, en;q=0.8, de-de;q=0.7, de;q=0.6
+In-Reply-To: <c2a33fa1-30b0-4f19-808f-3bd0316a4ed8@t-8ch.de>
 X-Spam-Score: -0.2 (/)
 X-Spam-Report: Spam detection software, running on the system "util-spamd-1.v13.lw.sourceforge.com",
  has NOT identified this incoming email as spam.  The original
@@ -63,10 +84,10 @@ X-Spam-Report: Spam detection software, running on the system "util-spamd-1.v13.
  similar future email.  If you have any questions, see
  the administrator of that system for details.
  
- Content preview:  Hi Dominique, On 2021-11-03 20:38+0100, Thomas Weißschuh
-   wrote: > Now that all transports are split into modules it may happen that
-    no > transports are registered when v9fs_get_default_trans() is called. >
-    When th [...] 
+ Content preview:  Hi, Thomas Weißschuh wrote on Mon, Nov 08, 2021 at 07:50:34PM
+    +0100: > I did not notice that you already had applied "net/9p: autoload
+   transport modules" > to your tree when sending this series. > > Plea [...]
+    
  
  Content analysis details:   (-0.2 points, 6.0 required)
  
@@ -81,7 +102,9 @@ X-Spam-Report: Spam detection software, running on the system "util-spamd-1.v13.
                              author's domain
  -0.1 DKIM_VALID_EF          Message has a valid DKIM or DK signature from
                              envelope-from domain
-X-Headers-End: 1mk9jC-006Nfq-0N
+  0.0 UNPARSEABLE_RELAY      Informational: message has unparseable relay
+                             lines
+X-Headers-End: 1mkDBf-0002GP-82
 Subject: Re: [V9fs-developer] [PATCH v2 4/4] net/p9: load default transports
 X-BeenThere: v9fs-developer@lists.sourceforge.net
 X-Mailman-Version: 2.1.21
@@ -102,40 +125,20 @@ Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: base64
 Errors-To: v9fs-developer-bounces@lists.sourceforge.net
 
-SGkgRG9taW5pcXVlLAoKT24gMjAyMS0xMS0wMyAyMDozOCswMTAwLCBUaG9tYXMgV2Vpw59zY2h1
-aCB3cm90ZToKPiBOb3cgdGhhdCBhbGwgdHJhbnNwb3J0cyBhcmUgc3BsaXQgaW50byBtb2R1bGVz
-IGl0IG1heSBoYXBwZW4gdGhhdCBubwo+IHRyYW5zcG9ydHMgYXJlIHJlZ2lzdGVyZWQgd2hlbiB2
-OWZzX2dldF9kZWZhdWx0X3RyYW5zKCkgaXMgY2FsbGVkLgo+IFdoZW4gdGhhdCBpcyB0aGUgY2Fz
-ZSB0cnkgdG8gbG9hZCBtb3JlIHRyYW5zcG9ydHMgZnJvbSBtb2R1bGVzLgo+IAo+IFNpZ25lZC1v
-ZmYtYnk6IFRob21hcyBXZWnDn3NjaHVoIDxsaW51eEB3ZWlzc3NjaHVoLm5ldD4KPiAtLS0KPiAg
-bmV0LzlwL21vZC5jIHwgOSArKysrKysrKysKPiAgMSBmaWxlIGNoYW5nZWQsIDkgaW5zZXJ0aW9u
-cygrKQo+IAo+IGRpZmYgLS1naXQgYS9uZXQvOXAvbW9kLmMgYi9uZXQvOXAvbW9kLmMKPiBpbmRl
-eCA4ZjFkMDY3YjI3MmUuLjdiYjg3NWNkMjc5ZiAxMDA2NDQKPiAtLS0gYS9uZXQvOXAvbW9kLmMK
-PiArKysgYi9uZXQvOXAvbW9kLmMKPiBAQCAtMTI4LDYgKzEyOCwxMCBAQCBzdHJ1Y3QgcDlfdHJh
-bnNfbW9kdWxlICp2OWZzX2dldF90cmFuc19ieV9uYW1lKGNvbnN0IGNoYXIgKnMpCj4gIH0KPiAg
-RVhQT1JUX1NZTUJPTCh2OWZzX2dldF90cmFuc19ieV9uYW1lKTsKPiAgCj4gK3N0YXRpYyBjb25z
-dCBjaGFyICogY29uc3Qgdjlmc19kZWZhdWx0X3RyYW5zcG9ydHNbXSA9IHsKPiArCSJ2aXJ0aW8i
-LCAidGNwIiwgImZkIiwgInVuaXgiLCAieGVuIiwgInJkbWEiLAo+ICt9Owo+ICsKPiAgLyoqCj4g
-ICAqIHY5ZnNfZ2V0X2RlZmF1bHRfdHJhbnMgLSBnZXQgdGhlIGRlZmF1bHQgdHJhbnNwb3J0Cj4g
-ICAqCj4gQEAgLTEzNiw2ICsxNDAsNyBAQCBFWFBPUlRfU1lNQk9MKHY5ZnNfZ2V0X3RyYW5zX2J5
-X25hbWUpOwo+ICBzdHJ1Y3QgcDlfdHJhbnNfbW9kdWxlICp2OWZzX2dldF9kZWZhdWx0X3RyYW5z
-KHZvaWQpCj4gIHsKPiAgCXN0cnVjdCBwOV90cmFuc19tb2R1bGUgKnQsICpmb3VuZCA9IE5VTEw7
-Cj4gKwlpbnQgaTsKPiAgCj4gIAlzcGluX2xvY2soJnY5ZnNfdHJhbnNfbG9jayk7Cj4gIAo+IEBA
-IC0xNTMsNiArMTU4LDEwIEBAIHN0cnVjdCBwOV90cmFuc19tb2R1bGUgKnY5ZnNfZ2V0X2RlZmF1
-bHRfdHJhbnModm9pZCkKPiAgCQkJfQo+ICAKPiAgCXNwaW5fdW5sb2NrKCZ2OWZzX3RyYW5zX2xv
-Y2spOwo+ICsKPiArCWZvciAoaSA9IDA7ICFmb3VuZCAmJiBpIDwgQVJSQVlfU0laRSh2OWZzX2Rl
-ZmF1bHRfdHJhbnNwb3J0cyk7IGkrKykKPiArCQlmb3VuZCA9IHY5ZnNfZ2V0X3RyYW5zX2J5X25h
-bWUodjlmc19kZWZhdWx0X3RyYW5zcG9ydHNbaV0pOwo+ICsKPiAgCXJldHVybiBmb3VuZDsKPiAg
-fQo+ICBFWFBPUlRfU1lNQk9MKHY5ZnNfZ2V0X2RlZmF1bHRfdHJhbnMpOwo+IC0tIAo+IDIuMzMu
-MQoKSSBkaWQgbm90IG5vdGljZSB0aGF0IHlvdSBhbHJlYWR5IGhhZCBhcHBsaWVkICJuZXQvOXA6
-IGF1dG9sb2FkIHRyYW5zcG9ydCBtb2R1bGVzIgp0byB5b3VyIHRyZWUgd2hlbiBzZW5kaW5nIHRo
-aXMgc2VyaWVzLgoKUGxlYXNlIG5vdGUgdGhhdCBpbiB0aGlzIHNlcmllcyBJIG1vZGlmaWVkIHBh
-dGNoIDEgYSBiaXQsIGZyb20gdGhlIG9ueSB5b3UKYXBwbGllZCwgdG8gcHJldmVudCB3YXJuaW5n
-cyBpbiBwYXRjaCA0LgpDb25jcmV0ZWx5IEkgbW9kaWZpZWQgdGhlIHByb3RvdHlwZXMgb2YgYHY5
-ZnNfZ2V0X3RyYW5zX2J5X25hbWUoKWAgYW5kCmBfcDlfZ2V0X3RyYW5zX2J5X25hbWUoKWAgdG8g
-dGFrZSBjb25zdCBwYXJhbWV0ZXJzLgoKRmVlbCBmcmVlIHRvIHJvbGwgdGhvc2UgY2hhbmdlcyBp
-bnRvIHRoaXMgcGF0Y2ggd2hlbiBhcHBseWluZyBvciBJIGNhbiByZXNlbmQKdGhlIHBhdGNoL3Nl
-cmllcy4KClRob21hcwoKCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fClY5ZnMtZGV2ZWxvcGVyIG1haWxpbmcgbGlzdApWOWZzLWRldmVsb3BlckBsaXN0cy5z
-b3VyY2Vmb3JnZS5uZXQKaHR0cHM6Ly9saXN0cy5zb3VyY2Vmb3JnZS5uZXQvbGlzdHMvbGlzdGlu
-Zm8vdjlmcy1kZXZlbG9wZXIK
+SGksCgpUaG9tYXMgV2Vpw59zY2h1aCB3cm90ZSBvbiBNb24sIE5vdiAwOCwgMjAyMSBhdCAwNzo1
+MDozNFBNICswMTAwOgo+IEkgZGlkIG5vdCBub3RpY2UgdGhhdCB5b3UgYWxyZWFkeSBoYWQgYXBw
+bGllZCAibmV0LzlwOiBhdXRvbG9hZCB0cmFuc3BvcnQgbW9kdWxlcyIKPiB0byB5b3VyIHRyZWUg
+d2hlbiBzZW5kaW5nIHRoaXMgc2VyaWVzLgo+IAo+IFBsZWFzZSBub3RlIHRoYXQgaW4gdGhpcyBz
+ZXJpZXMgSSBtb2RpZmllZCBwYXRjaCAxIGEgYml0LCBmcm9tIHRoZSBvbnkgeW91Cj4gYXBwbGll
+ZCwgdG8gcHJldmVudCB3YXJuaW5ncyBpbiBwYXRjaCA0Lgo+IENvbmNyZXRlbHkgSSBtb2RpZmll
+ZCB0aGUgcHJvdG90eXBlcyBvZiBgdjlmc19nZXRfdHJhbnNfYnlfbmFtZSgpYCBhbmQKPiBgX3A5
+X2dldF90cmFuc19ieV9uYW1lKClgIHRvIHRha2UgY29uc3QgcGFyYW1ldGVycy4KPiAKPiBGZWVs
+IGZyZWUgdG8gcm9sbCB0aG9zZSBjaGFuZ2VzIGludG8gdGhpcyBwYXRjaCB3aGVuIGFwcGx5aW5n
+IG9yIEkgY2FuIHJlc2VuZAo+IHRoZSBwYXRjaC9zZXJpZXMuCgpUaGFua3MgZm9yIHRoZSBoZWFk
+cyB1cCwgaXQncyBvayAtLSBJJ2xsIG1vdmUgdGhlIGNvbnN0aWZpY2F0aW9uIG9mCnRoZXNlIGZ1
+bmN0aW9ucyB0byBwYXRjaCA0IG15c2VsZi4KCkkndmUganVzdCBzZW50IG15IHB1bGwgcmVxdWVz
+dCB0byBMaW51cyBzbyB3aWxsIHRha2UgeW91ciBwYXRjaGVzIHRvCm15IGZvci1uZXh0IGJyYW5j
+aCB3aGVuIHRoYXQncyBtZXJnZWQuCi0tIApEb21pbmlxdWUKCgpfX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fXwpWOWZzLWRldmVsb3BlciBtYWlsaW5nIGxpc3QK
+Vjlmcy1kZXZlbG9wZXJAbGlzdHMuc291cmNlZm9yZ2UubmV0Cmh0dHBzOi8vbGlzdHMuc291cmNl
+Zm9yZ2UubmV0L2xpc3RzL2xpc3RpbmZvL3Y5ZnMtZGV2ZWxvcGVyCg==
