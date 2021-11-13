@@ -2,112 +2,100 @@ Return-Path: <v9fs-developer-bounces@lists.sourceforge.net>
 X-Original-To: lists+v9fs-developer@lfdr.de
 Delivered-To: lists+v9fs-developer@lfdr.de
 Received: from lists.sourceforge.net (lists.sourceforge.net [216.105.38.7])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9FB5244F24F
-	for <lists+v9fs-developer@lfdr.de>; Sat, 13 Nov 2021 10:44:16 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 27FF344F503
+	for <lists+v9fs-developer@lfdr.de>; Sat, 13 Nov 2021 20:44:30 +0100 (CET)
 Received: from [127.0.0.1] (helo=sfs-ml-2.v29.lw.sourceforge.com)
 	by sfs-ml-2.v29.lw.sourceforge.com with esmtp (Exim 4.94.2)
 	(envelope-from <v9fs-developer-bounces@lists.sourceforge.net>)
-	id 1mlpa2-00077w-1d; Sat, 13 Nov 2021 09:44:14 +0000
+	id 1mlywt-0004JC-6h; Sat, 13 Nov 2021 19:44:27 +0000
 Received: from [172.30.20.202] (helo=mx.sourceforge.net)
  by sfs-ml-2.v29.lw.sourceforge.com with esmtps (TLS1.2) tls
  TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384 (Exim 4.94.2)
- (envelope-from <laurel.cts.tech.ltd1@gmail.com>) id 1mlpZz-00077m-J2
- for v9fs-developer@lists.sourceforge.net; Sat, 13 Nov 2021 09:44:11 +0000
+ (envelope-from <pr-tracker-bot@kernel.org>) id 1mlywr-0004J5-Lw
+ for v9fs-developer@lists.sourceforge.net; Sat, 13 Nov 2021 19:44:25 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=sourceforge.net; s=x; h=Content-Transfer-Encoding:Content-Type:MIME-Version
- :Message-ID:Reply-To:From:Date:Subject:To:Sender:Cc:Content-ID:
- Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
- :Resent-Message-ID:In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:
+ d=sourceforge.net; s=x; h=Cc:To:Date:Message-Id:References:In-Reply-To:From:
+ Subject:Sender:Reply-To:MIME-Version:Content-Type:Content-Transfer-Encoding:
+ Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+ Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
  List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=d1Fl+m38ypPUGndBvjQzB5R8ccvIz0RcpfgUHFZoWjs=; b=MfeHl90S0EAGwTMcMYTuis/JUL
- IpuQlxe461dJAMe6fvH6Qvfybu/M0zsejZ3a+X3/2IilApbzIkTECd3YodrACIHF03+msI4OslAes
- nHttSedmVosqDRr92ltyiAaky8SaV9ufDACJ3p4Em1+vul42KdmO4+3eDspgOgNWHYFw=;
+ bh=jfHGuaKiQ5hcjhVMgvoDIkLo3j49J0czeMRGKqG9SsQ=; b=CBDDGPPac6YuqaK2+MiF/o9gaD
+ kVV7DNqccmS2KxNv347aT0r7P63N5AX7UjOwdHYG113Wo9BSn+SBdSrnbrvfGUyi+PyNSfYeD6Rys
+ VtEMMVmHH8WbTxLm4KAyveFBGzstnOt2sBvWy7o3wcR0P8rlm2/Nd0iFyVscE6/9RKI8=;
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  ;
- h=Content-Transfer-Encoding:Content-Type:MIME-Version:Message-ID:Reply-To:
- From:Date:Subject:To:Sender:Cc:Content-ID:Content-Description:Resent-Date:
- Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:
- References:List-Id:List-Help:List-Unsubscribe:List-Subscribe:List-Post:
- List-Owner:List-Archive; bh=d1Fl+m38ypPUGndBvjQzB5R8ccvIz0RcpfgUHFZoWjs=; b=U
- sCTO0epYtyh90AhVHTzfE4MaXhZWEcvYAozzb3q9PH8R65Kcj9Xyoc0HKHNbkHJScnnoJ6fIK4SQ0
- Xla/74tnXfFH6oliT9hiq/LFDOKfWMk0wbptZ45KTl9KouWTL7brYBbFIK0zghBf+/H/i6tJmkJr7
- SxlxFPPz6tjMA/Ps=;
-Received: from server.chococherri.com ([103.108.220.190])
+ h=Cc:To:Date:Message-Id:References:In-Reply-To:From:Subject:Sender:Reply-To
+ :MIME-Version:Content-Type:Content-Transfer-Encoding:Content-ID:
+ Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
+ :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
+ List-Post:List-Owner:List-Archive;
+ bh=jfHGuaKiQ5hcjhVMgvoDIkLo3j49J0czeMRGKqG9SsQ=; b=IRNe7ybRq/3SwCwu4vmRM/nzWz
+ 75cvAi5OukxylKRi7wl+0MPH5Aj+7H8cz04fFSxaaVLOGiuAJ0slKdQc2K/I/Lb8WEp+XotBPfzz1
+ s0YmVFhCUdySXX41WaYLBhjEaUGzGuIdP2LXng+yLtLKFF9xREutYittJ5Ott13reN5I=;
+Received: from mail.kernel.org ([198.145.29.99])
  by sfi-mx-2.v28.lw.sourceforge.com with esmtps
  (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.92.3)
- id 1mlpZv-00067o-Jw
- for v9fs-developer@lists.sourceforge.net; Sat, 13 Nov 2021 09:44:11 +0000
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=chococherri.com; s=default; h=Content-Transfer-Encoding:Content-Type:
- MIME-Version:Message-ID:Reply-To:From:Date:Subject:To:Sender:Cc:Content-ID:
- Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
- :Resent-Message-ID:In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:
- List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=d1Fl+m38ypPUGndBvjQzB5R8ccvIz0RcpfgUHFZoWjs=; b=N7Wz4ztp24LAuZgCsmpOtmsDPd
- wupSp+D+D1FQy47FyyOwEtdOpB73wYL6j/vYfCho480F0Kis5jzwnx8qYfX8oephrGDkbzHDhxTY8
- 9lpeLGNFHjQ+k1NllrsD/Ugz65BbpCSCIf2YGmKvJsnVPYmoQuX4pEDeeJ9fEK/FAYN2SCXMbvLkK
- x8SK/NYTNo/NzknKp+7mb1gbRvfnEtuianqUylOcDbVYwrb40w8aCfilWMN9Sh4CTT69fFV/ERtFh
- SpHAys2AF3JVXt+pga4CWYou6wsOzF7MhgjUC2ASQ/lDIV+dSanzP/HoSPMDl0Mk/h0tlfwsYhXOZ
- ARBFehYg==;
-Received: from cherrich by server.chococherri.com with local (Exim 4.94.2)
- (envelope-from <laurel.cts.tech.ltd1@gmail.com>) id 1mle74-0007D7-Vg
- for v9fs-developer@lists.sourceforge.net; Sat, 13 Nov 2021 02:59:35 +0530
-To: v9fs-developer@lists.sourceforge.net
-X-PHP-Script: www.chococherri.com/vendor/phpunit/phpunit/src/Util/PHP/leafmailer2.8.php for
- 147.124.212.115
-X-PHP-Originating-Script: 1001:leafmailer2.8.php
-Date: Fri, 12 Nov 2021 21:29:34 +0000
-From: CTS- Laurel <laurel.cts.tech.ltd1@gmail.com>
-Message-ID: <80e5fd52cc3515506279148d02e45ffd@www.chococherri.com>
-MIME-Version: 1.0
-X-AntiAbuse: This header was added to track abuse,
- please include it with any abuse report
-X-AntiAbuse: Primary Hostname - server.chococherri.com
-X-AntiAbuse: Original Domain - lists.sourceforge.net
-X-AntiAbuse: Originator/Caller UID/GID - [1001 993] / [47 12]
-X-AntiAbuse: Sender Address Domain - gmail.com
-X-Get-Message-Sender-Via: server.chococherri.com: authenticated_id:
- cherrich/only user confirmed/virtual account not confirmed
-X-Authenticated-Sender: server.chococherri.com: cherrich
-X-Source: 
-X-Source-Args: 
-X-Source-Dir: 
-X-Spam-Score: 5.0 (+++++)
+ id 1mlywr-0006gs-5K
+ for v9fs-developer@lists.sourceforge.net; Sat, 13 Nov 2021 19:44:25 +0000
+Received: by mail.kernel.org (Postfix) with ESMTPS id B66F760EB4;
+ Sat, 13 Nov 2021 19:44:14 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+ s=k20201202; t=1636832654;
+ bh=EGUOMj5xc5vntvFCMogfm6YhCFkW3/nioe88e+Sf3Lg=;
+ h=Subject:From:In-Reply-To:References:Date:To:Cc:From;
+ b=HNvHEV+3TpQjdLRtANHMHAbpN9MwhyLoqb6iskMnnJuSCutayMYsXaBuc22n6n3YH
+ 8Wd9vv1nlYWZEFFkjGpTSMuY5S7ICPUcBtoPGD52KKonENhRIqZrpEUhdrby4D/b16
+ 2Zn45uI2242w6O6IX+/5EZqNSWGeP2gbUs+4eqaG97148Ywp0vNMgS/F0l8V86kjN9
+ QOKH8or52nYGsiFgkOsKgcNkM9h4VUICsBR9y9CUmiJb4tYCoFg1OZtoTt1T6lCPq+
+ gR8TosRnoxxJmHAGyNVovfZMNHXJdenDaMndNAolntiGw9MC/j3/ehqLKdJFdkLmFy
+ OYpRYuy3G3u4Q==
+Received: from pdx-korg-docbuild-2.ci.codeaurora.org (localhost.localdomain
+ [127.0.0.1])
+ by pdx-korg-docbuild-2.ci.codeaurora.org (Postfix) with ESMTP id 9F4F660721;
+ Sat, 13 Nov 2021 19:44:14 +0000 (UTC)
+From: pr-tracker-bot@kernel.org
+In-Reply-To: <1134871.1636647952@warthog.procyon.org.uk>
+References: <1134871.1636647952@warthog.procyon.org.uk>
+X-PR-Tracked-List-Id: <linux-nfs.vger.kernel.org>
+X-PR-Tracked-Message-Id: <1134871.1636647952@warthog.procyon.org.uk>
+X-PR-Tracked-Remote: git://git.kernel.org/pub/scm/linux/kernel/git/dhowells/linux-fs.git
+ tags/netfs-folio-20211111
+X-PR-Tracked-Commit-Id: 255ed63638da190e2485d32c0f696cd04d34fbc0
+X-PR-Merge-Tree: torvalds/linux.git
+X-PR-Merge-Refname: refs/heads/master
+X-PR-Merge-Commit-Id: 0f7ddea6225b9b001966bc9665924f1f8b9ac535
+Message-Id: <163683265459.24678.13171467044016264147.pr-tracker-bot@kernel.org>
+Date: Sat, 13 Nov 2021 19:44:14 +0000
+To: David Howells <dhowells@redhat.com>
+X-Spam-Score: -5.9 (-----)
 X-Spam-Report: Spam detection software,
  running on the system "util-spamd-1.v13.lw.sourceforge.com", 
  has NOT identified this incoming email as spam.  The original
  message has been attached to this so you can view it or label
  similar future email.  If you have any questions, see
  the administrator of that system for details.
- Content preview: Trust wallet support https://forms.gle/cKEpVfvbTX49WSpK6
- Trust wallet support 
- Content analysis details:   (5.0 points, 6.0 required)
+ Content preview:  The pull request you sent on Thu, 11 Nov 2021 16:25:52 +0000:
+ > git://git.kernel.org/pub/scm/linux/kernel/git/dhowells/linux-fs.git
+ tags/netfs-folio-20211111
+ has been merged into torvalds/linux.git:
+ https://git.kernel.org/torvalds/c/0f7ddea6225b9b001966bc9665924f1f8b9ac535
+ Content analysis details:   (-5.9 points, 6.0 required)
  pts rule name              description
  ---- ---------------------- --------------------------------------------------
- 1.3 RCVD_IN_VALIDITY_RPBL  RBL: Relay in Validity RPBL,
- https://senderscore.org/blocklistlookup/
- [103.108.220.190 listed in bl.score.senderscore.com]
- 1.0 SPF_SOFTFAIL           SPF: sender does not match SPF record (softfail)
- 0.0 FREEMAIL_FROM          Sender email is commonly abused enduser mail
- provider [laurel.cts.tech.ltd1[at]gmail.com]
+ -5.0 RCVD_IN_DNSWL_HI       RBL: Sender listed at https://www.dnswl.org/,
+ high trust [198.145.29.99 listed in list.dnswl.org]
  0.0 SPF_HELO_NONE          SPF: HELO does not publish an SPF Record
- 1.0 FORGED_GMAIL_RCVD      'From' gmail.com does not match 'Received'
- headers
- 0.0 DKIM_ADSP_CUSTOM_MED   No valid author signature, adsp_override is
- CUSTOM_MED
- 0.2 FREEMAIL_REPLYTO_END_DIGIT Reply-To freemail username ends in
- digit [laurel.cts.tech.ltd1[at]gmail.com]
- 0.2 FREEMAIL_ENVFROM_END_DIGIT Envelope-from freemail username ends
- in digit [laurel.cts.tech.ltd1[at]gmail.com]
- 0.0 HTML_MESSAGE           BODY: HTML included in message
+ -0.0 SPF_PASS               SPF: sender matches SPF record
  -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
  0.1 DKIM_SIGNED            Message has a DKIM or DK signature, not necessarily
- valid 0.0 PHP_SCRIPT             Sent by PHP script
- 1.2 NML_ADSP_CUSTOM_MED    ADSP custom_med hit, and not from a mailing
- list
-X-Headers-End: 1mlpZv-00067o-Jw
-X-Content-Filtered-By: Mailman/MimeDel 2.1.21
-Subject: [V9fs-developer] Trust Wallet
+ valid
+ -0.1 DKIM_VALID_AU          Message has a valid DKIM or DK signature from
+ author's domain
+ -0.1 DKIM_VALID_EF          Message has a valid DKIM or DK signature from
+ envelope-from domain
+ -0.7 DKIMWL_WL_HIGH         DKIMwl.org - High trust sender
+X-Headers-End: 1mlywr-0006gs-5K
+Subject: Re: [V9fs-developer] [GIT PULL] netfs, 9p, afs, ceph: Use folios
 X-BeenThere: v9fs-developer@lists.sourceforge.net
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -119,22 +107,31 @@ List-Post: <mailto:v9fs-developer@lists.sourceforge.net>
 List-Help: <mailto:v9fs-developer-request@lists.sourceforge.net?subject=help>
 List-Subscribe: <https://lists.sourceforge.net/lists/listinfo/v9fs-developer>, 
  <mailto:v9fs-developer-request@lists.sourceforge.net?subject=subscribe>
-Reply-To: laurel.cts.tech.ltd1@gmail.com
+Cc: linux-cifs@vger.kernel.org, linux-nfs@vger.kernel.org,
+ Jeffrey E Altman <jaltman@auristor.com>, linux-mm@kvack.org,
+ Jeff Layton <jlayton@kernel.org>, linux-kernel@vger.kernel.org,
+ "Matthew Wilcox \(Oracle\)" <willy@infradead.org>, dhowells@redhat.com,
+ linux-fsdevel@vger.kernel.org, ceph-devel@vger.kernel.org,
+ linux-cachefs@redhat.com, Marc Dionne <marc.dionne@auristor.com>,
+ v9fs-developer@lists.sourceforge.net, Ilya Dryomov <idryomov@gmail.com>,
+ torvalds@linux-foundation.org, linux-afs@lists.infradead.org
+MIME-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: v9fs-developer-bounces@lists.sourceforge.net
 
+The pull request you sent on Thu, 11 Nov 2021 16:25:52 +0000:
 
+> git://git.kernel.org/pub/scm/linux/kernel/git/dhowells/linux-fs.git tags/netfs-folio-20211111
 
+has been merged into torvalds/linux.git:
+https://git.kernel.org/torvalds/c/0f7ddea6225b9b001966bc9665924f1f8b9ac535
 
-  
-  
+Thank you!
 
-
-Trust wallet support
-
-https://forms.gle/cKEpVfvbTX49WSpK6
-
+-- 
+Deet-doot-dot, I am a bot.
+https://korg.docs.kernel.org/prtracker.html
 
 
 _______________________________________________
