@@ -2,26 +2,26 @@ Return-Path: <v9fs-developer-bounces@lists.sourceforge.net>
 X-Original-To: lists+v9fs-developer@lfdr.de
 Delivered-To: lists+v9fs-developer@lfdr.de
 Received: from lists.sourceforge.net (lists.sourceforge.net [216.105.38.7])
-	by mail.lfdr.de (Postfix) with ESMTPS id 79C40461876
-	for <lists+v9fs-developer@lfdr.de>; Mon, 29 Nov 2021 15:28:34 +0100 (CET)
-Received: from [127.0.0.1] (helo=sfs-ml-1.v29.lw.sourceforge.com)
-	by sfs-ml-1.v29.lw.sourceforge.com with esmtp (Exim 4.94.2)
+	by mail.lfdr.de (Postfix) with ESMTPS id 47595461885
+	for <lists+v9fs-developer@lfdr.de>; Mon, 29 Nov 2021 15:28:56 +0100 (CET)
+Received: from [127.0.0.1] (helo=sfs-ml-2.v29.lw.sourceforge.com)
+	by sfs-ml-2.v29.lw.sourceforge.com with esmtp (Exim 4.94.2)
 	(envelope-from <v9fs-developer-bounces@lists.sourceforge.net>)
-	id 1mrhdv-0002el-Vv; Mon, 29 Nov 2021 14:28:33 +0000
+	id 1mrheI-0005xU-Rc; Mon, 29 Nov 2021 14:28:54 +0000
 Received: from [172.30.20.202] (helo=mx.sourceforge.net)
- by sfs-ml-1.v29.lw.sourceforge.com with esmtps (TLS1.2) tls
+ by sfs-ml-2.v29.lw.sourceforge.com with esmtps (TLS1.2) tls
  TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384 (Exim 4.94.2)
- (envelope-from <dhowells@redhat.com>) id 1mrhdu-0002ee-9X
- for v9fs-developer@lists.sourceforge.net; Mon, 29 Nov 2021 14:28:31 +0000
+ (envelope-from <dhowells@redhat.com>) id 1mrheH-0005xM-3N
+ for v9fs-developer@lists.sourceforge.net; Mon, 29 Nov 2021 14:28:53 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
  d=sourceforge.net; s=x; h=Content-Transfer-Encoding:Content-Type:MIME-Version
  :References:In-Reply-To:Message-ID:Date:Cc:To:From:Subject:Sender:Reply-To:
  Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
  Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
  List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=xwUHJU5ngSDUhhWQoepFfsRKSdoZtLmaUAli8rdBhRI=; b=hkxpGQN+BbDmTHOpBIrSb/fRkt
- xqTnwcCGhQmVXeXWIpY7Vn9IEpGL0KDjd9EyWZuFVrObK7JwFleJMBdtMWkUp6NaeN3BJ1OG61PHk
- 6+vAGy7Aymh+TWTLQnz4FFhwwIPatMMp/AGQFZR6JCV7/C8f3HGyEWIRl+CNXDIRaiOA=;
+ bh=F//cC+xXbc/IInxxIda5sfPblnLErpIi5Uwt/zq7kos=; b=bpLHIGdKizzi5FQ4UwpquRcXso
+ fzxko86r5l2azGVq1j/L3v03lD+7QJpU+ERxOGk2XZW6rdXsAJRxJhFmWSXmCmGUde23QtE6Fp4ig
+ YMk73LjYg0MtAn4/fGxej3eVOJWeesal4QG1i8IPA8yLGuN6pNC3nxieVRgqKorYOBOw=;
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  ;
  h=Content-Transfer-Encoding:Content-Type:MIME-Version:References:
@@ -29,70 +29,73 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
  :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
  List-Post:List-Owner:List-Archive;
- bh=xwUHJU5ngSDUhhWQoepFfsRKSdoZtLmaUAli8rdBhRI=; b=QEWQdzX9bBRaWJatW4BN2yI+i/
- OasiO5yArOIGqFi0VNSpmnBEVq8Ys1gQCiFE2w2BTZQRR+j8yRz8UqpcrDWciAy82W3WVQGjWmUc+
- +b06azF0+OnvhL2VfzOYXw89m7tZQ1ABa09ZwU3jkWOoGJhA2CTytg6TNyCiDLOOv4Fk=;
-Received: from us-smtp-delivery-124.mimecast.com ([170.10.133.124])
+ bh=F//cC+xXbc/IInxxIda5sfPblnLErpIi5Uwt/zq7kos=; b=NsDidFIte98G/RrYdmIgOYsbHu
+ yWj2JDGtv51MV23i+N91xj6JO3cZnpnhi4hU4v75RNmGXBE3bme1Spqo5pXzXeT0gH99IF1EN1ioG
+ ohOFdIieKBX/r0uTXYgUFjipoZCEzo3kgNT5mxX+gH23L6JIqPL70n9XTq1yk07vwriU=;
+Received: from us-smtp-delivery-124.mimecast.com ([170.10.129.124])
  by sfi-mx-2.v28.lw.sourceforge.com with esmtps
  (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.92.3)
- id 1mrhdu-0000B3-QA
- for v9fs-developer@lists.sourceforge.net; Mon, 29 Nov 2021 14:28:31 +0000
+ id 1mrheG-0000By-79
+ for v9fs-developer@lists.sourceforge.net; Mon, 29 Nov 2021 14:28:52 +0000
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
- s=mimecast20190719; t=1638196104;
+ s=mimecast20190719; t=1638196126;
  h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
  to:to:cc:cc:mime-version:mime-version:content-type:content-type:
  content-transfer-encoding:content-transfer-encoding:
  in-reply-to:in-reply-to:references:references;
- bh=xwUHJU5ngSDUhhWQoepFfsRKSdoZtLmaUAli8rdBhRI=;
- b=R4mQcTC0iYDj+XzHi31xskaKsHnBk9nG8SOHt/9Akhi8I8nqs4hK5sv29vw0xboWDKN4cT
- lCIswEEctjvf37f7TcWGJe9N5/gRCCAscq1rqEKAwzzKwepnUrjAuVaVABoXLIFV4EYHeQ
- Ko8drMQH1zeeP44DjaRb9bhves5Tz10=
+ bh=F//cC+xXbc/IInxxIda5sfPblnLErpIi5Uwt/zq7kos=;
+ b=I1tUTyptA4oDJrDOVSdBJyUcZMZdXGLV2ohrdZZ6yI+8IKoMOMGaGNl0YrElh+5DXFp9Qv
+ Xv3gmCnHwwXEX+Wj2xrTI0DPKmCSxkXOFLKrMEBY0a/MRm5Qtf7mW51/qFTf/bhSMvp6oL
+ 9RQxjZeSxcSyS6lMmWZ8dqW4z3rWg6w=
 Received: from mimecast-mx01.redhat.com (mimecast-mx01.redhat.com
  [209.132.183.4]) by relay.mimecast.com with ESMTP with STARTTLS
  (version=TLSv1.2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- us-mta-76-NsAdaSs4PXG6ZIeoR5FZuQ-1; Mon, 29 Nov 2021 09:28:21 -0500
-X-MC-Unique: NsAdaSs4PXG6ZIeoR5FZuQ-1
-Received: from smtp.corp.redhat.com (int-mx06.intmail.prod.int.phx2.redhat.com
- [10.5.11.16])
+ us-mta-531-u-5V9RctNbO4QFReeRGinQ-1; Mon, 29 Nov 2021 09:28:40 -0500
+X-MC-Unique: u-5V9RctNbO4QFReeRGinQ-1
+Received: from smtp.corp.redhat.com (int-mx08.intmail.prod.int.phx2.redhat.com
+ [10.5.11.23])
  (using TLSv1.2 with cipher AECDH-AES256-SHA (256/256 bits))
  (No client certificate requested)
- by mimecast-mx01.redhat.com (Postfix) with ESMTPS id 2984E84B9D7;
- Mon, 29 Nov 2021 14:28:19 +0000 (UTC)
+ by mimecast-mx01.redhat.com (Postfix) with ESMTPS id 01F7410B7440;
+ Mon, 29 Nov 2021 14:28:38 +0000 (UTC)
 Received: from warthog.procyon.org.uk (unknown [10.33.36.25])
- by smtp.corp.redhat.com (Postfix) with ESMTP id 24E505FC22;
- Mon, 29 Nov 2021 14:28:15 +0000 (UTC)
+ by smtp.corp.redhat.com (Postfix) with ESMTP id 3C20E196E5;
+ Mon, 29 Nov 2021 14:28:25 +0000 (UTC)
 Organization: Red Hat UK Ltd. Registered Address: Red Hat UK Ltd, Amberley
  Place, 107-111 Peascod Street, Windsor, Berkshire, SI4 1TE, United
  Kingdom.
  Registered in England and Wales under Company Registration No. 3798903
 From: David Howells <dhowells@redhat.com>
 To: linux-cachefs@redhat.com
-Date: Mon, 29 Nov 2021 14:28:15 +0000
-Message-ID: <163819609532.215744.10821082637727410554.stgit@warthog.procyon.org.uk>
+Date: Mon, 29 Nov 2021 14:28:24 +0000
+Message-ID: <163819610438.215744.4223265964131424954.stgit@warthog.procyon.org.uk>
 In-Reply-To: <163819575444.215744.318477214576928110.stgit@warthog.procyon.org.uk>
 References: <163819575444.215744.318477214576928110.stgit@warthog.procyon.org.uk>
 User-Agent: StGit/0.23
 MIME-Version: 1.0
-X-Scanned-By: MIMEDefang 2.79 on 10.5.11.16
-X-Spam-Score: -1.6 (-)
+X-Scanned-By: MIMEDefang 2.84 on 10.5.11.23
+X-Spam-Score: -1.1 (-)
 X-Spam-Report: Spam detection software,
  running on the system "util-spamd-1.v13.lw.sourceforge.com", 
  has NOT identified this incoming email as spam.  The original
  message has been attached to this so you can view it or label
  similar future email.  If you have any questions, see
  the administrator of that system for details.
- Content preview:  Provide read/write stat counters for the cache backend to
- use. Signed-off-by: David Howells <dhowells@redhat.com> cc:
- linux-cachefs@redhat.com
- --- fs/fscache/stats.c | 9 +++++++++ include/linux/fscache-cache.h | 10
- ++++++++++ 2 files changed, 19 insertions(+) 
- Content analysis details:   (-1.6 points, 6.0 required)
+ Content preview: Provide a function to let the netfs update its coherency
+ data:
+ void fscache_update_cookie(struct fscache_cookie *cookie, const void *aux_data,
+ const loff_t *object_size); This will update the auxiliary data and/or the
+ size of the object attached to a cookie if either pointer is not-NULL and
+ flag that the disk needs to be updated. 
+ Content analysis details:   (-1.1 points, 6.0 required)
  pts rule name              description
  ---- ---------------------- --------------------------------------------------
  -0.7 RCVD_IN_DNSWL_LOW      RBL: Sender listed at https://www.dnswl.org/,
- low trust [170.10.133.124 listed in list.dnswl.org]
- -0.0 RCVD_IN_MSPIKE_H2      RBL: Average reputation (+2)
- [170.10.133.124 listed in wl.mailspike.net]
+ low trust [170.10.129.124 listed in list.dnswl.org]
+ 0.0 RCVD_IN_MSPIKE_H3      RBL: Good reputation (+3)
+ [170.10.129.124 listed in wl.mailspike.net]
+ 0.5 RCVD_IN_UCE1           RBL: IP Listed in UCEPROTECT Level 1
+ [170.10.129.124 listed in dnsbl-1.uceprotect.net]
  0.0 SPF_HELO_NONE          SPF: HELO does not publish an SPF Record
  -0.0 SPF_PASS               SPF: sender matches SPF record
  -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
@@ -102,10 +105,11 @@ X-Spam-Report: Spam detection software,
  author's domain
  -0.1 DKIM_VALID_EF          Message has a valid DKIM or DK signature from
  envelope-from domain
+ 0.0 RCVD_IN_MSPIKE_WL      Mailspike good senders
  -0.7 DKIMWL_WL_HIGH         DKIMwl.org - High trust sender
-X-Headers-End: 1mrhdu-0000B3-QA
-Subject: [V9fs-developer] [PATCH 22/64] fscache: Provide read/write stat
- counters for the cache
+X-Headers-End: 1mrheG-0000By-79
+Subject: [V9fs-developer] [PATCH 23/64] fscache: Provide a function to let
+ the netfs update its coherency data
 X-BeenThere: v9fs-developer@lists.sourceforge.net
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -130,62 +134,58 @@ Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: v9fs-developer-bounces@lists.sourceforge.net
 
-Provide read/write stat counters for the cache backend to use.
+Provide a function to let the netfs update its coherency data:
+
+	void fscache_update_cookie(struct fscache_cookie *cookie,
+				   const void *aux_data,
+				   const loff_t *object_size);
+
+This will update the auxiliary data and/or the size of the object attached
+to a cookie if either pointer is not-NULL and flag that the disk needs to
+be updated.
+
+Note that fscache_unuse_cookie() also allows this to be done.
 
 Signed-off-by: David Howells <dhowells@redhat.com>
 cc: linux-cachefs@redhat.com
 ---
 
- fs/fscache/stats.c            |    9 +++++++++
- include/linux/fscache-cache.h |   10 ++++++++++
- 2 files changed, 19 insertions(+)
+ include/linux/fscache.h |   22 ++++++++++++++++++++++
+ 1 file changed, 22 insertions(+)
 
-diff --git a/fs/fscache/stats.c b/fs/fscache/stats.c
-index cdbb672a274f..db42beb1ba3f 100644
---- a/fs/fscache/stats.c
-+++ b/fs/fscache/stats.c
-@@ -35,6 +35,11 @@ atomic_t fscache_n_relinquishes;
- atomic_t fscache_n_relinquishes_retire;
- atomic_t fscache_n_relinquishes_dropped;
- 
-+atomic_t fscache_n_read;
-+EXPORT_SYMBOL(fscache_n_read);
-+atomic_t fscache_n_write;
-+EXPORT_SYMBOL(fscache_n_write);
-+
- /*
-  * display the general statistics
-  */
-@@ -72,6 +77,10 @@ int fscache_stats_show(struct seq_file *m, void *v)
- 		   atomic_read(&fscache_n_relinquishes_retire),
- 		   atomic_read(&fscache_n_relinquishes_dropped));
- 
-+	seq_printf(m, "IO     : rd=%u wr=%u\n",
-+		   atomic_read(&fscache_n_read),
-+		   atomic_read(&fscache_n_write));
-+
- 	netfs_stats_show(m);
- 	return 0;
- }
-diff --git a/include/linux/fscache-cache.h b/include/linux/fscache-cache.h
-index 5525df056877..1398b71539ae 100644
---- a/include/linux/fscache-cache.h
-+++ b/include/linux/fscache-cache.h
-@@ -179,4 +179,14 @@ static inline void fscache_wait_for_objects(struct fscache_cache *cache)
- 		   atomic_read(&cache->object_count) == 0);
+diff --git a/include/linux/fscache.h b/include/linux/fscache.h
+index b60be20107e1..ccdfdfc700cd 100644
+--- a/include/linux/fscache.h
++++ b/include/linux/fscache.h
+@@ -330,6 +330,28 @@ void __fscache_update_cookie(struct fscache_cookie *cookie, const void *aux_data
+ 	set_bit(FSCACHE_COOKIE_NEEDS_UPDATE, &cookie->flags);
  }
  
-+#ifdef CONFIG_FSCACHE_STATS
-+extern atomic_t fscache_n_read;
-+extern atomic_t fscache_n_write;
-+#define fscache_count_read() atomic_inc(&fscache_n_read)
-+#define fscache_count_write() atomic_inc(&fscache_n_write)
-+#else
-+#define fscache_count_read() do {} while(0)
-+#define fscache_count_write() do {} while(0)
-+#endif
++/**
++ * fscache_update_cookie - Request that a cache object be updated
++ * @cookie: The cookie representing the cache object
++ * @aux_data: The updated auxiliary data for the cookie (may be NULL)
++ * @object_size: The current size of the object (may be NULL)
++ *
++ * Request an update of the index data for the cache object associated with the
++ * cookie.  The auxiliary data on the cookie will be updated first if @aux_data
++ * is set and the object size will be updated and the object possibly trimmed
++ * if @object_size is set.
++ *
++ * See Documentation/filesystems/caching/netfs-api.rst for a complete
++ * description.
++ */
++static inline
++void fscache_update_cookie(struct fscache_cookie *cookie, const void *aux_data,
++			   const loff_t *object_size)
++{
++	if (fscache_cookie_enabled(cookie))
++		__fscache_update_cookie(cookie, aux_data, object_size);
++}
 +
- #endif /* _LINUX_FSCACHE_CACHE_H */
+ /**
+  * fscache_invalidate - Notify cache that an object needs invalidation
+  * @cookie: The cookie representing the cache object
 
 
 
