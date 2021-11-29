@@ -2,16 +2,16 @@ Return-Path: <v9fs-developer-bounces@lists.sourceforge.net>
 X-Original-To: lists+v9fs-developer@lfdr.de
 Delivered-To: lists+v9fs-developer@lfdr.de
 Received: from lists.sourceforge.net (lists.sourceforge.net [216.105.38.7])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9F352461921
+	by mail.lfdr.de (Postfix) with ESMTPS id 97ED6461920
 	for <lists+v9fs-developer@lfdr.de>; Mon, 29 Nov 2021 15:34:04 +0100 (CET)
 Received: from [127.0.0.1] (helo=sfs-ml-2.v29.lw.sourceforge.com)
 	by sfs-ml-2.v29.lw.sourceforge.com with esmtp (Exim 4.94.2)
 	(envelope-from <v9fs-developer-bounces@lists.sourceforge.net>)
-	id 1mrhjH-00067d-1R; Mon, 29 Nov 2021 14:34:03 +0000
+	id 1mrhjH-00067h-51; Mon, 29 Nov 2021 14:34:03 +0000
 Received: from [172.30.20.202] (helo=mx.sourceforge.net)
  by sfs-ml-2.v29.lw.sourceforge.com with esmtps (TLS1.2) tls
  TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384 (Exim 4.94.2)
- (envelope-from <dhowells@redhat.com>) id 1mrhjG-000676-EW
+ (envelope-from <dhowells@redhat.com>) id 1mrhjG-000679-EW
  for v9fs-developer@lists.sourceforge.net; Mon, 29 Nov 2021 14:34:02 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
  d=sourceforge.net; s=x; h=Content-Transfer-Encoding:Content-Type:MIME-Version
@@ -19,9 +19,9 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
  Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
  Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
  List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=MIAV+8rnq+qPV7ERf+LP2jUhm8jvp16atdVPY3tHurU=; b=Qt+AvW5AXnnZiKbSsMYouNbulD
- 4Vy5JFfwTDe2y9q92VdkzOnLYIfcDiNwCpcrS9fIXakp1Xdl82jwScSEr3VW9kg9uWEEjV95HuS1L
- naypku7WeUQg7lzJtLyGuOdSa38mLkD0hpHDbe2WFgWTkV37R4V/yus4mlk3tTUTtMvE=;
+ bh=zzceVBcjA/Xs9i4d8ICi/poYRu0Cgv0z9e4sMUpV/7E=; b=j90eKr+FjhJi8wGc5OyC38obhx
+ o1lAbqcM8JgRqI8Qf8Rhknsc5CdriAJYcL9n7L1Jw79/0sWnVsUbPUzgY7FbWPeeYWV9dwnC6/Y03
+ 3Y+1rTxndnEIXoGw2X+5Ul7ji91Heq7RFYm+IqdltaPiXchbN9x60DwHRleRqL68Cwvg=;
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  ;
  h=Content-Transfer-Encoding:Content-Type:MIME-Version:References:
@@ -29,46 +29,46 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
  :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
  List-Post:List-Owner:List-Archive;
- bh=MIAV+8rnq+qPV7ERf+LP2jUhm8jvp16atdVPY3tHurU=; b=Fp1TCDK4+9chDrcBy1ouLTxqy+
- ivBFae2e0/xzte5NAJESYRXqHu/LAvXh+z0JBB0JsTTCr0k6itjb8RBRaVdcbfk/3vemh6eTMK90P
- 9ZZu7OfJflInOV34E3DQYOyBw4OzCpJDMdYZEzLoKNvBHy2TckyRr7T85lRVPlIXHcC8=;
+ bh=zzceVBcjA/Xs9i4d8ICi/poYRu0Cgv0z9e4sMUpV/7E=; b=BTPfTwWQwhOy5LkPuDicrQV/rH
+ 9D7NJiZKtAS4wRySDilQUtRh6OVeAV8O7IHqxc+rVQlpK8/t0IMlwrYdlLRy8NeVOVjSte7oze+Fc
+ 85CrX6bA99VJwva5e8fAq95vXbP6omL0gyvEZzxLN8ig9v2z43I+sWHj1VUjznS5gWgM=;
 Received: from us-smtp-delivery-124.mimecast.com ([170.10.129.124])
  by sfi-mx-1.v28.lw.sourceforge.com with esmtps
  (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.92.3)
- id 1mrhiu-00EDqD-Ri
- for v9fs-developer@lists.sourceforge.net; Mon, 29 Nov 2021 14:33:41 +0000
+ id 1mrhj5-00EDqg-IN
+ for v9fs-developer@lists.sourceforge.net; Mon, 29 Nov 2021 14:33:52 +0000
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
- s=mimecast20190719; t=1638196414;
+ s=mimecast20190719; t=1638196425;
  h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
  to:to:cc:cc:mime-version:mime-version:content-type:content-type:
  content-transfer-encoding:content-transfer-encoding:
  in-reply-to:in-reply-to:references:references;
- bh=MIAV+8rnq+qPV7ERf+LP2jUhm8jvp16atdVPY3tHurU=;
- b=V1J3VyrUlfCFLW62xIIC4MgS38g5RwcS5RQC3ZPJCkwcw8o9mRyHLEU+ePQ+EWDyZkbJQo
- aNDXOExTF5+bY4WX4VDpi/CABLa2UjEXuDRs+zA/Gjqq8tgujep7cZae4QQPpfhLHUYLdT
- 2LyoiQqaPJr3O1KGlfuF02zz3UKL5wQ=
+ bh=zzceVBcjA/Xs9i4d8ICi/poYRu0Cgv0z9e4sMUpV/7E=;
+ b=dcqeq5ZF/h+z564AzU88gE3KjQ1uU06X/Z8VeTUMdKv/nNtQwxcftwtUWSPfFIv/9bGBhA
+ tvB28rsFWpcKIMLxHs92T4dSYrbRB8sY7DE17nY//7ut/ISP5gdjXsEIj9yX7XmI7yngkk
+ +OKQS3vRMMDE7DyJ5d/m8+q9gyd3lOE=
 Received: from mimecast-mx01.redhat.com (mimecast-mx01.redhat.com
  [209.132.183.4]) by relay.mimecast.com with ESMTP with STARTTLS
  (version=TLSv1.2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- us-mta-531-3mXwWVxeNeGbmS30EOu3Pw-1; Mon, 29 Nov 2021 09:33:31 -0500
-X-MC-Unique: 3mXwWVxeNeGbmS30EOu3Pw-1
+ us-mta-397-TskM8sGTNxqzEg8LlxqFuA-1; Mon, 29 Nov 2021 09:33:42 -0500
+X-MC-Unique: TskM8sGTNxqzEg8LlxqFuA-1
 Received: from smtp.corp.redhat.com (int-mx03.intmail.prod.int.phx2.redhat.com
  [10.5.11.13])
  (using TLSv1.2 with cipher AECDH-AES256-SHA (256/256 bits))
  (No client certificate requested)
- by mimecast-mx01.redhat.com (Postfix) with ESMTPS id F0161101AFAC;
- Mon, 29 Nov 2021 14:33:27 +0000 (UTC)
+ by mimecast-mx01.redhat.com (Postfix) with ESMTPS id 7E26D760C8;
+ Mon, 29 Nov 2021 14:33:37 +0000 (UTC)
 Received: from warthog.procyon.org.uk (unknown [10.33.36.25])
- by smtp.corp.redhat.com (Postfix) with ESMTP id B7FCF608BA;
- Mon, 29 Nov 2021 14:33:24 +0000 (UTC)
+ by smtp.corp.redhat.com (Postfix) with ESMTP id 16AAD60854;
+ Mon, 29 Nov 2021 14:33:33 +0000 (UTC)
 Organization: Red Hat UK Ltd. Registered Address: Red Hat UK Ltd, Amberley
  Place, 107-111 Peascod Street, Windsor, Berkshire, SI4 1TE, United
  Kingdom.
  Registered in England and Wales under Company Registration No. 3798903
 From: David Howells <dhowells@redhat.com>
 To: linux-cachefs@redhat.com
-Date: Mon, 29 Nov 2021 14:33:23 +0000
-Message-ID: <163819640393.215744.15212364106412961104.stgit@warthog.procyon.org.uk>
+Date: Mon, 29 Nov 2021 14:33:33 +0000
+Message-ID: <163819641320.215744.16346770087799536862.stgit@warthog.procyon.org.uk>
 In-Reply-To: <163819575444.215744.318477214576928110.stgit@warthog.procyon.org.uk>
 References: <163819575444.215744.318477214576928110.stgit@warthog.procyon.org.uk>
 User-Agent: StGit/0.23
@@ -81,22 +81,20 @@ X-Spam-Report: Spam detection software,
  message has been attached to this so you can view it or label
  similar future email.  If you have any questions, see
  the administrator of that system for details.
- Content preview: Implement a function to encode a binary cookie key as
- something
- that can be used as a filename. Four options are considered: (1) All printable
- chars with no '/' characters. Prepend a 'D' to indicate the encoding but
- otherwise use as-is. 
+ Content preview: Use an xattr on each backing file in the cache to store some
+ metadata, such as the content type and the coherency data. Five content types
+ are defined: (0) No content stored. 
  Content analysis details:   (-1.1 points, 6.0 required)
  pts rule name              description
  ---- ---------------------- --------------------------------------------------
  -0.7 RCVD_IN_DNSWL_LOW      RBL: Sender listed at https://www.dnswl.org/,
  low trust [170.10.129.124 listed in list.dnswl.org]
+ 0.0 RCVD_IN_MSPIKE_H3      RBL: Good reputation (+3)
+ [170.10.129.124 listed in wl.mailspike.net]
  0.5 RCVD_IN_UCE1           RBL: IP Listed in UCEPROTECT Level 1
  [170.10.129.124 listed in dnsbl-1.uceprotect.net]
  0.0 SPF_HELO_NONE          SPF: HELO does not publish an SPF Record
  -0.0 SPF_PASS               SPF: sender matches SPF record
- 0.0 RCVD_IN_MSPIKE_H3      RBL: Good reputation (+3)
- [170.10.129.124 listed in wl.mailspike.net]
  -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
  0.1 DKIM_SIGNED            Message has a DKIM or DK signature, not necessarily
  valid
@@ -106,9 +104,9 @@ X-Spam-Report: Spam detection software,
  envelope-from domain
  0.0 RCVD_IN_MSPIKE_WL      Mailspike good senders
  -0.7 DKIMWL_WL_HIGH         DKIMwl.org - High trust sender
-X-Headers-End: 1mrhiu-00EDqD-Ri
-Subject: [V9fs-developer] [PATCH 44/64] cachefiles: Implement key to
- filename encoding
+X-Headers-End: 1mrhj5-00EDqg-IN
+Subject: [V9fs-developer] [PATCH 45/64] cachefiles: Implement
+ metadata/coherency data storage in xattrs
 X-BeenThere: v9fs-developer@lists.sourceforge.net
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -133,213 +131,372 @@ Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: v9fs-developer-bounces@lists.sourceforge.net
 
-Implement a function to encode a binary cookie key as something that can be
-used as a filename.  Four options are considered:
+Use an xattr on each backing file in the cache to store some metadata, such
+as the content type and the coherency data.
 
- (1) All printable chars with no '/' characters.  Prepend a 'D' to indicate
-     the encoding but otherwise use as-is.
+Five content types are defined:
 
- (2) Appears to be an array of __be32.  Encode as 'S' plus a list of
-     hex-encoded 32-bit ints separated by commas.  If a number is 0, it is
-     rendered as "" instead of "0".
+ (0) No content stored.
 
- (3) Appears to be an array of __le32.  Encoded as (2) but with a 'T'
-     encoding prefix.
+ (1) The file contains a single monolithic blob and must be all or nothing.
+     This would be used for something like an AFS directory or a symlink.
 
- (4) Encoded as base64 with an 'E' prefix plus a second char indicating how
-     much padding is involved.  A non-standard base64 encoding is used
-     because '/' cannot be used in the encoded form.
+ (2) The file is populated with content completely up to a point with
+     nothing beyond that.
 
-If (1) is not possible, whichever of (2), (3) or (4) produces the shortest
-string is selected (hex-encoding a number may be less dense than base64
-encoding it).
+ (3) The file has a map attached and is sparsely populated.  This would be
+     stored in one or more additional xattrs.
 
-Note that the prefix characters have to be selected from the set [DEIJST@]
-lest cachefilesd remove the files because it recognise the name.
+ (4) The file is dirty, being in the process of local modification and the
+     contents are not necessarily represented correctly by the metadata.
+     The file should be deleted if this is seen on binding.
 
 Signed-off-by: David Howells <dhowells@redhat.com>
 cc: linux-cachefs@redhat.com
 ---
 
- fs/cachefiles/Makefile   |    1 
- fs/cachefiles/internal.h |    5 ++
- fs/cachefiles/key.c      |  139 ++++++++++++++++++++++++++++++++++++++++++++++
- 3 files changed, 145 insertions(+)
- create mode 100644 fs/cachefiles/key.c
+ fs/cachefiles/Makefile            |    3 -
+ fs/cachefiles/internal.h          |   21 ++++
+ fs/cachefiles/xattr.c             |  181 +++++++++++++++++++++++++++++++++++++
+ include/trace/events/cachefiles.h |   56 +++++++++++
+ 4 files changed, 260 insertions(+), 1 deletion(-)
+ create mode 100644 fs/cachefiles/xattr.c
 
 diff --git a/fs/cachefiles/Makefile b/fs/cachefiles/Makefile
-index d67210ece9cd..6f025940a65c 100644
+index 6f025940a65c..cb7a6bcf51eb 100644
 --- a/fs/cachefiles/Makefile
 +++ b/fs/cachefiles/Makefile
-@@ -7,6 +7,7 @@ cachefiles-y := \
- 	cache.o \
- 	daemon.o \
- 	interface.o \
-+	key.o \
+@@ -11,7 +11,8 @@ cachefiles-y := \
  	main.o \
  	namei.o \
  	security.o \
+-	volume.o
++	volume.o \
++	xattr.o
+ 
+ cachefiles-$(CONFIG_CACHEFILES_ERROR_INJECTION) += error_inject.o
+ 
 diff --git a/fs/cachefiles/internal.h b/fs/cachefiles/internal.h
-index ff378171c71d..28e386b5b1f3 100644
+index 28e386b5b1f3..fbb38d3e6cac 100644
 --- a/fs/cachefiles/internal.h
 +++ b/fs/cachefiles/internal.h
-@@ -173,6 +173,11 @@ extern struct cachefiles_object *cachefiles_grab_object(struct cachefiles_object
- extern void cachefiles_put_object(struct cachefiles_object *object,
- 				  enum cachefiles_obj_ref_trace why);
+@@ -55,6 +55,7 @@ struct cachefiles_object {
+ 	u8				d_name_len;	/* Length of filename */
+ 	enum cachefiles_content		content_info:8;	/* Info about content presence */
+ 	unsigned long			flags;
++#define CACHEFILES_OBJECT_USING_TMPFILE	0		/* Have an unlinked tmpfile */
+ };
+ 
+ /*
+@@ -218,6 +219,17 @@ void cachefiles_acquire_volume(struct fscache_volume *volume);
+ void cachefiles_free_volume(struct fscache_volume *volume);
+ void cachefiles_withdraw_volume(struct cachefiles_volume *volume);
  
 +/*
-+ * key.c
++ * xattr.c
 + */
-+extern bool cachefiles_cook_key(struct cachefiles_object *object);
++extern int cachefiles_set_object_xattr(struct cachefiles_object *object);
++extern int cachefiles_check_auxdata(struct cachefiles_object *object,
++				    struct file *file);
++extern int cachefiles_remove_object_xattr(struct cachefiles_cache *cache,
++					  struct cachefiles_object *object,
++					  struct dentry *dentry);
++extern void cachefiles_prepare_to_write(struct fscache_cookie *cookie);
 +
  /*
-  * main.c
+  * Error handling
   */
-diff --git a/fs/cachefiles/key.c b/fs/cachefiles/key.c
+@@ -228,6 +240,15 @@ do {							\
+ 	set_bit(CACHEFILES_DEAD, &(___cache)->flags);	\
+ } while (0)
+ 
++#define cachefiles_io_error_obj(object, FMT, ...)			\
++do {									\
++	struct cachefiles_cache *___cache;				\
++									\
++	___cache = (object)->volume->cache;				\
++	cachefiles_io_error(___cache, FMT " [o=%08x]", ##__VA_ARGS__,	\
++			    (object)->debug_id);			\
++} while (0)
++
+ 
+ /*
+  * Debug tracing
+diff --git a/fs/cachefiles/xattr.c b/fs/cachefiles/xattr.c
 new file mode 100644
-index 000000000000..3b1bdc81fc0a
+index 000000000000..0601c46a22ef
 --- /dev/null
-+++ b/fs/cachefiles/key.c
-@@ -0,0 +1,139 @@
++++ b/fs/cachefiles/xattr.c
+@@ -0,0 +1,181 @@
 +// SPDX-License-Identifier: GPL-2.0-or-later
-+/* Key to pathname encoder
++/* CacheFiles extended attribute management
 + *
 + * Copyright (C) 2021 Red Hat, Inc. All Rights Reserved.
 + * Written by David Howells (dhowells@redhat.com)
 + */
 +
++#include <linux/module.h>
++#include <linux/sched.h>
++#include <linux/file.h>
++#include <linux/fs.h>
++#include <linux/fsnotify.h>
++#include <linux/quotaops.h>
++#include <linux/xattr.h>
 +#include <linux/slab.h>
 +#include "internal.h"
 +
-+static const char cachefiles_charmap[64] =
-+	"0123456789"			/* 0 - 9 */
-+	"abcdefghijklmnopqrstuvwxyz"	/* 10 - 35 */
-+	"ABCDEFGHIJKLMNOPQRSTUVWXYZ"	/* 36 - 61 */
-+	"_-"				/* 62 - 63 */
-+	;
++#define CACHEFILES_COOKIE_TYPE_DATA 1
 +
-+static const char cachefiles_filecharmap[256] = {
-+	/* we skip space and tab and control chars */
-+	[33 ... 46] = 1,		/* '!' -> '.' */
-+	/* we skip '/' as it's significant to pathwalk */
-+	[48 ... 127] = 1,		/* '0' -> '~' */
-+};
++struct cachefiles_xattr {
++	__be64	object_size;	/* Actual size of the object */
++	__be64	zero_point;	/* Size after which server has no data not written by us */
++	__u8	type;		/* Type of object */
++	__u8	content;	/* Content presence (enum cachefiles_content) */
++	__u8	data[];		/* netfs coherency data */
++} __packed;
 +
-+static inline unsigned int how_many_hex_digits(unsigned int x)
++static const char cachefiles_xattr_cache[] =
++	XATTR_USER_PREFIX "CacheFiles.cache";
++
++/*
++ * set the state xattr on a cache file
++ */
++int cachefiles_set_object_xattr(struct cachefiles_object *object)
 +{
-+	return x ? round_up(ilog2(x) + 1, 4) / 4 : 0;
++	struct cachefiles_xattr *buf;
++	struct dentry *dentry;
++	struct file *file = object->file;
++	unsigned int len = object->cookie->aux_len;
++	int ret;
++
++	if (!file)
++		return -ESTALE;
++	dentry = file->f_path.dentry;
++
++	_enter("%x,#%d", object->debug_id, len);
++
++	buf = kmalloc(sizeof(struct cachefiles_xattr) + len, GFP_KERNEL);
++	if (!buf)
++		return -ENOMEM;
++
++	buf->object_size	= cpu_to_be64(object->cookie->object_size);
++	buf->zero_point		= 0;
++	buf->type		= CACHEFILES_COOKIE_TYPE_DATA;
++	buf->content		= object->content_info;
++	if (test_bit(FSCACHE_COOKIE_LOCAL_WRITE, &object->cookie->flags))
++		buf->content	= CACHEFILES_CONTENT_DIRTY;
++	if (len > 0)
++		memcpy(buf->data, fscache_get_aux(object->cookie), len);
++
++	ret = cachefiles_inject_write_error();
++	if (ret == 0)
++		ret = vfs_setxattr(&init_user_ns, dentry, cachefiles_xattr_cache,
++				   buf, sizeof(struct cachefiles_xattr) + len, 0);
++	if (ret < 0) {
++		trace_cachefiles_vfs_error(object, file_inode(file), ret,
++					   cachefiles_trace_setxattr_error);
++		trace_cachefiles_coherency(object, file_inode(file)->i_ino,
++					   buf->content,
++					   cachefiles_coherency_set_fail);
++		if (ret != -ENOMEM)
++			cachefiles_io_error_obj(
++				object,
++				"Failed to set xattr with error %d", ret);
++	} else {
++		trace_cachefiles_coherency(object, file_inode(file)->i_ino,
++					   buf->content,
++					   cachefiles_coherency_set_ok);
++	}
++
++	kfree(buf);
++	_leave(" = %d", ret);
++	return ret;
 +}
 +
 +/*
-+ * turn the raw key into something cooked
-+ * - the key may be up to NAME_MAX in length (including the length word)
-+ *   - "base64" encode the strange keys, mapping 3 bytes of raw to four of
-+ *     cooked
-+ *   - need to cut the cooked key into 252 char lengths (189 raw bytes)
++ * check the consistency between the backing cache and the FS-Cache cookie
 + */
-+bool cachefiles_cook_key(struct cachefiles_object *object)
++int cachefiles_check_auxdata(struct cachefiles_object *object, struct file *file)
 +{
-+	const u8 *key = fscache_get_key(object->cookie), *kend;
-+	unsigned char ch;
-+	unsigned int acc, i, n, nle, nbe, keylen = object->cookie->key_len;
-+	unsigned int b64len, len, print, pad;
-+	char *name, sep;
++	struct cachefiles_xattr *buf;
++	struct dentry *dentry = file->f_path.dentry;
++	unsigned int len = object->cookie->aux_len, tlen;
++	const void *p = fscache_get_aux(object->cookie);
++	enum cachefiles_coherency_trace why;
++	ssize_t xlen;
++	int ret = -ESTALE;
 +
-+	_enter(",%u,%*phN", keylen, keylen, key);
++	tlen = sizeof(struct cachefiles_xattr) + len;
++	buf = kmalloc(tlen, GFP_KERNEL);
++	if (!buf)
++		return -ENOMEM;
 +
-+	BUG_ON(keylen > NAME_MAX - 3);
-+
-+	print = 1;
-+	for (i = 0; i < keylen; i++) {
-+		ch = key[i];
-+		print &= cachefiles_filecharmap[ch];
++	xlen = cachefiles_inject_read_error();
++	if (xlen == 0)
++		xlen = vfs_getxattr(&init_user_ns, dentry, cachefiles_xattr_cache, buf, tlen);
++	if (xlen != tlen) {
++		if (xlen < 0)
++			trace_cachefiles_vfs_error(object, file_inode(file), xlen,
++						   cachefiles_trace_getxattr_error);
++		if (xlen == -EIO)
++			cachefiles_io_error_obj(
++				object,
++				"Failed to read aux with error %zd", xlen);
++		why = cachefiles_coherency_check_xattr;
++	} else if (buf->type != CACHEFILES_COOKIE_TYPE_DATA) {
++		why = cachefiles_coherency_check_type;
++	} else if (memcmp(buf->data, p, len) != 0) {
++		why = cachefiles_coherency_check_aux;
++	} else if (be64_to_cpu(buf->object_size) != object->cookie->object_size) {
++		why = cachefiles_coherency_check_objsize;
++	} else if (buf->content == CACHEFILES_CONTENT_DIRTY) {
++		// TODO: Begin conflict resolution
++		pr_warn("Dirty object in cache\n");
++		why = cachefiles_coherency_check_dirty;
++	} else {
++		why = cachefiles_coherency_check_ok;
++		ret = 0;
 +	}
 +
-+	/* If the path is usable ASCII, then we render it directly */
-+	if (print) {
-+		len = 1 + keylen + 1;
-+		name = kmalloc(len, GFP_KERNEL);
-+		if (!name)
-+			return false;
-+
-+		name[0] = 'D'; /* Data object type, string encoding */
-+		name[1 + keylen] = 0;
-+		memcpy(name + 1, key, keylen);
-+		goto success;
-+	}
-+
-+	/* See if it makes sense to encode it as "hex,hex,hex" for each 32-bit
-+	 * chunk.  We rely on the key having been padded out to a whole number
-+	 * of 32-bit words.
-+	 */
-+	n = round_up(keylen, 4);
-+	nbe = nle = 0;
-+	for (i = 0; i < n; i += 4) {
-+		u32 be = be32_to_cpu(*(__be32 *)(key + i));
-+		u32 le = le32_to_cpu(*(__le32 *)(key + i));
-+
-+		nbe += 1 + how_many_hex_digits(be);
-+		nle += 1 + how_many_hex_digits(le);
-+	}
-+
-+	b64len = DIV_ROUND_UP(keylen, 3);
-+	pad = b64len * 3 - keylen;
-+	b64len = 2 + b64len * 4; /* Length if we base64-encode it */
-+	_debug("len=%u nbe=%u nle=%u b64=%u", keylen, nbe, nle, b64len);
-+	if (nbe < b64len || nle < b64len) {
-+		unsigned int nlen = min(nbe, nle) + 1;
-+		name = kmalloc(nlen, GFP_KERNEL);
-+		if (!name)
-+			return false;
-+		sep = (nbe <= nle) ? 'S' : 'T'; /* Encoding indicator */
-+		len = 0;
-+		for (i = 0; i < n; i += 4) {
-+			u32 x;
-+			if (nbe <= nle)
-+				x = be32_to_cpu(*(__be32 *)(key + i));
-+			else
-+				x = le32_to_cpu(*(__le32 *)(key + i));
-+			name[len++] = sep;
-+			if (x != 0)
-+				len += snprintf(name + len, nlen - len, "%x", x);
-+			sep = ',';
-+		}
-+		goto success;
-+	}
-+
-+	/* We need to base64-encode it */
-+	name = kmalloc(b64len + 1, GFP_KERNEL);
-+	if (!name)
-+		return false;
-+
-+	name[0] = 'E';
-+	name[1] = '0' + pad;
-+	len = 2;
-+	kend = key + keylen;
-+	do {
-+		acc  = *key++;
-+		if (key < kend) {
-+			acc |= *key++ << 8;
-+			if (key < kend)
-+				acc |= *key++ << 16;
-+		}
-+
-+		name[len++] = cachefiles_charmap[acc & 63];
-+		acc >>= 6;
-+		name[len++] = cachefiles_charmap[acc & 63];
-+		acc >>= 6;
-+		name[len++] = cachefiles_charmap[acc & 63];
-+		acc >>= 6;
-+		name[len++] = cachefiles_charmap[acc & 63];
-+	} while (key < kend);
-+
-+success:
-+	name[len] = 0;
-+	object->d_name = name;
-+	object->d_name_len = len;
-+	_leave(" = %s", object->d_name);
-+	return true;
++	trace_cachefiles_coherency(object, file_inode(file)->i_ino,
++				   buf->content, why);
++	kfree(buf);
++	return ret;
 +}
++
++/*
++ * remove the object's xattr to mark it stale
++ */
++int cachefiles_remove_object_xattr(struct cachefiles_cache *cache,
++				   struct cachefiles_object *object,
++				   struct dentry *dentry)
++{
++	int ret;
++
++	ret = cachefiles_inject_remove_error();
++	if (ret == 0)
++		ret = vfs_removexattr(&init_user_ns, dentry, cachefiles_xattr_cache);
++	if (ret < 0) {
++		trace_cachefiles_vfs_error(object, d_inode(dentry), ret,
++					   cachefiles_trace_remxattr_error);
++		if (ret == -ENOENT || ret == -ENODATA)
++			ret = 0;
++		else if (ret != -ENOMEM)
++			cachefiles_io_error(cache,
++					    "Can't remove xattr from %lu"
++					    " (error %d)",
++					    d_backing_inode(dentry)->i_ino, -ret);
++	}
++
++	_leave(" = %d", ret);
++	return ret;
++}
++
++/*
++ * Stick a marker on the cache object to indicate that it's dirty.
++ */
++void cachefiles_prepare_to_write(struct fscache_cookie *cookie)
++{
++	const struct cred *saved_cred;
++	struct cachefiles_object *object = cookie->cache_priv;
++	struct cachefiles_cache *cache = object->volume->cache;
++
++	_enter("c=%08x", object->cookie->debug_id);
++
++	if (!test_bit(CACHEFILES_OBJECT_USING_TMPFILE, &object->flags)) {
++		cachefiles_begin_secure(cache, &saved_cred);
++		cachefiles_set_object_xattr(object);
++		cachefiles_end_secure(cache, saved_cred);
++	}
++}
+diff --git a/include/trace/events/cachefiles.h b/include/trace/events/cachefiles.h
+index 493afa7fbfec..47b584b3ffab 100644
+--- a/include/trace/events/cachefiles.h
++++ b/include/trace/events/cachefiles.h
+@@ -42,6 +42,19 @@ enum fscache_why_object_killed {
+ 	FSCACHE_OBJECT_WAS_CULLED,
+ };
+ 
++enum cachefiles_coherency_trace {
++	cachefiles_coherency_check_aux,
++	cachefiles_coherency_check_content,
++	cachefiles_coherency_check_dirty,
++	cachefiles_coherency_check_len,
++	cachefiles_coherency_check_objsize,
++	cachefiles_coherency_check_ok,
++	cachefiles_coherency_check_type,
++	cachefiles_coherency_check_xattr,
++	cachefiles_coherency_set_fail,
++	cachefiles_coherency_set_ok,
++};
++
+ enum cachefiles_trunc_trace {
+ 	cachefiles_trunc_dio_adjust,
+ 	cachefiles_trunc_expand_tmpfile,
+@@ -95,6 +108,18 @@ enum cachefiles_error_trace {
+ 	EM(cachefiles_obj_see_withdraw_cookie,	"SEE withdraw_cookie")	\
+ 	E_(cachefiles_obj_see_withdrawal,	"SEE withdrawal")
+ 
++#define cachefiles_coherency_traces					\
++	EM(cachefiles_coherency_check_aux,	"BAD aux ")		\
++	EM(cachefiles_coherency_check_content,	"BAD cont")		\
++	EM(cachefiles_coherency_check_dirty,	"BAD dirt")		\
++	EM(cachefiles_coherency_check_len,	"BAD len ")		\
++	EM(cachefiles_coherency_check_objsize,	"BAD osiz")		\
++	EM(cachefiles_coherency_check_ok,	"OK      ")		\
++	EM(cachefiles_coherency_check_type,	"BAD type")		\
++	EM(cachefiles_coherency_check_xattr,	"BAD xatt")		\
++	EM(cachefiles_coherency_set_fail,	"SET fail")		\
++	E_(cachefiles_coherency_set_ok,		"SET ok  ")
++
+ #define cachefiles_trunc_traces						\
+ 	EM(cachefiles_trunc_dio_adjust,		"DIOADJ")		\
+ 	EM(cachefiles_trunc_expand_tmpfile,	"EXPTMP")		\
+@@ -130,6 +155,7 @@ enum cachefiles_error_trace {
+ 
+ cachefiles_obj_kill_traces;
+ cachefiles_obj_ref_traces;
++cachefiles_coherency_traces;
+ cachefiles_trunc_traces;
+ cachefiles_error_traces;
+ 
+@@ -287,6 +313,36 @@ TRACE_EVENT(cachefiles_rename,
+ 		      __print_symbolic(__entry->why, cachefiles_obj_kill_traces))
+ 	    );
+ 
++TRACE_EVENT(cachefiles_coherency,
++	    TP_PROTO(struct cachefiles_object *obj,
++		     ino_t ino,
++		     enum cachefiles_content content,
++		     enum cachefiles_coherency_trace why),
++
++	    TP_ARGS(obj, ino, content, why),
++
++	    /* Note that obj may be NULL */
++	    TP_STRUCT__entry(
++		    __field(unsigned int,			obj	)
++		    __field(enum cachefiles_coherency_trace,	why	)
++		    __field(enum cachefiles_content,		content	)
++		    __field(u64,				ino	)
++			     ),
++
++	    TP_fast_assign(
++		    __entry->obj	= obj->debug_id;
++		    __entry->why	= why;
++		    __entry->content	= content;
++		    __entry->ino	= ino;
++			   ),
++
++	    TP_printk("o=%08x %s i=%llx c=%u",
++		      __entry->obj,
++		      __print_symbolic(__entry->why, cachefiles_coherency_traces),
++		      __entry->ino,
++		      __entry->content)
++	    );
++
+ TRACE_EVENT(cachefiles_trunc,
+ 	    TP_PROTO(struct cachefiles_object *obj, struct inode *backer,
+ 		     loff_t from, loff_t to, enum cachefiles_trunc_trace why),
 
 
 
