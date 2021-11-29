@@ -2,88 +2,92 @@ Return-Path: <v9fs-developer-bounces@lists.sourceforge.net>
 X-Original-To: lists+v9fs-developer@lfdr.de
 Delivered-To: lists+v9fs-developer@lfdr.de
 Received: from lists.sourceforge.net (lists.sourceforge.net [216.105.38.7])
-	by mail.lfdr.de (Postfix) with ESMTPS id D0EF246140A
-	for <lists+v9fs-developer@lfdr.de>; Mon, 29 Nov 2021 12:45:08 +0100 (CET)
-Received: from [127.0.0.1] (helo=sfs-ml-4.v29.lw.sourceforge.com)
-	by sfs-ml-4.v29.lw.sourceforge.com with esmtp (Exim 4.94.2)
+	by mail.lfdr.de (Postfix) with ESMTPS id D7A2C461669
+	for <lists+v9fs-developer@lfdr.de>; Mon, 29 Nov 2021 14:28:31 +0100 (CET)
+Received: from [127.0.0.1] (helo=sfs-ml-1.v29.lw.sourceforge.com)
+	by sfs-ml-1.v29.lw.sourceforge.com with esmtp (Exim 4.94.2)
 	(envelope-from <v9fs-developer-bounces@lists.sourceforge.net>)
-	id 1mrf5l-0000SX-U0; Mon, 29 Nov 2021 11:45:05 +0000
+	id 1mrgho-0003aC-IR; Mon, 29 Nov 2021 13:28:29 +0000
 Received: from [172.30.20.202] (helo=mx.sourceforge.net)
- by sfs-ml-4.v29.lw.sourceforge.com with esmtps (TLS1.2) tls
+ by sfs-ml-1.v29.lw.sourceforge.com with esmtps (TLS1.2) tls
  TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384 (Exim 4.94.2)
- (envelope-from <brauner@kernel.org>) id 1mrf5k-0000SP-Su
- for v9fs-developer@lists.sourceforge.net; Mon, 29 Nov 2021 11:45:04 +0000
+ (envelope-from <asmadeus@codewreck.org>) id 1mrghm-0003a6-T1
+ for v9fs-developer@lists.sourceforge.net; Mon, 29 Nov 2021 13:28:28 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=sourceforge.net; s=x; h=Content-Transfer-Encoding:MIME-Version:References:
- In-Reply-To:Message-Id:Date:Subject:Cc:To:From:Sender:Reply-To:Content-Type:
+ d=sourceforge.net; s=x; h=In-Reply-To:Content-Type:MIME-Version:References:
+ Message-ID:Subject:Cc:To:From:Date:Sender:Reply-To:Content-Transfer-Encoding:
  Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
  Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
  List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=xAgqaFkxMH9mFoetKCRT4+M5R4FU7jlEoEOvwEqWCWY=; b=cuA1j2xVVLDl5bqwB8vnFO9ozo
- mZ3gWVb9gBRCQoSrqmq8GWqhmH2nRYrtXORjIaUXbHnrZgYiuqaSq4tM8GD3+KHas0E5XmTD9STGf
- fj1q1mLao99Y2dPxRKJqLBECY2SpmNZQqUWGTb/WdUrqPXH1GSlsaqRP7nVfFWuZ0SDI=;
+ bh=mqvBSWXnt1kWergVBTedJtW+3y42E8g/POO1J99TSxc=; b=RDyM5enWM+VyXYbQojSggCPj74
+ 7TdQbXKlOuL8/llTzoKT9lLbw1Sc9lXPkA7WqzxkmqT2TVTE+hoWLV5mQ3bXFGXCdlXZyiZf5FKRI
+ wV68NB3PQguX6+O4LhfzqFbjLpp8/pHsWSugZYoqUugdAAOt0QJrlmW8r5xFFvrFrexE=;
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  ;
- h=Content-Transfer-Encoding:MIME-Version:References:In-Reply-To:Message-Id:
- Date:Subject:Cc:To:From:Sender:Reply-To:Content-Type:Content-ID:
+ h=In-Reply-To:Content-Type:MIME-Version:References:Message-ID:Subject:Cc:To
+ :From:Date:Sender:Reply-To:Content-Transfer-Encoding:Content-ID:
  Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
  :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
  List-Post:List-Owner:List-Archive;
- bh=xAgqaFkxMH9mFoetKCRT4+M5R4FU7jlEoEOvwEqWCWY=; b=m8HMcYKALv/fhLZ78GcgO9or3b
- nFFTFFuVpMGyFO2WVgga91ykKKLg96pHux4AOPydSgrLUY1BAJCbCJYsqFR1P3j4K0sy8jug3FSuY
- 9W5F8hM0J2AugNiLNvhfjSRuTlxOCIf1z8YZ4EOLNmnMklWfmRDlHmiuDmn06JJnDagk=;
-Received: from dfw.source.kernel.org ([139.178.84.217])
+ bh=mqvBSWXnt1kWergVBTedJtW+3y42E8g/POO1J99TSxc=; b=WAlPyxajW0o2eak8llytvz73pM
+ fxhTnILNcPnPfE6JGJ72klqySEVmNV3u66MSQJr52toXRWHgt3gro7+Ed8ENNQMUoupTt6j21BGhY
+ KcbASFi6ZwZZAaS/ne780dou3cYA+0vs47KHiBaqrWE4gWBNLyK3N4eYyxEDA0Yp9XiI=;
+Received: from nautica.notk.org ([91.121.71.147])
  by sfi-mx-1.v28.lw.sourceforge.com with esmtps
  (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.92.3)
- id 1mrf5i-00Dwvx-TO
- for v9fs-developer@lists.sourceforge.net; Mon, 29 Nov 2021 11:45:04 +0000
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
- (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
- (No client certificate requested)
- by dfw.source.kernel.org (Postfix) with ESMTPS id 97B8061305;
- Mon, 29 Nov 2021 11:44:52 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7212BC53FCE;
- Mon, 29 Nov 2021 11:44:50 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1638186292;
- bh=a7pr97q1g++NPejXdtLio/ezPGV2a8KcSuthYX6wc+o=;
- h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
- b=rgfXteY7tAI2+rM+BZYoEMj3cDMiWyQ3AM7i6bs8OVWDOJv+HsMrEAXcKKhhoGTDN
- 6ENAjBbdRu8qDLyP+nkgGppm//wCBc9PURW7VkJQerACxV8zbHu+5ur4YV1bS8F8jQ
- LRd0cS62DbOvqosf/4zZZTeSgnyIscqSHlVfBfbXlt0GcxHDghbYRQpPV5rhTuwIJF
- WZtBMM1Wi4G4fX6SKZ+LDKUcLBUchwmVECfc7l/+Ja2VwC6+Xf5RtrFTyx5RLvdj28
- Sez9GRxWzVEJVCW62UGn+nzhkZFn1mmVyColhdRK3gd7Ci2PKmClM5ekhy8I5YzLLE
- 9koVNpyQ9EjGA==
-From: Christian Brauner <brauner@kernel.org>
-To: Eric Van Hensbergen <ericvh@gmail.com>,
- Latchesar Ionkov <lucho@ionkov.net>,
- Dominique Martinet <asmadeus@codewreck.org>,
- v9fs-developer@lists.sourceforge.net
-Date: Mon, 29 Nov 2021 12:44:34 +0100
-Message-Id: <20211129114434.3637938-1-brauner@kernel.org>
-X-Mailer: git-send-email 2.30.2
-In-Reply-To: <000000000000a0d53f05d1c72a4c%40google.com>
+ id 1mrghh-00EAIM-IG
+ for v9fs-developer@lists.sourceforge.net; Mon, 29 Nov 2021 13:28:27 +0000
+Received: by nautica.notk.org (Postfix, from userid 108)
+ id D7156C01E; Mon, 29 Nov 2021 14:28:14 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=codewreck.org; s=2;
+ t=1638192494; bh=mqvBSWXnt1kWergVBTedJtW+3y42E8g/POO1J99TSxc=;
+ h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+ b=TQrvVkbX9wcCLteH6GpCmnOdks5ympvSeJGu4+tiZARZjggySi4XT3lLdSYdTWMUr
+ 8WO4bi8OevFpFQDzlzddbIbjGS5YgEMi9Xjm1V/ZxM4ZOeYf82zvYJvvQCfDjI4Hq2
+ VMRG7RlzoHrGAJUNaScegO96QyoFVs1wOM4oJ2wz34KoxNptQQBwKofNQA6LcJ54Wb
+ 4rF6WQ1IQ113u4PLcZUTf4mEj1tEtgznISEg4w4UKDBZcrxsG/TiXsySsBwFJ6fx5k
+ l04kHJyyq5J3auuslZnCkHqeFTiyyBv0Mg9/6iLsc40Z1Ug2C7TTRufAXu/wvMvIPU
+ LUsIh7ffNrr9Q==
+X-Spam-Checker-Version: SpamAssassin 3.3.2 (2011-06-06) on nautica.notk.org
+X-Spam-Level: 
+X-Spam-Status: No, score=0.0 required=5.0 tests=UNPARSEABLE_RELAY
+ autolearn=unavailable version=3.3.2
+Received: from odin.codewreck.org (localhost [127.0.0.1])
+ by nautica.notk.org (Postfix) with ESMTPS id 04A7EC009;
+ Mon, 29 Nov 2021 14:28:11 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=codewreck.org; s=2;
+ t=1638192494; bh=mqvBSWXnt1kWergVBTedJtW+3y42E8g/POO1J99TSxc=;
+ h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+ b=TQrvVkbX9wcCLteH6GpCmnOdks5ympvSeJGu4+tiZARZjggySi4XT3lLdSYdTWMUr
+ 8WO4bi8OevFpFQDzlzddbIbjGS5YgEMi9Xjm1V/ZxM4ZOeYf82zvYJvvQCfDjI4Hq2
+ VMRG7RlzoHrGAJUNaScegO96QyoFVs1wOM4oJ2wz34KoxNptQQBwKofNQA6LcJ54Wb
+ 4rF6WQ1IQ113u4PLcZUTf4mEj1tEtgznISEg4w4UKDBZcrxsG/TiXsySsBwFJ6fx5k
+ l04kHJyyq5J3auuslZnCkHqeFTiyyBv0Mg9/6iLsc40Z1Ug2C7TTRufAXu/wvMvIPU
+ LUsIh7ffNrr9Q==
+Received: from localhost (odin.codewreck.org [local])
+ by odin.codewreck.org (OpenSMTPD) with ESMTPA id 2beba882;
+ Mon, 29 Nov 2021 13:28:09 +0000 (UTC)
+Date: Mon, 29 Nov 2021 22:27:54 +0900
+From: Dominique Martinet <asmadeus@codewreck.org>
+To: Christian Brauner <brauner@kernel.org>
+Message-ID: <YaTVWtjhm4+2FI33@codewreck.org>
 References: <000000000000a0d53f05d1c72a4c%40google.com>
+ <20211129114434.3637938-1-brauner@kernel.org>
 MIME-Version: 1.0
-X-Developer-Signature: v=1; a=openpgp-sha256; l=2793; h=from:subject;
- bh=hp5Se6v77gZHz7JqdOkQybOQS9+OMw9PDo9BAeWcdkQ=;
- b=owGbwMvMwCU28Zj0gdSKO4sYT6slMSQu2SsY23fg/ITFYmx/jaWaTnD7TeBccChlZfO5Ry9Y7Gb6
- zI2Y0VHKwiDGxSArpsji0G4SLrecp2KzUaYGzBxWJpAhDFycAjARNg5GhrVdErk5Pw+7/zkQbrlYJG
- 1Vwu8NF6w0Re2nb78z0UtqszYjw+v14lOqvjJ/uz6BcX/BztkJ0taWwU/+ihSEPJ4fcVPtHSsA
-X-Developer-Key: i=christian.brauner@ubuntu.com; a=openpgp;
- fpr=4880B8C9BD0E5106FC070F4F7B3C391EFEA93624
-X-Spam-Score: -0.9 (/)
+Content-Disposition: inline
+In-Reply-To: <20211129114434.3637938-1-brauner@kernel.org>
+X-Spam-Score: -0.2 (/)
 X-Spam-Report: Spam detection software,
  running on the system "util-spamd-1.v13.lw.sourceforge.com", 
  has NOT identified this incoming email as spam.  The original
  message has been attached to this so you can view it or label
  similar future email.  If you have any questions, see
  the administrator of that system for details.
- Content preview:  From: Christian Brauner <christian.brauner@ubuntu.com> The
- 9P2000.L setattr method v9fs_vfs_setattr_dotl() copies struct iattr values
- without checking whether they are valid causing unitialized values to be
- copied. The 9P2000 setattr method v9fs_vfs_setat [...] 
- Content analysis details:   (-0.9 points, 6.0 required)
+ Content preview:  Christian Brauner wrote on Mon, Nov 29, 2021 at 12:44:34PM
+ +0100: > From: Christian Brauner <christian.brauner@ubuntu.com> > > The
+ 9P2000.L
+ setattr method v9fs_vfs_setattr_dotl() copies struct iattr > [...] 
+ Content analysis details:   (-0.2 points, 6.0 required)
  pts rule name              description
  ---- ---------------------- --------------------------------------------------
  0.0 SPF_HELO_NONE          SPF: HELO does not publish an SPF Record
@@ -95,9 +99,10 @@ X-Spam-Report: Spam detection software,
  author's domain
  -0.1 DKIM_VALID_EF          Message has a valid DKIM or DK signature from
  envelope-from domain
- -0.7 DKIMWL_WL_HIGH         DKIMwl.org - High trust sender
-X-Headers-End: 1mrf5i-00Dwvx-TO
-Subject: [V9fs-developer] [PATCH] 9p: only copy valid iattrs in 9P2000.L
+ 0.0 UNPARSEABLE_RELAY      Informational: message has unparseable relay
+ lines
+X-Headers-End: 1mrghh-00EAIM-IG
+Subject: Re: [V9fs-developer] [PATCH] 9p: only copy valid iattrs in 9P2000.L
  setattr implementation
 X-BeenThere: v9fs-developer@lists.sourceforge.net
 X-Mailman-Version: 2.1.21
@@ -110,88 +115,47 @@ List-Post: <mailto:v9fs-developer@lists.sourceforge.net>
 List-Help: <mailto:v9fs-developer-request@lists.sourceforge.net?subject=help>
 List-Subscribe: <https://lists.sourceforge.net/lists/listinfo/v9fs-developer>, 
  <mailto:v9fs-developer-request@lists.sourceforge.net?subject=subscribe>
-Cc: Christian Brauner <christian.brauner@ubuntu.com>,
+Cc: Latchesar Ionkov <lucho@ionkov.net>, Eric Van Hensbergen <ericvh@gmail.com>,
+ syzkaller-bugs@googlegroups.com,
  syzbot+dfac92a50024b54acaa4@syzkaller.appspotmail.com,
- syzkaller-bugs@googlegroups.com, stable@kernel.org
+ v9fs-developer@lists.sourceforge.net,
+ Christian Brauner <christian.brauner@ubuntu.com>, stable@kernel.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: v9fs-developer-bounces@lists.sourceforge.net
 
-From: Christian Brauner <christian.brauner@ubuntu.com>
+Christian Brauner wrote on Mon, Nov 29, 2021 at 12:44:34PM +0100:
+> From: Christian Brauner <christian.brauner@ubuntu.com>
+> 
+> The 9P2000.L setattr method v9fs_vfs_setattr_dotl() copies struct iattr
+> values without checking whether they are valid causing unitialized
+> values to be copied. The 9P2000 setattr method v9fs_vfs_setattr() method
+> gets this right. Check whether struct iattr fields are valid first
+> before copying in v9fs_vfs_setattr_dotl() too and make sure that all
+> other fields are set to 0 apart from {g,u}id which should be set to
+> INVALID_{G,U}ID. This ensure that they can be safely sent over the wire
+> or printed for debugging later on.
 
-The 9P2000.L setattr method v9fs_vfs_setattr_dotl() copies struct iattr
-values without checking whether they are valid causing unitialized
-values to be copied. The 9P2000 setattr method v9fs_vfs_setattr() method
-gets this right. Check whether struct iattr fields are valid first
-before copying in v9fs_vfs_setattr_dotl() too and make sure that all
-other fields are set to 0 apart from {g,u}id which should be set to
-INVALID_{G,U}ID. This ensure that they can be safely sent over the wire
-or printed for debugging later on.
+hm, this might work for g/uid, but the struct isn't directly memcpy'd
+over the wire and real check should be based on p9attr.valid -- I have
+the feeling this is just sweeping the issue under the rug and will be
+potentially sending invalid modes or other attributes if that is a
+problem.
+Copying uninitialized value isn't a problem, and is usually faster than
+checking before every copy, it's using uninitialized values later down
+the road that is bad.
 
-Link: https://lore.kernel.org/r/000000000000a0d53f05d1c72a4c%40google.com
-Cc: Eric Van Hensbergen <ericvh@gmail.com>
-Cc: Latchesar Ionkov <lucho@ionkov.net>
-Cc: Dominique Martinet <asmadeus@codewreck.org>
-Cc: stable@kernel.org
-Cc: v9fs-developer@lists.sourceforge.net
-Reported-by: syzbot+dfac92a50024b54acaa4@syzkaller.appspotmail.com
-Signed-off-by: Christian Brauner <christian.brauner@ubuntu.com>
----
- fs/9p/vfs_inode_dotl.c | 29 ++++++++++++++++++++---------
- 1 file changed, 20 insertions(+), 9 deletions(-)
 
-diff --git a/fs/9p/vfs_inode_dotl.c b/fs/9p/vfs_inode_dotl.c
-index 7dee89ba32e7..bbed366ae901 100644
---- a/fs/9p/vfs_inode_dotl.c
-+++ b/fs/9p/vfs_inode_dotl.c
-@@ -551,7 +551,10 @@ int v9fs_vfs_setattr_dotl(struct user_namespace *mnt_userns,
- {
- 	int retval, use_dentry = 0;
- 	struct p9_fid *fid = NULL;
--	struct p9_iattr_dotl p9attr;
-+	struct p9_iattr_dotl p9attr = {
-+		.uid = INVALID_UID,
-+		.gid = INVALID_GID,
-+	};
- 	struct inode *inode = d_inode(dentry);
- 
- 	p9_debug(P9_DEBUG_VFS, "\n");
-@@ -561,14 +564,22 @@ int v9fs_vfs_setattr_dotl(struct user_namespace *mnt_userns,
- 		return retval;
- 
- 	p9attr.valid = v9fs_mapped_iattr_valid(iattr->ia_valid);
--	p9attr.mode = iattr->ia_mode;
--	p9attr.uid = iattr->ia_uid;
--	p9attr.gid = iattr->ia_gid;
--	p9attr.size = iattr->ia_size;
--	p9attr.atime_sec = iattr->ia_atime.tv_sec;
--	p9attr.atime_nsec = iattr->ia_atime.tv_nsec;
--	p9attr.mtime_sec = iattr->ia_mtime.tv_sec;
--	p9attr.mtime_nsec = iattr->ia_mtime.tv_nsec;
-+	if (iattr->ia_valid & ATTR_MODE)
-+		p9attr.mode = iattr->ia_mode;
-+	if (iattr->ia_valid & ATTR_UID)
-+		p9attr.uid = iattr->ia_uid;
-+	if (iattr->ia_valid & ATTR_GID)
-+		p9attr.gid = iattr->ia_gid;
-+	if (iattr->ia_valid & ATTR_SIZE)
-+		p9attr.size = iattr->ia_size;
-+	if (iattr->ia_valid & (ATTR_ATIME | ATTR_ATIME_SET)) {
-+		p9attr.atime_sec = iattr->ia_atime.tv_sec;
-+		p9attr.atime_nsec = iattr->ia_atime.tv_nsec;
-+	}
-+	if (iattr->ia_valid & (ATTR_MTIME | ATTR_MTIME_SET)) {
-+		p9attr.mtime_sec = iattr->ia_mtime.tv_sec;
-+		p9attr.mtime_nsec = iattr->ia_mtime.tv_nsec;
-+	}
- 
- 	if (iattr->ia_valid & ATTR_FILE) {
- 		fid = iattr->ia_file->private_data;
+OTOH this is better than leaking kernel uninitialized value and
+hopefully the server will be using the valid flags and ignore whatever
+value we choose to init with, so what I just said (probably) doesn't
+really matter and I'd be inclined to just take this for now as I have no
+time to check in details...
+I guess I'll take this unless someone has anything more to say.
 
-base-commit: d58071a8a76d779eedab38033ae4c821c30295a5
+Thanks!
 -- 
-2.30.2
-
+Dominique
 
 
 _______________________________________________
