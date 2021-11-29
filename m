@@ -2,26 +2,26 @@ Return-Path: <v9fs-developer-bounces@lists.sourceforge.net>
 X-Original-To: lists+v9fs-developer@lfdr.de
 Delivered-To: lists+v9fs-developer@lfdr.de
 Received: from lists.sourceforge.net (lists.sourceforge.net [216.105.38.7])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7CC454618CA
-	for <lists+v9fs-developer@lfdr.de>; Mon, 29 Nov 2021 15:31:09 +0100 (CET)
-Received: from [127.0.0.1] (helo=sfs-ml-2.v29.lw.sourceforge.com)
-	by sfs-ml-2.v29.lw.sourceforge.com with esmtp (Exim 4.94.2)
+	by mail.lfdr.de (Postfix) with ESMTPS id D3FA94618C4
+	for <lists+v9fs-developer@lfdr.de>; Mon, 29 Nov 2021 15:31:05 +0100 (CET)
+Received: from [127.0.0.1] (helo=sfs-ml-1.v29.lw.sourceforge.com)
+	by sfs-ml-1.v29.lw.sourceforge.com with esmtp (Exim 4.94.2)
 	(envelope-from <v9fs-developer-bounces@lists.sourceforge.net>)
-	id 1mrhgS-00062H-0r; Mon, 29 Nov 2021 14:31:08 +0000
+	id 1mrhgN-0002ir-Be; Mon, 29 Nov 2021 14:31:04 +0000
 Received: from [172.30.20.202] (helo=mx.sourceforge.net)
- by sfs-ml-2.v29.lw.sourceforge.com with esmtps (TLS1.2) tls
+ by sfs-ml-1.v29.lw.sourceforge.com with esmtps (TLS1.2) tls
  TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384 (Exim 4.94.2)
- (envelope-from <dhowells@redhat.com>) id 1mrhgP-00062B-BI
- for v9fs-developer@lists.sourceforge.net; Mon, 29 Nov 2021 14:31:05 +0000
+ (envelope-from <dhowells@redhat.com>) id 1mrhgL-0002il-Fy
+ for v9fs-developer@lists.sourceforge.net; Mon, 29 Nov 2021 14:31:02 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
  d=sourceforge.net; s=x; h=Content-Transfer-Encoding:Content-Type:MIME-Version
  :References:In-Reply-To:Message-ID:Date:Cc:To:From:Subject:Sender:Reply-To:
  Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
  Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
  List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=Xml69oumtKQvfU2zgOeSCJnUWC2aRGS0W655ojvdFCc=; b=hVJxe9/ZOOc2yMgs/duc6LgCVc
- 526iv9j+G2Ex+qusT9eSi0Vcfts3ecfGMEiNiW1v67osaKkuer93D50OjSildzr5rT4mBc4lqp1nM
- vovo4Z30BBZ1EejFVu3GiYXgPa0nUVmS0uv9WtBRbH45az4U2almuRhZgPbtYDgnvpGo=;
+ bh=bPLaD8tbsPtLZcPqtSDcKvyOR6vg/1XxTqyxa4ZNNcg=; b=EeAtKHLImIVQxCIrlJyQ4UEnGz
+ lELrcCI6lFZtoQ2FRDgbOr+n1jTR+MrElYnlBopUv5IqJX+VgKMte4JTPmiLBMHnLiiHoJf/hpM5o
+ tq2NpdOxuEU3S84IrFNbApmuA44fBTRy1JCu3MhP0JeqQJCdE+G77ODibNAisHTWlOac=;
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  ;
  h=Content-Transfer-Encoding:Content-Type:MIME-Version:References:
@@ -29,73 +29,71 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
  :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
  List-Post:List-Owner:List-Archive;
- bh=Xml69oumtKQvfU2zgOeSCJnUWC2aRGS0W655ojvdFCc=; b=eGd5hiPc2t5cx74NxQfn0o0/GG
- vGCO4RUDBcpj4257hm50lXDEOnkc7lVhXwVqn1uljeUulWd770Nrctz3Dsz909FfZca5/BcJL/QOr
- ys0Y7DG/vlMQfrONXCMFPuuVg8xlnYAe6Azb0X7Aq1wkITzrki4tBNNUjI4Pfsb0vwXg=;
-Received: from us-smtp-delivery-124.mimecast.com ([170.10.129.124])
+ bh=bPLaD8tbsPtLZcPqtSDcKvyOR6vg/1XxTqyxa4ZNNcg=; b=DmraL42To8cAfHrjGjbZ6Gy2rj
+ WjKcPuEV2KNhisuTEOCknaRATgFfJtF2ov0Gn4sIDtE+ibZNb6ECQxMqx8XELiGkNEfugiQo3yUz9
+ Bck0iSj9tCaBGNYAso+tqzj3wHVwdnqECYpBTe+pXGjGl5Pqr6Q6xhn/gU89eE2KPp6E=;
+Received: from us-smtp-delivery-124.mimecast.com ([170.10.133.124])
  by sfi-mx-2.v28.lw.sourceforge.com with esmtps
  (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.92.3)
- id 1mrhgO-0000NW-9G
- for v9fs-developer@lists.sourceforge.net; Mon, 29 Nov 2021 14:31:05 +0000
+ id 1mrhgL-0000NR-MZ
+ for v9fs-developer@lists.sourceforge.net; Mon, 29 Nov 2021 14:31:02 +0000
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
- s=mimecast20190719; t=1638196258;
+ s=mimecast20190719; t=1638196255;
  h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
  to:to:cc:cc:mime-version:mime-version:content-type:content-type:
  content-transfer-encoding:content-transfer-encoding:
  in-reply-to:in-reply-to:references:references;
- bh=Xml69oumtKQvfU2zgOeSCJnUWC2aRGS0W655ojvdFCc=;
- b=hHMJ1pB1Z1xPEgP7+cpVCMtBrTYMzSy81O7ZEpHg8yoozK64ZILchUrlThtyOWH3agz+Zx
- 1DZtNPYHdzRQ9xAtgE6eGcbXflBdqhNfIoXUJMsl9BGx1+KowATbCMIsRe7lHkoBnJhzeL
- KXImEeSWrgbCiVHoRGE2zNBg9oXkqSc=
+ bh=bPLaD8tbsPtLZcPqtSDcKvyOR6vg/1XxTqyxa4ZNNcg=;
+ b=YnmKd0IBQwp7q2Ffmc9Lutdjm3ddnuhr8rBB8em8z/S4KPnME06svcig9rjHeprNG5QF7b
+ WQS7YPUKrlkX2WHYqycQbCHqrshVL+L2IHMfOV5m/ahIB/dpOteAcMtU6E8fzpgx12A3gs
+ zaN5ptX5mETIJxGOqdHmSaILD/x4HxM=
 Received: from mimecast-mx01.redhat.com (mimecast-mx01.redhat.com
  [209.132.183.4]) by relay.mimecast.com with ESMTP with STARTTLS
  (version=TLSv1.2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- us-mta-105-MnWaIu64NVe7PqHcng8JDg-1; Mon, 29 Nov 2021 09:30:53 -0500
-X-MC-Unique: MnWaIu64NVe7PqHcng8JDg-1
-Received: from smtp.corp.redhat.com (int-mx03.intmail.prod.int.phx2.redhat.com
- [10.5.11.13])
+ us-mta-280-97zhyRO1NCOvedntb7pOSw-1; Mon, 29 Nov 2021 09:30:54 -0500
+X-MC-Unique: 97zhyRO1NCOvedntb7pOSw-1
+Received: from smtp.corp.redhat.com (int-mx08.intmail.prod.int.phx2.redhat.com
+ [10.5.11.23])
  (using TLSv1.2 with cipher AECDH-AES256-SHA (256/256 bits))
  (No client certificate requested)
- by mimecast-mx01.redhat.com (Postfix) with ESMTPS id 6D9488DFEE9;
- Mon, 29 Nov 2021 14:30:22 +0000 (UTC)
+ by mimecast-mx01.redhat.com (Postfix) with ESMTPS id BCEFA921D49;
+ Mon, 29 Nov 2021 14:30:31 +0000 (UTC)
 Received: from warthog.procyon.org.uk (unknown [10.33.36.25])
- by smtp.corp.redhat.com (Postfix) with ESMTP id 38C716060F;
- Mon, 29 Nov 2021 14:30:19 +0000 (UTC)
+ by smtp.corp.redhat.com (Postfix) with ESMTP id 79E9819724;
+ Mon, 29 Nov 2021 14:30:28 +0000 (UTC)
 Organization: Red Hat UK Ltd. Registered Address: Red Hat UK Ltd, Amberley
  Place, 107-111 Peascod Street, Windsor, Berkshire, SI4 1TE, United
  Kingdom.
  Registered in England and Wales under Company Registration No. 3798903
 From: David Howells <dhowells@redhat.com>
 To: linux-cachefs@redhat.com
-Date: Mon, 29 Nov 2021 14:30:18 +0000
-Message-ID: <163819621839.215744.7895597119803515402.stgit@warthog.procyon.org.uk>
+Date: Mon, 29 Nov 2021 14:30:27 +0000
+Message-ID: <163819622766.215744.9108359326983195047.stgit@warthog.procyon.org.uk>
 In-Reply-To: <163819575444.215744.318477214576928110.stgit@warthog.procyon.org.uk>
 References: <163819575444.215744.318477214576928110.stgit@warthog.procyon.org.uk>
 User-Agent: StGit/0.23
 MIME-Version: 1.0
-X-Scanned-By: MIMEDefang 2.79 on 10.5.11.13
-X-Spam-Score: -1.1 (-)
+X-Scanned-By: MIMEDefang 2.84 on 10.5.11.23
+X-Spam-Score: -1.6 (-)
 X-Spam-Report: Spam detection software,
  running on the system "util-spamd-1.v13.lw.sourceforge.com", 
  has NOT identified this incoming email as spam.  The original
  message has been attached to this so you can view it or label
  similar future email.  If you have any questions, see
  the administrator of that system for details.
- Content preview: Provide a function to change the size of the storage attached
- to a cookie, to match the size of the file being cached when it's changed
- by truncate or fallocate: void fscache_resize_cookie(struct fscache_cookie
- *cookie, loff_t new_size); 
- Content analysis details:   (-1.1 points, 6.0 required)
+ Content preview: Introduce basic skeleton of the rewritten cachefiles driver
+ including config options so that it can be enabled for compilation.
+ Signed-off-by:
+ David Howells <dhowells@redhat.com> cc: linux-cachefs@redhat.com --- 
+ Content analysis details:   (-1.6 points, 6.0 required)
  pts rule name              description
  ---- ---------------------- --------------------------------------------------
  -0.7 RCVD_IN_DNSWL_LOW      RBL: Sender listed at https://www.dnswl.org/,
- low trust [170.10.129.124 listed in list.dnswl.org]
- 0.5 RCVD_IN_UCE1           RBL: IP Listed in UCEPROTECT Level 1
- [170.10.129.124 listed in dnsbl-1.uceprotect.net]
+ low trust [170.10.133.124 listed in list.dnswl.org]
+ -0.0 RCVD_IN_MSPIKE_H2      RBL: Average reputation (+2)
+ [170.10.133.124 listed in wl.mailspike.net]
  0.0 SPF_HELO_NONE          SPF: HELO does not publish an SPF Record
  -0.0 SPF_PASS               SPF: sender matches SPF record
- 0.0 RCVD_IN_MSPIKE_H3      RBL: Good reputation (+3)
- [170.10.129.124 listed in wl.mailspike.net]
  -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
  0.1 DKIM_SIGNED            Message has a DKIM or DK signature, not necessarily
  valid
@@ -103,11 +101,10 @@ X-Spam-Report: Spam detection software,
  author's domain
  -0.1 DKIM_VALID_EF          Message has a valid DKIM or DK signature from
  envelope-from domain
- 0.0 RCVD_IN_MSPIKE_WL      Mailspike good senders
  -0.7 DKIMWL_WL_HIGH         DKIMwl.org - High trust sender
-X-Headers-End: 1mrhgO-0000NW-9G
-Subject: [V9fs-developer] [PATCH 29/64] fscache: Provide a function to
- resize a cookie
+X-Headers-End: 1mrhgL-0000NR-MZ
+Subject: [V9fs-developer] [PATCH 30/64] cachefiles: Introduce rewritten
+ driver
 X-BeenThere: v9fs-developer@lists.sourceforge.net
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -132,203 +129,328 @@ Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: v9fs-developer-bounces@lists.sourceforge.net
 
-Provide a function to change the size of the storage attached to a cookie,
-to match the size of the file being cached when it's changed by truncate or
-fallocate:
-
-	void fscache_resize_cookie(struct fscache_cookie *cookie,
-				   loff_t new_size);
-
-This acts synchronously and is expected to run under the inode lock of the
-caller.
+Introduce basic skeleton of the rewritten cachefiles driver including
+config options so that it can be enabled for compilation.
 
 Signed-off-by: David Howells <dhowells@redhat.com>
 cc: linux-cachefs@redhat.com
 ---
 
- fs/fscache/internal.h          |    3 +++
- fs/fscache/io.c                |   25 +++++++++++++++++++++++++
- fs/fscache/stats.c             |    9 +++++++--
- include/linux/fscache-cache.h  |    4 ++++
- include/linux/fscache.h        |   18 ++++++++++++++++++
- include/trace/events/fscache.h |   25 +++++++++++++++++++++++++
- 6 files changed, 82 insertions(+), 2 deletions(-)
+ fs/Kconfig                        |    1 
+ fs/Makefile                       |    1 
+ fs/cachefiles/Kconfig             |   21 +++++++
+ fs/cachefiles/Makefile            |    9 +++
+ fs/cachefiles/internal.h          |  115 +++++++++++++++++++++++++++++++++++++
+ fs/cachefiles/main.c              |   53 +++++++++++++++++
+ include/trace/events/cachefiles.h |   49 ++++++++++++++++
+ 7 files changed, 249 insertions(+)
+ create mode 100644 fs/cachefiles/Kconfig
+ create mode 100644 fs/cachefiles/Makefile
+ create mode 100644 fs/cachefiles/internal.h
+ create mode 100644 fs/cachefiles/main.c
+ create mode 100644 include/trace/events/cachefiles.h
 
-diff --git a/fs/fscache/internal.h b/fs/fscache/internal.h
-index 1308bfff94fb..87884f4b34fb 100644
---- a/fs/fscache/internal.h
-+++ b/fs/fscache/internal.h
-@@ -122,6 +122,9 @@ extern atomic_t fscache_n_relinquishes;
- extern atomic_t fscache_n_relinquishes_retire;
- extern atomic_t fscache_n_relinquishes_dropped;
+diff --git a/fs/Kconfig b/fs/Kconfig
+index 86e311377e6e..a6313a969bc5 100644
+--- a/fs/Kconfig
++++ b/fs/Kconfig
+@@ -132,6 +132,7 @@ menu "Caches"
  
-+extern atomic_t fscache_n_resizes;
-+extern atomic_t fscache_n_resizes_null;
+ source "fs/netfs/Kconfig"
+ source "fs/fscache/Kconfig"
++source "fs/cachefiles/Kconfig"
+ 
+ endmenu
+ 
+diff --git a/fs/Makefile b/fs/Makefile
+index 290815f3fd31..84c5e4cdfee5 100644
+--- a/fs/Makefile
++++ b/fs/Makefile
+@@ -125,6 +125,7 @@ obj-$(CONFIG_AFS_FS)		+= afs/
+ obj-$(CONFIG_NILFS2_FS)		+= nilfs2/
+ obj-$(CONFIG_BEFS_FS)		+= befs/
+ obj-$(CONFIG_HOSTFS)		+= hostfs/
++obj-$(CONFIG_CACHEFILES)	+= cachefiles/
+ obj-$(CONFIG_DEBUG_FS)		+= debugfs/
+ obj-$(CONFIG_TRACING)		+= tracefs/
+ obj-$(CONFIG_OCFS2_FS)		+= ocfs2/
+diff --git a/fs/cachefiles/Kconfig b/fs/cachefiles/Kconfig
+new file mode 100644
+index 000000000000..6827b40f7ddc
+--- /dev/null
++++ b/fs/cachefiles/Kconfig
+@@ -0,0 +1,21 @@
++# SPDX-License-Identifier: GPL-2.0-only
 +
- static inline void fscache_stat(atomic_t *stat)
- {
- 	atomic_inc(stat);
-diff --git a/fs/fscache/io.c b/fs/fscache/io.c
-index e9e5d6758ea8..bed7628a5a9d 100644
---- a/fs/fscache/io.c
-+++ b/fs/fscache/io.c
-@@ -291,3 +291,28 @@ void __fscache_write_to_cache(struct fscache_cookie *cookie,
- 		term_func(term_func_priv, ret, false);
- }
- EXPORT_SYMBOL(__fscache_write_to_cache);
++config CACHEFILES
++	tristate "Filesystem caching on files"
++	depends on FSCACHE && BLOCK
++	help
++	  This permits use of a mounted filesystem as a cache for other
++	  filesystems - primarily networking filesystems - thus allowing fast
++	  local disk to enhance the speed of slower devices.
++
++	  See Documentation/filesystems/caching/cachefiles.rst for more
++	  information.
++
++config CACHEFILES_DEBUG
++	bool "Debug CacheFiles"
++	depends on CACHEFILES
++	help
++	  This permits debugging to be dynamically enabled in the filesystem
++	  caching on files module.  If this is set, the debugging output may be
++	  enabled by setting bits in /sys/modules/cachefiles/parameter/debug or
++	  by including a debugging specifier in /etc/cachefilesd.conf.
+diff --git a/fs/cachefiles/Makefile b/fs/cachefiles/Makefile
+new file mode 100644
+index 000000000000..a7f3e982e249
+--- /dev/null
++++ b/fs/cachefiles/Makefile
+@@ -0,0 +1,9 @@
++# SPDX-License-Identifier: GPL-2.0
++#
++# Makefile for caching in a mounted filesystem
++#
++
++cachefiles-y := \
++	main.o
++
++obj-$(CONFIG_CACHEFILES) := cachefiles.o
+diff --git a/fs/cachefiles/internal.h b/fs/cachefiles/internal.h
+new file mode 100644
+index 000000000000..26e0e23d7702
+--- /dev/null
++++ b/fs/cachefiles/internal.h
+@@ -0,0 +1,115 @@
++/* SPDX-License-Identifier: GPL-2.0-or-later */
++/* General netfs cache on cache files internal defs
++ *
++ * Copyright (C) 2021 Red Hat, Inc. All Rights Reserved.
++ * Written by David Howells (dhowells@redhat.com)
++ */
++
++#ifdef pr_fmt
++#undef pr_fmt
++#endif
++
++#define pr_fmt(fmt) "CacheFiles: " fmt
++
++
++#include <linux/fscache-cache.h>
++#include <linux/cred.h>
++#include <linux/security.h>
++
 +
 +/*
-+ * Change the size of a backing object.
++ * Debug tracing.
 + */
-+void __fscache_resize_cookie(struct fscache_cookie *cookie, loff_t new_size)
-+{
-+	struct netfs_cache_resources cres;
++extern unsigned cachefiles_debug;
++#define CACHEFILES_DEBUG_KENTER	1
++#define CACHEFILES_DEBUG_KLEAVE	2
++#define CACHEFILES_DEBUG_KDEBUG	4
 +
-+	trace_fscache_resize(cookie, new_size);
-+	if (fscache_begin_operation(&cres, cookie, FSCACHE_WANT_WRITE,
-+				    fscache_access_io_resize) == 0) {
-+		fscache_stat(&fscache_n_resizes);
-+		set_bit(FSCACHE_COOKIE_NEEDS_UPDATE, &cookie->flags);
++#define dbgprintk(FMT, ...) \
++	printk(KERN_DEBUG "[%-6.6s] "FMT"\n", current->comm, ##__VA_ARGS__)
 +
-+		/* We cannot defer a resize as we need to do it inside the
-+		 * netfs's inode lock so that we're serialised with respect to
-+		 * writes.
-+		 */
-+		cookie->volume->cache->ops->resize_cookie(&cres, new_size);
-+		fscache_end_operation(&cres);
-+	} else {
-+		fscache_stat(&fscache_n_resizes_null);
-+	}
-+}
-+EXPORT_SYMBOL(__fscache_resize_cookie);
-diff --git a/fs/fscache/stats.c b/fs/fscache/stats.c
-index db42beb1ba3f..798ee68b3e9d 100644
---- a/fs/fscache/stats.c
-+++ b/fs/fscache/stats.c
-@@ -35,6 +35,9 @@ atomic_t fscache_n_relinquishes;
- atomic_t fscache_n_relinquishes_retire;
- atomic_t fscache_n_relinquishes_dropped;
- 
-+atomic_t fscache_n_resizes;
-+atomic_t fscache_n_resizes_null;
++#define kenter(FMT, ...) dbgprintk("==> %s("FMT")", __func__, ##__VA_ARGS__)
++#define kleave(FMT, ...) dbgprintk("<== %s()"FMT"", __func__, ##__VA_ARGS__)
++#define kdebug(FMT, ...) dbgprintk(FMT, ##__VA_ARGS__)
 +
- atomic_t fscache_n_read;
- EXPORT_SYMBOL(fscache_n_read);
- atomic_t fscache_n_write;
-@@ -69,8 +72,10 @@ int fscache_stats_show(struct seq_file *m, void *v)
- 	seq_printf(m, "Invals : n=%u\n",
- 		   atomic_read(&fscache_n_invalidates));
- 
--	seq_printf(m, "Updates: n=%u\n",
--		   atomic_read(&fscache_n_updates));
-+	seq_printf(m, "Updates: n=%u rsz=%u rsn=%u\n",
-+		   atomic_read(&fscache_n_updates),
-+		   atomic_read(&fscache_n_resizes),
-+		   atomic_read(&fscache_n_resizes_null));
- 
- 	seq_printf(m, "Relinqs: n=%u rtr=%u drop=%u\n",
- 		   atomic_read(&fscache_n_relinquishes),
-diff --git a/include/linux/fscache-cache.h b/include/linux/fscache-cache.h
-index 1398b71539ae..491518f53f01 100644
---- a/include/linux/fscache-cache.h
-+++ b/include/linux/fscache-cache.h
-@@ -64,6 +64,10 @@ struct fscache_cache_ops {
- 	/* Withdraw an object without any cookie access counts held */
- 	void (*withdraw_cookie)(struct fscache_cookie *cookie);
- 
-+	/* Change the size of a data object */
-+	void (*resize_cookie)(struct netfs_cache_resources *cres,
-+			      loff_t new_size);
 +
- 	/* Invalidate an object */
- 	bool (*invalidate_cookie)(struct fscache_cookie *cookie);
- 
-diff --git a/include/linux/fscache.h b/include/linux/fscache.h
-index 1de789f0dd26..364be32f7217 100644
---- a/include/linux/fscache.h
-+++ b/include/linux/fscache.h
-@@ -162,6 +162,7 @@ extern struct fscache_cookie *__fscache_acquire_cookie(
- extern void __fscache_use_cookie(struct fscache_cookie *, bool);
- extern void __fscache_unuse_cookie(struct fscache_cookie *, const void *, const loff_t *);
- extern void __fscache_relinquish_cookie(struct fscache_cookie *, bool);
-+extern void __fscache_resize_cookie(struct fscache_cookie *, loff_t);
- extern void __fscache_invalidate(struct fscache_cookie *, const void *, loff_t, unsigned int);
- extern int __fscache_begin_read_operation(struct netfs_cache_resources *, struct fscache_cookie *);
- 
-@@ -358,6 +359,23 @@ void fscache_update_cookie(struct fscache_cookie *cookie, const void *aux_data,
- 		__fscache_update_cookie(cookie, aux_data, object_size);
- }
- 
-+/**
-+ * fscache_resize_cookie - Request that a cache object be resized
-+ * @cookie: The cookie representing the cache object
-+ * @new_size: The new size of the object (may be NULL)
++#if defined(__KDEBUG)
++#define _enter(FMT, ...) kenter(FMT, ##__VA_ARGS__)
++#define _leave(FMT, ...) kleave(FMT, ##__VA_ARGS__)
++#define _debug(FMT, ...) kdebug(FMT, ##__VA_ARGS__)
++
++#elif defined(CONFIG_CACHEFILES_DEBUG)
++#define _enter(FMT, ...)				\
++do {							\
++	if (cachefiles_debug & CACHEFILES_DEBUG_KENTER)	\
++		kenter(FMT, ##__VA_ARGS__);		\
++} while (0)
++
++#define _leave(FMT, ...)				\
++do {							\
++	if (cachefiles_debug & CACHEFILES_DEBUG_KLEAVE)	\
++		kleave(FMT, ##__VA_ARGS__);		\
++} while (0)
++
++#define _debug(FMT, ...)				\
++do {							\
++	if (cachefiles_debug & CACHEFILES_DEBUG_KDEBUG)	\
++		kdebug(FMT, ##__VA_ARGS__);		\
++} while (0)
++
++#else
++#define _enter(FMT, ...) no_printk("==> %s("FMT")", __func__, ##__VA_ARGS__)
++#define _leave(FMT, ...) no_printk("<== %s()"FMT"", __func__, ##__VA_ARGS__)
++#define _debug(FMT, ...) no_printk(FMT, ##__VA_ARGS__)
++#endif
++
++#if 1 /* defined(__KDEBUGALL) */
++
++#define ASSERT(X)							\
++do {									\
++	if (unlikely(!(X))) {						\
++		pr_err("\n");						\
++		pr_err("Assertion failed\n");		\
++		BUG();							\
++	}								\
++} while (0)
++
++#define ASSERTCMP(X, OP, Y)						\
++do {									\
++	if (unlikely(!((X) OP (Y)))) {					\
++		pr_err("\n");						\
++		pr_err("Assertion failed\n");		\
++		pr_err("%lx " #OP " %lx is false\n",			\
++		       (unsigned long)(X), (unsigned long)(Y));		\
++		BUG();							\
++	}								\
++} while (0)
++
++#define ASSERTIF(C, X)							\
++do {									\
++	if (unlikely((C) && !(X))) {					\
++		pr_err("\n");						\
++		pr_err("Assertion failed\n");		\
++		BUG();							\
++	}								\
++} while (0)
++
++#define ASSERTIFCMP(C, X, OP, Y)					\
++do {									\
++	if (unlikely((C) && !((X) OP (Y)))) {				\
++		pr_err("\n");						\
++		pr_err("Assertion failed\n");		\
++		pr_err("%lx " #OP " %lx is false\n",			\
++		       (unsigned long)(X), (unsigned long)(Y));		\
++		BUG();							\
++	}								\
++} while (0)
++
++#else
++
++#define ASSERT(X)			do {} while (0)
++#define ASSERTCMP(X, OP, Y)		do {} while (0)
++#define ASSERTIF(C, X)			do {} while (0)
++#define ASSERTIFCMP(C, X, OP, Y)	do {} while (0)
++
++#endif
+diff --git a/fs/cachefiles/main.c b/fs/cachefiles/main.c
+new file mode 100644
+index 000000000000..47bc1cc078de
+--- /dev/null
++++ b/fs/cachefiles/main.c
+@@ -0,0 +1,53 @@
++// SPDX-License-Identifier: GPL-2.0-or-later
++/* Network filesystem caching backend to use cache files on a premounted
++ * filesystem
 + *
-+ * Request that the size of an object be changed.
-+ *
-+ * See Documentation/filesystems/caching/netfs-api.txt for a complete
-+ * description.
++ * Copyright (C) 2021 Red Hat, Inc. All Rights Reserved.
++ * Written by David Howells (dhowells@redhat.com)
 + */
-+static inline
-+void fscache_resize_cookie(struct fscache_cookie *cookie, loff_t new_size)
++
++#include <linux/module.h>
++#include <linux/init.h>
++#include <linux/sched.h>
++#include <linux/completion.h>
++#include <linux/slab.h>
++#include <linux/fs.h>
++#include <linux/file.h>
++#include <linux/namei.h>
++#include <linux/mount.h>
++#include <linux/statfs.h>
++#include <linux/sysctl.h>
++#include <linux/miscdevice.h>
++#include <linux/netfs.h>
++#include <trace/events/netfs.h>
++#define CREATE_TRACE_POINTS
++#include "internal.h"
++
++unsigned cachefiles_debug;
++module_param_named(debug, cachefiles_debug, uint, S_IWUSR | S_IRUGO);
++MODULE_PARM_DESC(cachefiles_debug, "CacheFiles debugging mask");
++
++MODULE_DESCRIPTION("Mounted-filesystem based cache");
++MODULE_AUTHOR("Red Hat, Inc.");
++MODULE_LICENSE("GPL");
++
++/*
++ * initialise the fs caching module
++ */
++static int __init cachefiles_init(void)
 +{
-+	if (fscache_cookie_enabled(cookie))
-+		__fscache_resize_cookie(cookie, new_size);
++	pr_info("Loaded\n");
++	return 0;
 +}
 +
- /**
-  * fscache_invalidate - Notify cache that an object needs invalidation
-  * @cookie: The cookie representing the cache object
-diff --git a/include/trace/events/fscache.h b/include/trace/events/fscache.h
-index e8b5a14ecf6c..6bdff5bcbf6c 100644
---- a/include/trace/events/fscache.h
-+++ b/include/trace/events/fscache.h
-@@ -78,6 +78,7 @@ enum fscache_access_trace {
- 	fscache_access_invalidate_cookie_end,
- 	fscache_access_io_not_live,
- 	fscache_access_io_read,
-+	fscache_access_io_resize,
- 	fscache_access_io_wait,
- 	fscache_access_io_write,
- 	fscache_access_lookup_cookie,
-@@ -149,6 +150,7 @@ enum fscache_access_trace {
- 	EM(fscache_access_invalidate_cookie_end,"END   inval  ")	\
- 	EM(fscache_access_io_not_live,		"END   io_notl")	\
- 	EM(fscache_access_io_read,		"BEGIN io_read")	\
-+	EM(fscache_access_io_resize,		"BEGIN io_resz")	\
- 	EM(fscache_access_io_wait,		"WAIT  io     ")	\
- 	EM(fscache_access_io_write,		"BEGIN io_writ")	\
- 	EM(fscache_access_lookup_cookie,	"BEGIN lookup ")	\
-@@ -419,6 +421,29 @@ TRACE_EVENT(fscache_invalidate,
- 		      __entry->cookie, __entry->new_size)
- 	    );
- 
-+TRACE_EVENT(fscache_resize,
-+	    TP_PROTO(struct fscache_cookie *cookie, loff_t new_size),
++fs_initcall(cachefiles_init);
 +
-+	    TP_ARGS(cookie, new_size),
++/*
++ * clean up on module removal
++ */
++static void __exit cachefiles_exit(void)
++{
++	pr_info("Unloading\n");
++}
 +
-+	    TP_STRUCT__entry(
-+		    __field(unsigned int,		cookie		)
-+		    __field(loff_t,			old_size	)
-+		    __field(loff_t,			new_size	)
-+			     ),
++module_exit(cachefiles_exit);
+diff --git a/include/trace/events/cachefiles.h b/include/trace/events/cachefiles.h
+new file mode 100644
+index 000000000000..5ee0aabb20be
+--- /dev/null
++++ b/include/trace/events/cachefiles.h
+@@ -0,0 +1,49 @@
++/* SPDX-License-Identifier: GPL-2.0-or-later */
++/* CacheFiles tracepoints
++ *
++ * Copyright (C) 2021 Red Hat, Inc. All Rights Reserved.
++ * Written by David Howells (dhowells@redhat.com)
++ */
++#undef TRACE_SYSTEM
++#define TRACE_SYSTEM cachefiles
 +
-+	    TP_fast_assign(
-+		    __entry->cookie	= cookie->debug_id;
-+		    __entry->old_size	= cookie->object_size;
-+		    __entry->new_size	= new_size;
-+			   ),
++#if !defined(_TRACE_CACHEFILES_H) || defined(TRACE_HEADER_MULTI_READ)
++#define _TRACE_CACHEFILES_H
 +
-+	    TP_printk("c=%08x os=%08llx sz=%08llx",
-+		      __entry->cookie,
-+		      __entry->old_size,
-+		      __entry->new_size)
-+	    );
++#include <linux/tracepoint.h>
 +
- #endif /* _TRACE_FSCACHE_H */
- 
- /* This part must be outside protection */
++/*
++ * Define enums for tracing information.
++ */
++#ifndef __CACHEFILES_DECLARE_TRACE_ENUMS_ONCE_ONLY
++#define __CACHEFILES_DECLARE_TRACE_ENUMS_ONCE_ONLY
++
++#endif
++
++/*
++ * Define enum -> string mappings for display.
++ */
++
++
++/*
++ * Export enum symbols via userspace.
++ */
++#undef EM
++#undef E_
++#define EM(a, b) TRACE_DEFINE_ENUM(a);
++#define E_(a, b) TRACE_DEFINE_ENUM(a);
++
++/*
++ * Now redefine the EM() and E_() macros to map the enums to the strings that
++ * will be printed in the output.
++ */
++#undef EM
++#undef E_
++#define EM(a, b)	{ a, b },
++#define E_(a, b)	{ a, b }
++
++
++#endif /* _TRACE_CACHEFILES_H */
++
++/* This part must be outside protection */
++#include <trace/define_trace.h>
 
 
 
