@@ -2,17 +2,17 @@ Return-Path: <v9fs-developer-bounces@lists.sourceforge.net>
 X-Original-To: lists+v9fs-developer@lfdr.de
 Delivered-To: lists+v9fs-developer@lfdr.de
 Received: from lists.sourceforge.net (lists.sourceforge.net [216.105.38.7])
-	by mail.lfdr.de (Postfix) with ESMTPS id A5199462CA4
-	for <lists+v9fs-developer@lfdr.de>; Tue, 30 Nov 2021 07:13:15 +0100 (CET)
-Received: from [127.0.0.1] (helo=sfs-ml-1.v29.lw.sourceforge.com)
-	by sfs-ml-1.v29.lw.sourceforge.com with esmtp (Exim 4.94.2)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5407F462CC4
+	for <lists+v9fs-developer@lfdr.de>; Tue, 30 Nov 2021 07:29:19 +0100 (CET)
+Received: from [127.0.0.1] (helo=sfs-ml-4.v29.lw.sourceforge.com)
+	by sfs-ml-4.v29.lw.sourceforge.com with esmtp (Exim 4.94.2)
 	(envelope-from <v9fs-developer-bounces@lists.sourceforge.net>)
-	id 1mrwO9-0000sJ-6D; Tue, 30 Nov 2021 06:13:14 +0000
+	id 1mrwdh-00024o-K9; Tue, 30 Nov 2021 06:29:17 +0000
 Received: from [172.30.20.202] (helo=mx.sourceforge.net)
- by sfs-ml-1.v29.lw.sourceforge.com with esmtps (TLS1.2) tls
+ by sfs-ml-4.v29.lw.sourceforge.com with esmtps (TLS1.2) tls
  TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384 (Exim 4.94.2)
- (envelope-from <officebackup198@gmail.com>) id 1mrwO6-0000sC-Mv
- for v9fs-developer@lists.sourceforge.net; Tue, 30 Nov 2021 06:13:11 +0000
+ (envelope-from <officebackup198@gmail.com>) id 1mrwdf-00024h-Tj
+ for v9fs-developer@lists.sourceforge.net; Tue, 30 Nov 2021 06:29:15 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
  d=sourceforge.net; s=x; h=Content-Type:MIME-Version:Message-ID:Date:Subject:
  To:From:Sender:Reply-To:Cc:Content-Transfer-Encoding:Content-ID:
@@ -33,10 +33,9 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  NINa0jQqUClrIf8xqQn5r92zjuVoWtqxkEzxnf5Y1ize0duy8C05TsRzeqk8ytmmLelvykZZSLSPs
  rBO8j9QCq7nT4I2U=;
 Received: from mail.pattayaaviation.com ([110.170.212.15])
- by sfi-mx-2.v28.lw.sourceforge.com with esmtps
- (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.92.3)
- id 1mrwII-0002YI-Vf
- for v9fs-developer@lists.sourceforge.net; Tue, 30 Nov 2021 06:13:11 +0000
+ by sfi-mx-1.v28.lw.sourceforge.com with esmtp (Exim 4.92.3)
+ id 1mrwXr-00FTUo-4z
+ for v9fs-developer@lists.sourceforge.net; Tue, 30 Nov 2021 06:29:15 +0000
 Received: from localhost (localhost [127.0.0.1])
  by mail.pattayaaviation.com (Postfix) with ESMTP id D0439C486349
  for <v9fs-developer@lists.sourceforge.net>;
@@ -62,7 +61,7 @@ To: v9fs-developer@lists.sourceforge.net
 Date: 30 Nov 2021 06:56:28 +0100
 Message-ID: <20211130065628.C5BA15ACD3E2A907@lists.sourceforge.net>
 MIME-Version: 1.0
-X-Headers-End: 1mrwII-0002YI-Vf
+X-Headers-End: 1mrwXr-00FTUo-4z
 X-Content-Filtered-By: Mailman/MimeDel 2.1.21
 Subject: [V9fs-developer] Server Password Recovery On
  v9fs-developer@lists.sourceforge.net
