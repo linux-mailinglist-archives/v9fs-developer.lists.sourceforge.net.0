@@ -2,17 +2,17 @@ Return-Path: <v9fs-developer-bounces@lists.sourceforge.net>
 X-Original-To: lists+v9fs-developer@lfdr.de
 Delivered-To: lists+v9fs-developer@lfdr.de
 Received: from lists.sourceforge.net (lists.sourceforge.net [216.105.38.7])
-	by mail.lfdr.de (Postfix) with ESMTPS id C082F463C1A
-	for <lists+v9fs-developer@lfdr.de>; Tue, 30 Nov 2021 17:44:08 +0100 (CET)
-Received: from [127.0.0.1] (helo=sfs-ml-4.v29.lw.sourceforge.com)
-	by sfs-ml-4.v29.lw.sourceforge.com with esmtp (Exim 4.94.2)
+	by mail.lfdr.de (Postfix) with ESMTPS id 97A48463BF1
+	for <lists+v9fs-developer@lfdr.de>; Tue, 30 Nov 2021 17:37:27 +0100 (CET)
+Received: from [127.0.0.1] (helo=sfs-ml-2.v29.lw.sourceforge.com)
+	by sfs-ml-2.v29.lw.sourceforge.com with esmtp (Exim 4.94.2)
 	(envelope-from <v9fs-developer-bounces@lists.sourceforge.net>)
-	id 1ms6Ef-0006yD-KY; Tue, 30 Nov 2021 16:44:05 +0000
+	id 1ms68B-0005bK-S8; Tue, 30 Nov 2021 16:37:23 +0000
 Received: from [172.30.20.202] (helo=mx.sourceforge.net)
- by sfs-ml-4.v29.lw.sourceforge.com with esmtps (TLS1.2) tls
+ by sfs-ml-2.v29.lw.sourceforge.com with esmtps (TLS1.2) tls
  TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384 (Exim 4.94.2)
- (envelope-from <nathan@kernel.org>) id 1ms5sn-00063f-17
- for v9fs-developer@lists.sourceforge.net; Tue, 30 Nov 2021 16:21:29 +0000
+ (envelope-from <nathan@kernel.org>) id 1ms5tj-0005M7-Vt
+ for v9fs-developer@lists.sourceforge.net; Tue, 30 Nov 2021 16:22:28 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
  d=sourceforge.net; s=x; h=In-Reply-To:Content-Type:MIME-Version:References:
  Message-ID:Subject:Cc:To:From:Date:Sender:Reply-To:Content-Transfer-Encoding:
@@ -33,10 +33,10 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  g9gbzqF8fyZtbOHJrfc8ZoPzKFiOLyhHRPwnsMSb6kRX7ym6FZbfzG7lcovTMUtpE8lTcf40GsouP
  Fs0zPEfXZvW99ytiIxUt87JCDzEI1+afZZvfQsOvuWRKadJmOWMmcPSolT/xPtBjxFG0=;
 Received: from sin.source.kernel.org ([145.40.73.55])
- by sfi-mx-1.v28.lw.sourceforge.com with esmtps
+ by sfi-mx-2.v28.lw.sourceforge.com with esmtps
  (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.92.3)
- id 1ms5my-00GHZi-75
- for v9fs-developer@lists.sourceforge.net; Tue, 30 Nov 2021 16:21:28 +0000
+ id 1ms5td-00020n-VU
+ for v9fs-developer@lists.sourceforge.net; Tue, 30 Nov 2021 16:22:27 +0000
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
  (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
  (No client certificate requested)
@@ -63,7 +63,31 @@ References: <163819575444.215744.318477214576928110.stgit@warthog.procyon.org.uk
 MIME-Version: 1.0
 Content-Disposition: inline
 In-Reply-To: <163819647945.215744.17827962047487125939.stgit@warthog.procyon.org.uk>
-X-Headers-End: 1ms5my-00GHZi-75
+X-Spam-Score: -0.9 (/)
+X-Spam-Report: Spam detection software,
+ running on the system "util-spamd-2.v13.lw.sourceforge.com", 
+ has NOT identified this incoming email as spam.  The original
+ message has been attached to this so you can view it or label
+ similar future email.  If you have any questions, see
+ the administrator of that system for details.
+ Content preview:  On Mon, Nov 29, 2021 at 02:34:39PM +0000,
+ David Howells wrote:
+ > Implement the I/O routines for cachefiles. There are two sets of routines
+ > here: preparation and actual I/O. > > Preparation for read [...] 
+ Content analysis details:   (-0.9 points, 6.0 required)
+ pts rule name              description
+ ---- ---------------------- --------------------------------------------------
+ -0.0 SPF_PASS               SPF: sender matches SPF record
+ 0.0 SPF_HELO_NONE          SPF: HELO does not publish an SPF Record
+ 0.1 DKIM_SIGNED            Message has a DKIM or DK signature, not necessarily
+ valid
+ -0.1 DKIM_VALID_AU          Message has a valid DKIM or DK signature from
+ author's domain
+ -0.1 DKIM_VALID_EF          Message has a valid DKIM or DK signature from
+ envelope-from domain
+ -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+ -0.7 DKIMWL_WL_HIGH         DKIMwl.org - High trust sender
+X-Headers-End: 1ms5td-00020n-VU
 Subject: Re: [V9fs-developer] [PATCH 51/64] cachefiles: Implement the I/O
  routines
 X-BeenThere: v9fs-developer@lists.sourceforge.net
