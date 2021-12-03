@@ -2,78 +2,92 @@ Return-Path: <v9fs-developer-bounces@lists.sourceforge.net>
 X-Original-To: lists+v9fs-developer@lfdr.de
 Delivered-To: lists+v9fs-developer@lfdr.de
 Received: from lists.sourceforge.net (lists.sourceforge.net [216.105.38.7])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1128F465FD1
-	for <lists+v9fs-developer@lfdr.de>; Thu,  2 Dec 2021 09:48:15 +0100 (CET)
-Received: from [127.0.0.1] (helo=sfs-ml-2.v29.lw.sourceforge.com)
-	by sfs-ml-2.v29.lw.sourceforge.com with esmtp (Exim 4.94.2)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6578E467DA3
+	for <lists+v9fs-developer@lfdr.de>; Fri,  3 Dec 2021 19:58:40 +0100 (CET)
+Received: from [127.0.0.1] (helo=sfs-ml-1.v29.lw.sourceforge.com)
+	by sfs-ml-1.v29.lw.sourceforge.com with esmtp (Exim 4.94.2)
 	(envelope-from <v9fs-developer-bounces@lists.sourceforge.net>)
-	id 1mshlE-000708-ER; Thu, 02 Dec 2021 08:48:12 +0000
+	id 1mtDlU-0007ve-NL; Fri, 03 Dec 2021 18:58:37 +0000
 Received: from [172.30.20.202] (helo=mx.sourceforge.net)
- by sfs-ml-2.v29.lw.sourceforge.com with esmtps (TLS1.2) tls
+ by sfs-ml-1.v29.lw.sourceforge.com with esmtps (TLS1.2) tls
  TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384 (Exim 4.94.2)
- (envelope-from <wsrf@mocal.org>) id 1mshlC-000701-M2
- for v9fs-developer@lists.sourceforge.net; Thu, 02 Dec 2021 08:48:10 +0000
+ (envelope-from <arnd@kernel.org>) id 1mtDlT-0007u8-Fx
+ for v9fs-developer@lists.sourceforge.net; Fri, 03 Dec 2021 18:58:36 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=sourceforge.net; s=x; h=Content-Transfer-Encoding:Content-Type:MIME-Version
- :Message-ID:From:Date:Subject:To:List-id:Sender:Reply-To:Cc:Content-ID:
+ d=sourceforge.net; s=x; h=Content-Transfer-Encoding:MIME-Version:Message-Id:
+ Date:Subject:Cc:To:From:Sender:Reply-To:Content-Type:Content-ID:
  Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
- :Resent-Message-ID:In-Reply-To:References:List-Help:List-Unsubscribe:
+ :Resent-Message-ID:In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:
  List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=zrqHlk8ALOGazEqQkYBBV+wOVjCW7u3yIut+/uNKG6I=; b=RKBF4znmSyqVvZXWoVAiLCu68/
- YH/4Tw6jbGxvcFgjw5q/jD426cTS4LpPBAVahh+gHRYK+BOHkjfoLigfAYEviP+niN2MJRaqoRJ/0
- vfDFadjRcbzumbw/52vPl7j5g/0DnloyAuLf7S4QmHMrNxUEX+qU3RTzML3JetMzFX6c=;
+ bh=EE+kuuoTzxOsOrZfDNY9HOxnNhhtGuzecaKDyXTXgkM=; b=M9f3EieKQ7+kDVr0a2+b3PL62Z
+ nMVkf0edAnJoBDh+V30YL4RDdhh68vFyjaa1wStGc1MWi4U7hPg1gV+6JPwGAPAmZuHJLEVM5XdmU
+ tugktQNs66aWqfjLN44DQtwDYYZ25OjnuD1PniofqOvXkGdzCDaLM2EFqFF4hcg0vgv8=;
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  ;
- h=Content-Transfer-Encoding:Content-Type:MIME-Version:Message-ID:From:Date:
- Subject:To:List-id:Sender:Reply-To:Cc:Content-ID:Content-Description:
- Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
- In-Reply-To:References:List-Help:List-Unsubscribe:List-Subscribe:List-Post:
- List-Owner:List-Archive; bh=zrqHlk8ALOGazEqQkYBBV+wOVjCW7u3yIut+/uNKG6I=; b=D
- II55xRs/4XFN4bVpQBgq51cv3GQynElsLGImXuf3tXzU/5wG76Wl9aEbvo+5Gk1IaCYa7ipp5KrI1
- HdDNfbReaV98tCVGFQohrI+fQav7jdAGaOlQ+x+CiGjkRdqR8qKovFtEAHi8Dh4HE+hE8/skY65t+
- bnQoyEn1Sv+7TC7Y=;
-Received: from [70.34.210.58] (helo=mocal.org)
- by sfi-mx-2.v28.lw.sourceforge.com with esmtp (Exim 4.92.3)
- id 1mshlA-0000Kw-Sb
- for v9fs-developer@lists.sourceforge.net; Thu, 02 Dec 2021 08:48:10 +0000
-To: v9fs-developer@lists.sourceforge.net
-X-PHP-Originating-Script: 0:index.php
-Date: Thu, 2 Dec 2021 08:32:48 +0000
-From: Miles & More <info@mocal.org>
-Message-ID: <d958007ba52d0f7caaba0ef34c24e164@mocal.org>
+ h=Content-Transfer-Encoding:MIME-Version:Message-Id:Date:Subject:Cc:To:From
+ :Sender:Reply-To:Content-Type:Content-ID:Content-Description:Resent-Date:
+ Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:
+ References:List-Id:List-Help:List-Unsubscribe:List-Subscribe:List-Post:
+ List-Owner:List-Archive; bh=EE+kuuoTzxOsOrZfDNY9HOxnNhhtGuzecaKDyXTXgkM=; b=A
+ ZoYrMJoYcbtLwXTvITMdmY9100VQIPg/Ovh/vKfnHotxl3Owlx0c8KlbMChI5JuVcxp80IvE/l0Ew
+ qTThoFt2kdNKqeUYZ2tsVgShUBLu/eR+QC0ArcA5CXBJv+mmTqCTKsDe1PVqBLSoCOV9sQ5a8LQm+
+ yju/Fk3wPg5S1MYo=;
+Received: from dfw.source.kernel.org ([139.178.84.217])
+ by sfi-mx-1.v28.lw.sourceforge.com with esmtps
+ (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.92.3)
+ id 1mtDlP-0031zW-Hd
+ for v9fs-developer@lists.sourceforge.net; Fri, 03 Dec 2021 18:58:36 +0000
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+ (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+ (No client certificate requested)
+ by dfw.source.kernel.org (Postfix) with ESMTPS id 28CDE62CAB;
+ Fri,  3 Dec 2021 18:58:22 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id ACBB6C53FAD;
+ Fri,  3 Dec 2021 18:58:19 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+ s=k20201202; t=1638557901;
+ bh=3f/h2EgdTQ3pBq+ISkyXCIN+i2CCECjmkpTjC7FXDQI=;
+ h=From:To:Cc:Subject:Date:From;
+ b=gR9Vb7m7yJVfWpxyNkdq+aDVBLOUz5MKE6MGmvNDXKsV6MCrEQk3WP+lunnOTRwHy
+ X/nbY+F/xJGsy440Uq9Axgz3a29YiU4y6qGJb+82d76oTm3sZq2X2t34onAB/64I39
+ EM7CajBMasWQpdjIT/MyNwq1iDnIEaov1bVMMA+mFn8pctmetzJBfGMb6HGuNuUjvQ
+ FMZC2i6/ucyBUp4zR/GcNQmx31EcKfZD8iUfGUPtonJaTy49kpv9RcBSIHUqS3OJFe
+ wjPQi3KJohdzALvQTKYMk+K9UihYn8f6zcbzTsESxgQ9nH/j1lzm5z5lqbXV8K+FGK
+ CmR517097ePow==
+From: Arnd Bergmann <arnd@kernel.org>
+To: David Howells <dhowells@redhat.com>
+Date: Fri,  3 Dec 2021 19:58:06 +0100
+Message-Id: <20211203185816.796637-1-arnd@kernel.org>
+X-Mailer: git-send-email 2.29.2
 MIME-Version: 1.0
-X-mailer: Cabestan DMS
-X-Spam-Score: 3.1 (+++)
+X-Spam-Score: -0.9 (/)
 X-Spam-Report: Spam detection software,
  running on the system "util-spamd-1.v13.lw.sourceforge.com", 
  has NOT identified this incoming email as spam.  The original
  message has been attached to this so you can view it or label
  similar future email.  If you have any questions, see
  the administrator of that system for details.
- Content preview:  Miles &amp; More Damit Sie weiterhin online bezahlen k&ouml;
- nnen
- Aufgrund der EU-Richtlinie PSD2 m&uuml;ssen Sie Online-Zahlungen mit Ihrer
- Miles &amp; More Credit Card immer h&auml;ufiger freigeben. Aktivieren Sie
- dazu ab sofort eines unserer zwei Visa card&reg; I [...] 
- Content analysis details:   (3.1 points, 6.0 required)
+ Content preview: From: Arnd Bergmann <arnd@arndb.de> The folio changes added
+ a variable that is sometimes unused: fs/9p/vfs_addr.c: In function
+ 'v9fs_release_page':
+ fs/9p/vfs_addr.c:140:23: error: unused variable 'inode'
+ [-Werror=unused-variable]
+ 140 | struct inode *inode = folio_inode(folio); | ^~~~~ 
+ Content analysis details:   (-0.9 points, 6.0 required)
  pts rule name              description
  ---- ---------------------- --------------------------------------------------
- 0.0 URIBL_BLOCKED          ADMINISTRATOR NOTICE: The query to URIBL was
- blocked.  See
- http://wiki.apache.org/spamassassin/DnsBlocklists#dnsbl-block
- for more information. [URIs: onliveserver.com]
- 1.0 SPF_SOFTFAIL           SPF: sender does not match SPF record (softfail)
- 0.9 SPF_HELO_SOFTFAIL      SPF: HELO does not match SPF record (softfail)
- 0.0 HTML_MESSAGE           BODY: HTML included in message
- 0.0 HTML_FONT_LOW_CONTRAST BODY: HTML font color similar or
- identical to background
- 0.0 HTML_FONT_SIZE_HUGE    BODY: HTML font size is huge
- 1.3 RDNS_NONE Delivered to internal network by a host with no rDNS
- 0.0 NORDNS_LOW_CONTRAST    No rDNS + hidden text
-X-Headers-End: 1mshlA-0000Kw-Sb
-X-Content-Filtered-By: Mailman/MimeDel 2.1.21
-Subject: [V9fs-developer] =?utf-8?q?Damit_Sie_weiterhin_online_bezahlen_k?=
- =?utf-8?b?w7ZubmVu?=
+ 0.0 SPF_HELO_NONE          SPF: HELO does not publish an SPF Record
+ -0.0 SPF_PASS               SPF: sender matches SPF record
+ -0.1 DKIM_VALID_EF          Message has a valid DKIM or DK signature from
+ envelope-from domain
+ -0.1 DKIM_VALID_AU          Message has a valid DKIM or DK signature from
+ author's domain
+ 0.1 DKIM_SIGNED            Message has a DKIM or DK signature, not necessarily
+ valid
+ -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+ -0.7 DKIMWL_WL_HIGH         DKIMwl.org - High trust sender
+X-Headers-End: 1mtDlP-0031zW-Hd
+Subject: [V9fs-developer] [PATCH] 9p: fix unused-variable warning
 X-BeenThere: v9fs-developer@lists.sourceforge.net
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -85,57 +99,57 @@ List-Post: <mailto:v9fs-developer@lists.sourceforge.net>
 List-Help: <mailto:v9fs-developer-request@lists.sourceforge.net?subject=help>
 List-Subscribe: <https://lists.sourceforge.net/lists/listinfo/v9fs-developer>, 
  <mailto:v9fs-developer-request@lists.sourceforge.net?subject=subscribe>
+Cc: Latchesar Ionkov <lucho@ionkov.net>, Arnd Bergmann <arnd@arndb.de>,
+ Eric Van Hensbergen <ericvh@gmail.com>, Jeff Layton <jlayton@kernel.org>,
+ linux-kernel@vger.kernel.org, v9fs-developer@lists.sourceforge.net
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: v9fs-developer-bounces@lists.sourceforge.net
 
+From: Arnd Bergmann <arnd@arndb.de>
 
+The folio changes added a variable that is sometimes unused:
 
+fs/9p/vfs_addr.c: In function 'v9fs_release_page':
+fs/9p/vfs_addr.c:140:23: error: unused variable 'inode' [-Werror=unused-variable]
+  140 |         struct inode *inode = folio_inode(folio);
+      |                       ^~~~~
 
-  
-  
+Make this clearer to the compiler by replacing the #ifdef
+with an equivalent if(IS_ENABLED()) check.
 
+Fixes: 78525c74d9e7 ("netfs, 9p, afs, ceph: Use folios")
+Signed-off-by: Arnd Bergmann <arnd@arndb.de>
+---
+ fs/9p/vfs_addr.c | 7 +++++--
+ 1 file changed, 5 insertions(+), 2 deletions(-)
 
-Miles &amp;
-More
-Damit Sie
-weiterhin online bezahlen k&ouml;nnen
-
-Aufgrund
-der EU-Richtlinie PSD2 m&uuml;ssen Sie Online-Zahlungen mit Ihrer
-Miles &amp; More Credit Card immer h&auml;ufiger freigeben.
-Aktivieren Sie dazu ab sofort eines unserer zwei Visa card&reg;
-Identity Check&trade; Verfahren:
-
-1)
-Freigabe &uuml;ber die Miles
-&amp; More Credit Card-App
-2)
-Freigabe &uuml;ber Miles
-&amp; More und&nbsp;Sicherheitsfrage
-
-Aktivieren
-Sie jetzt das Verfahren Ihrer Wahl, um auch zuk&uuml;nftig online
-bezahlen zu k&ouml;nnen.
-
-Jetzt
-aktivieren
-
-
-
-Viele
-Gr&uuml;&szlig;e von&nbsp;
-Ihrem
-Miles &amp; More-Team
-
-
-
-visit
-our website&nbsp;|&nbsp;log
-in to your account&nbsp;|&nbsp;get
-support
-Copyright
-&copy; Onlive Server Private Limited, All rights reserved.
+diff --git a/fs/9p/vfs_addr.c b/fs/9p/vfs_addr.c
+index 1279970e9157..82ac2ceff06e 100644
+--- a/fs/9p/vfs_addr.c
++++ b/fs/9p/vfs_addr.c
+@@ -141,14 +141,17 @@ static int v9fs_release_page(struct page *page, gfp_t gfp)
+ 
+ 	if (folio_test_private(folio))
+ 		return 0;
+-#ifdef CONFIG_9P_FSCACHE
++
++	if (!IS_ENABLED(CONFIG_9P_FSCACHE))
++		return 1;
++
+ 	if (folio_test_fscache(folio)) {
+ 		if (!(gfp & __GFP_DIRECT_RECLAIM) || !(gfp & __GFP_FS))
+ 			return 0;
+ 		folio_wait_fscache(folio);
+ 	}
+ 	fscache_note_page_release(v9fs_inode_cookie(V9FS_I(inode)));
+-#endif
++
+ 	return 1;
+ }
+ 
+-- 
+2.29.2
 
 
 
