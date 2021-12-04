@@ -2,92 +2,96 @@ Return-Path: <v9fs-developer-bounces@lists.sourceforge.net>
 X-Original-To: lists+v9fs-developer@lfdr.de
 Delivered-To: lists+v9fs-developer@lfdr.de
 Received: from lists.sourceforge.net (lists.sourceforge.net [216.105.38.7])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6578E467DA3
-	for <lists+v9fs-developer@lfdr.de>; Fri,  3 Dec 2021 19:58:40 +0100 (CET)
-Received: from [127.0.0.1] (helo=sfs-ml-1.v29.lw.sourceforge.com)
-	by sfs-ml-1.v29.lw.sourceforge.com with esmtp (Exim 4.94.2)
+	by mail.lfdr.de (Postfix) with ESMTPS id B61304684B1
+	for <lists+v9fs-developer@lfdr.de>; Sat,  4 Dec 2021 13:14:11 +0100 (CET)
+Received: from [127.0.0.1] (helo=sfs-ml-2.v29.lw.sourceforge.com)
+	by sfs-ml-2.v29.lw.sourceforge.com with esmtp (Exim 4.94.2)
 	(envelope-from <v9fs-developer-bounces@lists.sourceforge.net>)
-	id 1mtDlU-0007ve-NL; Fri, 03 Dec 2021 18:58:37 +0000
+	id 1mtTvZ-0001Q6-H9; Sat, 04 Dec 2021 12:14:05 +0000
 Received: from [172.30.20.202] (helo=mx.sourceforge.net)
- by sfs-ml-1.v29.lw.sourceforge.com with esmtps (TLS1.2) tls
- TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384 (Exim 4.94.2)
- (envelope-from <arnd@kernel.org>) id 1mtDlT-0007u8-Fx
- for v9fs-developer@lists.sourceforge.net; Fri, 03 Dec 2021 18:58:36 +0000
+ by sfs-ml-2.v29.lw.sourceforge.com with esmtps (TLS1.2) tls
+ TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384 (Exim 4.94.2) (envelope-from
+ <3ZDKrYQkbAIk5BCxnyyr4n22vq.t11tyr75r4p106r06.p1z@M3KW2WVRGUFZ5GODRSRYTGD7.apphosting.bounces.google.com>)
+ id 1mtTvX-0001Pw-D8
+ for v9fs-developer@lists.sourceforge.net; Sat, 04 Dec 2021 12:14:03 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=sourceforge.net; s=x; h=Content-Transfer-Encoding:MIME-Version:Message-Id:
- Date:Subject:Cc:To:From:Sender:Reply-To:Content-Type:Content-ID:
+ d=sourceforge.net; s=x; h=Content-Type:To:From:Subject:Message-ID:Date:
+ MIME-Version:Sender:Reply-To:Cc:Content-Transfer-Encoding:Content-ID:
  Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
  :Resent-Message-ID:In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:
  List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=EE+kuuoTzxOsOrZfDNY9HOxnNhhtGuzecaKDyXTXgkM=; b=M9f3EieKQ7+kDVr0a2+b3PL62Z
- nMVkf0edAnJoBDh+V30YL4RDdhh68vFyjaa1wStGc1MWi4U7hPg1gV+6JPwGAPAmZuHJLEVM5XdmU
- tugktQNs66aWqfjLN44DQtwDYYZ25OjnuD1PniofqOvXkGdzCDaLM2EFqFF4hcg0vgv8=;
+ bh=BieNe7yuzJXqBMx62R9EP5CNnpY06fgxYI8rI82ZXHs=; b=fBmMWRI+AhCA9/oj8qSz8NKxeZ
+ oSSilprDEn81PIJRq14i3Erm4OKvN1F2Y2CMaw8Lsm9mOAp5RP3BXK8JQgoCWd0hX9UFesZb1KLRB
+ Pm2L9nmS63XtBiIjLUd66rjLhsVZvWFVFdDJT9gNc6yKDVSq08mG/71vh9OXIuew3Noc=;
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  ;
- h=Content-Transfer-Encoding:MIME-Version:Message-Id:Date:Subject:Cc:To:From
- :Sender:Reply-To:Content-Type:Content-ID:Content-Description:Resent-Date:
+ h=Content-Type:To:From:Subject:Message-ID:Date:MIME-Version:Sender:Reply-To
+ :Cc:Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
  Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:
  References:List-Id:List-Help:List-Unsubscribe:List-Subscribe:List-Post:
- List-Owner:List-Archive; bh=EE+kuuoTzxOsOrZfDNY9HOxnNhhtGuzecaKDyXTXgkM=; b=A
- ZoYrMJoYcbtLwXTvITMdmY9100VQIPg/Ovh/vKfnHotxl3Owlx0c8KlbMChI5JuVcxp80IvE/l0Ew
- qTThoFt2kdNKqeUYZ2tsVgShUBLu/eR+QC0ArcA5CXBJv+mmTqCTKsDe1PVqBLSoCOV9sQ5a8LQm+
- yju/Fk3wPg5S1MYo=;
-Received: from dfw.source.kernel.org ([139.178.84.217])
+ List-Owner:List-Archive; bh=BieNe7yuzJXqBMx62R9EP5CNnpY06fgxYI8rI82ZXHs=; b=C
+ wqJ4xzJV+Qm8GesBcQE9UuVkDTZJ8qWpd0PreRucfQDy23pUuyxoBnn8ia5Unu2ZMzBU3i+699bI0
+ ONbXLvUIu7As8D4YcrMNNxe5+JSmmK4VC9Ww3+jvZXYJeXpiTmYyY9rQp3U1vRJkpr+4oj7shm4NW
+ OGLKRlg5St1oYoA8=;
+Received: from mail-qk1-f199.google.com ([209.85.222.199])
  by sfi-mx-1.v28.lw.sourceforge.com with esmtps
- (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.92.3)
- id 1mtDlP-0031zW-Hd
- for v9fs-developer@lists.sourceforge.net; Fri, 03 Dec 2021 18:58:36 +0000
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
- (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
- (No client certificate requested)
- by dfw.source.kernel.org (Postfix) with ESMTPS id 28CDE62CAB;
- Fri,  3 Dec 2021 18:58:22 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id ACBB6C53FAD;
- Fri,  3 Dec 2021 18:58:19 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1638557901;
- bh=3f/h2EgdTQ3pBq+ISkyXCIN+i2CCECjmkpTjC7FXDQI=;
- h=From:To:Cc:Subject:Date:From;
- b=gR9Vb7m7yJVfWpxyNkdq+aDVBLOUz5MKE6MGmvNDXKsV6MCrEQk3WP+lunnOTRwHy
- X/nbY+F/xJGsy440Uq9Axgz3a29YiU4y6qGJb+82d76oTm3sZq2X2t34onAB/64I39
- EM7CajBMasWQpdjIT/MyNwq1iDnIEaov1bVMMA+mFn8pctmetzJBfGMb6HGuNuUjvQ
- FMZC2i6/ucyBUp4zR/GcNQmx31EcKfZD8iUfGUPtonJaTy49kpv9RcBSIHUqS3OJFe
- wjPQi3KJohdzALvQTKYMk+K9UihYn8f6zcbzTsESxgQ9nH/j1lzm5z5lqbXV8K+FGK
- CmR517097ePow==
-From: Arnd Bergmann <arnd@kernel.org>
-To: David Howells <dhowells@redhat.com>
-Date: Fri,  3 Dec 2021 19:58:06 +0100
-Message-Id: <20211203185816.796637-1-arnd@kernel.org>
-X-Mailer: git-send-email 2.29.2
+ (TLSv1.2:ECDHE-RSA-AES128-GCM-SHA256:128) (Exim 4.92.3)
+ id 1mtTvJ-003q8G-6V
+ for v9fs-developer@lists.sourceforge.net; Sat, 04 Dec 2021 12:14:03 +0000
+Received: by mail-qk1-f199.google.com with SMTP id
+ c1-20020a05620a0ce100b00468060d41ecso6099235qkj.19
+ for <v9fs-developer@lists.sourceforge.net>;
+ Sat, 04 Dec 2021 04:13:49 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20210112;
+ h=x-gm-message-state:mime-version:date:message-id:subject:from:to;
+ bh=BieNe7yuzJXqBMx62R9EP5CNnpY06fgxYI8rI82ZXHs=;
+ b=mn+qb3WD8v3rQ0OvU/WmP7g5pBA4Ya8anjisSx7CrrDjwXOAnST/CvvwmF3mIBTzds
+ MyxK6u7zEACl/Kz13IdQyBgku2RqUgflc+yl9ROJADzbzX+qXv5JNYz7vHdRFG7NrciK
+ dOD2B2MWe0mYJyiYj47JZbc9eWWHXJYPbBUKmbOVuRZf5v54s1Yw9H29germLwWFvdoL
+ VQriAp6fF2wGXXrD7mI+N89APuN6lrr3iJP7IcGBUEnxuVL6QMJgpjtZTC/okejgH5Sq
+ fybnAL3H52RxmrfSW3JYfcBsIrbIPX4wvoqqHbl16DsaUHGIk3D7yuVp8Mrl/HvdAs5h
+ bGGg==
+X-Gm-Message-State: AOAM532V9I+07my0urQfLT8ff+yUifMrNQ9AVgTtMn3xA4wzZp9SqMNe
+ SojUuXd1Ycrqx/Gx+FM/LCnvqHM5K0Xu38WadaI2A5AuVouU
+X-Google-Smtp-Source: ABdhPJwK+g7luujkCE5ZVxBlzyxt0QnOYsjHPTV3q/8dSsX+xVd4JRprWT3cMw6VYP/0aF5pkFjPe/jWsJ32tl18MW4XZtHBP5Om
 MIME-Version: 1.0
-X-Spam-Score: -0.9 (/)
+X-Received: by 2002:a02:ba8b:: with SMTP id g11mr28396335jao.128.1638609508103; 
+ Sat, 04 Dec 2021 01:18:28 -0800 (PST)
+Date: Sat, 04 Dec 2021 01:18:28 -0800
+X-Google-Appengine-App-Id: s~syzkaller
+X-Google-Appengine-App-Id-Alias: syzkaller
+Message-ID: <000000000000a7fb8905d24e815b@google.com>
+From: syzbot <syzbot+627aa2ba3ada9ff256dd@syzkaller.appspotmail.com>
+To: asmadeus@codewreck.org, ericvh@gmail.com, linux-kernel@vger.kernel.org, 
+ lucho@ionkov.net, syzkaller-bugs@googlegroups.com, 
+ v9fs-developer@lists.sourceforge.net
+X-Spam-Score: 0.6 (/)
 X-Spam-Report: Spam detection software,
  running on the system "util-spamd-1.v13.lw.sourceforge.com", 
  has NOT identified this incoming email as spam.  The original
  message has been attached to this so you can view it or label
  similar future email.  If you have any questions, see
  the administrator of that system for details.
- Content preview: From: Arnd Bergmann <arnd@arndb.de> The folio changes added
- a variable that is sometimes unused: fs/9p/vfs_addr.c: In function
- 'v9fs_release_page':
- fs/9p/vfs_addr.c:140:23: error: unused variable 'inode'
- [-Werror=unused-variable]
- 140 | struct inode *inode = folio_inode(folio); | ^~~~~ 
- Content analysis details:   (-0.9 points, 6.0 required)
+ Content preview:  Hello,
+ syzbot found the following issue on: HEAD commit: 58e1100fdc59
+ MAINTAINERS: co-maintain random.c git tree: upstream console output:
+ https://syzkaller.appspot.com/x/log.txt?x=17f41219b00000
+ kernel config: https://syzkaller.appspot.com/x/. [...] 
+ Content analysis details:   (0.6 points, 6.0 required)
  pts rule name              description
  ---- ---------------------- --------------------------------------------------
+ 0.3 FROM_LOCAL_HEX         From: localpart has long hexadecimal sequence
+ -0.0 RCVD_IN_DNSWL_NONE     RBL: Sender listed at https://www.dnswl.org/,
+ no trust [209.85.222.199 listed in list.dnswl.org]
+ -0.0 RCVD_IN_MSPIKE_H2      RBL: Average reputation (+2)
+ [209.85.222.199 listed in wl.mailspike.net]
+ 0.2 HEADER_FROM_DIFFERENT_DOMAINS From and EnvelopeFrom 2nd level
+ mail domains are different
  0.0 SPF_HELO_NONE          SPF: HELO does not publish an SPF Record
  -0.0 SPF_PASS               SPF: sender matches SPF record
- -0.1 DKIM_VALID_EF          Message has a valid DKIM or DK signature from
- envelope-from domain
- -0.1 DKIM_VALID_AU          Message has a valid DKIM or DK signature from
- author's domain
- 0.1 DKIM_SIGNED            Message has a DKIM or DK signature, not necessarily
- valid
- -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
- -0.7 DKIMWL_WL_HIGH         DKIMwl.org - High trust sender
-X-Headers-End: 1mtDlP-0031zW-Hd
-Subject: [V9fs-developer] [PATCH] 9p: fix unused-variable warning
+X-Headers-End: 1mtTvJ-003q8G-6V
+Subject: [V9fs-developer] [syzbot] WARNING: refcount bug in v9fs_fid_find
 X-BeenThere: v9fs-developer@lists.sourceforge.net
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -99,58 +103,84 @@ List-Post: <mailto:v9fs-developer@lists.sourceforge.net>
 List-Help: <mailto:v9fs-developer-request@lists.sourceforge.net?subject=help>
 List-Subscribe: <https://lists.sourceforge.net/lists/listinfo/v9fs-developer>, 
  <mailto:v9fs-developer-request@lists.sourceforge.net?subject=subscribe>
-Cc: Latchesar Ionkov <lucho@ionkov.net>, Arnd Bergmann <arnd@arndb.de>,
- Eric Van Hensbergen <ericvh@gmail.com>, Jeff Layton <jlayton@kernel.org>,
- linux-kernel@vger.kernel.org, v9fs-developer@lists.sourceforge.net
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: v9fs-developer-bounces@lists.sourceforge.net
 
-From: Arnd Bergmann <arnd@arndb.de>
+Hello,
 
-The folio changes added a variable that is sometimes unused:
+syzbot found the following issue on:
 
-fs/9p/vfs_addr.c: In function 'v9fs_release_page':
-fs/9p/vfs_addr.c:140:23: error: unused variable 'inode' [-Werror=unused-variable]
-  140 |         struct inode *inode = folio_inode(folio);
-      |                       ^~~~~
+HEAD commit:    58e1100fdc59 MAINTAINERS: co-maintain random.c
+git tree:       upstream
+console output: https://syzkaller.appspot.com/x/log.txt?x=17f41219b00000
+kernel config:  https://syzkaller.appspot.com/x/.config?x=171728a464c05f2b
+dashboard link: https://syzkaller.appspot.com/bug?extid=627aa2ba3ada9ff256dd
+compiler:       gcc (Debian 10.2.1-6) 10.2.1 20210110, GNU ld (GNU Binutils for Debian) 2.35.2
 
-Make this clearer to the compiler by replacing the #ifdef
-with an equivalent if(IS_ENABLED()) check.
+Unfortunately, I don't have any reproducer for this issue yet.
 
-Fixes: 78525c74d9e7 ("netfs, 9p, afs, ceph: Use folios")
-Signed-off-by: Arnd Bergmann <arnd@arndb.de>
+IMPORTANT: if you fix the issue, please add the following tag to the commit:
+Reported-by: syzbot+627aa2ba3ada9ff256dd@syzkaller.appspotmail.com
+
+------------[ cut here ]------------
+refcount_t: addition on 0; use-after-free.
+WARNING: CPU: 2 PID: 13516 at lib/refcount.c:25 refcount_warn_saturate+0x169/0x1e0 lib/refcount.c:25
+Modules linked in:
+CPU: 2 PID: 13516 Comm: syz-executor.3 Not tainted 5.16.0-rc3-syzkaller #0
+Hardware name: QEMU Standard PC (Q35 + ICH9, 2009), BIOS 1.14.0-2 04/01/2014
+RIP: 0010:refcount_warn_saturate+0x169/0x1e0 lib/refcount.c:25
+Code: 09 31 ff 89 de e8 d7 3f 9c fd 84 db 0f 85 36 ff ff ff e8 ea 3b 9c fd 48 c7 c7 20 4b 04 8a c6 05 96 c5 a1 09 01 e8 50 d2 25 05 <0f> 0b e9 17 ff ff ff e8 cb 3b 9c fd 0f b6 1d 7b c5 a1 09 31 ff 89
+RSP: 0018:ffffc90002b1f8e8 EFLAGS: 00010282
+RAX: 0000000000000000 RBX: 0000000000000000 RCX: 0000000000000000
+RDX: 0000000000040000 RSI: ffffffff815e5208 RDI: fffff52000563f0f
+RBP: 0000000000000002 R08: 0000000000000000 R09: 0000000000000001
+R10: ffffffff815defae R11: 0000000000000000 R12: ffff88802653b800
+R13: ffff88802653b80c R14: 1ffff92000563f22 R15: 0000000000000000
+FS:  00007f7d5c4e2700(0000) GS:ffff88802cc00000(0000) knlGS:0000000000000000
+CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+CR2: 00007f07cbcd8000 CR3: 0000000069e46000 CR4: 0000000000150ee0
+DR0: 0000000000000000 DR1: 0000000000000000 DR2: 0000000000000000
+DR3: 0000000000000000 DR6: 00000000fffe0ff0 DR7: 0000000000000400
+Call Trace:
+ <TASK>
+ __refcount_add include/linux/refcount.h:199 [inline]
+ __refcount_inc include/linux/refcount.h:250 [inline]
+ refcount_inc include/linux/refcount.h:267 [inline]
+ v9fs_fid_find+0x471/0x4e0 fs/9p/fid.c:111
+ v9fs_fid_lookup_with_uid+0xa2/0xae0 fs/9p/fid.c:160
+ v9fs_fid_clone fs/9p/fid.h:27 [inline]
+ v9fs_file_open+0x2de/0x870 fs/9p/vfs_file.c:60
+ do_dentry_open+0x4c8/0x1250 fs/open.c:822
+ do_open fs/namei.c:3426 [inline]
+ path_openat+0x1cad/0x2750 fs/namei.c:3559
+ do_filp_open+0x1aa/0x400 fs/namei.c:3586
+ do_sys_openat2+0x16d/0x4d0 fs/open.c:1212
+ do_sys_open fs/open.c:1228 [inline]
+ __do_sys_creat fs/open.c:1304 [inline]
+ __se_sys_creat fs/open.c:1298 [inline]
+ __x64_sys_creat+0xc9/0x120 fs/open.c:1298
+ do_syscall_x64 arch/x86/entry/common.c:50 [inline]
+ do_syscall_64+0x35/0xb0 arch/x86/entry/common.c:80
+ entry_SYSCALL_64_after_hwframe+0x44/0xae
+RIP: 0033:0x7f7d5ef6cae9
+Code: ff ff c3 66 2e 0f 1f 84 00 00 00 00 00 0f 1f 40 00 48 89 f8 48 89 f7 48 89 d6 48 89 ca 4d 89 c2 4d 89 c8 4c 8b 4c 24 08 0f 05 <48> 3d 01 f0 ff ff 73 01 c3 48 c7 c1 bc ff ff ff f7 d8 64 89 01 48
+RSP: 002b:00007f7d5c4e2188 EFLAGS: 00000246 ORIG_RAX: 0000000000000055
+RAX: ffffffffffffffda RBX: 00007f7d5f07ff60 RCX: 00007f7d5ef6cae9
+RDX: 0000000000000000 RSI: 0000000000000000 RDI: 0000000020000140
+RBP: 00007f7d5efc6f6d R08: 0000000000000000 R09: 0000000000000000
+R10: 0000000000000000 R11: 0000000000000246 R12: 0000000000000000
+R13: 00007ffe7bcaa9bf R14: 00007f7d5c4e2300 R15: 0000000000022000
+ </TASK>
+
+
 ---
- fs/9p/vfs_addr.c | 7 +++++--
- 1 file changed, 5 insertions(+), 2 deletions(-)
+This report is generated by a bot. It may contain errors.
+See https://goo.gl/tpsmEJ for more information about syzbot.
+syzbot engineers can be reached at syzkaller@googlegroups.com.
 
-diff --git a/fs/9p/vfs_addr.c b/fs/9p/vfs_addr.c
-index 1279970e9157..82ac2ceff06e 100644
---- a/fs/9p/vfs_addr.c
-+++ b/fs/9p/vfs_addr.c
-@@ -141,14 +141,17 @@ static int v9fs_release_page(struct page *page, gfp_t gfp)
- 
- 	if (folio_test_private(folio))
- 		return 0;
--#ifdef CONFIG_9P_FSCACHE
-+
-+	if (!IS_ENABLED(CONFIG_9P_FSCACHE))
-+		return 1;
-+
- 	if (folio_test_fscache(folio)) {
- 		if (!(gfp & __GFP_DIRECT_RECLAIM) || !(gfp & __GFP_FS))
- 			return 0;
- 		folio_wait_fscache(folio);
- 	}
- 	fscache_note_page_release(v9fs_inode_cookie(V9FS_I(inode)));
--#endif
-+
- 	return 1;
- }
- 
--- 
-2.29.2
-
+syzbot will keep track of this issue. See:
+https://goo.gl/tpsmEJ#status for how to communicate with syzbot.
 
 
 _______________________________________________
