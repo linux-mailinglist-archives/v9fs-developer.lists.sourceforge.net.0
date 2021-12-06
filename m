@@ -2,96 +2,85 @@ Return-Path: <v9fs-developer-bounces@lists.sourceforge.net>
 X-Original-To: lists+v9fs-developer@lfdr.de
 Delivered-To: lists+v9fs-developer@lfdr.de
 Received: from lists.sourceforge.net (lists.sourceforge.net [216.105.38.7])
-	by mail.lfdr.de (Postfix) with ESMTPS id B61304684B1
-	for <lists+v9fs-developer@lfdr.de>; Sat,  4 Dec 2021 13:14:11 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3DA3B46952E
+	for <lists+v9fs-developer@lfdr.de>; Mon,  6 Dec 2021 12:42:39 +0100 (CET)
 Received: from [127.0.0.1] (helo=sfs-ml-2.v29.lw.sourceforge.com)
 	by sfs-ml-2.v29.lw.sourceforge.com with esmtp (Exim 4.94.2)
 	(envelope-from <v9fs-developer-bounces@lists.sourceforge.net>)
-	id 1mtTvZ-0001Q6-H9; Sat, 04 Dec 2021 12:14:05 +0000
+	id 1muCOB-0000aU-Uy; Mon, 06 Dec 2021 11:42:35 +0000
 Received: from [172.30.20.202] (helo=mx.sourceforge.net)
  by sfs-ml-2.v29.lw.sourceforge.com with esmtps (TLS1.2) tls
- TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384 (Exim 4.94.2) (envelope-from
- <3ZDKrYQkbAIk5BCxnyyr4n22vq.t11tyr75r4p106r06.p1z@M3KW2WVRGUFZ5GODRSRYTGD7.apphosting.bounces.google.com>)
- id 1mtTvX-0001Pw-D8
- for v9fs-developer@lists.sourceforge.net; Sat, 04 Dec 2021 12:14:03 +0000
+ TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384 (Exim 4.94.2)
+ (envelope-from <jefflexu@linux.alibaba.com>) id 1muCOA-0000aO-RI
+ for v9fs-developer@lists.sourceforge.net; Mon, 06 Dec 2021 11:42:34 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=sourceforge.net; s=x; h=Content-Type:To:From:Subject:Message-ID:Date:
- MIME-Version:Sender:Reply-To:Cc:Content-Transfer-Encoding:Content-ID:
- Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
- :Resent-Message-ID:In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:
+ d=sourceforge.net; s=x; h=Content-Transfer-Encoding:Content-Type:In-Reply-To:
+ From:References:Cc:To:Subject:MIME-Version:Date:Message-ID:Sender:Reply-To:
+ Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+ Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
  List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=BieNe7yuzJXqBMx62R9EP5CNnpY06fgxYI8rI82ZXHs=; b=fBmMWRI+AhCA9/oj8qSz8NKxeZ
- oSSilprDEn81PIJRq14i3Erm4OKvN1F2Y2CMaw8Lsm9mOAp5RP3BXK8JQgoCWd0hX9UFesZb1KLRB
- Pm2L9nmS63XtBiIjLUd66rjLhsVZvWFVFdDJT9gNc6yKDVSq08mG/71vh9OXIuew3Noc=;
+ bh=qj6fXkj9hHjb69jvcMKTVtAL+eDTYd3D1NtjR1gIAaA=; b=IUCOBWKZYchcSEDNxeKtDi105e
+ rujP+uxbMCLnqFrK6xrH4dYd+4XntbLsopQA9Xlx9IMCX4eyyRZ8cc3zkxsCkuGDxRhPXU0EbLE+l
+ R/aGht15Ex/r96ZnCZw3H2IJpPfblN8pC0D+8Atj6Ho70LyGlxN8UmAhwmdcA2YrbQ/Y=;
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  ;
- h=Content-Type:To:From:Subject:Message-ID:Date:MIME-Version:Sender:Reply-To
- :Cc:Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
- Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:
- References:List-Id:List-Help:List-Unsubscribe:List-Subscribe:List-Post:
- List-Owner:List-Archive; bh=BieNe7yuzJXqBMx62R9EP5CNnpY06fgxYI8rI82ZXHs=; b=C
- wqJ4xzJV+Qm8GesBcQE9UuVkDTZJ8qWpd0PreRucfQDy23pUuyxoBnn8ia5Unu2ZMzBU3i+699bI0
- ONbXLvUIu7As8D4YcrMNNxe5+JSmmK4VC9Ww3+jvZXYJeXpiTmYyY9rQp3U1vRJkpr+4oj7shm4NW
- OGLKRlg5St1oYoA8=;
-Received: from mail-qk1-f199.google.com ([209.85.222.199])
+ h=Content-Transfer-Encoding:Content-Type:In-Reply-To:From:References:Cc:To:
+ Subject:MIME-Version:Date:Message-ID:Sender:Reply-To:Content-ID:
+ Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
+ :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
+ List-Post:List-Owner:List-Archive;
+ bh=qj6fXkj9hHjb69jvcMKTVtAL+eDTYd3D1NtjR1gIAaA=; b=MOovZaaLh9kihTS3MRYLqhYyrj
+ UGPSS0gEblKteKMjBMEVgYOb7feUvZe8rMBMCDvCvjdNaEsnH2BivnNMEjj3ZBmfBcoHusYChV3bI
+ 9QAaR3NkY2KGlIZccrfZoKdcPfvV560J+Zv87hu0umh0nPelzaPPQKqkD9k37lyCZ8zk=;
+Received: from out30-131.freemail.mail.aliyun.com ([115.124.30.131])
  by sfi-mx-1.v28.lw.sourceforge.com with esmtps
- (TLSv1.2:ECDHE-RSA-AES128-GCM-SHA256:128) (Exim 4.92.3)
- id 1mtTvJ-003q8G-6V
- for v9fs-developer@lists.sourceforge.net; Sat, 04 Dec 2021 12:14:03 +0000
-Received: by mail-qk1-f199.google.com with SMTP id
- c1-20020a05620a0ce100b00468060d41ecso6099235qkj.19
- for <v9fs-developer@lists.sourceforge.net>;
- Sat, 04 Dec 2021 04:13:49 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20210112;
- h=x-gm-message-state:mime-version:date:message-id:subject:from:to;
- bh=BieNe7yuzJXqBMx62R9EP5CNnpY06fgxYI8rI82ZXHs=;
- b=mn+qb3WD8v3rQ0OvU/WmP7g5pBA4Ya8anjisSx7CrrDjwXOAnST/CvvwmF3mIBTzds
- MyxK6u7zEACl/Kz13IdQyBgku2RqUgflc+yl9ROJADzbzX+qXv5JNYz7vHdRFG7NrciK
- dOD2B2MWe0mYJyiYj47JZbc9eWWHXJYPbBUKmbOVuRZf5v54s1Yw9H29germLwWFvdoL
- VQriAp6fF2wGXXrD7mI+N89APuN6lrr3iJP7IcGBUEnxuVL6QMJgpjtZTC/okejgH5Sq
- fybnAL3H52RxmrfSW3JYfcBsIrbIPX4wvoqqHbl16DsaUHGIk3D7yuVp8Mrl/HvdAs5h
- bGGg==
-X-Gm-Message-State: AOAM532V9I+07my0urQfLT8ff+yUifMrNQ9AVgTtMn3xA4wzZp9SqMNe
- SojUuXd1Ycrqx/Gx+FM/LCnvqHM5K0Xu38WadaI2A5AuVouU
-X-Google-Smtp-Source: ABdhPJwK+g7luujkCE5ZVxBlzyxt0QnOYsjHPTV3q/8dSsX+xVd4JRprWT3cMw6VYP/0aF5pkFjPe/jWsJ32tl18MW4XZtHBP5Om
+ (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.92.3)
+ id 1muCO9-006AQl-Cp
+ for v9fs-developer@lists.sourceforge.net; Mon, 06 Dec 2021 11:42:34 +0000
+X-Alimail-AntiSpam: AC=PASS; BC=-1|-1; BR=01201311R271e4; CH=green; DM=||false|;
+ DS=||; FP=0|-1|-1|-1|0|-1|-1|-1; HT=e01e04395; MF=jefflexu@linux.alibaba.com;
+ NM=1; PH=DS; RN=18; SR=0; TI=SMTPD_---0UzcMKwq_1638790938; 
+Received: from 30.225.24.25(mailfrom:jefflexu@linux.alibaba.com
+ fp:SMTPD_---0UzcMKwq_1638790938) by smtp.aliyun-inc.com(127.0.0.1);
+ Mon, 06 Dec 2021 19:42:19 +0800
+Message-ID: <d4167c15-b3ce-73b2-1d66-97d651723305@linux.alibaba.com>
+Date: Mon, 6 Dec 2021 19:42:18 +0800
 MIME-Version: 1.0
-X-Received: by 2002:a02:ba8b:: with SMTP id g11mr28396335jao.128.1638609508103; 
- Sat, 04 Dec 2021 01:18:28 -0800 (PST)
-Date: Sat, 04 Dec 2021 01:18:28 -0800
-X-Google-Appengine-App-Id: s~syzkaller
-X-Google-Appengine-App-Id-Alias: syzkaller
-Message-ID: <000000000000a7fb8905d24e815b@google.com>
-From: syzbot <syzbot+627aa2ba3ada9ff256dd@syzkaller.appspotmail.com>
-To: asmadeus@codewreck.org, ericvh@gmail.com, linux-kernel@vger.kernel.org, 
- lucho@ionkov.net, syzkaller-bugs@googlegroups.com, 
- v9fs-developer@lists.sourceforge.net
-X-Spam-Score: 0.6 (/)
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:91.0)
+ Gecko/20100101 Thunderbird/91.3.0
+Content-Language: en-US
+To: David Howells <dhowells@redhat.com>, linux-cachefs@redhat.com
+References: <163819575444.215744.318477214576928110.stgit@warthog.procyon.org.uk>
+ <163819612321.215744.9738308885948264476.stgit@warthog.procyon.org.uk>
+From: JeffleXu <jefflexu@linux.alibaba.com>
+In-Reply-To: <163819612321.215744.9738308885948264476.stgit@warthog.procyon.org.uk>
+X-Spam-Score: -10.0 (----------)
 X-Spam-Report: Spam detection software,
  running on the system "util-spamd-1.v13.lw.sourceforge.com", 
  has NOT identified this incoming email as spam.  The original
  message has been attached to this so you can view it or label
  similar future email.  If you have any questions, see
  the administrator of that system for details.
- Content preview:  Hello,
- syzbot found the following issue on: HEAD commit: 58e1100fdc59
- MAINTAINERS: co-maintain random.c git tree: upstream console output:
- https://syzkaller.appspot.com/x/log.txt?x=17f41219b00000
- kernel config: https://syzkaller.appspot.com/x/. [...] 
- Content analysis details:   (0.6 points, 6.0 required)
+ Content preview:  On 11/29/21 10:28 PM,
+ David Howells wrote: > Pass more information
+ to the cache on how to deal with a hole if it > encounters one when trying
+ to read from the cache. Three options are > provided: > > [...] 
+ Content analysis details:   (-10.0 points, 6.0 required)
  pts rule name              description
  ---- ---------------------- --------------------------------------------------
- 0.3 FROM_LOCAL_HEX         From: localpart has long hexadecimal sequence
  -0.0 RCVD_IN_DNSWL_NONE     RBL: Sender listed at https://www.dnswl.org/,
- no trust [209.85.222.199 listed in list.dnswl.org]
- -0.0 RCVD_IN_MSPIKE_H2      RBL: Average reputation (+2)
- [209.85.222.199 listed in wl.mailspike.net]
- 0.2 HEADER_FROM_DIFFERENT_DOMAINS From and EnvelopeFrom 2nd level
- mail domains are different
+ no trust [115.124.30.131 listed in list.dnswl.org]
+ -7.5 USER_IN_DEF_SPF_WL     From: address is in the default SPF
+ white-list
  0.0 SPF_HELO_NONE          SPF: HELO does not publish an SPF Record
  -0.0 SPF_PASS               SPF: sender matches SPF record
-X-Headers-End: 1mtTvJ-003q8G-6V
-Subject: [V9fs-developer] [syzbot] WARNING: refcount bug in v9fs_fid_find
+ 0.0 UNPARSEABLE_RELAY      Informational: message has unparseable relay
+ lines
+ -0.5 ENV_AND_HDR_SPF_MATCH  Env and Hdr From used in default SPF WL
+ Match -2.0 NICE_REPLY_A           Looks like a legit reply (A)
+X-Headers-End: 1muCO9-006AQl-Cp
+Subject: Re: [V9fs-developer] [PATCH 24/64] netfs: Pass more information on
+ how to deal with a hole in the cache
 X-BeenThere: v9fs-developer@lists.sourceforge.net
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -103,84 +92,148 @@ List-Post: <mailto:v9fs-developer@lists.sourceforge.net>
 List-Help: <mailto:v9fs-developer-request@lists.sourceforge.net?subject=help>
 List-Subscribe: <https://lists.sourceforge.net/lists/listinfo/v9fs-developer>, 
  <mailto:v9fs-developer-request@lists.sourceforge.net?subject=subscribe>
+Cc: linux-cifs@vger.kernel.org, linux-nfs@vger.kernel.org,
+ Jeff Layton <jlayton@kernel.org>, linux-kernel@vger.kernel.org,
+ Matthew Wilcox <willy@infradead.org>, linux-afs@lists.infradead.org,
+ Steve French <sfrench@samba.org>, v9fs-developer@lists.sourceforge.net,
+ Alexander Viro <viro@zeniv.linux.org.uk>,
+ Trond Myklebust <trondmy@hammerspace.com>, linux-fsdevel@vger.kernel.org,
+ ceph-devel@vger.kernel.org, Omar Sandoval <osandov@osandov.com>,
+ Linus Torvalds <torvalds@linux-foundation.org>,
+ Anna Schumaker <anna.schumaker@netapp.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: v9fs-developer-bounces@lists.sourceforge.net
 
-Hello,
-
-syzbot found the following issue on:
-
-HEAD commit:    58e1100fdc59 MAINTAINERS: co-maintain random.c
-git tree:       upstream
-console output: https://syzkaller.appspot.com/x/log.txt?x=17f41219b00000
-kernel config:  https://syzkaller.appspot.com/x/.config?x=171728a464c05f2b
-dashboard link: https://syzkaller.appspot.com/bug?extid=627aa2ba3ada9ff256dd
-compiler:       gcc (Debian 10.2.1-6) 10.2.1 20210110, GNU ld (GNU Binutils for Debian) 2.35.2
-
-Unfortunately, I don't have any reproducer for this issue yet.
-
-IMPORTANT: if you fix the issue, please add the following tag to the commit:
-Reported-by: syzbot+627aa2ba3ada9ff256dd@syzkaller.appspotmail.com
-
-------------[ cut here ]------------
-refcount_t: addition on 0; use-after-free.
-WARNING: CPU: 2 PID: 13516 at lib/refcount.c:25 refcount_warn_saturate+0x169/0x1e0 lib/refcount.c:25
-Modules linked in:
-CPU: 2 PID: 13516 Comm: syz-executor.3 Not tainted 5.16.0-rc3-syzkaller #0
-Hardware name: QEMU Standard PC (Q35 + ICH9, 2009), BIOS 1.14.0-2 04/01/2014
-RIP: 0010:refcount_warn_saturate+0x169/0x1e0 lib/refcount.c:25
-Code: 09 31 ff 89 de e8 d7 3f 9c fd 84 db 0f 85 36 ff ff ff e8 ea 3b 9c fd 48 c7 c7 20 4b 04 8a c6 05 96 c5 a1 09 01 e8 50 d2 25 05 <0f> 0b e9 17 ff ff ff e8 cb 3b 9c fd 0f b6 1d 7b c5 a1 09 31 ff 89
-RSP: 0018:ffffc90002b1f8e8 EFLAGS: 00010282
-RAX: 0000000000000000 RBX: 0000000000000000 RCX: 0000000000000000
-RDX: 0000000000040000 RSI: ffffffff815e5208 RDI: fffff52000563f0f
-RBP: 0000000000000002 R08: 0000000000000000 R09: 0000000000000001
-R10: ffffffff815defae R11: 0000000000000000 R12: ffff88802653b800
-R13: ffff88802653b80c R14: 1ffff92000563f22 R15: 0000000000000000
-FS:  00007f7d5c4e2700(0000) GS:ffff88802cc00000(0000) knlGS:0000000000000000
-CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
-CR2: 00007f07cbcd8000 CR3: 0000000069e46000 CR4: 0000000000150ee0
-DR0: 0000000000000000 DR1: 0000000000000000 DR2: 0000000000000000
-DR3: 0000000000000000 DR6: 00000000fffe0ff0 DR7: 0000000000000400
-Call Trace:
- <TASK>
- __refcount_add include/linux/refcount.h:199 [inline]
- __refcount_inc include/linux/refcount.h:250 [inline]
- refcount_inc include/linux/refcount.h:267 [inline]
- v9fs_fid_find+0x471/0x4e0 fs/9p/fid.c:111
- v9fs_fid_lookup_with_uid+0xa2/0xae0 fs/9p/fid.c:160
- v9fs_fid_clone fs/9p/fid.h:27 [inline]
- v9fs_file_open+0x2de/0x870 fs/9p/vfs_file.c:60
- do_dentry_open+0x4c8/0x1250 fs/open.c:822
- do_open fs/namei.c:3426 [inline]
- path_openat+0x1cad/0x2750 fs/namei.c:3559
- do_filp_open+0x1aa/0x400 fs/namei.c:3586
- do_sys_openat2+0x16d/0x4d0 fs/open.c:1212
- do_sys_open fs/open.c:1228 [inline]
- __do_sys_creat fs/open.c:1304 [inline]
- __se_sys_creat fs/open.c:1298 [inline]
- __x64_sys_creat+0xc9/0x120 fs/open.c:1298
- do_syscall_x64 arch/x86/entry/common.c:50 [inline]
- do_syscall_64+0x35/0xb0 arch/x86/entry/common.c:80
- entry_SYSCALL_64_after_hwframe+0x44/0xae
-RIP: 0033:0x7f7d5ef6cae9
-Code: ff ff c3 66 2e 0f 1f 84 00 00 00 00 00 0f 1f 40 00 48 89 f8 48 89 f7 48 89 d6 48 89 ca 4d 89 c2 4d 89 c8 4c 8b 4c 24 08 0f 05 <48> 3d 01 f0 ff ff 73 01 c3 48 c7 c1 bc ff ff ff f7 d8 64 89 01 48
-RSP: 002b:00007f7d5c4e2188 EFLAGS: 00000246 ORIG_RAX: 0000000000000055
-RAX: ffffffffffffffda RBX: 00007f7d5f07ff60 RCX: 00007f7d5ef6cae9
-RDX: 0000000000000000 RSI: 0000000000000000 RDI: 0000000020000140
-RBP: 00007f7d5efc6f6d R08: 0000000000000000 R09: 0000000000000000
-R10: 0000000000000000 R11: 0000000000000246 R12: 0000000000000000
-R13: 00007ffe7bcaa9bf R14: 00007f7d5c4e2300 R15: 0000000000022000
- </TASK>
 
 
----
-This report is generated by a bot. It may contain errors.
-See https://goo.gl/tpsmEJ for more information about syzbot.
-syzbot engineers can be reached at syzkaller@googlegroups.com.
+On 11/29/21 10:28 PM, David Howells wrote:
+> Pass more information to the cache on how to deal with a hole if it
+> encounters one when trying to read from the cache.  Three options are
+> provided:
+> 
+>  (1) NETFS_READ_HOLE_IGNORE.  Read the hole along with the data, assuming
+>      it to be a punched-out extent by the backing filesystem.
+> 
+>  (2) NETFS_READ_HOLE_CLEAR.  If there's a hole, erase the requested region
+>      of the cache and clear the read buffer.
+> 
+>  (3) NETFS_READ_HOLE_FAIL.  Fail the read if a hole is detected.
+> 
+> Signed-off-by: David Howells <dhowells@redhat.com>
+> cc: linux-cachefs@redhat.com
+> ---
+> 
+>  fs/netfs/read_helper.c |    8 ++++----
+>  include/linux/netfs.h  |   11 ++++++++++-
+>  2 files changed, 14 insertions(+), 5 deletions(-)
+> 
+> diff --git a/fs/netfs/read_helper.c b/fs/netfs/read_helper.c
+> index 7dc79fa8a1f3..08df413efdf3 100644
+> --- a/fs/netfs/read_helper.c
+> +++ b/fs/netfs/read_helper.c
+> @@ -170,7 +170,7 @@ static void netfs_cache_read_terminated(void *priv, ssize_t transferred_or_error
+>   */
+>  static void netfs_read_from_cache(struct netfs_read_request *rreq,
+>  				  struct netfs_read_subrequest *subreq,
+> -				  bool seek_data)
+> +				  enum netfs_read_from_hole read_hole)
+>  {
+>  	struct netfs_cache_resources *cres = &rreq->cache_resources;
+>  	struct iov_iter iter;
+> @@ -180,7 +180,7 @@ static void netfs_read_from_cache(struct netfs_read_request *rreq,
+>  			subreq->start + subreq->transferred,
+>  			subreq->len   - subreq->transferred);
+>  
+> -	cres->ops->read(cres, subreq->start, &iter, seek_data,
+> +	cres->ops->read(cres, subreq->start, &iter, read_hole,
+>  			netfs_cache_read_terminated, subreq);
+>  }
+>  
+> @@ -466,7 +466,7 @@ static void netfs_rreq_short_read(struct netfs_read_request *rreq,
+>  	netfs_get_read_subrequest(subreq);
+>  	atomic_inc(&rreq->nr_rd_ops);
+>  	if (subreq->source == NETFS_READ_FROM_CACHE)
+> -		netfs_read_from_cache(rreq, subreq, true);
+> +		netfs_read_from_cache(rreq, subreq, NETFS_READ_HOLE_CLEAR);
 
-syzbot will keep track of this issue. See:
-https://goo.gl/tpsmEJ#status for how to communicate with syzbot.
+Hi I'm not sure why NETFS_READ_HOLE_CLEAR style should be used in 'short
+read' case.
+
+Besides,
+
+```
+static void netfs_read_from_cache(struct netfs_read_request *rreq,
+				  struct netfs_read_subrequest *subreq,
+				  enum netfs_read_from_hole read_hole)
+{
+	struct netfs_cache_resources *cres = &rreq->cache_resources;
+	struct iov_iter iter;
+
+	netfs_stat(&netfs_n_rh_read);
+	iov_iter_xarray(&iter, READ, &rreq->mapping->i_pages,
+			subreq->start + subreq->transferred,
+			subreq->len   - subreq->transferred);
+
+	cres->ops->read(cres, subreq->start, &iter, read_hole,
+			netfs_cache_read_terminated, subreq);
+}
+```
+
+I'm not sure why 'subreq->start' is not incremented with
+'subreq->transferred' when calling cres->ops->read() in 'short read' case.
+
+
+>  	else
+>  		netfs_read_from_server(rreq, subreq);
+>  }
+> @@ -794,7 +794,7 @@ static bool netfs_rreq_submit_slice(struct netfs_read_request *rreq,
+>  		netfs_read_from_server(rreq, subreq);
+>  		break;
+>  	case NETFS_READ_FROM_CACHE:
+> -		netfs_read_from_cache(rreq, subreq, false);
+> +		netfs_read_from_cache(rreq, subreq, NETFS_READ_HOLE_IGNORE);
+>  		break;
+>  	default:
+>  		BUG();
+
+
+
+
+> diff --git a/include/linux/netfs.h b/include/linux/netfs.h
+> index 5a46fde65759..b46c39d98bbd 100644
+> --- a/include/linux/netfs.h
+> +++ b/include/linux/netfs.h
+> @@ -196,6 +196,15 @@ struct netfs_read_request_ops {
+>  	void (*cleanup)(struct address_space *mapping, void *netfs_priv);
+>  };
+>  
+> +/*
+> + * How to handle reading from a hole.
+> + */
+> +enum netfs_read_from_hole {
+> +	NETFS_READ_HOLE_IGNORE,
+> +	NETFS_READ_HOLE_CLEAR,
+> +	NETFS_READ_HOLE_FAIL,
+> +};
+> +
+>  /*
+>   * Table of operations for access to a cache.  This is obtained by
+>   * rreq->ops->begin_cache_operation().
+> @@ -208,7 +217,7 @@ struct netfs_cache_ops {
+>  	int (*read)(struct netfs_cache_resources *cres,
+>  		    loff_t start_pos,
+>  		    struct iov_iter *iter,
+> -		    bool seek_data,
+> +		    enum netfs_read_from_hole read_hole,
+>  		    netfs_io_terminated_t term_func,
+>  		    void *term_func_priv);
+>  
+> 
+
+-- 
+Thanks,
+Jeffle
 
 
 _______________________________________________
