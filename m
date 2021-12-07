@@ -2,85 +2,103 @@ Return-Path: <v9fs-developer-bounces@lists.sourceforge.net>
 X-Original-To: lists+v9fs-developer@lfdr.de
 Delivered-To: lists+v9fs-developer@lfdr.de
 Received: from lists.sourceforge.net (lists.sourceforge.net [216.105.38.7])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3DA3B46952E
-	for <lists+v9fs-developer@lfdr.de>; Mon,  6 Dec 2021 12:42:39 +0100 (CET)
-Received: from [127.0.0.1] (helo=sfs-ml-2.v29.lw.sourceforge.com)
-	by sfs-ml-2.v29.lw.sourceforge.com with esmtp (Exim 4.94.2)
+	by mail.lfdr.de (Postfix) with ESMTPS id EFE9846B34B
+	for <lists+v9fs-developer@lfdr.de>; Tue,  7 Dec 2021 07:56:59 +0100 (CET)
+Received: from [127.0.0.1] (helo=sfs-ml-4.v29.lw.sourceforge.com)
+	by sfs-ml-4.v29.lw.sourceforge.com with esmtp (Exim 4.94.2)
 	(envelope-from <v9fs-developer-bounces@lists.sourceforge.net>)
-	id 1muCOB-0000aU-Uy; Mon, 06 Dec 2021 11:42:35 +0000
+	id 1muUPJ-00023i-Cl; Tue, 07 Dec 2021 06:56:57 +0000
 Received: from [172.30.20.202] (helo=mx.sourceforge.net)
- by sfs-ml-2.v29.lw.sourceforge.com with esmtps (TLS1.2) tls
- TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384 (Exim 4.94.2)
- (envelope-from <jefflexu@linux.alibaba.com>) id 1muCOA-0000aO-RI
- for v9fs-developer@lists.sourceforge.net; Mon, 06 Dec 2021 11:42:34 +0000
+ by sfs-ml-4.v29.lw.sourceforge.com with esmtps (TLS1.2) tls
+ TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384 (Exim 4.94.2) (envelope-from
+ <0107017d93ae375e-d1fdfbf6-de59-4d8a-afdd-680412c8f673-000000@eu-central-1.amazonses.com>)
+ id 1muUPI-00023Z-2H
+ for v9fs-developer@lists.sourceforge.net; Tue, 07 Dec 2021 06:56:56 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=sourceforge.net; s=x; h=Content-Transfer-Encoding:Content-Type:In-Reply-To:
- From:References:Cc:To:Subject:MIME-Version:Date:Message-ID:Sender:Reply-To:
+ d=sourceforge.net; s=x; h=List-Unsubscribe:Content-Type:MIME-Version:To:
+ Reply-To:From:Subject:Date:Message-ID:Sender:Cc:Content-Transfer-Encoding:
  Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
- Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
- List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=qj6fXkj9hHjb69jvcMKTVtAL+eDTYd3D1NtjR1gIAaA=; b=IUCOBWKZYchcSEDNxeKtDi105e
- rujP+uxbMCLnqFrK6xrH4dYd+4XntbLsopQA9Xlx9IMCX4eyyRZ8cc3zkxsCkuGDxRhPXU0EbLE+l
- R/aGht15Ex/r96ZnCZw3H2IJpPfblN8pC0D+8Atj6Ho70LyGlxN8UmAhwmdcA2YrbQ/Y=;
+ Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:List-Id:
+ List-Help:List-Subscribe:List-Post:List-Owner:List-Archive;
+ bh=YUBc+HldYc/Em4BJks4kUlXucQIpJHCMUqJcPz6hCPk=; b=NT+gdMR/rsTTj2qPV23TpeJCpe
+ yphYc7kIbts1t/rQuhv5a5FjAisgKzW7DOUBL0bxs2kaF0Ywj95o8nglAw+18bxZIEC2jciXb2GyN
+ 4aQ9J4O3Mwshr9tSzz6DfFjV+EheqATopUmfLRngyJBpIDOfK1fKl5t+sL7tqdubTGbo=;
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  ;
- h=Content-Transfer-Encoding:Content-Type:In-Reply-To:From:References:Cc:To:
- Subject:MIME-Version:Date:Message-ID:Sender:Reply-To:Content-ID:
- Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
- :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
- List-Post:List-Owner:List-Archive;
- bh=qj6fXkj9hHjb69jvcMKTVtAL+eDTYd3D1NtjR1gIAaA=; b=MOovZaaLh9kihTS3MRYLqhYyrj
- UGPSS0gEblKteKMjBMEVgYOb7feUvZe8rMBMCDvCvjdNaEsnH2BivnNMEjj3ZBmfBcoHusYChV3bI
- 9QAaR3NkY2KGlIZccrfZoKdcPfvV560J+Zv87hu0umh0nPelzaPPQKqkD9k37lyCZ8zk=;
-Received: from out30-131.freemail.mail.aliyun.com ([115.124.30.131])
+ h=List-Unsubscribe:Content-Type:MIME-Version:To:Reply-To:From:Subject:Date:
+ Message-ID:Sender:Cc:Content-Transfer-Encoding:Content-ID:Content-Description
+ :Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+ In-Reply-To:References:List-Id:List-Help:List-Subscribe:List-Post:List-Owner:
+ List-Archive; bh=YUBc+HldYc/Em4BJks4kUlXucQIpJHCMUqJcPz6hCPk=; b=T3WyA3lAMndb
+ YwE7d92oV6dtNUPxrZsU8AEhz+rsJVpdM3Rcxj8J7Fz9mBsV6J8mOFOtgRV/rbg6CSDyDbAsJugQt
+ nELBSmHmiTisjY7yWzL4lDPYlkBFQdqSEE6nFPkdSASWOmZX+LGuYiuR43pHpHL6QPA0CuPo2mBPq
+ RQ6ug=;
+Received: from b228-111.smtp-out.eu-central-1.amazonses.com ([69.169.228.111])
  by sfi-mx-1.v28.lw.sourceforge.com with esmtps
- (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.92.3)
- id 1muCO9-006AQl-Cp
- for v9fs-developer@lists.sourceforge.net; Mon, 06 Dec 2021 11:42:34 +0000
-X-Alimail-AntiSpam: AC=PASS; BC=-1|-1; BR=01201311R271e4; CH=green; DM=||false|;
- DS=||; FP=0|-1|-1|-1|0|-1|-1|-1; HT=e01e04395; MF=jefflexu@linux.alibaba.com;
- NM=1; PH=DS; RN=18; SR=0; TI=SMTPD_---0UzcMKwq_1638790938; 
-Received: from 30.225.24.25(mailfrom:jefflexu@linux.alibaba.com
- fp:SMTPD_---0UzcMKwq_1638790938) by smtp.aliyun-inc.com(127.0.0.1);
- Mon, 06 Dec 2021 19:42:19 +0800
-Message-ID: <d4167c15-b3ce-73b2-1d66-97d651723305@linux.alibaba.com>
-Date: Mon, 6 Dec 2021 19:42:18 +0800
+ (TLSv1.2:ECDHE-RSA-AES128-SHA256:128) (Exim 4.92.3)
+ id 1muUPG-00744I-Re
+ for v9fs-developer@lists.sourceforge.net; Tue, 07 Dec 2021 06:56:56 +0000
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/simple;
+ s=azn2h6rx57537id7wxygi2kd6pvhrgz3; d=eko-med.ro; t=1638860208;
+ h=Sender:Message-ID:Date:Subject:From:Reply-To:To:MIME-Version:Content-Type:List-Unsubscribe;
+ bh=ym4IVmZuO15baXe5rSBydIfARLD9093kHK7I/ZX7T0w=;
+ b=Z/fwtAhO04O/hjNPdl1tEpJPEydNcHt1sJHBwa/9hxn1WYrV4v55/3sm5Rbp9YQJ
+ aFeyKmBMQAjuHDtf+IQPvGjQ5XvF+aPXvbV5lGDtLT8PoAPXiv3JsRsB72j+qjffjpq
+ 2HA8XyEvjRFDb59H1bKs4J1gPHVVdIf9gfGq+jcw=
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/simple;
+ s=54ecsf3zk7z4mwxwwox7z7bg6e5gwjsz; d=amazonses.com; t=1638860208;
+ h=Sender:Message-ID:Date:Subject:From:Reply-To:To:MIME-Version:Content-Type:List-Unsubscribe:Feedback-ID;
+ bh=ym4IVmZuO15baXe5rSBydIfARLD9093kHK7I/ZX7T0w=;
+ b=XO25SzuCsTi2EsUIogIXQeLuccpRNQmjtIEwsng19jNnr1jCWbCFIlGap9iXjkM8
+ 78M2atqY5erKy5ixm3piRm0VzIgsCTWqXSoffjEHT+FvR6AjhiELQxb2DSEP6zJ5b4y
+ Dk/vIpTUTyZVGIcKAZcAvjGwW8IWxaeLoP9I8ins=
+Message-ID: <0107017d93ae375e-d1fdfbf6-de59-4d8a-afdd-680412c8f673-000000@eu-central-1.amazonses.com>
+Date: Tue, 7 Dec 2021 06:56:47 +0000
+From: Office <office@eko-med.ro>
+To: "" <v9fs-developer@lists.sourceforge.net>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:91.0)
- Gecko/20100101 Thunderbird/91.3.0
-Content-Language: en-US
-To: David Howells <dhowells@redhat.com>, linux-cachefs@redhat.com
-References: <163819575444.215744.318477214576928110.stgit@warthog.procyon.org.uk>
- <163819612321.215744.9738308885948264476.stgit@warthog.procyon.org.uk>
-From: JeffleXu <jefflexu@linux.alibaba.com>
-In-Reply-To: <163819612321.215744.9738308885948264476.stgit@warthog.procyon.org.uk>
-X-Spam-Score: -10.0 (----------)
+Feedback-ID: 1.eu-central-1.N8GLPrwMW4DEokEt/uX8R5Dj6lDs1dpqTZ0OFMrLAAo=:AmazonSES
+X-SES-Outgoing: 2021.12.07-69.169.228.111
+X-Spam-Score: 6.2 (++++++)
 X-Spam-Report: Spam detection software,
  running on the system "util-spamd-1.v13.lw.sourceforge.com", 
- has NOT identified this incoming email as spam.  The original
+ has identified this incoming email as possible spam.  The original
  message has been attached to this so you can view it or label
  similar future email.  If you have any questions, see
  the administrator of that system for details.
- Content preview:  On 11/29/21 10:28 PM,
- David Howells wrote: > Pass more information
- to the cache on how to deal with a hole if it > encounters one when trying
- to read from the cache. Three options are > provided: > > [...] 
- Content analysis details:   (-10.0 points, 6.0 required)
+ Content preview: Pretruile sunt negociabile [FarmersMarket-Top]
+ [eko-med](https://ekogroup.com.ro?mailpoet_router&endpoint=track&action=click&data=WzE0MzAwNSwibmlxaWF6cXMzYjQ0MGNjZ2s0YzRrNDRzOG9jZ2NrYzQiLCI4MCIsIjU3NGU0OTM1NDQxMSIsZmFsc2Vd)
+ Content analysis details:   (6.2 points, 6.0 required)
  pts rule name              description
  ---- ---------------------- --------------------------------------------------
  -0.0 RCVD_IN_DNSWL_NONE     RBL: Sender listed at https://www.dnswl.org/,
- no trust [115.124.30.131 listed in list.dnswl.org]
- -7.5 USER_IN_DEF_SPF_WL     From: address is in the default SPF
- white-list
+ no trust [69.169.228.111 listed in list.dnswl.org]
+ 1.7 URIBL_BLACK            Contains an URL listed in the URIBL blacklist
+ [URIs: ekogroup.com.ro]
+ 0.2 HEADER_FROM_DIFFERENT_DOMAINS From and EnvelopeFrom 2nd level
+ mail domains are different
  0.0 SPF_HELO_NONE          SPF: HELO does not publish an SPF Record
  -0.0 SPF_PASS               SPF: sender matches SPF record
- 0.0 UNPARSEABLE_RELAY      Informational: message has unparseable relay
- lines
- -0.5 ENV_AND_HDR_SPF_MATCH  Env and Hdr From used in default SPF WL
- Match -2.0 NICE_REPLY_A           Looks like a legit reply (A)
-X-Headers-End: 1muCO9-006AQl-Cp
-Subject: Re: [V9fs-developer] [PATCH 24/64] netfs: Pass more information on
- how to deal with a hole in the cache
+ -0.0 RCVD_IN_MSPIKE_H2      RBL: Average reputation (+2)
+ [69.169.228.111 listed in wl.mailspike.net]
+ 0.0 HTML_MESSAGE           BODY: HTML included in message
+ -0.1 DKIM_VALID_EF          Message has a valid DKIM or DK signature from
+ envelope-from domain
+ -0.1 DKIM_VALID_AU          Message has a valid DKIM or DK signature from
+ author's domain
+ 0.1 DKIM_SIGNED            Message has a DKIM or DK signature, not necessarily
+ valid
+ -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+ 2.0 PYZOR_CHECK            Listed in Pyzor
+ (https://pyzor.readthedocs.io/en/latest/)
+ 0.0 T_KAM_HTML_FONT_INVALID Test for Invalidly Named or Formatted
+ Colors in HTML
+ 2.5 URI_WP_HACKED_2        URI for compromised WordPress site, possible
+ malware
+X-Headers-End: 1muUPG-00744I-Re
+X-Content-Filtered-By: Mailman/MimeDel 2.1.21
+Subject: [V9fs-developer] DE LA 3,
+ 5 lei | Teste si pulsoximetre covid-19 | livrare imediata
 X-BeenThere: v9fs-developer@lists.sourceforge.net
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -92,149 +110,83 @@ List-Post: <mailto:v9fs-developer@lists.sourceforge.net>
 List-Help: <mailto:v9fs-developer-request@lists.sourceforge.net?subject=help>
 List-Subscribe: <https://lists.sourceforge.net/lists/listinfo/v9fs-developer>, 
  <mailto:v9fs-developer-request@lists.sourceforge.net?subject=subscribe>
-Cc: linux-cifs@vger.kernel.org, linux-nfs@vger.kernel.org,
- Jeff Layton <jlayton@kernel.org>, linux-kernel@vger.kernel.org,
- Matthew Wilcox <willy@infradead.org>, linux-afs@lists.infradead.org,
- Steve French <sfrench@samba.org>, v9fs-developer@lists.sourceforge.net,
- Alexander Viro <viro@zeniv.linux.org.uk>,
- Trond Myklebust <trondmy@hammerspace.com>, linux-fsdevel@vger.kernel.org,
- ceph-devel@vger.kernel.org, Omar Sandoval <osandov@osandov.com>,
- Linus Torvalds <torvalds@linux-foundation.org>,
- Anna Schumaker <anna.schumaker@netapp.com>
+Reply-To: Office <office@eko-med.ro>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: v9fs-developer-bounces@lists.sourceforge.net
 
+Pretruile sunt negociabile
 
+[FarmersMarket-Top]
 
-On 11/29/21 10:28 PM, David Howells wrote:
-> Pass more information to the cache on how to deal with a hole if it
-> encounters one when trying to read from the cache.  Three options are
-> provided:
-> 
->  (1) NETFS_READ_HOLE_IGNORE.  Read the hole along with the data, assuming
->      it to be a punched-out extent by the backing filesystem.
-> 
->  (2) NETFS_READ_HOLE_CLEAR.  If there's a hole, erase the requested region
->      of the cache and clear the read buffer.
-> 
->  (3) NETFS_READ_HOLE_FAIL.  Fail the read if a hole is detected.
-> 
-> Signed-off-by: David Howells <dhowells@redhat.com>
-> cc: linux-cachefs@redhat.com
-> ---
-> 
->  fs/netfs/read_helper.c |    8 ++++----
->  include/linux/netfs.h  |   11 ++++++++++-
->  2 files changed, 14 insertions(+), 5 deletions(-)
-> 
-> diff --git a/fs/netfs/read_helper.c b/fs/netfs/read_helper.c
-> index 7dc79fa8a1f3..08df413efdf3 100644
-> --- a/fs/netfs/read_helper.c
-> +++ b/fs/netfs/read_helper.c
-> @@ -170,7 +170,7 @@ static void netfs_cache_read_terminated(void *priv, ssize_t transferred_or_error
->   */
->  static void netfs_read_from_cache(struct netfs_read_request *rreq,
->  				  struct netfs_read_subrequest *subreq,
-> -				  bool seek_data)
-> +				  enum netfs_read_from_hole read_hole)
->  {
->  	struct netfs_cache_resources *cres = &rreq->cache_resources;
->  	struct iov_iter iter;
-> @@ -180,7 +180,7 @@ static void netfs_read_from_cache(struct netfs_read_request *rreq,
->  			subreq->start + subreq->transferred,
->  			subreq->len   - subreq->transferred);
->  
-> -	cres->ops->read(cres, subreq->start, &iter, seek_data,
-> +	cres->ops->read(cres, subreq->start, &iter, read_hole,
->  			netfs_cache_read_terminated, subreq);
->  }
->  
-> @@ -466,7 +466,7 @@ static void netfs_rreq_short_read(struct netfs_read_request *rreq,
->  	netfs_get_read_subrequest(subreq);
->  	atomic_inc(&rreq->nr_rd_ops);
->  	if (subreq->source == NETFS_READ_FROM_CACHE)
-> -		netfs_read_from_cache(rreq, subreq, true);
-> +		netfs_read_from_cache(rreq, subreq, NETFS_READ_HOLE_CLEAR);
+[eko-med](https://ekogroup.com.ro?mailpoet_router&endpoint=track&action=click&data=WzE0MzAwNSwibmlxaWF6cXMzYjQ0MGNjZ2s0YzRrNDRzOG9jZ2NrYzQiLCI4MCIsIjU3NGU0OTM1NDQxMSIsZmFsc2Vd)
 
-Hi I'm not sure why NETFS_READ_HOLE_CLEAR style should be used in 'short
-read' case.
+PESTE 500 MILIOANE DE PRODUSE
+ANTI-COVID 19
+VANDUTE IN TOATA EUROPA
 
-Besides,
+Oferta noastra cuprinde:
+- produse anti-covid 19
+- dispozitive medicale avizate MS
+- gama Higyenium
+_____
+OFFICE@EKOGROUP.RO
+OFFICE@EKO-MED.RO
++4 0771 675 240
 
-```
-static void netfs_read_from_cache(struct netfs_read_request *rreq,
-				  struct netfs_read_subrequest *subreq,
-				  enum netfs_read_from_hole read_hole)
-{
-	struct netfs_cache_resources *cres = &rreq->cache_resources;
-	struct iov_iter iter;
+[iamge1](https://ekogroup.com.ro?mailpoet_router&endpoint=track&action=click&data=WzE0MzAwNSwibmlxaWF6cXMzYjQ0MGNjZ2s0YzRrNDRzOG9jZ2NrYzQiLCI4MCIsIjU3NGU0OTM1NDQxMSIsZmFsc2Vd)
 
-	netfs_stat(&netfs_n_rh_read);
-	iov_iter_xarray(&iter, READ, &rreq->mapping->i_pages,
-			subreq->start + subreq->transferred,
-			subreq->len   - subreq->transferred);
+EKOGROUP.RO is an international TRADE company with areas of action in different regions of the world.
+Ask for a price quote and you will be answered in a maximum of 48 hours.
 
-	cres->ops->read(cres, subreq->start, &iter, read_hole,
-			netfs_cache_read_terminated, subreq);
-}
-```
+[teste covid](https://ekogroup.com.ro?mailpoet_router&endpoint=track&action=click&data=WzE0MzAwNSwibmlxaWF6cXMzYjQ0MGNjZ2s0YzRrNDRzOG9jZ2NrYzQiLCI4MCIsIjIyYzE5ZTg3MmQwMSIsZmFsc2Vd)
 
-I'm not sure why 'subreq->start' is not incremented with
-'subreq->transferred' when calling cres->ops->read() in 'short read' case.
+8,5 lei, tva zero
+ORICE TEST anti-covid 19
 
+[Negociaza preturile telefonic](https://ekogroup.com.ro?mailpoet_router&endpoint=track&action=click&data=WzE0MzAwNSwibmlxaWF6cXMzYjQ0MGNjZ2s0YzRrNDRzOG9jZ2NrYzQiLCI4MCIsIjIyYzE5ZTg3MmQwMSIsZmFsc2Vd)
 
->  	else
->  		netfs_read_from_server(rreq, subreq);
->  }
-> @@ -794,7 +794,7 @@ static bool netfs_rreq_submit_slice(struct netfs_read_request *rreq,
->  		netfs_read_from_server(rreq, subreq);
->  		break;
->  	case NETFS_READ_FROM_CACHE:
-> -		netfs_read_from_cache(rreq, subreq, false);
-> +		netfs_read_from_cache(rreq, subreq, NETFS_READ_HOLE_IGNORE);
->  		break;
->  	default:
->  		BUG();
+[Masca medicala](https://ekogroup.com.ro?mailpoet_router&endpoint=track&action=click&data=WzE0MzAwNSwibmlxaWF6cXMzYjQ0MGNjZ2s0YzRrNDRzOG9jZ2NrYzQiLCI4MCIsIjIyYzE5ZTg3MmQwMSIsZmFsc2Vd)
 
+0,15 lei+tva
+ORICE MASCA medicala
 
+[Negociaza preturile telefonic](https://ekogroup.com.ro?mailpoet_router&endpoint=track&action=click&data=WzE0MzAwNSwibmlxaWF6cXMzYjQ0MGNjZ2s0YzRrNDRzOG9jZ2NrYzQiLCI4MCIsIjIyYzE5ZTg3MmQwMSIsZmFsc2Vd)
 
+[masca medicala](https://ekogroup.com.ro?mailpoet_router&endpoint=track&action=click&data=WzE0MzAwNSwibmlxaWF6cXMzYjQ0MGNjZ2s0YzRrNDRzOG9jZ2NrYzQiLCI4MCIsIjIyYzE5ZTg3MmQwMSIsZmFsc2Vd)
 
-> diff --git a/include/linux/netfs.h b/include/linux/netfs.h
-> index 5a46fde65759..b46c39d98bbd 100644
-> --- a/include/linux/netfs.h
-> +++ b/include/linux/netfs.h
-> @@ -196,6 +196,15 @@ struct netfs_read_request_ops {
->  	void (*cleanup)(struct address_space *mapping, void *netfs_priv);
->  };
->  
-> +/*
-> + * How to handle reading from a hole.
-> + */
-> +enum netfs_read_from_hole {
-> +	NETFS_READ_HOLE_IGNORE,
-> +	NETFS_READ_HOLE_CLEAR,
-> +	NETFS_READ_HOLE_FAIL,
-> +};
-> +
->  /*
->   * Table of operations for access to a cache.  This is obtained by
->   * rreq->ops->begin_cache_operation().
-> @@ -208,7 +217,7 @@ struct netfs_cache_ops {
->  	int (*read)(struct netfs_cache_resources *cres,
->  		    loff_t start_pos,
->  		    struct iov_iter *iter,
-> -		    bool seek_data,
-> +		    enum netfs_read_from_hole read_hole,
->  		    netfs_io_terminated_t term_func,
->  		    void *term_func_priv);
->  
-> 
+19 lei + tva
+ORICE PRODUS covid 19
 
--- 
-Thanks,
-Jeffle
+[Negociaza preturile telefonic](https://ekogroup.com.ro?mailpoet_router&endpoint=track&action=click&data=WzE0MzAwNSwibmlxaWF6cXMzYjQ0MGNjZ2s0YzRrNDRzOG9jZ2NrYzQiLCI4MCIsIjIyYzE5ZTg3MmQwMSIsZmFsc2Vd)
 
+[Higenyum](https://ekogroup.com.ro?mailpoet_router&endpoint=track&action=click&data=WzE0MzAwNSwibmlxaWF6cXMzYjQ0MGNjZ2s0YzRrNDRzOG9jZ2NrYzQiLCI4MCIsIjU3NGU0OTM1NDQxMSIsZmFsc2Vd)
+
+Cere oferta Higenyum
+
+[Negociaza preturile](https://ekogroup.com.ro?mailpoet_router&endpoint=track&action=click&data=WzE0MzAwNSwibmlxaWF6cXMzYjQ0MGNjZ2s0YzRrNDRzOG9jZ2NrYzQiLCI4MCIsIjU3NGU0OTM1NDQxMSIsZmFsc2Vd)
+
+[Produse covid](https://ekogroup.com.ro?mailpoet_router&endpoint=track&action=click&data=WzE0MzAwNSwibmlxaWF6cXMzYjQ0MGNjZ2s0YzRrNDRzOG9jZ2NrYzQiLCI4MCIsIjU3NGU0OTM1NDQxMSIsZmFsc2Vd)
+
+Cere oferta completa
+
+[Negociaza preturile](https://ekogroup.com.ro?mailpoet_router&endpoint=track&action=click&data=WzE0MzAwNSwibmlxaWF6cXMzYjQ0MGNjZ2s0YzRrNDRzOG9jZ2NrYzQiLCI4MCIsIjU3NGU0OTM1NDQxMSIsZmFsc2Vd)
+
+[Produse medicale](https://ekogroup.com.ro?mailpoet_router&endpoint=track&action=click&data=WzE0MzAwNSwibmlxaWF6cXMzYjQ0MGNjZ2s0YzRrNDRzOG9jZ2NrYzQiLCI4MCIsIjU3NGU0OTM1NDQxMSIsZmFsc2Vd)
+
+Orice aparat medical
+
+[Cere oferta pe mail](https://ekogroup.com.ro?mailpoet_router&endpoint=track&action=click&data=WzE0MzAwNSwibmlxaWF6cXMzYjQ0MGNjZ2s0YzRrNDRzOG9jZ2NrYzQiLCI4MCIsIjU3NGU0OTM1NDQxMSIsZmFsc2Vd)
+
+[eko-med](https://ekogroup.com.ro?mailpoet_router&endpoint=track&action=click&data=WzE0MzAwNSwibmlxaWF6cXMzYjQ0MGNjZ2s0YzRrNDRzOG9jZ2NrYzQiLCI4MCIsIjU3NGU0OTM1NDQxMSIsZmFsc2Vd)
+
+[facebook](https://ekogroup.com.ro?mailpoet_router&endpoint=track&action=click&data=WzE0MzAwNSwibmlxaWF6cXMzYjQ0MGNjZ2s0YzRrNDRzOG9jZ2NrYzQiLCI4MCIsIjRiM2MyODY2NmJmMyIsZmFsc2Vd) [instagram](https://ekogroup.com.ro?mailpoet_router&endpoint=track&action=click&data=WzE0MzAwNSwibmlxaWF6cXMzYjQ0MGNjZ2s0YzRrNDRzOG9jZ2NrYzQiLCI4MCIsIjU1YjhkNjliYmVjNyIsZmFsc2Vd)
+[Unsubscribe](https://ekogroup.com.ro?mailpoet_router&endpoint=track&action=click&data=WzE0MzAwNSwibmlxaWF6cXMzYjQ0MGNjZ2s0YzRrNDRzOG9jZ2NrYzQiLCI4MCIsIjJlMzYzNDhlMmUzYSIsZmFsc2Vd) | [Manage your subscription](https://ekogroup.com.ro?mailpoet_router&endpoint=track&action=click&data=WzE0MzAwNSwibmlxaWF6cXMzYjQ0MGNjZ2s0YzRrNDRzOG9jZ2NrYzQiLCI4MCIsImZhMjFhMThmMjM0NiIsZmFsc2Vd)
+______
+office@eko-med.ro
++4 0771 675 240
+
+[FarmersMarket-Bottom]
 
 _______________________________________________
 V9fs-developer mailing list
