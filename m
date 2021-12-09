@@ -2,26 +2,26 @@ Return-Path: <v9fs-developer-bounces@lists.sourceforge.net>
 X-Original-To: lists+v9fs-developer@lfdr.de
 Delivered-To: lists+v9fs-developer@lfdr.de
 Received: from lists.sourceforge.net (lists.sourceforge.net [216.105.38.7])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4517046EE07
-	for <lists+v9fs-developer@lfdr.de>; Thu,  9 Dec 2021 17:54:50 +0100 (CET)
-Received: from [127.0.0.1] (helo=sfs-ml-2.v29.lw.sourceforge.com)
-	by sfs-ml-2.v29.lw.sourceforge.com with esmtp (Exim 4.94.2)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1A0A146EE09
+	for <lists+v9fs-developer@lfdr.de>; Thu,  9 Dec 2021 17:54:55 +0100 (CET)
+Received: from [127.0.0.1] (helo=sfs-ml-4.v29.lw.sourceforge.com)
+	by sfs-ml-4.v29.lw.sourceforge.com with esmtp (Exim 4.94.2)
 	(envelope-from <v9fs-developer-bounces@lists.sourceforge.net>)
-	id 1mvMgy-0003XT-SU; Thu, 09 Dec 2021 16:54:48 +0000
+	id 1mvMh3-0003Ig-N3; Thu, 09 Dec 2021 16:54:53 +0000
 Received: from [172.30.20.202] (helo=mx.sourceforge.net)
- by sfs-ml-2.v29.lw.sourceforge.com with esmtps (TLS1.2) tls
+ by sfs-ml-4.v29.lw.sourceforge.com with esmtps (TLS1.2) tls
  TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384 (Exim 4.94.2)
- (envelope-from <dhowells@redhat.com>) id 1mvMgw-0003XM-U5
- for v9fs-developer@lists.sourceforge.net; Thu, 09 Dec 2021 16:54:46 +0000
+ (envelope-from <dhowells@redhat.com>) id 1mvMh2-0003Ia-Bv
+ for v9fs-developer@lists.sourceforge.net; Thu, 09 Dec 2021 16:54:52 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
  d=sourceforge.net; s=x; h=Content-Transfer-Encoding:Content-Type:MIME-Version
  :References:In-Reply-To:Message-ID:Date:Cc:To:From:Subject:Sender:Reply-To:
  Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
  Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
  List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=ezoWr3tVtar+wXJ/cR1XC2ysCmNkeIazhJVVPmoOdgU=; b=Y8XXk6TlHq+/W+BKU2ebBLbDcs
- 8CEedVcPY/mNvI6IP3d8QTC+6r7Xu40xIYIM++wJiegO5psjFUP5a3bqEjdbJhBACQfQBtjI/001G
- 9VjRPWvjGGTAs9DAOF8ZGfNXr8lGt4gQ26s1ZY5d9lIQZzv+uyR6PRM3CnGmr+rgrqg8=;
+ bh=uIEOXA/5phX7r39HqaKJUnyL+MDuE9yvRbq1G9mS0Fc=; b=kweTDhNoVUCj8l6ynvWh+/4TRr
+ lfAh4gsdnmazdMVNUVbE+3N/udMO11Sj3W7qS+KzFxot+59kCu2TgTgb5I/4Uc3fyw+X8GaUQ2J96
+ HbIe6P05kVS0xjXJ6GJ/lp7l6r6x0SzPYTElGXWL1VsgyI0G5hgh7Sd4zeKn6IZd2dE0=;
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  ;
  h=Content-Transfer-Encoding:Content-Type:MIME-Version:References:
@@ -29,51 +29,51 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
  :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
  List-Post:List-Owner:List-Archive;
- bh=ezoWr3tVtar+wXJ/cR1XC2ysCmNkeIazhJVVPmoOdgU=; b=LEml8xzJ91A69DnXIbpkq4lIps
- v8TaS3Na/r96isPqEAKJTGyLw+cBr93yN/pbvjXH9nua9uwMrwf0vcjWu0Qj5u3a7pOcoJxHZiRC3
- yxf07ato+bS0y3k4CvchmJTlAZAOjfJL45d1TLZxPujxw2xDD3mk7x+nGl23gfgPobOE=;
-Received: from us-smtp-delivery-124.mimecast.com ([170.10.129.124])
- by sfi-mx-2.v28.lw.sourceforge.com with esmtps
+ bh=uIEOXA/5phX7r39HqaKJUnyL+MDuE9yvRbq1G9mS0Fc=; b=M73R/c2aGb8TboLlTEPy888AMt
+ I00uwkdO77WpwSiicW2EdU+Cz2RMmPX7dRkLWEZyxzAuiz3n4BrkG4jU7HgL7n0OIGRIwlC7Au+7O
+ UrAWDNzMXyYFfp7x4OL6+lhxsvOejk+Aofj4hoYPpARs+SuBvRz1S4VjrpkAbsTiXSCk=;
+Received: from us-smtp-delivery-124.mimecast.com ([170.10.133.124])
+ by sfi-mx-1.v28.lw.sourceforge.com with esmtps
  (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.92.3)
- id 1mvMgv-0000gB-U6
- for v9fs-developer@lists.sourceforge.net; Thu, 09 Dec 2021 16:54:46 +0000
+ id 1mvMh1-00ABZm-7Q
+ for v9fs-developer@lists.sourceforge.net; Thu, 09 Dec 2021 16:54:52 +0000
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
- s=mimecast20190719; t=1639068879;
+ s=mimecast20190719; t=1639068885;
  h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
  to:to:cc:cc:mime-version:mime-version:content-type:content-type:
  content-transfer-encoding:content-transfer-encoding:
  in-reply-to:in-reply-to:references:references;
- bh=ezoWr3tVtar+wXJ/cR1XC2ysCmNkeIazhJVVPmoOdgU=;
- b=c3feqv3GQsGBMcZ66PuTai9qIe/XVurGR4PdnMYEOAoJIu6vA5ct6d5WWZ+oIUbTQdeUhm
- BzUkG28bkNTFAx4siXjPaCgcqUL+n7QTLiPY1Fumr1ojhKgFQba0xNFrAYuEp6UjBxm+Kn
- +S4Zw38aChQ304E3LXWJvBZs5zy0j+w=
+ bh=uIEOXA/5phX7r39HqaKJUnyL+MDuE9yvRbq1G9mS0Fc=;
+ b=e0dPO9DLwNmhNY0s6TvcCqJjcWTiai/lH+FwJdeal5b4gyvg3RdX62P0aLXAexhJR1TT4K
+ FDbIrN8h1bQrWWVI74UV4u9G1Bsl4As6iNss5zzCz6utEBtrBZ9pZznfAf1NyuesICgLUz
+ NrMU6qgbQNtZ0T8UJBj4M7J6wcgSFfc=
 Received: from mimecast-mx01.redhat.com (mimecast-mx01.redhat.com
  [209.132.183.4]) by relay.mimecast.com with ESMTP with STARTTLS
  (version=TLSv1.2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- us-mta-515-D6nY3AieNliTCjFt9beM4w-1; Thu, 09 Dec 2021 11:54:34 -0500
-X-MC-Unique: D6nY3AieNliTCjFt9beM4w-1
-Received: from smtp.corp.redhat.com (int-mx05.intmail.prod.int.phx2.redhat.com
- [10.5.11.15])
+ us-mta-202-iNH7s6nvMbql2z7gWerqZA-1; Thu, 09 Dec 2021 11:54:44 -0500
+X-MC-Unique: iNH7s6nvMbql2z7gWerqZA-1
+Received: from smtp.corp.redhat.com (int-mx06.intmail.prod.int.phx2.redhat.com
+ [10.5.11.16])
  (using TLSv1.2 with cipher AECDH-AES256-SHA (256/256 bits))
  (No client certificate requested)
- by mimecast-mx01.redhat.com (Postfix) with ESMTPS id 76CEF10247AE;
- Thu,  9 Dec 2021 16:54:32 +0000 (UTC)
+ by mimecast-mx01.redhat.com (Postfix) with ESMTPS id 22093192CC44;
+ Thu,  9 Dec 2021 16:54:42 +0000 (UTC)
 Received: from warthog.procyon.org.uk (unknown [10.33.36.122])
- by smtp.corp.redhat.com (Postfix) with ESMTP id 33A015D6D5;
- Thu,  9 Dec 2021 16:54:29 +0000 (UTC)
+ by smtp.corp.redhat.com (Postfix) with ESMTP id 87CE85C23A;
+ Thu,  9 Dec 2021 16:54:38 +0000 (UTC)
 Organization: Red Hat UK Ltd. Registered Address: Red Hat UK Ltd, Amberley
  Place, 107-111 Peascod Street, Windsor, Berkshire, SI4 1TE, United
  Kingdom.
  Registered in England and Wales under Company Registration No. 3798903
 From: David Howells <dhowells@redhat.com>
 To: linux-cachefs@redhat.com
-Date: Thu, 09 Dec 2021 16:54:28 +0000
-Message-ID: <163906886835.143852.6689886781122679769.stgit@warthog.procyon.org.uk>
+Date: Thu, 09 Dec 2021 16:54:37 +0000
+Message-ID: <163906887770.143852.3577888294989185666.stgit@warthog.procyon.org.uk>
 In-Reply-To: <163906878733.143852.5604115678965006622.stgit@warthog.procyon.org.uk>
 References: <163906878733.143852.5604115678965006622.stgit@warthog.procyon.org.uk>
 User-Agent: StGit/0.23
 MIME-Version: 1.0
-X-Scanned-By: MIMEDefang 2.79 on 10.5.11.15
+X-Scanned-By: MIMEDefang 2.79 on 10.5.11.16
 X-Spam-Score: -1.6 (-)
 X-Spam-Report: Spam detection software,
  running on the system "util-spamd-1.v13.lw.sourceforge.com", 
@@ -81,20 +81,19 @@ X-Spam-Report: Spam detection software,
  message has been attached to this so you can view it or label
  similar future email.  If you have any questions, see
  the administrator of that system for details.
- Content preview: Pass a flag to ->prepare_write() to indicate if there's
- definitely
- no space allocated in the cache yet (for instance if we've already checked
- as we were asked to do a read). Signed-off-by: David Howells
- <dhowells@redhat.com> cc: linux-cachefs@redhat.com Link:
- https://lore.kernel.org/r/163819583123.215744.12783808230464471417.stgit@warthog.procyon.org.uk/
+ Content preview:  Introduce basic skeleton of the new,
+ rewritten fscache driver.
+ Signed-off-by: David Howells <dhowells@redhat.com> cc:
+ linux-cachefs@redhat.com Link:
+ https://lore.kernel.org/r/163819584034.215744.4290533472390439030.stgit@warthog.procyon.org.uk/
  # v1 --- 
  Content analysis details:   (-1.6 points, 6.0 required)
  pts rule name              description
  ---- ---------------------- --------------------------------------------------
- 0.0 RCVD_IN_MSPIKE_H3      RBL: Good reputation (+3)
- [170.10.129.124 listed in wl.mailspike.net]
+ -0.0 RCVD_IN_MSPIKE_H2      RBL: Average reputation (+2)
+ [170.10.133.124 listed in wl.mailspike.net]
  -0.7 RCVD_IN_DNSWL_LOW      RBL: Sender listed at https://www.dnswl.org/,
- low trust [170.10.129.124 listed in list.dnswl.org]
+ low trust [170.10.133.124 listed in list.dnswl.org]
  0.0 SPF_HELO_NONE          SPF: HELO does not publish an SPF Record
  -0.0 SPF_PASS               SPF: sender matches SPF record
  -0.1 DKIM_VALID_EF          Message has a valid DKIM or DK signature from
@@ -104,11 +103,9 @@ X-Spam-Report: Spam detection software,
  0.1 DKIM_SIGNED            Message has a DKIM or DK signature, not necessarily
  valid
  -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
- 0.0 RCVD_IN_MSPIKE_WL      Mailspike good senders
  -0.7 DKIMWL_WL_HIGH         DKIMwl.org - High trust sender
-X-Headers-End: 1mvMgv-0000gB-U6
-Subject: [V9fs-developer] [PATCH v2 05/67] netfs: Pass a flag to
- ->prepare_write() to say if there's no alloc'd space
+X-Headers-End: 1mvMh1-00ABZm-7Q
+Subject: [V9fs-developer] [PATCH v2 06/67] fscache: Introduce new driver
 X-BeenThere: v9fs-developer@lists.sourceforge.net
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -135,46 +132,538 @@ Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: v9fs-developer-bounces@lists.sourceforge.net
 
-Pass a flag to ->prepare_write() to indicate if there's definitely no
-space allocated in the cache yet (for instance if we've already checked as
-we were asked to do a read).
+Introduce basic skeleton of the new, rewritten fscache driver.
 
 Signed-off-by: David Howells <dhowells@redhat.com>
 cc: linux-cachefs@redhat.com
-Link: https://lore.kernel.org/r/163819583123.215744.12783808230464471417.stgit@warthog.procyon.org.uk/ # v1
+Link: https://lore.kernel.org/r/163819584034.215744.4290533472390439030.stgit@warthog.procyon.org.uk/ # v1
 ---
 
- fs/netfs/read_helper.c |    2 +-
- include/linux/netfs.h  |    3 ++-
- 2 files changed, 3 insertions(+), 2 deletions(-)
+ fs/Makefile                    |    1 
+ fs/fscache/Kconfig             |   39 +++++++++
+ fs/fscache/Makefile            |   12 +++
+ fs/fscache/internal.h          |  183 ++++++++++++++++++++++++++++++++++++++++
+ fs/fscache/main.c              |   65 ++++++++++++++
+ fs/fscache/proc.c              |   42 +++++++++
+ fs/fscache/stats.c             |   22 +++++
+ include/linux/fscache-cache.h  |    2 
+ include/linux/fscache.h        |    6 +
+ include/trace/events/fscache.h |   49 +++++++++++
+ 10 files changed, 420 insertions(+), 1 deletion(-)
+ create mode 100644 fs/fscache/Makefile
+ create mode 100644 fs/fscache/internal.h
+ create mode 100644 fs/fscache/main.c
+ create mode 100644 fs/fscache/proc.c
+ create mode 100644 fs/fscache/stats.c
+ create mode 100644 include/trace/events/fscache.h
 
-diff --git a/fs/netfs/read_helper.c b/fs/netfs/read_helper.c
-index 75c76cbb27cc..9dd76b8914f2 100644
---- a/fs/netfs/read_helper.c
-+++ b/fs/netfs/read_helper.c
-@@ -323,7 +323,7 @@ static void netfs_rreq_do_write_to_cache(struct netfs_read_request *rreq)
- 		}
+diff --git a/fs/Makefile b/fs/Makefile
+index 23ddd0803d14..290815f3fd31 100644
+--- a/fs/Makefile
++++ b/fs/Makefile
+@@ -67,6 +67,7 @@ obj-$(CONFIG_DLM)		+= dlm/
+  
+ # Do not add any filesystems before this line
+ obj-$(CONFIG_NETFS_SUPPORT)	+= netfs/
++obj-$(CONFIG_FSCACHE)		+= fscache/
+ obj-$(CONFIG_REISERFS_FS)	+= reiserfs/
+ obj-$(CONFIG_EXT4_FS)		+= ext4/
+ # We place ext4 before ext2 so that clean ext3 root fs's do NOT mount using the
+diff --git a/fs/fscache/Kconfig b/fs/fscache/Kconfig
+index 6440484d9461..76316c4a3fb7 100644
+--- a/fs/fscache/Kconfig
++++ b/fs/fscache/Kconfig
+@@ -1,4 +1,43 @@
+ # SPDX-License-Identifier: GPL-2.0-only
  
- 		ret = cres->ops->prepare_write(cres, &subreq->start, &subreq->len,
--					       rreq->i_size);
-+					       rreq->i_size, true);
- 		if (ret < 0) {
- 			trace_netfs_failure(rreq, subreq, ret, netfs_fail_prepare_write);
- 			trace_netfs_sreq(subreq, netfs_sreq_trace_write_skip);
-diff --git a/include/linux/netfs.h b/include/linux/netfs.h
-index ca0683b9e3d1..1ea22fc48818 100644
---- a/include/linux/netfs.h
-+++ b/include/linux/netfs.h
-@@ -232,7 +232,8 @@ struct netfs_cache_ops {
- 	 * actually do.
- 	 */
- 	int (*prepare_write)(struct netfs_cache_resources *cres,
--			     loff_t *_start, size_t *_len, loff_t i_size);
-+			     loff_t *_start, size_t *_len, loff_t i_size,
-+			     bool no_space_allocated_yet);
- };
++config FSCACHE
++	tristate "General filesystem local caching manager"
++	select NETFS_SUPPORT
++	help
++	  This option enables a generic filesystem caching manager that can be
++	  used by various network and other filesystems to cache data locally.
++	  Different sorts of caches can be plugged in, depending on the
++	  resources available.
++
++	  See Documentation/filesystems/caching/fscache.rst for more information.
++
++config FSCACHE_STATS
++	bool "Gather statistical information on local caching"
++	depends on FSCACHE && PROC_FS
++	select NETFS_STATS
++	help
++	  This option causes statistical information to be gathered on local
++	  caching and exported through file:
++
++		/proc/fs/fscache/stats
++
++	  The gathering of statistics adds a certain amount of overhead to
++	  execution as there are a quite a few stats gathered, and on a
++	  multi-CPU system these may be on cachelines that keep bouncing
++	  between CPUs.  On the other hand, the stats are very useful for
++	  debugging purposes.  Saying 'Y' here is recommended.
++
++	  See Documentation/filesystems/caching/fscache.rst for more information.
++
++config FSCACHE_DEBUG
++	bool "Debug FS-Cache"
++	depends on FSCACHE
++	help
++	  This permits debugging to be dynamically enabled in the local caching
++	  management module.  If this is set, the debugging output may be
++	  enabled by setting bits in /sys/modules/fscache/parameter/debug.
++
++	  See Documentation/filesystems/caching/fscache.rst for more information.
++
+ config FSCACHE_OLD_API
+ 	bool
+diff --git a/fs/fscache/Makefile b/fs/fscache/Makefile
+new file mode 100644
+index 000000000000..f9722de32247
+--- /dev/null
++++ b/fs/fscache/Makefile
+@@ -0,0 +1,12 @@
++# SPDX-License-Identifier: GPL-2.0
++#
++# Makefile for general filesystem caching code
++#
++
++fscache-y := \
++	main.o
++
++fscache-$(CONFIG_PROC_FS) += proc.o
++fscache-$(CONFIG_FSCACHE_STATS) += stats.o
++
++obj-$(CONFIG_FSCACHE) := fscache.o
+diff --git a/fs/fscache/internal.h b/fs/fscache/internal.h
+new file mode 100644
+index 000000000000..ea52f8594a77
+--- /dev/null
++++ b/fs/fscache/internal.h
+@@ -0,0 +1,183 @@
++/* SPDX-License-Identifier: GPL-2.0-or-later */
++/* Internal definitions for FS-Cache
++ *
++ * Copyright (C) 2021 Red Hat, Inc. All Rights Reserved.
++ * Written by David Howells (dhowells@redhat.com)
++ */
++
++#ifdef pr_fmt
++#undef pr_fmt
++#endif
++
++#define pr_fmt(fmt) "FS-Cache: " fmt
++
++#include <linux/slab.h>
++#include <linux/fscache-cache.h>
++#include <trace/events/fscache.h>
++#include <linux/sched.h>
++#include <linux/seq_file.h>
++
++/*
++ * main.c
++ */
++extern unsigned fscache_debug;
++
++/*
++ * proc.c
++ */
++#ifdef CONFIG_PROC_FS
++extern int __init fscache_proc_init(void);
++extern void fscache_proc_cleanup(void);
++#else
++#define fscache_proc_init()	(0)
++#define fscache_proc_cleanup()	do {} while (0)
++#endif
++
++/*
++ * stats.c
++ */
++#ifdef CONFIG_FSCACHE_STATS
++
++static inline void fscache_stat(atomic_t *stat)
++{
++	atomic_inc(stat);
++}
++
++static inline void fscache_stat_d(atomic_t *stat)
++{
++	atomic_dec(stat);
++}
++
++#define __fscache_stat(stat) (stat)
++
++int fscache_stats_show(struct seq_file *m, void *v);
++#else
++
++#define __fscache_stat(stat) (NULL)
++#define fscache_stat(stat) do {} while (0)
++#define fscache_stat_d(stat) do {} while (0)
++#endif
++
++
++/*****************************************************************************/
++/*
++ * debug tracing
++ */
++#define dbgprintk(FMT, ...) \
++	printk("[%-6.6s] "FMT"\n", current->comm, ##__VA_ARGS__)
++
++#define kenter(FMT, ...) dbgprintk("==> %s("FMT")", __func__, ##__VA_ARGS__)
++#define kleave(FMT, ...) dbgprintk("<== %s()"FMT"", __func__, ##__VA_ARGS__)
++#define kdebug(FMT, ...) dbgprintk(FMT, ##__VA_ARGS__)
++
++#define kjournal(FMT, ...) no_printk(FMT, ##__VA_ARGS__)
++
++#ifdef __KDEBUG
++#define _enter(FMT, ...) kenter(FMT, ##__VA_ARGS__)
++#define _leave(FMT, ...) kleave(FMT, ##__VA_ARGS__)
++#define _debug(FMT, ...) kdebug(FMT, ##__VA_ARGS__)
++
++#elif defined(CONFIG_FSCACHE_DEBUG)
++#define _enter(FMT, ...)			\
++do {						\
++	if (__do_kdebug(ENTER))			\
++		kenter(FMT, ##__VA_ARGS__);	\
++} while (0)
++
++#define _leave(FMT, ...)			\
++do {						\
++	if (__do_kdebug(LEAVE))			\
++		kleave(FMT, ##__VA_ARGS__);	\
++} while (0)
++
++#define _debug(FMT, ...)			\
++do {						\
++	if (__do_kdebug(DEBUG))			\
++		kdebug(FMT, ##__VA_ARGS__);	\
++} while (0)
++
++#else
++#define _enter(FMT, ...) no_printk("==> %s("FMT")", __func__, ##__VA_ARGS__)
++#define _leave(FMT, ...) no_printk("<== %s()"FMT"", __func__, ##__VA_ARGS__)
++#define _debug(FMT, ...) no_printk(FMT, ##__VA_ARGS__)
++#endif
++
++/*
++ * determine whether a particular optional debugging point should be logged
++ * - we need to go through three steps to persuade cpp to correctly join the
++ *   shorthand in FSCACHE_DEBUG_LEVEL with its prefix
++ */
++#define ____do_kdebug(LEVEL, POINT) \
++	unlikely((fscache_debug & \
++		  (FSCACHE_POINT_##POINT << (FSCACHE_DEBUG_ ## LEVEL * 3))))
++#define ___do_kdebug(LEVEL, POINT) \
++	____do_kdebug(LEVEL, POINT)
++#define __do_kdebug(POINT) \
++	___do_kdebug(FSCACHE_DEBUG_LEVEL, POINT)
++
++#define FSCACHE_DEBUG_CACHE	0
++#define FSCACHE_DEBUG_COOKIE	1
++#define FSCACHE_DEBUG_OBJECT	2
++#define FSCACHE_DEBUG_OPERATION	3
++
++#define FSCACHE_POINT_ENTER	1
++#define FSCACHE_POINT_LEAVE	2
++#define FSCACHE_POINT_DEBUG	4
++
++#ifndef FSCACHE_DEBUG_LEVEL
++#define FSCACHE_DEBUG_LEVEL CACHE
++#endif
++
++/*
++ * assertions
++ */
++#if 1 /* defined(__KDEBUGALL) */
++
++#define ASSERT(X)							\
++do {									\
++	if (unlikely(!(X))) {						\
++		pr_err("\n");					\
++		pr_err("Assertion failed\n");	\
++		BUG();							\
++	}								\
++} while (0)
++
++#define ASSERTCMP(X, OP, Y)						\
++do {									\
++	if (unlikely(!((X) OP (Y)))) {					\
++		pr_err("\n");					\
++		pr_err("Assertion failed\n");	\
++		pr_err("%lx " #OP " %lx is false\n",		\
++		       (unsigned long)(X), (unsigned long)(Y));		\
++		BUG();							\
++	}								\
++} while (0)
++
++#define ASSERTIF(C, X)							\
++do {									\
++	if (unlikely((C) && !(X))) {					\
++		pr_err("\n");					\
++		pr_err("Assertion failed\n");	\
++		BUG();							\
++	}								\
++} while (0)
++
++#define ASSERTIFCMP(C, X, OP, Y)					\
++do {									\
++	if (unlikely((C) && !((X) OP (Y)))) {				\
++		pr_err("\n");					\
++		pr_err("Assertion failed\n");	\
++		pr_err("%lx " #OP " %lx is false\n",		\
++		       (unsigned long)(X), (unsigned long)(Y));		\
++		BUG();							\
++	}								\
++} while (0)
++
++#else
++
++#define ASSERT(X)			do {} while (0)
++#define ASSERTCMP(X, OP, Y)		do {} while (0)
++#define ASSERTIF(C, X)			do {} while (0)
++#define ASSERTIFCMP(C, X, OP, Y)	do {} while (0)
++
++#endif /* assert or not */
+diff --git a/fs/fscache/main.c b/fs/fscache/main.c
+new file mode 100644
+index 000000000000..819de2ee1276
+--- /dev/null
++++ b/fs/fscache/main.c
+@@ -0,0 +1,65 @@
++// SPDX-License-Identifier: GPL-2.0-or-later
++/* General filesystem local caching manager
++ *
++ * Copyright (C) 2021 Red Hat, Inc. All Rights Reserved.
++ * Written by David Howells (dhowells@redhat.com)
++ */
++
++#define FSCACHE_DEBUG_LEVEL CACHE
++#include <linux/module.h>
++#include <linux/init.h>
++#define CREATE_TRACE_POINTS
++#include "internal.h"
++
++MODULE_DESCRIPTION("FS Cache Manager");
++MODULE_AUTHOR("Red Hat, Inc.");
++MODULE_LICENSE("GPL");
++
++unsigned fscache_debug;
++module_param_named(debug, fscache_debug, uint,
++		   S_IWUSR | S_IRUGO);
++MODULE_PARM_DESC(fscache_debug,
++		 "FS-Cache debugging mask");
++
++struct workqueue_struct *fscache_wq;
++EXPORT_SYMBOL(fscache_wq);
++
++/*
++ * initialise the fs caching module
++ */
++static int __init fscache_init(void)
++{
++	int ret = -ENOMEM;
++
++	fscache_wq = alloc_workqueue("fscache", WQ_UNBOUND | WQ_FREEZABLE, 0);
++	if (!fscache_wq)
++		goto error_wq;
++
++	ret = fscache_proc_init();
++	if (ret < 0)
++		goto error_proc;
++
++	pr_notice("Loaded\n");
++	return 0;
++
++error_proc:
++	destroy_workqueue(fscache_wq);
++error_wq:
++	return ret;
++}
++
++fs_initcall(fscache_init);
++
++/*
++ * clean up on module removal
++ */
++static void __exit fscache_exit(void)
++{
++	_enter("");
++
++	fscache_proc_cleanup();
++	destroy_workqueue(fscache_wq);
++	pr_notice("Unloaded\n");
++}
++
++module_exit(fscache_exit);
+diff --git a/fs/fscache/proc.c b/fs/fscache/proc.c
+new file mode 100644
+index 000000000000..b28003d7d63f
+--- /dev/null
++++ b/fs/fscache/proc.c
+@@ -0,0 +1,42 @@
++// SPDX-License-Identifier: GPL-2.0-or-later
++/* FS-Cache statistics viewing interface
++ *
++ * Copyright (C) 2021 Red Hat, Inc. All Rights Reserved.
++ * Written by David Howells (dhowells@redhat.com)
++ */
++
++#define FSCACHE_DEBUG_LEVEL CACHE
++#include <linux/module.h>
++#include <linux/proc_fs.h>
++#include <linux/seq_file.h>
++#include "internal.h"
++
++/*
++ * initialise the /proc/fs/fscache/ directory
++ */
++int __init fscache_proc_init(void)
++{
++	if (!proc_mkdir("fs/fscache", NULL))
++		goto error_dir;
++
++#ifdef CONFIG_FSCACHE_STATS
++	if (!proc_create_single("fs/fscache/stats", S_IFREG | 0444, NULL,
++				fscache_stats_show))
++		goto error;
++#endif
++
++	return 0;
++
++error:
++	remove_proc_entry("fs/fscache", NULL);
++error_dir:
++	return -ENOMEM;
++}
++
++/*
++ * clean up the /proc/fs/fscache/ directory
++ */
++void fscache_proc_cleanup(void)
++{
++	remove_proc_entry("fs/fscache", NULL);
++}
+diff --git a/fs/fscache/stats.c b/fs/fscache/stats.c
+new file mode 100644
+index 000000000000..bd92f93e1680
+--- /dev/null
++++ b/fs/fscache/stats.c
+@@ -0,0 +1,22 @@
++// SPDX-License-Identifier: GPL-2.0-or-later
++/* FS-Cache statistics
++ *
++ * Copyright (C) 2021 Red Hat, Inc. All Rights Reserved.
++ * Written by David Howells (dhowells@redhat.com)
++ */
++
++#define FSCACHE_DEBUG_LEVEL CACHE
++#include <linux/proc_fs.h>
++#include <linux/seq_file.h>
++#include "internal.h"
++
++/*
++ * display the general statistics
++ */
++int fscache_stats_show(struct seq_file *m, void *v)
++{
++	seq_puts(m, "FS-Cache statistics\n");
++
++	netfs_stats_show(m);
++	return 0;
++}
+diff --git a/include/linux/fscache-cache.h b/include/linux/fscache-cache.h
+index 47f21a53ac4b..d6910a913918 100644
+--- a/include/linux/fscache-cache.h
++++ b/include/linux/fscache-cache.h
+@@ -16,4 +16,6 @@
  
- struct readahead_control;
+ #include <linux/fscache.h>
+ 
++extern struct workqueue_struct *fscache_wq;
++
+ #endif /* _LINUX_FSCACHE_CACHE_H */
+diff --git a/include/linux/fscache.h b/include/linux/fscache.h
+index 0364a4ca16f6..1cf90c252aac 100644
+--- a/include/linux/fscache.h
++++ b/include/linux/fscache.h
+@@ -1,7 +1,7 @@
+ /* SPDX-License-Identifier: GPL-2.0-or-later */
+ /* General filesystem caching interface
+  *
+- * Copyright (C) 2004-2007 Red Hat, Inc. All Rights Reserved.
++ * Copyright (C) 2021 Red Hat, Inc. All Rights Reserved.
+  * Written by David Howells (dhowells@redhat.com)
+  *
+  * NOTE!!! See:
+@@ -18,9 +18,13 @@
+ #include <linux/netfs.h>
+ 
+ #if defined(CONFIG_FSCACHE) || defined(CONFIG_FSCACHE_MODULE)
++#define __fscache_available (1)
++#define fscache_available() (1)
+ #define fscache_cookie_valid(cookie) (cookie)
+ #define fscache_cookie_enabled(cookie) (cookie)
+ #else
++#define __fscache_available (0)
++#define fscache_available() (0)
+ #define fscache_cookie_valid(cookie) (0)
+ #define fscache_cookie_enabled(cookie) (0)
+ #endif
+diff --git a/include/trace/events/fscache.h b/include/trace/events/fscache.h
+new file mode 100644
+index 000000000000..fe214c5cc87f
+--- /dev/null
++++ b/include/trace/events/fscache.h
+@@ -0,0 +1,49 @@
++/* SPDX-License-Identifier: GPL-2.0-or-later */
++/* FS-Cache tracepoints
++ *
++ * Copyright (C) 2021 Red Hat, Inc. All Rights Reserved.
++ * Written by David Howells (dhowells@redhat.com)
++ */
++#undef TRACE_SYSTEM
++#define TRACE_SYSTEM fscache
++
++#if !defined(_TRACE_FSCACHE_H) || defined(TRACE_HEADER_MULTI_READ)
++#define _TRACE_FSCACHE_H
++
++#include <linux/fscache.h>
++#include <linux/tracepoint.h>
++
++/*
++ * Define enums for tracing information.
++ */
++#ifndef __FSCACHE_DECLARE_TRACE_ENUMS_ONCE_ONLY
++#define __FSCACHE_DECLARE_TRACE_ENUMS_ONCE_ONLY
++
++#endif
++
++/*
++ * Declare tracing information enums and their string mappings for display.
++ */
++
++/*
++ * Export enum symbols via userspace.
++ */
++#undef EM
++#undef E_
++#define EM(a, b) TRACE_DEFINE_ENUM(a);
++#define E_(a, b) TRACE_DEFINE_ENUM(a);
++
++/*
++ * Now redefine the EM() and E_() macros to map the enums to the strings that
++ * will be printed in the output.
++ */
++#undef EM
++#undef E_
++#define EM(a, b)	{ a, b },
++#define E_(a, b)	{ a, b }
++
++
++#endif /* _TRACE_FSCACHE_H */
++
++/* This part must be outside protection */
++#include <trace/define_trace.h>
 
 
 
