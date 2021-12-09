@@ -2,26 +2,26 @@ Return-Path: <v9fs-developer-bounces@lists.sourceforge.net>
 X-Original-To: lists+v9fs-developer@lfdr.de
 Delivered-To: lists+v9fs-developer@lfdr.de
 Received: from lists.sourceforge.net (lists.sourceforge.net [216.105.38.7])
-	by mail.lfdr.de (Postfix) with ESMTPS id B55CD46EDE0
-	for <lists+v9fs-developer@lfdr.de>; Thu,  9 Dec 2021 17:54:04 +0100 (CET)
-Received: from [127.0.0.1] (helo=sfs-ml-4.v29.lw.sourceforge.com)
-	by sfs-ml-4.v29.lw.sourceforge.com with esmtp (Exim 4.94.2)
+	by mail.lfdr.de (Postfix) with ESMTPS id 9DA6146EDFE
+	for <lists+v9fs-developer@lfdr.de>; Thu,  9 Dec 2021 17:54:42 +0100 (CET)
+Received: from [127.0.0.1] (helo=sfs-ml-1.v29.lw.sourceforge.com)
+	by sfs-ml-1.v29.lw.sourceforge.com with esmtp (Exim 4.94.2)
 	(envelope-from <v9fs-developer-bounces@lists.sourceforge.net>)
-	id 1mvMgF-0003H5-Bq; Thu, 09 Dec 2021 16:54:03 +0000
+	id 1mvMgq-0002A9-4r; Thu, 09 Dec 2021 16:54:41 +0000
 Received: from [172.30.20.202] (helo=mx.sourceforge.net)
- by sfs-ml-4.v29.lw.sourceforge.com with esmtps (TLS1.2) tls
+ by sfs-ml-1.v29.lw.sourceforge.com with esmtps (TLS1.2) tls
  TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384 (Exim 4.94.2)
- (envelope-from <dhowells@redhat.com>) id 1mvMgE-0003Gz-2E
- for v9fs-developer@lists.sourceforge.net; Thu, 09 Dec 2021 16:54:02 +0000
+ (envelope-from <dhowells@redhat.com>) id 1mvMgo-00029v-CY
+ for v9fs-developer@lists.sourceforge.net; Thu, 09 Dec 2021 16:54:39 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
  d=sourceforge.net; s=x; h=Content-Transfer-Encoding:Content-Type:MIME-Version
  :References:In-Reply-To:Message-ID:Date:Cc:To:From:Subject:Sender:Reply-To:
  Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
  Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
  List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=aXR72X5MULjXcnlV1FTAKcN8vQ00AcBm3sStyaADoaY=; b=ZG8ZWDMqXRL96HpR5ihRa22Zkl
- xHPx07m/sNo6XOpvahfx4oQyXQbDFZePIDnpKmYrPEqX9FUf0WH+vuFdAwsx22HDX8y+IzjAOuS7f
- Cm3zir42YuBG78jtUG4qaoi3OcoIYONEwtLRR2go1tdzTEb/oLgHUWOfIBg0/6RQoQoo=;
+ bh=cpzPqhOkb6bNWztmaWC2bqWrQcw/ICLeyzWLupw/QnQ=; b=L6Geqz4QM92rvAMwamrW3D0ZBE
+ ef3DpMeP5d58eQRC2Ter6XEJRFMCcq6VTA+Yt8dvyupJIdOm1pFn6RYsbiHuE9PIMg8fNM/E9rsdF
+ XXFuU8yIZhLpFSuJPfcN32ZN8/wTwMvRCxrr/gAo0dUUvvdOxPZWwg2wywgUbhv6hmwg=;
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  ;
  h=Content-Transfer-Encoding:Content-Type:MIME-Version:References:
@@ -29,51 +29,51 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
  :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
  List-Post:List-Owner:List-Archive;
- bh=aXR72X5MULjXcnlV1FTAKcN8vQ00AcBm3sStyaADoaY=; b=Y2wPNhoHzwg759fSsFqRMdqmFP
- O5ZUDqzlGJAKMrOE/jmvLpBIzHdwZO0Yd3T8BEJHDl10BDSzyHjYMnLcvK3BeUznT3+EoPNrr86AQ
- xYntvuWom8Gm3f/+0fyXsOMg2e+TetEYTpC+AYP2GcRU4towuSdcFoTE7dBapqDubSJE=;
+ bh=cpzPqhOkb6bNWztmaWC2bqWrQcw/ICLeyzWLupw/QnQ=; b=KtmScF2fU6WuMSPlHmWE1ciOa+
+ LsWFsOZYIbOsI4PHm4a0zQBPNvA2k7oQNOgkrX801ePL2SrSGIVbWv069vsUWveRU0u+3jUT9otJD
+ IsxHLHs6khUTq+06a0DGhkf/CYpmWzg3lolIRnWrV4sjyaed9eG3atUku2twN5PWHpqs=;
 Received: from us-smtp-delivery-124.mimecast.com ([170.10.133.124])
- by sfi-mx-1.v28.lw.sourceforge.com with esmtps
+ by sfi-mx-2.v28.lw.sourceforge.com with esmtps
  (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.92.3)
- id 1mvMgD-00ABX1-DX
- for v9fs-developer@lists.sourceforge.net; Thu, 09 Dec 2021 16:54:02 +0000
+ id 1mvMgo-0000fh-S8
+ for v9fs-developer@lists.sourceforge.net; Thu, 09 Dec 2021 16:54:39 +0000
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
- s=mimecast20190719; t=1639068835;
+ s=mimecast20190719; t=1639068868;
  h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
  to:to:cc:cc:mime-version:mime-version:content-type:content-type:
  content-transfer-encoding:content-transfer-encoding:
  in-reply-to:in-reply-to:references:references;
- bh=aXR72X5MULjXcnlV1FTAKcN8vQ00AcBm3sStyaADoaY=;
- b=Z7lFZPQ5B5kGYRQwS+TKhmMPxFgmGAFAKjQDpsZWmqGBKiZCB1yGn5BVnM+OOgOGF1IM48
- XXJEQbQk0cf9sfSz77T2mI8k5cg9Ms5RVb+tPeQUej+3XJS0CIcHjNKZ6BVtVSxP15xpDs
- 49uplxnXbT9SCEdNYbJda/6KVMUQUoA=
+ bh=cpzPqhOkb6bNWztmaWC2bqWrQcw/ICLeyzWLupw/QnQ=;
+ b=HKJ6Z9lrAKLctucTlQfwqDctevntuWGZ39QFAFBiZEhVlWAWOSPTTV9bmhvhTeilDHT1NW
+ LdgAXpK3JIXvQ2rS9XZjChcQ3afpf1z3MbHto9WkfUOd4uxYtFE7i2jtTk/lV/S1bcEQzq
+ X6FWhhHsyxL602uThNwJnkt6UK6cRnA=
 Received: from mimecast-mx01.redhat.com (mimecast-mx01.redhat.com
  [209.132.183.4]) by relay.mimecast.com with ESMTP with STARTTLS
  (version=TLSv1.2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- us-mta-584-3ZrxcnnSPpudYmwXphL-3A-1; Thu, 09 Dec 2021 11:53:54 -0500
-X-MC-Unique: 3ZrxcnnSPpudYmwXphL-3A-1
-Received: from smtp.corp.redhat.com (int-mx04.intmail.prod.int.phx2.redhat.com
- [10.5.11.14])
+ us-mta-580-I4_FQcCIOdmbsL0XbhIYdQ-1; Thu, 09 Dec 2021 11:54:25 -0500
+X-MC-Unique: I4_FQcCIOdmbsL0XbhIYdQ-1
+Received: from smtp.corp.redhat.com (int-mx05.intmail.prod.int.phx2.redhat.com
+ [10.5.11.15])
  (using TLSv1.2 with cipher AECDH-AES256-SHA (256/256 bits))
  (No client certificate requested)
- by mimecast-mx01.redhat.com (Postfix) with ESMTPS id 75F5C835E25;
- Thu,  9 Dec 2021 16:53:52 +0000 (UTC)
+ by mimecast-mx01.redhat.com (Postfix) with ESMTPS id 210F210247A7;
+ Thu,  9 Dec 2021 16:54:23 +0000 (UTC)
 Received: from warthog.procyon.org.uk (unknown [10.33.36.122])
- by smtp.corp.redhat.com (Postfix) with ESMTP id 34BE65E24E;
- Thu,  9 Dec 2021 16:53:49 +0000 (UTC)
+ by smtp.corp.redhat.com (Postfix) with ESMTP id D92075BE07;
+ Thu,  9 Dec 2021 16:54:19 +0000 (UTC)
 Organization: Red Hat UK Ltd. Registered Address: Red Hat UK Ltd, Amberley
  Place, 107-111 Peascod Street, Windsor, Berkshire, SI4 1TE, United
  Kingdom.
  Registered in England and Wales under Company Registration No. 3798903
 From: David Howells <dhowells@redhat.com>
 To: linux-cachefs@redhat.com
-Date: Thu, 09 Dec 2021 16:53:48 +0000
-Message-ID: <163906882835.143852.11073015983885872901.stgit@warthog.procyon.org.uk>
+Date: Thu, 09 Dec 2021 16:54:19 +0000
+Message-ID: <163906885903.143852.12229407815154182247.stgit@warthog.procyon.org.uk>
 In-Reply-To: <163906878733.143852.5604115678965006622.stgit@warthog.procyon.org.uk>
 References: <163906878733.143852.5604115678965006622.stgit@warthog.procyon.org.uk>
 User-Agent: StGit/0.23
 MIME-Version: 1.0
-X-Scanned-By: MIMEDefang 2.79 on 10.5.11.14
+X-Scanned-By: MIMEDefang 2.79 on 10.5.11.15
 X-Spam-Score: -1.6 (-)
 X-Spam-Report: Spam detection software,
  running on the system "util-spamd-1.v13.lw.sourceforge.com", 
@@ -81,11 +81,12 @@ X-Spam-Report: Spam detection software,
  message has been attached to this so you can view it or label
  similar future email.  If you have any questions, see
  the administrator of that system for details.
- Content preview: Disable fscache and cachefiles in Kconfig whilst it is
- rewritten.
+ Content preview: Display the netfs inode number in the netfs_read tracepoint
+ so that this can be used to correlate with the cachefiles_prep_read
+ tracepoint.
  Signed-off-by: David Howells <dhowells@redhat.com> cc:
  linux-cachefs@redhat.com Link:
- https://lore.kernel.org/r/163819576672.215744.12444272479560406780.stgit@warthog.procyon.org.uk/
+ https://lore.kernel.org/r/163819581097.215744.17476611915583897051.stgit@warthog.procyon.org.uk/
  # v1 --- 
  Content analysis details:   (-1.6 points, 6.0 required)
  pts rule name              description
@@ -104,9 +105,9 @@ X-Spam-Report: Spam detection software,
  valid
  -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
  -0.7 DKIMWL_WL_HIGH         DKIMwl.org - High trust sender
-X-Headers-End: 1mvMgD-00ABX1-DX
-Subject: [V9fs-developer] [PATCH v2 01/67] fscache,
- cachefiles: Disable configuration
+X-Headers-End: 1mvMgo-0000fh-S8
+Subject: [V9fs-developer] [PATCH v2 04/67] netfs: Display the netfs inode
+ number in the netfs_read tracepoint
 X-BeenThere: v9fs-developer@lists.sourceforge.net
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -133,97 +134,45 @@ Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: v9fs-developer-bounces@lists.sourceforge.net
 
-Disable fscache and cachefiles in Kconfig whilst it is rewritten.
+Display the netfs inode number in the netfs_read tracepoint so that this
+can be used to correlate with the cachefiles_prep_read tracepoint.
 
 Signed-off-by: David Howells <dhowells@redhat.com>
 cc: linux-cachefs@redhat.com
-Link: https://lore.kernel.org/r/163819576672.215744.12444272479560406780.stgit@warthog.procyon.org.uk/ # v1
+Link: https://lore.kernel.org/r/163819581097.215744.17476611915583897051.stgit@warthog.procyon.org.uk/ # v1
 ---
 
- fs/9p/Kconfig      |    2 +-
- fs/afs/Kconfig     |    2 +-
- fs/ceph/Kconfig    |    2 +-
- fs/cifs/Kconfig    |    2 +-
- fs/fscache/Kconfig |    3 +++
- fs/nfs/Kconfig     |    2 +-
- 6 files changed, 8 insertions(+), 5 deletions(-)
+ include/trace/events/netfs.h |    5 ++++-
+ 1 file changed, 4 insertions(+), 1 deletion(-)
 
-diff --git a/fs/9p/Kconfig b/fs/9p/Kconfig
-index d7bc93447c85..b3d33b3ddb98 100644
---- a/fs/9p/Kconfig
-+++ b/fs/9p/Kconfig
-@@ -14,7 +14,7 @@ config 9P_FS
- if 9P_FS
- config 9P_FSCACHE
- 	bool "Enable 9P client caching support"
--	depends on 9P_FS=m && FSCACHE || 9P_FS=y && FSCACHE=y
-+	depends on 9P_FS=m && FSCACHE_OLD_API || 9P_FS=y && FSCACHE_OLD_API=y
- 	help
- 	  Choose Y here to enable persistent, read-only local
- 	  caching support for 9p clients using FS-Cache
-diff --git a/fs/afs/Kconfig b/fs/afs/Kconfig
-index fc8ba9142f2f..c40cdfcc25d1 100644
---- a/fs/afs/Kconfig
-+++ b/fs/afs/Kconfig
-@@ -25,7 +25,7 @@ config AFS_DEBUG
+diff --git a/include/trace/events/netfs.h b/include/trace/events/netfs.h
+index 4d470bffd9f1..e6f4ebbb4c69 100644
+--- a/include/trace/events/netfs.h
++++ b/include/trace/events/netfs.h
+@@ -135,6 +135,7 @@ TRACE_EVENT(netfs_read,
+ 		    __field(loff_t,			start		)
+ 		    __field(size_t,			len		)
+ 		    __field(enum netfs_read_trace,	what		)
++		    __field(unsigned int,		netfs_inode	)
+ 			     ),
  
- config AFS_FSCACHE
- 	bool "Provide AFS client caching support"
--	depends on AFS_FS=m && FSCACHE || AFS_FS=y && FSCACHE=y
-+	depends on AFS_FS=m && FSCACHE_OLD_API || AFS_FS=y && FSCACHE_OLD_API=y
- 	help
- 	  Say Y here if you want AFS data to be cached locally on disk through
- 	  the generic filesystem cache manager
-diff --git a/fs/ceph/Kconfig b/fs/ceph/Kconfig
-index 94df854147d3..61f123356c3e 100644
---- a/fs/ceph/Kconfig
-+++ b/fs/ceph/Kconfig
-@@ -21,7 +21,7 @@ config CEPH_FS
- if CEPH_FS
- config CEPH_FSCACHE
- 	bool "Enable Ceph client caching support"
--	depends on CEPH_FS=m && FSCACHE || CEPH_FS=y && FSCACHE=y
-+	depends on CEPH_FS=m && FSCACHE_OLD_API || CEPH_FS=y && FSCACHE_OLD_API=y
- 	help
- 	  Choose Y here to enable persistent, read-only local
- 	  caching support for Ceph clients using FS-Cache
-diff --git a/fs/cifs/Kconfig b/fs/cifs/Kconfig
-index 3b7e3b9e4fd2..346ae8716deb 100644
---- a/fs/cifs/Kconfig
-+++ b/fs/cifs/Kconfig
-@@ -188,7 +188,7 @@ config CIFS_SMB_DIRECT
+ 	    TP_fast_assign(
+@@ -143,12 +144,14 @@ TRACE_EVENT(netfs_read,
+ 		    __entry->start	= start;
+ 		    __entry->len	= len;
+ 		    __entry->what	= what;
++		    __entry->netfs_inode = rreq->inode->i_ino;
+ 			   ),
  
- config CIFS_FSCACHE
- 	bool "Provide CIFS client caching support"
--	depends on CIFS=m && FSCACHE || CIFS=y && FSCACHE=y
-+	depends on CIFS=m && FSCACHE_OLD_API || CIFS=y && FSCACHE_OLD_API=y
- 	help
- 	  Makes CIFS FS-Cache capable. Say Y here if you want your CIFS data
- 	  to be cached locally on disk through the general filesystem cache
-diff --git a/fs/fscache/Kconfig b/fs/fscache/Kconfig
-index b313a978ae0a..76316c4a3fb7 100644
---- a/fs/fscache/Kconfig
-+++ b/fs/fscache/Kconfig
-@@ -38,3 +38,6 @@ config FSCACHE_DEBUG
- 	  enabled by setting bits in /sys/modules/fscache/parameter/debug.
+-	    TP_printk("R=%08x %s c=%08x s=%llx %zx",
++	    TP_printk("R=%08x %s c=%08x ni=%x s=%llx %zx",
+ 		      __entry->rreq,
+ 		      __print_symbolic(__entry->what, netfs_read_traces),
+ 		      __entry->cookie,
++		      __entry->netfs_inode,
+ 		      __entry->start, __entry->len)
+ 	    );
  
- 	  See Documentation/filesystems/caching/fscache.rst for more information.
-+
-+config FSCACHE_OLD_API
-+	bool
-diff --git a/fs/nfs/Kconfig b/fs/nfs/Kconfig
-index 14a72224b657..bdc11b89eac5 100644
---- a/fs/nfs/Kconfig
-+++ b/fs/nfs/Kconfig
-@@ -170,7 +170,7 @@ config ROOT_NFS
- 
- config NFS_FSCACHE
- 	bool "Provide NFS client caching support"
--	depends on NFS_FS=m && FSCACHE || NFS_FS=y && FSCACHE=y
-+	depends on NFS_FS=m && FSCACHE_OLD_API || NFS_FS=y && FSCACHE_OLD_API=y
- 	help
- 	  Say Y here if you want NFS data to be cached locally on disc through
- 	  the general filesystem cache manager
 
 
 
