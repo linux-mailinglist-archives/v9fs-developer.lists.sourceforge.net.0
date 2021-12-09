@@ -2,26 +2,26 @@ Return-Path: <v9fs-developer-bounces@lists.sourceforge.net>
 X-Original-To: lists+v9fs-developer@lfdr.de
 Delivered-To: lists+v9fs-developer@lfdr.de
 Received: from lists.sourceforge.net (lists.sourceforge.net [216.105.38.7])
-	by mail.lfdr.de (Postfix) with ESMTPS id C949946EED5
-	for <lists+v9fs-developer@lfdr.de>; Thu,  9 Dec 2021 17:58:56 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id EC30946EEE9
+	for <lists+v9fs-developer@lfdr.de>; Thu,  9 Dec 2021 17:59:04 +0100 (CET)
 Received: from [127.0.0.1] (helo=sfs-ml-2.v29.lw.sourceforge.com)
 	by sfs-ml-2.v29.lw.sourceforge.com with esmtp (Exim 4.94.2)
 	(envelope-from <v9fs-developer-bounces@lists.sourceforge.net>)
-	id 1mvMkx-0003gY-CO; Thu, 09 Dec 2021 16:58:55 +0000
+	id 1mvMl5-0003hO-H3; Thu, 09 Dec 2021 16:59:03 +0000
 Received: from [172.30.20.202] (helo=mx.sourceforge.net)
  by sfs-ml-2.v29.lw.sourceforge.com with esmtps (TLS1.2) tls
  TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384 (Exim 4.94.2)
- (envelope-from <dhowells@redhat.com>) id 1mvMkv-0003gN-7g
- for v9fs-developer@lists.sourceforge.net; Thu, 09 Dec 2021 16:58:53 +0000
+ (envelope-from <dhowells@redhat.com>) id 1mvMl4-0003hG-Kp
+ for v9fs-developer@lists.sourceforge.net; Thu, 09 Dec 2021 16:59:02 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
  d=sourceforge.net; s=x; h=Content-Transfer-Encoding:Content-Type:MIME-Version
  :References:In-Reply-To:Message-ID:Date:Cc:To:From:Subject:Sender:Reply-To:
  Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
  Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
  List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=nXV2tYtXQdGvegn1FX3LqaEg6Q3Z1QbiNI7LmAsHNdc=; b=KXMiGkEeOieXd/nMoDZloMm48q
- /6zfkJ+I+AqR5oi6BX+5dCOHVn1N6uNEZtfdQ2E+V+oyHptRd3T0hE9yc+sOrzfjlIGkERXueWeu3
- pvvGFT8iSUzYxCizpEgqAsq/QNAYoR5dywxaBRW0btqIkwFKQvw5c3vPeoFS1vyJ8Oy4=;
+ bh=T5Wktu4Eb2LhHhOuhwm4tAAdZQYSad0GeEn3tyGTVfg=; b=VsLuzLssKeAXju+m9TmnrF+iUW
+ zNN/rT+LBv8BZgg4+khQLVKekmbkOq596xLHzAhN4AUaBX3PK+/500F/FRNNxFgQsCTBgOi1LgNQu
+ RuTqV36dzFvxbraF7mrWTQtPDhQU0IIYc6iDIyXkD/fX7jz4ux+tJrqnJaKhS3ISnWpw=;
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  ;
  h=Content-Transfer-Encoding:Content-Type:MIME-Version:References:
@@ -29,46 +29,46 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
  :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
  List-Post:List-Owner:List-Archive;
- bh=nXV2tYtXQdGvegn1FX3LqaEg6Q3Z1QbiNI7LmAsHNdc=; b=dycPYXCGBFEkl3K5Ehntdna6vX
- sbdHFStSSzKJ7A8GPao1gAlCIr4+DKjxU0OHemYq+Lt41YXEiit+8Etef0/N5MOkoNupHwgIgyR55
- T8qUT9VN8lf3iG0HxdvDP7gbTrmUW6+RmgFUCLD6+XxLqfMM+CBvUW1us97iPWxInLmQ=;
+ bh=T5Wktu4Eb2LhHhOuhwm4tAAdZQYSad0GeEn3tyGTVfg=; b=XFXpgNTDluAzhK+faCrWb7twO5
+ aTOoVAdLH5TkgQWwfqjSsnG3jRelIOEIb5sh3noUs8Lu3ZE+nCphLV4aqzXHuNtVnHBaBHjiDIHeL
+ fzOlL4xaAWdUhSHJN7ABdWq17sgy9B9fOd9uH4dkEXDQztKp1B3Rk1+aii8hJrSQtoMg=;
 Received: from us-smtp-delivery-124.mimecast.com ([170.10.129.124])
  by sfi-mx-2.v28.lw.sourceforge.com with esmtps
  (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.92.3)
- id 1mvMku-0000sI-Ib
- for v9fs-developer@lists.sourceforge.net; Thu, 09 Dec 2021 16:58:53 +0000
+ id 1mvMl3-0000sZ-RH
+ for v9fs-developer@lists.sourceforge.net; Thu, 09 Dec 2021 16:59:02 +0000
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
- s=mimecast20190719; t=1639069126;
+ s=mimecast20190719; t=1639069135;
  h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
  to:to:cc:cc:mime-version:mime-version:content-type:content-type:
  content-transfer-encoding:content-transfer-encoding:
  in-reply-to:in-reply-to:references:references;
- bh=nXV2tYtXQdGvegn1FX3LqaEg6Q3Z1QbiNI7LmAsHNdc=;
- b=BpKWCRLohp0cJiXoWGgOX/m0JqGxwkdJs37S4zeSQR8lIK8U2C1zvA4kfgG9xWqzS2diux
- wF4FfifPTBbUsoiD9Rxgm7yShI1vorbsmjjIQemoduX9D29Lo1dHnZTkCbgab086SiipJX
- jbaFvEQQs/WLm/oBlrWDR8vxnIT9O0c=
+ bh=T5Wktu4Eb2LhHhOuhwm4tAAdZQYSad0GeEn3tyGTVfg=;
+ b=MgFlGBdEvfS74IBBfsyfW7m8/uSposGRO4mLyArtWPAcva1aflH10viOZZjvf1baUPKa/K
+ WkfSNOtIJ5ydc98fS6C9iWiVjxcfvqf7ipP/mJB4QI9a51VZTYFPdGbOu4R8O21vUEHT1r
+ 1Y75krG/WnjxA9N1IDf2kaTNOSQxvLw=
 Received: from mimecast-mx01.redhat.com (mimecast-mx01.redhat.com
  [209.132.183.4]) by relay.mimecast.com with ESMTP with STARTTLS
  (version=TLSv1.2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- us-mta-49-BeKin9fJMeWLECUWz3e5TQ-1; Thu, 09 Dec 2021 11:58:43 -0500
-X-MC-Unique: BeKin9fJMeWLECUWz3e5TQ-1
+ us-mta-367-KeLeHJb5OR6PZQRRkVg7Uw-1; Thu, 09 Dec 2021 11:58:52 -0500
+X-MC-Unique: KeLeHJb5OR6PZQRRkVg7Uw-1
 Received: from smtp.corp.redhat.com (int-mx05.intmail.prod.int.phx2.redhat.com
  [10.5.11.15])
  (using TLSv1.2 with cipher AECDH-AES256-SHA (256/256 bits))
  (No client certificate requested)
- by mimecast-mx01.redhat.com (Postfix) with ESMTPS id BA6906409B;
- Thu,  9 Dec 2021 16:58:40 +0000 (UTC)
+ by mimecast-mx01.redhat.com (Postfix) with ESMTPS id 1409464092;
+ Thu,  9 Dec 2021 16:58:50 +0000 (UTC)
 Received: from warthog.procyon.org.uk (unknown [10.33.36.122])
- by smtp.corp.redhat.com (Postfix) with ESMTP id 4C12F5D6D5;
- Thu,  9 Dec 2021 16:58:37 +0000 (UTC)
+ by smtp.corp.redhat.com (Postfix) with ESMTP id CD4635D6CF;
+ Thu,  9 Dec 2021 16:58:46 +0000 (UTC)
 Organization: Red Hat UK Ltd. Registered Address: Red Hat UK Ltd, Amberley
  Place, 107-111 Peascod Street, Windsor, Berkshire, SI4 1TE, United
  Kingdom.
  Registered in England and Wales under Company Registration No. 3798903
 From: David Howells <dhowells@redhat.com>
 To: linux-cachefs@redhat.com
-Date: Thu, 09 Dec 2021 16:58:36 +0000
-Message-ID: <163906911646.143852.168184059935530127.stgit@warthog.procyon.org.uk>
+Date: Thu, 09 Dec 2021 16:58:45 +0000
+Message-ID: <163906912598.143852.12960327989649429069.stgit@warthog.procyon.org.uk>
 In-Reply-To: <163906878733.143852.5604115678965006622.stgit@warthog.procyon.org.uk>
 References: <163906878733.143852.5604115678965006622.stgit@warthog.procyon.org.uk>
 User-Agent: StGit/0.23
@@ -81,10 +81,11 @@ X-Spam-Report: Spam detection software,
  message has been attached to this so you can view it or label
  similar future email.  If you have any questions, see
  the administrator of that system for details.
- Content preview: Count the data storage objects that are currently allocated
- in a cache. This is used to pin certain cache structures until cache
- withdrawal
- is complete. Three helpers are provided to manage and make use of the count:
+ Content preview:  Provide read/write stat counters for the cache backend to
+ use. Signed-off-by: David Howells <dhowells@redhat.com> cc:
+ linux-cachefs@redhat.com Link:
+ https://lore.kernel.org/r/163819609532.215744.10821082637727410554.stgit@warthog.procyon.org.uk/
+ # v1 --- 
  Content analysis details:   (-1.6 points, 6.0 required)
  pts rule name              description
  ---- ---------------------- --------------------------------------------------
@@ -103,9 +104,9 @@ X-Spam-Report: Spam detection software,
  -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
  0.0 RCVD_IN_MSPIKE_WL      Mailspike good senders
  -0.7 DKIMWL_WL_HIGH         DKIMwl.org - High trust sender
-X-Headers-End: 1mvMku-0000sI-Ib
-Subject: [V9fs-developer] [PATCH v2 21/67] fscache: Count data storage
- objects in a cache
+X-Headers-End: 1mvMl3-0000sZ-RH
+Subject: [V9fs-developer] [PATCH v2 22/67] fscache: Provide read/write stat
+ counters for the cache
 X-BeenThere: v9fs-developer@lists.sourceforge.net
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -132,105 +133,61 @@ Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: v9fs-developer-bounces@lists.sourceforge.net
 
-Count the data storage objects that are currently allocated in a cache.
-This is used to pin certain cache structures until cache withdrawal is
-complete.
-
-Three helpers are provided to manage and make use of the count:
-
- (1) void fscache_count_object(struct fscache_cache *cache);
-
-     This should be called by the cache backend to note that an object has
-     been allocated and attached to the cache.
-
- (2) void fscache_uncount_object(struct fscache_cache *cache);
-
-     This should be called by the backend to note that an object has been
-     destroyed.  This sends a wakeup event that allows cache withdrawal to
-     proceed if it was waiting for that object.
-
- (3) void fscache_wait_for_objects(struct fscache_cache *cache);
-
-     This can be used by the backend to wait for all outstanding cache
-     object to be destroyed.
-
-Each cache's counter is displayed as part of /proc/fs/fscache/caches.
+Provide read/write stat counters for the cache backend to use.
 
 Signed-off-by: David Howells <dhowells@redhat.com>
 cc: linux-cachefs@redhat.com
-Link: https://lore.kernel.org/r/163819608594.215744.1812706538117388252.stgit@warthog.procyon.org.uk/ # v1
+Link: https://lore.kernel.org/r/163819609532.215744.10821082637727410554.stgit@warthog.procyon.org.uk/ # v1
 ---
 
- fs/fscache/cache.c            |    2 ++
- include/linux/fscache-cache.h |   39 +++++++++++++++++++++++++++++++++++++++
- 2 files changed, 41 insertions(+)
+ fs/fscache/stats.c            |    9 +++++++++
+ include/linux/fscache-cache.h |   10 ++++++++++
+ 2 files changed, 19 insertions(+)
 
-diff --git a/fs/fscache/cache.c b/fs/fscache/cache.c
-index 25eac61f1c29..2749933852a9 100644
---- a/fs/fscache/cache.c
-+++ b/fs/fscache/cache.c
-@@ -13,6 +13,8 @@
- static LIST_HEAD(fscache_caches);
- DECLARE_RWSEM(fscache_addremove_sem);
- EXPORT_SYMBOL(fscache_addremove_sem);
-+DECLARE_WAIT_QUEUE_HEAD(fscache_clearance_waiters);
-+EXPORT_SYMBOL(fscache_clearance_waiters);
+diff --git a/fs/fscache/stats.c b/fs/fscache/stats.c
+index cdbb672a274f..db42beb1ba3f 100644
+--- a/fs/fscache/stats.c
++++ b/fs/fscache/stats.c
+@@ -35,6 +35,11 @@ atomic_t fscache_n_relinquishes;
+ atomic_t fscache_n_relinquishes_retire;
+ atomic_t fscache_n_relinquishes_dropped;
  
- static atomic_t fscache_cache_debug_id;
++atomic_t fscache_n_read;
++EXPORT_SYMBOL(fscache_n_read);
++atomic_t fscache_n_write;
++EXPORT_SYMBOL(fscache_n_write);
++
+ /*
+  * display the general statistics
+  */
+@@ -72,6 +77,10 @@ int fscache_stats_show(struct seq_file *m, void *v)
+ 		   atomic_read(&fscache_n_relinquishes_retire),
+ 		   atomic_read(&fscache_n_relinquishes_dropped));
  
++	seq_printf(m, "IO     : rd=%u wr=%u\n",
++		   atomic_read(&fscache_n_read),
++		   atomic_read(&fscache_n_write));
++
+ 	netfs_stats_show(m);
+ 	return 0;
+ }
 diff --git a/include/linux/fscache-cache.h b/include/linux/fscache-cache.h
-index 566497cf5f13..337335d7a5e2 100644
+index 337335d7a5e2..796c8b5c5305 100644
 --- a/include/linux/fscache-cache.h
 +++ b/include/linux/fscache-cache.h
-@@ -76,6 +76,7 @@ struct fscache_cache_ops {
- };
- 
- extern struct workqueue_struct *fscache_wq;
-+extern wait_queue_head_t fscache_clearance_waiters;
- 
- /*
-  * out-of-line cache backend functions
-@@ -140,4 +141,42 @@ static inline struct fscache_cookie *fscache_cres_cookie(struct netfs_cache_reso
- 	return cres->cache_priv;
+@@ -179,4 +179,14 @@ static inline void fscache_wait_for_objects(struct fscache_cache *cache)
+ 		   atomic_read(&cache->object_count) == 0);
  }
  
-+/**
-+ * fscache_count_object - Tell fscache that an object has been added
-+ * @cache: The cache to account to
-+ *
-+ * Tell fscache that an object has been added to the cache.  This prevents the
-+ * cache from tearing down the cache structure until the object is uncounted.
-+ */
-+static inline void fscache_count_object(struct fscache_cache *cache)
-+{
-+	atomic_inc(&cache->object_count);
-+}
-+
-+/**
-+ * fscache_uncount_object - Tell fscache that an object has been removed
-+ * @cache: The cache to account to
-+ *
-+ * Tell fscache that an object has been removed from the cache and will no
-+ * longer be accessed.  After this point, the cache cookie may be destroyed.
-+ */
-+static inline void fscache_uncount_object(struct fscache_cache *cache)
-+{
-+	if (atomic_dec_and_test(&cache->object_count))
-+		wake_up_all(&fscache_clearance_waiters);
-+}
-+
-+/**
-+ * fscache_wait_for_objects - Wait for all objects to be withdrawn
-+ * @cache: The cache to query
-+ *
-+ * Wait for all extant objects in a cache to finish being withdrawn
-+ * and go away.
-+ */
-+static inline void fscache_wait_for_objects(struct fscache_cache *cache)
-+{
-+	wait_event(fscache_clearance_waiters,
-+		   atomic_read(&cache->object_count) == 0);
-+}
++#ifdef CONFIG_FSCACHE_STATS
++extern atomic_t fscache_n_read;
++extern atomic_t fscache_n_write;
++#define fscache_count_read() atomic_inc(&fscache_n_read)
++#define fscache_count_write() atomic_inc(&fscache_n_write)
++#else
++#define fscache_count_read() do {} while(0)
++#define fscache_count_write() do {} while(0)
++#endif
 +
  #endif /* _LINUX_FSCACHE_CACHE_H */
 
