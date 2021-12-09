@@ -2,26 +2,26 @@ Return-Path: <v9fs-developer-bounces@lists.sourceforge.net>
 X-Original-To: lists+v9fs-developer@lfdr.de
 Delivered-To: lists+v9fs-developer@lfdr.de
 Received: from lists.sourceforge.net (lists.sourceforge.net [216.105.38.7])
-	by mail.lfdr.de (Postfix) with ESMTPS id 19C4D46EF97
-	for <lists+v9fs-developer@lfdr.de>; Thu,  9 Dec 2021 18:01:24 +0100 (CET)
-Received: from [127.0.0.1] (helo=sfs-ml-4.v29.lw.sourceforge.com)
-	by sfs-ml-4.v29.lw.sourceforge.com with esmtp (Exim 4.94.2)
+	by mail.lfdr.de (Postfix) with ESMTPS id 042EB46EF9B
+	for <lists+v9fs-developer@lfdr.de>; Thu,  9 Dec 2021 18:01:31 +0100 (CET)
+Received: from [127.0.0.1] (helo=sfs-ml-1.v29.lw.sourceforge.com)
+	by sfs-ml-1.v29.lw.sourceforge.com with esmtp (Exim 4.94.2)
 	(envelope-from <v9fs-developer-bounces@lists.sourceforge.net>)
-	id 1mvMnK-0003ZA-MI; Thu, 09 Dec 2021 17:01:22 +0000
+	id 1mvMnQ-0002lV-GF; Thu, 09 Dec 2021 17:01:29 +0000
 Received: from [172.30.20.202] (helo=mx.sourceforge.net)
- by sfs-ml-4.v29.lw.sourceforge.com with esmtps (TLS1.2) tls
+ by sfs-ml-1.v29.lw.sourceforge.com with esmtps (TLS1.2) tls
  TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384 (Exim 4.94.2)
- (envelope-from <dhowells@redhat.com>) id 1mvMnJ-0003Z0-Qp
- for v9fs-developer@lists.sourceforge.net; Thu, 09 Dec 2021 17:01:21 +0000
+ (envelope-from <dhowells@redhat.com>) id 1mvMnP-0002lP-40
+ for v9fs-developer@lists.sourceforge.net; Thu, 09 Dec 2021 17:01:28 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
  d=sourceforge.net; s=x; h=Content-Transfer-Encoding:Content-Type:MIME-Version
  :References:In-Reply-To:Message-ID:Date:Cc:To:From:Subject:Sender:Reply-To:
  Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
  Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
  List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=SZliK4x2NkPw7qyheFipGoGQBpJum70aryCus4MzV00=; b=desSD39I28moaddYO3apM07+MH
- D/cLb7c8raYaHKVPqizPCT/6FyE1CPFrB3SjtjJgcOQG+CLs/wOl5KZfXAqjeECUvldZmvABKqD6j
- 9qpsAqWPYg5B75v5bFYg/O929LI9wvkWhUjnnprRuM3z0tQlDcniQ9YKHFq02B0Kr/fI=;
+ bh=ZbzhV6963pTHVT+GY2T5JLBoanoDwsDdWRMNfvkV7bA=; b=WJUYrRdhTe/7bXKdAuLPB5ZvRk
+ awEHWP5spp5Sp5hB/+jMvzVgaCGPhX7uRItxu1f3miRLPG1ydxNJPU4sRHreUw389a2SH8MCBxJ66
+ rA8d8rC9W2Y4s95VZQiBs//B9jFV67FstRkkf1pCCws6Ah9kF0XqNzY2M5io1DWsb35s=;
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  ;
  h=Content-Transfer-Encoding:Content-Type:MIME-Version:References:
@@ -29,51 +29,51 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
  :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
  List-Post:List-Owner:List-Archive;
- bh=SZliK4x2NkPw7qyheFipGoGQBpJum70aryCus4MzV00=; b=gzfoMvXTwoQnXubYgQbJoC8q3N
- rMvUO2W4Lmgj7WpT2NtdDcbOxUHHMsdQ0PzqAutAeGMygxz7BkjEbl8pG/IiXQ5cGEiiVRRe+E6s5
- MOuXHcufreIJm+mph7/EDHxcJ8JpStUTOcOBqUkjWdJZu1jq0cVshpXlaeS6GfRWaRfk=;
-Received: from us-smtp-delivery-124.mimecast.com ([170.10.129.124])
- by sfi-mx-2.v28.lw.sourceforge.com with esmtps
+ bh=ZbzhV6963pTHVT+GY2T5JLBoanoDwsDdWRMNfvkV7bA=; b=ews5fk4Nzwj+/JiGnTwwknAELR
+ ggZRAFmwMVMaSgTrKafp/Ra8YSOwwgupHb36pSIdPXQcVt4X5ruKoSZN5p/yOgRoJL1KcbLZ+zsKj
+ m0luQAJ31DhRKum/ANf6ccBk958hFRgfH0O/CCCd2tHt4/gOKNDMGsZASDrCY1dsC7S8=;
+Received: from us-smtp-delivery-124.mimecast.com ([170.10.133.124])
+ by sfi-mx-1.v28.lw.sourceforge.com with esmtps
  (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.92.3)
- id 1mvMnI-0000z1-Sw
- for v9fs-developer@lists.sourceforge.net; Thu, 09 Dec 2021 17:01:21 +0000
+ id 1mvMnP-00ABqd-Hn
+ for v9fs-developer@lists.sourceforge.net; Thu, 09 Dec 2021 17:01:28 +0000
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
- s=mimecast20190719; t=1639069275;
+ s=mimecast20190719; t=1639069281;
  h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
  to:to:cc:cc:mime-version:mime-version:content-type:content-type:
  content-transfer-encoding:content-transfer-encoding:
  in-reply-to:in-reply-to:references:references;
- bh=SZliK4x2NkPw7qyheFipGoGQBpJum70aryCus4MzV00=;
- b=dVS+rKCepynBn1df5GA1nIIt0aPF8puhTZQYmWBwcjIg/D2P72ZkGH5m4NMG3l2i5/zUYV
- 2s3RyhHBUvBEym4oVAfyOqy9u7lMyXG0/lIbGV46V948ifIY5hugjAHt4jLWTYAzZpENf4
- JHm1tiJXdQgm0cIpsbj5UW5PwNFiw3Q=
+ bh=ZbzhV6963pTHVT+GY2T5JLBoanoDwsDdWRMNfvkV7bA=;
+ b=EYuTsJPxShjzoQwM4KM4gIhdFFB0oi3JMH6aXam8zopSGFDq8OHeZOog8TOZWk3YoRYSLP
+ swpxjCcIFSQt/2CQZuyosOTtPiKmSATHHuolFLpWH/oFvDvb/QmAI3LmajNnwdV6HaMpqM
+ 8cWZzVclohDKHzXa1ShsrphlJ5IzURc=
 Received: from mimecast-mx01.redhat.com (mimecast-mx01.redhat.com
  [209.132.183.4]) by relay.mimecast.com with ESMTP with STARTTLS
  (version=TLSv1.2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- us-mta-565-pOSiC1CbNMOMXgInM5b2UQ-1; Thu, 09 Dec 2021 12:01:09 -0500
-X-MC-Unique: pOSiC1CbNMOMXgInM5b2UQ-1
-Received: from smtp.corp.redhat.com (int-mx03.intmail.prod.int.phx2.redhat.com
- [10.5.11.13])
+ us-mta-104-hVQ0xPcaND2gw8Y53AcURQ-1; Thu, 09 Dec 2021 12:01:18 -0500
+X-MC-Unique: hVQ0xPcaND2gw8Y53AcURQ-1
+Received: from smtp.corp.redhat.com (int-mx01.intmail.prod.int.phx2.redhat.com
+ [10.5.11.11])
  (using TLSv1.2 with cipher AECDH-AES256-SHA (256/256 bits))
  (No client certificate requested)
- by mimecast-mx01.redhat.com (Postfix) with ESMTPS id 21909874980;
- Thu,  9 Dec 2021 17:01:07 +0000 (UTC)
+ by mimecast-mx01.redhat.com (Postfix) with ESMTPS id 7B977801AAB;
+ Thu,  9 Dec 2021 17:01:16 +0000 (UTC)
 Received: from warthog.procyon.org.uk (unknown [10.33.36.122])
- by smtp.corp.redhat.com (Postfix) with ESMTP id B6C811B472;
- Thu,  9 Dec 2021 17:01:03 +0000 (UTC)
+ by smtp.corp.redhat.com (Postfix) with ESMTP id 415E7197FC;
+ Thu,  9 Dec 2021 17:01:13 +0000 (UTC)
 Organization: Red Hat UK Ltd. Registered Address: Red Hat UK Ltd, Amberley
  Place, 107-111 Peascod Street, Windsor, Berkshire, SI4 1TE, United
  Kingdom.
  Registered in England and Wales under Company Registration No. 3798903
 From: David Howells <dhowells@redhat.com>
 To: linux-cachefs@redhat.com
-Date: Thu, 09 Dec 2021 17:01:02 +0000
-Message-ID: <163906926297.143852.18267924605548658911.stgit@warthog.procyon.org.uk>
+Date: Thu, 09 Dec 2021 17:01:12 +0000
+Message-ID: <163906927235.143852.13694625647880837563.stgit@warthog.procyon.org.uk>
 In-Reply-To: <163906878733.143852.5604115678965006622.stgit@warthog.procyon.org.uk>
 References: <163906878733.143852.5604115678965006622.stgit@warthog.procyon.org.uk>
 User-Agent: StGit/0.23
 MIME-Version: 1.0
-X-Scanned-By: MIMEDefang 2.79 on 10.5.11.13
+X-Scanned-By: MIMEDefang 2.79 on 10.5.11.11
 X-Spam-Score: -1.6 (-)
 X-Spam-Report: Spam detection software,
  running on the system "util-spamd-1.v13.lw.sourceforge.com", 
@@ -81,17 +81,17 @@ X-Spam-Report: Spam detection software,
  message has been attached to this so you can view it or label
  similar future email.  If you have any questions, see
  the administrator of that system for details.
- Content preview:  Add two trace points to log errors, one for vfs operations
- like mkdir or create, and one for I/O operations, like read, write or truncate.
- Also add the beginnings of a struct that is going to represent a data file
- and place a debugging ID in it for the tracepoints to record. 
+ Content preview: Add a macro to report a cache I/O error and to tell fscache
+ that the cache is in trouble. Also add a pointer to the fscache cache cookie
+ from the cachefiles_cache struct as we need that to pass to
+ fscache_io_error().
  Content analysis details:   (-1.6 points, 6.0 required)
  pts rule name              description
  ---- ---------------------- --------------------------------------------------
- 0.0 RCVD_IN_MSPIKE_H3      RBL: Good reputation (+3)
- [170.10.129.124 listed in wl.mailspike.net]
+ -0.0 RCVD_IN_MSPIKE_H2      RBL: Average reputation (+2)
+ [170.10.133.124 listed in wl.mailspike.net]
  -0.7 RCVD_IN_DNSWL_LOW      RBL: Sender listed at https://www.dnswl.org/,
- low trust [170.10.129.124 listed in list.dnswl.org]
+ low trust [170.10.133.124 listed in list.dnswl.org]
  0.0 SPF_HELO_NONE          SPF: HELO does not publish an SPF Record
  -0.0 SPF_PASS               SPF: sender matches SPF record
  -0.1 DKIM_VALID_EF          Message has a valid DKIM or DK signature from
@@ -101,11 +101,10 @@ X-Spam-Report: Spam detection software,
  0.1 DKIM_SIGNED            Message has a DKIM or DK signature, not necessarily
  valid
  -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
- 0.0 RCVD_IN_MSPIKE_WL      Mailspike good senders
  -0.7 DKIMWL_WL_HIGH         DKIMwl.org - High trust sender
-X-Headers-End: 1mvMnI-0000z1-Sw
-Subject: [V9fs-developer] [PATCH v2 33/67] cachefiles: Add a couple of
- tracepoints for logging errors
+X-Headers-End: 1mvMnP-00ABqd-Hn
+Subject: [V9fs-developer] [PATCH v2 34/67] cachefiles: Add cache error
+ reporting macro
 X-BeenThere: v9fs-developer@lists.sourceforge.net
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -132,157 +131,49 @@ Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: v9fs-developer-bounces@lists.sourceforge.net
 
-Add two trace points to log errors, one for vfs operations like mkdir or
-create, and one for I/O operations, like read, write or truncate.
+Add a macro to report a cache I/O error and to tell fscache that the cache
+is in trouble.
 
-Also add the beginnings of a struct that is going to represent a data file
-and place a debugging ID in it for the tracepoints to record.
+Also add a pointer to the fscache cache cookie from the cachefiles_cache
+struct as we need that to pass to fscache_io_error().
 
 Signed-off-by: David Howells <dhowells@redhat.com>
 cc: linux-cachefs@redhat.com
-Link: https://lore.kernel.org/r/163819625632.215744.17907340966178411033.stgit@warthog.procyon.org.uk/ # v1
+Link: https://lore.kernel.org/r/163819626562.215744.1503690975344731661.stgit@warthog.procyon.org.uk/ # v1
 ---
 
- fs/cachefiles/internal.h          |    1 
- include/trace/events/cachefiles.h |   94 +++++++++++++++++++++++++++++++++++++
- 2 files changed, 95 insertions(+)
+ fs/cachefiles/internal.h |   11 +++++++++++
+ 1 file changed, 11 insertions(+)
 
 diff --git a/fs/cachefiles/internal.h b/fs/cachefiles/internal.h
-index 1f2fea902d3e..b51146a29aca 100644
+index b51146a29aca..b2adcb59b4ce 100644
 --- a/fs/cachefiles/internal.h
 +++ b/fs/cachefiles/internal.h
-@@ -62,6 +62,7 @@ struct cachefiles_cache {
- 	char				*tag;		/* cache binding tag */
- };
- 
-+#include <trace/events/cachefiles.h>
- 
- /*
-  * error_inject.c
-diff --git a/include/trace/events/cachefiles.h b/include/trace/events/cachefiles.h
-index 5ee0aabb20be..9bd5a8a60801 100644
---- a/include/trace/events/cachefiles.h
-+++ b/include/trace/events/cachefiles.h
-@@ -18,11 +18,49 @@
- #ifndef __CACHEFILES_DECLARE_TRACE_ENUMS_ONCE_ONLY
- #define __CACHEFILES_DECLARE_TRACE_ENUMS_ONCE_ONLY
- 
-+enum cachefiles_error_trace {
-+	cachefiles_trace_fallocate_error,
-+	cachefiles_trace_getxattr_error,
-+	cachefiles_trace_link_error,
-+	cachefiles_trace_lookup_error,
-+	cachefiles_trace_mkdir_error,
-+	cachefiles_trace_notify_change_error,
-+	cachefiles_trace_open_error,
-+	cachefiles_trace_read_error,
-+	cachefiles_trace_remxattr_error,
-+	cachefiles_trace_rename_error,
-+	cachefiles_trace_seek_error,
-+	cachefiles_trace_setxattr_error,
-+	cachefiles_trace_statfs_error,
-+	cachefiles_trace_tmpfile_error,
-+	cachefiles_trace_trunc_error,
-+	cachefiles_trace_unlink_error,
-+	cachefiles_trace_write_error,
-+};
-+
- #endif
- 
- /*
-  * Define enum -> string mappings for display.
+@@ -30,6 +30,7 @@ struct cachefiles_object {
+  * Cache files cache definition
   */
-+#define cachefiles_error_traces						\
-+	EM(cachefiles_trace_fallocate_error,	"fallocate")		\
-+	EM(cachefiles_trace_getxattr_error,	"getxattr")		\
-+	EM(cachefiles_trace_link_error,		"link")			\
-+	EM(cachefiles_trace_lookup_error,	"lookup")		\
-+	EM(cachefiles_trace_mkdir_error,	"mkdir")		\
-+	EM(cachefiles_trace_notify_change_error, "notify_change")	\
-+	EM(cachefiles_trace_open_error,		"open")			\
-+	EM(cachefiles_trace_read_error,		"read")			\
-+	EM(cachefiles_trace_remxattr_error,	"remxattr")		\
-+	EM(cachefiles_trace_rename_error,	"rename")		\
-+	EM(cachefiles_trace_seek_error,		"seek")			\
-+	EM(cachefiles_trace_setxattr_error,	"setxattr")		\
-+	EM(cachefiles_trace_statfs_error,	"statfs")		\
-+	EM(cachefiles_trace_tmpfile_error,	"tmpfile")		\
-+	EM(cachefiles_trace_trunc_error,	"trunc")		\
-+	EM(cachefiles_trace_unlink_error,	"unlink")		\
-+	E_(cachefiles_trace_write_error,	"write")
+ struct cachefiles_cache {
++	struct fscache_cache		*cache;		/* Cache cookie */
+ 	struct vfsmount			*mnt;		/* mountpoint holding the cache */
+ 	struct file			*cachefilesd;	/* manager daemon handle */
+ 	const struct cred		*cache_cred;	/* security override for accessing cache */
+@@ -103,6 +104,16 @@ static inline int cachefiles_inject_remove_error(void)
+ 	return cachefiles_error_injection_state & 2 ? -EIO : 0;
+ }
  
++/*
++ * Error handling
++ */
++#define cachefiles_io_error(___cache, FMT, ...)		\
++do {							\
++	pr_err("I/O Error: " FMT"\n", ##__VA_ARGS__);	\
++	fscache_io_error((___cache)->cache);		\
++	set_bit(CACHEFILES_DEAD, &(___cache)->flags);	\
++} while (0)
++
  
  /*
-@@ -33,6 +71,8 @@
- #define EM(a, b) TRACE_DEFINE_ENUM(a);
- #define E_(a, b) TRACE_DEFINE_ENUM(a);
- 
-+cachefiles_error_traces;
-+
- /*
-  * Now redefine the EM() and E_() macros to map the enums to the strings that
-  * will be printed in the output.
-@@ -43,6 +83,60 @@
- #define E_(a, b)	{ a, b }
- 
- 
-+TRACE_EVENT(cachefiles_vfs_error,
-+	    TP_PROTO(struct cachefiles_object *obj, struct inode *backer,
-+		     int error, enum cachefiles_error_trace where),
-+
-+	    TP_ARGS(obj, backer, error, where),
-+
-+	    TP_STRUCT__entry(
-+		    __field(unsigned int,			obj	)
-+		    __field(unsigned int,			backer	)
-+		    __field(enum cachefiles_error_trace,	where	)
-+		    __field(short,				error	)
-+			     ),
-+
-+	    TP_fast_assign(
-+		    __entry->obj	= obj ? obj->debug_id : 0;
-+		    __entry->backer	= backer->i_ino;
-+		    __entry->error	= error;
-+		    __entry->where	= where;
-+			   ),
-+
-+	    TP_printk("o=%08x b=%08x %s e=%d",
-+		      __entry->obj,
-+		      __entry->backer,
-+		      __print_symbolic(__entry->where, cachefiles_error_traces),
-+		      __entry->error)
-+	    );
-+
-+TRACE_EVENT(cachefiles_io_error,
-+	    TP_PROTO(struct cachefiles_object *obj, struct inode *backer,
-+		     int error, enum cachefiles_error_trace where),
-+
-+	    TP_ARGS(obj, backer, error, where),
-+
-+	    TP_STRUCT__entry(
-+		    __field(unsigned int,			obj	)
-+		    __field(unsigned int,			backer	)
-+		    __field(enum cachefiles_error_trace,	where	)
-+		    __field(short,				error	)
-+			     ),
-+
-+	    TP_fast_assign(
-+		    __entry->obj	= obj ? obj->debug_id : 0;
-+		    __entry->backer	= backer->i_ino;
-+		    __entry->error	= error;
-+		    __entry->where	= where;
-+			   ),
-+
-+	    TP_printk("o=%08x b=%08x %s e=%d",
-+		      __entry->obj,
-+		      __entry->backer,
-+		      __print_symbolic(__entry->where, cachefiles_error_traces),
-+		      __entry->error)
-+	    );
-+
- #endif /* _TRACE_CACHEFILES_H */
- 
- /* This part must be outside protection */
+  * Debug tracing
 
 
 
