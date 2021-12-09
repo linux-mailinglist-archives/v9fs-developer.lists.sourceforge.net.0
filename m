@@ -2,119 +2,111 @@ Return-Path: <v9fs-developer-bounces@lists.sourceforge.net>
 X-Original-To: lists+v9fs-developer@lfdr.de
 Delivered-To: lists+v9fs-developer@lfdr.de
 Received: from lists.sourceforge.net (lists.sourceforge.net [216.105.38.7])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9A6EB46F225
-	for <lists+v9fs-developer@lfdr.de>; Thu,  9 Dec 2021 18:35:34 +0100 (CET)
-Received: from [127.0.0.1] (helo=sfs-ml-1.v29.lw.sourceforge.com)
-	by sfs-ml-1.v29.lw.sourceforge.com with esmtp (Exim 4.94.2)
+	by mail.lfdr.de (Postfix) with ESMTPS id A0BEB46F64E
+	for <lists+v9fs-developer@lfdr.de>; Thu,  9 Dec 2021 22:57:55 +0100 (CET)
+Received: from [127.0.0.1] (helo=sfs-ml-4.v29.lw.sourceforge.com)
+	by sfs-ml-4.v29.lw.sourceforge.com with esmtp (Exim 4.94.2)
 	(envelope-from <v9fs-developer-bounces@lists.sourceforge.net>)
-	id 1mvNKO-0005Be-4H; Thu, 09 Dec 2021 17:35:33 +0000
+	id 1mvRQH-0003dC-T7; Thu, 09 Dec 2021 21:57:53 +0000
 Received: from [172.30.20.202] (helo=mx.sourceforge.net)
- by sfs-ml-1.v29.lw.sourceforge.com with esmtps (TLS1.2) tls
+ by sfs-ml-4.v29.lw.sourceforge.com with esmtps (TLS1.2) tls
  TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384 (Exim 4.94.2)
- (envelope-from <torvalds@linuxfoundation.org>) id 1mvNKM-0005BW-Iz
- for v9fs-developer@lists.sourceforge.net; Thu, 09 Dec 2021 17:35:31 +0000
+ (envelope-from <dhowells@redhat.com>) id 1mvRQH-0003d6-9w
+ for v9fs-developer@lists.sourceforge.net; Thu, 09 Dec 2021 21:57:53 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=sourceforge.net; s=x; h=Content-Type:Cc:To:Subject:Message-ID:Date:From:
- In-Reply-To:References:MIME-Version:Sender:Reply-To:Content-Transfer-Encoding
- :Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
- Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
- List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=0Ief/4lrcrFC9yHQblzF1a8RET0HNi3QQm3divo4aI0=; b=fL8BsPtLg05PJ4zGCWF2CHkC4C
- mI3DKjM70cs4RDc/yBA5XfGoOTkIcLIje3lNaQpRinMZ5peLUHGbOPlWr/QnwTt/3KArcnQtiII8K
- iOOPUG8fLIvwT5y+9p84U0q8cw6gToykPhoq9yVPLRRc3QECnp1xPSY/vJRZbI2SfQJk=;
+ d=sourceforge.net; s=x; h=Message-ID:Date:Content-Transfer-Encoding:
+ Content-ID:Content-Type:MIME-Version:Subject:Cc:To:References:In-Reply-To:
+ From:Sender:Reply-To:Content-Description:Resent-Date:Resent-From:
+ Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:
+ List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
+ bh=Nq1sf+kzjWsZVde2j+/s8Puw8BjH1Oy3rw3I3uvxMHo=; b=aG3lblkxjn96cZqepj7wL9L9cB
+ ECfu0ptiGTfvs8kdGXDb775wPRm1oBYYXG+Q3dc+6hOLUM/UdR/YQ/FQHNQHqC9cz2hAfbeY1YMEI
+ 5mqEmMIgc4IwKpnYEDiOeRqEvniWFApOBS/+vF4hNWKN4ykoK6CuDcr4sh7tYTG8XTLw=;
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  ;
- h=Content-Type:Cc:To:Subject:Message-ID:Date:From:In-Reply-To:References:
- MIME-Version:Sender:Reply-To:Content-Transfer-Encoding:Content-ID:
+ h=Message-ID:Date:Content-Transfer-Encoding:Content-ID:Content-Type:
+ MIME-Version:Subject:Cc:To:References:In-Reply-To:From:Sender:Reply-To:
  Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
  :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
  List-Post:List-Owner:List-Archive;
- bh=0Ief/4lrcrFC9yHQblzF1a8RET0HNi3QQm3divo4aI0=; b=lK1iQLymb1+oy5LthaN21cuLge
- zFwczfRClm4Mne5VNJBBSxGJ90vUC3dAePzbnAizRhPPSD2LJe91sw8Jb9/Eqt7bVJBivUhwsYi+N
- vNwRRTghyYhAnM3YnfGufNkT+/+lZEECbUndAo38tQmkcoXA0M8xj0ysWf/7Z3HNqU0w=;
-Received: from mail-ed1-f44.google.com ([209.85.208.44])
+ bh=Nq1sf+kzjWsZVde2j+/s8Puw8BjH1Oy3rw3I3uvxMHo=; b=lk+fk9G0MYRM8K8sECa36YHZWr
+ rqP040NbasrGViL5AB/s+NvJPi2UY2yrHNpglAu5pIpaObCuRTmVxlmqr6v/Y6jDL5lAyPX9QDATR
+ 1VacMc3XJsuOtIjeoq1MAQsKmVXFtHURLjjSylAhh/9DBNUen+zxzdaYznP26AMx4Ccg=;
+Received: from us-smtp-delivery-124.mimecast.com ([170.10.133.124])
  by sfi-mx-1.v28.lw.sourceforge.com with esmtps
- (TLSv1.2:ECDHE-RSA-AES128-GCM-SHA256:128) (Exim 4.92.3)
- id 1mvNKM-00ADiw-S6
- for v9fs-developer@lists.sourceforge.net; Thu, 09 Dec 2021 17:35:31 +0000
-Received: by mail-ed1-f44.google.com with SMTP id o20so22169372eds.10
- for <v9fs-developer@lists.sourceforge.net>;
- Thu, 09 Dec 2021 09:35:30 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=linux-foundation.org; s=google;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=0Ief/4lrcrFC9yHQblzF1a8RET0HNi3QQm3divo4aI0=;
- b=AdnCyXT6TPlVVq0JLA/VEVV0O33H285eATNlyLPRaIFmtxnqr6S23nXl2J32guXc1O
- plkuA6YLaLfLkkkWTPqQOSOG7bZY0JEwSmKNFIrfpMXr3oq7FfmHctvECgg0O0gJcn+c
- hrPmI2kNvz5VH+5qzZSG7wTmayKDH0Ub3btDA=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20210112;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc;
- bh=0Ief/4lrcrFC9yHQblzF1a8RET0HNi3QQm3divo4aI0=;
- b=OSgldKOgZs9vCjsxQXKzi65gorOWQKbHcNSGQxJvB72rwoUhlXq1VOAaZc3yxupMAU
- BQnsYzggHEa7hOz6Jkw4tn1i3ssB7yfMbdxvHtdlCx6eLFH7sXREcjz2omY/8YcKhT67
- t3RHWhjjoEK5d7eJxoYYlc8g7cyLJ5Gc3jxjNOWCqQI9+6R7McNJfB5jzgOoRUDU8c5v
- ze8C2vlIo+46ERK0uaWDLVZRoxVcE9jIeANIPFgFOE7D4QKoFDMCqN7Od2LDno1AmpSz
- F3iQgoIodZ8Yw74PDo4wbEbxCZvV1CSfvC3dOhRiwQegni87hAPI44kVOH7QfriRe7Jt
- WM2w==
-X-Gm-Message-State: AOAM531oGzC36ArEz43uP6KOOhcD+zWZqc4lBHNR5PsX8Yo7NhsxMI/H
- SjpVhjYMR+4qXJ0zGOXNvcfVvfIgYHPbMukt
-X-Google-Smtp-Source: ABdhPJz8+3TeklS9/3owWpkvTb251ejBvEB0miW0kLLe6pX+BDgT8AQ5ds6tWqXlmSV2ALOELIIz+Q==
-X-Received: by 2002:a17:907:868f:: with SMTP id
- qa15mr17353869ejc.187.1639071173580; 
- Thu, 09 Dec 2021 09:32:53 -0800 (PST)
-Received: from mail-wr1-f50.google.com (mail-wr1-f50.google.com.
- [209.85.221.50])
- by smtp.gmail.com with ESMTPSA id b7sm209391edj.24.2021.12.09.09.32.51
- for <v9fs-developer@lists.sourceforge.net>
- (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Thu, 09 Dec 2021 09:32:52 -0800 (PST)
-Received: by mail-wr1-f50.google.com with SMTP id d9so10988573wrw.4
- for <v9fs-developer@lists.sourceforge.net>;
- Thu, 09 Dec 2021 09:32:51 -0800 (PST)
-X-Received: by 2002:a05:6000:1c2:: with SMTP id
- t2mr7703596wrx.378.1639071170949; 
- Thu, 09 Dec 2021 09:32:50 -0800 (PST)
+ (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.92.3)
+ id 1mvRQF-00AQHH-Cj
+ for v9fs-developer@lists.sourceforge.net; Thu, 09 Dec 2021 21:57:53 +0000
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+ s=mimecast20190719; t=1639087065;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references;
+ bh=Nq1sf+kzjWsZVde2j+/s8Puw8BjH1Oy3rw3I3uvxMHo=;
+ b=KIpH8bqufDGwARWWONckb30XpM0WL+UW8Vw/minAEGe+ZNuDi4n/+zEfnKEG2OQbmGVbHH
+ AeXEhTgYFXNY9pL+ms+r3aPKABum2ek3pt+24iGGkZc7FxKWLWw3Fuww3nKu1Hl5qYJqjc
+ 8LQz1pru+92mgbRA3RvGlunWVeNKHnU=
+Received: from mimecast-mx01.redhat.com (mimecast-mx01.redhat.com
+ [209.132.183.4]) by relay.mimecast.com with ESMTP with STARTTLS
+ (version=TLSv1.2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ us-mta-562-goLxjqsmOXuXZtknWwaRCA-1; Thu, 09 Dec 2021 16:57:42 -0500
+X-MC-Unique: goLxjqsmOXuXZtknWwaRCA-1
+Received: from smtp.corp.redhat.com (int-mx07.intmail.prod.int.phx2.redhat.com
+ [10.5.11.22])
+ (using TLSv1.2 with cipher AECDH-AES256-SHA (256/256 bits))
+ (No client certificate requested)
+ by mimecast-mx01.redhat.com (Postfix) with ESMTPS id 0A8D3760C0;
+ Thu,  9 Dec 2021 21:57:39 +0000 (UTC)
+Received: from warthog.procyon.org.uk (unknown [10.33.36.122])
+ by smtp.corp.redhat.com (Postfix) with ESMTP id DB9EB1017E27;
+ Thu,  9 Dec 2021 21:57:33 +0000 (UTC)
+Organization: Red Hat UK Ltd. Registered Address: Red Hat UK Ltd, Amberley
+ Place, 107-111 Peascod Street, Windsor, Berkshire, SI4 1TE, United
+ Kingdom.
+ Registered in England and Wales under Company Registration No. 3798903
+From: David Howells <dhowells@redhat.com>
+In-Reply-To: <CAHk-=wiTquFUu-b5ME=rbGEF8r2Vh1TXGfaZZuXyOutVrgRzfw@mail.gmail.com>
+References: <CAHk-=wiTquFUu-b5ME=rbGEF8r2Vh1TXGfaZZuXyOutVrgRzfw@mail.gmail.com>
+ <163906878733.143852.5604115678965006622.stgit@warthog.procyon.org.uk>
+ <163906888735.143852.10944614318596881429.stgit@warthog.procyon.org.uk>
+To: Linus Torvalds <torvalds@linux-foundation.org>
 MIME-Version: 1.0
-References: <163906878733.143852.5604115678965006622.stgit@warthog.procyon.org.uk>
- <163906890630.143852.13972180614535611154.stgit@warthog.procyon.org.uk>
-In-Reply-To: <163906890630.143852.13972180614535611154.stgit@warthog.procyon.org.uk>
-From: Linus Torvalds <torvalds@linux-foundation.org>
-Date: Thu, 9 Dec 2021 09:32:34 -0800
-X-Gmail-Original-Message-ID: <CAHk-=wg35xyf-HgOLcKdWVxm11vNomLVe44b1FsxvV6jDqw2CA@mail.gmail.com>
-Message-ID: <CAHk-=wg35xyf-HgOLcKdWVxm11vNomLVe44b1FsxvV6jDqw2CA@mail.gmail.com>
-To: David Howells <dhowells@redhat.com>
-X-Spam-Score: 0.1 (/)
+Content-ID: <159179.1639087053.1@warthog.procyon.org.uk>
+Date: Thu, 09 Dec 2021 21:57:33 +0000
+Message-ID: <159180.1639087053@warthog.procyon.org.uk>
+X-Scanned-By: MIMEDefang 2.84 on 10.5.11.22
+X-Spam-Score: -1.6 (-)
 X-Spam-Report: Spam detection software,
  running on the system "util-spamd-1.v13.lw.sourceforge.com", 
  has NOT identified this incoming email as spam.  The original
  message has been attached to this so you can view it or label
  similar future email.  If you have any questions, see
  the administrator of that system for details.
- Content preview:  On Thu, Dec 9,
- 2021 at 8:55 AM David Howells <dhowells@redhat.com>
- wrote: > > +static long fscache_compare_volume(const struct fscache_volume
- *a, > + const struct fscache_volume *b) > +{ > + size_t kl [...] 
- Content analysis details:   (0.1 points, 6.0 required)
+ Content preview:  Linus Torvalds <torvalds@linux-foundation.org> wrote: > >
+ Implement a function to generate hashes. It needs to be stable over time >
+ > and endianness-independent as the hashes will appear on disk in future
+ > > patches. > > I'm not actually seeing this be [...] 
+ Content analysis details:   (-1.6 points, 6.0 required)
  pts rule name              description
  ---- ---------------------- --------------------------------------------------
+ -0.7 RCVD_IN_DNSWL_LOW      RBL: Sender listed at https://www.dnswl.org/,
+ low trust [170.10.133.124 listed in list.dnswl.org]
  -0.0 RCVD_IN_MSPIKE_H2      RBL: Average reputation (+2)
- [209.85.208.44 listed in wl.mailspike.net]
- 0.2 HEADER_FROM_DIFFERENT_DOMAINS From and EnvelopeFrom 2nd level
- mail domains are different
+ [170.10.133.124 listed in wl.mailspike.net]
  0.0 SPF_HELO_NONE          SPF: HELO does not publish an SPF Record
  -0.0 SPF_PASS               SPF: sender matches SPF record
+ -0.1 DKIM_VALID_EF          Message has a valid DKIM or DK signature from
+ envelope-from domain
  -0.1 DKIM_VALID_AU          Message has a valid DKIM or DK signature from
  author's domain
  0.1 DKIM_SIGNED            Message has a DKIM or DK signature, not necessarily
  valid
  -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
- -0.0 RCVD_IN_DNSWL_NONE     RBL: Sender listed at https://www.dnswl.org/,
- no trust [209.85.208.44 listed in list.dnswl.org]
-X-Headers-End: 1mvNKM-00ADiw-S6
-Subject: Re: [V9fs-developer] [PATCH v2 09/67] fscache: Implement volume
- registration
+ -0.7 DKIMWL_WL_HIGH         DKIMwl.org - High trust sender
+X-Headers-End: 1mvRQF-00AQHH-Cj
+Subject: Re: [V9fs-developer] [PATCH v2 07/67] fscache: Implement a hash
+ function
 X-BeenThere: v9fs-developer@lists.sourceforge.net
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -126,13 +118,13 @@ List-Post: <mailto:v9fs-developer@lists.sourceforge.net>
 List-Help: <mailto:v9fs-developer-request@lists.sourceforge.net?subject=help>
 List-Subscribe: <https://lists.sourceforge.net/lists/listinfo/v9fs-developer>, 
  <mailto:v9fs-developer-request@lists.sourceforge.net?subject=subscribe>
-Cc: CIFS <linux-cifs@vger.kernel.org>, "open list:NFS, SUNRPC,
- AND..." <linux-nfs@vger.kernel.org>,
+Cc: Steve French <sfrench@samba.org>, "open list:NFS,
+ SUNRPC, AND..." <linux-nfs@vger.kernel.org>, CIFS <linux-cifs@vger.kernel.org>,
  linux-fsdevel <linux-fsdevel@vger.kernel.org>,
  Jeff Layton <jlayton@kernel.org>,
  Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
  Matthew Wilcox <willy@infradead.org>, linux-afs@lists.infradead.org,
- Steve French <sfrench@samba.org>, v9fs-developer@lists.sourceforge.net,
+ dhowells@redhat.com, v9fs-developer@lists.sourceforge.net,
  linux-cachefs@redhat.com, Alexander Viro <viro@zeniv.linux.org.uk>,
  Trond Myklebust <trondmy@hammerspace.com>,
  JeffleXu <jefflexu@linux.alibaba.com>, ceph-devel@vger.kernel.org,
@@ -142,60 +134,51 @@ Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: v9fs-developer-bounces@lists.sourceforge.net
 
-On Thu, Dec 9, 2021 at 8:55 AM David Howells <dhowells@redhat.com> wrote:
+Linus Torvalds <torvalds@linux-foundation.org> wrote:
+
+> > Implement a function to generate hashes.  It needs to be stable over time
+> > and endianness-independent as the hashes will appear on disk in future
+> > patches.
+> 
+> I'm not actually seeing this being endianness-independent.
+> 
+> Is the input just regular 32-bit data in native word order? Because
+> then it's not endianness-independent, it's purely that there *is* no
+> endianness to the data at all and it is purely native data.
 >
-> +static long fscache_compare_volume(const struct fscache_volume *a,
-> +                                  const struct fscache_volume *b)
-> +{
-> +       size_t klen;
-> +
-> +       if (a->key_hash != b->key_hash)
-> +               return (long)a->key_hash - (long)b->key_hash;
-> +       if (a->cache != b->cache)
-> +               return (long)a->cache    - (long)b->cache;
-> +       if (a->key[0] != b->key[0])
-> +               return (long)a->key[0]   - (long)b->key[0];
-> +
-> +       klen = round_up(a->key[0] + 1, sizeof(unsigned int));
-> +       return memcmp(a->key, b->key, klen);
+> So the code may be correct, but the explanation is confusing. There is
+> absolutely nothing here that is about endianness.
 
-None of this is endianness-independent except for the final memcmp()
-(and that one assumes the data is just a "stream of bytes")
+What I'm trying to get at is that the hash needs to be consistent, no matter
+the endianness of the cpu, for any particular input blob.  The hashing
+function shouldn't need to know the structure of the input blob.  In the case
+of the volume key, it's a padded printable string; in the case of the cookie
+key, it's probably some sort of structured blob, quite possibly an actual
+array of be32.
 
-In fact, even if everybody is little-endian, the above gives different
-results on 32-bit and 64-bit architectures, since you're doing math in
-(possibly) 64 bits but using a 32-bit "key_hash". So sign bits will
-differ, afaik.
+The reason it needs to be consistent is that people seem to like seeding the
+cache by tarring up the cache from one machine and untarring it on another.
 
-And once again, that key_hash isn't actually endianness-independent anyway:
+And looking again at my code:
 
-> +       volume->key_hash = fscache_hash(0, (unsigned int *)key,
-> +                                       hlen / sizeof(unsigned int));
+unsigned int fscache_hash(unsigned int salt, unsigned int *data, unsigned int n)
+{
+	unsigned int a, x = 0, y = salt;
 
-Yeah, for the same key data, this will give entirely different results
-on LE vs BE, unless you've made sure to always convert whatever keys
-from soem on-disk fixed-32-bit-endianness format to a in-memory host
-endianness.
+	for (; n; n--) {
+		a = *data++;   <<<<<<<
+		HASH_MIX(x, y, a);
+	}
+	return fold_hash(x, y);
+}
 
-Which is a fundamental design mistake in itself. That kind of "one
-endianness on disk, another in memory" is garbage.
+The marked line should probably use something like le/be32_to_cpu().
 
-I'm not sure any of these matter - maybe all these hashes are entirely
-for in-memory stuff and never haev any longer lifetimes, so the fact
-that they get calculated and compared differently depending on
-endianness and depending on word size may not matter at all. You may
-only care about "stable on the native architecture".
+I also need to fix 9p to canonicalise its cookie key.
 
-But then you shouldn't have your own hash function that you claim is
-somehow endianness-safe.
+Thanks for catching that,
+David
 
-If you really want to be endianness safe, *ALL* the data you work on
-needs to be a proper fixed endianness format. All throught the code.
-Make all key pointers always be "__le32 *", and never randomly cast
-the pointer from some other data like I see in every use I actually
-looked at.
-
-                  Linus
 
 
 _______________________________________________
