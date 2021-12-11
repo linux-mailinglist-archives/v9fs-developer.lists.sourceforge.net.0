@@ -2,26 +2,26 @@ Return-Path: <v9fs-developer-bounces@lists.sourceforge.net>
 X-Original-To: lists+v9fs-developer@lfdr.de
 Delivered-To: lists+v9fs-developer@lfdr.de
 Received: from lists.sourceforge.net (lists.sourceforge.net [216.105.38.7])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4F225470903
-	for <lists+v9fs-developer@lfdr.de>; Fri, 10 Dec 2021 19:39:31 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id A971F4713F9
+	for <lists+v9fs-developer@lfdr.de>; Sat, 11 Dec 2021 14:23:26 +0100 (CET)
 Received: from [127.0.0.1] (helo=sfs-ml-4.v29.lw.sourceforge.com)
 	by sfs-ml-4.v29.lw.sourceforge.com with esmtp (Exim 4.94.2)
 	(envelope-from <v9fs-developer-bounces@lists.sourceforge.net>)
-	id 1mvknp-0004Fb-0c; Fri, 10 Dec 2021 18:39:29 +0000
+	id 1mw2LU-0004yY-71; Sat, 11 Dec 2021 13:23:24 +0000
 Received: from [172.30.20.202] (helo=mx.sourceforge.net)
  by sfs-ml-4.v29.lw.sourceforge.com with esmtps (TLS1.2) tls
  TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384 (Exim 4.94.2)
- (envelope-from <dwysocha@redhat.com>) id 1mvkno-0004FV-1c
- for v9fs-developer@lists.sourceforge.net; Fri, 10 Dec 2021 18:39:28 +0000
+ (envelope-from <dwysocha@redhat.com>) id 1mw2LR-0004yS-Lv
+ for v9fs-developer@lists.sourceforge.net; Sat, 11 Dec 2021 13:23:21 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
  d=sourceforge.net; s=x; h=Content-Type:Cc:To:Subject:Message-ID:Date:From:
  In-Reply-To:References:MIME-Version:Sender:Reply-To:Content-Transfer-Encoding
  :Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
  Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
  List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=GurlPRtI5DjwhyG1HNpuzM5yzLd94hulymgYprj0SKk=; b=XEAfLRv9gazbpFRI+5eATP35Pi
- TZPrMOVV9hUpjziJpB5qsd92lCAqbNpjg2I+B/dy9gHQ7vrH/EZUfrpAteLx9m7lcJVJQ7HjL7g4n
- YctFd9uqipjN/qLhnsO7B+0QZUW1hrX2FI+VO8ahU0EX4aJJ4dTDb6HvQE7zQEPG5+Os=;
+ bh=+Lu8lr4Inqi67eW9BAceK/4yaQ86s+JM/X0tqd7JSeU=; b=KbaSzubtSsFQZ+/1rfXiTNT5py
+ 2VTeaj2YzECNgt0DJPBGlMs0+sfwVmUlPF2QZSV79WndsnaqfRvKXCFrYLirqRvrRLMU6ECVT+WAh
+ 7p/KMn0Wjwi2sAajToPEUD8AjWKSdjEaJ/I9bRQ09qQ3y6FPIjE+8iDpEyf5o/O+eSE8=;
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  ;
  h=Content-Type:Cc:To:Subject:Message-ID:Date:From:In-Reply-To:References:
@@ -29,57 +29,60 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
  :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
  List-Post:List-Owner:List-Archive;
- bh=GurlPRtI5DjwhyG1HNpuzM5yzLd94hulymgYprj0SKk=; b=D1nvICQhM4pYQz+cec7oWMPbuz
- 06v4xzhWk1mfDqkML//I61qZf/lI1fqgxTLJGzUjOfKKzqr1MgarmNrZKSh8GwiFWW32xFNjkiL/p
- qX8xGJ2wmW+YsV80BSAaGGMmKE8hrBywwSEjqAGGPPfR2AhiePCiRZz1433XGkPahTyE=;
-Received: from us-smtp-delivery-124.mimecast.com ([170.10.129.124])
+ bh=+Lu8lr4Inqi67eW9BAceK/4yaQ86s+JM/X0tqd7JSeU=; b=O267MsVyFYK03yo31JxNSH6FaB
+ xaQm4iGLGffXagUH6zycNxWr5RO3QHYdbDnEvh4P9Wqpynxo2chwSJJCuqdQdkQOj72E62yeLQ9/B
+ uQh9DRBWR/ARNLbi0DN8m52bjIz0kxf2PMAnhnzGD1d0w25S3XviqMHg4/vTJvFfhyfc=;
+Received: from us-smtp-delivery-124.mimecast.com ([170.10.133.124])
  by sfi-mx-2.v28.lw.sourceforge.com with esmtps
  (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.92.3)
- id 1mvknj-0002Wb-ME
- for v9fs-developer@lists.sourceforge.net; Fri, 10 Dec 2021 18:39:27 +0000
+ id 1mw2LN-0004vr-TA
+ for v9fs-developer@lists.sourceforge.net; Sat, 11 Dec 2021 13:23:21 +0000
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
- s=mimecast20190719; t=1639161557;
+ s=mimecast20190719; t=1639228991;
  h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
  to:to:cc:cc:mime-version:mime-version:content-type:content-type:
  in-reply-to:in-reply-to:references:references;
- bh=GurlPRtI5DjwhyG1HNpuzM5yzLd94hulymgYprj0SKk=;
- b=YbOUXpaqWKrxHADqkrIOq0vYCXWlt5il91yTBA+GyM6mWXbCzfJgsc1kc0edI5XCYDHm6K
- Dhl3TnOpv12Iv2aG7EJso0KWasrsJuwzfhFKeXvA+ENrconsGK9dX1ojDZZ4cTvnnz79BG
- nQRqIDKbQPaDnMrJgAMXE5wEPALqAcE=
-Received: from mail-ed1-f71.google.com (mail-ed1-f71.google.com
- [209.85.208.71]) by relay.mimecast.com with ESMTP with STARTTLS
+ bh=+Lu8lr4Inqi67eW9BAceK/4yaQ86s+JM/X0tqd7JSeU=;
+ b=WaD5LBGkazXDW9NqedmUD/PBusbZuFi0JYHuW+WMuOCT60fBFATSkl3Nc5L+xj9BrjRlBM
+ 8Tx12NPAQkAf0TH7mrPvXB0lJ2PLWXJD2UHxpFGBlw3q8SYA14g/3+d/++wFJjOAQUQ4kT
+ 0Igf1b2NFFAk9zl6y2ztOOhHQ0UuU/4=
+Received: from mail-ed1-f72.google.com (mail-ed1-f72.google.com
+ [209.85.208.72]) by relay.mimecast.com with ESMTP with STARTTLS
  (version=TLSv1.2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- us-mta-431-G7Um9cDtPgSTA22JSKzTFQ-1; Fri, 10 Dec 2021 13:39:15 -0500
-X-MC-Unique: G7Um9cDtPgSTA22JSKzTFQ-1
-Received: by mail-ed1-f71.google.com with SMTP id
- eg20-20020a056402289400b003eb56fcf6easo8891418edb.20
+ us-mta-66-P9LEbgeJPRqzDcCPf4j27Q-1; Sat, 11 Dec 2021 08:23:09 -0500
+X-MC-Unique: P9LEbgeJPRqzDcCPf4j27Q-1
+Received: by mail-ed1-f72.google.com with SMTP id
+ k7-20020aa7c387000000b003e7ed87fb31so10522408edq.3
  for <v9fs-developer@lists.sourceforge.net>;
- Fri, 10 Dec 2021 10:39:15 -0800 (PST)
+ Sat, 11 Dec 2021 05:23:08 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20210112;
  h=x-gm-message-state:mime-version:references:in-reply-to:from:date
  :message-id:subject:to:cc;
- bh=GurlPRtI5DjwhyG1HNpuzM5yzLd94hulymgYprj0SKk=;
- b=ateV1jim4qM45dKxeDx2uOsScm6cczj0mWiaJT+dtTxjHTWjnMgZ2OcGzjLt9JCfja
- DU+fFxOe2jXAbR/hMziTJpj90UlMtl2EgH9m4Kl32wUUJkiDk/uPmA7L+KQ71FsjQyW2
- jj1iyBglRwzzJYL7pxi4fBCDm6B25L91JO0nZJPN7QZULdfjvwleGQJ/k/XSWKs5M88M
- FgVLt2XkxEw/1CyI3a81NGPlJvWHWk3TjK3mA6927ckLfiugkuhXxcFnaHTN45misSkt
- GgmOVDHE0OvoP6YNzyYCvw1Da5KBdt+Ngvm/N73mm5aEdJbrrHXxQ2OgcJuuPEBYxIsk
- 50EA==
-X-Gm-Message-State: AOAM533ULJdr1JmghjP19afV5EcpflX6TZk0R5HhNzDSqfc4pzStHr+2
- GAODsqKqkSNy4JUNH6qUBeBVPtx2KZHRAZPcY8ZoCS2ipcqLbbdfeUniLuDaq8MLEf6HySxrNpw
- yPyLjlMAhGBCYg/sN/3Z6qplNlTCgu5ejpW/ukPcojkDH3AuiMjg=
-X-Received: by 2002:a50:d594:: with SMTP id v20mr40666959edi.401.1639161554067; 
- Fri, 10 Dec 2021 10:39:14 -0800 (PST)
-X-Google-Smtp-Source: ABdhPJxt3elsBBXmEhGluHpQxg/8kut6KO0B/mSE/g6kBEtL3HT9FSkwEdwGwuPw96N5KvBpLLV06lXdwy5O+QC1J2Q=
-X-Received: by 2002:a50:d594:: with SMTP id v20mr40666889edi.401.1639161553504; 
- Fri, 10 Dec 2021 10:39:13 -0800 (PST)
+ bh=+Lu8lr4Inqi67eW9BAceK/4yaQ86s+JM/X0tqd7JSeU=;
+ b=tfnaofKgFuWpIp7GAIS5XWrazAdXMnH/qNQZJJnhhNiRYI8C54e9QeFHTn/HBFpQ1f
+ L1IZ7LS7oNwnsPUC461NT3pPlmYVJ1KYEZJKA5OqAhuU56IXBbuof6FmFa0jqk2RZCOf
+ fhWWZiJEWl156Mq/K+aL8B+rltJ6UrgAY7ZVygSYgBlUZfSEHSrFbQVDmPYau5LPfn7C
+ sXCWweEoWuo8mJxFxNc3NL3C+gVals/2kQ/jI/vWK6oZ/DlnCBuzxUsNkgmAtOP7dqoo
+ aXbQ7VmFrMGL+nNLrywTHXz3JILiLqW0sE7K6IhwGqa/kUsMBf3JjSMn4dtvs2jqnK0C
+ Qetg==
+X-Gm-Message-State: AOAM533nbktu2L0X0CDM5R7uMUBAbG4ma2m9RuDQkUyd5JFFaUh1dnEB
+ h267bDwY8YJx9u51PHjnCc6NqJHWS0qcpu6XQgzvBd384h70SbCecjz56zXhOHjGEBjeBlXm8U1
+ zZrMJ0PV2r9wuB5fTa1TRWAbvxn98dxEc5CXqGUmNvER/fb4QdC0=
+X-Received: by 2002:a17:906:ae83:: with SMTP id
+ md3mr31117115ejb.31.1639228987523; 
+ Sat, 11 Dec 2021 05:23:07 -0800 (PST)
+X-Google-Smtp-Source: ABdhPJxZK1aaEFgSntiYu+zED8CN4zbjooTAKMTrRVqSfqtTuCQqTWhYM7lFV+fkukj3WIAcseW5wt6jDDscCjV/eeM=
+X-Received: by 2002:a17:906:ae83:: with SMTP id
+ md3mr31117074ejb.31.1639228987139; 
+ Sat, 11 Dec 2021 05:23:07 -0800 (PST)
 MIME-Version: 1.0
 References: <163906878733.143852.5604115678965006622.stgit@warthog.procyon.org.uk>
-In-Reply-To: <163906878733.143852.5604115678965006622.stgit@warthog.procyon.org.uk>
+ <163906979003.143852.2601189243864854724.stgit@warthog.procyon.org.uk>
+In-Reply-To: <163906979003.143852.2601189243864854724.stgit@warthog.procyon.org.uk>
 From: David Wysochanski <dwysocha@redhat.com>
-Date: Fri, 10 Dec 2021 13:38:36 -0500
-Message-ID: <CALF+zOnA2U6LjDTE8m2REDTMmFVnWkcBkn0ZJQRGULPUjeQW4Q@mail.gmail.com>
+Date: Sat, 11 Dec 2021 08:22:30 -0500
+Message-ID: <CALF+zOknSu_qkb9N0i4LY8tUtXmXirSsU7gGZsUOtLu8c88ieg@mail.gmail.com>
 To: David Howells <dhowells@redhat.com>
 Authentication-Results: relay.mimecast.com;
  auth=pass smtp.auth=CUSA124A263 smtp.mailfrom=dwysocha@redhat.com
@@ -93,16 +96,16 @@ X-Spam-Report: Spam detection software,
  similar future email.  If you have any questions, see
  the administrator of that system for details.
  Content preview:  On Thu, Dec 9,
- 2021 at 11:53 AM David Howells <dhowells@redhat.com>
- wrote: > > > Here's a set of patches implements a rewrite of the fscache
- driver and a > matching rewrite of the cachefiles driver, s [...] 
+ 2021 at 12:10 PM David Howells <dhowells@redhat.com>
+ wrote: > > From: Dave Wysochanski <dwysocha@redhat.com> > > Change the nfs
+ filesystem to support fscache's indexing rewrite and > re [...] 
  Content analysis details:   (-1.6 points, 6.0 required)
  pts rule name              description
  ---- ---------------------- --------------------------------------------------
- 0.0 RCVD_IN_MSPIKE_H3      RBL: Good reputation (+3)
- [170.10.129.124 listed in wl.mailspike.net]
  -0.7 RCVD_IN_DNSWL_LOW      RBL: Sender listed at https://www.dnswl.org/,
- low trust [170.10.129.124 listed in list.dnswl.org]
+ low trust [170.10.133.124 listed in list.dnswl.org]
+ -0.0 RCVD_IN_MSPIKE_H2      RBL: Average reputation (+2)
+ [170.10.133.124 listed in wl.mailspike.net]
  0.0 SPF_HELO_NONE          SPF: HELO does not publish an SPF Record
  -0.0 SPF_PASS               SPF: sender matches SPF record
  -0.1 DKIM_VALID_EF          Message has a valid DKIM or DK signature from
@@ -112,12 +115,10 @@ X-Spam-Report: Spam detection software,
  0.1 DKIM_SIGNED            Message has a DKIM or DK signature, not necessarily
  valid
  -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
- 0.0 RCVD_IN_MSPIKE_WL      Mailspike good senders
- 0.0 T_FILL_THIS_FORM_SHORT Fill in a short form with personal
- information
  -0.7 DKIMWL_WL_HIGH         DKIMwl.org - High trust sender
-X-Headers-End: 1mvknj-0002Wb-ME
-Subject: Re: [V9fs-developer] [PATCH v2 00/67] fscache, cachefiles: Rewrite
+X-Headers-End: 1mw2LN-0004vr-TA
+Subject: Re: [V9fs-developer] [PATCH v2 62/67] nfs: Convert to new fscache
+ volume/cookie API
 X-BeenThere: v9fs-developer@lists.sourceforge.net
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -129,635 +130,1349 @@ List-Post: <mailto:v9fs-developer@lists.sourceforge.net>
 List-Help: <mailto:v9fs-developer-request@lists.sourceforge.net?subject=help>
 List-Subscribe: <https://lists.sourceforge.net/lists/listinfo/v9fs-developer>, 
  <mailto:v9fs-developer-request@lists.sourceforge.net?subject=subscribe>
-Cc: Latchesar Ionkov <lucho@ionkov.net>, Marc Dionne <marc.dionne@auristor.com>,
- linux-afs@lists.infradead.org, Shyam Prasad N <nspmangalore@gmail.com>,
- linux-cifs <linux-cifs@vger.kernel.org>,
- "Matthew Wilcox \(Oracle\)" <willy@infradead.org>,
- linux-cachefs <linux-cachefs@redhat.com>,
- Trond Myklebust <trondmy@hammerspace.com>,
- v9fs-developer@lists.sourceforge.net, Eric Van Hensbergen <ericvh@gmail.com>,
- Alexander Viro <viro@zeniv.linux.org.uk>,
- JeffleXu <jefflexu@linux.alibaba.com>, ceph-devel@vger.kernel.org,
- Trond Myklebust <trond.myklebust@hammerspace.com>,
- linux-nfs <linux-nfs@vger.kernel.org>, Jeff Layton <jlayton@kernel.org>,
- Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
- Steve French <sfrench@samba.org>,
+Cc: linux-cifs <linux-cifs@vger.kernel.org>,
+ linux-nfs <linux-nfs@vger.kernel.org>, linux-afs@lists.infradead.org,
  linux-fsdevel <linux-fsdevel@vger.kernel.org>,
+ Jeff Layton <jlayton@kernel.org>,
+ Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+ Matthew Wilcox <willy@infradead.org>,
+ Anna Schumaker <anna.schumaker@netapp.com>, Steve French <sfrench@samba.org>,
+ v9fs-developer@lists.sourceforge.net, linux-cachefs <linux-cachefs@redhat.com>,
+ Alexander Viro <viro@zeniv.linux.org.uk>,
+ Trond Myklebust <trondmy@hammerspace.com>,
+ JeffleXu <jefflexu@linux.alibaba.com>, ceph-devel@vger.kernel.org,
  Omar Sandoval <osandov@osandov.com>,
  Linus Torvalds <torvalds@linux-foundation.org>,
- Anna Schumaker <anna.schumaker@netapp.com>
+ Trond Myklebust <trond.myklebust@hammerspace.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: v9fs-developer-bounces@lists.sourceforge.net
 
-On Thu, Dec 9, 2021 at 11:53 AM David Howells <dhowells@redhat.com> wrote:
+On Thu, Dec 9, 2021 at 12:10 PM David Howells <dhowells@redhat.com> wrote:
 >
+> From: Dave Wysochanski <dwysocha@redhat.com>
 >
-> Here's a set of patches implements a rewrite of the fscache driver and a
-> matching rewrite of the cachefiles driver, significantly simplifying the
-> code compared to what's upstream, removing the complex operation scheduling
-> and object state machine in favour of something much smaller and simpler.
+> Change the nfs filesystem to support fscache's indexing rewrite and
+> reenable caching in nfs.
 >
-> The patchset is structured such that the first few patches disable fscache
-> use by the network filesystems using it, remove the cachefiles driver
-> entirely and as much of the fscache driver as can be got away with without
-> causing build failures in the network filesystems.  The patches after that
-> recreate fscache and then cachefiles, attempting to add the pieces in a
-> logical order.  Finally, the filesystems are reenabled and then the very
-> last patch changes the documentation.
+> The following changes have been made:
 >
+>  (1) The fscache_netfs struct is no more, and there's no need to register
+>      the filesystem as a whole.
 >
-> WHY REWRITE?
-> ============
+>  (2) The session cookie is now an fscache_volume cookie, allocated with
+>      fscache_acquire_volume().  That takes three parameters: a string
+>      representing the "volume" in the index, a string naming the cache to
+>      use (or NULL) and a u64 that conveys coherency metadata for the
+>      volume.
 >
-> Fscache's operation scheduling API was intended to handle sequencing of
-> cache operations, which were all required (where possible) to run
-> asynchronously in parallel with the operations being done by the network
-> filesystem, whilst allowing the cache to be brought online and offline and
-> to interrupt service for invalidation.
+>      For nfs, I've made it render the volume name string as:
 >
-> With the advent of the tmpfile capacity in the VFS, however, an opportunity
-> arises to do invalidation much more simply, without having to wait for I/O
-> that's actually in progress: Cachefiles can simply create a tmpfile, cut
-> over the file pointer for the backing object attached to a cookie and
-> abandon the in-progress I/O, dismissing it upon completion.
+>         "nfs,<ver>,<family>,<address>,<port>,<fsidH>,<fsidL>*<,param>[,<uniq>]"
 >
-> Future work here would involve using Omar Sandoval's vfs_link() with
-> AT_LINK_REPLACE[1] to allow an extant file to be displaced by a new hard
-> link from a tmpfile as currently I have to unlink the old file first.
+>  (3) The fscache_cookie_def is no more and needed information is passed
+>      directly to fscache_acquire_cookie().  The cache no longer calls back
+>      into the filesystem, but rather metadata changes are indicated at
+>      other times.
 >
-> These patches can also simplify the object state handling as I/O operations
-> to the cache don't all have to be brought to a stop in order to invalidate
-> a file.  To that end, and with an eye on to writing a new backing cache
-> model in the future, I've taken the opportunity to simplify the indexing
-> structure.
+>      fscache_acquire_cookie() is passed the same keying and coherency
+>      information as before.
 >
-> I've separated the index cookie concept from the file cookie concept by C
-> type now.  The former is now called a "volume cookie" (struct
-> fscache_volume) and there is a container of file cookies.  There are then
-> just the two levels.  All the index cookie levels are collapsed into a
-> single volume cookie, and this has a single printable string as a key.  For
-> instance, an AFS volume would have a key of something like
-> "afs,example.com,1000555", combining the filesystem name, cell name and
-> volume ID.  This is freeform, but must not have '/' chars in it.
+>  (4) fscache_enable/disable_cookie() have been removed.
 >
-> I've also eliminated all pointers back from fscache into the network
-> filesystem.  This required the duplication of a little bit of data in the
-> cookie (cookie key, coherency data and file size), but it's not actually
-> that much.  This gets rid of problems with making sure we keep netfs data
-> structures around so that the cache can access them.
+>      Call fscache_use_cookie() and fscache_unuse_cookie() when a file is
+>      opened or closed to prevent a cache file from being culled and to keep
+>      resources to hand that are needed to do I/O.
 >
-> These patches mean that most of the code that was in the drivers before is
-> simply gone and those drivers are now almost entirely new code.  That being
-> the case, there doesn't seem any particular reason to try and maintain
-> bisectability across it.  Further, there has to be a point in the middle
-> where things are cut over as there's a single point everything has to go
-> through (ie. /dev/cachefiles) and it can't be in use by two drivers at
-> once.
+>      Unuse the cookie when a file is opened for writing.  This is gated by
+>      the NFS_INO_FSCACHE flag on the nfs_inode.
 >
+>      A better way might be to invalidate it with FSCACHE_INVAL_DIO_WRITE
+>      which will keep it unused until all open files are closed.
 >
-> ISSUES YET OUTSTANDING
-> ======================
+
+It looks like the comment doesn't match what was actually done inside
+nfs_fscache_open_file().  Is the code right and the comment just out of date?
+
+I'm getting that kasan UAF firing periodically in this code path, and
+so it looks
+related to this change,though I don't have great info on it so far and
+it's hard to
+reproduce.
+
+
+>  (5) fscache_invalidate() now needs to be given uptodate auxiliary data and
+>      a file size.  It also takes a flag to indicate if this was due to a
+>      DIO write.
 >
-> There are some issues still outstanding, unaddressed by this patchset, that
-> will need fixing in future patchsets, but that don't stop this series from
-> being usable:
+>  (6) Call nfs_fscache_invalidate() with FSCACHE_INVAL_DIO_WRITE on a file
+>      to which a DIO write is made.
 >
->  (1) The cachefiles driver needs to stop using the backing filesystem's
->      metadata to store information about what parts of the cache are
->      populated.  This is not reliable with modern extent-based filesystems.
+>  (7) Call fscache_note_page_release() from nfs_release_page().
 >
->      Fixing this is deferred to a separate patchset as it involves
->      negotiation with the network filesystem and the VM as to how much data
->      to download to fulfil a read - which brings me on to (2)...
+>  (8) Use a killable wait in nfs_vm_page_mkwrite() when waiting for
+>      PG_fscache to be cleared.
 >
->  (2) NFS and CIFS do not take account of how the cache would like I/O to be
->      structured to meet its granularity requirements.  Previously, the
->      cache used page granularity, which was fine as the network filesystems
->      also dealt in page granularity, and the backing filesystem (ext4, xfs
->      or whatever) did whatever it did out of sight.  However, we now have
->      folios to deal with and the cache will now have to store its own
->      metadata to track its contents.
->
->      The change I'm looking at making for cachefiles is to store content
->      bitmaps in one or more xattrs and making a bit in the map correspond
->      to something like a 256KiB block.  However, the size of an xattr and
->      the fact that they have to be read/updated in one go means that I'm
->      looking at covering 1GiB of data per 512-byte map and storing each map
->      in an xattr.  Cachefiles has the potential to grow into a fully
->      fledged filesystem of its very own if I'm not careful.
->
->      However, I'm also looking at changing things even more radically and
->      going to a different model of how the cache is arranged and managed -
->      one that's more akin to the way, say, openafs does things - which
->      brings me on to (3)...
->
->  (3) The way cachefilesd does culling is very inefficient for large caches
->      and it would be better to move it into the kernel if I can as
->      cachefilesd has to keep asking the kernel if it can cull a file.
->      Changing the way the backend works would allow this to be addressed.
->
->
-> BITS THAT MAY BE CONTROVERSIAL
-> ==============================
->
-> There are some bits I've added that may be controversial:
->
->  (1) I've provided a flag, S_KERNEL_FILE, that cachefiles uses to check if
->      a files is already being used by some other kernel service (e.g. a
->      duplicate cachefiles cache in the same directory) and reject it if it
->      is.  This isn't entirely necessary, but it helps prevent accidental
->      data corruption.
->
->      I don't want to use S_SWAPFILE as that has other effects, but quite
->      possibly swapon() should set S_KERNEL_FILE too.
->
->      Note that it doesn't prevent userspace from interfering, though
->      perhaps it should.  (I have made it prevent a marked directory from
->      being rmdir-able).
->
->  (2) Cachefiles wants to keep the backing file for a cookie open whilst we
->      might need to write to it from network filesystem writeback.  The
->      problem is that the network filesystem unuses its cookie when its file
->      is closed, and so we have nothing pinning the cachefiles file open and
->      it will get closed automatically after a short time to avoid
->      EMFILE/ENFILE problems.
->
->      Reopening the cache file, however, is a problem if this is being done
->      due to writeback triggered by exit().  Some filesystems will oops if
->      we try to open a file in that context because they want to access
->      current->fs or suchlike.
->
->      To get around this, I added the following:
->
->      (A) An inode flag, I_PINNING_FSCACHE_WB, to be set on a network
->          filesystem inode to indicate that we have a usage count on the
->          cookie caching that inode.
->
->      (B) A flag in struct writeback_control, unpinned_fscache_wb, that is
->          set when __writeback_single_inode() clears the last dirty page
->          from i_pages - at which point it clears I_PINNING_FSCACHE_WB and
->          sets this flag.
->
->          This has to be done here so that clearing I_PINNING_FSCACHE_WB can
->          be done atomically with the check of PAGECACHE_TAG_DIRTY that
->          clears I_DIRTY_PAGES.
->
->      (C) A function, fscache_set_page_dirty(), which if it is not set, sets
->          I_PINNING_FSCACHE_WB and calls fscache_use_cookie() to pin the
->          cache resources.
->
->      (D) A function, fscache_unpin_writeback(), to be called by
->          ->write_inode() to unuse the cookie.
->
->      (E) A function, fscache_clear_inode_writeback(), to be called when the
->          inode is evicted, before clear_inode() is called.  This cleans up
->          any lingering I_PINNING_FSCACHE_WB.
->
->      The network filesystem can then use these tools to make sure that
->      fscache_write_to_cache() can write locally modified data to the cache
->      as well as to the server.
->
->      For the future, I'm working on write helpers for netfs lib that should
->      allow this facility to be removed by keeping track of the dirty
->      regions separately - but that's incomplete at the moment and is also
->      going to be affected by folios, one way or another, since it deals
->      with pages.
->
->
-> These patches can be found also on:
->
->         https://git.kernel.org/pub/scm/linux/kernel/git/dhowells/linux-fs.git/log/?h=fscache-rewrite
->
-> David
->
+>  (9) The functions to read and write data to/from the cache are stubbed out
+>      pending a conversion to use netfslib.
 >
 > Changes
 > =======
 > ver #2:
->  - Fix an unused-var warning due to CONFIG_9P_FSCACHE=n.
 >  - Use gfpflags_allow_blocking() rather than using flag directly.
->  - Fixed some error logging in a couple of cachefiles functions.
->  - Fixed an error check in the fscache volume allocation.
->  - Need to unmark an inode we've moved to the graveyard before unlocking.
->  - Upgraded to -rc4 to allow for upstream changes to cifs.
->  - Should only change to inval state if can get access to cache.
->  - Don't hold n_accesses elevated whilst cache is bound to a cookie, but
->    rather add a flag that prevents the state machine from being queued when
->    n_accesses reaches 0.
->  - Remove the unused cookie pointer field from the fscache_acquire
->    tracepoint.
->  - Added missing transition to LRU_DISCARDING state.
->  - Added two ceph patches from Jeff Layton[2].
+>  - fscache_acquire_volume() now returns errors.
 >  - Remove NFS_INO_FSCACHE as it's no longer used.
->  - In NFS, need to unuse a cookie on file-release, not inode-clear.
->  - Filled in the NFS cache I/O routines, borrowing from the previously posted
->    fallback I/O code[3].
+>  - Need to unuse a cookie on file-release, not inode-clear.
 >
->
-> Link: https://lore.kernel.org/r/cover.1580251857.git.osandov@fb.com/ [1]
-> Link: https://lore.kernel.org/r/20211207134451.66296-1-jlayton@kernel.org/ [2]
-> Link: https://lore.kernel.org/r/163189108292.2509237.12615909591150927232.stgit@warthog.procyon.org.uk/ [3]
->
-> References
-> ==========
->
-> These patches have been published for review before, firstly as part of a
-> larger set:
->
-> Link: https://lore.kernel.org/r/158861203563.340223.7585359869938129395.stgit@warthog.procyon.org.uk/
->
-> Link: https://lore.kernel.org/r/159465766378.1376105.11619976251039287525.stgit@warthog.procyon.org.uk/
-> Link: https://lore.kernel.org/r/159465784033.1376674.18106463693989811037.stgit@warthog.procyon.org.uk/
-> Link: https://lore.kernel.org/r/159465821598.1377938.2046362270225008168.stgit@warthog.procyon.org.uk/
->
-> Link: https://lore.kernel.org/r/160588455242.3465195.3214733858273019178.stgit@warthog.procyon.org.uk/
->
-> Then as a cut-down set:
->
-> Link: https://lore.kernel.org/r/161118128472.1232039.11746799833066425131.stgit@warthog.procyon.org.uk/ # v1
-> Link: https://lore.kernel.org/r/161161025063.2537118.2009249444682241405.stgit@warthog.procyon.org.uk/ # v2
-> Link: https://lore.kernel.org/r/161340385320.1303470.2392622971006879777.stgit@warthog.procyon.org.uk/ # v3
-> Link: https://lore.kernel.org/r/161539526152.286939.8589700175877370401.stgit@warthog.procyon.org.uk/ # v4
-> Link: https://lore.kernel.org/r/161653784755.2770958.11820491619308713741.stgit@warthog.procyon.org.uk/ # v5
->
-> I split out a set to just restructure the I/O, which got merged back in to
-> this one:
->
-> Link: https://lore.kernel.org/r/163363935000.1980952.15279841414072653108.stgit@warthog.procyon.org.uk/
-> Link: https://lore.kernel.org/r/163189104510.2509237.10805032055807259087.stgit@warthog.procyon.org.uk/ # v2
-> Link: https://lore.kernel.org/r/163363935000.1980952.15279841414072653108.stgit@warthog.procyon.org.uk/ # v3
-> Link: https://lore.kernel.org/r/163551653404.1877519.12363794970541005441.stgit@warthog.procyon.org.uk/ # v4
->
-> ... and a larger set to do the conversion, also merged back into this one:
->
-> Link: https://lore.kernel.org/r/163456861570.2614702.14754548462706508617.stgit@warthog.procyon.org.uk/ # v1
-> Link: https://lore.kernel.org/r/163492911924.1038219.13107463173777870713.stgit@warthog.procyon.org.uk/ # v2
->
-> Older versions of this one:
->
-> Link: https://lore.kernel.org/r/163819575444.215744.318477214576928110.stgit@warthog.procyon.org.uk/ # v1
->
-> Proposals/information about the design have been published here:
->
-> Link: https://lore.kernel.org/r/24942.1573667720@warthog.procyon.org.uk/
-> Link: https://lore.kernel.org/r/2758811.1610621106@warthog.procyon.org.uk/
-> Link: https://lore.kernel.org/r/1441311.1598547738@warthog.procyon.org.uk/
-> Link: https://lore.kernel.org/r/160655.1611012999@warthog.procyon.org.uk/
->
-> And requests for information:
->
-> Link: https://lore.kernel.org/r/3326.1579019665@warthog.procyon.org.uk/
-> Link: https://lore.kernel.org/r/4467.1579020509@warthog.procyon.org.uk/
-> Link: https://lore.kernel.org/r/3577430.1579705075@warthog.procyon.org.uk/
->
-> I've posted partial patches to try and help 9p and cifs along:
->
-> Link: https://lore.kernel.org/r/1514086.1605697347@warthog.procyon.org.uk/
-> Link: https://lore.kernel.org/r/1794123.1605713481@warthog.procyon.org.uk/
-> Link: https://lore.kernel.org/r/241017.1612263863@warthog.procyon.org.uk/
-> Link: https://lore.kernel.org/r/270998.1612265397@warthog.procyon.org.uk/
->
+> Signed-off-by: Dave Wysochanski <dwysocha@redhat.com>
+> Co-developed-by: David Howells <dhowells@redhat.com>
+> Signed-off-by: David Howells <dhowells@redhat.com>
+> cc: Trond Myklebust <trond.myklebust@hammerspace.com>
+> cc: Anna Schumaker <anna.schumaker@netapp.com>
+> cc: linux-nfs@vger.kernel.org
+> cc: linux-cachefs@redhat.com
+> Link: https://lore.kernel.org/r/163819668938.215744.14448852181937731615.stgit@warthog.procyon.org.uk/ # v1
 > ---
-> Dave Wysochanski (1):
->       nfs: Convert to new fscache volume/cookie API
 >
-> David Howells (64):
->       fscache, cachefiles: Disable configuration
->       cachefiles: Delete the cachefiles driver pending rewrite
->       fscache: Remove the contents of the fscache driver, pending rewrite
->       netfs: Display the netfs inode number in the netfs_read tracepoint
->       netfs: Pass a flag to ->prepare_write() to say if there's no alloc'd space
->       fscache: Introduce new driver
->       fscache: Implement a hash function
->       fscache: Implement cache registration
->       fscache: Implement volume registration
->       fscache: Implement cookie registration
->       fscache: Implement cache-level access helpers
->       fscache: Implement volume-level access helpers
->       fscache: Implement cookie-level access helpers
->       fscache: Implement functions add/remove a cache
->       fscache: Provide and use cache methods to lookup/create/free a volume
->       fscache: Add a function for a cache backend to note an I/O error
->       fscache: Implement simple cookie state machine
->       fscache: Implement cookie user counting and resource pinning
->       fscache: Implement cookie invalidation
->       fscache: Provide a means to begin an operation
->       fscache: Count data storage objects in a cache
->       fscache: Provide read/write stat counters for the cache
->       fscache: Provide a function to let the netfs update its coherency data
->       netfs: Pass more information on how to deal with a hole in the cache
->       fscache: Implement raw I/O interface
->       fscache: Implement higher-level write I/O interface
->       vfs, fscache: Implement pinning of cache usage for writeback
->       fscache: Provide a function to note the release of a page
->       fscache: Provide a function to resize a cookie
->       cachefiles: Introduce rewritten driver
->       cachefiles: Define structs
->       cachefiles: Add some error injection support
->       cachefiles: Add a couple of tracepoints for logging errors
->       cachefiles: Add cache error reporting macro
->       cachefiles: Add security derivation
->       cachefiles: Register a miscdev and parse commands over it
->       cachefiles: Provide a function to check how much space there is
->       vfs, cachefiles: Mark a backing file in use with an inode flag
->       cachefiles: Implement a function to get/create a directory in the cache
->       cachefiles: Implement cache registration and withdrawal
->       cachefiles: Implement volume support
->       cachefiles: Add tracepoints for calls to the VFS
->       cachefiles: Implement object lifecycle funcs
->       cachefiles: Implement key to filename encoding
->       cachefiles: Implement metadata/coherency data storage in xattrs
->       cachefiles: Mark a backing file in use with an inode flag
->       cachefiles: Implement culling daemon commands
->       cachefiles: Implement backing file wrangling
->       cachefiles: Implement begin and end I/O operation
->       cachefiles: Implement cookie resize for truncate
->       cachefiles: Implement the I/O routines
->       cachefiles: Allow cachefiles to actually function
->       fscache, cachefiles: Display stats of no-space events
->       fscache, cachefiles: Display stat of culling events
->       afs: Handle len being extending over page end in write_begin/write_end
->       afs: Fix afs_write_end() to handle len > page size
->       afs: Convert afs to use the new fscache API
->       afs: Copy local writes to the cache when writing to the server
->       afs: Skip truncation on the server of data we haven't written yet
->       9p: Use fscache indexing rewrite and reenable caching
->       9p: Copy local writes to the cache when writing to the server
->       nfs: Implement cache I/O by accessing the cache directly
->       cifs: Support fscache indexing rewrite (untested)
->       fscache: Rewrite documentation
->
-> Jeff Layton (2):
->       ceph: conversion to new fscache API
->       ceph: add fscache writeback support
->
->
->  .../filesystems/caching/backend-api.rst       |  847 ++++------
->  .../filesystems/caching/cachefiles.rst        |    6 +-
->  Documentation/filesystems/caching/fscache.rst |  525 ++----
->  Documentation/filesystems/caching/index.rst   |    4 +-
->  .../filesystems/caching/netfs-api.rst         | 1083 ++++---------
->  Documentation/filesystems/caching/object.rst  |  313 ----
->  .../filesystems/caching/operations.rst        |  210 ---
->  Documentation/filesystems/netfs_library.rst   |   16 +-
->  fs/9p/Kconfig                                 |    2 +-
->  fs/9p/cache.c                                 |  193 +--
->  fs/9p/cache.h                                 |   25 +-
->  fs/9p/v9fs.c                                  |   17 +-
->  fs/9p/v9fs.h                                  |   13 +-
->  fs/9p/vfs_addr.c                              |   54 +-
->  fs/9p/vfs_dir.c                               |   11 +
->  fs/9p/vfs_file.c                              |    3 +-
->  fs/9p/vfs_inode.c                             |   24 +-
->  fs/9p/vfs_inode_dotl.c                        |    3 +-
->  fs/9p/vfs_super.c                             |    3 +
->  fs/afs/Kconfig                                |    2 +-
->  fs/afs/Makefile                               |    3 -
->  fs/afs/cache.c                                |   68 -
->  fs/afs/cell.c                                 |   12 -
->  fs/afs/file.c                                 |   37 +-
->  fs/afs/inode.c                                |  101 +-
->  fs/afs/internal.h                             |   37 +-
->  fs/afs/main.c                                 |   14 -
->  fs/afs/super.c                                |    1 +
->  fs/afs/volume.c                               |   29 +-
->  fs/afs/write.c                                |  100 +-
->  fs/cachefiles/Kconfig                         |    7 +
->  fs/cachefiles/Makefile                        |    6 +-
->  fs/cachefiles/bind.c                          |  278 ----
->  fs/cachefiles/cache.c                         |  378 +++++
->  fs/cachefiles/daemon.c                        |  180 +--
->  fs/cachefiles/error_inject.c                  |   46 +
->  fs/cachefiles/interface.c                     |  747 ++++-----
->  fs/cachefiles/internal.h                      |  265 ++--
->  fs/cachefiles/io.c                            |  330 ++--
->  fs/cachefiles/key.c                           |  201 ++-
->  fs/cachefiles/main.c                          |   22 +-
->  fs/cachefiles/namei.c                         | 1221 ++++++--------
->  fs/cachefiles/rdwr.c                          |  972 ------------
->  fs/cachefiles/security.c                      |    2 +-
->  fs/cachefiles/volume.c                        |  118 ++
->  fs/cachefiles/xattr.c                         |  369 ++---
->  fs/ceph/Kconfig                               |    2 +-
->  fs/ceph/addr.c                                |  101 +-
->  fs/ceph/cache.c                               |  218 +--
->  fs/ceph/cache.h                               |   97 +-
->  fs/ceph/caps.c                                |    3 +-
->  fs/ceph/file.c                                |   13 +-
->  fs/ceph/inode.c                               |   22 +-
->  fs/ceph/super.c                               |   10 +-
->  fs/ceph/super.h                               |    3 +-
->  fs/cifs/Kconfig                               |    2 +-
->  fs/cifs/Makefile                              |    2 +-
->  fs/cifs/cache.c                               |  105 --
->  fs/cifs/cifsfs.c                              |   11 +-
->  fs/cifs/cifsglob.h                            |    5 +-
->  fs/cifs/connect.c                             |   12 -
->  fs/cifs/file.c                                |   64 +-
->  fs/cifs/fscache.c                             |  319 +---
->  fs/cifs/fscache.h                             |  106 +-
->  fs/cifs/inode.c                               |   36 +-
->  fs/fs-writeback.c                             |    8 +
->  fs/fscache/Makefile                           |    6 +-
->  fs/fscache/cache.c                            |  618 ++++----
->  fs/fscache/cookie.c                           | 1402 +++++++++--------
->  fs/fscache/fsdef.c                            |   98 --
->  fs/fscache/internal.h                         |  315 +---
->  fs/fscache/io.c                               |  376 ++++-
->  fs/fscache/main.c                             |  136 +-
->  fs/fscache/netfs.c                            |   74 -
->  fs/fscache/object.c                           | 1125 -------------
->  fs/fscache/operation.c                        |  633 --------
->  fs/fscache/page.c                             | 1242 ---------------
->  fs/fscache/proc.c                             |   45 +-
->  fs/fscache/stats.c                            |  293 +---
->  fs/fscache/volume.c                           |  508 ++++++
->  fs/namei.c                                    |    3 +-
->  fs/netfs/read_helper.c                        |   10 +-
->  fs/nfs/Kconfig                                |    2 +-
->  fs/nfs/Makefile                               |    2 +-
->  fs/nfs/client.c                               |    4 -
->  fs/nfs/direct.c                               |    2 +
->  fs/nfs/file.c                                 |   13 +-
->  fs/nfs/fscache-index.c                        |  140 --
->  fs/nfs/fscache.c                              |  490 ++----
->  fs/nfs/fscache.h                              |  182 +--
->  fs/nfs/inode.c                                |   11 +-
->  fs/nfs/nfstrace.h                             |    1 -
->  fs/nfs/read.c                                 |   25 +-
->  fs/nfs/super.c                                |   28 +-
->  fs/nfs/write.c                                |    8 +-
->  include/linux/fs.h                            |    4 +
->  include/linux/fscache-cache.h                 |  614 ++------
->  include/linux/fscache.h                       | 1015 +++++-------
->  include/linux/netfs.h                         |   15 +-
->  include/linux/nfs_fs.h                        |    1 -
->  include/linux/nfs_fs_sb.h                     |    9 +-
->  include/linux/writeback.h                     |    1 +
->  include/trace/events/cachefiles.h             |  487 ++++--
->  include/trace/events/fscache.h                |  626 ++++----
->  include/trace/events/netfs.h                  |    5 +-
->  105 files changed, 7121 insertions(+), 13485 deletions(-)
->  delete mode 100644 Documentation/filesystems/caching/object.rst
->  delete mode 100644 Documentation/filesystems/caching/operations.rst
->  delete mode 100644 fs/afs/cache.c
->  delete mode 100644 fs/cachefiles/bind.c
->  create mode 100644 fs/cachefiles/cache.c
->  create mode 100644 fs/cachefiles/error_inject.c
->  delete mode 100644 fs/cachefiles/rdwr.c
->  create mode 100644 fs/cachefiles/volume.c
->  delete mode 100644 fs/cifs/cache.c
->  delete mode 100644 fs/fscache/fsdef.c
->  delete mode 100644 fs/fscache/netfs.c
->  delete mode 100644 fs/fscache/object.c
->  delete mode 100644 fs/fscache/operation.c
->  delete mode 100644 fs/fscache/page.c
->  create mode 100644 fs/fscache/volume.c
+>  fs/nfs/Kconfig            |    2
+>  fs/nfs/Makefile           |    2
+>  fs/nfs/client.c           |    4
+>  fs/nfs/direct.c           |    2
+>  fs/nfs/file.c             |   13 +
+>  fs/nfs/fscache-index.c    |  140 ---------------
+>  fs/nfs/fscache.c          |  434 +++++++++++----------------------------------
+>  fs/nfs/fscache.h          |  126 ++++---------
+>  fs/nfs/inode.c            |   11 -
+>  fs/nfs/nfstrace.h         |    1
+>  fs/nfs/super.c            |   28 ++-
+>  fs/nfs/write.c            |    1
+>  include/linux/nfs_fs.h    |    1
+>  include/linux/nfs_fs_sb.h |    9 -
+>  14 files changed, 171 insertions(+), 603 deletions(-)
 >  delete mode 100644 fs/nfs/fscache-index.c
 >
+> diff --git a/fs/nfs/Kconfig b/fs/nfs/Kconfig
+> index bdc11b89eac5..14a72224b657 100644
+> --- a/fs/nfs/Kconfig
+> +++ b/fs/nfs/Kconfig
+> @@ -170,7 +170,7 @@ config ROOT_NFS
 >
-
-Testing this with NFS and fscache enabled.
-- fscache unit tests: PASS
-- xfstests NFSv4.2 (rhel8 server): PASS
-- xfstests NFSv4.1 (netapp server): PASS
-- xfstests NFSv4.0 (netapp server): PASS
-- xfstests NFSv3 (rhel8 server): FAIL (see below use after free w/kasan)
-
-NOTE: I had one patch that converted nfs fscache dfprintk's dfprintks
-to trace events on top of your series, but tracepoints were not
-enabled, and I don't think my patch was a contributor to this kasan
-use-after-free.  Unfortunately after I rebuilt it, I did not reproduce
-the problem so far.  I wonder if there is a race with
-nfs_fscache_open_file(), fscache_use_cookie() and then
-fscache_invalidate(), but I've not read through this enough to map out
-a possible theory.  Maybe you can spot it faster than me.
-
-
-[  405.242590] run fstests generic/011 at 2021-12-10 11:44:26^M
-[  432.920087] ==================================================================^M
-[  432.921382] BUG: KASAN: use-after-free in
-fscache_unhash_cookie+0x9e/0x160 [fscache]^M
-[  432.922617] Write of size 8 at addr ffff88812c185200 by task
-kworker/u16:179/8137^M
-[  432.923795] ^M
-[  432.924059] CPU: 0 PID: 8137 Comm: kworker/u16:179 Kdump: loaded
-Not tainted 5.16.0-rc4-fscache-rewrite-trace-kasan+ #13^M
-[  432.925737] Hardware name: QEMU Standard PC (Q35 + ICH9, 2009),
-BIOS 1.14.0-4.fc34 04/01/2014^M
-[  432.927057] Workqueue: fscache fscache_cookie_worker [fscache]^M
-[  432.928035] Call Trace:^M
-[  432.928467]  <TASK>^M
-[  432.928844]  dump_stack_lvl+0x48/0x5e^M
-[  432.929447]  print_address_description.constprop.0+0x1f/0x140^M
-[  432.930363]  ? fscache_unhash_cookie+0x9e/0x160 [fscache]^M
-[  432.931240]  kasan_report.cold+0x7f/0x11b^M
-[  432.931891]  ? fscache_unhash_cookie+0x9e/0x160 [fscache]^M
-[  432.932773]  fscache_unhash_cookie+0x9e/0x160 [fscache]^M
-[  432.933626]  fscache_cookie_worker+0x1f0/0xad0 [fscache]^M
-[  432.934477]  ? _raw_spin_unlock_bh+0x20/0x20^M
-[  432.935180]  ? __list_add_valid+0x2f/0x60^M
-[  432.935820]  process_one_work+0x3d2/0x710^M
-[  432.936702]  worker_thread+0x2d2/0x6e0^M
-[  432.937475]  ? process_one_work+0x710/0x710^M
-[  432.938177]  kthread+0x223/0x260^M
-[  432.938711]  ? set_kthread_struct+0x80/0x80^M
-[  432.939395]  ret_from_fork+0x22/0x30^M
-[  432.940010]  </TASK>^M
-[  432.940388] ^M
-[  432.940672] Allocated by task 9139:^M
-[  432.941253]  kasan_save_stack+0x1e/0x50^M
-[  432.941888]  __kasan_slab_alloc+0x66/0x80^M
-[  432.942553]  kmem_cache_alloc+0x147/0x2c0^M
-[  432.943233]  __fscache_acquire_cookie+0xa1/0x9b0 [fscache]^M
-[  432.944125]  nfs_fscache_init_inode+0x2dc/0x340 [nfs]^M
-[  432.945038]  nfs_fhget+0x757/0xcd0 [nfs]^M
-[  432.945745]  nfs_add_or_obtain+0x163/0x190 [nfs]^M
-[  432.946563]  nfs3_proc_create+0x1e0/0x4f0 [nfsv3]^M
-[  432.947324]  nfs_create+0x106/0x270 [nfs]^M
-[  432.948054]  path_openat+0x14ec/0x1810^M
-[  432.948679]  do_filp_open+0x131/0x230^M
-[  432.949281]  do_sys_openat2+0xe4/0x240^M
-[  432.949903]  __x64_sys_creat+0x99/0xb0^M
-[  432.949903]  __x64_sys_creat+0x99/0xb0^M
-[  432.950520]  do_syscall_64+0x3b/0x90^M
-[  432.951113]  entry_SYSCALL_64_after_hwframe+0x44/0xae^M
-[  432.951932] ^M
-[  432.952207] Freed by task 8191:^M
-[  432.952727]  kasan_save_stack+0x1e/0x50^M
-[  432.953369]  kasan_set_track+0x21/0x30^M
-[  432.953969]  kasan_set_free_info+0x20/0x30^M
-[  432.954626]  __kasan_slab_free+0xec/0x120^M
-[  432.955288]  slab_free_freelist_hook+0x66/0x130^M
-[  432.956002]  kmem_cache_free+0x108/0x400^M
-[  432.956640]  fscache_put_cookie+0x10f/0x150 [fscache]^M
-[  432.957454]  process_one_work+0x3d2/0x710^M
-[  432.958111]  worker_thread+0x2d2/0x6e0^M
-[  432.958761]  kthread+0x223/0x260^M
-[  432.959298]  ret_from_fork+0x22/0x30^M
-[  432.959884] ^M
-[  432.960151] Last potentially related work creation:^M
-[  432.960914]  kasan_save_stack+0x1e/0x50^M
-[  432.961531]  __kasan_record_aux_stack+0xae/0xc0^M
-[  432.962255]  insert_work+0x34/0x190^M
-[  432.962825]  __queue_work+0x336/0x680^M
-[  432.963412]  queue_work_on+0x60/0x70^M
-[  432.963983]  __fscache_withdraw_cookie+0xab/0x160 [fscache]^M
-[  432.964860]  fscache_cookie_lru_worker+0x227/0x2f0 [fscache]^M
-[  432.965746]  process_one_work+0x3d2/0x710^M
-[  432.966394]  worker_thread+0x2d2/0x6e0^M
-[  432.966982]  kthread+0x223/0x260^M
-[  432.967515]  ret_from_fork+0x22/0x30^M
-[  432.968088] ^M
-[  432.968354] Second to last potentially related work creation:^M
-[  432.969236]  kasan_save_stack+0x1e/0x50^M
-[  432.969843]  __kasan_record_aux_stack+0xae/0xc0^M
-[  432.970554]  insert_work+0x34/0x190^M
-[  432.971109]  __queue_work+0x336/0x680^M
-[  432.971688]  queue_work_on+0x60/0x70^M
-[  432.972252]  __fscache_use_cookie+0x25b/0x370 [fscache]^M
-[  432.973083]  nfs_fscache_open_file+0xb0/0x230 [nfs]^M
-[  432.973918]  nfs_open+0x7a/0xc0 [nfs]^M
-[  432.974592]  do_dentry_open+0x28c/0x690^M
-[  432.975203]  path_openat+0x1139/0x1810^M
-[  432.975796]  do_filp_open+0x131/0x230^M
-[  432.976374]  do_sys_openat2+0xe4/0x240^M
-[  432.976978]  __x64_sys_creat+0x99/0xb0^M
-[  432.977573]  do_syscall_64+0x3b/0x90^M
-[  432.978147]  entry_SYSCALL_64_after_hwframe+0x44/0xae^M
-[  432.978927] ^M
-[  432.979191] The buggy address belongs to the object at ffff88812c1851d0^M
-[  432.979191]  which belongs to the cache fscache_cookie_jar of size 176^M
-[  432.981138] The buggy address is located 48 bytes inside of^M
-[  432.981138]  176-byte region [ffff88812c1851d0, ffff88812c185280)^M
-[  432.982859] The buggy address belongs to the page:^M
-[  432.983604] page:00000000200db521 refcount:1 mapcount:0
-mapping:0000000000000000 index:0xffff88812c1852c0 pfn:0x12c184^M
-[  432.985230] head:00000000200db521 order:1 compound_mapcount:0^M
-[  432.986102] flags:
-0x17ffffc0010200(slab|head|node=0|zone=2|lastcpupid=0x1fffff)^M
-[  432.987245] raw: 0017ffffc0010200 ffffea00042d6f00 dead000000000004
-ffff888110b8d180^M
-[  432.988413] raw: ffff88812c1852c0 0000000080220020 00000001ffffffff
-0000000000000000^M
-[  432.989589] page dumped because: kasan: bad access detected^M
-[  432.990470] ^M
-[  432.990751] Memory state around the buggy address:^M
-[  432.991487]  ffff88812c185100: fb fb fb fb fb fb fb fb fb fb fb fb
-fb fb fb fb^M
-[  432.992586]  ffff88812c185180: fb fb fc fc fc fc fc fc fc fc fa fb
-fb fb fb fb^M
-[  432.993696] >ffff88812c185200: fb fb fb fb fb fb fb fb fb fb fb fb
-fb fb fb fb^M
-[  432.994803]                    ^^M
-[  432.995330]  ffff88812c185280: fc fc fc fc fc fc fc fc fb fb fb fb
-fb fb fb fb^M
-[  432.996439]  ffff88812c185300: fb fb fb fb fb fb fb fb fb fb fb fb
-fb fb fc fc^M
-[  432.997536] ==================================================================^M
-[  432.998622] Disabling lock debugging due to kernel taint^M
-[  452.411206] run fstests generic/012 at 2021-12-10 11:45:14^M
+>  config NFS_FSCACHE
+>         bool "Provide NFS client caching support"
+> -       depends on NFS_FS=m && FSCACHE_OLD_API || NFS_FS=y && FSCACHE_OLD_API=y
+> +       depends on NFS_FS=m && FSCACHE || NFS_FS=y && FSCACHE=y
+>         help
+>           Say Y here if you want NFS data to be cached locally on disc through
+>           the general filesystem cache manager
+> diff --git a/fs/nfs/Makefile b/fs/nfs/Makefile
+> index 22d11fdc6deb..5f6db37f461e 100644
+> --- a/fs/nfs/Makefile
+> +++ b/fs/nfs/Makefile
+> @@ -12,7 +12,7 @@ nfs-y                         := client.o dir.o file.o getroot.o inode.o super.o \
+>                            export.o sysfs.o fs_context.o
+>  nfs-$(CONFIG_ROOT_NFS) += nfsroot.o
+>  nfs-$(CONFIG_SYSCTL)   += sysctl.o
+> -nfs-$(CONFIG_NFS_FSCACHE) += fscache.o fscache-index.o
+> +nfs-$(CONFIG_NFS_FSCACHE) += fscache.o
+>
+>  obj-$(CONFIG_NFS_V2) += nfsv2.o
+>  nfsv2-y := nfs2super.o proc.o nfs2xdr.o
+> diff --git a/fs/nfs/client.c b/fs/nfs/client.c
+> index 1e4dc1ab9312..8d8b85b5a641 100644
+> --- a/fs/nfs/client.c
+> +++ b/fs/nfs/client.c
+> @@ -183,8 +183,6 @@ struct nfs_client *nfs_alloc_client(const struct nfs_client_initdata *cl_init)
+>         clp->cl_net = get_net(cl_init->net);
+>
+>         clp->cl_principal = "*";
+> -       nfs_fscache_get_client_cookie(clp);
+> -
+>         return clp;
+>
+>  error_cleanup:
+> @@ -238,8 +236,6 @@ static void pnfs_init_server(struct nfs_server *server)
+>   */
+>  void nfs_free_client(struct nfs_client *clp)
+>  {
+> -       nfs_fscache_release_client_cookie(clp);
+> -
+>         /* -EIO all pending I/O */
+>         if (!IS_ERR(clp->cl_rpcclient))
+>                 rpc_shutdown_client(clp->cl_rpcclient);
+> diff --git a/fs/nfs/direct.c b/fs/nfs/direct.c
+> index 9cff8709c80a..eabfdab543c8 100644
+> --- a/fs/nfs/direct.c
+> +++ b/fs/nfs/direct.c
+> @@ -59,6 +59,7 @@
+>  #include "internal.h"
+>  #include "iostat.h"
+>  #include "pnfs.h"
+> +#include "fscache.h"
+>
+>  #define NFSDBG_FACILITY                NFSDBG_VFS
+>
+> @@ -959,6 +960,7 @@ ssize_t nfs_file_direct_write(struct kiocb *iocb, struct iov_iter *iter)
+>         } else {
+>                 result = requested;
+>         }
+> +       nfs_fscache_invalidate(inode, FSCACHE_INVAL_DIO_WRITE);
+>  out_release:
+>         nfs_direct_req_release(dreq);
+>  out:
+> diff --git a/fs/nfs/file.c b/fs/nfs/file.c
+> index 24e7dccce355..76d76acbc594 100644
+> --- a/fs/nfs/file.c
+> +++ b/fs/nfs/file.c
+> @@ -84,6 +84,7 @@ nfs_file_release(struct inode *inode, struct file *filp)
+>
+>         nfs_inc_stats(inode, NFSIOS_VFSRELEASE);
+>         nfs_file_clear_open_context(filp);
+> +       nfs_fscache_release_file(inode, filp);
+>         return 0;
+>  }
+>  EXPORT_SYMBOL_GPL(nfs_file_release);
+> @@ -415,8 +416,7 @@ static void nfs_invalidate_page(struct page *page, unsigned int offset,
+>                 return;
+>         /* Cancel any unstarted writes on this page */
+>         nfs_wb_page_cancel(page_file_mapping(page)->host, page);
+> -
+> -       nfs_fscache_invalidate_page(page, page->mapping->host);
+> +       wait_on_page_fscache(page);
+>  }
+>
+>  /*
+> @@ -475,12 +475,11 @@ static void nfs_check_dirty_writeback(struct page *page,
+>  static int nfs_launder_page(struct page *page)
+>  {
+>         struct inode *inode = page_file_mapping(page)->host;
+> -       struct nfs_inode *nfsi = NFS_I(inode);
+>
+>         dfprintk(PAGECACHE, "NFS: launder_page(%ld, %llu)\n",
+>                 inode->i_ino, (long long)page_offset(page));
+>
+> -       nfs_fscache_wait_on_page_write(nfsi, page);
+> +       wait_on_page_fscache(page);
+>         return nfs_wb_page(inode, page);
+>  }
+>
+> @@ -555,7 +554,11 @@ static vm_fault_t nfs_vm_page_mkwrite(struct vm_fault *vmf)
+>         sb_start_pagefault(inode->i_sb);
+>
+>         /* make sure the cache has finished storing the page */
+> -       nfs_fscache_wait_on_page_write(NFS_I(inode), page);
+> +       if (PageFsCache(page) &&
+> +           wait_on_page_fscache_killable(vmf->page) < 0) {
+> +               ret = VM_FAULT_RETRY;
+> +               goto out;
+> +       }
+>
+>         wait_on_bit_action(&NFS_I(inode)->flags, NFS_INO_INVALIDATING,
+>                         nfs_wait_bit_killable, TASK_KILLABLE);
+> diff --git a/fs/nfs/fscache-index.c b/fs/nfs/fscache-index.c
+> deleted file mode 100644
+> index 573b1da9342c..000000000000
+> --- a/fs/nfs/fscache-index.c
+> +++ /dev/null
+> @@ -1,140 +0,0 @@
+> -// SPDX-License-Identifier: GPL-2.0-or-later
+> -/* NFS FS-Cache index structure definition
+> - *
+> - * Copyright (C) 2008 Red Hat, Inc. All Rights Reserved.
+> - * Written by David Howells (dhowells@redhat.com)
+> - */
+> -
+> -#include <linux/init.h>
+> -#include <linux/kernel.h>
+> -#include <linux/sched.h>
+> -#include <linux/mm.h>
+> -#include <linux/nfs_fs.h>
+> -#include <linux/nfs_fs_sb.h>
+> -#include <linux/in6.h>
+> -#include <linux/iversion.h>
+> -
+> -#include "internal.h"
+> -#include "fscache.h"
+> -
+> -#define NFSDBG_FACILITY                NFSDBG_FSCACHE
+> -
+> -/*
+> - * Define the NFS filesystem for FS-Cache.  Upon registration FS-Cache sticks
+> - * the cookie for the top-level index object for NFS into here.  The top-level
+> - * index can than have other cache objects inserted into it.
+> - */
+> -struct fscache_netfs nfs_fscache_netfs = {
+> -       .name           = "nfs",
+> -       .version        = 0,
+> -};
+> -
+> -/*
+> - * Register NFS for caching
+> - */
+> -int nfs_fscache_register(void)
+> -{
+> -       return fscache_register_netfs(&nfs_fscache_netfs);
+> -}
+> -
+> -/*
+> - * Unregister NFS for caching
+> - */
+> -void nfs_fscache_unregister(void)
+> -{
+> -       fscache_unregister_netfs(&nfs_fscache_netfs);
+> -}
+> -
+> -/*
+> - * Define the server object for FS-Cache.  This is used to describe a server
+> - * object to fscache_acquire_cookie().  It is keyed by the NFS protocol and
+> - * server address parameters.
+> - */
+> -const struct fscache_cookie_def nfs_fscache_server_index_def = {
+> -       .name           = "NFS.server",
+> -       .type           = FSCACHE_COOKIE_TYPE_INDEX,
+> -};
+> -
+> -/*
+> - * Define the superblock object for FS-Cache.  This is used to describe a
+> - * superblock object to fscache_acquire_cookie().  It is keyed by all the NFS
+> - * parameters that might cause a separate superblock.
+> - */
+> -const struct fscache_cookie_def nfs_fscache_super_index_def = {
+> -       .name           = "NFS.super",
+> -       .type           = FSCACHE_COOKIE_TYPE_INDEX,
+> -};
+> -
+> -/*
+> - * Consult the netfs about the state of an object
+> - * - This function can be absent if the index carries no state data
+> - * - The netfs data from the cookie being used as the target is
+> - *   presented, as is the auxiliary data
+> - */
+> -static
+> -enum fscache_checkaux nfs_fscache_inode_check_aux(void *cookie_netfs_data,
+> -                                                 const void *data,
+> -                                                 uint16_t datalen,
+> -                                                 loff_t object_size)
+> -{
+> -       struct nfs_fscache_inode_auxdata auxdata;
+> -       struct nfs_inode *nfsi = cookie_netfs_data;
+> -
+> -       if (datalen != sizeof(auxdata))
+> -               return FSCACHE_CHECKAUX_OBSOLETE;
+> -
+> -       memset(&auxdata, 0, sizeof(auxdata));
+> -       auxdata.mtime_sec  = nfsi->vfs_inode.i_mtime.tv_sec;
+> -       auxdata.mtime_nsec = nfsi->vfs_inode.i_mtime.tv_nsec;
+> -       auxdata.ctime_sec  = nfsi->vfs_inode.i_ctime.tv_sec;
+> -       auxdata.ctime_nsec = nfsi->vfs_inode.i_ctime.tv_nsec;
+> -
+> -       if (NFS_SERVER(&nfsi->vfs_inode)->nfs_client->rpc_ops->version == 4)
+> -               auxdata.change_attr = inode_peek_iversion_raw(&nfsi->vfs_inode);
+> -
+> -       if (memcmp(data, &auxdata, datalen) != 0)
+> -               return FSCACHE_CHECKAUX_OBSOLETE;
+> -
+> -       return FSCACHE_CHECKAUX_OKAY;
+> -}
+> -
+> -/*
+> - * Get an extra reference on a read context.
+> - * - This function can be absent if the completion function doesn't require a
+> - *   context.
+> - * - The read context is passed back to NFS in the event that a data read on the
+> - *   cache fails with EIO - in which case the server must be contacted to
+> - *   retrieve the data, which requires the read context for security.
+> - */
+> -static void nfs_fh_get_context(void *cookie_netfs_data, void *context)
+> -{
+> -       get_nfs_open_context(context);
+> -}
+> -
+> -/*
+> - * Release an extra reference on a read context.
+> - * - This function can be absent if the completion function doesn't require a
+> - *   context.
+> - */
+> -static void nfs_fh_put_context(void *cookie_netfs_data, void *context)
+> -{
+> -       if (context)
+> -               put_nfs_open_context(context);
+> -}
+> -
+> -/*
+> - * Define the inode object for FS-Cache.  This is used to describe an inode
+> - * object to fscache_acquire_cookie().  It is keyed by the NFS file handle for
+> - * an inode.
+> - *
+> - * Coherency is managed by comparing the copies of i_size, i_mtime and i_ctime
+> - * held in the cache auxiliary data for the data storage object with those in
+> - * the inode struct in memory.
+> - */
+> -const struct fscache_cookie_def nfs_fscache_inode_object_def = {
+> -       .name           = "NFS.fh",
+> -       .type           = FSCACHE_COOKIE_TYPE_DATAFILE,
+> -       .check_aux      = nfs_fscache_inode_check_aux,
+> -       .get_context    = nfs_fh_get_context,
+> -       .put_context    = nfs_fh_put_context,
+> -};
+> diff --git a/fs/nfs/fscache.c b/fs/nfs/fscache.c
+> index d743629e05e1..d10e50ab0b3d 100644
+> --- a/fs/nfs/fscache.c
+> +++ b/fs/nfs/fscache.c
+> @@ -22,24 +22,18 @@
+>
+>  #define NFSDBG_FACILITY                NFSDBG_FSCACHE
+>
+> -static struct rb_root nfs_fscache_keys = RB_ROOT;
+> -static DEFINE_SPINLOCK(nfs_fscache_keys_lock);
+> +#define NFS_MAX_KEY_LEN 1000
+>
+> -/*
+> - * Layout of the key for an NFS server cache object.
+> - */
+> -struct nfs_server_key {
+> -       struct {
+> -               uint16_t        nfsversion;             /* NFS protocol version */
+> -               uint32_t        minorversion;           /* NFSv4 minor version */
+> -               uint16_t        family;                 /* address family */
+> -               __be16          port;                   /* IP port */
+> -       } hdr;
+> -       union {
+> -               struct in_addr  ipv4_addr;      /* IPv4 address */
+> -               struct in6_addr ipv6_addr;      /* IPv6 address */
+> -       };
+> -} __packed;
+> +static bool nfs_append_int(char *key, int *_len, unsigned long long x)
+> +{
+> +       if (*_len > NFS_MAX_KEY_LEN)
+> +               return false;
+> +       if (x == 0)
+> +               key[(*_len)++] = ',';
+> +       else
+> +               *_len += sprintf(key + *_len, ",%llx", x);
+> +       return true;
+> +}
+>
+>  /*
+>   * Get the per-client index cookie for an NFS client if the appropriate mount
+> @@ -47,160 +41,108 @@ struct nfs_server_key {
+>   * - We always try and get an index cookie for the client, but get filehandle
+>   *   cookies on a per-superblock basis, depending on the mount flags
+>   */
+> -void nfs_fscache_get_client_cookie(struct nfs_client *clp)
+> +static bool nfs_fscache_get_client_key(struct nfs_client *clp,
+> +                                      char *key, int *_len)
+>  {
+>         const struct sockaddr_in6 *sin6 = (struct sockaddr_in6 *) &clp->cl_addr;
+>         const struct sockaddr_in *sin = (struct sockaddr_in *) &clp->cl_addr;
+> -       struct nfs_server_key key;
+> -       uint16_t len = sizeof(key.hdr);
+>
+> -       memset(&key, 0, sizeof(key));
+> -       key.hdr.nfsversion = clp->rpc_ops->version;
+> -       key.hdr.minorversion = clp->cl_minorversion;
+> -       key.hdr.family = clp->cl_addr.ss_family;
+> +       *_len += snprintf(key + *_len, NFS_MAX_KEY_LEN - *_len,
+> +                         ",%u.%u,%x",
+> +                         clp->rpc_ops->version,
+> +                         clp->cl_minorversion,
+> +                         clp->cl_addr.ss_family);
+>
+>         switch (clp->cl_addr.ss_family) {
+>         case AF_INET:
+> -               key.hdr.port = sin->sin_port;
+> -               key.ipv4_addr = sin->sin_addr;
+> -               len += sizeof(key.ipv4_addr);
+> -               break;
+> +               if (!nfs_append_int(key, _len, sin->sin_port) ||
+> +                   !nfs_append_int(key, _len, sin->sin_addr.s_addr))
+> +                       return false;
+> +               return true;
+>
+>         case AF_INET6:
+> -               key.hdr.port = sin6->sin6_port;
+> -               key.ipv6_addr = sin6->sin6_addr;
+> -               len += sizeof(key.ipv6_addr);
+> -               break;
+> +               if (!nfs_append_int(key, _len, sin6->sin6_port) ||
+> +                   !nfs_append_int(key, _len, sin6->sin6_addr.s6_addr32[0]) ||
+> +                   !nfs_append_int(key, _len, sin6->sin6_addr.s6_addr32[1]) ||
+> +                   !nfs_append_int(key, _len, sin6->sin6_addr.s6_addr32[2]) ||
+> +                   !nfs_append_int(key, _len, sin6->sin6_addr.s6_addr32[3]))
+> +                       return false;
+> +               return true;
+>
+>         default:
+>                 printk(KERN_WARNING "NFS: Unknown network family '%d'\n",
+>                        clp->cl_addr.ss_family);
+> -               clp->fscache = NULL;
+> -               return;
+> +               return false;
+>         }
+> -
+> -       /* create a cache index for looking up filehandles */
+> -       clp->fscache = fscache_acquire_cookie(nfs_fscache_netfs.primary_index,
+> -                                             &nfs_fscache_server_index_def,
+> -                                             &key, len,
+> -                                             NULL, 0,
+> -                                             clp, 0, true);
+> -       dfprintk(FSCACHE, "NFS: get client cookie (0x%p/0x%p)\n",
+> -                clp, clp->fscache);
+> -}
+> -
+> -/*
+> - * Dispose of a per-client cookie
+> - */
+> -void nfs_fscache_release_client_cookie(struct nfs_client *clp)
+> -{
+> -       dfprintk(FSCACHE, "NFS: releasing client cookie (0x%p/0x%p)\n",
+> -                clp, clp->fscache);
+> -
+> -       fscache_relinquish_cookie(clp->fscache, NULL, false);
+> -       clp->fscache = NULL;
+>  }
+>
+>  /*
+> - * Get the cache cookie for an NFS superblock.  We have to handle
+> - * uniquification here because the cache doesn't do it for us.
+> + * Get the cache cookie for an NFS superblock.
+>   *
+>   * The default uniquifier is just an empty string, but it may be overridden
+>   * either by the 'fsc=xxx' option to mount, or by inheriting it from the parent
+>   * superblock across an automount point of some nature.
+>   */
+> -void nfs_fscache_get_super_cookie(struct super_block *sb, const char *uniq, int ulen)
+> +int nfs_fscache_get_super_cookie(struct super_block *sb, const char *uniq, int ulen)
+>  {
+> -       struct nfs_fscache_key *key, *xkey;
+> +       struct fscache_volume *vcookie;
+>         struct nfs_server *nfss = NFS_SB(sb);
+> -       struct rb_node **p, *parent;
+> -       int diff;
+> +       unsigned int len = 3;
+> +       char *key;
+>
+> -       nfss->fscache_key = NULL;
+> -       nfss->fscache = NULL;
+> -       if (!uniq) {
+> -               uniq = "";
+> -               ulen = 1;
+> +       if (uniq) {
+> +               nfss->fscache_uniq = kmemdup_nul(uniq, ulen, GFP_KERNEL);
+> +               if (!nfss->fscache_uniq)
+> +                       return -ENOMEM;
+>         }
+>
+> -       key = kzalloc(sizeof(*key) + ulen, GFP_KERNEL);
+> +       key = kmalloc(NFS_MAX_KEY_LEN + 24, GFP_KERNEL);
+>         if (!key)
+> -               return;
+> -
+> -       key->nfs_client = nfss->nfs_client;
+> -       key->key.super.s_flags = sb->s_flags & NFS_SB_MASK;
+> -       key->key.nfs_server.flags = nfss->flags;
+> -       key->key.nfs_server.rsize = nfss->rsize;
+> -       key->key.nfs_server.wsize = nfss->wsize;
+> -       key->key.nfs_server.acregmin = nfss->acregmin;
+> -       key->key.nfs_server.acregmax = nfss->acregmax;
+> -       key->key.nfs_server.acdirmin = nfss->acdirmin;
+> -       key->key.nfs_server.acdirmax = nfss->acdirmax;
+> -       key->key.nfs_server.fsid = nfss->fsid;
+> -       key->key.rpc_auth.au_flavor = nfss->client->cl_auth->au_flavor;
+> -
+> -       key->key.uniq_len = ulen;
+> -       memcpy(key->key.uniquifier, uniq, ulen);
+> -
+> -       spin_lock(&nfs_fscache_keys_lock);
+> -       p = &nfs_fscache_keys.rb_node;
+> -       parent = NULL;
+> -       while (*p) {
+> -               parent = *p;
+> -               xkey = rb_entry(parent, struct nfs_fscache_key, node);
+> -
+> -               if (key->nfs_client < xkey->nfs_client)
+> -                       goto go_left;
+> -               if (key->nfs_client > xkey->nfs_client)
+> -                       goto go_right;
+> -
+> -               diff = memcmp(&key->key, &xkey->key, sizeof(key->key));
+> -               if (diff < 0)
+> -                       goto go_left;
+> -               if (diff > 0)
+> -                       goto go_right;
+> -
+> -               if (key->key.uniq_len == 0)
+> -                       goto non_unique;
+> -               diff = memcmp(key->key.uniquifier,
+> -                             xkey->key.uniquifier,
+> -                             key->key.uniq_len);
+> -               if (diff < 0)
+> -                       goto go_left;
+> -               if (diff > 0)
+> -                       goto go_right;
+> -               goto non_unique;
+> -
+> -       go_left:
+> -               p = &(*p)->rb_left;
+> -               continue;
+> -       go_right:
+> -               p = &(*p)->rb_right;
+> +               return -ENOMEM;
+> +
+> +       memcpy(key, "nfs", 3);
+> +       if (!nfs_fscache_get_client_key(nfss->nfs_client, key, &len) ||
+> +           !nfs_append_int(key, &len, nfss->fsid.major) ||
+> +           !nfs_append_int(key, &len, nfss->fsid.minor) ||
+> +           !nfs_append_int(key, &len, sb->s_flags & NFS_SB_MASK) ||
+> +           !nfs_append_int(key, &len, nfss->flags) ||
+> +           !nfs_append_int(key, &len, nfss->rsize) ||
+> +           !nfs_append_int(key, &len, nfss->wsize) ||
+> +           !nfs_append_int(key, &len, nfss->acregmin) ||
+> +           !nfs_append_int(key, &len, nfss->acregmax) ||
+> +           !nfs_append_int(key, &len, nfss->acdirmin) ||
+> +           !nfs_append_int(key, &len, nfss->acdirmax) ||
+> +           !nfs_append_int(key, &len, nfss->client->cl_auth->au_flavor))
+> +               goto out;
+> +
+> +       if (ulen > 0) {
+> +               if (ulen > NFS_MAX_KEY_LEN - len)
+> +                       goto out;
+> +               key[len++] = ',';
+> +               memcpy(key + len, uniq, ulen);
+> +               len += ulen;
+>         }
+> -
+> -       rb_link_node(&key->node, parent, p);
+> -       rb_insert_color(&key->node, &nfs_fscache_keys);
+> -       spin_unlock(&nfs_fscache_keys_lock);
+> -       nfss->fscache_key = key;
+> +       key[len] = 0;
+>
+>         /* create a cache index for looking up filehandles */
+> -       nfss->fscache = fscache_acquire_cookie(nfss->nfs_client->fscache,
+> -                                              &nfs_fscache_super_index_def,
+> -                                              &key->key,
+> -                                              sizeof(key->key) + ulen,
+> -                                              NULL, 0,
+> -                                              nfss, 0, true);
+> +       vcookie = fscache_acquire_volume(key,
+> +                                        NULL, /* preferred_cache */
+> +                                        0 /* coherency_data */);
+>         dfprintk(FSCACHE, "NFS: get superblock cookie (0x%p/0x%p)\n",
+> -                nfss, nfss->fscache);
+> -       return;
+> +                nfss, vcookie);
+> +       if (IS_ERR(vcookie)) {
+> +               if (vcookie != ERR_PTR(-EBUSY)) {
+> +                       kfree(key);
+> +                       return PTR_ERR(vcookie);
+> +               }
+> +               pr_err("NFS: Cache volume key already in use (%s)\n", key);
+> +               vcookie = NULL;
+> +       }
+> +       nfss->fscache = vcookie;
+>
+> -non_unique:
+> -       spin_unlock(&nfs_fscache_keys_lock);
+> +out:
+>         kfree(key);
+> -       nfss->fscache_key = NULL;
+> -       nfss->fscache = NULL;
+> -       printk(KERN_WARNING "NFS:"
+> -              " Cache request denied due to non-unique superblock keys\n");
+> +       return 0;
+>  }
+>
+>  /*
+> @@ -213,29 +155,9 @@ void nfs_fscache_release_super_cookie(struct super_block *sb)
+>         dfprintk(FSCACHE, "NFS: releasing superblock cookie (0x%p/0x%p)\n",
+>                  nfss, nfss->fscache);
+>
+> -       fscache_relinquish_cookie(nfss->fscache, NULL, false);
+> +       fscache_relinquish_volume(nfss->fscache, 0, false);
+>         nfss->fscache = NULL;
+> -
+> -       if (nfss->fscache_key) {
+> -               spin_lock(&nfs_fscache_keys_lock);
+> -               rb_erase(&nfss->fscache_key->node, &nfs_fscache_keys);
+> -               spin_unlock(&nfs_fscache_keys_lock);
+> -               kfree(nfss->fscache_key);
+> -               nfss->fscache_key = NULL;
+> -       }
+> -}
+> -
+> -static void nfs_fscache_update_auxdata(struct nfs_fscache_inode_auxdata *auxdata,
+> -                                 struct nfs_inode *nfsi)
+> -{
+> -       memset(auxdata, 0, sizeof(*auxdata));
+> -       auxdata->mtime_sec  = nfsi->vfs_inode.i_mtime.tv_sec;
+> -       auxdata->mtime_nsec = nfsi->vfs_inode.i_mtime.tv_nsec;
+> -       auxdata->ctime_sec  = nfsi->vfs_inode.i_ctime.tv_sec;
+> -       auxdata->ctime_nsec = nfsi->vfs_inode.i_ctime.tv_nsec;
+> -
+> -       if (NFS_SERVER(&nfsi->vfs_inode)->nfs_client->rpc_ops->version == 4)
+> -               auxdata->change_attr = inode_peek_iversion_raw(&nfsi->vfs_inode);
+> +       kfree(nfss->fscache_uniq);
+>  }
+>
+>  /*
+> @@ -254,10 +176,12 @@ void nfs_fscache_init_inode(struct inode *inode)
+>         nfs_fscache_update_auxdata(&auxdata, nfsi);
+>
+>         nfsi->fscache = fscache_acquire_cookie(NFS_SB(inode->i_sb)->fscache,
+> -                                              &nfs_fscache_inode_object_def,
+> -                                              nfsi->fh.data, nfsi->fh.size,
+> -                                              &auxdata, sizeof(auxdata),
+> -                                              nfsi, nfsi->vfs_inode.i_size, false);
+> +                                              0,
+> +                                              nfsi->fh.data, /* index_key */
+> +                                              nfsi->fh.size,
+> +                                              &auxdata,      /* aux_data */
+> +                                              sizeof(auxdata),
+> +                                              i_size_read(&nfsi->vfs_inode));
+>  }
+>
+>  /*
+> @@ -265,24 +189,15 @@ void nfs_fscache_init_inode(struct inode *inode)
+>   */
+>  void nfs_fscache_clear_inode(struct inode *inode)
+>  {
+> -       struct nfs_fscache_inode_auxdata auxdata;
+>         struct nfs_inode *nfsi = NFS_I(inode);
+>         struct fscache_cookie *cookie = nfs_i_fscache(inode);
+>
+>         dfprintk(FSCACHE, "NFS: clear cookie (0x%p/0x%p)\n", nfsi, cookie);
+>
+> -       nfs_fscache_update_auxdata(&auxdata, nfsi);
+> -       fscache_relinquish_cookie(cookie, &auxdata, false);
+> +       fscache_relinquish_cookie(cookie, false);
+>         nfsi->fscache = NULL;
+>  }
+>
+> -static bool nfs_fscache_can_enable(void *data)
+> -{
+> -       struct inode *inode = data;
+> -
+> -       return !inode_is_open_for_write(inode);
+> -}
+> -
+>  /*
+>   * Enable or disable caching for a file that is being opened as appropriate.
+>   * The cookie is allocated when the inode is initialised, but is not enabled at
+> @@ -307,93 +222,31 @@ void nfs_fscache_open_file(struct inode *inode, struct file *filp)
+>         struct nfs_fscache_inode_auxdata auxdata;
+>         struct nfs_inode *nfsi = NFS_I(inode);
+>         struct fscache_cookie *cookie = nfs_i_fscache(inode);
+> +       bool open_for_write = inode_is_open_for_write(inode);
+>
+>         if (!fscache_cookie_valid(cookie))
+>                 return;
+>
+> -       nfs_fscache_update_auxdata(&auxdata, nfsi);
+> -
+> -       if (inode_is_open_for_write(inode)) {
+> +       fscache_use_cookie(cookie, open_for_write);
+> +       if (open_for_write) {
+>                 dfprintk(FSCACHE, "NFS: nfsi 0x%p disabling cache\n", nfsi);
+> -               clear_bit(NFS_INO_FSCACHE, &nfsi->flags);
+> -               fscache_disable_cookie(cookie, &auxdata, true);
+> -               fscache_uncache_all_inode_pages(cookie, inode);
+> -       } else {
+> -               dfprintk(FSCACHE, "NFS: nfsi 0x%p enabling cache\n", nfsi);
+> -               fscache_enable_cookie(cookie, &auxdata, nfsi->vfs_inode.i_size,
+> -                                     nfs_fscache_can_enable, inode);
+> -               if (fscache_cookie_enabled(cookie))
+> -                       set_bit(NFS_INO_FSCACHE, &NFS_I(inode)->flags);
+> +               nfs_fscache_update_auxdata(&auxdata, nfsi);
+> +               fscache_invalidate(cookie, &auxdata, i_size_read(inode),
+> +                                  FSCACHE_INVAL_DIO_WRITE);
+>         }
+>  }
+>  EXPORT_SYMBOL_GPL(nfs_fscache_open_file);
+>
+> -/*
+> - * Release the caching state associated with a page, if the page isn't busy
+> - * interacting with the cache.
+> - * - Returns true (can release page) or false (page busy).
+> - */
+> -int nfs_fscache_release_page(struct page *page, gfp_t gfp)
+> -{
+> -       if (PageFsCache(page)) {
+> -               struct fscache_cookie *cookie = nfs_i_fscache(page->mapping->host);
+> -
+> -               BUG_ON(!cookie);
+> -               dfprintk(FSCACHE, "NFS: fscache releasepage (0x%p/0x%p/0x%p)\n",
+> -                        cookie, page, NFS_I(page->mapping->host));
+> -
+> -               if (!fscache_maybe_release_page(cookie, page, gfp))
+> -                       return 0;
+> -
+> -               nfs_inc_fscache_stats(page->mapping->host,
+> -                                     NFSIOS_FSCACHE_PAGES_UNCACHED);
+> -       }
+> -
+> -       return 1;
+> -}
+> -
+> -/*
+> - * Release the caching state associated with a page if undergoing complete page
+> - * invalidation.
+> - */
+> -void __nfs_fscache_invalidate_page(struct page *page, struct inode *inode)
+> +void nfs_fscache_release_file(struct inode *inode, struct file *filp)
+>  {
+> +       struct nfs_fscache_inode_auxdata auxdata;
+> +       struct nfs_inode *nfsi = NFS_I(inode);
+>         struct fscache_cookie *cookie = nfs_i_fscache(inode);
+>
+> -       BUG_ON(!cookie);
+> -
+> -       dfprintk(FSCACHE, "NFS: fscache invalidatepage (0x%p/0x%p/0x%p)\n",
+> -                cookie, page, NFS_I(inode));
+> -
+> -       fscache_wait_on_page_write(cookie, page);
+> -
+> -       BUG_ON(!PageLocked(page));
+> -       fscache_uncache_page(cookie, page);
+> -       nfs_inc_fscache_stats(page->mapping->host,
+> -                             NFSIOS_FSCACHE_PAGES_UNCACHED);
+> -}
+> -
+> -/*
+> - * Handle completion of a page being read from the cache.
+> - * - Called in process (keventd) context.
+> - */
+> -static void nfs_readpage_from_fscache_complete(struct page *page,
+> -                                              void *context,
+> -                                              int error)
+> -{
+> -       dfprintk(FSCACHE,
+> -                "NFS: readpage_from_fscache_complete (0x%p/0x%p/%d)\n",
+> -                page, context, error);
+> -
+> -       /*
+> -        * If the read completes with an error, mark the page with PG_checked,
+> -        * unlock the page, and let the VM reissue the readpage.
+> -        */
+> -       if (!error)
+> -               SetPageUptodate(page);
+> -       else
+> -               SetPageChecked(page);
+> -       unlock_page(page);
+> +       if (fscache_cookie_valid(cookie)) {
+> +               nfs_fscache_update_auxdata(&auxdata, nfsi);
+> +               fscache_unuse_cookie(cookie, &auxdata, NULL);
+> +       }
+>  }
+>
+>  /*
+> @@ -402,8 +255,6 @@ static void nfs_readpage_from_fscache_complete(struct page *page,
+>  int __nfs_readpage_from_fscache(struct nfs_open_context *ctx,
+>                                 struct inode *inode, struct page *page)
+>  {
+> -       int ret;
+> -
+>         dfprintk(FSCACHE,
+>                  "NFS: readpage_from_fscache(fsc:%p/p:%p(i:%lx f:%lx)/0x%p)\n",
+>                  nfs_i_fscache(inode), page, page->index, page->flags, inode);
+> @@ -413,31 +264,7 @@ int __nfs_readpage_from_fscache(struct nfs_open_context *ctx,
+>                 return 1;
+>         }
+>
+> -       ret = fscache_read_or_alloc_page(nfs_i_fscache(inode),
+> -                                        page,
+> -                                        nfs_readpage_from_fscache_complete,
+> -                                        ctx,
+> -                                        GFP_KERNEL);
+> -
+> -       switch (ret) {
+> -       case 0: /* read BIO submitted (page in fscache) */
+> -               dfprintk(FSCACHE,
+> -                        "NFS:    readpage_from_fscache: BIO submitted\n");
+> -               nfs_inc_fscache_stats(inode, NFSIOS_FSCACHE_PAGES_READ_OK);
+> -               return ret;
+> -
+> -       case -ENOBUFS: /* inode not in cache */
+> -       case -ENODATA: /* page not in cache */
+> -               nfs_inc_fscache_stats(inode, NFSIOS_FSCACHE_PAGES_READ_FAIL);
+> -               dfprintk(FSCACHE,
+> -                        "NFS:    readpage_from_fscache %d\n", ret);
+> -               return 1;
+> -
+> -       default:
+> -               dfprintk(FSCACHE, "NFS:    readpage_from_fscache %d\n", ret);
+> -               nfs_inc_fscache_stats(inode, NFSIOS_FSCACHE_PAGES_READ_FAIL);
+> -       }
+> -       return ret;
+> +       return -ENOBUFS; // TODO: Use netfslib
+>  }
+>
+>  /*
+> @@ -449,45 +276,10 @@ int __nfs_readpages_from_fscache(struct nfs_open_context *ctx,
+>                                  struct list_head *pages,
+>                                  unsigned *nr_pages)
+>  {
+> -       unsigned npages = *nr_pages;
+> -       int ret;
+> -
+>         dfprintk(FSCACHE, "NFS: nfs_getpages_from_fscache (0x%p/%u/0x%p)\n",
+> -                nfs_i_fscache(inode), npages, inode);
+> -
+> -       ret = fscache_read_or_alloc_pages(nfs_i_fscache(inode),
+> -                                         mapping, pages, nr_pages,
+> -                                         nfs_readpage_from_fscache_complete,
+> -                                         ctx,
+> -                                         mapping_gfp_mask(mapping));
+> -       if (*nr_pages < npages)
+> -               nfs_add_fscache_stats(inode, NFSIOS_FSCACHE_PAGES_READ_OK,
+> -                                     npages);
+> -       if (*nr_pages > 0)
+> -               nfs_add_fscache_stats(inode, NFSIOS_FSCACHE_PAGES_READ_FAIL,
+> -                                     *nr_pages);
+> -
+> -       switch (ret) {
+> -       case 0: /* read submitted to the cache for all pages */
+> -               BUG_ON(!list_empty(pages));
+> -               BUG_ON(*nr_pages != 0);
+> -               dfprintk(FSCACHE,
+> -                        "NFS: nfs_getpages_from_fscache: submitted\n");
+> -
+> -               return ret;
+> -
+> -       case -ENOBUFS: /* some pages aren't cached and can't be */
+> -       case -ENODATA: /* some pages aren't cached */
+> -               dfprintk(FSCACHE,
+> -                        "NFS: nfs_getpages_from_fscache: no page: %d\n", ret);
+> -               return 1;
+> +                nfs_i_fscache(inode), *nr_pages, inode);
+>
+> -       default:
+> -               dfprintk(FSCACHE,
+> -                        "NFS: nfs_getpages_from_fscache: ret  %d\n", ret);
+> -       }
+> -
+> -       return ret;
+> +       return -ENOBUFS; // TODO: Use netfslib
+>  }
+>
+>  /*
+> @@ -496,25 +288,9 @@ int __nfs_readpages_from_fscache(struct nfs_open_context *ctx,
+>   */
+>  void __nfs_readpage_to_fscache(struct inode *inode, struct page *page, int sync)
+>  {
+> -       int ret;
+> -
+>         dfprintk(FSCACHE,
+>                  "NFS: readpage_to_fscache(fsc:%p/p:%p(i:%lx f:%lx)/%d)\n",
+>                  nfs_i_fscache(inode), page, page->index, page->flags, sync);
+>
+> -       ret = fscache_write_page(nfs_i_fscache(inode), page,
+> -                                inode->i_size, GFP_KERNEL);
+> -       dfprintk(FSCACHE,
+> -                "NFS:     readpage_to_fscache: p:%p(i:%lu f:%lx) ret %d\n",
+> -                page, page->index, page->flags, ret);
+> -
+> -       if (ret != 0) {
+> -               fscache_uncache_page(nfs_i_fscache(inode), page);
+> -               nfs_inc_fscache_stats(inode,
+> -                                     NFSIOS_FSCACHE_PAGES_WRITTEN_FAIL);
+> -               nfs_inc_fscache_stats(inode, NFSIOS_FSCACHE_PAGES_UNCACHED);
+> -       } else {
+> -               nfs_inc_fscache_stats(inode,
+> -                                     NFSIOS_FSCACHE_PAGES_WRITTEN_OK);
+> -       }
+> +       return; // TODO: Use netfslib
+>  }
+> diff --git a/fs/nfs/fscache.h b/fs/nfs/fscache.h
+> index 6754c8607230..26b6fb1cfd58 100644
+> --- a/fs/nfs/fscache.h
+> +++ b/fs/nfs/fscache.h
+> @@ -12,46 +12,10 @@
+>  #include <linux/nfs_mount.h>
+>  #include <linux/nfs4_mount.h>
+>  #include <linux/fscache.h>
+> +#include <linux/iversion.h>
+>
+>  #ifdef CONFIG_NFS_FSCACHE
+>
+> -/*
+> - * set of NFS FS-Cache objects that form a superblock key
+> - */
+> -struct nfs_fscache_key {
+> -       struct rb_node          node;
+> -       struct nfs_client       *nfs_client;    /* the server */
+> -
+> -       /* the elements of the unique key - as used by nfs_compare_super() and
+> -        * nfs_compare_mount_options() to distinguish superblocks */
+> -       struct {
+> -               struct {
+> -                       unsigned long   s_flags;        /* various flags
+> -                                                        * (& NFS_MS_MASK) */
+> -               } super;
+> -
+> -               struct {
+> -                       struct nfs_fsid fsid;
+> -                       int             flags;
+> -                       unsigned int    rsize;          /* read size */
+> -                       unsigned int    wsize;          /* write size */
+> -                       unsigned int    acregmin;       /* attr cache timeouts */
+> -                       unsigned int    acregmax;
+> -                       unsigned int    acdirmin;
+> -                       unsigned int    acdirmax;
+> -               } nfs_server;
+> -
+> -               struct {
+> -                       rpc_authflavor_t au_flavor;
+> -               } rpc_auth;
+> -
+> -               /* uniquifier - can be used if nfs_server.flags includes
+> -                * NFS_MOUNT_UNSHARED  */
+> -               u8 uniq_len;
+> -               char uniquifier[0];
+> -       } key;
+> -};
+> -
+>  /*
+>   * Definition of the auxiliary data attached to NFS inode storage objects
+>   * within the cache.
+> @@ -69,32 +33,18 @@ struct nfs_fscache_inode_auxdata {
+>         u64     change_attr;
+>  };
+>
+> -/*
+> - * fscache-index.c
+> - */
+> -extern struct fscache_netfs nfs_fscache_netfs;
+> -extern const struct fscache_cookie_def nfs_fscache_server_index_def;
+> -extern const struct fscache_cookie_def nfs_fscache_super_index_def;
+> -extern const struct fscache_cookie_def nfs_fscache_inode_object_def;
+> -
+> -extern int nfs_fscache_register(void);
+> -extern void nfs_fscache_unregister(void);
+> -
+>  /*
+>   * fscache.c
+>   */
+> -extern void nfs_fscache_get_client_cookie(struct nfs_client *);
+> -extern void nfs_fscache_release_client_cookie(struct nfs_client *);
+> -
+> -extern void nfs_fscache_get_super_cookie(struct super_block *, const char *, int);
+> +extern int nfs_fscache_get_super_cookie(struct super_block *, const char *, int);
+>  extern void nfs_fscache_release_super_cookie(struct super_block *);
+>
+>  extern void nfs_fscache_init_inode(struct inode *);
+>  extern void nfs_fscache_clear_inode(struct inode *);
+>  extern void nfs_fscache_open_file(struct inode *, struct file *);
+> +extern void nfs_fscache_release_file(struct inode *, struct file *);
+>
+>  extern void __nfs_fscache_invalidate_page(struct page *, struct inode *);
+> -extern int nfs_fscache_release_page(struct page *, gfp_t);
+>
+>  extern int __nfs_readpage_from_fscache(struct nfs_open_context *,
+>                                        struct inode *, struct page *);
+> @@ -103,25 +53,17 @@ extern int __nfs_readpages_from_fscache(struct nfs_open_context *,
+>                                         struct list_head *, unsigned *);
+>  extern void __nfs_readpage_to_fscache(struct inode *, struct page *, int);
+>
+> -/*
+> - * wait for a page to complete writing to the cache
+> - */
+> -static inline void nfs_fscache_wait_on_page_write(struct nfs_inode *nfsi,
+> -                                                 struct page *page)
+> -{
+> -       if (PageFsCache(page))
+> -               fscache_wait_on_page_write(nfsi->fscache, page);
+> -}
+> -
+> -/*
+> - * release the caching state associated with a page if undergoing complete page
+> - * invalidation
+> - */
+> -static inline void nfs_fscache_invalidate_page(struct page *page,
+> -                                              struct inode *inode)
+> +static inline int nfs_fscache_release_page(struct page *page, gfp_t gfp)
+>  {
+> -       if (PageFsCache(page))
+> -               __nfs_fscache_invalidate_page(page, inode);
+> +       if (PageFsCache(page)) {
+> +               if (!gfpflags_allow_blocking(gfp) || !(gfp & __GFP_FS))
+> +                       return false;
+> +               wait_on_page_fscache(page);
+> +               fscache_note_page_release(nfs_i_fscache(page->mapping->host));
+> +               nfs_inc_fscache_stats(page->mapping->host,
+> +                                     NFSIOS_FSCACHE_PAGES_UNCACHED);
+> +       }
+> +       return true;
+>  }
+>
+>  /*
+> @@ -163,20 +105,32 @@ static inline void nfs_readpage_to_fscache(struct inode *inode,
+>                 __nfs_readpage_to_fscache(inode, page, sync);
+>  }
+>
+> -/*
+> - * Invalidate the contents of fscache for this inode.  This will not sleep.
+> - */
+> -static inline void nfs_fscache_invalidate(struct inode *inode)
+> +static inline void nfs_fscache_update_auxdata(struct nfs_fscache_inode_auxdata *auxdata,
+> +                                             struct nfs_inode *nfsi)
+>  {
+> -       fscache_invalidate(NFS_I(inode)->fscache);
+> +       memset(auxdata, 0, sizeof(*auxdata));
+> +       auxdata->mtime_sec  = nfsi->vfs_inode.i_mtime.tv_sec;
+> +       auxdata->mtime_nsec = nfsi->vfs_inode.i_mtime.tv_nsec;
+> +       auxdata->ctime_sec  = nfsi->vfs_inode.i_ctime.tv_sec;
+> +       auxdata->ctime_nsec = nfsi->vfs_inode.i_ctime.tv_nsec;
+> +
+> +       if (NFS_SERVER(&nfsi->vfs_inode)->nfs_client->rpc_ops->version == 4)
+> +               auxdata->change_attr = inode_peek_iversion_raw(&nfsi->vfs_inode);
+>  }
+>
+>  /*
+> - * Wait for an object to finish being invalidated.
+> + * Invalidate the contents of fscache for this inode.  This will not sleep.
+>   */
+> -static inline void nfs_fscache_wait_on_invalidate(struct inode *inode)
+> +static inline void nfs_fscache_invalidate(struct inode *inode, int flags)
+>  {
+> -       fscache_wait_on_invalidate(NFS_I(inode)->fscache);
+> +       struct nfs_fscache_inode_auxdata auxdata;
+> +       struct nfs_inode *nfsi = NFS_I(inode);
+> +
+> +       if (nfsi->fscache) {
+> +               nfs_fscache_update_auxdata(&auxdata, nfsi);
+> +               fscache_invalidate(nfsi->fscache, &auxdata,
+> +                                  i_size_read(&nfsi->vfs_inode), flags);
+> +       }
+>  }
+>
+>  /*
+> @@ -190,12 +144,6 @@ static inline const char *nfs_server_fscache_state(struct nfs_server *server)
+>  }
+>
+>  #else /* CONFIG_NFS_FSCACHE */
+> -static inline int nfs_fscache_register(void) { return 0; }
+> -static inline void nfs_fscache_unregister(void) {}
+> -
+> -static inline void nfs_fscache_get_client_cookie(struct nfs_client *clp) {}
+> -static inline void nfs_fscache_release_client_cookie(struct nfs_client *clp) {}
+> -
+>  static inline void nfs_fscache_release_super_cookie(struct super_block *sb) {}
+>
+>  static inline void nfs_fscache_init_inode(struct inode *inode) {}
+> @@ -207,11 +155,6 @@ static inline int nfs_fscache_release_page(struct page *page, gfp_t gfp)
+>  {
+>         return 1; /* True: may release page */
+>  }
+> -static inline void nfs_fscache_invalidate_page(struct page *page,
+> -                                              struct inode *inode) {}
+> -static inline void nfs_fscache_wait_on_page_write(struct nfs_inode *nfsi,
+> -                                                 struct page *page) {}
+> -
+>  static inline int nfs_readpage_from_fscache(struct nfs_open_context *ctx,
+>                                             struct inode *inode,
+>                                             struct page *page)
+> @@ -230,8 +173,7 @@ static inline void nfs_readpage_to_fscache(struct inode *inode,
+>                                            struct page *page, int sync) {}
+>
+>
+> -static inline void nfs_fscache_invalidate(struct inode *inode) {}
+> -static inline void nfs_fscache_wait_on_invalidate(struct inode *inode) {}
+> +static inline void nfs_fscache_invalidate(struct inode *inode, int flags) {}
+>
+>  static inline const char *nfs_server_fscache_state(struct nfs_server *server)
+>  {
+> diff --git a/fs/nfs/inode.c b/fs/nfs/inode.c
+> index fda530d5e764..a918c3a834b6 100644
+> --- a/fs/nfs/inode.c
+> +++ b/fs/nfs/inode.c
+> @@ -209,7 +209,7 @@ void nfs_set_cache_invalid(struct inode *inode, unsigned long flags)
+>         if (!nfs_has_xattr_cache(nfsi))
+>                 flags &= ~NFS_INO_INVALID_XATTR;
+>         if (flags & NFS_INO_INVALID_DATA)
+> -               nfs_fscache_invalidate(inode);
+> +               nfs_fscache_invalidate(inode, 0);
+>         flags &= ~(NFS_INO_REVAL_PAGECACHE | NFS_INO_REVAL_FORCED);
+>
+>         nfsi->cache_validity |= flags;
+> @@ -1289,6 +1289,7 @@ static int nfs_invalidate_mapping(struct inode *inode, struct address_space *map
+>  {
+>         int ret;
+>
+> +       nfs_fscache_invalidate(inode, 0);
+>         if (mapping->nrpages != 0) {
+>                 if (S_ISREG(inode->i_mode)) {
+>                         ret = nfs_sync_mapping(mapping);
+> @@ -1300,7 +1301,6 @@ static int nfs_invalidate_mapping(struct inode *inode, struct address_space *map
+>                         return ret;
+>         }
+>         nfs_inc_stats(inode, NFSIOS_DATAINVALIDATE);
+> -       nfs_fscache_wait_on_invalidate(inode);
+>
+>         dfprintk(PAGECACHE, "NFS: (%s/%Lu) data cache invalidated\n",
+>                         inode->i_sb->s_id,
+> @@ -2374,10 +2374,6 @@ static int __init init_nfs_fs(void)
+>         if (err < 0)
+>                 goto out9;
+>
+> -       err = nfs_fscache_register();
+> -       if (err < 0)
+> -               goto out8;
+> -
+>         err = nfsiod_start();
+>         if (err)
+>                 goto out7;
+> @@ -2429,8 +2425,6 @@ static int __init init_nfs_fs(void)
+>  out6:
+>         nfsiod_stop();
+>  out7:
+> -       nfs_fscache_unregister();
+> -out8:
+>         unregister_pernet_subsys(&nfs_net_ops);
+>  out9:
+>         nfs_sysfs_exit();
+> @@ -2445,7 +2439,6 @@ static void __exit exit_nfs_fs(void)
+>         nfs_destroy_readpagecache();
+>         nfs_destroy_inodecache();
+>         nfs_destroy_nfspagecache();
+> -       nfs_fscache_unregister();
+>         unregister_pernet_subsys(&nfs_net_ops);
+>         rpc_proc_unregister(&init_net, "nfs");
+>         unregister_nfs_fs();
+> diff --git a/fs/nfs/nfstrace.h b/fs/nfs/nfstrace.h
+> index b3aee261801e..317ce27bdc4b 100644
+> --- a/fs/nfs/nfstrace.h
+> +++ b/fs/nfs/nfstrace.h
+> @@ -42,7 +42,6 @@
+>                         { BIT(NFS_INO_ACL_LRU_SET), "ACL_LRU_SET" }, \
+>                         { BIT(NFS_INO_INVALIDATING), "INVALIDATING" }, \
+>                         { BIT(NFS_INO_FSCACHE), "FSCACHE" }, \
+> -                       { BIT(NFS_INO_FSCACHE_LOCK), "FSCACHE_LOCK" }, \
+>                         { BIT(NFS_INO_LAYOUTCOMMIT), "NEED_LAYOUTCOMMIT" }, \
+>                         { BIT(NFS_INO_LAYOUTCOMMITTING), "LAYOUTCOMMIT" }, \
+>                         { BIT(NFS_INO_LAYOUTSTATS), "LAYOUTSTATS" }, \
+> diff --git a/fs/nfs/super.c b/fs/nfs/super.c
+> index 3aced401735c..6ab5eeb000dc 100644
+> --- a/fs/nfs/super.c
+> +++ b/fs/nfs/super.c
+> @@ -1204,42 +1204,42 @@ static int nfs_compare_super(struct super_block *sb, struct fs_context *fc)
+>  }
+>
+>  #ifdef CONFIG_NFS_FSCACHE
+> -static void nfs_get_cache_cookie(struct super_block *sb,
+> -                                struct nfs_fs_context *ctx)
+> +static int nfs_get_cache_cookie(struct super_block *sb,
+> +                               struct nfs_fs_context *ctx)
+>  {
+>         struct nfs_server *nfss = NFS_SB(sb);
+>         char *uniq = NULL;
+>         int ulen = 0;
+>
+> -       nfss->fscache_key = NULL;
+>         nfss->fscache = NULL;
+>
+>         if (!ctx)
+> -               return;
+> +               return 0;
+>
+>         if (ctx->clone_data.sb) {
+>                 struct nfs_server *mnt_s = NFS_SB(ctx->clone_data.sb);
+>                 if (!(mnt_s->options & NFS_OPTION_FSCACHE))
+> -                       return;
+> -               if (mnt_s->fscache_key) {
+> -                       uniq = mnt_s->fscache_key->key.uniquifier;
+> -                       ulen = mnt_s->fscache_key->key.uniq_len;
+> +                       return 0;
+> +               if (mnt_s->fscache_uniq) {
+> +                       uniq = mnt_s->fscache_uniq;
+> +                       ulen = strlen(uniq);
+>                 }
+>         } else {
+>                 if (!(ctx->options & NFS_OPTION_FSCACHE))
+> -                       return;
+> +                       return 0;
+>                 if (ctx->fscache_uniq) {
+>                         uniq = ctx->fscache_uniq;
+>                         ulen = strlen(ctx->fscache_uniq);
+>                 }
+>         }
+>
+> -       nfs_fscache_get_super_cookie(sb, uniq, ulen);
+> +       return nfs_fscache_get_super_cookie(sb, uniq, ulen);
+>  }
+>  #else
+> -static void nfs_get_cache_cookie(struct super_block *sb,
+> -                                struct nfs_fs_context *ctx)
+> +static int nfs_get_cache_cookie(struct super_block *sb,
+> +                               struct nfs_fs_context *ctx)
+>  {
+> +       return 0;
+>  }
+>  #endif
+>
+> @@ -1299,7 +1299,9 @@ int nfs_get_tree_common(struct fs_context *fc)
+>                         s->s_blocksize_bits = bsize;
+>                         s->s_blocksize = 1U << bsize;
+>                 }
+> -               nfs_get_cache_cookie(s, ctx);
+> +               error = nfs_get_cache_cookie(s, ctx);
+> +               if (error < 0)
+> +                       goto error_splat_super;
+>         }
+>
+>         error = nfs_get_root(s, fc);
+> diff --git a/fs/nfs/write.c b/fs/nfs/write.c
+> index 9b7619ce17a7..2b322170372a 100644
+> --- a/fs/nfs/write.c
+> +++ b/fs/nfs/write.c
+> @@ -294,6 +294,7 @@ static void nfs_grow_file(struct page *page, unsigned int offset, unsigned int c
+>         nfs_inc_stats(inode, NFSIOS_EXTENDWRITE);
+>  out:
+>         spin_unlock(&inode->i_lock);
+> +       nfs_fscache_invalidate(inode, 0);
+>  }
+>
+>  /* A writeback failed: mark the page as bad, and invalidate the page cache */
+> diff --git a/include/linux/nfs_fs.h b/include/linux/nfs_fs.h
+> index 05f249f20f55..00835bacd236 100644
+> --- a/include/linux/nfs_fs.h
+> +++ b/include/linux/nfs_fs.h
+> @@ -275,7 +275,6 @@ struct nfs4_copy_state {
+>  #define NFS_INO_ACL_LRU_SET    (2)             /* Inode is on the LRU list */
+>  #define NFS_INO_INVALIDATING   (3)             /* inode is being invalidated */
+>  #define NFS_INO_FSCACHE                (5)             /* inode can be cached by FS-Cache */
+> -#define NFS_INO_FSCACHE_LOCK   (6)             /* FS-Cache cookie management lock */
+>  #define NFS_INO_FORCE_READDIR  (7)             /* force readdirplus */
+>  #define NFS_INO_LAYOUTCOMMIT   (9)             /* layoutcommit required */
+>  #define NFS_INO_LAYOUTCOMMITTING (10)          /* layoutcommit inflight */
+> diff --git a/include/linux/nfs_fs_sb.h b/include/linux/nfs_fs_sb.h
+> index 2a9acbfe00f0..77b2dba27bbb 100644
+> --- a/include/linux/nfs_fs_sb.h
+> +++ b/include/linux/nfs_fs_sb.h
+> @@ -120,11 +120,6 @@ struct nfs_client {
+>          * This is used to generate the mv0 callback address.
+>          */
+>         char                    cl_ipaddr[48];
+> -
+> -#ifdef CONFIG_NFS_FSCACHE
+> -       struct fscache_cookie   *fscache;       /* client index cache cookie */
+> -#endif
+> -
+>         struct net              *cl_net;
+>         struct list_head        pending_cb_stateids;
+>  };
+> @@ -194,8 +189,8 @@ struct nfs_server {
+>         struct nfs_auth_info    auth_info;      /* parsed auth flavors */
+>
+>  #ifdef CONFIG_NFS_FSCACHE
+> -       struct nfs_fscache_key  *fscache_key;   /* unique key for superblock */
+> -       struct fscache_cookie   *fscache;       /* superblock cookie */
+> +       struct fscache_volume   *fscache;       /* superblock cookie */
+> +       char                    *fscache_uniq;  /* Uniquifier (or NULL) */
+>  #endif
+>
+>         u32                     pnfs_blksize;   /* layout_blksize attr */
+>
+>
 
 
 
