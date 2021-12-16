@@ -2,111 +2,118 @@ Return-Path: <v9fs-developer-bounces@lists.sourceforge.net>
 X-Original-To: lists+v9fs-developer@lfdr.de
 Delivered-To: lists+v9fs-developer@lfdr.de
 Received: from lists.sourceforge.net (lists.sourceforge.net [216.105.38.7])
-	by mail.lfdr.de (Postfix) with ESMTPS id E2A664778E6
-	for <lists+v9fs-developer@lfdr.de>; Thu, 16 Dec 2021 17:25:52 +0100 (CET)
-Received: from [127.0.0.1] (helo=sfs-ml-2.v29.lw.sourceforge.com)
-	by sfs-ml-2.v29.lw.sourceforge.com with esmtp (Exim 4.94.2)
+	by mail.lfdr.de (Postfix) with ESMTPS id A53134778F9
+	for <lists+v9fs-developer@lfdr.de>; Thu, 16 Dec 2021 17:28:17 +0100 (CET)
+Received: from [127.0.0.1] (helo=sfs-ml-4.v29.lw.sourceforge.com)
+	by sfs-ml-4.v29.lw.sourceforge.com with esmtp (Exim 4.94.2)
 	(envelope-from <v9fs-developer-bounces@lists.sourceforge.net>)
-	id 1mxtZn-0001cd-Dl; Thu, 16 Dec 2021 16:25:51 +0000
+	id 1mxtc7-0005w5-U1; Thu, 16 Dec 2021 16:28:15 +0000
 Received: from [172.30.20.202] (helo=mx.sourceforge.net)
- by sfs-ml-2.v29.lw.sourceforge.com with esmtps (TLS1.2) tls
+ by sfs-ml-4.v29.lw.sourceforge.com with esmtps (TLS1.2) tls
  TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384 (Exim 4.94.2)
- (envelope-from <dhowells@redhat.com>) id 1mxtZk-0001cV-CR
- for v9fs-developer@lists.sourceforge.net; Thu, 16 Dec 2021 16:25:48 +0000
+ (envelope-from <torvalds@linuxfoundation.org>) id 1mxtc6-0005vz-Bh
+ for v9fs-developer@lists.sourceforge.net; Thu, 16 Dec 2021 16:28:14 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=sourceforge.net; s=x; h=Content-Transfer-Encoding:Content-Type:MIME-Version
- :References:In-Reply-To:Message-ID:Date:Cc:To:From:Subject:Sender:Reply-To:
- Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+ d=sourceforge.net; s=x; h=Content-Type:Cc:To:Subject:Message-ID:Date:From:
+ In-Reply-To:References:MIME-Version:Sender:Reply-To:Content-Transfer-Encoding
+ :Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
  Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
  List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=vYv4iNilzKgmm2oDZnFOAqjOZ3AX6qs6zw0AidzbHUo=; b=LhiU0PM9xf7BcT9mQUfCqMqJqG
- Z3EurcFcn2+QIPsSQ/dWSZSx14krUm+t9T17Amxu72qE8oXggt8WdCi+DK+LfjY2vClvnHO8l9+7V
- qPpSKMO7nVEsKUh1pr6Znv/VLosaB4jctOG3qfC84nHLcy4kYAiVVwFrqjbtyo9Uwnhk=;
+ bh=fkh9SA21WJAwLXrex3D5hDMvc6XDF8J0dz4irJ+Ae9Y=; b=cBRvB9GgycmgxtYyE0RL5g3PST
+ ZmtcdVky+T6d4I4FwllhLC/yl8shNAZ8gAHL348ej/DZxOwXwloHw4H7Xreb+wn0VjNkiVnmyga5P
+ PA066qkEYZQNjBkMstL7VPtj3rxXVyS8XUQxvahJGBQPuhO2qxaCG1OISOkDECktCABU=;
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  ;
- h=Content-Transfer-Encoding:Content-Type:MIME-Version:References:
- In-Reply-To:Message-ID:Date:Cc:To:From:Subject:Sender:Reply-To:Content-ID:
+ h=Content-Type:Cc:To:Subject:Message-ID:Date:From:In-Reply-To:References:
+ MIME-Version:Sender:Reply-To:Content-Transfer-Encoding:Content-ID:
  Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
  :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
  List-Post:List-Owner:List-Archive;
- bh=vYv4iNilzKgmm2oDZnFOAqjOZ3AX6qs6zw0AidzbHUo=; b=FLC2XNp/4tGSF22XPfI0xmLtf8
- pQ2YTgCDeefIuwrVzaFmMimLXR/exqBBy+0z5Y4XjJ42/WbUFyWlHXb+z4jfNParZJU5Tj3zSdj9Z
- EA/kKrz0595nhWXWrd6TDhzB2G0AliSd2HfCaQ181MEmMCZHI4cIYoHvwHV+igwQnWLM=;
-Received: from us-smtp-delivery-124.mimecast.com ([170.10.129.124])
+ bh=fkh9SA21WJAwLXrex3D5hDMvc6XDF8J0dz4irJ+Ae9Y=; b=OqJ1YDr5q1TDjTV6Nzx5baK7nP
+ WnDO1a3asX0WisNnT6FzqEWRGfnOPjBh2mvdU//Svgi6GaZ/G3GWaz3EKW1cDCT3DVEK+uT1yV3MM
+ rDcyXVhtr823jKp4zxOTj6rSOi8ArPGilcLGVaD5+dSeiVIs1fkxlvbddNUobpJ8uNI8=;
+Received: from mail-ed1-f48.google.com ([209.85.208.48])
  by sfi-mx-2.v28.lw.sourceforge.com with esmtps
- (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.92.3)
- id 1mxtZj-00057x-KL
- for v9fs-developer@lists.sourceforge.net; Thu, 16 Dec 2021 16:25:48 +0000
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
- s=mimecast20190719; t=1639671941;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references;
- bh=vYv4iNilzKgmm2oDZnFOAqjOZ3AX6qs6zw0AidzbHUo=;
- b=OwsAED2FCXjElx1AWLWqr/CT0EP34aPXMq3M1J1JqztYNpQq+v1DrvQSSBY0BpKsKSpxTw
- kneFrg9jGAuy6sEnDvreMsEXEPeckFOC+sb60rSqZ+KEpsRd1/gXTvNvWLo9zbxZWedEO4
- Ai3t1aFcBosBqYlrYZLI6BfJEYVAS0c=
-Received: from mimecast-mx01.redhat.com (mimecast-mx01.redhat.com
- [209.132.183.4]) by relay.mimecast.com with ESMTP with STARTTLS
- (version=TLSv1.2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- us-mta-223-PUZmUhnBNhaR0PIz18VvFw-1; Thu, 16 Dec 2021 11:25:36 -0500
-X-MC-Unique: PUZmUhnBNhaR0PIz18VvFw-1
-Received: from smtp.corp.redhat.com (int-mx03.intmail.prod.int.phx2.redhat.com
- [10.5.11.13])
- (using TLSv1.2 with cipher AECDH-AES256-SHA (256/256 bits))
- (No client certificate requested)
- by mimecast-mx01.redhat.com (Postfix) with ESMTPS id 1E2281015216;
- Thu, 16 Dec 2021 16:25:33 +0000 (UTC)
-Received: from warthog.procyon.org.uk (unknown [10.33.36.122])
- by smtp.corp.redhat.com (Postfix) with ESMTP id 607BA4E2D0;
- Thu, 16 Dec 2021 16:25:03 +0000 (UTC)
-Organization: Red Hat UK Ltd. Registered Address: Red Hat UK Ltd, Amberley
- Place, 107-111 Peascod Street, Windsor, Berkshire, SI4 1TE, United
- Kingdom.
- Registered in England and Wales under Company Registration No. 3798903
-From: David Howells <dhowells@redhat.com>
-To: linux-cachefs@redhat.com
-Date: Thu, 16 Dec 2021 16:25:02 +0000
-Message-ID: <163967190257.1823006.16713609520911954804.stgit@warthog.procyon.org.uk>
-In-Reply-To: <163967073889.1823006.12237147297060239168.stgit@warthog.procyon.org.uk>
-References: <163967073889.1823006.12237147297060239168.stgit@warthog.procyon.org.uk>
-User-Agent: StGit/0.23
+ (TLSv1.2:ECDHE-RSA-AES128-GCM-SHA256:128) (Exim 4.92.3)
+ id 1mxtc5-0005Dm-Lz
+ for v9fs-developer@lists.sourceforge.net; Thu, 16 Dec 2021 16:28:14 +0000
+Received: by mail-ed1-f48.google.com with SMTP id t5so88836054edd.0
+ for <v9fs-developer@lists.sourceforge.net>;
+ Thu, 16 Dec 2021 08:28:13 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=linux-foundation.org; s=google;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc; bh=fkh9SA21WJAwLXrex3D5hDMvc6XDF8J0dz4irJ+Ae9Y=;
+ b=TZ91WtmX33bYGxQ28DYuwMlA4L/Ykfses9BBTD3iJ52Q9qh/2tU+S4awSqTTbNIEfO
+ NIVIGXtvrTssU7E/Ib+EszfgqaQI3Ug/c2E/ITq3PkTvuJKpkp8KHKAP+FyMLrxxfyHm
+ 7LDKJiXUmfROJo2atlx1zLIBfA58BXXUjM6Yc=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20210112;
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc;
+ bh=fkh9SA21WJAwLXrex3D5hDMvc6XDF8J0dz4irJ+Ae9Y=;
+ b=we/83wWZI43H47ZF03JWBAfJsDeIsJCnygwoWjvGg5weTtpYhXm/KLGYeef/V2af8w
+ gGLDUJ5PyRAJaFJqWmII+69+2/YxJ4LcXF1UvM10C/r+Y8liKCAMOuJEUEokq3LWhogb
+ YM0QdhMCNCyi/UrzI1mJSOFBK+unjUbNgycrNHAWktkCKLgP8wIPJEeR0OY79P+bHLhu
+ U15TJnxURBI2kzNiRRIBWVdDuUm+vKTG9kcC68qKJUTqiT8LMZivpZERC13rWXbroo1o
+ pjGy59DQXDWWu/m95M+Zaf9ceMGXCDTQsozoPsEQUoygeC9Z+uURlVRoZV0SCHaBKprn
+ ngXQ==
+X-Gm-Message-State: AOAM530nxbCJFe7c1LbBH6be/NWwuyvqCzYiCGBajGzV9rZyXrJ1KQ/n
+ 0wAA0l9zJzc8rNIDC6FD8UauckmjH5I4RT74
+X-Google-Smtp-Source: ABdhPJwwWK5Ur5ltTtPrWblCmyqsfA0oPRFFBjNClVGqzk6ZiUx810KkQUc0LMX+TEzGa4+pbsZOzw==
+X-Received: by 2002:a05:6402:5244:: with SMTP id
+ t4mr21120148edd.27.1639672087281; 
+ Thu, 16 Dec 2021 08:28:07 -0800 (PST)
+Received: from mail-wr1-f47.google.com (mail-wr1-f47.google.com.
+ [209.85.221.47])
+ by smtp.gmail.com with ESMTPSA id c28sm1998206ejj.207.2021.12.16.08.28.06
+ for <v9fs-developer@lists.sourceforge.net>
+ (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+ Thu, 16 Dec 2021 08:28:07 -0800 (PST)
+Received: by mail-wr1-f47.google.com with SMTP id e5so11767406wrc.5
+ for <v9fs-developer@lists.sourceforge.net>;
+ Thu, 16 Dec 2021 08:28:06 -0800 (PST)
+X-Received: by 2002:a5d:6211:: with SMTP id y17mr9727999wru.97.1639672086343; 
+ Thu, 16 Dec 2021 08:28:06 -0800 (PST)
 MIME-Version: 1.0
-X-Scanned-By: MIMEDefang 2.79 on 10.5.11.13
-X-Spam-Score: -1.6 (-)
+References: <163967073889.1823006.12237147297060239168.stgit@warthog.procyon.org.uk>
+ <163967172373.1823006.6118195970180365070.stgit@warthog.procyon.org.uk>
+In-Reply-To: <163967172373.1823006.6118195970180365070.stgit@warthog.procyon.org.uk>
+From: Linus Torvalds <torvalds@linux-foundation.org>
+Date: Thu, 16 Dec 2021 08:27:50 -0800
+X-Gmail-Original-Message-ID: <CAHk-=wjiba2VRKKjOYAiCZn1Tk9H1tiXcOvjekdo3wPHHmedyQ@mail.gmail.com>
+Message-ID: <CAHk-=wjiba2VRKKjOYAiCZn1Tk9H1tiXcOvjekdo3wPHHmedyQ@mail.gmail.com>
+To: David Howells <dhowells@redhat.com>
+X-Spam-Score: 0.1 (/)
 X-Spam-Report: Spam detection software,
  running on the system "util-spamd-1.v13.lw.sourceforge.com", 
  has NOT identified this incoming email as spam.  The original
  message has been attached to this so you can view it or label
  similar future email.  If you have any questions, see
  the administrator of that system for details.
- Content preview: From: Jeff Layton <jlayton@kernel.org> When updating the
- backing
- store from the pagecache (a'la writepage or writepages), write to the cache
- first. This allows us to keep caching files even when they are being written, 
- as long as we have a [...] 
- Content analysis details:   (-1.6 points, 6.0 required)
+ Content preview:  On Thu, Dec 16,
+ 2021 at 8:22 AM David Howells <dhowells@redhat.com>
+ wrote: > > It is possible for the len argument to afs_write_end() to overrun
+ the end > of the page (len is used to key the size of t [...] 
+ Content analysis details:   (0.1 points, 6.0 required)
  pts rule name              description
  ---- ---------------------- --------------------------------------------------
- -0.7 RCVD_IN_DNSWL_LOW      RBL: Sender listed at https://www.dnswl.org/,
- low trust [170.10.129.124 listed in list.dnswl.org]
+ -0.0 RCVD_IN_MSPIKE_H2      RBL: Average reputation (+2)
+ [209.85.208.48 listed in wl.mailspike.net]
+ -0.0 RCVD_IN_DNSWL_NONE     RBL: Sender listed at https://www.dnswl.org/,
+ no trust [209.85.208.48 listed in list.dnswl.org]
+ 0.2 HEADER_FROM_DIFFERENT_DOMAINS From and EnvelopeFrom 2nd level
+ mail domains are different
  0.0 SPF_HELO_NONE          SPF: HELO does not publish an SPF Record
  -0.0 SPF_PASS               SPF: sender matches SPF record
- 0.0 RCVD_IN_MSPIKE_H3      RBL: Good reputation (+3)
- [170.10.129.124 listed in wl.mailspike.net]
- -0.1 DKIM_VALID_EF          Message has a valid DKIM or DK signature from
- envelope-from domain
  -0.1 DKIM_VALID_AU          Message has a valid DKIM or DK signature from
  author's domain
  0.1 DKIM_SIGNED            Message has a DKIM or DK signature, not necessarily
  valid
  -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
- 0.0 RCVD_IN_MSPIKE_WL      Mailspike good senders
- -0.7 DKIMWL_WL_HIGH         DKIMwl.org - High trust sender
-X-Headers-End: 1mxtZj-00057x-KL
-Subject: [V9fs-developer] [PATCH v3 67/68] ceph: add fscache writeback
- support
+X-Headers-End: 1mxtc5-0005Dm-Lz
+Subject: Re: [V9fs-developer] [PATCH v3 57/68] afs: Fix afs_write_end() to
+ handle len > page size
 X-BeenThere: v9fs-developer@lists.sourceforge.net
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -118,196 +125,38 @@ List-Post: <mailto:v9fs-developer@lists.sourceforge.net>
 List-Help: <mailto:v9fs-developer-request@lists.sourceforge.net?subject=help>
 List-Subscribe: <https://lists.sourceforge.net/lists/listinfo/v9fs-developer>, 
  <mailto:v9fs-developer-request@lists.sourceforge.net?subject=subscribe>
-Cc: Steve French <sfrench@samba.org>, linux-nfs@vger.kernel.org,
- linux-cifs@vger.kernel.org, linux-fsdevel@vger.kernel.org,
- Jeff Layton <jlayton@kernel.org>, linux-kernel@vger.kernel.org,
- Matthew Wilcox <willy@infradead.org>, linux-afs@lists.infradead.org,
- dhowells@redhat.com, v9fs-developer@lists.sourceforge.net,
+Cc: CIFS <linux-cifs@vger.kernel.org>, "open list:NFS, SUNRPC,
+ AND..." <linux-nfs@vger.kernel.org>,
+ linux-fsdevel <linux-fsdevel@vger.kernel.org>,
+ Jeff Layton <jlayton@kernel.org>,
+ Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+ Matthew Wilcox <willy@infradead.org>,
+ Anna Schumaker <anna.schumaker@netapp.com>, Steve French <sfrench@samba.org>,
+ JeffleXu <jefflexu@linux.alibaba.com>, linux-cachefs@redhat.com,
  Alexander Viro <viro@zeniv.linux.org.uk>,
  Trond Myklebust <trondmy@hammerspace.com>,
- JeffleXu <jefflexu@linux.alibaba.com>, ceph-devel@vger.kernel.org,
- Omar Sandoval <osandov@osandov.com>,
- Linus Torvalds <torvalds@linux-foundation.org>,
- Anna Schumaker <anna.schumaker@netapp.com>
+ Marc Dionne <marc.dionne@auristor.com>, ceph-devel@vger.kernel.org,
+ Omar Sandoval <osandov@osandov.com>, linux-afs@lists.infradead.org,
+ v9fs-developer@lists.sourceforge.net
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: v9fs-developer-bounces@lists.sourceforge.net
 
-From: Jeff Layton <jlayton@kernel.org>
+On Thu, Dec 16, 2021 at 8:22 AM David Howells <dhowells@redhat.com> wrote:
+>
+> It is possible for the len argument to afs_write_end() to overrun the end
+> of the page (len is used to key the size of the page in afs_write_start()
+> when compound pages become a regular thing).
 
-When updating the backing store from the pagecache (a'la writepage or
-writepages), write to the cache first. This allows us to keep caching
-files even when they are being written, as long as we have appropriate
-caps.
+This smells like a bug in the caller.
 
-Signed-off-by: Jeff Layton <jlayton@kernel.org>
-Signed-off-by: David Howells <dhowells@redhat.com>
-Link: https://lore.kernel.org/r/20211129162907.149445-3-jlayton@kernel.org/ # v1
-Link: https://lore.kernel.org/r/20211207134451.66296-3-jlayton@kernel.org/ # v2
-Link: https://lore.kernel.org/r/163906985808.143852.1383891557313186623.stgit@warthog.procyon.org.uk/ # v2
----
+It's just insane to call "write_end()" with a range that doesn't
+actually fit in the page provided.
 
- fs/ceph/addr.c |   67 +++++++++++++++++++++++++++++++++++++++++++++++++-------
- 1 file changed, 59 insertions(+), 8 deletions(-)
+Exactly how does that happen, and why should AFS deal with it, not
+whoever called write_end()?
 
-diff --git a/fs/ceph/addr.c b/fs/ceph/addr.c
-index 0ffc4c8d7c10..e836f8f1d4f8 100644
---- a/fs/ceph/addr.c
-+++ b/fs/ceph/addr.c
-@@ -5,7 +5,6 @@
- #include <linux/fs.h>
- #include <linux/mm.h>
- #include <linux/pagemap.h>
--#include <linux/writeback.h>	/* generic_writepages */
- #include <linux/slab.h>
- #include <linux/pagevec.h>
- #include <linux/task_io_accounting_ops.h>
-@@ -384,6 +383,38 @@ static void ceph_readahead(struct readahead_control *ractl)
- 	netfs_readahead(ractl, &ceph_netfs_read_ops, (void *)(uintptr_t)got);
- }
- 
-+#ifdef CONFIG_CEPH_FSCACHE
-+static void ceph_set_page_fscache(struct page *page)
-+{
-+	set_page_fscache(page);
-+}
-+
-+static void ceph_fscache_write_terminated(void *priv, ssize_t error, bool was_async)
-+{
-+	struct inode *inode = priv;
-+
-+	if (IS_ERR_VALUE(error) && error != -ENOBUFS)
-+		ceph_fscache_invalidate(inode, false);
-+}
-+
-+static void ceph_fscache_write_to_cache(struct inode *inode, u64 off, u64 len, bool caching)
-+{
-+	struct ceph_inode_info *ci = ceph_inode(inode);
-+	struct fscache_cookie *cookie = ceph_fscache_cookie(ci);
-+
-+	fscache_write_to_cache(cookie, inode->i_mapping, off, len, i_size_read(inode),
-+			       ceph_fscache_write_terminated, inode, caching);
-+}
-+#else
-+static inline void ceph_set_page_fscache(struct page *page)
-+{
-+}
-+
-+static inline void ceph_fscache_write_to_cache(struct inode *inode, u64 off, u64 len, bool caching)
-+{
-+}
-+#endif /* CONFIG_CEPH_FSCACHE */
-+
- struct ceph_writeback_ctl
- {
- 	loff_t i_size;
-@@ -499,6 +530,7 @@ static int writepage_nounlock(struct page *page, struct writeback_control *wbc)
- 	struct ceph_writeback_ctl ceph_wbc;
- 	struct ceph_osd_client *osdc = &fsc->client->osdc;
- 	struct ceph_osd_request *req;
-+	bool caching = ceph_is_cache_enabled(inode);
- 
- 	dout("writepage %p idx %lu\n", page, page->index);
- 
-@@ -537,16 +569,17 @@ static int writepage_nounlock(struct page *page, struct writeback_control *wbc)
- 	    CONGESTION_ON_THRESH(fsc->mount_options->congestion_kb))
- 		set_bdi_congested(inode_to_bdi(inode), BLK_RW_ASYNC);
- 
--	set_page_writeback(page);
- 	req = ceph_osdc_new_request(osdc, &ci->i_layout, ceph_vino(inode), page_off, &len, 0, 1,
- 				    CEPH_OSD_OP_WRITE, CEPH_OSD_FLAG_WRITE, snapc,
- 				    ceph_wbc.truncate_seq, ceph_wbc.truncate_size,
- 				    true);
--	if (IS_ERR(req)) {
--		redirty_page_for_writepage(wbc, page);
--		end_page_writeback(page);
-+	if (IS_ERR(req))
- 		return PTR_ERR(req);
--	}
-+
-+	set_page_writeback(page);
-+	if (caching)
-+		ceph_set_page_fscache(page);
-+	ceph_fscache_write_to_cache(inode, page_off, len, caching);
- 
- 	/* it may be a short write due to an object boundary */
- 	WARN_ON_ONCE(len > thp_size(page));
-@@ -605,6 +638,9 @@ static int ceph_writepage(struct page *page, struct writeback_control *wbc)
- 	struct inode *inode = page->mapping->host;
- 	BUG_ON(!inode);
- 	ihold(inode);
-+
-+	wait_on_page_fscache(page);
-+
- 	err = writepage_nounlock(page, wbc);
- 	if (err == -ERESTARTSYS) {
- 		/* direct memory reclaimer was killed by SIGKILL. return 0
-@@ -726,6 +762,7 @@ static int ceph_writepages_start(struct address_space *mapping,
- 	struct ceph_writeback_ctl ceph_wbc;
- 	bool should_loop, range_whole = false;
- 	bool done = false;
-+	bool caching = ceph_is_cache_enabled(inode);
- 
- 	dout("writepages_start %p (mode=%s)\n", inode,
- 	     wbc->sync_mode == WB_SYNC_NONE ? "NONE" :
-@@ -849,7 +886,7 @@ static int ceph_writepages_start(struct address_space *mapping,
- 				unlock_page(page);
- 				break;
- 			}
--			if (PageWriteback(page)) {
-+			if (PageWriteback(page) || PageFsCache(page)) {
- 				if (wbc->sync_mode == WB_SYNC_NONE) {
- 					dout("%p under writeback\n", page);
- 					unlock_page(page);
-@@ -857,6 +894,7 @@ static int ceph_writepages_start(struct address_space *mapping,
- 				}
- 				dout("waiting on writeback %p\n", page);
- 				wait_on_page_writeback(page);
-+				wait_on_page_fscache(page);
- 			}
- 
- 			if (!clear_page_dirty_for_io(page)) {
-@@ -989,9 +1027,19 @@ static int ceph_writepages_start(struct address_space *mapping,
- 		op_idx = 0;
- 		for (i = 0; i < locked_pages; i++) {
- 			u64 cur_offset = page_offset(pages[i]);
-+			/*
-+			 * Discontinuity in page range? Ceph can handle that by just passing
-+			 * multiple extents in the write op.
-+			 */
- 			if (offset + len != cur_offset) {
-+				/* If it's full, stop here */
- 				if (op_idx + 1 == req->r_num_ops)
- 					break;
-+
-+				/* Kick off an fscache write with what we have so far. */
-+				ceph_fscache_write_to_cache(inode, offset, len, caching);
-+
-+				/* Start a new extent */
- 				osd_req_op_extent_dup_last(req, op_idx,
- 							   cur_offset - offset);
- 				dout("writepages got pages at %llu~%llu\n",
-@@ -1002,14 +1050,17 @@ static int ceph_writepages_start(struct address_space *mapping,
- 				osd_req_op_extent_update(req, op_idx, len);
- 
- 				len = 0;
--				offset = cur_offset; 
-+				offset = cur_offset;
- 				data_pages = pages + i;
- 				op_idx++;
- 			}
- 
- 			set_page_writeback(pages[i]);
-+			if (caching)
-+				ceph_set_page_fscache(pages[i]);
- 			len += thp_size(page);
- 		}
-+		ceph_fscache_write_to_cache(inode, offset, len, caching);
- 
- 		if (ceph_wbc.size_stable) {
- 			len = min(len, ceph_wbc.i_size - offset);
-
-
+              Linus
 
 
 _______________________________________________
