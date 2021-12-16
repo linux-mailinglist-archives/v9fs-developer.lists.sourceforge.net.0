@@ -2,111 +2,102 @@ Return-Path: <v9fs-developer-bounces@lists.sourceforge.net>
 X-Original-To: lists+v9fs-developer@lfdr.de
 Delivered-To: lists+v9fs-developer@lfdr.de
 Received: from lists.sourceforge.net (lists.sourceforge.net [216.105.38.7])
-	by mail.lfdr.de (Postfix) with ESMTPS id BF1F9474C5C
-	for <lists+v9fs-developer@lfdr.de>; Tue, 14 Dec 2021 20:58:06 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id F36BB4768A9
+	for <lists+v9fs-developer@lfdr.de>; Thu, 16 Dec 2021 04:26:31 +0100 (CET)
 Received: from [127.0.0.1] (helo=sfs-ml-1.v29.lw.sourceforge.com)
 	by sfs-ml-1.v29.lw.sourceforge.com with esmtp (Exim 4.94.2)
 	(envelope-from <v9fs-developer-bounces@lists.sourceforge.net>)
-	id 1mxDw3-0005B1-Gx; Tue, 14 Dec 2021 19:58:04 +0000
+	id 1mxhPY-00085S-3m; Thu, 16 Dec 2021 03:26:29 +0000
 Received: from [172.30.20.202] (helo=mx.sourceforge.net)
  by sfs-ml-1.v29.lw.sourceforge.com with esmtps (TLS1.2) tls
  TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384 (Exim 4.94.2)
- (envelope-from <dhowells@redhat.com>) id 1mxDw2-0005Av-EJ
- for v9fs-developer@lists.sourceforge.net; Tue, 14 Dec 2021 19:58:03 +0000
+ (envelope-from <zhuran@mail.ustc.edu.cn>) id 1mxhPX-00085M-4v
+ for v9fs-developer@lists.sourceforge.net; Thu, 16 Dec 2021 03:26:28 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=sourceforge.net; s=x; h=Message-ID:Date:Content-ID:Content-Type:
- MIME-Version:Subject:Cc:To:References:In-Reply-To:From:Sender:Reply-To:
- Content-Transfer-Encoding:Content-Description:Resent-Date:Resent-From:
- Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:
- List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=lWNXdC7c4/QvF14/ly2qEacx83h1zt3femW1UptwI/g=; b=LrKI3d8PHrIevGx+9gVu40gj7t
- iM1JQybGUaCLIUjdEAoB4I9Qfz09sgrLzfUNfJmTYR2EHjMCAvGD0ACDq5i/yeaoxGGVhe6ajryw8
- Sb30oshnP1ufVfMh78wyGpMVSUgjcwfw+Crz1//rV9Bu1LXH3K19PkF3Hel+4HDHb7uQ=;
+ d=sourceforge.net; s=x; h=Content-Transfer-Encoding:MIME-Version:Message-Id:
+ Date:Subject:Cc:To:From:Sender:Reply-To:Content-Type:Content-ID:
+ Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
+ :Resent-Message-ID:In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:
+ List-Subscribe:List-Post:List-Owner:List-Archive;
+ bh=w1vsd7GanfbTXy86A2IeFU7xbgNKpgAWPzP/c6CKamE=; b=M1xdA4e14gS39tu5srt0Afvt1r
+ 4SmJiWaX7QNiPUDpnDOVE0qz3KgwN6nApSOYLuLHOOKMpH7k2+4LPPpEZxKnaypKg/2UmaqSyp+39
+ Pek5C+kPucPrkEHjeVzIc1oYdqWXIyrpPjeglpyCVynV5+TBwb3oitGRWUcju/G0Ug7Y=;
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  ;
- h=Message-ID:Date:Content-ID:Content-Type:MIME-Version:Subject:Cc:To:
- References:In-Reply-To:From:Sender:Reply-To:Content-Transfer-Encoding:
- Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
- :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
- List-Post:List-Owner:List-Archive;
- bh=lWNXdC7c4/QvF14/ly2qEacx83h1zt3femW1UptwI/g=; b=NEgBWbv+CoNkBKoOb/sajhxcix
- OFlPZswNjF84m6FTyjGrlURQx2I7TGfndGV6KCWb/pwykPyYb99fWbz6k9TOnWkA2EAQL9H4E7oyW
- v4JezWYQRP2cM+SkgssffkGiJBPdZj4qGXKZIgWg6QqixUuRFG3cW+oW3yos/EWPndPU=;
-Received: from us-smtp-delivery-124.mimecast.com ([170.10.129.124])
- by sfi-mx-1.v28.lw.sourceforge.com with esmtps
- (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.92.3)
- id 1mxDvw-00FTHM-FF
- for v9fs-developer@lists.sourceforge.net; Tue, 14 Dec 2021 19:58:03 +0000
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
- s=mimecast20190719; t=1639511865;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:content-type:content-type:
- in-reply-to:in-reply-to:references:references;
- bh=lWNXdC7c4/QvF14/ly2qEacx83h1zt3femW1UptwI/g=;
- b=PfOe/WQQn1HBqd+q4LOARqZhT63xQARnAqFS/qgiGuPFwU4gdSjWndv9Xfm3zQqN9yjMRj
- 7ewS/Nn+mLin+UexT3TqNoRyaLG07ivOBB5srJnd5Ue9XFE7QDQMk0qEKNe+YRQlTpwuXl
- hd0+xOpfHIVgpUp4CAI+XGS3LRFkCqI=
-Received: from mimecast-mx01.redhat.com (mimecast-mx01.redhat.com
- [209.132.183.4]) by relay.mimecast.com with ESMTP with STARTTLS
- (version=TLSv1.2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- us-mta-93-LJ_2iVCRNWO_4MGxCIm4rg-1; Tue, 14 Dec 2021 14:57:39 -0500
-X-MC-Unique: LJ_2iVCRNWO_4MGxCIm4rg-1
-Received: from smtp.corp.redhat.com (int-mx07.intmail.prod.int.phx2.redhat.com
- [10.5.11.22])
- (using TLSv1.2 with cipher AECDH-AES256-SHA (256/256 bits))
- (No client certificate requested)
- by mimecast-mx01.redhat.com (Postfix) with ESMTPS id C884F1926DA0;
- Tue, 14 Dec 2021 19:57:36 +0000 (UTC)
-Received: from warthog.procyon.org.uk (unknown [10.33.36.122])
- by smtp.corp.redhat.com (Postfix) with ESMTP id 1D3C41017E27;
- Tue, 14 Dec 2021 19:57:27 +0000 (UTC)
-Organization: Red Hat UK Ltd. Registered Address: Red Hat UK Ltd, Amberley
- Place, 107-111 Peascod Street, Windsor, Berkshire, SI4 1TE, United
- Kingdom.
- Registered in England and Wales under Company Registration No. 3798903
-From: David Howells <dhowells@redhat.com>
-In-Reply-To: <87e6960c660eaa883d6ee81c25449cf6fa3c9c19.camel@kernel.org>
-References: <87e6960c660eaa883d6ee81c25449cf6fa3c9c19.camel@kernel.org>
- <163906878733.143852.5604115678965006622.stgit@warthog.procyon.org.uk>
- <163906890630.143852.13972180614535611154.stgit@warthog.procyon.org.uk>
-To: Jeff Layton <jlayton@kernel.org>
+ h=Content-Transfer-Encoding:MIME-Version:Message-Id:Date:Subject:Cc:To:From
+ :Sender:Reply-To:Content-Type:Content-ID:Content-Description:Resent-Date:
+ Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:
+ References:List-Id:List-Help:List-Unsubscribe:List-Subscribe:List-Post:
+ List-Owner:List-Archive; bh=w1vsd7GanfbTXy86A2IeFU7xbgNKpgAWPzP/c6CKamE=; b=Q
+ 36V6y6dmoY3qqhS3IS6S8knHEptZxEdUES/cAsQHeSkAKq1ufmezzpLGUcc4m0Y+9dJBcy6eD2xNK
+ AmykOxlXGoLXB6agWMYt9ffW7Vlf4ldWeAktgo1c9px6Ktm1d8KC9+LfgqdILx4EFHeSC/xmQ4GLR
+ WK7ENk/afuLs75QI=;
+Received: from smtp2.ustc.edu.cn ([202.38.64.46] helo=ustc.edu.cn)
+ by sfi-mx-1.v28.lw.sourceforge.com with esmtp (Exim 4.92.3)
+ id 1mxhPS-00HBmB-B1
+ for v9fs-developer@lists.sourceforge.net; Thu, 16 Dec 2021 03:26:28 +0000
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=mail.ustc.edu.cn; s=dkim; h=Received:From:To:Cc:Subject:Date:
+ Message-Id:MIME-Version:Content-Transfer-Encoding; bh=w1vsd7Ganf
+ bTXy86A2IeFU7xbgNKpgAWPzP/c6CKamE=; b=g2kIdfjkrZ5wS6F0JaJfzCMcxq
+ 3otmN4Vji2nZ1yida2pXjtGnIO9FFmpg5KJ078Y51mmDe83sFic/tinCVokU4FVZ
+ KYI07Ptwsct6hyCwMiP3BbT36Z/6C+00KgmNrO0a9S3haE9JamMYHeuhtAf+kW2w
+ WB8Mpl9lANQOhGaPs=
+Received: from localhost.localdomain (unknown [106.11.196.156])
+ by newmailweb.ustc.edu.cn (Coremail) with SMTP id
+ LkAmygCXn2+2rbphTDl6AA--.300S4; 
+ Thu, 16 Dec 2021 11:08:39 +0800 (CST)
+To: ericvh@gmail.com, lucho@ionkov.net, asmadeus@codewreck.org,
+ davem@davemloft.net, kuba@kernel.org
+Date: Thu, 16 Dec 2021 11:08:36 +0800
+Message-Id: <20211216030836.81989-1-zhuran@mail.ustc.edu.cn>
+X-Mailer: git-send-email 2.33.1
 MIME-Version: 1.0
-Content-ID: <1082028.1639511847.1@warthog.procyon.org.uk>
-Date: Tue, 14 Dec 2021 19:57:27 +0000
-Message-ID: <1082029.1639511847@warthog.procyon.org.uk>
-X-Scanned-By: MIMEDefang 2.84 on 10.5.11.22
-X-Spam-Score: -1.6 (-)
+X-CM-TRANSID: LkAmygCXn2+2rbphTDl6AA--.300S4
+X-Coremail-Antispam: 1UD129KBjvdXoW7JF1xur4Uur4UZrW5ArWfuFg_yoWfCwbEka
+ 48X39Fvr1UAFW3CrWUCw4rXrn2kw4xWa1UX39xKayI934DXFs8W3ykKr9xX3W8Wr4DCrn7
+ tFWDXrn0vw13ujkaLaAFLSUrUUUUjb8apTn2vfkv8UJUUUU8Yxn0WfASr-VFAUDa7-sFnT
+ 9fnUUIcSsGvfJTRUUUbwkFF20E14v26r4j6ryUM7CY07I20VC2zVCF04k26cxKx2IYs7xG
+ 6rWj6s0DM7CIcVAFz4kK6r1j6r18M28lY4IEw2IIxxk0rwA2F7IY1VAKz4vEj48ve4kI8w
+ A2z4x0Y4vE2Ix0cI8IcVAFwI0_Ar0_tr1l84ACjcxK6xIIjxv20xvEc7CjxVAFwI0_Cr0_
+ Gr1UM28EF7xvwVC2z280aVAFwI0_Cr1j6rxdM28EF7xvwVC2z280aVCY1x0267AKxVW0oV
+ Cq3wAS0I0E0xvYzxvE52x082IY62kv0487Mc02F40EFcxC0VAKzVAqx4xG6I80ewAv7VC0
+ I7IYx2IY67AKxVWUGVWUXwAv7VC2z280aVAFwI0_Jr0_Gr1lOx8S6xCaFVCjc4AY6r1j6r
+ 4UM4x0Y48IcxkI7VAKI48JM4x0x7Aq67IIx4CEVc8vx2IErcIFxwCF04k20xvY0x0EwIxG
+ rwCFx2IqxVCFs4IE7xkEbVWUJVW8JwC20s026c02F40E14v26r1j6r18MI8I3I0E7480Y4
+ vE14v26r106r1rMI8E67AF67kF1VAFwI0_Jw0_GFylIxkGc2Ij64vIr41lIxAIcVC0I7IY
+ x2IY67AKxVWUJVWUCwCI42IY6xIIjxv20xvEc7CjxVAFwI0_Jr0_Gr1lIxAIcVCF04k26c
+ xKx2IYs7xG6r4j6FyUMIIF0xvEx4A2jsIE14v26r1j6r4UMIIF0xvEx4A2jsIEc7CjxVAF
+ wI0_Jr0_GrUvcSsGvfC2KfnxnUUI43ZEXa7VU1a9aPUUUUU==
+X-CM-SenderInfo: x2kx2t3q6ptxnoox23vfohv3gofq/
+X-Spam-Score: -2.4 (--)
 X-Spam-Report: Spam detection software,
  running on the system "util-spamd-1.v13.lw.sourceforge.com", 
  has NOT identified this incoming email as spam.  The original
  message has been attached to this so you can view it or label
  similar future email.  If you have any questions, see
  the administrator of that system for details.
- Content preview:  Jeff Layton <jlayton@kernel.org> wrote: > > Do we need the
- last two parameters to fscache_acquire_volume? I'll note > that all of the
- callers in the current set just pass "NULL, 0" for them. cifs wants to set
- it. I have a patch to make cachefiles store this. afs should use it also.
- Content analysis details:   (-1.6 points, 6.0 required)
+ Content preview: start my first kernel patch commit Signed-off-by: zhuxinran
+ <zhuran@mail.ustc.edu.cn> --- net/9p/trans_virtio.c | 2 +- 1 file changed,
+ 1 insertion(+),
+ 1 deletion(-) diff --git a/net/9p/trans_virtio.c b/net/9p/trans_virtio.c
+ index bd5a89c4960d..f7dc561ca516 100644 --- a/net/9p/trans_virtio.c +++
+ b/net/9p/trans_virtio.c
+ @@ -648,7 +648,7 @@ static int p9_virtio_prob [...] 
+ Content analysis details:   (-2.4 points, 6.0 required)
  pts rule name              description
  ---- ---------------------- --------------------------------------------------
- -0.7 RCVD_IN_DNSWL_LOW      RBL: Sender listed at https://www.dnswl.org/,
- low trust [170.10.129.124 listed in list.dnswl.org]
- 0.0 RCVD_IN_MSPIKE_H3      RBL: Good reputation (+3)
- [170.10.129.124 listed in wl.mailspike.net]
- 0.0 SPF_HELO_NONE          SPF: HELO does not publish an SPF Record
+ -2.3 RCVD_IN_DNSWL_MED      RBL: Sender listed at https://www.dnswl.org/,
+ medium trust [202.38.64.46 listed in list.dnswl.org]
+ -0.0 SPF_HELO_PASS          SPF: HELO matches SPF record
  -0.0 SPF_PASS               SPF: sender matches SPF record
- -0.1 DKIM_VALID_EF          Message has a valid DKIM or DK signature from
- envelope-from domain
  -0.1 DKIM_VALID_AU          Message has a valid DKIM or DK signature from
  author's domain
  0.1 DKIM_SIGNED            Message has a DKIM or DK signature, not necessarily
  valid
  -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
- 0.0 RCVD_IN_MSPIKE_WL      Mailspike good senders
- -0.7 DKIMWL_WL_HIGH         DKIMwl.org - High trust sender
-X-Headers-End: 1mxDvw-00FTHM-FF
-Subject: Re: [V9fs-developer] [PATCH v2 09/67] fscache: Implement volume
- registration
+X-Headers-End: 1mxhPS-00HBmB-B1
+Subject: [V9fs-developer] [PATCH] virtio: fix spelling error
 X-BeenThere: v9fs-developer@lists.sourceforge.net
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -118,31 +109,37 @@ List-Post: <mailto:v9fs-developer@lists.sourceforge.net>
 List-Help: <mailto:v9fs-developer-request@lists.sourceforge.net?subject=help>
 List-Subscribe: <https://lists.sourceforge.net/lists/listinfo/v9fs-developer>, 
  <mailto:v9fs-developer-request@lists.sourceforge.net?subject=subscribe>
-Cc: Steve French <sfrench@samba.org>, linux-nfs@vger.kernel.org,
- linux-cifs@vger.kernel.org, ceph-devel@vger.kernel.org,
- linux-kernel@vger.kernel.org, Matthew Wilcox <willy@infradead.org>,
- linux-afs@lists.infradead.org, dhowells@redhat.com,
- linux-fsdevel@vger.kernel.org, linux-cachefs@redhat.com,
- Alexander Viro <viro@zeniv.linux.org.uk>,
- Trond Myklebust <trondmy@hammerspace.com>,
- JeffleXu <jefflexu@linux.alibaba.com>, v9fs-developer@lists.sourceforge.net,
- Omar Sandoval <osandov@osandov.com>,
- Linus Torvalds <torvalds@linux-foundation.org>,
- Anna Schumaker <anna.schumaker@netapp.com>
+From: zhuxinran via V9fs-developer <v9fs-developer@lists.sourceforge.net>
+Reply-To: zhuxinran <zhuran@mail.ustc.edu.cn>
+Cc: zhuxinran <zhuran@mail.ustc.edu.cn>, v9fs-developer@lists.sourceforge.net,
+ linux-kernel@vger.kernel.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: v9fs-developer-bounces@lists.sourceforge.net
 
-Jeff Layton <jlayton@kernel.org> wrote:
+start my first kernel patch commit
 
-> 
-> Do we need the last two parameters to fscache_acquire_volume? I'll note
-> that all of the callers in the current set just pass "NULL, 0" for them.
+Signed-off-by: zhuxinran <zhuran@mail.ustc.edu.cn>
+---
+ net/9p/trans_virtio.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-cifs wants to set it.  I have a patch to make cachefiles store this.  afs
-should use it also.
+diff --git a/net/9p/trans_virtio.c b/net/9p/trans_virtio.c
+index bd5a89c4960d..f7dc561ca516 100644
+--- a/net/9p/trans_virtio.c
++++ b/net/9p/trans_virtio.c
+@@ -648,7 +648,7 @@ static int p9_virtio_probe(struct virtio_device *vdev)
+  * @args: args passed from sys_mount() for per-transport options (unused)
+  *
+  * This sets up a transport channel for 9p communication.  Right now
+- * we only match the first available channel, but eventually we couldlook up
++ * we only match the first available channel, but eventually we could look up
+  * alternate channels by matching devname versus a virtio_config entry.
+  * We use a simple reference count mechanism to ensure that only a single
+  * mount has a channel open at a time.
+-- 
+2.33.1
 
-David
 
 
 
