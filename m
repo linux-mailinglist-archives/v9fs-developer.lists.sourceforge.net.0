@@ -2,92 +2,96 @@ Return-Path: <v9fs-developer-bounces@lists.sourceforge.net>
 X-Original-To: lists+v9fs-developer@lfdr.de
 Delivered-To: lists+v9fs-developer@lfdr.de
 Received: from lists.sourceforge.net (lists.sourceforge.net [216.105.38.7])
-	by mail.lfdr.de (Postfix) with ESMTPS id C6C62479A89
-	for <lists+v9fs-developer@lfdr.de>; Sat, 18 Dec 2021 12:17:18 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 74B2B479B19
+	for <lists+v9fs-developer@lfdr.de>; Sat, 18 Dec 2021 14:51:55 +0100 (CET)
 Received: from [127.0.0.1] (helo=sfs-ml-4.v29.lw.sourceforge.com)
 	by sfs-ml-4.v29.lw.sourceforge.com with esmtp (Exim 4.94.2)
 	(envelope-from <v9fs-developer-bounces@lists.sourceforge.net>)
-	id 1myXiG-0007dn-GC; Sat, 18 Dec 2021 11:17:16 +0000
+	id 1mya7t-0002H1-9n; Sat, 18 Dec 2021 13:51:53 +0000
 Received: from [172.30.20.202] (helo=mx.sourceforge.net)
  by sfs-ml-4.v29.lw.sourceforge.com with esmtps (TLS1.2) tls
  TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384 (Exim 4.94.2)
- (envelope-from <asmadeus@codewreck.org>) id 1myXiF-0007dh-Ef
- for v9fs-developer@lists.sourceforge.net; Sat, 18 Dec 2021 11:17:15 +0000
+ (envelope-from <dhowells@redhat.com>) id 1mya7r-0002Gr-UM
+ for v9fs-developer@lists.sourceforge.net; Sat, 18 Dec 2021 13:51:51 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=sourceforge.net; s=x; h=In-Reply-To:Content-Type:MIME-Version:References:
- Message-ID:Subject:Cc:To:From:Date:Sender:Reply-To:Content-Transfer-Encoding:
- Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
- Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
- List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=8CSxbc5WL1k9ccoiWDDaGfsWN/iRL7BkpYTEy76X/4g=; b=A3XMLQg/PwZ1ZdlU+qwpVTOaDk
- E7EqYjyFT/eDQB9qrhYw4u3DPVcVP305OG7Ia4LPbSEEWXPG9tDPc4sRGXJcBNrQaaKyT4MrjBORi
- UoGaaPP9ZiLDb/FFDRZ8u3Ab67y8QfJw88tdEoJtMJ6in1p4HBbJJuX8rVpx9aKfaraM=;
+ d=sourceforge.net; s=x; h=Message-ID:Date:Content-ID:Content-Type:
+ MIME-Version:Subject:Cc:To:References:In-Reply-To:From:Sender:Reply-To:
+ Content-Transfer-Encoding:Content-Description:Resent-Date:Resent-From:
+ Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:
+ List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
+ bh=BIFz5ajtFoBBkDaiDzhdzEAut5QHeIJpeIasvSkTdck=; b=fInM+687mqhJK8IzNsYxer9dFz
+ 0i6GEThKG5kycVXFz8qQTwq+AKtObZJ+lt8SO/xDG4aCH9rLd/yeA+6IM1J4L53sE616jZhagO0QR
+ LIsV2mcCF4q5bFHGmSIL+3h1ihqOGh1wG6thihkyaRk8LtnwNu7yOb1HLIgP7/eK0/rg=;
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  ;
- h=In-Reply-To:Content-Type:MIME-Version:References:Message-ID:Subject:Cc:To
- :From:Date:Sender:Reply-To:Content-Transfer-Encoding:Content-ID:
+ h=Message-ID:Date:Content-ID:Content-Type:MIME-Version:Subject:Cc:To:
+ References:In-Reply-To:From:Sender:Reply-To:Content-Transfer-Encoding:
  Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
  :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
  List-Post:List-Owner:List-Archive;
- bh=8CSxbc5WL1k9ccoiWDDaGfsWN/iRL7BkpYTEy76X/4g=; b=Zjxb1z0/fC0lldMVlEpI+3P9U9
- J5l6mml3dBj3xm1rAkeu7PEqpLTubgZPnk8r2VOe7nqvpz7RFpYCe9rWdoYLo3AKt9AKPy1vI4f83
- QOoRQefScnmA4u5NboKfgSb5vecvu0FWb4aC9mPqx9UN923CV6EkDH/iZFtQf68sup50=;
-Received: from nautica.notk.org ([91.121.71.147])
- by sfi-mx-1.v28.lw.sourceforge.com with esmtps
+ bh=BIFz5ajtFoBBkDaiDzhdzEAut5QHeIJpeIasvSkTdck=; b=DNxNF3AxTCgMZkr/ueolhPMmVQ
+ a2gKMUFkCE6E4fpyVGdpdhPTc1VOwtiCKNV730Blo8F6oYiOTW6LXz+9E0WGTiEmWjCEM8pEwqzp1
+ ilyyWJwoyefsqtsZTJ6ebQXF2fYcbm4xrYTChyAmu/4ryWxlnDi+C6+Zn8DYBPw3GbBo=;
+Received: from us-smtp-delivery-124.mimecast.com ([170.10.129.124])
+ by sfi-mx-2.v28.lw.sourceforge.com with esmtps
  (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.92.3)
- id 1myXiE-001wU0-He
- for v9fs-developer@lists.sourceforge.net; Sat, 18 Dec 2021 11:17:15 +0000
-Received: by nautica.notk.org (Postfix, from userid 108)
- id 46C6FC01C; Sat, 18 Dec 2021 12:17:06 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=codewreck.org; s=2;
- t=1639826226; bh=8CSxbc5WL1k9ccoiWDDaGfsWN/iRL7BkpYTEy76X/4g=;
- h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
- b=ZTqdmRywC9U7LQrM+zMrWByW5RkhT1tb4OXOzA/K9L0G5vMRwroDEOkAQRjSUlRhh
- DplAlrczMjz9XMVo7t1sgXiXJhyCQ1+W++tCVrw39d0FMBKPBm+3+CN6w+j6petNJW
- bYdq/ScRIyr0EL7aEYVUtq+Abj4bLmYK6X1/UqQnNTEHQ3bAxAS2YaEZcOgTGnYyQ1
- qkGEFQzjlw6ExdAYWBxJXXnnDupd42t4BZtkGHUeuKXEtJ+QhYM4cH303fh9vwBAJA
- 2lMC8UQJ6svZj84nJYQvJmlqUC2VqYiv4VSnZ7GSegvyZAbg0hd2U7kFP29gwIHS11
- GeLEQSqdTXWiw==
-X-Spam-Checker-Version: SpamAssassin 3.3.2 (2011-06-06) on nautica.notk.org
-X-Spam-Level: 
-X-Spam-Status: No, score=0.0 required=5.0 tests=UNPARSEABLE_RELAY
- autolearn=unavailable version=3.3.2
-Received: from odin.codewreck.org (localhost [127.0.0.1])
- by nautica.notk.org (Postfix) with ESMTPS id 96C03C009;
- Sat, 18 Dec 2021 12:17:02 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=codewreck.org; s=2;
- t=1639826224; bh=8CSxbc5WL1k9ccoiWDDaGfsWN/iRL7BkpYTEy76X/4g=;
- h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
- b=NIzjkSptoI6TTpfj/IR3eA52mZE8NyVvKXRyBr/V1b8ImSn5W7v5gBM3otX51jRIE
- 5p9kbrEjgWjHq1xQChET357PtxOdaftgV+izFJ0xXkf7kePu76HE1q+gE9ZyWfdxYP
- 90Pv7urwyRhfC5BrmYoX12CvzyaBciKc/Uf+1/1FLPsmZTpJOKzPrRpRXKJqslU4Xn
- VKhw+45zL9Q1Z39cGxFPxfVfv9xot0BCGRImIuim5RQIvnoizyGrVEEa0t3zWSZ0jV
- nfNKDZfH54g4+mSd4X/Ui7egDwlv3bXSw21FvuFTxQ+345GPBDD0WnigLEq3AHIHr2
- RRAD7z+wgm9ng==
-Received: from localhost (odin.codewreck.org [local])
- by odin.codewreck.org (OpenSMTPD) with ESMTPA id 6bbaf76b;
- Sat, 18 Dec 2021 11:17:00 +0000 (UTC)
-Date: Sat, 18 Dec 2021 20:16:44 +0900
-From: asmadeus@codewreck.org
-To: cgel.zte@gmail.com
-Message-ID: <Yb3DHNHjk0SwMJPU@codewreck.org>
-References: <20211112092547.9153-1-zhang.mingyu@zte.com.cn>
+ id 1mya7p-0003FY-CC
+ for v9fs-developer@lists.sourceforge.net; Sat, 18 Dec 2021 13:51:51 +0000
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+ s=mimecast20190719; t=1639835502;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+ in-reply-to:in-reply-to:references:references;
+ bh=BIFz5ajtFoBBkDaiDzhdzEAut5QHeIJpeIasvSkTdck=;
+ b=he7t0X858fL9kxBAoWbkYDWtq9wGAOJ49ioJVcDAR0FkejhCOt3eW/lvR/O17HnfxHVq+r
+ D7DjZbuYUgbx1v6bXUUUupS3WTWw2gpJ97MRbt5gnOMIirzc2nlcrX2zHUVh/vLeKpbzg+
+ fcOflk+ASJiZ5Pu7sguBq//xmt7ZvDs=
+Received: from mimecast-mx01.redhat.com (mimecast-mx01.redhat.com
+ [209.132.183.4]) by relay.mimecast.com with ESMTP with STARTTLS
+ (version=TLSv1.2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ us-mta-399-Sg7s_sLVNYOqBjhC08zpgA-1; Sat, 18 Dec 2021 08:51:41 -0500
+X-MC-Unique: Sg7s_sLVNYOqBjhC08zpgA-1
+Received: from smtp.corp.redhat.com (int-mx03.intmail.prod.int.phx2.redhat.com
+ [10.5.11.13])
+ (using TLSv1.2 with cipher AECDH-AES256-SHA (256/256 bits))
+ (No client certificate requested)
+ by mimecast-mx01.redhat.com (Postfix) with ESMTPS id 73E6D1853028;
+ Sat, 18 Dec 2021 13:51:39 +0000 (UTC)
+Received: from warthog.procyon.org.uk (unknown [10.33.36.122])
+ by smtp.corp.redhat.com (Postfix) with ESMTP id 8B45F94B8A;
+ Sat, 18 Dec 2021 13:51:37 +0000 (UTC)
+Organization: Red Hat UK Ltd. Registered Address: Red Hat UK Ltd, Amberley
+ Place, 107-111 Peascod Street, Windsor, Berkshire, SI4 1TE, United
+ Kingdom.
+ Registered in England and Wales under Company Registration No. 3798903
+From: David Howells <dhowells@redhat.com>
+In-Reply-To: <Yb3AbFhc9ApdHpcA@codewreck.org>
+References: <Yb3AbFhc9ApdHpcA@codewreck.org>
+ <20211203185816.796637-1-arnd@kernel.org> <YaqwdNGlZDBDcg5R@codewreck.org>
+To: Dominique Martinet <asmadeus@codewreck.org>
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20211112092547.9153-1-zhang.mingyu@zte.com.cn>
-X-Spam-Score: -0.2 (/)
+Content-ID: <2222223.1639835496.1@warthog.procyon.org.uk>
+Date: Sat, 18 Dec 2021 13:51:36 +0000
+Message-ID: <2222224.1639835496@warthog.procyon.org.uk>
+X-Scanned-By: MIMEDefang 2.79 on 10.5.11.13
+X-Spam-Score: -1.6 (-)
 X-Spam-Report: Spam detection software,
  running on the system "util-spamd-1.v13.lw.sourceforge.com", 
  has NOT identified this incoming email as spam.  The original
  message has been attached to this so you can view it or label
  similar future email.  If you have any questions, see
  the administrator of that system for details.
- Content preview:  cgel.zte@gmail.com wrote on Fri, Nov 12, 2021 at 09:25:47AM
- +0000: > From: Zhang Mingyu <zhang.mingyu@zte.com.cn> > > This issue was
- detected with the help of Coccinelle. > > Reported-by: Zeal Robot < [...] 
- Content analysis details:   (-0.2 points, 6.0 required)
+ Content preview:  Dominique Martinet <asmadeus@codewreck.org> wrote: > David
+ since then fixed the warning differently in v2 of the patch (he > moved the
+ fscache_note_page_release() out of the ifdef), so I won't do > anything with
+ this even if in principle I tend to agr [...] 
+ Content analysis details:   (-1.6 points, 6.0 required)
  pts rule name              description
  ---- ---------------------- --------------------------------------------------
+ 0.0 RCVD_IN_MSPIKE_H3      RBL: Good reputation (+3)
+ [170.10.129.124 listed in wl.mailspike.net]
+ -0.7 RCVD_IN_DNSWL_LOW      RBL: Sender listed at https://www.dnswl.org/,
+ low trust [170.10.129.124 listed in list.dnswl.org]
  0.0 SPF_HELO_NONE          SPF: HELO does not publish an SPF Record
  -0.0 SPF_PASS               SPF: sender matches SPF record
  -0.1 DKIM_VALID_EF          Message has a valid DKIM or DK signature from
@@ -97,11 +101,10 @@ X-Spam-Report: Spam detection software,
  0.1 DKIM_SIGNED            Message has a DKIM or DK signature, not necessarily
  valid
  -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
- 0.0 UNPARSEABLE_RELAY      Informational: message has unparseable relay
- lines
-X-Headers-End: 1myXiE-001wU0-He
-Subject: Re: [V9fs-developer] [PATCH] 9p: Use BUG_ON instead of if condition
- followed by BUG.
+ 0.0 RCVD_IN_MSPIKE_WL      Mailspike good senders
+ -0.7 DKIMWL_WL_HIGH         DKIMwl.org - High trust sender
+X-Headers-End: 1mya7p-0003FY-CC
+Subject: Re: [V9fs-developer] [PATCH] 9p: fix unused-variable warning
 X-BeenThere: v9fs-developer@lists.sourceforge.net
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -113,45 +116,29 @@ List-Post: <mailto:v9fs-developer@lists.sourceforge.net>
 List-Help: <mailto:v9fs-developer-request@lists.sourceforge.net?subject=help>
 List-Subscribe: <https://lists.sourceforge.net/lists/listinfo/v9fs-developer>, 
  <mailto:v9fs-developer-request@lists.sourceforge.net?subject=subscribe>
-Cc: lucho@ionkov.net, ericvh@gmail.com, Zeal Robot <zealci@zte.com.cn>,
- linux-kernel@vger.kernel.org, v9fs-developer@lists.sourceforge.net,
- Zhang Mingyu <zhang.mingyu@zte.com.cn>
+Cc: Latchesar Ionkov <lucho@ionkov.net>, Arnd Bergmann <arnd@kernel.org>,
+ Arnd Bergmann <arnd@arndb.de>, Eric Van Hensbergen <ericvh@gmail.com>,
+ Jeff Layton <jlayton@kernel.org>, linux-kernel@vger.kernel.org,
+ dhowells@redhat.com, v9fs-developer@lists.sourceforge.net
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: v9fs-developer-bounces@lists.sourceforge.net
 
-cgel.zte@gmail.com wrote on Fri, Nov 12, 2021 at 09:25:47AM +0000:
-> From: Zhang Mingyu <zhang.mingyu@zte.com.cn>
-> 
-> This issue was detected with the help of Coccinelle.
-> 
-> Reported-by: Zeal Robot <zealci@zte.com.cn>
-> Signed-off-by: Zhang Mingyu <zhang.mingyu@zte.com.cn>
+Dominique Martinet <asmadeus@codewreck.org> wrote:
 
-I realize I've never replied to this mail when applying old patches now,
-I've picked this up too.
+> David since then fixed the warning differently in v2 of the patch (he
+> moved the fscache_note_page_release() out of the ifdef), so I won't do
+> anything with this even if in principle I tend to agree that
+> if(IS_ENABLED()) lead to better compiler coverage
 
-> ---
->  fs/9p/vfs_file.c | 3 +--
->  1 file changed, 1 insertion(+), 2 deletions(-)
-> 
-> diff --git a/fs/9p/vfs_file.c b/fs/9p/vfs_file.c
-> index 4244d48398ef..f2375448cafc 100644
-> --- a/fs/9p/vfs_file.c
-> +++ b/fs/9p/vfs_file.c
-> @@ -139,8 +139,7 @@ static int v9fs_file_do_lock(struct file *filp, int cmd, struct file_lock *fl)
->  	fid = filp->private_data;
->  	BUG_ON(fid == NULL);
->  
-> -	if ((fl->fl_flags & FL_POSIX) != FL_POSIX)
-> -		BUG();
-> +	BUG_ON((fl->fl_flags & FL_POSIX) != FL_POSIX);
->  
->  	res = locks_lock_file_wait(filp, fl);
->  	if (res < 0)
+Yeah, fscache_note_page_release() compiles out in such a case because
+v9fs_inode_cookie() becomes unconditionally NULL if it's disabled.
 
--- 
-Dominique
+If you want me to do something different, can you give me an incremental patch
+to merge into mine?
+
+David
+
 
 
 _______________________________________________
