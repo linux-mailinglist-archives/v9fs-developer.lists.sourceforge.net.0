@@ -2,98 +2,161 @@ Return-Path: <v9fs-developer-bounces@lists.sourceforge.net>
 X-Original-To: lists+v9fs-developer@lfdr.de
 Delivered-To: lists+v9fs-developer@lfdr.de
 Received: from lists.sourceforge.net (lists.sourceforge.net [216.105.38.7])
-	by mail.lfdr.de (Postfix) with ESMTPS id 169E947DB75
-	for <lists+v9fs-developer@lfdr.de>; Thu, 23 Dec 2021 00:32:12 +0100 (CET)
-Received: from [127.0.0.1] (helo=sfs-ml-2.v29.lw.sourceforge.com)
-	by sfs-ml-2.v29.lw.sourceforge.com with esmtp (Exim 4.94.2)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5F6FB47E8FA
+	for <lists+v9fs-developer@lfdr.de>; Thu, 23 Dec 2021 22:18:16 +0100 (CET)
+Received: from [127.0.0.1] (helo=sfs-ml-4.v29.lw.sourceforge.com)
+	by sfs-ml-4.v29.lw.sourceforge.com with esmtp (Exim 4.94.2)
 	(envelope-from <v9fs-developer-bounces@lists.sourceforge.net>)
-	id 1n0B5e-00015M-Ln; Wed, 22 Dec 2021 23:32:10 +0000
+	id 1n0VTZ-0004ma-IE; Thu, 23 Dec 2021 21:18:13 +0000
 Received: from [172.30.20.202] (helo=mx.sourceforge.net)
- by sfs-ml-2.v29.lw.sourceforge.com with esmtps (TLS1.2) tls
+ by sfs-ml-4.v29.lw.sourceforge.com with esmtps (TLS1.2) tls
  TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384 (Exim 4.94.2)
- (envelope-from <dhowells@redhat.com>) id 1n0B5c-00015G-8P
- for v9fs-developer@lists.sourceforge.net; Wed, 22 Dec 2021 23:32:08 +0000
+ (envelope-from <vvs@virtuozzo.com>) id 1n0VTX-0004mT-Bv
+ for v9fs-developer@lists.sourceforge.net; Thu, 23 Dec 2021 21:18:11 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=sourceforge.net; s=x; h=Content-Transfer-Encoding:Content-Type:MIME-Version
- :References:In-Reply-To:Message-ID:Date:Cc:To:From:Subject:Sender:Reply-To:
- Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
- Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
+ d=sourceforge.net; s=x; h=MIME-Version:Content-Transfer-Encoding:Content-Type
+ :Date:Message-ID:Cc:To:Subject:From:Sender:Reply-To:Content-ID:
+ Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
+ :Resent-Message-ID:In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:
  List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=XfI7gqBYYhaYDC/XKjIvpYFWGl28/kPgLuT23IL8FM0=; b=gYz/GKbEwUdcGa2MV/diHDmZzi
- rQyO6Eg/7xvY53onMDPku4xkgtoTtlSVN7LkNMkJx3slbQYylI/nF1JQ/Rjb802vxpojAC4ODnQ64
- nhQxaeU7UCtomPF9NiJ4i4UKnDW4IK+e0VfIljY3mywTHztIUY/WGy7KndNhwkCjKk7g=;
+ bh=b4Um1KuMd0ErX2EjnCy/kL4babgQxRIphRSbzaqlaPI=; b=V37bt92W3+FLHz0vdhj1ERZxv0
+ rNy44CymdRZICTCdDugbPA4rArmLehyBQ9jv4acfcEtZn32dDTpn+r5f1UlYKcle28n0EaKHfeGla
+ MjyzlrMVfWrnQUBg5vUL4OU/xmvuj/tuSeHGnbpFRoyoOU/EkKEdU4e4lTdKPYQ7imjk=;
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  ;
- h=Content-Transfer-Encoding:Content-Type:MIME-Version:References:
- In-Reply-To:Message-ID:Date:Cc:To:From:Subject:Sender:Reply-To:Content-ID:
- Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
- :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
- List-Post:List-Owner:List-Archive;
- bh=XfI7gqBYYhaYDC/XKjIvpYFWGl28/kPgLuT23IL8FM0=; b=TOcosTdCWmdi86xNQnjk2A0JGN
- C8jXp9IduxzdnbBRuhBayu89NWwscvblK1Z3HKRehqhdPJYFKJY2hqIcuCapXXnrjpML0D0ED19TB
- JjsaC1qlY47s/9JO3NKHzxoCIYqShAgKajDFzrXhf/vv2lvaLvNr2D02Dph0eDwK1HDE=;
-Received: from us-smtp-delivery-124.mimecast.com ([170.10.133.124])
+ h=MIME-Version:Content-Transfer-Encoding:Content-Type:Date:Message-ID:Cc:To
+ :Subject:From:Sender:Reply-To:Content-ID:Content-Description:Resent-Date:
+ Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:
+ References:List-Id:List-Help:List-Unsubscribe:List-Subscribe:List-Post:
+ List-Owner:List-Archive; bh=b4Um1KuMd0ErX2EjnCy/kL4babgQxRIphRSbzaqlaPI=; b=f
+ lMq2W8DuW+MfPx2lypPeWKbBfKx793c6IWcANJjSA0bH4lxt8h1gQ6+6uHooatwsOHe3FwBZk6j6C
+ Qt3C4Ab1dfaIKkiXxyUxhJdMTe+5tKm9XZKDXCnFIDEKisl1SbowH29WZPDdE7pWffGyiIcLYq9+j
+ FhxMxkWNK2dS9zR8=;
+Received: from mail-eopbgr70129.outbound.protection.outlook.com
+ ([40.107.7.129] helo=EUR04-HE1-obe.outbound.protection.outlook.com)
  by sfi-mx-2.v28.lw.sourceforge.com with esmtps
  (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.92.3)
- id 1n0B5b-0007q7-1W
- for v9fs-developer@lists.sourceforge.net; Wed, 22 Dec 2021 23:32:07 +0000
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
- s=mimecast20190719; t=1640215921;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references;
- bh=XfI7gqBYYhaYDC/XKjIvpYFWGl28/kPgLuT23IL8FM0=;
- b=P1oc1fVNcmVIZHtfMFqVYat+SMIZ+1xPwCeq/Ht5ITBcOmzO4Eysr3D0JhV8keRx+QBIwy
- DJwpt0lMi/Ell/QwZcP0W4whXfeojMil3w0CuJkZV/pKLloyYnSU9rhT9QeTQldHL8uDXE
- fwz8JLVAlRB9FCjxwVDmcKS9tJXP31s=
-Received: from mimecast-mx01.redhat.com (mimecast-mx01.redhat.com
- [209.132.183.4]) by relay.mimecast.com with ESMTP with STARTTLS
- (version=TLSv1.2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- us-mta-82-xqCE2pPyOEe1DQYWm9JOXg-1; Wed, 22 Dec 2021 18:31:58 -0500
-X-MC-Unique: xqCE2pPyOEe1DQYWm9JOXg-1
-Received: from smtp.corp.redhat.com (int-mx02.intmail.prod.int.phx2.redhat.com
- [10.5.11.12])
- (using TLSv1.2 with cipher AECDH-AES256-SHA (256/256 bits))
- (No client certificate requested)
- by mimecast-mx01.redhat.com (Postfix) with ESMTPS id C7F358042E0;
- Wed, 22 Dec 2021 23:31:55 +0000 (UTC)
-Received: from warthog.procyon.org.uk (unknown [10.33.36.165])
- by smtp.corp.redhat.com (Postfix) with ESMTP id 9B6667EFC3;
- Wed, 22 Dec 2021 23:31:48 +0000 (UTC)
-Organization: Red Hat UK Ltd. Registered Address: Red Hat UK Ltd, Amberley
- Place, 107-111 Peascod Street, Windsor, Berkshire, SI4 1TE, United
- Kingdom.
- Registered in England and Wales under Company Registration No. 3798903
-From: David Howells <dhowells@redhat.com>
-To: linux-cachefs@redhat.com
-Date: Wed, 22 Dec 2021 23:31:47 +0000
-Message-ID: <164021590773.640689.16777975200823659231.stgit@warthog.procyon.org.uk>
-In-Reply-To: <164021479106.640689.17404516570194656552.stgit@warthog.procyon.org.uk>
-References: <164021479106.640689.17404516570194656552.stgit@warthog.procyon.org.uk>
-User-Agent: StGit/0.23
+ id 1n0VTT-0008MH-Ow
+ for v9fs-developer@lists.sourceforge.net; Thu, 23 Dec 2021 21:18:11 +0000
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=FFD42yt4oRvvUi2NyLqUuIIYWbba0BuqR98jY210kGufPgrGH0FGfYITgfIcBv0LNRKBFef1ZnTwhUzaOvDe5bz0Ct/lVMW1RA3Wv1hEyoBwp0zZ79Grc5+xCoooR7DDytkbFe6gOMgSFrl7DfyXyw0r5J77eGYVa6AwzcOl+VN7FnxEIws643WcvqSC5q4BXTTgMUDeSSZtcg43//o+nmFm0bcds2YQV2kUgs4x6X8EoGCDNlTV3aSWq+jFJq33ZA5JJPc/+6z+Vsgwd4A8GM6dsWJO3bBCdlRA0IiKMJNKoQjKg1GnBTLT2s4DOUUSiOd7y/EfSYO99aLbKxlATA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=b4Um1KuMd0ErX2EjnCy/kL4babgQxRIphRSbzaqlaPI=;
+ b=PjuO8Nfsj5dZAE5/+wsp9t2Mh2TZPYl8IEswDwQ8ircu/jIUxQ/ul6ZAONNd3oFAdaqQJO3L0lH3882aoAC9nNQPFKLyyj9GIYbhFUP7DpQO7xddSmnkkP5Hp2LDDNvuaKeqyLYz77YOl6rAYWyBKJgThh98KKEHGK8pjcAn5F3XU/3uA8Z80VguIIqVP/i8RDtZb7BKfZV65lGkHhjtRoElbGXHRoDw1TGa9RQ3UgWEHoK+ZFbHmnymfDS6MQuwp3inblMTOgyA5ZkULYz1wl92VMSyo7JhYEnIhJGmJlcWebf4K3XIZ00Tgppzid0y05CdbKLAxdoBODxE9vEZaw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=virtuozzo.com; dmarc=pass action=none
+ header.from=virtuozzo.com; dkim=pass header.d=virtuozzo.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=virtuozzo.com;
+ s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=b4Um1KuMd0ErX2EjnCy/kL4babgQxRIphRSbzaqlaPI=;
+ b=cXC4KW9bF7vMTuPCOrG4/cY+g9DprNzyQsFcOeBtdcLv2OMK0wiCSO1MsVMxA2Tu5SlsuPmV80QBFNFdmZOPi0IUiBOdsamEHdpymmi5eRFzhNogJeOhjQsKSw4HFcvvQF3DDYHMS+T58OFiH2F2obGgzCAofDoiWfzcStbs978=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=virtuozzo.com;
+Received: from DB9PR08MB6619.eurprd08.prod.outlook.com (2603:10a6:10:257::21)
+ by DB7PR08MB3659.eurprd08.prod.outlook.com (2603:10a6:10:4a::25) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4801.20; Thu, 23 Dec
+ 2021 18:21:24 +0000
+Received: from DB9PR08MB6619.eurprd08.prod.outlook.com
+ ([fe80::347f:d385:ec53:75aa]) by DB9PR08MB6619.eurprd08.prod.outlook.com
+ ([fe80::347f:d385:ec53:75aa%7]) with mapi id 15.20.4823.019; Thu, 23 Dec 2021
+ 18:21:24 +0000
+To: Eric Van Hensbergen <ericvh@gmail.com>,
+ Latchesar Ionkov <lucho@ionkov.net>,
+ Dominique Martinet <asmadeus@codewreck.org>
+Message-ID: <076a9ce6-ae06-5b3e-f577-d993e55089f1@virtuozzo.com>
+Date: Thu, 23 Dec 2021 21:21:23 +0300
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.14.0
+Content-Language: en-US
+X-ClientProxiedBy: AS9PR06CA0295.eurprd06.prod.outlook.com
+ (2603:10a6:20b:45a::12) To DB9PR08MB6619.eurprd08.prod.outlook.com
+ (2603:10a6:10:257::21)
 MIME-Version: 1.0
-X-Scanned-By: MIMEDefang 2.79 on 10.5.11.12
-X-Spam-Score: -1.6 (-)
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: 9ea57eb0-fe16-4488-fb71-08d9c641071d
+X-MS-TrafficTypeDiagnostic: DB7PR08MB3659:EE_
+X-Microsoft-Antispam-PRVS: <DB7PR08MB36592EDECD2285960C3E2421AA7E9@DB7PR08MB3659.eurprd08.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:1247;
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: mQ490T7FREAEi3/6erDuK3BJe9bk1QniXWvp09IsfuNon+G74jDvW4XPGzlh61M7UDcciL+l25RltZ1GZKvylwoQzrrDmcRAtAvnI2YbhtkGnCzGJlYifaBnra1YZSFDYJiMhapPYiKQmYG2Y3DG2yGM/Wl/0XiLqOJMQe+SpDumGDLCodx/k8Q/TpNa1JLvfXvDe8c1vtUJIdky1tsgB0sRhpu5JxBhMDL/HMH6HsQfW40QStt8Erj3+DpeC6zkdzTmyyQhA7OVtIkSnwEzY5IqjT80JKsvP/CHcHzyTdCYrT+ya4C8mzTape79VetaYPRg6K/P/9wltBaPwAmlydQuwv0k06OfYlfFyqWnWqq3a5Jcmn6b+rbtOnAAaIGPJpu7U2nVl8IpiP8PCMpwA74g83t61u4kZKtWPxPboGi4pEWCiXmtkQ101AYGihEoA8rGY9NYd7RGfPPJMHqU3XfBYwQ3nD2lF0eGaUsA+5Gr3ZsRJKlTD+ET/hUWx4KnOQH/bhsHYmGoXwOVUlasC/ZJJ2XznzI6b2HR1Bb/zDuM+Iq5CaDdiksL7N3kg4UtpzlzcuaXYYAgGQCl45P9CWQHz6VzAbxYefqbbYfozVjvdJn5tp8ZLAp4bAEk4E6qC8QYm8ixkizwi7DjZWu9GAVHgaPhbQsZ/xKksoQ8YOgfZ6LIPxDtroOk4KI6zZzOsjJKhrI863qB67nDb3hayvMjAMbNzVYU8/+RVq0Qu8DcKRxIYC0oU1R9QmNyp0S+tL2ePRHrAtrYwUHfDq6UTWbuo7NDPLjx0fUPJ1F85SzhJxNq/utcbqx3ufveq50H2En1rtI+PL5Paz7hgHafo12li9eSJzi0oYouK4cKqpo=
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:DB9PR08MB6619.eurprd08.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(4636009)(366004)(31686004)(52116002)(6512007)(316002)(66556008)(4326008)(6486002)(31696002)(26005)(186003)(86362001)(5660300002)(66476007)(6506007)(8676002)(110136005)(66946007)(36756003)(508600001)(8936002)(38100700002)(2616005)(966005)(2906002)(83380400001)(38350700002)(45980500001)(43740500002);
+ DIR:OUT; SFP:1102; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?VUhYaWdCRlM2VGlaNG5FTXRZdWg5ckpkRTZPRHR4UUxBU0xLa0RNaFZvc3dm?=
+ =?utf-8?B?czYxRTZoMHVNSmI1c3ZKcmNKaStpN1QrekovNEQ1ZUlONCticFRtWi8yQ21y?=
+ =?utf-8?B?YUJmRHB2a0NiVGdSaDlNOWwyRFBYaDYxMGliVDhGWW1xMTRPMUFHWmF5U0tU?=
+ =?utf-8?B?cE8yM0w4VnFNS3RGUkM4aTFsaEQwSk5BRHNtamRGalhqRFFubUtwQ0x3UnR6?=
+ =?utf-8?B?NHJQekNGc0dlSDZKZnpyVmp1eVFIT2xobjFQSFE2R0tpZjBXVDFPVSsyWnhj?=
+ =?utf-8?B?SjdLL296QURydW5YSTQyd1FyVEFFQlpNWWRrMCs1MHFhMjJ1NHM1eWIzSHdN?=
+ =?utf-8?B?R1cydWNBSEw2Y1h1R25KbGs1ZzNMYm5kTjZ4Y05MeE1GWlkzTmdwUTYwOW9v?=
+ =?utf-8?B?cnpUNVdpM0xlWHVrM1JZSTB2RHhGUWluczQ2U3M0ekg2NFpRdG5rTWo3cFVY?=
+ =?utf-8?B?UnlsOHVCTjVHRCtNRDV4engvOTNKaFdZVysxTTRDZ0tyRzZHbzVxdmEvdGQ4?=
+ =?utf-8?B?ZTgzYTJoSHJyVVlGeGpDZ3dWNDBNODVvdWU5blZNRFR3cktRSUdvYk90VWJw?=
+ =?utf-8?B?REJoUThFa29mcWd0a2NabUloM0p6V2xyWGwzdk55SGtRUjQ5VE9OMXhBcUt5?=
+ =?utf-8?B?a2VhQjNVVzErbzZBUTllMS8zN1Z5aGRZaDFHYkJEMHh2NzBQSHhVZG5LQTgy?=
+ =?utf-8?B?UjM0RXF0a2RKNnkvYi9yU1d5MEs3NXBuR3NYc2s1cU9MVXZzK2xudk5ZRVJu?=
+ =?utf-8?B?VXVNUTQzbG9UU1ZqNFVnRWJKWElGdXNLZStSU0Z4clI0cWtSbU5wWmo4MlBp?=
+ =?utf-8?B?a2piMjg2RThYUkozblc1VVoyMGZucGV0emhXOWJONG1QWTlSeE40UCs1VWZO?=
+ =?utf-8?B?bi8vQ2M1WXdGdjN5Q1BIY0FxOGpxV1FDUW9uWTJ0bUMwZGtiTndhMktWYzBh?=
+ =?utf-8?B?UlJTQ216dDR4aUdNV3pOZXRISEh4WkZLcFBnU3lhb1lqZUUwYkoxOXdrT1lp?=
+ =?utf-8?B?NWhkTWNETFBiS0hNUVZSSWRScDNvRTc0SCtCUEVDbWNNYjIrZ2NZS2JlalBw?=
+ =?utf-8?B?NG8vWnFEZi8xMWdjMVJMTi9NdUdzN285Wi9PWXdVUWNoeW5BcXF1bnVHSklM?=
+ =?utf-8?B?UzFzTkxiQ1BySkJGSXQ1YzVQTEtWcXltVUdVNDZTdFk4cDBrS3JQdW1YSHJo?=
+ =?utf-8?B?K3ZpblF0VWJmUHA0Z2RWUHRseG9pdDl3ajZBU3JtZXJIbW53R01oVE8wRzBC?=
+ =?utf-8?B?Yzk4QktwdHd4cDhuQTlFUjExbi9WajV1TkRGelFCdEhzUTNpL3gyZFlGczQ5?=
+ =?utf-8?B?MmkzSVZmU1loVElnaGkvWWVOVHdTb040R2U2RlM1RVVyNnNvNWNrVlZ1M3A2?=
+ =?utf-8?B?RnpobGNFRVZ1WXNCK0dtMjB0Smk3bnpoRHdzdFpvNDJ0WHdQTGVONWpUTUFB?=
+ =?utf-8?B?SkJVL2ZIek9RK0I0cGhQNEovYzg5WUNsZTlGZitybytFc1JQSlhTSitpMTdC?=
+ =?utf-8?B?NEp0VGJVblcrOWJqT3BuOFYyclN2VW1WWG9UaXFBQkdZMHh0Mm50NE5SOFFT?=
+ =?utf-8?B?S1JlSWo3UTh4UElnWW9HZEc1aE1aY2tLUlJsM051Vk9nZU1FeUhERnkwT1lJ?=
+ =?utf-8?B?NTBRZ2xka0VuV2lmNUZCNDN3aXlSMzdZWWo4ZTF0MVdFY21GQVBhVzBQWWZS?=
+ =?utf-8?B?Z2l0TWFXT3ZMUHl0cDdlR1AvZm9yWGQyMUpTWmsyZXVsQ0NFamhZVzhJYXBF?=
+ =?utf-8?B?a09IMjkwUDRsbmpjeFFLeG1wRWY2dVlmWTRPY0h2d3RMZW9EOG53a08zLzVU?=
+ =?utf-8?B?d2tyQTBBMGhxWHpIR0V4bWNSZUd1aUNnaHhMWHRVVWdWYlRxR0FEYkswVGVO?=
+ =?utf-8?B?QVZHc016eVoydTBZOUR6dDlrVVhxSjFrbUMrektWeGFGa1Q3VFVwZ1A1Vnl6?=
+ =?utf-8?B?UWJ5ZzJsVWRmQk1lNzFKSHo0T0JyalJ3cU40NmhacHNhdjB0TzRtMDY4N25R?=
+ =?utf-8?B?ZEJmTjF1bFhUMFNOT0NxamY5cFp5MkwyQmVSMDhRRmhoenlDTUJ3N291aGZZ?=
+ =?utf-8?B?eS9ZV3VleVRiK1hnbWR6eUNjeno1cFpGcllxd29panRlRFdPcXBWQzZNYVIz?=
+ =?utf-8?B?TGQ1WXNvNEZoTExWck5JdjdnbFpNTUJSTjd3NCtRTFJXYnNwWk5xdEFVaEIr?=
+ =?utf-8?Q?7RncVIgii+lMf926R6QBB8c=3D?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: 9ea57eb0-fe16-4488-fb71-08d9c641071d
+X-MS-Exchange-CrossTenant-AuthSource: DB9PR08MB6619.eurprd08.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 23 Dec 2021 18:21:24.4991 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 0bc7f26d-0264-416e-a6fc-8352af79c58f
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: XDtPLIGXpjYrISSTAcAxTAtz90HUICBpzB4F/zfZzYWXgea5EcDauN7ylGP+QW6rXUO1DcQcmYqbFUR4VUUGvQ==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DB7PR08MB3659
+X-OriginatorOrg: virtuozzo.com
+X-Spam-Score: -0.2 (/)
 X-Spam-Report: Spam detection software,
  running on the system "util-spamd-1.v13.lw.sourceforge.com", 
  has NOT identified this incoming email as spam.  The original
  message has been attached to this so you can view it or label
  similar future email.  If you have any questions, see
  the administrator of that system for details.
- Content preview:  In 9p, afs ceph, cifs and nfs,
- gfpflags_allow_blocking() (which
- wraps a test for __GFP_DIRECT_RECLAIM being set) is used to determine if
- ->releasepage() should wait for the completion of a DIO write t [...] 
- Content analysis details:   (-1.6 points, 6.0 required)
+ Content preview: kernel export thread (nfsd/lockd/ksmbd) uses F_SETLK cmd with
+ the FL_SLEEP flag set to request asynchronous processing of blocking locks.
+ Currently v9fs does not support such requests and calls blocking
+ locks_lock_file_wait() function. 
+ Content analysis details:   (-0.2 points, 6.0 required)
  pts rule name              description
  ---- ---------------------- --------------------------------------------------
- -0.7 RCVD_IN_DNSWL_LOW      RBL: Sender listed at https://www.dnswl.org/,
- low trust [170.10.133.124 listed in list.dnswl.org]
- 0.0 SPF_HELO_NONE          SPF: HELO does not publish an SPF Record
+ -0.0 RCVD_IN_DNSWL_NONE     RBL: Sender listed at https://www.dnswl.org/,
+ no trust [40.107.7.129 listed in list.dnswl.org]
+ -0.0 RCVD_IN_MSPIKE_H2      RBL: Average reputation (+2)
+ [40.107.7.129 listed in wl.mailspike.net]
+ -0.0 SPF_HELO_PASS          SPF: HELO matches SPF record
  -0.0 SPF_PASS               SPF: sender matches SPF record
- 0.0 RCVD_IN_MSPIKE_H3      RBL: Good reputation (+3)
- [170.10.133.124 listed in wl.mailspike.net]
  -0.1 DKIM_VALID_EF          Message has a valid DKIM or DK signature from
  envelope-from domain
  -0.1 DKIM_VALID_AU          Message has a valid DKIM or DK signature from
@@ -101,11 +164,9 @@ X-Spam-Report: Spam detection software,
  0.1 DKIM_SIGNED            Message has a DKIM or DK signature, not necessarily
  valid
  -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
- 0.0 RCVD_IN_MSPIKE_WL      Mailspike good senders
- -0.7 DKIMWL_WL_HIGH         DKIMwl.org - High trust sender
-X-Headers-End: 1n0B5b-0007q7-1W
-Subject: [V9fs-developer] [PATCH v4 68/68] 9p, afs, ceph, cifs,
- nfs: Use current_is_kswapd() rather than gfpflags_allow_blocking()
+X-Headers-End: 1n0VTT-0008MH-Ow
+Subject: [V9fs-developer] [PATCH] v9fs: handle async processing of F_SETLK
+ with FL_SLEEP flag
 X-BeenThere: v9fs-developer@lists.sourceforge.net
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -117,164 +178,66 @@ List-Post: <mailto:v9fs-developer@lists.sourceforge.net>
 List-Help: <mailto:v9fs-developer-request@lists.sourceforge.net?subject=help>
 List-Subscribe: <https://lists.sourceforge.net/lists/listinfo/v9fs-developer>, 
  <mailto:v9fs-developer-request@lists.sourceforge.net?subject=subscribe>
-Cc: dhowells@redhat.com, linux-mm@kvack.org,
- Marc Dionne <marc.dionne@auristor.com>, linux-afs@lists.infradead.org,
- linux-cifs@vger.kernel.org, Matthew Wilcox <willy@infradead.org>,
- Trond Myklebust <trondmy@hammerspace.com>,
- v9fs-developer@lists.sourceforge.net, Alexander Viro <viro@zeniv.linux.org.uk>,
- JeffleXu <jefflexu@linux.alibaba.com>, ceph-devel@vger.kernel.org,
- Trond Myklebust <trond.myklebust@hammerspace.com>, linux-nfs@vger.kernel.org,
- Zhaoyang Huang <zhaoyang.huang@unisoc.com>, Jeff Layton <jlayton@kernel.org>,
- linux-kernel@vger.kernel.org, Steve French <sfrench@samba.org>,
- linux-fsdevel@vger.kernel.org, Omar Sandoval <osandov@osandov.com>,
- Linus Torvalds <torvalds@linux-foundation.org>,
- Anna Schumaker <anna.schumaker@netapp.com>
+From: Vasily Averin via V9fs-developer <v9fs-developer@lists.sourceforge.net>
+Reply-To: Vasily Averin <vvs@virtuozzo.com>
+Cc: v9fs-developer@lists.sourceforge.net, kernel@openvz.org,
+ linux-kernel@vger.kernel.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: v9fs-developer-bounces@lists.sourceforge.net
 
-In 9p, afs ceph, cifs and nfs, gfpflags_allow_blocking() (which wraps a
-test for __GFP_DIRECT_RECLAIM being set) is used to determine if
-->releasepage() should wait for the completion of a DIO write to fscache
-with something like:
+kernel export thread (nfsd/lockd/ksmbd) uses F_SETLK cmd with the FL_SLEEP
+flag set to request asynchronous processing of blocking locks.
 
-	if (folio_test_fscache(folio)) {
-		if (!gfpflags_allow_blocking(gfp) || !(gfp & __GFP_FS))
-			return false;
-		folio_wait_fscache(folio);
-	}
+Currently v9fs does not support such requests and calls blocking
+locks_lock_file_wait() function.
 
-Instead, current_is_kswapd() should be used instead.
+To work around the problem let's detect such request, drop FL_SLEEP
+before execution of potentially blocking functions.
 
-Note that this is based on a patch originally by Zhaoyang Huang[1].  In
-addition to extending it to the other network filesystems and putting it on
-top of my fscache rewrite, it also needs to include linux/swap.h in a bunch
-of places.  Can current_is_kswapd() be moved to linux/mm.h?
+Dropped FL_SLEEP flag should be restored back because some calling
+function (nfsd4_lock) require it.
 
-Originally-signed-off-by: Zhaoyang Huang <zhaoyang.huang@unisoc.com>
-Co-developed-by: David Howells <dhowells@redhat.com>
-Signed-off-by: David Howells <dhowells@redhat.com>
-cc: Zhaoyang Huang <zhaoyang.huang@unisoc.com>
-cc: Dominique Martinet <asmadeus@codewreck.org>
-cc: Marc Dionne <marc.dionne@auristor.com>
-cc: Jeff Layton <jlayton@kernel.org>
-cc: Steve French <sfrench@samba.org>
-cc: Trond Myklebust <trond.myklebust@hammerspace.com>
-cc: linux-cachefs@redhat.com
-cc: v9fs-developer@lists.sourceforge.net
-cc: linux-afs@lists.infradead.org
-cc: ceph-devel@vger.kernel.org
-cc: linux-cifs@vger.kernel.org
-cc: linux-nfs@vger.kernel.org
-cc: linux-mm@kvack.org
-Link: https://lore.kernel.org/r/1638952658-20285-1-git-send-email-huangzhaoyang@gmail.com/ [1]
+https://bugzilla.kernel.org/show_bug.cgi?id=215383
+Signed-off-by: Vasily Averin <vvs@virtuozzo.com>
 ---
+ fs/9p/vfs_file.c | 7 +++++++
+ 1 file changed, 7 insertions(+)
 
- fs/9p/vfs_addr.c |    3 ++-
- fs/afs/file.c    |    3 ++-
- fs/ceph/addr.c   |    3 ++-
- fs/cifs/file.c   |    2 +-
- fs/nfs/fscache.h |    3 ++-
- 5 files changed, 9 insertions(+), 5 deletions(-)
-
-diff --git a/fs/9p/vfs_addr.c b/fs/9p/vfs_addr.c
-index f3f349f460e5..c72e9f8f5f32 100644
---- a/fs/9p/vfs_addr.c
-+++ b/fs/9p/vfs_addr.c
-@@ -16,6 +16,7 @@
- #include <linux/pagemap.h>
- #include <linux/idr.h>
- #include <linux/sched.h>
-+#include <linux/swap.h>
- #include <linux/uio.h>
- #include <linux/netfs.h>
- #include <net/9p/9p.h>
-@@ -143,7 +144,7 @@ static int v9fs_release_page(struct page *page, gfp_t gfp)
- 		return 0;
- #ifdef CONFIG_9P_FSCACHE
- 	if (folio_test_fscache(folio)) {
--		if (!gfpflags_allow_blocking(gfp) || !(gfp & __GFP_FS))
-+		if (current_is_kswapd() || !(gfp & __GFP_FS))
- 			return 0;
- 		folio_wait_fscache(folio);
- 	}
-diff --git a/fs/afs/file.c b/fs/afs/file.c
-index 572063dad0b3..5b98db127a1b 100644
---- a/fs/afs/file.c
-+++ b/fs/afs/file.c
-@@ -14,6 +14,7 @@
- #include <linux/gfp.h>
- #include <linux/task_io_accounting_ops.h>
- #include <linux/mm.h>
-+#include <linux/swap.h>
- #include <linux/netfs.h>
- #include "internal.h"
+diff --git a/fs/9p/vfs_file.c b/fs/9p/vfs_file.c
+index 612e297f3763..81c98afdbb32 100644
+--- a/fs/9p/vfs_file.c
++++ b/fs/9p/vfs_file.c
+@@ -135,6 +135,7 @@ static int v9fs_file_do_lock(struct file *filp, int cmd, struct file_lock *fl)
+ 	int res = 0;
+ 	unsigned char fl_type;
+ 	struct v9fs_session_info *v9ses;
++	bool async = false;
  
-@@ -517,7 +518,7 @@ static int afs_releasepage(struct page *page, gfp_t gfp)
- 	 * elected to wait */
- #ifdef CONFIG_AFS_FSCACHE
- 	if (folio_test_fscache(folio)) {
--		if (!gfpflags_allow_blocking(gfp) || !(gfp & __GFP_FS))
-+		if (current_is_kswapd() || !(gfp & __GFP_FS))
- 			return false;
- 		folio_wait_fscache(folio);
- 	}
-diff --git a/fs/ceph/addr.c b/fs/ceph/addr.c
-index e836f8f1d4f8..b3d9459c9bbd 100644
---- a/fs/ceph/addr.c
-+++ b/fs/ceph/addr.c
-@@ -4,6 +4,7 @@
- #include <linux/backing-dev.h>
- #include <linux/fs.h>
- #include <linux/mm.h>
-+#include <linux/swap.h>
- #include <linux/pagemap.h>
- #include <linux/slab.h>
- #include <linux/pagevec.h>
-@@ -174,7 +175,7 @@ static int ceph_releasepage(struct page *page, gfp_t gfp)
- 		return 0;
+ 	fid = filp->private_data;
+ 	BUG_ON(fid == NULL);
+@@ -142,6 +143,10 @@ static int v9fs_file_do_lock(struct file *filp, int cmd, struct file_lock *fl)
+ 	if ((fl->fl_flags & FL_POSIX) != FL_POSIX)
+ 		BUG();
  
- 	if (PageFsCache(page)) {
--		if (!gfpflags_allow_blocking(gfp) || !(gfp & __GFP_FS))
-+		if (current_is_kswapd() || !(gfp & __GFP_FS))
- 			return 0;
- 		wait_on_page_fscache(page);
- 	}
-diff --git a/fs/cifs/file.c b/fs/cifs/file.c
-index 22b66ce10115..d872f6fe8e7d 100644
---- a/fs/cifs/file.c
-+++ b/fs/cifs/file.c
-@@ -4809,7 +4809,7 @@ static int cifs_release_page(struct page *page, gfp_t gfp)
- 	if (PagePrivate(page))
- 		return 0;
- 	if (PageFsCache(page)) {
--		if (!gfpflags_allow_blocking(gfp) || !(gfp & __GFP_FS))
-+		if (current_is_kswapd() || !(gfp & __GFP_FS))
- 			return false;
- 		wait_on_page_fscache(page);
- 	}
-diff --git a/fs/nfs/fscache.h b/fs/nfs/fscache.h
-index e0220fc40366..25a5c0f82392 100644
---- a/fs/nfs/fscache.h
-+++ b/fs/nfs/fscache.h
-@@ -8,6 +8,7 @@
- #ifndef _NFS_FSCACHE_H
- #define _NFS_FSCACHE_H
++	async = (fl->fl_flags & FL_SLEEP) && IS_SETLK(cmd);
++	if (async)
++		fl->fl_flags &= ~FL_SLEEP;
++
+ 	res = locks_lock_file_wait(filp, fl);
+ 	if (res < 0)
+ 		goto out;
+@@ -230,6 +235,8 @@ static int v9fs_file_do_lock(struct file *filp, int cmd, struct file_lock *fl)
+ 	if (flock.client_id != fid->clnt->name)
+ 		kfree(flock.client_id);
+ out:
++	if (async)
++		fl->fl_flags |= FL_SLEEP;
+ 	return res;
+ }
  
-+#include <linux/swap.h>
- #include <linux/nfs_fs.h>
- #include <linux/nfs_mount.h>
- #include <linux/nfs4_mount.h>
-@@ -52,7 +53,7 @@ extern void __nfs_readpage_to_fscache(struct inode *, struct page *);
- static inline int nfs_fscache_release_page(struct page *page, gfp_t gfp)
- {
- 	if (PageFsCache(page)) {
--		if (!gfpflags_allow_blocking(gfp) || !(gfp & __GFP_FS))
-+		if (current_is_kswapd() || !(gfp & __GFP_FS))
- 			return false;
- 		wait_on_page_fscache(page);
- 		fscache_note_page_release(nfs_i_fscache(page->mapping->host));
-
+-- 
+2.25.1
 
 
 
