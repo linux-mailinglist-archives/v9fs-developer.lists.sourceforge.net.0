@@ -2,26 +2,26 @@ Return-Path: <v9fs-developer-bounces@lists.sourceforge.net>
 X-Original-To: lists+v9fs-developer@lfdr.de
 Delivered-To: lists+v9fs-developer@lfdr.de
 Received: from lists.sourceforge.net (lists.sourceforge.net [216.105.38.7])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9E76847ED4D
-	for <lists+v9fs-developer@lfdr.de>; Fri, 24 Dec 2021 09:39:45 +0100 (CET)
-Received: from [127.0.0.1] (helo=sfs-ml-2.v29.lw.sourceforge.com)
-	by sfs-ml-2.v29.lw.sourceforge.com with esmtp (Exim 4.94.2)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0A18C47EE3C
+	for <lists+v9fs-developer@lfdr.de>; Fri, 24 Dec 2021 11:19:14 +0100 (CET)
+Received: from [127.0.0.1] (helo=sfs-ml-1.v29.lw.sourceforge.com)
+	by sfs-ml-1.v29.lw.sourceforge.com with esmtp (Exim 4.94.2)
 	(envelope-from <v9fs-developer-bounces@lists.sourceforge.net>)
-	id 1n0g75-0000yZ-5Q; Fri, 24 Dec 2021 08:39:43 +0000
+	id 1n0hfK-00019l-GI; Fri, 24 Dec 2021 10:19:11 +0000
 Received: from [172.30.20.202] (helo=mx.sourceforge.net)
- by sfs-ml-2.v29.lw.sourceforge.com with esmtps (TLS1.2) tls
+ by sfs-ml-1.v29.lw.sourceforge.com with esmtps (TLS1.2) tls
  TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384 (Exim 4.94.2)
- (envelope-from <vvs@virtuozzo.com>) id 1n0g73-0000yT-QS
- for v9fs-developer@lists.sourceforge.net; Fri, 24 Dec 2021 08:39:42 +0000
+ (envelope-from <vvs@virtuozzo.com>) id 1n0hfI-00019S-RR
+ for v9fs-developer@lists.sourceforge.net; Fri, 24 Dec 2021 10:19:10 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
  d=sourceforge.net; s=x; h=MIME-Version:Content-Transfer-Encoding:Content-Type
  :In-Reply-To:Date:Message-ID:From:References:Cc:To:Subject:Sender:Reply-To:
  Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
  Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
  List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=loUKAfRjxSFIg9Pxr/XNj0LCGdwjwOudVp7H9SFAysY=; b=ABCcbh7kF5PEmxOsqjH5x+E5Fr
- USvKfsON/H7xqJRyaV62Q2TYWQ7ArQ8s51K1E/23L3Lp2ZVK8ImGPmdf4KV/p1Drtr5sf+3AKv3HM
- V4Xfp5TwznPtBLq/8mHpVpA2OP64j2DFyC0IpKwu09EmxFtdp9CxxTPQBK0RlStERMN4=;
+ bh=OJ3+bGDwwXus2qDNZtWNH5WQm1Gopa+DRP7n8G5L3MI=; b=a4kA1A7aquBJ5GV7cH1CWVGTIj
+ hUDwg1pMWe3qL6wmKCDr0vMNErA3Y4pTgefrgAkguBr9i/Swac0SqhTYPH+8BMKuzVXsT5AE6K/XZ
+ K5ptD72fa5+thz5lzLgpteltSOKJlVw3D5sU1/rLje6sSuMnmwN9pFqDko/VoFKt2rcU=;
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  ;
  h=MIME-Version:Content-Transfer-Encoding:Content-Type:In-Reply-To:Date:
@@ -29,117 +29,117 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
  :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
  List-Post:List-Owner:List-Archive;
- bh=loUKAfRjxSFIg9Pxr/XNj0LCGdwjwOudVp7H9SFAysY=; b=BhZUWXWZhmFXItxp8HQjB8jN0o
- LKQ2e9acNQX9CVY50mK/fkfpRuofo4K4hpuQErpw/xOZTd0h3u5QPE/rbyO9J4VFoB5+9NmISpjAO
- vL+YFblcR8Q5+3DcmPN5q/n5z2YJaQiiVKqSfVrUoFg+VLH7K+0xk6rdRQk59uJXQm4M=;
-Received: from mail-vi1eur05on2118.outbound.protection.outlook.com
- ([40.107.21.118] helo=EUR05-VI1-obe.outbound.protection.outlook.com)
+ bh=OJ3+bGDwwXus2qDNZtWNH5WQm1Gopa+DRP7n8G5L3MI=; b=nLUo2kgRITcHv6dbmNLFNX0YS7
+ FWYF9OJEO1m9/FZwug1pOagZ32SoFeazk+S521irjfGNkP+DQusUPKn2xCpOFt2PHQ8pWTVOgp17l
+ 5NaQgWVpGIBbxrin1o8mtt04OJXGTA28GhHwIk6wTtvirhK1UoI5nQOM+tD8mD2wN4NE=;
+Received: from mail-eopbgr80130.outbound.protection.outlook.com
+ ([40.107.8.130] helo=EUR04-VI1-obe.outbound.protection.outlook.com)
  by sfi-mx-2.v28.lw.sourceforge.com with esmtps
  (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.92.3)
- id 1n0g71-0001IL-PA
- for v9fs-developer@lists.sourceforge.net; Fri, 24 Dec 2021 08:39:41 +0000
+ id 1n0hfE-0006EE-Km
+ for v9fs-developer@lists.sourceforge.net; Fri, 24 Dec 2021 10:19:09 +0000
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=bHhRfXPCkMfqXhZhWxX7f50esJJl9pKCxxkC4NlzlI4JCY2wbAQDWKEA0gO5CZugskat7AwuOJJ/pkdAwXNgltcOXqakyZUduuLfZLhrWQfMFqnOEZpSurVWbtTWSfVeTZYmxUKXocn51Z/u0KQLht755Y2gxC3ab7QAo++TECplyTPVzTQbbIQVk/YBc1YlpMkDyvplwZBIcSFQaOWapEP3OiNAc1QSaRpQsKpLDBqUQc9qwiAAtRaJjsgUOfguVyY+gyVDvW3kyw7Ti0P2p1H9PgFfbVjPZOne5NQd9eechTdPnr2rLToymIyiYfKEVlpV7Zcosk+dis4g8AzgYA==
+ b=Zy7fm+d8VUpfVpIK+4pZA1CCmPO8izzbp8vKZGYAQaNKWe4JYKo9SWTce3RsvjVDk6CeMBiyYQQmmwWtV423QXMyFkR7vtYW9cOlRnpQYfAX9tZ3UuWvPbyHzHAN/opD1QaoUgE+Ytei0mzOlYWjp30IFkS2Frft8dPy+XiXBGcATeDtk145F0YD3dyWX/Wm8Kl3z3M7RMnzlNQurJ9iXkcQA4oEh1EKUTffGn3EKU8VVUsbL3uE+z38JTJt3pRdJSaWZVJQWvCvQ1FNFj8sgEN/d0i2NRLKZQzxf9Sf+oB9IpIMLmmSQjDlqwx8wq9ePjpUBhbgvKnfmNHI7xVqkw==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=loUKAfRjxSFIg9Pxr/XNj0LCGdwjwOudVp7H9SFAysY=;
- b=Iw1zdhvWy2ptdiYa6q35M6tPMNCqpig8EE8MwuCb6k+RxWvw4Eg6x2ZxzhW1fxcpMy3ihH41M0F3FBn72FAj8tskesTtMSZZZuZ/9VCcjzVaA3hgyL3KUDOiIAijdOxQk++hiwMV1FB0ad5NJNNIxIRSJur4BXHadzsnWtuoGa5fXEyJ4ch3gN1ghrHagDCh8VbS+P2HcU2baiW7nkiUWaVa9G5pMTu8I4M9njo7ReIAE++GFGXcjg5M13wyeknUNctzL9b4vSizV40ZC6lyL0PLfUz2+59GlauEoq3zhJt3iJryjeFVuMioqBVsDW/vM9cXm2j2lGF4LkasP1Bg+A==
+ bh=OJ3+bGDwwXus2qDNZtWNH5WQm1Gopa+DRP7n8G5L3MI=;
+ b=befFq0Clw04qDJtKmDHuuOcJZQdoCe38BBuboi2aGKYwDag/ti+sVWMh6jU5c0C5GVZnjHORG/3CyugfbVoDK+RlpZ8Wldx1oEiGE79llj0j4pX0bM6CcLSxRZ9Uf8x6eJBmQ8bgF65bWQs1TpGbD8L5DbohtuS5uP3H8Hv2a4vyhW6vZADjsESQyQ/CbVAsb1AubWEsoVP7JmIMTd0UuKmWUvAHh+xIs1U0ei4wKWMe0csGDzlcUTt/HBytTq+H+nYIxcm+59I3unIm2YZThGXjbrLVbFin6IpI4nOALl6l3LajENsUJAU20RxFIlsY6C2tT8kp7AVHzx/KsaIIWw==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=virtuozzo.com; dmarc=pass action=none
  header.from=virtuozzo.com; dkim=pass header.d=virtuozzo.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=virtuozzo.com;
  s=selector2;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=loUKAfRjxSFIg9Pxr/XNj0LCGdwjwOudVp7H9SFAysY=;
- b=pRc1VKXTR4w2fqFiW73DVbRoYhGhV85eWS0bu3yQC2Rin9g9nJSu7A50jNf44FncjZGQCjvM1e8fH6xTsBV2ZhadIEmB9O1N3YUC6H9B3iRj1D9Pcpojanr3/KIb1dVQRtSABcvsItLctk1vtnptzV4SGFjdJeyGOnGleYFiAUA=
+ bh=OJ3+bGDwwXus2qDNZtWNH5WQm1Gopa+DRP7n8G5L3MI=;
+ b=wlicWuQHfgBvLvPZ9AAQPFalPEVWIOMqX9UPe0x6QnSu/sr2FPtH0HOBJNpekCy+VEXJgIA18pspmBsDnW4N0NpgYVX8NnhsJ3oZd77GXbKzqSI36h8F//Cn5iEfX92lSNHZNKHNAsO6AVtCnLwYkJ2ajbSOldWF2w3ju820EAM=
 Authentication-Results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=virtuozzo.com;
 Received: from AM9PR08MB6241.eurprd08.prod.outlook.com (2603:10a6:20b:281::21)
- by AM0PR08MB4082.eurprd08.prod.outlook.com (2603:10a6:208:12e::27)
+ by AM8PR08MB6434.eurprd08.prod.outlook.com (2603:10a6:20b:369::23)
  with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4823.18; Fri, 24 Dec
- 2021 08:24:10 +0000
+ 2021 10:18:56 +0000
 Received: from AM9PR08MB6241.eurprd08.prod.outlook.com
  ([fe80::f9ca:fe00:10da:a62f]) by AM9PR08MB6241.eurprd08.prod.outlook.com
  ([fe80::f9ca:fe00:10da:a62f%5]) with mapi id 15.20.4823.021; Fri, 24 Dec 2021
- 08:24:10 +0000
+ 10:18:56 +0000
 To: Dominique Martinet <asmadeus@codewreck.org>
 References: <076a9ce6-ae06-5b3e-f577-d993e55089f1@virtuozzo.com>
  <YcUCvUF10TKg2wDI@codewreck.org>
  <644227dc-4771-3111-aabd-20ac12b69a2d@virtuozzo.com>
  <YcV3XDFw5sMyvTVL@codewreck.org>
-Message-ID: <96f79f24-bb2c-0c37-42a5-545fd382035e@virtuozzo.com>
-Date: Fri, 24 Dec 2021 11:24:09 +0300
+Message-ID: <05ab1af5-9b5f-f505-2a68-c90f50a1fb46@virtuozzo.com>
+Date: Fri, 24 Dec 2021 13:18:54 +0300
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
  Thunderbird/78.14.0
 In-Reply-To: <YcV3XDFw5sMyvTVL@codewreck.org>
 Content-Language: en-US
-X-ClientProxiedBy: AS9P194CA0013.EURP194.PROD.OUTLOOK.COM
- (2603:10a6:20b:46d::17) To AM9PR08MB6241.eurprd08.prod.outlook.com
+X-ClientProxiedBy: FR2P281CA0026.DEUP281.PROD.OUTLOOK.COM
+ (2603:10a6:d10:14::13) To AM9PR08MB6241.eurprd08.prod.outlook.com
  (2603:10a6:20b:281::21)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 79614a9e-1c73-498c-8ea7-08d9c6b6c2e3
-X-MS-TrafficTypeDiagnostic: AM0PR08MB4082:EE_
-X-Microsoft-Antispam-PRVS: <AM0PR08MB4082D6F4515DDFE54F29E031AA7F9@AM0PR08MB4082.eurprd08.prod.outlook.com>
+X-MS-Office365-Filtering-Correlation-Id: dd39ceb5-7353-4431-1767-08d9c6c6cae4
+X-MS-TrafficTypeDiagnostic: AM8PR08MB6434:EE_
+X-Microsoft-Antispam-PRVS: <AM8PR08MB64349841813D8DF209937C45AA7F9@AM8PR08MB6434.eurprd08.prod.outlook.com>
 X-MS-Oob-TLC-OOBClassifiers: OLM:10000;
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: cbEMMFSOQ/baSlRSEGmBDERHsFBvf61dH7L6fai/SkuDXeChe1DQApDojmXXeqHcdfDcCpaxxSN6ue39kq51k272ABQfhIHJWnr6KtuJ5a4XwNYlmvIhRO03Gun8FWtOztOWuSHdEQaTWDqQ8JZh5VnOvGefQ/lDAgLMpAihPs6q+WXyR975zh9FiuvFTfWu+TBrBiAwiEk9oYDN2gmWDytNs1uscFupvsSqzvSSGx5UzUBiM3m2ktGigGC41qus6XhdWlX3zvSkjwmi2L/CB0Fx+zvui0eLoYhib556di7fBBuV6ylCaj5hmbFZK4uQHQd3LbYn8baMOcrRdUIX2fcUg/dWtx4tvEcMSFQHns6UT/ZF5TbjgR5fewznJIWccbqHqwmqECrA004tEn5GhzlYbliHQXgraNGaqG8vuQP/rb3eDXWGP6NgS1JedH7N4ypNVVZMBlbkzE2VCiOMJd+DR+2oqmLGJiCoTDdq7zoUyY3wdMl01tG7x1i730VdShN6ETvxlt3xVIgaurhtWJu7JlCrl4uKMOGTXYPdHDOiDYDvuHZuLULXT7lW4Uzj4d/NvWGPcgYFbxvS+hczVj4i+s+3PFhVMgG57HQncpUaz8itCy9TGuCdFSAe7zu2eGg9dWRQHvFpkNpbprAx4jXhX4lXIrvVbBPrfCC2CQ4TEPERkIqYiVoKEjd1sYsSqB2ufmHVReLoKMwX2jspAyz84/4F/GpeZhDBHJIQ4YVG2Na8Vi8wLctQr/DjEuSm+qqAr/FIGhADyenIUxjpDQ==
+X-Microsoft-Antispam-Message-Info: 0t2RdL8iVDxL9F+yZmCix5U/+a4XJ7cYH4dHFxM1AI4hdWAGeS0mfq65ymIOL74au1LqNLiaEHoNKlsR6wOt8SMQohRa+SOsTmk+vYUJ20LzKy0RuNyZho6WW1Zg1JCYXcCmSRV0yB9nAvbv4b+cz3oDP1nyd42wh69jCHIazfJzhuvJpXPoPt9HAp1t7gYJc+WgKPPM/mcoDq8KQ5fs1u10X9cH4+IRQ13O1lhZg3khDcxzpGM8WDb3amcJGOJFJvL73O1rimYhyysMPR1gFgqdkZVip8H+2vWrAHs3TgQqy/VrT6PJ3YkKbN7APuS44EU9oZVM1qBo2NLlinHNl+VWVuZpUhXreacUBRzTczPPVXgBttCzwysQY1yKfDYXoQBFgBdyVkV8EizayxVYyz7ZIcgmKqSbEGD8gcngqgSvkFCOpsm2DHANJg8J+fBq7XIAxG4pkKNGHvPsehA0Xg8S2W48y5qY8LqtocDMSpGeOb4PuJpoBUsx+EaRTY00t0YFZzk4lVtTtEwh9RbeHBIay+fx4Br+Al5kujPukqGHIcADaoaSYt8rtbehkiGPoVuAS2UmJA0ymS1KDu6dHr8+qhEDBuBn5MRJ/sFymFGfAiG6bbQ3QMB+4M69OBIYsYLQkxJp4ZGX6xVjgeejYP7BaF7ZorYx+Trw6ITXd5O08/hvzlMHwVHc0laXbOUEU1LxuE0xbbU9XOdf05UeYN+sDH5SJyHLMsKpv4bqQ766nt2pY9PQh4vXukCtKmRxwG/pJ8sPLl/u5ADUpcCDFQ==
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:AM9PR08MB6241.eurprd08.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(4636009)(366004)(53546011)(8936002)(36756003)(6506007)(508600001)(316002)(186003)(26005)(66946007)(38100700002)(6916009)(54906003)(66556008)(2906002)(66476007)(8676002)(6486002)(52116002)(38350700002)(31686004)(4326008)(83380400001)(86362001)(31696002)(6512007)(5660300002)(2616005)(43740500002)(45980500001);
+ SFS:(4636009)(366004)(4326008)(6486002)(2616005)(6512007)(38350700002)(66476007)(5660300002)(38100700002)(66946007)(2906002)(31686004)(86362001)(31696002)(6916009)(6506007)(52116002)(53546011)(83380400001)(8676002)(186003)(26005)(66556008)(316002)(8936002)(54906003)(508600001)(36756003)(43740500002)(45980500001);
  DIR:OUT; SFP:1102; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?cTFLZzYrU25Id0FCcG42Wi9vUURTb0FUTXpTc3pKSVZzam5mMXZJZTcvVVFs?=
- =?utf-8?B?MnkvM1U1TDFVRU12T3dEcTMyUTVEdGtNSFNvT2tOSGNBSG9nTnZURkR4ZEFy?=
- =?utf-8?B?eTJHK1NUNXlELzR3WkhaYnM5Sk56bE1ydTFPcmdua3ppbW91Wjd1THBMSTYv?=
- =?utf-8?B?VGdrcXVVQVNLNkw2NEswLzQyRmczRlgvY1E2SFdMT29uamNsNmlCMGVGa3VI?=
- =?utf-8?B?eXpLV3hyd01WNDZFT2VYWnZ2Y1MrQ3NkYU96SjBiUjhWc3VKWjBkV0JsMHF3?=
- =?utf-8?B?OFFHeTdnQm5mdnVKUXAwRElvT1BEQ1dVRU5aM1NHWWFKdmVMQVViZ3FaOXc0?=
- =?utf-8?B?VGVocjJKSXowQWJDLytIeWpWaitqZ2VjaDhxK0tMRURIYXRvc1JYcGJDaGRV?=
- =?utf-8?B?UUFqbXV6Z0N1WU16NEJ4cmpNWUFFWlpGNmtWZDlpYy9lY21oeDFYY2hHMkFI?=
- =?utf-8?B?cHlaRTMvNE81djF6Sit0NGZFOG9wcWh6YUdDM1F5dmlVQStBOGxLWXFhZTRw?=
- =?utf-8?B?ZStlMVN4dnJ2aDJYVUZhRlpFd09JMmtFSkI5MGpseGNtOGdPVWhIc3orY0hX?=
- =?utf-8?B?RVprbjlEU051czAwSndkSWUrMnVnSnB0R0lWalhxQ1g2Y1M0Vk5OdE1WOEg2?=
- =?utf-8?B?N3kxbnVPdDY5endGZEhuVUVXWHowaU84bG13VHptMkM2NVBJSWtpRDI2TnlR?=
- =?utf-8?B?NGJOa0RWc0FJTHE2VFlsVkwxMUxMRjlNSVNERHNyQ2VTaDZ3MHdqajEwRGdm?=
- =?utf-8?B?VEZkR0hQTVR3UCs0WERSTmJRNUc1aE5PZXhYTktpVUtFajdZU1JKVFhmOWg0?=
- =?utf-8?B?TWIzZy9wWU1remdudFFCdHpZYk11WHZaU0lRU1dnbzZVa0YyS3BFRS9xQnI3?=
- =?utf-8?B?a29XNTZFQ0d3VkxzVk16M2pYOWFqR3hQcmlGZHZGTFBMSDh4aFZLY0N1V1Rr?=
- =?utf-8?B?NWVud1FkWkMxdmVXNTROdzdBajUyRi85VVhmY2NZcUV6OTBPcFJvUE1nZmpE?=
- =?utf-8?B?eGZ0SkVXMWpLcm0ybG14U2haRVB6V3NNZHdUQ2YwUUVDbmFDNzJNTDNDOTNn?=
- =?utf-8?B?eUVHVG02OXcxZjBPRzBTck5qZ1g1NTcvamh3UUVoOFdJd0FGYkJDL2NNQTd0?=
- =?utf-8?B?dlFVR2hGc3ZqcGtzdUFOZlJnd3FnSDNLZFZNdmpvQmE0Y1BOQklMUytzM09t?=
- =?utf-8?B?bS9Wc3haQXk4dENPYmdQOE8yaDBMWG1XUWJyY2lYd0tyN2QySUMvQlIvdzNs?=
- =?utf-8?B?ekVEYzRpNzNabUtGNTlzU08wOUJ5Qi9QeHEvWnREdDNLUE56YW03VERqMG5v?=
- =?utf-8?B?LzJLNGtzSUQ5c0xrZmpBRjJDWFNOWWVsT3RZc1dDazlJUlhuSm4ydEdNL2h0?=
- =?utf-8?B?dDd3NTZWRVR4TUtTaE94L3JzRUkyeDJ0N1ZnekFyV0NaMEtBNHpubEhjUTZ0?=
- =?utf-8?B?dzZ0N2YzSGxnVzNubkRaS0ZGWU02YXJkWDJWejlBZ1pKK2tGNkloa3V3dEdU?=
- =?utf-8?B?amE1S1RCWnFzVEtZbGkwVlgyNFlYTTZSbjZYVWJEZVVnL2NEWk9zM0R3M0NC?=
- =?utf-8?B?dzliV0Y3eDgwM2VtSTU0STE0bklMeUUycXlUZThIbFQwdVRsR2RVcHdqa1Q0?=
- =?utf-8?B?Skw3THNWcjMwZUU3eWdDYkF1OWl1RXZHT24wOC9heTRxOGhpbHJDWThHSER6?=
- =?utf-8?B?UnIzZFBQMnlGU1JmSzlReG9hejg0d2RaSmtIaXQyR0VBQ09vSFV6eTkrUXNu?=
- =?utf-8?B?KzQ4T1k3MmpxbFd4RnhXK0RKajE5dnhIQWFZT2J6SWZjYXlMZDh3ZFR2YlVH?=
- =?utf-8?B?L0g1VTVDMHRXeGpqZTl6QTZoZXpXSFpRZmt4Q3FIV1hZQVhGbDFueUw2RzRV?=
- =?utf-8?B?MWxiVk5sYlVYN1o5V2hVZlExdmk3QWdKd3dBYlpPQ1VNWUtUVVZHem9pMWZ3?=
- =?utf-8?B?Y0t2dEJDWStyTTZKZkJqMWdHUWVzM1hhSVhPZjNMNzE4blBSdUV3YUcvdkxo?=
- =?utf-8?B?QkVJWk9BSnVLWDFNVTFTbTlCQnRheWk1dkx2c2NyR2Z6aHV0R0Z2Q2dZdWln?=
- =?utf-8?B?SCs3VTAvK2JUS01DUTNlVEUrUHJzYXdSOHhCdWZqdW0zaEJaQWNGK3E3am42?=
- =?utf-8?B?alNvTzJMNmNCTmhiL3JHTitvUjBIR1VBM0VpT2NpN3hRSFAxT2NKZnJaQkpp?=
- =?utf-8?Q?5F0Uqc57KLfmNEh7I8ynBn4=3D?=
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?SXJFUFd3Um04VXNvWVhLaFJnRUNsSU5pQjAwbDJqSGVhd2Frb2kveldmM2pC?=
+ =?utf-8?B?bjBYUG4wak9saW1kZFJzZHlRd2ZTTDYvLzlSRTgyVlVUbjlHbFNZQmhtTEVI?=
+ =?utf-8?B?Mk0zS3RIc1Budk9lRFEzZDFqR083WGluV2Q0TmJ5bmpMWjhlNEp2aldlNzNh?=
+ =?utf-8?B?L0dyQ3N3ZDJNNUQ1b2FCOUpNWC8wV2t2cWNPdlR3TVBQY2ozU0VqZExQVEZ2?=
+ =?utf-8?B?SklySXhDdUtQUW02dC92MU1NYjdSVFNacGxNbDM4RlVpSlgvV04vNkxtZmY0?=
+ =?utf-8?B?QXJJWVhUSk00dDBBeXAyWFdSL215KzZTeC9HUS9wVGwwR3RyMjV5NSt4Sng0?=
+ =?utf-8?B?dTdGdmJMNi9vTFF3Ry9qNUNTU1FndnJYTGRTYVg2N3FETW8xdjFHWXFLYWYz?=
+ =?utf-8?B?alpyTXlGSHltWFlqaG53bXcweGtlaGdia0dxRGVuSXJZQkt0clduS05VSUJ1?=
+ =?utf-8?B?Nkp5dDFxRVp0RWhDMmhtbVhzNFBEbmx6UFVuN0psd2VPNXZBVmpHQVpidS9l?=
+ =?utf-8?B?WXpkdmRYQ1NyYjBkYStYWE44ellNb3dlaFFCUm5qdFlBVzUvcDMwUmtCbXNV?=
+ =?utf-8?B?NHB5UDFHbFN3SkJZaHlTaGo2OVFPZFZjRFlFaEZESUNCaDc2MVBSNnpmTWlX?=
+ =?utf-8?B?dnZyeUZHQUViWEEvWVQzWkk4UWx0cTQxNndVb1B4Q002cmUxNTRWZWlDYnJ4?=
+ =?utf-8?B?NFpNSUNqOG1JS3g1TGVMZk5WbERJU0swYTlKREZzNTRvSndWa2NxZnVkRFhC?=
+ =?utf-8?B?T1hwcm9XVGZlYkRvQVFlVkV4RXQ0eDNBU3FQUTJKNjhITjZPclZaOFduVG85?=
+ =?utf-8?B?SzZsd0hLS3c4TTNCTVJpNmtudHNNSWIwMUNueUhVdGF5MnFzQVUrMDJXay9s?=
+ =?utf-8?B?WitadldHeHJ3VCs0V1NGOVVpOXFOTkFjOUU2dVZCOWxBM0tQMW93dDdrcHc5?=
+ =?utf-8?B?eXVyaVNDRHF1UG9qNktnVDdGZDRvOFd4WUFVRnYwVEV6a0lvOVFlLzlnd0Yr?=
+ =?utf-8?B?NWxQZjg5RUNBZEJTSXdTL0l2QkpYMCtORmpVQm9GeDh4ZjRXbGFYVTZQbkJQ?=
+ =?utf-8?B?TWtlbTR5bVRrY3RublZiY0hvVVVmNkZrMlQvTWc4a2M2ZitOL3duRlh6NEVR?=
+ =?utf-8?B?RVorNUYra2lXMUtEVndLcUdCTTRuaFA4TXVyUUJRUVRvZGFoUFhCY2pwRklv?=
+ =?utf-8?B?ckdYQlgrM2FkaFRxV2FvdldQdFZ6UVNDN3dySnF1TmhoMjk1dTJjS0o3dUNI?=
+ =?utf-8?B?UDlkMTV3WXVRNkpBRUtjSjB2WWxkMUFpbk82WFcwVEVuT2kvK2pFQVduYTd0?=
+ =?utf-8?B?SzdHTjlER0E3M1lyNmtScFpxazl1eDl1MTFSOWcyYzFETFZ3STZwK3FiYjB6?=
+ =?utf-8?B?NTc5WWZ2TWRHUnZybkJUaENPa0xMK2xmNnYrbFA0Sk1tK0prZnVVbVdtM2tr?=
+ =?utf-8?B?ZGRjL0dhQWhpUDU2Z1JlSDJUZU1GZFQySWtaRW14blpvTjFUSkY5elU4QTdr?=
+ =?utf-8?B?YUJyUDR2VEh0VmV5TGdXcmg0NGsra1RidzlDMkRCSjZsL2hZWWZ2ejZJd1dL?=
+ =?utf-8?B?cVFtcUNDOUpaN1orclJZYSt4OXJ6bWx2Y3pWMlhRamhSeG94bFFlZjdVN0VM?=
+ =?utf-8?B?TStpd2VBUlFhRHVaN2VuanNPa2piblNLK0tzQm5nb0hvKzZZcm9WSjJPTVJj?=
+ =?utf-8?B?M1QrVmdUcGJIVWkyM0JGNlRaWUovcytORmtOWGwyR3dxdlVtRXRyQmdYS01u?=
+ =?utf-8?B?SXR5UldyemVDTWF0U1laaFpiYlAvekhZOU5VYkJSNTRIZ3VoYWg3VGZqYlcx?=
+ =?utf-8?B?Ukg1RGtDRldzbkpyQ3NqYkloZ3JycE03YVhSZ1Avbnp3RmFpVEZQakxIQ3hk?=
+ =?utf-8?B?dHlTR2R2UjJOS2w4Nm9IQW1KcmNucGNqVUR2dHAvSmxnSGtmb2oxQWlTR3hj?=
+ =?utf-8?B?czU0djQzOG9JUk5kR2dYVHdnNWtRUHZhdjNzVWZJRXZsMVhrV25keWJ3dzYv?=
+ =?utf-8?B?dGV3RWgwdFJOTStiM05PamJzbWFlbk0vNEVoOEhyY3I2dlJOS0IxOTMyNm5K?=
+ =?utf-8?B?L1RIOGFnTUd5ZFNwOUc2SElNWC80L21oejh2eFUxSDBieERDa3huN2M1ZHJ0?=
+ =?utf-8?B?OExxZlJBUjhOM2ljdXpSM3FEZEYrTDJGZzlEZ3dRTzMvQkkxRnhvclYzSE84?=
+ =?utf-8?Q?G4GVRaYaLY0efLyXYWFB1/c=3D?=
 X-OriginatorOrg: virtuozzo.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 79614a9e-1c73-498c-8ea7-08d9c6b6c2e3
+X-MS-Exchange-CrossTenant-Network-Message-Id: dd39ceb5-7353-4431-1767-08d9c6c6cae4
 X-MS-Exchange-CrossTenant-AuthSource: AM9PR08MB6241.eurprd08.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 24 Dec 2021 08:24:10.7719 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 24 Dec 2021 10:18:56.1436 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 0bc7f26d-0264-416e-a6fc-8352af79c58f
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: oWEN6/ytbo2DV6PtA9AOh1QAjqdnttoBGhgIX6O9AqBG6LYxpc/pp8d04gJx3Kxpv/1wt7a99vICluNZNzWneg==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM0PR08MB4082
+X-MS-Exchange-CrossTenant-UserPrincipalName: 8cO5GCUOcmXWc7OrydQJhsYFxe2wyScVFjjXE4dOOSgKsC2QMaH0/GT+GXKN8Qo/m4ZCQPir5rjkniM4aKpFrA==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM8PR08MB6434
 X-Spam-Score: -2.2 (--)
 X-Spam-Report: Spam detection software,
  running on the system "util-spamd-1.v13.lw.sourceforge.com", 
@@ -149,15 +149,15 @@ X-Spam-Report: Spam detection software,
  the administrator of that system for details.
  Content preview:  On 24.12.2021 10:31,
  Dominique Martinet wrote: > Vasily Averin
- wrote on Fri, Dec 24, 2021 at 10:08:57AM +0300: >>> I'm not up to date with
- lock mechanisms, could you confirm I understand >>> the flags [...] 
+ wrote on Fri, Dec 24, 2021 at 10:08:57AM +0300: >> Answering on you question:
+ it's ok to ignore of FL_SLEEP flag for F_SETLK command, > > [...] 
  Content analysis details:   (-2.2 points, 6.0 required)
  pts rule name              description
  ---- ---------------------- --------------------------------------------------
  -0.0 RCVD_IN_MSPIKE_H2      RBL: Average reputation (+2)
- [40.107.21.118 listed in wl.mailspike.net]
+ [40.107.8.130 listed in wl.mailspike.net]
  -0.0 RCVD_IN_DNSWL_NONE     RBL: Sender listed at https://www.dnswl.org/,
- no trust [40.107.21.118 listed in list.dnswl.org]
+ no trust [40.107.8.130 listed in list.dnswl.org]
  -0.0 SPF_HELO_PASS          SPF: HELO matches SPF record
  -0.0 SPF_PASS               SPF: sender matches SPF record
  -0.1 DKIM_VALID_EF          Message has a valid DKIM or DK signature from
@@ -168,7 +168,7 @@ X-Spam-Report: Spam detection software,
  valid
  -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
  -2.0 NICE_REPLY_A           Looks like a legit reply (A)
-X-Headers-End: 1n0g71-0001IL-PA
+X-Headers-End: 1n0hfE-0006EE-Km
 Subject: Re: [V9fs-developer] [PATCH] v9fs: handle async processing of
  F_SETLK with FL_SLEEP flag
 X-BeenThere: v9fs-developer@lists.sourceforge.net
@@ -193,87 +193,55 @@ Errors-To: v9fs-developer-bounces@lists.sourceforge.net
 
 On 24.12.2021 10:31, Dominique Martinet wrote:
 > Vasily Averin wrote on Fri, Dec 24, 2021 at 10:08:57AM +0300:
->>> I'm not up to date with lock mechanisms, could you confirm I understand
->>> the flags right?
->>> - F_SETLK: tries to lock, on conflict return immediately with error
->>> - F_SETLKW|FL_SLEEP: tries to lock, on conflict wait for lock to become available
->>> - F_SETLKW: not possible through flock/fcntl setlk, can happen otherwise?
->>> but for 9p purpose same as above.
->>> - F_SETLK|FL_SLEEP: tries to lock, on conflict ????? you'd want it to
->>> return immediately but setup some callback to be woken up? how could
->>> that work without passing some wake up struct? or just behave as plain
->>> F_SETLK? but then FL_SLEEP has no purpose, I don't get it.
->>
->> I apologize in advance for the long answer, but I tried to state all the details
->> of the detected problem.
->>
->> Below is description copy-pasted from comment above vfs_lock_file()
+>> Answering on you question: it's ok to ignore of FL_SLEEP flag for F_SETLK command,
 > 
-> Thanks, I hadn't noticed this comment this morning.
+> On the other hand, just clearing the FL_SLEEP flag like you've done for
+> 9p will make the server think the lock has been queued when it hasn't
+> really been.
+> That means the client lock request will hang forever and never be
+> granted even when the lock becomes available later on, so unless I
+> misunderstood something here I don't think that's a reasonable fallback.
+
+I did not get your this statement. Could you please elaborate it in more details?
+
+Right now nfsd/lockd/ksmbd drop FL_SLEEP on own side, and this looks acceptable for them:
+instead of blocking lock they submit non-blocking SETLK and it's enough to avoid server deadlock. 
+
+If the lock is already taken: SETLK just return an error and will not wait.
+I'm agree it isn't ideal, and perhaps  can cause server will return some unexpected errno,
+but I do not see how it can make the server think the lock has been queued.
+
+>> It would be even better to use posix_lock_file() instead of locks_lock_file_wait(),
+>> but I cannot do it without your assistance.
 > 
->> "
->>  * To avoid blocking kernel daemons, such as lockd, that need to acquire POSIX
->>  * locks, the ->lock() interface may return asynchronously, before the lock has
->>  * been granted or denied by the underlying filesystem, if (and only if)
->>  * lm_grant is set. Callers expecting ->lock() to return asynchronously
->>  * will only use F_SETLK, not F_SETLKW; they will set FL_SLEEP if (and only if)
->>  * the request is for a blocking lock. When ->lock() does return asynchronously,
->>  * it must return FILE_LOCK_DEFERRED, and call ->lm_grant() when the lock
->>  * request completes.
+> let's try to fix this properly instead, I'm happy to help.
 > 
-> Ok so that's the part I was missing.
-> The file_lock struct will have fl_lmops->lm_grant set in this case and
-> we just need to remember that and call lm_grant when the lock has been set...
-
-Unfortunately it isn't enough.
-lm_grant is defined by lockd only, but nfsd and ksmbd does not use it.
-
-Most of file systems does not use lm_grant, and it's OK.
-2 file systems --  gfs2 and ocfs -- use lm_grant via dlm_posix_lock(),
-which works correctly even if lm_grant is not defined.
-
->> They all are servers, and they can receive blocking lock requests from own clients.
->> They all cannot process such requests synchronously because it causes server deadlock.
->> In simplest form, if single threaded nfsd is blocked on processing such request,
->> whole nfs server cannot process any other commands.
+> Basically 9p does things in two steps:
+>  - first it tries to get the lock locally at the vfs level.
+> I'm not familiar with all the locking helpers we have at disposal, but
+> as long as the distinction between flock and posix locks is kept I'm
+> happy with anything here.
 > 
-> Note 9p does not have an fh_to_dentry op (no open by handle type of
-> calls, the protocol just has no way of dealing with it), so I believe
-> knfsd cannot re-export 9p filesystems and wouldn't be surprised if
-> others can't either -- as thus this all might not be an issue for you if
-> F_SETLK|FL_SLEEP users all are such servers
-
-Perhaps you are right.
-I'm not qualified enough to confirm it, but I tend to agree with you: without defined export_op
-nfsd cannot export your file system.
-However:
-1) perhaps this issue can be triggered via ksmbd
-2) you can add export_op in the future and forget about this problem.
-3) proposed changes are minimal and does not affect any other use cases.
-
->> One of our customers tried to export fuse/glusters via nfsd and reported about
->> memory corruption in nfsd4_lock() function. We found few related bugs in nfsd,
->> however finally we noticed that fuse blocks on processing such requests. 
->> During investigation we have found that fuse just ignored F_SETLK command,
->> handled FL_SLEEP flag and submitted blocking FUSE_SETLKW command.
+> If that process is made asynchronous, we need a way to run more
+> 9p-specific code in that one's lm_grant callback, so we can proceed onto
+> the second step which is...
 > 
-> I'm not sure I understand how upgrading to SETLKW is worse than dropping
-> the FL_SLEEP flag (I mean, I see it's bad as it wasn't what the server
-> expects, but while it will block a thread for an undefined period of
-> time and may cause deadlocks I don't see how it would cause memory
-> corruptions?)
+>  - send the lock request to the 9p server and wait for its reply
+> (note that the current code is always synchronous here: even if you
+> request SETLK without the SLEEP flag you can be made to wait here.
+> I have work in the closest to make some requests asynchronous, so
+> locking could be made asynchronous when that lands, but my code
+> introduced a race somewhere I haven't had the time to fix so this
+> improvement will come later)
+> 
+> What would you suggest with that?
 
-kernel threads cannot use blocking SETLKW. 
-SETLKW can be safely used by usual processes, if they want to wait until lock
-will be captured. However it is not an option for server with limited number
-of working threads.
+It seems we can just replace locks_lock_file_wait() call by posix_lock_file()
+in described scenario. I'll sent v2 patch version soon.
 
-Memory corruption was internal nfsd issues triggered by very long processing
-of blocking lock request in fuse.  
+Thank you,
+	Vasily Averin
 
-I'm sorry, I'll answer rest of  questions later.
-
-Thank you,	Vasily Averin
 
 
 _______________________________________________
