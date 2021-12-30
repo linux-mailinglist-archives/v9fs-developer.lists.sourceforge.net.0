@@ -2,27 +2,27 @@ Return-Path: <v9fs-developer-bounces@lists.sourceforge.net>
 X-Original-To: lists+v9fs-developer@lfdr.de
 Delivered-To: lists+v9fs-developer@lfdr.de
 Received: from lists.sourceforge.net (lists.sourceforge.net [216.105.38.7])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9C08F481CD0
-	for <lists+v9fs-developer@lfdr.de>; Thu, 30 Dec 2021 15:12:26 +0100 (CET)
-Received: from [127.0.0.1] (helo=sfs-ml-4.v29.lw.sourceforge.com)
-	by sfs-ml-4.v29.lw.sourceforge.com with esmtp (Exim 4.94.2)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2521E481CDD
+	for <lists+v9fs-developer@lfdr.de>; Thu, 30 Dec 2021 15:13:15 +0100 (CET)
+Received: from [127.0.0.1] (helo=sfs-ml-2.v29.lw.sourceforge.com)
+	by sfs-ml-2.v29.lw.sourceforge.com with esmtp (Exim 4.94.2)
 	(envelope-from <v9fs-developer-bounces@lists.sourceforge.net>)
-	id 1n2wAL-0001AR-8E; Thu, 30 Dec 2021 14:12:25 +0000
+	id 1n2wB7-0006PA-NK; Thu, 30 Dec 2021 14:13:13 +0000
 Received: from [172.30.20.202] (helo=mx.sourceforge.net)
- by sfs-ml-4.v29.lw.sourceforge.com with esmtps (TLS1.2) tls
+ by sfs-ml-2.v29.lw.sourceforge.com with esmtps (TLS1.2) tls
  TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384 (Exim 4.94.2)
- (envelope-from <35f29eb71a713fd6e595d8ea4d4f5131df5e33b8@lizzy.crudebyte.com>)
- id 1n2wAI-0001AJ-Tq
- for v9fs-developer@lists.sourceforge.net; Thu, 30 Dec 2021 14:12:22 +0000
+ (envelope-from <92bbeadaf5c6a0615b970bd01d6f51c455d6d988@lizzy.crudebyte.com>)
+ id 1n2wB6-0006P3-7B
+ for v9fs-developer@lists.sourceforge.net; Thu, 30 Dec 2021 14:13:12 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
  d=sourceforge.net; s=x; h=Cc:To:Subject:Date:From:References:In-Reply-To:
  Message-Id:Sender:Reply-To:MIME-Version:Content-Type:
  Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
  Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:
  List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=WFwvsfcLSvXImvKzK0ROel4mXqUzpd6lHVm/jLVuHDE=; b=Y1Qzv6G47lwtexBCWEesYu/m1
- 2rJg9cUO0qtb6oUKEYav3YSNCobeL9XoPxxoAq9Q8RrXlxRmNmisytd8VrXuP5vOZkrugTltet0+A
- Z8sDKJgfLHyjbCKRqXRtE+sZdqDKT1gXWPQdrNFCe3tG/gTH6Wab+9Lc4hBN3HncfFuNs=;
+ bh=bdokaC3xBdXiPGVcGW4l+R/dzrRmqhrBfDvrmO2qQhE=; b=ZpYHnr0xkPH2Utw2HP9Vi3oZw
+ sHU+OQanh4wPJkUPHlfzxY1MP1/7izFr6dv8NqPKqyEnLuBxKPfOuZDaGpItxItTLM4wXGbZ41S2A
+ RS8N9RcEKhlOPz9c8q5auFHvLP51Z1Ik2+fjq/YGWtOipOdrB5WKMUFgbxpI9zY5XWRWg=;
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  ;
  h=Cc:To:Subject:Date:From:References:In-Reply-To:Message-Id:Sender:Reply-To
@@ -30,24 +30,24 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
  :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
  List-Post:List-Owner:List-Archive;
- bh=WFwvsfcLSvXImvKzK0ROel4mXqUzpd6lHVm/jLVuHDE=; b=Kydl6x85oPQ6kSni9VLpSEp73p
- wFXhpoHpvm2kec92GLcvAxGUdN5eyfOtSEigf36Hf9odljFcfS7lxinhgiSzGV3gJgnAGBz1FpX+X
- 5fts5ilO4EOqkh6lHnR5xEvrSM19kopYa96+x7kDH393GFK5JNQk4nnGgNuP7oU+OQM0=;
+ bh=bdokaC3xBdXiPGVcGW4l+R/dzrRmqhrBfDvrmO2qQhE=; b=UP/fFrwu8Ba3USMIsizx4/wXLt
+ v1T5564BF9CD3Wzc1cUzvFOc56pPsik4rVVMj+TL9jX+T9G7jB+NZPHMkV7NRuEM3iUwUOFRV9Aej
+ Qnz4jq3oh55t7qx6JxiE+4winyau9X0kmM++IpPbDSbqf7MSTYP3gLkmw+zjIQrUUS/8=;
 Received: from lizzy.crudebyte.com ([91.194.90.13])
- by sfi-mx-2.v28.lw.sourceforge.com with esmtps
+ by sfi-mx-1.v28.lw.sourceforge.com with esmtps
  (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.92.3)
- id 1n2wAI-00025R-AJ
- for v9fs-developer@lists.sourceforge.net; Thu, 30 Dec 2021 14:12:22 +0000
+ id 1n2wB2-00DrKR-0b
+ for v9fs-developer@lists.sourceforge.net; Thu, 30 Dec 2021 14:13:12 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
  d=crudebyte.com; s=lizzy; h=Cc:To:Subject:Date:From:References:In-Reply-To:
  Message-Id:Content-Type:Content-Transfer-Encoding:MIME-Version:Content-ID:
- Content-Description; bh=WFwvsfcLSvXImvKzK0ROel4mXqUzpd6lHVm/jLVuHDE=; b=Ee7g7
- G5HnqQhJEGfMv81jpIi6G1UhfTVbCfBVtiukJitpqyfq8ZruhC6YCbwQ7ZwpExnWgsHbx8qc/i0y3
- T88FRIn3KMppGu/24A4Fl5PSZ0710wl7zR9KqA3TnnNMIw0Ap77JIgvJJT5sLAXFAifZqZJcFVY6r
- i2oTBQSZKKQdgiPrsYN8JuTMwtJ+YjkA84q+VbdUrTIh0+cjzUkwbpZCeUSeu6Uryekmb/8BpLGBv
- ZX7fMve5ywcVDl5NTqmgpG5jSI0OgypKZRZ6xwCK1a5tH8hfeJBXQgvhyokXLM82lxmaKs7bE6AyP
- BgIedodHR7RQXAQPPvA+Ab3XaIVLQ==;
-Message-Id: <35f29eb71a713fd6e595d8ea4d4f5131df5e33b8.1640870037.git.linux_oss@crudebyte.com>
+ Content-Description; bh=bdokaC3xBdXiPGVcGW4l+R/dzrRmqhrBfDvrmO2qQhE=; b=IQYKQ
+ LRfXvc+RGAFpseYHoK9IeYTuFF2M02Cm6iu4dHZ4HrDXp42O1fyRmPNzP7XrWKmupHfrPpRlhVxf+
+ XKjurLAWcpAAVd1W7YxnRrAn8NmbBy2qBqBuugeyI5QiSjru+kTc/Uos+8rI/V8MlI07pLuWXIrvB
+ YE4AyuK4u+cjDnz/f/XNyE4dnZAt3BZ+G3Dk8yfz1QjdNo4tGGXORZjezWNvGrjg7ey13sY+THO8Y
+ +mpR+obQnLrNyreh+ed3raM1R3IVOIG5rK88Oz8AZo4xACRqDJd1NZDGh/RtJGpU1mQNz89F4zV4j
+ IuHrZIp3q/2q9QvjyWyw7MPRQoKKw==;
+Message-Id: <92bbeadaf5c6a0615b970bd01d6f51c455d6d988.1640870037.git.linux_oss@crudebyte.com>
 In-Reply-To: <cover.1640870037.git.linux_oss@crudebyte.com>
 References: <cover.1640870037.git.linux_oss@crudebyte.com>
 Date: Thu, 30 Dec 2021 14:23:18 +0100
@@ -59,12 +59,12 @@ X-Spam-Report: Spam detection software,
  message has been attached to this so you can view it or label
  similar future email.  If you have any questions, see
  the administrator of that system for details.
- Content preview: Right now vq_sg_resize() used a lazy implementation following
- the all-or-nothing princible. So it either resized exactly to the requested
- new amount of sg lists, or it did not resize at all. The problem with this
- is if a user supplies a very large msize value, resize would simply fail
- and the user would stick to the default maximum msize supported by the virtio
- transport. 
+ Content preview: The virtio transport supports by default a 9p 'msize' of up
+ to approximately 500 kB. This patch adds support for larger 'msize' values
+ by resizing the amount of scatter/gather lists if required. Signed-off-by:
+ Christian Schoenebeck <linux_oss@crudebyte.com> --- net/9p/trans_virtio.c
+ | 61 +++++++++++++++++++++++++++++++++++++++++++ 1 file changed,
+ 61 insertions(+)
  Content analysis details:   (-0.2 points, 6.0 required)
  pts rule name              description
  ---- ---------------------- --------------------------------------------------
@@ -77,9 +77,9 @@ X-Spam-Report: Spam detection software,
  0.1 DKIM_SIGNED            Message has a DKIM or DK signature, not necessarily
  valid
  -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-X-Headers-End: 1n2wAI-00025R-AJ
-Subject: [V9fs-developer] [PATCH v4 07/12] 9p/trans_virtio: resize sg lists
- to whatever is possible
+X-Headers-End: 1n2wB2-00DrKR-0b
+Subject: [V9fs-developer] [PATCH v4 06/12] 9p/trans_virtio: support larger
+ msize values
 X-BeenThere: v9fs-developer@lists.sourceforge.net
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -102,125 +102,101 @@ Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: v9fs-developer-bounces@lists.sourceforge.net
 
-Right now vq_sg_resize() used a lazy implementation following
-the all-or-nothing princible. So it either resized exactly to
-the requested new amount of sg lists, or it did not resize at
-all.
-
-The problem with this is if a user supplies a very large msize
-value, resize would simply fail and the user would stick to
-the default maximum msize supported by the virtio transport.
-
-To resolve this potential issue, change vq_sg_resize() to resize
-the passed sg list to whatever is possible on the machine.
+The virtio transport supports by default a 9p 'msize' of up to
+approximately 500 kB. This patch adds support for larger 'msize'
+values by resizing the amount of scatter/gather lists if required.
 
 Signed-off-by: Christian Schoenebeck <linux_oss@crudebyte.com>
 ---
- net/9p/trans_virtio.c | 68 ++++++++++++++++++++++++++++++++++++++-----
- 1 file changed, 60 insertions(+), 8 deletions(-)
+ net/9p/trans_virtio.c | 61 +++++++++++++++++++++++++++++++++++++++++++
+ 1 file changed, 61 insertions(+)
 
 diff --git a/net/9p/trans_virtio.c b/net/9p/trans_virtio.c
-index a02050c9742a..580efa95eabd 100644
+index 656562a66f06..a02050c9742a 100644
 --- a/net/9p/trans_virtio.c
 +++ b/net/9p/trans_virtio.c
-@@ -208,24 +208,67 @@ static struct virtqueue_sg *vq_sg_alloc(unsigned int nsgl)
-  * amount of lists
-  * @_vq_sg: scatter/gather lists to be resized
-  * @nsgl: new amount of scatter/gather lists
-+ *
-+ * Old scatter/gather lists are retained. Only growing the size is supported.
-+ * If the requested amount cannot be satisfied, then lists are increased to
-+ * whatever is possible.
-  */
- static int vq_sg_resize(struct virtqueue_sg **_vq_sg, unsigned int nsgl)
- {
- 	struct virtqueue_sg *vq_sg;
-+	unsigned int i;
-+	size_t sz;
-+	int ret = 0;
- 
- 	BUG_ON(!_vq_sg || !nsgl);
- 	vq_sg = *_vq_sg;
-+	if (nsgl > VIRTQUEUE_SG_NSGL_MAX)
-+		nsgl = VIRTQUEUE_SG_NSGL_MAX;
- 	if (vq_sg->nsgl == nsgl)
- 		return 0;
-+	if (vq_sg->nsgl > nsgl)
-+		return -ENOTSUPP;
-+
-+	vq_sg = kzalloc(sizeof(struct virtqueue_sg) +
-+			nsgl * sizeof(struct scatterlist *),
-+			GFP_KERNEL);
- 
--	/* lazy resize implementation for now */
--	vq_sg = vq_sg_alloc(nsgl);
- 	if (!vq_sg)
- 		return -ENOMEM;
- 
-+	/* copy over old scatter gather lists */
-+	sz = sizeof(struct virtqueue_sg) +
-+		(*_vq_sg)->nsgl * sizeof(struct scatterlist *);
-+	memcpy(vq_sg, *_vq_sg, sz);
-+
-+	vq_sg->nsgl = nsgl;
-+
-+	for (i = (*_vq_sg)->nsgl; i < nsgl; ++i) {
-+		vq_sg->sgl[i] = kmalloc_array(
-+			SG_MAX_SINGLE_ALLOC, sizeof(struct scatterlist),
-+			GFP_KERNEL
-+		);
-+		/*
-+		 * handle failed allocation as soft error, we take whatever
-+		 * we get
-+		 */
-+		if (!vq_sg->sgl[i]) {
-+			ret = -ENOMEM;
-+			vq_sg->nsgl = nsgl = i;
-+			break;
-+		}
-+		sg_init_table(vq_sg->sgl[i], SG_MAX_SINGLE_ALLOC);
-+		if (i) {
-+			/* chain the lists */
-+			sg_chain(vq_sg->sgl[i - 1], SG_MAX_SINGLE_ALLOC,
-+				 vq_sg->sgl[i]);
-+		}
-+	}
-+	sg_mark_end(&vq_sg->sgl[nsgl - 1][SG_MAX_SINGLE_ALLOC - 1]);
-+
- 	kfree(*_vq_sg);
- 	*_vq_sg = vq_sg;
--	return 0;
-+	return ret;
+@@ -203,6 +203,31 @@ static struct virtqueue_sg *vq_sg_alloc(unsigned int nsgl)
+ 	return vq_sg;
  }
  
++/**
++ * vq_sg_resize - resize passed virtqueue scatter/gather lists to the passed
++ * amount of lists
++ * @_vq_sg: scatter/gather lists to be resized
++ * @nsgl: new amount of scatter/gather lists
++ */
++static int vq_sg_resize(struct virtqueue_sg **_vq_sg, unsigned int nsgl)
++{
++	struct virtqueue_sg *vq_sg;
++
++	BUG_ON(!_vq_sg || !nsgl);
++	vq_sg = *_vq_sg;
++	if (vq_sg->nsgl == nsgl)
++		return 0;
++
++	/* lazy resize implementation for now */
++	vq_sg = vq_sg_alloc(nsgl);
++	if (!vq_sg)
++		return -ENOMEM;
++
++	kfree(*_vq_sg);
++	*_vq_sg = vq_sg;
++	return 0;
++}
++
  /**
-@@ -846,12 +889,21 @@ p9_virtio_create(struct p9_client *client, const char *devname, char *args)
- 		if (nsgl > chan->vq_sg->nsgl) {
- 			/*
- 			 * if resize fails, no big deal, then just
--			 * continue with default msize instead
-+			 * continue with whatever we got
-+			 */
-+			vq_sg_resize(&chan->vq_sg, nsgl);
+  * p9_virtio_close - reclaim resources of a channel
+  * @client: client instance
+@@ -774,6 +799,10 @@ p9_virtio_create(struct p9_client *client, const char *devname, char *args)
+ 	struct virtio_chan *chan;
+ 	int ret = -ENOENT;
+ 	int found = 0;
++#if !defined(CONFIG_ARCH_NO_SG_CHAIN)
++	size_t npages;
++	size_t nsgl;
++#endif
+ 
+ 	if (devname == NULL)
+ 		return -EINVAL;
+@@ -796,6 +825,38 @@ p9_virtio_create(struct p9_client *client, const char *devname, char *args)
+ 		return ret;
+ 	}
+ 
++	/*
++	 * if user supplied an 'msize' option that's larger than what this
++	 * transport supports by default, then try to allocate more sg lists
++	 */
++	if (client->msize > client->trans_maxsize) {
++#ifdef CONFIG_ARCH_NO_SG_CHAIN
++		pr_info("limiting 'msize' to %d because architecture does not "
++			"support chained scatter gather lists\n",
++			client->trans_maxsize);
++#else
++		npages = DIV_ROUND_UP(client->msize, PAGE_SIZE);
++		if (npages > chan->p9_max_pages) {
++			npages = chan->p9_max_pages;
++			pr_info("limiting 'msize' as it would exceed the max. "
++				"of %lu pages allowed on this system\n",
++				chan->p9_max_pages);
++		}
++		nsgl = DIV_ROUND_UP(npages, SG_USER_PAGES_PER_LIST);
++		if (nsgl > chan->vq_sg->nsgl) {
 +			/*
-+			 * actual allocation size might be less than
-+			 * requested, so use vq_sg->nsgl instead of nsgl
- 			 */
--			if (!vq_sg_resize(&chan->vq_sg, nsgl)) {
--				client->trans_maxsize =
--					PAGE_SIZE *
--					((nsgl * SG_USER_PAGES_PER_LIST) - 3);
-+			client->trans_maxsize =
-+				PAGE_SIZE * ((chan->vq_sg->nsgl *
-+				SG_USER_PAGES_PER_LIST) - 3);
-+			if (nsgl > chan->vq_sg->nsgl) {
-+				pr_info("limiting 'msize' to %d as only %d "
-+					"of %zu SG lists could be allocated",
-+					client->trans_maxsize,
-+					chan->vq_sg->nsgl, nsgl);
- 			}
- 		}
- #endif /* CONFIG_ARCH_NO_SG_CHAIN */
++			 * if resize fails, no big deal, then just
++			 * continue with default msize instead
++			 */
++			if (!vq_sg_resize(&chan->vq_sg, nsgl)) {
++				client->trans_maxsize =
++					PAGE_SIZE *
++					((nsgl * SG_USER_PAGES_PER_LIST) - 3);
++			}
++		}
++#endif /* CONFIG_ARCH_NO_SG_CHAIN */
++	}
++
+ 	client->trans = (void *)chan;
+ 	client->status = Connected;
+ 	chan->client = client;
 -- 
 2.30.2
 
