@@ -2,27 +2,27 @@ Return-Path: <v9fs-developer-bounces@lists.sourceforge.net>
 X-Original-To: lists+v9fs-developer@lfdr.de
 Delivered-To: lists+v9fs-developer@lfdr.de
 Received: from lists.sourceforge.net (lists.sourceforge.net [216.105.38.7])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2521E481CDD
-	for <lists+v9fs-developer@lfdr.de>; Thu, 30 Dec 2021 15:13:15 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 982A2481CCF
+	for <lists+v9fs-developer@lfdr.de>; Thu, 30 Dec 2021 15:12:24 +0100 (CET)
 Received: from [127.0.0.1] (helo=sfs-ml-2.v29.lw.sourceforge.com)
 	by sfs-ml-2.v29.lw.sourceforge.com with esmtp (Exim 4.94.2)
 	(envelope-from <v9fs-developer-bounces@lists.sourceforge.net>)
-	id 1n2wB7-0006PA-NK; Thu, 30 Dec 2021 14:13:13 +0000
+	id 1n2wAJ-0006LV-5x; Thu, 30 Dec 2021 14:12:23 +0000
 Received: from [172.30.20.202] (helo=mx.sourceforge.net)
  by sfs-ml-2.v29.lw.sourceforge.com with esmtps (TLS1.2) tls
  TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384 (Exim 4.94.2)
- (envelope-from <92bbeadaf5c6a0615b970bd01d6f51c455d6d988@lizzy.crudebyte.com>)
- id 1n2wB6-0006P3-7B
- for v9fs-developer@lists.sourceforge.net; Thu, 30 Dec 2021 14:13:12 +0000
+ (envelope-from <39f81db5e5b25a1e4f94ad3b05552044209aff21@lizzy.crudebyte.com>)
+ id 1n2wAH-0006LA-89
+ for v9fs-developer@lists.sourceforge.net; Thu, 30 Dec 2021 14:12:21 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
  d=sourceforge.net; s=x; h=Cc:To:Subject:Date:From:References:In-Reply-To:
  Message-Id:Sender:Reply-To:MIME-Version:Content-Type:
  Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
  Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:
  List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=bdokaC3xBdXiPGVcGW4l+R/dzrRmqhrBfDvrmO2qQhE=; b=ZpYHnr0xkPH2Utw2HP9Vi3oZw
- sHU+OQanh4wPJkUPHlfzxY1MP1/7izFr6dv8NqPKqyEnLuBxKPfOuZDaGpItxItTLM4wXGbZ41S2A
- RS8N9RcEKhlOPz9c8q5auFHvLP51Z1Ik2+fjq/YGWtOipOdrB5WKMUFgbxpI9zY5XWRWg=;
+ bh=wsH0zZJH3P8YpigJb796yoZLuqDz5KinnqHSkWbAOGs=; b=f4HbvHdyOae6TQzxDZqPrXT6N
+ b0OLrgn/OZ5LltNbaitM9uNtI9pa9lxH8b7KdzfzqYOXfDWxILM/j5t51Qk8SklyzAZGwze6+bqMM
+ DTPqLRvJbHLu6R+MKr3CherztwPMGV/7TQV1Sqj6njIoJO2HpE5xVinaP6thyu06BQVNY=;
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  ;
  h=Cc:To:Subject:Date:From:References:In-Reply-To:Message-Id:Sender:Reply-To
@@ -30,24 +30,24 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
  :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
  List-Post:List-Owner:List-Archive;
- bh=bdokaC3xBdXiPGVcGW4l+R/dzrRmqhrBfDvrmO2qQhE=; b=UP/fFrwu8Ba3USMIsizx4/wXLt
- v1T5564BF9CD3Wzc1cUzvFOc56pPsik4rVVMj+TL9jX+T9G7jB+NZPHMkV7NRuEM3iUwUOFRV9Aej
- Qnz4jq3oh55t7qx6JxiE+4winyau9X0kmM++IpPbDSbqf7MSTYP3gLkmw+zjIQrUUS/8=;
+ bh=wsH0zZJH3P8YpigJb796yoZLuqDz5KinnqHSkWbAOGs=; b=alsCq4ehr928uGWVjXBG4P78T0
+ BooufmTW6Il3fNKFUp4UHsn0RQ2WsH8lG0wtPA3a80+IBk+zyaBzMucHPxjjjSuXFamGxFqZTiei9
+ YokAEx5A2FM0UZiybzUoyPjw2VXy5L1se/Okclz9U97BUWTHMeYk3MBRtKtvcliq+Edo=;
 Received: from lizzy.crudebyte.com ([91.194.90.13])
- by sfi-mx-1.v28.lw.sourceforge.com with esmtps
+ by sfi-mx-2.v28.lw.sourceforge.com with esmtps
  (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.92.3)
- id 1n2wB2-00DrKR-0b
- for v9fs-developer@lists.sourceforge.net; Thu, 30 Dec 2021 14:13:12 +0000
+ id 1n2wAG-00025R-Kj
+ for v9fs-developer@lists.sourceforge.net; Thu, 30 Dec 2021 14:12:21 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
  d=crudebyte.com; s=lizzy; h=Cc:To:Subject:Date:From:References:In-Reply-To:
  Message-Id:Content-Type:Content-Transfer-Encoding:MIME-Version:Content-ID:
- Content-Description; bh=bdokaC3xBdXiPGVcGW4l+R/dzrRmqhrBfDvrmO2qQhE=; b=IQYKQ
- LRfXvc+RGAFpseYHoK9IeYTuFF2M02Cm6iu4dHZ4HrDXp42O1fyRmPNzP7XrWKmupHfrPpRlhVxf+
- XKjurLAWcpAAVd1W7YxnRrAn8NmbBy2qBqBuugeyI5QiSjru+kTc/Uos+8rI/V8MlI07pLuWXIrvB
- YE4AyuK4u+cjDnz/f/XNyE4dnZAt3BZ+G3Dk8yfz1QjdNo4tGGXORZjezWNvGrjg7ey13sY+THO8Y
- +mpR+obQnLrNyreh+ed3raM1R3IVOIG5rK88Oz8AZo4xACRqDJd1NZDGh/RtJGpU1mQNz89F4zV4j
- IuHrZIp3q/2q9QvjyWyw7MPRQoKKw==;
-Message-Id: <92bbeadaf5c6a0615b970bd01d6f51c455d6d988.1640870037.git.linux_oss@crudebyte.com>
+ Content-Description; bh=wsH0zZJH3P8YpigJb796yoZLuqDz5KinnqHSkWbAOGs=; b=TQcZk
+ M9zTyYEputBDZYa14c6KLLvLrmzfQEQjT3SVAGXBLhpgLwQeGmAOs6qeVDzZzB2lY/vOrNP6rgJsf
+ OqivDL2zUCFjP/sKfIL3QmeWiWMQ2riOhU9j1xgWUgDRAiSNpB8o8WDVjbUYO7dmoZn6ooZkKcL77
+ vGFkAK35SXZ7LeZMtEQ2LfaQx5soU2RmQHFbZJRC4kvePl+fJP12oVPYDRcN4y27oEd0g40IPWZh0
+ V8xCEiYnHB7i84eDZD0t4Yrhk+T7sAsDKX94AM9sWmYAZ20j2XRuNTZbOpnqpy/jUwSQIxXEb569R
+ LAtgGRe2/n35pmzXAHNcof1jKlKyA==;
+Message-Id: <39f81db5e5b25a1e4f94ad3b05552044209aff21.1640870037.git.linux_oss@crudebyte.com>
 In-Reply-To: <cover.1640870037.git.linux_oss@crudebyte.com>
 References: <cover.1640870037.git.linux_oss@crudebyte.com>
 Date: Thu, 30 Dec 2021 14:23:18 +0100
@@ -59,12 +59,9 @@ X-Spam-Report: Spam detection software,
  message has been attached to this so you can view it or label
  similar future email.  If you have any questions, see
  the administrator of that system for details.
- Content preview: The virtio transport supports by default a 9p 'msize' of up
- to approximately 500 kB. This patch adds support for larger 'msize' values
- by resizing the amount of scatter/gather lists if required. Signed-off-by:
- Christian Schoenebeck <linux_oss@crudebyte.com> --- net/9p/trans_virtio.c
- | 61 +++++++++++++++++++++++++++++++++++++++++++ 1 file changed,
- 61 insertions(+)
+ Content preview:  This 9p client implementation is yet using linear message
+ buffers for most message types, i.e. they use kmalloc() et al. for allocating
+ continuous physical memory pages, which is usually limited to 4M [...] 
  Content analysis details:   (-0.2 points, 6.0 required)
  pts rule name              description
  ---- ---------------------- --------------------------------------------------
@@ -77,9 +74,9 @@ X-Spam-Report: Spam detection software,
  0.1 DKIM_SIGNED            Message has a DKIM or DK signature, not necessarily
  valid
  -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-X-Headers-End: 1n2wB2-00DrKR-0b
-Subject: [V9fs-developer] [PATCH v4 06/12] 9p/trans_virtio: support larger
- msize values
+X-Headers-End: 1n2wAG-00025R-Kj
+Subject: [V9fs-developer] [PATCH v4 08/12] net/9p: limit 'msize' to
+ KMALLOC_MAX_SIZE for all transports
 X-BeenThere: v9fs-developer@lists.sourceforge.net
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -102,101 +99,49 @@ Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: v9fs-developer-bounces@lists.sourceforge.net
 
-The virtio transport supports by default a 9p 'msize' of up to
-approximately 500 kB. This patch adds support for larger 'msize'
-values by resizing the amount of scatter/gather lists if required.
+This 9p client implementation is yet using linear message buffers for
+most message types, i.e. they use kmalloc() et al. for allocating
+continuous physical memory pages, which is usually limited to 4MB
+buffers. Use KMALLOC_MAX_SIZE though instead of a hard coded 4MB for
+constraining this more safely.
+
+Unfortunately we cannot simply replace the existing kmalloc() calls by
+vmalloc() ones, because that would yield in non-logical kernel addresses
+(for any vmalloc(>4MB) that is) which are in general not accessible by
+hosts like QEMU.
+
+In future we would replace those linear buffers by scatter/gather lists
+to eventually get rid of this limit (struct p9_fcall's sdata member by
+p9_fcall_init() and struct p9_fid's rdir member by
+v9fs_alloc_rdir_buf()).
 
 Signed-off-by: Christian Schoenebeck <linux_oss@crudebyte.com>
 ---
- net/9p/trans_virtio.c | 61 +++++++++++++++++++++++++++++++++++++++++++
- 1 file changed, 61 insertions(+)
+ net/9p/client.c | 11 +++++++++++
+ 1 file changed, 11 insertions(+)
 
-diff --git a/net/9p/trans_virtio.c b/net/9p/trans_virtio.c
-index 656562a66f06..a02050c9742a 100644
---- a/net/9p/trans_virtio.c
-+++ b/net/9p/trans_virtio.c
-@@ -203,6 +203,31 @@ static struct virtqueue_sg *vq_sg_alloc(unsigned int nsgl)
- 	return vq_sg;
- }
- 
-+/**
-+ * vq_sg_resize - resize passed virtqueue scatter/gather lists to the passed
-+ * amount of lists
-+ * @_vq_sg: scatter/gather lists to be resized
-+ * @nsgl: new amount of scatter/gather lists
-+ */
-+static int vq_sg_resize(struct virtqueue_sg **_vq_sg, unsigned int nsgl)
-+{
-+	struct virtqueue_sg *vq_sg;
-+
-+	BUG_ON(!_vq_sg || !nsgl);
-+	vq_sg = *_vq_sg;
-+	if (vq_sg->nsgl == nsgl)
-+		return 0;
-+
-+	/* lazy resize implementation for now */
-+	vq_sg = vq_sg_alloc(nsgl);
-+	if (!vq_sg)
-+		return -ENOMEM;
-+
-+	kfree(*_vq_sg);
-+	*_vq_sg = vq_sg;
-+	return 0;
-+}
-+
- /**
-  * p9_virtio_close - reclaim resources of a channel
-  * @client: client instance
-@@ -774,6 +799,10 @@ p9_virtio_create(struct p9_client *client, const char *devname, char *args)
- 	struct virtio_chan *chan;
- 	int ret = -ENOENT;
- 	int found = 0;
-+#if !defined(CONFIG_ARCH_NO_SG_CHAIN)
-+	size_t npages;
-+	size_t nsgl;
-+#endif
- 
- 	if (devname == NULL)
- 		return -EINVAL;
-@@ -796,6 +825,38 @@ p9_virtio_create(struct p9_client *client, const char *devname, char *args)
- 		return ret;
- 	}
+diff --git a/net/9p/client.c b/net/9p/client.c
+index 20054addd81b..fab939541c81 100644
+--- a/net/9p/client.c
++++ b/net/9p/client.c
+@@ -1042,6 +1042,17 @@ struct p9_client *p9_client_create(const char *dev_name, char *options)
+ 	p9_debug(P9_DEBUG_MUX, "clnt %p trans %p msize %d protocol %d\n",
+ 		 clnt, clnt->trans_mod, clnt->msize, clnt->proto_version);
  
 +	/*
-+	 * if user supplied an 'msize' option that's larger than what this
-+	 * transport supports by default, then try to allocate more sg lists
++	 * due to linear message buffers being used by client ATM
 +	 */
-+	if (client->msize > client->trans_maxsize) {
-+#ifdef CONFIG_ARCH_NO_SG_CHAIN
-+		pr_info("limiting 'msize' to %d because architecture does not "
-+			"support chained scatter gather lists\n",
-+			client->trans_maxsize);
-+#else
-+		npages = DIV_ROUND_UP(client->msize, PAGE_SIZE);
-+		if (npages > chan->p9_max_pages) {
-+			npages = chan->p9_max_pages;
-+			pr_info("limiting 'msize' as it would exceed the max. "
-+				"of %lu pages allowed on this system\n",
-+				chan->p9_max_pages);
-+		}
-+		nsgl = DIV_ROUND_UP(npages, SG_USER_PAGES_PER_LIST);
-+		if (nsgl > chan->vq_sg->nsgl) {
-+			/*
-+			 * if resize fails, no big deal, then just
-+			 * continue with default msize instead
-+			 */
-+			if (!vq_sg_resize(&chan->vq_sg, nsgl)) {
-+				client->trans_maxsize =
-+					PAGE_SIZE *
-+					((nsgl * SG_USER_PAGES_PER_LIST) - 3);
-+			}
-+		}
-+#endif /* CONFIG_ARCH_NO_SG_CHAIN */
++	if (clnt->msize > KMALLOC_MAX_SIZE) {
++		clnt->msize = KMALLOC_MAX_SIZE;
++		pr_info("Limiting 'msize' to %zu as this is the maximum "
++			"supported by this client version.\n",
++			(size_t) KMALLOC_MAX_SIZE
++		);
 +	}
 +
- 	client->trans = (void *)chan;
- 	client->status = Connected;
- 	chan->client = client;
+ 	err = clnt->trans_mod->create(clnt, dev_name, options);
+ 	if (err)
+ 		goto put_trans;
 -- 
 2.30.2
 
