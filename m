@@ -2,27 +2,27 @@ Return-Path: <v9fs-developer-bounces@lists.sourceforge.net>
 X-Original-To: lists+v9fs-developer@lfdr.de
 Delivered-To: lists+v9fs-developer@lfdr.de
 Received: from lists.sourceforge.net (lists.sourceforge.net [216.105.38.7])
-	by mail.lfdr.de (Postfix) with ESMTPS id D58FC481CDA
-	for <lists+v9fs-developer@lfdr.de>; Thu, 30 Dec 2021 15:12:53 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4D24E481CCD
+	for <lists+v9fs-developer@lfdr.de>; Thu, 30 Dec 2021 15:12:21 +0100 (CET)
 Received: from [127.0.0.1] (helo=sfs-ml-2.v29.lw.sourceforge.com)
 	by sfs-ml-2.v29.lw.sourceforge.com with esmtp (Exim 4.94.2)
 	(envelope-from <v9fs-developer-bounces@lists.sourceforge.net>)
-	id 1n2wAm-0006N9-Ea; Thu, 30 Dec 2021 14:12:52 +0000
+	id 1n2wAE-0006L1-Uo; Thu, 30 Dec 2021 14:12:18 +0000
 Received: from [172.30.20.202] (helo=mx.sourceforge.net)
  by sfs-ml-2.v29.lw.sourceforge.com with esmtps (TLS1.2) tls
  TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384 (Exim 4.94.2)
- (envelope-from <7cb10547a122c32fdafd68c77f0625f9a4d9a8bf@lizzy.crudebyte.com>)
- id 1n2wAl-0006Mt-14
- for v9fs-developer@lists.sourceforge.net; Thu, 30 Dec 2021 14:12:51 +0000
+ (envelope-from <4b96331e3d113aeab2cfbe6e8f39da934eda418a@lizzy.crudebyte.com>)
+ id 1n2wAD-0006Kv-Dm
+ for v9fs-developer@lists.sourceforge.net; Thu, 30 Dec 2021 14:12:17 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
  d=sourceforge.net; s=x; h=Cc:To:Subject:Date:From:References:In-Reply-To:
  Message-Id:Sender:Reply-To:MIME-Version:Content-Type:
  Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
  Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:
  List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=7rxL+vVkRtDypNlhYjU20nqnGaFCHwV4VaWOzz8KKMM=; b=AEtrDPzNN8W87Ts0/EYf8yUoV
- JLrzMvge+RCWJLQ1/5WiDb3qvOKLfqju21xNn0JQ2pwbUG7RsNsJmoyHSrrh7Tu/zA2HL1xf5Soam
- EH++1ob3T33JnOEWd8cg6U08zQ0DFQjiBHT93lTO/BA8S89RQXu/trxppi9wUjj9ssT4o=;
+ bh=JMpUBU0faqNlIU1d4S3Q7wytCNCfKZ32SXUnAyXuU0s=; b=ks0Qx5M+B94g9i/CoKo9Y4JF1
+ kqaNQ+aRvJQDmP8aB5HeSnWxWCTBjcDbhVzdLbkmqQAgMNCsoLSSVrluhiT9SG+AcYJtF1l5Ph2zt
+ VpMlXLYBrB5/n0CM35mlcJ6rddg3FMvuBqXIHtz9h/mHQBtDyv6N/ImSt2csWQ7tgaABg=;
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  ;
  h=Cc:To:Subject:Date:From:References:In-Reply-To:Message-Id:Sender:Reply-To
@@ -30,24 +30,24 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
  :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
  List-Post:List-Owner:List-Archive;
- bh=7rxL+vVkRtDypNlhYjU20nqnGaFCHwV4VaWOzz8KKMM=; b=ZIDZRkX1Ycq4iVH9d+0CQui89j
- bpk5soE9oH64facdmCqSiQi54nI8/OVAwX0hHkFlWnNrVmAFA3M/JWQ8OByGB0+kWYqz66ZKXa6eE
- Y8C0iSYdTwXApIdP78mW/ZBy9mpxR0qz7iIj7mPSZSW8b4ttK/Ww9sqSH6o6BwNAiuG4=;
+ bh=JMpUBU0faqNlIU1d4S3Q7wytCNCfKZ32SXUnAyXuU0s=; b=J5dzS4Q/VtcNeYNkR2IPQ234q+
+ nR7iADD6mw6H/kOtv9kCgTsN73cGPe5KsywZ17UddLriP4hlFtYALVy12Id9VblzJe7YPUdpR/DfS
+ jR1ykpj+WB1pwHDYd3OV80fHesIW8I7ndkWVHEd9rsfMhlhRZompJvQKHSpr4x5VpT1I=;
 Received: from lizzy.crudebyte.com ([91.194.90.13])
  by sfi-mx-2.v28.lw.sourceforge.com with esmtps
  (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.92.3)
- id 1n2wAk-00028A-H7
- for v9fs-developer@lists.sourceforge.net; Thu, 30 Dec 2021 14:12:50 +0000
+ id 1n2wA8-00025R-I6
+ for v9fs-developer@lists.sourceforge.net; Thu, 30 Dec 2021 14:12:17 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
  d=crudebyte.com; s=lizzy; h=Cc:To:Subject:Date:From:References:In-Reply-To:
  Message-Id:Content-Type:Content-Transfer-Encoding:MIME-Version:Content-ID:
- Content-Description; bh=7rxL+vVkRtDypNlhYjU20nqnGaFCHwV4VaWOzz8KKMM=; b=NQfff
- V9vMFphX1kMzXuSR3poklB7Vz+H+CSH0BlqZJOc0Ud+axB9zRLMJK5i42CHu1mkAxXmS6m/3Y2KUY
- kvS7fdqzzwH+ItfsyVsfDs14ul/GetOZ1LkMJ/qSuIa0CPh+TXur/y3QRVF3IIgkAYQpAo5TUeia+
- 2k7m4SNn+Ydx6XR7tazOvIiqiFqhYwXc6Yzex1aw5VEOHVmZRoz74EqNBKiyvN37jMHN0vFL0Dzxe
- WLHluCS5vRZmPs3vvIiCpKnTXXabljPizwA9gigb9ndQ+wUwQBlEIG+vXnkt2+Q3SEf2PsGEL/yr5
- BblsVky48VejvDHi0BOSqum3zQxPQ==;
-Message-Id: <7cb10547a122c32fdafd68c77f0625f9a4d9a8bf.1640870037.git.linux_oss@crudebyte.com>
+ Content-Description; bh=JMpUBU0faqNlIU1d4S3Q7wytCNCfKZ32SXUnAyXuU0s=; b=Phykm
+ t05EaqbB/CZ5TwdHKPcGyn+dANi8bGKZM9GIcJagQTdZouiyTlIwtIC5wXDf+Xty/rcoeB2TX452U
+ IsKkwYw4yN02brunzuY5oXdGaPP/HrCXgZMS7psSOI5+Zc45cu+U2/FOafE19bQcZYmR54dzKMBhy
+ 5V0b2Fl2N5DVFILqUDHSN0f/Xm1tu2iWLm9DGISXoCaKPcVJ/xvOBADhoyw0D7VPliMAtpxCzdrGQ
+ i5WxT/VbSn7CrS4fHkxmsKy20wZkLZTRh2KZL7NclCOhBUPqhpML9gKtqkv6nNJBPz6crEw4UsZx1
+ a0ifNS2aunqCnf0y/d33yCrQgoe3Q==;
+Message-Id: <4b96331e3d113aeab2cfbe6e8f39da934eda418a.1640870037.git.linux_oss@crudebyte.com>
 In-Reply-To: <cover.1640870037.git.linux_oss@crudebyte.com>
 References: <cover.1640870037.git.linux_oss@crudebyte.com>
 Date: Thu, 30 Dec 2021 14:23:18 +0100
@@ -59,9 +59,9 @@ X-Spam-Report: Spam detection software,
  message has been attached to this so you can view it or label
  similar future email.  If you have any questions, see
  the administrator of that system for details.
- Content preview: Add P9_ERRMAX macro to 9P protocol header which reflects the
- maximum error string length of Rerror replies for 9p2000 and 9p2000.u protocol
- versions. Unfortunately a maximum error string length is not [...] 
+ Content preview: Refactor 'max_size' argument of p9_tag_alloc() and 'req_size'
+ argument of p9_client_prepare_req() both into a pair of arguments 't_size'
+ and 'r_size' respectively to allow handling the buffer size for [...] 
  Content analysis details:   (-0.2 points, 6.0 required)
  pts rule name              description
  ---- ---------------------- --------------------------------------------------
@@ -74,9 +74,9 @@ X-Spam-Report: Spam detection software,
  0.1 DKIM_SIGNED            Message has a DKIM or DK signature, not necessarily
  valid
  -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-X-Headers-End: 1n2wAk-00028A-H7
-Subject: [V9fs-developer] [PATCH v4 10/12] 9p: add P9_ERRMAX for 9p2000 and
- 9p2000.u
+X-Headers-End: 1n2wA8-00025R-I6
+Subject: [V9fs-developer] [PATCH v4 09/12] net/9p: split message size
+ argument into 't_size' and 'r_size' pair
 X-BeenThere: v9fs-developer@lists.sourceforge.net
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -99,34 +99,88 @@ Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: v9fs-developer-bounces@lists.sourceforge.net
 
-Add P9_ERRMAX macro to 9P protocol header which reflects the maximum
-error string length of Rerror replies for 9p2000 and 9p2000.u protocol
-versions. Unfortunately a maximum error string length is not defined by
-the 9p2000 spec, picking 128 as value for now, as this seems to be a
-common max. size for POSIX error strings in practice.
-
-9p2000.L protocol version uses Rlerror replies instead which does not
-contain an error string.
+Refactor 'max_size' argument of p9_tag_alloc() and 'req_size' argument
+of p9_client_prepare_req() both into a pair of arguments 't_size' and
+'r_size' respectively to allow handling the buffer size for request and
+reply separately from each other.
 
 Signed-off-by: Christian Schoenebeck <linux_oss@crudebyte.com>
 ---
- include/net/9p/9p.h | 3 +++
- 1 file changed, 3 insertions(+)
+ net/9p/client.c | 20 +++++++++++---------
+ 1 file changed, 11 insertions(+), 9 deletions(-)
 
-diff --git a/include/net/9p/9p.h b/include/net/9p/9p.h
-index 9c6ec78e47a5..a447acc55b02 100644
---- a/include/net/9p/9p.h
-+++ b/include/net/9p/9p.h
-@@ -331,6 +331,9 @@ enum p9_qid_t {
- /* size of header for zero copy read/write */
- #define P9_ZC_HDR_SZ 4096
+diff --git a/net/9p/client.c b/net/9p/client.c
+index fab939541c81..56be1658870d 100644
+--- a/net/9p/client.c
++++ b/net/9p/client.c
+@@ -255,24 +255,26 @@ static struct kmem_cache *p9_req_cache;
+  * p9_tag_alloc - Allocate a new request.
+  * @c: Client session.
+  * @type: Transaction type.
+- * @max_size: Maximum packet size for this request.
++ * @t_size: Buffer size for holding this request.
++ * @r_size: Buffer size for holding server's reply on this request.
+  *
+  * Context: Process context.
+  * Return: Pointer to new request.
+  */
+ static struct p9_req_t *
+-p9_tag_alloc(struct p9_client *c, int8_t type, unsigned int max_size)
++p9_tag_alloc(struct p9_client *c, int8_t type, uint t_size, uint r_size)
+ {
+ 	struct p9_req_t *req = kmem_cache_alloc(p9_req_cache, GFP_NOFS);
+-	int alloc_msize = min(c->msize, max_size);
++	int alloc_tsize = min(c->msize, t_size);
++	int alloc_rsize = min(c->msize, r_size);
+ 	int tag;
  
-+/* maximum length of an error string */
-+#define P9_ERRMAX 128
-+
- /**
-  * struct p9_qid - file system entity information
-  * @type: 8-bit type &p9_qid_t
+ 	if (!req)
+ 		return ERR_PTR(-ENOMEM);
+ 
+-	if (p9_fcall_init(c, &req->tc, alloc_msize))
++	if (p9_fcall_init(c, &req->tc, alloc_tsize))
+ 		goto free_req;
+-	if (p9_fcall_init(c, &req->rc, alloc_msize))
++	if (p9_fcall_init(c, &req->rc, alloc_rsize))
+ 		goto free;
+ 
+ 	p9pdu_reset(&req->tc);
+@@ -678,7 +680,7 @@ static int p9_client_flush(struct p9_client *c, struct p9_req_t *oldreq)
+ }
+ 
+ static struct p9_req_t *p9_client_prepare_req(struct p9_client *c,
+-					      int8_t type, int req_size,
++					      int8_t type, uint t_size, uint r_size,
+ 					      const char *fmt, va_list ap)
+ {
+ 	int err;
+@@ -694,7 +696,7 @@ static struct p9_req_t *p9_client_prepare_req(struct p9_client *c,
+ 	if (c->status == BeginDisconnect && type != P9_TCLUNK)
+ 		return ERR_PTR(-EIO);
+ 
+-	req = p9_tag_alloc(c, type, req_size);
++	req = p9_tag_alloc(c, type, t_size, r_size);
+ 	if (IS_ERR(req))
+ 		return req;
+ 
+@@ -731,7 +733,7 @@ p9_client_rpc(struct p9_client *c, int8_t type, const char *fmt, ...)
+ 	struct p9_req_t *req;
+ 
+ 	va_start(ap, fmt);
+-	req = p9_client_prepare_req(c, type, c->msize, fmt, ap);
++	req = p9_client_prepare_req(c, type, c->msize, c->msize, fmt, ap);
+ 	va_end(ap);
+ 	if (IS_ERR(req))
+ 		return req;
+@@ -829,7 +831,7 @@ static struct p9_req_t *p9_client_zc_rpc(struct p9_client *c, int8_t type,
+ 	/* We allocate a inline protocol data of only 4k bytes.
+ 	 * The actual content is passed in zero-copy fashion.
+ 	 */
+-	req = p9_client_prepare_req(c, type, P9_ZC_HDR_SZ, fmt, ap);
++	req = p9_client_prepare_req(c, type, P9_ZC_HDR_SZ, P9_ZC_HDR_SZ, fmt, ap);
+ 	va_end(ap);
+ 	if (IS_ERR(req))
+ 		return req;
 -- 
 2.30.2
 
