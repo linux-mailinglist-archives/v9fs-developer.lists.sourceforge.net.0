@@ -2,54 +2,52 @@ Return-Path: <v9fs-developer-bounces@lists.sourceforge.net>
 X-Original-To: lists+v9fs-developer@lfdr.de
 Delivered-To: lists+v9fs-developer@lfdr.de
 Received: from lists.sourceforge.net (lists.sourceforge.net [216.105.38.7])
-	by mail.lfdr.de (Postfix) with ESMTPS id 71934481CE0
-	for <lists+v9fs-developer@lfdr.de>; Thu, 30 Dec 2021 15:13:34 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id E6068481CCE
+	for <lists+v9fs-developer@lfdr.de>; Thu, 30 Dec 2021 15:12:23 +0100 (CET)
 Received: from [127.0.0.1] (helo=sfs-ml-1.v29.lw.sourceforge.com)
 	by sfs-ml-1.v29.lw.sourceforge.com with esmtp (Exim 4.94.2)
 	(envelope-from <v9fs-developer-bounces@lists.sourceforge.net>)
-	id 1n2wBP-0000fu-VL; Thu, 30 Dec 2021 14:13:33 +0000
+	id 1n2wAG-0000X5-MC; Thu, 30 Dec 2021 14:12:21 +0000
 Received: from [172.30.20.202] (helo=mx.sourceforge.net)
  by sfs-ml-1.v29.lw.sourceforge.com with esmtps (TLS1.2) tls
  TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384 (Exim 4.94.2)
- (envelope-from <7ec67285cf793e0bfe5aee7ccd37580cf9addb17@lizzy.crudebyte.com>)
- id 1n2wBO-0000fh-Gf
- for v9fs-developer@lists.sourceforge.net; Thu, 30 Dec 2021 14:13:31 +0000
+ (envelope-from <8c305df4646b65218978fc6474aa0f5f29b216a0@lizzy.crudebyte.com>)
+ id 1n2wAE-0000Wl-6R
+ for v9fs-developer@lists.sourceforge.net; Thu, 30 Dec 2021 14:12:19 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=sourceforge.net; s=x; h=Cc:To:Subject:Date:From:References:In-Reply-To:
- Message-Id:Sender:Reply-To:MIME-Version:Content-Type:
- Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
- Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:
- List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=g86nOUNEYXZotGDC9WzvAD9cmWA0gMSDz40Z/V7NIeQ=; b=KpIZ/lOR90SXe9Xijj+1WdcYU
- FVNo4Ff9QSJOnzgtMIc0s3LQMIRVFZiNUkN3B/96LS+8j1X1i9YbFDT34s2ktpj1BmDFzAbEOgjS8
- hsDYQ4pE7UFCwdK8kvHVlOEmC7FZ2aNDt/U+TfUnwGJMGgYZnVTclJQiE3EaEmQYDaQhs=;
+ d=sourceforge.net; s=x; h=Cc:To:Subject:Date:From:Message-Id:Sender:Reply-To:
+ MIME-Version:Content-Type:Content-Transfer-Encoding:Content-ID:
+ Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
+ :Resent-Message-ID:In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:
+ List-Subscribe:List-Post:List-Owner:List-Archive;
+ bh=v0FOFCtrEu0tqoBce1riXue0DcgvfXWSveZUomzIpD4=; b=SFzYhlclrYKQjXvhG8dyWzVMXv
+ O4a6ShUdsJJ29kfYF2Ro2W1YUXHg9moa76rjAC4li5TaENmfvcDqb+LLsxzFAMn7vUeZ1766eUwGo
+ mNh+YHLQnhWZF+251NfiTlrd18QKqSrZ5MoEjTHtSyot9AsIEDL3LklFVk3wbRZeuj68=;
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  ;
- h=Cc:To:Subject:Date:From:References:In-Reply-To:Message-Id:Sender:Reply-To
- :MIME-Version:Content-Type:Content-Transfer-Encoding:Content-ID:
- Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
- :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
+ h=Cc:To:Subject:Date:From:Message-Id:Sender:Reply-To:MIME-Version:
+ Content-Type:Content-Transfer-Encoding:Content-ID:Content-Description:
+ Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+ In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
  List-Post:List-Owner:List-Archive;
- bh=g86nOUNEYXZotGDC9WzvAD9cmWA0gMSDz40Z/V7NIeQ=; b=gdCXdx3FY9msLZwjY7sGtr5GVF
- SeK6+D+mk7rhC5gHblaB9epS3c8w4jQY2kxVFYjjn1/z8SXStN8yNDBCtVkmfD0Lqyrx+4NyCnYKU
- JntSyNm4RTAM+kIQqY0otKhhW5ajKwzZkysemsjHB/sBXF8Xp7OIEpPYD/roJIm9gM7w=;
+ bh=v0FOFCtrEu0tqoBce1riXue0DcgvfXWSveZUomzIpD4=; b=IBclJcVIkiuiu7q7oElVVoPod8
+ BSk/W2B0mkS01tN+dWeic2bqNnitftdBEc2JZzMsyuoEk96ft3s10ZIEY0ojpIMMmzgSnCkmejVvZ
+ NwQjBSDRcAm9RX1JbpmQiqNScuAr7M7mcD4tm/ir7OphVY9DrzaokUAr6R2HzbqqweC8=;
 Received: from lizzy.crudebyte.com ([91.194.90.13])
  by sfi-mx-2.v28.lw.sourceforge.com with esmtps
  (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.92.3)
- id 1n2wBP-0002BN-0G
- for v9fs-developer@lists.sourceforge.net; Thu, 30 Dec 2021 14:13:31 +0000
+ id 1n2wAE-00025R-Gk
+ for v9fs-developer@lists.sourceforge.net; Thu, 30 Dec 2021 14:12:19 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=crudebyte.com; s=lizzy; h=Cc:To:Subject:Date:From:References:In-Reply-To:
- Message-Id:Content-Type:Content-Transfer-Encoding:MIME-Version:Content-ID:
- Content-Description; bh=g86nOUNEYXZotGDC9WzvAD9cmWA0gMSDz40Z/V7NIeQ=; b=cyFmA
- ZSG8jfjWiJT4BgZ7NDCQ8iyahkY4liwY5jiM4zs6cWAi18Z2o8OsXf8cNvS9NAXGfi2YjJPXBNry9
- ZDGitV0cF32+RDSy48mRW/+kMSVFm2YjYSAy2OTkxqnvk6NrWBaowWs2eZyr//o2BPS+q+NyTUPGY
- 044YZE9utscRJPI72YIiEbx+xdD6OMVHm61gZjrjpYvc2o6M8k1LjvqqDI7J++u5S2MFuS0oEuDKC
- hUs2ZoYrZnZmPIqMYgV5aLNp/exBYjSsd/v/S3e4AsN97iymBgtd/l7tCLN5KxKc9hnTaRk0POFgM
- NRozal/ZkiKrB7QXQTVWUtKCbVDXw==;
-Message-Id: <7ec67285cf793e0bfe5aee7ccd37580cf9addb17.1640870037.git.linux_oss@crudebyte.com>
-In-Reply-To: <cover.1640870037.git.linux_oss@crudebyte.com>
-References: <cover.1640870037.git.linux_oss@crudebyte.com>
+ d=crudebyte.com; s=lizzy; h=Cc:To:Subject:Date:From:Message-Id:Content-Type:
+ Content-Transfer-Encoding:MIME-Version:References:In-Reply-To:Content-ID:
+ Content-Description; bh=v0FOFCtrEu0tqoBce1riXue0DcgvfXWSveZUomzIpD4=; b=BZj7L
+ 5m6l9r8vB6k8aP9uI7khIbEuDNZucTxSLVLnaS41A8DoV9OlbsUeDDeIH9F+4AH4a5hRmP7ssAoTv
+ PmP7KrFnJHRg5piFl0M1Y37OPiKfzsQLFBZGyJ5mFsPBQ2/JJXm+A4sLglk6wAaJX1ujBXBBrbwwZ
+ 72C39ZjXiV+vCGqkKMTWapynerxbSoc3nHPvStUagQW5HfyvkC98V91n00LicDK0Ey/cg1VwF2oU7
+ TzIj9JcJ9nXFPqsNYy3JUCPoeK4KZlgo+w2D+fnI5u75+MVFdoO9tEo0OBEA2xfHzrPLZG+ehgEPW
+ HTi5lg20afzXR825VuA7lHQEOxvmA==;
+Message-Id: <cover.1640870037.git.linux_oss@crudebyte.com>
 Date: Thu, 30 Dec 2021 14:23:18 +0100
 To: v9fs-developer@lists.sourceforge.net
 X-Spam-Score: -0.2 (/)
@@ -59,11 +57,11 @@ X-Spam-Report: Spam detection software,
  message has been attached to this so you can view it or label
  similar future email.  If you have any questions, see
  the administrator of that system for details.
- Content preview: The size of scatter/gather lists used by the virtio transport
- is currently hard coded. Refactor this to using a runtime variable.
- Signed-off-by:
- Christian Schoenebeck <linux_oss@crudebyte.com> --- net/9p/trans_virtio.c
- | 23 +++++++++++++ 1 file changed, 13 insertions(+), 10 deletions(-) 
+ Content preview: This series aims to get get rid of the current 500k 'msize'
+ limitation in the 9p virtio transport, which is currently a bottleneck for
+ performance of 9p mounts. To avoid confusion: it does remove the msize limit
+ for the virtio transport, on 9p client level though the anticipated milestone
+ for this series is now a max. 'msize' of 4 MB. See patch 8 for reason w [...]
  Content analysis details:   (-0.2 points, 6.0 required)
  pts rule name              description
  ---- ---------------------- --------------------------------------------------
@@ -76,9 +74,9 @@ X-Spam-Report: Spam detection software,
  0.1 DKIM_SIGNED            Message has a DKIM or DK signature, not necessarily
  valid
  -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-X-Headers-End: 1n2wBP-0002BN-0G
-Subject: [V9fs-developer] [PATCH v4 03/12] 9p/trans_virtio: turn amount of
- sg lists into runtime info
+X-Headers-End: 1n2wAE-00025R-Gk
+Subject: [V9fs-developer] [PATCH v4 00/12] remove msize limit in virtio
+ transport
 X-BeenThere: v9fs-developer@lists.sourceforge.net
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -101,125 +99,147 @@ Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: v9fs-developer-bounces@lists.sourceforge.net
 
-The size of scatter/gather lists used by the virtio transport is
-currently hard coded. Refactor this to using a runtime variable.
+This series aims to get get rid of the current 500k 'msize' limitation in
+the 9p virtio transport, which is currently a bottleneck for performance
+of 9p mounts.
 
-Signed-off-by: Christian Schoenebeck <linux_oss@crudebyte.com>
----
- net/9p/trans_virtio.c | 23 +++++++++++++----------
- 1 file changed, 13 insertions(+), 10 deletions(-)
+To avoid confusion: it does remove the msize limit for the virtio transport,
+on 9p client level though the anticipated milestone for this series is now
+a max. 'msize' of 4 MB. See patch 8 for reason why.
 
-diff --git a/net/9p/trans_virtio.c b/net/9p/trans_virtio.c
-index 7f0c992c0f68..d063c69b85b7 100644
---- a/net/9p/trans_virtio.c
-+++ b/net/9p/trans_virtio.c
-@@ -36,7 +36,7 @@
- #include <linux/virtio_9p.h>
- #include "trans_common.h"
- 
--#define VIRTQUEUE_NUM	128
-+#define VIRTQUEUE_DEFAULT_NUM	128
- 
- /* a single mutex to manage channel initialization and attachment */
- static DEFINE_MUTEX(virtio_9p_lock);
-@@ -54,6 +54,7 @@ static atomic_t vp_pinned = ATOMIC_INIT(0);
-  * @vc_wq: wait queue for waiting for thing to be added to ring buf
-  * @p9_max_pages: maximum number of pinned pages
-  * @sg: scatter gather list which is used to pack a request (protected?)
-+ * @sg_n: amount of elements in sg array
-  * @chan_list: linked list of channels
-  *
-  * We keep all per-channel information in a structure.
-@@ -78,6 +79,7 @@ struct virtio_chan {
- 	unsigned long p9_max_pages;
- 	/* Scatterlist: can be too big for stack. */
- 	struct scatterlist *sg;
-+	size_t sg_n;
- 	/**
- 	 * @tag: name to identify a mount null terminated
- 	 */
-@@ -270,12 +272,12 @@ p9_virtio_request(struct p9_client *client, struct p9_req_t *req)
- 	out_sgs = in_sgs = 0;
- 	/* Handle out VirtIO ring buffers */
- 	out = pack_sg_list(chan->sg, 0,
--			   VIRTQUEUE_NUM, req->tc.sdata, req->tc.size);
-+			   chan->sg_n, req->tc.sdata, req->tc.size);
- 	if (out)
- 		sgs[out_sgs++] = chan->sg;
- 
- 	in = pack_sg_list(chan->sg, out,
--			  VIRTQUEUE_NUM, req->rc.sdata, req->rc.capacity);
-+			  chan->sg_n, req->rc.sdata, req->rc.capacity);
- 	if (in)
- 		sgs[out_sgs + in_sgs++] = chan->sg + out;
- 
-@@ -447,14 +449,14 @@ p9_virtio_zc_request(struct p9_client *client, struct p9_req_t *req,
- 
- 	/* out data */
- 	out = pack_sg_list(chan->sg, 0,
--			   VIRTQUEUE_NUM, req->tc.sdata, req->tc.size);
-+			   chan->sg_n, req->tc.sdata, req->tc.size);
- 
- 	if (out)
- 		sgs[out_sgs++] = chan->sg;
- 
- 	if (out_pages) {
- 		sgs[out_sgs++] = chan->sg + out;
--		out += pack_sg_list_p(chan->sg, out, VIRTQUEUE_NUM,
-+		out += pack_sg_list_p(chan->sg, out, chan->sg_n,
- 				      out_pages, out_nr_pages, offs, outlen);
- 	}
- 
-@@ -466,13 +468,13 @@ p9_virtio_zc_request(struct p9_client *client, struct p9_req_t *req,
- 	 * allocated memory and payload onto the user buffer.
- 	 */
- 	in = pack_sg_list(chan->sg, out,
--			  VIRTQUEUE_NUM, req->rc.sdata, in_hdr_len);
-+			  chan->sg_n, req->rc.sdata, in_hdr_len);
- 	if (in)
- 		sgs[out_sgs + in_sgs++] = chan->sg + out;
- 
- 	if (in_pages) {
- 		sgs[out_sgs + in_sgs++] = chan->sg + out + in;
--		in += pack_sg_list_p(chan->sg, out + in, VIRTQUEUE_NUM,
-+		in += pack_sg_list_p(chan->sg, out + in, chan->sg_n,
- 				     in_pages, in_nr_pages, offs, inlen);
- 	}
- 
-@@ -574,13 +576,14 @@ static int p9_virtio_probe(struct virtio_device *vdev)
- 		goto fail;
- 	}
- 
--	chan->sg = kmalloc_array(VIRTQUEUE_NUM,
-+	chan->sg = kmalloc_array(VIRTQUEUE_DEFAULT_NUM,
- 				 sizeof(struct scatterlist), GFP_KERNEL);
- 	if (!chan->sg) {
- 		pr_err("Failed to allocate virtio 9P channel\n");
- 		err = -ENOMEM;
- 		goto out_free_chan_shallow;
- 	}
-+	chan->sg_n = VIRTQUEUE_DEFAULT_NUM;
- 
- 	chan->vdev = vdev;
- 
-@@ -593,7 +596,7 @@ static int p9_virtio_probe(struct virtio_device *vdev)
- 	chan->vq->vdev->priv = chan;
- 	spin_lock_init(&chan->lock);
- 
--	sg_init_table(chan->sg, VIRTQUEUE_NUM);
-+	sg_init_table(chan->sg, chan->sg_n);
- 
- 	chan->inuse = false;
- 	if (virtio_has_feature(vdev, VIRTIO_9P_MOUNT_TAG)) {
-@@ -777,7 +780,7 @@ static struct p9_trans_module p9_virtio_trans = {
- 	 * that are not at page boundary, that can result in an extra
- 	 * page in zero copy.
- 	 */
--	.maxsize = PAGE_SIZE * (VIRTQUEUE_NUM - 3),
-+	.maxsize = PAGE_SIZE * (VIRTQUEUE_DEFAULT_NUM - 3),
- 	.def = 1,
- 	.owner = THIS_MODULE,
- };
+This is a follow-up of the following series and discussion:
+https://lore.kernel.org/netdev/cover.1632327421.git.linux_oss@crudebyte.com/
+
+Latest version of this series:
+https://github.com/cschoenebeck/linux/commits/9p-virtio-drop-msize-cap
+
+
+OVERVIEW OF PATCHES:
+
+* Patch 1 is just a trivial info message for the user to know why his msize
+  option got ignored by 9p client in case the value was larger than what is
+  supported by this 9p driver.
+
+* Patches 2..7 remove the msize limitation from the 'virtio' transport
+  (i.e. the 9p 'virtio' transport itself actually supports >4MB now, tested
+  successfully with an experimental QEMU version and some dirty 9p Linux
+  client hacks up to msize=128MB).
+
+* Patch 8 limits msize for all transports to 4 MB for now as >4MB would need
+  more work on 9p client level (see commit log of patch 8 for details).
+
+* Patches 9..12 tremendously reduce unnecessarily huge 9p message sizes and
+  therefore provide performance gain as well. So far, almost all 9p messages
+  simply allocated message buffers exactly msize large, even for messages
+  that actually just needed few bytes. So these patches make sense by
+  themselves, independent of this overall series, however for this series
+  even more, because the larger msize, the more this issue would have hurt
+  otherwise.
+
+
+PREREQUISITES:
+
+If you are testing with QEMU then please either use latest QEMU 6.2 release
+or higher, or at least apply the following patch on QEMU side:
+
+  https://lore.kernel.org/qemu-devel/E1mT2Js-0000DW-OH@lizzy.crudebyte.com/
+
+That QEMU patch is required if you are using a user space app that
+automatically retrieves an optimum I/O block size by obeying stat's
+st_blksize, which 'cat' for instance is doing, e.g.:
+
+	time cat test_rnd.dat > /dev/null
+
+Otherwise please use a user space app for performance testing that allows
+you to force a large block size and to avoid that QEMU issue, like 'dd'
+for instance, in that case you don't need to patch QEMU.
+
+
+KNOWN LIMITATION:
+
+With this series applied I can run
+
+  QEMU host <-> 9P virtio <-> Linux guest
+
+with up to slightly below 4 MB msize [4186112 = (1024-2) * 4096]. If I try
+to run it with exactly 4 MB (4194304) it currently hits a limitation on
+QEMU side:
+
+  qemu-system-x86_64: virtio: too many write descriptors in indirect table
+
+That's because QEMU currently has a hard coded limit of max. 1024 virtio
+descriptors per vring slot (i.e. per virtio message), see to do (1.) below.
+
+
+STILL TO DO:
+
+  1. Negotiating virtio "Queue Indirect Size" (MANDATORY):
+
+    The QEMU issue described above must be addressed by negotiating the
+    maximum length of virtio indirect descriptor tables on virtio device
+    initialization. This would not only avoid the QEMU error above, but would
+    also allow msize of >4MB in future. Before that change can be done on
+    Linux and QEMU sides though, it first requires a change to the virtio
+    specs. Work on that on the virtio specs is in progress:
+
+    https://github.com/oasis-tcs/virtio-spec/issues/122
+
+    This is not really an issue for testing this series. Just stick to max.
+    msize=4186112 as described above and you will be fine. However for the
+    final PR this should obviously be addressed in a clean way.
+
+  2. Reduce readdir buffer sizes (optional - maybe later):
+
+    This series already reduced the message buffers for most 9p message
+    types. This does not include Treaddir though yet, which is still simply
+    using msize. It would make sense to benchmark first whether this is
+    actually an issue that hurts. If it does, then one might use already
+    existing vfs knowledge to estimate the Treaddir size, or starting with
+    some reasonable hard coded small Treaddir size first and then increasing
+    it just on the 2nd Treaddir request if there are more directory entries
+    to fetch.
+
+  3. Add more buffer caches (optional - maybe later):
+
+    p9_fcall_init() uses kmem_cache_alloc() instead of kmalloc() for very
+    large buffers to reduce latency waiting for memory allocation to
+    complete. Currently it does that only if the requested buffer size is
+    exactly msize large. As patch 11 already divided the 9p message types
+    into few message size categories, maybe it would make sense to use e.g.
+    4 separate caches for those memory category (e.g. 4k, 8k, msize/2,
+    msize). Might be worth a benchmark test.
+
+Testing and feedback appreciated!
+
+v3 -> v4:
+
+  * Limit msize to 4 MB for all transports [NEW patch 8].
+
+  * Avoid unnecessarily huge 9p message buffers
+    [NEW patch 9] .. [NEW patch 12].
+
+Christian Schoenebeck (12):
+  net/9p: show error message if user 'msize' cannot be satisfied
+  9p/trans_virtio: separate allocation of scatter gather list
+  9p/trans_virtio: turn amount of sg lists into runtime info
+  9p/trans_virtio: introduce struct virtqueue_sg
+  net/9p: add trans_maxsize to struct p9_client
+  9p/trans_virtio: support larger msize values
+  9p/trans_virtio: resize sg lists to whatever is possible
+  net/9p: limit 'msize' to KMALLOC_MAX_SIZE for all transports
+  net/9p: split message size argument into 't_size' and 'r_size' pair
+  9p: add P9_ERRMAX for 9p2000 and 9p2000.u
+  net/9p: add p9_msg_buf_size()
+  net/9p: allocate appropriate reduced message buffers
+
+ include/net/9p/9p.h     |   3 +
+ include/net/9p/client.h |   2 +
+ net/9p/client.c         |  67 +++++++--
+ net/9p/protocol.c       | 154 ++++++++++++++++++++
+ net/9p/protocol.h       |   2 +
+ net/9p/trans_virtio.c   | 304 +++++++++++++++++++++++++++++++++++-----
+ 6 files changed, 483 insertions(+), 49 deletions(-)
+
 -- 
 2.30.2
 
