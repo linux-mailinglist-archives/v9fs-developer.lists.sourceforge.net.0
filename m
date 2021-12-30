@@ -2,27 +2,27 @@ Return-Path: <v9fs-developer-bounces@lists.sourceforge.net>
 X-Original-To: lists+v9fs-developer@lfdr.de
 Delivered-To: lists+v9fs-developer@lfdr.de
 Received: from lists.sourceforge.net (lists.sourceforge.net [216.105.38.7])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0876B481CDC
-	for <lists+v9fs-developer@lfdr.de>; Thu, 30 Dec 2021 15:13:05 +0100 (CET)
-Received: from [127.0.0.1] (helo=sfs-ml-2.v29.lw.sourceforge.com)
-	by sfs-ml-2.v29.lw.sourceforge.com with esmtp (Exim 4.94.2)
+	by mail.lfdr.de (Postfix) with ESMTPS id 9C08F481CD0
+	for <lists+v9fs-developer@lfdr.de>; Thu, 30 Dec 2021 15:12:26 +0100 (CET)
+Received: from [127.0.0.1] (helo=sfs-ml-4.v29.lw.sourceforge.com)
+	by sfs-ml-4.v29.lw.sourceforge.com with esmtp (Exim 4.94.2)
 	(envelope-from <v9fs-developer-bounces@lists.sourceforge.net>)
-	id 1n2wAx-0006OO-Jo; Thu, 30 Dec 2021 14:13:03 +0000
+	id 1n2wAL-0001AR-8E; Thu, 30 Dec 2021 14:12:25 +0000
 Received: from [172.30.20.202] (helo=mx.sourceforge.net)
- by sfs-ml-2.v29.lw.sourceforge.com with esmtps (TLS1.2) tls
+ by sfs-ml-4.v29.lw.sourceforge.com with esmtps (TLS1.2) tls
  TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384 (Exim 4.94.2)
- (envelope-from <fcf4aeac8e33bff5580b4841165739352498013d@lizzy.crudebyte.com>)
- id 1n2wAv-0006O5-L4
- for v9fs-developer@lists.sourceforge.net; Thu, 30 Dec 2021 14:13:01 +0000
+ (envelope-from <35f29eb71a713fd6e595d8ea4d4f5131df5e33b8@lizzy.crudebyte.com>)
+ id 1n2wAI-0001AJ-Tq
+ for v9fs-developer@lists.sourceforge.net; Thu, 30 Dec 2021 14:12:22 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
  d=sourceforge.net; s=x; h=Cc:To:Subject:Date:From:References:In-Reply-To:
  Message-Id:Sender:Reply-To:MIME-Version:Content-Type:
  Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
  Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:
  List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=HRgmsvyQc5R1HqZKiatrCeJDIA/6CkbTdpYiY2zKJhY=; b=cdLXISXJC3PIC5lsfG+/HByYr
- G22MuQBAhdKI5hzaJGy4cVFgEAGMlpRbXfNvzRPo2Souw8XfkHFU1V06C43j9PZ227lgKsRCBylvK
- W9P6N00YhPSAAd9tZm1C1nSYg+w3upC3MEaK5y5+rMVv/iNva38bsVSwPYY3DbfrwHYrA=;
+ bh=WFwvsfcLSvXImvKzK0ROel4mXqUzpd6lHVm/jLVuHDE=; b=Y1Qzv6G47lwtexBCWEesYu/m1
+ 2rJg9cUO0qtb6oUKEYav3YSNCobeL9XoPxxoAq9Q8RrXlxRmNmisytd8VrXuP5vOZkrugTltet0+A
+ Z8sDKJgfLHyjbCKRqXRtE+sZdqDKT1gXWPQdrNFCe3tG/gTH6Wab+9Lc4hBN3HncfFuNs=;
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  ;
  h=Cc:To:Subject:Date:From:References:In-Reply-To:Message-Id:Sender:Reply-To
@@ -30,24 +30,24 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
  :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
  List-Post:List-Owner:List-Archive;
- bh=HRgmsvyQc5R1HqZKiatrCeJDIA/6CkbTdpYiY2zKJhY=; b=VFHwlvPf6DiwmNPfEH1WLTmh5n
- zhsuxUaX7lqPxMYjv8qQXWigW4zMQGw4/6GqNScx4M9BmGshXm1t9Vj2bJI5HUi3hKcxFjYNp2vwz
- lA4onr32eCjjcP3CgNSLocsRPCRF1/vsQZPEg++fheViivODQH7bKtHKE/nkH7d2+aes=;
+ bh=WFwvsfcLSvXImvKzK0ROel4mXqUzpd6lHVm/jLVuHDE=; b=Kydl6x85oPQ6kSni9VLpSEp73p
+ wFXhpoHpvm2kec92GLcvAxGUdN5eyfOtSEigf36Hf9odljFcfS7lxinhgiSzGV3gJgnAGBz1FpX+X
+ 5fts5ilO4EOqkh6lHnR5xEvrSM19kopYa96+x7kDH393GFK5JNQk4nnGgNuP7oU+OQM0=;
 Received: from lizzy.crudebyte.com ([91.194.90.13])
  by sfi-mx-2.v28.lw.sourceforge.com with esmtps
  (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.92.3)
- id 1n2wAt-00028v-US
- for v9fs-developer@lists.sourceforge.net; Thu, 30 Dec 2021 14:13:01 +0000
+ id 1n2wAI-00025R-AJ
+ for v9fs-developer@lists.sourceforge.net; Thu, 30 Dec 2021 14:12:22 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
  d=crudebyte.com; s=lizzy; h=Cc:To:Subject:Date:From:References:In-Reply-To:
  Message-Id:Content-Type:Content-Transfer-Encoding:MIME-Version:Content-ID:
- Content-Description; bh=HRgmsvyQc5R1HqZKiatrCeJDIA/6CkbTdpYiY2zKJhY=; b=hTnCe
- o1Whg/tS14T1EiCLIom1oN1Ymow2h360wlmsCPKFdW1o/E5jptO/jc3ghECy5x4oQTjfcjE9V3rNi
- 0XAFV6+W5SrHqQ6aJQYfrKplD83GIyH4bYiuyYW+tjOuslK4OJ9ydyS6dCF/51Rb0L7qFvSU6wEaN
- 3LAjPKYsozzUVWObI3ORKU1/0FC2rLvt25DSnFm7pifvUqvG6/L0hynnnQas04uFC3s9IMPYR67h0
- Cki9svDG1l1vps8GsTZj27pUZdMuIFL8QeQebWepy/AH2b//jwyskrQghftOFaBxUc3FC/0zjZ8sY
- 40+ogM7lMXi3lpZWsGjpSmHcM3U5g==;
-Message-Id: <fcf4aeac8e33bff5580b4841165739352498013d.1640870037.git.linux_oss@crudebyte.com>
+ Content-Description; bh=WFwvsfcLSvXImvKzK0ROel4mXqUzpd6lHVm/jLVuHDE=; b=Ee7g7
+ G5HnqQhJEGfMv81jpIi6G1UhfTVbCfBVtiukJitpqyfq8ZruhC6YCbwQ7ZwpExnWgsHbx8qc/i0y3
+ T88FRIn3KMppGu/24A4Fl5PSZ0710wl7zR9KqA3TnnNMIw0Ap77JIgvJJT5sLAXFAifZqZJcFVY6r
+ i2oTBQSZKKQdgiPrsYN8JuTMwtJ+YjkA84q+VbdUrTIh0+cjzUkwbpZCeUSeu6Uryekmb/8BpLGBv
+ ZX7fMve5ywcVDl5NTqmgpG5jSI0OgypKZRZ6xwCK1a5tH8hfeJBXQgvhyokXLM82lxmaKs7bE6AyP
+ BgIedodHR7RQXAQPPvA+Ab3XaIVLQ==;
+Message-Id: <35f29eb71a713fd6e595d8ea4d4f5131df5e33b8.1640870037.git.linux_oss@crudebyte.com>
 In-Reply-To: <cover.1640870037.git.linux_oss@crudebyte.com>
 References: <cover.1640870037.git.linux_oss@crudebyte.com>
 Date: Thu, 30 Dec 2021 14:23:18 +0100
@@ -59,12 +59,12 @@ X-Spam-Report: Spam detection software,
  message has been attached to this so you can view it or label
  similar future email.  If you have any questions, see
  the administrator of that system for details.
- Content preview:  This new field 'trans_maxsize' optionally allows transport
- to update it to reflect the actual maximum msize supported by allocated
- transport
- channel. Signed-off-by: Christian Schoenebeck <linux_oss@crudebyte.com> ---
- include/net/9p/client.h | 2 ++ net/9p/client.c | 12 ++++++++++-- 2 files
- changed, 12 insertions(+), 2 deletions(-) 
+ Content preview: Right now vq_sg_resize() used a lazy implementation following
+ the all-or-nothing princible. So it either resized exactly to the requested
+ new amount of sg lists, or it did not resize at all. The problem with this
+ is if a user supplies a very large msize value, resize would simply fail
+ and the user would stick to the default maximum msize supported by the virtio
+ transport. 
  Content analysis details:   (-0.2 points, 6.0 required)
  pts rule name              description
  ---- ---------------------- --------------------------------------------------
@@ -77,9 +77,9 @@ X-Spam-Report: Spam detection software,
  0.1 DKIM_SIGNED            Message has a DKIM or DK signature, not necessarily
  valid
  -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-X-Headers-End: 1n2wAt-00028v-US
-Subject: [V9fs-developer] [PATCH v4 05/12] net/9p: add trans_maxsize to
- struct p9_client
+X-Headers-End: 1n2wAI-00025R-AJ
+Subject: [V9fs-developer] [PATCH v4 07/12] 9p/trans_virtio: resize sg lists
+ to whatever is possible
 X-BeenThere: v9fs-developer@lists.sourceforge.net
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -102,66 +102,125 @@ Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: v9fs-developer-bounces@lists.sourceforge.net
 
-This new field 'trans_maxsize' optionally allows transport to
-update it to reflect the actual maximum msize supported by
-allocated transport channel.
+Right now vq_sg_resize() used a lazy implementation following
+the all-or-nothing princible. So it either resized exactly to
+the requested new amount of sg lists, or it did not resize at
+all.
+
+The problem with this is if a user supplies a very large msize
+value, resize would simply fail and the user would stick to
+the default maximum msize supported by the virtio transport.
+
+To resolve this potential issue, change vq_sg_resize() to resize
+the passed sg list to whatever is possible on the machine.
 
 Signed-off-by: Christian Schoenebeck <linux_oss@crudebyte.com>
 ---
- include/net/9p/client.h |  2 ++
- net/9p/client.c         | 12 ++++++++++--
- 2 files changed, 12 insertions(+), 2 deletions(-)
+ net/9p/trans_virtio.c | 68 ++++++++++++++++++++++++++++++++++++++-----
+ 1 file changed, 60 insertions(+), 8 deletions(-)
 
-diff --git a/include/net/9p/client.h b/include/net/9p/client.h
-index ec1d1706f43c..f5718057fca4 100644
---- a/include/net/9p/client.h
-+++ b/include/net/9p/client.h
-@@ -87,6 +87,7 @@ struct p9_req_t {
-  * struct p9_client - per client instance state
-  * @lock: protect @fids and @reqs
-  * @msize: maximum data size negotiated by protocol
-+ * @trans_maxsize: actual maximum msize supported by transport channel
-  * @proto_version: 9P protocol version to use
-  * @trans_mod: module API instantiated with this client
-  * @status: connection state
-@@ -101,6 +102,7 @@ struct p9_req_t {
- struct p9_client {
- 	spinlock_t lock;
- 	unsigned int msize;
-+	unsigned int trans_maxsize;
- 	unsigned char proto_version;
- 	struct p9_trans_module *trans_mod;
- 	enum p9_trans_status status;
-diff --git a/net/9p/client.c b/net/9p/client.c
-index 8bba0d9cf975..20054addd81b 100644
---- a/net/9p/client.c
-+++ b/net/9p/client.c
-@@ -1031,6 +1031,14 @@ struct p9_client *p9_client_create(const char *dev_name, char *options)
- 		goto free_client;
- 	}
+diff --git a/net/9p/trans_virtio.c b/net/9p/trans_virtio.c
+index a02050c9742a..580efa95eabd 100644
+--- a/net/9p/trans_virtio.c
++++ b/net/9p/trans_virtio.c
+@@ -208,24 +208,67 @@ static struct virtqueue_sg *vq_sg_alloc(unsigned int nsgl)
+  * amount of lists
+  * @_vq_sg: scatter/gather lists to be resized
+  * @nsgl: new amount of scatter/gather lists
++ *
++ * Old scatter/gather lists are retained. Only growing the size is supported.
++ * If the requested amount cannot be satisfied, then lists are increased to
++ * whatever is possible.
+  */
+ static int vq_sg_resize(struct virtqueue_sg **_vq_sg, unsigned int nsgl)
+ {
+ 	struct virtqueue_sg *vq_sg;
++	unsigned int i;
++	size_t sz;
++	int ret = 0;
  
-+	/*
-+	 * transport will get a chance to increase trans_maxsize (if
-+	 * necessary) and it may update trans_maxsize in create() function
-+	 * below accordingly to reflect the actual maximum size supported by
-+	 * the allocated transport channel
-+	 */
-+	clnt->trans_maxsize = clnt->trans_mod->maxsize;
+ 	BUG_ON(!_vq_sg || !nsgl);
+ 	vq_sg = *_vq_sg;
++	if (nsgl > VIRTQUEUE_SG_NSGL_MAX)
++		nsgl = VIRTQUEUE_SG_NSGL_MAX;
+ 	if (vq_sg->nsgl == nsgl)
+ 		return 0;
++	if (vq_sg->nsgl > nsgl)
++		return -ENOTSUPP;
 +
- 	p9_debug(P9_DEBUG_MUX, "clnt %p trans %p msize %d protocol %d\n",
- 		 clnt, clnt->trans_mod, clnt->msize, clnt->proto_version);
++	vq_sg = kzalloc(sizeof(struct virtqueue_sg) +
++			nsgl * sizeof(struct scatterlist *),
++			GFP_KERNEL);
  
-@@ -1038,8 +1046,8 @@ struct p9_client *p9_client_create(const char *dev_name, char *options)
- 	if (err)
- 		goto put_trans;
+-	/* lazy resize implementation for now */
+-	vq_sg = vq_sg_alloc(nsgl);
+ 	if (!vq_sg)
+ 		return -ENOMEM;
  
--	if (clnt->msize > clnt->trans_mod->maxsize) {
--		clnt->msize = clnt->trans_mod->maxsize;
-+	if (clnt->msize > clnt->trans_maxsize) {
-+		clnt->msize = clnt->trans_maxsize;
- 		pr_info("Limiting 'msize' to %d as this is the maximum "
- 			"supported by transport %s\n",
- 			clnt->msize, clnt->trans_mod->name
++	/* copy over old scatter gather lists */
++	sz = sizeof(struct virtqueue_sg) +
++		(*_vq_sg)->nsgl * sizeof(struct scatterlist *);
++	memcpy(vq_sg, *_vq_sg, sz);
++
++	vq_sg->nsgl = nsgl;
++
++	for (i = (*_vq_sg)->nsgl; i < nsgl; ++i) {
++		vq_sg->sgl[i] = kmalloc_array(
++			SG_MAX_SINGLE_ALLOC, sizeof(struct scatterlist),
++			GFP_KERNEL
++		);
++		/*
++		 * handle failed allocation as soft error, we take whatever
++		 * we get
++		 */
++		if (!vq_sg->sgl[i]) {
++			ret = -ENOMEM;
++			vq_sg->nsgl = nsgl = i;
++			break;
++		}
++		sg_init_table(vq_sg->sgl[i], SG_MAX_SINGLE_ALLOC);
++		if (i) {
++			/* chain the lists */
++			sg_chain(vq_sg->sgl[i - 1], SG_MAX_SINGLE_ALLOC,
++				 vq_sg->sgl[i]);
++		}
++	}
++	sg_mark_end(&vq_sg->sgl[nsgl - 1][SG_MAX_SINGLE_ALLOC - 1]);
++
+ 	kfree(*_vq_sg);
+ 	*_vq_sg = vq_sg;
+-	return 0;
++	return ret;
+ }
+ 
+ /**
+@@ -846,12 +889,21 @@ p9_virtio_create(struct p9_client *client, const char *devname, char *args)
+ 		if (nsgl > chan->vq_sg->nsgl) {
+ 			/*
+ 			 * if resize fails, no big deal, then just
+-			 * continue with default msize instead
++			 * continue with whatever we got
++			 */
++			vq_sg_resize(&chan->vq_sg, nsgl);
++			/*
++			 * actual allocation size might be less than
++			 * requested, so use vq_sg->nsgl instead of nsgl
+ 			 */
+-			if (!vq_sg_resize(&chan->vq_sg, nsgl)) {
+-				client->trans_maxsize =
+-					PAGE_SIZE *
+-					((nsgl * SG_USER_PAGES_PER_LIST) - 3);
++			client->trans_maxsize =
++				PAGE_SIZE * ((chan->vq_sg->nsgl *
++				SG_USER_PAGES_PER_LIST) - 3);
++			if (nsgl > chan->vq_sg->nsgl) {
++				pr_info("limiting 'msize' to %d as only %d "
++					"of %zu SG lists could be allocated",
++					client->trans_maxsize,
++					chan->vq_sg->nsgl, nsgl);
+ 			}
+ 		}
+ #endif /* CONFIG_ARCH_NO_SG_CHAIN */
 -- 
 2.30.2
 
