@@ -2,27 +2,27 @@ Return-Path: <v9fs-developer-bounces@lists.sourceforge.net>
 X-Original-To: lists+v9fs-developer@lfdr.de
 Delivered-To: lists+v9fs-developer@lfdr.de
 Received: from lists.sourceforge.net (lists.sourceforge.net [216.105.38.7])
-	by mail.lfdr.de (Postfix) with ESMTPS id BBEC1481CD6
-	for <lists+v9fs-developer@lfdr.de>; Thu, 30 Dec 2021 15:12:50 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0876B481CDC
+	for <lists+v9fs-developer@lfdr.de>; Thu, 30 Dec 2021 15:13:05 +0100 (CET)
 Received: from [127.0.0.1] (helo=sfs-ml-2.v29.lw.sourceforge.com)
 	by sfs-ml-2.v29.lw.sourceforge.com with esmtp (Exim 4.94.2)
 	(envelope-from <v9fs-developer-bounces@lists.sourceforge.net>)
-	id 1n2wAj-0006Mf-Aa; Thu, 30 Dec 2021 14:12:49 +0000
+	id 1n2wAx-0006OO-Jo; Thu, 30 Dec 2021 14:13:03 +0000
 Received: from [172.30.20.202] (helo=mx.sourceforge.net)
  by sfs-ml-2.v29.lw.sourceforge.com with esmtps (TLS1.2) tls
  TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384 (Exim 4.94.2)
- (envelope-from <8c305df4646b65218978fc6474aa0f5f29b216a0@lizzy.crudebyte.com>)
- id 1n2wAh-0006MZ-LI
- for v9fs-developer@lists.sourceforge.net; Thu, 30 Dec 2021 14:12:47 +0000
+ (envelope-from <fcf4aeac8e33bff5580b4841165739352498013d@lizzy.crudebyte.com>)
+ id 1n2wAv-0006O5-L4
+ for v9fs-developer@lists.sourceforge.net; Thu, 30 Dec 2021 14:13:01 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
  d=sourceforge.net; s=x; h=Cc:To:Subject:Date:From:References:In-Reply-To:
  Message-Id:Sender:Reply-To:MIME-Version:Content-Type:
  Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
  Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:
  List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=uZFzuHVsW9bTvGYFZ5r4LS0YJPrnwxn1A5YEmCqKBXY=; b=Pv/kMV2XSNkL6Vl89Gh0zySCI
- R+UgnQLRkq4uc9nWHUdLV7mTYaXEIFzeyqtBq4iSgcWZnx3cerPaEvh3R49nE1RDGsb6SeVSTtvPp
- U6DnHsn9QAGj3rN40SJEQkKxclkDNmUW3P2JtDMDumw8fOF/8s+5SjD0TS9frBdgdwJW0=;
+ bh=HRgmsvyQc5R1HqZKiatrCeJDIA/6CkbTdpYiY2zKJhY=; b=cdLXISXJC3PIC5lsfG+/HByYr
+ G22MuQBAhdKI5hzaJGy4cVFgEAGMlpRbXfNvzRPo2Souw8XfkHFU1V06C43j9PZ227lgKsRCBylvK
+ W9P6N00YhPSAAd9tZm1C1nSYg+w3upC3MEaK5y5+rMVv/iNva38bsVSwPYY3DbfrwHYrA=;
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  ;
  h=Cc:To:Subject:Date:From:References:In-Reply-To:Message-Id:Sender:Reply-To
@@ -30,24 +30,24 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
  :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
  List-Post:List-Owner:List-Archive;
- bh=uZFzuHVsW9bTvGYFZ5r4LS0YJPrnwxn1A5YEmCqKBXY=; b=RcqicmbaENrlcS+b0Eum6ep6YN
- U7r549ogP+KgmtE11yD2SI1ibMJwRkU+rGHe9IwgMPvcfL+mNAjny4lzRvX5VGCyY6+k2ZXpdVM3o
- FCWoZ/uhUHdJxBLy3ymHAkXyRRmbffNWRY9uiJd0uIrKujEUf/ZeBly/LzDqo3Jvr/TQ=;
+ bh=HRgmsvyQc5R1HqZKiatrCeJDIA/6CkbTdpYiY2zKJhY=; b=VFHwlvPf6DiwmNPfEH1WLTmh5n
+ zhsuxUaX7lqPxMYjv8qQXWigW4zMQGw4/6GqNScx4M9BmGshXm1t9Vj2bJI5HUi3hKcxFjYNp2vwz
+ lA4onr32eCjjcP3CgNSLocsRPCRF1/vsQZPEg++fheViivODQH7bKtHKE/nkH7d2+aes=;
 Received: from lizzy.crudebyte.com ([91.194.90.13])
  by sfi-mx-2.v28.lw.sourceforge.com with esmtps
  (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.92.3)
- id 1n2wAh-00028A-2n
- for v9fs-developer@lists.sourceforge.net; Thu, 30 Dec 2021 14:12:47 +0000
+ id 1n2wAt-00028v-US
+ for v9fs-developer@lists.sourceforge.net; Thu, 30 Dec 2021 14:13:01 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
  d=crudebyte.com; s=lizzy; h=Cc:To:Subject:Date:From:References:In-Reply-To:
  Message-Id:Content-Type:Content-Transfer-Encoding:MIME-Version:Content-ID:
- Content-Description; bh=uZFzuHVsW9bTvGYFZ5r4LS0YJPrnwxn1A5YEmCqKBXY=; b=BrRO1
- HJTeJ6iQrZzlzkcE4NYROqhLo9tAP30o3VGlvhOOqLApJs/b4gdHwh8cKNrdUBAb/N4/W1PSlx8ZN
- z2HZ+05Bg4GaeTnOBKgKLXJUprO1FikVXHA23JkAIFtpkWMnUrCHXYnaw13yALG6UckZGbZFycP2F
- xYhX2vDByNjtT+GJV/2Cgf6N0gjklYzDgUUX2DZtt8pfpxD3fqFT9U8v73M7qrQd6MMkmjozeqSh+
- Q3/vkcgJeFXVo6MLg5WtBRTQAp/QrNwYwcZWA/EMMqC5uvDbfOEClVhdzbwuRHxOVHAUzqDg1ZHsb
- ot/8DoxOxj/X1FK0gcjM5PELiKczg==;
-Message-Id: <8c305df4646b65218978fc6474aa0f5f29b216a0.1640870037.git.linux_oss@crudebyte.com>
+ Content-Description; bh=HRgmsvyQc5R1HqZKiatrCeJDIA/6CkbTdpYiY2zKJhY=; b=hTnCe
+ o1Whg/tS14T1EiCLIom1oN1Ymow2h360wlmsCPKFdW1o/E5jptO/jc3ghECy5x4oQTjfcjE9V3rNi
+ 0XAFV6+W5SrHqQ6aJQYfrKplD83GIyH4bYiuyYW+tjOuslK4OJ9ydyS6dCF/51Rb0L7qFvSU6wEaN
+ 3LAjPKYsozzUVWObI3ORKU1/0FC2rLvt25DSnFm7pifvUqvG6/L0hynnnQas04uFC3s9IMPYR67h0
+ Cki9svDG1l1vps8GsTZj27pUZdMuIFL8QeQebWepy/AH2b//jwyskrQghftOFaBxUc3FC/0zjZ8sY
+ 40+ogM7lMXi3lpZWsGjpSmHcM3U5g==;
+Message-Id: <fcf4aeac8e33bff5580b4841165739352498013d.1640870037.git.linux_oss@crudebyte.com>
 In-Reply-To: <cover.1640870037.git.linux_oss@crudebyte.com>
 References: <cover.1640870037.git.linux_oss@crudebyte.com>
 Date: Thu, 30 Dec 2021 14:23:18 +0100
@@ -59,12 +59,12 @@ X-Spam-Report: Spam detection software,
  message has been attached to this so you can view it or label
  similar future email.  If you have any questions, see
  the administrator of that system for details.
- Content preview:  So far 'msize' was simply used for all 9p message types,
- which
- is far too much and slowed down performance tremendously with large values
- for user configurable 'msize' option. Let's stop this waste by using the
- new p9_msg_buf_size() function for allocating more appropriate, smaller buffers
- according to what is actually sent over the wire. 
+ Content preview:  This new field 'trans_maxsize' optionally allows transport
+ to update it to reflect the actual maximum msize supported by allocated
+ transport
+ channel. Signed-off-by: Christian Schoenebeck <linux_oss@crudebyte.com> ---
+ include/net/9p/client.h | 2 ++ net/9p/client.c | 12 ++++++++++-- 2 files
+ changed, 12 insertions(+), 2 deletions(-) 
  Content analysis details:   (-0.2 points, 6.0 required)
  pts rule name              description
  ---- ---------------------- --------------------------------------------------
@@ -77,9 +77,9 @@ X-Spam-Report: Spam detection software,
  0.1 DKIM_SIGNED            Message has a DKIM or DK signature, not necessarily
  valid
  -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-X-Headers-End: 1n2wAh-00028A-2n
-Subject: [V9fs-developer] [PATCH v4 12/12] net/9p: allocate appropriate
- reduced message buffers
+X-Headers-End: 1n2wAt-00028v-US
+Subject: [V9fs-developer] [PATCH v4 05/12] net/9p: add trans_maxsize to
+ struct p9_client
 X-BeenThere: v9fs-developer@lists.sourceforge.net
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -102,92 +102,66 @@ Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: v9fs-developer-bounces@lists.sourceforge.net
 
-So far 'msize' was simply used for all 9p message types, which is far
-too much and slowed down performance tremendously with large values
-for user configurable 'msize' option.
-
-Let's stop this waste by using the new p9_msg_buf_size() function for
-allocating more appropriate, smaller buffers according to what is
-actually sent over the wire.
+This new field 'trans_maxsize' optionally allows transport to
+update it to reflect the actual maximum msize supported by
+allocated transport channel.
 
 Signed-off-by: Christian Schoenebeck <linux_oss@crudebyte.com>
 ---
- net/9p/client.c | 33 ++++++++++++++++++++++++++-------
- 1 file changed, 26 insertions(+), 7 deletions(-)
+ include/net/9p/client.h |  2 ++
+ net/9p/client.c         | 12 ++++++++++--
+ 2 files changed, 12 insertions(+), 2 deletions(-)
 
+diff --git a/include/net/9p/client.h b/include/net/9p/client.h
+index ec1d1706f43c..f5718057fca4 100644
+--- a/include/net/9p/client.h
++++ b/include/net/9p/client.h
+@@ -87,6 +87,7 @@ struct p9_req_t {
+  * struct p9_client - per client instance state
+  * @lock: protect @fids and @reqs
+  * @msize: maximum data size negotiated by protocol
++ * @trans_maxsize: actual maximum msize supported by transport channel
+  * @proto_version: 9P protocol version to use
+  * @trans_mod: module API instantiated with this client
+  * @status: connection state
+@@ -101,6 +102,7 @@ struct p9_req_t {
+ struct p9_client {
+ 	spinlock_t lock;
+ 	unsigned int msize;
++	unsigned int trans_maxsize;
+ 	unsigned char proto_version;
+ 	struct p9_trans_module *trans_mod;
+ 	enum p9_trans_status status;
 diff --git a/net/9p/client.c b/net/9p/client.c
-index 56be1658870d..773915c95219 100644
+index 8bba0d9cf975..20054addd81b 100644
 --- a/net/9p/client.c
 +++ b/net/9p/client.c
-@@ -255,19 +255,35 @@ static struct kmem_cache *p9_req_cache;
-  * p9_tag_alloc - Allocate a new request.
-  * @c: Client session.
-  * @type: Transaction type.
-- * @t_size: Buffer size for holding this request.
-- * @r_size: Buffer size for holding server's reply on this request.
-+ * @t_size: Buffer size for holding this request
-+ * (automatic calculation by format template if 0).
-+ * @r_size: Buffer size for holding server's reply on this request
-+ * (automatic calculation by format template if 0).
-+ * @fmt: Format template for assembling 9p request message
-+ * (see p9pdu_vwritef).
-+ * @ap: Variable arguments to be fed to passed format template
-+ * (see p9pdu_vwritef).
-  *
-  * Context: Process context.
-  * Return: Pointer to new request.
-  */
- static struct p9_req_t *
--p9_tag_alloc(struct p9_client *c, int8_t type, uint t_size, uint r_size)
-+p9_tag_alloc(struct p9_client *c, int8_t type, uint t_size, uint r_size,
-+	      const char *fmt, va_list ap)
- {
- 	struct p9_req_t *req = kmem_cache_alloc(p9_req_cache, GFP_NOFS);
--	int alloc_tsize = min(c->msize, t_size);
--	int alloc_rsize = min(c->msize, r_size);
-+	int alloc_tsize;
-+	int alloc_rsize;
- 	int tag;
-+	va_list apc;
+@@ -1031,6 +1031,14 @@ struct p9_client *p9_client_create(const char *dev_name, char *options)
+ 		goto free_client;
+ 	}
+ 
++	/*
++	 * transport will get a chance to increase trans_maxsize (if
++	 * necessary) and it may update trans_maxsize in create() function
++	 * below accordingly to reflect the actual maximum size supported by
++	 * the allocated transport channel
++	 */
++	clnt->trans_maxsize = clnt->trans_mod->maxsize;
 +
-+	va_copy(apc, ap);
-+	alloc_tsize = min_t(size_t, c->msize,
-+			    t_size ?: p9_msg_buf_size(c, type, fmt, apc));
-+	va_end(apc);
-+
-+	alloc_rsize = min_t(size_t, c->msize,
-+			    r_size ?: p9_msg_buf_size(c, type + 1, fmt, ap));
+ 	p9_debug(P9_DEBUG_MUX, "clnt %p trans %p msize %d protocol %d\n",
+ 		 clnt, clnt->trans_mod, clnt->msize, clnt->proto_version);
  
- 	if (!req)
- 		return ERR_PTR(-ENOMEM);
-@@ -685,6 +701,7 @@ static struct p9_req_t *p9_client_prepare_req(struct p9_client *c,
- {
- 	int err;
- 	struct p9_req_t *req;
-+	va_list apc;
+@@ -1038,8 +1046,8 @@ struct p9_client *p9_client_create(const char *dev_name, char *options)
+ 	if (err)
+ 		goto put_trans;
  
- 	p9_debug(P9_DEBUG_MUX, "client %p op %d\n", c, type);
- 
-@@ -696,7 +713,9 @@ static struct p9_req_t *p9_client_prepare_req(struct p9_client *c,
- 	if (c->status == BeginDisconnect && type != P9_TCLUNK)
- 		return ERR_PTR(-EIO);
- 
--	req = p9_tag_alloc(c, type, t_size, r_size);
-+	va_copy(apc, ap);
-+	req = p9_tag_alloc(c, type, t_size, r_size, fmt, apc);
-+	va_end(apc);
- 	if (IS_ERR(req))
- 		return req;
- 
-@@ -733,7 +752,7 @@ p9_client_rpc(struct p9_client *c, int8_t type, const char *fmt, ...)
- 	struct p9_req_t *req;
- 
- 	va_start(ap, fmt);
--	req = p9_client_prepare_req(c, type, c->msize, c->msize, fmt, ap);
-+	req = p9_client_prepare_req(c, type, 0, 0, fmt, ap);
- 	va_end(ap);
- 	if (IS_ERR(req))
- 		return req;
+-	if (clnt->msize > clnt->trans_mod->maxsize) {
+-		clnt->msize = clnt->trans_mod->maxsize;
++	if (clnt->msize > clnt->trans_maxsize) {
++		clnt->msize = clnt->trans_maxsize;
+ 		pr_info("Limiting 'msize' to %d as this is the maximum "
+ 			"supported by transport %s\n",
+ 			clnt->msize, clnt->trans_mod->name
 -- 
 2.30.2
 
