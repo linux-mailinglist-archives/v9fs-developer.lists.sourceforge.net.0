@@ -2,78 +2,63 @@ Return-Path: <v9fs-developer-bounces@lists.sourceforge.net>
 X-Original-To: lists+v9fs-developer@lfdr.de
 Delivered-To: lists+v9fs-developer@lfdr.de
 Received: from lists.sourceforge.net (lists.sourceforge.net [216.105.38.7])
-	by mail.lfdr.de (Postfix) with ESMTPS id 13A83488204
-	for <lists+v9fs-developer@lfdr.de>; Sat,  8 Jan 2022 08:09:20 +0100 (CET)
-Received: from [127.0.0.1] (helo=sfs-ml-1.v29.lw.sourceforge.com)
-	by sfs-ml-1.v29.lw.sourceforge.com with esmtp (Exim 4.94.2)
+	by mail.lfdr.de (Postfix) with ESMTPS id A403A488217
+	for <lists+v9fs-developer@lfdr.de>; Sat,  8 Jan 2022 08:18:20 +0100 (CET)
+Received: from [127.0.0.1] (helo=sfs-ml-2.v29.lw.sourceforge.com)
+	by sfs-ml-2.v29.lw.sourceforge.com with esmtp (Exim 4.94.2)
 	(envelope-from <v9fs-developer-bounces@lists.sourceforge.net>)
-	id 1n65qo-0007el-7b; Sat, 08 Jan 2022 07:09:17 +0000
+	id 1n65zY-0004UI-6T; Sat, 08 Jan 2022 07:18:18 +0000
 Received: from [172.30.20.202] (helo=mx.sourceforge.net)
- by sfs-ml-1.v29.lw.sourceforge.com with esmtps (TLS1.2) tls
+ by sfs-ml-2.v29.lw.sourceforge.com with esmtps (TLS1.2) tls
  TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384 (Exim 4.94.2)
- (envelope-from <amir73il@gmail.com>) id 1n65qm-0007ef-Um
- for v9fs-developer@lists.sourceforge.net; Sat, 08 Jan 2022 07:09:16 +0000
+ (envelope-from <willy@infradead.org>) id 1n65zV-0004UB-Ib
+ for v9fs-developer@lists.sourceforge.net; Sat, 08 Jan 2022 07:18:16 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=sourceforge.net; s=x; h=Content-Type:Cc:To:Subject:Message-ID:Date:From:
- In-Reply-To:References:MIME-Version:Sender:Reply-To:Content-Transfer-Encoding
- :Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+ d=sourceforge.net; s=x; h=In-Reply-To:Content-Type:MIME-Version:References:
+ Message-ID:Subject:Cc:To:From:Date:Sender:Reply-To:Content-Transfer-Encoding:
+ Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
  Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
  List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=sRXzK/lqvK+CkfJ0q4743gkEDTMH9u4vG56Fc2vaE/U=; b=lQBHJ7xhr8Xj5MKHsaq4W7JNjO
- o4tqD6ORWoAsGwY5KpK4Qz29ziYYmsbvy2F9NUL8wGLEWRPnOVfGxt+tWBJ63zG0PvqDv0m3S+Wnh
- 7+Y4HfFobcsXq4xioGtuEQp9EI1GlShjZaWWud1a6bYLfBKbG7FHqHOl0RYD26iEAIcg=;
+ bh=KSMh/bpBH4Uy4k4tKFX+8O00P4Uf43q6ePBN9GKywck=; b=UrkF6sqwf3NmnQmm0ci0NhDPBE
+ pIsYP6BRH/S3j1aQHVRiIH8h394u1xTSCJ6Gjcc/0C34J97ONAtcT8VOvjP7D/YPCnGYoxnrLchkA
+ J/0w834UefWXv0Bkt+a298a+fBohTlOaSpMSpr2WDKo9tV47J5UXrZitNg+xFoEJWwbY=;
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  ;
- h=Content-Type:Cc:To:Subject:Message-ID:Date:From:In-Reply-To:References:
- MIME-Version:Sender:Reply-To:Content-Transfer-Encoding:Content-ID:
+ h=In-Reply-To:Content-Type:MIME-Version:References:Message-ID:Subject:Cc:To
+ :From:Date:Sender:Reply-To:Content-Transfer-Encoding:Content-ID:
  Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
  :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
  List-Post:List-Owner:List-Archive;
- bh=sRXzK/lqvK+CkfJ0q4743gkEDTMH9u4vG56Fc2vaE/U=; b=OY6Q1bgrG37WXqI3Apc2qff2sI
- fXm8aiAM5Uapl/ikcQzXbO6ca2gLntk22e1zAyfBfFyrLf6ZNrT1QVZlSm/Ub8N5u860U7qTMDqvT
- Nvs9m4TlWuF2PQD/9ooUuphXdhtSCiHTS4NpC2y7kh+00DLDDLpUWFGm0Sn2wvZ40F48=;
-Received: from mail-io1-f51.google.com ([209.85.166.51])
- by sfi-mx-1.v28.lw.sourceforge.com with esmtps
- (TLSv1.2:ECDHE-RSA-AES128-GCM-SHA256:128) (Exim 4.92.3)
- id 1n65qk-0067GS-8Q
- for v9fs-developer@lists.sourceforge.net; Sat, 08 Jan 2022 07:09:16 +0000
-Received: by mail-io1-f51.google.com with SMTP id h23so9976554iol.11
- for <v9fs-developer@lists.sourceforge.net>;
- Fri, 07 Jan 2022 23:09:14 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=sRXzK/lqvK+CkfJ0q4743gkEDTMH9u4vG56Fc2vaE/U=;
- b=ieQQfVLBY3KSd4KecN4JHRORUQEeh/oogCFLY0R/2/kfI0G7S/VhAnBizemKzEprHB
- EKuK/bE1g/3M4xE0uJYxJCw+6ncoMVwLNs6iQTtvmPFpn0kgym7zKX9jdGKZ4g6+5O9w
- WA+cms/PeN55G2DsYXkohXVTBV7Kf+SKuH0GWkbNORUO6Vhy3FB0IvMApo/HdoU0Zxwq
- VMtYqMoXj1TH0/JynvBWvyLNO9sRa6z8HKBfBDGlX1VLzlD8CjAc/tFf9njsL1QRKia5
- 08YRaqUW5rYdFQq0XKICA6lNAzhj6obprkj/8e7cLIU6AeCmQ4lYvZU/VAysTgLrGqCu
- np1g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20210112;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc;
- bh=sRXzK/lqvK+CkfJ0q4743gkEDTMH9u4vG56Fc2vaE/U=;
- b=yhXYJbXxKmXy4iMVc0sc291ongil3vL7o13VYBtLAPgF/ha+U+10wujaY6I9QiPm1K
- w+Jcph4fvyAI3Ka739ibjTZvlVqbQ1No3TJSKPlq7IDvkfzMcAswVF7KC96vPUlLn8pk
- 8IqQys53oqPIHJRvhg1DkPu6voRjcv4jwEtBgIGi8+7+q6gUul7c/gS4lcw6OwSbYP+D
- QMDbOrJK56EvaABaFc07GCpfrmchO2KUcYIMQrsl/xb7YUaI2qWmBTAARXf9Qa2l+9rk
- j+MoihH4NUsl9vT2m4uT62Fwmvlmfq6rW/tbB+ws6HXnYUVoTTlge3jPxx+ilECW2t3Z
- i59w==
-X-Gm-Message-State: AOAM531uyjGIKe6RsUu8VKG1Jk4n0wneYgolzWU7Y1n+S9MnBRox9OG6
- 0r9D0rp8h7m8weomKQkyF7JyudRUsk8MYRVlrL4=
-X-Google-Smtp-Source: ABdhPJx+/bHNQi2TJrW6OyIV2QCN1CKOeiSpIVesRRe2vCRlhJscDWjlBTocK3a12pB+qw5jpsCC+o53g/Y1aGq5M88=
-X-Received: by 2002:a05:6638:160c:: with SMTP id
- x12mr33388634jas.1.1641625748333; 
- Fri, 07 Jan 2022 23:09:08 -0800 (PST)
-MIME-Version: 1.0
+ bh=KSMh/bpBH4Uy4k4tKFX+8O00P4Uf43q6ePBN9GKywck=; b=MLRpMSfHnVe3MYYTRwlFSjdd0v
+ bratESMiOn68qDepQfmutKRsG1FdX8GazvgWGWr8qnKLX58hRapuM8dt/uAY4BxqUeKFmbEOkBpeA
+ gZiTMlXtZVhzoe2mS+9f1gBI2L8Pi6whH4bIw0OuP9ulZZ45MkZyqCu+TMLCf9/qPg+U=;
+Received: from casper.infradead.org ([90.155.50.34])
+ by sfi-mx-2.v28.lw.sourceforge.com with esmtps
+ (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.92.3)
+ id 1n65zQ-0002NE-Gs
+ for v9fs-developer@lists.sourceforge.net; Sat, 08 Jan 2022 07:18:16 +0000
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+ d=infradead.org; s=casper.20170209; h=In-Reply-To:Content-Type:MIME-Version:
+ References:Message-ID:Subject:Cc:To:From:Date:Sender:Reply-To:
+ Content-Transfer-Encoding:Content-ID:Content-Description;
+ bh=KSMh/bpBH4Uy4k4tKFX+8O00P4Uf43q6ePBN9GKywck=; b=WiPnWas5oTaP9guznINp2fF7Mn
+ xzeGATWy/kuuFgSPlHg0Z8p5TIkf0mgvMeVP/tuV5jx+0s7gV9k4Z6oSwJi3CV16ub/PpWYkJdZYX
+ q4MlD2+tI2XgKSLzq22nOThJEogSiORw9rPQJ+jkYM2tUxoHCrOJ2YGItwntGNPqhSv48p6l3l814
+ dsFW43m+yQ8TTq1QC27ZoJZ3Jna/BRJNtdsQCUlGXQvrqcSMm6K6JZz10DYCatuBjNOg0u5fY4VuN
+ Y5Pex2G5YuW3GH6T0rTtO9g6DtAvcx8KdFRcNJjZfO5NnnTZ3Wo34SXMHqK/Kc2zDv56IQgvzE3PB
+ LgjbtHfw==;
+Received: from willy by casper.infradead.org with local (Exim 4.94.2 #2 (Red
+ Hat Linux)) id 1n65yn-000Uuc-Lb; Sat, 08 Jan 2022 07:17:33 +0000
+Date: Sat, 8 Jan 2022 07:17:33 +0000
+From: Matthew Wilcox <willy@infradead.org>
+To: Amir Goldstein <amir73il@gmail.com>
+Message-ID: <Ydk6jWmFH6TZLPZq@casper.infradead.org>
 References: <164021479106.640689.17404516570194656552.stgit@warthog.procyon.org.uk>
  <164021541207.640689.564689725898537127.stgit@warthog.procyon.org.uk>
-In-Reply-To: <164021541207.640689.564689725898537127.stgit@warthog.procyon.org.uk>
-From: Amir Goldstein <amir73il@gmail.com>
-Date: Sat, 8 Jan 2022 09:08:57 +0200
-Message-ID: <CAOQ4uxjEcvffv=rNXS-r+NLz+=6yk4abRuX_AMq9v-M4nf_PtA@mail.gmail.com>
-To: David Howells <dhowells@redhat.com>
+ <CAOQ4uxjEcvffv=rNXS-r+NLz+=6yk4abRuX_AMq9v-M4nf_PtA@mail.gmail.com>
+MIME-Version: 1.0
+Content-Disposition: inline
+In-Reply-To: <CAOQ4uxjEcvffv=rNXS-r+NLz+=6yk4abRuX_AMq9v-M4nf_PtA@mail.gmail.com>
 X-Spam-Score: -0.2 (/)
 X-Spam-Report: Spam detection software,
  running on the system "util-spamd-1.v13.lw.sourceforge.com", 
@@ -81,20 +66,15 @@ X-Spam-Report: Spam detection software,
  message has been attached to this so you can view it or label
  similar future email.  If you have any questions, see
  the administrator of that system for details.
- Content preview:  On Sat, Dec 25, 2021 at 1:32 AM David Howells wrote: > > Use
- an inode flag, S_KERNEL_FILE, to mark that a backing file is in use by >
- the kernel to prevent cachefiles or other kernel services from i [...] 
+ Content preview:  On Sat, Jan 08, 2022 at 09:08:57AM +0200,
+ Amir Goldstein wrote:
+ > > +#define S_KERNEL_FILE (1 << 17) /* File is in use by the kernel (eg.
+ fs/cachefiles) */ > > Trying to brand this flag as a generic " [...] 
  Content analysis details:   (-0.2 points, 6.0 required)
  pts rule name              description
  ---- ---------------------- --------------------------------------------------
  0.0 SPF_HELO_NONE          SPF: HELO does not publish an SPF Record
- -0.0 SPF_PASS               SPF: sender matches SPF record
- 0.0 FREEMAIL_FROM          Sender email is commonly abused enduser mail
- provider [amir73il[at]gmail.com]
- -0.0 RCVD_IN_DNSWL_NONE     RBL: Sender listed at https://www.dnswl.org/,
- no trust [209.85.166.51 listed in list.dnswl.org]
- -0.0 RCVD_IN_MSPIKE_H2      RBL: Average reputation (+2)
- [209.85.166.51 listed in wl.mailspike.net]
+ 0.0 SPF_NONE               SPF: sender does not publish an SPF Record
  -0.1 DKIM_VALID_EF          Message has a valid DKIM or DK signature from
  envelope-from domain
  -0.1 DKIM_VALID_AU          Message has a valid DKIM or DK signature from
@@ -102,7 +82,7 @@ X-Spam-Report: Spam detection software,
  0.1 DKIM_SIGNED            Message has a DKIM or DK signature, not necessarily
  valid
  -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-X-Headers-End: 1n65qk-0067GS-8Q
+X-Headers-End: 1n65zQ-0002NE-Gs
 Subject: Re: [V9fs-developer] [PATCH v4 38/68] vfs,
  cachefiles: Mark a backing file in use with an inode flag
 X-BeenThere: v9fs-developer@lists.sourceforge.net
@@ -116,13 +96,14 @@ List-Post: <mailto:v9fs-developer@lists.sourceforge.net>
 List-Help: <mailto:v9fs-developer-request@lists.sourceforge.net?subject=help>
 List-Subscribe: <https://lists.sourceforge.net/lists/listinfo/v9fs-developer>, 
  <mailto:v9fs-developer-request@lists.sourceforge.net?subject=subscribe>
-Cc: CIFS <linux-cifs@vger.kernel.org>,
+Cc: Steve French <sfrench@samba.org>,
  Linux NFS Mailing List <linux-nfs@vger.kernel.org>,
+ CIFS <linux-cifs@vger.kernel.org>,
  linux-fsdevel <linux-fsdevel@vger.kernel.org>,
  Jeff Layton <jlayton@kernel.org>, linux-kernel <linux-kernel@vger.kernel.org>,
- Matthew Wilcox <willy@infradead.org>, linux-afs@lists.infradead.org,
- Steve French <sfrench@samba.org>, v9fs-developer@lists.sourceforge.net,
- linux-cachefs@redhat.com, Alexander Viro <viro@zeniv.linux.org.uk>,
+ linux-afs@lists.infradead.org, David Howells <dhowells@redhat.com>,
+ v9fs-developer@lists.sourceforge.net, linux-cachefs@redhat.com,
+ Alexander Viro <viro@zeniv.linux.org.uk>,
  Trond Myklebust <trondmy@hammerspace.com>,
  JeffleXu <jefflexu@linux.alibaba.com>, ceph-devel <ceph-devel@vger.kernel.org>,
  Omar Sandoval <osandov@osandov.com>,
@@ -132,139 +113,20 @@ Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: v9fs-developer-bounces@lists.sourceforge.net
 
-On Sat, Dec 25, 2021 at 1:32 AM David Howells <dhowells@redhat.com> wrote:
->
-> Use an inode flag, S_KERNEL_FILE, to mark that a backing file is in use by
-> the kernel to prevent cachefiles or other kernel services from interfering
-> with that file.
->
-> Alter rmdir to reject attempts to remove a directory marked with this flag.
-> This is used by cachefiles to prevent cachefilesd from removing them.
->
-> Using S_SWAPFILE instead isn't really viable as that has other effects in
-> the I/O paths.
->
-> Changes
-> =======
-> ver #3:
->  - Check for the object pointer being NULL in the tracepoints rather than
->    the caller.
->
-> Signed-off-by: David Howells <dhowells@redhat.com>
-> cc: linux-cachefs@redhat.com
-> Link: https://lore.kernel.org/r/163819630256.215744.4815885535039369574.stgit@warthog.procyon.org.uk/ # v1
-> Link: https://lore.kernel.org/r/163906931596.143852.8642051223094013028.stgit@warthog.procyon.org.uk/ # v2
-> Link: https://lore.kernel.org/r/163967141000.1823006.12920680657559677789.stgit@warthog.procyon.org.uk/ # v3
-> ---
->
->  fs/cachefiles/Makefile            |    1 +
->  fs/cachefiles/namei.c             |   43 +++++++++++++++++++++++++++++++++++++
->  fs/namei.c                        |    3 ++-
->  include/linux/fs.h                |    1 +
->  include/trace/events/cachefiles.h |   42 ++++++++++++++++++++++++++++++++++++
->  5 files changed, 89 insertions(+), 1 deletion(-)
->  create mode 100644 fs/cachefiles/namei.c
->
-> diff --git a/fs/cachefiles/Makefile b/fs/cachefiles/Makefile
-> index 463e3d608b75..e0b092ca077f 100644
-> --- a/fs/cachefiles/Makefile
-> +++ b/fs/cachefiles/Makefile
-> @@ -7,6 +7,7 @@ cachefiles-y := \
->         cache.o \
->         daemon.o \
->         main.o \
-> +       namei.o \
->         security.o
->
->  cachefiles-$(CONFIG_CACHEFILES_ERROR_INJECTION) += error_inject.o
-> diff --git a/fs/cachefiles/namei.c b/fs/cachefiles/namei.c
-> new file mode 100644
-> index 000000000000..913f83f1c900
-> --- /dev/null
-> +++ b/fs/cachefiles/namei.c
-> @@ -0,0 +1,43 @@
-> +// SPDX-License-Identifier: GPL-2.0-or-later
-> +/* CacheFiles path walking and related routines
-> + *
-> + * Copyright (C) 2021 Red Hat, Inc. All Rights Reserved.
-> + * Written by David Howells (dhowells@redhat.com)
-> + */
-> +
-> +#include <linux/fs.h>
-> +#include "internal.h"
-> +
-> +/*
-> + * Mark the backing file as being a cache file if it's not already in use.  The
-> + * mark tells the culling request command that it's not allowed to cull the
-> + * file or directory.  The caller must hold the inode lock.
-> + */
-> +static bool __cachefiles_mark_inode_in_use(struct cachefiles_object *object,
-> +                                          struct dentry *dentry)
-> +{
-> +       struct inode *inode = d_backing_inode(dentry);
-> +       bool can_use = false;
-> +
-> +       if (!(inode->i_flags & S_KERNEL_FILE)) {
-> +               inode->i_flags |= S_KERNEL_FILE;
-> +               trace_cachefiles_mark_active(object, inode);
-> +               can_use = true;
-> +       } else {
-> +               pr_notice("cachefiles: Inode already in use: %pd\n", dentry);
-> +       }
-> +
-> +       return can_use;
-> +}
-> +
-> +/*
-> + * Unmark a backing inode.  The caller must hold the inode lock.
-> + */
-> +static void __cachefiles_unmark_inode_in_use(struct cachefiles_object *object,
-> +                                            struct dentry *dentry)
-> +{
-> +       struct inode *inode = d_backing_inode(dentry);
-> +
-> +       inode->i_flags &= ~S_KERNEL_FILE;
-> +       trace_cachefiles_mark_inactive(object, inode);
-> +}
-> diff --git a/fs/namei.c b/fs/namei.c
-> index 1f9d2187c765..d81f04f8d818 100644
-> --- a/fs/namei.c
-> +++ b/fs/namei.c
-> @@ -3958,7 +3958,8 @@ int vfs_rmdir(struct user_namespace *mnt_userns, struct inode *dir,
->         inode_lock(dentry->d_inode);
->
->         error = -EBUSY;
-> -       if (is_local_mountpoint(dentry))
-> +       if (is_local_mountpoint(dentry) ||
-> +           (dentry->d_inode->i_flags & S_KERNEL_FILE))
+On Sat, Jan 08, 2022 at 09:08:57AM +0200, Amir Goldstein wrote:
+> > +#define S_KERNEL_FILE  (1 << 17) /* File is in use by the kernel (eg. fs/cachefiles) */
+> 
+> Trying to brand this flag as a generic "in use by kernel" is misleading.
+> Modules other than cachefiles cannot set/clear this flag, because then
+> cachefiles won't know that it is allowed to set/clear the flag.
 
-Better as this check to the many other checks in may_delete()
+Huh?  If some other kernel module sets it, cachefiles will try to set it,
+see it's already set, and fail.  Presumably cachefiles does not go round
+randomly "unusing" files that it has not previously started using.
 
->                 goto out;
->
->         error = security_inode_rmdir(dir, dentry);
-> diff --git a/include/linux/fs.h b/include/linux/fs.h
-> index 2c0b8e77d9ab..bcf1ca430139 100644
-> --- a/include/linux/fs.h
-> +++ b/include/linux/fs.h
-> @@ -2249,6 +2249,7 @@ struct super_operations {
->  #define S_ENCRYPTED    (1 << 14) /* Encrypted file (using fs/crypto/) */
->  #define S_CASEFOLD     (1 << 15) /* Casefolded file */
->  #define S_VERITY       (1 << 16) /* Verity file (using fs/verity/) */
-> +#define S_KERNEL_FILE  (1 << 17) /* File is in use by the kernel (eg. fs/cachefiles) */
->
-
-Trying to brand this flag as a generic "in use by kernel" is misleading.
-Modules other than cachefiles cannot set/clear this flag, because then
-cachefiles won't know that it is allowed to set/clear the flag.
-
-So I think it would be better to call it for what it really is - an inode flag
-that is controlled by cachefiles.
-Also, the name KERNEL_FILE for a directory is a bit confusing IMO.
-Perhaps S_CACHEFILES?
-
-Thanks,
-Amir.
+I mean, yes, obviously, it's a kernel module, it can set and clear
+whatever flags it likes on any inode in the system, but conceptually,
+it's an advisory whole-file lock.
 
 
 _______________________________________________
