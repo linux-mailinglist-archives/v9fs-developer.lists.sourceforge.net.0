@@ -2,98 +2,82 @@ Return-Path: <v9fs-developer-bounces@lists.sourceforge.net>
 X-Original-To: lists+v9fs-developer@lfdr.de
 Delivered-To: lists+v9fs-developer@lfdr.de
 Received: from lists.sourceforge.net (lists.sourceforge.net [216.105.38.7])
-	by mail.lfdr.de (Postfix) with ESMTPS id BA513488291
-	for <lists+v9fs-developer@lfdr.de>; Sat,  8 Jan 2022 09:45:13 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id DD6CC488A33
+	for <lists+v9fs-developer@lfdr.de>; Sun,  9 Jan 2022 16:27:49 +0100 (CET)
 Received: from [127.0.0.1] (helo=sfs-ml-1.v29.lw.sourceforge.com)
 	by sfs-ml-1.v29.lw.sourceforge.com with esmtp (Exim 4.94.2)
 	(envelope-from <v9fs-developer-bounces@lists.sourceforge.net>)
-	id 1n67Lb-00084Q-VM; Sat, 08 Jan 2022 08:45:11 +0000
+	id 1n6a6l-0003MN-MH; Sun, 09 Jan 2022 15:27:46 +0000
 Received: from [172.30.20.202] (helo=mx.sourceforge.net)
  by sfs-ml-1.v29.lw.sourceforge.com with esmtps (TLS1.2) tls
  TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384 (Exim 4.94.2)
- (envelope-from <dhowells@redhat.com>) id 1n67La-00083v-JL
- for v9fs-developer@lists.sourceforge.net; Sat, 08 Jan 2022 08:45:09 +0000
+ (envelope-from <jlayton@kernel.org>) id 1n6a6k-0003MB-TG
+ for v9fs-developer@lists.sourceforge.net; Sun, 09 Jan 2022 15:27:45 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=sourceforge.net; s=x; h=Message-ID:Date:Content-ID:Content-Type:
- MIME-Version:Subject:Cc:To:References:In-Reply-To:From:Sender:Reply-To:
- Content-Transfer-Encoding:Content-Description:Resent-Date:Resent-From:
- Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:
- List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=CuAQLvFAvrXC/CGaNT1eE7oPqrX2KbSln6Qc3hozJtk=; b=hdPMTKtrTyivmrEtkxwfy7AunM
- VmVWkNO3jfqpp1q0jVXWb7gtDNjRe16/NKj0/q9RY0mKVZzRfyqzPGxwejUlFXuLyaldob3qaP8cB
- q15thg6IjZaP4pguIs5dGvNeqmA5C7Rd1PyVbPYxJ7S1V80cvlY28zfwIAkwoLQPVSqA=;
+ d=sourceforge.net; s=x; h=Content-Transfer-Encoding:MIME-Version:Content-Type
+ :References:In-Reply-To:Date:Cc:To:From:Subject:Message-ID:Sender:Reply-To:
+ Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+ Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
+ List-Subscribe:List-Post:List-Owner:List-Archive;
+ bh=K1LDbFs9x4FB1xx/2X8IZzLK48z/oeIROR9FxWFKpro=; b=hV3sRydpI0rnDpCaA3pj/w8x5a
+ Vsg33M+PeOONR8STfXo43qjYWO5M7mxbHA0os/rBmXYY9UKUFJa98YhtuytQHIRdS6yBn2zUjEXvd
+ BUMDg+YewQvFqWzyFlmvoimLUbW1oIT3G/cv70Bq3zFpR6CXN7cYOiqXkGjuMVq1uAQc=;
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  ;
- h=Message-ID:Date:Content-ID:Content-Type:MIME-Version:Subject:Cc:To:
- References:In-Reply-To:From:Sender:Reply-To:Content-Transfer-Encoding:
+ h=Content-Transfer-Encoding:MIME-Version:Content-Type:References:
+ In-Reply-To:Date:Cc:To:From:Subject:Message-ID:Sender:Reply-To:Content-ID:
  Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
  :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
  List-Post:List-Owner:List-Archive;
- bh=CuAQLvFAvrXC/CGaNT1eE7oPqrX2KbSln6Qc3hozJtk=; b=StPAuvEP28FaTgU58RHw7QVkzQ
- uZ+Q6cnpVljuvVEHx3h/MWoJJdr9ZpsMicczJLQ5aiBMA3+ynKf6krPf5uJtqdHznN4ZipoU/0l/s
- MNO79CV63yNDGTRgUNgdlaa5Ezc8YottJhsC518v+sJnOg9jr+Oq4jaVVsuPgA+JK2GQ=;
-Received: from us-smtp-delivery-124.mimecast.com ([170.10.129.124])
- by sfi-mx-2.v28.lw.sourceforge.com with esmtps
+ bh=K1LDbFs9x4FB1xx/2X8IZzLK48z/oeIROR9FxWFKpro=; b=axEOWXjWrd/WNXOKxaJEezTI7b
+ 6YdkPKKjodKi+8TjtJQwIeeYLjD3FuP2q55/uMH9tlpJfmW9YpkfxVqE37JE4PLXqH2V4A7r7DXIi
+ bLkmYmJBkf3bErzGzlSPIz1OCyrEBnvvjDjBa0bOAtV6MUVFJVsPMrtcmd16lImKXVyg=;
+Received: from dfw.source.kernel.org ([139.178.84.217])
+ by sfi-mx-1.v28.lw.sourceforge.com with esmtps
  (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.92.3)
- id 1n67LX-0003Hi-Lg
- for v9fs-developer@lists.sourceforge.net; Sat, 08 Jan 2022 08:45:09 +0000
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
- s=mimecast20190719; t=1641631501;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:content-type:content-type:
- in-reply-to:in-reply-to:references:references;
- bh=CuAQLvFAvrXC/CGaNT1eE7oPqrX2KbSln6Qc3hozJtk=;
- b=J40MGhgO7fX16s7ugJ2b1jor8AEechM6GXJRJJbPhHsDF2tt6chage+Fci0g7+KOccKBxy
- 7ZsQqfoepHndLxznBAhoC4JQupAYYzCuCqcK6liVcMqzVIpfnh/QeUCVh9tC8rVPDThx3L
- BRfDt+WVNvhENsUt/kwOtHPekAchCFA=
-Received: from mimecast-mx01.redhat.com (mimecast-mx01.redhat.com
- [209.132.183.4]) by relay.mimecast.com with ESMTP with STARTTLS
- (version=TLSv1.2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- us-mta-118-xHmu0LN6MMyH2esABKG0fQ-1; Sat, 08 Jan 2022 03:43:22 -0500
-X-MC-Unique: xHmu0LN6MMyH2esABKG0fQ-1
-Received: from smtp.corp.redhat.com (int-mx05.intmail.prod.int.phx2.redhat.com
- [10.5.11.15])
- (using TLSv1.2 with cipher AECDH-AES256-SHA (256/256 bits))
+ id 1n6a6e-009VlU-FH
+ for v9fs-developer@lists.sourceforge.net; Sun, 09 Jan 2022 15:27:45 +0000
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+ (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
  (No client certificate requested)
- by mimecast-mx01.redhat.com (Postfix) with ESMTPS id E3CF418397A7;
- Sat,  8 Jan 2022 08:43:19 +0000 (UTC)
-Received: from warthog.procyon.org.uk (unknown [10.33.36.165])
- by smtp.corp.redhat.com (Postfix) with ESMTP id 2554F5F4EA;
- Sat,  8 Jan 2022 08:43:11 +0000 (UTC)
-Organization: Red Hat UK Ltd. Registered Address: Red Hat UK Ltd, Amberley
- Place, 107-111 Peascod Street, Windsor, Berkshire, SI4 1TE, United
- Kingdom.
- Registered in England and Wales under Company Registration No. 3798903
-From: David Howells <dhowells@redhat.com>
-In-Reply-To: <Ydk6jWmFH6TZLPZq@casper.infradead.org>
-References: <Ydk6jWmFH6TZLPZq@casper.infradead.org>
+ by dfw.source.kernel.org (Postfix) with ESMTPS id 5AF8460A55;
+ Sun,  9 Jan 2022 15:27:29 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2EEB8C36AED;
+ Sun,  9 Jan 2022 15:27:27 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+ s=k20201202; t=1641742048;
+ bh=3b6/4NoAXJJWUq2gsg5iKUmGqebtBOvDSo33LeKf8cI=;
+ h=Subject:From:To:Cc:Date:In-Reply-To:References:From;
+ b=a1hj3BUPWWcC7naVx2AqX6O5K4Bl3I+t2LBa9cQpCeBaYAyBwaQn/PS+HGCeidy8q
+ V59tCbLL4SVGkupihAebTzDinf84wfBOUo5fKOH7h3X5A0HUfBNkBat2GC2klEJeJY
+ z+IrlZGIg9r8ZNjuzIUxUmJMEv6GlWlOIoflShkFfNhrr3x3ss7+217Fc1LcujWwRm
+ 7pL1r7FXe40v8cxvGgS62Sd7KvDKkZkLRU+AyfWhS4/bR++UNpoDXsTk0iczsBxVVz
+ WuIg7JKBR2T5fTONlCI3jYhT3vWzHFWf9ioixoaAQwvW7eDBJGFhPbJuSq/hJfW7C+
+ gd+Ip0LdKRERQ==
+Message-ID: <6e44856a8711bf1eb95c16de9efdb1bb108cf25c.camel@kernel.org>
+From: Jeff Layton <jlayton@kernel.org>
+To: David Howells <dhowells@redhat.com>, linux-cachefs@redhat.com, Steve
+ French <sfrench@samba.org>
+Date: Sun, 09 Jan 2022 10:27:25 -0500
+In-Reply-To: <3419813.1641592362@warthog.procyon.org.uk>
+References: <164021579335.640689.2681324337038770579.stgit@warthog.procyon.org.uk>
  <164021479106.640689.17404516570194656552.stgit@warthog.procyon.org.uk>
- <164021541207.640689.564689725898537127.stgit@warthog.procyon.org.uk>
- <CAOQ4uxjEcvffv=rNXS-r+NLz+=6yk4abRuX_AMq9v-M4nf_PtA@mail.gmail.com>
-To: Matthew Wilcox <willy@infradead.org>
+ <3419813.1641592362@warthog.procyon.org.uk>
+User-Agent: Evolution 3.42.2 (3.42.2-1.fc35) 
 MIME-Version: 1.0
-Content-ID: <3492247.1641631391.1@warthog.procyon.org.uk>
-Date: Sat, 08 Jan 2022 08:43:11 +0000
-Message-ID: <3492248.1641631391@warthog.procyon.org.uk>
-X-Scanned-By: MIMEDefang 2.79 on 10.5.11.15
-X-Spam-Score: -1.6 (-)
+X-Spam-Score: -0.9 (/)
 X-Spam-Report: Spam detection software,
  running on the system "util-spamd-1.v13.lw.sourceforge.com", 
  has NOT identified this incoming email as spam.  The original
  message has been attached to this so you can view it or label
  similar future email.  If you have any questions, see
  the administrator of that system for details.
- Content preview: Matthew Wilcox <willy@infradead.org> wrote: > > Huh? If some
- other kernel module sets it, cachefiles will try to set it, > see it's already
- set, and fail. Presumably cachefiles does not go round > randomly "unusing"
- files that it has not previo [...] 
- Content analysis details:   (-1.6 points, 6.0 required)
+ Content preview:  On Fri, 2022-01-07 at 21:52 +0000, David Howells wrote: >
+ This patch isn't quite right and needs a fix. The attached patch fixes it.
+ > I'll fold that in and post a v5 of this patch. > > David > --- > [...] 
+ Content analysis details:   (-0.9 points, 6.0 required)
  pts rule name              description
  ---- ---------------------- --------------------------------------------------
- 0.0 RCVD_IN_MSPIKE_H3      RBL: Good reputation (+3)
- [170.10.129.124 listed in wl.mailspike.net]
- -0.7 RCVD_IN_DNSWL_LOW      RBL: Sender listed at https://www.dnswl.org/,
- low trust [170.10.129.124 listed in list.dnswl.org]
  0.0 SPF_HELO_NONE          SPF: HELO does not publish an SPF Record
  -0.0 SPF_PASS               SPF: sender matches SPF record
  -0.1 DKIM_VALID_EF          Message has a valid DKIM or DK signature from
@@ -103,11 +87,10 @@ X-Spam-Report: Spam detection software,
  0.1 DKIM_SIGNED            Message has a DKIM or DK signature, not necessarily
  valid
  -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
- 0.0 RCVD_IN_MSPIKE_WL      Mailspike good senders
  -0.7 DKIMWL_WL_HIGH         DKIMwl.org - High trust sender
-X-Headers-End: 1n67LX-0003Hi-Lg
-Subject: Re: [V9fs-developer] [PATCH v4 38/68] vfs,
- cachefiles: Mark a backing file in use with an inode flag
+X-Headers-End: 1n6a6e-009VlU-FH
+Subject: Re: [V9fs-developer] [PATCH v4 63/68] cifs: Support fscache
+ indexing rewrite (untested)
 X-BeenThere: v9fs-developer@lists.sourceforge.net
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -119,16 +102,13 @@ List-Post: <mailto:v9fs-developer@lists.sourceforge.net>
 List-Help: <mailto:v9fs-developer-request@lists.sourceforge.net?subject=help>
 List-Subscribe: <https://lists.sourceforge.net/lists/listinfo/v9fs-developer>, 
  <mailto:v9fs-developer-request@lists.sourceforge.net?subject=subscribe>
-Cc: Steve French <sfrench@samba.org>,
- Linux NFS Mailing List <linux-nfs@vger.kernel.org>,
- CIFS <linux-cifs@vger.kernel.org>,
- linux-fsdevel <linux-fsdevel@vger.kernel.org>,
- Amir Goldstein <amir73il@gmail.com>, Jeff Layton <jlayton@kernel.org>,
- linux-kernel <linux-kernel@vger.kernel.org>, linux-afs@lists.infradead.org,
- dhowells@redhat.com, v9fs-developer@lists.sourceforge.net,
- linux-cachefs@redhat.com, Alexander Viro <viro@zeniv.linux.org.uk>,
+Cc: Shyam Prasad N <nspmangalore@gmail.com>, linux-cifs@vger.kernel.org,
+ linux-nfs@vger.kernel.org, ceph-devel@vger.kernel.org,
+ linux-kernel@vger.kernel.org, Matthew Wilcox <willy@infradead.org>,
+ linux-afs@lists.infradead.org, linux-fsdevel@vger.kernel.org,
+ Alexander Viro <viro@zeniv.linux.org.uk>,
  Trond Myklebust <trondmy@hammerspace.com>,
- JeffleXu <jefflexu@linux.alibaba.com>, ceph-devel <ceph-devel@vger.kernel.org>,
+ JeffleXu <jefflexu@linux.alibaba.com>, v9fs-developer@lists.sourceforge.net,
  Omar Sandoval <osandov@osandov.com>,
  Linus Torvalds <torvalds@linux-foundation.org>,
  Anna Schumaker <anna.schumaker@netapp.com>
@@ -136,17 +116,119 @@ Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: v9fs-developer-bounces@lists.sourceforge.net
 
-Matthew Wilcox <willy@infradead.org> wrote:
-
+On Fri, 2022-01-07 at 21:52 +0000, David Howells wrote:
+> This patch isn't quite right and needs a fix.  The attached patch fixes it.
+> I'll fold that in and post a v5 of this patch.
 > 
-> Huh?  If some other kernel module sets it, cachefiles will try to set it,
-> see it's already set, and fail.  Presumably cachefiles does not go round
-> randomly "unusing" files that it has not previously started using.
+> David
+> ---
+> cifs: Fix the fscache cookie management
+> 
+> Fix the fscache cookie management in cifs in the following ways:
+> 
+>  (1) The cookie should be released in cifs_evict_inode() after it has been
+>      unused from being pinned by cifs_set_page_dirty().
+> 
+>  (2) The cookie shouldn't be released in cifsFileInfo_put_final().  That's
+>      dealing with closing a file, not getting rid of an inode.  The cookie
+>      needs to persist beyond the last file close because writepages may
+>      happen after closure.
+> 
+>  (3) The cookie needs to be used in cifs_atomic_open() to match
+>      cifs_open().  As yet unknown files being opened for writing seem to go
+>      by the former route rather than the latter.
+> 
+> This can be triggered by something like:
+> 
+>         # systemctl start cachefilesd
+>         # mount //carina/test /xfstest.test -o user=shares,pass=xxxx.fsc
+>         # bash 5</xfstest.test/bar
+>         # echo hello >/xfstest.test/bar
+> 
+> The key is to open the file R/O and then open it R/W and write to it whilst
+> it's still open for R/O.  A cookie isn't acquired if it's just opened R/W
+> as it goes through the atomic_open method rather than the open method.
+> 
+> Signed-off-by: David Howells <dhowells@redhat.com>
+> ---
+>  fs/cifs/cifsfs.c |    8 ++++++++
+>  fs/cifs/dir.c    |    4 ++++
+>  fs/cifs/file.c   |    2 --
+>  3 files changed, 12 insertions(+), 2 deletions(-)
+> 
+> diff --git a/fs/cifs/cifsfs.c b/fs/cifs/cifsfs.c
+> index d3f3acf340f1..26cf2193c9a2 100644
+> --- a/fs/cifs/cifsfs.c
+> +++ b/fs/cifs/cifsfs.c
+> @@ -398,6 +398,7 @@ cifs_evict_inode(struct inode *inode)
+>  	truncate_inode_pages_final(&inode->i_data);
+>  	if (inode->i_state & I_PINNING_FSCACHE_WB)
+>  		cifs_fscache_unuse_inode_cookie(inode, true);
+> +	cifs_fscache_release_inode_cookie(inode);
+>  	clear_inode(inode);
+>  }
+>  
+> @@ -722,6 +723,12 @@ static int cifs_show_stats(struct seq_file *s, struct dentry *root)
+>  }
+>  #endif
+>  
+> +static int cifs_write_inode(struct inode *inode, struct writeback_control *wbc)
+> +{
+> +	fscache_unpin_writeback(wbc, cifs_inode_cookie(inode));
+> +	return 0;
+> +}
+> +
+>  static int cifs_drop_inode(struct inode *inode)
+>  {
+>  	struct cifs_sb_info *cifs_sb = CIFS_SB(inode->i_sb);
+> @@ -734,6 +741,7 @@ static int cifs_drop_inode(struct inode *inode)
+>  static const struct super_operations cifs_super_ops = {
+>  	.statfs = cifs_statfs,
+>  	.alloc_inode = cifs_alloc_inode,
+> +	.write_inode	= cifs_write_inode,
+>  	.free_inode = cifs_free_inode,
+>  	.drop_inode	= cifs_drop_inode,
+>  	.evict_inode	= cifs_evict_inode,
+> diff --git a/fs/cifs/dir.c b/fs/cifs/dir.c
+> index 6e8e7cc26ae2..6186824b366e 100644
+> --- a/fs/cifs/dir.c
+> +++ b/fs/cifs/dir.c
+> @@ -22,6 +22,7 @@
+>  #include "cifs_unicode.h"
+>  #include "fs_context.h"
+>  #include "cifs_ioctl.h"
+> +#include "fscache.h"
+>  
+>  static void
+>  renew_parental_timestamps(struct dentry *direntry)
+> @@ -509,6 +510,9 @@ cifs_atomic_open(struct inode *inode, struct dentry *direntry,
+>  		rc = -ENOMEM;
+>  	}
+>  
+> +	fscache_use_cookie(cifs_inode_cookie(file_inode(file)),
+> +			   file->f_mode & FMODE_WRITE);
+> +
+>  out:
+>  	cifs_put_tlink(tlink);
+>  out_free_xid:
+> diff --git a/fs/cifs/file.c b/fs/cifs/file.c
+> index d872f6fe8e7d..44da7646f789 100644
+> --- a/fs/cifs/file.c
+> +++ b/fs/cifs/file.c
+> @@ -376,8 +376,6 @@ static void cifsFileInfo_put_final(struct cifsFileInfo *cifs_file)
+>  	struct cifsLockInfo *li, *tmp;
+>  	struct super_block *sb = inode->i_sb;
+>  
+> -	cifs_fscache_release_inode_cookie(inode);
+> -
+>  	/*
+>  	 * Delete any outstanding lock records. We'll lose them when the file
+>  	 * is closed anyway.
+> 
 
-Correct.  It only unuses a file that it marked in-use in the first place.
+Looks good.
 
-David
-
+Acked-by: Jeff Layton <jlayton@kernel.org>
 
 
 _______________________________________________
