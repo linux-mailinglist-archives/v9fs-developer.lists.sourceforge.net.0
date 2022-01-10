@@ -2,95 +2,111 @@ Return-Path: <v9fs-developer-bounces@lists.sourceforge.net>
 X-Original-To: lists+v9fs-developer@lfdr.de
 Delivered-To: lists+v9fs-developer@lfdr.de
 Received: from lists.sourceforge.net (lists.sourceforge.net [216.105.38.7])
-	by mail.lfdr.de (Postfix) with ESMTPS id DD6CC488A33
-	for <lists+v9fs-developer@lfdr.de>; Sun,  9 Jan 2022 16:27:49 +0100 (CET)
-Received: from [127.0.0.1] (helo=sfs-ml-1.v29.lw.sourceforge.com)
-	by sfs-ml-1.v29.lw.sourceforge.com with esmtp (Exim 4.94.2)
+	by mail.lfdr.de (Postfix) with ESMTPS id 73884488D97
+	for <lists+v9fs-developer@lfdr.de>; Mon, 10 Jan 2022 01:58:29 +0100 (CET)
+Received: from [127.0.0.1] (helo=sfs-ml-4.v29.lw.sourceforge.com)
+	by sfs-ml-4.v29.lw.sourceforge.com with esmtp (Exim 4.94.2)
 	(envelope-from <v9fs-developer-bounces@lists.sourceforge.net>)
-	id 1n6a6l-0003MN-MH; Sun, 09 Jan 2022 15:27:46 +0000
+	id 1n6j10-0008Be-Fw; Mon, 10 Jan 2022 00:58:25 +0000
 Received: from [172.30.20.202] (helo=mx.sourceforge.net)
- by sfs-ml-1.v29.lw.sourceforge.com with esmtps (TLS1.2) tls
+ by sfs-ml-4.v29.lw.sourceforge.com with esmtps (TLS1.2) tls
  TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384 (Exim 4.94.2)
- (envelope-from <jlayton@kernel.org>) id 1n6a6k-0003MB-TG
- for v9fs-developer@lists.sourceforge.net; Sun, 09 Jan 2022 15:27:45 +0000
+ (envelope-from <asmadeus@codewreck.org>) id 1n6j0z-0008BY-B1
+ for v9fs-developer@lists.sourceforge.net; Mon, 10 Jan 2022 00:58:24 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=sourceforge.net; s=x; h=Content-Transfer-Encoding:MIME-Version:Content-Type
- :References:In-Reply-To:Date:Cc:To:From:Subject:Message-ID:Sender:Reply-To:
+ d=sourceforge.net; s=x; h=In-Reply-To:Content-Transfer-Encoding:Content-Type:
+ MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Sender:Reply-To:
  Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
  Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
  List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=K1LDbFs9x4FB1xx/2X8IZzLK48z/oeIROR9FxWFKpro=; b=hV3sRydpI0rnDpCaA3pj/w8x5a
- Vsg33M+PeOONR8STfXo43qjYWO5M7mxbHA0os/rBmXYY9UKUFJa98YhtuytQHIRdS6yBn2zUjEXvd
- BUMDg+YewQvFqWzyFlmvoimLUbW1oIT3G/cv70Bq3zFpR6CXN7cYOiqXkGjuMVq1uAQc=;
+ bh=uRt8DC7aSOODc1J8lbTlNqkqIzph89yqmPrsx4NeG4k=; b=cZn/9zvE+FQGAPYBfF+bYXYNR5
+ NCOmylkBEs68g+PrfTX3TQBsatTmUYzcsx63NLPehKOyxSxkpf8CIHMPZGqWBtrZhNkHDeMfNBhGn
+ HqllwVDi1apkfjcGtb27FMAf51mqJ6nd6ZxYyXKCpV83x3xZPLOTDM1y/jE7BWac5opU=;
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  ;
- h=Content-Transfer-Encoding:MIME-Version:Content-Type:References:
- In-Reply-To:Date:Cc:To:From:Subject:Message-ID:Sender:Reply-To:Content-ID:
+ h=In-Reply-To:Content-Transfer-Encoding:Content-Type:MIME-Version:
+ References:Message-ID:Subject:Cc:To:From:Date:Sender:Reply-To:Content-ID:
  Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
  :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
  List-Post:List-Owner:List-Archive;
- bh=K1LDbFs9x4FB1xx/2X8IZzLK48z/oeIROR9FxWFKpro=; b=axEOWXjWrd/WNXOKxaJEezTI7b
- 6YdkPKKjodKi+8TjtJQwIeeYLjD3FuP2q55/uMH9tlpJfmW9YpkfxVqE37JE4PLXqH2V4A7r7DXIi
- bLkmYmJBkf3bErzGzlSPIz1OCyrEBnvvjDjBa0bOAtV6MUVFJVsPMrtcmd16lImKXVyg=;
-Received: from dfw.source.kernel.org ([139.178.84.217])
+ bh=uRt8DC7aSOODc1J8lbTlNqkqIzph89yqmPrsx4NeG4k=; b=NOtTIllwrh5kyguYwTamAlftDD
+ +pRemy8Fh2KGMou+6YRxZOnp0IfXpluk31kfMrq/dVQM9IYlKJP0C3PbGr/P9gO9WvqQX+DEMCyQl
+ 4QmTYHYCbOwp3RWtako+4kG+4QrgnYXncPrVYu8ncDxUgNIA6rjTJzGr2YSYoqtUh1Bo=;
+Received: from nautica.notk.org ([91.121.71.147])
  by sfi-mx-1.v28.lw.sourceforge.com with esmtps
  (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.92.3)
- id 1n6a6e-009VlU-FH
- for v9fs-developer@lists.sourceforge.net; Sun, 09 Jan 2022 15:27:45 +0000
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
- (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
- (No client certificate requested)
- by dfw.source.kernel.org (Postfix) with ESMTPS id 5AF8460A55;
- Sun,  9 Jan 2022 15:27:29 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2EEB8C36AED;
- Sun,  9 Jan 2022 15:27:27 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1641742048;
- bh=3b6/4NoAXJJWUq2gsg5iKUmGqebtBOvDSo33LeKf8cI=;
- h=Subject:From:To:Cc:Date:In-Reply-To:References:From;
- b=a1hj3BUPWWcC7naVx2AqX6O5K4Bl3I+t2LBa9cQpCeBaYAyBwaQn/PS+HGCeidy8q
- V59tCbLL4SVGkupihAebTzDinf84wfBOUo5fKOH7h3X5A0HUfBNkBat2GC2klEJeJY
- z+IrlZGIg9r8ZNjuzIUxUmJMEv6GlWlOIoflShkFfNhrr3x3ss7+217Fc1LcujWwRm
- 7pL1r7FXe40v8cxvGgS62Sd7KvDKkZkLRU+AyfWhS4/bR++UNpoDXsTk0iczsBxVVz
- WuIg7JKBR2T5fTONlCI3jYhT3vWzHFWf9ioixoaAQwvW7eDBJGFhPbJuSq/hJfW7C+
- gd+Ip0LdKRERQ==
-Message-ID: <6e44856a8711bf1eb95c16de9efdb1bb108cf25c.camel@kernel.org>
-From: Jeff Layton <jlayton@kernel.org>
-To: David Howells <dhowells@redhat.com>, linux-cachefs@redhat.com, Steve
- French <sfrench@samba.org>
-Date: Sun, 09 Jan 2022 10:27:25 -0500
-In-Reply-To: <3419813.1641592362@warthog.procyon.org.uk>
-References: <164021579335.640689.2681324337038770579.stgit@warthog.procyon.org.uk>
- <164021479106.640689.17404516570194656552.stgit@warthog.procyon.org.uk>
- <3419813.1641592362@warthog.procyon.org.uk>
-User-Agent: Evolution 3.42.2 (3.42.2-1.fc35) 
+ id 1n6j0q-009sEg-5R
+ for v9fs-developer@lists.sourceforge.net; Mon, 10 Jan 2022 00:58:24 +0000
+Received: by nautica.notk.org (Postfix, from userid 108)
+ id 863BFC020; Mon, 10 Jan 2022 01:58:09 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=codewreck.org; s=2;
+ t=1641776289; bh=uRt8DC7aSOODc1J8lbTlNqkqIzph89yqmPrsx4NeG4k=;
+ h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+ b=cHPqt7XNNOftLpstaYVnaGUIb9o7/kwYXWS5ral8oYtoOmfukwOYLGNPgTRGHK27B
+ GvUH0SCVElXLYs+qUldr6GmornA42UR5d8KJDzgwQNwmZR3Lr6+o7+Oe4JszwwxPdD
+ V2rBuGlcFoEZrD6l+1mazEDwNqoi9COXddfKzAsZDESvdCe7CWjwR5ooZCtBKHMXBn
+ 4mfV1ihXWU3XmMNnRrR9uLh8zqBadN/eatHeSZyAvktzCKt0UmMm6XsF0xsRLe/tAb
+ BUJNYgELXsbQLVie6PcilCAO3Zbh3gnY0MoBLQHx/pG8vpioD96U5qs8+D5IE4b169
+ T0BoQynyYKmsA==
+X-Spam-Checker-Version: SpamAssassin 3.3.2 (2011-06-06) on nautica.notk.org
+X-Spam-Level: 
+X-Spam-Status: No, score=0.0 required=5.0 tests=UNPARSEABLE_RELAY
+ autolearn=unavailable version=3.3.2
+Received: from odin.codewreck.org (localhost [127.0.0.1])
+ by nautica.notk.org (Postfix) with ESMTPS id 135C6C009;
+ Mon, 10 Jan 2022 01:58:05 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=codewreck.org; s=2;
+ t=1641776288; bh=uRt8DC7aSOODc1J8lbTlNqkqIzph89yqmPrsx4NeG4k=;
+ h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+ b=FeIl0b+QkCy2RI29bvXVS2zWPjDKARpjnKg9dDuj1cMtAEtjmKFQRSYJ2k08Xe7CF
+ CISXm6pNP1CrVinaJOZP3HMUSXXA36a4OCtLrysofIiAzzvTUu+fErDx1ohl1j3wLM
+ sx+IspaAn7GpOJUpe5D3CaOw+XdiUe8pVWwU3bhlVwlEaOLWqDumPc0YDe5+esQLwX
+ OB2Q36B9N/IUNLLBJvCEwE+4AiayGR+ksgZ5Y75joOGEibIaEbVgq73dtxthfw9cHA
+ UVacMY3Uhb4yCLGQl5L9BwJZDc/IZLUQFMbTa4aPo0lVUWh/Hg+nE38XJx7FGy+hwR
+ b5YJ6FWXVsxsw==
+Received: from localhost (odin.codewreck.org [local])
+ by odin.codewreck.org (OpenSMTPD) with ESMTPA id a5dcf08b;
+ Mon, 10 Jan 2022 00:58:01 +0000 (UTC)
+Date: Mon, 10 Jan 2022 09:57:46 +0900
+From: Dominique Martinet <asmadeus@codewreck.org>
+To: Thomas =?utf-8?Q?Wei=C3=9Fschuh?= <linux@weissschuh.net>
+Message-ID: <YduEira4sB0+ESYp@codewreck.org>
+References: <20211103193823.111007-1-linux@weissschuh.net>
+ <20211103193823.111007-3-linux@weissschuh.net>
 MIME-Version: 1.0
-X-Spam-Score: -0.9 (/)
-X-Spam-Report: Spam detection software,
- running on the system "util-spamd-1.v13.lw.sourceforge.com", 
+Content-Disposition: inline
+In-Reply-To: <20211103193823.111007-3-linux@weissschuh.net>
+X-Spam-Score: -0.2 (/)
+X-Spam-Report: Spam detection software, running on the system "util-spamd-1.v13.lw.sourceforge.com",
  has NOT identified this incoming email as spam.  The original
  message has been attached to this so you can view it or label
  similar future email.  If you have any questions, see
  the administrator of that system for details.
- Content preview:  On Fri, 2022-01-07 at 21:52 +0000, David Howells wrote: >
- This patch isn't quite right and needs a fix. The attached patch fixes it.
- > I'll fold that in and post a v5 of this patch. > > David > --- > [...] 
- Content analysis details:   (-0.9 points, 6.0 required)
- pts rule name              description
+ 
+ Content preview:  Hi Thomas, it's been a while but I had a second look as I
+   intend on submitting this next week, just a small fixup on the Kconfig entry
+    Thomas Weißschuh wrote on Wed, Nov 03, 2021 at 08:38:21PM +0100: > diff
+   --git a/net/9p/Kconfig b/net/9p/Kconfig > index 64468c49791f..af601129f1bb
+    100644 > --- a/net/9p/Kconfig > +++ b/net/9p/Kconfig [...] 
+ 
+ Content analysis details:   (-0.2 points, 6.0 required)
+ 
+  pts rule name              description
  ---- ---------------------- --------------------------------------------------
- 0.0 SPF_HELO_NONE          SPF: HELO does not publish an SPF Record
+  0.0 SPF_HELO_NONE          SPF: HELO does not publish an SPF Record
  -0.0 SPF_PASS               SPF: sender matches SPF record
  -0.1 DKIM_VALID_EF          Message has a valid DKIM or DK signature from
- envelope-from domain
+                             envelope-from domain
  -0.1 DKIM_VALID_AU          Message has a valid DKIM or DK signature from
- author's domain
- 0.1 DKIM_SIGNED            Message has a DKIM or DK signature, not necessarily
- valid
- -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
- -0.7 DKIMWL_WL_HIGH         DKIMwl.org - High trust sender
-X-Headers-End: 1n6a6e-009VlU-FH
-Subject: Re: [V9fs-developer] [PATCH v4 63/68] cifs: Support fscache
- indexing rewrite (untested)
+                             author's domain
+  0.1 DKIM_SIGNED            Message has a DKIM or DK signature, not necessarily
+                             valid
+ -0.1 DKIM_VALID             Message has at least one valid DKIM or DK signature
+  0.0 UNPARSEABLE_RELAY      Informational: message has unparseable relay
+                             lines
+X-Headers-End: 1n6j0q-009sEg-5R
+Subject: Re: [V9fs-developer] [PATCH v2 2/4] 9p/trans_fd: split into
+ dedicated module
 X-BeenThere: v9fs-developer@lists.sourceforge.net
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -102,136 +118,36 @@ List-Post: <mailto:v9fs-developer@lists.sourceforge.net>
 List-Help: <mailto:v9fs-developer-request@lists.sourceforge.net?subject=help>
 List-Subscribe: <https://lists.sourceforge.net/lists/listinfo/v9fs-developer>, 
  <mailto:v9fs-developer-request@lists.sourceforge.net?subject=subscribe>
-Cc: Shyam Prasad N <nspmangalore@gmail.com>, linux-cifs@vger.kernel.org,
- linux-nfs@vger.kernel.org, ceph-devel@vger.kernel.org,
- linux-kernel@vger.kernel.org, Matthew Wilcox <willy@infradead.org>,
- linux-afs@lists.infradead.org, linux-fsdevel@vger.kernel.org,
- Alexander Viro <viro@zeniv.linux.org.uk>,
- Trond Myklebust <trondmy@hammerspace.com>,
- JeffleXu <jefflexu@linux.alibaba.com>, v9fs-developer@lists.sourceforge.net,
- Omar Sandoval <osandov@osandov.com>,
- Linus Torvalds <torvalds@linux-foundation.org>,
- Anna Schumaker <anna.schumaker@netapp.com>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Cc: Latchesar Ionkov <lucho@ionkov.net>, Eric Van Hensbergen <ericvh@gmail.com>,
+ netdev@vger.kernel.org, linux-kernel@vger.kernel.org,
+ Stefano Stabellini <stefano@aporeto.com>, Jakub Kicinski <kuba@kernel.org>,
+ v9fs-developer@lists.sourceforge.net, "David S. Miller" <davem@davemloft.net>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: v9fs-developer-bounces@lists.sourceforge.net
 
-On Fri, 2022-01-07 at 21:52 +0000, David Howells wrote:
-> This patch isn't quite right and needs a fix.  The attached patch fixes it.
-> I'll fold that in and post a v5 of this patch.
-> 
-> David
-> ---
-> cifs: Fix the fscache cookie management
-> 
-> Fix the fscache cookie management in cifs in the following ways:
-> 
->  (1) The cookie should be released in cifs_evict_inode() after it has been
->      unused from being pinned by cifs_set_page_dirty().
-> 
->  (2) The cookie shouldn't be released in cifsFileInfo_put_final().  That's
->      dealing with closing a file, not getting rid of an inode.  The cookie
->      needs to persist beyond the last file close because writepages may
->      happen after closure.
-> 
->  (3) The cookie needs to be used in cifs_atomic_open() to match
->      cifs_open().  As yet unknown files being opened for writing seem to go
->      by the former route rather than the latter.
-> 
-> This can be triggered by something like:
-> 
->         # systemctl start cachefilesd
->         # mount //carina/test /xfstest.test -o user=shares,pass=xxxx.fsc
->         # bash 5</xfstest.test/bar
->         # echo hello >/xfstest.test/bar
-> 
-> The key is to open the file R/O and then open it R/W and write to it whilst
-> it's still open for R/O.  A cookie isn't acquired if it's just opened R/W
-> as it goes through the atomic_open method rather than the open method.
-> 
-> Signed-off-by: David Howells <dhowells@redhat.com>
-> ---
->  fs/cifs/cifsfs.c |    8 ++++++++
->  fs/cifs/dir.c    |    4 ++++
->  fs/cifs/file.c   |    2 --
->  3 files changed, 12 insertions(+), 2 deletions(-)
-> 
-> diff --git a/fs/cifs/cifsfs.c b/fs/cifs/cifsfs.c
-> index d3f3acf340f1..26cf2193c9a2 100644
-> --- a/fs/cifs/cifsfs.c
-> +++ b/fs/cifs/cifsfs.c
-> @@ -398,6 +398,7 @@ cifs_evict_inode(struct inode *inode)
->  	truncate_inode_pages_final(&inode->i_data);
->  	if (inode->i_state & I_PINNING_FSCACHE_WB)
->  		cifs_fscache_unuse_inode_cookie(inode, true);
-> +	cifs_fscache_release_inode_cookie(inode);
->  	clear_inode(inode);
->  }
->  
-> @@ -722,6 +723,12 @@ static int cifs_show_stats(struct seq_file *s, struct dentry *root)
->  }
->  #endif
->  
-> +static int cifs_write_inode(struct inode *inode, struct writeback_control *wbc)
-> +{
-> +	fscache_unpin_writeback(wbc, cifs_inode_cookie(inode));
-> +	return 0;
-> +}
-> +
->  static int cifs_drop_inode(struct inode *inode)
->  {
->  	struct cifs_sb_info *cifs_sb = CIFS_SB(inode->i_sb);
-> @@ -734,6 +741,7 @@ static int cifs_drop_inode(struct inode *inode)
->  static const struct super_operations cifs_super_ops = {
->  	.statfs = cifs_statfs,
->  	.alloc_inode = cifs_alloc_inode,
-> +	.write_inode	= cifs_write_inode,
->  	.free_inode = cifs_free_inode,
->  	.drop_inode	= cifs_drop_inode,
->  	.evict_inode	= cifs_evict_inode,
-> diff --git a/fs/cifs/dir.c b/fs/cifs/dir.c
-> index 6e8e7cc26ae2..6186824b366e 100644
-> --- a/fs/cifs/dir.c
-> +++ b/fs/cifs/dir.c
-> @@ -22,6 +22,7 @@
->  #include "cifs_unicode.h"
->  #include "fs_context.h"
->  #include "cifs_ioctl.h"
-> +#include "fscache.h"
->  
->  static void
->  renew_parental_timestamps(struct dentry *direntry)
-> @@ -509,6 +510,9 @@ cifs_atomic_open(struct inode *inode, struct dentry *direntry,
->  		rc = -ENOMEM;
->  	}
->  
-> +	fscache_use_cookie(cifs_inode_cookie(file_inode(file)),
-> +			   file->f_mode & FMODE_WRITE);
-> +
->  out:
->  	cifs_put_tlink(tlink);
->  out_free_xid:
-> diff --git a/fs/cifs/file.c b/fs/cifs/file.c
-> index d872f6fe8e7d..44da7646f789 100644
-> --- a/fs/cifs/file.c
-> +++ b/fs/cifs/file.c
-> @@ -376,8 +376,6 @@ static void cifsFileInfo_put_final(struct cifsFileInfo *cifs_file)
->  	struct cifsLockInfo *li, *tmp;
->  	struct super_block *sb = inode->i_sb;
->  
-> -	cifs_fscache_release_inode_cookie(inode);
-> -
->  	/*
->  	 * Delete any outstanding lock records. We'll lose them when the file
->  	 * is closed anyway.
-> 
-
-Looks good.
-
-Acked-by: Jeff Layton <jlayton@kernel.org>
-
-
-_______________________________________________
-V9fs-developer mailing list
-V9fs-developer@lists.sourceforge.net
-https://lists.sourceforge.net/lists/listinfo/v9fs-developer
+SGkgVGhvbWFzLAoKaXQncyBiZWVuIGEgd2hpbGUgYnV0IEkgaGFkIGEgc2Vjb25kIGxvb2sgYXMg
+SSBpbnRlbmQgb24gc3VibWl0dGluZyB0aGlzCm5leHQgd2VlaywganVzdCBhIHNtYWxsIGZpeHVw
+IG9uIHRoZSBLY29uZmlnIGVudHJ5CgpUaG9tYXMgV2Vpw59zY2h1aCB3cm90ZSBvbiBXZWQsIE5v
+diAwMywgMjAyMSBhdCAwODozODoyMVBNICswMTAwOgo+IGRpZmYgLS1naXQgYS9uZXQvOXAvS2Nv
+bmZpZyBiL25ldC85cC9LY29uZmlnCj4gaW5kZXggNjQ0NjhjNDk3OTFmLi5hZjYwMTEyOWYxYmIg
+MTAwNjQ0Cj4gLS0tIGEvbmV0LzlwL0tjb25maWcKPiArKysgYi9uZXQvOXAvS2NvbmZpZwo+IEBA
+IC0xNSw2ICsxNSwxMyBAQCBtZW51Y29uZmlnIE5FVF85UAo+ICAKPiAgaWYgTkVUXzlQCj4gIAo+
+ICtjb25maWcgTkVUXzlQX0ZECj4gKwlkZXBlbmRzIG9uIFZJUlRJTwoKSSB0aGluayB0aGF0J3Mg
+anVzdCBhIGNvcHlwYXN0ZSBsZWZ0b3ZlciBmcm9tIE5FVF85UF9WSVJUSU8gPwpTaW5jZSBpdCB1
+c2VkIHRvIGJlIGNvZGUgd2l0aGluIE5FVF85UCBhbmQgaXQncyB3aXRoaW4gYSBpZiBORVRfOVAg
+aXQKc2hvdWxkbid0IGRlcGVuZCBvbiBhbnl0aGluZy4KCkFsc28gZm9yIGNvbXBhdGliaWxpdHkg
+SSdkIHN1Z2dlc3Qgd2Uga2VlcCBpdCBvbiBieSBkZWZhdWx0IGF0IHRoaXMKcG9pbnQsIGUuZy4g
+YWRkICdkZWZhdWx0IE5FVF85UCcgdG8gdGhpcyBibG9jazoKCgpkaWZmIC0tZ2l0IGEvbmV0Lzlw
+L0tjb25maWcgYi9uZXQvOXAvS2NvbmZpZwppbmRleCBhZjYwMTEyOWYxYmIuLmRlYWJiZDM3NmNi
+MSAxMDA2NDQKLS0tIGEvbmV0LzlwL0tjb25maWcKKysrIGIvbmV0LzlwL0tjb25maWcKQEAgLTE2
+LDcgKzE2LDcgQEAgbWVudWNvbmZpZyBORVRfOVAKIGlmIE5FVF85UAogCiBjb25maWcgTkVUXzlQ
+X0ZECi0gICAgICAgZGVwZW5kcyBvbiBWSVJUSU8KKyAgICAgICBkZWZhdWx0IE5FVF85UAogICAg
+ICAgIHRyaXN0YXRlICI5UCBGRCBUcmFuc3BvcnQiCiAgICAgICAgaGVscAogICAgICAgICAgVGhp
+cyBidWlsZHMgc3VwcG9ydCBmb3IgdHJhbnNwb3J0cyBvdmVyIFRDUCwgVW5peCBzb2NrZXRzIGFu
+ZAoKCkknbGwganVzdCBmaXh1cCB0aGUgY29tbWl0IHdpdGggYSB3b3JkIGluIHRoZSBtZXNzYWdl
+IHVubGVzcyB5b3UgaGF2ZSBhCnByb2JsZW0gd2l0aCBpdCwgcGxlYXNlIGxldCBtZSBrbm93ISA6
+KQoKLS0gCkRvbWluaXF1ZQoKCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fClY5ZnMtZGV2ZWxvcGVyIG1haWxpbmcgbGlzdApWOWZzLWRldmVsb3BlckBsaXN0
+cy5zb3VyY2Vmb3JnZS5uZXQKaHR0cHM6Ly9saXN0cy5zb3VyY2Vmb3JnZS5uZXQvbGlzdHMvbGlz
+dGluZm8vdjlmcy1kZXZlbG9wZXIK
