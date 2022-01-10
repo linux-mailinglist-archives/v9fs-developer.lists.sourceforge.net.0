@@ -2,26 +2,26 @@ Return-Path: <v9fs-developer-bounces@lists.sourceforge.net>
 X-Original-To: lists+v9fs-developer@lfdr.de
 Delivered-To: lists+v9fs-developer@lfdr.de
 Received: from lists.sourceforge.net (lists.sourceforge.net [216.105.38.7])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7C57548974E
-	for <lists+v9fs-developer@lfdr.de>; Mon, 10 Jan 2022 12:22:57 +0100 (CET)
-Received: from [127.0.0.1] (helo=sfs-ml-2.v29.lw.sourceforge.com)
-	by sfs-ml-2.v29.lw.sourceforge.com with esmtp (Exim 4.94.2)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3801048977D
+	for <lists+v9fs-developer@lfdr.de>; Mon, 10 Jan 2022 12:32:27 +0100 (CET)
+Received: from [127.0.0.1] (helo=sfs-ml-4.v29.lw.sourceforge.com)
+	by sfs-ml-4.v29.lw.sourceforge.com with esmtp (Exim 4.94.2)
 	(envelope-from <v9fs-developer-bounces@lists.sourceforge.net>)
-	id 1n6slM-0006GS-TZ; Mon, 10 Jan 2022 11:22:56 +0000
+	id 1n6suY-0006wq-Oa; Mon, 10 Jan 2022 11:32:25 +0000
 Received: from [172.30.20.202] (helo=mx.sourceforge.net)
- by sfs-ml-2.v29.lw.sourceforge.com with esmtps (TLS1.2) tls
+ by sfs-ml-4.v29.lw.sourceforge.com with esmtps (TLS1.2) tls
  TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384 (Exim 4.94.2)
- (envelope-from <dhowells@redhat.com>) id 1n6slL-0006GM-Or
- for v9fs-developer@lists.sourceforge.net; Mon, 10 Jan 2022 11:22:54 +0000
+ (envelope-from <dhowells@redhat.com>) id 1n6suW-0006wj-TO
+ for v9fs-developer@lists.sourceforge.net; Mon, 10 Jan 2022 11:32:23 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
  d=sourceforge.net; s=x; h=Message-ID:Date:Content-ID:Content-Type:
  MIME-Version:Subject:Cc:To:References:In-Reply-To:From:Sender:Reply-To:
  Content-Transfer-Encoding:Content-Description:Resent-Date:Resent-From:
  Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:
  List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=hL1GhauzxZu1k+5VqcQ9k59DG3JeTB3f6in9zNn0rkc=; b=baczI5peHS9qV3U5rjAQpRFE2B
- 1UFE3xNEHhbGdeU6frqKOgLVau3zsQv+gBwCQipmQYJJWv5U70maq+YF+FPZBQgafpkCHBVToZC7H
- 8RmHjxD6t0PkkF39vQdAhySXLrcYzhcLZZbk694lJ35pXmSIyHIq5xnGQMz09g/5SEG8=;
+ bh=hrEu87EnXQ6Fg7UvjXggUKw0Jcqes+nBaSmxrmpEEwU=; b=k55Q4HCcZUJUrkk8eulY/2OmmY
+ pQIfxBnf6pOPXqMU3W1AFKThdOafJTBkf7fvObJ6ySabA09peN4NnZh2cZ3nH1wxKmnfp0l1Y0Xkm
+ mTuSgYZYUASYGALw6AGBQhgEFIsYUiQZIfrXJolStrQBQSwDaxqPt2YcbAcDqfkTP0jU=;
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  ;
  h=Message-ID:Date:Content-ID:Content-Type:MIME-Version:Subject:Cc:To:
@@ -29,50 +29,53 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
  :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
  List-Post:List-Owner:List-Archive;
- bh=hL1GhauzxZu1k+5VqcQ9k59DG3JeTB3f6in9zNn0rkc=; b=X7bzkgIDavLjEPc3Rv50TrVmc4
- 43cy05XP3aeRurGTiN6Bu1emSvbYtGQpnPdRU/PABS97FjbJFIJJ8fb+VxPOcaKve8i96+bStccsl
- nrwgQwFLiDjjvA3gtxFcV8VCPVoSA9LzwCtLN97QBweWoE/wZQIFa7OtsdCvTgwMYdrk=;
+ bh=hrEu87EnXQ6Fg7UvjXggUKw0Jcqes+nBaSmxrmpEEwU=; b=cWJG0xJ6BctP+t+8ovH4VuEQfH
+ AeES1iQs5FP4DXGznLEyM9+2VCGZZpufb7tpzdAUm3ANkvJDkXacSdo/g8rd4RV5CmwoVe/f/ez6Z
+ 3QmD2pTPEKDOKkvs/kmq72vLiodnCZ9BRJ2R05B5TzXNzvWF8KTSKfyz/laGMTJmlJ4s=;
 Received: from us-smtp-delivery-124.mimecast.com ([170.10.133.124])
  by sfi-mx-2.v28.lw.sourceforge.com with esmtps
  (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.92.3)
- id 1n6slK-00035U-92
- for v9fs-developer@lists.sourceforge.net; Mon, 10 Jan 2022 11:22:54 +0000
+ id 1n6suV-0003gh-1g
+ for v9fs-developer@lists.sourceforge.net; Mon, 10 Jan 2022 11:32:23 +0000
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
- s=mimecast20190719; t=1641813768;
+ s=mimecast20190719; t=1641814334;
  h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
  to:to:cc:cc:mime-version:mime-version:content-type:content-type:
  in-reply-to:in-reply-to:references:references;
- bh=hL1GhauzxZu1k+5VqcQ9k59DG3JeTB3f6in9zNn0rkc=;
- b=eCcIt28NN1ASrDIYEBoPk3E6HbCgjnFF6ZX73g2YNqkGYhidAyqkJo08E9JlmDXTrRaj1q
- O4yX+RWLUkIc/66wmwmh+GJKzfk/Rbf6OlSMQnUCcDhP3/5vjlSDjZmq/uVk0VyvCB4tbv
- nK1QkHvEdrTInXKLiuhnHF1oIVMAbBc=
+ bh=hrEu87EnXQ6Fg7UvjXggUKw0Jcqes+nBaSmxrmpEEwU=;
+ b=RwLLNVKszlImAFDlZuJa0wx98kI1MAfRxIcK6fGCwqXPbA0Vm1vo7ojR5Jl3SfDpdG/NhI
+ CFv1/h+Mfrdwq1PzXLkJaRTsiFyNUizyepOMpjeITQXbrTDlAgj51LSJhuGlR9htUB1+y3
+ l+0kUI94odfB+wHg5onJ3pWNPBwB9Vg=
 Received: from mimecast-mx01.redhat.com (mimecast-mx01.redhat.com
  [209.132.183.4]) by relay.mimecast.com with ESMTP with STARTTLS
  (version=TLSv1.2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- us-mta-108-CosvGu5aPlmRKxA0mF372w-1; Mon, 10 Jan 2022 06:22:43 -0500
-X-MC-Unique: CosvGu5aPlmRKxA0mF372w-1
+ us-mta-54-MsPtVj76MgWGNWERMB4MZg-1; Mon, 10 Jan 2022 06:32:09 -0500
+X-MC-Unique: MsPtVj76MgWGNWERMB4MZg-1
 Received: from smtp.corp.redhat.com (int-mx06.intmail.prod.int.phx2.redhat.com
  [10.5.11.16])
  (using TLSv1.2 with cipher AECDH-AES256-SHA (256/256 bits))
  (No client certificate requested)
- by mimecast-mx01.redhat.com (Postfix) with ESMTPS id 04E711898290;
- Mon, 10 Jan 2022 11:22:42 +0000 (UTC)
+ by mimecast-mx01.redhat.com (Postfix) with ESMTPS id 4E8BB1898292;
+ Mon, 10 Jan 2022 11:32:06 +0000 (UTC)
 Received: from warthog.procyon.org.uk (unknown [10.33.36.165])
- by smtp.corp.redhat.com (Postfix) with ESMTP id AF7FA7B6C0;
- Mon, 10 Jan 2022 11:22:40 +0000 (UTC)
+ by smtp.corp.redhat.com (Postfix) with ESMTP id 1F9507B6C9;
+ Mon, 10 Jan 2022 11:31:55 +0000 (UTC)
 Organization: Red Hat UK Ltd. Registered Address: Red Hat UK Ltd, Amberley
  Place, 107-111 Peascod Street, Windsor, Berkshire, SI4 1TE, United
  Kingdom.
  Registered in England and Wales under Company Registration No. 3798903
 From: David Howells <dhowells@redhat.com>
-In-Reply-To: <3730531.1641813522@warthog.procyon.org.uk>
-References: <3730531.1641813522@warthog.procyon.org.uk>
- <20220110111444.926753-1-asmadeus@codewreck.org>
-To: Dominique Martinet <asmadeus@codewreck.org>
+In-Reply-To: <Ydvl8Dk8z0mF0KFl@infradead.org>
+References: <Ydvl8Dk8z0mF0KFl@infradead.org>
+ <164021479106.640689.17404516570194656552.stgit@warthog.procyon.org.uk>
+ <164021541207.640689.564689725898537127.stgit@warthog.procyon.org.uk>
+ <CAOQ4uxjEcvffv=rNXS-r+NLz+=6yk4abRuX_AMq9v-M4nf_PtA@mail.gmail.com>
+ <Ydk6jWmFH6TZLPZq@casper.infradead.org>
+To: Christoph Hellwig <hch@infradead.org>
 MIME-Version: 1.0
-Content-ID: <3735218.1641813759.1@warthog.procyon.org.uk>
-Date: Mon, 10 Jan 2022 11:22:39 +0000
-Message-ID: <3735219.1641813759@warthog.procyon.org.uk>
+Content-ID: <3735738.1641814315.1@warthog.procyon.org.uk>
+Date: Mon, 10 Jan 2022 11:31:55 +0000
+Message-ID: <3735739.1641814315@warthog.procyon.org.uk>
 X-Scanned-By: MIMEDefang 2.79 on 10.5.11.16
 X-Spam-Score: -1.6 (-)
 X-Spam-Report: Spam detection software,
@@ -81,8 +84,9 @@ X-Spam-Report: Spam detection software,
  message has been attached to this so you can view it or label
  similar future email.  If you have any questions, see
  the administrator of that system for details.
- Content preview:  David Howells <dhowells@redhat.com> wrote: > Reviewed-by:
- David Howells <dhowells@redhat.com> Make that: 
+ Content preview: Christoph Hellwig <hch@infradead.org> wrote: > So let's name
+ it that way. We have plenty of files in kernel use using > filp_open and
+ this flag very obviously means something else. S_KERNEL_LOCK? 
  Content analysis details:   (-1.6 points, 6.0 required)
  pts rule name              description
  ---- ---------------------- --------------------------------------------------
@@ -101,9 +105,9 @@ X-Spam-Report: Spam detection software,
  [170.10.133.124 listed in wl.mailspike.net]
  0.0 RCVD_IN_MSPIKE_WL      Mailspike good senders
  -0.7 DKIMWL_WL_HIGH         DKIMwl.org - High trust sender
-X-Headers-End: 1n6slK-00035U-92
-Subject: Re: [V9fs-developer] [PATCH] 9p: fix enodata when reading growing
- file
+X-Headers-End: 1n6suV-0003gh-1g
+Subject: Re: [V9fs-developer] [PATCH v4 38/68] vfs,
+ cachefiles: Mark a backing file in use with an inode flag
 X-BeenThere: v9fs-developer@lists.sourceforge.net
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -115,20 +119,32 @@ List-Post: <mailto:v9fs-developer@lists.sourceforge.net>
 List-Help: <mailto:v9fs-developer-request@lists.sourceforge.net?subject=help>
 List-Subscribe: <https://lists.sourceforge.net/lists/listinfo/v9fs-developer>, 
  <mailto:v9fs-developer-request@lists.sourceforge.net?subject=subscribe>
-Cc: lucho@ionkov.net, ericvh@gmail.com, linux-kernel@vger.kernel.org,
- stable@vger.kernel.org, dhowells@redhat.com,
- v9fs-developer@lists.sourceforge.net
+Cc: Steve French <sfrench@samba.org>,
+ Linux NFS Mailing List <linux-nfs@vger.kernel.org>,
+ CIFS <linux-cifs@vger.kernel.org>,
+ linux-fsdevel <linux-fsdevel@vger.kernel.org>,
+ Amir Goldstein <amir73il@gmail.com>, Jeff Layton <jlayton@kernel.org>,
+ linux-kernel <linux-kernel@vger.kernel.org>,
+ Matthew Wilcox <willy@infradead.org>, linux-afs@lists.infradead.org,
+ dhowells@redhat.com, v9fs-developer@lists.sourceforge.net,
+ linux-cachefs@redhat.com, Alexander Viro <viro@zeniv.linux.org.uk>,
+ Trond Myklebust <trondmy@hammerspace.com>,
+ JeffleXu <jefflexu@linux.alibaba.com>, ceph-devel <ceph-devel@vger.kernel.org>,
+ Omar Sandoval <osandov@osandov.com>,
+ Linus Torvalds <torvalds@linux-foundation.org>,
+ Anna Schumaker <anna.schumaker@netapp.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: v9fs-developer-bounces@lists.sourceforge.net
 
-David Howells <dhowells@redhat.com> wrote:
+Christoph Hellwig <hch@infradead.org> wrote:
 
-> Reviewed-by: David Howells <dhowells@redhat.com>
+> So let's name it that way.  We have plenty of files in kernel use using
+> filp_open and this flag very obviously means something else.
 
-Make that:
+S_KERNEL_LOCK?
 
-Reviewed-and-tested-by: David Howells <dhowells@redhat.com>
+David
 
 
 
