@@ -2,112 +2,81 @@ Return-Path: <v9fs-developer-bounces@lists.sourceforge.net>
 X-Original-To: lists+v9fs-developer@lfdr.de
 Delivered-To: lists+v9fs-developer@lfdr.de
 Received: from lists.sourceforge.net (lists.sourceforge.net [216.105.38.7])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3801048977D
-	for <lists+v9fs-developer@lfdr.de>; Mon, 10 Jan 2022 12:32:27 +0100 (CET)
-Received: from [127.0.0.1] (helo=sfs-ml-4.v29.lw.sourceforge.com)
-	by sfs-ml-4.v29.lw.sourceforge.com with esmtp (Exim 4.94.2)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6C5C8489BC9
+	for <lists+v9fs-developer@lfdr.de>; Mon, 10 Jan 2022 16:06:22 +0100 (CET)
+Received: from [127.0.0.1] (helo=sfs-ml-1.v29.lw.sourceforge.com)
+	by sfs-ml-1.v29.lw.sourceforge.com with esmtp (Exim 4.94.2)
 	(envelope-from <v9fs-developer-bounces@lists.sourceforge.net>)
-	id 1n6suY-0006wq-Oa; Mon, 10 Jan 2022 11:32:25 +0000
+	id 1n6wFZ-0002Iv-1F; Mon, 10 Jan 2022 15:06:19 +0000
 Received: from [172.30.20.202] (helo=mx.sourceforge.net)
- by sfs-ml-4.v29.lw.sourceforge.com with esmtps (TLS1.2) tls
+ by sfs-ml-1.v29.lw.sourceforge.com with esmtps (TLS1.2) tls
  TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384 (Exim 4.94.2)
- (envelope-from <dhowells@redhat.com>) id 1n6suW-0006wj-TO
- for v9fs-developer@lists.sourceforge.net; Mon, 10 Jan 2022 11:32:23 +0000
+ (envelope-from <ng@0x80.stream>) id 1n6wFW-0002IL-AU
+ for v9fs-developer@lists.sourceforge.net; Mon, 10 Jan 2022 15:06:16 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=sourceforge.net; s=x; h=Message-ID:Date:Content-ID:Content-Type:
- MIME-Version:Subject:Cc:To:References:In-Reply-To:From:Sender:Reply-To:
- Content-Transfer-Encoding:Content-Description:Resent-Date:Resent-From:
- Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:
- List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=hrEu87EnXQ6Fg7UvjXggUKw0Jcqes+nBaSmxrmpEEwU=; b=k55Q4HCcZUJUrkk8eulY/2OmmY
- pQIfxBnf6pOPXqMU3W1AFKThdOafJTBkf7fvObJ6ySabA09peN4NnZh2cZ3nH1wxKmnfp0l1Y0Xkm
- mTuSgYZYUASYGALw6AGBQhgEFIsYUiQZIfrXJolStrQBQSwDaxqPt2YcbAcDqfkTP0jU=;
+ d=sourceforge.net; s=x; h=Message-ID:Subject:To:From:Date:
+ Content-Transfer-Encoding:Content-Type:MIME-Version:Sender:Reply-To:Cc:
+ Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+ Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:List-Id:
+ List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
+ bh=3yWORMpQqTTApEwg3tY35uvvmboSIfiOAm8EiVxKZG8=; b=k/DHeAwXVRk1OOXu2no3fcd1n
+ 40pcOxeJVCd4uo0luHkibntMVTijHrRAIydN6ei/pH1gumIk+tbt/KbBPxxOAmewWHXVpXtpSzBwE
+ WjgLxUD5rXKO0tRdhVkT7glw/t9QkRvKiXYF2yhXKh4j7Uj2l1xsMLBoGjPOXfbUf4VPk=;
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  ;
- h=Message-ID:Date:Content-ID:Content-Type:MIME-Version:Subject:Cc:To:
- References:In-Reply-To:From:Sender:Reply-To:Content-Transfer-Encoding:
- Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
- :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
- List-Post:List-Owner:List-Archive;
- bh=hrEu87EnXQ6Fg7UvjXggUKw0Jcqes+nBaSmxrmpEEwU=; b=cWJG0xJ6BctP+t+8ovH4VuEQfH
- AeES1iQs5FP4DXGznLEyM9+2VCGZZpufb7tpzdAUm3ANkvJDkXacSdo/g8rd4RV5CmwoVe/f/ez6Z
- 3QmD2pTPEKDOKkvs/kmq72vLiodnCZ9BRJ2R05B5TzXNzvWF8KTSKfyz/laGMTJmlJ4s=;
-Received: from us-smtp-delivery-124.mimecast.com ([170.10.133.124])
+ h=Message-ID:Subject:To:From:Date:Content-Transfer-Encoding:Content-Type:
+ MIME-Version:Sender:Reply-To:Cc:Content-ID:Content-Description:Resent-Date:
+ Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:
+ References:List-Id:List-Help:List-Unsubscribe:List-Subscribe:List-Post:
+ List-Owner:List-Archive; bh=3yWORMpQqTTApEwg3tY35uvvmboSIfiOAm8EiVxKZG8=; b=J
+ P/DGNVbwjgZG4fTRrlGZ7EPMayA/A1TZ4wzm9cIzup0MnsebzUD9y/rUG2XRhFo6sY/0msthnzZp6
+ lI9DovXBaKLMXBjdSRPFd07MnEdQZ4vnUnlK6O0Z8GjMn45PytK/ZQRszTDSB7zEFtAHpzIPU64GW
+ UAEVS3kNpHh0WyD0=;
+Received: from eva.beecloudy.net ([145.239.136.208] helo=penelope.mx)
  by sfi-mx-2.v28.lw.sourceforge.com with esmtps
  (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.92.3)
- id 1n6suV-0003gh-1g
- for v9fs-developer@lists.sourceforge.net; Mon, 10 Jan 2022 11:32:23 +0000
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
- s=mimecast20190719; t=1641814334;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:content-type:content-type:
- in-reply-to:in-reply-to:references:references;
- bh=hrEu87EnXQ6Fg7UvjXggUKw0Jcqes+nBaSmxrmpEEwU=;
- b=RwLLNVKszlImAFDlZuJa0wx98kI1MAfRxIcK6fGCwqXPbA0Vm1vo7ojR5Jl3SfDpdG/NhI
- CFv1/h+Mfrdwq1PzXLkJaRTsiFyNUizyepOMpjeITQXbrTDlAgj51LSJhuGlR9htUB1+y3
- l+0kUI94odfB+wHg5onJ3pWNPBwB9Vg=
-Received: from mimecast-mx01.redhat.com (mimecast-mx01.redhat.com
- [209.132.183.4]) by relay.mimecast.com with ESMTP with STARTTLS
- (version=TLSv1.2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- us-mta-54-MsPtVj76MgWGNWERMB4MZg-1; Mon, 10 Jan 2022 06:32:09 -0500
-X-MC-Unique: MsPtVj76MgWGNWERMB4MZg-1
-Received: from smtp.corp.redhat.com (int-mx06.intmail.prod.int.phx2.redhat.com
- [10.5.11.16])
- (using TLSv1.2 with cipher AECDH-AES256-SHA (256/256 bits))
- (No client certificate requested)
- by mimecast-mx01.redhat.com (Postfix) with ESMTPS id 4E8BB1898292;
- Mon, 10 Jan 2022 11:32:06 +0000 (UTC)
-Received: from warthog.procyon.org.uk (unknown [10.33.36.165])
- by smtp.corp.redhat.com (Postfix) with ESMTP id 1F9507B6C9;
- Mon, 10 Jan 2022 11:31:55 +0000 (UTC)
-Organization: Red Hat UK Ltd. Registered Address: Red Hat UK Ltd, Amberley
- Place, 107-111 Peascod Street, Windsor, Berkshire, SI4 1TE, United
- Kingdom.
- Registered in England and Wales under Company Registration No. 3798903
-From: David Howells <dhowells@redhat.com>
-In-Reply-To: <Ydvl8Dk8z0mF0KFl@infradead.org>
-References: <Ydvl8Dk8z0mF0KFl@infradead.org>
- <164021479106.640689.17404516570194656552.stgit@warthog.procyon.org.uk>
- <164021541207.640689.564689725898537127.stgit@warthog.procyon.org.uk>
- <CAOQ4uxjEcvffv=rNXS-r+NLz+=6yk4abRuX_AMq9v-M4nf_PtA@mail.gmail.com>
- <Ydk6jWmFH6TZLPZq@casper.infradead.org>
-To: Christoph Hellwig <hch@infradead.org>
+ id 1n6wFR-0007Uq-31
+ for v9fs-developer@lists.sourceforge.net; Mon, 10 Jan 2022 15:06:16 +0000
+Received: from localhost (localhost [127.0.0.1])
+ by penelope.mx (Postfix) with ESMTP id 2567820C14D
+ for <v9fs-developer@lists.sourceforge.net>;
+ Mon, 10 Jan 2022 15:41:19 +0100 (CET)
+Received: from penelope.mx ([127.0.0.1])
+ by localhost (penelope.mx [127.0.0.1]) (amavisd-new, port 10024)
+ with ESMTP id FO3UAHFhTS9u for <v9fs-developer@lists.sourceforge.net>;
+ Mon, 10 Jan 2022 15:41:18 +0100 (CET)
+Received: from penelope.mx (localhost [127.0.0.1])
+ by penelope.mx (Postfix) with ESMTP id 2FF2920C1AE
+ for <v9fs-developer@lists.sourceforge.net>;
+ Mon, 10 Jan 2022 15:41:18 +0100 (CET)
 MIME-Version: 1.0
-Content-ID: <3735738.1641814315.1@warthog.procyon.org.uk>
-Date: Mon, 10 Jan 2022 11:31:55 +0000
-Message-ID: <3735739.1641814315@warthog.procyon.org.uk>
-X-Scanned-By: MIMEDefang 2.79 on 10.5.11.16
-X-Spam-Score: -1.6 (-)
+Date: Mon, 10 Jan 2022 14:41:18 +0000
+From: ng@0x80.stream
+To: v9fs-developer@lists.sourceforge.net
+User-Agent: Roundcube Webmail/1.4.3
+Message-ID: <c4815842e8eedab0325fc62ae9e58fde@0x80.stream>
+X-Sender: ng@0x80.stream
+X-Spam-Score: 2.1 (++)
 X-Spam-Report: Spam detection software,
  running on the system "util-spamd-1.v13.lw.sourceforge.com", 
  has NOT identified this incoming email as spam.  The original
  message has been attached to this so you can view it or label
  similar future email.  If you have any questions, see
  the administrator of that system for details.
- Content preview: Christoph Hellwig <hch@infradead.org> wrote: > So let's name
- it that way. We have plenty of files in kernel use using > filp_open and
- this flag very obviously means something else. S_KERNEL_LOCK? 
- Content analysis details:   (-1.6 points, 6.0 required)
+ Content preview:  Hi, this is a bug report; on Linux 5.12 and 5.14 it seems
+ v9fs uses a fid that's been used for I/O to walk someplace else, which is
+ not allowed according to the manual. From the walk(9p) man page: The fid must
+ be valid in the current session and must not have been opened for I/O by
+ an open or create message. If 
+ Content analysis details:   (2.1 points, 6.0 required)
  pts rule name              description
  ---- ---------------------- --------------------------------------------------
- -0.7 RCVD_IN_DNSWL_LOW      RBL: Sender listed at https://www.dnswl.org/,
- low trust [170.10.133.124 listed in list.dnswl.org]
- 0.0 SPF_HELO_NONE          SPF: HELO does not publish an SPF Record
+ -0.0 SPF_HELO_PASS          SPF: HELO matches SPF record
  -0.0 SPF_PASS               SPF: sender matches SPF record
- -0.1 DKIM_VALID_EF          Message has a valid DKIM or DK signature from
- envelope-from domain
- -0.1 DKIM_VALID_AU          Message has a valid DKIM or DK signature from
- author's domain
- 0.1 DKIM_SIGNED            Message has a DKIM or DK signature, not necessarily
- valid
- -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
- 0.0 RCVD_IN_MSPIKE_H3      RBL: Good reputation (+3)
- [170.10.133.124 listed in wl.mailspike.net]
- 0.0 RCVD_IN_MSPIKE_WL      Mailspike good senders
- -0.7 DKIMWL_WL_HIGH         DKIMwl.org - High trust sender
-X-Headers-End: 1n6suV-0003gh-1g
-Subject: Re: [V9fs-developer] [PATCH v4 38/68] vfs,
- cachefiles: Mark a backing file in use with an inode flag
+ 1.6 FROM_SUSPICIOUS_NTLD_FP From abused NTLD
+ 0.5 FROM_SUSPICIOUS_NTLD   From abused NTLD
+X-Headers-End: 1n6wFR-0007Uq-31
+Subject: [V9fs-developer] bad use of fid
 X-BeenThere: v9fs-developer@lists.sourceforge.net
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -119,32 +88,48 @@ List-Post: <mailto:v9fs-developer@lists.sourceforge.net>
 List-Help: <mailto:v9fs-developer-request@lists.sourceforge.net?subject=help>
 List-Subscribe: <https://lists.sourceforge.net/lists/listinfo/v9fs-developer>, 
  <mailto:v9fs-developer-request@lists.sourceforge.net?subject=subscribe>
-Cc: Steve French <sfrench@samba.org>,
- Linux NFS Mailing List <linux-nfs@vger.kernel.org>,
- CIFS <linux-cifs@vger.kernel.org>,
- linux-fsdevel <linux-fsdevel@vger.kernel.org>,
- Amir Goldstein <amir73il@gmail.com>, Jeff Layton <jlayton@kernel.org>,
- linux-kernel <linux-kernel@vger.kernel.org>,
- Matthew Wilcox <willy@infradead.org>, linux-afs@lists.infradead.org,
- dhowells@redhat.com, v9fs-developer@lists.sourceforge.net,
- linux-cachefs@redhat.com, Alexander Viro <viro@zeniv.linux.org.uk>,
- Trond Myklebust <trondmy@hammerspace.com>,
- JeffleXu <jefflexu@linux.alibaba.com>, ceph-devel <ceph-devel@vger.kernel.org>,
- Omar Sandoval <osandov@osandov.com>,
- Linus Torvalds <torvalds@linux-foundation.org>,
- Anna Schumaker <anna.schumaker@netapp.com>
-Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Errors-To: v9fs-developer-bounces@lists.sourceforge.net
 
-Christoph Hellwig <hch@infradead.org> wrote:
+Hi, this is a bug report; on Linux 5.12 and 5.14 it seems v9fs uses a 
+fid that's been used for I/O to walk someplace else, which is not 
+allowed according to the manual.
 
-> So let's name it that way.  We have plenty of files in kernel use using
-> filp_open and this flag very obviously means something else.
+ From the walk(9p) man page:
 
-S_KERNEL_LOCK?
+           The fid must be valid in the current session and must not
+           have been opened for I/O by an open or create message.  If
 
-David
+ From the 9P dialog in a fs of mine:
+
+2022/01/10 14:24:53 >>> @ Topen tag 0 fid 2 mode 0
+2022/01/10 14:24:53 <<< @ Ropen tag 0 qid (16c8eed61aaf0d36 0 'd') 
+iounit 0
+2022/01/10 14:24:53 >>> @ Tstat tag 0 fid 2
+2022/01/10 14:24:53 <<< @ Rstat tag 0 st ('root' 'user' 'user' '' q 
+(16c8eed61aaf0d36 0 'd') m d555 at 1641824667 mt 1641824667 l 0 t 0 d 0 
+ext )
+2022/01/10 14:24:53 >>> @ Tread tag 0 fid 2 offset 0 count 65512
+2022/01/10 14:24:53 <<< @ Rread tag 0 count 113
+2022/01/10 14:24:53 >>> @ Tread tag 0 fid 2 offset 113 count 65399
+2022/01/10 14:24:53 <<< @ Rread tag 0 count 0
+2022/01/10 14:24:53 >>> @ Tread tag 0 fid 2 offset 113 count 65512
+2022/01/10 14:24:53 <<< @ Rread tag 0 count 0
+2022/01/10 14:24:53 >>> @ Twalk tag 0 fid 2 newfid 3 0:'ctl'
+2022/01/10 14:24:53 <<< @ Rerror tag 0 ename 'bad use of fid' ecode 0
+
+Here fid 2 is used for I/O and then for Twalk.
+
+I run on 5.10.y on most of my machines but I have to run 5.12 or 5.14 on 
+some new hardware, so I noticed the problem.
+The snippets above are for 5.14, I've to confirm if 5.12 has the same 
+problem, but higher level error is the same,
+
+$ ls
+...
+ls: cannot access 'templates': Bad file descriptor
+...
 
 
 
