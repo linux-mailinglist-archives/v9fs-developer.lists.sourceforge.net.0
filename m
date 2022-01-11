@@ -2,107 +2,80 @@ Return-Path: <v9fs-developer-bounces@lists.sourceforge.net>
 X-Original-To: lists+v9fs-developer@lfdr.de
 Delivered-To: lists+v9fs-developer@lfdr.de
 Received: from lists.sourceforge.net (lists.sourceforge.net [216.105.38.7])
-	by mail.lfdr.de (Postfix) with ESMTPS id 38B8048A407
-	for <lists+v9fs-developer@lfdr.de>; Tue, 11 Jan 2022 00:55:47 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id D08DE48AC43
+	for <lists+v9fs-developer@lfdr.de>; Tue, 11 Jan 2022 12:17:52 +0100 (CET)
 Received: from [127.0.0.1] (helo=sfs-ml-1.v29.lw.sourceforge.com)
 	by sfs-ml-1.v29.lw.sourceforge.com with esmtp (Exim 4.94.2)
 	(envelope-from <v9fs-developer-bounces@lists.sourceforge.net>)
-	id 1n74Vt-0003Sg-JY; Mon, 10 Jan 2022 23:55:44 +0000
+	id 1n7F9u-0004vr-II; Tue, 11 Jan 2022 11:17:45 +0000
 Received: from [172.30.20.202] (helo=mx.sourceforge.net)
  by sfs-ml-1.v29.lw.sourceforge.com with esmtps (TLS1.2) tls
  TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384 (Exim 4.94.2)
- (envelope-from <asmadeus@codewreck.org>) id 1n74Vs-0003Sa-Kt
- for v9fs-developer@lists.sourceforge.net; Mon, 10 Jan 2022 23:55:43 +0000
+ (envelope-from <ng@0x80.stream>) id 1n7F9t-0004vc-3n
+ for v9fs-developer@lists.sourceforge.net; Tue, 11 Jan 2022 11:17:43 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=sourceforge.net; s=x; h=In-Reply-To:Content-Type:MIME-Version:References:
- Message-ID:Subject:Cc:To:From:Date:Sender:Reply-To:Content-Transfer-Encoding:
+ d=sourceforge.net; s=x; h=Message-ID:References:In-Reply-To:Subject:Cc:To:
+ From:Date:Content-Transfer-Encoding:Content-Type:MIME-Version:Sender:Reply-To
+ :Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+ Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
+ List-Subscribe:List-Post:List-Owner:List-Archive;
+ bh=tYmrdC81v8vZr/W0CTiyKvyhr8tJZIPEDxz7vmTvxdM=; b=Wdwcf0DlW1sFODPAqvaER1r8s1
+ VdYLDvrYvA/9Bfz166O6Z/WSOPntb1qEKhBi8zLh7G7L9PncYFvO6DrRzcgOrbC8VJdmE3pcBCEf/
+ 24gKrwf3Ujw38bfzfukc7ra/hO7k9C4M6ROelR8mSGwH931qVQLnEM9znyzCUYgNuW3E=;
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
+ ; h=Message-ID:References:In-Reply-To:Subject:Cc:To:From:Date:
+ Content-Transfer-Encoding:Content-Type:MIME-Version:Sender:Reply-To:
  Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
  Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
  List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=K6/ulcECnW5v1CQbWWMF5TBlmunhZlx2OhoXw0lq57c=; b=YHkeUpT6UaLDslwukgSRiCY/ca
- d9R+nqA7n33ptcx1JFJlFvG5eoVbp8wfJM7wFxnCIO8w75X0FLfMdbUAjqhOqs1CjR+NBqMZPqAIH
- RcgqWyxpnQkafU4ojKnLGxe3xaaAXJEJzicxJgHJm3dHn/Na/kBaLJ8CuDyq/kqMOFS8=;
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
- ;
- h=In-Reply-To:Content-Type:MIME-Version:References:Message-ID:Subject:Cc:To
- :From:Date:Sender:Reply-To:Content-Transfer-Encoding:Content-ID:
- Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
- :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
- List-Post:List-Owner:List-Archive;
- bh=K6/ulcECnW5v1CQbWWMF5TBlmunhZlx2OhoXw0lq57c=; b=VorEp5T4nKjabEepFeTc1VX68a
- tXQ1sARLpkC6YJeV7b+LZsawA3LHt+7/kG8w3mlRq5Zq+/Op0KAsXM9ZD+GdrgLneLpKtdMKJtovf
- rPCBrWQ9tq8uAzSScGKuLeRBJNbgetktgKTmhg9putVszkPah76lzVoBIKWJAcqXcnwo=;
-Received: from nautica.notk.org ([91.121.71.147])
- by sfi-mx-1.v28.lw.sourceforge.com with esmtps
+ bh=tYmrdC81v8vZr/W0CTiyKvyhr8tJZIPEDxz7vmTvxdM=; b=bXj2SRxFukaLFK4cGhuhzRXstd
+ Nax91ZuT5kwpIZR7PILe1wh85iI2I7O5VbbUzQl1ki4A0afVc4fxuuLQ9wuaox7PleJNzU/qc9GoO
+ F9yym1JinR2PflElZKtruymkMDpSfYlEOyTuSNZ3jcmHktHW3/yvAPH1IcDAdNMCcCkE=;
+Received: from eva.beecloudy.net ([145.239.136.208] helo=penelope.mx)
+ by sfi-mx-2.v28.lw.sourceforge.com with esmtps
  (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.92.3)
- id 1n74Vp-00B5Fs-U8
- for v9fs-developer@lists.sourceforge.net; Mon, 10 Jan 2022 23:55:43 +0000
-Received: by nautica.notk.org (Postfix, from userid 108)
- id 7C7B5C009; Tue, 11 Jan 2022 00:55:35 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=codewreck.org; s=2;
- t=1641858935; bh=K6/ulcECnW5v1CQbWWMF5TBlmunhZlx2OhoXw0lq57c=;
- h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
- b=xQgzPKZFDelZ56Ycx59i3+LvKvg4qb8eHN6DcO0p5OJBhVHuytnVLD/3lmr0g5WHF
- LDTr512ap+JLVkVlwrP1CRorovaTTWPluu+cGePtTl7HV+rZWve7VJerjhLrH8apSh
- Rq5iUTTCkc8jg9R+JJs0lUREDHfuqHJMEUBFGHy3Ok2VTL5K8g9SJajxszF3o10lAO
- iPg60COYTSuOCrpKTqgEOzO6zS8zmgJSQweEe0xul0ZfONl5QyAr6JIw6TEfuLsW5o
- JOjzz1BFwCREjxkqpeFDQREDilUzc49+BuEnn8bvzJ8KQVdQd2YZ+E3fYE9+5XLx7y
- fg88Ymv/3XJ1w==
-X-Spam-Checker-Version: SpamAssassin 3.3.2 (2011-06-06) on nautica.notk.org
-X-Spam-Level: 
-X-Spam-Status: No, score=0.0 required=5.0 tests=UNPARSEABLE_RELAY
- autolearn=unavailable version=3.3.2
-Received: from odin.codewreck.org (localhost [127.0.0.1])
- by nautica.notk.org (Postfix) with ESMTPS id 53F2FC009;
- Tue, 11 Jan 2022 00:55:34 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=codewreck.org; s=2;
- t=1641858935; bh=K6/ulcECnW5v1CQbWWMF5TBlmunhZlx2OhoXw0lq57c=;
- h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
- b=xQgzPKZFDelZ56Ycx59i3+LvKvg4qb8eHN6DcO0p5OJBhVHuytnVLD/3lmr0g5WHF
- LDTr512ap+JLVkVlwrP1CRorovaTTWPluu+cGePtTl7HV+rZWve7VJerjhLrH8apSh
- Rq5iUTTCkc8jg9R+JJs0lUREDHfuqHJMEUBFGHy3Ok2VTL5K8g9SJajxszF3o10lAO
- iPg60COYTSuOCrpKTqgEOzO6zS8zmgJSQweEe0xul0ZfONl5QyAr6JIw6TEfuLsW5o
- JOjzz1BFwCREjxkqpeFDQREDilUzc49+BuEnn8bvzJ8KQVdQd2YZ+E3fYE9+5XLx7y
- fg88Ymv/3XJ1w==
-Received: from localhost (odin.codewreck.org [local])
- by odin.codewreck.org (OpenSMTPD) with ESMTPA id 846a2e93;
- Mon, 10 Jan 2022 23:55:30 +0000 (UTC)
-Date: Tue, 11 Jan 2022 08:55:15 +0900
-From: Dominique Martinet <asmadeus@codewreck.org>
-To: ng@0x80.stream
-Message-ID: <YdzHY+cTVmmX3zOm@codewreck.org>
+ id 1n7F9m-0003I5-SW
+ for v9fs-developer@lists.sourceforge.net; Tue, 11 Jan 2022 11:17:43 +0000
+Received: from localhost (localhost [127.0.0.1])
+ by penelope.mx (Postfix) with ESMTP id 697F6212B00;
+ Tue, 11 Jan 2022 12:17:26 +0100 (CET)
+Received: from penelope.mx ([127.0.0.1])
+ by localhost (penelope.mx [127.0.0.1]) (amavisd-new, port 10024)
+ with ESMTP id XrzDx5vlsRQd; Tue, 11 Jan 2022 12:17:25 +0100 (CET)
+Received: from penelope.mx (localhost [127.0.0.1])
+ by penelope.mx (Postfix) with ESMTP id 66CAE2127E6;
+ Tue, 11 Jan 2022 12:17:25 +0100 (CET)
+MIME-Version: 1.0
+Date: Tue, 11 Jan 2022 11:17:25 +0000
+From: ng@0x80.stream
+To: Dominique Martinet <asmadeus@codewreck.org>
+In-Reply-To: <YdzHY+cTVmmX3zOm@codewreck.org>
 References: <c4815842e8eedab0325fc62ae9e58fde@0x80.stream>
  <Ydy1qtV68fO69baZ@codewreck.org>
  <ae62a8a6f63c83b0dfc23db11ec49028@0x80.stream>
-MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <ae62a8a6f63c83b0dfc23db11ec49028@0x80.stream>
-X-Spam-Score: -0.2 (/)
+ <YdzHY+cTVmmX3zOm@codewreck.org>
+User-Agent: Roundcube Webmail/1.4.3
+Message-ID: <cf3687f6969edd609f3d1008c543199a@0x80.stream>
+X-Sender: ng@0x80.stream
+X-Spam-Score: 0.6 (/)
 X-Spam-Report: Spam detection software,
  running on the system "util-spamd-1.v13.lw.sourceforge.com", 
  has NOT identified this incoming email as spam.  The original
  message has been attached to this so you can view it or label
  similar future email.  If you have any questions, see
  the administrator of that system for details.
- Content preview:  ng@0x80.stream wrote on Mon, Jan 10,
- 2022 at 11:28:43PM +0000:
- > > This is bending the rules somewhat, but does your server only have this
- > > restriction for non-clone walks? > > The servers I use ar [...] 
- Content analysis details:   (-0.2 points, 6.0 required)
+ Content preview:  On 2022-01-10 23:55, Dominique Martinet wrote: [snip] > Most
+ people seem to use it for qemu, which doesn't enforce the > limitation. >
+ The other servers I occasionally test (ganesha, more rarely diod, [...] 
+ Content analysis details:   (0.6 points, 6.0 required)
  pts rule name              description
  ---- ---------------------- --------------------------------------------------
- 0.0 SPF_HELO_NONE          SPF: HELO does not publish an SPF Record
+ 0.1 URIBL_SBL_A Contains URL's A record listed in the Spamhaus SBL
+ blocklist [URIs: bitbucket.org]
+ -0.0 SPF_HELO_PASS          SPF: HELO matches SPF record
  -0.0 SPF_PASS               SPF: sender matches SPF record
- -0.1 DKIM_VALID_EF          Message has a valid DKIM or DK signature from
- envelope-from domain
- -0.1 DKIM_VALID_AU          Message has a valid DKIM or DK signature from
- author's domain
- 0.1 DKIM_SIGNED            Message has a DKIM or DK signature, not necessarily
- valid
- -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
- 0.0 UNPARSEABLE_RELAY      Informational: message has unparseable relay
- lines
-X-Headers-End: 1n74Vp-00B5Fs-U8
+ 0.5 FROM_SUSPICIOUS_NTLD   From abused NTLD
+X-Headers-End: 1n7F9m-0003I5-SW
 Subject: Re: [V9fs-developer] bad use of fid
 X-BeenThere: v9fs-developer@lists.sourceforge.net
 X-Mailman-Version: 2.1.21
@@ -116,56 +89,45 @@ List-Help: <mailto:v9fs-developer-request@lists.sourceforge.net?subject=help>
 List-Subscribe: <https://lists.sourceforge.net/lists/listinfo/v9fs-developer>, 
  <mailto:v9fs-developer-request@lists.sourceforge.net?subject=subscribe>
 Cc: v9fs-developer@lists.sourceforge.net
-Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Errors-To: v9fs-developer-bounces@lists.sourceforge.net
 
-ng@0x80.stream wrote on Mon, Jan 10, 2022 at 11:28:43PM +0000:
-> > This is bending the rules somewhat, but does your server only have this
-> > restriction for non-clone walks?
-> 
-> The servers I use are built on top of go9p and it looks like there's no
-> special case for clone walks:
-> https://github.com/lionkov/go9p/blob/master/p/srv/fcall.go#L211
+On 2022-01-10 23:55, Dominique Martinet wrote:
+[snip]
+> Most people seem to use it for qemu, which doesn't enforce the
+> limitation.
+> The other servers I occasionally test (ganesha, more rarely diod, and
+> even more rarely suckless' libixp) don't seem to enforce this check, 
+> and
+> you're the first to report this problem so other users for go9p likely
+> haven't upgraded yet.
 
-Thanks for providing link to server code.
-Indeed, regular file clones if file had been open will likely fail as
-well with the same error.
+Ah this gave me an idea. At least in my case, walking an open fid is 
+only a problem if newfid == fid. So I introduced a bug in my fs to 
+balance the bug in v9fs and things are working fine here. Thanks! :)
 
-> I can't comment on the rest of your message as I lack necessary knowledge
-> about the v9fs implementation. :(
+--- a/p/srv/fcall.go
++++ b/p/srv/fcall.go
+@@ -209,7 +209,7 @@ func (srv *Srv) walk(req *Req) {
+         }
 
-It's ok, I'm mostly just thinking aloud :)
+         /* we can't walk open files */
+-       if fid.opened {
++       if fid.opened && tc.Fid == tc.Newfid {
+                 req.RespondError(Ebaduse)
+                 return
+         }
 
-There's a merge window right now so I wanted to get a quick fix out
-immediately, but if it's not enough I'd rather not rush something out
-and work on a proper fix.
+I'm not sure about the priority of making v9fs follow the spec but I 
+checked two other servers, u9fs and then I mounted 9p.io (I don't know 
+what fs it runs). For u9fs I found this check 
+https://bitbucket.org/plan9-from-bell-labs/u9fs/src/d65923fd17e8b158350d3ccd6a4e32b89b15014a/u9fs.c#lines-477 
+and for 9p.io I get errors when listing, presumably for the same check. 
+I also found the same check in 9front cwfs 
+http://git.9front.org/plan9front/plan9front/538b8107122d55be6a941384dc499d56b35f99e1/sys/src/cmd/cwfs/9p2.c/f.html 
+(function 'walk').
 
-My preferred approach now would be to flag if the fid is walkable and
-have the search function specify which type of fid it wants if it cares
-(operations like stat/wstat could use fids opened with either).
-
-That won't let us clone deleted files, but common operations like
-fstat() won't break so it's a good compromise.
-
-It's not that difficult so if you want to take a stab I'd be happy to
-take a patch, otherwise I'll work on it as I have time and send you
-something for testing -- probably over next weekend.
-
-
-> I'm a bit surprised that this used to work in 5.10 and that no one spotted
-> this problem before in 5.12 and 5.14; it makes me wonder what people use
-> v9fs for! I'm thankful there's v9fs.
-
-Most people seem to use it for qemu, which doesn't enforce the
-limitation.
-The other servers I occasionally test (ganesha, more rarely diod, and
-even more rarely suckless' libixp) don't seem to enforce this check, and
-you're the first to report this problem so other users for go9p likely
-haven't upgraded yet.
-
--- 
-Dominique
 
 
 _______________________________________________
