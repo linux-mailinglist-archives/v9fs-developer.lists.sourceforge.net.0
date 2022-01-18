@@ -2,26 +2,26 @@ Return-Path: <v9fs-developer-bounces@lists.sourceforge.net>
 X-Original-To: lists+v9fs-developer@lfdr.de
 Delivered-To: lists+v9fs-developer@lfdr.de
 Received: from lists.sourceforge.net (lists.sourceforge.net [216.105.38.7])
-	by mail.lfdr.de (Postfix) with ESMTPS id 74FE8492A5C
-	for <lists+v9fs-developer@lfdr.de>; Tue, 18 Jan 2022 17:10:17 +0100 (CET)
-Received: from [127.0.0.1] (helo=sfs-ml-1.v29.lw.sourceforge.com)
-	by sfs-ml-1.v29.lw.sourceforge.com with esmtp (Exim 4.94.2)
+	by mail.lfdr.de (Postfix) with ESMTPS id AF01F492A82
+	for <lists+v9fs-developer@lfdr.de>; Tue, 18 Jan 2022 17:10:54 +0100 (CET)
+Received: from [127.0.0.1] (helo=sfs-ml-2.v29.lw.sourceforge.com)
+	by sfs-ml-2.v29.lw.sourceforge.com with esmtp (Exim 4.94.2)
 	(envelope-from <v9fs-developer-bounces@lists.sourceforge.net>)
-	id 1n9r3o-0004fU-1H; Tue, 18 Jan 2022 16:10:14 +0000
+	id 1n9r4O-0007g4-To; Tue, 18 Jan 2022 16:10:51 +0000
 Received: from [172.30.20.202] (helo=mx.sourceforge.net)
- by sfs-ml-1.v29.lw.sourceforge.com with esmtps (TLS1.2) tls
+ by sfs-ml-2.v29.lw.sourceforge.com with esmtps (TLS1.2) tls
  TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384 (Exim 4.94.2)
- (envelope-from <gregkh@linuxfoundation.org>) id 1n9r3k-0004fN-G0
- for v9fs-developer@lists.sourceforge.net; Tue, 18 Jan 2022 16:10:11 +0000
+ (envelope-from <gregkh@linuxfoundation.org>) id 1n9r4N-0007fy-RF
+ for v9fs-developer@lists.sourceforge.net; Tue, 18 Jan 2022 16:10:50 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
  d=sourceforge.net; s=x; h=Content-Transfer-Encoding:Content-Type:MIME-Version
  :References:In-Reply-To:Message-Id:Date:Subject:Cc:To:From:Sender:Reply-To:
  Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
  Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
  List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=QGe/LsftVUgj1skFGzyTLkYQixmSHOKWDtLwoYdOsvE=; b=RxeXEKI9wHjhAYNiXT+lLmHFFa
- qFm0GjvuGcPhi2hHWVRoFgvmiVctMWjcn7mC63q5T4xhba6cAk2sbZ4bDHfOpHvMISQW4hwUhy0ru
- bFHy86H6qX9n/J1cxzeoz1T9+9cfOzUE/t1h1KUBIyWJlul3iFPsz0jfMCnRJnldDYuA=;
+ bh=mY1vJ6Jt16R/ApJgIlarTQz39jfF5TEjEguHfdRW5Ng=; b=JpaoVtNRtmB2OWVTT5N0tehR6/
+ P+npBS/s0jFP8CBSWTqbtIvVw49bS3L+fThGsfH2+af7wCsmuNBJ8ktsAZPZ5wvG2n8Xj60fkw3MN
+ ANPZnrpLeXZAuY5wUe+3CUrQemrUgsaTW42PeRJ2sT3mu+I5Om4oh8ZNYykWXGGGWV5s=;
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  ;
  h=Content-Transfer-Encoding:Content-Type:MIME-Version:References:
@@ -29,35 +29,35 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
  :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
  List-Post:List-Owner:List-Archive;
- bh=QGe/LsftVUgj1skFGzyTLkYQixmSHOKWDtLwoYdOsvE=; b=DofXvpBz7p8v/cMgqYzoIRsusH
- LCBJ71wzRSawCnHd3NprtBKAjNBqyTl1lWbxEv403qrBGQ49pEBx2sSea9q/jZb3ZXImm4lEA9BtY
- w5rzxVJZKAbgGU7omsG/8dnvSm6kfAyeVoETRy9KPM+uQ3ResKW/2cw5mPDEQlo50nGg=;
+ bh=mY1vJ6Jt16R/ApJgIlarTQz39jfF5TEjEguHfdRW5Ng=; b=jNUXZfYCaXEW2LXdNrLIWGPj96
+ v8Jkqop0iA67qrMP0FUMJMjZX63swBPmkk2ytc5fRfxrLuug4/UmQIDO3dGncxK3dgL5j422X7myn
+ dnMeI2AHtHXAeMirDZHtx0brGaKD0H9k5V//xBzPUTU+ndoYMjsm9L44ajCPdcmmGK7I=;
 Received: from dfw.source.kernel.org ([139.178.84.217])
- by sfi-mx-2.v28.lw.sourceforge.com with esmtps
+ by sfi-mx-1.v28.lw.sourceforge.com with esmtps
  (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.92.3)
- id 1n9r3e-0005uC-HP
- for v9fs-developer@lists.sourceforge.net; Tue, 18 Jan 2022 16:10:10 +0000
+ id 1n9r4F-002Eqw-JJ
+ for v9fs-developer@lists.sourceforge.net; Tue, 18 Jan 2022 16:10:50 +0000
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
  (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
  (No client certificate requested)
- by dfw.source.kernel.org (Postfix) with ESMTPS id 5B98C6128A;
- Tue, 18 Jan 2022 16:09:56 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 171E2C00446;
- Tue, 18 Jan 2022 16:09:54 +0000 (UTC)
+ by dfw.source.kernel.org (Postfix) with ESMTPS id 698CB612BE;
+ Tue, 18 Jan 2022 16:10:37 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 45822C00446;
+ Tue, 18 Jan 2022 16:10:36 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
- s=korg; t=1642522195;
- bh=W6HW6KTxGkaoCnMZ0oFHfdfpF+QnYgXzrTD5NEDthIk=;
+ s=korg; t=1642522236;
+ bh=7wTSqMpig/m2wbRTD66ZE5he1DEHG5kW/Yw/muIsqh0=;
  h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
- b=qjNQm0xI29X6kwhgVCG/fijfv8LsZyuMJj7Bx+lxHebVuHd0FnqmOahMsob+xsjPU
- 7C9gqDbGqL4yPxRSlmVl63YmA1jzta7rVKzMjdfik+q2gLmSy7lXeIA2/jRG00tMm3
- KwZaQnSNFuPeB4t919hxK6jIe/2HBM9TQ3zqksl8=
+ b=2KbIaiYvv/QR1F8eGb3qsB2a0znU0DY6lA8z4Hm2vqq27REF5iUi4xZGp7q/ROEOy
+ +nHr2FwPhtXMD+h+BSPCPPh2yEuBfuDu018tm+pLnTuM3LUo81LXi6jw88iFexEa52
+ 3mPZNsgBnsBxSy1kq0E7RtF50yn3wZ5dd2Ye1jnU=
 From: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
 To: linux-kernel@vger.kernel.org
-Date: Tue, 18 Jan 2022 17:05:58 +0100
-Message-Id: <20220118160452.283433634@linuxfoundation.org>
+Date: Tue, 18 Jan 2022 17:06:08 +0100
+Message-Id: <20220118160452.842976342@linuxfoundation.org>
 X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20220118160451.879092022@linuxfoundation.org>
-References: <20220118160451.879092022@linuxfoundation.org>
+In-Reply-To: <20220118160452.384322748@linuxfoundation.org>
+References: <20220118160452.384322748@linuxfoundation.org>
 User-Agent: quilt/0.66
 MIME-Version: 1.0
 X-Spam-Score: -5.9 (-----)
@@ -87,8 +87,8 @@ X-Spam-Report: Spam detection software,
  valid
  -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
  -0.7 DKIMWL_WL_HIGH         DKIMwl.org - High trust sender
-X-Headers-End: 1n9r3e-0005uC-HP
-Subject: [V9fs-developer] [PATCH 5.15 12/28] 9p: only copy valid iattrs in
+X-Headers-End: 1n9r4F-002Eqw-JJ
+Subject: [V9fs-developer] [PATCH 5.16 13/28] 9p: only copy valid iattrs in
  9P2000.L setattr implementation
 X-BeenThere: v9fs-developer@lists.sourceforge.net
 X-Mailman-Version: 2.1.21
@@ -141,7 +141,7 @@ Signed-off-by: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
 
 --- a/fs/9p/vfs_inode_dotl.c
 +++ b/fs/9p/vfs_inode_dotl.c
-@@ -553,7 +553,10 @@ int v9fs_vfs_setattr_dotl(struct user_na
+@@ -551,7 +551,10 @@ int v9fs_vfs_setattr_dotl(struct user_na
  {
  	int retval, use_dentry = 0;
  	struct p9_fid *fid = NULL;
@@ -153,7 +153,7 @@ Signed-off-by: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
  	struct inode *inode = d_inode(dentry);
  
  	p9_debug(P9_DEBUG_VFS, "\n");
-@@ -563,14 +566,22 @@ int v9fs_vfs_setattr_dotl(struct user_na
+@@ -561,14 +564,22 @@ int v9fs_vfs_setattr_dotl(struct user_na
  		return retval;
  
  	p9attr.valid = v9fs_mapped_iattr_valid(iattr->ia_valid);
