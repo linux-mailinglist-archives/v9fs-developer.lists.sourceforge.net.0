@@ -2,62 +2,62 @@ Return-Path: <v9fs-developer-bounces@lists.sourceforge.net>
 X-Original-To: lists+v9fs-developer@lfdr.de
 Delivered-To: lists+v9fs-developer@lfdr.de
 Received: from lists.sourceforge.net (lists.sourceforge.net [216.105.38.7])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5EFBA492117
-	for <lists+v9fs-developer@lfdr.de>; Tue, 18 Jan 2022 09:23:36 +0100 (CET)
-Received: from [127.0.0.1] (helo=sfs-ml-2.v29.lw.sourceforge.com)
-	by sfs-ml-2.v29.lw.sourceforge.com with esmtp (Exim 4.94.2)
+	by mail.lfdr.de (Postfix) with ESMTPS id 294FB492118
+	for <lists+v9fs-developer@lfdr.de>; Tue, 18 Jan 2022 09:23:45 +0100 (CET)
+Received: from [127.0.0.1] (helo=sfs-ml-1.v29.lw.sourceforge.com)
+	by sfs-ml-1.v29.lw.sourceforge.com with esmtp (Exim 4.94.2)
 	(envelope-from <v9fs-developer-bounces@lists.sourceforge.net>)
-	id 1n9jmB-0001pL-2v; Tue, 18 Jan 2022 08:23:33 +0000
+	id 1n9jmL-0001Gd-4I; Tue, 18 Jan 2022 08:23:43 +0000
 Received: from [172.30.20.202] (helo=mx.sourceforge.net)
- by sfs-ml-2.v29.lw.sourceforge.com with esmtps (TLS1.2) tls
+ by sfs-ml-1.v29.lw.sourceforge.com with esmtps (TLS1.2) tls
  TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384 (Exim 4.94.2)
- (envelope-from <gregkh@linuxfoundation.org>) id 1n9jm8-0001pB-Oh
- for v9fs-developer@lists.sourceforge.net; Tue, 18 Jan 2022 08:23:31 +0000
+ (envelope-from <gregkh@linuxfoundation.org>) id 1n9jmJ-0001Dx-J7
+ for v9fs-developer@lists.sourceforge.net; Tue, 18 Jan 2022 08:23:42 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
  d=sourceforge.net; s=x; h=Content-Transfer-Encoding:Content-Type:MIME-Version
  :Message-ID:Date:From:Cc:To:Subject:Sender:Reply-To:Content-ID:
  Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
  :Resent-Message-ID:In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:
  List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=0TNiUcu09nL837k03yS8UowgELhC3BlfjKp5pWwgWrg=; b=YjVMF4Fo13llRjjFVIbfchAUOg
- m9kHYZMqdKDAAydCjRHjpc3SsJHONO1rDDlWCP+/G6klosTNiI/jcwNIGG5xXsXsBjZGqJ7pEivto
- JOdkgy7687dlO9li0cyihmtDN965gdAWcopfSQ2r/65mHDT9lYsnzgDmwn8gO326UgDg=;
+ bh=2VRcue/noefHLYaLPwygeOTVHaEerkmALOl26Zj69DQ=; b=aVFgBuaxYhFRkdw8Velg4RFfCg
+ D2SKtx4MH756bth/Pv7MH4PdzE4/wzUWfuAloGlRKkhUUa4V4ppOSYOoOy66E/Pf4LiHD7YIBawxo
+ aMto5ljsFoj2pyrOre0JRPEYxx0EATbSV/EFVzp1H/zw18LXt4j4APaMqJdz4ZyUONOA=;
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  ;
  h=Content-Transfer-Encoding:Content-Type:MIME-Version:Message-ID:Date:From:
  Cc:To:Subject:Sender:Reply-To:Content-ID:Content-Description:Resent-Date:
  Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:
  References:List-Id:List-Help:List-Unsubscribe:List-Subscribe:List-Post:
- List-Owner:List-Archive; bh=0TNiUcu09nL837k03yS8UowgELhC3BlfjKp5pWwgWrg=; b=l
- IVnateV9On//bhtes3zuaNGYE7+AvuBvplH6mJmRfTvX2iiHin/ITBvy1WNVAMBiOvamHEdvu4pO2
- ijdJuT8Hq2PCsPxXlSbmTeDfiWZACqmMR8Jx7Fc+erLtYqjOZN9PCUK/gLNfXo3XPldCQ1Jd8YUNT
- CAGo2EgFFm0R1Nyw=;
+ List-Owner:List-Archive; bh=2VRcue/noefHLYaLPwygeOTVHaEerkmALOl26Zj69DQ=; b=A
+ rxyWBxjWXIhxiQk576ttJTNXE9vvNxGMUHKiWqmpcqg88ZkZJVo5cYy1h1x3YQI1U+YWvXJ5nJfm6
+ B5kiXrgwE2OHZswAqSaNuzDfhp5gQCJMYfHfCvSNAtbVzJ55/S30ecTDwTw1TI0oel+5mU034xkYP
+ BfZNDHpLl7qy71cc=;
 Received: from ams.source.kernel.org ([145.40.68.75])
- by sfi-mx-2.v28.lw.sourceforge.com with esmtps
+ by sfi-mx-1.v28.lw.sourceforge.com with esmtps
  (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.92.3)
- id 1n9jm6-0000kE-IF
- for v9fs-developer@lists.sourceforge.net; Tue, 18 Jan 2022 08:23:31 +0000
+ id 1n9jmG-001ll1-2k
+ for v9fs-developer@lists.sourceforge.net; Tue, 18 Jan 2022 08:23:41 +0000
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
  (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
  (No client certificate requested)
- by ams.source.kernel.org (Postfix) with ESMTPS id 62DF7B80BA8;
- Tue, 18 Jan 2022 08:23:23 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8A3C5C00446;
- Tue, 18 Jan 2022 08:23:21 +0000 (UTC)
+ by ams.source.kernel.org (Postfix) with ESMTPS id AC73EB810CE;
+ Tue, 18 Jan 2022 08:23:33 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E7B02C00446;
+ Tue, 18 Jan 2022 08:23:31 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
- s=korg; t=1642494202;
- bh=4wHxOBVEYov1ACArsiWy+kTWRrARjktgwtbrNfd1i5g=;
+ s=korg; t=1642494212;
+ bh=0wjWww2L/mXpgjtMJeYqKYrVuIWB+CKdAtJp9yMLung=;
  h=Subject:To:Cc:From:Date:From;
- b=wgTmyaqy3k294MHBJH3Qf219S3vz4Efr+Mg3iuiSD2+tFIqB5iX+e4hFbMxM/qqhW
- 6BkVpQWASdCN1MnQ1CDkhgBSu7TRzJw9vMwfReWmsYCdr95NKA+sbbJ/iaBCSoJ7Rq
- o2kCuyoQKlqLG5cN+pm5/K+vCSF4JfwP8s4dwBl4=
+ b=AaMQJ4SWHE/8KxA59B86fQx3UxxIgjLYBURDCHCQX9khbKoIiVs2IZwExo7dhg7xk
+ vH5A3kiz0+HBL2fgBetd0wGLv0X2q5mXekdGIF1UC4Wc63IFj9BYyog0OLtHNdCrQe
+ LmRQHsYuu6JWiEknuTv+/Z1i4M/6aa1ef9S+aW5M=
 To: asmadeus@codewreck.org, christian.brauner@ubuntu.com, ericvh@gmail.com,
  gregkh@linuxfoundation.org, lucho@ionkov.net, stable@kernel.org,
  syzbot+dfac92a50024b54acaa4@syzkaller.appspotmail.com,
  v9fs-developer@lists.sourceforge.net
 From: <gregkh@linuxfoundation.org>
-Date: Tue, 18 Jan 2022 09:22:25 +0100
-Message-ID: <16424941455934@kroah.com>
+Date: Tue, 18 Jan 2022 09:22:43 +0100
+Message-ID: <164249416370227@kroah.com>
 MIME-Version: 1.0
 X-stable: commit
 X-Patchwork-Hint: ignore 
@@ -70,7 +70,7 @@ X-Spam-Report: Spam detection software,
  the administrator of that system for details.
  Content preview: This is a note to let you know that I've just added the patch
  titled 9p: only copy valid iattrs in 9P2000.L setattr implementation to the
- 5.15-stable tree which can be found at:
+ 5.16-stable tree which can be found at:
  http://www.kernel.org/git/?p=linux/kernel/git/stable/stable-queue.git;
  a=summary
  Content analysis details:   (-5.9 points, 6.0 required)
@@ -88,9 +88,9 @@ X-Spam-Report: Spam detection software,
  valid
  -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
  -0.7 DKIMWL_WL_HIGH         DKIMwl.org - High trust sender
-X-Headers-End: 1n9jm6-0000kE-IF
+X-Headers-End: 1n9jmG-001ll1-2k
 Subject: [V9fs-developer] Patch "9p: only copy valid iattrs in 9P2000.L
- setattr implementation" has been added to the 5.15-stable tree
+ setattr implementation" has been added to the 5.16-stable tree
 X-BeenThere: v9fs-developer@lists.sourceforge.net
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -112,12 +112,12 @@ This is a note to let you know that I've just added the patch titled
 
     9p: only copy valid iattrs in 9P2000.L setattr implementation
 
-to the 5.15-stable tree which can be found at:
+to the 5.16-stable tree which can be found at:
     http://www.kernel.org/git/?p=linux/kernel/git/stable/stable-queue.git;a=summary
 
 The filename of the patch is:
      9p-only-copy-valid-iattrs-in-9p2000.l-setattr-implementation.patch
-and it can be found in the queue-5.15 subdirectory.
+and it can be found in the queue-5.16 subdirectory.
 
 If you, or anyone else, feels it should not be added to the stable tree,
 please let <stable@vger.kernel.org> know about it.
@@ -159,7 +159,7 @@ Signed-off-by: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
 
 --- a/fs/9p/vfs_inode_dotl.c
 +++ b/fs/9p/vfs_inode_dotl.c
-@@ -553,7 +553,10 @@ int v9fs_vfs_setattr_dotl(struct user_na
+@@ -551,7 +551,10 @@ int v9fs_vfs_setattr_dotl(struct user_na
  {
  	int retval, use_dentry = 0;
  	struct p9_fid *fid = NULL;
@@ -171,7 +171,7 @@ Signed-off-by: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
  	struct inode *inode = d_inode(dentry);
  
  	p9_debug(P9_DEBUG_VFS, "\n");
-@@ -563,14 +566,22 @@ int v9fs_vfs_setattr_dotl(struct user_na
+@@ -561,14 +564,22 @@ int v9fs_vfs_setattr_dotl(struct user_na
  		return retval;
  
  	p9attr.valid = v9fs_mapped_iattr_valid(iattr->ia_valid);
@@ -206,8 +206,8 @@ Signed-off-by: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
 
 Patches currently in stable-queue which might be from christian.brauner@ubuntu.com are
 
-queue-5.15/devtmpfs-regression-fix-reconfigure-on-each-mount.patch
-queue-5.15/9p-only-copy-valid-iattrs-in-9p2000.l-setattr-implementation.patch
+queue-5.16/devtmpfs-regression-fix-reconfigure-on-each-mount.patch
+queue-5.16/9p-only-copy-valid-iattrs-in-9p2000.l-setattr-implementation.patch
 
 
 _______________________________________________
