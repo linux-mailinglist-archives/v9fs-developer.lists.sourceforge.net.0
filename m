@@ -2,62 +2,62 @@ Return-Path: <v9fs-developer-bounces@lists.sourceforge.net>
 X-Original-To: lists+v9fs-developer@lfdr.de
 Delivered-To: lists+v9fs-developer@lfdr.de
 Received: from lists.sourceforge.net (lists.sourceforge.net [216.105.38.7])
-	by mail.lfdr.de (Postfix) with ESMTPS id D9AEB492114
-	for <lists+v9fs-developer@lfdr.de>; Tue, 18 Jan 2022 09:22:50 +0100 (CET)
-Received: from [127.0.0.1] (helo=sfs-ml-4.v29.lw.sourceforge.com)
-	by sfs-ml-4.v29.lw.sourceforge.com with esmtp (Exim 4.94.2)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5EFBA492117
+	for <lists+v9fs-developer@lfdr.de>; Tue, 18 Jan 2022 09:23:36 +0100 (CET)
+Received: from [127.0.0.1] (helo=sfs-ml-2.v29.lw.sourceforge.com)
+	by sfs-ml-2.v29.lw.sourceforge.com with esmtp (Exim 4.94.2)
 	(envelope-from <v9fs-developer-bounces@lists.sourceforge.net>)
-	id 1n9jlQ-0002TM-82; Tue, 18 Jan 2022 08:22:47 +0000
+	id 1n9jmB-0001pL-2v; Tue, 18 Jan 2022 08:23:33 +0000
 Received: from [172.30.20.202] (helo=mx.sourceforge.net)
- by sfs-ml-4.v29.lw.sourceforge.com with esmtps (TLS1.2) tls
+ by sfs-ml-2.v29.lw.sourceforge.com with esmtps (TLS1.2) tls
  TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384 (Exim 4.94.2)
- (envelope-from <gregkh@linuxfoundation.org>) id 1n9jlO-0002T9-II
- for v9fs-developer@lists.sourceforge.net; Tue, 18 Jan 2022 08:22:45 +0000
+ (envelope-from <gregkh@linuxfoundation.org>) id 1n9jm8-0001pB-Oh
+ for v9fs-developer@lists.sourceforge.net; Tue, 18 Jan 2022 08:23:31 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
  d=sourceforge.net; s=x; h=Content-Transfer-Encoding:Content-Type:MIME-Version
  :Message-ID:Date:From:Cc:To:Subject:Sender:Reply-To:Content-ID:
  Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
  :Resent-Message-ID:In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:
  List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=riQAZiX2ICYTAOrnk1W5PxOe6vW5nRIjnD8AeDmkhZ0=; b=MTbYlut3AARsInTkgM+iprHjf4
- KUyjtzb8ZZq7GREpqx1bjmV/f6JrX0g5AQjlbOEktbt4hPFaXA53fKVn3d9IHD7LXcjAYEb7ibpvA
- /2+qqTz8SpInpyqqZmzrLfs/vgEMmH8FSf6mw5/FrSjPnl/w69dwoficTFCSj9fpe/6s=;
+ bh=0TNiUcu09nL837k03yS8UowgELhC3BlfjKp5pWwgWrg=; b=YjVMF4Fo13llRjjFVIbfchAUOg
+ m9kHYZMqdKDAAydCjRHjpc3SsJHONO1rDDlWCP+/G6klosTNiI/jcwNIGG5xXsXsBjZGqJ7pEivto
+ JOdkgy7687dlO9li0cyihmtDN965gdAWcopfSQ2r/65mHDT9lYsnzgDmwn8gO326UgDg=;
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  ;
  h=Content-Transfer-Encoding:Content-Type:MIME-Version:Message-ID:Date:From:
  Cc:To:Subject:Sender:Reply-To:Content-ID:Content-Description:Resent-Date:
  Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:
  References:List-Id:List-Help:List-Unsubscribe:List-Subscribe:List-Post:
- List-Owner:List-Archive; bh=riQAZiX2ICYTAOrnk1W5PxOe6vW5nRIjnD8AeDmkhZ0=; b=i
- NPe75olzLyqdR4fjvlYBxcdMHTczi7mV+RHocVEY5J/EU02BF6hyExArOuKEwZ9BqjsPw4D//q+vu
- vBPeeNZ3k/0XiZ1qPAho2KKuTaQg0h5KFjf5CGifrAcRZCamHVEGUyHCYBntJSyCV9GDSfwH+JMal
- ioJ7N4qQTPnDD/YE=;
-Received: from dfw.source.kernel.org ([139.178.84.217])
+ List-Owner:List-Archive; bh=0TNiUcu09nL837k03yS8UowgELhC3BlfjKp5pWwgWrg=; b=l
+ IVnateV9On//bhtes3zuaNGYE7+AvuBvplH6mJmRfTvX2iiHin/ITBvy1WNVAMBiOvamHEdvu4pO2
+ ijdJuT8Hq2PCsPxXlSbmTeDfiWZACqmMR8Jx7Fc+erLtYqjOZN9PCUK/gLNfXo3XPldCQ1Jd8YUNT
+ CAGo2EgFFm0R1Nyw=;
+Received: from ams.source.kernel.org ([145.40.68.75])
  by sfi-mx-2.v28.lw.sourceforge.com with esmtps
  (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.92.3)
- id 1n9jlM-0000fZ-K8
- for v9fs-developer@lists.sourceforge.net; Tue, 18 Jan 2022 08:22:45 +0000
+ id 1n9jm6-0000kE-IF
+ for v9fs-developer@lists.sourceforge.net; Tue, 18 Jan 2022 08:23:31 +0000
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
  (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
  (No client certificate requested)
- by dfw.source.kernel.org (Postfix) with ESMTPS id 4828A61386;
- Tue, 18 Jan 2022 08:22:34 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 20A52C00446;
- Tue, 18 Jan 2022 08:22:32 +0000 (UTC)
+ by ams.source.kernel.org (Postfix) with ESMTPS id 62DF7B80BA8;
+ Tue, 18 Jan 2022 08:23:23 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8A3C5C00446;
+ Tue, 18 Jan 2022 08:23:21 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
- s=korg; t=1642494153;
- bh=IfFu9Bn9NlRcDj7YRwZ9w1HP5X3ychb+9gUKJAedq5M=;
+ s=korg; t=1642494202;
+ bh=4wHxOBVEYov1ACArsiWy+kTWRrARjktgwtbrNfd1i5g=;
  h=Subject:To:Cc:From:Date:From;
- b=X48MySP0VgotjXjtgizQJ+jlkUQcR/rr5LT0Bu+oGMwXUcwBFe7ZiVl0HJyC7O00v
- Xn2sofuS7fARfn9Zk3Q+JFyblWansOmRL20WD/LsT/2aTQ1dpcKUtLEEYTi6Cjdrwv
- ov48i/eSPvRWEJv5gtC32QgS0uJ9EFQ9CDO4OZdA=
+ b=wgTmyaqy3k294MHBJH3Qf219S3vz4Efr+Mg3iuiSD2+tFIqB5iX+e4hFbMxM/qqhW
+ 6BkVpQWASdCN1MnQ1CDkhgBSu7TRzJw9vMwfReWmsYCdr95NKA+sbbJ/iaBCSoJ7Rq
+ o2kCuyoQKlqLG5cN+pm5/K+vCSF4JfwP8s4dwBl4=
 To: asmadeus@codewreck.org, christian.brauner@ubuntu.com, ericvh@gmail.com,
  gregkh@linuxfoundation.org, lucho@ionkov.net, stable@kernel.org,
  syzbot+dfac92a50024b54acaa4@syzkaller.appspotmail.com,
  v9fs-developer@lists.sourceforge.net
 From: <gregkh@linuxfoundation.org>
-Date: Tue, 18 Jan 2022 09:22:07 +0100
-Message-ID: <1642494127222151@kroah.com>
+Date: Tue, 18 Jan 2022 09:22:25 +0100
+Message-ID: <16424941455934@kroah.com>
 MIME-Version: 1.0
 X-stable: commit
 X-Patchwork-Hint: ignore 
@@ -70,16 +70,16 @@ X-Spam-Report: Spam detection software,
  the administrator of that system for details.
  Content preview: This is a note to let you know that I've just added the patch
  titled 9p: only copy valid iattrs in 9P2000.L setattr implementation to the
- 5.10-stable tree which can be found at:
+ 5.15-stable tree which can be found at:
  http://www.kernel.org/git/?p=linux/kernel/git/stable/stable-queue.git;
  a=summary
  Content analysis details:   (-5.9 points, 6.0 required)
  pts rule name              description
  ---- ---------------------- --------------------------------------------------
+ -5.0 RCVD_IN_DNSWL_HI       RBL: Sender listed at https://www.dnswl.org/,
+ high trust [145.40.68.75 listed in list.dnswl.org]
  0.0 SPF_HELO_NONE          SPF: HELO does not publish an SPF Record
  -0.0 SPF_PASS               SPF: sender matches SPF record
- -5.0 RCVD_IN_DNSWL_HI       RBL: Sender listed at https://www.dnswl.org/,
- high trust [139.178.84.217 listed in list.dnswl.org]
  -0.1 DKIM_VALID_EF          Message has a valid DKIM or DK signature from
  envelope-from domain
  -0.1 DKIM_VALID_AU          Message has a valid DKIM or DK signature from
@@ -88,9 +88,9 @@ X-Spam-Report: Spam detection software,
  valid
  -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
  -0.7 DKIMWL_WL_HIGH         DKIMwl.org - High trust sender
-X-Headers-End: 1n9jlM-0000fZ-K8
+X-Headers-End: 1n9jm6-0000kE-IF
 Subject: [V9fs-developer] Patch "9p: only copy valid iattrs in 9P2000.L
- setattr implementation" has been added to the 5.10-stable tree
+ setattr implementation" has been added to the 5.15-stable tree
 X-BeenThere: v9fs-developer@lists.sourceforge.net
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -112,12 +112,12 @@ This is a note to let you know that I've just added the patch titled
 
     9p: only copy valid iattrs in 9P2000.L setattr implementation
 
-to the 5.10-stable tree which can be found at:
+to the 5.15-stable tree which can be found at:
     http://www.kernel.org/git/?p=linux/kernel/git/stable/stable-queue.git;a=summary
 
 The filename of the patch is:
      9p-only-copy-valid-iattrs-in-9p2000.l-setattr-implementation.patch
-and it can be found in the queue-5.10 subdirectory.
+and it can be found in the queue-5.15 subdirectory.
 
 If you, or anyone else, feels it should not be added to the stable tree,
 please let <stable@vger.kernel.org> know about it.
@@ -159,9 +159,9 @@ Signed-off-by: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
 
 --- a/fs/9p/vfs_inode_dotl.c
 +++ b/fs/9p/vfs_inode_dotl.c
-@@ -541,7 +541,10 @@ int v9fs_vfs_setattr_dotl(struct dentry
+@@ -553,7 +553,10 @@ int v9fs_vfs_setattr_dotl(struct user_na
  {
- 	int retval;
+ 	int retval, use_dentry = 0;
  	struct p9_fid *fid = NULL;
 -	struct p9_iattr_dotl p9attr;
 +	struct p9_iattr_dotl p9attr = {
@@ -171,7 +171,7 @@ Signed-off-by: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
  	struct inode *inode = d_inode(dentry);
  
  	p9_debug(P9_DEBUG_VFS, "\n");
-@@ -551,14 +554,22 @@ int v9fs_vfs_setattr_dotl(struct dentry
+@@ -563,14 +566,22 @@ int v9fs_vfs_setattr_dotl(struct user_na
  		return retval;
  
  	p9attr.valid = v9fs_mapped_iattr_valid(iattr->ia_valid);
@@ -206,8 +206,8 @@ Signed-off-by: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
 
 Patches currently in stable-queue which might be from christian.brauner@ubuntu.com are
 
-queue-5.10/devtmpfs-regression-fix-reconfigure-on-each-mount.patch
-queue-5.10/9p-only-copy-valid-iattrs-in-9p2000.l-setattr-implementation.patch
+queue-5.15/devtmpfs-regression-fix-reconfigure-on-each-mount.patch
+queue-5.15/9p-only-copy-valid-iattrs-in-9p2000.l-setattr-implementation.patch
 
 
 _______________________________________________
