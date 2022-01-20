@@ -2,86 +2,103 @@ Return-Path: <v9fs-developer-bounces@lists.sourceforge.net>
 X-Original-To: lists+v9fs-developer@lfdr.de
 Delivered-To: lists+v9fs-developer@lfdr.de
 Received: from lists.sourceforge.net (lists.sourceforge.net [216.105.38.7])
-	by mail.lfdr.de (Postfix) with ESMTPS id 59D2A494A5E
-	for <lists+v9fs-developer@lfdr.de>; Thu, 20 Jan 2022 10:09:22 +0100 (CET)
-Received: from [127.0.0.1] (helo=sfs-ml-4.v29.lw.sourceforge.com)
-	by sfs-ml-4.v29.lw.sourceforge.com with esmtp (Exim 4.94.2)
+	by mail.lfdr.de (Postfix) with ESMTPS id 106DA494AE1
+	for <lists+v9fs-developer@lfdr.de>; Thu, 20 Jan 2022 10:38:09 +0100 (CET)
+Received: from [127.0.0.1] (helo=sfs-ml-1.v29.lw.sourceforge.com)
+	by sfs-ml-1.v29.lw.sourceforge.com with esmtp (Exim 4.94.2)
 	(envelope-from <v9fs-developer-bounces@lists.sourceforge.net>)
-	id 1nATRW-0001qS-G4; Thu, 20 Jan 2022 09:09:17 +0000
+	id 1nATtQ-0005Fi-Du; Thu, 20 Jan 2022 09:38:07 +0000
 Received: from [172.30.20.202] (helo=mx.sourceforge.net)
- by sfs-ml-4.v29.lw.sourceforge.com with esmtps (TLS1.2) tls
- TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384 (Exim 4.94.2) (envelope-from
- <BATV+0328028a7a74e2859a11+6724+infradead.org+hch@bombadil.srs.infradead.org>)
- id 1nATRU-0001qM-W1
- for v9fs-developer@lists.sourceforge.net; Thu, 20 Jan 2022 09:09:15 +0000
+ by sfs-ml-1.v29.lw.sourceforge.com with esmtps (TLS1.2) tls
+ TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384 (Exim 4.94.2)
+ (envelope-from <dhowells@redhat.com>) id 1nATtO-0005Fb-VG
+ for v9fs-developer@lists.sourceforge.net; Thu, 20 Jan 2022 09:38:05 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=sourceforge.net; s=x; h=In-Reply-To:Content-Type:MIME-Version:References:
- Message-ID:Subject:Cc:To:From:Date:Sender:Reply-To:Content-Transfer-Encoding:
- Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
- Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
- List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=ojH90duUrlg/GDFel8G8XOOeQrX2zbxUTaKAoe1bGvs=; b=mLDb5L/2BgSomZ2Y4lHAhh2dPh
- Da7iPCMhEMOtNYJ+et/9OiurgOoAjX+KEkk/Qe7HuACoGoF65zq/ggHuA1hoOWHEpKhTQki8o8iGV
- pDB29KAJVnXJfzosnaT7kQeKaYb0Ikgwhs37SAsICqEptvrBV4o80z0ltfFj8XM7nVUY=;
+ d=sourceforge.net; s=x; h=Message-ID:Date:Content-ID:Content-Type:
+ MIME-Version:Subject:Cc:To:References:In-Reply-To:From:Sender:Reply-To:
+ Content-Transfer-Encoding:Content-Description:Resent-Date:Resent-From:
+ Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:
+ List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
+ bh=vwaun9h4PrGOctit7O7Y3jbampOsovEgn1eDqCi+RHc=; b=YcEaUxMAHEGpxFwnIdabvwaJfo
+ tdep2ITECHn2LphMLsEooZamMNGUlRc3Q5YA3kdQeX1iKOkSB9EghMvbkXVqgi3B7x9A5WvDTXv2G
+ pjwzMc652ZuvGiN+2orSvg5iOGWpRGmeKJRTZ98db64TVXkWcVQjoXJmV4xcKk8pO9uc=;
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  ;
- h=In-Reply-To:Content-Type:MIME-Version:References:Message-ID:Subject:Cc:To
- :From:Date:Sender:Reply-To:Content-Transfer-Encoding:Content-ID:
+ h=Message-ID:Date:Content-ID:Content-Type:MIME-Version:Subject:Cc:To:
+ References:In-Reply-To:From:Sender:Reply-To:Content-Transfer-Encoding:
  Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
  :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
  List-Post:List-Owner:List-Archive;
- bh=ojH90duUrlg/GDFel8G8XOOeQrX2zbxUTaKAoe1bGvs=; b=d7W6b46wYRgstlT6dJC43ZOJ38
- 08YdsWdMJJ7JxOGm76mFntToAnSduCEngqVizJlh8pXyjD49da/nuwvBZtVBuj+b08UiT2SQwk0Ap
- HR8rZTi8U5NGZIxJCUIRkbcQhm6gtoDc/cSe/7cK6kbhcKlueihOQ571sPcfH2w/xQfs=;
-Received: from bombadil.infradead.org ([198.137.202.133])
- by sfi-mx-1.v28.lw.sourceforge.com with esmtps
+ bh=vwaun9h4PrGOctit7O7Y3jbampOsovEgn1eDqCi+RHc=; b=COTw8QnlJibEkeKBcmW/nKNyM3
+ ex8eaN9+5ep7UDCF6fe4/dmbuxOrVAu6fiW26OgWo2BeuAw1dWCcKCfa/mxjNl2KrprsFXWe5VZvH
+ /jr+5nMt11STCuP3EUD9hhz7YE0f0bnT76vpqCGH4O9MDvH4THGLAba7Q/6cE4ZS9m7I=;
+Received: from us-smtp-delivery-124.mimecast.com ([170.10.129.124])
+ by sfi-mx-2.v28.lw.sourceforge.com with esmtps
  (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.92.3)
- id 1nATRS-004hqd-SP
- for v9fs-developer@lists.sourceforge.net; Thu, 20 Jan 2022 09:09:15 +0000
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=infradead.org; s=bombadil.20210309; h=In-Reply-To:Content-Type:MIME-Version
- :References:Message-ID:Subject:Cc:To:From:Date:Sender:Reply-To:
- Content-Transfer-Encoding:Content-ID:Content-Description;
- bh=ojH90duUrlg/GDFel8G8XOOeQrX2zbxUTaKAoe1bGvs=; b=tCO5lD4il6m52dcPk+/cYpHidp
- +onLjblS0VrPFPxS9ZGJUQvdyNeZPPGHNAfF+5peIslo4QgfZyN8BmETycomdYalpvi6wzkvq4RyL
- xpk6fgqFhh41z7Jecw/dPJnI+IIgRJgrJPksZWbTPWwU8R3QsvMLuMlkPHQ3yTy59btCClyFa50/d
- T+CHX9m/pw3Xmdpesim/0kl6EPfhr0hcZN+/djS0aMkWwifGzbSVu6YPpYkiUaN68OlmHsaX3qOtf
- 0RJQrwayc+fmmfjAoqUshIAxqNkE7rnwubq99z+oFJjmVHdfhSYo6uk3OXvGjR9gwacmvJ57xP/KY
- f83fZOtA==;
-Received: from hch by bombadil.infradead.org with local (Exim 4.94.2 #2 (Red
- Hat Linux)) id 1nATR7-00A4wf-Az; Thu, 20 Jan 2022 09:08:53 +0000
-Date: Thu, 20 Jan 2022 01:08:53 -0800
-From: Christoph Hellwig <hch@infradead.org>
-To: David Howells <dhowells@redhat.com>
-Message-ID: <YekmpeQvNlGlMvNY@infradead.org>
-References: <YeefizLOGt1Qf35o@infradead.org> <YebpktrcUZOlBHkZ@infradead.org>
+ id 1nATtI-0003Ru-Sk
+ for v9fs-developer@lists.sourceforge.net; Thu, 20 Jan 2022 09:38:05 +0000
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+ s=mimecast20190719; t=1642671474;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+ in-reply-to:in-reply-to:references:references;
+ bh=vwaun9h4PrGOctit7O7Y3jbampOsovEgn1eDqCi+RHc=;
+ b=eEOaJNDcXSVmUCR8334IO0KLZV3N7JPN3xW4LrzGKFY/MnJgFbXUE0vVv7TrTeExBK8gTC
+ lqtEPyTgSiSV8UwyESUS4TFe1hWKoi+NYdQgdFfMJppKKMeqb9z3ohFxVAgw1heLgzA56r
+ tP3GcXugnaKkKKXvcgNlLqnzW1DCxb4=
+Received: from mimecast-mx01.redhat.com (mimecast-mx01.redhat.com
+ [209.132.183.4]) by relay.mimecast.com with ESMTP with STARTTLS
+ (version=TLSv1.2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ us-mta-45-TlUAgrb-MjSgqaMVPtjPzw-1; Thu, 20 Jan 2022 04:37:49 -0500
+X-MC-Unique: TlUAgrb-MjSgqaMVPtjPzw-1
+Received: from smtp.corp.redhat.com (int-mx08.intmail.prod.int.phx2.redhat.com
+ [10.5.11.23])
+ (using TLSv1.2 with cipher AECDH-AES256-SHA (256/256 bits))
+ (No client certificate requested)
+ by mimecast-mx01.redhat.com (Postfix) with ESMTPS id A09901091DA5;
+ Thu, 20 Jan 2022 09:37:46 +0000 (UTC)
+Received: from warthog.procyon.org.uk (unknown [10.33.36.165])
+ by smtp.corp.redhat.com (Postfix) with ESMTP id B386D131CC;
+ Thu, 20 Jan 2022 09:37:21 +0000 (UTC)
+Organization: Red Hat UK Ltd. Registered Address: Red Hat UK Ltd, Amberley
+ Place, 107-111 Peascod Street, Windsor, Berkshire, SI4 1TE, United
+ Kingdom.
+ Registered in England and Wales under Company Registration No. 3798903
+From: David Howells <dhowells@redhat.com>
+In-Reply-To: <YekmpeQvNlGlMvNY@infradead.org>
+References: <YekmpeQvNlGlMvNY@infradead.org> <YeefizLOGt1Qf35o@infradead.org>
+ <YebpktrcUZOlBHkZ@infradead.org>
  <164251396932.3435901.344517748027321142.stgit@warthog.procyon.org.uk>
  <164251409447.3435901.10092442643336534999.stgit@warthog.procyon.org.uk>
  <3613681.1642527614@warthog.procyon.org.uk>
  <3765724.1642583885@warthog.procyon.org.uk>
+To: Christoph Hellwig <hch@infradead.org>
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <3765724.1642583885@warthog.procyon.org.uk>
-X-SRS-Rewrite: SMTP reverse-path rewritten from <hch@infradead.org> by
- bombadil.infradead.org. See http://www.infradead.org/rpr.html
-X-Spam-Score: -2.5 (--)
+Content-ID: <58089.1642671440.1@warthog.procyon.org.uk>
+Date: Thu, 20 Jan 2022 09:37:20 +0000
+Message-ID: <58090.1642671440@warthog.procyon.org.uk>
+X-Scanned-By: MIMEDefang 2.84 on 10.5.11.23
+X-Spam-Score: -1.6 (-)
 X-Spam-Report: Spam detection software,
  running on the system "util-spamd-1.v13.lw.sourceforge.com", 
  has NOT identified this incoming email as spam.  The original
  message has been attached to this so you can view it or label
  similar future email.  If you have any questions, see
  the administrator of that system for details.
- Content preview:  On Wed, Jan 19, 2022 at 09:18:05AM +0000,
- David Howells wrote:
- > The flag cannot just be dropped - it's an important part of the interaction
- > with cachefilesd with regard to culling. Culling to free [...] 
- Content analysis details:   (-2.5 points, 6.0 required)
+ Content preview: Christoph Hellwig <hch@infradead.org> wrote: > But you
+ tricked
+ Linus Tricked? I put a notice explicitly pointing out that I was adding it
+ and indicating that it might be controversial in the cover note and the pull
+ request and further explained the use in the patches t [...] 
+ Content analysis details:   (-1.6 points, 6.0 required)
  pts rule name              description
  ---- ---------------------- --------------------------------------------------
- -2.3 RCVD_IN_DNSWL_MED      RBL: Sender listed at https://www.dnswl.org/,
- medium trust [198.137.202.133 listed in list.dnswl.org]
+ -0.7 RCVD_IN_DNSWL_LOW      RBL: Sender listed at https://www.dnswl.org/,
+ low trust [170.10.129.124 listed in list.dnswl.org]
+ 0.0 RCVD_IN_MSPIKE_H3      RBL: Good reputation (+3)
+ [170.10.129.124 listed in wl.mailspike.net]
  0.0 SPF_HELO_NONE          SPF: HELO does not publish an SPF Record
- 0.0 SPF_NONE               SPF: sender does not publish an SPF Record
+ -0.0 SPF_PASS               SPF: sender matches SPF record
  -0.1 DKIM_VALID_EF          Message has a valid DKIM or DK signature from
  envelope-from domain
  -0.1 DKIM_VALID_AU          Message has a valid DKIM or DK signature from
@@ -89,7 +106,9 @@ X-Spam-Report: Spam detection software,
  0.1 DKIM_SIGNED            Message has a DKIM or DK signature, not necessarily
  valid
  -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-X-Headers-End: 1nATRS-004hqd-SP
+ 0.0 RCVD_IN_MSPIKE_WL      Mailspike good senders
+ -0.7 DKIMWL_WL_HIGH         DKIMwl.org - High trust sender
+X-Headers-End: 1nATtI-0003Ru-Sk
 Subject: Re: [V9fs-developer] [PATCH 09/11] vfs,
  fscache: Add an IS_KERNEL_FILE() macro for the S_KERNEL_FILE flag
 X-BeenThere: v9fs-developer@lists.sourceforge.net
@@ -106,7 +125,7 @@ List-Subscribe: <https://lists.sourceforge.net/lists/listinfo/v9fs-developer>,
 Cc: linux-cifs@vger.kernel.org, linux-nfs@vger.kernel.org,
  linux-fsdevel@vger.kernel.org, Jeff Layton <jlayton@kernel.org>,
  linux-kernel@vger.kernel.org, Matthew Wilcox <willy@infradead.org>,
- linux-afs@lists.infradead.org, Christoph Hellwig <hch@infradead.org>,
+ linux-afs@lists.infradead.org, dhowells@redhat.com,
  Steve French <smfrench@gmail.com>, linux-cachefs@redhat.com,
  Alexander Viro <viro@zeniv.linux.org.uk>,
  Trond Myklebust <trondmy@hammerspace.com>,
@@ -119,25 +138,17 @@ Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: v9fs-developer-bounces@lists.sourceforge.net
 
-On Wed, Jan 19, 2022 at 09:18:05AM +0000, David Howells wrote:
-> The flag cannot just be dropped - it's an important part of the interaction
-> with cachefilesd with regard to culling.  Culling to free up space is
-> offloaded to userspace rather than being done within the kernel.
-> 
-> Previously, cachefiles, the kernel module, had to maintain a huge tree of
-> records of every backing inode that it was currently using so that it could
-> forbid cachefilesd to cull one when cachefilesd asked.  I've reduced that to a
-> single bit flag on the inode struct, thereby saving both memory and time.  You
-> can argue whether it's worth sacrificing an inode flag bit for that, but the
-> flag can be reused for any other kernel service that wants to similarly mark
-> an inode in use.
+Christoph Hellwig <hch@infradead.org> wrote:
 
-Which is a horrible interface.   But you tricked Linus into merging this
-crap, so let's not pretent it is a "kernel file".  We have plenty of
-those, basically every caller of filp_open is one.
+> But you tricked Linus
 
-It is something like "pinned for fscache/cachefiles", so name it that
-way and add a big fat comment expaining the atrocities.
+Tricked?  I put a notice explicitly pointing out that I was adding it and
+indicating that it might be controversial in the cover note and the pull
+request and further explained the use in the patches that handle it.  I posted
+the patches adding/using it a bunch of times to various mailing lists.  TYVM.
+
+David
+
 
 
 _______________________________________________
