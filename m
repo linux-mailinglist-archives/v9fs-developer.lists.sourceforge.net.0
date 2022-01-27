@@ -2,96 +2,107 @@ Return-Path: <v9fs-developer-bounces@lists.sourceforge.net>
 X-Original-To: lists+v9fs-developer@lfdr.de
 Delivered-To: lists+v9fs-developer@lfdr.de
 Received: from lists.sourceforge.net (lists.sourceforge.net [216.105.38.7])
-	by mail.lfdr.de (Postfix) with ESMTPS id F07BD49EC51
-	for <lists+v9fs-developer@lfdr.de>; Thu, 27 Jan 2022 21:13:32 +0100 (CET)
-Received: from [127.0.0.1] (helo=sfs-ml-1.v29.lw.sourceforge.com)
-	by sfs-ml-1.v29.lw.sourceforge.com with esmtp (Exim 4.94.2)
+	by mail.lfdr.de (Postfix) with ESMTPS id CA8D949EDED
+	for <lists+v9fs-developer@lfdr.de>; Thu, 27 Jan 2022 23:06:46 +0100 (CET)
+Received: from [127.0.0.1] (helo=sfs-ml-4.v29.lw.sourceforge.com)
+	by sfs-ml-4.v29.lw.sourceforge.com with esmtp (Exim 4.94.2)
 	(envelope-from <v9fs-developer-bounces@lists.sourceforge.net>)
-	id 1nDB99-00005Q-66; Thu, 27 Jan 2022 20:13:29 +0000
+	id 1nDCuj-0002n5-4x; Thu, 27 Jan 2022 22:06:44 +0000
 Received: from [172.30.20.202] (helo=mx.sourceforge.net)
- by sfs-ml-1.v29.lw.sourceforge.com with esmtps (TLS1.2) tls
+ by sfs-ml-4.v29.lw.sourceforge.com with esmtps (TLS1.2) tls
  TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384 (Exim 4.94.2)
- (envelope-from <lionkov@gmail.com>) id 1nDB95-00005I-Tz
- for v9fs-developer@lists.sourceforge.net; Thu, 27 Jan 2022 20:13:26 +0000
+ (envelope-from <asmadeus@codewreck.org>) id 1nDCui-0002lM-6W
+ for v9fs-developer@lists.sourceforge.net; Thu, 27 Jan 2022 22:06:43 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=sourceforge.net; s=x; h=Content-Type:Cc:To:Subject:Message-ID:Date:From:
- In-Reply-To:References:MIME-Version:Sender:Reply-To:Content-Transfer-Encoding
- :Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+ d=sourceforge.net; s=x; h=In-Reply-To:Content-Type:MIME-Version:References:
+ Message-ID:Subject:Cc:To:From:Date:Sender:Reply-To:Content-Transfer-Encoding:
+ Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
  Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
  List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=yyaRPtT8kN4pN/L2JmnCqcaTIsdtIxm5jpn+IN2RFlo=; b=HXKk/LKEjcJlnf7T+7DXlOpcpb
- XrvPR90r1OE2OJxa9krk6AEp3VX8BGP25gelyVRk/6LWZ97jsIbn1tMQSssVrTVo0V94S0swl+X3b
- SCJ61AxlQuloUobR9MRrDEjY9zuomihLubexFTBpYCfY76XjKiE8mDzt/EJsPTPy6F6s=;
+ bh=I2DOrGSkd+bynEddelNZUkNfgcBulHdrwvU6mXk4Fj8=; b=iwGXrZqDQQritI02vr4SzLPBHP
+ n7AuMVXC2ue/prPr3a50vejbtK1/aXayztPMDCOcKkgjt8L47JShzNDCWvn+4jG/NGdpUj8ZTS1JY
+ PYpIvLna2CoE0Jzdb3Ie98PZSBZ09NVn7maKkeoiAq7cD8iItSmqIdmeDm8UA3KXqmjU=;
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  ;
- h=Content-Type:Cc:To:Subject:Message-ID:Date:From:In-Reply-To:References:
- MIME-Version:Sender:Reply-To:Content-Transfer-Encoding:Content-ID:
+ h=In-Reply-To:Content-Type:MIME-Version:References:Message-ID:Subject:Cc:To
+ :From:Date:Sender:Reply-To:Content-Transfer-Encoding:Content-ID:
  Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
  :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
  List-Post:List-Owner:List-Archive;
- bh=yyaRPtT8kN4pN/L2JmnCqcaTIsdtIxm5jpn+IN2RFlo=; b=ErTEgd9h2UTDjHgY30AfV6MYlc
- MfOtkGTPU6fTytnQn5TnaOqxmYlzGT0Up6hYeLRH6q6G7qYCYB0LA7LGxQ4QkA+bjepHIwzo0TwOT
- UyU2QzOe3gw7iU9+xV/gySmhgOlaqX+QYYMfhpb1PHIDfBVljo4ZONgyXdjLbRUDSFy8=;
-Received: from mail-wm1-f50.google.com ([209.85.128.50])
- by sfi-mx-2.v28.lw.sourceforge.com with esmtps
- (TLS1.2:ECDHE-RSA-AES128-GCM-SHA256:128) (Exim 4.94.2)
- id 1nDB93-0005CO-64
- for v9fs-developer@lists.sourceforge.net; Thu, 27 Jan 2022 20:13:26 +0000
-Received: by mail-wm1-f50.google.com with SMTP id
- q141-20020a1ca793000000b00347b48dfb53so2612653wme.0
- for <v9fs-developer@lists.sourceforge.net>;
- Thu, 27 Jan 2022 12:13:25 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20210112;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc;
- bh=yyaRPtT8kN4pN/L2JmnCqcaTIsdtIxm5jpn+IN2RFlo=;
- b=Tr7fN3Dk4fVUNt64l+5J6etCdWi0e5AFrHgZwzBXzSuKT+aYaMdy/Ey+OvEycPfgbc
- DSEcmey9+/mgs+FkBfF4tZvGNkk1gpSPKkT3yQiZ+5GVc/3d7V19K9TCN7JQNlMd1CeV
- 3H24nJ08Pw9PhAQwem/iSMirBobchJBXZT2Ahd6/WYqDOyHTgcu3shehk6OOVVnCFlyf
- 4isUHFXQeZ25HpwW8q/xF69pjzTF90KjEiBjvjYGACC/5D76oe9C2Te4hYFcgChWbKK7
- UG5SUBHILwjmKZXZL6jwm5KUHu/d79HVX2CaVu3Ckwib+gBlFWObCXib4HUFnqcSKNrg
- 3hRw==
-X-Gm-Message-State: AOAM5323+9Bbof+D2OQfxpMpIJakyFjWvYxv7Hp0JvG84XdHQMHh0SLs
- Jjbhgi/RHwEHO8f9Pci+MSX2n4Isz5izLuwiTxI=
-X-Google-Smtp-Source: ABdhPJz3FjSDIQzVgO7/C8nczHPar9j4zS3d8cyDvUOTkAqSgNjGVg5d1kaUQKgMyZ/LFIMVadt7SU1JT9udhaI+mj8=
-X-Received: by 2002:a1c:f404:: with SMTP id z4mr13224973wma.165.1643314398603; 
- Thu, 27 Jan 2022 12:13:18 -0800 (PST)
-MIME-Version: 1.0
+ bh=I2DOrGSkd+bynEddelNZUkNfgcBulHdrwvU6mXk4Fj8=; b=F4pd/+DvIdQjNoUYBMeelNHqJj
+ 0yvhshc/z3zqK+PZiy14R168Te+zemJpxrJdgg/MdKBkBCshzIRHGZcL2dfZvl57QzQKjO14wloGt
+ s4E039spuFwS+EsU4KwpfEPrGzeT4ozPHPP4q3N7kCYsNsTPy3Jm4EX2LsCinzr3EoBk=;
+Received: from nautica.notk.org ([91.121.71.147])
+ by sfi-mx-1.v28.lw.sourceforge.com with esmtps
+ (TLS1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.94.2)
+ id 1nDCud-00HABf-OD
+ for v9fs-developer@lists.sourceforge.net; Thu, 27 Jan 2022 22:06:42 +0000
+Received: by nautica.notk.org (Postfix, from userid 108)
+ id 2BC21C01E; Thu, 27 Jan 2022 23:06:33 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=codewreck.org; s=2;
+ t=1643321193; bh=I2DOrGSkd+bynEddelNZUkNfgcBulHdrwvU6mXk4Fj8=;
+ h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+ b=E6vd16wTqHoUxM4LUm7d7BRwI6VDy0gewNHK3+5ixjocBY/uo463o/SC2IVEnmOOf
+ m7TOKwoGEu8ZBJeq7rQm24d/d0pHhpkQ4TpQG6x2l4P1x1TWks/hmDkTEiCIxhgf40
+ qeP9KdvPOZe9SNy4gLrLsjCWndtVvgwuv2W+uURL/m0Gm+3ICo9tNF+i8Mf6IojU75
+ xaIc03Me2QC9HlkIhSE25wTgDuWCkllIe+PZKVgYfcsqA792CFMk8iOMkxm5i+7mDI
+ FsWatik97zJzGRrdSsmt+hs8e9AQTQClzgnwIMjRtqca0S3Y12ryEeFgbAD8p9bvSS
+ cv4kdTQAL6MXw==
+X-Spam-Checker-Version: SpamAssassin 3.3.2 (2011-06-06) on nautica.notk.org
+X-Spam-Level: 
+X-Spam-Status: No, score=0.0 required=5.0 tests=UNPARSEABLE_RELAY
+ autolearn=unavailable version=3.3.2
+Received: from odin.codewreck.org (localhost [127.0.0.1])
+ by nautica.notk.org (Postfix) with ESMTPS id 6B082C01B;
+ Thu, 27 Jan 2022 23:06:31 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=codewreck.org; s=2;
+ t=1643321192; bh=I2DOrGSkd+bynEddelNZUkNfgcBulHdrwvU6mXk4Fj8=;
+ h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+ b=lllhRzAny91eByFVoA26/bFXs/P+XBP3srWXuO3A1OPsXzwUQGsF4hCEVgtRiYivT
+ mX/yT7+rGY1wGKm8MKR2644FlW+EgvrOZtfhbi97LmLBr2HQwzMr9QoTqgpZA5mKvT
+ aJMAsPU5NBri2m8Uq5hFxfhvJ7cRJgzVlg0eNxL06CjksRhoZlU0QFHUWCLaIk4Loh
+ fyNHVk0TL2iebopgFe/bGulpYtGsBFE2jhb2drdAkdoPnOPIs2bDWcFjCFp6ZfbauT
+ pP6rWPJ6R+iw6hRxlUvTqbu7KP+mO2W51Z6jKCpYNR+UTP+UCA0f1IvBuSv2Dkss22
+ LFs/lUS2Kazlg==
+Received: from localhost (odin.codewreck.org [local])
+ by odin.codewreck.org (OpenSMTPD) with ESMTPA id d3b09053;
+ Thu, 27 Jan 2022 22:06:27 +0000 (UTC)
+Date: Fri, 28 Jan 2022 07:06:12 +0900
+From: Dominique Martinet <asmadeus@codewreck.org>
+To: Latchesar Ionkov <lucho@ionkov.net>
+Message-ID: <YfMXVNBqapNHFzAd@codewreck.org>
 References: <CAFkjPTne8PxxAd=gQ-LYYkRmwz+uhbqYtNzZiTkvL8ANHyZMbA@mail.gmail.com>
  <CAP6exYKZqJpfR+Tr3CwJrNE2Pzd-Fd2gYYW_P+he=ZStbBMHUA@mail.gmail.com>
  <YfIuBlKzYasIhtxf@codewreck.org>
-In-Reply-To: <YfIuBlKzYasIhtxf@codewreck.org>
-From: Latchesar Ionkov <lucho@ionkov.net>
-Date: Thu, 27 Jan 2022 13:13:07 -0700
-Message-ID: <CAOha14wmd61e0GbBY9Dsb7R=dcEmnVvvZe2R-n99iY2hOd9+NA@mail.gmail.com>
-To: Dominique Martinet <asmadeus@codewreck.org>
-X-Spam-Score: 0.5 (/)
+ <CAOha14wmd61e0GbBY9Dsb7R=dcEmnVvvZe2R-n99iY2hOd9+NA@mail.gmail.com>
+MIME-Version: 1.0
+Content-Disposition: inline
+In-Reply-To: <CAOha14wmd61e0GbBY9Dsb7R=dcEmnVvvZe2R-n99iY2hOd9+NA@mail.gmail.com>
+X-Spam-Score: -0.2 (/)
 X-Spam-Report: Spam detection software,
  running on the system "util-spamd-2.v13.lw.sourceforge.com", 
  has NOT identified this incoming email as spam.  The original
  message has been attached to this so you can view it or label
  similar future email.  If you have any questions, see
  the administrator of that system for details.
- Content preview:  I have no idea why opened fids should be kept in the list,
- but if you do, you should also make sure you keep the mode they were opened
- too and don't return the ones that you shouldn't be returned in t [...] 
- Content analysis details:   (0.5 points, 6.0 required)
+ Content preview:  Latchesar Ionkov wrote on Thu, Jan 27, 2022 at 01:13:07PM
+ -0700: > I have no idea why opened fids should be kept in the list, but if
+ you > do, you should also make sure you keep the mode they were ope [...]
+ Content analysis details:   (-0.2 points, 6.0 required)
  pts rule name              description
  ---- ---------------------- --------------------------------------------------
  0.0 SPF_HELO_NONE          SPF: HELO does not publish an SPF Record
- -0.0 RCVD_IN_MSPIKE_H2      RBL: Average reputation (+2)
- [209.85.128.50 listed in wl.mailspike.net]
- -0.0 RCVD_IN_DNSWL_NONE     RBL: Sender listed at https://www.dnswl.org/,
- no trust [209.85.128.50 listed in list.dnswl.org]
- 0.2 HEADER_FROM_DIFFERENT_DOMAINS From and EnvelopeFrom 2nd level
- mail domains are different
- 0.0 FREEMAIL_FROM          Sender email is commonly abused enduser mail
- provider [lionkov[at]gmail.com]
  -0.0 SPF_PASS               SPF: sender matches SPF record
- 0.2 FREEMAIL_FORGED_FROMDOMAIN 2nd level domains in From and
- EnvelopeFrom freemail headers are different
-X-Headers-End: 1nDB93-0005CO-64
+ -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+ 0.1 DKIM_SIGNED            Message has a DKIM or DK signature, not necessarily
+ valid
+ -0.1 DKIM_VALID_AU          Message has a valid DKIM or DK signature from
+ author's domain
+ -0.1 DKIM_VALID_EF          Message has a valid DKIM or DK signature from
+ envelope-from domain
+ 0.0 UNPARSEABLE_RELAY      Informational: message has unparseable relay
+ lines
+X-Headers-End: 1nDCud-00HABf-OD
 Subject: Re: [V9fs-developer] 9p was broken by
  478ba09edc1f2f2ee27180a06150cb2d1a686f9c
 X-BeenThere: v9fs-developer@lists.sourceforge.net
@@ -111,95 +122,46 @@ Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: v9fs-developer-bounces@lists.sourceforge.net
 
-I have no idea why opened fids should be kept in the list, but if you
-do, you should also make sure you keep the mode they were opened too
-and don't return the ones that you shouldn't be returned in that
-particular case.
+Latchesar Ionkov wrote on Thu, Jan 27, 2022 at 01:13:07PM -0700:
+> I have no idea why opened fids should be kept in the list, but if you
+> do, you should also make sure you keep the mode they were opened too
+> and don't return the ones that you shouldn't be returned in that
+> particular case.
 
-    Lucho
+Greg's commit message seems to say this is about using an open fid when
+doing an operation on an already open fd, e.g. ftruncate() would not use
+the "correct" fid.
 
-On Wed, Jan 26, 2022 at 10:31 PM Dominique Martinet
-<asmadeus@codewreck.org> wrote:
->
-> ron minnich wrote on Wed, Jan 26, 2022 at 07:34:18PM -0800:
-> > Thanks Dominique! That was fast :-)
-> >
-> > If you can offer a suggestion we might do on the server side, that
-> > would handle those earlier kernels in the series, I'm all ears.
->
-> Well, it's a bit of a gamble as I don't know if the server has made
-> other assumptions about it in the first place, but it looks exactly like
-> the code 'ng' has modified to just remove the check in go9p.
->
-> For p9 that you linked to earlier the check is pretty much identical, so
-> removing the check might let things pass:
-> -----
-> diff --git a/p9/handlers.go b/p9/handlers.go
-> index 53724ad9f2dc..5b59c48ca7bd 100644
-> --- a/p9/handlers.go
-> +++ b/p9/handlers.go
-> @@ -1033,12 +1033,6 @@ func doWalk(cs *connState, ref *fidRef, names []string, getattr bool) (qids []QI
->                 }
->         }
->
-> -       // Has it been opened already?
-> -       if _, opened := ref.OpenFlags(); opened {
-> -               err = linux.EBUSY
-> -               return
-> -       }
-> -
->         // Is this an empty list? Handle specially. We don't actually need to
->         // validate anything since this is always permitted.
->         if len(names) == 0 {
-> -----
->
-> OTOH there probably is a reason this check is here and I wouldn't
-> seriously suggest this without a bit of investigation first. I didn't
-> see any difference with the handling of open files wrt refcounting so it
-> should be safe in this regard, and the cloned fid will not clone the
-> open status so there won't be any problem in that regard either, but
-> something else might be wrong.
->
-> Either way, it's also good to have a few servers be strict about this
-> rule even if they don't strictly need it, as it'll let us know of the
-> problem for servers who really need it :-)
-> And I'll probably add the check to ganesha as a compile option for
-> regression testing when this is all over...
->
->
-> Eric Van Hensbergen wrote on Wed, Jan 26, 2022 at 09:40:24PM -0600:
-> > I was looking at this earlier, and I couldn't remember under what
-> > conditions that fid mixing would even happen.  IIRC, we always clone before
-> > an open, so I'm not sure when we do a second open on an already open fid
-> > --- perhaps a dup?
->
-> That open-unlink-xyz series did introduce quite some changes in that
-> regard... We're now keeping a list of all fids related to an inode
-> whether they're opened or not, and while Greg's patch was intended to
-> have the open fids be used for setattr directly without an extra clone
-> (and is required for that!) it's changing the lookup semantics for all
-> other lookups and something must have gotten caught in it.
->
-> (looking just now, there's at least v9fs_writeback_fid which doesn't
-> care a bit:
-> ----
-> struct p9_fid *v9fs_writeback_fid(struct dentry *dentry)
-> {
-> ...
->         ofid = v9fs_fid_lookup_with_uid(dentry, GLOBAL_ROOT_UID, 0);
->         fid = clone_fid(ofid);
-> ----
-> But this got added in the patch after Greg's, so if the bisect didn't
-> turn it up then there must be other places involved
-> )
->
-> I think it's really just as simple as adding an extra option to
-> v9fs_fid_find so that users who don't plan on cloning it can get any
-> fid, and users who will walk a new fid only get unopened ones,
-> but I'll need to take a moment to check callers.
->
-> --
-> Dominique
+open files should have a fid in filp->private_data but when we reach the
+setattr function (e.g. v9fs_vfs_setattr_dotl) the filp is nowhere to be
+found, which means we need a new lookup -- and incidentaly we don't know
+either if the fd the operation was meant for was open as RO or RW.
+
+
+Looking at do_truncate again specifically now, it looks like that when a
+truncate was invoked through ftruncate newattrs.ia_file will be set with
+newattrs.ia_valid |= ATTR_FILE . . . so we actually can get the correct
+file and I think we can just revert Greg's patch, which will avoid this
+whole mess and fix the issue... And we actually already do since
+66246641609b ("9p: retrieve fid from file when file instance exist.")
+(which came a bit later to fix another problem with wrong fid being
+used)...
+
+
+So just reverting Greg's patch should work for all use cases and will
+spare the problem of looking for the right flags.
+
+
+I still want to take time to test for regressions, so will only send the
+revert patch tomorrow, but if it works we can just use lookup for
+non-open fids as we used to do and everyone should be happy.
+
+
+Greg -- if you have time for tests as well I'd appreciate it, as you
+originally had found that problem :)
+(well, commit message has a reproducer so I'll at least try that)
+-- 
+Dominique
 
 
 _______________________________________________
