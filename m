@@ -2,101 +2,93 @@ Return-Path: <v9fs-developer-bounces@lists.sourceforge.net>
 X-Original-To: lists+v9fs-developer@lfdr.de
 Delivered-To: lists+v9fs-developer@lfdr.de
 Received: from lists.sourceforge.net (lists.sourceforge.net [216.105.38.7])
-	by mail.lfdr.de (Postfix) with ESMTPS id 00CDF4AEAC6
-	for <lists+v9fs-developer@lfdr.de>; Wed,  9 Feb 2022 08:11:32 +0100 (CET)
-Received: from [127.0.0.1] (helo=sfs-ml-2.v29.lw.sourceforge.com)
-	by sfs-ml-2.v29.lw.sourceforge.com with esmtp (Exim 4.94.2)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1168E4AEE68
+	for <lists+v9fs-developer@lfdr.de>; Wed,  9 Feb 2022 10:49:56 +0100 (CET)
+Received: from [127.0.0.1] (helo=sfs-ml-1.v29.lw.sourceforge.com)
+	by sfs-ml-1.v29.lw.sourceforge.com with esmtp (Exim 4.94.2)
 	(envelope-from <v9fs-developer-bounces@lists.sourceforge.net>)
-	id 1nHh8U-0005FL-5A; Wed, 09 Feb 2022 07:11:28 +0000
+	id 1nHjbl-0008GS-GF; Wed, 09 Feb 2022 09:49:52 +0000
 Received: from [172.30.20.202] (helo=mx.sourceforge.net)
- by sfs-ml-2.v29.lw.sourceforge.com with esmtps (TLS1.2) tls
- TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384 (Exim 4.94.2) (envelope-from
- <0107017edd527fe3-1d4f3e52-5e58-4993-aae2-a0b3f25e04d5-000000@eu-central-1.amazonses.com>)
- id 1nHh8T-0005FE-GC
- for v9fs-developer@lists.sourceforge.net; Wed, 09 Feb 2022 07:11:28 +0000
+ by sfs-ml-1.v29.lw.sourceforge.com with esmtps (TLS1.2) tls
+ TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384 (Exim 4.94.2)
+ (envelope-from <Amazonjp-update-account@fsgdkgf.cn>)
+ id 1nHjbj-0008G1-Hj
+ for v9fs-developer@lists.sourceforge.net; Wed, 09 Feb 2022 09:49:50 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=sourceforge.net; s=x; h=List-Unsubscribe:Content-Type:MIME-Version:To:
- Reply-To:From:Subject:Date:Message-ID:Sender:Cc:Content-Transfer-Encoding:
- Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
- Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:List-Id:
- List-Help:List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=3jiXcCIZhhFwKGFzY5V98ALqCA+R3M/njwiMMuRGx0Q=; b=SyAfgrMHc0dUMuONHKzhds+soU
- GIGfH6fUHxG2wZ42FOnrxSZeiRjM8xSBMbpFHsZv+/JX8HkGit/M7YpgZbgoJZ+3U1B+FUfJAOin2
- GL1+wE+GRSbNxlpsPrDe9yTMnTnmcBGikPlCE+AP6t1O2uJchWdFc81bjsJWNoRBKNrQ=;
+ d=sourceforge.net; s=x; h=Content-Type:MIME-Version:Message-ID:Date:Subject:
+ To:From:Sender:Reply-To:Cc:Content-Transfer-Encoding:Content-ID:
+ Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
+ :Resent-Message-ID:In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:
+ List-Subscribe:List-Post:List-Owner:List-Archive;
+ bh=zCcm8SF01d3iZpucPslhFGvEeSqVqD6sWdirvX6UeZQ=; b=gZ82Kt14lYpFoNAfDTG9JCkaMW
+ /pgDNAjl7xmVrPWCD20Z6qmw6R4gSgj++wUd40ni+tuOGoo9y89LoXyI4TmxgRXflDUNcETE/zaRt
+ CAhKQnldDvMPPdnfFYiDuiyX/Q4nOyfvt4UbgxdvpqdGvjMl1O/xXh33B1LdLBCUuqWM=;
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  ;
- h=List-Unsubscribe:Content-Type:MIME-Version:To:Reply-To:From:Subject:Date:
- Message-ID:Sender:Cc:Content-Transfer-Encoding:Content-ID:Content-Description
- :Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
- In-Reply-To:References:List-Id:List-Help:List-Subscribe:List-Post:List-Owner:
- List-Archive; bh=3jiXcCIZhhFwKGFzY5V98ALqCA+R3M/njwiMMuRGx0Q=; b=KOPHGU0b0eWx
- Dhc7TQhy0D8Qmmg5nSdSRAjcbMu1AkH65DbEDdueGG6PQ3M9EJ4wSsB4ynnTcxR9nBTxIrpDXlLll
- QuPpKsovDl8mbVWdyNVWQYZwCDFqkkvIbV7bdKNaL1NJiKHFCwOGE1t+lCS/fU1gZzmwJEI32FvmF
- dMJ6s=;
-Received: from b227-249.smtp-out.eu-central-1.amazonses.com ([69.169.227.249])
+ h=Content-Type:MIME-Version:Message-ID:Date:Subject:To:From:Sender:Reply-To
+ :Cc:Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+ Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:
+ References:List-Id:List-Help:List-Unsubscribe:List-Subscribe:List-Post:
+ List-Owner:List-Archive; bh=zCcm8SF01d3iZpucPslhFGvEeSqVqD6sWdirvX6UeZQ=; b=Q
+ T3hJ4sIYWGfT8ANLQ54NDJUeO5d3uoS/NAOeOh22v2vKgs74Pex7mfV1YGC7QhTF4PYJS6OYK+uJH
+ MNRo+G98yaV4cxaoZQJCdn+g6WJqzM89nTVMJ+eNoU6xg/cIfDBoeOLgoUTWe02tjnw0l2mxF0bOY
+ sLDfyNGIn6fZ+F/s=;
+Received: from [137.220.182.38] (helo=fsgdkgf.cn)
  by sfi-mx-2.v28.lw.sourceforge.com with esmtps
- (TLS1.2:ECDHE-RSA-AES128-SHA256:128) (Exim 4.94.2)
- id 1nHh8Q-0008A7-T9
- for v9fs-developer@lists.sourceforge.net; Wed, 09 Feb 2022 07:11:28 +0000
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/simple;
- s=otmemashwe6jj5fkh3u4i6fgtdu3soy2; d=eko-atelier.ro; t=1644390678;
- h=Sender:Message-ID:Date:Subject:From:Reply-To:To:MIME-Version:Content-Type:List-Unsubscribe;
- bh=CbFDnTvXn+7loWtGInjicIjKa4LyV0U4PPlZpk/wnNE=;
- b=dOL77FFBfAgN9QXjuV8oc6i68hGxJN66gVfZ6cpSOqoMiFRsxnwNIMNyI5E/FGA1
- L3EZov0AGzb16IVpgXASgf6fq2sZ/AthY+eaWdT70+XGEltvjHdED2jhDMfetey/7tP
- ItCmgZkWDbuFO2CX+ZvUyMwzvV4conEh2jSmR4a0=
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/simple;
- s=54ecsf3zk7z4mwxwwox7z7bg6e5gwjsz; d=amazonses.com; t=1644390678;
- h=Sender:Message-ID:Date:Subject:From:Reply-To:To:MIME-Version:Content-Type:List-Unsubscribe:Feedback-ID;
- bh=CbFDnTvXn+7loWtGInjicIjKa4LyV0U4PPlZpk/wnNE=;
- b=TfWCq6gt0WEUBEhn/46OEGyNEOQF1qCDLEuhwOykssriVnF0CNQ20aP7jIbcRUzZ
- vaPQfxgrRXLrcoAno9arBX/iPetnvf4JKJK9sC68NexQ5fEkSB0yvdExym/MWu2oMjf
- KosELlhdgRvZRnVeAmTO3I4tGmkTMpXakeVW7huI=
-Message-ID: <0107017edd527fe3-1d4f3e52-5e58-4993-aae2-a0b3f25e04d5-000000@eu-central-1.amazonses.com>
-Date: Wed, 9 Feb 2022 07:11:18 +0000
-From: Office <office@eko-atelier.ro>
-To: "" <v9fs-developer@lists.sourceforge.net>
+ (TLS1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.94.2)
+ id 1nHjbc-0003dc-Nk
+ for v9fs-developer@lists.sourceforge.net; Wed, 09 Feb 2022 09:49:49 +0000
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; s=defult; d=fsgdkgf.cn; 
+ h=From:To:Subject:Date:Message-ID:MIME-Version:Content-Type;
+ i=Amazonjp-update-account@fsgdkgf.cn;
+ bh=zCcm8SF01d3iZpucPslhFGvEeSqVqD6sWdirvX6UeZQ=;
+ b=XU1VcqujyKkDUh+O5ah39bQZ2nTAbGXercgUdZPOrR6sntggzbtegwX5nKlCXJ2v6uNh7ObBFD8d
+ o4SCA6y6nPXrGqSr89pi55zO+eR6sxo6ncpX1x1PsZGP4opN5+bB/W+lezTWYvmugwPwUq39sU2Y
+ 9lRt08uJLSxHd9fGkGM=
+From: Amazon.co.jp <Amazonjp-update-account@fsgdkgf.cn>
+To: v9fs-developer <v9fs-developer@lists.sourceforge.net>
+Date: Wed, 9 Feb 2022 17:49:19 +0800
+Message-ID: <00b6c18cf54e$ccafd346$d8032b2e$@njclfnjk>
 MIME-Version: 1.0
-Feedback-ID: 1.eu-central-1.N8GLPrwMW4DEokEt/uX8R5Dj6lDs1dpqTZ0OFMrLAAo=:AmazonSES
-X-SES-Outgoing: 2022.02.09-69.169.227.249
-X-Spam-Score: 6.2 (++++++)
-X-Spam-Report: Spam detection software,
- running on the system "util-spamd-1.v13.lw.sourceforge.com", 
- has identified this incoming email as possible spam.  The original
+X-Helo-Check: bad, Forged Random Domain (fsgdkgf.cn)
+X-Spam-Score: 4.9 (++++)
+X-Spam-Report: Spam detection software, running on the system "util-spamd-2.v13.lw.sourceforge.com",
+ has NOT identified this incoming email as spam.  The original
  message has been attached to this so you can view it or label
  similar future email.  If you have any questions, see
  the administrator of that system for details.
- Content preview: [View this in your
- browser.](https://ekogroup.com.ro?mailpoet_router&endpoint=track&action=click&data=WzE0MzAwNSwibmlxaWF6cXMzYjQ0MGNjZ2s0YzRrNDRzOG9jZ2NrYzQiLCIxMDMiLCJiNDhlNmI4NzEyYTgiLGZhbHNlXQ)
- [FarmersMarket-Top] 
- Content analysis details:   (6.2 points, 6.0 required)
- pts rule name              description
+ 
+ Content preview:  お客様のご登録のお支払い方法にエラーが発生しました。
+    お支払方法に問題があり、プライム特典をご利用いただけない状況です。
+    様 Amazonプライムをご利用いただきありがとうございます。
+    プライムへ登録の際に設定いただいたお支払い方法認証の段階にエラーが発生しました。そ�
+    [...] 
+ 
+ Content analysis details:   (4.9 points, 6.0 required)
+ 
+  pts rule name              description
  ---- ---------------------- --------------------------------------------------
- -0.0 RCVD_IN_DNSWL_NONE     RBL: Sender listed at https://www.dnswl.org/,
- no trust [69.169.227.249 listed in list.dnswl.org]
- 0.2 HEADER_FROM_DIFFERENT_DOMAINS From and EnvelopeFrom 2nd level
- mail domains are different
- 0.0 SPF_HELO_NONE          SPF: HELO does not publish an SPF Record
+  0.5 FROM_DOMAIN_NOVOWEL    From: domain has series of non-vowel letters
  -0.0 SPF_PASS               SPF: sender matches SPF record
- 1.7 URIBL_BLACK            Contains an URL listed in the URIBL blacklist
- [URIs: ekogroup.com.ro]
- 0.0 HTML_MESSAGE           BODY: HTML included in message
- -0.1 DKIM_VALID_EF          Message has a valid DKIM or DK signature from
- envelope-from domain
+ -0.0 SPF_HELO_PASS          SPF: HELO matches SPF record
+  0.0 HTML_MESSAGE           BODY: HTML included in message
  -0.1 DKIM_VALID_AU          Message has a valid DKIM or DK signature from
- author's domain
- 0.1 DKIM_SIGNED            Message has a DKIM or DK signature, not necessarily
- valid
- -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
- 2.0 PYZOR_CHECK            Listed in Pyzor
- (https://pyzor.readthedocs.io/en/latest/)
- 0.0 T_KAM_HTML_FONT_INVALID Test for Invalidly Named or Formatted
- Colors in HTML
- 2.5 URI_WP_HACKED_2        URI for compromised WordPress site, possible
- malware
-X-Headers-End: 1nHh8Q-0008A7-T9
+                             author's domain
+  0.1 DKIM_SIGNED            Message has a DKIM or DK signature, not necessarily
+                             valid
+ -0.1 DKIM_VALID             Message has at least one valid DKIM or DK signature
+ -0.1 DKIM_VALID_EF          Message has a valid DKIM or DK signature from
+                             envelope-from domain
+  2.0 PYZOR_CHECK            Listed in Pyzor
+                             (https://pyzor.readthedocs.io/en/latest/)
+  1.3 RDNS_NONE              Delivered to internal network by a host with no rDNS
+  1.3 FSL_BULK_SIG           Bulk signature with no Unsubscribe
+ -0.0 T_SCC_BODY_TEXT_LINE   No description available.
+X-Headers-End: 1nHjbc-0003dc-Nk
 X-Content-Filtered-By: Mailman/MimeDel 2.1.21
-Subject: [V9fs-developer] Uniforme pentru afacerea ta!
+Subject: [V9fs-developer] =?utf-8?b?W+mHjeimgV3vvJrjgJBBbWF6b27jg5fjg6k=?=
+	=?utf-8?b?44Kk44Og5Lya6LK744Gu44GK5pSv5omV44GE5pa55rOV44Gr5ZWP6aGM?=
+	=?utf-8?b?44GM44GC44KK44G+44GZ44CR?=
 X-BeenThere: v9fs-developer@lists.sourceforge.net
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -108,63 +100,43 @@ List-Post: <mailto:v9fs-developer@lists.sourceforge.net>
 List-Help: <mailto:v9fs-developer-request@lists.sourceforge.net?subject=help>
 List-Subscribe: <https://lists.sourceforge.net/lists/listinfo/v9fs-developer>, 
  <mailto:v9fs-developer-request@lists.sourceforge.net?subject=subscribe>
-Reply-To: Office <office@eko-atelier.ro>
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: base64
 Errors-To: v9fs-developer-bounces@lists.sourceforge.net
 
-W1ZpZXcgdGhpcyBpbiB5b3VyIGJyb3dzZXIuXShodHRwczovL2Vrb2dyb3VwLmNvbS5ybz9tYWls
-cG9ldF9yb3V0ZXImZW5kcG9pbnQ9dHJhY2smYWN0aW9uPWNsaWNrJmRhdGE9V3pFME16QXdOU3dp
-Ym1seGFXRjZjWE16WWpRME1HTmpaMnMwWXpSck5EUnpPRzlqWjJOcll6UWlMQ0l4TURNaUxDSmlO
-RGhsTm1JNE56RXlZVGdpTEdaaGJITmxYUSkKCltGYXJtZXJzTWFya2V0LVRvcF0KCltla28tYXRl
-bGllci1idW5dKGh0dHBzOi8vZWtvZ3JvdXAuY29tLnJvP21haWxwb2V0X3JvdXRlciZlbmRwb2lu
-dD10cmFjayZhY3Rpb249Y2xpY2smZGF0YT1XekUwTXpBd05Td2libWx4YVdGNmNYTXpZalEwTUdO
-aloyczBZelJyTkRSek9HOWpaMk5yWXpRaUxDSXhNRE1pTENJek56WXhaVEpsWm1OaE9HWWlMR1po
-YkhObFhRKQoKQ1JFQVpBLVRJIFVOSUZPUk1BIENVIE5PSQpJVEkgR0FSQU5UQU0gQ0VMIE1BSSBN
-SUMgUFJFVCBsYQotIHVuaWZvcm1lIG1lZGljYWxlCi0gdW5pZm9ybWUgSC5PLlIuRS5DLkEKLSB1
-bmlmb3JtZSBtaWxpdGFyZQotIHVuaWZvcm1lIGNvcnBvcmF0ZQotIHByb2R1c2UgZGUgcHJvdGVj
-dGlhIG11bmNpaQpfX19fCkNlcmUgbyBjb3RhdGllIGRlIHByZXQgc2kgY29udmluZ2UtdGUhCgpb
-QU1BIExpc3RzX0lHRF0KCk9GRklDRUBFS08tQVRFTElFUi5STwp3d3cuZWtvLWF0ZWxpZXIucm8K
-CltDYXB0dXJhzIYgZGUgZWNyYW4gZGluIDIwMjEtMDktMTYgbGEgMTMuMTMuMjddKGh0dHBzOi8v
-ZWtvZ3JvdXAuY29tLnJvP21haWxwb2V0X3JvdXRlciZlbmRwb2ludD10cmFjayZhY3Rpb249Y2xp
-Y2smZGF0YT1XekUwTXpBd05Td2libWx4YVdGNmNYTXpZalEwTUdOaloyczBZelJyTkRSek9HOWpa
-Mk5yWXpRaUxDSXhNRE1pTENJMVlUSXlNelV4Tm1FellXTWlMR1poYkhObFhRKQoKW1VuaWZvcm1l
-IE1FRElDQUxFXShodHRwczovL2Vrb2dyb3VwLmNvbS5ybz9tYWlscG9ldF9yb3V0ZXImZW5kcG9p
-bnQ9dHJhY2smYWN0aW9uPWNsaWNrJmRhdGE9V3pFME16QXdOU3dpYm1seGFXRjZjWE16WWpRME1H
-TmpaMnMwWXpSck5EUnpPRzlqWjJOcll6UWlMQ0l4TURNaUxDSTFZVEl5TXpVeE5tRXpZV01pTEda
-aGJITmxYUSkKCltDYXB0dXJhzIYgZGUgZWNyYW4gZGluIDIwMjEtMDktMTYgbGEgMTMuMTMuMzNd
-KGh0dHBzOi8vZWtvZ3JvdXAuY29tLnJvP21haWxwb2V0X3JvdXRlciZlbmRwb2ludD10cmFjayZh
-Y3Rpb249Y2xpY2smZGF0YT1XekUwTXpBd05Td2libWx4YVdGNmNYTXpZalEwTUdOaloyczBZelJy
-TkRSek9HOWpaMk5yWXpRaUxDSXhNRE1pTENJMU4ySTNaakV4TVRObVltRWlMR1poYkhObFhRKQoK
-W1VuaWZvcm1lIEguTy5SLkUuQy5BXShodHRwczovL2Vrb2dyb3VwLmNvbS5ybz9tYWlscG9ldF9y
-b3V0ZXImZW5kcG9pbnQ9dHJhY2smYWN0aW9uPWNsaWNrJmRhdGE9V3pFME16QXdOU3dpYm1seGFX
-RjZjWE16WWpRME1HTmpaMnMwWXpSck5EUnpPRzlqWjJOcll6UWlMQ0l4TURNaUxDSTFOMkkzWmpF
-eE1UTm1ZbUVpTEdaaGJITmxYUSkKCltDYXB0dXJhzIYgZGUgZWNyYW4gZGluIDIwMjEtMDktMTYg
-bGEgMTMuMTMuNDBdKGh0dHBzOi8vZWtvZ3JvdXAuY29tLnJvP21haWxwb2V0X3JvdXRlciZlbmRw
-b2ludD10cmFjayZhY3Rpb249Y2xpY2smZGF0YT1XekUwTXpBd05Td2libWx4YVdGNmNYTXpZalEw
-TUdOaloyczBZelJyTkRSek9HOWpaMk5yWXpRaUxDSXhNRE1pTENKbVlUVmlOalJsTjJGaU1HWWlM
-R1poYkhObFhRKQoKW1VuaWZvcm1lIE1JTElUQVJFXShodHRwczovL2Vrb2dyb3VwLmNvbS5ybz9t
-YWlscG9ldF9yb3V0ZXImZW5kcG9pbnQ9dHJhY2smYWN0aW9uPWNsaWNrJmRhdGE9V3pFME16QXdO
-U3dpYm1seGFXRjZjWE16WWpRME1HTmpaMnMwWXpSck5EUnpPRzlqWjJOcll6UWlMQ0l4TURNaUxD
-Sm1ZVFZpTmpSbE4yRmlNR1lpTEdaaGJITmxYUSkKCltmYXZpY29uXQoKW2ZhY2Vib29rXShodHRw
-czovL2Vrb2dyb3VwLmNvbS5ybz9tYWlscG9ldF9yb3V0ZXImZW5kcG9pbnQ9dHJhY2smYWN0aW9u
-PWNsaWNrJmRhdGE9V3pFME16QXdOU3dpYm1seGFXRjZjWE16WWpRME1HTmpaMnMwWXpSck5EUnpP
-RzlqWjJOcll6UWlMQ0l4TURNaUxDSTRabVZoWWpjMk9EVTNNREVpTEdaaGJITmxYUSkgW2luc3Rh
-Z3JhbV0oaHR0cHM6Ly9la29ncm91cC5jb20ucm8/bWFpbHBvZXRfcm91dGVyJmVuZHBvaW50PXRy
-YWNrJmFjdGlvbj1jbGljayZkYXRhPVd6RTBNekF3TlN3aWJtbHhhV0Y2Y1hNellqUTBNR05qWjJz
-MFl6UnJORFJ6T0c5aloyTnJZelFpTENJeE1ETWlMQ0prT1dRd01ETm1Oems1TURRaUxHWmhiSE5s
-WFEpCltVbnN1YnNjcmliZV0oaHR0cHM6Ly9la29ncm91cC5jb20ucm8/bWFpbHBvZXRfcm91dGVy
-JmVuZHBvaW50PXRyYWNrJmFjdGlvbj1jbGljayZkYXRhPVd6RTBNekF3TlN3aWJtbHhhV0Y2Y1hN
-ellqUTBNR05qWjJzMFl6UnJORFJ6T0c5aloyTnJZelFpTENJeE1ETWlMQ0kxWldNeVlXWmpZell3
-TkRraUxHWmhiSE5sWFEpIHwgW01hbmFnZSB5b3VyIHN1YnNjcmlwdGlvbl0oaHR0cHM6Ly9la29n
-cm91cC5jb20ucm8/bWFpbHBvZXRfcm91dGVyJmVuZHBvaW50PXRyYWNrJmFjdGlvbj1jbGljayZk
-YXRhPVd6RTBNekF3TlN3aWJtbHhhV0Y2Y1hNellqUTBNR05qWjJzMFl6UnJORFJ6T0c5aloyTnJZ
-elFpTENJeE1ETWlMQ0l4TkRaaFpqWmxNVGt3TW1JaUxHWmhiSE5sWFEpCkFkZCB5b3VyIHBvc3Rh
-bCBhZGRyZXNzIGhlcmUhCgpPRkZJQ0VARUtPLUFURUxJRVIuUk8Kd3d3LmVrby1hdGVsaWVyLnJv
-CgpbRmFybWVyc01hcmtldC1Cb3R0b21dCgpbTWFpbFBvZXRdKGh0dHBzOi8vZWtvZ3JvdXAuY29t
-LnJvP21haWxwb2V0X3JvdXRlciZlbmRwb2ludD10cmFjayZhY3Rpb249Y2xpY2smZGF0YT1XekUw
-TXpBd05Td2libWx4YVdGNmNYTXpZalEwTUdOaloyczBZelJyTkRSek9HOWpaMk5yWXpRaUxDSXhN
-RE1pTENJelpUWXdaalpqTWpFelpUWWlMR1poYkhObFhRKQoKX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX18KVjlmcy1kZXZlbG9wZXIgbWFpbGluZyBsaXN0ClY5
-ZnMtZGV2ZWxvcGVyQGxpc3RzLnNvdXJjZWZvcmdlLm5ldApodHRwczovL2xpc3RzLnNvdXJjZWZv
-cmdlLm5ldC9saXN0cy9saXN0aW5mby92OWZzLWRldmVsb3Blcgo=
+44GK5a6i5qeY44Gu44GU55m76Yyy44Gu44GK5pSv5omV44GE5pa55rOV44Gr44Ko44Op44O844GM
+55m655Sf44GX44G+44GX44Gf44CCDQoNCg0KDQoNCg0KIA0KDQrjgYrmlK/miZXmlrnms5Xjgavl
+lY/poYzjgYzjgYLjgorjgIHjg5fjg6njgqTjg6DnibnlhbjjgpLjgZTliKnnlKjjgYTjgZ/jgaDj
+gZHjgarjgYTnirbms4HjgafjgZnjgIIgIOanmA0KDQpBbWF6b27jg5fjg6njgqTjg6DjgpLjgZTl
+iKnnlKjjgYTjgZ/jgaDjgY3jgYLjgorjgYzjgajjgYbjgZTjgZbjgYTjgb7jgZnjgIIg44OX44Op
+44Kk44Og44G455m76Yyy44Gu6Zqb44Gr6Kit5a6a44GE44Gf44Gg44GE44Gf44GK5pSv5omV44GE
+5pa55rOV6KqN6Ki844Gu5q616ZqO44Gr44Ko44Op44O844GM55m655Sf44GX44G+44GX44Gf44CC
+44Gd44Gu44Gf44KB44CB54++5Zyo44CB44GK5a6i5qeY44Gr44Gv44OX44Op44Kk44Og5Lya5ZOh
+54m55YW444KS44GU5Yip55So44GE44Gf44Gg44GR44G+44Gb44KT44CC54m55YW444KS44GU5Yip
+55So44GE44Gf44Gg44GP44Gr44Gv44CBIO+8k+aXpemWk+S7peWGheOBq+OBiuaUr+aJleOBhOaW
+ueazleOBruWGjeeZu+mMsuOCkuOBiumhmOOBhOOBhOOBn+OBl+OBvuOBmeOAguOBiuWuouanmOOB
+ruOBiuaUr+aJleOBhOaWueazleOBq+OCouOCr+OCu+OCuSAgQW1hem9u44OX44Op44Kk44Og44Gr
+55m76Yyy44GX44GfQW1hem9uLmNvLmpw44Gu44Ki44Kr44Km44Oz44OI44KS5L2/55So44GX44Gm
+44K144Kk44Oz44Kk44OzICDnmbvpjLLmuIjjgb/jga7jgYrmlK/miZXmiYvmrrXjga7mnInlirnm
+nJ/pmZDjgpLmm7TmlrDjgIHjgb7jgZ/jga/mlrDjgZfjgYTmlK/miZXjgYTmiYvmrrXjgpLov73l
+iqDjgZfjgIHjgIzkvJrlk6HnibnlhbjjgajjgYrmlK/miZXjgYTmlrnms5Xjga7norroqo3jgI3j
+g5zjgr/jg7PjgpLjgq/jg6rjg4Pjgq8NCg0KICDkvJrlk6HnibnlhbjjgajjgYrmlK/miZXjgYTm
+lrnms5Xjga7norroqo0gIA0KDQoNCuOCqOODqeODvOOBruWOn+WboOOBr+anmOOAheOBp+OBmeOB
+jOOAgeacrOOCqOODqeODvOOBjOeZuueUn+OBmeOCi+S+i+OBqOOBl+OBpuOBr+OAgeOBiuaUr+aJ
+leOBhOaWueazleOBruacieWKueacn+mZkOOBjOWIh+OCjOOBpuOBhOOCi+WgtOWQiOOBjOWkmuOB
+j+imi+WPl+OBkeOCieOCjOOBvuOBmeOAguips+e0sOOBruWOn+WboOOBq+OBpOOBjeOBvuOBl+OB
+puOBr+OBlOeZu+mMsuOBhOOBn+OBoOOBhOOBn+OBiuaUr+aJleaJi+auteOBruaPkOS+m+S8muek
+vu+8iOOCr+ODrOOCuOODg+ODiOS8muekvuetie+8ieOBq+OBiuWVj+WQiOOBm+S4i+OBleOBhOOA
+giANCg0K77yT5pel6ZaT5Lul5YaF44Gr44GK5pSv5omV44GE5pa55rOV44GM5YaN55m76Yyy44GV
+44KM44Gq44GE5aC05ZCI44CB44GU55m76Yyy44GuQW1hem9uIOODl+ODqeOCpOODoOS8muWToeiz
+h+agvOOBr+iHquWLleeahOOBq+OCreODo+ODs+OCu+ODq+OBleOCjOOBvuOBmeOAgg0K5LuK5b6M
+44Go44KCQW1hem9uLmNvLmpw44KS44KI44KN44GX44GP44GK6aGY44GE44GE44Gf44GX44G+44GZ
+44CCDQoNCg0KDQoNCsKpIDIwMjIgQW1hem9uLmNvbSwgSW5jLiBvciBpdHMgYWZmaWxpYXRlcy4g
+QWxsIHJpZ2h0cyByZXNlcnZlZC4gQW1hem9uLCANCkFtYXpvbi5jby5qcCwgQW1hem9uIFByaW1l
+LCBQcmltZSDjgYrjgojjgbNBbWF6b24uY28uanAg44Gu44Ot44K044GvQW1hem9uLmNvbSwgSW5j
+Lg0K44G+44Gf44Gv44Gd44Gu6Zai6YCj5Lya56S+44Gu5ZWG5qiZ44Gn44GZ44CCDQpBbWF6b24u
+Y29tLCA0MTAgVGVycnkgQXZlbnVlIE4uLCBTZWF0dGxlLCBXQSA5ODEwOS01MjEwIA0KDQrjgZPj
+ga7jg6Hjg4Pjgrvjg7zjgrjjga8gIOOBq+mAgeS/oeOBleOCjOOBvuOBl+OBn+OAgg0KCl9fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fClY5ZnMtZGV2ZWxvcGVy
+IG1haWxpbmcgbGlzdApWOWZzLWRldmVsb3BlckBsaXN0cy5zb3VyY2Vmb3JnZS5uZXQKaHR0cHM6
+Ly9saXN0cy5zb3VyY2Vmb3JnZS5uZXQvbGlzdHMvbGlzdGluZm8vdjlmcy1kZXZlbG9wZXIK
