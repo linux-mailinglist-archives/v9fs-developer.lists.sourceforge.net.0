@@ -2,56 +2,56 @@ Return-Path: <v9fs-developer-bounces@lists.sourceforge.net>
 X-Original-To: lists+v9fs-developer@lfdr.de
 Delivered-To: lists+v9fs-developer@lfdr.de
 Received: from lists.sourceforge.net (lists.sourceforge.net [216.105.38.7])
-	by mail.lfdr.de (Postfix) with ESMTPS id 306D44AFA50
-	for <lists+v9fs-developer@lfdr.de>; Wed,  9 Feb 2022 19:36:47 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id E20264B3121
+	for <lists+v9fs-developer@lfdr.de>; Sat, 12 Feb 2022 00:04:08 +0100 (CET)
 Received: from [127.0.0.1] (helo=sfs-ml-4.v29.lw.sourceforge.com)
 	by sfs-ml-4.v29.lw.sourceforge.com with esmtp (Exim 4.94.2)
 	(envelope-from <v9fs-developer-bounces@lists.sourceforge.net>)
-	id 1nHrpb-0006l2-9b; Wed, 09 Feb 2022 18:36:42 +0000
+	id 1nIexS-0000Ck-Nz; Fri, 11 Feb 2022 23:04:05 +0000
 Received: from [172.30.20.202] (helo=mx.sourceforge.net)
  by sfs-ml-4.v29.lw.sourceforge.com with esmtps (TLS1.2) tls
  TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384 (Exim 4.94.2)
- (envelope-from <support-amazon.jp@sfxzore.cn>) id 1nHrpZ-0006kv-Ca
- for v9fs-developer@lists.sourceforge.net; Wed, 09 Feb 2022 18:36:40 +0000
+ (envelope-from <support-amazon.jp@ncecxtk.cn>) id 1nIexR-0000Cd-Qp
+ for v9fs-developer@lists.sourceforge.net; Fri, 11 Feb 2022 23:04:04 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
  d=sourceforge.net; s=x; h=Content-Type:Mime-Version:Message-ID:Subject:To:
  From:Date:Sender:Reply-To:Cc:Content-Transfer-Encoding:Content-ID:
  Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
  :Resent-Message-ID:In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:
  List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=gdCDCkpZ3fxhmtCgRpq26hfH7PUdCtWyKZj10W+pBsU=; b=ADDOtKuTtuZgHfM3XIOZzZrWVb
- XMG4Ng8di0iuG+xUZnupzLa9yprzSRgaLqYm3/xQkcxlPOrKEDvbZtaLPzuviEHbT1G53N4o9ozLg
- lG6/ZAu6Cl0Kv1p0lLRN53dwfvbQzrHsgv9a4Dd/EEYSWUoCPgO0+z5cVbmgRRNIUcJI=;
+ bh=3RA3bynzkaZlE9/3keMgUmS2p8bkIMODHBPbilp7M3M=; b=HtW/nP9rSMR81PYXccotQ29bH3
+ 0wO7ML/1YYj9uK3eS/m77PVeS7mXFzGJzeaW7fAx5pjfZp7vAViA4Y+6IvO3LiFQmuPOg3y9CMlwi
+ 2S+kVCdh5Fy+kYaLVFGNADkx9RpEkFI+39exbYn2huft5kP+Uj9VrtYKT6iSJtK8fWMY=;
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  ;
  h=Content-Type:Mime-Version:Message-ID:Subject:To:From:Date:Sender:Reply-To
  :Cc:Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
  Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:
  References:List-Id:List-Help:List-Unsubscribe:List-Subscribe:List-Post:
- List-Owner:List-Archive; bh=gdCDCkpZ3fxhmtCgRpq26hfH7PUdCtWyKZj10W+pBsU=; b=c
- 6x9hTuiZVRgvF+PyAe4VGpIIvuvm7PfCEsXb1ItXJa02isjepT9uuZctQMtoHg7kDe4HdEdYpAStL
- CSwrzTzTIwsldtGdNshVSl9thpJcIWm7bwN0rcu8PUAqa5dyA5LoazTCWpFnAbOfGCl79XAmw0ui2
- u12L/20jIo8fxn6E=;
-Received: from [139.198.32.201] (helo=mail.sfxzore.cn)
+ List-Owner:List-Archive; bh=3RA3bynzkaZlE9/3keMgUmS2p8bkIMODHBPbilp7M3M=; b=i
+ GJcQvmgKMejS5S7LLluFjErjm60inZF9KDlk3N8HlkGkymYG+J4tjURX7qc53QJWm6P59j0S+/u4O
+ BR3dtHhpsaTAXtMlRPZzhPQ3qwKlFzXxl9VO7tyvdhkk6TleWk1KO38+WxPttCYr2ptJ+uowBLb91
+ SlWYDj1lPYdI/7CA=;
+Received: from [139.198.9.119] (helo=mail.ncecxtk.cn)
  by sfi-mx-2.v28.lw.sourceforge.com with esmtps
  (TLS1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.94.2)
- id 1nHrpQ-0001cQ-0L
- for v9fs-developer@lists.sourceforge.net; Wed, 09 Feb 2022 18:36:40 +0000
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; s=default; d=sfxzore.cn; 
+ id 1nIexH-0002zD-6j
+ for v9fs-developer@lists.sourceforge.net; Fri, 11 Feb 2022 23:04:04 +0000
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; s=default; d=ncecxtk.cn; 
  h=Date:From:To:Subject:Message-ID:Mime-Version:Content-Type;
- i=support-amazon.jp@sfxzore.cn;
- bh=gdCDCkpZ3fxhmtCgRpq26hfH7PUdCtWyKZj10W+pBsU=;
- b=dXg7+QKznt8zxl0RsWb5r8+TexGAxa+aEsiyzUI/j7XZE6zZM89SYRLJLEU9RV6L4vfI0nZKibZp
- hRL9dfqqshrb2HZOjK5VE2ca1xRdhIXKqqYli8zBUmRzFFcD7M6QmXCJznlWK7XJWR0tsicEKxmY
- wSaaBQDWviMcCfitIlI=
-Date: Thu, 10 Feb 2022 02:38:09 +0800
-From: "Amazon" <support-amazon.jp@sfxzore.cn>
+ i=support-amazon.jp@ncecxtk.cn;
+ bh=3RA3bynzkaZlE9/3keMgUmS2p8bkIMODHBPbilp7M3M=;
+ b=bQN9ODeMMNn9bOLjKcEHdUjES/g9vfjH09sUjI6gruMmr/lrp9WjdID7J17mmpzUcztW8sf8VUEo
+ Au2xEa/mAjYCdDwg7xJIO+XGTTZ9Ca4484k5Nr/hkZHTalRC9Z90LXziaJ+OUvH0S9roYGLu5WKw
+ umkoMIbE9cZqJVw7fmc=
+Date: Sat, 12 Feb 2022 08:02:42 +0900
+From: "Amazon" <support-amazon.jp@ncecxtk.cn>
 To: <v9fs-developer@lists.sourceforge.net>
-Message-ID: <20220210023815063021@sfxzore.cn>
+Message-ID: <20220212080247335125@ncecxtk.cn>
 Mime-Version: 1.0
-X-Spam-Score: 1.1 (+)
+X-Spam-Score: 6.9 (++++++)
 X-Spam-Report: Spam detection software, running on the system "util-spamd-1.v13.lw.sourceforge.com",
- has NOT identified this incoming email as spam.  The original
+ has identified this incoming email as possible spam.  The original
  message has been attached to this so you can view it or label
  similar future email.  If you have any questions, see
  the administrator of that system for details.
@@ -60,10 +60,19 @@ X-Spam-Report: Spam detection software, running on the system "util-spamd-1.v13.
     あなたのアカウントは使用不可になりました。 あなたは複数回間違いの�
     [...] 
  
- Content analysis details:   (1.1 points, 6.0 required)
+ Content analysis details:   (6.9 points, 6.0 required)
  
   pts rule name              description
  ---- ---------------------- --------------------------------------------------
+  1.7 URIBL_BLACK            Contains an URL listed in the URIBL blacklist
+                             [URIs: ax1x.com]
+  0.5 RCVD_IN_UCE1           RBL: IP Listed in UCEPROTECT Level 1
+                             [139.198.9.119 listed in dnsbl-1.uceprotect.net]
+  3.6 RCVD_IN_SBL_CSS        RBL: Received via a relay in Spamhaus SBL-CSS
+                             [139.198.9.119 listed in zen.spamhaus.org]
+  0.1 URIBL_CSS_A            Contains URL's A record listed in the Spamhaus CSS
+                             blocklist
+                             [URIs: ncecxtk.cn]
   0.0 SPF_HELO_NONE          SPF: HELO does not publish an SPF Record
  -0.0 SPF_PASS               SPF: sender matches SPF record
   0.0 HTML_FONT_FACE_BAD     BODY: HTML font face is not a word
@@ -76,7 +85,7 @@ X-Spam-Report: Spam detection software, running on the system "util-spamd-1.v13.
                              valid
  -0.1 DKIM_VALID             Message has at least one valid DKIM or DK signature
   1.3 RDNS_NONE              Delivered to internal network by a host with no rDNS
-X-Headers-End: 1nHrpQ-0001cQ-0L
+X-Headers-End: 1nIexH-0002zD-6j
 X-Content-Filtered-By: Mailman/MimeDel 2.1.21
 Subject: [V9fs-developer] =?utf-8?b?44CQQW1hem9u44CR44Ki44Kr44Km44Oz44OI?=
 	=?utf-8?b?44Gu5Yip55So54q25rOB44KS44GU56K66KqN44GP44Gg44GV44GE44CC?=
