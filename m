@@ -2,26 +2,26 @@ Return-Path: <v9fs-developer-bounces@lists.sourceforge.net>
 X-Original-To: lists+v9fs-developer@lfdr.de
 Delivered-To: lists+v9fs-developer@lfdr.de
 Received: from lists.sourceforge.net (lists.sourceforge.net [216.105.38.7])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2C5BE4C79D5
-	for <lists+v9fs-developer@lfdr.de>; Mon, 28 Feb 2022 21:11:03 +0100 (CET)
-Received: from [127.0.0.1] (helo=sfs-ml-2.v29.lw.sourceforge.com)
-	by sfs-ml-2.v29.lw.sourceforge.com with esmtp (Exim 4.94.2)
+	by mail.lfdr.de (Postfix) with ESMTPS id 58B404C7A37
+	for <lists+v9fs-developer@lfdr.de>; Mon, 28 Feb 2022 21:23:03 +0100 (CET)
+Received: from [127.0.0.1] (helo=sfs-ml-4.v29.lw.sourceforge.com)
+	by sfs-ml-4.v29.lw.sourceforge.com with esmtp (Exim 4.94.2)
 	(envelope-from <v9fs-developer-bounces@lists.sourceforge.net>)
-	id 1nOmMI-0003vp-H9; Mon, 28 Feb 2022 20:11:01 +0000
+	id 1nOmXu-0007rV-FZ; Mon, 28 Feb 2022 20:23:01 +0000
 Received: from [172.30.20.202] (helo=mx.sourceforge.net)
- by sfs-ml-2.v29.lw.sourceforge.com with esmtps (TLS1.2) tls
+ by sfs-ml-4.v29.lw.sourceforge.com with esmtps (TLS1.2) tls
  TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384 (Exim 4.94.2)
- (envelope-from <torvalds@linuxfoundation.org>) id 1nOmMG-0003vf-MJ
- for v9fs-developer@lists.sourceforge.net; Mon, 28 Feb 2022 20:10:59 +0000
+ (envelope-from <torvalds@linuxfoundation.org>) id 1nOmXt-0007rO-00
+ for v9fs-developer@lists.sourceforge.net; Mon, 28 Feb 2022 20:22:59 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
  d=sourceforge.net; s=x; h=Content-Type:Cc:To:Subject:Message-ID:Date:From:
  In-Reply-To:References:MIME-Version:Sender:Reply-To:Content-Transfer-Encoding
  :Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
  Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
  List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=LeZ8UzRXrDw4d1M4BG6ctt9COK0EF5j9qtOsLWtMfJg=; b=T5coCTCw/I2rTJijSADWUbmlWu
- Cb1HuM4pKoGUMDxA2EcUlCCZHmMfna+PfeNGo0l5Dffk4Z1xCevcOTgO9pFSBfK1Q2uNCA2Hnp31d
- rt5a2xG1PVt5mJuuOFEwgA7oZpePXkT33FN5D+kJpPIRGm/LpoUXdEiqTzSIbgognzjU=;
+ bh=Rhevy6fb5H45VxDHjLDNCxtPhjJ0u7uFLdfSx9pxlIs=; b=Cs+SR2GX0ehSq8soLrPI+CRGca
+ GrniFisBnVhkNCNELygjAVzPUHo2eu9mYpWP/54/Ll1TRq/VhHFAzfsPPUcKzFRSYABnrW2WNYF+z
+ mlcjiFqHePaZN1FXVkT17G4gvF91ipLe/vnmD+dp+ZkpleikkcwwC+Dn+W2muxf4HZeI=;
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  ;
  h=Content-Type:Cc:To:Subject:Message-ID:Date:From:In-Reply-To:References:
@@ -29,64 +29,65 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
  :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
  List-Post:List-Owner:List-Archive;
- bh=LeZ8UzRXrDw4d1M4BG6ctt9COK0EF5j9qtOsLWtMfJg=; b=jdmCfypQJEnPFYfdxmMeIkUlhx
- jnQcri152jhuvqiLc+mnoW6ETTRvxSPXBfQWKhCBeNFBuxhJzcuZJhwCnK9CkvF3NSg9Bde3zJ2Pj
- JHu2UrJnHW5JniupeaV+9uRdDONfYqP1LsI/83gxyHwjMpF14drSPTOuva/rz2TwWldQ=;
-Received: from mail-ej1-f53.google.com ([209.85.218.53])
- by sfi-mx-1.v28.lw.sourceforge.com with esmtps
+ bh=Rhevy6fb5H45VxDHjLDNCxtPhjJ0u7uFLdfSx9pxlIs=; b=VxZb9I4VKobaemUdN++0Uy7I1f
+ jtPD5W80WdDzEZSBSnvjBUu9WIKNeQYZxTfqhkPepk54HV/LOgXATi0EUJyuwpglTKvbnW64w8HyL
+ TXRZ3fbPw6JOOfVUPL4eGx+pj/3eScxuZQ+KLLxC78ypUWXrUFwYruIpenK/k9TVwW4Y=;
+Received: from mail-ej1-f42.google.com ([209.85.218.42])
+ by sfi-mx-2.v28.lw.sourceforge.com with esmtps
  (TLS1.2:ECDHE-RSA-AES128-GCM-SHA256:128) (Exim 4.94.2)
- id 1nOmME-000Ssx-NJ
- for v9fs-developer@lists.sourceforge.net; Mon, 28 Feb 2022 20:10:59 +0000
-Received: by mail-ej1-f53.google.com with SMTP id d10so27108314eje.10
+ id 1nOmXn-0004UI-Ik
+ for v9fs-developer@lists.sourceforge.net; Mon, 28 Feb 2022 20:22:59 +0000
+Received: by mail-ej1-f42.google.com with SMTP id a8so27193947ejc.8
  for <v9fs-developer@lists.sourceforge.net>;
- Mon, 28 Feb 2022 12:10:58 -0800 (PST)
+ Mon, 28 Feb 2022 12:22:55 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=linux-foundation.org; s=google;
  h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=LeZ8UzRXrDw4d1M4BG6ctt9COK0EF5j9qtOsLWtMfJg=;
- b=Jhdls+DdmLi+4DWS7o2GehQ/Yg8vWPth9HxY0ymuDsFhiEF5hlRLzgd1PV4wJ4dLVJ
- JdRWd6PhVxu3cPtesSY0XREEgjw/sVhI1zgx2ECNJUHRlykk7MmbqhfMtkifVM/LmgYS
- 6chNfwYqW0eu75y5MSRY9nnHOEZnFkvhMXNYc=
+ :cc; bh=Rhevy6fb5H45VxDHjLDNCxtPhjJ0u7uFLdfSx9pxlIs=;
+ b=SFiiDaskyFzzbW4jCoUqiJYglpNWscp1lwtLHE93w8dRI3h8eXZkrLgebAKqQfA9oZ
+ haXikdZXvfEB810zRURGwChdn/CvMC8Q7Pab3hpE0iVI/nf3FVJvcryQMcC1uZhcoZUU
+ P6IZH9h2w6s9V+B5fc5q6pR5l/tJkcQrm5JJ0=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20210112;
  h=x-gm-message-state:mime-version:references:in-reply-to:from:date
  :message-id:subject:to:cc;
- bh=LeZ8UzRXrDw4d1M4BG6ctt9COK0EF5j9qtOsLWtMfJg=;
- b=p27auVisiYechw+aQHEQfukSEtkByGpXEvhGCXMvKiGSFF3morsBLi97pLpWITvMrU
- 0aZyTPb1cpXdogCXfh4RrXFPadUQCukrY2xPoTodYJarOKbgXarL1dfDq4Gs4KK44aQQ
- tjwm3EfOWvNUWxoHbotae34qNQitMWkHn3NOQDmjgv7y5mW+DcxfNPtJu2drHw1Byxo4
- Rvp2hLvqhxx1bD0NkQ2zSh/Tf7TWljczgifNMu5xnXFP+Pgp3qEMy8kEZ2UuLXKJn0Sz
- fNfFJLm2Eae2sKOh+dvjPX97uulRuAnYFRg1OzCZIRE3B2vdePoniLOYXvor3KjtQCrr
- 4Mxw==
-X-Gm-Message-State: AOAM531YxaZvaXyXGIsBxiy4Y/W1Y/SCMCWFIEVo7g5ZEsB9zPF674MU
- 1il+id1rLIeb4JO7oSM6Nez3QhZ+W9YenYr9OtM=
-X-Google-Smtp-Source: ABdhPJzRdieHrV32lgqh3KPPZ2Z1pUI1Z/EJNFU+uCjc62EUH19TCso0XEzQCY/zDerCDRUMm9PqlQ==
-X-Received: by 2002:a17:906:4a09:b0:6d0:7f19:d738 with SMTP id
- w9-20020a1709064a0900b006d07f19d738mr16104514eju.76.1646079052391; 
- Mon, 28 Feb 2022 12:10:52 -0800 (PST)
-Received: from mail-ed1-f54.google.com (mail-ed1-f54.google.com.
- [209.85.208.54]) by smtp.gmail.com with ESMTPSA id
- p15-20020a170906784f00b006ccb9e1278csm4656951ejm.6.2022.02.28.12.10.51
+ bh=Rhevy6fb5H45VxDHjLDNCxtPhjJ0u7uFLdfSx9pxlIs=;
+ b=kYtOCxrHmYpft+54evR4ltUnTfiw7P648SW7W2i9niNfiTHBoN+j2A/9INHNRgNPkH
+ 4WkZyWqd1XKpVAFcQajZ7aulrNnOwKrA8TmdK4IfcZOxcIY8U3Y9RFjAo/QezEKV4RUb
+ 12x17JxZHwtidu61MhJ9khZxLMhl0fS9Qpu+T9hpynI1xN5gTqozX5+Wlb/uRFsOpy75
+ 8bbRChDB5s/Nmi3WgZiUACsisD4GM6yu8HYkEZJ6AgbF99GRNBD4ue0eeYBxr3bc4JVb
+ 5CGORAiZOupxDNEsgkeUD4vPuy0kWM89WyKQzUdIQNtHQK9UjwhmOJLPa4FyigjJre/i
+ +yHw==
+X-Gm-Message-State: AOAM530mkHs5LitYAJoUNU1S3FEeALEcX90BIsjz4rLF5VVL2P1cIEd3
+ vwwkOPBncMnbRKxp+fpzOFoQNM/SrI4/8ByLYcs=
+X-Google-Smtp-Source: ABdhPJym0Uee5TTSVWxyMrazWhacfY5FuTrrFcNzCeaKFGm0MrpJhwnINXrmjFrDFh2CMe3jbbv/0A==
+X-Received: by 2002:a17:906:b155:b0:6c9:ea2d:3363 with SMTP id
+ bt21-20020a170906b15500b006c9ea2d3363mr16211343ejb.729.1646079769013; 
+ Mon, 28 Feb 2022 12:22:49 -0800 (PST)
+Received: from mail-ed1-f52.google.com (mail-ed1-f52.google.com.
+ [209.85.208.52]) by smtp.gmail.com with ESMTPSA id
+ l7-20020aa7c307000000b00410dede08a0sm6561961edq.6.2022.02.28.12.22.48
  for <v9fs-developer@lists.sourceforge.net>
  (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Mon, 28 Feb 2022 12:10:52 -0800 (PST)
-Received: by mail-ed1-f54.google.com with SMTP id q17so19186402edd.4
+ Mon, 28 Feb 2022 12:22:48 -0800 (PST)
+Received: by mail-ed1-f52.google.com with SMTP id ee12so4548556edb.12
  for <v9fs-developer@lists.sourceforge.net>;
- Mon, 28 Feb 2022 12:10:51 -0800 (PST)
-X-Received: by 2002:ac2:4d91:0:b0:443:127b:558a with SMTP id
- g17-20020ac24d91000000b00443127b558amr14027806lfe.542.1646079041191; Mon, 28
- Feb 2022 12:10:41 -0800 (PST)
+ Mon, 28 Feb 2022 12:22:48 -0800 (PST)
+X-Received: by 2002:a2e:924d:0:b0:246:370c:5618 with SMTP id
+ v13-20020a2e924d000000b00246370c5618mr15110351ljg.358.1646079300900; Mon, 28
+ Feb 2022 12:15:00 -0800 (PST)
 MIME-Version: 1.0
 References: <20220228110822.491923-1-jakobkoschel@gmail.com>
  <20220228110822.491923-3-jakobkoschel@gmail.com>
  <2e4e95d6-f6c9-a188-e1cd-b1eae465562a@amd.com>
  <CAHk-=wgQps58DPEOe4y5cTh5oE9EdNTWRLXzgMiETc+mFX7jzw@mail.gmail.com>
  <CAHk-=wj8fkosQ7=bps5K+DDazBXk=ypfn49A0sEq+7-nZnyfXA@mail.gmail.com>
-In-Reply-To: <CAHk-=wj8fkosQ7=bps5K+DDazBXk=ypfn49A0sEq+7-nZnyfXA@mail.gmail.com>
+ <CAHk-=wiTCvLQkHcJ3y0hpqH7FEk9D28LDvZZogC6OVLk7naBww@mail.gmail.com>
+In-Reply-To: <CAHk-=wiTCvLQkHcJ3y0hpqH7FEk9D28LDvZZogC6OVLk7naBww@mail.gmail.com>
 From: Linus Torvalds <torvalds@linux-foundation.org>
-Date: Mon, 28 Feb 2022 12:10:24 -0800
-X-Gmail-Original-Message-ID: <CAHk-=wiTCvLQkHcJ3y0hpqH7FEk9D28LDvZZogC6OVLk7naBww@mail.gmail.com>
-Message-ID: <CAHk-=wiTCvLQkHcJ3y0hpqH7FEk9D28LDvZZogC6OVLk7naBww@mail.gmail.com>
+Date: Mon, 28 Feb 2022 12:14:44 -0800
+X-Gmail-Original-Message-ID: <CAHk-=wj27SZQ3kPTesBzkiGhe-mA3gOQqr_adt_bMFzmg1VNaA@mail.gmail.com>
+Message-ID: <CAHk-=wj27SZQ3kPTesBzkiGhe-mA3gOQqr_adt_bMFzmg1VNaA@mail.gmail.com>
 To: =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>
 X-Spam-Score: 0.1 (/)
 X-Spam-Report: Spam detection software,
@@ -96,29 +97,28 @@ X-Spam-Report: Spam detection software,
  similar future email.  If you have any questions, see
  the administrator of that system for details.
  Content preview:  On Mon, Feb 28,
- 2022 at 12:03 PM Linus Torvalds <torvalds@linux-foundation.org>
- wrote: > > Side note: we do need *some* way to do it. Ooh. This patch is
- a work of art. 
+ 2022 at 12:10 PM Linus Torvalds <torvalds@linux-foundation.org>
+ wrote: > > We can do > > typeof(pos) pos > > in the 'for ()' loop, and never
+ use __iter at all. > > That means that insi [...] 
  Content analysis details:   (0.1 points, 6.0 required)
  pts rule name              description
  ---- ---------------------- --------------------------------------------------
  -0.0 RCVD_IN_DNSWL_NONE     RBL: Sender listed at https://www.dnswl.org/,
- no trust [209.85.218.53 listed in list.dnswl.org]
+ no trust [209.85.218.42 listed in list.dnswl.org]
  0.2 HEADER_FROM_DIFFERENT_DOMAINS From and EnvelopeFrom 2nd level
  mail domains are different
  -0.0 SPF_PASS               SPF: sender matches SPF record
  0.0 SPF_HELO_NONE          SPF: HELO does not publish an SPF Record
- 0.0 RCVD_IN_MSPIKE_H3      RBL: Good reputation (+3)
- [209.85.218.53 listed in wl.mailspike.net]
  0.1 DKIM_SIGNED            Message has a DKIM or DK signature, not necessarily
  valid
  -0.1 DKIM_VALID_AU          Message has a valid DKIM or DK signature from
  author's domain
  -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+ 0.0 RCVD_IN_MSPIKE_H3      RBL: Good reputation (+3)
+ [209.85.218.42 listed in wl.mailspike.net]
  0.0 RCVD_IN_MSPIKE_WL      Mailspike good senders
  -0.0 T_SCC_BODY_TEXT_LINE   No description available.
-X-Headers-End: 1nOmME-000Ssx-NJ
-X-Content-Filtered-By: Mailman/MimeDel 2.1.21
+X-Headers-End: 1nOmXn-0004UI-Ik
 Subject: Re: [V9fs-developer] [PATCH 2/6] treewide: remove using list
  iterator after loop body as a ptr
 X-BeenThere: v9fs-developer@lists.sourceforge.net
@@ -171,33 +171,35 @@ Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: v9fs-developer-bounces@lists.sourceforge.net
 
-On Mon, Feb 28, 2022 at 12:03 PM Linus Torvalds
+On Mon, Feb 28, 2022 at 12:10 PM Linus Torvalds
 <torvalds@linux-foundation.org> wrote:
 >
-> Side note: we do need *some* way to do it.
+> We can do
+>
+>         typeof(pos) pos
+>
+> in the 'for ()' loop, and never use __iter at all.
+>
+> That means that inside the for-loop, we use a _different_ 'pos' than outside.
 
-Ooh.
-
-This patch is a work of art.
-
-And I mean that in the worst possible way.
-
-We can do
+The thing that makes me throw up in my mouth a bit is that in that
 
         typeof(pos) pos
 
-in the 'for ()' loop, and never use __iter at all.
+the first 'pos' (that we use for just the typeof) is that outer-level
+'pos', IOW it's a *different* 'pos' than the second 'pos' in that same
+declaration that declares the inner level shadowing new 'pos'
+variable.
 
-That means that inside the for-loop, we use a _different_ 'pos' than outside.
+If I was a compiler person, I would say "Linus, that thing is too ugly
+to live", and I would hate it. I'm just hoping that even compiler
+people say "that's *so* ugly it's almost beautiful".
 
-And then the compiler will not see some "might be uninitialized", but
-the outer 'pos' *will* be uninitialized.
+Because it does seem to work. It's not pretty, but hey, it's not like
+our headers are really ever be winning any beauty contests...
 
-Unless, of course, the outer 'pos' had that pointless explicit initializer.
+                Linus
 
-Here - can somebody poke holes in this "work of art" patch?
-
-                     Linus
 
 _______________________________________________
 V9fs-developer mailing list
