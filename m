@@ -2,106 +2,100 @@ Return-Path: <v9fs-developer-bounces@lists.sourceforge.net>
 X-Original-To: lists+v9fs-developer@lfdr.de
 Delivered-To: lists+v9fs-developer@lfdr.de
 Received: from lists.sourceforge.net (lists.sourceforge.net [216.105.38.7])
-	by mail.lfdr.de (Postfix) with ESMTPS id B792C4C5FA9
-	for <lists+v9fs-developer@lfdr.de>; Mon, 28 Feb 2022 00:02:29 +0100 (CET)
-Received: from [127.0.0.1] (helo=sfs-ml-2.v29.lw.sourceforge.com)
-	by sfs-ml-2.v29.lw.sourceforge.com with esmtp (Exim 4.94.2)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3C54B4C605E
+	for <lists+v9fs-developer@lfdr.de>; Mon, 28 Feb 2022 01:53:44 +0100 (CET)
+Received: from [127.0.0.1] (helo=sfs-ml-1.v29.lw.sourceforge.com)
+	by sfs-ml-1.v29.lw.sourceforge.com with esmtp (Exim 4.94.2)
 	(envelope-from <v9fs-developer-bounces@lists.sourceforge.net>)
-	id 1nOSYe-0004C5-27; Sun, 27 Feb 2022 23:02:26 +0000
+	id 1nOUII-0005mg-9R; Mon, 28 Feb 2022 00:53:40 +0000
 Received: from [172.30.20.202] (helo=mx.sourceforge.net)
- by sfs-ml-2.v29.lw.sourceforge.com with esmtps (TLS1.2) tls
- TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384 (Exim 4.94.2)
- (envelope-from <asmadeus@codewreck.org>) id 1nOSYc-0004Bz-27
- for v9fs-developer@lists.sourceforge.net; Sun, 27 Feb 2022 23:02:25 +0000
+ by sfs-ml-1.v29.lw.sourceforge.com with esmtps (TLS1.2) tls
+ TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384 (Exim 4.94.2) (envelope-from
+ <3CR0cYgkbAMo8EF0q11u7q55yt.w44w1uA8u7s439u39.s42@M3KW2WVRGUFZ5GODRSRYTGD7.apphosting.bounces.google.com>)
+ id 1nOUIG-0005mZ-OG
+ for v9fs-developer@lists.sourceforge.net; Mon, 28 Feb 2022 00:53:39 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=sourceforge.net; s=x; h=In-Reply-To:Content-Type:MIME-Version:References:
- Message-ID:Subject:Cc:To:From:Date:Sender:Reply-To:Content-Transfer-Encoding:
- Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
- Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
+ d=sourceforge.net; s=x; h=Content-Type:To:From:Subject:Message-ID:Date:
+ MIME-Version:Sender:Reply-To:Cc:Content-Transfer-Encoding:Content-ID:
+ Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
+ :Resent-Message-ID:In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:
  List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=BJQ1J5uztCEdU0q2U1u+VTsYQsC4vOYAgl4SfWF3M+8=; b=IiO4HskdKmWW9CzI41cnCL3N8l
- lFSKZFI7p9VQxlLKQHC52fDtuw6jT6aDy8Y4weOO2qz560SswpWHbv0kFZaiFWg53hWKhMHIkoD9A
- mVk/oiVHihNvg+OMpxSUVcBzm31DsqMCaZE0BHHWigkY4rpNgo1gbY9N3XIaXzyMOXkU=;
+ bh=AX3Pc5AO8XiRxdqF0xaFF6Qbje5dgUlOCE3Rs5VFqVI=; b=eG9ITmSt062MEjBRhnfIM2oRzK
+ lOiP/fxnuf7G1YND6uCzybxB0l233LkLI8wdwtHQr5QfbUF39K6s+EQ29CT5ZL1BMbKe1QooJCt5p
+ gMVwceyK/9E6aqVAg4UX/ra0fkl5SqvryIuSh2ycp4uwJcN/j7iJy6/2oYysn4PIyUkI=;
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  ;
- h=In-Reply-To:Content-Type:MIME-Version:References:Message-ID:Subject:Cc:To
- :From:Date:Sender:Reply-To:Content-Transfer-Encoding:Content-ID:
- Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
- :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
- List-Post:List-Owner:List-Archive;
- bh=BJQ1J5uztCEdU0q2U1u+VTsYQsC4vOYAgl4SfWF3M+8=; b=Rs55Mrki2b+WYHev4ZuDpCtonV
- +3iRQHw02uz66mOzuu1ThvALon9QaVUIJpjo9neyFb3t1htHdaSRIVZoathStqScExr7FusRPdprw
- tjx24I3fciqklnTjxTriErkgGEnGZpN/6WmLViFTqmE0QJIk62Db/edVX/CdFn45/6DI=;
-Received: from nautica.notk.org ([91.121.71.147])
+ h=Content-Type:To:From:Subject:Message-ID:Date:MIME-Version:Sender:Reply-To
+ :Cc:Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+ Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:
+ References:List-Id:List-Help:List-Unsubscribe:List-Subscribe:List-Post:
+ List-Owner:List-Archive; bh=AX3Pc5AO8XiRxdqF0xaFF6Qbje5dgUlOCE3Rs5VFqVI=; b=W
+ 52yemEVDJZyOROB9+yTy+kWxpd6hAnprD7MmEjwNWkaTj1IHXfbkZeP8qj87kofcYOgOIabJ36DS6
+ 7woaHJWoPcxGbwqCLczfw/+lCq3rNqsYDkjYAPnb8YkiKiDc75tzGQ2cd5I4EReBkbFK21syWx59L
+ PlprIxlObyu029ro=;
+Received: from mail-io1-f70.google.com ([209.85.166.70])
  by sfi-mx-2.v28.lw.sourceforge.com with esmtps
- (TLS1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.94.2)
- id 1nOSYW-0006Va-5k
- for v9fs-developer@lists.sourceforge.net; Sun, 27 Feb 2022 23:02:24 +0000
-Received: by nautica.notk.org (Postfix, from userid 108)
- id 6F7D1C01D; Mon, 28 Feb 2022 00:02:13 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=codewreck.org; s=2;
- t=1646002933; bh=BJQ1J5uztCEdU0q2U1u+VTsYQsC4vOYAgl4SfWF3M+8=;
- h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
- b=s78CKbRgW+GKMMxOLR0HNszyf1FR4vGyKBJwcv79G2oY761J9bt2o21u80aI8BazQ
- xuXYO6KVRwHxMu4Yck+OTpPWutzyjtt5QkolBMVRhAzgg3BrsmCjLAPYUIu3UXTZSp
- 2NMHMakwrMtZiMrHrsyhHryN1Z6AwKO0jF4XwawWSS8Xl/RCm3sD0ACESEgwWXX7su
- ShNecGRKnGxzvXW9uPBZzAwZo+V+1ffViDBrrxM5B8RuosRjcJ7hsauX2MgyLlY7lr
- 2mFpAoK0rPXGrtGY6paQX+NuN5zybkJo6GCt64n6Fi438tH8/9d5qz21FH46YC+pb0
- YH0xVhwk8VKKA==
-X-Spam-Checker-Version: SpamAssassin 3.3.2 (2011-06-06) on nautica.notk.org
-X-Spam-Level: 
-X-Spam-Status: No, score=0.0 required=5.0 tests=UNPARSEABLE_RELAY
- autolearn=unavailable version=3.3.2
-Received: from odin.codewreck.org (localhost [127.0.0.1])
- by nautica.notk.org (Postfix) with ESMTPS id 340DEC009;
- Mon, 28 Feb 2022 00:02:10 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=codewreck.org; s=2;
- t=1646002932; bh=BJQ1J5uztCEdU0q2U1u+VTsYQsC4vOYAgl4SfWF3M+8=;
- h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
- b=US3pyf3ttO6dlJwXWn1ursQzktLC4QoPE/1yfAq/Czg7FSLqZHnJqKht3FycoZBnm
- qjqdBN67PFhmo8eUIW07cv3j4PmDEXOxchf0c6u2taoq1qdzHe2OfW6aKUEqGRNNyX
- C7p7kNImjlhpMjOKQpNZngLsDRZNYVi7WaR3hb8MSXGLohf47jVoDYL/MGO/VCQaeH
- 7tpTRmDJbVlUFV4Bfh8IQNZO2Z4OF4bjxvb2/ebk0gBqFEVn6+hZazPIiYj8QyqHUY
- FwaRukuterGUTeHpB2xvHZibfOKiah2poXgp/Tss3cLnNWcSKZzhntp70YcynLcKT2
- U1GgvNgYo+GJg==
-Received: from localhost (odin.codewreck.org [local])
- by odin.codewreck.org (OpenSMTPD) with ESMTPA id c5b1dc4c;
- Sun, 27 Feb 2022 23:02:07 +0000 (UTC)
-Date: Mon, 28 Feb 2022 08:01:52 +0900
-From: asmadeus@codewreck.org
-To: ng@0x80.stream
-Message-ID: <YhwC4BjD0QQCTLjj@codewreck.org>
-References: <20220227223130.F10EEC01A@nautica.notk.org>
+ (TLS1.2:ECDHE-RSA-AES128-GCM-SHA256:128) (Exim 4.94.2)
+ id 1nOUIB-0002W1-1E
+ for v9fs-developer@lists.sourceforge.net; Mon, 28 Feb 2022 00:53:39 +0000
+Received: by mail-io1-f70.google.com with SMTP id
+ r191-20020a6b8fc8000000b0063de0033ee7so7591405iod.3
+ for <v9fs-developer@lists.sourceforge.net>;
+ Sun, 27 Feb 2022 16:53:35 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20210112;
+ h=x-gm-message-state:mime-version:date:message-id:subject:from:to;
+ bh=AX3Pc5AO8XiRxdqF0xaFF6Qbje5dgUlOCE3Rs5VFqVI=;
+ b=zzv3+J9Y5QjqJM9SGJz+eQdGJfJ0sFoh3N418hmcSFou+pDhEW/Ss7LwJ4/G+0RMbD
+ sGpvooFN+tMAlLIW7jxaCx7rL5VaYgTUZ5lSnOlgcrLQJAp3oJ3+AiVO1/SxaJPGlSZ2
+ Z8Hv+2iqHUv1YGPMvcxsdHmP6lS+PH/B/kPpfHCDzfRE9hSNDZw6r4Y/KMoqwF3+03Zt
+ 1bMdPDLfLtj0a7cvgFY3DgyL0lhTyJldQwBnD40saMG3T+XbUGUv12hUOwRrfTzkTNiO
+ YT/x+SJDmUf1vZ5b5GQeLQpmcg+oI8NDFaZD1uCEQQaCleeXCV2kHR1ZF6M049ozR+nB
+ Kwnw==
+X-Gm-Message-State: AOAM531FrDClKOUPoaktcaLt7Wsg8PUBQuuTGzfRG4WQhh4OItxthXn4
+ 0wX8X2xHnSXkYin8AQJAtwEM+SLCH17mmhqu83IIHMd/7hW9
+X-Google-Smtp-Source: ABdhPJzowtiUs7pxMmgZkREdzThcRlYPZXMRC4wyI+xkJyhxP5lHi4wPMJbHPzurk9inE/5cVLYhGqwKcPFDdVYR8Lgh/0KJkAQ3
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20220227223130.F10EEC01A@nautica.notk.org>
-X-Spam-Score: -0.2 (/)
+X-Received: by 2002:a05:6602:2b8b:b0:608:c584:a1b0 with SMTP id
+ r11-20020a0566022b8b00b00608c584a1b0mr13607483iov.159.1646009609480; Sun, 27
+ Feb 2022 16:53:29 -0800 (PST)
+Date: Sun, 27 Feb 2022 16:53:29 -0800
+X-Google-Appengine-App-Id: s~syzkaller
+X-Google-Appengine-App-Id-Alias: syzkaller
+Message-ID: <00000000000011f0c905d9097a62@google.com>
+From: syzbot <syzbot+5e28cdb7ebd0f2389ca4@syzkaller.appspotmail.com>
+To: asmadeus@codewreck.org, davem@davemloft.net, ericvh@gmail.com, 
+ kuba@kernel.org, linux-kernel@vger.kernel.org, linux_oss@crudebyte.com, 
+ lucho@ionkov.net, netdev@vger.kernel.org, syzkaller-bugs@googlegroups.com, 
+ v9fs-developer@lists.sourceforge.net
+X-Spam-Score: 3.0 (+++)
 X-Spam-Report: Spam detection software,
- running on the system "util-spamd-1.v13.lw.sourceforge.com", 
+ running on the system "util-spamd-2.v13.lw.sourceforge.com", 
  has NOT identified this incoming email as spam.  The original
  message has been attached to this so you can view it or label
  similar future email.  If you have any questions, see
  the administrator of that system for details.
- Content preview:  ng@0x80.stream wrote on Sun, Feb 27,
- 2022 at 10:31:27PM +0000:
- > Quoting Dominique Martinet <asmadeus@codewreck.org>: > >> Further, there
- is no requirement, in the protocol, that IO operations > >> be [...] 
- Content analysis details:   (-0.2 points, 6.0 required)
+ Content preview:  Hello,
+ syzbot found the following issue on: HEAD commit: 23d04328444a
+ Merge tag 'for-5.17/parisc-4' of git://git.ke.. git tree: upstream console
+ output: https://syzkaller.appspot.com/x/log.txt?x=1614a812700000 kernel
+ config: https://syzkaller.a [...] 
+ Content analysis details:   (3.0 points, 6.0 required)
  pts rule name              description
  ---- ---------------------- --------------------------------------------------
- 0.0 SPF_HELO_NONE          SPF: HELO does not publish an SPF Record
+ 0.3 FROM_LOCAL_HEX         From: localpart has long hexadecimal sequence
+ -0.0 RCVD_IN_DNSWL_NONE     RBL: Sender listed at https://www.dnswl.org/,
+ no trust [209.85.166.70 listed in list.dnswl.org]
+ 2.5 SORTED_RECIPS          Recipient list is sorted by address
+ 0.2 HEADER_FROM_DIFFERENT_DOMAINS From and EnvelopeFrom 2nd level
+ mail domains are different
  -0.0 SPF_PASS               SPF: sender matches SPF record
- -0.1 DKIM_VALID_EF          Message has a valid DKIM or DK signature from
- envelope-from domain
- -0.1 DKIM_VALID_AU          Message has a valid DKIM or DK signature from
- author's domain
- 0.1 DKIM_SIGNED            Message has a DKIM or DK signature, not necessarily
- valid
- -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
- 0.0 UNPARSEABLE_RELAY      Informational: message has unparseable relay
- lines
-X-Headers-End: 1nOSYW-0006Va-5k
-Subject: Re: [V9fs-developer] Make 9p fast
+ 0.0 SPF_HELO_NONE          SPF: HELO does not publish an SPF Record
+ -0.0 RCVD_IN_MSPIKE_H2      RBL: Average reputation (+2)
+ [209.85.166.70 listed in wl.mailspike.net]
+ -0.0 T_SCC_BODY_TEXT_LINE   No description available.
+X-Headers-End: 1nOUIB-0002W1-1E
+Subject: [V9fs-developer] [syzbot] WARNING in p9_client_destroy
 X-BeenThere: v9fs-developer@lists.sourceforge.net
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -113,58 +107,80 @@ List-Post: <mailto:v9fs-developer@lists.sourceforge.net>
 List-Help: <mailto:v9fs-developer-request@lists.sourceforge.net?subject=help>
 List-Subscribe: <https://lists.sourceforge.net/lists/listinfo/v9fs-developer>, 
  <mailto:v9fs-developer-request@lists.sourceforge.net?subject=subscribe>
-Cc: ericvh@gmail.com, rminnich@gmail.com, lucho@ionkov.net,
- v9fs-developer@lists.sourceforge.net
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: v9fs-developer-bounces@lists.sourceforge.net
 
-ng@0x80.stream wrote on Sun, Feb 27, 2022 at 10:31:27PM +0000:
-> Quoting Dominique Martinet <asmadeus@codewreck.org>:
-> >> Further, there is no requirement, in the protocol, that IO operations
-> >> be serialized.
-> > 
-> > I've played with that (in a userspace client):
-> > https://github.com/martinetd/space9/blob/master/src/9p_libc.c#L820
-> > 
-> > It's been a while but you can definitely get wire speed with that.
-> 
-> Forgive the naive question, but would this change entail that a
-> client may not observe its own writes? (Because the client may send
-> Twrite and Tread but the Tread may be served first, I mean.) Isn't that
-> undesirable? What do other file systems do?
+Hello,
 
-I this part is mostly safe as long as:
-- for cache=none, we make sure the IOs are finished before we return to
-userspace. It means that during a write the state within the written
-offset might be inconsistent, but during a write there are no guarantees
-how the file is being modified afaik?
-That does bring a few interesting failures though, especially when
-appending at the end of a file, e.g. what if when sending two writes the
-later succeeded but the first failed?...
-This was brought up recently for reads here for netfs:
-https://lkml.kernel.org/r/2752208.1642413437@warthog.procyon.org.uk
+syzbot found the following issue on:
 
-so, hm, well, it might not be as easy as it sounded like; thanks for the
-question!
+HEAD commit:    23d04328444a Merge tag 'for-5.17/parisc-4' of git://git.ke..
+git tree:       upstream
+console output: https://syzkaller.appspot.com/x/log.txt?x=1614a812700000
+kernel config:  https://syzkaller.appspot.com/x/.config?x=f2a8c25b60d49d24
+dashboard link: https://syzkaller.appspot.com/bug?extid=5e28cdb7ebd0f2389ca4
+compiler:       gcc (Debian 10.2.1-6) 10.2.1 20210110, GNU ld (GNU Binutils for Debian) 2.35.2
 
-- for cached version, the client's own reads will be served from vfs
-cache and should be coherent with themselves.
-In this case if some writes fail when flushing cache we already see
-weird behaviour, so there would be no problem making this parallel as
-well on top... Userspace would get errors on flush or close calls afaik.
+Unfortunately, I don't have any reproducer for this issue yet.
+
+IMPORTANT: if you fix the issue, please add the following tag to the commit:
+Reported-by: syzbot+5e28cdb7ebd0f2389ca4@syzkaller.appspotmail.com
+
+kmem_cache_destroy 9p-fcall-cache: Slab cache still has objects when called from p9_client_destroy+0x213/0x370 net/9p/client.c:1100
+WARNING: CPU: 1 PID: 3701 at mm/slab_common.c:502 kmem_cache_destroy mm/slab_common.c:502 [inline]
+WARNING: CPU: 1 PID: 3701 at mm/slab_common.c:502 kmem_cache_destroy+0x13b/0x140 mm/slab_common.c:490
+Modules linked in:
+CPU: 1 PID: 3701 Comm: syz-executor.3 Not tainted 5.17.0-rc5-syzkaller-00021-g23d04328444a #0
+Hardware name: QEMU Standard PC (Q35 + ICH9, 2009), BIOS 1.14.0-2 04/01/2014
+RIP: 0010:kmem_cache_destroy mm/slab_common.c:502 [inline]
+RIP: 0010:kmem_cache_destroy+0x13b/0x140 mm/slab_common.c:490
+Code: da a8 0e 48 89 ee e8 44 6e 15 00 eb c1 c3 48 8b 55 58 48 c7 c6 60 cd b6 89 48 c7 c7 30 83 3a 8b 48 8b 4c 24 18 e8 9b 30 60 07 <0f> 0b eb a0 90 41 55 49 89 d5 41 54 49 89 f4 55 48 89 fd 53 48 83
+RSP: 0018:ffffc90002767cf0 EFLAGS: 00010282
+RAX: 0000000000000000 RBX: 1ffff920004ecfa5 RCX: 0000000000000000
+RDX: ffff88801e56a280 RSI: ffffffff815f4b38 RDI: fffff520004ecf90
+RBP: ffff888020ba8b00 R08: 0000000000000000 R09: 0000000000000000
+R10: ffffffff815ef1ce R11: 0000000000000000 R12: 0000000000000001
+R13: ffffc90002767d68 R14: dffffc0000000000 R15: 0000000000000000
+FS:  00005555561b0400(0000) GS:ffff88802ca00000(0000) knlGS:0000000000000000
+CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+CR2: 0000555556ead708 CR3: 0000000068b97000 CR4: 0000000000150ef0
+DR0: 0000000000000000 DR1: 0000000000000000 DR2: 0000000000000000
+DR3: 0000000000000000 DR6: 00000000fffe0ff0 DR7: 0000000000000400
+Call Trace:
+ <TASK>
+ p9_client_destroy+0x213/0x370 net/9p/client.c:1100
+ v9fs_session_close+0x45/0x2d0 fs/9p/v9fs.c:504
+ v9fs_kill_super+0x49/0x90 fs/9p/vfs_super.c:226
+ deactivate_locked_super+0x94/0x160 fs/super.c:332
+ deactivate_super+0xad/0xd0 fs/super.c:363
+ cleanup_mnt+0x3a2/0x540 fs/namespace.c:1173
+ task_work_run+0xdd/0x1a0 kernel/task_work.c:164
+ tracehook_notify_resume include/linux/tracehook.h:188 [inline]
+ exit_to_user_mode_loop kernel/entry/common.c:175 [inline]
+ exit_to_user_mode_prepare+0x27e/0x290 kernel/entry/common.c:207
+ __syscall_exit_to_user_mode_work kernel/entry/common.c:289 [inline]
+ syscall_exit_to_user_mode+0x19/0x60 kernel/entry/common.c:300
+ do_syscall_64+0x42/0xb0 arch/x86/entry/common.c:86
+ entry_SYSCALL_64_after_hwframe+0x44/0xae
+RIP: 0033:0x7f5ff63ed4c7
+Code: ff ff ff f7 d8 64 89 01 48 83 c8 ff c3 66 0f 1f 44 00 00 31 f6 e9 09 00 00 00 66 0f 1f 84 00 00 00 00 00 b8 a6 00 00 00 0f 05 <48> 3d 01 f0 ff ff 73 01 c3 48 c7 c1 b8 ff ff ff f7 d8 64 89 01 48
+RSP: 002b:00007fff01862e98 EFLAGS: 00000246 ORIG_RAX: 00000000000000a6
+RAX: 0000000000000000 RBX: 0000000000000000 RCX: 00007f5ff63ed4c7
+RDX: 00007fff01862f6c RSI: 000000000000000a RDI: 00007fff01862f60
+RBP: 00007fff01862f60 R08: 00000000ffffffff R09: 00007fff01862d30
+R10: 00005555561b18b3 R11: 0000000000000246 R12: 00007f5ff64451ea
+R13: 00007fff01864020 R14: 00005555561b1810 R15: 00007fff01864060
+ </TASK>
 
 
-As I said in my opinion this would only really be interesting for cached
-mode, so I'd be happy to give up on cache=none (which, incidentally, is
-the default -- cached mode would need some better memory management to
-be made default, but I also believe that would be interesting...) 
+---
+This report is generated by a bot. It may contain errors.
+See https://goo.gl/tpsmEJ for more information about syzbot.
+syzbot engineers can be reached at syzkaller@googlegroups.com.
 
-Well, none of this will be made by me anytime soon anyway, so it
-doesn't hurt to discuss -- I just wanted to say there's definitely
-things that can be done or tried :)
--- 
-Dominiqu
+syzbot will keep track of this issue. See:
+https://goo.gl/tpsmEJ#status for how to communicate with syzbot.
 
 
 _______________________________________________
