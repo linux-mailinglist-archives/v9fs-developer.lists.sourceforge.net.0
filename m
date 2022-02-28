@@ -2,111 +2,88 @@ Return-Path: <v9fs-developer-bounces@lists.sourceforge.net>
 X-Original-To: lists+v9fs-developer@lfdr.de
 Delivered-To: lists+v9fs-developer@lfdr.de
 Received: from lists.sourceforge.net (lists.sourceforge.net [216.105.38.7])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0D8354C72F1
-	for <lists+v9fs-developer@lfdr.de>; Mon, 28 Feb 2022 18:30:59 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id C70C64C777B
+	for <lists+v9fs-developer@lfdr.de>; Mon, 28 Feb 2022 19:21:06 +0100 (CET)
 Received: from [127.0.0.1] (helo=sfs-ml-2.v29.lw.sourceforge.com)
 	by sfs-ml-2.v29.lw.sourceforge.com with esmtp (Exim 4.94.2)
 	(envelope-from <v9fs-developer-bounces@lists.sourceforge.net>)
-	id 1nOjrN-0007e0-Is; Mon, 28 Feb 2022 17:30:56 +0000
+	id 1nOkdt-0000ld-Ft; Mon, 28 Feb 2022 18:21:04 +0000
 Received: from [172.30.20.202] (helo=mx.sourceforge.net)
  by sfs-ml-2.v29.lw.sourceforge.com with esmtps (TLS1.2) tls
  TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384 (Exim 4.94.2)
- (envelope-from <droyo@aqwari.net>) id 1nOjrM-0007dt-MC
- for v9fs-developer@lists.sourceforge.net; Mon, 28 Feb 2022 17:30:55 +0000
+ (envelope-from <joe@perches.com>)
+ id 1nOkdr-0000lJ-8i; Mon, 28 Feb 2022 18:21:02 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=sourceforge.net; s=x; h=Content-Type:Subject:To:From:Date:References:
- In-Reply-To:Message-Id:Mime-Version:Sender:Reply-To:Cc:
- Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
- Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:
- List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=/sxoPFEe4FTJe+zPcUxKH1br50sUrFQmIWfLinYkaZY=; b=ae6/fM6uZIKZFWjI24Z1Jw+cF9
- NXWI8VtNnK8nr2ksaL/AHS1iYpYeFbTVhX9gZzr7jwhdFDtXucAWOSoe+yg16KhyEV7Rg+r2x7JT1
- NIblSWlWLLNbXOqLI6P3ISgZT8jPG/0YiCnRDecLGJIeLmwOL70aVVaibaLizg9WR48A=;
+ d=sourceforge.net; s=x; h=Content-Transfer-Encoding:MIME-Version:Content-Type
+ :References:In-Reply-To:Date:Cc:To:From:Subject:Message-ID:Sender:Reply-To:
+ Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+ Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
+ List-Subscribe:List-Post:List-Owner:List-Archive;
+ bh=iC57ULCjPoYfVqgxo67hxLpxo/CXI1B7J10IetN0etE=; b=FIih3JnBrX6VRdSW7ECSiFoWtZ
+ BTua9y1QmqsohoHpwrtDQswBLUHw+cMlFvQPO+LzDFbJ/w8szlYpKv8kNcbt+np9YH+KP4hc/15OP
+ qruGAJi5ZH4FseaIy54XXTXfQgEBe7HJNJorBuPm0gTC+lNao0OZEYvNsPY1f/XhGqHI=;
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  ;
- h=Content-Type:Subject:To:From:Date:References:In-Reply-To:Message-Id:
- Mime-Version:Sender:Reply-To:Cc:Content-Transfer-Encoding:Content-ID:
+ h=Content-Transfer-Encoding:MIME-Version:Content-Type:References:
+ In-Reply-To:Date:Cc:To:From:Subject:Message-ID:Sender:Reply-To:Content-ID:
  Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
  :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
  List-Post:List-Owner:List-Archive;
- bh=/sxoPFEe4FTJe+zPcUxKH1br50sUrFQmIWfLinYkaZY=; b=HIwOiRKqrTmupmOlBq+9/3uCrg
- yrd/cbQXcJRPjQ0YeVKySUsIaESUpeoP3XIH/J2hMjE8rGdZmRq9iXvXSNJfsWMTmbMl8TJVXA+bs
- wAaN52fkxHEECiPanF0chERKcIDnQnr0t9M4BFKvCBwdfdLdPrTyrjv+tx0azR/jglOA=;
-Received: from out2-smtp.messagingengine.com ([66.111.4.26])
- by sfi-mx-2.v28.lw.sourceforge.com with esmtps
+ bh=iC57ULCjPoYfVqgxo67hxLpxo/CXI1B7J10IetN0etE=; b=BiBUXz8f+evPKaa71kWsvW0jTS
+ jSrOCKtKXsuyL0HJoNFSCIElPz8+PB+Jd1v34B9D3XTi1ovsFNqV50L8H+B3p0sNiZpEBwNgdH+8P
+ NHd/L39lAn+fkiZwqDXrhArH5OqMsjuIXN93+i1yV34Yu3NIZRa1ZQ0WDVFME4LI4RVc=;
+Received: from relay3.hostedemail.com ([64.99.140.33])
+ by sfi-mx-1.v28.lw.sourceforge.com with esmtps
  (TLS1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.94.2)
- id 1nOjrK-0003FY-4P
- for v9fs-developer@lists.sourceforge.net; Mon, 28 Feb 2022 17:30:55 +0000
-Received: from compute4.internal (compute4.nyi.internal [10.202.2.44])
- by mailout.nyi.internal (Postfix) with ESMTP id 5C6A45C021B
- for <v9fs-developer@lists.sourceforge.net>;
- Mon, 28 Feb 2022 12:13:23 -0500 (EST)
-Received: from imap43 ([10.202.2.93])
- by compute4.internal (MEProxy); Mon, 28 Feb 2022 12:13:23 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
- messagingengine.com; h=cc:content-type:date:date:from:from
- :in-reply-to:in-reply-to:message-id:mime-version:references
- :reply-to:sender:subject:subject:to:to:x-me-proxy:x-me-proxy
- :x-me-sender:x-me-sender:x-sasl-enc; s=fm2; bh=/sxoPFEe4FTJe+zPc
- UxKH1br50sUrFQmIWfLinYkaZY=; b=P+jUWY97qd/iF+QfYjVzdvsADpzGZ/0T2
- te+BB/WN51Ku/qmQwDSCW2Bgn4DrW7vNPlMtXU5V0/s2QBr7aXp3aeDFpC8f2ZDB
- ija/aoXkgPwN+nNdly4Jso37y7jlSMI77F4moLguFigpnMzyPyELuM+NA6k+OIdP
- 8n8Q+mYg4BN6BDKgMYNKfClUxQOUgJlKbnvS56+jlVFxnSqjxN9Q3tZz/XLAXjZM
- d0SzGu0PKouI6W85pwbCmsla6zBsYIasZCLAmRa9hslwrJfRxbskWBM0rekhehIM
- mkuTQl/z8u8uh5UdGHW1CdJt8SdnaLPzsNF3yR842csDaotgvscrQ==
-X-ME-Sender: <xms:swIdYvqD37Sp4FM_Y3nQSzWunoDtXLcHkmYTdFSZGXraOFSyQJIxLQ>
- <xme:swIdYprpK5LLG81vdbnYFtDoJr6yjNxhwNa0mozO4gb71qVwrCE4kKNYa5-CcIJ2g
- 4JCjgmZmzYweNzYnA>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvvddruddttddgleejucetufdoteggodetrfdotf
- fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
- uceurghilhhouhhtmecufedttdenucenucfjughrpefofgggkfgjfhffhffvufgtsehttd
- ertderredtnecuhfhrohhmpedfffgrvhhiugcutehrrhhohihofdcuoegurhhohihosegr
- qhifrghrihdrnhgvtheqnecuggftrfgrthhtvghrnhepueeiteekkefgleevheejfedvge
- dugfekfefhgeefjeejvdehgfelvdfguefhlefgnecuffhomhgrihhnpehgihhthhhusgdr
- tghomhenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepmhgrihhlfhhrohhmpe
- gurhhohihosegrqhifrghrihdrnhgvth
-X-ME-Proxy: <xmx:swIdYsMq643F8mqWvhBjhmxfHKHmANuJJ0O6sGXTo9xw15pS3TssYA>
- <xmx:swIdYi7TM4AeeJE7ArgxPp-U8pk6KbCjOo3vpjkvCiFSr1Dy7cUYVQ>
- <xmx:swIdYu4CePS5PddhS993y0PCk6tHlZKV3IMZ4kVntyCg3PkcxnykFQ>
- <xmx:swIdYgG0OgmygMKcVZbu2euK_r37rNTRAnYm6uuQniFNxmriJcSrNg>
-Received: by mailuser.nyi.internal (Postfix, from userid 501)
- id 00091AC0E99; Mon, 28 Feb 2022 12:13:22 -0500 (EST)
-X-Mailer: MessagingEngine.com Webmail Interface
-User-Agent: Cyrus-JMAP/3.5.0-alpha0-4778-g14fba9972e-fm-20220217.001-g14fba997
-Mime-Version: 1.0
-Message-Id: <231b6751-861e-4489-a5f2-0ca924d81446@www.fastmail.com>
-In-Reply-To: <Yhlnpcata/r6oJg+@codewreck.org>
-References: <CAP6exYLMoSENG2dthBCaMfWY1D_obLuzN+FAUOSpCsdxye4_GQ@mail.gmail.com>
- <Yhlnpcata/r6oJg+@codewreck.org>
-Date: Mon, 28 Feb 2022 12:12:39 -0500
-From: "David Arroyo" <droyo@aqwari.net>
-To: v9fs-developer@lists.sourceforge.net
-X-Spam-Score: -0.7 (/)
+ id 1nOkdp-000Nu5-5P; Mon, 28 Feb 2022 18:21:01 +0000
+Received: from omf09.hostedemail.com (a10.router.float.18 [10.200.18.1])
+ by unirelay11.hostedemail.com (Postfix) with ESMTP id 8480C81766;
+ Mon, 28 Feb 2022 18:20:49 +0000 (UTC)
+Received: from [HIDDEN] (Authenticated sender: joe@perches.com) by
+ omf09.hostedemail.com (Postfix) with ESMTPA id 5C4272002A; 
+ Mon, 28 Feb 2022 18:20:29 +0000 (UTC)
+Message-ID: <0be9de3920442df490f01b6fb1c42521c3de6190.camel@perches.com>
+From: Joe Perches <joe@perches.com>
+To: Dan Carpenter <dan.carpenter@oracle.com>, Jakob Koschel
+ <jakobkoschel@gmail.com>
+Date: Mon, 28 Feb 2022 10:20:28 -0800
+In-Reply-To: <20220228112413.GA2812@kadam>
+References: <20220228110822.491923-1-jakobkoschel@gmail.com>
+ <20220228110822.491923-2-jakobkoschel@gmail.com>
+ <20220228112413.GA2812@kadam>
+User-Agent: Evolution 3.40.4-1ubuntu2 
+MIME-Version: 1.0
+X-Stat-Signature: 1e1i8ombnsc3cdkptu3anccezjc89zox
+X-Rspamd-Server: rspamout07
+X-Rspamd-Queue-Id: 5C4272002A
+X-Spam-Status: No, score=0.10
+X-Session-Marker: 6A6F6540706572636865732E636F6D
+X-Session-ID: U2FsdGVkX1+i6vY6IDwHpNq++UEo/5hqvP4PvgQNb4E=
+X-HE-Tag: 1646072429-12569
+X-Spam-Score: -0.0 (/)
 X-Spam-Report: Spam detection software,
  running on the system "util-spamd-2.v13.lw.sourceforge.com", 
  has NOT identified this incoming email as spam.  The original
  message has been attached to this so you can view it or label
  similar future email.  If you have any questions, see
  the administrator of that system for details.
- Content preview:  ron minnich wrote on Fri, Feb 25, 2022 at 09:35:50AM -0800:
- > You, like me, may have gotten a bit tired of the "9p is slow" folklore.
- > > This lore is further accompanied by the "because 9p requires I [...] 
- Content analysis details:   (-0.7 points, 6.0 required)
+ Content preview:  On Mon, 2022-02-28 at 14:24 +0300, Dan Carpenter wrote: >
+ a multi-line indent gets curly braces for readability even though > it's not
+ required by C. And then both sides would get curly braces. That's more your
+ personal preference than a coding style guideline. 
+ Content analysis details:   (-0.0 points, 6.0 required)
  pts rule name              description
  ---- ---------------------- --------------------------------------------------
- -0.7 RCVD_IN_DNSWL_LOW      RBL: Sender listed at https://www.dnswl.org/,
- low trust [66.111.4.26 listed in list.dnswl.org]
- -0.0 SPF_PASS               SPF: sender matches SPF record
- 0.0 RCVD_IN_MSPIKE_H3      RBL: Good reputation (+3)
- [66.111.4.26 listed in wl.mailspike.net]
+ -0.0 RCVD_IN_MSPIKE_H2      RBL: Average reputation (+2)
+ [64.99.140.33 listed in wl.mailspike.net]
+ 0.0 SPF_NONE               SPF: sender does not publish an SPF Record
  -0.0 SPF_HELO_PASS          SPF: HELO matches SPF record
- 0.1 DKIM_SIGNED            Message has a DKIM or DK signature, not necessarily
- valid
- -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
- 0.0 RCVD_IN_MSPIKE_WL      Mailspike good senders
  -0.0 T_SCC_BODY_TEXT_LINE   No description available.
-X-Headers-End: 1nOjrK-0003FY-4P
-Subject: Re: [V9fs-developer] Make 9p fast
+ 0.0 UNPARSEABLE_RELAY      Informational: message has unparseable relay
+ lines
+X-Headers-End: 1nOkdp-000Nu5-5P
+Subject: Re: [V9fs-developer] [PATCH 1/6] drivers: usb: remove usage of list
+ iterator past the loop body
 X-BeenThere: v9fs-developer@lists.sourceforge.net
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -118,56 +95,46 @@ List-Post: <mailto:v9fs-developer@lists.sourceforge.net>
 List-Help: <mailto:v9fs-developer-request@lists.sourceforge.net?subject=help>
 List-Subscribe: <https://lists.sourceforge.net/lists/listinfo/v9fs-developer>, 
  <mailto:v9fs-developer-request@lists.sourceforge.net?subject=subscribe>
+Cc: alsa-devel@alsa-project.org, linux-aspeed@lists.ozlabs.org,
+ "Gustavo A. R. Silva" <gustavo@embeddedor.com>, linux-iio@vger.kernel.org,
+ nouveau@lists.freedesktop.org, Rasmus Villemoes <linux@rasmusvillemoes.dk>,
+ dri-devel@lists.freedesktop.org, Cristiano Giuffrida <c.giuffrida@vu.nl>,
+ amd-gfx@lists.freedesktop.org, samba-technical@lists.samba.org,
+ linux1394-devel@lists.sourceforge.net, drbd-dev@lists.linbit.com,
+ linux-arch <linux-arch@vger.kernel.org>, linux-cifs@vger.kernel.org,
+ kvm@vger.kernel.org, linux-scsi@vger.kernel.org, linux-rdma@vger.kernel.org,
+ linux-staging@lists.linux.dev, "Bos, H.J." <h.j.bos@vu.nl>,
+ Jason Gunthorpe <jgg@ziepe.ca>, intel-wired-lan@lists.osuosl.org,
+ kgdb-bugreport@lists.sourceforge.net, bcm-kernel-feedback-list@broadcom.com,
+ linux-media@vger.kernel.org, Kees Cook <keescook@chromium.org>,
+ Arnd Bergman <arnd@arndb.de>, linux-pm@vger.kernel.org,
+ intel-gfx@lists.freedesktop.org,
+ Brian Johannesmeyer <bjohannesmeyer@gmail.com>, linux-block@vger.kernel.org,
+ linux-fsdevel@vger.kernel.org,
+ Christophe JAILLET <christophe.jaillet@wanadoo.fr>,
+ v9fs-developer@lists.sourceforge.net, linux-tegra@vger.kernel.org,
+ Thomas Gleixner <tglx@linutronix.de>,
+ Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+ linux-arm-kernel@lists.infradead.org, linux-sgx@vger.kernel.org,
+ Nathan Chancellor <nathan@kernel.org>,
+ Linus Torvalds <torvalds@linux-foundation.org>, linux-usb@vger.kernel.org,
+ linux-wireless@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-f2fs-devel@lists.sourceforge.net, tipc-discussion@lists.sourceforge.net,
+ linux-crypto@vger.kernel.org, netdev@vger.kernel.org,
+ dmaengine@vger.kernel.org, linux-mediatek@lists.infradead.org,
+ linuxppc-dev@lists.ozlabs.org, Mike Rapoport <rppt@kernel.org>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: v9fs-developer-bounces@lists.sourceforge.net
 
-ron minnich wrote on Fri, Feb 25, 2022 at 09:35:50AM -0800:
-> You, like me, may have gotten a bit tired of the "9p is slow" folklore.
-> 
-> This lore is further accompanied by the "because 9p requires IO
-> serialization" claim.
-> 
-> I've run into both these claims in Google in the last month, and there
-> is even work on a replacement:
-> https://github.com/google/gvisor/milestone/6
+On Mon, 2022-02-28 at 14:24 +0300, Dan Carpenter wrote:
 
-The justification given in the github repo (and expanded upon internally)
-is a bit flimsy. However, to me it looks like in the specific example of
-gvisor there is just a mismatch between 9p semantics and linux semantics
-that they don't believe is worth working around. For example, they
-describe opening a file with a path of length N as requiring N+2 rpcs,
-N to walk each path element, 1 to create the file, and 1 to walk to
-the new file to get an unopened fid. But 9P allows you to walk multiple
-path elements at once, so the constraint is not coming from the protocol
-itself.
+> a multi-line indent gets curly braces for readability even though
+> it's not required by C.  And then both sides would get curly braces.
 
-9P not being "economical" with RPCs is only a negative if you assume
-1 RPC requires 1 round trip. There is nothing wrong, from a protocol
-perspective, with issuing this sequence of RPCs to create a new file:
+That's more your personal preference than a coding style guideline.
 
-0001	Twalk	fid=0 newfid=1
-0002	Twalk	fid=1 newfid=1 path/to/dir
-0003	Tcreate	fid=1 name="myfile" 0666 0
 
-I think you can "fuse" several command sequences this way. Clients could
-emit them at once and servers could handle them at once. You can add a
-prefix to the tag for RPCs that are part of the same "sequence", and this
-prefix could be used to find resource cleanup routines to handle failed
-sequences. The simpler low-hanging fruit would be the read/write RPCs,
-although writes would be harder in the face of errors.
-
-Obviously, if the goal is to reduce round trips, this approach is harder
-than making your protocol match your local interface 1:1, which the
-proposed replacement appears to do. And unless there is some "killer feature"
-that is enabled by using 9P between a VM and its host, there probably won't
-be a lot of motivation to make it perform better :(.
-
-But I agree there's no reason the protocol should be a bottleneck. I'd be
-interested in helping. Though I've never contributed to the kernel or gvisor,
-I do enjoy writing 9P clients as a hobby :).
-
-David
 
 
 _______________________________________________
