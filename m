@@ -2,115 +2,129 @@ Return-Path: <v9fs-developer-bounces@lists.sourceforge.net>
 X-Original-To: lists+v9fs-developer@lfdr.de
 Delivered-To: lists+v9fs-developer@lfdr.de
 Received: from lists.sourceforge.net (lists.sourceforge.net [216.105.38.7])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9002D4C9045
-	for <lists+v9fs-developer@lfdr.de>; Tue,  1 Mar 2022 17:27:34 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id B84474C9246
+	for <lists+v9fs-developer@lfdr.de>; Tue,  1 Mar 2022 18:56:00 +0100 (CET)
 Received: from [127.0.0.1] (helo=sfs-ml-4.v29.lw.sourceforge.com)
 	by sfs-ml-4.v29.lw.sourceforge.com with esmtp (Exim 4.94.2)
 	(envelope-from <v9fs-developer-bounces@lists.sourceforge.net>)
-	id 1nP5La-00021E-2W; Tue, 01 Mar 2022 16:27:32 +0000
+	id 1nP6j8-0004RL-EY; Tue, 01 Mar 2022 17:55:57 +0000
 Received: from [172.30.20.202] (helo=mx.sourceforge.net)
  by sfs-ml-4.v29.lw.sourceforge.com with esmtps (TLS1.2) tls
  TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384 (Exim 4.94.2)
- (envelope-from <rminnich@gmail.com>) id 1nP5LY-000216-Da
- for v9fs-developer@lists.sourceforge.net; Tue, 01 Mar 2022 16:27:31 +0000
+ (envelope-from <greg@kroah.com>)
+ id 1nP6j5-0004QQ-PR; Tue, 01 Mar 2022 17:55:54 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=sourceforge.net; s=x; h=Content-Transfer-Encoding:Content-Type:Cc:To:
- Subject:Message-ID:Date:From:In-Reply-To:References:MIME-Version:Sender:
- Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender
- :Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
+ d=sourceforge.net; s=x; h=In-Reply-To:Content-Type:MIME-Version:References:
+ Message-ID:Subject:Cc:To:From:Date:Sender:Reply-To:Content-Transfer-Encoding:
+ Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+ Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
  List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=MlK3S55hR62oPfjKsGeC2By+Rc5xZuGo/E4BJEI3V7U=; b=Xn2YgXTChVlaTY+txubu8eq2jm
- fujw3m9ULikuiBGbyrwxo1AbGBJIGjmjOydGxaCH0Ucf6nXB7xhGLGv65AJnekq6vmHTX1tqZ7o8V
- gib/JD1d++JDRFVr1n/kopWb+vIEWkaMA1CJFn3SsVqA0YMsx3N3JQVP6WmwshHHLTY8=;
+ bh=5OE8xr6GO9X7MbNpDAcWFGeEO3b3B/8LX5WMVM23luQ=; b=mJufLKVnDWl/g32AJT/YO7YRnv
+ Y6R93GoHAHvdI+YFP9LYm5E4UYoY7UAdSO9srUo3yFDB5jvxrO09rOOq/Po+Y+HmN0Jf/zoKVq247
+ g0OJ6YoFgmK/u54T1t0kw/rHKaTOjpwL5YHuTg3iPhjMlaoNLOdr+SYysQ2PrXUYB3SU=;
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  ;
- h=Content-Transfer-Encoding:Content-Type:Cc:To:Subject:Message-ID:Date:From
- :In-Reply-To:References:MIME-Version:Sender:Reply-To:Content-ID:
+ h=In-Reply-To:Content-Type:MIME-Version:References:Message-ID:Subject:Cc:To
+ :From:Date:Sender:Reply-To:Content-Transfer-Encoding:Content-ID:
  Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
  :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
  List-Post:List-Owner:List-Archive;
- bh=MlK3S55hR62oPfjKsGeC2By+Rc5xZuGo/E4BJEI3V7U=; b=IzwhsElF6zDQ0EwRapEl2LsZfF
- MQMi2gZKNt4ahNSaX1hoJCGJT5AzqCHzKTV6skDM/pj5ovS9r+SDLu9v19Sno3aNJjjLO1l/Ew6C/
- g9zzQ1K2PlLApzdZQBA39NCqh5aLBnIc9UgwN/uLXserfFni9n2yn2mk3UPqA8M8Lh88=;
-Received: from mail-oo1-f41.google.com ([209.85.161.41])
- by sfi-mx-1.v28.lw.sourceforge.com with esmtps
- (TLS1.2:ECDHE-RSA-AES128-GCM-SHA256:128) (Exim 4.94.2)
- id 1nP5LW-001StP-9y
- for v9fs-developer@lists.sourceforge.net; Tue, 01 Mar 2022 16:27:31 +0000
-Received: by mail-oo1-f41.google.com with SMTP id
- r41-20020a4a966c000000b0031bf85a4124so23059871ooi.0
- for <v9fs-developer@lists.sourceforge.net>;
- Tue, 01 Mar 2022 08:27:30 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc:content-transfer-encoding;
- bh=MlK3S55hR62oPfjKsGeC2By+Rc5xZuGo/E4BJEI3V7U=;
- b=hnv1b57Y4vQ/O0SpVLTGmHdKAUsOeKaNgEEQ44q2ZhpWaOYBqEDHPn+iG5XQXwSeOx
- +Vv4wGxHSHHKzIGHNkWjMRquQtGGTlYPfv/jvcsYFTNO8agTQf1A+NhIa/jHc4F84nfw
- fFF5/6t+Ljo+2xqtXInhKAM7Zn+5Izlr5wKJXQqUgFFNmZRLv2ZF0i+cUx5rah9P1x4P
- xrq2RCIav3HYapw7+RMJnrEiFV8lAcwY2YtSMk9xhXP33JBrjM0vFTSZ/Ra50Yrf9Xk4
- yKX92nw7JeyjIoFsfaqi3jNA1NzL504X4ZKzpH1ybJUCcN2MC7oLc56Rw8TV++NeCSDB
- pmYQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20210112;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc:content-transfer-encoding;
- bh=MlK3S55hR62oPfjKsGeC2By+Rc5xZuGo/E4BJEI3V7U=;
- b=Ob9C3Fi7tyCxi8eGCpcvs0UX4KhMa2m6VvTlGfcwVmoLwL5n68tKcAgLanDtyGf9vC
- M1FMaXN/F6eLtKVj3yKJfJpndA9qoYZ+xd/OldzkBX3gEQC75RSomILVpaHmmLhpauDd
- PpB8TW9nKUj9Q8RdulGA6nvXE+UQoCTnVSKYhQeUV/wqFd0mMYfuqE/1BHcfWhtjSAoX
- vWqqknMVQMBErKS4Y2Jy5wI1TcJI4xK+3Ivt6/2st5lRnjKmzdwg8Q2Kov0oTFbrd76I
- HC8PhUv3/Qnh/EXbjPZhA1Qm+vkgIgvTzsJiX43PXG0+SCF65UtCNlYeQqhw2Y+2WEjZ
- uPDw==
-X-Gm-Message-State: AOAM530jlbwvLf82zjQ5bup48qn/3Aw7AZNH57xJa2G9zzLoxx/VLpNL
- gCxZv1RCTRDu18VM1r0sJstZSEtqhqTEvYkvuQ8=
-X-Google-Smtp-Source: ABdhPJxqf7QcKhFoYvq7Fqt8Vss3azZ9+aFCFeKxTqlznCs5VkZU5ZVFqp0Eh8cmnnYpCNYxqm6gAl4cmFiCl50AGJ4=
-X-Received: by 2002:a05:6870:1481:b0:d7:30a3:1f39 with SMTP id
- k1-20020a056870148100b000d730a31f39mr5766930oab.14.1646152044467; Tue, 01 Mar
- 2022 08:27:24 -0800 (PST)
+ bh=5OE8xr6GO9X7MbNpDAcWFGeEO3b3B/8LX5WMVM23luQ=; b=lxx+MzCae7zp466fV90UCs+AZG
+ 3r/O3NRs0gd05npu3wMO0XrZt6LJg3dgmFoH8WTAq7fovSz3eIkUxhg86NPsf8zCJNp9v/ReKqYgK
+ ZvWZMk6t7sPBOJhopzals0WQEIv97M7z+bYo23FO25n55SLVD4B4C4T/DK1T3ookk8MU=;
+Received: from new3-smtp.messagingengine.com ([66.111.4.229])
+ by sfi-mx-2.v28.lw.sourceforge.com with esmtps
+ (TLS1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.94.2)
+ id 1nP6j2-0001GP-FX; Tue, 01 Mar 2022 17:55:54 +0000
+Received: from compute2.internal (compute2.nyi.internal [10.202.2.46])
+ by mailnew.nyi.internal (Postfix) with ESMTP id 668835801CF;
+ Tue,  1 Mar 2022 12:36:34 -0500 (EST)
+Received: from mailfrontend1 ([10.202.2.162])
+ by compute2.internal (MEProxy); Tue, 01 Mar 2022 12:36:34 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kroah.com; h=cc
+ :cc:content-type:date:date:from:from:in-reply-to:in-reply-to
+ :message-id:mime-version:references:reply-to:sender:subject
+ :subject:to:to; s=fm3; bh=5OE8xr6GO9X7MbNpDAcWFGeEO3b3B/8LX5WMVM
+ 23luQ=; b=PuP2NuoqB9WepsjY0Uqokte1F02OSePW/KnqWPOHGfC62jDMQy8d6J
+ jihmHY7jaxPeYmV/brYSLMo2rdd0E65RFIbVZNaw+d6hF5TlV5h/HTFiyyQeuhEh
+ tTvMohVc8vJzz2F3uGXDhJ11n60AMBcwryX0OIQ4h4vBoJz9sXnQjtTWmMBfJvV8
+ ASNImP/JJmHc6aQngUkaR/9ejN6V67gkY3Ss3hOhMxZ05fa2rytR+8neryd7GnHR
+ NnoILjHkJCXbghnuIwO3WAIr0wjFgm+H99CgrlgjXtrJoB87p0eZTz8QaQ9jXLS7
+ eUmDU4ThQ2iD/GAcK9q8FPfYZ3dj5Siw==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+ messagingengine.com; h=cc:cc:content-type:date:date:from:from
+ :in-reply-to:in-reply-to:message-id:mime-version:references
+ :reply-to:sender:subject:subject:to:to:x-me-proxy:x-me-proxy
+ :x-me-sender:x-me-sender:x-sasl-enc; s=fm2; bh=5OE8xr6GO9X7MbNpD
+ AcWFGeEO3b3B/8LX5WMVM23luQ=; b=EDVGv6yEMy7PTbky8OfXVA9jYKh0oiM5+
+ sk6xt1CX3smAZYI0P9oaKzOCIkwMemVmh9foKoLwOV/IyVUBTTJc+ljLrovpUDdP
+ pIA4BCkMgcGpU96mM/8o9zjz4bY87GlxWmxlUETAhWUvR7QqjYOuAQqLjAz9vvM2
+ 9w41DE+muRcTBgXgq7R5mX2xPAK9bu7QEmldC6d/UhIWw84PgZEMMUkVZDfimvGr
+ 9rb1WTZ4HmbXffSgmjvpYAD0fz3a3kb/jxO9vzcKzkIUx9MDQUxolnVJ5gWPPm0P
+ 3SACLLdt3Ji3p4//lVUF9os4MIANF8EQiUgikZ8An4R/ZWSxaE7Og==
+X-ME-Sender: <xms:oFkeYrv0LJt2Pjt0ZOYMYd1jCK6G-Z0GZXtRlOiCbijoVlbqDToesg>
+ <xme:oFkeYsdRXoRXAxTjhPFWtM5JX8rU2-dsIwxZfpFocA89gDBFD4vx9xsWmcbxEuUyQ
+ lpRakwPpYLi7A>
+X-ME-Received: <xmr:oFkeYuzzdQb5kL72Vvj74Xn0xRRyhzff8uvNHTyUqFsrLF_56anw9-ykyIbZGqAzSj0KTqXLBgC1Qf0KKdPZ7IM>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvvddruddtvddguddttdcutefuodetggdotefrod
+ ftvfcurfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfgh
+ necuuegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmd
+ enucfjughrpeffhffvuffkfhggtggujgesthdtredttddtvdenucfhrhhomhepifhrvghg
+ ucfmjfcuoehgrhgvgheskhhrohgrhhdrtghomheqnecuggftrfgrthhtvghrnhepveeuhe
+ ejgfffgfeivddukedvkedtleelleeghfeljeeiueeggeevueduudekvdetnecuvehluhhs
+ thgvrhfuihiivgeptdenucfrrghrrghmpehmrghilhhfrhhomhepghhrvghgsehkrhhorg
+ hhrdgtohhm
+X-ME-Proxy: <xmx:oFkeYqNP0oPgoNRpau1EsmnsGvsi8MuHt5Oau7Uh5DcasQw65k9YTg>
+ <xmx:oFkeYr8eoBRonSMDQgE0d2CdwAX12XsrowbLGxOxF_rvtS3YwiTEgg>
+ <xmx:oFkeYqVNxx7WBcYUGhcHc73BR9KI7xEAuh9FjZrqFDwJGYsF_7MqUw>
+ <xmx:olkeYkWtK93reuC1fg-f2X2RrUvR780eGtvCg6vOtajRgdiJ73bSmQ>
+Received: by mail.messagingengine.com (Postfix) with ESMTPA; Tue,
+ 1 Mar 2022 12:36:31 -0500 (EST)
+Date: Tue, 1 Mar 2022 18:36:27 +0100
+From: Greg KH <greg@kroah.com>
+To: Jakob Koschel <jakobkoschel@gmail.com>
+Message-ID: <Yh5ZmwiH5AxtQ69K@kroah.com>
+References: <20220228110822.491923-1-jakobkoschel@gmail.com>
+ <20220228110822.491923-3-jakobkoschel@gmail.com>
+ <2e4e95d6-f6c9-a188-e1cd-b1eae465562a@amd.com>
+ <CAHk-=wgQps58DPEOe4y5cTh5oE9EdNTWRLXzgMiETc+mFX7jzw@mail.gmail.com>
+ <CAHk-=wj8fkosQ7=bps5K+DDazBXk=ypfn49A0sEq+7-nZnyfXA@mail.gmail.com>
+ <CAHk-=wiTCvLQkHcJ3y0hpqH7FEk9D28LDvZZogC6OVLk7naBww@mail.gmail.com>
+ <FC710A1A-524E-481B-A668-FC258F529A2E@gmail.com>
+ <CAHk-=whLK11HyvpUtEftOjc3Gup2V77KpAQ2fycj3uai=qceHw@mail.gmail.com>
+ <CEDAD0D9-56EE-4105-9107-72C2EAD940B0@gmail.com>
 MIME-Version: 1.0
-References: <621bfbc1.1c69fb81.434f2.b439SMTPIN_ADDED_MISSING@mx.google.com>
- <CAP6exYJ-Mx+bDCYWYPcOmqjXHQgmecTkZQ3PT=iQXFO0ZBVdMA@mail.gmail.com>
- <CAFkjPTnVJzc215ZX6WnwnYYuxyOq1aH2-8sgpYyQOJgZbAJM8A@mail.gmail.com>
- <CAP6exYJZMCyqdouDY5DGOPViy1GW=qfGKY5nM247H3FE38n3Xw@mail.gmail.com>
- <CAFkjPTk7kwTT3YVYQuA0tsuaXaxnt7jBC94+fmtmfj=0W+Dw-Q@mail.gmail.com>
-In-Reply-To: <CAFkjPTk7kwTT3YVYQuA0tsuaXaxnt7jBC94+fmtmfj=0W+Dw-Q@mail.gmail.com>
-From: ron minnich <rminnich@gmail.com>
-Date: Tue, 1 Mar 2022 08:27:13 -0800
-Message-ID: <CAP6exYK3BFWK0yAfo=HvdmhPu_-txdWJj4XLxPyLU5=up4Kg5Q@mail.gmail.com>
-To: Eric Van Hensbergen <ericvh@gmail.com>
-X-Spam-Score: -0.2 (/)
+Content-Disposition: inline
+In-Reply-To: <CEDAD0D9-56EE-4105-9107-72C2EAD940B0@gmail.com>
+X-Spam-Score: -0.9 (/)
 X-Spam-Report: Spam detection software,
- running on the system "util-spamd-1.v13.lw.sourceforge.com", 
+ running on the system "util-spamd-2.v13.lw.sourceforge.com", 
  has NOT identified this incoming email as spam.  The original
  message has been attached to this so you can view it or label
  similar future email.  If you have any questions, see
  the administrator of that system for details.
- Content preview: I suspect we've lost the battle for virtio environments.
- Whether
- or not 9p can be made fast enough, the common wisdom is that it can't be,
- and alternatives are in use already. My personal hope is to m [...] 
- Content analysis details:   (-0.2 points, 6.0 required)
+ Content preview:  On Tue, Mar 01, 2022 at 12:28:15PM +0100,
+ Jakob Koschel wrote: > > > > On 1. Mar 2022, at 01:41,
+ Linus Torvalds <torvalds@linux-foundation.org>
+ wrote: > > > > On Mon, Feb 28, 2022 at 1:47 PM Jakob Kos [...] 
+ Content analysis details:   (-0.9 points, 6.0 required)
  pts rule name              description
  ---- ---------------------- --------------------------------------------------
- 0.0 SPF_HELO_NONE          SPF: HELO does not publish an SPF Record
+ -0.7 RCVD_IN_DNSWL_LOW      RBL: Sender listed at https://www.dnswl.org/,
+ low trust [66.111.4.229 listed in list.dnswl.org]
  -0.0 SPF_PASS               SPF: sender matches SPF record
- 0.0 FREEMAIL_FROM          Sender email is commonly abused enduser mail
- provider [rminnich[at]gmail.com]
- 0.0 RCVD_IN_MSPIKE_H3      RBL: Good reputation (+3)
- [209.85.161.41 listed in wl.mailspike.net]
- -0.0 RCVD_IN_DNSWL_NONE     RBL: Sender listed at https://www.dnswl.org/,
- no trust [209.85.161.41 listed in list.dnswl.org]
+ -0.0 SPF_HELO_PASS          SPF: HELO matches SPF record
+ -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+ 0.1 DKIM_SIGNED            Message has a DKIM or DK signature, not necessarily
+ valid
  -0.1 DKIM_VALID_EF          Message has a valid DKIM or DK signature from
  envelope-from domain
  -0.1 DKIM_VALID_AU          Message has a valid DKIM or DK signature from
  author's domain
- 0.1 DKIM_SIGNED            Message has a DKIM or DK signature, not necessarily
- valid
- -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
- 0.0 RCVD_IN_MSPIKE_WL      Mailspike good senders
-X-Headers-End: 1nP5LW-001StP-9y
-Subject: Re: [V9fs-developer] Make 9p fast
+ -0.0 T_SCC_BODY_TEXT_LINE   No description available.
+X-Headers-End: 1nP6j2-0001GP-FX
+Subject: Re: [V9fs-developer] [PATCH 2/6] treewide: remove using list
+ iterator after loop body as a ptr
 X-BeenThere: v9fs-developer@lists.sourceforge.net
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -122,132 +136,97 @@ List-Post: <mailto:v9fs-developer@lists.sourceforge.net>
 List-Help: <mailto:v9fs-developer-request@lists.sourceforge.net?subject=help>
 List-Subscribe: <https://lists.sourceforge.net/lists/listinfo/v9fs-developer>, 
  <mailto:v9fs-developer-request@lists.sourceforge.net?subject=subscribe>
-Cc: Latchesar Ionkov <lucho@ionkov.net>,
- V9FS Developers <v9fs-developer@lists.sourceforge.net>
+Cc: linux-wireless <linux-wireless@vger.kernel.org>,
+ alsa-devel@alsa-project.org, KVM list <kvm@vger.kernel.org>,
+ "Gustavo A. R. Silva" <gustavo@embeddedor.com>, linux-iio@vger.kernel.org,
+ nouveau@lists.freedesktop.org, Rasmus Villemoes <linux@rasmusvillemoes.dk>,
+ dri-devel <dri-devel@lists.freedesktop.org>,
+ Cristiano Giuffrida <c.giuffrida@vu.nl>,
+ amd-gfx list <amd-gfx@lists.freedesktop.org>,
+ linux1394-devel@lists.sourceforge.net, drbd-dev@lists.linbit.com,
+ linux-arch <linux-arch@vger.kernel.org>, CIFS <linux-cifs@vger.kernel.org>,
+ linux-aspeed@lists.ozlabs.org, linux-scsi <linux-scsi@vger.kernel.org>,
+ linux-rdma <linux-rdma@vger.kernel.org>, linux-staging@lists.linux.dev, "Bos,
+ H.J." <h.j.bos@vu.nl>, Jason Gunthorpe <jgg@ziepe.ca>,
+ intel-wired-lan@lists.osuosl.org, kgdb-bugreport@lists.sourceforge.net,
+ bcm-kernel-feedback-list@broadcom.com,
+ Dan Carpenter <dan.carpenter@oracle.com>,
+ Linux Media Mailing List <linux-media@vger.kernel.org>,
+ Kees Cook <keescook@chromium.org>, Arnd Bergman <arnd@arndb.de>,
+ Linux PM <linux-pm@vger.kernel.org>,
+ intel-gfx <intel-gfx@lists.freedesktop.org>,
+ linuxppc-dev <linuxppc-dev@lists.ozlabs.org>,
+ Brian Johannesmeyer <bjohannesmeyer@gmail.com>,
+ Nathan Chancellor <nathan@kernel.org>, dma <dmaengine@vger.kernel.org>,
+ Christophe JAILLET <christophe.jaillet@wanadoo.fr>,
+ v9fs-developer@lists.sourceforge.net,
+ linux-tegra <linux-tegra@vger.kernel.org>,
+ Thomas Gleixner <tglx@linutronix.de>,
+ Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+ Linux ARM <linux-arm-kernel@lists.infradead.org>, linux-sgx@vger.kernel.org,
+ linux-block <linux-block@vger.kernel.org>, Netdev <netdev@vger.kernel.org>,
+ linux-usb@vger.kernel.org, samba-technical@lists.samba.org,
+ Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+ Linux F2FS Dev Mailing List <linux-f2fs-devel@lists.sourceforge.net>,
+ tipc-discussion@lists.sourceforge.net,
+ Linux Crypto Mailing List <linux-crypto@vger.kernel.org>,
+ linux-fsdevel <linux-fsdevel@vger.kernel.org>,
+ linux-mediatek@lists.infradead.org,
+ Linus Torvalds <torvalds@linux-foundation.org>,
+ Christian =?iso-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>,
+ Mike Rapoport <rppt@kernel.org>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: v9fs-developer-bounces@lists.sourceforge.net
 
-I suspect we've lost the battle for virtio environments. Whether or
-not 9p can be made fast enough, the common wisdom is that it can't be,
-and alternatives are in use already. My personal hope is to make 9p
-run at wire speed on real networks, b/c that's my use case :-)
+On Tue, Mar 01, 2022 at 12:28:15PM +0100, Jakob Koschel wrote:
+> 
+> 
+> > On 1. Mar 2022, at 01:41, Linus Torvalds <torvalds@linux-foundation.org> wrote:
+> > 
+> > On Mon, Feb 28, 2022 at 1:47 PM Jakob Koschel <jakobkoschel@gmail.com> wrote:
+> >> 
+> >> The goal of this is to get compiler warnings right? This would indeed be great.
+> > 
+> > Yes, so I don't mind having a one-time patch that has been gathered
+> > using some automated checker tool, but I don't think that works from a
+> > long-term maintenance perspective.
+> > 
+> > So if we have the basic rule being "don't use the loop iterator after
+> > the loop has finished, because it can cause all kinds of subtle
+> > issues", then in _addition_ to fixing the existing code paths that
+> > have this issue, I really would want to (a) get a compiler warning for
+> > future cases and (b) make it not actually _work_ for future cases.
+> > 
+> > Because otherwise it will just happen again.
+> > 
+> >> Changing the list_for_each_entry() macro first will break all of those cases
+> >> (e.g. the ones using 'list_entry_is_head()).
+> > 
+> > So I have no problems with breaking cases that we basically already
+> > have a patch for due to  your automated tool. There were certainly
+> > more than a handful, but it didn't look _too_ bad to just make the
+> > rule be "don't use the iterator after the loop".
+> > 
+> > Of course, that's just based on that patch of yours. Maybe there are a
+> > ton of other cases that your patch didn't change, because they didn't
+> > match your trigger case, so I may just be overly optimistic here.
+> 
+> Based on the coccinelle script there are ~480 cases that need fixing
+> in total. I'll now finish all of them and then split them by
+> submodules as Greg suggested and repost a patch set per submodule.
+> Sounds good?
 
-For reference, since I don't recall if I shared the link describing
-cpu: https://docs.google.com/presentation/d/12_mZR-tpjHNrq6xMEqXQMHPiQej4o3Mink-Rkapiw50/edit?usp=sharing
+Sounds good to me!
 
-On Tue, Mar 1, 2022 at 8:19 AM Eric Van Hensbergen <ericvh@gmail.com> wrote:
->
-> Yeah - to be clear, I think the results we had before were fine in network situations -- what I am less aware of is similar measurements of those optimizations in the zero-copy shared-memory virtio environments between host and guest, doesn't mean they don't exist -- just all the ones I remember were over the network.
->
->         -eric
->
->
-> On Tue, Mar 1, 2022 at 10:14 AM ron minnich <rminnich@gmail.com> wrote:
->>
->> Eric, all this stuff can be measured, which I've done, and in the
->> presence of several different active FIDs, at least when I did it,
->> msize was not nearly as effective as asynchrony for smaller packets.
->> This kind of makes sense: most files are small. Further, per my
->> earlier note, write performance of things like gld is dramatically
->> improved when the client buffers and groups a lot of small writes into
->> smaller big writes -- it does not take a big msize either: if you
->> convert, e.g., 1000 3 byte writes into 1 3000-byte write, the
->> improvement is pretty dramatic (measured in 1998). This argues for the
->> caching improvements this community has made. I will try those with my
->> cpu command.
->>
->> but all this can be measured. I don't really object to a big msize,
->> it's just that it's not the panacea we all (me too!) used to think it
->> was. TBH, florens' streaming 9p was by far the best improvement we
->> ever had for large delay networks -- but we've never figured out a way
->> to cleanly integrate that.
->>
->> I'll try to get some measurements. I need cpu to be fast on LInux, and
->> I want to stop hearing this "9p is inherently slow" bogosity I keep
->> running across :-)
->>
->> thanks
->>
->> On Tue, Mar 1, 2022 at 5:24 AM Eric Van Hensbergen <ericvh@gmail.com> wrote:
->> >>
->> >> The first thing everyone does to try to fix 9p slowness is "grow the
->> >> MSIZE." This can help, but it can hurt.
->> >
->> >
->> >> It can help, in that, basically, for an msize like even 8K, you can
->> >> read the entire file in one go.
->> >
->> >
->> >> It can hurt, in that, for really big files, with a big delay-bandwidth
->> >> product, you're going to get head-of-line blocking:
->> >> each Tread will wait on that "really big Tread" before it to finish,
->> >> so your time between Treads will be LARGER.
->> >
->> >
->> > I was thinking about this a bit more and had the (duh) realization that they aren't optimizing for wire, they are optimizing for shared memory.  When principal use case is VM/Container file system pass through the main thing you end up optimizing for is number of transitions which ~= number of packets -- so you want as big of a potential msize as you can possibly get because then if they can use it they get the most optimal whereas if they don't need it they don't need to use the entire size.  There does end up probably being a tradeoff w.r.t. buffer sizes but not sure that shows up with virtio zero copy.  I suppose you might still get head of line blocking due to large transaction sizes on underlying storage -- but that could be mitigated with more asynchrony on the server side.
->> >
->> > Now, thinking about this in the context of what we are proposing for the client end -- merely doing async and read-ahead isn't going to get us the same bang for the buck as its going to increase message size and then hypothetically the number of virtio transactions/transitions -- what we'd need to take advantage of that is some form of grouping of transactions before sending across the wire to minimize the transitions and for a bunch of reads wouldn't that end up being similar to a large MSIZE?  However for other types of transitions you could imagine speculative operations (something like directory traversal or directory listing) where grouping might give you a bigger boost but not sure I see a clear path to how you would do that -- for dir lists you'd get something closer to what plan 9 already has, but we don't currently cache the stat information IIRC, so we'd need to figure out how to do that so subsequent stats would use the (potentially slightly stale) cache versus reissuing a stat.  So -- not sure grouping is the way to go, aggressive caching and minimizing total operations seem to be the best for the VM space -- different optimizations might make more sense for true networking.
->> >
->> >           -eric
->> >
->> >
->> > On Mon, Feb 28, 2022 at 12:31 PM ron minnich <rminnich@gmail.com> wrote:
->> >>
->> >> On Sun, Feb 27, 2022 at 2:31 PM <ng@0x80.stream> wrote:
->> >>
->> >> > Forgive the naive question, but would this change entail that a
->> >> > client may not observe its own writes? (Because the client may send
->> >> > Twrite and Tread but the Tread may be served first, I mean.) Isn't that
->> >> > undesirable? What do other file systems do?
->> >>
->> >> I have thought about this, and think we can resolve it on the client
->> >> side with some rules.
->> >>
->> >> Treads are considered to be independent of each other and idempotent (NFS rules)
->> >> - This will break for things like mice, sockets, etc. Do we care? Do
->> >> people on LInux use
->> >> 9p for streaming devices, Unix FIFOs, etc.? In my case, I do not.
->> >>
->> >> Twrites act like a fence for Treads, i.e., if there is a Twrite, it
->> >> blocks on pending reads, and
->> >> new reads block on the Twrite to finish.
->> >>
->> >> Tclunk acs like a fence for all pending IO. If there are Twrites, it
->> >> blocks on them, else
->> >> it blocks on pending reads.
->> >>
->> >>  Note that: this is all client logic. It is probably logic I will be
->> >> testing in Plan 9 in the next few months.
->> >>
->> >> A few other notes from a lot of years snooping Plan 9.
->> >>
->> >> The first thing everyone does to try to fix 9p slowness is "grow the
->> >> MSIZE." This can help, but it can hurt.
->> >>
->> >> It can help, in that, basically, for an msize like even 8K, you can
->> >> read the entire file in one go.
->> >>
->> >> It can hurt, in that, for really big files, with a big delay-bandwidth
->> >> product, you're going to get head-of-line blocking:
->> >> each Tread will wait on that "really big Tread" before it to finish,
->> >> so your time between Treads will be LARGER.
->> >>
->> >> The other issue with big MSIZE is that it also limits concurrency over
->> >> multiple FIDs, for the same reason: the connection
->> >> is not usable for blocks of time as it is moving 1M blocks for one FID.
->> >>
->> >>  Big block size is an obvious fix with subtle negative impacts.
->> >>
->> >> All this I've seen in the wild, on big machines.
->> >>
->> >> Anyway, I will try the caching stuff, sounds very interesting, and see
->> >> how it impacts my  cpu (github.com/u-root/cpu) command;
->> >> 9p performance is critical to that command.
->> >>
->> >> Thanks again for the work!
->> >>
->> >> ron
+If you need help carving these up and maintaining them over time as
+different subsystem maintainers accept/ignore them, just let me know.
+Doing large patchsets like this can be tough without a lot of
+experience.
+
+thanks,
+
+greg k-h
 
 
 _______________________________________________
