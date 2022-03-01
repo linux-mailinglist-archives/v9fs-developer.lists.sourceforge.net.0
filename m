@@ -2,26 +2,26 @@ Return-Path: <v9fs-developer-bounces@lists.sourceforge.net>
 X-Original-To: lists+v9fs-developer@lfdr.de
 Delivered-To: lists+v9fs-developer@lfdr.de
 Received: from lists.sourceforge.net (lists.sourceforge.net [216.105.38.7])
-	by mail.lfdr.de (Postfix) with ESMTPS id 34B844C9268
-	for <lists+v9fs-developer@lfdr.de>; Tue,  1 Mar 2022 18:58:20 +0100 (CET)
-Received: from [127.0.0.1] (helo=sfs-ml-2.v29.lw.sourceforge.com)
-	by sfs-ml-2.v29.lw.sourceforge.com with esmtp (Exim 4.94.2)
+	by mail.lfdr.de (Postfix) with ESMTPS id 184C34C9324
+	for <lists+v9fs-developer@lfdr.de>; Tue,  1 Mar 2022 19:28:05 +0100 (CET)
+Received: from [127.0.0.1] (helo=sfs-ml-1.v29.lw.sourceforge.com)
+	by sfs-ml-1.v29.lw.sourceforge.com with esmtp (Exim 4.94.2)
 	(envelope-from <v9fs-developer-bounces@lists.sourceforge.net>)
-	id 1nP6lP-0008KQ-5Y; Tue, 01 Mar 2022 17:58:17 +0000
+	id 1nP7EC-0005ge-2d; Tue, 01 Mar 2022 18:28:02 +0000
 Received: from [172.30.20.202] (helo=mx.sourceforge.net)
- by sfs-ml-2.v29.lw.sourceforge.com with esmtps (TLS1.2) tls
+ by sfs-ml-1.v29.lw.sourceforge.com with esmtps (TLS1.2) tls
  TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384 (Exim 4.94.2)
- (envelope-from <greg@kroah.com>)
- id 1nP6lJ-0008J6-Sy; Tue, 01 Mar 2022 17:58:12 +0000
+ (envelope-from <keescook@chromium.org>) id 1nP7E3-0005ft-J1
+ for v9fs-developer@lists.sourceforge.net; Tue, 01 Mar 2022 18:27:54 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
  d=sourceforge.net; s=x; h=In-Reply-To:Content-Type:MIME-Version:References:
  Message-ID:Subject:Cc:To:From:Date:Sender:Reply-To:Content-Transfer-Encoding:
  Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
  Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
  List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=1b8nHfrBOcjPGYcB+Q6wr00uk1GmKX3v3ZNCnj2Fc4I=; b=T/DkjigdsdwUcaelD/iUVWc+HZ
- BVg7lejZlmenJ7V2hQfVSOAxZz5pDdT/Lx2VgyhohQmQ1HJhSfAIY3Y1iErVGYbThR+hA3KP+Qvw4
- zCBnJ/Hsf1jhcwjWQWRi0W32nFdmyQ4vAmWP4IxRiQjO0iUF2CgKvx6M7RyBRCOJP+Oo=;
+ bh=fds8Vu27HO3VizdZYZX37G2L0kdPjlGJwjydpAC62lk=; b=b5xuqLsEONtLoYYwnErFqUj2Ny
+ rBwrhTdzdmBgp01bdiw9XMSZFgla4firgZtdtsjOng34P3ZSF+7LyB4ihQiG4lTfv+XaZTqkClnX+
+ WhsNKLamJJAmxd/72dFOErC45p4GErqIKY8ux9mXzfWZX1S4UFPoHX0xiLfUnNvjQ0BI=;
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  ;
  h=In-Reply-To:Content-Type:MIME-Version:References:Message-ID:Subject:Cc:To
@@ -29,62 +29,52 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
  :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
  List-Post:List-Owner:List-Archive;
- bh=1b8nHfrBOcjPGYcB+Q6wr00uk1GmKX3v3ZNCnj2Fc4I=; b=jPs1V71Ro0BVjXtuv0UYjAZFRs
- 6n2FIytu5/Jn6Qo58X6DU8Fu/NxSVuHc9W44Xtvuyd0SoLR4ZhtrCcUYOuSwJWUCzxVfJOK3lKpsa
- YRZk5G5bvbFiSlkpXbgcU1600Tz7xj7DvMFa7LSXUndKR5N/UgY9l16UezEVpO5TXLLc=;
-Received: from new3-smtp.messagingengine.com ([66.111.4.229])
- by sfi-mx-2.v28.lw.sourceforge.com with esmtps
- (TLS1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.94.2)
- id 1nP6lH-0001MK-Qh; Tue, 01 Mar 2022 17:58:12 +0000
-Received: from compute1.internal (compute1.nyi.internal [10.202.2.41])
- by mailnew.nyi.internal (Postfix) with ESMTP id 1F34E5801D0;
- Tue,  1 Mar 2022 12:58:06 -0500 (EST)
-Received: from mailfrontend2 ([10.202.2.163])
- by compute1.internal (MEProxy); Tue, 01 Mar 2022 12:58:06 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kroah.com; h=cc
- :cc:content-type:date:date:from:from:in-reply-to:in-reply-to
- :message-id:mime-version:references:reply-to:sender:subject
- :subject:to:to; s=fm3; bh=1b8nHfrBOcjPGYcB+Q6wr00uk1GmKX3v3ZNCnj
- 2Fc4I=; b=ZBUT+xBEPIHuw8jHImLNH+x52gankwE7MJd8sDFwnEoy45z1BwbhNh
- xKsOdQ1yD9u7q0d/6DIUtrg535wnOmT4Lvdd1apo2YuuhLLDVkYx1vSgNyoTE5fJ
- ofsW7j8uCMJyXK6Loz8rrLOzHyzxWsYiemruNwAl4gNUMe4M/NVtyIVhNAgsOfjy
- b/w/wzWa4VwoEUleGhkhNF3kRyKpQ3Usq/8Ca14buwUMr/k/0v+gPaqGXYzqUKuv
- KllGIGlPN88CAydfwqCLzM8aK7V+EiOvYiI4kF7OI9OB3TO949n6Hy8EMtjF8IqZ
- MBlpj07s0Rnbq4GNXj6M7/3IgLXdvpRA==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
- messagingengine.com; h=cc:cc:content-type:date:date:from:from
- :in-reply-to:in-reply-to:message-id:mime-version:references
- :reply-to:sender:subject:subject:to:to:x-me-proxy:x-me-proxy
- :x-me-sender:x-me-sender:x-sasl-enc; s=fm2; bh=1b8nHfrBOcjPGYcB+
- Q6wr00uk1GmKX3v3ZNCnj2Fc4I=; b=EY31l7G2XfgL9rSC/gwvRf8zFgwtBT7xS
- zGIS7YVvo/KA/v9LCSJOIARDHfRqiRvn2gTz078tIpwk3oIxG21buWNUxNQmSUyy
- MyYKa/Xe0zh4/DCiQIRNMfBLOEXackhRaibWR2bFKht/sqIYkVYfZsf6JTqkc8aS
- N/+KxLe8dnTTbLIJQe4lQN4jxuybvA2M70S25Fv9b7VdN/aPfJftqSYQ4WVfyPqY
- 0tbQrYevVZ6RBtubRdYtr3gnZBflyWFJSH5G+LkmECZ7pFmQ2xcqosvgp1dXRrwM
- GXM5n5s+pyNtUs5gG+ueV8296EmUoxyY6tuEcr0WZBCuK4oOvJTLg==
-X-ME-Sender: <xms:rF4eYt_khXW9JUELKd3sbskivfb6p9VNYJ9HJTNdiVa20a5SzZwcHg>
- <xme:rF4eYhvpLP3jG67Y92AJSSlOEm5MH8cOme-q_WmBEiKHi2-d33bdpDbAgKuSlQzhv
- bEXTTYYFzUc5A>
-X-ME-Received: <xmr:rF4eYrDa0WtfQIncLyLiGZ2_QzeJH36bSCyCi0g3L7auz9QrwNL4PuRbLUYhHGofRJvw4tCnLgWVuPYzt-8dyqU>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvvddruddtvddguddtgecutefuodetggdotefrod
- ftvfcurfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfgh
- necuuegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmd
- enucfjughrpeffhffvuffkfhggtggujgesthdtredttddtvdenucfhrhhomhepifhrvghg
- ucfmjfcuoehgrhgvgheskhhrohgrhhdrtghomheqnecuggftrfgrthhtvghrnhepveeuhe
- ejgfffgfeivddukedvkedtleelleeghfeljeeiueeggeevueduudekvdetnecuvehluhhs
- thgvrhfuihiivgeptdenucfrrghrrghmpehmrghilhhfrhhomhepghhrvghgsehkrhhorg
- hhrdgtohhm
-X-ME-Proxy: <xmx:rF4eYhep9_FqzdGryzLUlkyDm8oB4NZlyIpp5U2aPsiBO5Uc_pu1KA>
- <xmx:rF4eYiNt1Zd7p4zbskEHRd607PiISY-ihvHig6bYJF7awgzM4cA48A>
- <xmx:rF4eYjmGF931qz2wbkLW14iXG2GvWL_-CIczc4jJ1wtvDsjYWSRagQ>
- <xmx:rl4eYkl7_n3lofGsDcutmkSMBLsPYoIzfmJgc1TjOF9wAZv0ieQERQ>
-Received: by mail.messagingengine.com (Postfix) with ESMTPA; Tue,
- 1 Mar 2022 12:58:03 -0500 (EST)
-Date: Tue, 1 Mar 2022 18:58:02 +0100
-From: Greg KH <greg@kroah.com>
+ bh=fds8Vu27HO3VizdZYZX37G2L0kdPjlGJwjydpAC62lk=; b=U8XSUbRyHURMooBc4mB72IE2Pn
+ 8Q5hLneICL83c5Es8vHNgin3ckY6NikbEmDFDDZ56p31Tu0l4ET37MRr6v9+iUWhwWEl4lNlesVCw
+ t4kHgs3ozPrWnCX21P0lcE5arBhpX51IUtKiy4qCrFuEw4DqcsiRcE7oN3RC4rpbxzXM=;
+Received: from mail-oi1-f177.google.com ([209.85.167.177])
+ by sfi-mx-1.v28.lw.sourceforge.com with esmtps
+ (TLS1.2:ECDHE-RSA-AES128-GCM-SHA256:128) (Exim 4.94.2)
+ id 1nP7Dw-001YEf-MY
+ for v9fs-developer@lists.sourceforge.net; Tue, 01 Mar 2022 18:27:49 +0000
+Received: by mail-oi1-f177.google.com with SMTP id j2so16965678oie.7
+ for <v9fs-developer@lists.sourceforge.net>;
+ Tue, 01 Mar 2022 10:27:48 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=chromium.org; s=google;
+ h=date:from:to:cc:subject:message-id:references:mime-version
+ :content-disposition:in-reply-to;
+ bh=fds8Vu27HO3VizdZYZX37G2L0kdPjlGJwjydpAC62lk=;
+ b=kbDptrdu0f26KgjbD0o2z38w3lkKGDPgX1iTHeFHCTnyp8GdCq5qMftyKUSBh6duUj
+ WfNj/A6u5i3SYTvNHtilrjGbJ7XPB9BN5cThiWBPQtUhCrDH1721OqL04qTC03fUauzy
+ 3YHA9gzqSMuaks5H7GdDPribo7C8kJL0W2A2s=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20210112;
+ h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+ :mime-version:content-disposition:in-reply-to;
+ bh=fds8Vu27HO3VizdZYZX37G2L0kdPjlGJwjydpAC62lk=;
+ b=mPHst+ehZzl8f45F04ghmEc9ea0PdYlDQOs+HI2dhpDdSlWEkMoCQeBMdxl1ISXNQi
+ 8i+Y/qnO0kaQCzc+ctq58h6j6d36N4zO3IItRbrzI3XTQpmIbUMkH6MJdB9HbXLtzPgy
+ EcsfG54ys3l36eccgjXV8DI4izKFyZeela1jer8/H9y24D+Av9UHRGPG37MlH88Jy+sX
+ 3H8OicOv4HYkZpetpyrECpcdEsbCAqKstefLmmPpzJ2mqgucLomGKo26vjI33RAyYxUC
+ L3g7xaiLtlEbGTbrikQEwodWfCySFaaGj+IHYbSKbyqk3ZBM51Bv91ax9kl1WGNNHACm
+ TllQ==
+X-Gm-Message-State: AOAM533tsqn+y8UqzsopcIdFIzIzYGGpuuw70ZuJOOoF3K2VF7oDIDFp
+ CYh0vhz4loSqYFZzcNCSTHVKZ2aPisVOAg==
+X-Google-Smtp-Source: ABdhPJxFvMPIFzTXAIIVPlg/eGuYakalp78L+LNg6VrEL06CzJLvdAz6UlqMRKRHGibjFN8E9JB6yg==
+X-Received: by 2002:a17:90b:4d86:b0:1bd:223f:6cb5 with SMTP id
+ oj6-20020a17090b4d8600b001bd223f6cb5mr16669777pjb.151.1646158885116; 
+ Tue, 01 Mar 2022 10:21:25 -0800 (PST)
+Received: from www.outflux.net (smtp.outflux.net. [198.145.64.163])
+ by smtp.gmail.com with ESMTPSA id
+ oa2-20020a17090b1bc200b001bcff056f09sm2678996pjb.13.2022.03.01.10.21.24
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Tue, 01 Mar 2022 10:21:24 -0800 (PST)
+Date: Tue, 1 Mar 2022 10:21:24 -0800
+From: Kees Cook <keescook@chromium.org>
 To: Jakob Koschel <jakobkoschel@gmail.com>
-Message-ID: <Yh5eqmAv0P2nnSq0@kroah.com>
-References: <20220228110822.491923-3-jakobkoschel@gmail.com>
+Message-ID: <202203011016.48A181EE50@keescook>
+References: <20220228110822.491923-1-jakobkoschel@gmail.com>
+ <20220228110822.491923-3-jakobkoschel@gmail.com>
  <2e4e95d6-f6c9-a188-e1cd-b1eae465562a@amd.com>
  <CAHk-=wgQps58DPEOe4y5cTh5oE9EdNTWRLXzgMiETc+mFX7jzw@mail.gmail.com>
  <CAHk-=wj8fkosQ7=bps5K+DDazBXk=ypfn49A0sEq+7-nZnyfXA@mail.gmail.com>
@@ -92,29 +82,25 @@ References: <20220228110822.491923-3-jakobkoschel@gmail.com>
  <FC710A1A-524E-481B-A668-FC258F529A2E@gmail.com>
  <CAHk-=whLK11HyvpUtEftOjc3Gup2V77KpAQ2fycj3uai=qceHw@mail.gmail.com>
  <CEDAD0D9-56EE-4105-9107-72C2EAD940B0@gmail.com>
- <Yh5ZmwiH5AxtQ69K@kroah.com>
- <4B1AFAD9-C1B3-499C-945A-C259361ABA8C@gmail.com>
 MIME-Version: 1.0
 Content-Disposition: inline
-In-Reply-To: <4B1AFAD9-C1B3-499C-945A-C259361ABA8C@gmail.com>
-X-Spam-Score: -0.9 (/)
+In-Reply-To: <CEDAD0D9-56EE-4105-9107-72C2EAD940B0@gmail.com>
+X-Spam-Score: -0.6 (/)
 X-Spam-Report: Spam detection software,
  running on the system "util-spamd-2.v13.lw.sourceforge.com", 
  has NOT identified this incoming email as spam.  The original
  message has been attached to this so you can view it or label
  similar future email.  If you have any questions, see
  the administrator of that system for details.
- Content preview:  On Tue, Mar 01, 2022 at 06:40:04PM +0100,
+ Content preview:  On Tue, Mar 01, 2022 at 12:28:15PM +0100,
  Jakob Koschel wrote:
- > > > > On 1. Mar 2022, at 18:36, Greg KH <greg@kroah.com> wrote: > > > >
- On Tue, Mar 01, 2022 at 12:28:15PM +0100, Jakob Koschel wrote: [...] 
- Content analysis details:   (-0.9 points, 6.0 required)
+ > Based on the coccinelle script there are ~480 cases that need fixing >
+ in total. I'll now finish all of them and then split them by > s [...] 
+ Content analysis details:   (-0.6 points, 6.0 required)
  pts rule name              description
  ---- ---------------------- --------------------------------------------------
- -0.7 RCVD_IN_DNSWL_LOW      RBL: Sender listed at https://www.dnswl.org/,
- low trust [66.111.4.229 listed in list.dnswl.org]
+ 0.0 SPF_HELO_NONE          SPF: HELO does not publish an SPF Record
  -0.0 SPF_PASS               SPF: sender matches SPF record
- -0.0 SPF_HELO_PASS          SPF: HELO matches SPF record
  -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
  0.1 DKIM_SIGNED            Message has a DKIM or DK signature, not necessarily
  valid
@@ -122,8 +108,13 @@ X-Spam-Report: Spam detection software,
  envelope-from domain
  -0.1 DKIM_VALID_AU          Message has a valid DKIM or DK signature from
  author's domain
+ -0.0 RCVD_IN_MSPIKE_H2      RBL: Average reputation (+2)
+ [209.85.167.177 listed in wl.mailspike.net]
+ -0.0 RCVD_IN_DNSWL_NONE     RBL: Sender listed at https://www.dnswl.org/,
+ no trust [209.85.167.177 listed in list.dnswl.org]
  -0.0 T_SCC_BODY_TEXT_LINE   No description available.
-X-Headers-End: 1nP6lH-0001MK-Qh
+ -0.4 DKIMWL_WL_HIGH         DKIMwl.org - High trust sender
+X-Headers-End: 1nP7Dw-001YEf-MY
 Subject: Re: [V9fs-developer] [PATCH 2/6] treewide: remove using list
  iterator after loop body as a ptr
 X-BeenThere: v9fs-developer@lists.sourceforge.net
@@ -153,8 +144,7 @@ Cc: linux-wireless <linux-wireless@vger.kernel.org>,
  bcm-kernel-feedback-list@broadcom.com,
  Dan Carpenter <dan.carpenter@oracle.com>,
  Linux Media Mailing List <linux-media@vger.kernel.org>,
- Kees Cook <keescook@chromium.org>, Arnd Bergman <arnd@arndb.de>,
- Linux PM <linux-pm@vger.kernel.org>,
+ Arnd Bergman <arnd@arndb.de>, Linux PM <linux-pm@vger.kernel.org>,
  intel-gfx <intel-gfx@lists.freedesktop.org>,
  linuxppc-dev <linuxppc-dev@lists.ozlabs.org>,
  Brian Johannesmeyer <bjohannesmeyer@gmail.com>,
@@ -180,71 +170,30 @@ Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: v9fs-developer-bounces@lists.sourceforge.net
 
-On Tue, Mar 01, 2022 at 06:40:04PM +0100, Jakob Koschel wrote:
-> 
-> 
-> > On 1. Mar 2022, at 18:36, Greg KH <greg@kroah.com> wrote:
-> > 
-> > On Tue, Mar 01, 2022 at 12:28:15PM +0100, Jakob Koschel wrote:
-> >> 
-> >> 
-> >>> On 1. Mar 2022, at 01:41, Linus Torvalds <torvalds@linux-foundation.org> wrote:
-> >>> 
-> >>> On Mon, Feb 28, 2022 at 1:47 PM Jakob Koschel <jakobkoschel@gmail.com> wrote:
-> >>>> 
-> >>>> The goal of this is to get compiler warnings right? This would indeed be great.
-> >>> 
-> >>> Yes, so I don't mind having a one-time patch that has been gathered
-> >>> using some automated checker tool, but I don't think that works from a
-> >>> long-term maintenance perspective.
-> >>> 
-> >>> So if we have the basic rule being "don't use the loop iterator after
-> >>> the loop has finished, because it can cause all kinds of subtle
-> >>> issues", then in _addition_ to fixing the existing code paths that
-> >>> have this issue, I really would want to (a) get a compiler warning for
-> >>> future cases and (b) make it not actually _work_ for future cases.
-> >>> 
-> >>> Because otherwise it will just happen again.
-> >>> 
-> >>>> Changing the list_for_each_entry() macro first will break all of those cases
-> >>>> (e.g. the ones using 'list_entry_is_head()).
-> >>> 
-> >>> So I have no problems with breaking cases that we basically already
-> >>> have a patch for due to  your automated tool. There were certainly
-> >>> more than a handful, but it didn't look _too_ bad to just make the
-> >>> rule be "don't use the iterator after the loop".
-> >>> 
-> >>> Of course, that's just based on that patch of yours. Maybe there are a
-> >>> ton of other cases that your patch didn't change, because they didn't
-> >>> match your trigger case, so I may just be overly optimistic here.
-> >> 
-> >> Based on the coccinelle script there are ~480 cases that need fixing
-> >> in total. I'll now finish all of them and then split them by
-> >> submodules as Greg suggested and repost a patch set per submodule.
-> >> Sounds good?
-> > 
-> > Sounds good to me!
-> > 
-> > If you need help carving these up and maintaining them over time as
-> > different subsystem maintainers accept/ignore them, just let me know.
-> > Doing large patchsets like this can be tough without a lot of
-> > experience.
-> 
-> Very much appreciated!
-> 
-> There will probably be some cases that do not match one of the pattern
-> we already discussed and need separate attention.
-> 
-> I was planning to start with one subsystem and adjust the coming ones
-> according to the feedback gather there instead of posting all of them
-> in one go.
+On Tue, Mar 01, 2022 at 12:28:15PM +0100, Jakob Koschel wrote:
+> Based on the coccinelle script there are ~480 cases that need fixing
+> in total. I'll now finish all of them and then split them by
+> submodules as Greg suggested and repost a patch set per submodule.
+> Sounds good?
 
-That seems wise.  Feel free to use USB as a testing ground for this if
-you want to :)
+To help with this splitting, see:
+https://github.com/kees/kernel-tools/blob/trunk/split-on-maintainer
 
-thanks,
+It's not perfect, but it'll get you really close. For example, if you
+had a single big tree-wide patch applied to your tree:
 
-greg k-h
+$ rm 0*.patch
+$ git format-patch -1 HEAD
+$ mv 0*.patch treewide.patch
+$ split-on-maintainer treewide.patch
+$ ls 0*.patch
+
+If you have a build log before the patch that spits out warnings, the
+--build-log argument can extract those warnings on a per-file basis, too
+(though this can be fragile).
+
+-- 
+Kees Cook
 
 
 _______________________________________________
