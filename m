@@ -2,81 +2,83 @@ Return-Path: <v9fs-developer-bounces@lists.sourceforge.net>
 X-Original-To: lists+v9fs-developer@lfdr.de
 Delivered-To: lists+v9fs-developer@lfdr.de
 Received: from lists.sourceforge.net (lists.sourceforge.net [216.105.38.7])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3E4FC4C99A0
-	for <lists+v9fs-developer@lfdr.de>; Wed,  2 Mar 2022 01:02:23 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6D98B4CA202
+	for <lists+v9fs-developer@lfdr.de>; Wed,  2 Mar 2022 11:17:33 +0100 (CET)
 Received: from [127.0.0.1] (helo=sfs-ml-4.v29.lw.sourceforge.com)
 	by sfs-ml-4.v29.lw.sourceforge.com with esmtp (Exim 4.94.2)
 	(envelope-from <v9fs-developer-bounces@lists.sourceforge.net>)
-	id 1nPCRh-00075z-EE; Wed, 02 Mar 2022 00:02:20 +0000
+	id 1nPM32-000838-6L; Wed, 02 Mar 2022 10:17:31 +0000
 Received: from [172.30.20.202] (helo=mx.sourceforge.net)
  by sfs-ml-4.v29.lw.sourceforge.com with esmtps (TLS1.2) tls
  TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384 (Exim 4.94.2)
- (envelope-from <torvalds@linuxfoundation.org>) id 1nPCRg-00075t-B2
- for v9fs-developer@lists.sourceforge.net; Wed, 02 Mar 2022 00:02:19 +0000
+ (envelope-from <linux@rasmusvillemoes.dk>) id 1nPM30-000832-Pj
+ for v9fs-developer@lists.sourceforge.net; Wed, 02 Mar 2022 10:17:29 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=sourceforge.net; s=x; h=Content-Type:Cc:To:Subject:Message-ID:Date:From:
- In-Reply-To:References:MIME-Version:Sender:Reply-To:Content-Transfer-Encoding
- :Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+ d=sourceforge.net; s=x; h=Content-Transfer-Encoding:Content-Type:In-Reply-To:
+ From:References:Cc:To:Subject:MIME-Version:Date:Message-ID:Sender:Reply-To:
+ Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
  Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
  List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=4H0hy1V+vsSL/J4iRHU98fs6Ghx9E/bawvPg5OjXQmQ=; b=IYooCL2bErS8C+LVK8D5E90GiP
- rwzBWln/tHuGF0ZEOOB8gakNcVN+nNCdDS8I9T3ocyo8H4oX0Qb+38mReX0L2E1UQq/+HrL2yxuYi
- 0KgYo6N1eh0dupzs0RyVjC/M+/n4B1mcwnz8x8mKC6osZC+OqWS48mdHXcZgzof7e3tU=;
+ bh=XH8CYV/Z50iBLZ27uSo3DlVY0KhJ8ZO+RiecWTcYel0=; b=P3ozLMttsKAXvTz/Z4CQiNvP8O
+ MKN48XpflUBbn4nxpDCcWEwn8X/Mg0W3NJeTLM0MmGjfK+hqYJRne41pX84LzANfh4BjewPnVH1l4
+ WuTakRTgXjGAuJOloi6BE1iXLBJOq2JugYqCgpLu8FHekies7LbI43vCmEXk71tannRA=;
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  ;
- h=Content-Type:Cc:To:Subject:Message-ID:Date:From:In-Reply-To:References:
- MIME-Version:Sender:Reply-To:Content-Transfer-Encoding:Content-ID:
+ h=Content-Transfer-Encoding:Content-Type:In-Reply-To:From:References:Cc:To:
+ Subject:MIME-Version:Date:Message-ID:Sender:Reply-To:Content-ID:
  Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
  :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
  List-Post:List-Owner:List-Archive;
- bh=4H0hy1V+vsSL/J4iRHU98fs6Ghx9E/bawvPg5OjXQmQ=; b=S0iSlD24auOsZdSR8vOHzdOrRY
- 8XNM/zmbvot34AMyMfN8sH3QlJbE5O36zwJyGlgXmqKWLlTO8OuJIAK6gt9vU7OACrxYJ+vUx0UN9
- oSWedhCWxp9vP0FXA42C2bHmHPzTXAT61yCnu5LIKANoIkPy3Twv+3Tyoi1rUAjzHGpQ=;
-Received: from mail-ej1-f47.google.com ([209.85.218.47])
+ bh=XH8CYV/Z50iBLZ27uSo3DlVY0KhJ8ZO+RiecWTcYel0=; b=hyTXNAXM/Snav6R2i7QOYct04o
+ xkJmsCb7C37L2T+54wI55EPlW3aQEkLSlIZdQyJYU/913dHXFq/U37mKCiFiIWHQa9n20vGmHBSju
+ c36f3l/97XBFjWI4ilKUhdsK3UBKOlzPQGQ1e86nPoazQxdKXPCDeqW4cgpaoWvMMtX8=;
+Received: from mail-ej1-f41.google.com ([209.85.218.41])
  by sfi-mx-1.v28.lw.sourceforge.com with esmtps
  (TLS1.2:ECDHE-RSA-AES128-GCM-SHA256:128) (Exim 4.94.2)
- id 1nPCRb-001rOF-6S
- for v9fs-developer@lists.sourceforge.net; Wed, 02 Mar 2022 00:02:18 +0000
-Received: by mail-ej1-f47.google.com with SMTP id qt6so200607ejb.11
+ id 1nPM2o-002Nml-P7
+ for v9fs-developer@lists.sourceforge.net; Wed, 02 Mar 2022 10:17:29 +0000
+Received: by mail-ej1-f41.google.com with SMTP id qa43so2577151ejc.12
  for <v9fs-developer@lists.sourceforge.net>;
- Tue, 01 Mar 2022 16:02:15 -0800 (PST)
+ Wed, 02 Mar 2022 02:17:18 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=linux-foundation.org; s=google;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=4H0hy1V+vsSL/J4iRHU98fs6Ghx9E/bawvPg5OjXQmQ=;
- b=A1xSV6w+mnGI8KddmZFT+SVp47UhRqZlj7dZE7Ue1BgWjGw2+QCc51Zb6PIPvKiXuh
- /TGd1P3o63R0kiFyLwVU+kzDBf6Kt9wFSZwwJYnrWAqavu9szp3nfmKm0Qe68N3l8Mdl
- bWvesgtwBf4BWRSm4aUiCmj0pmAaHYwmzAjUs=
+ d=rasmusvillemoes.dk; s=google;
+ h=message-id:date:mime-version:user-agent:subject:content-language:to
+ :cc:references:from:in-reply-to:content-transfer-encoding;
+ bh=XH8CYV/Z50iBLZ27uSo3DlVY0KhJ8ZO+RiecWTcYel0=;
+ b=IQg4uBejV+wOE9gbvRPz3nvi4LkiiVw4YSIjC8NPteocLXX0uLpiZyGXJ60leACu72
+ E2mMgbaj2BDeYnhoOw0DKPRcT2bjIlB4yRTWQZ65OcYRTHhlWzgeq8LyFprIEpiij6N8
+ YNaymndxJaFKphqyYHlKdyPolm4uaJOX+WJuI=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20210112;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc;
- bh=4H0hy1V+vsSL/J4iRHU98fs6Ghx9E/bawvPg5OjXQmQ=;
- b=Kc2hMANI/sTiJAu5EigEqsN1yxpT94WwWHrEyCkwbo5ikeg6Y6j73JdJ4wBEOnK9YZ
- kv6Jkoq1iQaMeUSlfkLZkdebM9QTq26x9ycKDYjLvImL/fJQoED91UFe08HWtdHfo9yF
- p//muhuMe9SQDPOUwoqDOR9hhnWCT+xII7lU/lttkyeGrYsfqDq/w3ER/UQGOtnKMzk3
- q1hOHXWEunqe8tFaYzGHZzsXgntFljD09Ked6zMqvyNZtKi4MAYvABgObG1sECega7Kq
- b6ZWTv1+LL/bmHfXm6V9frIwd0Oref0fceNoudK1x81uuX+WhmdPYYQpeUCecIDfdqX6
- YFTQ==
-X-Gm-Message-State: AOAM531lv9aQS4TS4VZomuTW0hzZP3SLAJqvvN16Wx4XUDKEUXo8u/EU
- LIN7nnz7G3oOzeoBqiLZEKDeMYrOiNwaFt1A8uk=
-X-Google-Smtp-Source: ABdhPJygZdhZUDvQjwXTA6PFvoJOW7dtLQAGu4/LYBM2nkO8ELGSmxn/4JX5byMhKprVYlwPCVaxdw==
-X-Received: by 2002:a17:907:1183:b0:6cf:ce2f:51c1 with SMTP id
- uz3-20020a170907118300b006cfce2f51c1mr20920242ejb.209.1646179328318; 
- Tue, 01 Mar 2022 16:02:08 -0800 (PST)
-Received: from mail-ed1-f49.google.com (mail-ed1-f49.google.com.
- [209.85.208.49]) by smtp.gmail.com with ESMTPSA id
- u9-20020a170906124900b006ce88a505a1sm5926614eja.179.2022.03.01.16.02.08
- for <v9fs-developer@lists.sourceforge.net>
+ h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+ :content-language:to:cc:references:from:in-reply-to
+ :content-transfer-encoding;
+ bh=XH8CYV/Z50iBLZ27uSo3DlVY0KhJ8ZO+RiecWTcYel0=;
+ b=uyNM4chIruF33Mf6XC8O3Hm9FhhsLAEVmnXYSnuFJvtXz+25wavSb1YSfJfTFjPNm+
+ nxbD2bQuHNMlk63g6WDwkcTPvsvWX3VIdQRRAefqPgTtWqmcLd8KvqQNdszIEvxsXc+5
+ LOY0xEoLD7X60dPvo612lhpU+W/oJLW984pLBZU6S68Vh9C/hgWpMc4VHRoLR67SJByB
+ rv/f7hnV6jg9uSV+NXrKhOZNsqMR02DpMCTgixKVgIopmZkA82sieUtg9/Yll4n82ylo
+ sxqXicf3rBahHHcHMT7jFKzE8BIKS88PD7JzJ9QCdADbd8bL7jRK/vg1C1RRRD4syGLD
+ 6n1g==
+X-Gm-Message-State: AOAM531OnPRtxRmDUn1wtTRRGlKejFnKhv4Tc+gHQ7EEZKxPDhLqfyb3
+ Tcw9xnWt5jBx02Ewxeqqazc5P1Mh2V9MwTKLHsg=
+X-Google-Smtp-Source: ABdhPJxPRWTwhfDKGEWi/HTZUmtnN6xoKL1T2KNwEAF9KgB2sMMXSt6lke7BfBVtPRIEaNMyntkyzw==
+X-Received: by 2002:a2e:3c0d:0:b0:246:3c52:7ada with SMTP id
+ j13-20020a2e3c0d000000b002463c527adamr19885072lja.459.1646213374808; 
+ Wed, 02 Mar 2022 01:29:34 -0800 (PST)
+Received: from [172.16.11.74] ([81.216.59.226])
+ by smtp.gmail.com with ESMTPSA id
+ f36-20020a0565123b2400b0043795432e87sm1960430lfv.150.2022.03.02.01.29.31
  (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Tue, 01 Mar 2022 16:02:08 -0800 (PST)
-Received: by mail-ed1-f49.google.com with SMTP id w3so30589edu.8
- for <v9fs-developer@lists.sourceforge.net>;
- Tue, 01 Mar 2022 16:02:08 -0800 (PST)
-X-Received: by 2002:a05:6512:3042:b0:437:96f5:e68a with SMTP id
- b2-20020a056512304200b0043796f5e68amr17643498lfb.449.1646178958685; Tue, 01
- Mar 2022 15:55:58 -0800 (PST)
+ Wed, 02 Mar 2022 01:29:33 -0800 (PST)
+Message-ID: <78ccb184-405e-da93-1e02-078f90d2b9bc@rasmusvillemoes.dk>
+Date: Wed, 2 Mar 2022 10:29:31 +0100
 MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.5.0
+Content-Language: en-US
+To: Linus Torvalds <torvalds@linux-foundation.org>,
+ David Laight <David.Laight@aculab.com>
 References: <20220228110822.491923-1-jakobkoschel@gmail.com>
  <20220228110822.491923-3-jakobkoschel@gmail.com>
  <2e4e95d6-f6c9-a188-e1cd-b1eae465562a@amd.com>
@@ -89,43 +91,41 @@ References: <20220228110822.491923-1-jakobkoschel@gmail.com>
  <7dc860874d434d2288f36730d8ea3312@AcuMS.aculab.com>
  <CAHk-=whKqg89zu4T95+ctY-hocR6kDArpo2qO14-kV40Ga7ufw@mail.gmail.com>
  <0ced2b155b984882b39e895f0211037c@AcuMS.aculab.com>
-In-Reply-To: <0ced2b155b984882b39e895f0211037c@AcuMS.aculab.com>
-From: Linus Torvalds <torvalds@linux-foundation.org>
-Date: Tue, 1 Mar 2022 15:55:42 -0800
-X-Gmail-Original-Message-ID: <CAHk-=wix0HLCBs5sxAeW3uckg0YncXbTjMsE-Tv8WzmkOgLAXQ@mail.gmail.com>
-Message-ID: <CAHk-=wix0HLCBs5sxAeW3uckg0YncXbTjMsE-Tv8WzmkOgLAXQ@mail.gmail.com>
-To: David Laight <David.Laight@aculab.com>
-X-Spam-Score: 0.1 (/)
+ <CAHk-=wix0HLCBs5sxAeW3uckg0YncXbTjMsE-Tv8WzmkOgLAXQ@mail.gmail.com>
+From: Rasmus Villemoes <linux@rasmusvillemoes.dk>
+In-Reply-To: <CAHk-=wix0HLCBs5sxAeW3uckg0YncXbTjMsE-Tv8WzmkOgLAXQ@mail.gmail.com>
+X-Spam-Score: -0.2 (/)
 X-Spam-Report: Spam detection software,
  running on the system "util-spamd-2.v13.lw.sourceforge.com", 
  has NOT identified this incoming email as spam.  The original
  message has been attached to this so you can view it or label
  similar future email.  If you have any questions, see
  the administrator of that system for details.
- Content preview:  On Tue, Mar 1,
- 2022 at 3:19 PM David Laight <David.Laight@aculab.com>
- wrote: > > Having said that there are so few users of list_entry_is_head()
- > it is reasonable to generate two new names. Well, the problem is that the
- users of list_entry_is_head() may be few - but there are a number of _other_
- ways to check "was that the HEAD pointer", and not all of them are necessarily
- correct. Content analysis details:   (0.1 points, 6.0 required)
+ Content preview:  On 02/03/2022 00.55, Linus Torvalds wrote: > On Tue, Mar 1, 
+ 2022 at 3:19 PM David Laight <David.Laight@aculab.com> wrote: >> > With the
+ "don't use iterator outside the loop" approach, the exact > same code works
+ in both the old world order and the new world order, > and you don't have
+ the semantic confusion. And *if* you tr [...] 
+ Content analysis details:   (-0.2 points, 6.0 required)
  pts rule name              description
  ---- ---------------------- --------------------------------------------------
- 0.0 SPF_HELO_NONE          SPF: HELO does not publish an SPF Record
- -0.0 RCVD_IN_MSPIKE_H2      RBL: Average reputation (+2)
- [209.85.218.47 listed in wl.mailspike.net]
  -0.0 RCVD_IN_DNSWL_NONE     RBL: Sender listed at https://www.dnswl.org/,
- no trust [209.85.218.47 listed in list.dnswl.org]
+ no trust [209.85.218.41 listed in list.dnswl.org]
+ 0.0 RCVD_IN_MSPIKE_H3      RBL: Good reputation (+3)
+ [209.85.218.41 listed in wl.mailspike.net]
  -0.0 SPF_PASS               SPF: sender matches SPF record
- 0.2 HEADER_FROM_DIFFERENT_DOMAINS From and EnvelopeFrom 2nd level
- mail domains are different
- -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+ 0.0 SPF_HELO_NONE          SPF: HELO does not publish an SPF Record
  0.1 DKIM_SIGNED            Message has a DKIM or DK signature, not necessarily
  valid
+ -0.1 DKIM_VALID_EF          Message has a valid DKIM or DK signature from
+ envelope-from domain
+ -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
  -0.1 DKIM_VALID_AU          Message has a valid DKIM or DK signature from
  author's domain
+ 0.0 RCVD_IN_MSPIKE_WL      Mailspike good senders
  -0.0 T_SCC_BODY_TEXT_LINE   No description available.
-X-Headers-End: 1nPCRb-001rOF-6S
+ -0.0 NICE_REPLY_A           Looks like a legit reply (A)
+X-Headers-End: 1nPM2o-002Nml-P7
 Subject: Re: [V9fs-developer] [PATCH 2/6] treewide: remove using list
  iterator after loop body as a ptr
 X-BeenThere: v9fs-developer@lists.sourceforge.net
@@ -188,66 +188,50 @@ Cc: "alsa-devel@alsa-project.org" <alsa-devel@alsa-project.org>,
  dma <dmaengine@vger.kernel.org>,
  "linux-mediatek@lists.infradead.org" <linux-mediatek@lists.infradead.org>,
  linuxppc-dev <linuxppc-dev@lists.ozlabs.org>,
- =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>,
+ =?UTF-8?Q?Christian_K=c3=b6nig?= <christian.koenig@amd.com>,
  Mike Rapoport <rppt@kernel.org>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: v9fs-developer-bounces@lists.sourceforge.net
 
-On Tue, Mar 1, 2022 at 3:19 PM David Laight <David.Laight@aculab.com> wrote:
->
-> Having said that there are so few users of list_entry_is_head()
-> it is reasonable to generate two new names.
+On 02/03/2022 00.55, Linus Torvalds wrote:
+> On Tue, Mar 1, 2022 at 3:19 PM David Laight <David.Laight@aculab.com> wrote:
+>>
 
-Well, the problem is that the users of list_entry_is_head() may be few
-- but there are a number of _other_ ways to check "was that the HEAD
-pointer", and not all of them are necessarily correct.
+> With the "don't use iterator outside the loop" approach, the exact
+> same code works in both the old world order and the new world order,
+> and you don't have the semantic confusion. And *if* you try to use the
+> iterator outside the loop, you'll _mostly_ (*) get a compiler warning
+> about it not being initialized.
+> 
+>              Linus
+> 
+> (*) Unless somebody initializes the iterator pointer pointlessly.
+> Which clearly does happen. Thus the "mostly". It's not perfect, and
+> that's most definitely not nice - but it should at least hopefully
+> make it that much harder to mess up.
 
-IOW, different places do different random tests for "did we walk the
-whole loop without breaking out". And many of them happen to work. In
-fact, in practice, pretty much *all* of them happen to work, and you
-have to have the right struct layout and really really bad luck to hit
-a case of "type confusion ended up causing the test to not work".
+This won't help the current issue (because it doesn't exist and might
+never), but just in case some compiler people are listening, I'd like to
+have some sort of way to tell the compiler "treat this variable as
+uninitialized from here on". So one could do
 
-And *THAT* is the problem here. It's not the "there are 25ish places
-that current use list_entry_is_head()".
+#define kfree(p) do { __kfree(p); __magic_uninit(p); } while (0)
 
-It's the "there are ~480 places that use the type-confused HEAD entry
-that has been cast to the wrong type".
+with __magic_uninit being a magic no-op that doesn't affect the
+semantics of the code, but could be used by the compiler's "[is/may be]
+used uninitialized" machinery to flag e.g. double frees on some odd
+error path etc. It would probably only work for local automatic
+variables, but it should be possible to just ignore the hint if p is
+some expression like foo->bar or has side effects. If we had that, the
+end-of-loop test could include that to "uninitialize" the iterator.
 
-And THAT is why I think we'd be better off with that bigger change
-that simply means that you can't use the iterator variable at all
-outside the loop, and try to make it something where the compiler can
-help catch mis-uses.
+Maybe sparse/smatch or some other static analyzer could implement such a
+magic thing? Maybe it's better as a function attribute
+[__attribute__((uninitializes(1)))] to avoid having to macrofy all
+functions that release resources.
 
-Now, making the list_for_each_entry() thing force the iterator to NULL
-at the end of the loop does fix the problem. The issue I have with it
-is really just that you end up getting no warning at all from the
-compiler if you mix old-style and new-style semantics. Now, you *will*
-get an oops (if using a new-style iterator with an old-style check),
-but many of these things will be in odd driver code and may happen
-only for error cases.
-
-And if you use a new-style check with an old-style iterator (ie some
-backport problem), you will probably end up getting random memory
-corruption, because you'll decide "it's not a HEAD entry", and then
-you'll actually *use* the HEAD that has the wrong type cast associated
-with it.
-
-See what my worry is?
-
-With the "don't use iterator outside the loop" approach, the exact
-same code works in both the old world order and the new world order,
-and you don't have the semantic confusion. And *if* you try to use the
-iterator outside the loop, you'll _mostly_ (*) get a compiler warning
-about it not being initialized.
-
-             Linus
-
-(*) Unless somebody initializes the iterator pointer pointlessly.
-Which clearly does happen. Thus the "mostly". It's not perfect, and
-that's most definitely not nice - but it should at least hopefully
-make it that much harder to mess up.
+Rasmus
 
 
 _______________________________________________
