@@ -2,26 +2,26 @@ Return-Path: <v9fs-developer-bounces@lists.sourceforge.net>
 X-Original-To: lists+v9fs-developer@lfdr.de
 Delivered-To: lists+v9fs-developer@lfdr.de
 Received: from lists.sourceforge.net (lists.sourceforge.net [216.105.38.7])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3DD714D24CA
-	for <lists+v9fs-developer@lfdr.de>; Wed,  9 Mar 2022 00:25:35 +0100 (CET)
-Received: from [127.0.0.1] (helo=sfs-ml-1.v29.lw.sourceforge.com)
-	by sfs-ml-1.v29.lw.sourceforge.com with esmtp (Exim 4.94.2)
+	by mail.lfdr.de (Postfix) with ESMTPS id 359294D24CC
+	for <lists+v9fs-developer@lfdr.de>; Wed,  9 Mar 2022 00:26:03 +0100 (CET)
+Received: from [127.0.0.1] (helo=sfs-ml-2.v29.lw.sourceforge.com)
+	by sfs-ml-2.v29.lw.sourceforge.com with esmtp (Exim 4.94.2)
 	(envelope-from <v9fs-developer-bounces@lists.sourceforge.net>)
-	id 1nRjCx-0004G2-4k; Tue, 08 Mar 2022 23:25:33 +0000
+	id 1nRjDL-0006oE-3r; Tue, 08 Mar 2022 23:25:59 +0000
 Received: from [172.30.20.202] (helo=mx.sourceforge.net)
- by sfs-ml-1.v29.lw.sourceforge.com with esmtps (TLS1.2) tls
+ by sfs-ml-2.v29.lw.sourceforge.com with esmtps (TLS1.2) tls
  TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384 (Exim 4.94.2)
- (envelope-from <dhowells@redhat.com>) id 1nRjCv-0004Fv-Ne
- for v9fs-developer@lists.sourceforge.net; Tue, 08 Mar 2022 23:25:32 +0000
+ (envelope-from <dhowells@redhat.com>) id 1nRjDJ-0006o2-EI
+ for v9fs-developer@lists.sourceforge.net; Tue, 08 Mar 2022 23:25:56 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
  d=sourceforge.net; s=x; h=Content-Transfer-Encoding:Content-Type:MIME-Version
  :References:In-Reply-To:Message-ID:Date:Cc:To:From:Subject:Sender:Reply-To:
  Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
  Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
  List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=KBFHdKKHoDjr1TUu4BsB9HH3Wp0sMYIusKKTd5TPCQ0=; b=hWGrIhezMArMoc8fD3xbRr3zBJ
- 9uQzlxra1DZcI5/LWm58AH2nqn3qrwmU3pc6NoGA26mwKMXNgOQxTvFkmbCPqhVyJP0h4Z0IfMFf4
- mnqBu6Sm+Mv5Iz2iAPpqQblJcXluUqC6/ryuvFrkv6nMz7CgJT4iwQ3+f0JWoHr/hfDg=;
+ bh=UdOgDnE1tPhxPwKj+dzga7GCH2QN5VPxiT3X8/my5Mg=; b=BnQVWZP9Dl74GuMu7hnMMDCYFB
+ bhQtX6AU20V/1KGk2pquJkrxO+FTO3Q08jpw4lC8hnmkIOVlapPaUNM52tLRNYQ0schYCT8S+gn3h
+ eQE1bRIwX6EzkLCMyiDBsLNr9E3b0P9oAnoxLEIVMeOLEm21Pu5E3B3iS4QWMCpEI9NM=;
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  ;
  h=Content-Transfer-Encoding:Content-Type:MIME-Version:References:
@@ -29,64 +29,64 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
  :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
  List-Post:List-Owner:List-Archive;
- bh=KBFHdKKHoDjr1TUu4BsB9HH3Wp0sMYIusKKTd5TPCQ0=; b=lLMpttdr7NKcx/HaUk04XkD4PS
- 80d5p5KncpHVkAjb4VYVTj2HKsIIjYGFRxDEj+jBsRX7BcRoPLwlV+1MezUd6z7rBVsangL9xM159
- xJtfqvkzs18z0lVtGnlkoHULTU4yO9vRLPNqa2L0eyqeyoml6d33ped5N21gTMqahynQ=;
+ bh=UdOgDnE1tPhxPwKj+dzga7GCH2QN5VPxiT3X8/my5Mg=; b=fs9Ck5NmwYpcoLI3Sqj6bcNnas
+ VPuqlQi50ufg36erqZYR0mOmyTSj5+yIr9tXmfH5oykTjToVgr/O/SGSr+HllrgJNaQCMX+64kMo0
+ OPsxlAlXevtJCTcqV3X2Bez3lcfYEk1dEFZvhNFEevHLLN7j9aCM6txjjcTe9QibGUXI=;
 Received: from us-smtp-delivery-124.mimecast.com ([170.10.133.124])
  by sfi-mx-1.v28.lw.sourceforge.com with esmtps
  (TLS1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.94.2)
- id 1nRjCt-0097C3-0P
- for v9fs-developer@lists.sourceforge.net; Tue, 08 Mar 2022 23:25:31 +0000
+ id 1nRjDH-0097DG-6K
+ for v9fs-developer@lists.sourceforge.net; Tue, 08 Mar 2022 23:25:55 +0000
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
- s=mimecast20190719; t=1646781924;
+ s=mimecast20190719; t=1646781949;
  h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
  to:to:cc:cc:mime-version:mime-version:content-type:content-type:
  content-transfer-encoding:content-transfer-encoding:
  in-reply-to:in-reply-to:references:references;
- bh=KBFHdKKHoDjr1TUu4BsB9HH3Wp0sMYIusKKTd5TPCQ0=;
- b=GCwUMTsajEFEFS0GZvqAuRujGFMUpUH+oMn9fvDLsPsqgcw/rnxGYjPpd6G7jMWDMiPKHI
- PRF1FuiaUImZJjZ4+U+lCq0X8/W+sf8qtr6U88Tfv43QHIP5MYJZn56qn5Aj4FPO1Nd4b8
- jBRr6W6M2eWGd+D4AyBxUk2l+X6dvx0=
+ bh=UdOgDnE1tPhxPwKj+dzga7GCH2QN5VPxiT3X8/my5Mg=;
+ b=FHCnOWsJiqVlzckm4knOCwE0Dk3ExqqMIyhelOZ79b0Ddc+AC5rHqjbuW1DP/6Sd9Vwytz
+ 9MtVHESgcJmfOj0P9M6jb6f1IeyPZVxuyhxxuEE/U2/GWZaqWpD7QnyEJ82nU/xSCn/NrE
+ G+FQRe2J8LFr1ypksnjZxMOmdyeu0JY=
 Received: from mimecast-mx01.redhat.com (mimecast-mx01.redhat.com
  [209.132.183.4]) by relay.mimecast.com with ESMTP with STARTTLS
  (version=TLSv1.2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- us-mta-658-a1TV6opdOWGPrxazKtqIXg-1; Tue, 08 Mar 2022 18:25:21 -0500
-X-MC-Unique: a1TV6opdOWGPrxazKtqIXg-1
-Received: from smtp.corp.redhat.com (int-mx07.intmail.prod.int.phx2.redhat.com
- [10.5.11.22])
+ us-mta-390-7r9rJDxVPWWPW0jfCOA-5Q-1; Tue, 08 Mar 2022 18:25:48 -0500
+X-MC-Unique: 7r9rJDxVPWWPW0jfCOA-5Q-1
+Received: from smtp.corp.redhat.com (int-mx05.intmail.prod.int.phx2.redhat.com
+ [10.5.11.15])
  (using TLSv1.2 with cipher AECDH-AES256-SHA (256/256 bits))
  (No client certificate requested)
- by mimecast-mx01.redhat.com (Postfix) with ESMTPS id 746CC801AFE;
- Tue,  8 Mar 2022 23:25:19 +0000 (UTC)
+ by mimecast-mx01.redhat.com (Postfix) with ESMTPS id 55F98801AEB;
+ Tue,  8 Mar 2022 23:25:46 +0000 (UTC)
 Received: from warthog.procyon.org.uk (unknown [10.33.36.19])
- by smtp.corp.redhat.com (Postfix) with ESMTP id 5A1021006910;
- Tue,  8 Mar 2022 23:25:04 +0000 (UTC)
+ by smtp.corp.redhat.com (Postfix) with ESMTP id 66E2C2D1F4;
+ Tue,  8 Mar 2022 23:25:25 +0000 (UTC)
 Organization: Red Hat UK Ltd. Registered Address: Red Hat UK Ltd, Amberley
  Place, 107-111 Peascod Street, Windsor, Berkshire, SI4 1TE, United
  Kingdom.
  Registered in England and Wales under Company Registration No. 3798903
 From: David Howells <dhowells@redhat.com>
 To: linux-cachefs@redhat.com
-Date: Tue, 08 Mar 2022 23:25:03 +0000
-Message-ID: <164678190346.1200972.7453733431978569479.stgit@warthog.procyon.org.uk>
+Date: Tue, 08 Mar 2022 23:25:24 +0000
+Message-ID: <164678192454.1200972.4428834328108580460.stgit@warthog.procyon.org.uk>
 In-Reply-To: <164678185692.1200972.597611902374126174.stgit@warthog.procyon.org.uk>
 References: <164678185692.1200972.597611902374126174.stgit@warthog.procyon.org.uk>
 User-Agent: StGit/1.4
 MIME-Version: 1.0
-X-Scanned-By: MIMEDefang 2.84 on 10.5.11.22
-X-Spam-Score: -0.9 (/)
+X-Scanned-By: MIMEDefang 2.79 on 10.5.11.15
+X-Spam-Score: -0.7 (/)
 X-Spam-Report: Spam detection software,
- running on the system "util-spamd-1.v13.lw.sourceforge.com", 
+ running on the system "util-spamd-2.v13.lw.sourceforge.com", 
  has NOT identified this incoming email as spam.  The original
  message has been attached to this so you can view it or label
  similar future email.  If you have any questions, see
  the administrator of that system for details.
- Content preview: From: Jeffle Xu <jefflexu@linux.alibaba.com> Export
- fscache_end_operation() to avoid code duplication. Besides,
- considering the paired fscache_begin_read_operation()
- is already exported,
- it shall make sense to also export fscache_end_operation().
- Content analysis details:   (-0.9 points, 6.0 required)
+ Content preview:  netfs has a number of lists of symbols for use in tracing,
+ listed in an enum and then listed again in a symbol->string mapping for use
+ with __print_symbolic(). This is, however, redundant. Instead,
+ use the symbol->string
+ mapping list to also generate the enum where the enum is in the same file.
+ Content analysis details:   (-0.7 points, 6.0 required)
  pts rule name              description
  ---- ---------------------- --------------------------------------------------
  0.0 RCVD_IN_MSPIKE_H5      RBL: Excellent reputation (+5)
@@ -103,10 +103,11 @@ X-Spam-Report: Spam detection software,
  valid
  -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
  0.0 RCVD_IN_MSPIKE_WL      Mailspike good senders
- -0.7 DKIMWL_WL_HIGH         DKIMwl.org - High trust sender
-X-Headers-End: 1nRjCt-0097C3-0P
-Subject: [V9fs-developer] [PATCH v2 01/19] fscache: export
- fscache_end_operation()
+ -0.0 T_SCC_BODY_TEXT_LINE   No description available.
+ -0.5 DKIMWL_WL_HIGH         DKIMwl.org - High trust sender
+X-Headers-End: 1nRjDH-0097DG-6K
+Subject: [V9fs-developer] [PATCH v2 02/19] netfs: Generate enums from trace
+ symbol mapping lists
 X-BeenThere: v9fs-developer@lists.sourceforge.net
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -118,126 +119,110 @@ List-Post: <mailto:v9fs-developer@lists.sourceforge.net>
 List-Help: <mailto:v9fs-developer-request@lists.sourceforge.net?subject=help>
 List-Subscribe: <https://lists.sourceforge.net/lists/listinfo/v9fs-developer>, 
  <mailto:v9fs-developer-request@lists.sourceforge.net?subject=subscribe>
-Cc: David Wysochanski <dwysocha@redhat.com>, Steve French <sfrench@samba.org>,
- linux-nfs@vger.kernel.org, Jeff Layton <jlayton@redhat.com>,
+Cc: Steve French <sfrench@samba.org>, linux-nfs@vger.kernel.org,
+ linux-afs@lists.infradead.org, Jeff Layton <jlayton@redhat.com>,
  linux-cifs@vger.kernel.org, ceph-devel@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-afs@lists.infradead.org,
+ linux-kernel@vger.kernel.org, Anna Schumaker <anna.schumaker@netapp.com>,
  dhowells@redhat.com, linux-fsdevel@vger.kernel.org,
  Jeffle Xu <jefflexu@linux.alibaba.com>, v9fs-developer@lists.sourceforge.net,
  Ilya Dryomov <idryomov@gmail.com>,
  Linus Torvalds <torvalds@linux-foundation.org>,
- Anna Schumaker <anna.schumaker@netapp.com>
+ David Wysochanski <dwysocha@redhat.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: v9fs-developer-bounces@lists.sourceforge.net
 
-From: Jeffle Xu <jefflexu@linux.alibaba.com>
+netfs has a number of lists of symbols for use in tracing, listed in an
+enum and then listed again in a symbol->string mapping for use with
+__print_symbolic().  This is, however, redundant.
 
-Export fscache_end_operation() to avoid code duplication.
+Instead, use the symbol->string mapping list to also generate the enum
+where the enum is in the same file.
 
-Besides, considering the paired fscache_begin_read_operation() is
-already exported, it shall make sense to also export
-fscache_end_operation().
-
-Signed-off-by: Jeffle Xu <jefflexu@linux.alibaba.com>
 Signed-off-by: David Howells <dhowells@redhat.com>
 cc: linux-cachefs@redhat.com
 
-Link: https://lore.kernel.org/r/20220302125134.131039-2-jefflexu@linux.alibaba.com/ # Jeffle's v4
-Link: https://lore.kernel.org/r/164622971432.3564931.12184135678781328146.stgit@warthog.procyon.org.uk/ # v1
+Link: https://lore.kernel.org/r/164622980839.3564931.5673300162465266909.stgit@warthog.procyon.org.uk/ # v1
 ---
 
- fs/cifs/fscache.c       |    8 --------
- fs/fscache/internal.h   |   11 -----------
- fs/nfs/fscache.c        |    8 --------
- include/linux/fscache.h |   14 ++++++++++++++
- 4 files changed, 14 insertions(+), 27 deletions(-)
+ include/trace/events/netfs.h |   57 ++++++++++--------------------------------
+ 1 file changed, 14 insertions(+), 43 deletions(-)
 
-diff --git a/fs/cifs/fscache.c b/fs/cifs/fscache.c
-index 33af72e0ac0c..b47c2011ce5b 100644
---- a/fs/cifs/fscache.c
-+++ b/fs/cifs/fscache.c
-@@ -134,14 +134,6 @@ void cifs_fscache_release_inode_cookie(struct inode *inode)
- 	}
- }
- 
--static inline void fscache_end_operation(struct netfs_cache_resources *cres)
--{
--	const struct netfs_cache_ops *ops = fscache_operation_valid(cres);
--
--	if (ops)
--		ops->end_operation(cres);
--}
--
+diff --git a/include/trace/events/netfs.h b/include/trace/events/netfs.h
+index e6f4ebbb4c69..88d9a74dd346 100644
+--- a/include/trace/events/netfs.h
++++ b/include/trace/events/netfs.h
+@@ -15,49 +15,6 @@
  /*
-  * Fallback page reading interface.
+  * Define enums for tracing information.
   */
-diff --git a/fs/fscache/internal.h b/fs/fscache/internal.h
-index f121c21590dc..ed1c9ed737f2 100644
---- a/fs/fscache/internal.h
-+++ b/fs/fscache/internal.h
-@@ -70,17 +70,6 @@ static inline void fscache_see_cookie(struct fscache_cookie *cookie,
- 			     where);
- }
+-#ifndef __NETFS_DECLARE_TRACE_ENUMS_ONCE_ONLY
+-#define __NETFS_DECLARE_TRACE_ENUMS_ONCE_ONLY
+-
+-enum netfs_read_trace {
+-	netfs_read_trace_expanded,
+-	netfs_read_trace_readahead,
+-	netfs_read_trace_readpage,
+-	netfs_read_trace_write_begin,
+-};
+-
+-enum netfs_rreq_trace {
+-	netfs_rreq_trace_assess,
+-	netfs_rreq_trace_done,
+-	netfs_rreq_trace_free,
+-	netfs_rreq_trace_resubmit,
+-	netfs_rreq_trace_unlock,
+-	netfs_rreq_trace_unmark,
+-	netfs_rreq_trace_write,
+-};
+-
+-enum netfs_sreq_trace {
+-	netfs_sreq_trace_download_instead,
+-	netfs_sreq_trace_free,
+-	netfs_sreq_trace_prepare,
+-	netfs_sreq_trace_resubmit_short,
+-	netfs_sreq_trace_submit,
+-	netfs_sreq_trace_terminated,
+-	netfs_sreq_trace_write,
+-	netfs_sreq_trace_write_skip,
+-	netfs_sreq_trace_write_term,
+-};
+-
+-enum netfs_failure {
+-	netfs_fail_check_write_begin,
+-	netfs_fail_copy_to_cache,
+-	netfs_fail_read,
+-	netfs_fail_short_readpage,
+-	netfs_fail_short_write_begin,
+-	netfs_fail_prepare_write,
+-};
+-
+-#endif
+-
+ #define netfs_read_traces					\
+ 	EM(netfs_read_trace_expanded,		"EXPANDED ")	\
+ 	EM(netfs_read_trace_readahead,		"READAHEAD")	\
+@@ -98,6 +55,20 @@ enum netfs_failure {
+ 	EM(netfs_fail_short_write_begin,	"short-write-begin")	\
+ 	E_(netfs_fail_prepare_write,		"prep-write")
  
--/*
-- * io.c
-- */
--static inline void fscache_end_operation(struct netfs_cache_resources *cres)
--{
--	const struct netfs_cache_ops *ops = fscache_operation_valid(cres);
--
--	if (ops)
--		ops->end_operation(cres);
--}
--
- /*
-  * main.c
-  */
-diff --git a/fs/nfs/fscache.c b/fs/nfs/fscache.c
-index cfe901650ab0..39654ca72d3d 100644
---- a/fs/nfs/fscache.c
-+++ b/fs/nfs/fscache.c
-@@ -249,14 +249,6 @@ void nfs_fscache_release_file(struct inode *inode, struct file *filp)
- 	}
- }
- 
--static inline void fscache_end_operation(struct netfs_cache_resources *cres)
--{
--	const struct netfs_cache_ops *ops = fscache_operation_valid(cres);
--
--	if (ops)
--		ops->end_operation(cres);
--}
--
- /*
-  * Fallback page reading interface.
-  */
-diff --git a/include/linux/fscache.h b/include/linux/fscache.h
-index 296c5f1d9f35..d2430da8aa67 100644
---- a/include/linux/fscache.h
-+++ b/include/linux/fscache.h
-@@ -456,6 +456,20 @@ int fscache_begin_read_operation(struct netfs_cache_resources *cres,
- 	return -ENOBUFS;
- }
- 
-+/**
-+ * fscache_end_operation - End the read operation for the netfs lib
-+ * @cres: The cache resources for the read operation
-+ *
-+ * Clean up the resources at the end of the read request.
-+ */
-+static inline void fscache_end_operation(struct netfs_cache_resources *cres)
-+{
-+	const struct netfs_cache_ops *ops = fscache_operation_valid(cres);
++#ifndef __NETFS_DECLARE_TRACE_ENUMS_ONCE_ONLY
++#define __NETFS_DECLARE_TRACE_ENUMS_ONCE_ONLY
 +
-+	if (ops)
-+		ops->end_operation(cres);
-+}
++#undef EM
++#undef E_
++#define EM(a, b) a,
++#define E_(a, b) a
 +
- /**
-  * fscache_read - Start a read from the cache.
-  * @cres: The cache resources to use
++enum netfs_read_trace { netfs_read_traces } __mode(byte);
++enum netfs_rreq_trace { netfs_rreq_traces } __mode(byte);
++enum netfs_sreq_trace { netfs_sreq_traces } __mode(byte);
++enum netfs_failure { netfs_failures } __mode(byte);
++
++#endif
+ 
+ /*
+  * Export enum symbols via userspace.
 
 
 
