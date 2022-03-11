@@ -2,88 +2,104 @@ Return-Path: <v9fs-developer-bounces@lists.sourceforge.net>
 X-Original-To: lists+v9fs-developer@lfdr.de
 Delivered-To: lists+v9fs-developer@lfdr.de
 Received: from lists.sourceforge.net (lists.sourceforge.net [216.105.38.7])
-	by mail.lfdr.de (Postfix) with ESMTPS id AB3824D583E
-	for <lists+v9fs-developer@lfdr.de>; Fri, 11 Mar 2022 03:40:15 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id D94984D6022
+	for <lists+v9fs-developer@lfdr.de>; Fri, 11 Mar 2022 11:52:11 +0100 (CET)
 Received: from [127.0.0.1] (helo=sfs-ml-1.v29.lw.sourceforge.com)
 	by sfs-ml-1.v29.lw.sourceforge.com with esmtp (Exim 4.94.2)
 	(envelope-from <v9fs-developer-bounces@lists.sourceforge.net>)
-	id 1nSVCO-0001pm-Qz; Fri, 11 Mar 2022 02:40:11 +0000
+	id 1nScsV-0003pd-UM; Fri, 11 Mar 2022 10:52:10 +0000
 Received: from [172.30.20.202] (helo=mx.sourceforge.net)
  by sfs-ml-1.v29.lw.sourceforge.com with esmtps (TLS1.2) tls
  TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384 (Exim 4.94.2)
- (envelope-from <eki-net-info@coaqaxe.cn>) id 1nSVCM-0001pf-Ur
- for v9fs-developer@lists.sourceforge.net; Fri, 11 Mar 2022 02:40:10 +0000
+ (envelope-from <jgross@suse.com>) id 1nScsU-0003pP-Ur
+ for v9fs-developer@lists.sourceforge.net; Fri, 11 Mar 2022 10:52:09 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=sourceforge.net; s=x; h=Content-Type:MIME-Version:Message-ID:Date:Subject:
- To:From:Sender:Reply-To:Cc:Content-Transfer-Encoding:Content-ID:
+ d=sourceforge.net; s=x; h=Content-Transfer-Encoding:MIME-Version:Message-Id:
+ Date:Subject:Cc:To:From:Sender:Reply-To:Content-Type:Content-ID:
  Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
  :Resent-Message-ID:In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:
  List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=fo3rHgUET+P7zQlDbht5Up5G3az94f+t0Ej55cNjcuA=; b=TWCW8A63pda21ZZRIs/nOSJ+Pu
- 7wmgaxwksxTFtQKZrpR6hPnSjVvbp58AK2sBcAruIqqwhvh7tO4j2BUAlGN4q73kR8YOkLkJobUz6
- V2aLkrkwwwx61o92iA83aBaqsQ3VTKXH1Qc3TTeSeSYPuKcTiH5oRfNjopOVztMANMzs=;
+ bh=wxQGvXlNGe5HCBbR63oBE/kK35uYM5cAEXtsbUcwkZQ=; b=e3hiTDrbbI/xgPdBBLXl4GNOdr
+ 2d32u+xLiL4YauRaZJagu1YyCQX9gHtAj2oOCJrdpSo86smcrM/c9Yq15PDuU17tRycAzGSj07iEi
+ dwOsQkNCQ8BithwROu/QDmhLlOuVcSsW49gnyP32RNAEBPYP0Gw3FVqC38CuoFEE8Tv8=;
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  ;
- h=Content-Type:MIME-Version:Message-ID:Date:Subject:To:From:Sender:Reply-To
- :Cc:Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+ h=Content-Transfer-Encoding:MIME-Version:Message-Id:Date:Subject:Cc:To:From
+ :Sender:Reply-To:Content-Type:Content-ID:Content-Description:Resent-Date:
  Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:
  References:List-Id:List-Help:List-Unsubscribe:List-Subscribe:List-Post:
- List-Owner:List-Archive; bh=fo3rHgUET+P7zQlDbht5Up5G3az94f+t0Ej55cNjcuA=; b=a
- ++pWUAGnEN4cpt7m3/Rjc64iTSNMa4fApqhM1F4onJ/nDqRia3LaQd2HrOkyJ3e/gJonXPIVM5vsg
- dCFUKGBfCmLkhCEhFCIQCbGhigRCE671AsEL5bBodZja4g5msJtmrWaAS6G8r1T53qn96YAeuudoC
- waWg0eE5myvGTWS8=;
-Received: from [134.122.143.27] (helo=coaqaxe.cn)
+ List-Owner:List-Archive; bh=wxQGvXlNGe5HCBbR63oBE/kK35uYM5cAEXtsbUcwkZQ=; b=W
+ Cy43XttPiFCIQtKUFeHWU4dl1Igd+yCvcCYr4FlNEScqFd2MPR+HR8/GE8HwC2JfyKvj4XMZbVWYi
+ PJG9z0EkzeRW8p0nbhTkIF7Bm1l+BFlyHJZ48vf2F/042N9/UryRLM2tWuc/pYXHUooEgH69k7U5Q
+ I30I/mtkhb391fTg=;
+Received: from smtp-out1.suse.de ([195.135.220.28])
  by sfi-mx-2.v28.lw.sourceforge.com with esmtps
- (TLS1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.94.2)
- id 1nSVCH-0006nu-Ed
- for v9fs-developer@lists.sourceforge.net; Fri, 11 Mar 2022 02:40:09 +0000
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; s=defult; d=coaqaxe.cn; 
- h=From:To:Subject:Date:Message-ID:MIME-Version:Content-Type;
- i=eki-net-info@coaqaxe.cn;
- bh=fo3rHgUET+P7zQlDbht5Up5G3az94f+t0Ej55cNjcuA=;
- b=hEJjcTnMozpxOjio6onTr8xtgWKaHQ8IKBC3a7hDgTh+OFBtwhvYjYg3XsfRTQhF2FWVUBXJh/2Z
- 281WGAeTmijigvK6r4RbR3at+9+RYKA0UsIk0dNBhuskq0Lcl0mZYv19Tyb5Zy5y+b9VCDU2jMa2
- 2LiUPblclyM26tPdr1c=
-From: eki-net.com <eki-net-info@coaqaxe.cn>
-To: v9fs-developer <v9fs-developer@lists.sourceforge.net>
-Date: Fri, 11 Mar 2022 10:19:46 +0800
-Message-ID: <00eaff6c5522$fa042ba8$cd3344d6$@uvrtcri>
+ (TLS1.2:ECDHE-RSA-AES128-GCM-SHA256:128) (Exim 4.94.2)
+ id 1nScsL-00087H-Ol
+ for v9fs-developer@lists.sourceforge.net; Fri, 11 Mar 2022 10:52:05 +0000
+Received: from imap2.suse-dmz.suse.de (imap2.suse-dmz.suse.de [192.168.254.74])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange X25519 server-signature ECDSA (P-521) server-digest SHA512)
+ (No client certificate requested)
+ by smtp-out1.suse.de (Postfix) with ESMTPS id 79D72210FB;
+ Fri, 11 Mar 2022 10:34:33 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.com; s=susede1;
+ t=1646994873; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version: content-transfer-encoding:content-transfer-encoding;
+ bh=wxQGvXlNGe5HCBbR63oBE/kK35uYM5cAEXtsbUcwkZQ=;
+ b=iNIvX7qiHCHs8as2v0+a/C6Wf9AM41VW8O+o2xwFxi1cw2QRDGGMgZ/U+wVya50NqXLinC
+ i0LxZhXeNa6Kvoq6FYdE1Rn7t/eAOn4geBVM9tpVaCf3Bq2EMzIQrENQGGyoxOfZbZapRr
+ hZujw3UMlrZhO11g0/T3KzHa4Umc+Jk=
+Received: from imap2.suse-dmz.suse.de (imap2.suse-dmz.suse.de [192.168.254.74])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange X25519 server-signature ECDSA (P-521) server-digest SHA512)
+ (No client certificate requested)
+ by imap2.suse-dmz.suse.de (Postfix) with ESMTPS id A827013A85;
+ Fri, 11 Mar 2022 10:34:32 +0000 (UTC)
+Received: from dovecot-director2.suse.de ([192.168.254.65])
+ by imap2.suse-dmz.suse.de with ESMTPSA id Kh3tJ7glK2LxdQAAMHmgww
+ (envelope-from <jgross@suse.com>); Fri, 11 Mar 2022 10:34:32 +0000
+To: xen-devel@lists.xenproject.org, linux-kernel@vger.kernel.org,
+ linux-block@vger.kernel.org, linux-integrity@vger.kernel.org,
+ dri-devel@lists.freedesktop.org, linux-input@vger.kernel.org,
+ netdev@vger.kernel.org, linux-pci@vger.kernel.org,
+ linux-scsi@vger.kernel.org, linux-usb@vger.kernel.org,
+ v9fs-developer@lists.sourceforge.net
+Date: Fri, 11 Mar 2022 11:34:27 +0100
+Message-Id: <20220311103429.12845-1-jgross@suse.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-X-Spam-Score: 3.6 (+++)
-X-Spam-Report: Spam detection software, running on the system "util-spamd-1.v13.lw.sourceforge.com",
+X-Spam-Score: -2.5 (--)
+X-Spam-Report: Spam detection software,
+ running on the system "util-spamd-1.v13.lw.sourceforge.com", 
  has NOT identified this incoming email as spam.  The original
  message has been attached to this so you can view it or label
  similar future email.  If you have any questions, see
  the administrator of that system for details.
- 
- Content preview:  日頃より「えきねっと」をご利用いただきありがとうございます。
-    「えきねっと」は 2022 年 3月 11 (日)にサービスをリニューアルいたしました。これ
-    に伴い、「えきねっと」利用規約・会員規約を変更し、最後にロ�
-    [...] 
- 
- Content analysis details:   (3.6 points, 6.0 required)
- 
-  pts rule name              description
+ Content preview:  Cleanup grant table code by removing unused functionality.
+ Juergen Gross (2): xen/grant-table: remove gnttab_*transfer*() functions
+ xen/grant-table: remove readonly parameter from functions
+ drivers/block/xen-blkfront.c
+ | 8 +- drivers/char/tpm/xen-tpmfront.c | 2 +-
+ drivers/gpu/drm/xen/xen_drm_front_evtchnl.c
+ | 2 +- drivers/input/misc/xen-kbdfront.c | 4 +- drivers/net/xen-netfront.c
+ | 13 [...] 
+ Content analysis details:   (-2.5 points, 6.0 required)
+ pts rule name              description
  ---- ---------------------- --------------------------------------------------
-  2.5 URIBL_DBL_PHISH        Contains a Phishing URL listed in the Spamhaus
-                             DBL blocklist
-                             [URIs: ledzs.com.cn]
- -0.0 SPF_HELO_PASS          SPF: HELO matches SPF record
+ -2.3 RCVD_IN_DNSWL_MED      RBL: Sender listed at https://www.dnswl.org/,
+ medium trust [195.135.220.28 listed in list.dnswl.org]
+ 0.0 SPF_HELO_NONE          SPF: HELO does not publish an SPF Record
  -0.0 SPF_PASS               SPF: sender matches SPF record
-  0.0 HTML_MESSAGE           BODY: HTML included in message
  -0.1 DKIM_VALID_EF          Message has a valid DKIM or DK signature from
-                             envelope-from domain
+ envelope-from domain
  -0.1 DKIM_VALID_AU          Message has a valid DKIM or DK signature from
-                             author's domain
-  0.1 DKIM_SIGNED            Message has a DKIM or DK signature, not necessarily
-                             valid
- -0.1 DKIM_VALID             Message has at least one valid DKIM or DK signature
-  1.3 RDNS_NONE              Delivered to internal network by a host with no rDNS
-X-Headers-End: 1nSVCH-0006nu-Ed
-X-Content-Filtered-By: Mailman/MimeDel 2.1.21
-Subject: [V9fs-developer] =?utf-8?b?44CQ6YeN6KaB44CR44GI44GN44Gt44Gj44Go?=
-	=?utf-8?b?44Ki44Kr44Km44Oz44OI44Gu6Ieq5YuV6YCA5Lya5Yem55CG44Gr44Gk?=
-	=?utf-8?b?44GE44Gm?=
+ author's domain
+ 0.1 DKIM_SIGNED            Message has a DKIM or DK signature, not necessarily
+ valid
+ -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+X-Headers-End: 1nScsL-00087H-Ol
+Subject: [V9fs-developer] [PATCH 0/2] xen/grant-table: do some cleanup
 X-BeenThere: v9fs-developer@lists.sourceforge.net
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -95,40 +111,59 @@ List-Post: <mailto:v9fs-developer@lists.sourceforge.net>
 List-Help: <mailto:v9fs-developer-request@lists.sourceforge.net?subject=help>
 List-Subscribe: <https://lists.sourceforge.net/lists/listinfo/v9fs-developer>, 
  <mailto:v9fs-developer-request@lists.sourceforge.net?subject=subscribe>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+From: Juergen Gross via V9fs-developer <v9fs-developer@lists.sourceforge.net>
+Reply-To: Juergen Gross <jgross@suse.com>
+Cc: Latchesar Ionkov <lucho@ionkov.net>, alsa-devel@alsa-project.org,
+ David Airlie <airlied@linux.ie>,
+ Christian Schoenebeck <linux_oss@crudebyte.com>,
+ Jaroslav Kysela <perex@perex.cz>, Peter Huewe <peterhuewe@gmx.de>,
+ Stefano Stabellini <sstabellini@kernel.org>,
+ Oleksandr Andrushchenko <oleksandr_andrushchenko@epam.com>,
+ Jason Gunthorpe <jgg@ziepe.ca>, Jakub Kicinski <kuba@kernel.org>,
+ Jens Axboe <axboe@kernel.dk>, Eric Van Hensbergen <ericvh@gmail.com>,
+ "James E.J. Bottomley" <jejb@linux.ibm.com>,
+ Bjorn Helgaas <bhelgaas@google.com>,
+ Boris Ostrovsky <boris.ostrovsky@oracle.com>, Juergen Gross <jgross@suse.com>,
+ "Martin K. Petersen" <martin.petersen@oracle.com>,
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+ Dmitry Torokhov <dmitry.torokhov@gmail.com>, Takashi Iwai <tiwai@suse.com>,
+ Jarkko Sakkinen <jarkko@kernel.org>, Daniel Vetter <daniel@ffwll.ch>,
+ "David S. Miller" <davem@davemloft.net>,
+ =?UTF-8?q?Roger=20Pau=20Monn=C3=A9?= <roger.pau@citrix.com>
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: v9fs-developer-bounces@lists.sourceforge.net
 
-DQoNCg0KDQoNCg0KDQrml6XpoIPjgojjgorjgIzjgYjjgY3jga3jgaPjgajjgI3jgpLjgZTliKnn
-lKjjgYTjgZ/jgaDjgY3jgYLjgorjgYzjgajjgYbjgZTjgZbjgYTjgb7jgZnjgIINCg0K44CM44GI
-44GN44Gt44Gj44Go44CN44GvIDIwMjIg5bm0IDPmnIggMTEgKOaXpSnjgavjgrXjg7zjg5Pjgrnj
-gpLjg6rjg4vjg6Xjg7zjgqLjg6vjgYTjgZ/jgZfjgb7jgZfjgZ/jgILjgZPjgowg44Gr5Ly044GE
-44CB44CM44GI44GN44Gt44Gj44Go44CN5Yip55So6KaP57SE44O75Lya5ZOh6KaP57SE44KS5aSJ
-5pu044GX44CB5pyA5b6M44Gr44Ot44Kw44Kk44Oz44KS44GX44Gf5pel44KI44KK6LW3566X44GX
-IOOBpu+8kuW5tOS7peS4iuOAjOOBiOOBjeOBreOBo+OBqOOAjeOBruOBlOWIqeeUqO+8iOODreOC
-sOOCpOODs++8ieOBjOeiuuiqjeOBp+OBjeOBquOBhOOAjOOBiOOBjeOBreOBo+OBqOOAjeOCouOC
-q+OCpuODs+ODiCDjga/jgIHoh6rli5XnmoTjgavpgIDkvJrlh6bnkIbjgZXjgZvjgabjgYTjgZ/j
-gaDjgY/jgZPjgajjgajjgYTjgZ/jgZfjgb7jgZfjgZ/jgILjgarjgYrjgIHlr77osaHjgqLjgqvj
-gqbjg7Pjg4jjga7oh6rli5XpgIDkvJrlh6bnkIbjgpLjgIHmnKzopo/ntITjgavln7rjgaXjgY3j
-gIEyMDIyIOW5tCAzIOaciCAzMSDml6Uo5pyIKeOCiOOCiumghuasoeOAgeWun+aWveOBleOBm+OB
-puOBhOOBn+OBoOOBjeOBvuOBmeOAgg0KDQrvvJLlubTku6XkuIrjg63jgrDjgqTjg7PjgZfjgabj
-gYTjgarjgYTjgYrlrqLjgZXjgb7jgafjgIHku4rlvozjgoLjgIzjgYjjgY3jga3jgaPjgajjgI3j
-gpLjgZTliKnnlKjjgYTjgZ/jgaDjgZHjgovloLTlkIgg44Gv44CBMjAyMiDlubQgMyDmnIggMTEg
-5pelKOaciCnjgojjgorjgoLliY3jgavjgIHkuIDluqbjg63jgrDjgqTjg7Pmk43kvZzjgpLjgYrp
-oZjjgYTjgYTjgZ/jgZfjgb7jgZnjgIINCg0K4oeS44Ot44Kw44Kk44Oz44Gv44GT44Gh44KJDQoN
-CuKAu+OBiOOBjeOBreOBo+OBqOODiOODg+ODl+ODmuODvOOCuOWPs+S4iuOBruODreOCsOOCpOOD
-s+ODnOOCv+ODs+OCiOOCiuODreOCsOOCpOODs+OBl+OBpuOBj+OBoOOBleOBhOOAgg0KDQog44GK
-5ZWP44GE5ZCI44KP44Gb5YWIDQog44GI44GN44Gt44Gj44Go44K144Od44O844OI44K744Oz44K/
-44O8DQogVEVMIDA1MC0yMDE2LTUwMDANCiDlj5fku5jmmYLplpMgOOaZgjAw5YiG772eMjLmmYIw
-MOWIhg0KIOOCteOCpOODiOmBi+WWtuODu+euoeeQhg0KIEpS5p2x5pel5pys44ON44OD44OI44K5
-44OG44O844K344On44OzDQotLS0tLS0tLS0tLS0tLS0tLS0tLQ0KDQrjgarjgYrjgIHjgqLjgqvj
-gqbjg7Pjg4jjgYzpgIDkvJrlh6bnkIbjgZXjgozjgZ/loLTlkIjjgoLjgIHmlrDjgZ/jgavjgqLj
-gqvjgqbjg7Pjg4jnmbvpjLLvvIjnhKHmlpnnmbvpjLLvvInjgZfjgabjgYTjgZ8g44Gg44GP44GT
-44Go44Gn44GZ44GQ44Gr44CM44GI44GN44Gt44Gj44Go44CN44KS44GU5Yip55So44GE44Gf44Gg
-44GP44GT44Go44GM44Gn44GN44G+44GZ44Gu44Gn44CB5LuK5b6M44KC44GU5oSb6aGn44GE44Gf
-IOOBoOOBkeOBvuOBmeOCiOOBhuOCiOOCjeOBl+OBj+OBiumhmOOBhOOBhOOBn+OBl+OBvuOBmeOA
-gg0KDQoNCg0KDQoNCg0KIENvcHlyaWdodCDCqSBKUiBFYXN0IE5ldCBTdGF0aW9uIENvLixMdGQu
-IEFsbCBSaWdodHMgUmVzZXJ2ZWQuDQoKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX18KVjlmcy1kZXZlbG9wZXIgbWFpbGluZyBsaXN0ClY5ZnMtZGV2ZWxvcGVy
-QGxpc3RzLnNvdXJjZWZvcmdlLm5ldApodHRwczovL2xpc3RzLnNvdXJjZWZvcmdlLm5ldC9saXN0
-cy9saXN0aW5mby92OWZzLWRldmVsb3Blcgo=
+Cleanup grant table code by removing unused functionality.
+
+Juergen Gross (2):
+  xen/grant-table: remove gnttab_*transfer*() functions
+  xen/grant-table: remove readonly parameter from functions
+
+ drivers/block/xen-blkfront.c                |   8 +-
+ drivers/char/tpm/xen-tpmfront.c             |   2 +-
+ drivers/gpu/drm/xen/xen_drm_front_evtchnl.c |   2 +-
+ drivers/input/misc/xen-kbdfront.c           |   4 +-
+ drivers/net/xen-netfront.c                  |  13 +-
+ drivers/pci/xen-pcifront.c                  |   2 +-
+ drivers/scsi/xen-scsifront.c                |   4 +-
+ drivers/usb/host/xen-hcd.c                  |   4 +-
+ drivers/xen/gntalloc.c                      |   2 +-
+ drivers/xen/gntdev-dmabuf.c                 |   2 +-
+ drivers/xen/grant-table.c                   | 151 +++-----------------
+ drivers/xen/pvcalls-front.c                 |   6 +-
+ drivers/xen/xen-front-pgdir-shbuf.c         |   3 +-
+ include/xen/grant_table.h                   |  13 +-
+ net/9p/trans_xen.c                          |   8 +-
+ sound/xen/xen_snd_front_evtchnl.c           |   2 +-
+ 16 files changed, 50 insertions(+), 176 deletions(-)
+
+-- 
+2.34.1
+
+
+
+_______________________________________________
+V9fs-developer mailing list
+V9fs-developer@lists.sourceforge.net
+https://lists.sourceforge.net/lists/listinfo/v9fs-developer
