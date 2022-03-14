@@ -2,81 +2,87 @@ Return-Path: <v9fs-developer-bounces@lists.sourceforge.net>
 X-Original-To: lists+v9fs-developer@lfdr.de
 Delivered-To: lists+v9fs-developer@lfdr.de
 Received: from lists.sourceforge.net (lists.sourceforge.net [216.105.38.7])
-	by mail.lfdr.de (Postfix) with ESMTPS id 40C564D70DD
-	for <lists+v9fs-developer@lfdr.de>; Sat, 12 Mar 2022 21:29:53 +0100 (CET)
-Received: from [127.0.0.1] (helo=sfs-ml-4.v29.lw.sourceforge.com)
-	by sfs-ml-4.v29.lw.sourceforge.com with esmtp (Exim 4.94.2)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1B0F14D8EA8
+	for <lists+v9fs-developer@lfdr.de>; Mon, 14 Mar 2022 22:29:53 +0100 (CET)
+Received: from [127.0.0.1] (helo=sfs-ml-2.v29.lw.sourceforge.com)
+	by sfs-ml-2.v29.lw.sourceforge.com with esmtp (Exim 4.94.2)
 	(envelope-from <v9fs-developer-bounces@lists.sourceforge.net>)
-	id 1nT8F7-0000q6-RB; Sat, 12 Mar 2022 20:29:49 +0000
+	id 1nTsGF-000894-AB; Mon, 14 Mar 2022 21:29:50 +0000
 Received: from [172.30.20.202] (helo=mx.sourceforge.net)
- by sfs-ml-4.v29.lw.sourceforge.com with esmtps (TLS1.2) tls
+ by sfs-ml-2.v29.lw.sourceforge.com with esmtps (TLS1.2) tls
  TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384 (Exim 4.94.2)
- (envelope-from <admin@foxmail.com>) id 1nT8F6-0000q0-3k
- for v9fs-developer@lists.sourceforge.net; Sat, 12 Mar 2022 20:29:47 +0000
+ (envelope-from <eki-net-contact@alowffa.cn>) id 1nTsGD-00088y-Ib
+ for v9fs-developer@lists.sourceforge.net; Mon, 14 Mar 2022 21:29:48 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=sourceforge.net; s=x; h=Content-Transfer-Encoding:Content-Type:MIME-Version
- :Date:Subject:To:From:Message-ID:Sender:Reply-To:Cc:Content-ID:
+ d=sourceforge.net; s=x; h=Content-Type:MIME-Version:Message-ID:Date:Subject:
+ To:From:Sender:Reply-To:Cc:Content-Transfer-Encoding:Content-ID:
  Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
  :Resent-Message-ID:In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:
  List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=fuBJ++TZNOG8XWK8AF5ShEnd3f6cq4RFhCjiP0dfgN0=; b=hORs4j8xYCB2M2FJx7jFGQwdL1
- JFlxrNoKuThkbuSO7Um3HNjVwZTif/Q5slTA+SZffjcj2P+KLJBacjK6uOB4tiklrs1xsm1af/QUt
- 6SaW3aClbwdUMEwbVCoNDcAJjNStjnl1oYIWK9htvnFspXURyDKqvTG2gX9wQ8MZOFQw=;
+ bh=fQf+gmK+PWM7rA58Ff0hl8gXyDWGNJcuNs5FDuOsVAE=; b=hMepLFuCQnfiM64zJz98Kqka5H
+ fx8NVd2NaNOa718OXWRbHJvIljV0tGB79YzDo3+U4MdenuJucwpQPfwfxZFC8Asm9BBooLjKpuzXR
+ /L73YS6Du1w6eVINSj+se4NCt9MdWcfDwKA4doxamfhGT7aQuSVq/954tC+6dxIr9YEY=;
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  ;
- h=Content-Transfer-Encoding:Content-Type:MIME-Version:Date:Subject:To:From:
- Message-ID:Sender:Reply-To:Cc:Content-ID:Content-Description:Resent-Date:
+ h=Content-Type:MIME-Version:Message-ID:Date:Subject:To:From:Sender:Reply-To
+ :Cc:Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
  Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:
  References:List-Id:List-Help:List-Unsubscribe:List-Subscribe:List-Post:
- List-Owner:List-Archive; bh=fuBJ++TZNOG8XWK8AF5ShEnd3f6cq4RFhCjiP0dfgN0=; b=T
- eN6RI6iTX1oQ5NsRJYkxOhtzeZRNOd6cc5Zbj/oIEsbk73+/LUfTcgtSDl5aBIWG3vugJsMxwFg5G
- sL9MVWPo+JFq9RiSWoi1xRZNe5K0iucWGY+kIphEocxfDUWSTw8U741fGWWhQzLCvPLnP5Mrd4NqC
- j1NlAbGyUhUgQxrs=;
-Received: from [152.32.203.86] (helo=aeon.co.jp)
- by sfi-mx-1.v28.lw.sourceforge.com with esmtp (Exim 4.94.2)
- id 1nT8N0-00DdQM-LU
- for v9fs-developer@lists.sourceforge.net; Sat, 12 Mar 2022 20:29:47 +0000
-Message-ID: <20220313042946770262@foxmail.com>
-From: =?utf-8?B?44Kk44Kq44Oz44Kv44Os44K444OD44OI44K144O844OT44K55qCq5byP5Lya56S+?=
- <admin@foxmail.com>
-To: <v9fs-developer@lists.sourceforge.net>
-Date: Sun, 13 Mar 2022 04:29:39 +0800
+ List-Owner:List-Archive; bh=fQf+gmK+PWM7rA58Ff0hl8gXyDWGNJcuNs5FDuOsVAE=; b=F
+ LGl6qom0ZUk4MCNlvmleDClKUMol6MYouzRpGMEwK6fS6Ryqf3MUk5PnIh+Db59sg0gX+35dFCCMg
+ FqoB9C7IrB8qcC1MXDab06v1CgYNJxDi/zv6hQ3GnvfoDA43mdhj820gjXEhomk6pCFHa4p8xK7PR
+ 9IzfoiwK+gpM4a5Y=;
+Received: from [134.122.143.141] (helo=alowffa.cn)
+ by sfi-mx-1.v28.lw.sourceforge.com with esmtps
+ (TLS1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.94.2)
+ id 1nTsG8-00Fman-Ss
+ for v9fs-developer@lists.sourceforge.net; Mon, 14 Mar 2022 21:29:48 +0000
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; s=defult; d=alowffa.cn; 
+ h=From:To:Subject:Date:Message-ID:MIME-Version:Content-Type;
+ i=eki-net-contact@alowffa.cn;
+ bh=fQf+gmK+PWM7rA58Ff0hl8gXyDWGNJcuNs5FDuOsVAE=;
+ b=AD6wnSSo95i159lv/cgDPK5IRsLHtxwoWX2DeoEWuAf9pRzcGXpQRkBZIabWTlQjCpRRErHROesv
+ mHre7YOBOj5/OEHu7plWQ73gu36wmVUQIwe2KehsiwHS1IOCD6zsGqkfS2zDPZcRTv/O+jr/iDYd
+ ARxf5Z5+Gxv1M98lVlU=
+From: eki-net.com <eki-net-contact@alowffa.cn>
+To: v9fs-developer <v9fs-developer@lists.sourceforge.net>
+Date: Tue, 15 Mar 2022 05:09:17 +0800
+Message-ID: <00e4a0366323$b623318c$9b9a5208$@agsh>
 MIME-Version: 1.0
-X-mailer: Yub 2
-X-Spam-Score: 6.8 (++++++)
-X-Spam-Report: Spam detection software, running on the system "util-spamd-1.v13.lw.sourceforge.com",
- has identified this incoming email as possible spam.  The original
+X-Spam-Score: 2.3 (++)
+X-Spam-Report: Spam detection software, running on the system "util-spamd-2.v13.lw.sourceforge.com",
+ has NOT identified this incoming email as spam.  The original
  message has been attached to this so you can view it or label
  similar future email.  If you have any questions, see
  the administrator of that system for details.
  
- Content preview:  AEON CARDをご利用いただき、誠にありがとうございます。
-    このたび、お客さまのお取引につきまして、第三者による不正使用の可能性を検知したため�
+ Content preview:  日頃より「えきねっと」をご利用いただきありがとうございます。
+    「えきねっと」は 2022 年 2 月21 日にサービスをリニューアルいたしました。これ
+    に伴い、「えきねっと」利用規約・会員規約を変更し、最後にログ�
     [...] 
  
- Content analysis details:   (6.8 points, 6.0 required)
+ Content analysis details:   (2.3 points, 6.0 required)
  
   pts rule name              description
  ---- ---------------------- --------------------------------------------------
-  0.5 RCVD_IN_UCE1           RBL: IP Listed in UCEPROTECT Level 1
-                             [152.32.203.86 listed in dnsbl-1.uceprotect.net]
-  2.6 RCVD_IN_SBL            RBL: Received via a relay in Spamhaus SBL
-                             [152.32.203.86 listed in zen.spamhaus.org]
-  0.0 URIBL_RED              Contains an URL listed in the URIBL redlist
-                             [URIs: c4f6005.cn]
-  1.0 SPF_SOFTFAIL           SPF: sender does not match SPF record (softfail)
-  0.0 SPF_HELO_FAIL          SPF: HELO does not match SPF record (fail)
- [SPF failed: Please see http://www.openspf.org/Why?s=helo;id=aeon.co.jp;ip=152.32.203.86;r=util-spamd-1.v13.lw.sourceforge.com]
-  0.0 FREEMAIL_FROM          Sender email is commonly abused enduser mail
-                             provider
-                             [admin[at]foxmail.com]
-  0.1 URI_HEX                URI: URI hostname has long hexadecimal sequence
+ -0.0 SPF_HELO_PASS          SPF: HELO matches SPF record
+ -0.0 SPF_PASS               SPF: sender matches SPF record
+  1.3 HTML_IMAGE_ONLY_24     BODY: HTML: images with 2000-2400 bytes of
+                             words
+  0.0 HTML_MESSAGE           BODY: HTML included in message
+ -0.1 DKIM_VALID             Message has at least one valid DKIM or DK signature
+  0.1 DKIM_SIGNED            Message has a DKIM or DK signature, not necessarily
+                             valid
+ -0.1 DKIM_VALID_AU          Message has a valid DKIM or DK signature from
+                             author's domain
+ -0.1 DKIM_VALID_EF          Message has a valid DKIM or DK signature from
+                             envelope-from domain
   1.3 RDNS_NONE              Delivered to internal network by a host with no rDNS
-  0.0 SPOOFED_FREEMAIL_NO_RDNS From SPOOFED_FREEMAIL and no rDNS
-  1.3 SPOOFED_FREEMAIL       No description available.
-X-Headers-End: 1nT8N0-00DdQM-LU
-Subject: [V9fs-developer] =?utf-8?b?W0Flb25d44Kk44Kq44Oz44Kr44O844OJ44GU?=
- =?utf-8?b?6YeN6KaB44Gq44GK55+l44KJ44Gb?=
+ -0.0 T_SCC_BODY_TEXT_LINE   No description available.
+X-Headers-End: 1nTsG8-00Fman-Ss
+X-Content-Filtered-By: Mailman/MimeDel 2.1.21
+Subject: [V9fs-developer] =?utf-8?b?44GI44GN44Gt44Gj44Go44Ki44Kr44Km44Oz?=
+	=?utf-8?b?44OI44Gu6Ieq5YuV6YCA5Lya5Yem55CG44Gr44Gk44GE44Gm?=
 X-BeenThere: v9fs-developer@lists.sourceforge.net
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -92,35 +98,30 @@ Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: base64
 Errors-To: v9fs-developer-bounces@lists.sourceforge.net
 
-QUVPTiBDQVJE44KS44GU5Yip55So44GE44Gf44Gg44GN44CB6Kqg44Gr44GC44KK44GM44Go44GG
-44GU44GW44GE44G+44GZ44CCDQrjgZPjga7jgZ/jgbPjgIHjgYrlrqLjgZXjgb7jga7jgYrlj5bl
-vJXjgavjgaTjgY3jgb7jgZfjgabjgIHnrKzkuInogIXjgavjgojjgovkuI3mraPkvb/nlKjjga7l
-j6/og73mgKfjgpLmpJznn6XjgZfjgZ/jgZ/jgoHCt+S4gOaZgueahOOBq+OBiuWPluW8leOCkuOB
-iuatouOCgeOBl+OBvuOBl+OBn+OAgg0K44GU5pys5Lq644GV44G+44Gu44GU5Yip55So44Gn44GC
-44Gj44Gf5aC05ZCI44Gv44CB5aSn5aSJ44GK5omL5pWw44KS44GK44GL44GR44GE44Gf44GX44G+
-44GZ44GM44CB5YaN5bqm44GU5Yip55So44KS44GK6aGY44CB55Sz44GX44GC44GS44G+44GZ44CC
-DQoo44Kk44Oz44K/44O844ON44OD5bqX6IiX44Gn44Gu44GU5Yip55So44Gu5aC05ZCI44Gv44CB
-44GK5Y+W5byV44Gu5oiQ56uL54q25rOB44KS44GU56K66KqN44Gu44GG44GI44CB5YaN5bqm44GU
-5Yip55So44KS44GK5Y6f44GE44Gf44GX44G+44GZ44CCKQ0K44CQ5Y+W5byV5bm05pyI5pelXToy
-MDIyLzMvMTMNCuOAkOOBiuWVj+WQiOOBm+eVquWPt106Mzk5OS01NzQwLTI2NjctODU4MA0KDQrj
-gZTliKnnlKjnorroqo3jga/jgZPjgaHjgokNCmh0dHBzOi8vYWVvbl9jb19qcC5jNGY2MDA1LmNu
-DQrjgZTmnKzkurrjgZXjgb7jga7jgZTliKnnlKjjgafjgarjgYTloLTlkIjjgavjga/jgIHku4rl
-vozjgIHlronlhajjgavjgqvjg7zjg4njgpLjgZTliKnnlKjjgYTjgZ/jgaDjgY/jgZ/jgoHjgIHj
-gqvjg7zjg4njga7lt67mm7/Ct+OBiOetieOBiuaJi+e2muOBjeOBjOW/heimgeOBqOOBquOCiuOB
-vuOBmeOAguOBiuaJi+aVsOOBp+OBmeOBjOOAgeS4i+iomA0K44CQ5pys44Oh44O844Or5bCC55So
-44OA44Kk44Ok44Or44CR44G444GK6Zu76Kmx44GP44Gg44GV44GE44G+44GZ44KI44GG44GK6aGY
-44GE44Gf44GX44G+44GZ44CCDQoNCuOBlOW/g+mFjeOBqOOBlOS4jeS+v+OCkuOBiuOBi+OBkeOB
-hOOBn+OBl+OBvuOBmeOBjOOAgeS9leWNkuOBlOeQhuino+iznOOCiuOBvuOBmeOCiOOBhuOBiumh
-mOOBhOeUs+OBl+OBguOBkuOBvuOBmeOAgg0KwrfkuI3mraPlj5blvJXjga7nm6PoppbkvZPliLbj
-gavjgaTjgYTjgaYNCigxKeW8iuekvuOBp+OBr+OBiuWuouOBleOBvuOBjOeKr+e9quOBq+W3u+OB
-jei+vOOBvuOCjOOBquOBhOOCiOOBhuOAgeOBiuWuouOBleOBvuOBruOCq+ODvOODieOBq+S4jeWv
-qeOBquOBiuWPluW8leOBjOOBquOBhOOBizI05pmC6ZaTMzY15pel44Oi44OL44K/44Oq44Oz44Kw
-KOS4jeato+S9v+eUqOOBruebo+imlinjgpLooYzjgaPjgabjgYrjgorjgb7jgZnjgIINCigyKeOB
-iuWPluW8leOBruebo+imluOBq+OCiOOCiuS4jeato+WPluW8leOBruWCvuWQkeOBqOWQiOiHtOOB
-l+OBn+OBiuWPluW8leOCkuS/neeVmeOBruOBhuOBiOOAgeacrOODoeODvOODq+OCkumFjeS/oeOB
-l+OBpuOBiuOCiuOBvuOBmeOAgg0KKDMp5byK56S+44Gu44Kr44O844OJ5LiN5q2j5L2/55So44Gr
-5a++44GZ44KL5Y+W57WE44G/44Gr44Gk44GE44Gm44Gv44CB6Kmz44GX44GP44Gv5byK56S+44Ob
-44O844Og44Oa44O844K444KS44GU6Kan44GP44Gg44GV44GE44CCDQogDQoKX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KVjlmcy1kZXZlbG9wZXIgbWFpbGlu
-ZyBsaXN0ClY5ZnMtZGV2ZWxvcGVyQGxpc3RzLnNvdXJjZWZvcmdlLm5ldApodHRwczovL2xpc3Rz
-LnNvdXJjZWZvcmdlLm5ldC9saXN0cy9saXN0aW5mby92OWZzLWRldmVsb3Blcgo=
+DQoNCg0K5pel6aCD44KI44KK44CM44GI44GN44Gt44Gj44Go44CN44KS44GU5Yip55So44GE44Gf
+44Gg44GN44GC44KK44GM44Go44GG44GU44GW44GE44G+44GZ44CCDQoNCuOAjOOBiOOBjeOBreOB
+o+OBqOOAjeOBryAyMDIyIOW5tCAyIOaciDIxIOaXpeOBq+OCteODvOODk+OCueOCkuODquODi+OD
+peODvOOCouODq+OBhOOBn+OBl+OBvuOBl+OBn+OAguOBk+OCjCDjgavkvLTjgYTjgIHjgIzjgYjj
+gY3jga3jgaPjgajjgI3liKnnlKjopo/ntITjg7vkvJrlk6Hopo/ntITjgpLlpInmm7TjgZfjgIHm
+nIDlvozjgavjg63jgrDjgqTjg7PjgpLjgZfjgZ/ml6XjgojjgorotbfnrpfjgZcg44Gm77yS5bm0
+5Lul5LiK44CM44GI44GN44Gt44Gj44Go44CN44Gu44GU5Yip55So77yI44Ot44Kw44Kk44Oz77yJ
+44GM56K66KqN44Gn44GN44Gq44GE44CM44GI44GN44Gt44Gj44Go44CN44Ki44Kr44Km44Oz44OI
+IOOBr+OAgeiHquWLleeahOOBq+mAgOS8muWHpueQhuOBleOBm+OBpuOBhOOBn+OBoOOBj+OBk+OB
+qOOBqOOBhOOBn+OBl+OBvuOBl+OBn+OAguOBquOBiuOAgeWvvuixoeOCouOCq+OCpuODs+ODiOOB
+ruiHquWLlemAgCDkvJrlh6bnkIbjgpLjgIHmnKzopo/ntITjgavln7rjgaXjgY3jgIEyMDIyIOW5
+tCA0IOaciCAxOCAg5pel44KI44KK6aCG5qyh44CB5a6f5pa944GV44Gb44Gm44GE44Gf44Gg44GN
+44G+44GZ44CCDQoNCu+8kuW5tOS7peS4iuODreOCsOOCpOODs+OBl+OBpuOBhOOBquOBhOOBiuWu
+ouOBleOBvuOBp+OAgeS7iuW+jOOCguOAjOOBiOOBjeOBreOBo+OBqOOAjeOCkuOBlOWIqeeUqOOB
+hOOBn+OBoOOBkeOCi+WgtOWQiCDjga/jgIEyMDIyIOW5tCA0IOaciCAxOCDml6XjgojjgorjgoLl
+iY3jgavjgIHkuIDluqbjg63jgrDjgqTjg7Pmk43kvZzjgpLjgYrpoZjjgYTjgYTjgZ/jgZfjgb7j
+gZnjgIINCg0K4oeS44Ot44Kw44Kk44Oz44Gv44GT44Gh44KJDQoNCuOBquOBiuOAgeOCouOCq+OC
+puODs+ODiOOBjOmAgOS8muWHpueQhuOBleOCjOOBn+WgtOWQiOOCguOAgeaWsOOBn+OBq+OCouOC
+q+OCpuODs+ODiOeZu+mMsu+8iOeEoeaWmeeZu+mMsu+8ieOBl+OBpuOBhOOBnyDjgaDjgY/jgZPj
+gajjgafjgZnjgZDjgavjgIzjgYjjgY3jga3jgaPjgajjgI3jgpLjgZTliKnnlKjjgYTjgZ/jgaDj
+gY/jgZPjgajjgYzjgafjgY3jgb7jgZnjga7jgafjgIHku4rlvozjgoLjgZTmhJvpoafjgYTjgZ8g
+44Gg44GR44G+44GZ44KI44GG44KI44KN44GX44GP44GK6aGY44GE44GE44Gf44GX44G+44GZ44CC
+IA0KDQogDQoNCkNvcHlyaWdodCDCqSBKUiBFYXN0IE5ldCBTdGF0aW9uIENvLixMdGQuIEFsbCBS
+aWdodHMgUmVzZXJ2ZWQuDQoKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX18KVjlmcy1kZXZlbG9wZXIgbWFpbGluZyBsaXN0ClY5ZnMtZGV2ZWxvcGVyQGxpc3Rz
+LnNvdXJjZWZvcmdlLm5ldApodHRwczovL2xpc3RzLnNvdXJjZWZvcmdlLm5ldC9saXN0cy9saXN0
+aW5mby92OWZzLWRldmVsb3Blcgo=
