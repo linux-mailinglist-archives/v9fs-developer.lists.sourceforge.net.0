@@ -2,113 +2,107 @@ Return-Path: <v9fs-developer-bounces@lists.sourceforge.net>
 X-Original-To: lists+v9fs-developer@lfdr.de
 Delivered-To: lists+v9fs-developer@lfdr.de
 Received: from lists.sourceforge.net (lists.sourceforge.net [216.105.38.7])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1E93D4DDC05
-	for <lists+v9fs-developer@lfdr.de>; Fri, 18 Mar 2022 15:48:34 +0100 (CET)
-Received: from [127.0.0.1] (helo=sfs-ml-2.v29.lw.sourceforge.com)
-	by sfs-ml-2.v29.lw.sourceforge.com with esmtp (Exim 4.94.2)
+	by mail.lfdr.de (Postfix) with ESMTPS id 772984DE4BB
+	for <lists+v9fs-developer@lfdr.de>; Sat, 19 Mar 2022 01:02:42 +0100 (CET)
+Received: from [127.0.0.1] (helo=sfs-ml-1.v29.lw.sourceforge.com)
+	by sfs-ml-1.v29.lw.sourceforge.com with esmtp (Exim 4.94.2)
 	(envelope-from <v9fs-developer-bounces@lists.sourceforge.net>)
-	id 1nVDu5-0003uk-0y; Fri, 18 Mar 2022 14:48:31 +0000
+	id 1nVMYK-0002AA-VJ; Sat, 19 Mar 2022 00:02:39 +0000
 Received: from [172.30.20.202] (helo=mx.sourceforge.net)
- by sfs-ml-2.v29.lw.sourceforge.com with esmtps (TLS1.2) tls
+ by sfs-ml-1.v29.lw.sourceforge.com with esmtps (TLS1.2) tls
  TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384 (Exim 4.94.2)
- (envelope-from <dhowells@redhat.com>) id 1nVDu3-0003ud-Bs
- for v9fs-developer@lists.sourceforge.net; Fri, 18 Mar 2022 14:48:30 +0000
+ (envelope-from <dhowells@redhat.com>) id 1nVMY6-00029t-3O
+ for v9fs-developer@lists.sourceforge.net; Sat, 19 Mar 2022 00:02:24 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=sourceforge.net; s=x; h=Message-ID:Date:Content-ID:Content-Type:
- MIME-Version:Subject:Cc:To:References:In-Reply-To:From:Sender:Reply-To:
- Content-Transfer-Encoding:Content-Description:Resent-Date:Resent-From:
- Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:
- List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=AXh1kXJA2Arm+k9zVpD08NoMYuNv/3gU6u7CxBA2E8s=; b=haelwudsaic4Q2swdLUeh0pkCp
- Ai9JZ6bsjXgiGGlbKQrAzgYmul3EGAdy4bZZBKHRdOwFvk2uRGRalk2JPXKOP0TOsDPlXE0rWotl9
- WFxzLlIkCyM5ySWXr74ZkY8JRbT+X3CAZvPCHfJNRAad/phw8V/aGDAWqh5fWTHit6nk=;
+ d=sourceforge.net; s=x; h=Message-ID:Date:Content-Transfer-Encoding:
+ Content-ID:Content-Type:MIME-Version:Subject:cc:To:From:Sender:Reply-To:
+ Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
+ :Resent-Message-ID:In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:
+ List-Subscribe:List-Post:List-Owner:List-Archive;
+ bh=D0MtVS7HpAhECjf4TaM6P0isnx273sQNVdJ4DkQ+qeg=; b=SX48BpdoLwoXQ1PuUzomh845QJ
+ UNo24BjRbEJYVArGvfAC+2QqB8YYDzXLGznH7LoB+qG462aiKoZCgLvrpA6QURqCu5l6lL0INv5Fc
+ yKMwKrJoD6aIq60F1Mik1oZDDJmVX9mexo8ZsvWMVJ0A2z2J7y05RhdkHdlnKnjgRiNc=;
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  ;
- h=Message-ID:Date:Content-ID:Content-Type:MIME-Version:Subject:Cc:To:
- References:In-Reply-To:From:Sender:Reply-To:Content-Transfer-Encoding:
- Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
- :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
+ h=Message-ID:Date:Content-Transfer-Encoding:Content-ID:Content-Type:
+ MIME-Version:Subject:cc:To:From:Sender:Reply-To:Content-Description:
+ Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+ In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
  List-Post:List-Owner:List-Archive;
- bh=AXh1kXJA2Arm+k9zVpD08NoMYuNv/3gU6u7CxBA2E8s=; b=djCJtWgjBEZB2fhwsVpEgRFpOL
- JkV6acL+IUqEcV1kOAQcLFi8SlJ/kHn03HC0w5kVurA9bnmMvNu8NuH3LoUgJmtDLuz9vSF5GKOmD
- 0G6Tj4Z9jqGLkhrHyoI7lA9X2R7s/VrC1z+Id5VvMGPF0CtdaphBSgUMBu84mQkQ0uwo=;
-Received: from us-smtp-delivery-124.mimecast.com ([170.10.133.124])
- by sfi-mx-1.v28.lw.sourceforge.com with esmtps
+ bh=D0MtVS7HpAhECjf4TaM6P0isnx273sQNVdJ4DkQ+qeg=; b=BqbvIagWIP9h8IDQBS2pB2O4e0
+ tda+8VCVRX9e+ELxZrqqiajOD9bEr1xnwrYqso8XLihWKxSd3eYk+vq9qqEgAnDa6fdOIKV1V57sp
+ vvn1sl3stJEK4LZDQoH7AsldXTGznoWvbxSfCRr/0tWLRr89C7mPZ1AO44vjeVgxwcK4=;
+Received: from us-smtp-delivery-124.mimecast.com ([170.10.129.124])
+ by sfi-mx-2.v28.lw.sourceforge.com with esmtps
  (TLS1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.94.2)
- id 1nVDtw-003Ah0-Ol
- for v9fs-developer@lists.sourceforge.net; Fri, 18 Mar 2022 14:48:29 +0000
+ id 1nVMXy-0006BV-8f
+ for v9fs-developer@lists.sourceforge.net; Sat, 19 Mar 2022 00:02:24 +0000
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
- s=mimecast20190719; t=1647614898;
+ s=mimecast20190719; t=1647648132;
  h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
  to:to:cc:cc:mime-version:mime-version:content-type:content-type:
- in-reply-to:in-reply-to:references:references;
- bh=AXh1kXJA2Arm+k9zVpD08NoMYuNv/3gU6u7CxBA2E8s=;
- b=eL3fnSJkkPjULPlXkRSPeZrho2FlLoYHvVmcOUIYifY4l5ZnW+nUFG8xnr4gNHGwtaY45+
- d17qsmsYK6keutVE+ML6PNuJ2iCIYxgrJlAmKRzxaOIzI0O5IdbsLHS6Q5MS+GEn0ksh6u
- FkVG86cd32sGnKvbIJOQkIUZ5+r5SzA=
-Received: from mimecast-mx02.redhat.com (mx3-rdu2.redhat.com
- [66.187.233.73]) by relay.mimecast.com with ESMTP with STARTTLS
+ content-transfer-encoding:content-transfer-encoding;
+ bh=D0MtVS7HpAhECjf4TaM6P0isnx273sQNVdJ4DkQ+qeg=;
+ b=T/h127EsU6onl9HJXohb1UV2DF05MPA8Z2DGEl6CmWZL9xtMxlJCABUDADBRJDyPtKHbIG
+ ENNB26lYmLeHiEYf0HKP5NTpTHYkOUsCx4uTJMNlEi0QOsfKfqrJjqeayuaY95I9PTLb7r
+ OhS42vwSP1xOc2BKU9pmXlSWnugi5eI=
+Received: from mimecast-mx02.redhat.com (mimecast-mx02.redhat.com
+ [66.187.233.88]) by relay.mimecast.com with ESMTP with STARTTLS
  (version=TLSv1.2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- us-mta-622-ZiK8pNwNPmCjf2x7J_dSuQ-1; Fri, 18 Mar 2022 10:48:13 -0400
-X-MC-Unique: ZiK8pNwNPmCjf2x7J_dSuQ-1
-Received: from smtp.corp.redhat.com (int-mx02.intmail.prod.int.rdu2.redhat.com
- [10.11.54.2])
+ us-mta-527-60I5wtiLNlGtzAK08sE7Eg-1; Fri, 18 Mar 2022 20:02:08 -0400
+X-MC-Unique: 60I5wtiLNlGtzAK08sE7Eg-1
+Received: from smtp.corp.redhat.com (int-mx10.intmail.prod.int.rdu2.redhat.com
+ [10.11.54.10])
  (using TLSv1.2 with cipher AECDH-AES256-SHA (256/256 bits))
  (No client certificate requested)
- by mimecast-mx02.redhat.com (Postfix) with ESMTPS id 80D99296A625;
- Fri, 18 Mar 2022 14:48:12 +0000 (UTC)
+ by mimecast-mx02.redhat.com (Postfix) with ESMTPS id 2BC5180005D;
+ Sat, 19 Mar 2022 00:02:08 +0000 (UTC)
 Received: from warthog.procyon.org.uk (unknown [10.33.36.19])
- by smtp.corp.redhat.com (Postfix) with ESMTP id 16A4040D282F;
- Fri, 18 Mar 2022 14:48:09 +0000 (UTC)
+ by smtp.corp.redhat.com (Postfix) with ESMTP id 8076F413721;
+ Sat, 19 Mar 2022 00:02:06 +0000 (UTC)
 Organization: Red Hat UK Ltd. Registered Address: Red Hat UK Ltd, Amberley
  Place, 107-111 Peascod Street, Windsor, Berkshire, SI4 1TE, United
  Kingdom.
  Registered in England and Wales under Company Registration No. 3798903
 From: David Howells <dhowells@redhat.com>
-In-Reply-To: <f5633dea0bfabd40ba548fc8502e5838c033fbae.camel@kernel.org>
-References: <f5633dea0bfabd40ba548fc8502e5838c033fbae.camel@kernel.org>
- <164692909854.2099075.9535537286264248057.stgit@warthog.procyon.org.uk>
- <164692883658.2099075.5745824552116419504.stgit@warthog.procyon.org.uk>
- <306388.1647595110@warthog.procyon.org.uk>
-To: Jeff Layton <jlayton@kernel.org>
+To: Ilya Dryomov <idryomov@gmail.com>
 MIME-Version: 1.0
-Content-ID: <666407.1647614889.1@warthog.procyon.org.uk>
-Date: Fri, 18 Mar 2022 14:48:09 +0000
-Message-ID: <666408.1647614889@warthog.procyon.org.uk>
-X-Scanned-By: MIMEDefang 2.84 on 10.11.54.2
-X-Spam-Score: -1.7 (-)
+Content-ID: <751828.1647648125.1@warthog.procyon.org.uk>
+Date: Sat, 19 Mar 2022 00:02:05 +0000
+Message-ID: <751829.1647648125@warthog.procyon.org.uk>
+X-Scanned-By: MIMEDefang 2.85 on 10.11.54.10
+X-Spam-Score: -0.9 (/)
 X-Spam-Report: Spam detection software,
- running on the system "util-spamd-2.v13.lw.sourceforge.com", 
+ running on the system "util-spamd-1.v13.lw.sourceforge.com", 
  has NOT identified this incoming email as spam.  The original
  message has been attached to this so you can view it or label
  similar future email.  If you have any questions, see
  the administrator of that system for details.
- Content preview:  Jeff Layton <jlayton@kernel.org> wrote: > > +static inline
- bool netfs_is_cache_enabled(struct netfs_i_context *ctx) > > +{ > > +#if
- IS_ENABLED(CONFIG_FSCACHE) > > + struct fscache_cookie *cookie = ctx->cache;
- > > + > > + return fscache_cook [...] 
- Content analysis details:   (-1.7 points, 6.0 required)
+ Content preview:  Hi Ilya,
+ Since my fscache-next branch[1] is dependent on patches
+ in the ceph/master branch, I think I need to coordinate my netfslib pull
+ request with your ceph pull request for the upcoming merge window. 
+ Content analysis details:   (-0.9 points, 6.0 required)
  pts rule name              description
  ---- ---------------------- --------------------------------------------------
  -0.0 RCVD_IN_DNSWL_NONE     RBL: Sender listed at https://www.dnswl.org/,
- no trust [170.10.133.124 listed in list.dnswl.org]
- 0.0 RCVD_IN_MSPIKE_H5      RBL: Excellent reputation (+5)
- [170.10.133.124 listed in wl.mailspike.net]
- -0.0 SPF_PASS               SPF: sender matches SPF record
+ no trust [170.10.129.124 listed in list.dnswl.org]
+ 0.0 RCVD_IN_MSPIKE_H4      RBL: Very Good reputation (+4)
+ [170.10.129.124 listed in wl.mailspike.net]
  0.0 SPF_HELO_NONE          SPF: HELO does not publish an SPF Record
+ -0.0 SPF_PASS               SPF: sender matches SPF record
  -0.1 DKIM_VALID_EF          Message has a valid DKIM or DK signature from
  envelope-from domain
+ -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
  0.1 DKIM_SIGNED            Message has a DKIM or DK signature, not necessarily
  valid
  -0.1 DKIM_VALID_AU          Message has a valid DKIM or DK signature from
  author's domain
- -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
  0.0 RCVD_IN_MSPIKE_WL      Mailspike good senders
- -0.0 T_SCC_BODY_TEXT_LINE   No description available.
- -1.5 DKIMWL_WL_HIGH         DKIMwl.org - High trust sender
-X-Headers-End: 1nVDtw-003Ah0-Ol
-Subject: Re: [V9fs-developer] [PATCH v4 13/20] netfs: Add a netfs inode
- context
+ -0.7 DKIMWL_WL_HIGH         DKIMwl.org - High trust sender
+X-Headers-End: 1nVMXy-0006BV-8f
+Subject: [V9fs-developer] Coordinating netfslib pull request with the ceph
+ pull request
 X-BeenThere: v9fs-developer@lists.sourceforge.net
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -120,39 +114,25 @@ List-Post: <mailto:v9fs-developer@lists.sourceforge.net>
 List-Help: <mailto:v9fs-developer-request@lists.sourceforge.net?subject=help>
 List-Subscribe: <https://lists.sourceforge.net/lists/listinfo/v9fs-developer>, 
  <mailto:v9fs-developer-request@lists.sourceforge.net?subject=subscribe>
-Cc: Steve French <sfrench@samba.org>, linux-nfs@vger.kernel.org,
- linux-afs@lists.infradead.org, linux-cifs@vger.kernel.org,
- ceph-devel@vger.kernel.org, linux-kernel@vger.kernel.org,
- Anna Schumaker <anna.schumaker@netapp.com>, dhowells@redhat.com,
- linux-fsdevel@vger.kernel.org, linux-cachefs@redhat.com,
- Jeffle Xu <jefflexu@linux.alibaba.com>, v9fs-developer@lists.sourceforge.net,
- Ilya Dryomov <idryomov@gmail.com>,
- Linus Torvalds <torvalds@linux-foundation.org>,
- David Wysochanski <dwysocha@redhat.com>
+Cc: linux-cifs@vger.kernel.org, linux-nfs@vger.kernel.org,
+ Jeff Layton <jlayton@kernel.org>, linux-kernel@vger.kernel.org,
+ dhowells@redhat.com, linux-cachefs@redhat.com, linux-fsdevel@vger.kernel.org,
+ v9fs-developer@lists.sourceforge.net, ceph-devel@vger.kernel.org,
+ Xiubo Li <xiubli@redhat.com>, Linus Torvalds <torvalds@linux-foundation.org>,
+ linux-afs@lists.infradead.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: v9fs-developer-bounces@lists.sourceforge.net
 
-Jeff Layton <jlayton@kernel.org> wrote:
+Hi Ilya,
 
-> > +static inline bool netfs_is_cache_enabled(struct netfs_i_context *ctx)
-> > +{
-> > +#if IS_ENABLED(CONFIG_FSCACHE)
-> > +	struct fscache_cookie *cookie = ctx->cache;
-> > +
-> > +	return fscache_cookie_valid(cookie) && cookie->cache_priv &&
-> > +		fscache_cookie_enabled(cookie);
-> 
-> 
-> As you mentioned in the other thread, it may be cleaner to move the
-> cookie->cache_priv check into fscache_cookie_enabled. Is there ever a
-> case where you'd need to separate the two checks?
-
-I'm not sure, but I'd prefer not to do it in this series as it would affect
-NFS plus some other operations, so will need retesting thoroughly.  I'd prefer
-to defer it.
+Since my fscache-next branch[1] is dependent on patches in the ceph/master
+branch, I think I need to coordinate my netfslib pull request with your ceph
+pull request for the upcoming merge window.
 
 David
+
+[1] https://git.kernel.org/pub/scm/linux/kernel/git/dhowells/linux-fs.git/log/?h=fscache-next
 
 
 
