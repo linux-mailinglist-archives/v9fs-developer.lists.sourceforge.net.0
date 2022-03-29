@@ -2,107 +2,85 @@ Return-Path: <v9fs-developer-bounces@lists.sourceforge.net>
 X-Original-To: lists+v9fs-developer@lfdr.de
 Delivered-To: lists+v9fs-developer@lfdr.de
 Received: from lists.sourceforge.net (lists.sourceforge.net [216.105.38.7])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5D44B4EB591
-	for <lists+v9fs-developer@lfdr.de>; Wed, 30 Mar 2022 00:06:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 37A294EB6A8
+	for <lists+v9fs-developer@lfdr.de>; Wed, 30 Mar 2022 01:22:32 +0200 (CEST)
 Received: from [127.0.0.1] (helo=sfs-ml-2.v29.lw.sourceforge.com)
 	by sfs-ml-2.v29.lw.sourceforge.com with esmtp (Exim 4.94.2)
 	(envelope-from <v9fs-developer-bounces@lists.sourceforge.net>)
-	id 1nZJyn-0006iY-0v; Tue, 29 Mar 2022 22:06:19 +0000
+	id 1nZLAU-0000CM-Oj; Tue, 29 Mar 2022 23:22:29 +0000
 Received: from [172.30.20.202] (helo=mx.sourceforge.net)
  by sfs-ml-2.v29.lw.sourceforge.com with esmtps (TLS1.2) tls
  TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384 (Exim 4.94.2)
- (envelope-from <asmadeus@codewreck.org>) id 1nZJyY-0006iH-Gq
- for v9fs-developer@lists.sourceforge.net; Tue, 29 Mar 2022 22:06:05 +0000
+ (envelope-from <penguin-kernel@I-love.SAKURA.ne.jp>)
+ id 1nZLAQ-0000C9-Cf
+ for v9fs-developer@lists.sourceforge.net; Tue, 29 Mar 2022 23:22:25 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=sourceforge.net; s=x; h=In-Reply-To:Content-Type:MIME-Version:References:
- Message-ID:Subject:Cc:To:From:Date:Sender:Reply-To:Content-Transfer-Encoding:
+ d=sourceforge.net; s=x; h=Content-Transfer-Encoding:Content-Type:In-Reply-To:
+ From:Cc:References:To:Subject:MIME-Version:Date:Message-ID:Sender:Reply-To:
  Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
  Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
  List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=JcJk3NcTD//GtEmRNH6tsnNKdy80/1cNJm+0T/WWJ8c=; b=eCpi2apNm+ft/7iWzlca7ZsjRW
- RpFxwQ3RvZsqPzLxbRie9Dku80q6I/F8M67k7Vk8O6gOO8Tcspx2bbMjlcxQ9JHmd3xIp+c9c0OYI
- eXy7jNAvHR+G1hhmYjkjsIeArC0xQozRz/sNog6T474HLjrgMIsCpnK74JeIXr/fuv9s=;
+ bh=++Ef8DisEl7zGTuJ5veexait52wNztpcJqJlsTx2vEw=; b=Kt+Is/ghV6VKkJKewTmm5D194p
+ X+znjPojmHfkZK3oOA/3CIHiupnQwXUaxGJwrWcQWAFqBBPsD5dldRfm5ti6HsIr98GBkzEIazGje
+ WL374vkbrO6gK3U+mMQ4fYt6VNtDTRXo0dzm1NpSL8j0hlw4Anmg0NTrdKZm6QVxOeNE=;
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  ;
- h=In-Reply-To:Content-Type:MIME-Version:References:Message-ID:Subject:Cc:To
- :From:Date:Sender:Reply-To:Content-Transfer-Encoding:Content-ID:
+ h=Content-Transfer-Encoding:Content-Type:In-Reply-To:From:Cc:References:To:
+ Subject:MIME-Version:Date:Message-ID:Sender:Reply-To:Content-ID:
  Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
  :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
  List-Post:List-Owner:List-Archive;
- bh=JcJk3NcTD//GtEmRNH6tsnNKdy80/1cNJm+0T/WWJ8c=; b=MYrsmq7/0+OolwfiJ4Fl6EYYH5
- PZyFXdALDNTyHeuAZZOvV0mt2Dp4Jlb8Zmmi5yW5Ln3K30bA74F4MS/OlVLJGjPYCpm0fZTIkCOGP
- 8iQBp9qYdRy/XSk2JA5IbgJ8Xwe/Gegm1rymkxHETTelBIk8RwvRWbuMxSXN9IjwoZ/I=;
-Received: from nautica.notk.org ([91.121.71.147])
- by sfi-mx-2.v28.lw.sourceforge.com with esmtps
+ bh=++Ef8DisEl7zGTuJ5veexait52wNztpcJqJlsTx2vEw=; b=YLpAZAkf6dURGzFhLB08s81EsN
+ lwhj6euopTLer/Z+YDiVVtjXUUrvNHOM7jiRFU34hTmMfeWz+zcL9xzV5fHD6RxnCFmBRNnw9hHJZ
+ SEBcBYn2LpoKwJ6RFwcsRroisOsAyvHRY7c6rB+Dw/MMxMnJDAfzcGmMMROcqcvvMUBQ=;
+Received: from www262.sakura.ne.jp ([202.181.97.72])
+ by sfi-mx-1.v28.lw.sourceforge.com with esmtps
  (TLS1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.94.2)
- id 1nZJyQ-00081G-EK
- for v9fs-developer@lists.sourceforge.net; Tue, 29 Mar 2022 22:06:04 +0000
-Received: by nautica.notk.org (Postfix, from userid 108)
- id 97CB8C020; Wed, 30 Mar 2022 00:05:51 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=codewreck.org; s=2;
- t=1648591551; bh=JcJk3NcTD//GtEmRNH6tsnNKdy80/1cNJm+0T/WWJ8c=;
- h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
- b=pOV3Gwq+eOiks8TWwwlwywD+gD20R4AbvcuzbhwJidUGyqanwA1Szjbm8NgvytQfu
- ej0/TTJw1e9oRoNxycVRY6SIXcir7efBWBABJbkTeMuIXSr6va9QnHgo3ZJwjoNcYo
- qWtvmMZbunPnB9X0n6wXrDBPxR6O9eyC1rOsxBPj6Krq5ISNXPHk/0cZzD7g/Es9ZH
- 0gjgzSFrvMGZvxB4LsZU6Nc+MSwQhskUBwd+86793V5XWY5lJnGDM4jQyPs73ajjAm
- N0v/K2uJ+dKsHkp0MVGrCRwr8wamUd9Ix1/s4o8EYublcd2vRvSAzviMBgYY5fLBtj
- moS0cQ9NAFrDQ==
-X-Spam-Checker-Version: SpamAssassin 3.3.2 (2011-06-06) on nautica.notk.org
-X-Spam-Level: **
-X-Spam-Status: No, score=2.5 required=5.0 tests=SORTED_RECIPS,
- UNPARSEABLE_RELAY autolearn=no version=3.3.2
-Received: from odin.codewreck.org (localhost [127.0.0.1])
- by nautica.notk.org (Postfix) with ESMTPS id 35B23C009;
- Wed, 30 Mar 2022 00:05:46 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=codewreck.org; s=2;
- t=1648591550; bh=JcJk3NcTD//GtEmRNH6tsnNKdy80/1cNJm+0T/WWJ8c=;
- h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
- b=FGPoWDZymW6j4tZG8qP9yEZVT7iCrkF6UEcCEVorRqoJI6bDk/IHQ0/GgVYlslC0z
- vq+IjwE3X1k1tB/IP2MewdtHgipfLOy8XTlxid8S8c/1uFHcA60qcevYGYR494WQ2r
- f43qACTF3gtUi+6SfOaImRF5ROBP22Zq0kzwUJH/rTmgvDSUb6hTMUhXXe4xJecj2Y
- Vp4WkzvzeYzNttGTlbegzcHDA2eU+TRMhJNdzWwA8o2zoveUKRPaGKRdmFiB6WObfJ
- qlKs9pDmrT7HCv8y1ojlgFCS6GUjvFALE2FPclFYL+M0mN1UaZS2aSWdpo86+Dzoub
- NZStCyIOfvpWQ==
-Received: from localhost (odin.codewreck.org [local])
- by odin.codewreck.org (OpenSMTPD) with ESMTPA id 98330da0;
- Tue, 29 Mar 2022 22:05:43 +0000 (UTC)
-Date: Wed, 30 Mar 2022 07:05:28 +0900
-From: asmadeus@codewreck.org
-To: syzbot <syzbot+bde0f89deacca7c765b8@syzkaller.appspotmail.com>
-Message-ID: <YkOCqJ4WDObmaAcn@codewreck.org>
-References: <0000000000009523b605db620972@google.com>
+ id 1nZLAN-00GON6-KU
+ for v9fs-developer@lists.sourceforge.net; Tue, 29 Mar 2022 23:22:24 +0000
+Received: from fsav112.sakura.ne.jp (fsav112.sakura.ne.jp [27.133.134.239])
+ by www262.sakura.ne.jp (8.15.2/8.15.2) with ESMTP id 22TMZomb051290;
+ Wed, 30 Mar 2022 07:35:50 +0900 (JST)
+ (envelope-from penguin-kernel@I-love.SAKURA.ne.jp)
+Received: from www262.sakura.ne.jp (202.181.97.72)
+ by fsav112.sakura.ne.jp (F-Secure/fsigk_smtp/550/fsav112.sakura.ne.jp);
+ Wed, 30 Mar 2022 07:35:50 +0900 (JST)
+X-Virus-Status: clean(F-Secure/fsigk_smtp/550/fsav112.sakura.ne.jp)
+Received: from [192.168.1.9] (M106072142033.v4.enabler.ne.jp [106.72.142.33])
+ (authenticated bits=0)
+ by www262.sakura.ne.jp (8.15.2/8.15.2) with ESMTPSA id 22TMZo60051287
+ (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=NO);
+ Wed, 30 Mar 2022 07:35:50 +0900 (JST)
+ (envelope-from penguin-kernel@I-love.SAKURA.ne.jp)
+Message-ID: <385ce718-f965-4005-56b6-34922c4533b8@I-love.SAKURA.ne.jp>
+Date: Wed, 30 Mar 2022 07:35:47 +0900
 MIME-Version: 1.0
-Content-Disposition: inline
+User-Agent: Mozilla/5.0 (Windows NT 6.3; Win64; x64; rv:91.0) Gecko/20100101
+ Thunderbird/91.7.0
+Content-Language: en-US
+To: Andrew Perepechko <andrew.perepechko@hpe.com>,
+ Andreas Dilger <adilger@dilger.ca>, "Theodore Ts'o" <tytso@mit.edu>
+References: <0000000000009523b605db620972@google.com>
+From: Tetsuo Handa <penguin-kernel@I-love.SAKURA.ne.jp>
 In-Reply-To: <0000000000009523b605db620972@google.com>
-X-Spam-Score: 2.3 (++)
+X-Spam-Score: -2.0 (--)
 X-Spam-Report: Spam detection software,
- running on the system "util-spamd-2.v13.lw.sourceforge.com", 
+ running on the system "util-spamd-1.v13.lw.sourceforge.com", 
  has NOT identified this incoming email as spam.  The original
  message has been attached to this so you can view it or label
  similar future email.  If you have any questions, see
  the administrator of that system for details.
- Content preview:  syzbot wrote on Tue, Mar 29,
- 2022 at 02:23:17PM -0700: >
- ======================================================
- > WARNING: possible circular locking dependency detected >
- 5.17.0-next-20220328-syzkalle [...] 
- Content analysis details:   (2.3 points, 6.0 required)
+ Content preview: Hello. This seems to be an example of
+ https://lkml.kernel.org/r/49925af7-78a8-a3dd-bce6-cfc02e1a9236@I-love.SAKURA.ne.jp
+ introduced by "ext4: truncate during setxattr leads to kernel panic". Please
+ don't use schedule_work() if you need to use flush_scheduled_work(). 
+ Content analysis details:   (-2.0 points, 6.0 required)
  pts rule name              description
  ---- ---------------------- --------------------------------------------------
  0.0 SPF_HELO_NONE          SPF: HELO does not publish an SPF Record
- 2.5 SORTED_RECIPS          Recipient list is sorted by address
- -0.0 SPF_PASS               SPF: sender matches SPF record
- -0.1 DKIM_VALID_AU          Message has a valid DKIM or DK signature from
- author's domain
- -0.1 DKIM_VALID_EF          Message has a valid DKIM or DK signature from
- envelope-from domain
- -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
- 0.1 DKIM_SIGNED            Message has a DKIM or DK signature, not necessarily
- valid
- 0.0 UNPARSEABLE_RELAY      Informational: message has unparseable relay
- lines -0.0 T_SCC_BODY_TEXT_LINE   No description available.
-X-Headers-End: 1nZJyQ-00081G-EK
+ 0.0 SPF_NONE               SPF: sender does not publish an SPF Record
+ -2.0 NICE_REPLY_A           Looks like a legit reply (A)
+X-Headers-End: 1nZLAN-00GON6-KU
 Subject: Re: [V9fs-developer] [syzbot] possible deadlock in p9_write_work
 X-BeenThere: v9fs-developer@lists.sourceforge.net
 X-Mailman-Version: 2.1.21
@@ -115,15 +93,38 @@ List-Post: <mailto:v9fs-developer@lists.sourceforge.net>
 List-Help: <mailto:v9fs-developer-request@lists.sourceforge.net?subject=help>
 List-Subscribe: <https://lists.sourceforge.net/lists/listinfo/v9fs-developer>, 
  <mailto:v9fs-developer-request@lists.sourceforge.net?subject=subscribe>
-Cc: lucho@ionkov.net, ericvh@gmail.com, netdev@vger.kernel.org,
- linux_oss@crudebyte.com, syzkaller-bugs@googlegroups.com,
- linux-kernel@vger.kernel.org, v9fs-developer@lists.sourceforge.net,
- kuba@kernel.org, pabeni@redhat.com, davem@davemloft.net
+Cc: v9fs-developer@lists.sourceforge.net,
+ "open list:EXT4 FILE SYSTEM" <linux-ext4@vger.kernel.org>,
+ syzkaller-bugs@googlegroups.com, linux-kernel@vger.kernel.org,
+ syzbot <syzbot+bde0f89deacca7c765b8@syzkaller.appspotmail.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: v9fs-developer-bounces@lists.sourceforge.net
 
-syzbot wrote on Tue, Mar 29, 2022 at 02:23:17PM -0700:
+Hello.
+
+This seems to be an example of https://lkml.kernel.org/r/49925af7-78a8-a3dd-bce6-cfc02e1a9236@I-love.SAKURA.ne.jp
+introduced by "ext4: truncate during setxattr leads to kernel panic".
+
+Please don't use schedule_work() if you need to use flush_scheduled_work().
+
+On 2022/03/30 6:23, syzbot wrote:
+> Hello,
+> 
+> syzbot found the following issue on:
+> 
+> HEAD commit:    8515d05bf6bc Add linux-next specific files for 20220328
+> git tree:       linux-next
+> console output: https://syzkaller.appspot.com/x/log.txt?x=155abcc3700000
+> kernel config:  https://syzkaller.appspot.com/x/.config?x=530c68bef4e2b8a8
+> dashboard link: https://syzkaller.appspot.com/bug?extid=bde0f89deacca7c765b8
+> compiler:       gcc (Debian 10.2.1-6) 10.2.1 20210110, GNU ld (GNU Binutils for Debian) 2.35.2
+> 
+> Unfortunately, I don't have any reproducer for this issue yet.
+> 
+> IMPORTANT: if you fix the issue, please add the following tag to the commit:
+> Reported-by: syzbot+bde0f89deacca7c765b8@syzkaller.appspotmail.com
+> 
 > ======================================================
 > WARNING: possible circular locking dependency detected
 > 5.17.0-next-20220328-syzkaller #0 Not tainted
@@ -205,22 +206,97 @@ syzbot wrote on Tue, Mar 29, 2022 at 02:23:17PM -0700:
 >        worker_thread+0x665/0x1080 kernel/workqueue.c:2436
 >        kthread+0x2e9/0x3a0 kernel/kthread.c:376
 >        ret_from_fork+0x1f/0x30 arch/x86/entry/entry_64.S:298
+> 
+> other info that might help us debug this:
+> 
+> Chain exists of:
+>   sb_writers#3 --> (wq_completion)events --> (work_completion)(&m->wq)
+> 
+>  Possible unsafe locking scenario:
+> 
+>        CPU0                    CPU1
+>        ----                    ----
+>   lock((work_completion)(&m->wq));
+>                                lock((wq_completion)events);
+>                                lock((work_completion)(&m->wq));
+>   lock(sb_writers#3);
+> 
+>  *** DEADLOCK ***
+> 
+> 2 locks held by kworker/1:1/26:
+>  #0: ffff888010c64d38 ((wq_completion)events){+.+.}-{0:0}, at: arch_atomic64_set arch/x86/include/asm/atomic64_64.h:34 [inline]
+>  #0: ffff888010c64d38 ((wq_completion)events){+.+.}-{0:0}, at: arch_atomic_long_set include/linux/atomic/atomic-long.h:41 [inline]
+>  #0: ffff888010c64d38 ((wq_completion)events){+.+.}-{0:0}, at: atomic_long_set include/linux/atomic/atomic-instrumented.h:1280 [inline]
+>  #0: ffff888010c64d38 ((wq_completion)events){+.+.}-{0:0}, at: set_work_data kernel/workqueue.c:636 [inline]
+>  #0: ffff888010c64d38 ((wq_completion)events){+.+.}-{0:0}, at: set_work_pool_and_clear_pending kernel/workqueue.c:663 [inline]
+>  #0: ffff888010c64d38 ((wq_completion)events){+.+.}-{0:0}, at: process_one_work+0x87a/0x1610 kernel/workqueue.c:2260
+>  #1: ffffc90000a1fda8 ((work_completion)(&m->wq)){+.+.}-{0:0}, at: process_one_work+0x8ae/0x1610 kernel/workqueue.c:2264
+> 
+> stack backtrace:
+> CPU: 1 PID: 26 Comm: kworker/1:1 Not tainted 5.17.0-next-20220328-syzkaller #0
+> Hardware name: Google Google Compute Engine/Google Compute Engine, BIOS Google 01/01/2011
+> Workqueue: events p9_write_work
+> Call Trace:
+>  <TASK>
+>  __dump_stack lib/dump_stack.c:88 [inline]
+>  dump_stack_lvl+0xcd/0x134 lib/dump_stack.c:106
+>  check_noncircular+0x25f/0x2e0 kernel/locking/lockdep.c:2176
+>  check_prev_add kernel/locking/lockdep.c:3096 [inline]
+>  check_prevs_add kernel/locking/lockdep.c:3219 [inline]
+>  validate_chain kernel/locking/lockdep.c:3834 [inline]
+>  __lock_acquire+0x2ac6/0x56c0 kernel/locking/lockdep.c:5060
+>  lock_acquire kernel/locking/lockdep.c:5672 [inline]
+>  lock_acquire+0x1ab/0x510 kernel/locking/lockdep.c:5637
+>  percpu_down_read include/linux/percpu-rwsem.h:51 [inline]
+>  __sb_start_write include/linux/fs.h:1728 [inline]
+>  sb_start_write include/linux/fs.h:1798 [inline]
+>  file_start_write include/linux/fs.h:2815 [inline]
+>  kernel_write fs/read_write.c:564 [inline]
+>  kernel_write+0x2ac/0x540 fs/read_write.c:555
+>  p9_fd_write net/9p/trans_fd.c:428 [inline]
+>  p9_write_work+0x25e/0xca0 net/9p/trans_fd.c:479
+>  process_one_work+0x996/0x1610 kernel/workqueue.c:2289
+>  worker_thread+0x665/0x1080 kernel/workqueue.c:2436
+>  kthread+0x2e9/0x3a0 kernel/kthread.c:376
+>  ret_from_fork+0x1f/0x30 arch/x86/entry/entry_64.S:298
+>  </TASK>
+> usb 4-1: new high-speed USB device number 72 using dummy_hcd
+> usb 4-1: New USB device found, idVendor=1b3d, idProduct=0193, bcdDevice= 8.4d
+> usb 4-1: New USB device strings: Mfr=0, Product=0, SerialNumber=0
+> usb 4-1: config 0 descriptor??
+> ftdi_sio 4-1:0.0: FTDI USB Serial Device converter detected
+> usb 4-1: Detected FT232RL
+> ftdi_sio ttyUSB0: Unable to read latency timer: -71
+> ftdi_sio ttyUSB0: Unable to write latency timer: -71
+> ftdi_sio 4-1:0.0: GPIO initialisation failed: -71
+> usb 4-1: FTDI USB Serial Device converter now attached to ttyUSB0
+> usb 4-1: USB disconnect, device number 72
+> ftdi_sio ttyUSB0: FTDI USB Serial Device converter now disconnected from ttyUSB0
+> ftdi_sio 4-1:0.0: device disconnected
+> usb 4-1: new high-speed USB device number 73 using dummy_hcd
+> usb 4-1: New USB device found, idVendor=1b3d, idProduct=0193, bcdDevice= 8.4d
+> usb 4-1: New USB device strings: Mfr=0, Product=0, SerialNumber=0
+> usb 4-1: config 0 descriptor??
+> ftdi_sio 4-1:0.0: FTDI USB Serial Device converter detected
+> usb 4-1: Detected FT232RL
+> ftdi_sio ttyUSB0: Unable to read latency timer: -71
+> ftdi_sio ttyUSB0: Unable to write latency timer: -71
+> ftdi_sio 4-1:0.0: GPIO initialisation failed: -71
+> usb 4-1: FTDI USB Serial Device converter now attached to ttyUSB0
+> usb 4-1: USB disconnect, device number 73
+> ftdi_sio ttyUSB0: FTDI USB Serial Device converter now disconnected from ttyUSB0
+> ftdi_sio 4-1:0.0: device disconnected
+> 
+> 
+> ---
+> This report is generated by a bot. It may contain errors.
+> See https://goo.gl/tpsmEJ for more information about syzbot.
+> syzbot engineers can be reached at syzkaller@googlegroups.com.
+> 
+> syzbot will keep track of this issue. See:
+> https://goo.gl/tpsmEJ#status for how to communicate with syzbot.
+> 
 
-
-So p9_write_work cannot write because there's.. a backing ext4 umount (I
-assume it's been mounted with trans fd with an ext4 file) and a
-drop_caches stuck in parallel, and we just got caught in the crossfire ?
-
-I'm not sure why it got stuck there but that doesn't look like anything
-we can do about it, using trans fd with filesystem backed files isn't a
-usage we care about in the first place, maybe there's a way to refuse
-these and only keep sockets but I don't really see the point of
-artificially limiting the interface (unless using a 9p mount with a file
-could have security implications I don't see)
-
-wontfix/dontcare for me,
--- 
-Dominique
 
 
 _______________________________________________
