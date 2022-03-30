@@ -2,109 +2,93 @@ Return-Path: <v9fs-developer-bounces@lists.sourceforge.net>
 X-Original-To: lists+v9fs-developer@lfdr.de
 Delivered-To: lists+v9fs-developer@lfdr.de
 Received: from lists.sourceforge.net (lists.sourceforge.net [216.105.38.7])
-	by mail.lfdr.de (Postfix) with ESMTPS id 219944ECF04
-	for <lists+v9fs-developer@lfdr.de>; Wed, 30 Mar 2022 23:48:20 +0200 (CEST)
-Received: from [127.0.0.1] (helo=sfs-ml-2.v29.lw.sourceforge.com)
-	by sfs-ml-2.v29.lw.sourceforge.com with esmtp (Exim 4.94.2)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4DE3B4ED04C
+	for <lists+v9fs-developer@lfdr.de>; Thu, 31 Mar 2022 01:44:29 +0200 (CEST)
+Received: from [127.0.0.1] (helo=sfs-ml-1.v29.lw.sourceforge.com)
+	by sfs-ml-1.v29.lw.sourceforge.com with esmtp (Exim 4.94.2)
 	(envelope-from <v9fs-developer-bounces@lists.sourceforge.net>)
-	id 1nZgAq-0003uQ-VO; Wed, 30 Mar 2022 21:48:15 +0000
+	id 1nZhzH-0005aX-SU; Wed, 30 Mar 2022 23:44:26 +0000
 Received: from [172.30.20.202] (helo=mx.sourceforge.net)
- by sfs-ml-2.v29.lw.sourceforge.com with esmtps (TLS1.2) tls
+ by sfs-ml-1.v29.lw.sourceforge.com with esmtps (TLS1.2) tls
  TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384 (Exim 4.94.2)
- (envelope-from <asmadeus@codewreck.org>) id 1nZgAo-0003uC-Sc
- for v9fs-developer@lists.sourceforge.net; Wed, 30 Mar 2022 21:48:13 +0000
+ (envelope-from <penguin-kernel@I-love.SAKURA.ne.jp>)
+ id 1nZhzG-0005Yi-G8
+ for v9fs-developer@lists.sourceforge.net; Wed, 30 Mar 2022 23:44:25 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=sourceforge.net; s=x; h=In-Reply-To:Content-Type:MIME-Version:References:
- Message-ID:Subject:Cc:To:From:Date:Sender:Reply-To:Content-Transfer-Encoding:
+ d=sourceforge.net; s=x; h=Content-Transfer-Encoding:Content-Type:In-Reply-To:
+ From:References:Cc:To:Subject:MIME-Version:Date:Message-ID:Sender:Reply-To:
  Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
  Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
  List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=JBKLv303K90QCwUMTooNfskYmIZP7k25TQ0ASMcQRSI=; b=I5V0PGpYqVqc3H7G0DoYyN399C
- rAogJXY87y9kUiA7at8uSePR5nd+MEIcX0buWL9UUq7fTJ4xEsUGY7JzbnCIiWhUMW01GRKmijedG
- qVAHjL4iqHuncj1DL3aapK3GnwX3kl8RemGIuZoY9iHIGZQJT5pQVeXGUMhO2wepMrrw=;
+ bh=tCzKEqDzHiTXHpq2NmToludNNeIq79ArM2rXrnX7qJI=; b=WntquniY45NEi1/bkhg9Jv9G+o
+ c3Ki+E6Mt2tS9Atkh7AJqG/I1cWdE1zB9LDrIqWvoWMBjiAKs2b9lu/o5Hwte2yOj3+y+G5PuukWN
+ d0k9/wFmIgZkHQ8CqPLXGHNSRvRufns/dvUvFXv+S/JcxgDBUkBgRSYYrTtvXzSU5EI4=;
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  ;
- h=In-Reply-To:Content-Type:MIME-Version:References:Message-ID:Subject:Cc:To
- :From:Date:Sender:Reply-To:Content-Transfer-Encoding:Content-ID:
+ h=Content-Transfer-Encoding:Content-Type:In-Reply-To:From:References:Cc:To:
+ Subject:MIME-Version:Date:Message-ID:Sender:Reply-To:Content-ID:
  Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
  :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
  List-Post:List-Owner:List-Archive;
- bh=JBKLv303K90QCwUMTooNfskYmIZP7k25TQ0ASMcQRSI=; b=GwTV4V5bfyYLRLwMiRD51PgvoM
- uJd3xgCqj4BAM5QOgoQcWFNaxdgdOtxL9TKCpFtnp5ezvFFIN7p9FcfpOBu9JMwzLBAMCApbYpd8T
- SaHdlvbyu4KSMguhtSnCJWDMkN4H5XrWE+vDOAny2CzZDpmCM9vVSTuyaPQQdDV7QwpA=;
-Received: from nautica.notk.org ([91.121.71.147])
- by sfi-mx-1.v28.lw.sourceforge.com with esmtps
+ bh=tCzKEqDzHiTXHpq2NmToludNNeIq79ArM2rXrnX7qJI=; b=c8BdI4WGhlZPBvHPA6n2xZKcKP
+ PXHsWC9Oq8mDqBadVjl8vXZc3US5xqcy5doz2LQBfVGRMsMoiuaIQ4cs0XVp3A72SY1tPzgvgBj0u
+ F5Pr3mN1vCwh34hCEXjSPhrK8e9KxzR6Dmgw12dk7czeR2Z8J4SkfInhqNfUJjeaPQsQ=;
+Received: from www262.sakura.ne.jp ([202.181.97.72])
+ by sfi-mx-2.v28.lw.sourceforge.com with esmtps
  (TLS1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.94.2)
- id 1nZgAl-00Ha1u-L3
- for v9fs-developer@lists.sourceforge.net; Wed, 30 Mar 2022 21:48:13 +0000
-Received: by nautica.notk.org (Postfix, from userid 108)
- id EC6CFC021; Wed, 30 Mar 2022 23:48:04 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=codewreck.org; s=2;
- t=1648676884; bh=JBKLv303K90QCwUMTooNfskYmIZP7k25TQ0ASMcQRSI=;
- h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
- b=ZyDuY9EHxC6b3cGDP2eO51iv4iFDbwJIXPW0OiAiHDP3E8AJWLvulUcCrbd2aAagO
- SdxLv88pAZKEi3cNsC09XHBPJguOTD36TRHJHbs6bCQlNmK0pgrREeTIaYWJEYfKon
- n9m1EaODjoXeSmW0IO2yq4rDR4fNHV3RV6KB+ctyNuWroTw/8mdcxvQp6UXvODxLsa
- w7UYDNoipv+bYpb9NMxEX+NNLYLlIwp1OFmF9Mm6bmYwXBbGO6wzKLG0/UMioVpeH9
- sBN42Tq71Lvvca7RPtggzjQBSX3mTXrx3VdlAmWzbvgSImItPQX7bhmz7nDPUpmnIQ
- QPxqovfxMjZzw==
-X-Spam-Checker-Version: SpamAssassin 3.3.2 (2011-06-06) on nautica.notk.org
-X-Spam-Level: 
-X-Spam-Status: No, score=0.0 required=5.0 tests=UNPARSEABLE_RELAY
- autolearn=unavailable version=3.3.2
-Received: from odin.codewreck.org (localhost [127.0.0.1])
- by nautica.notk.org (Postfix) with ESMTPS id 1F6EAC009;
- Wed, 30 Mar 2022 23:47:59 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=codewreck.org; s=2;
- t=1648676883; bh=JBKLv303K90QCwUMTooNfskYmIZP7k25TQ0ASMcQRSI=;
- h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
- b=GIKyUZbIYuq5PoIeC4yUO63eTSwhcmASKxRBPNeHzfpNz5tN1WuQ4e3ooMhrhjpFd
- bc+C1ya1dMT0Wp9gmjKiEsmT8lmem9rYf+hPuuRfq1HmNQ1wW1aVCfrHke2mxHYRn/
- lutBfosOyCD1a++oHT4focbwJpEkMFVnLifT0vJrv8DxN2Tl3RGK4BXU4jXsZp01M7
- noStU+yX+fmrzThCpFFrxLrbFdMZi2yR12iBst8eOVccrFgeweIB0O9G02nPTl2xDk
- F6vKjNyKtX239KbthfMXLpobOTSHEIL6KvAPPN1e2OXxcoc/e9gnHwFY3Dwato5Ae7
- jL1YX4yt5FqGQ==
-Received: from localhost (odin.codewreck.org [local])
- by odin.codewreck.org (OpenSMTPD) with ESMTPA id e5f1e8fa;
- Wed, 30 Mar 2022 21:47:56 +0000 (UTC)
-Date: Thu, 31 Mar 2022 06:47:41 +0900
-From: asmadeus@codewreck.org
-To: Christian Schoenebeck <linux_oss@crudebyte.com>
-Message-ID: <YkTP/Talsy3KQBbf@codewreck.org>
-References: <CAAZOf26g-L2nSV-Siw6mwWQv1nv6on8c0fWqB4bKmX73QAFzow@mail.gmail.com>
- <2582025.XdajAv7fHn@silver> <Yj8WkjT+MsdFIfwr@codewreck.org>
- <3791738.ukkqOL8KQD@silver>
+ id 1nZhyy-0002Vf-8T
+ for v9fs-developer@lists.sourceforge.net; Wed, 30 Mar 2022 23:44:24 +0000
+Received: from fsav119.sakura.ne.jp (fsav119.sakura.ne.jp [27.133.134.246])
+ by www262.sakura.ne.jp (8.15.2/8.15.2) with ESMTP id 22UNhb9r030571;
+ Thu, 31 Mar 2022 08:43:37 +0900 (JST)
+ (envelope-from penguin-kernel@I-love.SAKURA.ne.jp)
+Received: from www262.sakura.ne.jp (202.181.97.72)
+ by fsav119.sakura.ne.jp (F-Secure/fsigk_smtp/550/fsav119.sakura.ne.jp);
+ Thu, 31 Mar 2022 08:43:37 +0900 (JST)
+X-Virus-Status: clean(F-Secure/fsigk_smtp/550/fsav119.sakura.ne.jp)
+Received: from [192.168.1.9] (M106072142033.v4.enabler.ne.jp [106.72.142.33])
+ (authenticated bits=0)
+ by www262.sakura.ne.jp (8.15.2/8.15.2) with ESMTPSA id 22UNhbP8030567
+ (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=NO);
+ Thu, 31 Mar 2022 08:43:37 +0900 (JST)
+ (envelope-from penguin-kernel@I-love.SAKURA.ne.jp)
+Message-ID: <688b3c92-e9aa-f506-a288-646c5477f6df@I-love.SAKURA.ne.jp>
+Date: Thu, 31 Mar 2022 08:43:32 +0900
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <3791738.ukkqOL8KQD@silver>
-X-Spam-Score: -0.2 (/)
+User-Agent: Mozilla/5.0 (Windows NT 6.3; Win64; x64; rv:91.0) Gecko/20100101
+ Thunderbird/91.7.0
+Content-Language: en-US
+To: "Perepechko, Andrew" <andrew.perepechko@hpe.com>,
+ Dominique Martinet <asmadeus@codewreck.org>
+References: <0000000000009523b605db620972@google.com>
+ <385ce718-f965-4005-56b6-34922c4533b8@I-love.SAKURA.ne.jp>
+ <YkObebLZMp5AyRpr@codewreck.org>
+ <fb5d20c5-36a6-2c51-288a-7cc1e0a76d3e@I-love.SAKURA.ne.jp>
+ <YkPAkXVc4HZLUrGl@codewreck.org>
+ <f593d3ac-b28e-3593-3cd8-8983b27e47a7@I-love.SAKURA.ne.jp>
+ <PH7PR84MB167995181252E4B7E4541B64F51F9@PH7PR84MB1679.NAMPRD84.PROD.OUTLOOK.COM>
+From: Tetsuo Handa <penguin-kernel@I-love.SAKURA.ne.jp>
+In-Reply-To: <PH7PR84MB167995181252E4B7E4541B64F51F9@PH7PR84MB1679.NAMPRD84.PROD.OUTLOOK.COM>
+X-Spam-Score: -0.0 (/)
 X-Spam-Report: Spam detection software,
  running on the system "util-spamd-2.v13.lw.sourceforge.com", 
  has NOT identified this incoming email as spam.  The original
  message has been attached to this so you can view it or label
  similar future email.  If you have any questions, see
  the administrator of that system for details.
- Content preview:  Thanks Christian! Christian Schoenebeck wrote on Wed, Mar
- 30, 2022 at 02:21:16PM +0200: > Case Linux kernel version .config msize cache
- duration host cpu errors/warnings > > A) 5.17.0+[2] + msize patches[1] debug
- 41861 [...] 
- Content analysis details:   (-0.2 points, 6.0 required)
+ Content preview: Hello. Since "ext4: truncate during setxattr leads to kernel
+ panic" did not choose per-superblock WQ,
+ ext4_put_super() for some ext4 superblock
+ currently waits for completion of iput() from delayed_iput_fn() [...] 
+ Content analysis details:   (-0.0 points, 6.0 required)
  pts rule name              description
  ---- ---------------------- --------------------------------------------------
+ 0.0 SPF_NONE               SPF: sender does not publish an SPF Record
  0.0 SPF_HELO_NONE          SPF: HELO does not publish an SPF Record
- -0.0 SPF_PASS               SPF: sender matches SPF record
- -0.1 DKIM_VALID_AU          Message has a valid DKIM or DK signature from
- author's domain
- -0.1 DKIM_VALID_EF          Message has a valid DKIM or DK signature from
- envelope-from domain
- -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
- 0.1 DKIM_SIGNED            Message has a DKIM or DK signature, not necessarily
- valid
- 0.0 UNPARSEABLE_RELAY      Informational: message has unparseable relay
- lines -0.0 T_SCC_BODY_TEXT_LINE   No description available.
-X-Headers-End: 1nZgAl-00Ha1u-L3
-Subject: Re: [V9fs-developer] 9p fs-cache tests/benchmark (was: 9p fscache
- Duplicate cookie detected)
+ -0.0 T_SCC_BODY_TEXT_LINE   No description available.
+ -0.0 NICE_REPLY_A           Looks like a legit reply (A)
+X-Headers-End: 1nZhyy-0002Vf-8T
+Subject: Re: [V9fs-developer] [syzbot] possible deadlock in p9_write_work
 X-BeenThere: v9fs-developer@lists.sourceforge.net
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -116,153 +100,72 @@ List-Post: <mailto:v9fs-developer@lists.sourceforge.net>
 List-Help: <mailto:v9fs-developer-request@lists.sourceforge.net?subject=help>
 List-Subscribe: <https://lists.sourceforge.net/lists/listinfo/v9fs-developer>, 
  <mailto:v9fs-developer-request@lists.sourceforge.net?subject=subscribe>
-Cc: lucho@ionkov.net, David Kahurani <k.kahurani@gmail.com>, ericvh@gmail.com,
- netdev@vger.kernel.org, linux-kernel@vger.kernel.org,
- Greg Kurz <groug@kaod.org>, David Howells <dhowells@redhat.com>,
- v9fs-developer@lists.sourceforge.net, kuba@kernel.org, davem@davemloft.net
+Cc: Andreas Dilger <adilger@dilger.ca>, Theodore Ts'o <tytso@mit.edu>,
+ "syzkaller-bugs@googlegroups.com" <syzkaller-bugs@googlegroups.com>,
+ "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+ syzbot <syzbot+bde0f89deacca7c765b8@syzkaller.appspotmail.com>,
+ Tejun Heo <tj@kernel.org>,
+ "v9fs-developer@lists.sourceforge.net" <v9fs-developer@lists.sourceforge.net>,
+ "open list:EXT4 FILE SYSTEM" <linux-ext4@vger.kernel.org>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: v9fs-developer-bounces@lists.sourceforge.net
 
-Thanks Christian!
+Hello.
 
-Christian Schoenebeck wrote on Wed, Mar 30, 2022 at 02:21:16PM +0200:
-> Case  Linux kernel version           .config  msize    cache  duration  host cpu  errors/warnings
+Since "ext4: truncate during setxattr leads to kernel panic" did not choose
+per-superblock WQ, ext4_put_super() for some ext4 superblock currently waits
+for completion of iput() from delayed_iput_fn() from delayed_iput() from
+ext4_xattr_set_entry() from all ext4 superblocks (in addition to other tasks
+scheduled by unrelated subsystems).
+
+If ext4_put_super() for some superblock wants to wait for only works from that
+superblock, please use per-superblock WQ. Creating per-superblock WQ via
+alloc_workqueue() without WQ_MEM_RECLAIM flag will not consume much resource.
+
+If ext4_put_super() for some superblock can afford waiting for iput() from
+other ext4 superblocks, you can use per-filesystem WQ.
+
+On 2022/03/31 1:56, Perepechko, Andrew wrote:
+> Hello Tetsuo!
 > 
-> A)    5.17.0+[2] + msize patches[1]  debug    4186112  mmap   20m 40s   ~80%      none
-> B)    5.17.0+[2] + msize patches[1]  debug    4186112  loose  31m 28s   ~35%      several errors (compilation completed)
-> C)    5.17.0+[2] + msize patches[1]  debug    507904   mmap   20m 25s   ~84%      none
-> D)    5.17.0+[2] + msize patches[1]  debug    507904   loose  31m 2s    ~33%      several errors (compilation completed)
-> E)    5.17.0+[2]                     debug    512000   mmap   23m 45s   ~75%      none
-> F)    5.17.0+[2]                     debug    512000   loose  32m 6s    ~31%      several errors (compilation completed)
-> G)    5.17.0+[2]                     release  512000   mmap   23m 18s   ~76%      none
-> H)    5.17.0+[2]                     release  512000   loose  32m 33s   ~31%      several errors (compilation completed)
-> I)    5.17.0+[2] + msize patches[1]  release  4186112  mmap   20m 30s   ~83%      none
-> J)    5.17.0+[2] + msize patches[1]  release  4186112  loose  31m 21s   ~31%      several errors (compilation completed)
-> K)    5.10.84                        release  512000   mmap   39m 20s   ~80%      none
-> L)    5.10.84                        release  512000   loose  13m 40s   ~55%      none
-
-ow.
-
-> Disclaimer: I have not looked into the fs-cache sources yet, so I am not sure,
-> but my first impression is that probably something got broken with recent
-> fs-cache changes (see column errors, especially in comparison to case L) which
-> did not generate any errors)? And also note the huge build duration 
-> differences, especially in comparison to case L), so fs-cache (cache=loose)
-> also got significantly slower while cache=mmap OTOH became significantly
-> faster?
-
-Yes, that's a big regression; I didn't do any performance benchmark with
-the new patches as I didn't think it'd matter but I obviously should
-have.
-
-There is one thing I must check: I know new kernels will be writing in
-4k chunks and that is going to be very slow until the netfs write
-helpers are finished, but I thought the old code did the same.
-If the old code had bigger writes that performance will probably come
-back.
-Otherwise there's some other error like not reusing cached content we
-should use.
-
-
-> About the errors: I actually already see errors with cache=loose and recent
-> kernel version just when booting the guest OS. For these tests I chose some
-> sources which allowed me to complete the build to capture some benchmark as
-> well, I got some "soft" errors with those, but the build completed at least.
-> I had other sources OTOH which did not complete though and aborted with
-> certain invalid file descriptor errors, which I obviously could not use for
-> those benchmarks here.
-
-That's less surprising, the change was really huge. I'm annoyed because
-I did test part of a parallel linux kernel compilation with
-cache=fscache without noticing a problem :/
-
-I'll try to reproduce this weekend-ish.
-> > Christian Schoenebeck wrote on Sat, Mar 26, 2022 at 01:36:31PM +0100:
-> > hm, fscache code shouldn't be used for cache=mmap, I'm surprised you can
-> > hit this...
+> Thank you for your report.
 > 
-> I assume that you mean that 9p driver does not explicitly ask for fs-cache
-> being used for mmap. I see that 9p uses the kernel's generalized mmap
-> implementation:
+> I wonder if I can fix this issue by creating a separate per-superblock workqueue.
 > 
-> https://github.com/torvalds/linux/blob/d888c83fcec75194a8a48ccd283953bdba7b2550/fs/9p/vfs_file.c#L481
+> I may not fully understand the lockdep magic in process_one_work() so any advice is appreciated.
 > 
-> I haven't dived further into this, but the kernel has to use some kind of
-> filesystem cache anyway to provide the mmap functionality, so I guess it makes
-> sense that I got those warning messages from the FS-Cache subsystem?
-
-It uses the generic mmap which has vfs caching, but definitely not
-fs-cache.
-fs-cache adds more hooks for cachefilesd (writing file contents to disk
-for bigger cache) and things like that cache=loose/mmap shouldn't be
-caring about. cache=loose actually just disables some key parts so I'm
-not surprised it shares bugs with the new code, but cache=mmap is really
-independant and I need to trace where these come from...
-
-> With QEMU >= 5.2 you should see the following QEMU warning with your reproducer:
+> As I see it, if there's no shared locking between different workqueues, unmount should be able to flush only its own scheduled tasks (which should not conflict with any p9 tasks) and unblock the locking chain under similar conditions.
 > 
-> "
-> qemu-system-x86_64: warning: 9p: Multiple devices detected in same VirtFS
-> export, which might lead to file ID collisions and severe misbehaviours on
-> guest! You should either use a separate export for each device shared from
-> host or use virtfs option 'multidevs=remap'!
-> "
-
-oh, I wasn't aware of the new option. Good job there!
-
-It's the easiest way to reproduce but there are also harder to fix
-collisions, file systems only guarantee unicity for (fsid,inode
-number,version) which is usually bigger than 128 bits (although version
-is often 0), but version isn't exposed to userspace easily...
-What we'd want for unicity is handle from e.g. name_to_handle_at but
-that'd add overhead, wouldn't fit in qid path and not all fs are capable
-of providing one... The 9p protocol just doesn't want bigger handles
-than qid path.
-
-
-
-And, err, looking at the qemu code
-
-  qidp->version = stbuf->st_mtime ^ (stbuf->st_size << 8);
-
-so the qid is treated as "data version",
-but on kernel side we've treated it as inode version (i_version, see
-include/linux/iversion.h)
-
-(v9fs_test_inode_dotl checks the version is the same when comparing two
-inodes) so it will incorrectly identify two identical inodes as
-different.
-That will cause problems...
-Since you'll be faster than me could you try keeping it at 0 there?
-
-I see fscache also uses the qid version as 'auxilliary data', but I'm
-not sure what this is used for -- if it's a data version like thing then
-it will also at least invalidate the cache content all the time.
-
-
-Note there also is a data_version thing in the protocol in the response
-to getattr, which the protocol side of 9p in linux digilently fills in
-st_data_version, but we never use it that I can see.
-This is probably what 9p meant to fill, and fscache should rely on to
-detect file changes if that helps.
-
-
-I'm sorry I didn't see this sooner....
-
-> > If you have some kind of reproducer of invalid filedescriptor or similar
-> > errors I'd be happy to dig a bit more, I don't particularly like all
-> > aspect of our cache model but it's not good if it corrupts things.
+> Thank you,
+> Andrew
+> ________________________________
+> From: Tetsuo Handa <penguin-kernel@I-love.SAKURA.ne.jp>
+> Sent: 30 March 2022 05:49
+> To: Dominique Martinet <asmadeus@codewreck.org>
+> Cc: Perepechko, Andrew <andrew.perepechko@hpe.com>; Andreas Dilger <adilger@dilger.ca>; Theodore Ts'o <tytso@mit.edu>; syzbot <syzbot+bde0f89deacca7c765b8@syzkaller.appspotmail.com>; linux-kernel@vger.kernel.org <linux-kernel@vger.kernel.org>; syzkaller-bugs@googlegroups.com <syzkaller-bugs@googlegroups.com>; v9fs-developer@lists.sourceforge.net <v9fs-developer@lists.sourceforge.net>; open list:EXT4 FILE SYSTEM <linux-ext4@vger.kernel.org>
+> Subject: Re: [syzbot] possible deadlock in p9_write_work
 > 
-> Maybe you can reproduce this with the root fs setup [4] described above? As I
-> said, I immediately get errors when guest OS is booting. So I don't have to
-> run something fancy to get errors with cache=loose & recent kernel.
+> On 2022/03/30 11:29, Dominique Martinet wrote:
+>> Tetsuo Handa wrote on Wed, Mar 30, 2022 at 10:57:15AM +0900:
+>>>>> Please don't use schedule_work() if you need to use flush_scheduled_work().
+>>>>
+>>>> In this case we don't call flush_scheduled_work -- ext4 does.
+>>>
+>>> Yes, that's why I changed recipients to ext4 people.
+>>
+>> Sorry, I hadn't noticed.
+>> 9p is the one calling schedule_work, so ultimately it really is the
+>> combinaison of the two, and not just ext4 that's wrong here.
+> 
+> Calling schedule_work() itself does not cause troubles (unless there are
+> too many pending works to make progress). Calling flush_scheduled_work()
+> causes troubles because it waits for completion of all works even if
+> some of works cannot be completed due to locks held by the caller of
+> flush_scheduled_work(). 9p is innocent for this report.
+> 
+> 
 
-Yes, this is much worse than I had first assumed when you first brought
-it up, I'll definitely set some time aside to investigate.
-
--- 
-Dominique
 
 
 _______________________________________________
