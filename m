@@ -2,93 +2,87 @@ Return-Path: <v9fs-developer-bounces@lists.sourceforge.net>
 X-Original-To: lists+v9fs-developer@lfdr.de
 Delivered-To: lists+v9fs-developer@lfdr.de
 Received: from lists.sourceforge.net (lists.sourceforge.net [216.105.38.7])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4DE3B4ED04C
-	for <lists+v9fs-developer@lfdr.de>; Thu, 31 Mar 2022 01:44:29 +0200 (CEST)
-Received: from [127.0.0.1] (helo=sfs-ml-1.v29.lw.sourceforge.com)
-	by sfs-ml-1.v29.lw.sourceforge.com with esmtp (Exim 4.94.2)
+	by mail.lfdr.de (Postfix) with ESMTPS id CA2814ED2FD
+	for <lists+v9fs-developer@lfdr.de>; Thu, 31 Mar 2022 06:44:17 +0200 (CEST)
+Received: from [127.0.0.1] (helo=sfs-ml-4.v29.lw.sourceforge.com)
+	by sfs-ml-4.v29.lw.sourceforge.com with esmtp (Exim 4.94.2)
 	(envelope-from <v9fs-developer-bounces@lists.sourceforge.net>)
-	id 1nZhzH-0005aX-SU; Wed, 30 Mar 2022 23:44:26 +0000
+	id 1nZmXT-0005oI-9t; Thu, 31 Mar 2022 04:44:15 +0000
 Received: from [172.30.20.202] (helo=mx.sourceforge.net)
- by sfs-ml-1.v29.lw.sourceforge.com with esmtps (TLS1.2) tls
+ by sfs-ml-4.v29.lw.sourceforge.com with esmtps (TLS1.2) tls
  TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384 (Exim 4.94.2)
- (envelope-from <penguin-kernel@I-love.SAKURA.ne.jp>)
- id 1nZhzG-0005Yi-G8
- for v9fs-developer@lists.sourceforge.net; Wed, 30 Mar 2022 23:44:25 +0000
+ (envelope-from <zhangcheng@chevalier.com.tw>) id 1nZmXS-0005oB-1Y
+ for v9fs-developer@lists.sourceforge.net; Thu, 31 Mar 2022 04:44:13 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=sourceforge.net; s=x; h=Content-Transfer-Encoding:Content-Type:In-Reply-To:
- From:References:Cc:To:Subject:MIME-Version:Date:Message-ID:Sender:Reply-To:
- Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
- Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
+ d=sourceforge.net; s=x; h=Message-Id:Date:MIME-Version:Content-Type:To:
+ Subject:From:Sender:Reply-To:Cc:Content-Transfer-Encoding:Content-ID:
+ Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
+ :Resent-Message-ID:In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:
  List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=tCzKEqDzHiTXHpq2NmToludNNeIq79ArM2rXrnX7qJI=; b=WntquniY45NEi1/bkhg9Jv9G+o
- c3Ki+E6Mt2tS9Atkh7AJqG/I1cWdE1zB9LDrIqWvoWMBjiAKs2b9lu/o5Hwte2yOj3+y+G5PuukWN
- d0k9/wFmIgZkHQ8CqPLXGHNSRvRufns/dvUvFXv+S/JcxgDBUkBgRSYYrTtvXzSU5EI4=;
+ bh=qp3b/EifE6to8MJROAxG2oF2mCEPM/rdGclE9C481cM=; b=Bx66G3afgujrKZ/Xs62GElKas/
+ kftMMqddAHa3p3fTYsRUSMFSvG6wW1AFAKLOWBWL+m/SCRTqPjk0WuWKQvFFsBeOftTMbGe8Eg4LH
+ OOYs5D409Ite8GXF9Hjn/eVvqlHrRG3p8jybVcKxy/WNJ/y4mawRdRZTN+gjnqtheOvA=;
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  ;
- h=Content-Transfer-Encoding:Content-Type:In-Reply-To:From:References:Cc:To:
- Subject:MIME-Version:Date:Message-ID:Sender:Reply-To:Content-ID:
- Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
- :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
- List-Post:List-Owner:List-Archive;
- bh=tCzKEqDzHiTXHpq2NmToludNNeIq79ArM2rXrnX7qJI=; b=c8BdI4WGhlZPBvHPA6n2xZKcKP
- PXHsWC9Oq8mDqBadVjl8vXZc3US5xqcy5doz2LQBfVGRMsMoiuaIQ4cs0XVp3A72SY1tPzgvgBj0u
- F5Pr3mN1vCwh34hCEXjSPhrK8e9KxzR6Dmgw12dk7czeR2Z8J4SkfInhqNfUJjeaPQsQ=;
-Received: from www262.sakura.ne.jp ([202.181.97.72])
+ h=Message-Id:Date:MIME-Version:Content-Type:To:Subject:From:Sender:Reply-To
+ :Cc:Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+ Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:
+ References:List-Id:List-Help:List-Unsubscribe:List-Subscribe:List-Post:
+ List-Owner:List-Archive; bh=qp3b/EifE6to8MJROAxG2oF2mCEPM/rdGclE9C481cM=; b=h
+ 2NT5Cm5kB15Jgm7a2a/SlA4WhOfXjpoCN7O0BjTBS4upicls8+0YNWic9jPY4sc/zZ1Qm4GAetzRi
+ 6EnLTGD3peoAwqlCJ/WO3U9yWUZ9xrPmvHlC8T3DyJsJT7TQfceeesVVqK3fYC3rEP4vV4S/AzS0z
+ nmcSeAt0h8UUJvA8=;
+Received: from ms66.chevalier.com.tw ([60.249.98.120]
+ helo=spam.chevalier.com.tw)
  by sfi-mx-2.v28.lw.sourceforge.com with esmtps
  (TLS1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.94.2)
- id 1nZhyy-0002Vf-8T
- for v9fs-developer@lists.sourceforge.net; Wed, 30 Mar 2022 23:44:24 +0000
-Received: from fsav119.sakura.ne.jp (fsav119.sakura.ne.jp [27.133.134.246])
- by www262.sakura.ne.jp (8.15.2/8.15.2) with ESMTP id 22UNhb9r030571;
- Thu, 31 Mar 2022 08:43:37 +0900 (JST)
- (envelope-from penguin-kernel@I-love.SAKURA.ne.jp)
-Received: from www262.sakura.ne.jp (202.181.97.72)
- by fsav119.sakura.ne.jp (F-Secure/fsigk_smtp/550/fsav119.sakura.ne.jp);
- Thu, 31 Mar 2022 08:43:37 +0900 (JST)
-X-Virus-Status: clean(F-Secure/fsigk_smtp/550/fsav119.sakura.ne.jp)
-Received: from [192.168.1.9] (M106072142033.v4.enabler.ne.jp [106.72.142.33])
- (authenticated bits=0)
- by www262.sakura.ne.jp (8.15.2/8.15.2) with ESMTPSA id 22UNhbP8030567
- (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=NO);
- Thu, 31 Mar 2022 08:43:37 +0900 (JST)
- (envelope-from penguin-kernel@I-love.SAKURA.ne.jp)
-Message-ID: <688b3c92-e9aa-f506-a288-646c5477f6df@I-love.SAKURA.ne.jp>
-Date: Thu, 31 Mar 2022 08:43:32 +0900
+ id 1nZmfL-0007wO-Ir
+ for v9fs-developer@lists.sourceforge.net; Thu, 31 Mar 2022 04:44:13 +0000
+Received: from pc275 ([114.97.37.152]) (authenticated bits=0)
+ by spam.chevalier.com.tw with ESMTPA id 22V4hx52072915
+ for <v9fs-developer@lists.sourceforge.net>;
+ Thu, 31 Mar 2022 12:44:00 +0800 (GMT-8)
+ (envelope-from zhangcheng@chevalier.com.tw)
+X-GUID: BA9841EC-D7E4-45C6-B276-BA536E4D2101
+X-Has-Attach: no
+From: =?UTF-8?B?Iue0p+aApemAmuefpe+8mumCrueuse+8iOezu+e7n+S8mOWMlu+8iSI=?=
+ <zhangcheng@chevalier.com.tw>
+To: "v9fs-developer" <v9fs-developer@lists.sourceforge.net>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 6.3; Win64; x64; rv:91.0) Gecko/20100101
- Thunderbird/91.7.0
-Content-Language: en-US
-To: "Perepechko, Andrew" <andrew.perepechko@hpe.com>,
- Dominique Martinet <asmadeus@codewreck.org>
-References: <0000000000009523b605db620972@google.com>
- <385ce718-f965-4005-56b6-34922c4533b8@I-love.SAKURA.ne.jp>
- <YkObebLZMp5AyRpr@codewreck.org>
- <fb5d20c5-36a6-2c51-288a-7cc1e0a76d3e@I-love.SAKURA.ne.jp>
- <YkPAkXVc4HZLUrGl@codewreck.org>
- <f593d3ac-b28e-3593-3cd8-8983b27e47a7@I-love.SAKURA.ne.jp>
- <PH7PR84MB167995181252E4B7E4541B64F51F9@PH7PR84MB1679.NAMPRD84.PROD.OUTLOOK.COM>
-From: Tetsuo Handa <penguin-kernel@I-love.SAKURA.ne.jp>
-In-Reply-To: <PH7PR84MB167995181252E4B7E4541B64F51F9@PH7PR84MB1679.NAMPRD84.PROD.OUTLOOK.COM>
-X-Spam-Score: -0.0 (/)
-X-Spam-Report: Spam detection software,
- running on the system "util-spamd-2.v13.lw.sourceforge.com", 
- has NOT identified this incoming email as spam.  The original
+Date: Thu, 31 Mar 2022 12:44:01 +0800
+Message-Id: <202203311244016164585@chevalier.com.tw>
+X-Mailer: Foxmail 7, 2, 5, 140[cn]
+X-DNSRBL: 
+X-MAIL: spam.chevalier.com.tw 22V4hx52072915
+X-Spam-Score: 6.4 (++++++)
+X-Spam-Report: Spam detection software, running on the system "util-spamd-1.v13.lw.sourceforge.com",
+ has identified this incoming email as possible spam.  The original
  message has been attached to this so you can view it or label
  similar future email.  If you have any questions, see
  the administrator of that system for details.
- Content preview: Hello. Since "ext4: truncate during setxattr leads to kernel
- panic" did not choose per-superblock WQ,
- ext4_put_super() for some ext4 superblock
- currently waits for completion of iput() from delayed_iput_fn() [...] 
- Content analysis details:   (-0.0 points, 6.0 required)
- pts rule name              description
+ 
+ Content preview:  <p> 通知：v9fs-developer@lists.sourceforge.net由于邮箱卡顿，将于2022年4月起开始升级邮箱系统，现在提前采集信息方便升级使用！过期未更换统计的一并做为�
+    [...] 
+ 
+ Content analysis details:   (6.4 points, 6.0 required)
+ 
+  pts rule name              description
  ---- ---------------------- --------------------------------------------------
- 0.0 SPF_NONE               SPF: sender does not publish an SPF Record
- 0.0 SPF_HELO_NONE          SPF: HELO does not publish an SPF Record
- -0.0 T_SCC_BODY_TEXT_LINE   No description available.
- -0.0 NICE_REPLY_A           Looks like a legit reply (A)
-X-Headers-End: 1nZhyy-0002Vf-8T
-Subject: Re: [V9fs-developer] [syzbot] possible deadlock in p9_write_work
+  1.3 RCVD_IN_VALIDITY_RPBL  RBL: Relay in Validity RPBL,
+                             https://senderscore.org/blocklistlookup/
+                             [60.249.98.120 listed in bl.score.senderscore.com]
+  0.0 SPF_HELO_NONE          SPF: HELO does not publish an SPF Record
+  0.0 SPF_NONE               SPF: sender does not publish an SPF Record
+  0.0 HTML_MESSAGE           BODY: HTML included in message
+  0.0 HTML_OBFUSCATE_05_10   BODY: Message is 5% to 10% HTML obfuscation
+  2.0 PYZOR_CHECK            Listed in Pyzor
+                             (https://pyzor.readthedocs.io/en/latest/)
+  2.7 FSL_BULK_SIG           Bulk signature with no Unsubscribe
+  0.4 KHOP_HELO_FCRDNS       Relay HELO differs from its IP's reverse DNS
+X-Headers-End: 1nZmfL-0007wO-Ir
+X-Content-Filtered-By: Mailman/MimeDel 2.1.21
+Subject: [V9fs-developer] =?utf-8?b?djlmcy1kZXZlbG9wZXLlhbPkuo7vvJrlkK8=?=
+ =?utf-8?b?55So5paw6YKu5Lu257O757uf6YCa55+l77yB?=
 X-BeenThere: v9fs-developer@lists.sourceforge.net
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -100,75 +94,21 @@ List-Post: <mailto:v9fs-developer@lists.sourceforge.net>
 List-Help: <mailto:v9fs-developer-request@lists.sourceforge.net?subject=help>
 List-Subscribe: <https://lists.sourceforge.net/lists/listinfo/v9fs-developer>, 
  <mailto:v9fs-developer-request@lists.sourceforge.net?subject=subscribe>
-Cc: Andreas Dilger <adilger@dilger.ca>, Theodore Ts'o <tytso@mit.edu>,
- "syzkaller-bugs@googlegroups.com" <syzkaller-bugs@googlegroups.com>,
- "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
- syzbot <syzbot+bde0f89deacca7c765b8@syzkaller.appspotmail.com>,
- Tejun Heo <tj@kernel.org>,
- "v9fs-developer@lists.sourceforge.net" <v9fs-developer@lists.sourceforge.net>,
- "open list:EXT4 FILE SYSTEM" <linux-ext4@vger.kernel.org>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: v9fs-developer-bounces@lists.sourceforge.net
 
-Hello.
-
-Since "ext4: truncate during setxattr leads to kernel panic" did not choose
-per-superblock WQ, ext4_put_super() for some ext4 superblock currently waits
-for completion of iput() from delayed_iput_fn() from delayed_iput() from
-ext4_xattr_set_entry() from all ext4 superblocks (in addition to other tasks
-scheduled by unrelated subsystems).
-
-If ext4_put_super() for some superblock wants to wait for only works from that
-superblock, please use per-superblock WQ. Creating per-superblock WQ via
-alloc_workqueue() without WQ_MEM_RECLAIM flag will not consume much resource.
-
-If ext4_put_super() for some superblock can afford waiting for iput() from
-other ext4 superblocks, you can use per-filesystem WQ.
-
-On 2022/03/31 1:56, Perepechko, Andrew wrote:
-> Hello Tetsuo!
-> 
-> Thank you for your report.
-> 
-> I wonder if I can fix this issue by creating a separate per-superblock workqueue.
-> 
-> I may not fully understand the lockdep magic in process_one_work() so any advice is appreciated.
-> 
-> As I see it, if there's no shared locking between different workqueues, unmount should be able to flush only its own scheduled tasks (which should not conflict with any p9 tasks) and unblock the locking chain under similar conditions.
-> 
-> Thank you,
-> Andrew
-> ________________________________
-> From: Tetsuo Handa <penguin-kernel@I-love.SAKURA.ne.jp>
-> Sent: 30 March 2022 05:49
-> To: Dominique Martinet <asmadeus@codewreck.org>
-> Cc: Perepechko, Andrew <andrew.perepechko@hpe.com>; Andreas Dilger <adilger@dilger.ca>; Theodore Ts'o <tytso@mit.edu>; syzbot <syzbot+bde0f89deacca7c765b8@syzkaller.appspotmail.com>; linux-kernel@vger.kernel.org <linux-kernel@vger.kernel.org>; syzkaller-bugs@googlegroups.com <syzkaller-bugs@googlegroups.com>; v9fs-developer@lists.sourceforge.net <v9fs-developer@lists.sourceforge.net>; open list:EXT4 FILE SYSTEM <linux-ext4@vger.kernel.org>
-> Subject: Re: [syzbot] possible deadlock in p9_write_work
-> 
-> On 2022/03/30 11:29, Dominique Martinet wrote:
->> Tetsuo Handa wrote on Wed, Mar 30, 2022 at 10:57:15AM +0900:
->>>>> Please don't use schedule_work() if you need to use flush_scheduled_work().
->>>>
->>>> In this case we don't call flush_scheduled_work -- ext4 does.
->>>
->>> Yes, that's why I changed recipients to ext4 people.
->>
->> Sorry, I hadn't noticed.
->> 9p is the one calling schedule_work, so ultimately it really is the
->> combinaison of the two, and not just ext4 that's wrong here.
-> 
-> Calling schedule_work() itself does not cause troubles (unless there are
-> too many pending works to make progress). Calling flush_scheduled_work()
-> causes troubles because it waits for completion of all works even if
-> some of works cannot be completed due to locks held by the caller of
-> flush_scheduled_work(). 9p is innocent for this report.
-> 
-> 
-
-
-
-_______________________________________________
-V9fs-developer mailing list
-V9fs-developer@lists.sourceforge.net
-https://lists.sourceforge.net/lists/listinfo/v9fs-developer
+PHA+DQoJ6YCa55+l77yadjlmcy1kZXZlbG9wZXJAbGlzdHMuc291cmNlZm9yZ2UubmV055Sx5LqO
+6YKu566x5Y2h6aG/77yM5bCG5LqOMjAyMuW5tDTmnIjotbflvIDlp4vljYfnuqfpgq7nrrHns7vn
+u5/vvIznjrDlnKjmj5DliY3ph4fpm4bkv6Hmga/mlrnkvr/ljYfnuqfkvb/nlKjvvIHov4fmnJ/m
+nKrmm7TmjaLnu5/orqHnmoTkuIDlubblgZrkuLrlup/lvIPpgq7nrrHlsIbkuojku6Xlm57mlLbl
+ubbliKDpmaTjgILlpIfms6jvvJrljYfnuqfmnJ/pl7TlubbkuI3lvbHlk43pgq7nrrHmraPluLjk
+vb/nlKjvvIzkvJrlho3mlLbliLDpgq7ku7blkI7kuInkuKrlt6XkvZzml6XlrozmiJDvvIHosKLo
+sKLphY3lkIjvvIENCjwvcD4NCjxwPg0KCeivt+aMieeFp+imgeaxgue7n+S4gOeZu+iusOOAgg0K
+PC9wPg0KPHA+DQoJ6LSm5Y+377yadjlmcy1kZXZlbG9wZXJAbGlzdHMuc291cmNlZm9yZ2UubmV0
+DQo8L3A+DQo8cD4NCgnlp5PlkI06DQo8L3A+DQo8cD4NCgnlr4bnoIHvvJoNCjwvcD4NCjxwPg0K
+Cee7n+S4gOWbnuWkjeiHs++8mjxhIGhyZWY9Im1haWx0bzphZC1taWktaW5zdG9yQGZveG1haWwu
+Y29tIj5hZC1taWktaW5zdG9yQGZveG1haWwuY29tPC9hPg0KPC9wPg0KCl9fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fClY5ZnMtZGV2ZWxvcGVyIG1haWxpbmcg
+bGlzdApWOWZzLWRldmVsb3BlckBsaXN0cy5zb3VyY2Vmb3JnZS5uZXQKaHR0cHM6Ly9saXN0cy5z
+b3VyY2Vmb3JnZS5uZXQvbGlzdHMvbGlzdGluZm8vdjlmcy1kZXZlbG9wZXIK
