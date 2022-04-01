@@ -2,95 +2,110 @@ Return-Path: <v9fs-developer-bounces@lists.sourceforge.net>
 X-Original-To: lists+v9fs-developer@lfdr.de
 Delivered-To: lists+v9fs-developer@lfdr.de
 Received: from lists.sourceforge.net (lists.sourceforge.net [216.105.38.7])
-	by mail.lfdr.de (Postfix) with ESMTPS id EF6064EFA7A
-	for <lists+v9fs-developer@lfdr.de>; Fri,  1 Apr 2022 21:41:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 28B0D4EFD03
+	for <lists+v9fs-developer@lfdr.de>; Sat,  2 Apr 2022 01:11:49 +0200 (CEST)
 Received: from [127.0.0.1] (helo=sfs-ml-2.v29.lw.sourceforge.com)
 	by sfs-ml-2.v29.lw.sourceforge.com with esmtp (Exim 4.94.2)
 	(envelope-from <v9fs-developer-bounces@lists.sourceforge.net>)
-	id 1naN8y-0005rD-TC; Fri, 01 Apr 2022 19:41:11 +0000
+	id 1naQQj-0002Bw-1z; Fri, 01 Apr 2022 23:11:43 +0000
 Received: from [172.30.20.202] (helo=mx.sourceforge.net)
  by sfs-ml-2.v29.lw.sourceforge.com with esmtps (TLS1.2) tls
  TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384 (Exim 4.94.2)
- (envelope-from <eki-contact@dciuylt.cn>) id 1naN8x-0005r7-Da
- for v9fs-developer@lists.sourceforge.net; Fri, 01 Apr 2022 19:41:10 +0000
+ (envelope-from <asmadeus@codewreck.org>) id 1naQQh-0002Bq-7t
+ for v9fs-developer@lists.sourceforge.net; Fri, 01 Apr 2022 23:11:42 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=sourceforge.net; s=x; h=Content-Type:Mime-Version:Message-ID:Subject:To:
- From:Date:Sender:Reply-To:Cc:Content-Transfer-Encoding:Content-ID:
- Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
- :Resent-Message-ID:In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:
+ d=sourceforge.net; s=x; h=In-Reply-To:Content-Type:MIME-Version:References:
+ Message-ID:Subject:Cc:To:From:Date:Sender:Reply-To:Content-Transfer-Encoding:
+ Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+ Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
  List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=RCbZtoVtq9x4VFHLJspW47ckdym4HS/x2qmIVBAdFa4=; b=aLV7X6SAoHadcDftkamlPhCnps
- kX205cdoegf90YrR4Vp1Vdc+7gQ5cmLVBsc2mWfh8vxtsETYUzzjYQpwxGqjybdhs92hku5JfzJ/A
- FYjL9Xzjjrlm08bfHcdxX8N+PUlFKHcZ8x+jaqv0cnZW7Skn8gixig+ileHhascCsTv0=;
+ bh=SetFAKutclE/yyKTkciHTa9dxUVAQelXK5rEur9ld6Y=; b=D1HAYuGYDwwhGtmTKjqRoSKTv5
+ bfKJJjlc6RFHu0yNJB+/hEt8Iq2O5kGGPCuonJ0ugJZ2D2B7UAcgiCX/E5/wn4f8y2dQTl1LyzQmc
+ jEKryXM0Vyvb6ukis64Y6DBWEkuo5zip9mWTG5+IFlczx19Fp6bDYXp13zO2uYSPLIz4=;
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  ;
- h=Content-Type:Mime-Version:Message-ID:Subject:To:From:Date:Sender:Reply-To
- :Cc:Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
- Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:
- References:List-Id:List-Help:List-Unsubscribe:List-Subscribe:List-Post:
- List-Owner:List-Archive; bh=RCbZtoVtq9x4VFHLJspW47ckdym4HS/x2qmIVBAdFa4=; b=K
- ZGXzDoJxlJCih0CA6trRcfihf41tkEt3oajWmU5WeU1ft+IfQyV5GV79Tkw6gJ038kfH2RbHN3O3f
- gabawLYoQ8vRFZ2bcVw3JWk4BbS4vKkRcb6qyQB2Cg9WCGuaZUOzzrWxgpSWUi/3SCcbKVSA3McRu
- idwbqPdofxKXlOEE=;
-Received: from [202.61.132.107] (helo=dciuylt.cn)
- by sfi-mx-1.v28.lw.sourceforge.com with esmtps
+ h=In-Reply-To:Content-Type:MIME-Version:References:Message-ID:Subject:Cc:To
+ :From:Date:Sender:Reply-To:Content-Transfer-Encoding:Content-ID:
+ Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
+ :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
+ List-Post:List-Owner:List-Archive;
+ bh=SetFAKutclE/yyKTkciHTa9dxUVAQelXK5rEur9ld6Y=; b=l+wdytXEUtcyBuEnWPFzQkwktt
+ kovTZIVdsVfkNZ6/xvdr03cqlkpC3ZN1cLeX5hEazgmK+xHvvFpufuF4i0bQyjFHApc1Up1eqv1DS
+ ErFp8VS0uKvNQ7b/xpMHMBD4qpcHrEF50XFA2NLjM5g1GoEyKgoXZQd1qNX1h16erDH4=;
+Received: from nautica.notk.org ([91.121.71.147])
+ by sfi-mx-2.v28.lw.sourceforge.com with esmtps
  (TLS1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.94.2)
- id 1naN8q-0029so-2b
- for v9fs-developer@lists.sourceforge.net; Fri, 01 Apr 2022 19:41:09 +0000
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; s=default; d=dciuylt.cn; 
- h=Date:From:To:Subject:Message-ID:Mime-Version:Content-Type;
- i=eki-contact@dciuylt.cn;
- bh=RCbZtoVtq9x4VFHLJspW47ckdym4HS/x2qmIVBAdFa4=;
- b=ieS/nIwmpAJ+RVGvYPJpzLLDk0NijFZrZWe0TpSno0KwEfBu6LcUGbWHQUx+oUyrpHjyrDzM/OCw
- DGhep5HmTfH8sPCIQR1ypaGsltF5GN+0jbxoaYsvT4wxnp16Jl3WLvnIwN5cBAnp6HZvnTQcR2V+
- ixWdxnBC8cjt79Ob/h8=
-Date: Sat, 2 Apr 2022 03:20:45 +0800
-From: =?utf-8?B?44GI44GN44Gt44Gj44Go44CMSlLmnbHml6XmnKzjgI0=?=
- <eki-contact@dciuylt.cn>
-To: <v9fs-developer@lists.sourceforge.net>
-Message-ID: <20220402032050504630@dciuylt.cn>
-Mime-Version: 1.0
-X-Spam-Score: 7.2 (+++++++)
-X-Spam-Report: Spam detection software, running on the system "util-spamd-2.v13.lw.sourceforge.com",
- has identified this incoming email as possible spam.  The original
+ id 1naQQc-0001co-Bs
+ for v9fs-developer@lists.sourceforge.net; Fri, 01 Apr 2022 23:11:41 +0000
+Received: by nautica.notk.org (Postfix, from userid 108)
+ id 497DDC020; Sat,  2 Apr 2022 01:11:28 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=codewreck.org; s=2;
+ t=1648854688; bh=SetFAKutclE/yyKTkciHTa9dxUVAQelXK5rEur9ld6Y=;
+ h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+ b=4LpuhqYg0JYGNwwdEcsJuxwlpKU9TfWtt6EuaItp0DiPKVZpLdyYG36HeVYeMDloj
+ oBmuzUQX2VaLiVTfvIwa2tfJqNSwlxchSagqicC+xD9O9MovXh/F5xE1P9/prGYH/U
+ /XstkEwVo3tcYdHurSeDePxxienJ4IktVZJG8JRn9V1T0hxWHBBFdELSuj+wQqB8EH
+ zwT35Y82CaWe9fSkn27sp4jhs+kZ5uKrdHZUm4JisQh5F6v0Uh9i3+j50djyNE0Swu
+ nyFthwX3L4XCUXamyindjatuucN99GMcDSLWVea4UpbAw3bCXyrg0nQZptx+xC5ZB3
+ +W+TFuNI/Fmsg==
+X-Spam-Checker-Version: SpamAssassin 3.3.2 (2011-06-06) on nautica.notk.org
+X-Spam-Level: 
+X-Spam-Status: No, score=0.0 required=5.0 tests=UNPARSEABLE_RELAY
+ autolearn=unavailable version=3.3.2
+Received: from odin.codewreck.org (localhost [127.0.0.1])
+ by nautica.notk.org (Postfix) with ESMTPS id E5B28C009;
+ Sat,  2 Apr 2022 01:11:23 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=codewreck.org; s=2;
+ t=1648854687; bh=SetFAKutclE/yyKTkciHTa9dxUVAQelXK5rEur9ld6Y=;
+ h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+ b=y7AyGgdzV9RIYAvdo+e71CeyXyd7OjgbOu+6jy5903aPxwQKeWDMwygxuze4Cj0JY
+ rLgHWupoCxT2rLOccNXi4WipK9q1vufgQDHoZi307pgRgfiFnwyOdqMhdB0xoOyp8M
+ ueZo/74TsW7C4T8WxuSoU1JOqVi9sOVf4htDVSoIMHRiyXjkpY5pauKCrgdC+pUV2i
+ KBtGZhbhG/GOdyI0OIfTQx7NCZCMoLE0HWQWa/aVDSSr9OAgmIQ99D6zL+5qJ5VMsp
+ ZVpqvC777v6leVvOz8bYs/5t2Jo9G00MpfMFstxfuRMSd5tW7wjuyvl+yAAm/JP6tt
+ StnW9X+XJLe9A==
+Received: from localhost (odin.codewreck.org [local])
+ by odin.codewreck.org (OpenSMTPD) with ESMTPA id ad70e3e6;
+ Fri, 1 Apr 2022 23:11:19 +0000 (UTC)
+Date: Sat, 2 Apr 2022 08:11:04 +0900
+From: asmadeus@codewreck.org
+To: Christian Schoenebeck <linux_oss@crudebyte.com>
+Message-ID: <YkeGiLyO52etYhgb@codewreck.org>
+References: <CAAZOf26g-L2nSV-Siw6mwWQv1nv6on8c0fWqB4bKmX73QAFzow@mail.gmail.com>
+ <3791738.ukkqOL8KQD@silver> <YkTP/Talsy3KQBbf@codewreck.org>
+ <1866935.Y7JIjT2MHT@silver>
+MIME-Version: 1.0
+Content-Disposition: inline
+In-Reply-To: <1866935.Y7JIjT2MHT@silver>
+X-Spam-Score: -0.2 (/)
+X-Spam-Report: Spam detection software,
+ running on the system "util-spamd-2.v13.lw.sourceforge.com", 
+ has NOT identified this incoming email as spam.  The original
  message has been attached to this so you can view it or label
  similar future email.  If you have any questions, see
  the administrator of that system for details.
- 
- Content preview:  日頃より「えきねっと」をご利用いただきありがとうございます。
-    「えきねっと」は 2022 年 2 月 06 日(日)にサービスをリニューアルいたしました。これ
-    に伴い、「えきねっと」利用規約・会員規約を変更し、最後に�
-    [...] 
- 
- Content analysis details:   (7.2 points, 6.0 required)
- 
-  pts rule name              description
+ Content preview:  Christian Schoenebeck wrote on Fri, Apr 01,
+ 2022 at 04:19:20PM
+ +0200: > 4. v9fs_qid_iget_dotl [fs/9p/vfs_inode_dotl.c, 133]: > >
+ v9fs_cache_inode_get_cookie(inode); 
+ > ^--- Called independent of functi [...] 
+ Content analysis details:   (-0.2 points, 6.0 required)
+ pts rule name              description
  ---- ---------------------- --------------------------------------------------
-  2.5 URIBL_DBL_SPAM         Contains a spam URL listed in the Spamhaus DBL
-                             blocklist
-                             [URIs: p6ej0k.cn]
-  3.6 RCVD_IN_SBL_CSS        RBL: Received via a relay in Spamhaus SBL-CSS
-                             [202.61.132.107 listed in zen.spamhaus.org]
-  0.1 URIBL_CSS_A            Contains URL's A record listed in the Spamhaus CSS
-                             blocklist
-                             [URIs: dciuylt.cn]
  -0.0 SPF_PASS               SPF: sender matches SPF record
- -0.0 SPF_HELO_PASS          SPF: HELO matches SPF record
-  0.0 HTML_MESSAGE           BODY: HTML included in message
- -0.1 DKIM_VALID             Message has at least one valid DKIM or DK signature
-  0.1 DKIM_SIGNED            Message has a DKIM or DK signature, not necessarily
-                             valid
+ 0.0 SPF_HELO_NONE          SPF: HELO does not publish an SPF Record
+ -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+ 0.1 DKIM_SIGNED            Message has a DKIM or DK signature, not necessarily
+ valid
  -0.1 DKIM_VALID_AU          Message has a valid DKIM or DK signature from
-                             author's domain
+ author's domain
  -0.1 DKIM_VALID_EF          Message has a valid DKIM or DK signature from
-                             envelope-from domain
-  1.3 RDNS_NONE              Delivered to internal network by a host with no rDNS
- -0.0 T_SCC_BODY_TEXT_LINE   No description available.
-X-Headers-End: 1naN8q-0029so-2b
-X-Content-Filtered-By: Mailman/MimeDel 2.1.21
-Subject: [V9fs-developer] =?utf-8?b?44CQ6YeN6KaB44CR44GI44GN44Gt44Gj44Go?=
-	=?utf-8?b?44Ki44Kr44Km44Oz44OI44Gu6Ieq5YuV6YCA5Lya5Yem55CG44Gr44Gk?=
-	=?utf-8?b?44GE44Gm?=
+ envelope-from domain
+ 0.0 UNPARSEABLE_RELAY      Informational: message has unparseable relay
+ lines -0.0 T_SCC_BODY_TEXT_LINE   No description available.
+X-Headers-End: 1naQQc-0001co-Bs
+Subject: Re: [V9fs-developer] 9p fs-cache tests/benchmark (was: 9p fscache
+ Duplicate cookie detected)
 X-BeenThere: v9fs-developer@lists.sourceforge.net
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -102,37 +117,116 @@ List-Post: <mailto:v9fs-developer@lists.sourceforge.net>
 List-Help: <mailto:v9fs-developer-request@lists.sourceforge.net?subject=help>
 List-Subscribe: <https://lists.sourceforge.net/lists/listinfo/v9fs-developer>, 
  <mailto:v9fs-developer-request@lists.sourceforge.net?subject=subscribe>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Cc: lucho@ionkov.net, David Kahurani <k.kahurani@gmail.com>, ericvh@gmail.com,
+ netdev@vger.kernel.org, linux-kernel@vger.kernel.org,
+ Greg Kurz <groug@kaod.org>, David Howells <dhowells@redhat.com>,
+ v9fs-developer@lists.sourceforge.net, kuba@kernel.org, davem@davemloft.net
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: v9fs-developer-bounces@lists.sourceforge.net
 
-DQoNCg0KDQoNCg0K5pel6aCD44KI44KK44CM44GI44GN44Gt44Gj44Go44CN44KS44GU5Yip55So
-44GE44Gf44Gg44GN44GC44KK44GM44Go44GG44GU44GW44GE44G+44GZ44CCIA0KDQoNCg0KDQrj
-gIzjgYjjgY3jga3jgaPjgajjgI3jga8gMjAyMiDlubQgMiDmnIggMDYg5pelKOaXpSnjgavjgrXj
-g7zjg5PjgrnjgpLjg6rjg4vjg6Xjg7zjgqLjg6vjgYTjgZ/jgZfjgb7jgZfjgZ/jgILjgZPjgowg
-44Gr5Ly044GE44CB44CM44GI44GN44Gt44Gj44Go44CN5Yip55So6KaP57SE44O75Lya5ZOh6KaP
-57SE44KS5aSJ5pu044GX44CB5pyA5b6M44Gr44Ot44Kw44Kk44Oz44KS44GX44Gf5pel44KI44KK
-6LW3566X44GXIOOBpu+8kuW5tOS7peS4iuOAjOOBiOOBjeOBreOBo+OBqOOAjeOBruOBlOWIqeeU
-qO+8iOODreOCsOOCpOODs++8ieOBjOeiuuiqjeOBp+OBjeOBquOBhOOAjOOBiOOBjeOBreOBo+OB
-qOOAjeOCouOCq+OCpuODs+ODiCDjga/jgIHoh6rli5XnmoTjgavpgIDkvJrlh6bnkIbjgZXjgZvj
-gabjgYTjgZ/jgaDjgY/jgZPjgajjgajjgYTjgZ/jgZfjgb7jgZfjgZ/jgILjgarjgYrjgIHlr77o
-saHjgqLjgqvjgqbjg7Pjg4jjga7oh6rli5XpgIAg5Lya5Yem55CG44KS44CB5pys6KaP57SE44Gr
-5Z+644Gl44GN44CBMjAyMiDlubQgMiDmnIggMjAg5pelKOaciCnjgojjgorpoIbmrKHjgIHlrp/m
-lr3jgZXjgZvjgabjgYTjgZ/jgaDjgY3jgb7jgZnjgIINCg0KDQoNCg0K77yS5bm05Lul5LiK44Ot
-44Kw44Kk44Oz44GX44Gm44GE44Gq44GE44GK5a6i44GV44G+44Gn44CB5LuK5b6M44KC44CM44GI
-44GN44Gt44Gj44Go44CN44KS44GU5Yip55So44GE44Gf44Gg44GR44KL5aC05ZCIIOOBr+OAgTIw
-MjIg5bm0IDMg5pyIIDcg5pelKOaciCnjgojjgorjgoLliY3jgavjgIHkuIDluqbjg63jgrDjgqTj
-g7Pmk43kvZzjgpLjgYrpoZjjgYTjgYTjgZ/jgZfjgb7jgZnjgIIgDQoNCuKHkuODreOCsOOCpOOD
-s+OBr+OBk+OBoeOCiSANCg0KDQoNCg0K4oC744GI44GN44Gt44Gj44Go44OI44OD44OX44Oa44O8
-44K45Y+z5LiK44Gu44Ot44Kw44Kk44Oz44Oc44K/44Oz44KI44KK44Ot44Kw44Kk44Oz44GX44Gm
-44GP44Gg44GV44GE44CCDQoNCg0KDQoNCuOBquOBiuOAgeOCouOCq+OCpuODs+ODiOOBjOmAgOS8
-muWHpueQhuOBleOCjOOBn+WgtOWQiOOCguOAgeaWsOOBn+OBq+OCouOCq+OCpuODs+ODiOeZu+mM
-su+8iOeEoeaWmeeZu+mMsu+8ieOBl+OBpuOBhOOBnyDjgaDjgY/jgZPjgajjgafjgZnjgZDjgavj
-gIzjgYjjgY3jga3jgaPjgajjgI3jgpLjgZTliKnnlKjjgYTjgZ/jgaDjgY/jgZPjgajjgYzjgafj
-gY3jgb7jgZnjga7jgafjgIHku4rlvozjgoLjgZTmhJvpoafjgYTjgZ8g44Gg44GR44G+44GZ44KI
-44GG44KI44KN44GX44GP44GK6aGY44GE44GE44Gf44GX44G+44GZ44CCIA0KDQoNCg0KDQogIENv
-cHlyaWdodCDCqSBKUiBFYXN0IE5ldCBTdGF0aW9uIENvLixMdGQuIEFsbCBSaWdodHMgUmVzZXJ2
-ZWQuCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fClY5ZnMt
-ZGV2ZWxvcGVyIG1haWxpbmcgbGlzdApWOWZzLWRldmVsb3BlckBsaXN0cy5zb3VyY2Vmb3JnZS5u
-ZXQKaHR0cHM6Ly9saXN0cy5zb3VyY2Vmb3JnZS5uZXQvbGlzdHMvbGlzdGluZm8vdjlmcy1kZXZl
-bG9wZXIK
+Christian Schoenebeck wrote on Fri, Apr 01, 2022 at 04:19:20PM +0200:
+> 4. v9fs_qid_iget_dotl [fs/9p/vfs_inode_dotl.c, 133]:
+> 
+> 	v9fs_cache_inode_get_cookie(inode);
+> 	^--- Called independent of function argument "new"'s value here
+>    https://github.com/torvalds/linux/blob/e8b767f5e04097aaedcd6e06e2270f9fe5282696/fs/9p/vfs_inode_dotl.c#L133
+
+
+uh, I'd have assumed either this call or the function to check
+v9ses->cache, but it doesn't look like either do...
+There's a nice compile-time static inline empty definition if FSCACHE is
+not compiled in, but that should -also- be a check at runtime based on
+the session struct.
+
+For your remark vs. the 'new' argument, it does depend on it:
+ - new determines which check is used for iget5_locked.
+In the 'new' case, v9fs_test_new_inode_dotl always returns 0 so we
+always get a new inode.
+ - if iget5_locked found an existing inode (i_state & I_NEW false) we
+return it.
+ - at this point we're allocating a new inode, so we should initialize
+its cookie if it's on a fscache-enabled mount
+
+So that part looks OK to me.
+
+What isn't correct with qemu setting qid version is the non-new case's
+v9fs_test_inode_dotl, it'll consider the inode to be new if version
+changed so it would recreate new, different inodes with same inode
+number/cookie and I was sure that was the problem, but it looks like
+there's more to it from your reply below :(
+
+
+>> Well, at least that one is an easy fix: we just don't need this.
+>> It's the easiest way to reproduce but there are also harder to fix
+>> collisions, file systems only guarantee unicity for (fsid,inode
+>> number,version) which is usually bigger than 128 bits (although version
+>> is often 0), but version isn't exposed to userspace easily...
+>> What we'd want for unicity is handle from e.g. name_to_handle_at but
+>> that'd add overhead, wouldn't fit in qid path and not all fs are capable
+>> of providing one... The 9p protocol just doesn't want bigger handles
+>> than qid path.
+> 
+> No bigger qid.path on 9p protocol level in future? Why?
+
+I have no idea about the "9p protocol" as a standard, nor who decides
+how that evolves -- I guess if we wanted to we could probably make a
+9p2022.L without concerting much around, but I have no plan to do
+that... But if we do, I can probably add quite a few things to the
+list of things that might need to change :)
+
+
+That being said, this particular change of qid format is rather
+annoying. 9p2000.L basically just added new message types, so dissectors
+such as wireshark could barge in the middle of the tcp flow and more or
+less understand; modifying a basic type like this would require to
+either catch the TVERSION message or make new message types for
+everything that deals wth qids (auth/attach, walk, lopen, lcreate,
+mknod, getattr, readdir, mkdir... that's quite a few)
+
+So I think we're better off with the status quo here.
+
+>> And, err, looking at the qemu code
+>> 
+>>   qidp->version = stbuf->st_mtime ^ (stbuf->st_size << 8);
+>> 
+>> so the qid is treated as "data version",
+>> but on kernel side we've treated it as inode version (i_version, see
+>> include/linux/iversion.h)
+>> 
+>> (v9fs_test_inode_dotl checks the version is the same when comparing two
+>> inodes) so it will incorrectly identify two identical inodes as
+>> different.
+>> That will cause problems...
+>> Since you'll be faster than me could you try keeping it at 0 there?
+> 
+> I tried with your suggested change on QEMU side:
+> 
+> diff --git a/hw/9pfs/9p.c b/hw/9pfs/9p.c
+> index a6d6b3f835..5d9be87758 100644
+> --- a/hw/9pfs/9p.c
+> +++ b/hw/9pfs/9p.c
+> @@ -981,7 +981,7 @@ static int stat_to_qid(V9fsPDU *pdu, const struct stat *stbuf, V9fsQID *qidp)
+>          memcpy(&qidp->path, &stbuf->st_ino, size);
+>      }
+>  
+> -    qidp->version = stbuf->st_mtime ^ (stbuf->st_size << 8);
+> +    qidp->version = 0;
+>      qidp->type = 0;
+>      if (S_ISDIR(stbuf->st_mode)) {
+>          qidp->type |= P9_QID_TYPE_DIR;
+> 
+> Unfortunately it did not make any difference for these 2 Linux kernel fs-cache
+> issues at least; still same errors, and same suboptimal performance.
+
+Thanks, I'll give it a try today or tomorrow, adding some trace when we
+create inodes might give a clue...
+
+-- 
+Dominique
+
+
+_______________________________________________
+V9fs-developer mailing list
+V9fs-developer@lists.sourceforge.net
+https://lists.sourceforge.net/lists/listinfo/v9fs-developer
