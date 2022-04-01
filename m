@@ -2,87 +2,95 @@ Return-Path: <v9fs-developer-bounces@lists.sourceforge.net>
 X-Original-To: lists+v9fs-developer@lfdr.de
 Delivered-To: lists+v9fs-developer@lfdr.de
 Received: from lists.sourceforge.net (lists.sourceforge.net [216.105.38.7])
-	by mail.lfdr.de (Postfix) with ESMTPS id 297054EF8A4
-	for <lists+v9fs-developer@lfdr.de>; Fri,  1 Apr 2022 19:07:06 +0200 (CEST)
-Received: from [127.0.0.1] (helo=sfs-ml-1.v29.lw.sourceforge.com)
-	by sfs-ml-1.v29.lw.sourceforge.com with esmtp (Exim 4.94.2)
+	by mail.lfdr.de (Postfix) with ESMTPS id EF6064EFA7A
+	for <lists+v9fs-developer@lfdr.de>; Fri,  1 Apr 2022 21:41:14 +0200 (CEST)
+Received: from [127.0.0.1] (helo=sfs-ml-2.v29.lw.sourceforge.com)
+	by sfs-ml-2.v29.lw.sourceforge.com with esmtp (Exim 4.94.2)
 	(envelope-from <v9fs-developer-bounces@lists.sourceforge.net>)
-	id 1naKjo-0002u3-Br; Fri, 01 Apr 2022 17:07:02 +0000
+	id 1naN8y-0005rD-TC; Fri, 01 Apr 2022 19:41:11 +0000
 Received: from [172.30.20.202] (helo=mx.sourceforge.net)
- by sfs-ml-1.v29.lw.sourceforge.com with esmtps (TLS1.2) tls
+ by sfs-ml-2.v29.lw.sourceforge.com with esmtps (TLS1.2) tls
  TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384 (Exim 4.94.2)
- (envelope-from <linux_oss@crudebyte.com>) id 1naKjf-0002tS-71
- for v9fs-developer@lists.sourceforge.net; Fri, 01 Apr 2022 17:06:53 +0000
+ (envelope-from <eki-contact@dciuylt.cn>) id 1naN8x-0005r7-Da
+ for v9fs-developer@lists.sourceforge.net; Fri, 01 Apr 2022 19:41:10 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=sourceforge.net; s=x; h=Content-Type:Content-Transfer-Encoding:MIME-Version
- :References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Sender:Reply-To:
- Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
- Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
+ d=sourceforge.net; s=x; h=Content-Type:Mime-Version:Message-ID:Subject:To:
+ From:Date:Sender:Reply-To:Cc:Content-Transfer-Encoding:Content-ID:
+ Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
+ :Resent-Message-ID:In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:
  List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=jFGqPDhlqc8KEIpDKFpuOlQuvuFYmdqjb8dDnetXz3A=; b=TdtnLkB4kWfzQkkTjoz6/3efuT
- uDy8kYRaenJM8T+XYPZYRDv+AXJzpLM6aCkIJ+q+pHzIS+jcQhccFI+qvcSvWoJqCio1pIyf6V2P0
- x+l3WgTULsOR/yIvL7cQDvJUf6d4FqeZAKQfFwySLyB6vPDKDkf2LrRl23lUSKiFsSqs=;
+ bh=RCbZtoVtq9x4VFHLJspW47ckdym4HS/x2qmIVBAdFa4=; b=aLV7X6SAoHadcDftkamlPhCnps
+ kX205cdoegf90YrR4Vp1Vdc+7gQ5cmLVBsc2mWfh8vxtsETYUzzjYQpwxGqjybdhs92hku5JfzJ/A
+ FYjL9Xzjjrlm08bfHcdxX8N+PUlFKHcZ8x+jaqv0cnZW7Skn8gixig+ileHhascCsTv0=;
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  ;
- h=Content-Type:Content-Transfer-Encoding:MIME-Version:References:
- In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Sender:Reply-To:Content-ID:
- Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
- :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
- List-Post:List-Owner:List-Archive;
- bh=jFGqPDhlqc8KEIpDKFpuOlQuvuFYmdqjb8dDnetXz3A=; b=gF38Tn4t4E55zgPCdmBGx8DKUL
- q2xuhFzqpgEH+j2e0cTpm4HJ4SLeDRlWbBX7sy+sjyikMJ9pAVFdv4yXyZbQy3MW2Xlj3ealUoxjv
- weYoBE0K11MUmXVe1PzltFwcmVVL76x8mEoUy7PW5Ul6J/JtD5U4xSUCrSRJr080I6nY=;
-Received: from kylie.crudebyte.com ([5.189.157.229])
- by sfi-mx-2.v28.lw.sourceforge.com with esmtps
+ h=Content-Type:Mime-Version:Message-ID:Subject:To:From:Date:Sender:Reply-To
+ :Cc:Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+ Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:
+ References:List-Id:List-Help:List-Unsubscribe:List-Subscribe:List-Post:
+ List-Owner:List-Archive; bh=RCbZtoVtq9x4VFHLJspW47ckdym4HS/x2qmIVBAdFa4=; b=K
+ ZGXzDoJxlJCih0CA6trRcfihf41tkEt3oajWmU5WeU1ft+IfQyV5GV79Tkw6gJ038kfH2RbHN3O3f
+ gabawLYoQ8vRFZ2bcVw3JWk4BbS4vKkRcb6qyQB2Cg9WCGuaZUOzzrWxgpSWUi/3SCcbKVSA3McRu
+ idwbqPdofxKXlOEE=;
+Received: from [202.61.132.107] (helo=dciuylt.cn)
+ by sfi-mx-1.v28.lw.sourceforge.com with esmtps
  (TLS1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.94.2)
- id 1naKja-0005s8-6s
- for v9fs-developer@lists.sourceforge.net; Fri, 01 Apr 2022 17:06:53 +0000
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=crudebyte.com; s=kylie; h=Content-Type:Content-Transfer-Encoding:
- MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:
- Content-ID:Content-Description;
- bh=jFGqPDhlqc8KEIpDKFpuOlQuvuFYmdqjb8dDnetXz3A=; b=aoJUV8eIqztrA7sMTQarMWXhCg
- x5/pEgywEa4S/5QDlcHYV0XU8CwmSJ/1mYnw9fxlBaBJDY+glbfChpWtECPNvT8lw5IUteoc0E0z8
- gDeuqqWByLGeME2C59nlScbt72lFY9QdKwb2njxpBCisi7yh36sl0nPFPpq2n5j+oA40qyHZmD2WE
- sWyEvKQxJDExr/ytEGIygp8mjFSIzEf6dvoTNYwImH5K0NgiGSP26VifSaSFxBwlyrHVS3ZaRwM2L
- uHfqi3OT/PhH+FpMAnwgQ7XhMKZZ4y4jbbTJMt5z82PCGfkT1ujHkkHJuPlaJKKMMNaQk8M9DFsa4
- T1EiGGeAz8SRlt9+fXIOnhbW53RD5LN9czbmUIis4wVVhfCGwj2w0veRHsBnRxLxM6NVfQd/fo2ln
- lLLBrB1cJt3O/wgXw1wqp2wLyPjYxfTimQrJEhY/BOPX1/kJEIXIO5aRNgK/UUvbOPAIgXUNI99SM
- s5OR9UYxB30PswvFvlW95TcHNzBm9YfP4EgyN6ovosfhLbdSt1sQqO49IkL0gqKeKHwjgfJlCah9Z
- nSPb0Mi5ilSTaTddF2ClyJaK+33fmubR5l9o2SDdzRleCRr0vuCcL6JC+0l1EXnLMPOiftjGQyJ4i
- 90vg03U/nyYF7WyLDWIrKzUCAXEt7mg/4kBWCS+dE=;
-To: Yu Zhe <yuzhe@nfschina.com>
-Date: Fri, 01 Apr 2022 19:06:39 +0200
-Message-ID: <2411905.eXaiZ4YaiN@silver>
-In-Reply-To: <20220401070545.50577-1-yuzhe@nfschina.com>
-References: <20220401070545.50577-1-yuzhe@nfschina.com>
-MIME-Version: 1.0
-X-Spam-Score: -0.2 (/)
-X-Spam-Report: Spam detection software,
- running on the system "util-spamd-1.v13.lw.sourceforge.com", 
- has NOT identified this incoming email as spam.  The original
+ id 1naN8q-0029so-2b
+ for v9fs-developer@lists.sourceforge.net; Fri, 01 Apr 2022 19:41:09 +0000
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; s=default; d=dciuylt.cn; 
+ h=Date:From:To:Subject:Message-ID:Mime-Version:Content-Type;
+ i=eki-contact@dciuylt.cn;
+ bh=RCbZtoVtq9x4VFHLJspW47ckdym4HS/x2qmIVBAdFa4=;
+ b=ieS/nIwmpAJ+RVGvYPJpzLLDk0NijFZrZWe0TpSno0KwEfBu6LcUGbWHQUx+oUyrpHjyrDzM/OCw
+ DGhep5HmTfH8sPCIQR1ypaGsltF5GN+0jbxoaYsvT4wxnp16Jl3WLvnIwN5cBAnp6HZvnTQcR2V+
+ ixWdxnBC8cjt79Ob/h8=
+Date: Sat, 2 Apr 2022 03:20:45 +0800
+From: =?utf-8?B?44GI44GN44Gt44Gj44Go44CMSlLmnbHml6XmnKzjgI0=?=
+ <eki-contact@dciuylt.cn>
+To: <v9fs-developer@lists.sourceforge.net>
+Message-ID: <20220402032050504630@dciuylt.cn>
+Mime-Version: 1.0
+X-Spam-Score: 7.2 (+++++++)
+X-Spam-Report: Spam detection software, running on the system "util-spamd-2.v13.lw.sourceforge.com",
+ has identified this incoming email as possible spam.  The original
  message has been attached to this so you can view it or label
  similar future email.  If you have any questions, see
  the administrator of that system for details.
- Content preview:  On Freitag,
- 1. April 2022 09:05:45 CEST Yu Zhe wrote: > remove
- unnecessary void* type castings. > > Signed-off-by: Yu Zhe
- <yuzhe@nfschina.com>
- > --- Reviewed-by: Christian Schoenebeck <linux_oss@crudebyte.com> 
- Content analysis details:   (-0.2 points, 6.0 required)
- pts rule name              description
+ 
+ Content preview:  日頃より「えきねっと」をご利用いただきありがとうございます。
+    「えきねっと」は 2022 年 2 月 06 日(日)にサービスをリニューアルいたしました。これ
+    に伴い、「えきねっと」利用規約・会員規約を変更し、最後に�
+    [...] 
+ 
+ Content analysis details:   (7.2 points, 6.0 required)
+ 
+  pts rule name              description
  ---- ---------------------- --------------------------------------------------
- 0.0 SPF_HELO_NONE          SPF: HELO does not publish an SPF Record
+  2.5 URIBL_DBL_SPAM         Contains a spam URL listed in the Spamhaus DBL
+                             blocklist
+                             [URIs: p6ej0k.cn]
+  3.6 RCVD_IN_SBL_CSS        RBL: Received via a relay in Spamhaus SBL-CSS
+                             [202.61.132.107 listed in zen.spamhaus.org]
+  0.1 URIBL_CSS_A            Contains URL's A record listed in the Spamhaus CSS
+                             blocklist
+                             [URIs: dciuylt.cn]
  -0.0 SPF_PASS               SPF: sender matches SPF record
- -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
- -0.1 DKIM_VALID_EF          Message has a valid DKIM or DK signature from
- envelope-from domain
- 0.1 DKIM_SIGNED            Message has a DKIM or DK signature, not necessarily
- valid
+ -0.0 SPF_HELO_PASS          SPF: HELO matches SPF record
+  0.0 HTML_MESSAGE           BODY: HTML included in message
+ -0.1 DKIM_VALID             Message has at least one valid DKIM or DK signature
+  0.1 DKIM_SIGNED            Message has a DKIM or DK signature, not necessarily
+                             valid
  -0.1 DKIM_VALID_AU          Message has a valid DKIM or DK signature from
- author's domain
-X-Headers-End: 1naKja-0005s8-6s
-Subject: Re: [V9fs-developer] [PATCH] 9p: remove unnecessary type castings
+                             author's domain
+ -0.1 DKIM_VALID_EF          Message has a valid DKIM or DK signature from
+                             envelope-from domain
+  1.3 RDNS_NONE              Delivered to internal network by a host with no rDNS
+ -0.0 T_SCC_BODY_TEXT_LINE   No description available.
+X-Headers-End: 1naN8q-0029so-2b
+X-Content-Filtered-By: Mailman/MimeDel 2.1.21
+Subject: [V9fs-developer] =?utf-8?b?44CQ6YeN6KaB44CR44GI44GN44Gt44Gj44Go?=
+	=?utf-8?b?44Ki44Kr44Km44Oz44OI44Gu6Ieq5YuV6YCA5Lya5Yem55CG44Gr44Gk?=
+	=?utf-8?b?44GE44Gm?=
 X-BeenThere: v9fs-developer@lists.sourceforge.net
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -94,107 +102,37 @@ List-Post: <mailto:v9fs-developer@lists.sourceforge.net>
 List-Help: <mailto:v9fs-developer-request@lists.sourceforge.net?subject=help>
 List-Subscribe: <https://lists.sourceforge.net/lists/listinfo/v9fs-developer>, 
  <mailto:v9fs-developer-request@lists.sourceforge.net?subject=subscribe>
-From: Christian Schoenebeck via V9fs-developer
- <v9fs-developer@lists.sourceforge.net>
-Reply-To: Christian Schoenebeck <linux_oss@crudebyte.com>
-Cc: lucho@ionkov.net, ericvh@gmail.com, kernel-janitors@vger.kernel.org,
- linux-kernel@vger.kernel.org, liqiong@nfschina.com,
- v9fs-developer@lists.sourceforge.net
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: v9fs-developer-bounces@lists.sourceforge.net
 
-On Freitag, 1. April 2022 09:05:45 CEST Yu Zhe wrote:
-> remove unnecessary void* type castings.
-> 
-> Signed-off-by: Yu Zhe <yuzhe@nfschina.com>
-> ---
-
-Reviewed-by: Christian Schoenebeck <linux_oss@crudebyte.com>
-
->  fs/9p/fid.c            | 2 +-
->  fs/9p/v9fs.c           | 2 +-
->  fs/9p/vfs_inode.c      | 4 ++--
->  fs/9p/vfs_inode_dotl.c | 4 ++--
->  4 files changed, 6 insertions(+), 6 deletions(-)
-> 
-> diff --git a/fs/9p/fid.c b/fs/9p/fid.c
-> index 79df61fe0e59..c2b8d7fc9e53 100644
-> --- a/fs/9p/fid.c
-> +++ b/fs/9p/fid.c
-> @@ -53,7 +53,7 @@ static struct p9_fid *v9fs_fid_find_inode(struct inode
-> *inode, kuid_t uid) p9_debug(P9_DEBUG_VFS, " inode: %p\n", inode);
-> 
->  	spin_lock(&inode->i_lock);
-> -	h = (struct hlist_head *)&inode->i_private;
-> +	h = &inode->i_private;
->  	hlist_for_each_entry(fid, h, ilist) {
->  		if (uid_eq(fid->uid, uid)) {
->  			refcount_inc(&fid->count);
-> diff --git a/fs/9p/v9fs.c b/fs/9p/v9fs.c
-> index e28ddf763b3b..51ddc58a7029 100644
-> --- a/fs/9p/v9fs.c
-> +++ b/fs/9p/v9fs.c
-> @@ -622,7 +622,7 @@ static void v9fs_sysfs_cleanup(void)
-> 
->  static void v9fs_inode_init_once(void *foo)
->  {
-> -	struct v9fs_inode *v9inode = (struct v9fs_inode *)foo;
-> +	struct v9fs_inode *v9inode = foo;
-> 
->  	memset(&v9inode->qid, 0, sizeof(v9inode->qid));
->  	inode_init_once(&v9inode->vfs_inode);
-> diff --git a/fs/9p/vfs_inode.c b/fs/9p/vfs_inode.c
-> index 55367ecb9442..f415fd7a1eaf 100644
-> --- a/fs/9p/vfs_inode.c
-> +++ b/fs/9p/vfs_inode.c
-> @@ -409,7 +409,7 @@ static int v9fs_test_inode(struct inode *inode, void
-> *data) int umode;
->  	dev_t rdev;
->  	struct v9fs_inode *v9inode = V9FS_I(inode);
-> -	struct p9_wstat *st = (struct p9_wstat *)data;
-> +	struct p9_wstat *st = data;
->  	struct v9fs_session_info *v9ses = v9fs_inode2v9ses(inode);
-> 
->  	umode = p9mode2unixmode(v9ses, st, &rdev);
-> @@ -438,7 +438,7 @@ static int v9fs_test_new_inode(struct inode *inode, void
-> *data) static int v9fs_set_inode(struct inode *inode,  void *data)
->  {
->  	struct v9fs_inode *v9inode = V9FS_I(inode);
-> -	struct p9_wstat *st = (struct p9_wstat *)data;
-> +	struct p9_wstat *st = data;
-> 
->  	memcpy(&v9inode->qid, &st->qid, sizeof(st->qid));
->  	return 0;
-> diff --git a/fs/9p/vfs_inode_dotl.c b/fs/9p/vfs_inode_dotl.c
-> index d17502a738a9..b910fee62e25 100644
-> --- a/fs/9p/vfs_inode_dotl.c
-> +++ b/fs/9p/vfs_inode_dotl.c
-> @@ -57,7 +57,7 @@ static kgid_t v9fs_get_fsgid_for_create(struct inode
-> *dir_inode) static int v9fs_test_inode_dotl(struct inode *inode, void
-> *data)
->  {
->  	struct v9fs_inode *v9inode = V9FS_I(inode);
-> -	struct p9_stat_dotl *st = (struct p9_stat_dotl *)data;
-> +	struct p9_stat_dotl *st = data;
-> 
->  	/* don't match inode of different type */
->  	if (inode_wrong_type(inode, st->st_mode))
-> @@ -88,7 +88,7 @@ static int v9fs_test_new_inode_dotl(struct inode *inode,
-> void *data) static int v9fs_set_inode_dotl(struct inode *inode,  void
-> *data)
->  {
->  	struct v9fs_inode *v9inode = V9FS_I(inode);
-> -	struct p9_stat_dotl *st = (struct p9_stat_dotl *)data;
-> +	struct p9_stat_dotl *st = data;
-> 
->  	memcpy(&v9inode->qid, &st->qid, sizeof(st->qid));
->  	inode->i_generation = st->st_gen;
-
-
-
-
-_______________________________________________
-V9fs-developer mailing list
-V9fs-developer@lists.sourceforge.net
-https://lists.sourceforge.net/lists/listinfo/v9fs-developer
+DQoNCg0KDQoNCg0K5pel6aCD44KI44KK44CM44GI44GN44Gt44Gj44Go44CN44KS44GU5Yip55So
+44GE44Gf44Gg44GN44GC44KK44GM44Go44GG44GU44GW44GE44G+44GZ44CCIA0KDQoNCg0KDQrj
+gIzjgYjjgY3jga3jgaPjgajjgI3jga8gMjAyMiDlubQgMiDmnIggMDYg5pelKOaXpSnjgavjgrXj
+g7zjg5PjgrnjgpLjg6rjg4vjg6Xjg7zjgqLjg6vjgYTjgZ/jgZfjgb7jgZfjgZ/jgILjgZPjgowg
+44Gr5Ly044GE44CB44CM44GI44GN44Gt44Gj44Go44CN5Yip55So6KaP57SE44O75Lya5ZOh6KaP
+57SE44KS5aSJ5pu044GX44CB5pyA5b6M44Gr44Ot44Kw44Kk44Oz44KS44GX44Gf5pel44KI44KK
+6LW3566X44GXIOOBpu+8kuW5tOS7peS4iuOAjOOBiOOBjeOBreOBo+OBqOOAjeOBruOBlOWIqeeU
+qO+8iOODreOCsOOCpOODs++8ieOBjOeiuuiqjeOBp+OBjeOBquOBhOOAjOOBiOOBjeOBreOBo+OB
+qOOAjeOCouOCq+OCpuODs+ODiCDjga/jgIHoh6rli5XnmoTjgavpgIDkvJrlh6bnkIbjgZXjgZvj
+gabjgYTjgZ/jgaDjgY/jgZPjgajjgajjgYTjgZ/jgZfjgb7jgZfjgZ/jgILjgarjgYrjgIHlr77o
+saHjgqLjgqvjgqbjg7Pjg4jjga7oh6rli5XpgIAg5Lya5Yem55CG44KS44CB5pys6KaP57SE44Gr
+5Z+644Gl44GN44CBMjAyMiDlubQgMiDmnIggMjAg5pelKOaciCnjgojjgorpoIbmrKHjgIHlrp/m
+lr3jgZXjgZvjgabjgYTjgZ/jgaDjgY3jgb7jgZnjgIINCg0KDQoNCg0K77yS5bm05Lul5LiK44Ot
+44Kw44Kk44Oz44GX44Gm44GE44Gq44GE44GK5a6i44GV44G+44Gn44CB5LuK5b6M44KC44CM44GI
+44GN44Gt44Gj44Go44CN44KS44GU5Yip55So44GE44Gf44Gg44GR44KL5aC05ZCIIOOBr+OAgTIw
+MjIg5bm0IDMg5pyIIDcg5pelKOaciCnjgojjgorjgoLliY3jgavjgIHkuIDluqbjg63jgrDjgqTj
+g7Pmk43kvZzjgpLjgYrpoZjjgYTjgYTjgZ/jgZfjgb7jgZnjgIIgDQoNCuKHkuODreOCsOOCpOOD
+s+OBr+OBk+OBoeOCiSANCg0KDQoNCg0K4oC744GI44GN44Gt44Gj44Go44OI44OD44OX44Oa44O8
+44K45Y+z5LiK44Gu44Ot44Kw44Kk44Oz44Oc44K/44Oz44KI44KK44Ot44Kw44Kk44Oz44GX44Gm
+44GP44Gg44GV44GE44CCDQoNCg0KDQoNCuOBquOBiuOAgeOCouOCq+OCpuODs+ODiOOBjOmAgOS8
+muWHpueQhuOBleOCjOOBn+WgtOWQiOOCguOAgeaWsOOBn+OBq+OCouOCq+OCpuODs+ODiOeZu+mM
+su+8iOeEoeaWmeeZu+mMsu+8ieOBl+OBpuOBhOOBnyDjgaDjgY/jgZPjgajjgafjgZnjgZDjgavj
+gIzjgYjjgY3jga3jgaPjgajjgI3jgpLjgZTliKnnlKjjgYTjgZ/jgaDjgY/jgZPjgajjgYzjgafj
+gY3jgb7jgZnjga7jgafjgIHku4rlvozjgoLjgZTmhJvpoafjgYTjgZ8g44Gg44GR44G+44GZ44KI
+44GG44KI44KN44GX44GP44GK6aGY44GE44GE44Gf44GX44G+44GZ44CCIA0KDQoNCg0KDQogIENv
+cHlyaWdodCDCqSBKUiBFYXN0IE5ldCBTdGF0aW9uIENvLixMdGQuIEFsbCBSaWdodHMgUmVzZXJ2
+ZWQuCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fClY5ZnMt
+ZGV2ZWxvcGVyIG1haWxpbmcgbGlzdApWOWZzLWRldmVsb3BlckBsaXN0cy5zb3VyY2Vmb3JnZS5u
+ZXQKaHR0cHM6Ly9saXN0cy5zb3VyY2Vmb3JnZS5uZXQvbGlzdHMvbGlzdGluZm8vdjlmcy1kZXZl
+bG9wZXIK
