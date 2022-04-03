@@ -2,86 +2,108 @@ Return-Path: <v9fs-developer-bounces@lists.sourceforge.net>
 X-Original-To: lists+v9fs-developer@lfdr.de
 Delivered-To: lists+v9fs-developer@lfdr.de
 Received: from lists.sourceforge.net (lists.sourceforge.net [216.105.38.7])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9C3A04F0902
-	for <lists+v9fs-developer@lfdr.de>; Sun,  3 Apr 2022 13:30:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id E35344F0977
+	for <lists+v9fs-developer@lfdr.de>; Sun,  3 Apr 2022 14:38:46 +0200 (CEST)
 Received: from [127.0.0.1] (helo=sfs-ml-1.v29.lw.sourceforge.com)
 	by sfs-ml-1.v29.lw.sourceforge.com with esmtp (Exim 4.94.2)
 	(envelope-from <v9fs-developer-bounces@lists.sourceforge.net>)
-	id 1nayR6-0007ZG-8R; Sun, 03 Apr 2022 11:30:22 +0000
+	id 1nazVE-000695-KF; Sun, 03 Apr 2022 12:38:43 +0000
 Received: from [172.30.20.202] (helo=mx.sourceforge.net)
  by sfs-ml-1.v29.lw.sourceforge.com with esmtps (TLS1.2) tls
  TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384 (Exim 4.94.2)
- (envelope-from <linux_oss@crudebyte.com>) id 1nayQz-0007YN-TR
- for v9fs-developer@lists.sourceforge.net; Sun, 03 Apr 2022 11:30:16 +0000
+ (envelope-from <asmadeus@codewreck.org>) id 1nazV5-000688-Gf
+ for v9fs-developer@lists.sourceforge.net; Sun, 03 Apr 2022 12:38:34 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=sourceforge.net; s=x; h=Content-Type:Content-Transfer-Encoding:MIME-Version
- :References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Sender:Reply-To:
+ d=sourceforge.net; s=x; h=In-Reply-To:Content-Type:MIME-Version:References:
+ Message-ID:Subject:Cc:To:From:Date:Sender:Reply-To:Content-Transfer-Encoding:
  Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
  Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
  List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=AdOvAXTsIN9zhwjVlvwewFQq0Hm2uVNJaTJFxYUIOw8=; b=By92zvKmiPQvm15o0KkCmHd9ji
- u0Xra2niZhpYcKjEBrNpoMNbqs6ZjcrCixhTqxXuhBBWt4ymnjBmGJ+oUF2XjbcNQim00mDrvnWRY
- bglqC8fCG22ukxrRd7nDPSDpkQKqQyb/TpzSTITb64UcVojZtBLa06ZyvxtD/pEDfyG8=;
+ bh=14x/o31XF+hFpAYq9fTGzk2MDqsFhtWX55WYqE25E1U=; b=K5+P7eOV/6WTt4LOPn54PPEf+o
+ 2lVKxLH+yhLeU8HpVwhlU/dXnMfQXMiryqUW09lJHsc3Fem3deaoD86APB+/wRNqQktYTgMQOfWTz
+ 6/xm+ua+YjpupYuyHjeo9Cm4+DOPycjOFS07xLoxRL48s1v7ofD3QKAHbE6y8lu53aCQ=;
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  ;
- h=Content-Type:Content-Transfer-Encoding:MIME-Version:References:
- In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Sender:Reply-To:Content-ID:
+ h=In-Reply-To:Content-Type:MIME-Version:References:Message-ID:Subject:Cc:To
+ :From:Date:Sender:Reply-To:Content-Transfer-Encoding:Content-ID:
  Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
  :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
  List-Post:List-Owner:List-Archive;
- bh=AdOvAXTsIN9zhwjVlvwewFQq0Hm2uVNJaTJFxYUIOw8=; b=UOiHIYsSVNkKgUfp+mRj0ZUuuu
- Dgwoev1fp1+992CGuoPrCP0b/zV5AfcFlFnB8FtW5MK+KFpLtJ99kX9hSuL15ykRSTltbURZwl2Kq
- 7NUausBcawwUIvJvW6VXLwHdEZYbeMWv57ySGUGKGgZcidKGwCPR6lgd5XD4SyaMURqE=;
-Received: from kylie.crudebyte.com ([5.189.157.229])
- by sfi-mx-1.v28.lw.sourceforge.com with esmtps
+ bh=14x/o31XF+hFpAYq9fTGzk2MDqsFhtWX55WYqE25E1U=; b=Y72WhEpVTQ0lqR8Rqyp+U0kgmP
+ ZCGbFdLkPEUXg+MF7doVYuMkSJZDtIB5vEWy4irTpzmKuhGIHwSG7Bg/388NAlZEDv2qNgeEINrQL
+ vJL6xxBrq92R6OvYQBCiUWKQvDZl+lOBhlo6N0193IqeH1Yp7FtVj/KfCOCSYzRUX+wI=;
+Received: from nautica.notk.org ([91.121.71.147])
+ by sfi-mx-2.v28.lw.sourceforge.com with esmtps
  (TLS1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.94.2)
- id 1nayQs-003ssn-OP
- for v9fs-developer@lists.sourceforge.net; Sun, 03 Apr 2022 11:30:16 +0000
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=crudebyte.com; s=kylie; h=Content-Type:Content-Transfer-Encoding:
- MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:
- Content-ID:Content-Description;
- bh=AdOvAXTsIN9zhwjVlvwewFQq0Hm2uVNJaTJFxYUIOw8=; b=Cr93xOjuMMGKyzwFH69SA1+IiC
- skkoC+TmV+WOGRgw6lQ8whkai/u5HSYsQ2GnKUtozkZtvh4DrTByFu9h5f4bpaqRiJGHWUSP/8i2h
- NKnXVTjbiD+d1GEBIgoXNQHH02VI/7t9U9EpmlSExmjni3GPsiyWKTqDwyA7A5S4JQ28jO/+UPc2m
- Qc7+APn8sNE/Zjp2WZjGjVmuabSle53xp4/t7dMMtLAs/P7wKFppWmqbnECT5oN/l5wE7QRVXwEoH
- 08sVPNp9axgt69tZIJuYF0pqC73C1B5kadQutqfkJpHIZTQ4RHzJpEna/5YfRN91GxT+9ckeRyxoM
- dP1MjufQQNyynmgKm3BUy4z4hz4wLCadRKyxjF+XVRvZfZyF4UQiGDeUYJrFZ1uRlrSDcMAqh7IpE
- TD3ANVoiDw2ethAOAE/AyTY9KEhjIb4aOcAFvh6gOggGbVUO9SCHQwwMXFtE53QEEy+Eh8YWNU8pm
- W1+kx6yory++qZLZO5OyMlfWTQPF+O0GO0+CtE0UePq9JNuydyx+jpR/8UF5tt22oJG3Sma+je5Jl
- DbtSoKnNISwhoGTap7q8yfwPaQfdF0dfpMGyd4lHg0Jr02oOFyvQE0K9fFQmCx/FC5kRIkPrTJCMv
- SLcWr2EP0qdigHR9v0J7qUhiAeyagaaUd2S1TXTeQ=;
-To: Dominique Martinet <asmadeus@codewreck.org>
-Date: Sun, 03 Apr 2022 13:29:53 +0200
-Message-ID: <1953222.pKi1t3aLRd@silver>
-In-Reply-To: <YkhYMFf63qnEhDd0@codewreck.org>
+ id 1nazUu-0005w8-Nu
+ for v9fs-developer@lists.sourceforge.net; Sun, 03 Apr 2022 12:38:28 +0000
+Received: by nautica.notk.org (Postfix, from userid 108)
+ id 69D90C01D; Sun,  3 Apr 2022 14:38:16 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=codewreck.org; s=2;
+ t=1648989496; bh=14x/o31XF+hFpAYq9fTGzk2MDqsFhtWX55WYqE25E1U=;
+ h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+ b=S/GpHEC8WKXIiLuGa2p+YAJGhDOyKk1dcOKPj9tg5jpGysq4R4wAnmIGLDWBaPJhH
+ WjI9R7rrhjESOn7uf5knwAkHb0TEXRPXbEg18X+e/+hShIgjKEJ8z63Pit3Ag8M8WS
+ uyao1/JALGjToof3e/VzYJRp9DwBNcTk9QqTLIJ831tabMN1CqU3BmYYU+OdnEvPJm
+ MKwF+IBxnox4sjuZX+6l2mDI4pZQbWSsGtvZ16HV94aYHnF11YVFXWQsC6Y1pn3lQE
+ YBKF17QNL525xTZNE8cRsxnM6ptzF5D+/oPt3tPa6+/JfcKrLstV8BEu/08dwAGI46
+ J/jPGwkcy2EKA==
+X-Spam-Checker-Version: SpamAssassin 3.3.2 (2011-06-06) on nautica.notk.org
+X-Spam-Level: 
+X-Spam-Status: No, score=0.0 required=5.0 tests=UNPARSEABLE_RELAY
+ autolearn=unavailable version=3.3.2
+Received: from odin.codewreck.org (localhost [127.0.0.1])
+ by nautica.notk.org (Postfix) with ESMTPS id 3FDEEC009;
+ Sun,  3 Apr 2022 14:38:12 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=codewreck.org; s=2;
+ t=1648989495; bh=14x/o31XF+hFpAYq9fTGzk2MDqsFhtWX55WYqE25E1U=;
+ h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+ b=cIyFg8jarIQGtbhQlFmpExci4A64a6JwCSMyoStzU8Qh+IQ2Ww4LmHhlP8t6cU0lA
+ JiLWalJRxi3/U0BWKgroj13SnuxZ7SRIlpbK28Dl5iPwOSKH9Loulme620K8TuRNXp
+ lYybuOgeviKx/I1MxYqLxMA0MQbrfONszpiwJN5vleNJUxIVqepSWaHvB30mdTEhIw
+ 6pQ+S8ZC7hZWGSVZTsSaXcDlJY8OZP2L3O3a5Rf7/iKRfXg5YY8sTzotdrxQD1V/HS
+ wtaRu7Hk/du97HKFO1BEPbSG5DR7J2DmxVtiVR3nGSx3c3Kcd8e8sJCZcvSo1QpI1g
+ dCaCeN/aStUZA==
+Received: from localhost (odin.codewreck.org [local])
+ by odin.codewreck.org (OpenSMTPD) with ESMTPA id 467446ff;
+ Sun, 3 Apr 2022 12:38:10 +0000 (UTC)
+Date: Sun, 3 Apr 2022 21:37:55 +0900
+From: Dominique Martinet <asmadeus@codewreck.org>
+To: Christian Schoenebeck <linux_oss@crudebyte.com>
+Message-ID: <YkmVI6pqTuMD8dVi@codewreck.org>
 References: <cover.1640870037.git.linux_oss@crudebyte.com>
  <8c305df4646b65218978fc6474aa0f5f29b216a0.1640870037.git.linux_oss@crudebyte.com>
- <YkhYMFf63qnEhDd0@codewreck.org>
+ <YkhYMFf63qnEhDd0@codewreck.org> <1953222.pKi1t3aLRd@silver>
 MIME-Version: 1.0
+Content-Disposition: inline
+In-Reply-To: <1953222.pKi1t3aLRd@silver>
 X-Spam-Score: -0.2 (/)
 X-Spam-Report: Spam detection software,
- running on the system "util-spamd-1.v13.lw.sourceforge.com", 
+ running on the system "util-spamd-2.v13.lw.sourceforge.com", 
  has NOT identified this incoming email as spam.  The original
  message has been attached to this so you can view it or label
  similar future email.  If you have any questions, see
  the administrator of that system for details.
- Content preview:  On Samstag, 2. April 2022 16:05:36 CEST Dominique Martinet
- wrote: > Christian Schoenebeck wrote on Thu, Dec 30, 2021 at 02:23:18PM +0100:
- > > So far 'msize' was simply used for all 9p message types, w [...] 
+ Content preview:  Christian Schoenebeck wrote on Sun, Apr 03,
+ 2022 at 01:29:53PM
+ +0200: > So maybe I should just exclude the 9p RDMA transport from this 9p
+ message size > reduction change in v5 until somebody had a cha [...] 
  Content analysis details:   (-0.2 points, 6.0 required)
  pts rule name              description
  ---- ---------------------- --------------------------------------------------
  0.0 SPF_HELO_NONE          SPF: HELO does not publish an SPF Record
  -0.0 SPF_PASS               SPF: sender matches SPF record
- -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
  -0.1 DKIM_VALID_EF          Message has a valid DKIM or DK signature from
  envelope-from domain
  0.1 DKIM_SIGNED            Message has a DKIM or DK signature, not necessarily
  valid
  -0.1 DKIM_VALID_AU          Message has a valid DKIM or DK signature from
  author's domain
-X-Headers-End: 1nayQs-003ssn-OP
+ -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+ -0.0 T_SCC_BODY_TEXT_LINE   No description available.
+ 0.0 UNPARSEABLE_RELAY      Informational: message has unparseable relay
+ lines
+X-Headers-End: 1nazUu-0005w8-Nu
 Subject: Re: [V9fs-developer] [PATCH v4 12/12] net/9p: allocate appropriate
  reduced message buffers
 X-BeenThere: v9fs-developer@lists.sourceforge.net
@@ -95,9 +117,6 @@ List-Post: <mailto:v9fs-developer@lists.sourceforge.net>
 List-Help: <mailto:v9fs-developer-request@lists.sourceforge.net?subject=help>
 List-Subscribe: <https://lists.sourceforge.net/lists/listinfo/v9fs-developer>, 
  <mailto:v9fs-developer-request@lists.sourceforge.net?subject=subscribe>
-From: Christian Schoenebeck via V9fs-developer
- <v9fs-developer@lists.sourceforge.net>
-Reply-To: Christian Schoenebeck <linux_oss@crudebyte.com>
 Cc: Latchesar Ionkov <lucho@ionkov.net>, Eric Van Hensbergen <ericvh@gmail.com>,
  netdev@vger.kernel.org, Greg Kurz <groug@kaod.org>,
  v9fs-developer@lists.sourceforge.net, Nikolay Kichukov <nikolay@oldum.net>,
@@ -106,51 +125,85 @@ Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: v9fs-developer-bounces@lists.sourceforge.net
 
-On Samstag, 2. April 2022 16:05:36 CEST Dominique Martinet wrote:
-> Christian Schoenebeck wrote on Thu, Dec 30, 2021 at 02:23:18PM +0100:
-> > So far 'msize' was simply used for all 9p message types, which is far
-> > too much and slowed down performance tremendously with large values
-> > for user configurable 'msize' option.
-> > 
-> > Let's stop this waste by using the new p9_msg_buf_size() function for
-> > allocating more appropriate, smaller buffers according to what is
-> > actually sent over the wire.
-> 
-> By the way, thinking of protocols earlier made me realize this won't
-> work on RDMA transport...
-> 
-> unlike virtio/tcp/xen, RDMA doesn't "mailbox" messages: there's a pool
-> of posted buffers, and once a message has been received it looks for the
-> header in the received message and associates it with the matching
-> request, but there's no guarantee a small message will use a small
-> buffer...
-> 
-> This is also going to need some thought, perhaps just copying small
-> buffers and recycling the buffer if a large one was used? but there
-> might be a window with no buffer available and I'm not sure what'd
-> happen, and don't have any RDMA hardware available to test this right
-> now so this will be fun.
-> 
-> 
-> I'm not shooting this down (it's definitely interesting), but we might
-> need to make it optional until someone with RDMA hardware can validate a
-> solution.
+Christian Schoenebeck wrote on Sun, Apr 03, 2022 at 01:29:53PM +0200:
+> So maybe I should just exclude the 9p RDMA transport from this 9p message size 
+> reduction change in v5 until somebody had a chance to test this change with 
+> RDMA.
 
-So maybe I should just exclude the 9p RDMA transport from this 9p message size 
-reduction change in v5 until somebody had a chance to test this change with 
-RDMA.
+Yes, I'm pretty certain it won't work so we'll want to exclude it unless
+we can extend the RDMA protocol to address buffers.
 
-Which makes me wonder, what is that exact hardware, hypervisor, OS that 
-supports 9p & RDMA?
+From my understanding, RDMA comes with two type of primitives:
+ - recv/send that 9p exlusively uses, which is just a pool of buffers
+registered to the NIC and get filled on a first-come-first-serve basis
+(I'm not sure if it's a first-fit, or if message will be truncated, or
+if it'll error out if the message doesn't fit... But basically given
+that's what we use for 9p we have no way of guaranteeing that a read
+reply will be filled in the big buffer allocated for it and not
+something else)
 
-On the long-term I can imagine to add RDMA transport support on QEMU 9p side. 
-There is already RDMA code in QEMU, however it is only used for migration by 
-QEMU so far I think.
-
-Best regards,
-Christian Schoenebeck
+If we're lucky the algorithm used is smallest-fit first, but it doesn't
+look like it:
+---
+The order of the Receive Request consumptions in a Receive Queue is by
+the order that they were posted to it.
+When you have a SRQ, you cannot predict which Receive Request will be
+consumed by which QP, so all the Receive Requests in that SRQ should be
+able to contain the incoming message (in terms of length).
+--- https://www.rdmamojo.com/2013/02/02/ibv_post_recv/ (in a comment)
 
 
+ - read/write, which can be addressed e.g. the remote end can specify a
+cookie along with address/size and directly operate on remote memory
+(hence the "remote direct memory access" name). There are also some cool
+stuff that can be done like atomic compare and swap or arithmetic
+operations on remote memory which doesn't really concern us.
+
+Using read/writes like NFS over RDMA does would resolve the problem and
+allow what they call "direct data placement", which is reading or
+writing directly from the page cache or user buffer as a real zero copy
+operation, but it requires the cookie/address to be sent and client to
+act on it so it's a real transport-specific protocol change, but given
+the low number of users I think that's something that could be
+considered if someone wants to work on it.
+
+Until then we'll be safer with that bit disabled...
+
+> Which makes me wonder, what is that exact hardware, hypervisor, OS that 
+> supports 9p & RDMA?
+
+I've used it with mellanox infiniband cards in the past. These support
+SRIOV virtual functions so are quite practical for VMs, could let it do
+the work with a single machine and no cable.
+
+I'm pretty sure it'd work with any recent server hardware that supports
+RoCE (I -think- it's getting more common?), or with emulation ~10 years
+ago I got it to run with softiwarp which has been merged in the kernel
+(siw) since so that might be the easiest way to run it now.
+
+Server-side, both diod and nfs-ganesha support 9p over RDMA, I haven't
+used diod recently but ganesha ought to work.
+
+
+> On the long-term I can imagine to add RDMA transport support on QEMU 9p side. 
+
+What would you expect it to be used for?
+
+> There is already RDMA code in QEMU, however it is only used for migration by 
+> QEMU so far I think.
+
+Yes, looking at it a bit there's live migration over RDMA (I tested it
+at my previous job), some handling for gluster+rdma, and a
+paravirtualized RDMA device (pvrdma).
+the docs for it says it works with soft-roce so it would also probably
+work for tests (I'm not sure what difference there is between rxe and
+siw), but at this point you've just setup virtualized rdma on the host
+anyway...
+
+I'll try to get something setup for tests on my end as well, it's
+definitely something I had on my todo...
+-- 
+Dominique
 
 
 _______________________________________________
