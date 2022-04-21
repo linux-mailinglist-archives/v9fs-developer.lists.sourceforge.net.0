@@ -2,99 +2,76 @@ Return-Path: <v9fs-developer-bounces@lists.sourceforge.net>
 X-Original-To: lists+v9fs-developer@lfdr.de
 Delivered-To: lists+v9fs-developer@lfdr.de
 Received: from lists.sourceforge.net (lists.sourceforge.net [216.105.38.7])
-	by mail.lfdr.de (Postfix) with ESMTPS id E0E90509DC0
-	for <lists+v9fs-developer@lfdr.de>; Thu, 21 Apr 2022 12:36:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id ED621509EA7
+	for <lists+v9fs-developer@lfdr.de>; Thu, 21 Apr 2022 13:36:47 +0200 (CEST)
 Received: from [127.0.0.1] (helo=sfs-ml-1.v29.lw.sourceforge.com)
 	by sfs-ml-1.v29.lw.sourceforge.com with esmtp (Exim 4.94.2)
 	(envelope-from <v9fs-developer-bounces@lists.sourceforge.net>)
-	id 1nhUAt-0003b9-Pu; Thu, 21 Apr 2022 10:36:35 +0000
+	id 1nhV76-00037u-8i; Thu, 21 Apr 2022 11:36:43 +0000
 Received: from [172.30.20.202] (helo=mx.sourceforge.net)
  by sfs-ml-1.v29.lw.sourceforge.com with esmtps (TLS1.2) tls
  TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384 (Exim 4.94.2)
- (envelope-from <dhowells@redhat.com>) id 1nhUAs-0003aq-8E
- for v9fs-developer@lists.sourceforge.net; Thu, 21 Apr 2022 10:36:33 +0000
+ (envelope-from <linux_oss@crudebyte.com>) id 1nhV73-00037Z-PB
+ for v9fs-developer@lists.sourceforge.net; Thu, 21 Apr 2022 11:36:41 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=sourceforge.net; s=x; h=Message-ID:Date:Content-ID:Content-Type:
- MIME-Version:Subject:Cc:To:References:In-Reply-To:From:Sender:Reply-To:
- Content-Transfer-Encoding:Content-Description:Resent-Date:Resent-From:
- Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:
- List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=CUudNcrJ1xRNDS1+KVl4Z0t857WYmRRKh3nXvmEZfk0=; b=kLxU4v4N8sO2E/IAzHmwo5Vhgn
- NaiqHJIcz8r6mEXAkf1ZLkszW7i9khntGTzCAXlPS0fTqATp+NlsGB6N8SRdinfn6ZSAwaQrJrSdu
- 9EE/g6Brc/LBORrgWKWyOZGygPRiUqxi5k0INDt3AdBjCrx+NPfgrmK6y/XKbw/trw+E=;
+ d=sourceforge.net; s=x; h=Content-Type:Content-Transfer-Encoding:MIME-Version
+ :References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Sender:Reply-To:
+ Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+ Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
+ List-Subscribe:List-Post:List-Owner:List-Archive;
+ bh=FNNPCGuZp8Lz0rHUTjC37djeMue7sNKJl573jlzo1k8=; b=j7dzXIuAbwp7IfnLfERrHYw3r1
+ psU2agqXBG72HbQdSxS7nXMTbUgmzCdW9RtjjLmaOred7Cy+Lr3HjmbA8ZY2ADR+n0jgU8c2DamHf
+ eGpk0c6BCCk+ru1KqG5pH6jkLM/R5egAgvOo7HC5Iw2O/Kzl6vtVAupuBQnWPlMZ/AsU=;
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  ;
- h=Message-ID:Date:Content-ID:Content-Type:MIME-Version:Subject:Cc:To:
- References:In-Reply-To:From:Sender:Reply-To:Content-Transfer-Encoding:
+ h=Content-Type:Content-Transfer-Encoding:MIME-Version:References:
+ In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Sender:Reply-To:Content-ID:
  Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
  :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
  List-Post:List-Owner:List-Archive;
- bh=CUudNcrJ1xRNDS1+KVl4Z0t857WYmRRKh3nXvmEZfk0=; b=L3VZP4HrpvaBsa1zK3DfyyoAZ+
- j00KDpTb1VSbpXpIYMSt0L8Ys0Prf+BlP7qZib9bzd33jrXtRITogJ7DyHloV4bi9LWYrp7hDTusY
- 45BAreTbW6CsMCkPGQlL/6fOnCUnyh2tRrEpDjcsc2KeAEeXuAiHzUmH2Kggb2d2lbso=;
-Received: from us-smtp-delivery-124.mimecast.com ([170.10.133.124])
+ bh=FNNPCGuZp8Lz0rHUTjC37djeMue7sNKJl573jlzo1k8=; b=A0x7BOgu0uSfYLmsYd3jTEWplz
+ Z2lh3wI63L1NgYBIw9P/+L/p+qaVdF8y9CTgajgaUtCrg+IgEfBzkCFDmhZzeEKKti+BIs5nNBVsn
+ HZwF/P8b4GGEkLW77ERbIKVn/6svpIyPlWiUf3evrXyjWZi9DVbORRB/DlE9TQmR2Xy0=;
+Received: from kylie.crudebyte.com ([5.189.157.229])
  by sfi-mx-2.v28.lw.sourceforge.com with esmtps
  (TLS1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.94.2)
- id 1nhUAm-0000Up-UD
- for v9fs-developer@lists.sourceforge.net; Thu, 21 Apr 2022 10:36:33 +0000
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
- s=mimecast20190719; t=1650537382;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:content-type:content-type:
- in-reply-to:in-reply-to:references:references;
- bh=CUudNcrJ1xRNDS1+KVl4Z0t857WYmRRKh3nXvmEZfk0=;
- b=TbmG6Kdw896XkeFz3snxMOvQBC3uPhdoohb8yHsua2yEqY/84VYZKYK8svv7GrRbAt24eM
- T7QSehDklcWYVB1/BAOXnzzjqMrBNCQ8lM+3u3VF4rBS9Lt6rN2mxkd9F64U5s4w5OjqCH
- FIbU14glS4+iC55G/XG/jamK+fQQ2jo=
-Received: from mimecast-mx02.redhat.com (mx3-rdu2.redhat.com
- [66.187.233.73]) by relay.mimecast.com with ESMTP with STARTTLS
- (version=TLSv1.2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- us-mta-626-nLlxoeJ0O0OU8ItYH0q6RA-1; Thu, 21 Apr 2022 06:36:16 -0400
-X-MC-Unique: nLlxoeJ0O0OU8ItYH0q6RA-1
-Received: from smtp.corp.redhat.com (int-mx02.intmail.prod.int.rdu2.redhat.com
- [10.11.54.2])
- (using TLSv1.2 with cipher AECDH-AES256-SHA (256/256 bits))
- (No client certificate requested)
- by mimecast-mx02.redhat.com (Postfix) with ESMTPS id 7DF5D29DD992;
- Thu, 21 Apr 2022 10:36:15 +0000 (UTC)
-Received: from warthog.procyon.org.uk (unknown [10.33.36.13])
- by smtp.corp.redhat.com (Postfix) with ESMTP id C67C140F4940;
- Thu, 21 Apr 2022 10:36:13 +0000 (UTC)
-Organization: Red Hat UK Ltd. Registered Address: Red Hat UK Ltd, Amberley
- Place, 107-111 Peascod Street, Windsor, Berkshire, SI4 1TE, United
- Kingdom.
- Registered in England and Wales under Company Registration No. 3798903
-From: David Howells <dhowells@redhat.com>
-In-Reply-To: <YlySEa6QGmIHlrdG@codewreck.org>
-References: <YlySEa6QGmIHlrdG@codewreck.org>
- <CAAZOf26g-L2nSV-Siw6mwWQv1nv6on8c0fWqB4bKmX73QAFzow@mail.gmail.com>
- <2551609.RCmPuZc3Qn@silver> <YlwOdqVCBZKFTIfC@codewreck.org>
- <8420857.9FB56xACZ5@silver> <YlyFEuTY7tASl8aY@codewreck.org>
-To: asmadeus@codewreck.org
+ id 1nhV70-0002nE-NN
+ for v9fs-developer@lists.sourceforge.net; Thu, 21 Apr 2022 11:36:40 +0000
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+ d=crudebyte.com; s=kylie; h=Content-Type:Content-Transfer-Encoding:
+ MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:
+ Content-ID:Content-Description;
+ bh=FNNPCGuZp8Lz0rHUTjC37djeMue7sNKJl573jlzo1k8=; b=G8jJqvIHUlK3yjNDs1YynTCQmt
+ 4+s4bo8vtzhfyuszq3kDqbQLULDU4yU/BIN/2JVnhRs7mSP8aDFyJ1MvalsjyumV9k8BbqD1EHlIx
+ umI00jWMJ43xZpD52hjz7bxENgf7UkeFFPTYbJyP91ObtU6gHcyCUFsmkF9ylQzeEMQf0d0PwBfF9
+ pij0AFsPP0c3yGjz7gkXZYmGVt2LwcOzCTLoZ9QbNbKCMszKl+rGjZO3dejbh+LoUlecpCUNgVT1R
+ YXW6S2Md6djYuweXelN8dLij3dNJjEXq8YvnAiYZyKvbhjY05+ef6Z5aOF7znKbcRpEhCbF2kZKsY
+ Fk+k9PuAQFMTx700110nBmq27RR+NoS8TQ8zdUIJGjApzrKw7WsTTT14YhdNtjFhMiO2Ujx/1xqym
+ arN7axRG1mYjqPtYjfHAxtwBfFghlIk3Oi67qLm7pVRlLJmSBgkXZE0vYVf2f0ksuHYdWd2RwF1Rl
+ tDzIKZ8eYTKR/ql1tzejxs3XIJ+EX4tz/+G+iQeLvTYqiBxrNEaRD7u8Vm1cMeMfplzOFNva3qE7M
+ QiqqRJ3QJLhSbd69jzvYb/9ECBCgmArpj/MhLOfHXM/latnvmU5eCZWoKgh//wMGAb79M/K488N0u
+ axFiTxfVlQQNYmxe7Q5dLYD0oe8RKaxiFFi5ReBzg=;
+To: asmadeus@codewreck.org, David Howells <dhowells@redhat.com>
+Date: Thu, 21 Apr 2022 13:36:14 +0200
+Message-ID: <1817268.LulUJvKFVv@silver>
+In-Reply-To: <1050016.1650537372@warthog.procyon.org.uk>
+References: <YlySEa6QGmIHlrdG@codewreck.org> <YlyFEuTY7tASl8aY@codewreck.org>
+ <1050016.1650537372@warthog.procyon.org.uk>
 MIME-Version: 1.0
-Content-ID: <1050015.1650537372.1@warthog.procyon.org.uk>
-Date: Thu, 21 Apr 2022 11:36:12 +0100
-Message-ID: <1050016.1650537372@warthog.procyon.org.uk>
-X-Scanned-By: MIMEDefang 2.84 on 10.11.54.2
-X-Spam-Score: -1.5 (-)
+X-Spam-Score: -0.2 (/)
 X-Spam-Report: Spam detection software,
  running on the system "util-spamd-2.v13.lw.sourceforge.com", 
  has NOT identified this incoming email as spam.  The original
  message has been attached to this so you can view it or label
  similar future email.  If you have any questions, see
  the administrator of that system for details.
- Content preview: asmadeus@codewreck.org wrote: > int fd = open(argv[1],
+ Content preview:  On Donnerstag, 21. April 2022 12:36:12 CEST David Howells
+ wrote: > asmadeus@codewreck.org wrote: > > int fd = open(argv[1],
  O_WRONLY|O_APPEND); 
- > if (fd < 0) > return 1; > if (write(fd, "test\n", 5) < 0) I think I need
- to implement the ability to store writes in non-uptodate pages without needing
- to read from the server as NFS does. This may fix the performance drop also.
- Content analysis details:   (-1.5 points, 6.0 required)
+ > > if (fd < 0) > > > > return 1; > > > > if (write(fd, [...] 
+ Content analysis details:   (-0.2 points, 6.0 required)
  pts rule name              description
  ---- ---------------------- --------------------------------------------------
- -0.7 RCVD_IN_DNSWL_LOW      RBL: Sender listed at https://www.dnswl.org/,
- low trust [170.10.133.124 listed in list.dnswl.org]
- 0.0 RCVD_IN_MSPIKE_H5      RBL: Excellent reputation (+5)
- [170.10.133.124 listed in wl.mailspike.net]
  0.0 SPF_HELO_NONE          SPF: HELO does not publish an SPF Record
  -0.0 SPF_PASS               SPF: sender matches SPF record
  -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
@@ -104,9 +81,7 @@ X-Spam-Report: Spam detection software,
  author's domain
  -0.1 DKIM_VALID_EF          Message has a valid DKIM or DK signature from
  envelope-from domain
- 0.0 RCVD_IN_MSPIKE_WL      Mailspike good senders
- -0.6 DKIMWL_WL_HIGH         DKIMwl.org - High trust sender
-X-Headers-End: 1nhUAm-0000Up-UD
+X-Headers-End: 1nhV70-0002nE-NN
 Subject: Re: [V9fs-developer] 9p EBADF with cache enabled (Was: 9p fs-cache
  tests/benchmark (was: 9p fscache Duplicate cookie detected))
 X-BeenThere: v9fs-developer@lists.sourceforge.net
@@ -120,26 +95,40 @@ List-Post: <mailto:v9fs-developer@lists.sourceforge.net>
 List-Help: <mailto:v9fs-developer-request@lists.sourceforge.net?subject=help>
 List-Subscribe: <https://lists.sourceforge.net/lists/listinfo/v9fs-developer>, 
  <mailto:v9fs-developer-request@lists.sourceforge.net?subject=subscribe>
+From: Christian Schoenebeck via V9fs-developer
+ <v9fs-developer@lists.sourceforge.net>
+Reply-To: Christian Schoenebeck <linux_oss@crudebyte.com>
 Cc: lucho@ionkov.net, David Kahurani <k.kahurani@gmail.com>, ericvh@gmail.com,
- netdev@vger.kernel.org, Christian Schoenebeck <linux_oss@crudebyte.com>,
- linux-kernel@vger.kernel.org, Greg Kurz <groug@kaod.org>, dhowells@redhat.com,
+ netdev@vger.kernel.org, linux-kernel@vger.kernel.org,
+ Greg Kurz <groug@kaod.org>, dhowells@redhat.com,
  v9fs-developer@lists.sourceforge.net, kuba@kernel.org, davem@davemloft.net
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: v9fs-developer-bounces@lists.sourceforge.net
 
-asmadeus@codewreck.org wrote:
+On Donnerstag, 21. April 2022 12:36:12 CEST David Howells wrote:
+> asmadeus@codewreck.org wrote:
+> > 	int fd = open(argv[1], O_WRONLY|O_APPEND);
+> > 	if (fd < 0)
+> > 	
+> > 		return 1;
+> > 	
+> > 	if (write(fd, "test\n", 5) < 0)
+> 
+> I think I need to implement the ability to store writes in non-uptodate
+> pages without needing to read from the server as NFS does.  This may fix
+> the performance drop also.
+> 
+> David
 
-> 	int fd = open(argv[1], O_WRONLY|O_APPEND);
-> 	if (fd < 0)
-> 		return 1;
-> 	if (write(fd, "test\n", 5) < 0)
+I hope this does not sound harsh, wouldn't it make sense to revert 
+eb497943fa215897f2f60fd28aa6fe52da27ca6c for now until those issues are sorted 
+out? My concern is that it might take a long time to address them, and these 
+are not minor issues.
 
-I think I need to implement the ability to store writes in non-uptodate pages
-without needing to read from the server as NFS does.  This may fix the
-performance drop also.
+Best regards,
+Christian Schoenebeck
 
-David
 
 
 
