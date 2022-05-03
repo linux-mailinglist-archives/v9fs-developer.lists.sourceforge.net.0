@@ -2,97 +2,79 @@ Return-Path: <v9fs-developer-bounces@lists.sourceforge.net>
 X-Original-To: lists+v9fs-developer@lfdr.de
 Delivered-To: lists+v9fs-developer@lfdr.de
 Received: from lists.sourceforge.net (lists.sourceforge.net [216.105.38.7])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2B5A751847E
-	for <lists+v9fs-developer@lfdr.de>; Tue,  3 May 2022 14:42:50 +0200 (CEST)
-Received: from [127.0.0.1] (helo=sfs-ml-1.v29.lw.sourceforge.com)
-	by sfs-ml-1.v29.lw.sourceforge.com with esmtp (Exim 4.94.2)
+	by mail.lfdr.de (Postfix) with ESMTPS id 68D45518CB6
+	for <lists+v9fs-developer@lfdr.de>; Tue,  3 May 2022 20:59:00 +0200 (CEST)
+Received: from [127.0.0.1] (helo=sfs-ml-2.v29.lw.sourceforge.com)
+	by sfs-ml-2.v29.lw.sourceforge.com with esmtp (Exim 4.94.2)
 	(envelope-from <v9fs-developer-bounces@lists.sourceforge.net>)
-	id 1nlrrZ-0003F0-7F; Tue, 03 May 2022 12:42:45 +0000
+	id 1nlxje-0003cz-5R; Tue, 03 May 2022 18:58:57 +0000
 Received: from [172.30.20.202] (helo=mx.sourceforge.net)
- by sfs-ml-1.v29.lw.sourceforge.com with esmtps (TLS1.2) tls
+ by sfs-ml-2.v29.lw.sourceforge.com with esmtps (TLS1.2) tls
  TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384 (Exim 4.94.2)
- (envelope-from <marco.mannatrizio@tin.it>) id 1nlrrY-0003Ej-6c
- for v9fs-developer@lists.sourceforge.net; Tue, 03 May 2022 12:42:44 +0000
+ (envelope-from <Hanes.Thomas44@asda.co.uk>) id 1nlxjc-0003cp-CL
+ for v9fs-developer@lists.sourceforge.net; Tue, 03 May 2022 18:58:55 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=sourceforge.net; s=x; h=Reply-To:Date:From:To:Subject:Content-Description:
- Content-Transfer-Encoding:MIME-Version:Content-Type:Message-ID:Sender:Cc:
- Content-ID:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:
- Resent-Message-ID:In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:
+ d=sourceforge.net; s=x; h=Content-Transfer-Encoding:Content-Type:MIME-Version
+ :Message-ID:Date:Subject:To:From:Reply-To:Sender:Cc:Content-ID:
+ Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
+ :Resent-Message-ID:In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:
  List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=egpFDdIsSEVq/Vn7MjbZ969I3u/m0errgptSiQumvY8=; b=lFESx5eInv7ag3hkEvb9VsNAyA
- s3NdwcrIcT8KoPjtKI945U8BFIJ6CEKiCn+6z7NcXrg5DDHK9YDm8Sl/b0ia6Y8sjAChVcsb0T0bU
- Vxs8u339+B19YaaBFGUa5K+5rwE78x3aX6vx8oHL2jk/KFJANkfMU4kIVsW4ybU0MsZs=;
+ bh=vk57Xn/TJwoZyL9klKFwmyfRT3WYn5+dQ4cSYQUexUE=; b=JSqX/8P4dip7c7qehFdbm1RNcB
+ 3r3UusUHKIHFxfBfW8PX6p4T8TYHCrupDI0TJWywMc79VkeZN9SWso2m7jxPT8sTSCZEk9IfJYCHf
+ 0HkYrP0s5HfT7Fu2ibluvaHkiP8AN0oyOzefEr36tfyFA2hzlDNV5JTHr2sCw1XSI8T0=;
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
- ; h=Reply-To:Date:From:To:Subject:Content-Description:
- Content-Transfer-Encoding:MIME-Version:Content-Type:Message-ID:Sender:Cc:
- Content-ID:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:
- Resent-Message-ID:In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:
- List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=egpFDdIsSEVq/Vn7MjbZ969I3u/m0errgptSiQumvY8=; b=SC8jTC2Z11cY+94jtjKZDOPj+G
- +/T9HNhRL1/alOPdKLbfofUwhinRYa6MPSw+yrghoLYX/Egj3QDWXErUeBeecjITFrvVDOXW1GL0V
- EGD8pFDrUGcP7tOtnv2WbFP2OsBUt2YnPaaCiiWfgAEAop56qTfsi1noRn8F/rWY/kRE=;
-Received: from mta-out-03.tin.it ([217.169.118.6])
- by sfi-mx-1.v28.lw.sourceforge.com with esmtps
- (TLS1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.94.2)
- id 1nlrrT-00HZdg-TD
- for v9fs-developer@lists.sourceforge.net; Tue, 03 May 2022 12:42:44 +0000
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=tin.it; s=20211207;
- t=1651581760; bh=egpFDdIsSEVq/Vn7MjbZ969I3u/m0errgptSiQumvY8=;
- h=Message-ID:Content-Type:MIME-Version:Content-Transfer-Encoding:Content-Description:Subject:To:From:Date:Reply-To;
- b=HgsWp8iWglQPSuu0AL5yA45CBtkdiyViwdDrQnV/Fvxv6bCaA935qCv4IERVB/ij8LcVN5jjH4TBifuYd70xcsdEBGDszfD60DBHVKinOd7AvvK6ZGerwHFeiWjFbaRrIKBng5F1A3wG9iKRKACN3rk2BSSp1jHW+hsir65eW68Wba2V10kKqM3RdYK8Zeqm8P0i6i9lBR+odyLgjOMlf51nIHYoNUxkWTLkpynM/vaXlByKXklDMkGcH4g8Vb77UeF5rRGM9KHlr/9Kikv963o2VCwuNaJ3sFqk0Fh9zI6Isg5DC2u+ud+Gx/BBUlLSpwZ1UZlm8WNFMeQ719H2Qg==
-X-RazorGate-Vade: gggruggvucftvghtrhhoucdtuddrgedvfedrvdejgdehgecutefuodetggdotefrodftvfcurfhrohhfihhlvgemucfvgffngfevqffokffvtefnkfetpdfqfgfvnecuuegrihhlohhuthemuceftddunecunecujfgurheptggggffuvffhffhrsehtqhdttddttddunecuhfhrohhmpedftehllhgvnhcufdcuoehmrghrtghordhmrghnnhgrthhrihiiihhosehtihhnrdhitheqnecuggftrfgrthhtvghrnhepleduheefhfehtedvfedttdffgeehffdtjeetueetjeevteefgfefuefggfefffejnecukfhppeduleegrdefuddrleekrdduuddunecuvehluhhsthgvrhfuihiivgepkedtgedunecurfgrrhgrmhephhgvlhhopegludelgedrfedurdelkedrudduudgnpdhinhgvthepudelgedrfedurdelkedrudduuddpmhgrihhlfhhrohhmpehmrghrtghordhmrghnnhgrthhrihiiihhosehtihhnrdhithdpnhgspghrtghpthhtohepuddprhgtphhtthhopehvlehfshdquggvvhgvlhhophgvrheslhhishhtshdrshhouhhrtggvfhhorhhgvgdrnhgvth
-X-RazorGate-Vade-Verdict: clean 0
-X-RazorGate-Vade-Classification: clean
-Received: from [194.31.98.111] (194.31.98.111) by mta-out-03.tin.it
- (5.8.807.04) (authenticated as marco.mannatrizio@tin.it)
- id 624C210703799485 for v9fs-developer@lists.sourceforge.net;
- Tue, 3 May 2022 14:42:32 +0200
-Message-ID: <624C210703799485@mta-out-03.tin.it> (added by postmaster@tin.it)
-MIME-Version: 1.0
-Content-Description: Mail message body
+ ;
+ h=Content-Transfer-Encoding:Content-Type:MIME-Version:Message-ID:Date:
+ Subject:To:From:Reply-To:Sender:Cc:Content-ID:Content-Description:Resent-Date
+ :Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:
+ References:List-Id:List-Help:List-Unsubscribe:List-Subscribe:List-Post:
+ List-Owner:List-Archive; bh=vk57Xn/TJwoZyL9klKFwmyfRT3WYn5+dQ4cSYQUexUE=; b=P
+ gYjdYuSNau3hk6vW5avZ5UbBNEw0Mlj01tnDsURKKPpwvk7ZL+xHcmnrVK2osJ4fxe99c5GbPNv6h
+ hlXg91WEvqirtMcFQQCrcNap64co5r7zejGDVEgQqYwDW5WSBRVhgGvWA0o8QgzamojJnQPY9KsgP
+ p/0kvOOfV/xVERwE=;
+Received: from mail.77msk.ru ([84.204.203.133])
+ by sfi-mx-2.v28.lw.sourceforge.com with esmtp (Exim 4.94.2)
+ id 1nlxja-0007Ia-Ht
+ for v9fs-developer@lists.sourceforge.net; Tue, 03 May 2022 18:58:55 +0000
+Received: from mail.77msk.ru (proxysrv.domain007.com [192.168.2.20])
+ by hermes.domain007.com (Postfix) with ESMTP id 7380AFE6C72
+ for <v9fs-developer@lists.sourceforge.net>;
+ Tue,  3 May 2022 21:28:26 +0300 (MSK)
+Received: from asda.co.uk (unknown [20.97.211.134])
+ by gatekeeper.domain007.com (Postfix) with ESMTPSA id 0AEB73200AE
+ for <v9fs-developer@lists.sourceforge.net>;
+ Tue,  3 May 2022 21:28:25 +0300 (MSK)
+From: ASDA Stores Limited <Hanes.Thomas44@asda.co.uk>
 To: v9fs-developer@lists.sourceforge.net
-From: "Allen " <marco.mannatrizio@tin.it>
-Date: Tue, 03 May 2022 05:42:32 -0700
-X-Spam-Score: 4.6 (++++)
+Date: 03 May 2022 18:28:25 +0000
+Message-ID: <20220503141536.0A97F7EBC49C68C2@asda.co.uk>
+MIME-Version: 1.0
+X-Virus-Scanned: clamav-milter 0.102.4 at hermes
+X-Virus-Status: Clean
+X-Spam-Score: 6.6 (++++++)
 X-Spam-Report: Spam detection software,
  running on the system "util-spamd-2.v13.lw.sourceforge.com", 
- has NOT identified this incoming email as spam.  The original
+ has identified this incoming email as possible spam.  The original
  message has been attached to this so you can view it or label
  similar future email.  If you have any questions, see
  the administrator of that system for details.
- Content preview:  H e l l o,
- I lead family investment vehicles who want to invest
- a proportion of their funds with a trust party . Please are you interested
- in discussing investment in your sector? 
- Content analysis details:   (4.6 points, 6.0 required)
+ Content preview: Dear v9fs-developer We are interested in having some of your
+ hot selling product in our stores and outlets spread all over United Kingdom, 
+ Northern Island and Africa. ASDA Stores Limited is one of the highest- ranking
+ Wh [...] Content analysis details:   (6.6 points, 6.0 required)
  pts rule name              description
  ---- ---------------------- --------------------------------------------------
- -0.7 RCVD_IN_DNSWL_LOW      RBL: Sender listed at https://www.dnswl.org/,
- low trust [217.169.118.6 listed in list.dnswl.org]
- 1.2 RCVD_IN_BL_SPAMCOP_NET RBL: Received via a relay in
- bl.spamcop.net
- [Blocked - see <https://www.spamcop.net/bl.shtml?194.31.98.111>]
+ 2.7 RCVD_IN_PSBL           RBL: Received via a relay in PSBL
+ [84.204.203.133 listed in psbl.surriel.com]
  1.0 RCVD_IN_UCE1           RBL: IP Listed in UCEPROTECT Level 1
- [217.169.118.6 listed in dnsbl-1.uceprotect.net]
- 0.2 FREEMAIL_REPLYTO_END_DIGIT Reply-To freemail username ends in
- digit [jeromehpowell411[at]gmail.com]
- -0.0 SPF_PASS               SPF: sender matches SPF record
- 0.0 FREEMAIL_FROM          Sender email is commonly abused enduser mail
- provider [marco.mannatrizio[at]tin.it]
+ [84.204.203.133 listed in dnsbl-1.uceprotect.net]
+ 1.0 SPF_SOFTFAIL           SPF: sender does not match SPF record (softfail)
  0.0 SPF_HELO_NONE          SPF: HELO does not publish an SPF Record
- -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
- -0.1 DKIM_VALID_AU          Message has a valid DKIM or DK signature from
- author's domain
- -0.1 DKIM_VALID_EF          Message has a valid DKIM or DK signature from
- envelope-from domain
- 0.1 DKIM_SIGNED            Message has a DKIM or DK signature, not necessarily
- valid 2.0 PYZOR_CHECK            Listed in Pyzor
+ 2.0 PYZOR_CHECK            Listed in Pyzor
  (https://pyzor.readthedocs.io/en/latest/)
  -0.0 T_SCC_BODY_TEXT_LINE   No description available.
- 1.0 FREEMAIL_REPLYTO       Reply-To/From or Reply-To/body contain
- different freemails
-X-Headers-End: 1nlrrT-00HZdg-TD
-Subject: [V9fs-developer] opportunity
+X-Headers-End: 1nlxja-0007Ia-Ht
+Subject: [V9fs-developer] ASDA Procurement order
 X-BeenThere: v9fs-developer@lists.sourceforge.net
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -104,24 +86,26 @@ List-Post: <mailto:v9fs-developer@lists.sourceforge.net>
 List-Help: <mailto:v9fs-developer-request@lists.sourceforge.net?subject=help>
 List-Subscribe: <https://lists.sourceforge.net/lists/listinfo/v9fs-developer>, 
  <mailto:v9fs-developer-request@lists.sourceforge.net?subject=subscribe>
-Reply-To: jeromehpowell411@gmail.com
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Reply-To: sales@asdaa.uk
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: v9fs-developer-bounces@lists.sourceforge.net
 
-H e l l o,
-
-I lead family investment vehicles who want to invest a proportion of their funds with a trust party .
-
-Please are you interested in discussing investment in your sector?
-
-Please email, or simply write to me here. jeromehpowell411@gmail.com I value promptness and will make every attempt to respond within a short time.
-
-Thank you.
-Allen S.
-
-
-_______________________________________________
-V9fs-developer mailing list
-V9fs-developer@lists.sourceforge.net
-https://lists.sourceforge.net/lists/listinfo/v9fs-developer
+RGVhciB2OWZzLWRldmVsb3BlcgoKV2UgYXJlIGludGVyZXN0ZWQgaW4gaGF2aW5nIHNvbWUgb2Yg
+eW91ciBob3Qgc2VsbGluZyBwcm9kdWN0IGluIApvdXIgc3RvcmVzIGFuZCBvdXRsZXRzIHNwcmVh
+ZCBhbGwgb3ZlciBVbml0ZWQgS2luZ2RvbSwgTm9ydGhlcm4gCklzbGFuZCBhbmQgQWZyaWNhLiBB
+U0RBIFN0b3JlcyBMaW1pdGVkIGlzIG9uZSBvZiB0aGUgaGlnaGVzdC0KcmFua2luZyBXaG9sZXNh
+bGUgJiBSZXRhaWwgb3V0bGV0cyBpbiB0aGUgVW5pdGVkIEtpbmdkb20uIAogIApXZSBzaGFsbCBm
+dXJuaXNoIG91ciBkZXRhaWxlZCBjb21wYW55IHByb2ZpbGUgaW4gb3VyIG5leHQgCmNvcnJlc3Bv
+bmRlbnQuIEhvd2V2ZXIsIGl0IHdvdWxkIGJlIGFwcHJlY2lhdGVkIGlmIHlvdSBjYW4gc2VuZCAK
+dXMgeW91ciBjYXRhbG9nIHRocm91Z2ggZW1haWwgdG8gbGVhcm4gbW9yZSBhYm91dCB5b3VyIGNv
+bXBhbnkncyAKcHJvZHVjdHMgYW5kIHdob2xlc2FsZSBxdW90ZS4gSXQgaXMgaG9wZWZ1bCB0aGF0
+IHdlIGNhbiBzdGFydCBhIAp2aWFibGUgbG9uZy1sYXN0aW5nIGJ1c2luZXNzIHJlbGF0aW9uc2hp
+cCAocGFydG5lcnNoaXApIHdpdGggeW91LiAgCiAgCiAgCllvdXIgcHJvbXB0IHJlc3BvbnNlIHdv
+dWxkIGJlIGRlbGlnaHRmdWxseSBhcHByZWNpYXRlZC4gCiAgCkJlc3QgV2lzaGVzIAogIAogIApI
+YW5lcyBTLiBUaG9tYXMgClByb2N1cmVtZW50IE9mZmljZS4gCkFTREEgU3RvcmVzIExpbWl0ZWQg
+ClRlbDogICsgNDQgLSA3NDUxMjcxNjUwIApXaGF0c0FwcDogKyA0NCDigJMgNzQ0MTQ0MDM2MCAK
+V2Vic2l0ZTogd3d3LmFzZGEuY28udWsKCgpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fXwpWOWZzLWRldmVsb3BlciBtYWlsaW5nIGxpc3QKVjlmcy1kZXZlbG9w
+ZXJAbGlzdHMuc291cmNlZm9yZ2UubmV0Cmh0dHBzOi8vbGlzdHMuc291cmNlZm9yZ2UubmV0L2xp
+c3RzL2xpc3RpbmZvL3Y5ZnMtZGV2ZWxvcGVyCg==
