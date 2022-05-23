@@ -2,79 +2,72 @@ Return-Path: <v9fs-developer-bounces@lists.sourceforge.net>
 X-Original-To: lists+v9fs-developer@lfdr.de
 Delivered-To: lists+v9fs-developer@lfdr.de
 Received: from lists.sourceforge.net (lists.sourceforge.net [216.105.38.7])
-	by mail.lfdr.de (Postfix) with ESMTPS id 59EC2530E82
-	for <lists+v9fs-developer@lfdr.de>; Mon, 23 May 2022 13:05:55 +0200 (CEST)
-Received: from [127.0.0.1] (helo=sfs-ml-1.v29.lw.sourceforge.com)
-	by sfs-ml-1.v29.lw.sourceforge.com with esmtp (Exim 4.94.2)
+	by mail.lfdr.de (Postfix) with ESMTPS id C8581531564
+	for <lists+v9fs-developer@lfdr.de>; Mon, 23 May 2022 20:01:48 +0200 (CEST)
+Received: from [127.0.0.1] (helo=sfs-ml-2.v29.lw.sourceforge.com)
+	by sfs-ml-2.v29.lw.sourceforge.com with esmtp (Exim 4.94.2)
 	(envelope-from <v9fs-developer-bounces@lists.sourceforge.net>)
-	id 1nt5sm-0001Ab-Qe; Mon, 23 May 2022 11:05:53 +0000
+	id 1ntCNG-0002YJ-NZ; Mon, 23 May 2022 18:01:45 +0000
 Received: from [172.30.20.202] (helo=mx.sourceforge.net)
- by sfs-ml-1.v29.lw.sourceforge.com with esmtps (TLS1.2) tls
+ by sfs-ml-2.v29.lw.sourceforge.com with esmtps (TLS1.2) tls
  TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384 (Exim 4.94.2)
- (envelope-from <jlayton@kernel.org>) id 1nt5sk-00019s-Kk
- for v9fs-developer@lists.sourceforge.net; Mon, 23 May 2022 11:05:51 +0000
+ (envelope-from <qemu_oss@crudebyte.com>) id 1ntCNE-0002YB-Cc
+ for v9fs-developer@lists.sourceforge.net; Mon, 23 May 2022 18:01:44 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=sourceforge.net; s=x; h=MIME-Version:Content-Transfer-Encoding:Content-Type
- :References:In-Reply-To:Date:Cc:To:From:Subject:Message-ID:Sender:Reply-To:
+ d=sourceforge.net; s=x; h=Content-Type:Content-Transfer-Encoding:MIME-Version
+ :References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Sender:Reply-To:
  Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
  Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
  List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=EdLcKfbCVThSAKV/Z0YYk7oUaXDqnxKSmBb3mVYsWUE=; b=HU2ULSad6rMWPBD5/kRlmfg1Lf
- 9KLC9EdGGY+gSVDFOJe1Jlc/2/7LkxggQRvRYi35Kd5hcshvOnsayXTVy3FUcEjzpUqhYVfRKaqZp
- Co18Mo1khRdlUSVXJwCA1gbFiPoYSEgohpbO6w1/5J5QUDOizGPKe7YjpL4DIadQhbSI=;
+ bh=kdOaPNqdKiUqGPqTepXude0v1LHBppL38xhTNFAbyUE=; b=K2Jd11EbV/3SAWY81ZLZRhm+aF
+ /ybWotlQUynQyjlv5tF9kycbCVpPgmhsYtt9uvSbqdUGFKRJzdAN1AyaDHYSFhWtoFC13Lb0NvqXh
+ mBPdNr5YaiQ3TrKk7Kd9U3bfqSEqxfkh7ky/cl4JCO4NoBJCWAM049emmLBAQefAFzrU=;
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  ;
- h=MIME-Version:Content-Transfer-Encoding:Content-Type:References:
- In-Reply-To:Date:Cc:To:From:Subject:Message-ID:Sender:Reply-To:Content-ID:
+ h=Content-Type:Content-Transfer-Encoding:MIME-Version:References:
+ In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Sender:Reply-To:Content-ID:
  Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
  :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
  List-Post:List-Owner:List-Archive;
- bh=EdLcKfbCVThSAKV/Z0YYk7oUaXDqnxKSmBb3mVYsWUE=; b=fA56UB5FBvkXKLMXzC+ic214gD
- Ixu1bcgwj1JhvvYQu5wSo+6pZvmaS28bfgVXEN1Gx9H171UwDi/ek7GYNkQFM3eY+ZqucPwMkJs/h
- CehxYDRTuRBw8HJXbBnTmkSwyKEGC6W9/JOWYsLiRticlf6K+FPTTLLcfBUaTtw9E6kA=;
-Received: from dfw.source.kernel.org ([139.178.84.217])
- by sfi-mx-2.v28.lw.sourceforge.com with esmtps
+ bh=kdOaPNqdKiUqGPqTepXude0v1LHBppL38xhTNFAbyUE=; b=k2XXMLWki07lW1FOtgtI4LGLWR
+ 2rKpmCdX7qIv2083/NQX3DmcLiwSWaGniBDLH/hiHa/si7zQZEkLdlClT0PembrjKGvDH9uUnZbvg
+ dCX/LNUPiLk2nP0IiDM0Zo5DDxkBxWOAgCMm+8/nIZtQsx2etke1sMaIkthzjjYrId40=;
+Received: from kylie.crudebyte.com ([5.189.157.229])
+ by sfi-mx-1.v28.lw.sourceforge.com with esmtps
  (TLS1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.94.2)
- id 1nt5sg-0003AT-Lg
- for v9fs-developer@lists.sourceforge.net; Mon, 23 May 2022 11:05:50 +0000
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
- (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
- (No client certificate requested)
- by dfw.source.kernel.org (Postfix) with ESMTPS id A583060F84;
- Mon, 23 May 2022 11:05:35 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1D4DFC385A9;
- Mon, 23 May 2022 11:05:33 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1653303935;
- bh=EdLcKfbCVThSAKV/Z0YYk7oUaXDqnxKSmBb3mVYsWUE=;
- h=Subject:From:To:Cc:Date:In-Reply-To:References:From;
- b=LAHnKRPIkbkfMVNjbAyfzyBGCdi2KgHR9Hk21uKh5rihEuvZS73c5L0mfGt0ucm7C
- cueg4jQS56PHv16C855VGL/+3WwpoUBquCXt/dM9L8motbs7R1uZAzh2zvBQ5Z4tNM
- ehS3+qSQ+H2QZvBJdHf+Rexpb+vkHupp9+p90ctoOrXkv5V0UBeLy7zNpI2WYGj5m8
- ICzukBSSGbTSVoiy6SRD/xP4usqk3sQEppvYkY04GvA7MTr/O3kezVFU9SI5n7x8KQ
- n1LoOx7Ete/Rb6ZvfbwaHETb2AY7VCyQdaiRjgwYv6Xza70EnVloWYW5X/zxQOScwN
- BZA0HmWFceqrw==
-Message-ID: <e4fcdf88a9b35a9f1ca6e75fdf75ad469f824380.camel@kernel.org>
-From: Jeff Layton <jlayton@kernel.org>
-To: David Howells <dhowells@redhat.com>
-Date: Mon, 23 May 2022 07:05:31 -0400
-In-Reply-To: <658391.1653302817@warthog.procyon.org.uk>
-References: <1b5daa4695b62795b617049e32c784052deabad4.camel@kernel.org>
- <165305805651.4094995.7763502506786714216.stgit@warthog.procyon.org.uk>
- <658391.1653302817@warthog.procyon.org.uk>
-User-Agent: Evolution 3.44.1 (3.44.1-1.fc36) 
+ id 1ntCN8-002ysG-22
+ for v9fs-developer@lists.sourceforge.net; Mon, 23 May 2022 18:01:43 +0000
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+ d=crudebyte.com; s=kylie; h=Content-Type:Content-Transfer-Encoding:
+ MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:
+ Content-ID:Content-Description;
+ bh=kdOaPNqdKiUqGPqTepXude0v1LHBppL38xhTNFAbyUE=; b=JFgRBwGvqStc/xVkxZN1fSAgNI
+ eoeei7L1fZ2sul7FXSHr1xAG5XHoKLc3P9YsQeH4W3SZhO0xWCXJJOiXyyTGCf3z5cowiATentBeT
+ ndpFHvaIAP4qcSLaZkRigQWE++Wtc/C8eeT2fsVxJhOvjo3FmLSR0Tqxa4G3wiqJra0T9kmtwJPhc
+ OVXC8q1IGfcerbwhca97OkTFuK7igLWk6048kz8aKrbjn+zSir21oG/aUxa85ZBdgpspT9nzUlFQc
+ of+YJ+muE3Kc2v8OZClQotwRyVp6Mw4Ub4D0pmOWzj1TTh2iwLSUctqH1MJwIE7KnVkHOY8jI+PeI
+ UzGWzXO7Tune+mjnH0oxIRuOLqr5y93m2iB6KPrNyLzneTJelcJRl4D4HqGK8az4isVKT4vg47tbq
+ 7zKwrZl6gi5zDkCr4lsx0rOEDgRrXFspjFDKRScxA8A06lR3G1pdjaTHMm0oB//byzf0A+oWkptnO
+ MVePdl1LLPVNcPMiQmfUh99FYyXoiuAfh8EDMvm949esGEGCWFRM194LlPYx61A7Xuai+MOu7Uc1s
+ Y2Rr94yywbsz5ugOX85CeUvUE/ZBOToXlAPjFJfD2ajRCqSUtOTofTv/JYvRcSxVIhrGSUCG+Ysr1
+ hsDCvgiT3HHzNQpIXMO9ytusaKgOYCRzFwgQrTXME=;
+To: qemu-devel@nongnu.org
+Date: Mon, 23 May 2022 19:59:55 +0200
+Message-ID: <6485122.aT25ngTQys@silver>
+In-Reply-To: <YmMItCb97KqegQw5@codewreck.org>
+References: <1757498.AyhHxzoH2B@silver> <YmMItCb97KqegQw5@codewreck.org>
 MIME-Version: 1.0
-X-Spam-Score: -5.9 (-----)
+X-Spam-Score: -0.2 (/)
 X-Spam-Report: Spam detection software,
  running on the system "util-spamd-2.v13.lw.sourceforge.com", 
  has NOT identified this incoming email as spam.  The original
  message has been attached to this so you can view it or label
  similar future email.  If you have any questions, see
  the administrator of that system for details.
- Content preview:  On Mon, 2022-05-23 at 11:46 +0100, David Howells wrote: >
- Jeff Layton <jlayton@kernel.org> wrote: > > > > > Note that there are some
- conflicts between this patch and some of the > > patches in the cur [...]
- Content analysis details:   (-5.9 points, 6.0 required)
+ Content preview:  On Freitag, 22. April 2022 21:57:40 CEST Dominique Martinet
+ wrote: > Christian Schoenebeck wrote on Fri, Apr 22, 2022 at 08:02:46PM +0200:
+ > > So maybe it's better to handle case-insensitivity entirel [...] 
+ Content analysis details:   (-0.2 points, 6.0 required)
  pts rule name              description
  ---- ---------------------- --------------------------------------------------
  0.0 SPF_HELO_NONE          SPF: HELO does not publish an SPF Record
@@ -85,14 +78,10 @@ X-Spam-Report: Spam detection software,
  -0.1 DKIM_VALID_AU          Message has a valid DKIM or DK signature from
  author's domain
  0.1 DKIM_SIGNED            Message has a DKIM or DK signature, not necessarily
- valid
- -5.0 RCVD_IN_DNSWL_HI       RBL: Sender listed at https://www.dnswl.org/,
- high trust [139.178.84.217 listed in list.dnswl.org]
- -0.0 T_SCC_BODY_TEXT_LINE   No description available.
- -0.6 DKIMWL_WL_HIGH         DKIMwl.org - High trust sender
-X-Headers-End: 1nt5sg-0003AT-Lg
-Subject: Re: [V9fs-developer] [PATCH v2] netfs: Fix gcc-12 warning by
- embedding vfs inode in netfs_i_context
+ valid -0.0 T_SCC_BODY_TEXT_LINE   No description available.
+X-Headers-End: 1ntCN8-002ysG-22
+Subject: Re: [V9fs-developer] [RFC PATCH] 9p: case-insensitive host
+ filesystems
 X-BeenThere: v9fs-developer@lists.sourceforge.net
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -104,42 +93,63 @@ List-Post: <mailto:v9fs-developer@lists.sourceforge.net>
 List-Help: <mailto:v9fs-developer-request@lists.sourceforge.net?subject=help>
 List-Subscribe: <https://lists.sourceforge.net/lists/listinfo/v9fs-developer>, 
  <mailto:v9fs-developer-request@lists.sourceforge.net?subject=subscribe>
-Cc: Latchesar Ionkov <lucho@ionkov.net>, linux-cifs@vger.kernel.org,
- William Kucharski <william.kucharski@oracle.com>, keescook@chromium.org,
- Jonathan Corbet <corbet@lwn.net>, Eric Van Hensbergen <ericvh@gmail.com>,
- samba-technical@lists.samba.org,
- Christian Schoenebeck <linux_oss@crudebyte.com>, linux-doc@vger.kernel.org,
- linux-kernel@vger.kernel.org,
- "Matthew Wilcox \(Oracle\)" <willy@infradead.org>,
- Steve French <smfrench@gmail.com>, ceph-devel@vger.kernel.org,
- linux-hardening@vger.kernel.org, Marc Dionne <marc.dionne@auristor.com>,
- v9fs-developer@lists.sourceforge.net, Ilya Dryomov <idryomov@gmail.com>,
- Xiubo Li <xiubli@redhat.com>, linux-afs@lists.infradead.org,
- linux-fsdevel@vger.kernel.org
+From: Christian Schoenebeck via V9fs-developer
+ <v9fs-developer@lists.sourceforge.net>
+Reply-To: Christian Schoenebeck <qemu_oss@crudebyte.com>
+Cc: Latchesar Ionkov <lucho@ionkov.net>, qemu-devel@nongnu.org,
+ Eric Van Hensbergen <ericvh@gmail.com>, netdev@vger.kernel.org,
+ Greg Kurz <groug@kaod.org>, linux-kernel@vger.kernel.org,
+ Keno Fischer <keno@juliacomputing.com>,
+ Michael Roitzsch <reactorcontrol@icloud.com>, Will Cohen <wwcohen@gmail.com>,
+ v9fs-developer@lists.sourceforge.net
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: v9fs-developer-bounces@lists.sourceforge.net
 
-On Mon, 2022-05-23 at 11:46 +0100, David Howells wrote:
-> Jeff Layton <jlayton@kernel.org> wrote:
+On Freitag, 22. April 2022 21:57:40 CEST Dominique Martinet wrote:
+> Christian Schoenebeck wrote on Fri, Apr 22, 2022 at 08:02:46PM +0200:
+> > So maybe it's better to handle case-insensitivity entirely on client side?
+> > I've read that some generic "case fold" code has landed in the Linux
+> > kernel
+> > recently that might do the trick?
 > 
-> > 
-> > Note that there are some conflicts between this patch and some of the
-> > patches in the current ceph-client/testing branch. Depending on the
-> > order of merge, one or the other will need to be fixed.
-> 
-> Do you think it could be taken through the ceph tree?
-> 
-> David
-> 
+> I haven't tried, but settings S_CASEFOLD on every inodes i_flags might do
+> what you want client-side.
+> That's easy enough to test and could be a mount option
 
-Since this touches a lot of non-ceph code, it may be best to just plan
-to merge it ASAP, and we'll just base our merge branch on top of it.
+I just made a quick test using:
 
-Ilya/Xiubo, do you have an opinion here?
+diff --git a/fs/9p/vfs_inode.c b/fs/9p/vfs_inode.c
+index 08f48b70a741..5d8e77daed53 100644
+--- a/fs/9p/vfs_inode.c
++++ b/fs/9p/vfs_inode.c
+@@ -257,6 +257,7 @@ int v9fs_init_inode(struct v9fs_session_info *v9ses,
+        inode->i_atime = inode->i_mtime = inode->i_ctime = 
+current_time(inode);
+        inode->i_mapping->a_ops = &v9fs_addr_operations;
+        inode->i_private = NULL;
++       inode->i_flags |= S_CASEFOLD;
  
--- 
-Jeff Layton <jlayton@kernel.org>
+        switch (mode & S_IFMT) {
+        case S_IFIFO:
+
+Unfortunately that did not help much. I still get EEXIST error e.g. when 
+trying 'ln -s foo FOO'.
+
+I am not sure though whether there would be more code places to touch or 
+whether that's even the expected behaviour with S_CASEFOLD for some reason.
+
+> Even with that it's possible to do a direct open without readdir first
+> if one knows the path and I that would only be case-insensitive if the
+> backing server is case insensitive though, so just setting the option
+> and expecting it to work all the time might be a little bit
+> optimistic... I believe guess that should be an optimization at best.
+> 
+> Ideally the server should tell the client they are casefolded somehow,
+> but 9p doesn't have any capability/mount time negotiation besides msize
+> so that's difficult with the current protocol.
+
+
 
 
 _______________________________________________
