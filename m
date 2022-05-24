@@ -2,82 +2,90 @@ Return-Path: <v9fs-developer-bounces@lists.sourceforge.net>
 X-Original-To: lists+v9fs-developer@lfdr.de
 Delivered-To: lists+v9fs-developer@lfdr.de
 Received: from lists.sourceforge.net (lists.sourceforge.net [216.105.38.7])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2AAAE53271F
-	for <lists+v9fs-developer@lfdr.de>; Tue, 24 May 2022 12:12:29 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5E557532901
+	for <lists+v9fs-developer@lfdr.de>; Tue, 24 May 2022 13:30:40 +0200 (CEST)
 Received: from [127.0.0.1] (helo=sfs-ml-1.v29.lw.sourceforge.com)
 	by sfs-ml-1.v29.lw.sourceforge.com with esmtp (Exim 4.94.2)
 	(envelope-from <v9fs-developer-bounces@lists.sourceforge.net>)
-	id 1ntRWc-000299-HL; Tue, 24 May 2022 10:12:26 +0000
+	id 1ntSkG-0007Ig-8h; Tue, 24 May 2022 11:30:36 +0000
 Received: from [172.30.20.202] (helo=mx.sourceforge.net)
  by sfs-ml-1.v29.lw.sourceforge.com with esmtps (TLS1.2) tls
  TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384 (Exim 4.94.2)
- (envelope-from <david@fromorbit.com>) id 1ntRWa-00028u-Ui
- for v9fs-developer@lists.sourceforge.net; Tue, 24 May 2022 10:12:25 +0000
+ (envelope-from <linux_oss@crudebyte.com>) id 1ntSkD-0007IH-Hk
+ for v9fs-developer@lists.sourceforge.net; Tue, 24 May 2022 11:30:34 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=sourceforge.net; s=x; h=In-Reply-To:Content-Type:MIME-Version:References:
- Message-ID:Subject:Cc:To:From:Date:Sender:Reply-To:Content-Transfer-Encoding:
+ d=sourceforge.net; s=x; h=Content-Type:Content-Transfer-Encoding:MIME-Version
+ :References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Sender:Reply-To:
  Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
  Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
  List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=xjn3woZafueIvznyfSNHf0sDJNqxP0Hu9ovL6jXS4IY=; b=cjv/NSonpLvNEnFf5ajs8AKB3r
- SRyPP11ibF0rvSI7leWVk/l7QvsHocs/yv/BA76nHbRGquCmKoci1Wc7umqU1D5sfWK6SwLb1aNgc
- Gtl7JeybwBwDvfJo0rzVnHws4TZWkf27k/vZMKYr9tKXc0CaM0JmWZI18GgfvT+nbw3A=;
+ bh=d993qO1M6uJRVL7vFommU2cm1CrcueVdWyz7bnjmjWQ=; b=A58cwMTMaGNfuI9mmIgNLCYmGf
+ xn5MXvkE/xufMQrXuvtBQQtsYt+udS/GC6IZD0IcimNVLvdSmJrFu8pJ8QTsLBm7HrBZjxPrPOdgo
+ a11sVLpx4rjNBEnWoYehX1n5Iqi3tVeMNCfZH3AAinEXzkY8cgdPVsOSmbq45oPjSjds=;
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  ;
- h=In-Reply-To:Content-Type:MIME-Version:References:Message-ID:Subject:Cc:To
- :From:Date:Sender:Reply-To:Content-Transfer-Encoding:Content-ID:
+ h=Content-Type:Content-Transfer-Encoding:MIME-Version:References:
+ In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Sender:Reply-To:Content-ID:
  Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
  :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
  List-Post:List-Owner:List-Archive;
- bh=xjn3woZafueIvznyfSNHf0sDJNqxP0Hu9ovL6jXS4IY=; b=QgwEMKZ4kHYns+kD1OmgI7RPDg
- OJkwe9lTO0EEFJQNNYTaYFaPTtHr/a8XcFCfgMNQRMcWwx1bZlsv1n5YuVmjDYhk/2rvYswC/CdCl
- EEZWcBEIV12LJDbD5s6eXwX/sPKMe49d9EgmZJsljqspizvYIdBwi38QMn6lK5nik60o=;
-Received: from mail105.syd.optusnet.com.au ([211.29.132.249])
- by sfi-mx-1.v28.lw.sourceforge.com with esmtp (Exim 4.94.2)
- id 1ntRWZ-004hmo-St
- for v9fs-developer@lists.sourceforge.net; Tue, 24 May 2022 10:12:25 +0000
-Received: from dread.disaster.area (pa49-181-2-147.pa.nsw.optusnet.com.au
- [49.181.2.147])
- by mail105.syd.optusnet.com.au (Postfix) with ESMTPS id 901C410E66B1;
- Tue, 24 May 2022 20:12:06 +1000 (AEST)
-Received: from dave by dread.disaster.area with local (Exim 4.92.3)
- (envelope-from <david@fromorbit.com>)
- id 1ntRWH-00Fn9P-Gs; Tue, 24 May 2022 20:12:05 +1000
-Date: Tue, 24 May 2022 20:12:05 +1000
-From: Dave Chinner <david@fromorbit.com>
-To: David Howells <dhowells@redhat.com>
-Message-ID: <20220524101205.GI2306852@dread.disaster.area>
-References: <165305805651.4094995.7763502506786714216.stgit@warthog.procyon.org.uk>
+ bh=d993qO1M6uJRVL7vFommU2cm1CrcueVdWyz7bnjmjWQ=; b=mhF4uG3RevpqxL72EXw/scir6z
+ YyhTmsgIwHJCxCud9zbDq7IiI8PLUJ3PJiw6N75WhV7l2wHz0o/jKWXvDsQ0QcFkKVec3V7qrjCcA
+ t4P1FCpeM7NSAgXsZK7hC9BIvEojtTNq8PdSjnVmneQEfXAV7GVIB8GnbHeuoFdr/tuI=;
+Received: from kylie.crudebyte.com ([5.189.157.229])
+ by sfi-mx-2.v28.lw.sourceforge.com with esmtps
+ (TLS1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.94.2)
+ id 1ntSk9-0006Y8-Fu
+ for v9fs-developer@lists.sourceforge.net; Tue, 24 May 2022 11:30:33 +0000
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+ d=crudebyte.com; s=kylie; h=Content-Type:Content-Transfer-Encoding:
+ MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:
+ Content-ID:Content-Description;
+ bh=d993qO1M6uJRVL7vFommU2cm1CrcueVdWyz7bnjmjWQ=; b=ZWOhwa8dIWaLynxqpKMd9oYmxi
+ 2jUo9cDHxRlrLja8c52bchWZrBfxNFTdhzuP0bfE9NuuS5HMke69wr63zyHuHAv65BHYQZDCHh1a7
+ mU0SAhzkRS9+GoUURFV1S9VWSfJb/A9OoZ21lawBhLza0rTh+OgL+Ztcth0J1CzoXuUgMmHB56j8J
+ SYp6X1/TbZDp+WtMBT0HFRE7TKcJXBxfdaxi3mGd84PKyYpig7eb5YtSLzIQKwqLylLNZMZP21aHu
+ GkxapMb7JrnZrIdH8gC8HmvufHtIbDpt+6jzwqdhjGWKpzullwRzOGpmv2MAXJdK6UGTRTbotnh6F
+ 4C/oi6LuGn1Yukt70ZZT0iMhnkM94+Y5Bj8L6XcUO3Jg/GNPiqgF4F4JjLsUioYVhPacDFYCApIt8
+ V6AVAl5FgX4Zduu4sy57baB/730X55lNgCsK3Js4ii4wfccjGiJ+TtzAvbdH4V+aD2DM7wDq/1v6B
+ q6Cgz8wVHv7jtOtgxfW959SsSoffALZu7h6eK1X0IiTqAR4Ulmfo+SNxIIZv2VjsVAk7UkYFrZiUY
+ bdID9VhoQBMeYfniLtIHahsT7jVRoDwf2ld9S2uJ0HBuCptc4SCSFjv83k5GL+ozRC8nUEP+kwi7F
+ tvNG3hahP/KRMOkd0cv9mMyG1msj80ppyQO3mBBK0=;
+To: Dominique Martinet <asmadeus@codewreck.org>,
+ Nikolay Kichukov <nikolay@oldum.net>
+Date: Tue, 24 May 2022 13:29:18 +0200
+Message-ID: <2799122.FyIdJ7nTd3@silver>
+In-Reply-To: <2380b79f721caf9e6b99aa680b9b29c76fd4e2f4.camel@oldum.net>
+References: <cover.1640870037.git.linux_oss@crudebyte.com>
+ <Ye6IaIqQcwAKv0vb@codewreck.org>
+ <2380b79f721caf9e6b99aa680b9b29c76fd4e2f4.camel@oldum.net>
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <165305805651.4094995.7763502506786714216.stgit@warthog.procyon.org.uk>
-X-Optus-CM-Score: 0
-X-Optus-CM-Analysis: v=2.4 cv=e9dl9Yl/ c=1 sm=1 tr=0 ts=628caf7c
- a=ivVLWpVy4j68lT4lJFbQgw==:117 a=ivVLWpVy4j68lT4lJFbQgw==:17
- a=kj9zAlcOel0A:10 a=oZkIemNP1mAA:10 a=7-415B0cAAAA:8
- a=OnzENxpBzhtb90kDdFQA:9 a=CjuIK1q_8ugA:10 a=biEYGPWJfzWAr4FL6Ov7:22
-X-Spam-Score: -0.0 (/)
+X-Spam-Score: -0.2 (/)
 X-Spam-Report: Spam detection software,
  running on the system "util-spamd-2.v13.lw.sourceforge.com", 
  has NOT identified this incoming email as spam.  The original
  message has been attached to this so you can view it or label
  similar future email.  If you have any questions, see
  the administrator of that system for details.
- Content preview:  On Fri, May 20, 2022 at 03:47:36PM +0100,
- David Howells wrote:
- > While randstruct was satisfied with using an open-coded "void *" offset
- > cast for the netfs_i_context <-> inode casting, __builtin_obj [...] 
- Content analysis details:   (-0.0 points, 6.0 required)
+ Content preview:  On Dienstag,
+ 24. Mai 2022 10:10:31 CEST Nikolay Kichukov wrote:
+ > Hello Dominique, > > On Mon, 2022-01-24 at 20:07 +0900, Dominique Martinet
+ wrote: > > Nikolay Kichukov wrote on Mon, Jan 24, 2022 at 1 [...] 
+ Content analysis details:   (-0.2 points, 6.0 required)
  pts rule name              description
  ---- ---------------------- --------------------------------------------------
- -0.0 SPF_HELO_PASS          SPF: HELO matches SPF record
- 0.0 SPF_NONE               SPF: sender does not publish an SPF Record
- -0.0 RCVD_IN_DNSWL_NONE     RBL: Sender listed at https://www.dnswl.org/,
- no trust [211.29.132.249 listed in list.dnswl.org]
- -0.0 T_SCC_BODY_TEXT_LINE   No description available.
-X-Headers-End: 1ntRWZ-004hmo-St
-Subject: Re: [V9fs-developer] [PATCH v2] netfs: Fix gcc-12 warning by
- embedding vfs inode in netfs_i_context
+ 0.0 SPF_HELO_NONE          SPF: HELO does not publish an SPF Record
+ -0.0 SPF_PASS               SPF: sender matches SPF record
+ -0.1 DKIM_VALID_EF          Message has a valid DKIM or DK signature from
+ envelope-from domain
+ -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+ -0.1 DKIM_VALID_AU          Message has a valid DKIM or DK signature from
+ author's domain
+ 0.1 DKIM_SIGNED            Message has a DKIM or DK signature, not necessarily
+ valid -0.0 T_SCC_BODY_TEXT_LINE   No description available.
+X-Headers-End: 1ntSk9-0006Y8-Fu
+Subject: Re: [V9fs-developer] [PATCH v4 00/12] remove msize limit in virtio
+ transport
 X-BeenThere: v9fs-developer@lists.sourceforge.net
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -89,139 +97,68 @@ List-Post: <mailto:v9fs-developer@lists.sourceforge.net>
 List-Help: <mailto:v9fs-developer-request@lists.sourceforge.net?subject=help>
 List-Subscribe: <https://lists.sourceforge.net/lists/listinfo/v9fs-developer>, 
  <mailto:v9fs-developer-request@lists.sourceforge.net?subject=subscribe>
-Cc: Latchesar Ionkov <lucho@ionkov.net>, linux-doc@vger.kernel.org,
- jlayton@kernel.org, Christian Schoenebeck <linux_oss@crudebyte.com>,
- William Kucharski <william.kucharski@oracle.com>,
- linux-hardening@vger.kernel.org, Marc Dionne <marc.dionne@auristor.com>,
- linux-afs@lists.infradead.org, linux-cifs@vger.kernel.org,
- Jonathan Corbet <corbet@lwn.net>,
- "Matthew Wilcox \(Oracle\)" <willy@infradead.org>,
- Steve French <smfrench@gmail.com>, v9fs-developer@lists.sourceforge.net,
- Ilya Dryomov <idryomov@gmail.com>, keescook@chromium.org,
- Eric Van Hensbergen <ericvh@gmail.com>, ceph-devel@vger.kernel.org,
- Xiubo Li <xiubli@redhat.com>, samba-technical@lists.samba.org,
- linux-kernel@vger.kernel.org, linux-fsdevel@vger.kernel.org
+From: Christian Schoenebeck via V9fs-developer
+ <v9fs-developer@lists.sourceforge.net>
+Reply-To: Christian Schoenebeck <linux_oss@crudebyte.com>
+Cc: Latchesar Ionkov <lucho@ionkov.net>, Eric Van Hensbergen <ericvh@gmail.com>,
+ netdev@vger.kernel.org, Greg Kurz <groug@kaod.org>,
+ v9fs-developer@lists.sourceforge.net, Vivek Goyal <vgoyal@redhat.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: v9fs-developer-bounces@lists.sourceforge.net
 
-On Fri, May 20, 2022 at 03:47:36PM +0100, David Howells wrote:
-> While randstruct was satisfied with using an open-coded "void *" offset
-> cast for the netfs_i_context <-> inode casting, __builtin_object_size() as
-> used by FORTIFY_SOURCE was not as easily fooled.  This was causing the
-> following complaint[1] from gcc v12:
+On Dienstag, 24. Mai 2022 10:10:31 CEST Nikolay Kichukov wrote:
+> Hello Dominique,
 > 
-> In file included from ./include/linux/string.h:253,
->                  from ./include/linux/ceph/ceph_debug.h:7,
->                  from fs/ceph/inode.c:2:
-> In function 'fortify_memset_chk',
->     inlined from 'netfs_i_context_init' at ./include/linux/netfs.h:326:2,
->     inlined from 'ceph_alloc_inode' at fs/ceph/inode.c:463:2:
-> ./include/linux/fortify-string.h:242:25: warning: call to '__write_overflow_field' declared with attribute warning:
-> detected write beyond size of field (1st parameter); maybe use struct_group()? [-Wattribute-warning]
->   242 |                         __write_overflow_field(p_size_field, size);
->       |                         ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+> On Mon, 2022-01-24 at 20:07 +0900, Dominique Martinet wrote:
+> > Nikolay Kichukov wrote on Mon, Jan 24, 2022 at 11:21:08AM +0100:
+> > > It works, sorry for overlooking the 'known limitations' in the first
+> > > place. When do we expect these patches to be merged upstream?
+> > 
+> > We're just starting a new development cycle for 5.18 while 5.17 is
+> > stabilizing, so this mostly depends on the ability to check if a msize
+> > given in parameter is valid as described in the first "STILL TO DO"
+> > point listed in the cover letter.
+> > 
+> > I personally would be happy considering this series for this cycle
+> > with
+> > just a max msize of 4MB-8k and leave that further bump for later if
+> > we're sure qemu will handle it.
+> > We're still seeing a boost for that and the smaller buffers for small
+> > messages will benefit all transport types, so that would get in in
+> > roughly two months for 5.18-rc1, then another two months for 5.18 to
+> > actually be released and start hitting production code.
+> > 
+> > 
+> > I'm not sure when exactly but I'll run some tests with it as well and
+> > redo a proper code review within the next few weeks, so we can get
+> > this
+> > in -next for a little while before the merge window.
 > 
-> Fix this by embedding a struct inode into struct netfs_i_context (which
-> should perhaps be renamed to struct netfs_inode).  The struct inode
-> vfs_inode fields are then removed from the 9p, afs, ceph and cifs inode
-> structs and vfs_inode is then simply changed to "netfs.inode" in those
-> filesystems.
-> 
-> Further, rename netfs_i_context to netfs_inode, get rid of the
-> netfs_inode() function that converted a netfs_i_context pointer to an inode
-> pointer (that can now be done with &ctx->inode) and rename the
-> netfs_i_context() function to netfs_inode() (which is now a wrapper around
-> container_of()).
-> 
-> Most of the changes were done with:
-> 
->   perl -p -i -e 's/vfs_inode/netfs.inode/'g \
-> 	`git grep -l 'vfs_inode' -- fs/{9p,afs,ceph,cifs}/*.[ch]`
-> 
-> Kees suggested doing it with a pair structure[2] and a special declarator
-> to insert that into the network filesystem's inode wrapper[3], but I think
-> it's cleaner to embed it - and then it doesn't matter if struct
-> randomisation reorders things.
+> Did you make it into 5.18? I see it just got released...
 
-I can't help but think the code would be so much cleaner with a
-wrapper to covert from the filesysetm structure to the vfs inode.
-e.g. in XFS we use VFS_I(xfs_inode) to get the struct inode and
-XFS_I(inode) to get the xfs_inode from the struct inode.
-i.e.:
+No, not yet. I can send a v5 as outlined above, including opt-out for the RDMA 
+transport as Dominique noted, that wouldn't be much work for me.
 
-/* Convert from vfs inode to xfs inode */
-static inline struct xfs_inode *XFS_I(struct inode *inode)
-{
-        return container_of(inode, struct xfs_inode, i_vnode);
-}
+However ATM I fear it would probably not help anybody, as we currently have 
+two far more serious issues [1] regarding 9p's cache support introduced by the 
+netfs changes: 
 
-/* convert from xfs inode to vfs inode */
-static inline struct inode *VFS_I(struct xfs_inode *ip)
-{
-        return &ip->i_vnode;
-}
+1. 9p cache enabled performs now worse than without any cache.
 
-Then we end up with stuff like this reading:
+2. There are misbehaviours once in a while, as 9p cache opens FIDs in read-
+only mode and once in a while then tries to write with those read-only FIDs 
+which causes EBADF errors.
 
-> diff --git a/fs/9p/v9fs.c b/fs/9p/v9fs.c
-> index e28ddf763b3b..0129de2ea31a 100644
-> --- a/fs/9p/v9fs.c
-> +++ b/fs/9p/v9fs.c
-> @@ -625,7 +625,7 @@ static void v9fs_inode_init_once(void *foo)
->  	struct v9fs_inode *v9inode = (struct v9fs_inode *)foo;
->  
->  	memset(&v9inode->qid, 0, sizeof(v9inode->qid));
-> -	inode_init_once(&v9inode->vfs_inode);
-> +	inode_init_once(&v9inode->netfs.inode);
+[1] https://lore.kernel.org/lkml/9591612.lsmsJCMaJN@silver/
 
-	inode_init_once(VFS_I(v9inode));
+Issue (2.) can probably be fixed by just opening the FIDs in RW mode, as 
+suggested by Dominique. But for performance issue (1.) nobody had an idea yet.
 
->  }
->  
->  /**
-> diff --git a/fs/9p/v9fs.h b/fs/9p/v9fs.h
-> index ec0e8df3b2eb..1b219c21d15e 100644
-> --- a/fs/9p/v9fs.h
-> +++ b/fs/9p/v9fs.h
-> @@ -109,11 +109,7 @@ struct v9fs_session_info {
->  #define V9FS_INO_INVALID_ATTR 0x01
->  
->  struct v9fs_inode {
-> -	struct {
-> -		/* These must be contiguous */
-> -		struct inode	vfs_inode;	/* the VFS's inode record */
-> -		struct netfs_i_context netfs_ctx; /* Netfslib context */
-> -	};
-> +	struct netfs_inode netfs; /* Netfslib context and vfs inode */
->  	struct p9_qid qid;
->  	unsigned int cache_validity;
->  	struct p9_fid *writeback_fid;
-> @@ -122,13 +118,13 @@ struct v9fs_inode {
->  
->  static inline struct v9fs_inode *V9FS_I(const struct inode *inode)
->  {
-> -	return container_of(inode, struct v9fs_inode, vfs_inode);
-> +	return container_of(inode, struct v9fs_inode, netfs.inode);
->  }
+Best regards,
+Christian Schoenebeck
 
-Looky dat - there's already the V9FS_I() function for going from the
-VFS inode to the 9p inode....
 
-I think that having a VFS_I() for every filesystem would make all
-this code a lot cleaner, and it would be easier for everyone to
-understand without having to know the exact details of how the netfs
-inode encapsulates the struct inode. Consistency of code conventions
-across multiple filesystems is a good thing. And if this netfs inode
-structure ever has to be changed in future, it's just a few wrapper
-functions that need updating, not lots of code...
-
-Cheers,
-
-Dave.
--- 
-Dave Chinner
-david@fromorbit.com
 
 
 _______________________________________________
