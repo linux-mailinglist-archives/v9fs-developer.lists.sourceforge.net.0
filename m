@@ -2,26 +2,26 @@ Return-Path: <v9fs-developer-bounces@lists.sourceforge.net>
 X-Original-To: lists+v9fs-developer@lfdr.de
 Delivered-To: lists+v9fs-developer@lfdr.de
 Received: from lists.sourceforge.net (lists.sourceforge.net [216.105.38.7])
-	by mail.lfdr.de (Postfix) with ESMTPS id E23BD5356E3
-	for <lists+v9fs-developer@lfdr.de>; Fri, 27 May 2022 02:00:45 +0200 (CEST)
-Received: from [127.0.0.1] (helo=sfs-ml-1.v29.lw.sourceforge.com)
-	by sfs-ml-1.v29.lw.sourceforge.com with esmtp (Exim 4.94.2)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8B27B5356E8
+	for <lists+v9fs-developer@lfdr.de>; Fri, 27 May 2022 02:00:49 +0200 (CEST)
+Received: from [127.0.0.1] (helo=sfs-ml-4.v29.lw.sourceforge.com)
+	by sfs-ml-4.v29.lw.sourceforge.com with esmtp (Exim 4.94.2)
 	(envelope-from <v9fs-developer-bounces@lists.sourceforge.net>)
-	id 1nuNPF-0001ZY-OO; Fri, 27 May 2022 00:00:42 +0000
+	id 1nuNPN-0000j5-Je; Fri, 27 May 2022 00:00:48 +0000
 Received: from [172.30.20.202] (helo=mx.sourceforge.net)
- by sfs-ml-1.v29.lw.sourceforge.com with esmtps (TLS1.2) tls
+ by sfs-ml-4.v29.lw.sourceforge.com with esmtps (TLS1.2) tls
  TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384 (Exim 4.94.2)
- (envelope-from <tyhicks@linux.microsoft.com>) id 1nuNPE-0001ZS-3l
- for v9fs-developer@lists.sourceforge.net; Fri, 27 May 2022 00:00:40 +0000
+ (envelope-from <tyhicks@linux.microsoft.com>) id 1nuNPL-0000io-JM
+ for v9fs-developer@lists.sourceforge.net; Fri, 27 May 2022 00:00:46 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
  d=sourceforge.net; s=x; h=Content-Transfer-Encoding:MIME-Version:References:
  In-Reply-To:Message-Id:Date:Subject:Cc:To:From:Sender:Reply-To:Content-Type:
  Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
  Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
  List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=WyWhT64EqXgi1j+9Im254CVOA49spwfGfom1V/BOPbU=; b=KQUbp7RjFBvGHUzuISxiYLXAmJ
- pDtetPdJpLdCqJDezAdpbyToh7O4tMBwFVIKlAwMv2K+Taw06Cofp9Q6qUfKpYxXyu4llETgh/pyj
- cY65ZkWH0kDHQx6sZBBqCzNEwkD9d2tVTxb70L8glljYwy7HZvEDmx8Jhb7APbvP3zNg=;
+ bh=yXi1WGiCy9BLSBAV0/nUcn1Q6XY2f9IytAcNKCT0ldE=; b=T87NS3L42gIqnnyu7PDs/BLrUE
+ EGjWNJHktPnD0qOkUUfPsnv8M77b8BtdFPpJTFXHDX5CU4xpmXsTMjG8lTY1gDULX7/z0e+vz4ugD
+ cWkQsneHi/JEkcbSPul3bD232tFKJEwgAb94gDK3ek2qxtswK0IJl7JiKQ88/piVmYLg=;
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  ;
  h=Content-Transfer-Encoding:MIME-Version:References:In-Reply-To:Message-Id:
@@ -29,31 +29,31 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
  :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
  List-Post:List-Owner:List-Archive;
- bh=WyWhT64EqXgi1j+9Im254CVOA49spwfGfom1V/BOPbU=; b=Q9YCInTEPzDOlSGo07yd1x2xKC
- 6AmvwT+oRH3lDsJeEvYMJn2nKl/kstF4q0B2h2LYPCHhzhYesgxkVGUR3mN5fUXL3GkjNHMPJVUfE
- rCF9JKYNZbcTPm0Glq/qL4v5t74WyLdsmluOn4i2mW4MlXmOJIEd4UokSGCZFeADERuU=;
+ bh=yXi1WGiCy9BLSBAV0/nUcn1Q6XY2f9IytAcNKCT0ldE=; b=FErASBpECSrN9oFFdve3QuckLh
+ WfEQ6E8Gmd2F4IE4BarMA2ToR8/vQRbWWRTk5oRUWOLr6Q0DXhlg4JnTFGIfKnqGPTJ5bEP7sSKpj
+ rTCQrT0R6zteQ1ph7cLrt+SZmDfz/xJ2AjHIoEg7KF2O2sM2D0gh33LjtdFIZsCgv0Tc=;
 Received: from linux.microsoft.com ([13.77.154.182])
  by sfi-mx-1.v28.lw.sourceforge.com with esmtp (Exim 4.94.2)
- id 1nuNPB-003L3g-KC
- for v9fs-developer@lists.sourceforge.net; Fri, 27 May 2022 00:00:40 +0000
+ id 1nuNPJ-003L4t-Es
+ for v9fs-developer@lists.sourceforge.net; Fri, 27 May 2022 00:00:45 +0000
 Received: from sequoia.corp.microsoft.com
  (162-237-133-238.lightspeed.rcsntx.sbcglobal.net [162.237.133.238])
- by linux.microsoft.com (Postfix) with ESMTPSA id BF81420B5B4E;
- Thu, 26 May 2022 17:00:31 -0700 (PDT)
-DKIM-Filter: OpenDKIM Filter v2.11.0 linux.microsoft.com BF81420B5B4E
+ by linux.microsoft.com (Postfix) with ESMTPSA id 2B59520B894E;
+ Thu, 26 May 2022 17:00:33 -0700 (PDT)
+DKIM-Filter: OpenDKIM Filter v2.11.0 linux.microsoft.com 2B59520B894E
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linux.microsoft.com;
- s=default; t=1653609632;
- bh=WyWhT64EqXgi1j+9Im254CVOA49spwfGfom1V/BOPbU=;
+ s=default; t=1653609633;
+ bh=yXi1WGiCy9BLSBAV0/nUcn1Q6XY2f9IytAcNKCT0ldE=;
  h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
- b=bIse+ow20K7BpanHXQ49cUZmR92pHLe3BfWwyAAZ4EsY5q37ymkoDSmdVFd0TvL/Q
- K7+e+3sGrdKft2U3/DDB9FKWl2dsfSbjIjli2TdTUUtdC4j6TKNc4R5zav4yirSfco
- AMuyahFc8Kx/YQEStqu6yesnJ0mDPPL8jhvkZp6c=
+ b=JPVlWctq92O8hM0R654SAHPmKsSHY42k7UK+R1Rle+ZGMvFRyNcjnfqnzJKwC7FtB
+ IbibTty/LulnMDsB3fPAXu/X7sEGoO3s2gjZEboI8+ovK9BxzBki6QaJKvfgzP4Kh3
+ NtA+AMKQofdBs/1vvF9gadI0Cj0uuRGg1kjmHGnU=
 From: Tyler Hicks <tyhicks@linux.microsoft.com>
 To: Eric Van Hensbergen <ericvh@gmail.com>,
  Latchesar Ionkov <lucho@ionkov.net>,
  Dominique Martinet <asmadeus@codewreck.org>
-Date: Thu, 26 May 2022 19:00:02 -0500
-Message-Id: <20220527000003.355812-5-tyhicks@linux.microsoft.com>
+Date: Thu, 26 May 2022 19:00:03 -0500
+Message-Id: <20220527000003.355812-6-tyhicks@linux.microsoft.com>
 X-Mailer: git-send-email 2.25.1
 In-Reply-To: <20220527000003.355812-1-tyhicks@linux.microsoft.com>
 References: <20220527000003.355812-1-tyhicks@linux.microsoft.com>
@@ -65,15 +65,15 @@ X-Spam-Report: Spam detection software,
  message has been attached to this so you can view it or label
  similar future email.  If you have any questions, see
  the administrator of that system for details.
- Content preview: Remove the ofid variable that's local to the conditional
- block
- in favor of the old_fid variable that's local to the entire function.
- Signed-off-by:
- Tyler Hicks <tyhicks@linux.microsoft.com> --- fs/9p/fid.c | 6 +++--- 1 file
- changed, 3 insertions(+), 3 deletions(-) 
+ Content preview: Fix s/patch/path/ typo and make it clear that we're talking
+ about multiple path components. Signed-off-by: Tyler Hicks
+ <tyhicks@linux.microsoft.com>
+ --- fs/9p/fid.c | 2 +- 1 file changed, 1 insertion(+), 1 deletion(-) 
  Content analysis details:   (-17.9 points, 6.0 required)
  pts rule name              description
  ---- ---------------------- --------------------------------------------------
+ -2.3 RCVD_IN_DNSWL_MED      RBL: Sender listed at https://www.dnswl.org/,
+ medium trust [13.77.154.182 listed in list.dnswl.org]
  -7.5 USER_IN_DEF_DKIM_WL    From: address is in the default DKIM
  welcome-list
  -0.0 SPF_HELO_PASS          SPF: HELO matches SPF record
@@ -85,13 +85,10 @@ X-Spam-Report: Spam detection software,
  valid
  -0.1 DKIM_VALID_AU          Message has a valid DKIM or DK signature from
  author's domain
- -2.3 RCVD_IN_DNSWL_MED      RBL: Sender listed at https://www.dnswl.org/,
- medium trust [13.77.154.182 listed in list.dnswl.org]
  -0.5 ENV_AND_HDR_SPF_MATCH  Env and Hdr From used in default SPF WL
  Match
-X-Headers-End: 1nuNPB-003L3g-KC
-Subject: [V9fs-developer] [PATCH v2 4/5] 9p: Remove unnecessary variable for
- old fids while walking from d_parent
+X-Headers-End: 1nuNPJ-003L4t-Es
+Subject: [V9fs-developer] [PATCH v2 5/5] 9p: Fix minor typo in code comment
 X-BeenThere: v9fs-developer@lists.sourceforge.net
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -110,32 +107,27 @@ Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: v9fs-developer-bounces@lists.sourceforge.net
 
-Remove the ofid variable that's local to the conditional block in favor
-of the old_fid variable that's local to the entire function.
+Fix s/patch/path/ typo and make it clear that we're talking about
+multiple path components.
 
 Signed-off-by: Tyler Hicks <tyhicks@linux.microsoft.com>
 ---
- fs/9p/fid.c | 6 +++---
- 1 file changed, 3 insertions(+), 3 deletions(-)
+ fs/9p/fid.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
 diff --git a/fs/9p/fid.c b/fs/9p/fid.c
-index dfe98a308612..d8c70c4cd3c2 100644
+index d8c70c4cd3c2..60fc62081598 100644
 --- a/fs/9p/fid.c
 +++ b/fs/9p/fid.c
-@@ -169,10 +169,10 @@ static struct p9_fid *v9fs_fid_lookup_with_uid(struct dentry *dentry,
- 	fid = v9fs_fid_find(ds, uid, any);
- 	if (fid) {
- 		/* Found the parent fid do a lookup with that */
--		struct p9_fid *ofid = fid;
-+		old_fid = fid;
- 
--		fid = p9_client_walk(ofid, 1, &dentry->d_name.name, 1);
--		p9_client_clunk(ofid);
-+		fid = p9_client_walk(old_fid, 1, &dentry->d_name.name, 1);
-+		p9_client_clunk(old_fid);
- 		goto fid_out;
- 	}
- 	up_read(&v9ses->rename_sem);
+@@ -219,7 +219,7 @@ static struct p9_fid *v9fs_fid_lookup_with_uid(struct dentry *dentry,
+ 		l = min(n - i, P9_MAXWELEM);
+ 		/*
+ 		 * We need to hold rename lock when doing a multipath
+-		 * walk to ensure none of the patch component change
++		 * walk to ensure none of the path components change
+ 		 */
+ 		fid = p9_client_walk(old_fid, l, &wnames[i],
+ 				     old_fid == root_fid);
 -- 
 2.25.1
 
