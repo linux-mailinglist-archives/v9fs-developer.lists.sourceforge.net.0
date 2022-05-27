@@ -2,94 +2,108 @@ Return-Path: <v9fs-developer-bounces@lists.sourceforge.net>
 X-Original-To: lists+v9fs-developer@lfdr.de
 Delivered-To: lists+v9fs-developer@lfdr.de
 Received: from lists.sourceforge.net (lists.sourceforge.net [216.105.38.7])
-	by mail.lfdr.de (Postfix) with ESMTPS id 30D655356F0
-	for <lists+v9fs-developer@lfdr.de>; Fri, 27 May 2022 02:03:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5F2BA536287
+	for <lists+v9fs-developer@lfdr.de>; Fri, 27 May 2022 14:27:57 +0200 (CEST)
 Received: from [127.0.0.1] (helo=sfs-ml-2.v29.lw.sourceforge.com)
 	by sfs-ml-2.v29.lw.sourceforge.com with esmtp (Exim 4.94.2)
 	(envelope-from <v9fs-developer-bounces@lists.sourceforge.net>)
-	id 1nuNRv-0003aA-Kh; Fri, 27 May 2022 00:03:26 +0000
+	id 1nuZ4N-0006E5-Mm; Fri, 27 May 2022 12:27:54 +0000
 Received: from [172.30.20.202] (helo=mx.sourceforge.net)
  by sfs-ml-2.v29.lw.sourceforge.com with esmtps (TLS1.2) tls
  TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384 (Exim 4.94.2)
- (envelope-from <tyhicks@linux.microsoft.com>) id 1nuNRu-0003a4-Rm
- for v9fs-developer@lists.sourceforge.net; Fri, 27 May 2022 00:03:26 +0000
+ (envelope-from <dhowells@redhat.com>) id 1nuZ4L-0006Dy-Ui
+ for v9fs-developer@lists.sourceforge.net; Fri, 27 May 2022 12:27:53 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=sourceforge.net; s=x; h=In-Reply-To:Content-Type:MIME-Version:References:
- Message-ID:Subject:Cc:To:From:Date:Sender:Reply-To:Content-Transfer-Encoding:
- Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
- Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
- List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=mb7ZmAlHuvpGG1PgGVfmZd0atD/az5Ujm7IAFCqlmoA=; b=HwQbEILC/fsQb9pImSLbBX6ddL
- pCUz32vNOf9xn0UKDP7HtelmXL7z8Atd2NT8jXN9oupbmN59QQTk3mkjUblnxnydnK+P/ROoj0/OJ
- 8h5Eya/SxInxJEHipnz5kjbuptMocf2pvqAqb4RcdHZVn7G5rxLEnRukimcJHnDI/TNc=;
+ d=sourceforge.net; s=x; h=Message-ID:Date:Content-ID:Content-Type:
+ MIME-Version:Subject:Cc:To:References:In-Reply-To:From:Sender:Reply-To:
+ Content-Transfer-Encoding:Content-Description:Resent-Date:Resent-From:
+ Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:
+ List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
+ bh=RJxrf4ooyTqpiAItg7I/Q/q7XnsebEkQQNQ2A5YOD9I=; b=m0kcOsYepZ6oETBzYzGeLmINup
+ nsEIOLYOIBzib//2ZsLo5BG/eEBqkRkgYyIG5k8iOrLztbmNwNv292HQ7ZLFWddrLDNZgUcPV88DV
+ 95T7vGW9LgHBTf+KPM7KyvaTt6B6kxfjV4oW82LQ761FzgmYnmFfw5ntglg+u/SJcRnk=;
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  ;
- h=In-Reply-To:Content-Type:MIME-Version:References:Message-ID:Subject:Cc:To
- :From:Date:Sender:Reply-To:Content-Transfer-Encoding:Content-ID:
+ h=Message-ID:Date:Content-ID:Content-Type:MIME-Version:Subject:Cc:To:
+ References:In-Reply-To:From:Sender:Reply-To:Content-Transfer-Encoding:
  Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
  :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
  List-Post:List-Owner:List-Archive;
- bh=mb7ZmAlHuvpGG1PgGVfmZd0atD/az5Ujm7IAFCqlmoA=; b=AYcjkrM19B4g+KqqReRNRzO42f
- TpgGj6iMaJiaT0VaEOskA4hZvAR37ugQWi5c3R3h/Rjzzddroi1IO+adQ6uMtCUEh8xZ25YWlAi1p
- rRXJj+KCuQ8Uo/M+9r4b6AIzt6XajX3MZQm85Cxuu3bJB8u4/muJJbl3RuPMv0kGiMF0=;
-Received: from linux.microsoft.com ([13.77.154.182])
- by sfi-mx-2.v28.lw.sourceforge.com with esmtp (Exim 4.94.2)
- id 1nuNRr-0000ho-Tw
- for v9fs-developer@lists.sourceforge.net; Fri, 27 May 2022 00:03:25 +0000
-Received: from sequoia (162-237-133-238.lightspeed.rcsntx.sbcglobal.net
- [162.237.133.238])
- by linux.microsoft.com (Postfix) with ESMTPSA id 058F620B71D5;
- Thu, 26 May 2022 17:03:16 -0700 (PDT)
-DKIM-Filter: OpenDKIM Filter v2.11.0 linux.microsoft.com 058F620B71D5
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linux.microsoft.com;
- s=default; t=1653609797;
- bh=mb7ZmAlHuvpGG1PgGVfmZd0atD/az5Ujm7IAFCqlmoA=;
- h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
- b=jY8QzXrXgGOW0gAgEvQQvb1opiIRTxJeqZtvZeFEy9cpJKs0JXN7Gv9/dbw12aSg7
- zba1klecrk8VGRGEvghsuOwuw6e1rZ4SiG481RRrnYs69kpq2KtoL81x47gVH7UDe/
- p8xUfk3Tp6J1/gT3Lq9g0xR+bW/Wecu/qWOWjbaQ=
-Date: Thu, 26 May 2022 19:03:12 -0500
-From: Tyler Hicks <tyhicks@linux.microsoft.com>
-To: Eric Van Hensbergen <ericvh@gmail.com>,
- Latchesar Ionkov <lucho@ionkov.net>,
- Dominique Martinet <asmadeus@codewreck.org>
-Message-ID: <20220527000312.GB15462@sequoia>
-References: <20220525182530.266068-1-tyhicks@linux.microsoft.com>
+ bh=RJxrf4ooyTqpiAItg7I/Q/q7XnsebEkQQNQ2A5YOD9I=; b=MIF0FNGhYIMLL0lWnHWb58YC5L
+ 6YEEgs4iINK10RZ/BuOuzJmeRqs++9LEiYyRwSnTLyYU0Gc0XslWVoCv3o3GZsBmpOaFPJpgntnaY
+ hWY78k1QPS8mng+23AIolvarT/w+GslCT0gu0RoulOwTfE2e+F1rDCbYBeui5KVfRnIU=;
+Received: from us-smtp-delivery-124.mimecast.com ([170.10.129.124])
+ by sfi-mx-2.v28.lw.sourceforge.com with esmtps
+ (TLS1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.94.2)
+ id 1nuZ4G-0001T6-4e
+ for v9fs-developer@lists.sourceforge.net; Fri, 27 May 2022 12:27:52 +0000
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+ s=mimecast20190719; t=1653654463;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+ in-reply-to:in-reply-to:references:references;
+ bh=RJxrf4ooyTqpiAItg7I/Q/q7XnsebEkQQNQ2A5YOD9I=;
+ b=Co1tSshUMCi3FjIl3T0V4I6phbN7o0O2EuWQrOy5KdBQr8SAi7iiToXeOpmgclAAIo5ko+
+ ofRWtrkEW6pdyB2gdAOoNTWGKCQ9gurXP9Kozl2pDcRPQezKhzPnVlyUxx/VbDeNljka0D
+ qeWs5+0w7ZzZ4l72Be4JkHUr9aOEPC8=
+Received: from mimecast-mx02.redhat.com (mimecast-mx02.redhat.com
+ [66.187.233.88]) by relay.mimecast.com with ESMTP with STARTTLS
+ (version=TLSv1.2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ us-mta-251-jXjVmR17Pi2O2lmDWrKoXw-1; Fri, 27 May 2022 08:27:38 -0400
+X-MC-Unique: jXjVmR17Pi2O2lmDWrKoXw-1
+Received: from smtp.corp.redhat.com (int-mx07.intmail.prod.int.rdu2.redhat.com
+ [10.11.54.7])
+ (using TLSv1.2 with cipher AECDH-AES256-SHA (256/256 bits))
+ (No client certificate requested)
+ by mimecast-mx02.redhat.com (Postfix) with ESMTPS id 29875101AA45;
+ Fri, 27 May 2022 12:27:37 +0000 (UTC)
+Received: from warthog.procyon.org.uk (unknown [10.33.36.8])
+ by smtp.corp.redhat.com (Postfix) with ESMTP id 2504E1410DD5;
+ Fri, 27 May 2022 12:27:34 +0000 (UTC)
+Organization: Red Hat UK Ltd. Registered Address: Red Hat UK Ltd, Amberley
+ Place, 107-111 Peascod Street, Windsor, Berkshire, SI4 1TE, United
+ Kingdom.
+ Registered in England and Wales under Company Registration No. 3798903
+From: David Howells <dhowells@redhat.com>
+In-Reply-To: <202205190704.1DC660E5E@keescook>
+References: <202205190704.1DC660E5E@keescook>
+ <165296786831.3591209.12111293034669289733.stgit@warthog.procyon.org.uk>
+To: Kees Cook <keescook@chromium.org>
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20220525182530.266068-1-tyhicks@linux.microsoft.com>
-X-Spam-Score: -17.9 (-----------------)
+Content-ID: <3598051.1653654453.1@warthog.procyon.org.uk>
+Date: Fri, 27 May 2022 13:27:33 +0100
+Message-ID: <3598052.1653654453@warthog.procyon.org.uk>
+X-Scanned-By: MIMEDefang 2.85 on 10.11.54.7
+X-Spam-Score: -0.9 (/)
 X-Spam-Report: Spam detection software,
  running on the system "util-spamd-2.v13.lw.sourceforge.com", 
  has NOT identified this incoming email as spam.  The original
  message has been attached to this so you can view it or label
  similar future email.  If you have any questions, see
  the administrator of that system for details.
- Content preview:  On 2022-05-25 13:25:30, Tyler Hicks wrote: > Decrement the
- refcount of the parent dentry's fid after walking > each path component during
- a full path walk for a lookup. Failure to do > so can lead to [...] 
- Content analysis details:   (-17.9 points, 6.0 required)
+ Content preview:  Hi Kees,
+ Is v2 good for you? I realise I left your R-b attached
+ to it when I posted it, but I can remove that if you don't have time to review
+ it. David 
+ Content analysis details:   (-0.9 points, 6.0 required)
  pts rule name              description
  ---- ---------------------- --------------------------------------------------
- -2.3 RCVD_IN_DNSWL_MED      RBL: Sender listed at https://www.dnswl.org/,
- medium trust [13.77.154.182 listed in list.dnswl.org]
+ -0.0 RCVD_IN_DNSWL_NONE     RBL: Sender listed at https://www.dnswl.org/,
+ no trust [170.10.129.124 listed in list.dnswl.org]
  -0.0 SPF_PASS               SPF: sender matches SPF record
- -0.0 SPF_HELO_PASS          SPF: HELO matches SPF record
- -7.5 USER_IN_DEF_SPF_WL     From: address is in the default SPF
- welcome-list
- -7.5 USER_IN_DEF_DKIM_WL    From: address is in the default DKIM
- welcome-list
+ 0.0 SPF_HELO_NONE          SPF: HELO does not publish an SPF Record
  -0.1 DKIM_VALID_AU          Message has a valid DKIM or DK signature from
  author's domain
+ -0.1 DKIM_VALID_EF          Message has a valid DKIM or DK signature from
+ envelope-from domain
  0.1 DKIM_SIGNED            Message has a DKIM or DK signature, not necessarily
  valid
  -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
  -0.0 T_SCC_BODY_TEXT_LINE   No description available.
- -0.5 ENV_AND_HDR_SPF_MATCH  Env and Hdr From used in default SPF WL
- Match
-X-Headers-End: 1nuNRr-0000ho-Tw
-Subject: Re: [V9fs-developer] [PATCH] 9p: Fix refcounting during full path
- walks for fid lookups
+ -0.7 DKIMWL_WL_HIGH         DKIMwl.org - High trust sender
+X-Headers-End: 1nuZ4G-0001T6-4e
+Subject: Re: [V9fs-developer] [PATCH] netfs: Fix gcc-12 warning by embedding
+ vfs inode in netfs_i_context
 X-BeenThere: v9fs-developer@lists.sourceforge.net
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -101,52 +115,29 @@ List-Post: <mailto:v9fs-developer@lists.sourceforge.net>
 List-Help: <mailto:v9fs-developer-request@lists.sourceforge.net?subject=help>
 List-Subscribe: <https://lists.sourceforge.net/lists/listinfo/v9fs-developer>, 
  <mailto:v9fs-developer-request@lists.sourceforge.net?subject=subscribe>
-Cc: v9fs-developer@lists.sourceforge.net,
- Christian Schoenebeck <linux_oss@crudebyte.com>,
- Jianyong Wu <jianyong.wu@arm.com>, linux-kernel@vger.kernel.org
+Cc: Latchesar Ionkov <lucho@ionkov.net>, linux-doc@vger.kernel.org,
+ jlayton@kernel.org, Christian Schoenebeck <linux_oss@crudebyte.com>,
+ dhowells@redhat.com, William Kucharski <william.kucharski@oracle.com>,
+ linux-hardening@vger.kernel.org, Marc Dionne <marc.dionne@auristor.com>,
+ linux-afs@lists.infradead.org, linux-cifs@vger.kernel.org,
+ Jonathan Corbet <corbet@lwn.net>,
+ "Matthew Wilcox \(Oracle\)" <willy@infradead.org>,
+ Steve French <smfrench@gmail.com>, v9fs-developer@lists.sourceforge.net,
+ Ilya Dryomov <idryomov@gmail.com>, Eric Van Hensbergen <ericvh@gmail.com>,
+ linux-fsdevek@vger.kernel.org, ceph-devel@vger.kernel.org,
+ Xiubo Li <xiubli@redhat.com>, samba-technical@lists.samba.org,
+ linux-kernel@vger.kernel.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: v9fs-developer-bounces@lists.sourceforge.net
 
-On 2022-05-25 13:25:30, Tyler Hicks wrote:
-> Decrement the refcount of the parent dentry's fid after walking
-> each path component during a full path walk for a lookup. Failure to do
-> so can lead to fids that are not clunked until the filesystem is
-> unmounted, as indicated by this warning:
-> 
->  9pnet: found fid 3 not clunked
-> 
-> The improper refcounting after walking resulted in open(2) returning
-> -EIO on any directories underneath the mount point when using the virtio
-> transport. When using the fd transport, there's no apparent issue until
-> the filesytem is unmounted and the warning above is emitted to the logs.
-> 
-> In some cases, the user may not yet be attached to the filesystem and a
-> new root fid, associated with the user, is created and attached to the
-> root dentry before the full path walk is performed. Increment the new
-> root fid's refcount to two in that situation so that it can be safely
-> decremented to one after it is used for the walk operation. The new fid
-> will still be attached to the root dentry when
-> v9fs_fid_lookup_with_uid() returns so a final refcount of one is
-> correct/expected.
-> 
-> Include a small readability improvement by using a new variable when
-> dealing with the root fid as it requires special handling not necessary
-> with non-root fids.
-> 
-> Fixes: 6636b6dcc3db ("9p: add refcount to p9_fid struct")
-> Cc: stable@vger.kernel.org
-> Signed-off-by: Tyler Hicks <tyhicks@linux.microsoft.com>
+Hi Kees,
 
-This patch was doing a little too much code cleanup when it should have
-just been fixing the bug. v2 has a patch just focused on fixing the bug
-followed by additional patches for code cleanup:
+Is v2 good for you?  I realise I left your R-b attached to it when I posted
+it, but I can remove that if you don't have time to review it.
 
- https://lore.kernel.org/lkml/20220527000003.355812-1-tyhicks@linux.microsoft.com/
+David
 
-Sorry for the churn but v1 wasn't sitting well with me.
-
-Tyler
 
 
 _______________________________________________
