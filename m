@@ -2,66 +2,74 @@ Return-Path: <v9fs-developer-bounces@lists.sourceforge.net>
 X-Original-To: lists+v9fs-developer@lfdr.de
 Delivered-To: lists+v9fs-developer@lfdr.de
 Received: from lists.sourceforge.net (lists.sourceforge.net [216.105.38.7])
-	by mail.lfdr.de (Postfix) with ESMTPS id D370154529B
-	for <lists+v9fs-developer@lfdr.de>; Thu,  9 Jun 2022 19:05:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 11C87545494
+	for <lists+v9fs-developer@lfdr.de>; Thu,  9 Jun 2022 21:04:27 +0200 (CEST)
 Received: from [127.0.0.1] (helo=sfs-ml-2.v29.lw.sourceforge.com)
 	by sfs-ml-2.v29.lw.sourceforge.com with esmtp (Exim 4.94.2)
 	(envelope-from <v9fs-developer-bounces@lists.sourceforge.net>)
-	id 1nzLb1-0005bD-4E; Thu, 09 Jun 2022 17:05:24 +0000
+	id 1nzNSA-0000bX-Qs; Thu, 09 Jun 2022 19:04:23 +0000
 Received: from [172.30.20.202] (helo=mx.sourceforge.net)
  by sfs-ml-2.v29.lw.sourceforge.com with esmtps (TLS1.2) tls
  TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384 (Exim 4.94.2)
- (envelope-from <jlayton@kernel.org>) id 1nzLb0-0005b5-8g
- for v9fs-developer@lists.sourceforge.net; Thu, 09 Jun 2022 17:05:23 +0000
+ (envelope-from <xiang@kernel.org>) id 1nzNS9-0000bQ-8V
+ for v9fs-developer@lists.sourceforge.net; Thu, 09 Jun 2022 19:04:22 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=sourceforge.net; s=x; h=MIME-Version:Content-Transfer-Encoding:Content-Type
- :References:In-Reply-To:Date:Cc:To:From:Subject:Message-ID:Sender:Reply-To:
+ d=sourceforge.net; s=x; h=In-Reply-To:Content-Type:MIME-Version:References:
+ Message-ID:Subject:Cc:To:From:Date:Sender:Reply-To:Content-Transfer-Encoding:
  Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
  Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
  List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=1lNa6iNcfHqhr5MbA/Mh/ouee24JBaZZj0uAHjT9KTU=; b=QSaH1qQOWYvd7bWc5nHKG3+uyF
- qHDvvx4V+pnCwIrP9IehkpEE39AimF02mJ3VFQjtxuajvMhrtJe3tgKRyiOzuGNeHnM4fgAimxwBu
- m+JgNXDqhi4wKOvYx8GGL37jwRRySCNh6xxL09ctKn5v55Co3avNrAs4KSRp6kHL0tQo=;
+ bh=jxHopubkJxBq7P8N0Ankt2bLTwOWaPXg0oY0MAVJbUI=; b=iYN7+B0iOJ2sTE9YtIhTTBLBTQ
+ 67wRuzQSmomAyCVaS5WdcJyHYg4oL4pLBYga59buujiarXue8Cj/U2cu6r5kB0tfeZxXzfIdcuD1W
+ AcnH2MpIPdIg7Maf0CAw4U967mj8A2xthHvPXDmXSeO3sAMlpeKSbnikdm6zqqJTW3J8=;
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  ;
- h=MIME-Version:Content-Transfer-Encoding:Content-Type:References:
- In-Reply-To:Date:Cc:To:From:Subject:Message-ID:Sender:Reply-To:Content-ID:
+ h=In-Reply-To:Content-Type:MIME-Version:References:Message-ID:Subject:Cc:To
+ :From:Date:Sender:Reply-To:Content-Transfer-Encoding:Content-ID:
  Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
  :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
  List-Post:List-Owner:List-Archive;
- bh=1lNa6iNcfHqhr5MbA/Mh/ouee24JBaZZj0uAHjT9KTU=; b=EgsIH5ThOoN9tZYjBv/X8Dr+Q7
- Bll0VV42OWJuGqURu8+OPzZkS9HVtLE69w7qRCWm6CwJPIAHX9PhAz3x6o4fe6PVRwdzpe2DHQU/A
- riSOedCQs/NMcQpqyXAPkRs3gbjiChuxvFKLR+SPDWCSHAXkUWE9SGn2GPjwCIxhxzHw=;
+ bh=jxHopubkJxBq7P8N0Ankt2bLTwOWaPXg0oY0MAVJbUI=; b=LH/vNE1WmV/1FZEVOlSSj5bEpO
+ lp3rdM5PsOK7U0g3g+X/718RC6pWSsHTE1UaJ4jYm2QCd65c9MjtMiPqanzaTfcvHmpQsGox8/ywz
+ 7oY3U1RLmhMnAfWDjA9DogmFFkZVEcWkaCy5sHNcFiCea673d59pCXwAvdDnVyZOLehs=;
 Received: from ams.source.kernel.org ([145.40.68.75])
  by sfi-mx-2.v28.lw.sourceforge.com with esmtps
  (TLS1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.94.2)
- id 1nzLav-0003Kl-3s
- for v9fs-developer@lists.sourceforge.net; Thu, 09 Jun 2022 17:05:22 +0000
+ id 1nzNS5-0003X6-03
+ for v9fs-developer@lists.sourceforge.net; Thu, 09 Jun 2022 19:04:21 +0000
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
  (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
  (No client certificate requested)
- by ams.source.kernel.org (Postfix) with ESMTPS id 61D9FB82ECD;
- Thu,  9 Jun 2022 17:05:07 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1F7CFC34114;
- Thu,  9 Jun 2022 17:05:05 +0000 (UTC)
+ by ams.source.kernel.org (Postfix) with ESMTPS id 3A24FB83005;
+ Thu,  9 Jun 2022 19:04:07 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id C24DBC34114;
+ Thu,  9 Jun 2022 19:04:02 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1654794306;
- bh=TyXSDd71ITvKQbVh8Cn4dAI1JmsPDXjiP1sZFC/KfUM=;
- h=Subject:From:To:Cc:Date:In-Reply-To:References:From;
- b=rhg3JZaXznf78tW/tdEvAZeK/jwmr6IJEVpWLJd1VzkAPNn8y6eM+SNyfgZyDXy6e
- lzNm1gVEVN6ZxDQI0KQgBKkvEzQ+MruELC+MDfMaYKEPkGtGnbNol3EH4cG6y7wszl
- RSNzsHsZGrDFkVBcL2W3CtahOkx0VPF8D5bRAHWyKUNBAnwvCdaHOOoRWWBPCZ/LB0
- EdTtz6w1OAan7q0dkZFoSIYs5zY7KpT60WZA/RwiE64PBTEnog/9i09qZAd8i/ZqaL
- lUBjad8+Mef5m3Dvqhc486tjVH/i4T9OHs7pJmqLnpyFS54OL7mg+W6iz0arPzr7AY
- /TBgqR61XVDlQ==
-Message-ID: <480f3b02d2cda67cb2a1b68e88afa03e95809b8c.camel@kernel.org>
-From: Jeff Layton <jlayton@kernel.org>
+ s=k20201202; t=1654801445;
+ bh=Yxnu6+83FYCfv/3NbAs8M+FkZ+oJRuDX8jaMn/PQaZE=;
+ h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+ b=DPDtpREhdB0j8JRKxYabn/GSmhFRQx135HzaS1QEKqIVh/3OLWcUqgRccNEM25gmk
+ kG/OrJ39Z46ozUpCD4lB0Pz1Cgw5Nr0wS2LvRNpnFS3G1qnalODO0aE13KHfgq2aVF
+ RBiVXksCRrbDV3G+6tdZE7M8qB5p84hUf24cfmQT69pB4ht/PfI68SUxb2hijm/Alk
+ Iy9ZomiMariI7kTxRnfRkGzQdVh+RKRQraiVWC+Xd/Y3laedlgOxz6E566fV4n10Vd
+ 4RCPFzR938EQgajfXo30ffAkTSTF2nYqegz7D/8H6zPQrMmQALtMa5fIpBWwlTlMaX
+ oQLbte0bNq8JA==
+Date: Fri, 10 Jun 2022 03:03:58 +0800
+From: Gao Xiang <xiang@kernel.org>
 To: David Howells <dhowells@redhat.com>
-Date: Thu, 09 Jun 2022 13:05:03 -0400
-In-Reply-To: <165476202136.3999992.433442175457370240.stgit@warthog.procyon.org.uk>
+Message-ID: <YqJEHqD15q738aQY@debian>
+Mail-Followup-To: David Howells <dhowells@redhat.com>, jlayton@kernel.org,
+ Alexander Viro <viro@zeniv.linux.org.uk>,
+ Dominique Martinet <asmadeus@codewreck.org>,
+ Mike Marshall <hubcap@omnibond.com>, Gao Xiang <xiang@kernel.org>,
+ linux-afs@lists.infradead.org, v9fs-developer@lists.sourceforge.net,
+ devel@lists.orangefs.org, linux-erofs@lists.ozlabs.org,
+ linux-cachefs@redhat.com, linux-fsdevel@vger.kernel.org,
+ linux-kernel@vger.kernel.org
 References: <165476202136.3999992.433442175457370240.stgit@warthog.procyon.org.uk>
-User-Agent: Evolution 3.44.2 (3.44.2-1.fc36) 
 MIME-Version: 1.0
+Content-Disposition: inline
+In-Reply-To: <165476202136.3999992.433442175457370240.stgit@warthog.procyon.org.uk>
 X-Spam-Score: -6.4 (------)
 X-Spam-Report: Spam detection software,
  running on the system "util-spamd-2.v13.lw.sourceforge.com", 
@@ -69,9 +77,10 @@ X-Spam-Report: Spam detection software,
  message has been attached to this so you can view it or label
  similar future email.  If you have any questions, see
  the administrator of that system for details.
- Content preview:  On Thu, 2022-06-09 at 09:07 +0100, David Howells wrote: >
- The maths at the end of iter_xarray_get_pages() to calculate the actual >
- size doesn't work under some circumstances, such as when it's been a [...]
+ Content preview:  On Thu, Jun 09, 2022 at 09:07:01AM +0100,
+ David Howells wrote:
+ > The maths at the end of iter_xarray_get_pages() to calculate the actual
+ > size doesn't work under some circumstances, such as when it's [...] 
  Content analysis details:   (-6.4 points, 6.0 required)
  pts rule name              description
  ---- ---------------------- --------------------------------------------------
@@ -88,7 +97,7 @@ X-Spam-Report: Spam detection software,
  -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
  -0.0 T_SCC_BODY_TEXT_LINE   No description available.
  -1.1 DKIMWL_WL_HIGH         DKIMwl.org - High trust sender
-X-Headers-End: 1nzLav-0003Kl-3s
+X-Headers-End: 1nzNS5-0003X6-03
 Subject: Re: [V9fs-developer] [PATCH] iov_iter: Fix iter_xarray_get_pages{,
  _alloc}()
 X-BeenThere: v9fs-developer@lists.sourceforge.net
@@ -102,7 +111,7 @@ List-Post: <mailto:v9fs-developer@lists.sourceforge.net>
 List-Help: <mailto:v9fs-developer-request@lists.sourceforge.net?subject=help>
 List-Subscribe: <https://lists.sourceforge.net/lists/listinfo/v9fs-developer>, 
  <mailto:v9fs-developer-request@lists.sourceforge.net?subject=subscribe>
-Cc: linux-kernel@vger.kernel.org, linux-cachefs@redhat.com,
+Cc: jlayton@kernel.org, linux-kernel@vger.kernel.org, linux-cachefs@redhat.com,
  Alexander Viro <viro@zeniv.linux.org.uk>, linux-fsdevel@vger.kernel.org,
  v9fs-developer@lists.sourceforge.net, Gao Xiang <xiang@kernel.org>,
  linux-erofs@lists.ozlabs.org, linux-afs@lists.infradead.org,
@@ -111,7 +120,7 @@ Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: v9fs-developer-bounces@lists.sourceforge.net
 
-On Thu, 2022-06-09 at 09:07 +0100, David Howells wrote:
+On Thu, Jun 09, 2022 at 09:07:01AM +0100, David Howells wrote:
 > The maths at the end of iter_xarray_get_pages() to calculate the actual
 > size doesn't work under some circumstances, such as when it's been asked to
 > extract a partial single page.  Various terms of the equation cancel out
@@ -141,6 +150,14 @@ On Thu, 2022-06-09 at 09:07 +0100, David Howells wrote:
 > cc: linux-erofs@lists.ozlabs.org
 > cc: linux-cachefs@redhat.com
 > cc: linux-fsdevel@vger.kernel.org
+
+Looks good to me,
+
+Reviewed-by: Gao Xiang <xiang@kernel.org>
+
+Thanks,
+Gao Xiang
+
 > ---
 > 
 >  lib/iov_iter.c |   20 ++++----------------
@@ -200,11 +217,6 @@ On Thu, 2022-06-09 at 09:07 +0100, David Howells wrote:
 >  ssize_t iov_iter_get_pages_alloc(struct iov_iter *i,
 > 
 > 
-
-This seems to fix the bug I was hitting. Thanks!
-
-Reviewed-by: Jeff Layton <jlayton@kernel.org>
-Tested-by: Jeff Layton <jlayton@kernel.org>
 
 
 _______________________________________________
