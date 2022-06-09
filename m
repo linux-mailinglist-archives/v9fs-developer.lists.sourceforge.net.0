@@ -2,94 +2,78 @@ Return-Path: <v9fs-developer-bounces@lists.sourceforge.net>
 X-Original-To: lists+v9fs-developer@lfdr.de
 Delivered-To: lists+v9fs-developer@lfdr.de
 Received: from lists.sourceforge.net (lists.sourceforge.net [216.105.38.7])
-	by mail.lfdr.de (Postfix) with ESMTPS id CEDF254457E
-	for <lists+v9fs-developer@lfdr.de>; Thu,  9 Jun 2022 10:16:23 +0200 (CEST)
-Received: from [127.0.0.1] (helo=sfs-ml-2.v29.lw.sourceforge.com)
-	by sfs-ml-2.v29.lw.sourceforge.com with esmtp (Exim 4.94.2)
+	by mail.lfdr.de (Postfix) with ESMTPS id 46339544C5C
+	for <lists+v9fs-developer@lfdr.de>; Thu,  9 Jun 2022 14:44:29 +0200 (CEST)
+Received: from [127.0.0.1] (helo=sfs-ml-4.v29.lw.sourceforge.com)
+	by sfs-ml-4.v29.lw.sourceforge.com with esmtp (Exim 4.94.2)
 	(envelope-from <v9fs-developer-bounces@lists.sourceforge.net>)
-	id 1nzDL2-0006n1-W4; Thu, 09 Jun 2022 08:16:21 +0000
+	id 1nzHWT-0006Hs-FG; Thu, 09 Jun 2022 12:44:24 +0000
 Received: from [172.30.20.202] (helo=mx.sourceforge.net)
- by sfs-ml-2.v29.lw.sourceforge.com with esmtps (TLS1.2) tls
+ by sfs-ml-4.v29.lw.sourceforge.com with esmtps (TLS1.2) tls
  TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384 (Exim 4.94.2)
- (envelope-from <dhowells@redhat.com>) id 1nzDL1-0006mr-UD
- for v9fs-developer@lists.sourceforge.net; Thu, 09 Jun 2022 08:16:20 +0000
+ (envelope-from <linux_oss@crudebyte.com>) id 1nzHWR-0006Hk-SL
+ for v9fs-developer@lists.sourceforge.net; Thu, 09 Jun 2022 12:44:23 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=sourceforge.net; s=x; h=Message-ID:Date:Content-Transfer-Encoding:
- Content-ID:Content-Type:MIME-Version:Subject:Cc:To:References:In-Reply-To:
- From:Sender:Reply-To:Content-Description:Resent-Date:Resent-From:
- Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:
- List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=K8SVe5aiMwQ66aCyV8FH9qy1UnNuhdudkR6VUPMWV6A=; b=R5QE6Xv0H7hlSByVMcYY8NR2NI
- ySaj/864Fwtaaapck6TMLngAM72jcQJyyGIcPyBuDePlOQrfsAyEtSU2bMCTDkAPDBCmeX7AoaS80
- 2pzjztJY460LuCa89rEjeSgS7DMCwhGmTpBKIN65TNnR+vQFwbPgStU85+UVa1flb8K4=;
+ d=sourceforge.net; s=x; h=Content-Type:Content-Transfer-Encoding:MIME-Version
+ :References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Sender:Reply-To:
+ Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+ Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
+ List-Subscribe:List-Post:List-Owner:List-Archive;
+ bh=W2pDJyYht7VOnF3QgO48EKFIgXumd2pCO0LJ2y8eqgA=; b=ERZFQf9O3uLte42PupuinPx+hM
+ ZvPY3G4w3xiz9Kp0v1wIb05dVvZMj3IaNMpaFR81GTtQs5CnapLd6NFs4/U4bkvfNzIQ43ktOhX51
+ J2Y02gaZZyX2ig/QZQEuPrbJ5v3bI+TAnb0uNbKLCFaILOukt4gDUzBSzuEpYVgjb6fk=;
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  ;
- h=Message-ID:Date:Content-Transfer-Encoding:Content-ID:Content-Type:
- MIME-Version:Subject:Cc:To:References:In-Reply-To:From:Sender:Reply-To:
+ h=Content-Type:Content-Transfer-Encoding:MIME-Version:References:
+ In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Sender:Reply-To:Content-ID:
  Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
  :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
  List-Post:List-Owner:List-Archive;
- bh=K8SVe5aiMwQ66aCyV8FH9qy1UnNuhdudkR6VUPMWV6A=; b=hvfLSKOqp8qbQj8CKx6+i778M7
- vtoLgUiAPZ2Px4Iim0UnxFNrsmsyzsOkAtt411hCtB1++s453nR8vsKX/7e/IqFZcanbOhB42o8Ma
- cjgzB82xlzVID92u4l7fiNlzNvDaNPA71FQnm4XbUETWhuvXxdLfzFuvB8b88SL/Rbb4=;
-Received: from us-smtp-delivery-124.mimecast.com ([170.10.129.124])
+ bh=W2pDJyYht7VOnF3QgO48EKFIgXumd2pCO0LJ2y8eqgA=; b=Iuwjr3kGWwMAsYtV+MZfwyE2PP
+ Wi300G09EPvM4cn2/zR/afv3O9MxbkrVrd6qj62R8U88XKuvuIR+yTjIPs/70j+RyiOQ2NcJTDwIO
+ KdueJN6XSlghXnZXJLPQzCHF5PX7pf/WbV5PuPKskq2fh3uRwMOrYJ6X9N+6x81FbvUg=;
+Received: from kylie.crudebyte.com ([5.189.157.229])
  by sfi-mx-2.v28.lw.sourceforge.com with esmtps
  (TLS1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.94.2)
- id 1nzDL0-0003Df-Hc
- for v9fs-developer@lists.sourceforge.net; Thu, 09 Jun 2022 08:16:20 +0000
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
- s=mimecast20190719; t=1654762573;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references;
- bh=K8SVe5aiMwQ66aCyV8FH9qy1UnNuhdudkR6VUPMWV6A=;
- b=ScHxgGti8/L37nkydtzK1uD/bl4LLHinSnbAbxtZFd2ac2mQgJx07UHHcWNlKbii8juRfL
- +8NafJfKVrg5t3ZyfAFKsRrMHVfH910ZaxHTs0DaXc8cbBs6U+bQaOfIziFs9Ij6WeTXUv
- iGiXM2AJujbdu2eRbx1kUSRdxJAmatM=
-Received: from mimecast-mx02.redhat.com (mimecast-mx02.redhat.com
- [66.187.233.88]) by relay.mimecast.com with ESMTP with STARTTLS
- (version=TLSv1.2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- us-mta-591-swCr3ZqTNYevSKMJZgmZVA-1; Thu, 09 Jun 2022 04:16:07 -0400
-X-MC-Unique: swCr3ZqTNYevSKMJZgmZVA-1
-Received: from smtp.corp.redhat.com (int-mx10.intmail.prod.int.rdu2.redhat.com
- [10.11.54.10])
- (using TLSv1.2 with cipher AECDH-AES256-SHA (256/256 bits))
- (No client certificate requested)
- by mimecast-mx02.redhat.com (Postfix) with ESMTPS id 89641833967;
- Thu,  9 Jun 2022 08:16:06 +0000 (UTC)
-Received: from warthog.procyon.org.uk (unknown [10.33.36.62])
- by smtp.corp.redhat.com (Postfix) with ESMTP id 95887492C3B;
- Thu,  9 Jun 2022 08:16:04 +0000 (UTC)
-Organization: Red Hat UK Ltd. Registered Address: Red Hat UK Ltd, Amberley
- Place, 107-111 Peascod Street, Windsor, Berkshire, SI4 1TE, United
- Kingdom.
- Registered in England and Wales under Company Registration No. 3798903
-From: David Howells <dhowells@redhat.com>
-In-Reply-To: <165476202136.3999992.433442175457370240.stgit@warthog.procyon.org.uk>
-References: <165476202136.3999992.433442175457370240.stgit@warthog.procyon.org.uk>
-To: jlayton@kernel.org
+ id 1nzHWN-00046b-RB
+ for v9fs-developer@lists.sourceforge.net; Thu, 09 Jun 2022 12:44:22 +0000
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+ d=crudebyte.com; s=kylie; h=Content-Type:Content-Transfer-Encoding:
+ MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:
+ Content-ID:Content-Description;
+ bh=W2pDJyYht7VOnF3QgO48EKFIgXumd2pCO0LJ2y8eqgA=; b=XwsV5kVPYRzw8zsik48ZXpsC7h
+ uDwZnQpMlIxxjUheod91CQGw864EqMlZVWZq09/Mxscjowvp+hI1riI0px/ZDhl565V/TO6vVRtNx
+ jlypaJo+m0C2Nml78GnSuwbLj7ltbP0bvS/hxwQ73dKzvwIr8BvEz0yItvmcrWm0XPRcVBAQW3voy
+ gImgVviuU2LwSIf9TG9G/FYsLKvnNH7EUgkcysLtrvXZCvWmvAUKG/2i5/noqXURujrSPYw4VhyzW
+ eo5Fk7lhbJC9C1FdTQd/H4tzIXC4wCqoWGswEfe2Lealfbs1yskeMg1AgTv5eo6KFC+SnQddzg28M
+ hYXyPM6+R/vKmDbOZ/BpHYlNvHyugj9zk7IlobMnEe+k/swj+hxMCRFJMIWkqX9ip8zIAwPGYlY1y
+ Xmqu+p1OZ2NfgpAB3edEsE4aYQl2AUBx7LXvHdZSlI9aKjAxClCxVUEtVkAF4H1yM66o4YqDpM3g5
+ uaF2nvE2kQyUMvg7ufHN3roO+Fhi0vgn5jjHyE8M63qgOBrD8dXKyq4AxZF42nAMkdHY3T4DouP0I
+ 6AW/Yy897JCJUD0tfe9O2uJ+QTBGaAFy3Tdze9z5k3vDvOXALMP2pG12q6wc2sGKt7l5kmZ3mRIEw
+ SgGmlyMq6DK6kIgvpoOYhgMUw534Qo6BBwPQK5wqU=;
+To: Eric Van Hensbergen <ericvh@gmail.com>,
+ Latchesar Ionkov <lucho@ionkov.net>,
+ Dominique Martinet <asmadeus@codewreck.org>,
+ Tyler Hicks <tyhicks@linux.microsoft.com>
+Date: Thu, 09 Jun 2022 14:44:04 +0200
+Message-ID: <7291261.iO0hoOTYzs@silver>
+In-Reply-To: <20220607034110.GA7401@sequoia>
+References: <20220527000003.355812-1-tyhicks@linux.microsoft.com>
+ <1849605.JvGbLJQp6r@silver> <20220607034110.GA7401@sequoia>
 MIME-Version: 1.0
-Content-ID: <4000416.1654762563.1@warthog.procyon.org.uk>
-Date: Thu, 09 Jun 2022 09:16:03 +0100
-Message-ID: <4000417.1654762563@warthog.procyon.org.uk>
-X-Scanned-By: MIMEDefang 2.85 on 10.11.54.10
-X-Spam-Score: -0.9 (/)
+X-Spam-Score: -0.2 (/)
 X-Spam-Report: Spam detection software,
  running on the system "util-spamd-1.v13.lw.sourceforge.com", 
  has NOT identified this incoming email as spam.  The original
  message has been attached to this so you can view it or label
  similar future email.  If you have any questions, see
  the administrator of that system for details.
- Content preview: Here's a program that can be used to exercise the
- iter_xarray_get_pages()
- function in userspace. In the main() function, there are various parameters
- that can be adjusted, such as the starting offset [...] 
- Content analysis details:   (-0.9 points, 6.0 required)
+ Content preview:  On Dienstag, 7. Juni 2022 05:41:10 CEST Tyler Hicks wrote:
+ > On 2022-06-01 16:28:49, Christian Schoenebeck wrote: > > On Dienstag, 31.
+ Mai 2022 16:28:29 CEST Tyler Hicks wrote: > > > On 2022-05-30 19: [...] 
+ Content analysis details:   (-0.2 points, 6.0 required)
  pts rule name              description
  ---- ---------------------- --------------------------------------------------
- -0.0 RCVD_IN_DNSWL_NONE     RBL: Sender listed at https://www.dnswl.org/,
- no trust [170.10.129.124 listed in list.dnswl.org]
  0.0 SPF_HELO_NONE          SPF: HELO does not publish an SPF Record
  -0.0 SPF_PASS               SPF: sender matches SPF record
  -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
@@ -99,10 +83,9 @@ X-Spam-Report: Spam detection software,
  valid
  -0.1 DKIM_VALID_AU          Message has a valid DKIM or DK signature from
  author's domain
- -0.7 DKIMWL_WL_HIGH         DKIMwl.org - High trust sender
-X-Headers-End: 1nzDL0-0003Df-Hc
-Subject: Re: [V9fs-developer] [PATCH] iov_iter: Fix iter_xarray_get_pages{,
- _alloc}()
+X-Headers-End: 1nzHWN-00046b-RB
+Subject: Re: [V9fs-developer] [PATCH v2 1/5] 9p: Fix refcounting during full
+ path walks for fid lookups
 X-BeenThere: v9fs-developer@lists.sourceforge.net
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -114,172 +97,45 @@ List-Post: <mailto:v9fs-developer@lists.sourceforge.net>
 List-Help: <mailto:v9fs-developer-request@lists.sourceforge.net?subject=help>
 List-Subscribe: <https://lists.sourceforge.net/lists/listinfo/v9fs-developer>, 
  <mailto:v9fs-developer-request@lists.sourceforge.net?subject=subscribe>
-Cc: linux-kernel@vger.kernel.org, dhowells@redhat.com, linux-cachefs@redhat.com,
- Alexander Viro <viro@zeniv.linux.org.uk>, linux-fsdevel@vger.kernel.org,
- v9fs-developer@lists.sourceforge.net, Gao Xiang <xiang@kernel.org>,
- linux-erofs@lists.ozlabs.org, linux-afs@lists.infradead.org,
- devel@lists.orangefs.org, Mike Marshall <hubcap@omnibond.com>
+From: Christian Schoenebeck via V9fs-developer
+ <v9fs-developer@lists.sourceforge.net>
+Reply-To: Christian Schoenebeck <linux_oss@crudebyte.com>
+Cc: v9fs-developer@lists.sourceforge.net, Jianyong Wu <jianyong.wu@arm.com>,
+ linux-kernel@vger.kernel.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: v9fs-developer-bounces@lists.sourceforge.net
 
-Here's a program that can be used to exercise the iter_xarray_get_pages()
-function in userspace.  In the main() function, there are various parameters
-that can be adjusted, such as the starting offset (iter.xarray_start), the
-size of the content (iter.count), the maximum number of pages to be extracted
-(maxpages) and the maximum size to be extracted (maxsize).
+On Dienstag, 7. Juni 2022 05:41:10 CEST Tyler Hicks wrote:
+> On 2022-06-01 16:28:49, Christian Schoenebeck wrote:
+> > On Dienstag, 31. Mai 2022 16:28:29 CEST Tyler Hicks wrote:
+> > > On 2022-05-30 19:14:43, Christian Schoenebeck wrote:
+> > > > On Freitag, 27. Mai 2022 01:59:59 CEST Tyler Hicks wrote:
+> > > > > Decrement the refcount of the parent dentry's fid after walking
+> > > > > each path component during a full path walk for a lookup. Failure to
+> > > > > do
+> > > > > so can lead to fids that are not clunked until the filesystem is
+> > > > > 
+> > > > > unmounted, as indicated by this warning:
+> > > > >  9pnet: found fid 3 not clunked
+> > > > 
+> > > > That explains why I saw so many fids not being clunked with recent
+> > > > Linux
+> > > > kernel versions while doing some 9p protocol debugging with QEMU
+> > > > recently.
+[...]
+> 9p maintainers, is there anything else that I can help with to get this
+> bug fix reviewed/merged? Thanks!
 
-David
----
-/* SPDX-License-Identifier: GPL-2.0 */
-#include <stdbool.h>
-#include <stdlib.h>
-#include <stdio.h>
-#include <string.h>
+Dominique is the only active 9p maintainer for a while and barely has time for 
+9p anymore (hint: implied call for volunteers hidden in this sentence).
 
-typedef unsigned long pgoff_t;
-#define PAGE_SHIFT 12
-#define PAGE_SIZE ((unsigned long)1 << PAGE_SHIFT)
-#define PAGE_MASK (~(PAGE_SIZE - 1))
+Dominique, do you have a time slice for this issue? I agree that it makes 
+sense to bring this issue forward.
 
-struct page;
-struct xarray;
+Best regards,
+Christian Schoenebeck
 
-struct iov_iter {
-	size_t iov_offset;
-	size_t count;
-	loff_t xarray_start;
-};
-#define __is_constexpr(x) \
-	(sizeof(int) == sizeof(*(8 ? ((void *)((long)(x) * 0l)) : (int *)8)))
-#define __typecheck(x, y) \
-	(!!(sizeof((typeof(x) *)1 == (typeof(y) *)1)))
-
-#define __no_side_effects(x, y) \
-		(__is_constexpr(x) && __is_constexpr(y))
-
-#define __safe_cmp(x, y) \
-		(__typecheck(x, y) && __no_side_effects(x, y))
-
-#define __cmp(x, y, op)	((x) op (y) ? (x) : (y))
-
-#define __cmp_once(x, y, unique_x, unique_y, op) ({	\
-		typeof(x) unique_x = (x);		\
-		typeof(y) unique_y = (y);		\
-		__cmp(unique_x, unique_y, op); })
-
-#define __careful_cmp(x, y, op) \
-	__builtin_choose_expr(__safe_cmp(x, y), \
-		__cmp(x, y, op), \
-		__cmp_once(x, y, __x, __y, op))
-#define min(x, y)	__careful_cmp(x, y, <)
-#define min_t(type, x, y)	__careful_cmp((type)(x), (type)(y), <)
-
-static int apply_fix;
-
-static ssize_t iter_xarray_populate_pages(pgoff_t index, unsigned int nr_pages)
-{
-	return nr_pages;
-}
-
-static ssize_t iter_xarray_get_pages(struct iov_iter *i, size_t maxsize,
-				     unsigned maxpages, size_t *_start_offset)
-{
-	unsigned nr, offset;
-	pgoff_t index, count;
-	size_t size = maxsize, head_size, tail_size;
-	loff_t pos;
-
-	if (!size || !maxpages)
-		return 0;
-
-	pos = i->xarray_start + i->iov_offset;
-	index = pos >> PAGE_SHIFT;
-	offset = pos & ~PAGE_MASK;
-	*_start_offset = offset;
-
-	count = 1;
-	tail_size = head_size = PAGE_SIZE - offset;
-	if (maxsize > head_size) {
-		size -= head_size;
-		count += size >> PAGE_SHIFT;
-		tail_size = size & ~PAGE_MASK;
-		if (tail_size)
-			count++;
-	}
-
-	if (count > maxpages)
-		count = maxpages;
-
-	printf(" %6lx %6lu %6zx |", index, count, tail_size);
-
-	nr = iter_xarray_populate_pages(index, count);
-	if (nr == 0)
-		return 0;
-
-	if (!apply_fix) {
-		size_t actual = PAGE_SIZE * nr;
-		actual -= offset;
-		if (nr == count && size > 0) {
-			unsigned last_offset = (nr > 1) ? 0 : offset;
-			actual -= PAGE_SIZE - (last_offset + size);
-		}
-		return actual;
-	} else {
-		return min(nr * PAGE_SIZE - offset, maxsize);
-	}
-}
-
-ssize_t iov_iter_get_pages(struct iov_iter *i,
-			   size_t maxsize, unsigned maxpages, size_t *start)
-{
-	if (maxsize > i->count)
-		maxsize = i->count;
-	if (!maxsize)
-		return 0;
-	return iter_xarray_get_pages(i, maxsize, maxpages, start);
-}
-
-int main()
-{
-	struct iov_iter iter;
-	ssize_t size;
-	size_t i, maxpages, maxsize, offset;
-
-	memset(&iter, 0, sizeof(iter));
-
-	/* Adjustable parameters */
-	iter.xarray_start	= 0x11000;
-	iter.count		= PAGE_SIZE * 16;
-	maxpages		= 15;
-	maxsize			= maxpages * PAGE_SIZE;
-
-	printf("X-STRT X-OFFS X-CNT  | INDEX  COUNT  T-SIZE | OFFSET SIZE\n");
-	printf("====== ====== ====== | ====== ====== ====== | ====== ======\n");
-
-	for (apply_fix = 0; apply_fix < 2; apply_fix++) {
-		i = 0;
-		for (;;) {
-			iter.iov_offset = i;
-			printf("%6lx %6zx %6zx |",
-			       iter.xarray_start, iter.iov_offset, iter.count);
-			size = iov_iter_get_pages(&iter, maxsize, maxpages,
-						  &offset);
-
-			printf(" %6zx %6zx", offset, size);
-			if (offset + size > maxsize)
-				printf(" ** BIG");
-			if (offset + size > iter.iov_offset + iter.count)
-				printf(" ** OVER");
-			printf("\n");
-			if (i > PAGE_SIZE)
-				break;
-			i += 0x111;
-		}
-
-	}
-	return 0;
-}
 
 
 
