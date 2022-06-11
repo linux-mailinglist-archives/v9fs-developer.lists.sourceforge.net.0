@@ -2,108 +2,112 @@ Return-Path: <v9fs-developer-bounces@lists.sourceforge.net>
 X-Original-To: lists+v9fs-developer@lfdr.de
 Delivered-To: lists+v9fs-developer@lfdr.de
 Received: from lists.sourceforge.net (lists.sourceforge.net [216.105.38.7])
-	by mail.lfdr.de (Postfix) with ESMTPS id C87005477B9
-	for <lists+v9fs-developer@lfdr.de>; Sat, 11 Jun 2022 23:43:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id F152D5477E5
+	for <lists+v9fs-developer@lfdr.de>; Sun, 12 Jun 2022 01:17:13 +0200 (CEST)
 Received: from [127.0.0.1] (helo=sfs-ml-4.v29.lw.sourceforge.com)
 	by sfs-ml-4.v29.lw.sourceforge.com with esmtp (Exim 4.94.2)
 	(envelope-from <v9fs-developer-bounces@lists.sourceforge.net>)
-	id 1o08tJ-0001l1-6r; Sat, 11 Jun 2022 21:43:32 +0000
+	id 1o0ALu-000472-N0; Sat, 11 Jun 2022 23:17:09 +0000
 Received: from [172.30.20.202] (helo=mx.sourceforge.net)
  by sfs-ml-4.v29.lw.sourceforge.com with esmtps (TLS1.2) tls
  TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384 (Exim 4.94.2)
- (envelope-from <asmadeus@codewreck.org>) id 1o08tH-0001kt-Fd
- for v9fs-developer@lists.sourceforge.net; Sat, 11 Jun 2022 21:43:30 +0000
+ (envelope-from <sudipm.mukherjee@gmail.com>) id 1o0ALt-00046v-57
+ for v9fs-developer@lists.sourceforge.net; Sat, 11 Jun 2022 23:17:08 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=sourceforge.net; s=x; h=In-Reply-To:Content-Type:MIME-Version:References:
- Message-ID:Subject:Cc:To:From:Date:Sender:Reply-To:Content-Transfer-Encoding:
- Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+ d=sourceforge.net; s=x; h=Content-Type:Cc:To:Subject:Message-ID:Date:From:
+ In-Reply-To:References:MIME-Version:Sender:Reply-To:Content-Transfer-Encoding
+ :Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
  Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
  List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=bvw6fpwdTV3SdbFGxdCekho4gJarBysiPQpYO63U+ic=; b=kn91U6TfeJZtbCpfiYwPGw9Rim
- 8rd3vkD1E2y0eCZlfEJQVivFzmMV83J02uGUkrN2CFG+WKWxHwV/fxEEXFp+hcOAAk8D6oP5h9YqY
- VeG7dn8Qzh97FR6kQLeLqB2ZkfBovnzCnRBJ1G7lAs/FXd+YIfYzXnLTwz3BekCY0ikU=;
+ bh=7tY0AdLKGQcBZThRCKqEnHHKhqjAUktylGqxkcbwV5M=; b=QZH7oCEdpiLQAU8CBhs/6vWtAz
+ JCBSLc8NljrCUS4/meEhspiRiTovgaHBhl+3XtFysjnbo55M8KhSbE5r3cX3RLurdXpLyMobMS81e
+ R3JWwiI15B4iIY6D1g4kOYoPdWOmtfahXGtOCcUnNDXla8R5l8K3iGmKrbvpw+E+i+O4=;
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  ;
- h=In-Reply-To:Content-Type:MIME-Version:References:Message-ID:Subject:Cc:To
- :From:Date:Sender:Reply-To:Content-Transfer-Encoding:Content-ID:
+ h=Content-Type:Cc:To:Subject:Message-ID:Date:From:In-Reply-To:References:
+ MIME-Version:Sender:Reply-To:Content-Transfer-Encoding:Content-ID:
  Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
  :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
  List-Post:List-Owner:List-Archive;
- bh=bvw6fpwdTV3SdbFGxdCekho4gJarBysiPQpYO63U+ic=; b=OlLzPohjm03s5jLlQ66NCmo4Wj
- 8JIcfwxIAg9jmBAdi6xc7HE4nu8TVKgeKmTtyMnXYqermb11HRjviBiReXQGINM8iEV6RWQ9MUC1o
- gySGtOjSQ9wirizla1ByzheaINGEWt5KozCwQaK3JFcQstjbs2b12rmRD+KQ8lxfzl3o=;
-Received: from nautica.notk.org ([91.121.71.147])
- by sfi-mx-1.v28.lw.sourceforge.com with esmtps
- (TLS1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.94.2)
- id 1o08tC-00FJje-Bk
- for v9fs-developer@lists.sourceforge.net; Sat, 11 Jun 2022 21:43:30 +0000
-Received: by nautica.notk.org (Postfix, from userid 108)
- id 206E5C01A; Sat, 11 Jun 2022 23:43:18 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=codewreck.org; s=2;
- t=1654983798; bh=bvw6fpwdTV3SdbFGxdCekho4gJarBysiPQpYO63U+ic=;
- h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
- b=IvqPhNv4qX/hFjV3+mci219xaVbtZK4VnYxnHkTTKrsES9W6CYiZbTGEAQl3OU4LB
- Op2g9f4k6sr0W+mvdWkMdGAW8zM9EyrNtyURYiCiufpbgzY4F4JphsFS/MbMHLqYuI
- jauwvaGTrKDlXoS4KZ3KSSgvmIom5RRJzjV33BNzMJ2AL8MjqJ069IfBgHqTfkph8w
- QIoyVKGjsssBtTSsROVBuQu38xAOghjt/4h1F8NpAupJFhQFncfkzaMFfosBQ7YbtE
- ohOrAo/8KO70m7jgblgvpANpVXuh6nobwpeVh4LoRrBhBvbZf+f7HW32BFiw1oKPk9
- ktcXK6x7m+seQ==
-X-Spam-Checker-Version: SpamAssassin 3.3.2 (2011-06-06) on nautica.notk.org
-X-Spam-Level: 
-X-Spam-Status: No, score=0.0 required=5.0 tests=UNPARSEABLE_RELAY
- autolearn=unavailable version=3.3.2
-Received: from odin.codewreck.org (localhost [127.0.0.1])
- by nautica.notk.org (Postfix) with ESMTPS id B96C7C009;
- Sat, 11 Jun 2022 23:43:16 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=codewreck.org; s=2;
- t=1654983797; bh=bvw6fpwdTV3SdbFGxdCekho4gJarBysiPQpYO63U+ic=;
- h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
- b=v7JUyo/Bpzv7XK3Jrw4a717BWUdSVz7IoptGPFjYP9lJFNYPrkPwO/TvfKPD/U0D3
- B7rX7ik3Cz9RsJ2bW4iH3fmk4/tFC3TvHLnOvKKAIZgSjDHCfo7mHs27qFopVJNkig
- vrlhFJmHW1GX1G9Nz4XtD/BMnSYw1rxOr8VNTi5P4K+TbQ76S2O39xcnzYv2gc6Sum
- cEFQeFzsagw4/9kPpWjSuFltnhVfJIvbyZbUnnFowBAh2R5iF4ZA3RX/TyD9gVVjcD
- GCFMD984koaK6YNO6RQRzGWfjF32XrGcC8fGzTd/g6Fkbpds9UQnwvoq/lSBlXpW+g
- TAjFg+v4KqI4g==
-Received: from localhost (odin.codewreck.org [local])
- by odin.codewreck.org (OpenSMTPD) with ESMTPA id e7b3bd2d;
- Sat, 11 Jun 2022 21:43:13 +0000 (UTC)
-Date: Sun, 12 Jun 2022 06:42:58 +0900
-From: Dominique Martinet <asmadeus@codewreck.org>
-To: Al Viro <viro@zeniv.linux.org.uk>
-Message-ID: <YqUMYpqYiKOeEoha@codewreck.org>
-References: <YqDfWho8+f2AXPrj@zeniv-ca.linux.org.uk>
- <YqSYWgeQqenOYwVf@codewreck.org>
- <YqSyaz0GNdZbu1bx@zeniv-ca.linux.org.uk>
+ bh=7tY0AdLKGQcBZThRCKqEnHHKhqjAUktylGqxkcbwV5M=; b=KLKeVDusam+heAiHUtInc4Ylld
+ Cs7C5uwf9+94NAYxUQSyUxSyDpo08aoy/D/6kExHtVxzS6XrOqr/OoUZiyx28y025rTezrOjT66sn
+ +1u+xxOPhtpc4HPNyiWgYEKb2LbVuz42mu/mhJ80nLmg0cx2/Ogws6RwfUImUQEZF540=;
+Received: from mail-yw1-f171.google.com ([209.85.128.171])
+ by sfi-mx-2.v28.lw.sourceforge.com with esmtps
+ (TLS1.2:ECDHE-RSA-AES128-GCM-SHA256:128) (Exim 4.94.2)
+ id 1o0ALm-00059J-0P
+ for v9fs-developer@lists.sourceforge.net; Sat, 11 Jun 2022 23:17:07 +0000
+Received: by mail-yw1-f171.google.com with SMTP id
+ 00721157ae682-30c143c41e5so21640557b3.3
+ for <v9fs-developer@lists.sourceforge.net>;
+ Sat, 11 Jun 2022 16:17:03 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc; bh=7tY0AdLKGQcBZThRCKqEnHHKhqjAUktylGqxkcbwV5M=;
+ b=MkUznwHRAxP9+dhosAeqvGb2QHCUqhvglnLe+Ay0eMDpsTrsROFrqBqQNV907jqR1k
+ PE2DZB0piQZii/9kYn3Nn6qK4782QU37QOcmw7/isWdIyQV+2HSeVQdT43sMKW2+E8JI
+ dhOaGyLje/PreClJgBIcQ6/7fcZqE4h66uDkBxHR/kjW+qZwvD5X9qTF+pX9Ulcqw6XA
+ P3abM7JyEvmvQmqbrIwWVbuRM2ZH8kxFqEIKDrMHJjfFKdsDBG/HUMY4NmC/FetK5vbt
+ q9BwbuOnI+NtI6u57xBjA1qJzpd2I2vWt4s2kFz6zP9JEHmDYIQhgT8OsOrjWu2Qs1BM
+ 7PeQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20210112;
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc;
+ bh=7tY0AdLKGQcBZThRCKqEnHHKhqjAUktylGqxkcbwV5M=;
+ b=tpo97gOHStLGj51dKgbBxJwVOBNCJWnZtAj0vNR1xqemyDUZgA2F6h6kEHj2bx1EI5
+ 2KPH2Lh6C0zysUiBLwLvjHwWlztX3y9KPxfOR2w2aWdVnVdmCmgShkOabQLOsMhUa0K/
+ S9PVsZHMw7mTQMujivemk9vBd/mMDH59AOfMameDyRyBdZsrqsycABeINtf38Xv6nwhc
+ QL2eum0+OS92voD141C2HQHELWaiUeImJzRkSMs06d4ZRomX+lVYKkE2hF+UCWLaEORs
+ o4ytmxSHewSV2qZG5qqsVeVGMDOVhEuP7/SL/vu874w/2HBYJsx44OYynDE2sRNuJ3vf
+ cn1g==
+X-Gm-Message-State: AOAM5313+U0dOEYaQOZdTCbga/mRjChK0d707cYg+LJJ1G34sluSZ5rq
+ BfTgmwdMj8MomC0vBYnqxovCSV/tqRY59N+6wTk=
+X-Google-Smtp-Source: ABdhPJzlwYpvKTPyyPdeXtV2pl9MFSrG58VQNbCZMgzIM4+A3xkdjLHgnk9bXvveXs22MFjk8SlQTB1IJrT1XFksgVA=
+X-Received: by 2002:a81:25cc:0:b0:30f:ea57:af01 with SMTP id
+ l195-20020a8125cc000000b0030fea57af01mr54129487ywl.488.1654989417608; Sat, 11
+ Jun 2022 16:16:57 -0700 (PDT)
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <YqSyaz0GNdZbu1bx@zeniv-ca.linux.org.uk>
+References: <YqRyL2sIqQNDfky2@debian> <YqSGv6uaZzLxKfmG@zeniv-ca.linux.org.uk>
+ <YqSMmC/UuQpXdxtR@zeniv-ca.linux.org.uk>
+ <YqSQ++8UnEW0AJ2y@zeniv-ca.linux.org.uk>
+In-Reply-To: <YqSQ++8UnEW0AJ2y@zeniv-ca.linux.org.uk>
+From: Sudip Mukherjee <sudipm.mukherjee@gmail.com>
+Date: Sun, 12 Jun 2022 00:16:21 +0100
+Message-ID: <CADVatmOJvTj21vrL5cnAVjWx46cB4r_kB+T2ankDj+mKH2-7=w@mail.gmail.com>
+To: Al Viro <viro@zeniv.linux.org.uk>
 X-Spam-Score: -0.2 (/)
 X-Spam-Report: Spam detection software,
- running on the system "util-spamd-1.v13.lw.sourceforge.com", 
+ running on the system "util-spamd-2.v13.lw.sourceforge.com", 
  has NOT identified this incoming email as spam.  The original
  message has been attached to this so you can view it or label
  similar future email.  If you have any questions, see
  the administrator of that system for details.
- Content preview:  Al Viro wrote on Sat, Jun 11, 2022 at 03:19:07PM +0000: >
- > That makes me wonder just how much use we get for the legacy > > protocols
- -- I guess we do have some but all the filesystem-y > > implement [...] 
+ Content preview:  On Sat, Jun 11, 2022 at 1:56 PM Al Viro wrote: > > On Sat,
+ Jun 11, 2022 at 12:37:44PM +0000, Al Viro wrote: > > On Sat, Jun 11, 2022
+ at 12:12:47PM +0000, Al Viro wrote: > > > > > > > At a guess, sho [...] 
  Content analysis details:   (-0.2 points, 6.0 required)
  pts rule name              description
  ---- ---------------------- --------------------------------------------------
- 0.0 SPF_HELO_NONE          SPF: HELO does not publish an SPF Record
+ -0.0 RCVD_IN_DNSWL_NONE     RBL: Sender listed at https://www.dnswl.org/,
+ no trust [209.85.128.171 listed in list.dnswl.org]
  -0.0 SPF_PASS               SPF: sender matches SPF record
- -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+ 0.0 FREEMAIL_FROM          Sender email is commonly abused enduser mail
+ provider [sudipm.mukherjee[at]gmail.com]
+ 0.0 SPF_HELO_NONE          SPF: HELO does not publish an SPF Record
+ -0.0 RCVD_IN_MSPIKE_H2      RBL: Average reputation (+2)
+ [209.85.128.171 listed in wl.mailspike.net]
  -0.1 DKIM_VALID_EF          Message has a valid DKIM or DK signature from
  envelope-from domain
- 0.1 DKIM_SIGNED            Message has a DKIM or DK signature, not necessarily
- valid
  -0.1 DKIM_VALID_AU          Message has a valid DKIM or DK signature from
  author's domain
- 0.0 UNPARSEABLE_RELAY      Informational: message has unparseable relay
- lines
-X-Headers-End: 1o08tC-00FJje-Bk
-Subject: Re: [V9fs-developer] [RFC][CFT] handling Rerror without
- copy_from_iter_full()
+ 0.1 DKIM_SIGNED            Message has a DKIM or DK signature, not necessarily
+ valid
+ -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+ -0.0 T_SCC_BODY_TEXT_LINE   No description available.
+X-Headers-End: 1o0ALm-00059J-0P
+Subject: Re: [V9fs-developer] mainline build failure due to 6c77676645ad
+ ("iov_iter: Fix iter_xarray_get_pages{, _alloc}()")
 X-BeenThere: v9fs-developer@lists.sourceforge.net
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -115,75 +119,49 @@ List-Post: <mailto:v9fs-developer@lists.sourceforge.net>
 List-Help: <mailto:v9fs-developer-request@lists.sourceforge.net?subject=help>
 List-Subscribe: <https://lists.sourceforge.net/lists/listinfo/v9fs-developer>, 
  <mailto:v9fs-developer-request@lists.sourceforge.net?subject=subscribe>
-Cc: linux-fsdevel@vger.kernel.org, v9fs-developer@lists.sourceforge.net
+Cc: Linus Torvalds <torvalds@linux-foundation.org>,
+ linux-kernel <linux-kernel@vger.kernel.org>,
+ David Howells <dhowells@redhat.com>, linux-cachefs@redhat.com,
+ linux-fsdevel@vger.kernel.org, v9fs-developer@lists.sourceforge.net,
+ Gao Xiang <xiang@kernel.org>, linux-erofs@lists.ozlabs.org,
+ linux-afs@lists.infradead.org, devel@lists.orangefs.org,
+ Mike Marshall <hubcap@omnibond.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: v9fs-developer-bounces@lists.sourceforge.net
 
-Al Viro wrote on Sat, Jun 11, 2022 at 03:19:07PM +0000:
-> > That makes me wonder just how much use we get for the legacy
-> > protocols -- I guess we do have some but all the filesystem-y
-> > implementations that I would expect to be main users for large
-> > IOs/zc are 9P2000.L as far as I know -- especially considering
-> > virtio is pretty much limited to qemu? Are there other 9p virtio
-> > servers?
-> 
-> Client can trivially force its use - -o version=9p2000.u and there
-> you go...
+On Sat, Jun 11, 2022 at 1:56 PM Al Viro <viro@zeniv.linux.org.uk> wrote:
+>
+> On Sat, Jun 11, 2022 at 12:37:44PM +0000, Al Viro wrote:
+> > On Sat, Jun 11, 2022 at 12:12:47PM +0000, Al Viro wrote:
+> >
+> >
+> > > At a guess, should be
+> > >     return min((size_t)nr * PAGE_SIZE - offset, maxsize);
+> > >
+> > > in both places.  I'm more than half-asleep right now; could you verify that it
+> > > (as the last lines of both iter_xarray_get_pages() and iter_xarray_get_pages_alloc())
+> > > builds correctly?
+> >
+> > No, I'm misreading it - it's unsigned * unsigned long - unsigned vs. size_t.
+> > On arm it ends up with unsigned long vs. unsigned int; functionally it *is*
+> > OK (both have the same range there), but it triggers the tests.  Try
+> >
+> >       return min_t(size_t, nr * PAGE_SIZE - offset, maxsize);
+> >
+> > there (both places).
+>
+> The reason we can't overflow on multiplication there, BTW, is that we have
+> nr <= count, and count has come from weirdly open-coded
+>         DIV_ROUND_UP(size + offset, PAGE_SIZE)
+> IMO we'd better make it explicit, so how about the following:
 
-Well, yes, but qemu supports .L -- even if we arbitrarily decide .u
-won't go through the zero-copy path it's not going to harm the VM case.
+Thanks. Fixed the build for me.
 
-If zc had been a thing for e.g. trans_fd there are plenty of servers
-that could still be only used with older variants, but I don't think we
-have to try supporting 9p2000.u + zc if it's a burden in the code.
-
-> > Silly question, in case of a pipe we'll have written something we
-> > shouldn't have, or is it not gone yet until we actually finish the IO
-> > with iov_iter_advance?
-> > (my understanding is that reader won't have anything to read until
-> > someone else does the advance, and that someone else will have
-> > overwritten the data with their own content so no garbage wlll be read)
-> 
-> More than that, pipe is locked through ->read_iter(), so transient garbage
-> in it doesn't matter - we will either advance it by zero (it's an error)
-> or, with iov_iter_get_pages_alloc() switching to advancing variant,
-> we'll revert by the amount it had reserved there (error is the same as
-> extremely short read).
-
-Ok, thanks
-
-> > ... With that said though your approach here definitely looks better
-> > than what we currently have -- my main issue is that truncating is fine
-> > for the original 9p2000 but for .U you'd be losing the ecode that we
-> > currently trust for being errno-compatible.
-> 
-> No, we wouldn't - this
->                 len = req->rc.size - req->rc.offset;
-> 		if (len > (P9_ZC_HDR_SZ - 7)) {
-> 			err = -EFAULT;
-> 			goto out_err;
-> 		}
-> in p9_check_zc_errors() means that mainline won't even look at that value.
-> And we'll get the same -EFAULT when we get to
->                 err = p9pdu_readf(&req->rc, c->proto_version, "s?d",
-> 				  &ename, &ecode);
-> in p9_check_errors() and see that the length of string is too large to
-> fit into (truncated) reply.
-
-
-Right, I forgot the string itself has a size, so we're not looking at
-the last bytes but something that is no longer there and readf will
-fail. Ok.
-
-Sure, I don't see any other problem with this code.
-I still think it's complexity we don't really need, but it's better than
-what we have -- care to resend it as a real patch? and I'll apply/run
-through some basic tests with qemu+2000u a bit.
-(well, I don't have to wait to run the tests)
 
 -- 
-Dominique
+Regards
+Sudip
 
 
 _______________________________________________
