@@ -2,26 +2,26 @@ Return-Path: <v9fs-developer-bounces@lists.sourceforge.net>
 X-Original-To: lists+v9fs-developer@lfdr.de
 Delivered-To: lists+v9fs-developer@lfdr.de
 Received: from lists.sourceforge.net (lists.sourceforge.net [216.105.38.7])
-	by mail.lfdr.de (Postfix) with ESMTPS id 03B145474D0
-	for <lists+v9fs-developer@lfdr.de>; Sat, 11 Jun 2022 15:28:33 +0200 (CEST)
-Received: from [127.0.0.1] (helo=sfs-ml-1.v29.lw.sourceforge.com)
-	by sfs-ml-1.v29.lw.sourceforge.com with esmtp (Exim 4.94.2)
+	by mail.lfdr.de (Postfix) with ESMTPS id 843945474E4
+	for <lists+v9fs-developer@lfdr.de>; Sat, 11 Jun 2022 15:44:14 +0200 (CEST)
+Received: from [127.0.0.1] (helo=sfs-ml-4.v29.lw.sourceforge.com)
+	by sfs-ml-4.v29.lw.sourceforge.com with esmtp (Exim 4.94.2)
 	(envelope-from <v9fs-developer-bounces@lists.sourceforge.net>)
-	id 1o01AE-00086y-Mu; Sat, 11 Jun 2022 13:28:31 +0000
+	id 1o01PQ-0007FV-KL; Sat, 11 Jun 2022 13:44:11 +0000
 Received: from [172.30.20.202] (helo=mx.sourceforge.net)
- by sfs-ml-1.v29.lw.sourceforge.com with esmtps (TLS1.2) tls
+ by sfs-ml-4.v29.lw.sourceforge.com with esmtps (TLS1.2) tls
  TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384 (Exim 4.94.2)
- (envelope-from <asmadeus@codewreck.org>) id 1o01AD-00086m-FI
- for v9fs-developer@lists.sourceforge.net; Sat, 11 Jun 2022 13:28:29 +0000
+ (envelope-from <groeck7@gmail.com>) id 1o01PO-0007FP-S0
+ for v9fs-developer@lists.sourceforge.net; Sat, 11 Jun 2022 13:44:09 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
  d=sourceforge.net; s=x; h=In-Reply-To:Content-Type:MIME-Version:References:
  Message-ID:Subject:Cc:To:From:Date:Sender:Reply-To:Content-Transfer-Encoding:
  Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
  Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
  List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=TGzmb/Iu7QpV6WSsoJdFI/dC7IRxWq/cmuz/luanVAc=; b=aBrzTDE7giaUPRoX5GYTPol3VR
- K0itFE6pRF+VPDxbft8IJxTE/Vi5i0Losv6NHnd4oQDHc8qpsEcZjV3TEPg7u3MCc1ncFWOZvAt/X
- a2vyPwHDPf3JtU0axgnoUIxghIYAg/8oW0Y5hgceSnQCdJ1Y1INmG245SOiTDhmnJUww=;
+ bh=Ixh/tGjYEGtd9B0U4un+L2Dg2/GvxVifxx8JOO5/xxs=; b=ggxrlLfDV4ICBGHpjNTUim3p/g
+ ZleaG3YsOFQIqj9B9el5mgDYwEqCnbk3rWeDwndIJeYvS38VAK0rEwbJl/gtk7aonJNhsKZjUpXyA
+ ZSGFpc/eDBORvzu7Mr9t4/dgjbaTu7lVj5f+qd21PWkHSJrNoCbKZWxlhh/SPC4gX2wQ=;
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  ;
  h=In-Reply-To:Content-Type:MIME-Version:References:Message-ID:Subject:Cc:To
@@ -29,79 +29,96 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
  :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
  List-Post:List-Owner:List-Archive;
- bh=TGzmb/Iu7QpV6WSsoJdFI/dC7IRxWq/cmuz/luanVAc=; b=hBgC/CVu7V2ayQE3PTki4R3WBs
- Slzl2mKv0lC8ejO5ayjbVaGDyWhkpdI63XuNdG6tZf7Ok+eUj8nMSwmdAiBcEqExSK3PnHn4jUMe/
- MKUpg1Bb3LpKrhy6LLfKUlLREQt5H+4nOm7YL10MAPnT5FxKFnnqCSfbjQUl0o0UCdM0=;
-Received: from nautica.notk.org ([91.121.71.147])
- by sfi-mx-1.v28.lw.sourceforge.com with esmtps
- (TLS1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.94.2)
- id 1o01AC-00F5KD-JY
- for v9fs-developer@lists.sourceforge.net; Sat, 11 Jun 2022 13:28:29 +0000
-Received: by nautica.notk.org (Postfix, from userid 108)
- id 35CA4C01D; Sat, 11 Jun 2022 15:28:22 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=codewreck.org; s=2;
- t=1654954102; bh=TGzmb/Iu7QpV6WSsoJdFI/dC7IRxWq/cmuz/luanVAc=;
- h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
- b=tQP5srUj2YfSSYrAcwf8WOuwgC2dLZvbfuWXOee/l6dMy7c+JCKSEojbvjqZVuRJh
- hXwEpR/QmUAtYjiT3dnfqmX25QqFLnrXdZ7fhDq/cgQqrgz8K3Uy64ezrVNtQUQaNJ
- FU6Oh6vkPm9HOZuqjy9dUX1dwo/maMU8Ayeeh6YdXrBQbDdPmmpM0lHs/a4YIHzZSR
- Z0hnMFC1PL7Hk5TpSW6DXR0LXeSQe3Q3xr+po6x6H9M/RrmmF1+VLqh9ZQUig1/Muj
- tzDDoWO5PSNYU15P480tknwTmXW+KruEHeLMVIAQN1+YSD3vI1HxHeTvzXYClr827F
- PhqhsEav8sRZQ==
-X-Spam-Checker-Version: SpamAssassin 3.3.2 (2011-06-06) on nautica.notk.org
-X-Spam-Level: 
-X-Spam-Status: No, score=0.0 required=5.0 tests=UNPARSEABLE_RELAY
- autolearn=unavailable version=3.3.2
-Received: from odin.codewreck.org (localhost [127.0.0.1])
- by nautica.notk.org (Postfix) with ESMTPS id B5814C009;
- Sat, 11 Jun 2022 15:28:11 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=codewreck.org; s=2;
- t=1654954092; bh=TGzmb/Iu7QpV6WSsoJdFI/dC7IRxWq/cmuz/luanVAc=;
- h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
- b=oBKAGwxwZjWU0vDddmpjSlML42V0uJgzRWo0YNv9mF6HRGaJ4rT/scSgW6gno069C
- UY31d5HdJOjDIKlJ7uB6CfgN1qvVbEMRxrQYArwlSW7DWns6pfAvML8NQ5hKD83FBv
- RuSNCS4itsT6tXloguYAQNetaD48+EDiNn+Qi3QhqXhT+5auTTuDOgLRsxX/RpX8bo
- ebS57Rm9aOHSuRo4E5YNYf2w2GbG5JM06h8v8f1oAfICX1LvwMcgLpGm/P2A/FnvQj
- InRpqVner+PJV0uZcFH8NVBmWM/iB5q3XZ/ZTFGtKUzhlFPlTFQvgkPLNEERqWEv6m
- /58ghFMxuoz/g==
-Received: from localhost (odin.codewreck.org [local])
- by odin.codewreck.org (OpenSMTPD) with ESMTPA id cdccf9d2;
- Sat, 11 Jun 2022 13:28:09 +0000 (UTC)
-Date: Sat, 11 Jun 2022 22:27:54 +0900
-From: Dominique Martinet <asmadeus@codewreck.org>
-To: Al Viro <viro@zeniv.linux.org.uk>
-Message-ID: <YqSYWgeQqenOYwVf@codewreck.org>
-References: <YqDfWho8+f2AXPrj@zeniv-ca.linux.org.uk>
+ bh=Ixh/tGjYEGtd9B0U4un+L2Dg2/GvxVifxx8JOO5/xxs=; b=cZ18hMxnOv06TTNZ5+EH12vfbi
+ IN0NEvMPqM3qSX5pgWl9vjqkrUM2jx7IJQz3wEknvbcAGgkeeFd2L0Uj1ufTUJs2j/RPFrBzAeyrK
+ dI3toMVjb9h7KhgPfSF0Z8EpH4idMkOnM74tziIBi/ZSLqRbOaBZyTjdrp3iNHN1IlFs=;
+Received: from mail-pj1-f47.google.com ([209.85.216.47])
+ by sfi-mx-2.v28.lw.sourceforge.com with esmtps
+ (TLS1.2:ECDHE-RSA-AES128-GCM-SHA256:128) (Exim 4.94.2)
+ id 1o01PI-0002Ah-0E
+ for v9fs-developer@lists.sourceforge.net; Sat, 11 Jun 2022 13:44:09 +0000
+Received: by mail-pj1-f47.google.com with SMTP id
+ c12-20020a17090a558c00b001ea95be66a5so797002pji.2
+ for <v9fs-developer@lists.sourceforge.net>;
+ Sat, 11 Jun 2022 06:44:05 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
+ h=sender:date:from:to:cc:subject:message-id:references:mime-version
+ :content-disposition:in-reply-to;
+ bh=Ixh/tGjYEGtd9B0U4un+L2Dg2/GvxVifxx8JOO5/xxs=;
+ b=dWFageSqD+a/p7/dg6peuXBetNvvozPq1OrZOQ/jnLrmOlYGPzNGQ4RjNm2jbazw9i
+ u781rrcK5N+1rObNiGXHrWMqVQY7pZTTAMDXq7DNXEPeF453QBw6/bxOS0JTWBW4mEFL
+ oUM/P6Tc2N9Ofg4sbBfsItn4mThyJNPYPK0dfcLnQTh5rjJPmndWQJuSTs7DAwaCi/Vx
+ rL+jaeKda3xCTVgeOwll+wUPQ1XB4/3T0OO18jS1/nlZwt9iAYKwdDwzN6eMueoG9fyg
+ LLwuRDA7jXNLhI6Pff6Xji5gCQ5vnnxkZEApvX0oXAyGKRCiRXSTKan8B5OV8LXdXJGh
+ CGZA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20210112;
+ h=x-gm-message-state:sender:date:from:to:cc:subject:message-id
+ :references:mime-version:content-disposition:in-reply-to;
+ bh=Ixh/tGjYEGtd9B0U4un+L2Dg2/GvxVifxx8JOO5/xxs=;
+ b=v6hcIbUZIZUpkZoysDTidlO+AR8fgZh8JRYD31nZsFbTXqRAi+1mlF4akC+Vp5yFyz
+ U9NsGw2e6OeLx7nvHbIlcVplNEbXjwg8F4h2EZB9nLpFKPFeru5G5O+fgwMYxgYHy9IP
+ 06WbIJCACW/4+Dzlu7fpSTzom5caPmssQ9BEIzsdIIR9den05l9jijbIVsh6MZ99hkO8
+ dzK0Z1yREbZa278k63kzfiYs1SvEbjvhMJyVYxkyp2XbI+xBAxbBS17V+A4Es9x1D5xF
+ lbkbPntbK31wpbdQSN3u1839XGk4c/a7SS6SD4xx/Ah8VJiC69gYO4lsLzq7FPM/795N
+ IHjw==
+X-Gm-Message-State: AOAM5336FuZ2vF18k2uNS4HEOkvJKR1p0QFjnFREiIkjRtn2yYKLem+k
+ hnru6+OipLSGIkcYcxrlpiU=
+X-Google-Smtp-Source: ABdhPJyVm1Qx3rpbnexbaPz3LjRNh5xdY5jWDRPJD5O1BPtSHpLAWd+II5ejGzWE9luF6mWKd4zRSA==
+X-Received: by 2002:a17:902:9f96:b0:163:dc33:6b72 with SMTP id
+ g22-20020a1709029f9600b00163dc336b72mr50033692plq.34.1654955039652; 
+ Sat, 11 Jun 2022 06:43:59 -0700 (PDT)
+Received: from server.roeck-us.net ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
+ by smtp.gmail.com with ESMTPSA id
+ a12-20020a1709027e4c00b00164097a779fsm1523377pln.147.2022.06.11.06.43.58
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Sat, 11 Jun 2022 06:43:58 -0700 (PDT)
+Date: Sat, 11 Jun 2022 06:43:57 -0700
+From: Guenter Roeck <linux@roeck-us.net>
+To: David Howells <dhowells@redhat.com>
+Message-ID: <20220611134357.GA278954@roeck-us.net>
+References: <165476202136.3999992.433442175457370240.stgit@warthog.procyon.org.uk>
 MIME-Version: 1.0
 Content-Disposition: inline
-In-Reply-To: <YqDfWho8+f2AXPrj@zeniv-ca.linux.org.uk>
-X-Spam-Score: -0.2 (/)
+In-Reply-To: <165476202136.3999992.433442175457370240.stgit@warthog.procyon.org.uk>
+X-Spam-Score: 0.6 (/)
 X-Spam-Report: Spam detection software,
- running on the system "util-spamd-1.v13.lw.sourceforge.com", 
+ running on the system "util-spamd-2.v13.lw.sourceforge.com", 
  has NOT identified this incoming email as spam.  The original
  message has been attached to this so you can view it or label
  similar future email.  If you have any questions, see
  the administrator of that system for details.
- Content preview:  Al Viro wrote on Wed, Jun 08, 2022 at 05:41:46PM +0000: >
- As it is, p9_client_zc_rpc()/p9_check_zc_errors() is playing fast > and loose
- with copy_from_iter_full(). > > Background: reading from file is [...] 
- Content analysis details:   (-0.2 points, 6.0 required)
+ Content preview:  On Thu, Jun 09, 2022 at 09:07:01AM +0100,
+ David Howells wrote:
+ > The maths at the end of iter_xarray_get_pages() to calculate the actual
+ > size doesn't work under some circumstances, such as when it's [...] 
+ Content analysis details:   (0.6 points, 6.0 required)
  pts rule name              description
  ---- ---------------------- --------------------------------------------------
- 0.0 SPF_HELO_NONE          SPF: HELO does not publish an SPF Record
+ 0.2 FREEMAIL_ENVFROM_END_DIGIT Envelope-from freemail username ends
+ in digit [groeck7[at]gmail.com]
+ -0.0 RCVD_IN_DNSWL_NONE     RBL: Sender listed at https://www.dnswl.org/,
+ no trust [209.85.216.47 listed in list.dnswl.org]
+ 0.0 RCVD_IN_MSPIKE_H3      RBL: Good reputation (+3)
+ [209.85.216.47 listed in wl.mailspike.net]
  -0.0 SPF_PASS               SPF: sender matches SPF record
- -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+ 0.0 FREEMAIL_FROM          Sender email is commonly abused enduser mail
+ provider [groeck7[at]gmail.com]
+ 0.0 SPF_HELO_NONE          SPF: HELO does not publish an SPF Record
+ 0.2 HEADER_FROM_DIFFERENT_DOMAINS From and EnvelopeFrom 2nd level
+ mail domains are different
  -0.1 DKIM_VALID_EF          Message has a valid DKIM or DK signature from
  envelope-from domain
  0.1 DKIM_SIGNED            Message has a DKIM or DK signature, not necessarily
  valid
- -0.1 DKIM_VALID_AU          Message has a valid DKIM or DK signature from
- author's domain
- 0.0 UNPARSEABLE_RELAY      Informational: message has unparseable relay
- lines
-X-Headers-End: 1o01AC-00F5KD-JY
-Subject: Re: [V9fs-developer] [RFC][CFT] handling Rerror without
- copy_from_iter_full()
+ -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+ 0.2 FREEMAIL_FORGED_FROMDOMAIN 2nd level domains in From and
+ EnvelopeFrom freemail headers are different
+ -0.0 T_SCC_BODY_TEXT_LINE   No description available.
+ 0.0 RCVD_IN_MSPIKE_WL      Mailspike good senders
+X-Headers-End: 1o01PI-0002Ah-0E
+Subject: Re: [V9fs-developer] [PATCH] iov_iter: Fix iter_xarray_get_pages{,
+ _alloc}()
 X-BeenThere: v9fs-developer@lists.sourceforge.net
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -113,99 +130,90 @@ List-Post: <mailto:v9fs-developer@lists.sourceforge.net>
 List-Help: <mailto:v9fs-developer-request@lists.sourceforge.net?subject=help>
 List-Subscribe: <https://lists.sourceforge.net/lists/listinfo/v9fs-developer>, 
  <mailto:v9fs-developer-request@lists.sourceforge.net?subject=subscribe>
-Cc: linux-fsdevel@vger.kernel.org, v9fs-developer@lists.sourceforge.net
+Cc: jlayton@kernel.org, linux-kernel@vger.kernel.org, linux-cachefs@redhat.com,
+ Alexander Viro <viro@zeniv.linux.org.uk>, linux-fsdevel@vger.kernel.org,
+ v9fs-developer@lists.sourceforge.net, Gao Xiang <xiang@kernel.org>,
+ linux-erofs@lists.ozlabs.org, linux-afs@lists.infradead.org,
+ devel@lists.orangefs.org, Mike Marshall <hubcap@omnibond.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: v9fs-developer-bounces@lists.sourceforge.net
 
-Al Viro wrote on Wed, Jun 08, 2022 at 05:41:46PM +0000:
-> 	As it is, p9_client_zc_rpc()/p9_check_zc_errors() is playing fast
-> and loose with copy_from_iter_full().
+On Thu, Jun 09, 2022 at 09:07:01AM +0100, David Howells wrote:
+> The maths at the end of iter_xarray_get_pages() to calculate the actual
+> size doesn't work under some circumstances, such as when it's been asked to
+> extract a partial single page.  Various terms of the equation cancel out
+> and you end up with actual == offset.  The same issue exists in
+> iter_xarray_get_pages_alloc().
 > 
-> 	Background: reading from file is done by sending Tread request.
-> Response consists of fixed-sized header (including the amount of data
-> actually read) followed by the data itself.
+> Fix these to just use min() to select the lesser amount from between the
+> amount of page content transcribed into the buffer, minus the offset, and
+> the size limit specified.
 > 
-> 	For zero-copy case we arrange the things so that the first 11
-> bytes of reply go into the fixed-sized buffer, with the rest going
-> straight into the pages we want to read into.
-
-Ugh... zc really needs something like direct data placement NFS/RDMA has
-been doing... (But that's just not possible without extending the
-protocol)
-
-> 	What makes the things inconvenient is that sglist describing
-> what should go where has to be set *before* the reply arrives.  As
-> the result, if reply is an error, the things get interesting.  Success
-> is
-> 	size[4] Rread tag[2] count[4] data[count]
-> For error layout varies depending upon the protocol variant -
-> in original 9P and 9P2000 it's
-> 	size[4] Rerror tag[2] len[2] error[len]
-> in 9P2000.U
-> 	size[4] Rerror tag[2] len[2] error[len] errno[4]
-> in 9P2000.L
-> 	size[4] Rlerror tag[2] errno[4]
+> This doesn't appear to have caused a problem yet upstream because network
+> filesystems aren't getting the pages from an xarray iterator, but rather
+> passing it directly to the socket, which just iterates over it.  Cachefiles
+> *does* do DIO from one to/from ext4/xfs/btrfs/etc. but it always asks for
+> whole pages to be written or read.
 > 
-> The last case is nice and simple - we have an 11-byte response that fits
-> into the fixed-sized buffer we hoped to get an Rread into.  In other
-> two, though, we get a variable-length string spill into the pages
-> we'd prepared for the data to be read.
-
-That makes me wonder just how much use we get for the legacy
-protocols -- I guess we do have some but all the filesystem-y
-implementations that I would expect to be main users for large
-IOs/zc are 9P2000.L as far as I know -- especially considering
-virtio is pretty much limited to qemu? Are there other 9p virtio
-servers?
-
-So would it make sense to just say "not .L? tough luck, no zc",
-or am I just being lazy?
-
-> Had that been in fixed-sized buffer (which is actually 4K), we would've
-> dealt with that the same way we handle non-zerocopy case.  However,
-> for zerocopy it doesn't end up there, so we need to copy it from
-> those pages.
+> Fixes: 7ff5062079ef ("iov_iter: Add ITER_XARRAY")
+> Reported-by: Jeff Layton <jlayton@kernel.org>
+> Signed-off-by: David Howells <dhowells@redhat.com>
+> cc: Alexander Viro <viro@zeniv.linux.org.uk>
+> cc: Dominique Martinet <asmadeus@codewreck.org>
+> cc: Mike Marshall <hubcap@omnibond.com>
+> cc: Gao Xiang <xiang@kernel.org>
+> cc: linux-afs@lists.infradead.org
+> cc: v9fs-developer@lists.sourceforge.net
+> cc: devel@lists.orangefs.org
+> cc: linux-erofs@lists.ozlabs.org
+> cc: linux-cachefs@redhat.com
+> cc: linux-fsdevel@vger.kernel.org
+> ---
 > 
-> The trouble is, by the time we get around to that, the references to
-> pages in question are already dropped.  As the result, p9_zc_check_errors()
-> tries to get the data using copy_from_iter_full().  Unfortunately, the
-> iov_iter it's trying to read from might *NOT* be capable of that.
-> It is, after all, a data destination, not data source.  In particular,
-> if it's an ITER_PIPE one, copy_from_iter_full() will simply fail.
-
-Silly question, in case of a pipe we'll have written something we
-shouldn't have, or is it not gone yet until we actually finish the IO
-with iov_iter_advance?
-(my understanding is that reader won't have anything to read until
-someone else does the advance, and that someone else will have
-overwritten the data with their own content so no garbage wlll be read)
-
-
-> The thing is, in ->zc_request() itself we have those pages.  There it
-> would be a simple matter of memcpy_from_page() into the fixed-sized
-> buffer and it isn't hard to recognize the (rare) case when such
-> copying is needed.  That way we get rid of p9_zc_check_errors() entirely
-> - p9_check_errors() can be used instead both for zero-copy and non-zero-copy
-> cases.
+>  lib/iov_iter.c |   20 ++++----------------
+>  1 file changed, 4 insertions(+), 16 deletions(-)
 > 
-> Do you see any problems with the variant below?
+> diff --git a/lib/iov_iter.c b/lib/iov_iter.c
+> index 834e1e268eb6..814f65fd0c42 100644
+> --- a/lib/iov_iter.c
+> +++ b/lib/iov_iter.c
+> @@ -1434,7 +1434,7 @@ static ssize_t iter_xarray_get_pages(struct iov_iter *i,
+>  {
+>  	unsigned nr, offset;
+>  	pgoff_t index, count;
+> -	size_t size = maxsize, actual;
+> +	size_t size = maxsize;
+>  	loff_t pos;
+>  
+>  	if (!size || !maxpages)
+> @@ -1461,13 +1461,7 @@ static ssize_t iter_xarray_get_pages(struct iov_iter *i,
+>  	if (nr == 0)
+>  		return 0;
+>  
+> -	actual = PAGE_SIZE * nr;
+> -	actual -= offset;
+> -	if (nr == count && size > 0) {
+> -		unsigned last_offset = (nr > 1) ? 0 : offset;
+> -		actual -= PAGE_SIZE - (last_offset + size);
+> -	}
+> -	return actual;
+> +	return min(nr * PAGE_SIZE - offset, maxsize);
 
-... With that said though your approach here definitely looks better
-than what we currently have -- my main issue is that truncating is fine
-for the original 9p2000 but for .U you'd be losing the ecode that we
-currently trust for being errno-compatible.
-It's *probably* not a problem in practice, but preserving that errno
-would theorically make us look for the page where the last few bytes
-went to and overwrite the end of the string with it but that's starting
-to be ugly.
+This needs min_t to avoid a build error on 32-bit builds.
 
-Anyway even not doing that is probably better than reading from
-something we no longer own; but I'm still thinking just refusing non-.L
-variants to zc calls is a better decision long term.
+In file included from include/linux/kernel.h:26,
+                 from include/linux/crypto.h:16,
+                 from include/crypto/hash.h:11,
+                 from lib/iov_iter.c:2:
+lib/iov_iter.c: In function 'iter_xarray_get_pages':
+include/linux/minmax.h:20:35: error: comparison of distinct pointer types lacks a cast [-Werror]
+...
+lib/iov_iter.c:1628:16: note: in expansion of macro 'min'
+ 1628 |         return min(nr * PAGE_SIZE - offset, maxsize);
+      |                ^~~
 
--- 
-Dominique
+Guenter
 
 
 _______________________________________________
