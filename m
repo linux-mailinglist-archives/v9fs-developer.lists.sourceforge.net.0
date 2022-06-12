@@ -2,110 +2,82 @@ Return-Path: <v9fs-developer-bounces@lists.sourceforge.net>
 X-Original-To: lists+v9fs-developer@lfdr.de
 Delivered-To: lists+v9fs-developer@lfdr.de
 Received: from lists.sourceforge.net (lists.sourceforge.net [216.105.38.7])
-	by mail.lfdr.de (Postfix) with ESMTPS id 99BF55479AC
-	for <lists+v9fs-developer@lfdr.de>; Sun, 12 Jun 2022 12:03:06 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4CA73547CD7
+	for <lists+v9fs-developer@lfdr.de>; Mon, 13 Jun 2022 00:47:19 +0200 (CEST)
 Received: from [127.0.0.1] (helo=sfs-ml-4.v29.lw.sourceforge.com)
 	by sfs-ml-4.v29.lw.sourceforge.com with esmtp (Exim 4.94.2)
 	(envelope-from <v9fs-developer-bounces@lists.sourceforge.net>)
-	id 1o0KQx-00018P-9m; Sun, 12 Jun 2022 10:03:02 +0000
+	id 1o0WMW-0001cK-5A; Sun, 12 Jun 2022 22:47:15 +0000
 Received: from [172.30.20.202] (helo=mx.sourceforge.net)
  by sfs-ml-4.v29.lw.sourceforge.com with esmtps (TLS1.2) tls
  TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384 (Exim 4.94.2)
- (envelope-from <asmadeus@codewreck.org>) id 1o0KQv-000186-IZ
- for v9fs-developer@lists.sourceforge.net; Sun, 12 Jun 2022 10:03:00 +0000
+ (envelope-from <SRS0=Cjdc=WT=goodmis.org=rostedt@kernel.org>)
+ id 1o0WMV-0001cE-3Q
+ for v9fs-developer@lists.sourceforge.net; Sun, 12 Jun 2022 22:47:13 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=sourceforge.net; s=x; h=In-Reply-To:Content-Type:MIME-Version:References:
- Message-ID:Subject:Cc:To:From:Date:Sender:Reply-To:Content-Transfer-Encoding:
+ d=sourceforge.net; s=x; h=Content-Transfer-Encoding:Content-Type:MIME-Version
+ :References:In-Reply-To:Message-ID:Subject:Cc:To:From:Date:Sender:Reply-To:
  Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
  Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
  List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=9iYYPUBMwsHySjLDiTlVPvdJJdAhgA81ZQiGNHcHfNA=; b=BDgUxTgtZBmerTjJIfhE/sbYp+
- BNRVIC5Do259h96SQE008nIR8SnCHWzOln/rD3hoI/192ofskZB/rSOtY+x4/DaoTywapk3SHcnbA
- nOui6Duz/9+8ekKmPV1XHxicWWR+g4jgWx571ocuCX5mFTomTXS7mPBfGBQGvH8RqgNU=;
+ bh=uyLApAgVLPZTpAs9psU57WiAZIJnNi/Z51eEECIb6f0=; b=lKLw+OJZDwGpidtuXESBzuATqD
+ Ee89XkXvLB/HTcNjwkpqL5ukX776dc4bBbsQKZtQv+UGaomM/NhwjnmyWBXrqsgjIgYJv8XRyZalQ
+ oY3GqIyAcNOi5GwQqTzeCZgNmuQzLfXovLN2OqQuXpEm6lW0mBwN4PGJ2QWtDEYnLgbI=;
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  ;
- h=In-Reply-To:Content-Type:MIME-Version:References:Message-ID:Subject:Cc:To
- :From:Date:Sender:Reply-To:Content-Transfer-Encoding:Content-ID:
+ h=Content-Transfer-Encoding:Content-Type:MIME-Version:References:
+ In-Reply-To:Message-ID:Subject:Cc:To:From:Date:Sender:Reply-To:Content-ID:
  Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
  :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
  List-Post:List-Owner:List-Archive;
- bh=9iYYPUBMwsHySjLDiTlVPvdJJdAhgA81ZQiGNHcHfNA=; b=l5c+pcgVtZ5gPDVu6WCX5uY77P
- HaFmiPrkJTHWmlc79XwXBTLSxrxglbxnOCqIBwbDEiv4zmaeA2VzZiPefCowHrDtYjiPDE6RvaXsb
- Wzl7pYwOGXr8oig1//aFaPzlabCm9t9LxFPwXeztKFTQGddptsrDjVZLJ5SsD8LgOfWE=;
-Received: from nautica.notk.org ([91.121.71.147])
+ bh=uyLApAgVLPZTpAs9psU57WiAZIJnNi/Z51eEECIb6f0=; b=l+3aOLfcUpHs2+rLpqknMlz3px
+ z7ZiYyeuVUK63Rob/UndQm7qXDSaxRWfG+vV4bDEMROIs5AxkW2f+QMEFbsY6CSyAqY1lurOGKzFV
+ d30BetEcPnxyFt4l/EEfVGht8QBpJjT/cHrRid5LT8DdAPXqatUe1/EphGmeyWQ1hYFE=;
+Received: from dfw.source.kernel.org ([139.178.84.217])
  by sfi-mx-2.v28.lw.sourceforge.com with esmtps
  (TLS1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.94.2)
- id 1o0KQr-0006cp-O7
- for v9fs-developer@lists.sourceforge.net; Sun, 12 Jun 2022 10:03:00 +0000
-Received: by nautica.notk.org (Postfix, from userid 108)
- id D29A8C01F; Sun, 12 Jun 2022 12:02:51 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=codewreck.org; s=2;
- t=1655028171; bh=9iYYPUBMwsHySjLDiTlVPvdJJdAhgA81ZQiGNHcHfNA=;
- h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
- b=yO3FtOpgpAxer63Z1GXbrZ+gQLJu642e8OpF80jzhpIiB4m2dmiZLOyeXVFomnZSS
- SAbu2gO4RWoCj7jstiUXA4q28Ua/wXgtcdcqoL8VV5EkgcCTsf47+Y4/Fy8Xrljzrf
- u/B0BOKM9P49kJaKS2D5sVsmljLOwtvzB00lAS5KM1MlD1fdXR44VQR+pTUSZJZqja
- ggwdoUF8pS2pnLr8C5VzN4EKqa0K3cPXS4vS/rstM8ABtN/67L9MptX4Nabc8nH7SS
- 1hKN2ty9B9WcGf7ZEfVrOo9OCrWQOR/n6hssK662YA8TCMUKIsEgvTHNdLHXBsbAo9
- gXrO2RnhrKpfQ==
-X-Spam-Checker-Version: SpamAssassin 3.3.2 (2011-06-06) on nautica.notk.org
-X-Spam-Level: 
-X-Spam-Status: No, score=0.0 required=5.0 tests=UNPARSEABLE_RELAY
- autolearn=unavailable version=3.3.2
-Received: from odin.codewreck.org (localhost [127.0.0.1])
- by nautica.notk.org (Postfix) with ESMTPS id 4875FC009;
- Sun, 12 Jun 2022 12:02:47 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=codewreck.org; s=2;
- t=1655028170; bh=9iYYPUBMwsHySjLDiTlVPvdJJdAhgA81ZQiGNHcHfNA=;
- h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
- b=EeTC0ebUcRiISvGDUnwsaU34a9zolEPSV10j4IXlfo4lyS3EINqQGQWVOKYgjBMUP
- uyvDlVq9cUBtsLoyn8LzosM5g0HgLL5w8GhzEF2assNb43/xW8ZjJqMXbGo9YS3Q67
- MWOi9Kp38t5QFqSoOoVDOx966P4kyYZEy6ajylPiQ3E9iiYpmjjrecngOekXRg7GI9
- Spo30AvsOJtERGFuD/OzDL7mUb4O359JAoWJfS4XPgO/jHVFJPYvmmCplYR1jvwCd6
- c/OqulvVjaVkJ5SSXgj95uXWIdLW1y6s2+vjB+YwoSCk1xNzeGHv50VLV/QSYA8tmq
- 9pm8YjJq7yTPg==
-Received: from localhost (odin.codewreck.org [local])
- by odin.codewreck.org (OpenSMTPD) with ESMTPA id 4ae5bd25;
- Sun, 12 Jun 2022 10:02:42 +0000 (UTC)
-Date: Sun, 12 Jun 2022 19:02:27 +0900
-From: asmadeus@codewreck.org
-To: David Howells <dhowells@redhat.com>,
- Christian Schoenebeck <linux_oss@crudebyte.com>
-Message-ID: <YqW5s+GQZwZ/DP5q@codewreck.org>
-References: <YmKp68xvZEjBFell@codewreck.org> <YnL0vzcdJjgyq8rQ@codewreck.org>
- <7091002.4ErQJAuLzZ@silver> <3645230.Tf70N6zClz@silver>
+ id 1o0WMP-0004ix-0a
+ for v9fs-developer@lists.sourceforge.net; Sun, 12 Jun 2022 22:47:13 +0000
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+ (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+ (No client certificate requested)
+ by dfw.source.kernel.org (Postfix) with ESMTPS id DC51860FA3;
+ Sun, 12 Jun 2022 22:47:03 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id C0503C34115;
+ Sun, 12 Jun 2022 22:47:02 +0000 (UTC)
+Date: Sun, 12 Jun 2022 18:46:59 -0400
+From: Steven Rostedt <rostedt@goodmis.org>
+To: Dominique Martinet <asmadeus@codewreck.org>
+Message-ID: <20220612184659.6dff5107@rorschach.local.home>
+In-Reply-To: <20220612085330.1451496-6-asmadeus@codewreck.org>
+References: <20220612085330.1451496-1-asmadeus@codewreck.org>
+ <20220612085330.1451496-6-asmadeus@codewreck.org>
+X-Mailer: Claws Mail 3.17.8 (GTK+ 2.24.33; x86_64-pc-linux-gnu)
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <3645230.Tf70N6zClz@silver>
-X-Spam-Score: -0.2 (/)
+X-Spam-Score: -4.8 (----)
 X-Spam-Report: Spam detection software,
- running on the system "util-spamd-1.v13.lw.sourceforge.com", 
+ running on the system "util-spamd-2.v13.lw.sourceforge.com", 
  has NOT identified this incoming email as spam.  The original
  message has been attached to this so you can view it or label
  similar future email.  If you have any questions, see
  the administrator of that system for details.
- Content preview:  Sorry, I had planned on working on this today but the other
- patchset ended up taking all my time... I think I'm bad at priorities, this
- is definitely important... David, I think with the latest comments we made
- it should be relatively straightforward to make netfs use the writeback fid?
- Could you find some time to have a look? It should be trivial to reproduce,
- [...] Content analysis details:   (-0.2 points, 6.0 required)
+ Content preview:  On Sun,
+ 12 Jun 2022 17:53:28 +0900 Dominique Martinet <asmadeus@codewreck.org>
+ wrote: This needs to have a change log. A tracepoint should never be added
+ without explaining why it is being added and its purpose. 
+ Content analysis details:   (-4.8 points, 6.0 required)
  pts rule name              description
  ---- ---------------------- --------------------------------------------------
- 0.0 SPF_HELO_NONE          SPF: HELO does not publish an SPF Record
  -0.0 SPF_PASS               SPF: sender matches SPF record
- -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
- -0.1 DKIM_VALID_EF          Message has a valid DKIM or DK signature from
- envelope-from domain
- 0.1 DKIM_SIGNED            Message has a DKIM or DK signature, not necessarily
- valid
- -0.1 DKIM_VALID_AU          Message has a valid DKIM or DK signature from
- author's domain
- 0.0 UNPARSEABLE_RELAY      Informational: message has unparseable relay
- lines
-X-Headers-End: 1o0KQr-0006cp-O7
-Subject: Re: [V9fs-developer] 9p EBADF with cache enabled (Was: 9p fs-cache
- tests/benchmark (was: 9p fscache Duplicate cookie detected))
+ -5.0 RCVD_IN_DNSWL_HI       RBL: Sender listed at https://www.dnswl.org/,
+ high trust [139.178.84.217 listed in list.dnswl.org]
+ 0.0 SPF_HELO_NONE          SPF: HELO does not publish an SPF Record
+ 0.2 HEADER_FROM_DIFFERENT_DOMAINS From and EnvelopeFrom 2nd level
+ mail domains are different
+ -0.0 T_SCC_BODY_TEXT_LINE   No description available.
+X-Headers-End: 1o0WMP-0004ix-0a
+Subject: Re: [V9fs-developer] [PATCH 05/06] 9p fid refcount: add a
+ 9p_fid_ref tracepoint
 X-BeenThere: v9fs-developer@lists.sourceforge.net
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -117,145 +89,197 @@ List-Post: <mailto:v9fs-developer@lists.sourceforge.net>
 List-Help: <mailto:v9fs-developer-request@lists.sourceforge.net?subject=help>
 List-Subscribe: <https://lists.sourceforge.net/lists/listinfo/v9fs-developer>, 
  <mailto:v9fs-developer-request@lists.sourceforge.net?subject=subscribe>
-Cc: lucho@ionkov.net, David Kahurani <k.kahurani@gmail.com>, ericvh@gmail.com,
- netdev@vger.kernel.org, linux-kernel@vger.kernel.org,
- Greg Kurz <groug@kaod.org>, v9fs-developer@lists.sourceforge.net,
- kuba@kernel.org, davem@davemloft.net
+Cc: Latchesar Ionkov <lucho@ionkov.net>, Eric Van Hensbergen <ericvh@gmail.com>,
+ netdev@vger.kernel.org, Christian Schoenebeck <linux_oss@crudebyte.com>,
+ linux-kernel@vger.kernel.org, "David
+ S. Miller" <davem@davemloft.net>, Tyler Hicks <tyhicks@linux.microsoft.com>,
+ v9fs-developer@lists.sourceforge.net, Jakub Kicinski <kuba@kernel.org>,
+ Paolo Abeni <pabeni@redhat.com>, Ingo Molnar <mingo@redhat.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: v9fs-developer-bounces@lists.sourceforge.net
 
+On Sun, 12 Jun 2022 17:53:28 +0900
+Dominique Martinet <asmadeus@codewreck.org> wrote:
 
-Sorry, I had planned on working on this today but the other patchset
-ended up taking all my time... I think I'm bad at priorities, this
-is definitely important...
+This needs to have a change log. A tracepoint should never be added
+without explaining why it is being added and its purpose.
 
-David, I think with the latest comments we made it should be relatively
-straightforward to make netfs use the writeback fid? Could you find some
-time to have a look? It should be trivial to reproduce, I gave these
-commands a few mails ago (needs to run as a regular user, on a fscache mount)
----
-$ dd if=/dev/zero of=test bs=1M count=1
-$ chmod 200 test
-# drop cache or remount
-$ dd if=/dev/urandom of=test bs=102 seek=2 count=1 conv=notrunc
-dd: error writing 'test': Bad file descriptor
----
+> Signed-off-by: Dominique Martinet <asmadeus@codewreck.org>
+> ---
+> 
+> This is the first time I add a tracepoint, so if anyone has time to
+> check I didn't make something too stupid please have a look.
+> I've mostly copied from netfs'.
+> 
+> Also, a question if someone has time: I'd have liked to use the
+> tracepoint in static inline wrappers for getref/putref, but it's not
+> good to add the tracepoints to a .h, right?
 
-Otherwise I'll try to make some more 9p time again, but it's getting
-more and more difficult for me...
+Correct, because it can have unexpected side effects. Thus it is best
+to call a wrapper function that is defined in a C file that will then
+call the tracepoint. To avoid the overhead of the function call when
+tracing is not enabled, you should use (in the header):
 
-Christian Schoenebeck wrote on Fri, Jun 03, 2022 at 06:46:04PM +0200:
-> I had another time slice on this issue today. As Dominique pointed out before,
-> the writeback_fid was and still is opened with O_RDWR [fs/9p/fid.c]:
-> 
-> struct p9_fid *v9fs_writeback_fid(struct dentry *dentry)
-> {
-> 	int err;
-> 	struct p9_fid *fid, *ofid;
-> 
-> 	ofid = v9fs_fid_lookup_with_uid(dentry, GLOBAL_ROOT_UID, 0);
-> 	fid = clone_fid(ofid);
-> 	if (IS_ERR(fid))
-> 		goto error_out;
-> 	p9_client_clunk(ofid);
-> 	/*
-> 	 * writeback fid will only be used to write back the
-> 	 * dirty pages. We always request for the open fid in read-write
-> 	 * mode so that a partial page write which result in page
-> 	 * read can work.
-> 	 */
-> 	err = p9_client_open(fid, O_RDWR);
-> 	if (err < 0) {
-> 		p9_client_clunk(fid);
-> 		fid = ERR_PTR(err);
-> 		goto error_out;
-> 	}
-> error_out:
-> 	return fid;
-> }
-> 
-> The problem rather seems to be that the new netfs code does not use the
-> writeback_fid when doing an implied read before the actual partial writeback.
-> 
-> As I showed in my previous email, the old pre-netfs kernel versions also did a
-> read before partial writebacks, but apparently used the special writeback_fid
-> for that.
+  #include <linux/tracepoint-defs.h>
 
-This looks good! Thanks for keeping it up.
+  DECLARE_TRACEPOINT(<tracepoint-name>);
 
+  if (tracepoint_enabled(<tracepoint-name>))
+	do_<tracepoint-name>(...);
+
+and in the C file have:
+
+  void do_<tracepoint-name>(...)
+  {
+	trace_<tracepoint-name>(...);
+  }
+
+that calls the tracepoint. The tracepoint_enabled(<tracepoint-name>)()
+is another special function that is created by the TRACE_EVENT() macro
+to use, that is a static branch and not a real if statement. That is, it
+is a nop that skips calling the wrapper function when not enabled, and
+a jmp to call the wrapper function when the tracepoint is enabled.
+
+How to do this is described in include/linux/tracepoint-defs.h and
+there's an example of this use case in include/linux/mmap_lock.h.
+
+> Especially with the CREATE_TRACE_POINTS macro...
+> How do people usually go about that, just bite the bullet and make it
+> a real function?
 > 
-> I added some trap code to recent netfs kernel version:
 > 
+>  include/trace/events/9p.h | 48 +++++++++++++++++++++++++++++++++++++++
+>  net/9p/client.c           |  9 +++++++-
+>  2 files changed, 56 insertions(+), 1 deletion(-)
+> 
+> diff --git a/include/trace/events/9p.h b/include/trace/events/9p.h
+> index 78c5608a1648..4dfa6d7f83ba 100644
+> --- a/include/trace/events/9p.h
+> +++ b/include/trace/events/9p.h
+> @@ -77,6 +77,13 @@
+>  		EM( P9_TWSTAT,		"P9_TWSTAT" )			\
+>  		EMe(P9_RWSTAT,		"P9_RWSTAT" )
+>  
+> +
+> +#define P9_FID_REFTYPE							\
+> +		EM( P9_FID_REF_CREATE,	"create " )			\
+> +		EM( P9_FID_REF_GET,	"get    " )			\
+> +		EM( P9_FID_REF_PUT,	"put    " )			\
+> +		EMe(P9_FID_REF_DESTROY,	"destroy" )
+> +
+>  /* Define EM() to export the enums to userspace via TRACE_DEFINE_ENUM() */
+>  #undef EM
+>  #undef EMe
+> @@ -84,6 +91,21 @@
+>  #define EMe(a, b)	TRACE_DEFINE_ENUM(a);
+>  
+>  P9_MSG_T
+> +P9_FID_REFTYPE
+> +
+> +/* And also use EM/EMe to define helper enums -- once */
+> +#ifndef __9P_DECLARE_TRACE_ENUMS_ONLY_ONCE
+> +#define __9P_DECLARE_TRACE_ENUMS_ONLY_ONCE
+> +#undef EM
+> +#undef EMe
+> +#define EM(a, b)	a,
+> +#define EMe(a, b)	a
+> +
+> +enum p9_fid_reftype {
+> +	P9_FID_REFTYPE
+> +} __mode(byte);
+> +
+> +#endif
+>  
+>  /*
+>   * Now redefine the EM() and EMe() macros to map the enums to the strings
+> @@ -96,6 +118,8 @@ P9_MSG_T
+>  
+>  #define show_9p_op(type)						\
+>  	__print_symbolic(type, P9_MSG_T)
+> +#define show_9p_fid_reftype(type)					\
+> +	__print_symbolic(type, P9_FID_REFTYPE)
+>  
+>  TRACE_EVENT(9p_client_req,
+>  	    TP_PROTO(struct p9_client *clnt, int8_t type, int tag),
+> @@ -168,6 +192,30 @@ TRACE_EVENT(9p_protocol_dump,
+>  		      __entry->tag, 0, __entry->line, 16, __entry->line + 16)
+>   );
+>  
+> +
+> +TRACE_EVENT(9p_fid_ref,
+> +	    TP_PROTO(struct p9_fid *fid, __u8 type),
+> +
+> +	    TP_ARGS(fid, type),
+> +
+> +	    TP_STRUCT__entry(
+> +		    __field(	int,	fid		)
+> +		    __field(	int,	refcount	)
+> +		    __field(	__u8, type	)
+> +		    ),
+> +
+> +	    TP_fast_assign(
+> +		    __entry->fid = fid->fid;
+> +		    __entry->refcount = refcount_read(&fid->count);
+> +		    __entry->type = type;
+> +		    ),
+> +
+> +	    TP_printk("%s fid %d, refcount %d",
+> +		      show_9p_fid_reftype(__entry->type),
+> +		      __entry->fid, __entry->refcount)
+> +);
+> +
+> +
+>  #endif /* _TRACE_9P_H */
+>  
+>  /* This part must be outside protection */
 > diff --git a/net/9p/client.c b/net/9p/client.c
-> index 8bba0d9cf975..11ff1ee2130e 100644
+> index 5531b31e0fb2..fdeeda0a811d 100644
 > --- a/net/9p/client.c
 > +++ b/net/9p/client.c
-> @@ -1549,12 +1549,21 @@ int p9_client_unlinkat(struct p9_fid *dfid, const char *name, int flags)
->  }
->  EXPORT_SYMBOL(p9_client_unlinkat);
+> @@ -907,8 +907,10 @@ static struct p9_fid *p9_fid_create(struct p9_client *clnt)
+>  			    GFP_NOWAIT);
+>  	spin_unlock_irq(&clnt->lock);
+>  	idr_preload_end();
+> -	if (!ret)
+> +	if (!ret) {
+> +		trace_9p_fid_ref(fid, P9_FID_REF_CREATE);
+>  		return fid;
+> +	}
 >  
-> +void p9_bug(void) {
-> +    BUG_ON(true);
-> +}
-> +EXPORT_SYMBOL(p9_bug);
+>  	kfree(fid);
+>  	return NULL;
+> @@ -920,6 +922,7 @@ static void p9_fid_destroy(struct p9_fid *fid)
+>  	unsigned long flags;
+>  
+>  	p9_debug(P9_DEBUG_FID, "fid %d\n", fid->fid);
+> +	trace_9p_fid_ref(fid, P9_FID_REF_DESTROY);
+>  	clnt = fid->clnt;
+>  	spin_lock_irqsave(&clnt->lock, flags);
+>  	idr_remove(&clnt->fids, fid->fid);
+> @@ -932,6 +935,8 @@ static void p9_fid_destroy(struct p9_fid *fid)
+>   * because trace_* functions can't be used there easily
+>   */
+>  struct p9_fid *p9_fid_get(struct p9_fid *fid) {
+> +	trace_9p_fid_ref(fid, P9_FID_REF_GET);
 > +
->  int
->  p9_client_read(struct p9_fid *fid, u64 offset, struct iov_iter *to, int *err)
->  {
->         int total = 0;
->         *err = 0;
+>  	refcount_inc(&fid->count);
 >  
-> +    if ((fid->mode & O_ACCMODE) == O_WRONLY) {
-> +        p9_bug();
-> +    }
+>  	return fid;
+> @@ -941,6 +946,8 @@ int p9_fid_put(struct p9_fid *fid) {
+>  	if (!fid || IS_ERR(fid))
+>  		return 0;
+>  
+> +	trace_9p_fid_ref(fid, P9_FID_REF_PUT);
 > +
->         while (iov_iter_count(to)) {
->                 int count;
+>          if (!refcount_dec_and_test(&fid->count))
+>                  return 0;
 >  
-> @@ -1648,6 +1657,10 @@ p9_client_write(struct p9_fid *fid, u64 offset, struct iov_iter *from, int *err)
->         p9_debug(P9_DEBUG_9P, ">>> TWRITE fid %d offset %llu count %zd\n",
->                  fid->fid, offset, iov_iter_count(from));
->  
-> +    if ((fid->mode & O_ACCMODE) == O_RDONLY) {
-> +        p9_bug();
-> +    }
-> +
->         while (iov_iter_count(from)) {
->                 int count = iov_iter_count(from);
->                 int rsize = fid->iounit;
-> 
-> Which triggers the trap in p9_client_read() with cache=loose. Here is the
-> backtrace [based on d615b5416f8a1afeb82d13b238f8152c572d59c0]:
-> 
-> [  139.365314] p9_client_read (net/9p/client.c:1553 net/9p/client.c:1564) 9pnet
-> [  139.148806] v9fs_issue_read (fs/9p/vfs_addr.c:45) 9p
-> [  139.149268] netfs_begin_read (fs/netfs/io.c:91 fs/netfs/io.c:579 fs/netfs/io.c:625) netfs
-> [  139.149725] ? xas_load (lib/xarray.c:211 lib/xarray.c:242) 
-> [  139.150057] ? xa_load (lib/xarray.c:1469) 
-> [  139.150398] netfs_write_begin (fs/netfs/buffered_read.c:407) netfs
-> [  139.150883] v9fs_write_begin (fs/9p/vfs_addr.c:279 (discriminator 2)) 9p
-> [  139.151293] generic_perform_write (mm/filemap.c:3789) 
-> [  139.151721] ? generic_update_time (fs/inode.c:1858) 
-> [  139.152112] ? file_update_time (fs/inode.c:2089) 
-> [  139.152504] __generic_file_write_iter (mm/filemap.c:3916) 
-> [  139.152943] generic_file_write_iter (./include/linux/fs.h:753 mm/filemap.c:3948) 
-> [  139.153348] new_sync_write (fs/read_write.c:505 (discriminator 1)) 
-> [  139.153754] vfs_write (fs/read_write.c:591) 
-> [  139.154090] ksys_write (fs/read_write.c:644) 
-> [  139.154417] do_syscall_64 (arch/x86/entry/common.c:50 arch/x86/entry/common.c:80) 
-> [  139.154776] entry_SYSCALL_64_after_hwframe (arch/x86/entry/entry_64.S:115)
-> 
-> I still had not time to read the netfs code part yet, but I assume netfs falls
-> back to a generic 9p read on the O_WRONLY opened fid here, instead of using
-> the special O_RDWR opened 'writeback_fid'.
-> 
-> Is there already some info available in the netfs API that the read is
-> actually part of a writeback task, so that we could force on 9p driver level
-> to use the special writeback_fid for the read in this case instead?
 
--- 
-Dominique
+Nothing stands out to me that would be wrong with the above.
+
+-- Steve
+
 
 
 _______________________________________________
