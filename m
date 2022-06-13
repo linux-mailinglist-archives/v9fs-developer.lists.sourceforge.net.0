@@ -2,26 +2,26 @@ Return-Path: <v9fs-developer-bounces@lists.sourceforge.net>
 X-Original-To: lists+v9fs-developer@lfdr.de
 Delivered-To: lists+v9fs-developer@lfdr.de
 Received: from lists.sourceforge.net (lists.sourceforge.net [216.105.38.7])
-	by mail.lfdr.de (Postfix) with ESMTPS id D704C549EEF
-	for <lists+v9fs-developer@lfdr.de>; Mon, 13 Jun 2022 22:21:14 +0200 (CEST)
-Received: from [127.0.0.1] (helo=sfs-ml-1.v29.lw.sourceforge.com)
-	by sfs-ml-1.v29.lw.sourceforge.com with esmtp (Exim 4.94.2)
+	by mail.lfdr.de (Postfix) with ESMTPS id E8BE254A0B9
+	for <lists+v9fs-developer@lfdr.de>; Mon, 13 Jun 2022 23:01:01 +0200 (CEST)
+Received: from [127.0.0.1] (helo=sfs-ml-4.v29.lw.sourceforge.com)
+	by sfs-ml-4.v29.lw.sourceforge.com with esmtp (Exim 4.94.2)
 	(envelope-from <v9fs-developer-bounces@lists.sourceforge.net>)
-	id 1o0qYh-00014w-BD; Mon, 13 Jun 2022 20:21:11 +0000
+	id 1o0rB9-0007eb-5p; Mon, 13 Jun 2022 21:00:54 +0000
 Received: from [172.30.20.202] (helo=mx.sourceforge.net)
- by sfs-ml-1.v29.lw.sourceforge.com with esmtps (TLS1.2) tls
+ by sfs-ml-4.v29.lw.sourceforge.com with esmtps (TLS1.2) tls
  TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384 (Exim 4.94.2)
- (envelope-from <tyhicks@linux.microsoft.com>) id 1o0qYf-00014p-FQ
- for v9fs-developer@lists.sourceforge.net; Mon, 13 Jun 2022 20:21:09 +0000
+ (envelope-from <asmadeus@codewreck.org>) id 1o0rB7-0007eU-Q5
+ for v9fs-developer@lists.sourceforge.net; Mon, 13 Jun 2022 21:00:52 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
  d=sourceforge.net; s=x; h=In-Reply-To:Content-Type:MIME-Version:References:
  Message-ID:Subject:Cc:To:From:Date:Sender:Reply-To:Content-Transfer-Encoding:
  Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
  Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
  List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=Nft++AK4Xo5eRcdhC/+nOVQRH0imfgMDAanvnC8iCGY=; b=m2e88LOYpOVUCEtT0dmuc7+By1
- 2cOwtLbnjXwNkCInQ2mdyhOBMvYeqxacjCUi3aUh/Q5qMt34utqM4MW/XoxQpi/VHYgZ6v42kwFvt
- TIesvkWTY2KFjX+yGqSiSvx9kbUHM44XYcNdrnCssA17nZ/jpmezo+zf/l/euYLgGCSs=;
+ bh=hbjlIsPkm7Pdw1vKt/fEMjXNUukRrKqZfsATzfBGdhI=; b=iS/Rj1tGmJbXMBQRUIUXG2YTR2
+ kDElIufKZ53XD13JAEhGft76dDn1V1Yqx2ZuZDLj0G/q11K1vosNl+4SqpH9+lQDnqEDp6hhHIzep
+ 6iV6Vp2s3a2emm+qJ4mlax5J0CJkYZ/RltcYu8tqDlSJwRowAbXChNYaDijxDhvciRxc=;
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  ;
  h=In-Reply-To:Content-Type:MIME-Version:References:Message-ID:Subject:Cc:To
@@ -29,62 +29,78 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
  :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
  List-Post:List-Owner:List-Archive;
- bh=Nft++AK4Xo5eRcdhC/+nOVQRH0imfgMDAanvnC8iCGY=; b=MYM5m4DD7n4jAxz5xCFWu9pdbb
- uNBdRpV5Ug1lY+K8cg+SCvKJ77Brw+fEMCeHT1Fb254hcNeAxFtzDFPqRff1UrPDbiLN4Wpym5QeA
- j+QTHu6Lo5AybeZIgX2jJ/hropfkILmerpY81qfskR/nYHBfdUWMml4d063PEwnKmRM4=;
-Received: from linux.microsoft.com ([13.77.154.182])
- by sfi-mx-2.v28.lw.sourceforge.com with esmtp (Exim 4.94.2)
- id 1o0qYc-00071N-1S
- for v9fs-developer@lists.sourceforge.net; Mon, 13 Jun 2022 20:21:09 +0000
-Received: from sequoia (162-237-133-238.lightspeed.rcsntx.sbcglobal.net
- [162.237.133.238])
- by linux.microsoft.com (Postfix) with ESMTPSA id 8640820C154C;
- Mon, 13 Jun 2022 13:20:57 -0700 (PDT)
-DKIM-Filter: OpenDKIM Filter v2.11.0 linux.microsoft.com 8640820C154C
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linux.microsoft.com;
- s=default; t=1655151657;
- bh=Nft++AK4Xo5eRcdhC/+nOVQRH0imfgMDAanvnC8iCGY=;
+ bh=hbjlIsPkm7Pdw1vKt/fEMjXNUukRrKqZfsATzfBGdhI=; b=XeJQajeiDBX+KWFUXof4btMBY1
+ 0+zVXlC5aqnEa3LbWCK/UB/M38vOFMZPhlXkmbURpwtg1XXaiffwAHeh4BlOwNluFyJRnXLd1EUef
+ e2rlq2A2FWxO4vL7wGQlaiFqqCt6xu2KIlbJUbYkTzG0IsBjYspmLNZfnEkZi0nYC6W8=;
+Received: from nautica.notk.org ([91.121.71.147])
+ by sfi-mx-2.v28.lw.sourceforge.com with esmtps
+ (TLS1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.94.2)
+ id 1o0rB3-0000Mu-8g
+ for v9fs-developer@lists.sourceforge.net; Mon, 13 Jun 2022 21:00:52 +0000
+Received: by nautica.notk.org (Postfix, from userid 108)
+ id 2CDF4C01C; Mon, 13 Jun 2022 23:00:43 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=codewreck.org; s=2;
+ t=1655154043; bh=hbjlIsPkm7Pdw1vKt/fEMjXNUukRrKqZfsATzfBGdhI=;
  h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
- b=g0bSIsfsfTpuWw1wxebHkd2aPkjo0Gyxb/hYPwXstl6EQLvknbiRYqW/HO1jZAlxi
- 4RY8Zijlv9dmd3IldYIG/q1jLlzlna24bgt4BfAHvvaknQNpNVG7Ot1ZgVD5WZ74Je
- ImAB7VOaW0frx6XujBx9pjxOV9fEfwVu7CY4sv0I=
-Date: Mon, 13 Jun 2022 15:20:53 -0500
-From: Tyler Hicks <tyhicks@linux.microsoft.com>
-To: Dominique Martinet <asmadeus@codewreck.org>
-Message-ID: <20220613202053.GI7401@sequoia>
+ b=aUclKhe0qUUXxJVj3as+72ZyUR2Mdt4qSYLf9TJPdVbqDzlPkitddPgzPxxC7T4M0
+ ILx6q0v/NOVegp1C4dD/nxABDGhU7MqoFue+UZALvKJZdzBC6WGWdx0Ho9EdsuRlqr
+ ptXjp7XPNwomOPNtQyaM/N+Otti4b6vZDbcbpxfx+5rG3zDVXWBkrsmfXixReV3O4b
+ Lp7KEN2/IlVOcNN6fCCfdqpShAD1oNqcrVgK3v7oTfyBsEJrXzO1tEM/v3OrbXa8yg
+ GZN6OtHSlkFBfikloQO/9d5m3ZgQgYlZRg+pgCdl5fk+JJ25YRLeGo+4RXbrtrX3iR
+ cNPTTOPtWZYlQ==
+X-Spam-Checker-Version: SpamAssassin 3.3.2 (2011-06-06) on nautica.notk.org
+X-Spam-Level: 
+X-Spam-Status: No, score=0.0 required=5.0 tests=UNPARSEABLE_RELAY
+ autolearn=unavailable version=3.3.2
+Received: from odin.codewreck.org (localhost [127.0.0.1])
+ by nautica.notk.org (Postfix) with ESMTPS id 67266C009;
+ Mon, 13 Jun 2022 23:00:41 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=codewreck.org; s=2;
+ t=1655154042; bh=hbjlIsPkm7Pdw1vKt/fEMjXNUukRrKqZfsATzfBGdhI=;
+ h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+ b=xFktnS+NHA+NVGMei1DidQmfBeYBsl1yQecTuPCUxTmkNTgCiGsnrsFDvr9LVfBWJ
+ qZ8gR8rqIdPe9IPllqYo9KS3S8+pLDE8m/KKH/RFrp4DPKaE7+J4syA2zJV7lRDY/Z
+ byYBoa5nMq3LE7oHKCEO8bosF5fSAwoh9yNv2evr3hs8LC0/1euxRhBb2EKi5UZWQx
+ VsE5pxM77qWoZn34VzKH91rX/5J2pBuHeSt5XNMvtVN2TCLv2MzNPPOpfwn5bmrQ90
+ GDUhj2w7DdmFtWphQCJUAuFVU0oTUBnwaxN09sw0w3jqAx5GVL7hzxhu89Bf+vWiUS
+ KCEx2zDqREJow==
+Received: from localhost (odin.codewreck.org [local])
+ by odin.codewreck.org (OpenSMTPD) with ESMTPA id d2cce1e8;
+ Mon, 13 Jun 2022 21:00:36 +0000 (UTC)
+Date: Tue, 14 Jun 2022 06:00:21 +0900
+From: Dominique Martinet <asmadeus@codewreck.org>
+To: Tyler Hicks <tyhicks@linux.microsoft.com>
+Message-ID: <YqelZWe4BJfDkYEd@codewreck.org>
 References: <20220612085330.1451496-1-asmadeus@codewreck.org>
+ <20220613202053.GI7401@sequoia>
 MIME-Version: 1.0
 Content-Disposition: inline
-In-Reply-To: <20220612085330.1451496-1-asmadeus@codewreck.org>
-X-Spam-Score: -17.9 (-----------------)
+In-Reply-To: <20220613202053.GI7401@sequoia>
+X-Spam-Score: -0.2 (/)
 X-Spam-Report: Spam detection software,
  running on the system "util-spamd-2.v13.lw.sourceforge.com", 
  has NOT identified this incoming email as spam.  The original
  message has been attached to this so you can view it or label
  similar future email.  If you have any questions, see
  the administrator of that system for details.
- Content preview:  On 2022-06-12 17:53:23, Dominique Martinet wrote: > So: >
- - I could reproduce Tyler's generic 531 leak, fixed it by the first > commit
- in v9fs_vfs_atomic_open_dotl > - Found another less likely leak w [...] 
- Content analysis details:   (-17.9 points, 6.0 required)
+ Content preview:  Tyler Hicks wrote on Mon, Jun 13, 2022 at 03:20:53PM -0500:
+ > On 2022-06-12 17:53:23, Dominique Martinet wrote: > > @@ -222,7 +221,8
+ @@ static struct p9_fid *v9fs_fid_lookup_with_uid(struct dentry *de [...] 
+ Content analysis details:   (-0.2 points, 6.0 required)
  pts rule name              description
  ---- ---------------------- --------------------------------------------------
- -2.3 RCVD_IN_DNSWL_MED      RBL: Sender listed at https://www.dnswl.org/,
- medium trust [13.77.154.182 listed in list.dnswl.org]
  -0.0 SPF_PASS               SPF: sender matches SPF record
- -0.0 SPF_HELO_PASS          SPF: HELO matches SPF record
- -7.5 USER_IN_DEF_SPF_WL     From: address is in the default SPF
- welcome-list
- -7.5 USER_IN_DEF_DKIM_WL    From: address is in the default DKIM
- welcome-list
+ 0.0 SPF_HELO_NONE          SPF: HELO does not publish an SPF Record
+ -0.1 DKIM_VALID_EF          Message has a valid DKIM or DK signature from
+ envelope-from domain
  -0.1 DKIM_VALID_AU          Message has a valid DKIM or DK signature from
  author's domain
  0.1 DKIM_SIGNED            Message has a DKIM or DK signature, not necessarily
  valid
  -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
- -0.5 ENV_AND_HDR_SPF_MATCH  Env and Hdr From used in default SPF WL
- Match -0.0 T_SCC_BODY_TEXT_LINE   No description available.
-X-Headers-End: 1o0qYc-00071N-1S
+ 0.0 UNPARSEABLE_RELAY      Informational: message has unparseable relay
+ lines -0.0 T_SCC_BODY_TEXT_LINE   No description available.
+X-Headers-End: 1o0rB3-0000Mu-8g
 Subject: Re: [V9fs-developer] [PATCH 00/06] fid refcounting improvements and
  fixes
 X-BeenThere: v9fs-developer@lists.sourceforge.net
@@ -104,82 +120,28 @@ Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: v9fs-developer-bounces@lists.sourceforge.net
 
-On 2022-06-12 17:53:23, Dominique Martinet wrote:
-> So:
->  - I could reproduce Tyler's generic 531 leak, fixed it by the first
->    commit in v9fs_vfs_atomic_open_dotl
->  - Found another less likely leak while reworking code
->  - Christian's comment that it's not obvious that clunk is just a
->    refcount decrease was very true: I think it's worth the churn,
->    so I've rename this all through a new helper...
->  - ... with the not-so-hidden intent to improve debugging by adding
->    a tracepoint for them, which I have also done.
+Tyler Hicks wrote on Mon, Jun 13, 2022 at 03:20:53PM -0500:
+> On 2022-06-12 17:53:23, Dominique Martinet wrote:
+> > @@ -222,7 +221,8 @@ static struct p9_fid *v9fs_fid_lookup_with_uid(struct dentry *dentry,
+> >                  * We need to hold rename lock when doing a multipath
+> >                  * walk to ensure none of the patch component change
+> >                  */
+> > -               fid = p9_client_walk(old_fid, l, &wnames[i], clone);
+> > +               fid = p9_client_walk(old_fid, l, &wnames[i],
+> > +                                    old_fid == root_fid /* clone */);
 > 
-> I've also taken my comment in the other thread further and went ahead
-> and made it in its own commit. Tyler, if you're ok with this I'll just
-> squash it up. You can see rebased patches here:
-> https://github.com/martinetd/linux/
-> 
-> Note that I also took the permission to add back '/* clone */' as a
-> comment to your changing p9_client_walk's arguments: while I can agree
-> variables are hard to track, figuring out what the heck that boolean
-> argument means is much harder to me and I honestly preferred the
-> variable.
-> Having both through a comment is good enough for me if you'll accept
-> this:
-> ----
-> @@ -222,7 +221,8 @@ static struct p9_fid *v9fs_fid_lookup_with_uid(struct dentry *dentry,
->                  * We need to hold rename lock when doing a multipath
->                  * walk to ensure none of the patch component change
->                  */
-> -               fid = p9_client_walk(old_fid, l, &wnames[i], clone);
-> +               fid = p9_client_walk(old_fid, l, &wnames[i],
-> +                                    old_fid == root_fid /* clone */);
+> This is no problem at all. The rebased patches look good to me. Squash
+> your fix to my fix and it should be ready to go.
 
-This is no problem at all. The rebased patches look good to me. Squash
-your fix to my fix and it should be ready to go.
+Thanks for all your reviews :)
+I've rebased my branch if you want to check:
+https://github.com/martinetd/linux/commits/9p-next
 
-Thanks again!
-
-Tyler
-
->                 /* non-cloning walk will return the same fid */
->                 if (fid != old_fid) {
->                         p9_client_clunk(old_fid);
-> ----
-> 
-> 
-> The last commit is just cleanups and should be no real change.
-> 
-> Dominique Martinet (6):
->   9p: fix fid refcount leak in v9fs_vfs_atomic_open_dotl
->   9p: fix fid refcount leak in v9fs_vfs_get_link
->   9p: v9fs_fid_lookup_with_uid fix's fix suggestion
->   9p fid refcount: add p9_fid_get/put wrappers
->   9p fid refcount: add a 9p_fid_ref tracepoint
->   9p fid refcount: cleanup p9_fid_put calls
-> 
-> 
-> (diff stats include Tyler's commits)
-> 
->  fs/9p/fid.c               | 71 +++++++++++++++-------------
->  fs/9p/fid.h               |  6 +--
->  fs/9p/vfs_addr.c          |  4 +-
->  fs/9p/vfs_dentry.c        |  4 +-
->  fs/9p/vfs_dir.c           |  2 +-
->  fs/9p/vfs_file.c          |  9 ++--
->  fs/9p/vfs_inode.c         | 97 +++++++++++++++++----------------------
->  fs/9p/vfs_inode_dotl.c    | 79 ++++++++++++-------------------
->  fs/9p/vfs_super.c         |  8 ++--
->  fs/9p/xattr.c             |  8 ++--
->  include/net/9p/client.h   |  3 ++
->  include/trace/events/9p.h | 48 +++++++++++++++++++
->  net/9p/client.c           | 42 +++++++++++------
->  13 files changed, 211 insertions(+), 170 deletions(-)
-> 
-> -- 
-> 2.35.1
-> 
+We've just started a cycle so I'll submit the first three patches (fixes
+to stable) next week, and the rest for when 5.20 cycle starts.
+Feel free to remind me if it looks like I forgot.
+-- 
+Dominique
 
 
 _______________________________________________
