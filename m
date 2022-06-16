@@ -2,80 +2,83 @@ Return-Path: <v9fs-developer-bounces@lists.sourceforge.net>
 X-Original-To: lists+v9fs-developer@lfdr.de
 Delivered-To: lists+v9fs-developer@lfdr.de
 Received: from lists.sourceforge.net (lists.sourceforge.net [216.105.38.7])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0984454E280
-	for <lists+v9fs-developer@lfdr.de>; Thu, 16 Jun 2022 15:52:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6233754E286
+	for <lists+v9fs-developer@lfdr.de>; Thu, 16 Jun 2022 15:53:19 +0200 (CEST)
 Received: from [127.0.0.1] (helo=sfs-ml-4.v29.lw.sourceforge.com)
 	by sfs-ml-4.v29.lw.sourceforge.com with esmtp (Exim 4.94.2)
 	(envelope-from <v9fs-developer-bounces@lists.sourceforge.net>)
-	id 1o1puo-0007H3-S5; Thu, 16 Jun 2022 13:52:05 +0000
+	id 1o1pvz-0007Ii-0R; Thu, 16 Jun 2022 13:53:17 +0000
 Received: from [172.30.20.202] (helo=mx.sourceforge.net)
  by sfs-ml-4.v29.lw.sourceforge.com with esmtps (TLS1.2) tls
  TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384 (Exim 4.94.2)
- (envelope-from <asmadeus@codewreck.org>) id 1o1pun-0007Gx-2c
- for v9fs-developer@lists.sourceforge.net; Thu, 16 Jun 2022 13:52:04 +0000
+ (envelope-from <asmadeus@codewreck.org>) id 1o1pvx-0007Ic-Lz
+ for v9fs-developer@lists.sourceforge.net; Thu, 16 Jun 2022 13:53:16 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=sourceforge.net; s=x; h=In-Reply-To:Content-Type:MIME-Version:References:
- Message-ID:Subject:Cc:To:From:Date:Sender:Reply-To:Content-Transfer-Encoding:
+ d=sourceforge.net; s=x; h=Content-Transfer-Encoding:MIME-Version:References:
+ In-Reply-To:Message-Id:Date:Subject:Cc:To:From:Sender:Reply-To:Content-Type:
  Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
  Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
  List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=2Hb1WIC7htcZUnTVocd9sTq0i8DWUd+UIspEOkNnz10=; b=GGceyJMTTJ91+T1R4TxTqfpDx2
- 500ugSxwgVoquPVDfI0LZClHramiHWHfGjN0aKjQjwPrVVa56yY4B/dG76tMf6dnVuBFZN1fUtsa+
- wFYJnjXQUCNH7v4XSr0HIGd2mIrR3pefGyQtrs5JlxD4s0Hneezp2IpGkQOc/2ZvSnTo=;
+ bh=4nSqo7I8x65gGtDiG32GUmCNchdtE9/QOARXVTfLdiY=; b=SSBzmZ7qqmkDWgs2aBcKi34W3s
+ 7scOj7YvZkmRAS1yoSD69QQ1Bg18G9DmodFRbcvWrxLSWmQrxlkAb2l776Pc/2Fjsa9y1I27KVGGH
+ BqZ/OhtQY+5jroOyy+SlYuEFa+HZftcVvvTK9QZyCpVdTw3q/4M2N1S0PXmYaZ21RFCQ=;
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  ;
- h=In-Reply-To:Content-Type:MIME-Version:References:Message-ID:Subject:Cc:To
- :From:Date:Sender:Reply-To:Content-Transfer-Encoding:Content-ID:
+ h=Content-Transfer-Encoding:MIME-Version:References:In-Reply-To:Message-Id:
+ Date:Subject:Cc:To:From:Sender:Reply-To:Content-Type:Content-ID:
  Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
  :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
  List-Post:List-Owner:List-Archive;
- bh=2Hb1WIC7htcZUnTVocd9sTq0i8DWUd+UIspEOkNnz10=; b=EjcnYzkIEck+4k2A3a4Tdc4LQK
- cUlX0pVR0LGa8oMNeSFOHmw3/CobKBNxwQh0AQYauD6BCqJ/5yX9xfv1KXwB3hgKwej99JyHE3k38
- 3OF/gDI0QVwzqKg3sVkAt/AvxWi5DkCxRaLwjNs0dXFxZwo8zm5oksaBTBADx2J9eTew=;
+ bh=4nSqo7I8x65gGtDiG32GUmCNchdtE9/QOARXVTfLdiY=; b=jn9zFxEYkMiAYynVNhOhA8p3GG
+ gsvH2AAU/lVs+WYxfOcEBCU4X1Ru/6nYrWdKHwFC0iJ/iBM6LPcx4Bis6jpNjqgHRpgsu8Vq+mW7u
+ 8QXBTHsNIJ6qD7vB2W6tO9TAjKcf6Snfs1wZdYctw6N6DWvLbzhfmis93iwY3yib1IMU=;
 Received: from nautica.notk.org ([91.121.71.147])
- by sfi-mx-2.v28.lw.sourceforge.com with esmtps
+ by sfi-mx-1.v28.lw.sourceforge.com with esmtps
  (TLS1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.94.2)
- id 1o1pug-0003td-H5
- for v9fs-developer@lists.sourceforge.net; Thu, 16 Jun 2022 13:52:03 +0000
+ id 1o1pvv-004CJY-Ap
+ for v9fs-developer@lists.sourceforge.net; Thu, 16 Jun 2022 13:53:16 +0000
 Received: by nautica.notk.org (Postfix, from userid 108)
- id 44DE9C01F; Thu, 16 Jun 2022 15:51:53 +0200 (CEST)
+ id F0D80C009; Thu, 16 Jun 2022 15:53:07 +0200 (CEST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=codewreck.org; s=2;
- t=1655387513; bh=2Hb1WIC7htcZUnTVocd9sTq0i8DWUd+UIspEOkNnz10=;
- h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
- b=Rdxn534uKTaSDTnJiKZKi3gw63uExrASQ8SFeMr3Ze1hbArPYP1vZ4blzabc8AMAA
- tRTYSmBpprD6zoelusqs7oaZOgz8lZxCCmEPCSeh8nw109GGqJjdPFP8MV7ieaslqq
- JRO90MUCrLC2rGp3Cv2VCAgZt0mOYsNk5nDBgmu+y/SWxFNyVLRpoypJz/NS71r/S3
- mFQWkcluCHS0ml4fH0tpAbVHkTZvpIyXRtsxdV2B4VSGPbKf5K9NGCgsJ0KtkNZPgN
- iKjIitmiBo1KOxxv7lmA/O6fk0ZCseUFiLa0Tqh0sT8Zc7D0pPrfl8T0S9XYeXltUH
- HQad/TpMqM7WA==
+ t=1655387587; bh=4nSqo7I8x65gGtDiG32GUmCNchdtE9/QOARXVTfLdiY=;
+ h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
+ b=k57/XhKo9tUpFUuhpqwOCB2RHT9tUhhu1njN/0NozwWeiiH9fwY2+RqkXV/FMJHZU
+ SmNekz5eNPwo4uGG6kdWjgU02Y1OVG9UFahh2hVF8RqPYS+wUt7o/TK9vJ4QI8p8Wt
+ ZzNgqSeQTuRHS5JHdP+VHnrCaXYhFlM5R3us/KNUV7wRfjtuh/n1rdaMe5qBp26wdG
+ LXkq3z7CkGFmdBwtX4wfomHMj0+MJfqwXzgbCS3mx+l5wQJsvRBrw7MvmI6IOfhhcA
+ eHjwjRzWo6Hoxwg3obreXpJjht2BsAHkSFvesMtJ8RF6Y1o4h3hr3N9tQdCovAm4Qz
+ xHvdHRH871/Ag==
 X-Spam-Checker-Version: SpamAssassin 3.3.2 (2011-06-06) on nautica.notk.org
 X-Spam-Level: 
 X-Spam-Status: No, score=0.0 required=5.0 tests=UNPARSEABLE_RELAY
  autolearn=unavailable version=3.3.2
 Received: from odin.codewreck.org (localhost [127.0.0.1])
- by nautica.notk.org (Postfix) with ESMTPS id 319D6C009;
- Thu, 16 Jun 2022 15:51:49 +0200 (CEST)
+ by nautica.notk.org (Postfix) with ESMTPS id 9ACA0C009;
+ Thu, 16 Jun 2022 15:53:04 +0200 (CEST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=codewreck.org; s=2;
- t=1655387512; bh=2Hb1WIC7htcZUnTVocd9sTq0i8DWUd+UIspEOkNnz10=;
- h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
- b=QTlFwM8XKRVvm2Y//7ChStOXQIIwD2Lu4eHvWvT2h0qHXFRtDtdO1mT0YWLnSyG6X
- nYBJiK36PBA9rueqp54TNCCcrmJzMC4GMxd0km7GjC3PuSd1Y+/vvfTGBpSjtIvY1w
- XcprBK83g+J5v1zhy32WW0zgbl0TyxGpZF7uvVDkYsz33vcbYKCz5N/BKodb5eKryM
- 0nM/nilLra97HaoleGvFSO77l8v/5n96g0BDhPA5TjLwjIblOO3u1rmzjSvBt06t5c
- IqKmEZySzErOC20CfAPn7X3N7ApmdVnIgR3qFJs5AKe3++/Dzh/HzTTeoDFqHemJlH
- N0JIVIUu35rIw==
+ t=1655387587; bh=4nSqo7I8x65gGtDiG32GUmCNchdtE9/QOARXVTfLdiY=;
+ h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
+ b=k57/XhKo9tUpFUuhpqwOCB2RHT9tUhhu1njN/0NozwWeiiH9fwY2+RqkXV/FMJHZU
+ SmNekz5eNPwo4uGG6kdWjgU02Y1OVG9UFahh2hVF8RqPYS+wUt7o/TK9vJ4QI8p8Wt
+ ZzNgqSeQTuRHS5JHdP+VHnrCaXYhFlM5R3us/KNUV7wRfjtuh/n1rdaMe5qBp26wdG
+ LXkq3z7CkGFmdBwtX4wfomHMj0+MJfqwXzgbCS3mx+l5wQJsvRBrw7MvmI6IOfhhcA
+ eHjwjRzWo6Hoxwg3obreXpJjht2BsAHkSFvesMtJ8RF6Y1o4h3hr3N9tQdCovAm4Qz
+ xHvdHRH871/Ag==
 Received: from localhost (odin.codewreck.org [local])
- by odin.codewreck.org (OpenSMTPD) with ESMTPA id c6d6cc5f;
- Thu, 16 Jun 2022 13:51:46 +0000 (UTC)
-Date: Thu, 16 Jun 2022 22:51:31 +0900
+ by odin.codewreck.org (OpenSMTPD) with ESMTPA id 20e706e1;
+ Thu, 16 Jun 2022 13:53:02 +0000 (UTC)
 From: Dominique Martinet <asmadeus@codewreck.org>
-To: Christian Schoenebeck <linux_oss@crudebyte.com>
-Message-ID: <Yqs1Y8G/Emi/q+S2@codewreck.org>
-References: <YqW5s+GQZwZ/DP5q@codewreck.org> <YqiC8luskkxUftQl@codewreck.org>
- <1796737.mFSqR1lx0c@silver> <22073313.PYDa2UxuuP@silver>
-MIME-Version: 1.0
-Content-Disposition: inline
+To: Eric Van Hensbergen <ericvh@gmail.com>,
+ Latchesar Ionkov <lucho@ionkov.net>,
+ Dominique Martinet <asmadeus@codewreck.org>,
+ Christian Schoenebeck <linux_oss@crudebyte.com>,
+ David Howells <dhowells@redhat.com>
+Date: Thu, 16 Jun 2022 22:52:55 +0900
+Message-Id: <20220616135256.1787252-1-asmadeus@codewreck.org>
+X-Mailer: git-send-email 2.36.1
 In-Reply-To: <22073313.PYDa2UxuuP@silver>
+References: <22073313.PYDa2UxuuP@silver>
+MIME-Version: 1.0
 X-Spam-Score: -0.2 (/)
 X-Spam-Report: Spam detection software,
  running on the system "util-spamd-1.v13.lw.sourceforge.com", 
@@ -83,10 +86,9 @@ X-Spam-Report: Spam detection software,
  message has been attached to this so you can view it or label
  similar future email.  If you have any questions, see
  the administrator of that system for details.
- Content preview:  Christian Schoenebeck wrote on Thu, Jun 16,
- 2022 at 03:35:59PM
- +0200: > 2. I fixed the conflict and gave your patch a test spin, and it
- triggers > the BUG_ON(!fid); that you added with that patch. Bac [...] 
+ Content preview:  cached operations sometimes need to do invalid operations
+ (e.g. read on a write only file) Historic fscache had added a "writeback fid"
+ for this, but the conversion to new fscache somehow lost usage o [...] 
  Content analysis details:   (-0.2 points, 6.0 required)
  pts rule name              description
  ---- ---------------------- --------------------------------------------------
@@ -101,8 +103,8 @@ X-Spam-Report: Spam detection software,
  author's domain
  0.0 UNPARSEABLE_RELAY      Informational: message has unparseable relay
  lines
-X-Headers-End: 1o1pug-0003td-H5
-Subject: Re: [V9fs-developer] [PATCH] 9p: fix EBADF errors in cached mode
+X-Headers-End: 1o1pvv-004CJY-Ap
+Subject: [V9fs-developer] [PATCH v2] 9p: fix EBADF errors in cached mode
 X-BeenThere: v9fs-developer@lists.sourceforge.net
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -114,45 +116,62 @@ List-Post: <mailto:v9fs-developer@lists.sourceforge.net>
 List-Help: <mailto:v9fs-developer-request@lists.sourceforge.net?subject=help>
 List-Subscribe: <https://lists.sourceforge.net/lists/listinfo/v9fs-developer>, 
  <mailto:v9fs-developer-request@lists.sourceforge.net?subject=subscribe>
-Cc: Latchesar Ionkov <lucho@ionkov.net>, Eric Van Hensbergen <ericvh@gmail.com>,
- linux-kernel@vger.kernel.org, stable@vger.kernel.org,
- David Howells <dhowells@redhat.com>, linux-fsdevel@vger.kernel.org,
- v9fs-developer@lists.sourceforge.net
+Cc: v9fs-developer@lists.sourceforge.net, linux-kernel@vger.kernel.org,
+ stable@vger.kernel.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: v9fs-developer-bounces@lists.sourceforge.net
 
-Christian Schoenebeck wrote on Thu, Jun 16, 2022 at 03:35:59PM +0200:
-> 2. I fixed the conflict and gave your patch a test spin, and it triggers
-> the BUG_ON(!fid); that you added with that patch. Backtrace based on
-> 30306f6194ca ("Merge tag 'hardening-v5.19-rc3' ..."):
+cached operations sometimes need to do invalid operations (e.g. read
+on a write only file)
+Historic fscache had added a "writeback fid" for this, but the conversion
+to new fscache somehow lost usage of it: use the writeback fid instead
+of normal one.
 
-hm, that's probably the version I sent without the fallback to
-private_data fid if writeback fid was sent (I've only commented without
-sending a v2)
+Note that the way this works (writeback fid being linked to inode) means
+we might use overprivileged fid for some operations, e.g. write as root
+when we shouldn't.
+Ideally we should keep both fids handy, and only use the writeback fid
+when really required e.g. reads to a write-only file to fill in the page
+cache (read-modify-write); but this is the situation we've always had
+and this commit only fixes an issue we've had for too long.
 
-> 1. your EBADF patch is based on you recent get/put refactoring patch, so it won't apply on stable.
+Link: https://lkml.kernel.org/r/20220614033802.1606738-1-asmadeus@codewreck.org
+Fixes: eb497943fa21 ("9p: Convert to using the netfs helper lib to do reads and caching")
+Cc: stable@vger.kernel.org
+Cc: David Howells <dhowells@redhat.com>
+Reported-By: Christian Schoenebeck <linux_oss@crudebyte.com>
+Signed-off-by: Dominique Martinet <asmadeus@codewreck.org>
+---
+ fs/9p/vfs_addr.c | 12 +++++++++++-
+ 1 file changed, 11 insertions(+), 1 deletion(-)
 
-ugh, you are correct, that was wrong as well in the version I sent by
-mail... I've hurried that way too much.
+diff --git a/fs/9p/vfs_addr.c b/fs/9p/vfs_addr.c
+index a8f512b44a85..7f924e671e3e 100644
+--- a/fs/9p/vfs_addr.c
++++ b/fs/9p/vfs_addr.c
+@@ -58,7 +58,17 @@ static void v9fs_issue_read(struct netfs_io_subrequest *subreq)
+  */
+ static int v9fs_init_request(struct netfs_io_request *rreq, struct file *file)
+ {
+-	struct p9_fid *fid = file->private_data;
++	struct inode *inode = file_inode(file);
++	struct v9fs_inode *v9inode = V9FS_I(inode);
++	struct p9_fid *fid = v9inode->writeback_fid;
++
++	/* If there is no writeback fid this file only ever has had
++	 * read-only opens, so we can use file's fid which should
++	 * always be set instead */
++	if (!fid)
++		fid = file->private_data;
++
++	BUG_ON(!fid);
+ 
+ 	refcount_inc(&fid->count);
+ 	rreq->netfs_priv = fid;
+-- 
+2.35.1
 
-The patch that's currently on the tip of my 9p-next branch should be
-alright though, I'll resend it now so you can apply cleanly if you don't
-want to fetch https://github.com/martinetd/linux/commits/9p-next
-
-> Did your patch work there for you? I mean I have not applied the other pending
-> 9p patches, but they should not really make difference, right? I won't have
-> time today, but I will continue to look at it tomorrow. If you already had
-> some thoughts on this, that would be great of course.
-
-Yes, my version passes basic tests at least, and I could no longer
-reproduce the problem.
-
-Without the if (!fid) fid = file->private_data though it does fail
-horribly like you've found out.
-
---
-Dominique
 
 
 _______________________________________________
