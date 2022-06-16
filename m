@@ -2,107 +2,81 @@ Return-Path: <v9fs-developer-bounces@lists.sourceforge.net>
 X-Original-To: lists+v9fs-developer@lfdr.de
 Delivered-To: lists+v9fs-developer@lfdr.de
 Received: from lists.sourceforge.net (lists.sourceforge.net [216.105.38.7])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1DE6F54E313
-	for <lists+v9fs-developer@lfdr.de>; Thu, 16 Jun 2022 16:12:03 +0200 (CEST)
-Received: from [127.0.0.1] (helo=sfs-ml-4.v29.lw.sourceforge.com)
-	by sfs-ml-4.v29.lw.sourceforge.com with esmtp (Exim 4.94.2)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3BA1C54E92E
+	for <lists+v9fs-developer@lfdr.de>; Thu, 16 Jun 2022 20:09:59 +0200 (CEST)
+Received: from [127.0.0.1] (helo=sfs-ml-2.v29.lw.sourceforge.com)
+	by sfs-ml-2.v29.lw.sourceforge.com with esmtp (Exim 4.94.2)
 	(envelope-from <v9fs-developer-bounces@lists.sourceforge.net>)
-	id 1o1qE5-0007eV-HO; Thu, 16 Jun 2022 14:12:00 +0000
+	id 1o1twG-0005Fg-DM; Thu, 16 Jun 2022 18:09:53 +0000
 Received: from [172.30.20.202] (helo=mx.sourceforge.net)
- by sfs-ml-4.v29.lw.sourceforge.com with esmtps (TLS1.2) tls
+ by sfs-ml-2.v29.lw.sourceforge.com with esmtps (TLS1.2) tls
  TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384 (Exim 4.94.2)
- (envelope-from <asmadeus@codewreck.org>) id 1o1qE4-0007eP-CJ
- for v9fs-developer@lists.sourceforge.net; Thu, 16 Jun 2022 14:11:59 +0000
+ (envelope-from <28a01af70227378bb47318d5eb7780b050f03b97@lizzy.crudebyte.com>)
+ id 1o1twF-0005Fa-6f
+ for v9fs-developer@lists.sourceforge.net; Thu, 16 Jun 2022 18:09:52 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=sourceforge.net; s=x; h=In-Reply-To:Content-Type:MIME-Version:References:
- Message-ID:Subject:Cc:To:From:Date:Sender:Reply-To:Content-Transfer-Encoding:
- Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
- Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
+ d=sourceforge.net; s=x; h=Message-Id:Cc:To:Subject:Date:From:Sender:Reply-To:
+ MIME-Version:Content-Type:Content-Transfer-Encoding:Content-ID:
+ Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
+ :Resent-Message-ID:In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:
  List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=6fLEu8wAlSIhYMNp84lmaEuPjTbe/YpTHYdRdU5qRks=; b=HpPnPJox9sJsFBnCndpErpIRTJ
- hMREqYBMrrVFmCuXYXdWWA3JKQg1ga9kwzoqDeuWQba+bsTZ+8p0XGsCEgvw9mxVjFMOgw/4/65tp
- lBbdew4aJ0BPZ899fkhha5p8sr33qHjhG4Fqha9DXNDcRZqG29izFdosYPWbslV47gMI=;
+ bh=xm94cFRpLBeZoS4MkJUmpD9ccv8vD46ilbV91YuAu+4=; b=B/UHi0F13GqlXLbDJYQ/TzTvgB
+ lm1D6TI0ACbGFH3Z0Vsk7LTttjpHUwoB2XhWcwq27YeinwGU0TwaieTPu6WUtpLxhOcQ2UTaBIjiy
+ ES1G03sqNsnBvcQDL4DXgaGKeduRxzzDSw547fU18ZMt/eFfxNSlCZjy8WXm0TAX7q1Q=;
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  ;
- h=In-Reply-To:Content-Type:MIME-Version:References:Message-ID:Subject:Cc:To
- :From:Date:Sender:Reply-To:Content-Transfer-Encoding:Content-ID:
- Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
- :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
+ h=Message-Id:Cc:To:Subject:Date:From:Sender:Reply-To:MIME-Version:
+ Content-Type:Content-Transfer-Encoding:Content-ID:Content-Description:
+ Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+ In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
  List-Post:List-Owner:List-Archive;
- bh=6fLEu8wAlSIhYMNp84lmaEuPjTbe/YpTHYdRdU5qRks=; b=HBWioCpnw5qW3X+iHsIHM3Mtfz
- 66U9aLP2cwMhxUT6je0AVxOwkNLBIEPXOcG+HrVG7RlephTzmbCY5h7uEJlJ5BDQqFT6nQlYNosHb
- IXUhBjVIS2whf0xyEmELM5HhQFA1gt4G+ymgWlletmmNWvI2WYyzI6y4tvkoDoie7uo0=;
-Received: from nautica.notk.org ([91.121.71.147])
- by sfi-mx-2.v28.lw.sourceforge.com with esmtps
+ bh=xm94cFRpLBeZoS4MkJUmpD9ccv8vD46ilbV91YuAu+4=; b=IIfF8j9L+A23pxG2GZlIYFoRYH
+ Z2BbUqv15E/NS0tqHRfq91+MIBIvfm2Q1xKRYZ2nd78ywB7qo9J3pn1NRZ3tSzApTztx7Ll6nYuRF
+ Bvbl+HnMFroFquX2ymQl+yvhzOQJpXDmeMycPBuh9ZeELTAVEqUg0VYAl3Ne3B0fzVeU=;
+Received: from lizzy.crudebyte.com ([91.194.90.13])
+ by sfi-mx-1.v28.lw.sourceforge.com with esmtps
  (TLS1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.94.2)
- id 1o1qDl-0004qm-RT
- for v9fs-developer@lists.sourceforge.net; Thu, 16 Jun 2022 14:11:53 +0000
-Received: by nautica.notk.org (Postfix, from userid 108)
- id DA441C01C; Thu, 16 Jun 2022 16:11:36 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=codewreck.org; s=2;
- t=1655388696; bh=6fLEu8wAlSIhYMNp84lmaEuPjTbe/YpTHYdRdU5qRks=;
- h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
- b=WQLfbC1cYoX14kKZ3N5dB9eRYeWQUnIS8zXTCcPAcfIlZA1HuLsqHZaobqOoRfgtb
- 4jh/0vpIJb3xMrkKUR5EP9ozmJgdKkscRFg9VeNVig5d0hIoGAMav0FZ7burj/mw/V
- eOT2o2qDglyUTveKwfwQZ6CICIWNX3VDUK3z7JcoCT34Kri1HL1PPuaXqAwnRVtCIg
- fk45DkIeIZJo77r02GpIfD+ndUQli8+avOcOMIhUAp7HG3L59uoMkGGS28KZqoZX+R
- ejJN8yMpxR3lnXFZVfo8r970t19z5MohR4waRc7Zfe9lVyzkxmY8gHQWTgLk9FqSxX
- ombdi8OZY+KyA==
-X-Spam-Checker-Version: SpamAssassin 3.3.2 (2011-06-06) on nautica.notk.org
-X-Spam-Level: 
-X-Spam-Status: No, score=0.0 required=5.0 tests=UNPARSEABLE_RELAY
- autolearn=unavailable version=3.3.2
-Received: from odin.codewreck.org (localhost [127.0.0.1])
- by nautica.notk.org (Postfix) with ESMTPS id DD91BC009;
- Thu, 16 Jun 2022 16:11:33 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=codewreck.org; s=2;
- t=1655388696; bh=6fLEu8wAlSIhYMNp84lmaEuPjTbe/YpTHYdRdU5qRks=;
- h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
- b=WQLfbC1cYoX14kKZ3N5dB9eRYeWQUnIS8zXTCcPAcfIlZA1HuLsqHZaobqOoRfgtb
- 4jh/0vpIJb3xMrkKUR5EP9ozmJgdKkscRFg9VeNVig5d0hIoGAMav0FZ7burj/mw/V
- eOT2o2qDglyUTveKwfwQZ6CICIWNX3VDUK3z7JcoCT34Kri1HL1PPuaXqAwnRVtCIg
- fk45DkIeIZJo77r02GpIfD+ndUQli8+avOcOMIhUAp7HG3L59uoMkGGS28KZqoZX+R
- ejJN8yMpxR3lnXFZVfo8r970t19z5MohR4waRc7Zfe9lVyzkxmY8gHQWTgLk9FqSxX
- ombdi8OZY+KyA==
-Received: from localhost (odin.codewreck.org [local])
- by odin.codewreck.org (OpenSMTPD) with ESMTPA id 6e9c3609;
- Thu, 16 Jun 2022 14:11:31 +0000 (UTC)
-Date: Thu, 16 Jun 2022 23:11:16 +0900
-From: Dominique Martinet <asmadeus@codewreck.org>
-To: Christian Schoenebeck <linux_oss@crudebyte.com>
-Message-ID: <Yqs6BPVc3rNZ9byJ@codewreck.org>
-References: <YqW5s+GQZwZ/DP5q@codewreck.org> <YqiC8luskkxUftQl@codewreck.org>
- <1796737.mFSqR1lx0c@silver> <22073313.PYDa2UxuuP@silver>
- <Yqs1Y8G/Emi/q+S2@codewreck.org>
-MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <Yqs1Y8G/Emi/q+S2@codewreck.org>
+ id 1o1twB-004Nnj-Qr
+ for v9fs-developer@lists.sourceforge.net; Thu, 16 Jun 2022 18:09:51 +0000
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+ d=crudebyte.com; s=lizzy; h=Message-Id:Cc:To:Subject:Date:From:Content-Type:
+ Content-Transfer-Encoding:MIME-Version:References:In-Reply-To:Content-ID:
+ Content-Description; bh=xm94cFRpLBeZoS4MkJUmpD9ccv8vD46ilbV91YuAu+4=; b=gTOEs
+ aiOGh59u3PyvQFNqRbDXK5rbrTl2/02z3Yf6YAwDFqMRHfBdGjmFBUeekgmLJpcOMtVj+qA44ha/V
+ 7PY/1Dz0A9TFKsFgk7h7k79/VnE4JUHQ3nk9olcwnmy6b+AJwBT83U7v9mUC79w4h3SakvKiFbQ3y
+ NfOKHHu55Clmzy9yEkoHJ/zRowQJLaeZcKRuJjQUxZfS15tI0w2bT6IqMtTpkuMg8H55//Gh8Mkdj
+ rjdwgolVWqIsDBpTQeSdUfloljJkEdjMTuTEAnrVdPLOCBmEuIwzQ+a4jCIjzHjpzC6yrxSDUiCyC
+ Zszg3Nxd9UpyhBTNY3dT1XFAn3dUA==;
+Date: Thu, 16 Jun 2022 19:09:42 +0200
+To: Dominique Martinet <asmadeus@codewreck.org>
+Message-Id: <E1o1tHC-00039k-04@lizzy.crudebyte.com>
 X-Spam-Score: -0.2 (/)
 X-Spam-Report: Spam detection software,
- running on the system "util-spamd-1.v13.lw.sourceforge.com", 
+ running on the system "util-spamd-2.v13.lw.sourceforge.com", 
  has NOT identified this incoming email as spam.  The original
  message has been attached to this so you can view it or label
  similar future email.  If you have any questions, see
  the administrator of that system for details.
- Content preview:  Dominique Martinet wrote on Thu, Jun 16, 2022 at 10:51:31PM
- +0900: > > Did your patch work there for you? I mean I have not applied the
- other pending > > 9p patches, but they should not really make di [...] 
+ Content preview: The netfs changes (eb497943fa21) introduced cases where
+ 'Tread'
+ was sent to 9p server on a fid that was opened in write-only file mode. It
+ took some time to find the cause of the symptoms observed (EB [...] 
  Content analysis details:   (-0.2 points, 6.0 required)
  pts rule name              description
  ---- ---------------------- --------------------------------------------------
  0.0 SPF_HELO_NONE          SPF: HELO does not publish an SPF Record
- -0.0 SPF_PASS               SPF: sender matches SPF record
+ 0.0 SPF_NONE               SPF: sender does not publish an SPF Record
  -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
- -0.1 DKIM_VALID_EF          Message has a valid DKIM or DK signature from
- envelope-from domain
- 0.1 DKIM_SIGNED            Message has a DKIM or DK signature, not necessarily
- valid
  -0.1 DKIM_VALID_AU          Message has a valid DKIM or DK signature from
  author's domain
- 0.0 UNPARSEABLE_RELAY      Informational: message has unparseable relay
- lines
-X-Headers-End: 1o1qDl-0004qm-RT
-Subject: Re: [V9fs-developer] [PATCH] 9p: fix EBADF errors in cached mode
+ 0.1 DKIM_SIGNED            Message has a DKIM or DK signature, not necessarily
+ valid
+ -0.1 DKIM_VALID_EF          Message has a valid DKIM or DK signature from
+ envelope-from domain
+ -0.0 T_SCC_BODY_TEXT_LINE   No description available.
+X-Headers-End: 1o1twB-004Nnj-Qr
+Subject: [V9fs-developer] [PATCH] net/9p: show warning on Tread/Twrite if
+ wrong file mode
 X-BeenThere: v9fs-developer@lists.sourceforge.net
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -114,74 +88,62 @@ List-Post: <mailto:v9fs-developer@lists.sourceforge.net>
 List-Help: <mailto:v9fs-developer-request@lists.sourceforge.net?subject=help>
 List-Subscribe: <https://lists.sourceforge.net/lists/listinfo/v9fs-developer>, 
  <mailto:v9fs-developer-request@lists.sourceforge.net?subject=subscribe>
-Cc: Latchesar Ionkov <lucho@ionkov.net>, Eric Van Hensbergen <ericvh@gmail.com>,
- linux-kernel@vger.kernel.org, stable@vger.kernel.org,
- David Howells <dhowells@redhat.com>, linux-fsdevel@vger.kernel.org,
- v9fs-developer@lists.sourceforge.net
+From: Christian Schoenebeck via V9fs-developer
+ <v9fs-developer@lists.sourceforge.net>
+Reply-To: Christian Schoenebeck <linux_oss@crudebyte.com>
+Cc: Eric Van Hensbergen <ericvh@gmail.com>,
+ v9fs-developer@lists.sourceforge.net, David Howells <dhowells@redhat.com>,
+ linux-kernel@vger.kernel.org, Latchesar Ionkov <lucho@ionkov.net>
+MIME-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: v9fs-developer-bounces@lists.sourceforge.net
 
-Dominique Martinet wrote on Thu, Jun 16, 2022 at 10:51:31PM +0900:
-> > Did your patch work there for you? I mean I have not applied the other pending
-> > 9p patches, but they should not really make difference, right? I won't have
-> > time today, but I will continue to look at it tomorrow. If you already had
-> > some thoughts on this, that would be great of course.
-> 
-> Yes, my version passes basic tests at least, and I could no longer
-> reproduce the problem.
+The netfs changes (eb497943fa21) introduced cases where 'Tread' was sent
+to 9p server on a fid that was opened in write-only file mode. It took
+some time to find the cause of the symptoms observed (EBADF errors in
+user space apps). Add warnings to detect such issues easier in future.
 
-For what it's worth I've also tested a version of your patch:
+Signed-off-by: Christian Schoenebeck <linux_oss@crudebyte.com>
+Link: https://lore.kernel.org/netdev/3645230.Tf70N6zClz@silver/
+---
+As requested by Dominique, here a clean version of my previous
+EBADF trap code to be merged. Dominique, if you already have an
+equivalent patch queued, then just go ahead. I don't mind.
 
------
-diff --git a/fs/9p/vfs_addr.c b/fs/9p/vfs_addr.c
-index a8f512b44a85..d0833fa69faf 100644
---- a/fs/9p/vfs_addr.c
-+++ b/fs/9p/vfs_addr.c
-@@ -58,8 +58,21 @@ static void v9fs_issue_read(struct netfs_io_subrequest *subreq)
-  */
- static int v9fs_init_request(struct netfs_io_request *rreq, struct file *file)
- {
-+	struct inode *inode = file_inode(file);
-+	struct v9fs_inode *v9inode = V9FS_I(inode);
- 	struct p9_fid *fid = file->private_data;
+I'm currently testing your EBADF fix patch and the discussed,
+slightly adjusted versions. Looking good so far, but I'll report
+back later on.
+
+
+ net/9p/client.c | 4 ++++
+ 1 file changed, 4 insertions(+)
+
+diff --git a/net/9p/client.c b/net/9p/client.c
+index 8bba0d9cf975..05dead12702d 100644
+--- a/net/9p/client.c
++++ b/net/9p/client.c
+@@ -1555,6 +1555,8 @@ p9_client_read(struct p9_fid *fid, u64 offset, struct iov_iter *to, int *err)
+ 	int total = 0;
+ 	*err = 0;
  
-+	BUG_ON(!fid);
++	WARN_ON((fid->mode & O_ACCMODE) == O_WRONLY);
 +
-+	/* we might need to read from a fid that was opened write-only
-+	 * for read-modify-write of page cache, use the writeback fid
-+	 * for that */
-+	if (rreq->origin == NETFS_READ_FOR_WRITE &&
-+			(fid->mode & O_ACCMODE) == O_WRONLY) {
-+		fid = v9inode->writeback_fid;
-+		BUG_ON(!fid);
-+	}
+ 	while (iov_iter_count(to)) {
+ 		int count;
+ 
+@@ -1648,6 +1650,8 @@ p9_client_write(struct p9_fid *fid, u64 offset, struct iov_iter *from, int *err)
+ 	p9_debug(P9_DEBUG_9P, ">>> TWRITE fid %d offset %llu count %zd\n",
+ 		 fid->fid, offset, iov_iter_count(from));
+ 
++	WARN_ON((fid->mode & O_ACCMODE) == O_RDONLY);
 +
- 	refcount_inc(&fid->count);
- 	rreq->netfs_priv = fid;
- 	return 0;
------
+ 	while (iov_iter_count(from)) {
+ 		int count = iov_iter_count(from);
+ 		int rsize = fid->iounit;
+-- 
+2.30.2
 
-And this also seems to work alright.
-
-I was about to ask why the original code did writes with the writeback
-fid, but I'm noticing now the current code still does (through
-v9fs_vfs_write_folio_locked()), so that part hasn't changed from the old
-code, and init_request will only be getting reads? Which actually makes
-sense now I'm thinking about it because I recall David saying he's
-working on netfs writes now...
-
-So that minimal version is probably what we want, give or take style
-adjustments (only initializing inode/v9inode in the if case or not) -- I
-sure hope compilers optimizes it away when not needed.
-
-
-I'll let you test one or both versions and will fixup the commit message
-again/credit you/resend if we go with this version, unless you want to
-send it.
-
---
-Dominique
 
 
 _______________________________________________
