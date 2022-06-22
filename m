@@ -2,86 +2,79 @@ Return-Path: <v9fs-developer-bounces@lists.sourceforge.net>
 X-Original-To: lists+v9fs-developer@lfdr.de
 Delivered-To: lists+v9fs-developer@lfdr.de
 Received: from lists.sourceforge.net (lists.sourceforge.net [216.105.38.7])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9A1F85531C3
-	for <lists+v9fs-developer@lfdr.de>; Tue, 21 Jun 2022 14:14:17 +0200 (CEST)
-Received: from [127.0.0.1] (helo=sfs-ml-4.v29.lw.sourceforge.com)
-	by sfs-ml-4.v29.lw.sourceforge.com with esmtp (Exim 4.94.2)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3F0D45541D6
+	for <lists+v9fs-developer@lfdr.de>; Wed, 22 Jun 2022 06:44:51 +0200 (CEST)
+Received: from [127.0.0.1] (helo=sfs-ml-2.v29.lw.sourceforge.com)
+	by sfs-ml-2.v29.lw.sourceforge.com with esmtp (Exim 4.94.2)
 	(envelope-from <v9fs-developer-bounces@lists.sourceforge.net>)
-	id 1o3clq-0008B1-Uj; Tue, 21 Jun 2022 12:14:13 +0000
+	id 1o3sEO-0001dO-Gl; Wed, 22 Jun 2022 04:44:45 +0000
 Received: from [172.30.20.202] (helo=mx.sourceforge.net)
- by sfs-ml-4.v29.lw.sourceforge.com with esmtps (TLS1.2) tls
+ by sfs-ml-2.v29.lw.sourceforge.com with esmtps (TLS1.2) tls
  TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384 (Exim 4.94.2)
- (envelope-from <linux_oss@crudebyte.com>) id 1o3clp-0008Aj-38
- for v9fs-developer@lists.sourceforge.net; Tue, 21 Jun 2022 12:14:11 +0000
+ (envelope-from <asmadeus@codewreck.org>) id 1o3sEN-0001dI-Fs
+ for v9fs-developer@lists.sourceforge.net; Wed, 22 Jun 2022 04:44:44 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=sourceforge.net; s=x; h=Content-Type:Content-Transfer-Encoding:MIME-Version
- :References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Sender:Reply-To:
- Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
- Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
+ d=sourceforge.net; s=x; h=Content-Type:MIME-Version:Message-ID:Subject:Cc:To:
+ From:Date:Sender:Reply-To:Content-Transfer-Encoding:Content-ID:
+ Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
+ :Resent-Message-ID:In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:
  List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=WnC8/sVEqcV82ARt6NQG9FTjINSGhbQW6PZRwnbLprs=; b=DhCcLryvYKwl3CRjK8y3tiVxd0
- Z6aiuw4ABxzcab8BHIcLhi2gTRGaie6t8YA3RZGm2DVFbh6CIgp6I5SvaUKEXqKEELzCoykwxT7TL
- zXgNsMV+WvDqvJAxlMSD3pgd1v2V77xCYKHG0DEr+RppTn6Vn4eNn2+1SEBbMeseStJc=;
+ bh=SvpTBwVexYrFJCdZ3kGO9tYts3xgDDucgGQnhol99JQ=; b=PmPt5EvD/qKxI5T6Vv7kg6wNDM
+ AVOx1gW6yHyw8B+algoUB446Vci2psVvnDTE1ikWQ1JYfcOb+Ugo1j3R8yVSL5trFerFpGzDp9Ao8
+ mZNgd+bSvPMQGlcOEHl5l6mUuPFHwdVBb3NckTVnMR2VnV6qs7B7q/jAPj4tbLxJCO8o=;
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  ;
- h=Content-Type:Content-Transfer-Encoding:MIME-Version:References:
- In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Sender:Reply-To:Content-ID:
- Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
- :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
- List-Post:List-Owner:List-Archive;
- bh=WnC8/sVEqcV82ARt6NQG9FTjINSGhbQW6PZRwnbLprs=; b=KPh49cUaBF9+QxRNrKi2msDPj8
- f7c/XHO1Spm0A9fhbOxzlR1gEHAQe5QTsd+e+ovQUyYLhtKSwJRHGbFWwqJimSpiv1Yz6YHbGqNjP
- +CigPovNcSfpU1Dj7SOii1emsF1zjvg3AhHnX5HJEoUMTc8wFCOl9+JEMNf95In1hF1k=;
-Received: from kylie.crudebyte.com ([5.189.157.229])
- by sfi-mx-1.v28.lw.sourceforge.com with esmtps
+ h=Content-Type:MIME-Version:Message-ID:Subject:Cc:To:From:Date:Sender:
+ Reply-To:Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date
+ :Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:
+ References:List-Id:List-Help:List-Unsubscribe:List-Subscribe:List-Post:
+ List-Owner:List-Archive; bh=SvpTBwVexYrFJCdZ3kGO9tYts3xgDDucgGQnhol99JQ=; b=X
+ 58H5ZLwYxcHcjkfTPCTThOx+/vQmqXIW3rT81hFHxLjD8klSkZs5S3xJgxttzV07q7vIAYpSpCJmW
+ wK0zni81nSXGPmh9NEfoDvgT5xGaMXNciLJO9A8X1407xQP/gcZIEVGyZKFRpqTmf3sWa4RhUMrzO
+ tsBW9N2Lm8I3PUjU=;
+Received: from nautica.notk.org ([91.121.71.147])
+ by sfi-mx-2.v28.lw.sourceforge.com with esmtps
  (TLS1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.94.2)
- id 1o3clj-009JqY-Pn
- for v9fs-developer@lists.sourceforge.net; Tue, 21 Jun 2022 12:14:11 +0000
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=crudebyte.com; s=kylie; h=Content-Type:Content-Transfer-Encoding:
- MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:
- Content-ID:Content-Description;
- bh=WnC8/sVEqcV82ARt6NQG9FTjINSGhbQW6PZRwnbLprs=; b=AAKg5CtcGYAQc9VOmfGncdP/qy
- 6KjzYJBG9pPPuAL1pfNLPIvsq9t4K9dmbW045BGri0Pg98M4q4YD5Urjbxi00ARrcQQ+pMtoPGsr1
- V79EVcO1N6WvMsaAPEScCpL/a6qpOlcoBkhNuLZq11+sFCxHeZgB/emEqoCSGO9qnCkHgnHF4jO/g
- nWuBHSN91RpR76Ls6IjuajnytXDjwgOstNIFA+ZKxzpzwNotfWbYQk3VqBRuogPVPHyry3B51Lh4v
- CkNkjP+h6j/diRO+MYb6LHBMHIl/NvrufiWNDIx++xVJivhGSh64QsRA3qHpH0Klykj5d9Pk/wPHV
- xaPQ01H+09Z1834SWCS1go4rXN8Yb68Mk5B9ilJg6Lwu65bgrhCNFJDJl2eKoFDVTaz8/tPhCJzfD
- 1OQXLchwjmRWMaBzFwMQR815ufEt282WjYZHJBz94QU/kTz4jgdcVUwAuLUIpYywATXqaC/6pLsXC
- dwgDAfVDgwYtTbViLcxMs2xZICitDOVDePPyqrwroF1VqiZScUZ1DJl3T/uLaix42zD65DfGiyR+L
- WIpfKcvqehqVpkzSM8r6AnmyTq7pilgFlioy12g4EImGmUrnTOHaFhZwjN1zcpWOto+4H+hFL4VjG
- lBMbs8eqfdeTKUOe7/qFLiqvRyDGKuW8NYEAHejrA=;
-To: Dominique Martinet <asmadeus@codewreck.org>
-Date: Tue, 21 Jun 2022 14:13:51 +0200
-Message-ID: <25475559.V594D4LmdM@silver>
-In-Reply-To: <YrDZ3nlTFwJ4ytl8@codewreck.org>
-References: <15767273.MGizftpLG7@silver> <1902408.H94Nh90b8Q@silver>
- <YrDZ3nlTFwJ4ytl8@codewreck.org>
+ id 1o3sEM-0005rB-22
+ for v9fs-developer@lists.sourceforge.net; Wed, 22 Jun 2022 04:44:44 +0000
+Received: by nautica.notk.org (Postfix, from userid 108)
+ id 0B1D4C01D; Wed, 22 Jun 2022 06:44:33 +0200 (CEST)
+X-Spam-Checker-Version: SpamAssassin 3.3.2 (2011-06-06) on nautica.notk.org
+X-Spam-Level: 
+X-Spam-Status: No, score=0.0 required=5.0 tests=UNPARSEABLE_RELAY
+ autolearn=unavailable version=3.3.2
+Received: from odin.codewreck.org (localhost [127.0.0.1])
+ by nautica.notk.org (Postfix) with ESMTPS id C1B91C009;
+ Wed, 22 Jun 2022 06:44:30 +0200 (CEST)
+Received: from localhost (odin.codewreck.org [local])
+ by odin.codewreck.org (OpenSMTPD) with ESMTPA id da68f758;
+ Wed, 22 Jun 2022 04:44:27 +0000 (UTC)
+Date: Wed, 22 Jun 2022 13:44:12 +0900
+From: Dominique Martinet <asmadeus@codewreck.org>
+To: Linus Torvalds <torvalds@linux-foundation.org>
+Message-ID: <YrKeHMRfXTNw3vTE@codewreck.org>
 MIME-Version: 1.0
-X-Spam-Score: -0.2 (/)
+Content-Disposition: inline
+X-Spam-Score: -0.0 (/)
 X-Spam-Report: Spam detection software,
- running on the system "util-spamd-1.v13.lw.sourceforge.com", 
+ running on the system "util-spamd-2.v13.lw.sourceforge.com", 
  has NOT identified this incoming email as spam.  The original
  message has been attached to this so you can view it or label
  similar future email.  If you have any questions, see
  the administrator of that system for details.
- Content preview:  On Montag, 20. Juni 2022 22:34:38 CEST Dominique Martinet
- wrote: > Christian Schoenebeck wrote on Mon, Jun 20, 2022 at 02:47:24PM +0200:
- > > Some more tests this weekend; all looks fine. It appears th [...] 
- Content analysis details:   (-0.2 points, 6.0 required)
+ Content preview:  Thanks to Tyler and Christian for the patch/reviews/tests!
+ The following changes since commit b13baccc3850ca8b8cccbf8ed9912dbaa0fdf7f3:
+ Linux 5.19-rc2 (2022-06-12 16:11:37 -0700) 
+ Content analysis details:   (-0.0 points, 6.0 required)
  pts rule name              description
  ---- ---------------------- --------------------------------------------------
- 0.0 SPF_HELO_NONE          SPF: HELO does not publish an SPF Record
  -0.0 SPF_PASS               SPF: sender matches SPF record
- -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
- -0.1 DKIM_VALID_EF          Message has a valid DKIM or DK signature from
- envelope-from domain
- 0.1 DKIM_SIGNED            Message has a DKIM or DK signature, not necessarily
- valid
- -0.1 DKIM_VALID_AU          Message has a valid DKIM or DK signature from
- author's domain
-X-Headers-End: 1o3clj-009JqY-Pn
-Subject: Re: [V9fs-developer] [PATCH v3] 9p: fix EBADF errors in cached mode
+ 0.0 SPF_HELO_NONE          SPF: HELO does not publish an SPF Record
+ -0.0 T_SCC_BODY_TEXT_LINE   No description available.
+ 0.0 UNPARSEABLE_RELAY      Informational: message has unparseable relay
+ lines
+X-Headers-End: 1o3sEM-0005rB-22
+Subject: [V9fs-developer] [GIT PULL] 9p fixes for 5.19-rc4
 X-BeenThere: v9fs-developer@lists.sourceforge.net
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -93,49 +86,61 @@ List-Post: <mailto:v9fs-developer@lists.sourceforge.net>
 List-Help: <mailto:v9fs-developer-request@lists.sourceforge.net?subject=help>
 List-Subscribe: <https://lists.sourceforge.net/lists/listinfo/v9fs-developer>, 
  <mailto:v9fs-developer-request@lists.sourceforge.net?subject=subscribe>
-From: Christian Schoenebeck via V9fs-developer
- <v9fs-developer@lists.sourceforge.net>
-Reply-To: Christian Schoenebeck <linux_oss@crudebyte.com>
-Cc: Latchesar Ionkov <lucho@ionkov.net>, Eric Van Hensbergen <ericvh@gmail.com>,
- linux-kernel@vger.kernel.org, stable@vger.kernel.org,
- David Howells <dhowells@redhat.com>, v9fs-developer@lists.sourceforge.net
+Cc: Tyler Hicks <tyhicks@linux.microsoft.com>, linux-fsdevel@vger.kernel.org,
+ Christian Schoenebeck <linux_oss@crudebyte.com>, linux-kernel@vger.kernel.org,
+ v9fs-developer@lists.sourceforge.net
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: v9fs-developer-bounces@lists.sourceforge.net
 
-On Montag, 20. Juni 2022 22:34:38 CEST Dominique Martinet wrote:
-> Christian Schoenebeck wrote on Mon, Jun 20, 2022 at 02:47:24PM +0200:
-> > Some more tests this weekend; all looks fine. It appears that this also
-> > fixed the performance degradation that I reported early in this thread.
-> 
-> wow, I wouldn't have expected the EBADF fix patch to have any impact on
-> performance. Maybe the build just behaved differently enough to take
-> more time with the errors?
 
-Maybe. It could also be less overhead using writeback_fid vs. dedicated fid, 
-i.e. no walking and fid cloning required when just using the writeback_fid 
-which is already there (reduced latency).
-
-Probably also overall reduced total amount of fids might have some (smaller) 
-impact, as on QEMU 9p server side we still have a simple linked list for fids 
-which is iterated on each fid lookup. A proc-like interface for statistics 
-(e.g. max. amount of fids) would be useful.
-
-But honestly, all these things still don't really explain to me such a 
-difference from performance PoV in regards to this patch, as the particular 
-case handled by this patch does not appear to happen often.
-
-Anyway, my plan is to identify performance bottlenecks in general more 
-analytically this year. Now that we have macOS support for 9p in QEMU, I'll 
-probably use Xcode's "Instruments" tool which really has a great way to 
-graphically investigate complex performance aspects in a very intuitive and 
-customizable way, which goes beyond standard profiling. Then I can hunt down 
-performance issues by weight.
-
-Best regards,
-Christian Schoenebeck
+Thanks to Tyler and Christian for the patch/reviews/tests!
 
 
+The following changes since commit b13baccc3850ca8b8cccbf8ed9912dbaa0fdf7f3:
+
+  Linux 5.19-rc2 (2022-06-12 16:11:37 -0700)
+
+are available in the Git repository at:
+
+  https://github.com/martinetd/linux tags/9p-for-5.19-rc4
+
+for you to fetch changes up to b0017602fdf6bd3f344dd49eaee8b6ffeed6dbac:
+
+  9p: fix EBADF errors in cached mode (2022-06-17 06:03:30 +0900)
+
+----------------------------------------------------------------
+9p-for-5.19-rc4: fid refcount and fscache fixes
+
+This contains a couple of fixes:
+ - fid refcounting was incorrect in some corner cases and would
+leak resources, only freed at umount time. The first three commits
+fix three such cases
+ - cache=loose or fscache was broken when trying to write a partial
+page to a file with no read permission since the rework a few releases
+ago. The fix taken here is just to restore old behavior of using the
+special 'writeback_fid' for such reads, which is open as root/RDWR
+and such not get complains that we try to read on a WRONLY fid.
+Long-term it'd be nice to get rid of this and not issue the read at
+all (skip cache?) in such cases, but that direction hasn't progressed
+
+----------------------------------------------------------------
+Dominique Martinet (3):
+      9p: fix fid refcount leak in v9fs_vfs_atomic_open_dotl
+      9p: fix fid refcount leak in v9fs_vfs_get_link
+      9p: fix EBADF errors in cached mode
+
+Tyler Hicks (1):
+      9p: Fix refcounting during full path walks for fid lookups
+
+ fs/9p/fid.c            | 22 +++++++++-------------
+ fs/9p/vfs_addr.c       | 13 +++++++++++++
+ fs/9p/vfs_inode.c      |  8 ++++----
+ fs/9p/vfs_inode_dotl.c |  3 +++
+ 4 files changed, 29 insertions(+), 17 deletions(-)
+
+--
+Dominique
 
 
 _______________________________________________
