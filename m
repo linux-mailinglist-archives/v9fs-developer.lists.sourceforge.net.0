@@ -2,26 +2,26 @@ Return-Path: <v9fs-developer-bounces@lists.sourceforge.net>
 X-Original-To: lists+v9fs-developer@lfdr.de
 Delivered-To: lists+v9fs-developer@lfdr.de
 Received: from lists.sourceforge.net (lists.sourceforge.net [216.105.38.7])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7280A55E38D
-	for <lists+v9fs-developer@lfdr.de>; Tue, 28 Jun 2022 15:37:11 +0200 (CEST)
-Received: from [127.0.0.1] (helo=sfs-ml-2.v29.lw.sourceforge.com)
-	by sfs-ml-2.v29.lw.sourceforge.com with esmtp (Exim 4.94.2)
+	by mail.lfdr.de (Postfix) with ESMTPS id F184255E521
+	for <lists+v9fs-developer@lfdr.de>; Tue, 28 Jun 2022 15:56:43 +0200 (CEST)
+Received: from [127.0.0.1] (helo=sfs-ml-4.v29.lw.sourceforge.com)
+	by sfs-ml-4.v29.lw.sourceforge.com with esmtp (Exim 4.94.2)
 	(envelope-from <v9fs-developer-bounces@lists.sourceforge.net>)
-	id 1o6BOt-0001cn-FW; Tue, 28 Jun 2022 13:37:08 +0000
+	id 1o6Bhq-0004z7-Hl; Tue, 28 Jun 2022 13:56:41 +0000
 Received: from [172.30.20.202] (helo=mx.sourceforge.net)
- by sfs-ml-2.v29.lw.sourceforge.com with esmtps (TLS1.2) tls
+ by sfs-ml-4.v29.lw.sourceforge.com with esmtps (TLS1.2) tls
  TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384 (Exim 4.94.2)
- (envelope-from <jgg@ziepe.ca>) id 1o6BOs-0001ch-9F
- for v9fs-developer@lists.sourceforge.net; Tue, 28 Jun 2022 13:37:07 +0000
+ (envelope-from <gustavoars@kernel.org>)
+ id 1o6Bhp-0004yr-O3; Tue, 28 Jun 2022 13:56:40 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
  d=sourceforge.net; s=x; h=In-Reply-To:Content-Type:MIME-Version:References:
  Message-ID:Subject:Cc:To:From:Date:Sender:Reply-To:Content-Transfer-Encoding:
  Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
  Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
  List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=gN4ZNyT9GRZ46Vwx3CUzNgwGxKE3ptwelsb3O/2waMc=; b=ebyAZeO6oubp/DHfmGXy9phdO8
- qeOaZwH/Ax8N05agun+tq/VM4ElTZpUcyiyyxkjMCoHJHY1xSvbTE9Dh3IqFUH/gAsPZ3Fd2v2GgH
- cU23TEvVIdHv+C4vXnz8EzXUc+LfkFYvLFyyi//ZronsfTqSubLu9saVBpPsd5NSCRDA=;
+ bh=c/hsOFU8NZChn1cDgCBCh+5A62UGWSMcJpUCxlWJ8tk=; b=EFSnBzA6fkSIV+cd7gIJDXGDFk
+ R3tawJg2I0803yDBL/Gf/D9gDRJ5HI2VmhrF9ZC+JWmGZs+nd02235u7BNrHpRG/hs7FMacc/MiXh
+ lAI28sZyYB5iEvooJyc197AZDnFpSCGNd7cH6X/ccK7cdTuPqeWDu5HyQrs+hMAGOCFk=;
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  ;
  h=In-Reply-To:Content-Type:MIME-Version:References:Message-ID:Subject:Cc:To
@@ -29,76 +29,54 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
  :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
  List-Post:List-Owner:List-Archive;
- bh=gN4ZNyT9GRZ46Vwx3CUzNgwGxKE3ptwelsb3O/2waMc=; b=hkR/0kgue4rz+7Awn5yASciGMu
- qRpT+C4lgHBF9yS/LRTRrDlOErmBpK6wZgVC+biDd8RIX4D7HNeDeX3KCXpRVj9U/2sD/UG+KebA2
- UnvPlF9Vk7hVEW7N+/WJiUOK5PSXi5Mmdv+o73e9ar5jo5Qy6hzf6iChBl6m40Y7V4hQ=;
-Received: from mail-qv1-f51.google.com ([209.85.219.51])
- by sfi-mx-2.v28.lw.sourceforge.com with esmtps
- (TLS1.2:ECDHE-RSA-AES128-GCM-SHA256:128) (Exim 4.94.2)
- id 1o6BOl-0002I8-5T
- for v9fs-developer@lists.sourceforge.net; Tue, 28 Jun 2022 13:37:06 +0000
-Received: by mail-qv1-f51.google.com with SMTP id t16so19996155qvh.1
- for <v9fs-developer@lists.sourceforge.net>;
- Tue, 28 Jun 2022 06:36:59 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ziepe.ca; s=google;
- h=date:from:to:cc:subject:message-id:references:mime-version
- :content-disposition:in-reply-to;
- bh=gN4ZNyT9GRZ46Vwx3CUzNgwGxKE3ptwelsb3O/2waMc=;
- b=SRPS2zIET11DP06FAnMANUW30rX+F+KLnmvgpItTZuHDiHMYbx191l+udZ0BIKVo+p
- DUqKNFcRnPxEdciA9v/rjMoUuUABeinU5a59o91m7mO0ei+LjGwfeqP1sFK6bST4r2Sc
- +kwNrequilw+r3whlSvEqjUrw7uEou8aBEv26lUqmckZs7QEO1gxqNAIdKmR6ixdoBBW
- VwXL+VitONeiHER4+6czyOuvux/gSa01CsajOGl6xQeKgTZdOU9/PF5ai6yeP3/8Na6A
- VkyCaiWAoLiX3IML+rZ/qAH9obhof6Stg3VEpk4n7D6sOfmWV6A4zI2itZ9nI+NyrBEn
- GAtg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20210112;
- h=x-gm-message-state:date:from:to:cc:subject:message-id:references
- :mime-version:content-disposition:in-reply-to;
- bh=gN4ZNyT9GRZ46Vwx3CUzNgwGxKE3ptwelsb3O/2waMc=;
- b=N8JXwdQvVz9bk6BokpwKsCjS21H81xaoF1n+YKxmVXT+tpPbGaCq6uHBJDOxZ3Qlde
- LCotX4Y5Uskg0jhY6yU1AfJ7Lw1kY1EXbvfjtmK6QK3OlngPa3nktXihbkSJ4aKHpiNT
- pwJDRRl/hoYMmSfYWjkz9QI+CxDma9iSGsPqAchJZf9ochC4Y8zYq2L3Ll2dmcR7iwY2
- gFeVbwro8dQ7fG2kKRXBmFyjksNwOK1NKQTxqh5GY+RBB919Nf0ZcpX0APyZjl8DRCkp
- FFi55qE+kn7M4Ej/Y6yiXXZR4YEAvDSlCVUUhexCpSYdi7iTx9TFLQNsLUJEzctYfq02
- 0XYg==
-X-Gm-Message-State: AJIora+cf7hFXw4+bfCyUDZxJ5PcPWkgAEYw9OlcEdSZ0TU+PJ/u97Ob
- 3YrLMNSO4GTiSdIsEsXtzLiIaw==
-X-Google-Smtp-Source: AGRyM1uooXTVlKXYemR9EvbrrQp4i2XA4BpQT09bjvN7I6xIwm3cKCnpXCNHNGqwd+HxVz52pv3Omw==
-X-Received: by 2002:ac8:5b0d:0:b0:31b:f519:4107 with SMTP id
- m13-20020ac85b0d000000b0031bf5194107mr1237416qtw.331.1656423413317; 
- Tue, 28 Jun 2022 06:36:53 -0700 (PDT)
-Received: from ziepe.ca
- (hlfxns017vw-142-162-113-129.dhcp-dynamic.fibreop.ns.bellaliant.net.
- [142.162.113.129]) by smtp.gmail.com with ESMTPSA id
- s10-20020a05620a29ca00b006a79479657fsm708363qkp.108.2022.06.28.06.36.52
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Tue, 28 Jun 2022 06:36:52 -0700 (PDT)
-Received: from jgg by mlx with local (Exim 4.94) (envelope-from <jgg@ziepe.ca>)
- id 1o6BOd-002vAA-VA; Tue, 28 Jun 2022 10:36:51 -0300
-Date: Tue, 28 Jun 2022 10:36:51 -0300
-From: Jason Gunthorpe <jgg@ziepe.ca>
-To: "Gustavo A. R. Silva" <gustavoars@kernel.org>
-Message-ID: <20220628133651.GO23621@ziepe.ca>
+ bh=c/hsOFU8NZChn1cDgCBCh+5A62UGWSMcJpUCxlWJ8tk=; b=gx/f62bNInuKlCKfIAMMRKLTIF
+ WzJzTNvKm/YSo3nPd+L8tktmgEJr0jRquo8kfknYKVxRtUnYQA52bcItLsjq1+OONo72o3SWGunpy
+ 076IqfpmU3IYCqrzF6ZNG6svZq7Ftf+Ab3KJjzZEIZz3yEbixg+MKcvx43IrhswfMlxU=;
+Received: from ams.source.kernel.org ([145.40.68.75])
+ by sfi-mx-1.v28.lw.sourceforge.com with esmtps
+ (TLS1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.94.2)
+ id 1o6Bhm-00H2Ty-NS; Tue, 28 Jun 2022 13:56:40 +0000
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+ (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+ (No client certificate requested)
+ by ams.source.kernel.org (Postfix) with ESMTPS id 0A731B81B97;
+ Tue, 28 Jun 2022 13:56:30 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id C80ADC341CA;
+ Tue, 28 Jun 2022 13:56:25 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+ s=k20201202; t=1656424588;
+ bh=b5FsKFMrP1+S6zwgUlKhr8WAIjk2qEr4j/i4jiXKeUI=;
+ h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+ b=ipH9xLLON/wfF1+doX0YwzWNurZbGyHCLx43ahE7WR8jLi1R48cI2m2yJAsZCWDQT
+ Un4VNsnpjcqqdwdfvJBWhdCzCR6kAmILST6sGe+QmxtUWHpxGj2/l2NK930cX7S1Vb
+ ck1tdm9dVL3hHqJ5pPK6X9u94v/kg7IeqTTrypuenoyOXdLstD1jm9a1r2/Mn+hjvK
+ A5gIe8GNT4XoGXRtGng12sB0ehpNIhwjOmzNMxwSBDvTu3O5JPGVxOwJ5SG66up68M
+ dTuMxAaqVKV5rVpkj9AWHYexDQNYp0rXQRl//EEgGVYdOgnC2OLlmpTSGeWpC665ae
+ t2Abf09RRIvCQ==
+Date: Tue, 28 Jun 2022 15:56:23 +0200
+From: "Gustavo A. R. Silva" <gustavoars@kernel.org>
+To: Jason Gunthorpe <jgg@ziepe.ca>
+Message-ID: <20220628135623.GA25163@embeddedor>
 References: <20220627180432.GA136081@embeddedor>
  <6bc1e94c-ce1d-a074-7d0c-8dbe6ce22637@iogearbox.net>
  <20220628004052.GM23621@ziepe.ca>
  <20220628005825.GA161566@embeddedor>
  <20220628022129.GA8452@embeddedor>
+ <20220628133651.GO23621@ziepe.ca>
 MIME-Version: 1.0
 Content-Disposition: inline
-In-Reply-To: <20220628022129.GA8452@embeddedor>
-X-Spam-Score: -0.2 (/)
+In-Reply-To: <20220628133651.GO23621@ziepe.ca>
+X-Spam-Score: -5.9 (-----)
 X-Spam-Report: Spam detection software,
  running on the system "util-spamd-1.v13.lw.sourceforge.com", 
  has NOT identified this incoming email as spam.  The original
  message has been attached to this so you can view it or label
  similar future email.  If you have any questions, see
  the administrator of that system for details.
- Content preview:  On Tue, Jun 28, 2022 at 04:21:29AM +0200, Gustavo A. R. Silva
- wrote: > > > Though maybe we could just switch off
- -Wgnu-variable-sized-type-not-at-end
- during configuration ? > We need to think in a different strategy. 
- Content analysis details:   (-0.2 points, 6.0 required)
+ Content preview:  On Tue, Jun 28, 2022 at 10:36:51AM -0300, Jason Gunthorpe
+ wrote: > On Tue, Jun 28, 2022 at 04:21:29AM +0200, Gustavo A. R. Silva wrote:
+ > > > > > Though maybe we could just switch off -Wgnu-variable-s [...] 
+ Content analysis details:   (-5.9 points, 6.0 required)
  pts rule name              description
  ---- ---------------------- --------------------------------------------------
  0.0 SPF_HELO_NONE          SPF: HELO does not publish an SPF Record
@@ -110,11 +88,10 @@ X-Spam-Report: Spam detection software,
  valid
  -0.1 DKIM_VALID_AU          Message has a valid DKIM or DK signature from
  author's domain
- -0.0 RCVD_IN_MSPIKE_H2      RBL: Average reputation (+2)
- [209.85.219.51 listed in wl.mailspike.net]
- -0.0 RCVD_IN_DNSWL_NONE     RBL: Sender listed at https://www.dnswl.org/,
- no trust [209.85.219.51 listed in list.dnswl.org]
-X-Headers-End: 1o6BOl-0002I8-5T
+ -5.0 RCVD_IN_DNSWL_HI       RBL: Sender listed at https://www.dnswl.org/,
+ high trust [145.40.68.75 listed in list.dnswl.org]
+ -0.7 DKIMWL_WL_HIGH         DKIMwl.org - High trust sender
+X-Headers-End: 1o6Bhm-00H2Ty-NS
 Subject: Re: [V9fs-developer] [PATCH][next] treewide: uapi: Replace
  zero-length arrays with flexible-array members
 X-BeenThere: v9fs-developer@lists.sourceforge.net
@@ -150,30 +127,48 @@ Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: v9fs-developer-bounces@lists.sourceforge.net
 
-On Tue, Jun 28, 2022 at 04:21:29AM +0200, Gustavo A. R. Silva wrote:
+On Tue, Jun 28, 2022 at 10:36:51AM -0300, Jason Gunthorpe wrote:
+> On Tue, Jun 28, 2022 at 04:21:29AM +0200, Gustavo A. R. Silva wrote:
+> 
+> > > > Though maybe we could just switch off -Wgnu-variable-sized-type-not-at-end  during configuration ?
+> 
+> > We need to think in a different strategy.
+> 
+> I think we will need to switch off the warning in userspace - this is
+> doable for rdma-core.
+> 
+> On the other hand, if the goal is to enable the array size check
+> compiler warning I would suggest focusing only on those structs that
+> actually hit that warning in the kernel. IIRC infiniband doesn't
+> trigger it because it just pointer casts the flex array to some other
+> struct.
 
-> > > Though maybe we could just switch off -Wgnu-variable-sized-type-not-at-end  during configuration ?
+Yep; this is actually why I reverted those changes in rdma (before
+sending out the patch) when 0-day reported the same problems you pointed
+out[1].
 
-> We need to think in a different strategy.
+Also, that's the strategy I'm following right now with the one-element
+array into flex-array member transformations. I'm addressing those cases
+in which the trailing array is actually being iterated over, first.
 
-I think we will need to switch off the warning in userspace - this is
-doable for rdma-core.
+I just added the patch to my -next tree, so it can be build-tested by
+other people, and let's see what else is reported this week. :)
 
-On the other hand, if the goal is to enable the array size check
-compiler warning I would suggest focusing only on those structs that
-actually hit that warning in the kernel. IIRC infiniband doesn't
-trigger it because it just pointer casts the flex array to some other
-struct.
+--
+Gustavo
 
-It isn't actually an array it is a placeholder for a trailing
-structure, so it is never indexed.
+[1] https://lore.kernel.org/lkml/620ca2a5.NkAEIDEfiYoxE9%2Fu%25lkp@intel.com/
 
-This is also why we hit the warning because the convient way for
-userspace to compose the message is to squash the header and trailer
-structs together in a super struct on the stack, then invoke the
-ioctl.
-
-Jason 
+> 
+> It isn't actually an array it is a placeholder for a trailing
+> structure, so it is never indexed.
+> 
+> This is also why we hit the warning because the convient way for
+> userspace to compose the message is to squash the header and trailer
+> structs together in a super struct on the stack, then invoke the
+> ioctl.
+> 
+> Jason 
 
 
 _______________________________________________
