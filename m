@@ -2,84 +2,83 @@ Return-Path: <v9fs-developer-bounces@lists.sourceforge.net>
 X-Original-To: lists+v9fs-developer@lfdr.de
 Delivered-To: lists+v9fs-developer@lfdr.de
 Received: from lists.sourceforge.net (lists.sourceforge.net [216.105.38.7])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2E00D55EB7C
-	for <lists+v9fs-developer@lfdr.de>; Tue, 28 Jun 2022 19:55:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id CFA3955EBF0
+	for <lists+v9fs-developer@lfdr.de>; Tue, 28 Jun 2022 20:06:06 +0200 (CEST)
 Received: from [127.0.0.1] (helo=sfs-ml-1.v29.lw.sourceforge.com)
 	by sfs-ml-1.v29.lw.sourceforge.com with esmtp (Exim 4.94.2)
 	(envelope-from <v9fs-developer-bounces@lists.sourceforge.net>)
-	id 1o6FQb-000371-VA; Tue, 28 Jun 2022 17:55:09 +0000
+	id 1o6Fb9-0003Vy-D0; Tue, 28 Jun 2022 18:06:03 +0000
 Received: from [172.30.20.202] (helo=mx.sourceforge.net)
  by sfs-ml-1.v29.lw.sourceforge.com with esmtps (TLS1.2) tls
  TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384 (Exim 4.94.2)
- (envelope-from <keescook@chromium.org>) id 1o6FQa-00036v-MJ
- for v9fs-developer@lists.sourceforge.net; Tue, 28 Jun 2022 17:55:08 +0000
+ (envelope-from <keescook@chromium.org>) id 1o6Fb8-0003Vr-8a
+ for v9fs-developer@lists.sourceforge.net; Tue, 28 Jun 2022 18:06:02 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=sourceforge.net; s=x; h=In-Reply-To:Content-Type:MIME-Version:References:
- Message-ID:Subject:Cc:To:From:Date:Sender:Reply-To:Content-Transfer-Encoding:
+ d=sourceforge.net; s=x; h=In-Reply-To:Content-Transfer-Encoding:Content-Type:
+ MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Sender:Reply-To:
  Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
  Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
  List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=Ifakbg1KSXljeCc2KlqlOz+XfzIBohlTVCEx+b5hm2Y=; b=H2q5YWJu8WGrzKgaZ2BypjhHq4
- grAhjoXYUifjy53at9QP28M32RLo12rhBg0TZ8TQsR4jZb0A6cl0Tl8Ra7xD52rEIzLVGdnrFItMD
- c+Htu1fu3TiJw+6+b/E3f5vbAm06l1j9YNG8DR7c/lRehhOtlmESbuK1SLVP8/mqMXWQ=;
+ bh=pTcGgtfSu6n7KkCWKQ4ciWe5XeKK5S4riO8KfNVW7Ig=; b=AnYEgcbAAvNLSsO+6LXjZg+6xq
+ fusnzYGk+pcr8ty5jOzTpIqlg01rHFlBg4ExtudUNcEqbxwBkpyijuLEHx67dB2TtsRFOXZpL2BIE
+ LpdTEgGCG/X9awEtb4ygc5BSIwr6cKtIwAxFUd1Y5herDF/+a8zNf6Su4eR/wtsVpaVs=;
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  ;
- h=In-Reply-To:Content-Type:MIME-Version:References:Message-ID:Subject:Cc:To
- :From:Date:Sender:Reply-To:Content-Transfer-Encoding:Content-ID:
+ h=In-Reply-To:Content-Transfer-Encoding:Content-Type:MIME-Version:
+ References:Message-ID:Subject:Cc:To:From:Date:Sender:Reply-To:Content-ID:
  Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
  :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
  List-Post:List-Owner:List-Archive;
- bh=Ifakbg1KSXljeCc2KlqlOz+XfzIBohlTVCEx+b5hm2Y=; b=fkJ5SoGvYwHB56CQFVlY/qmqSz
- G27+esdRl2LmHzHJUjNcMM4dNP4AtZEk60OCWziqYe9YycKd+C/gW3+s2R3DTtqQvtfSLOgFzYVV2
- I+na1/3wuHfpQBV675krLdCFBzrwOqeNxdce07SrvhWw+FONDKD/mxzb75v31frMb6yg=;
-Received: from mail-pj1-f50.google.com ([209.85.216.50])
+ bh=pTcGgtfSu6n7KkCWKQ4ciWe5XeKK5S4riO8KfNVW7Ig=; b=CZ1oxTQDgTeE56w0h3C60b70gd
+ kWEBxyzbMQTlBfjb3dtDA5VPLAS0nYwc7V7VbhhoS+iBvka4fdbOyMsH4t0jqpDitjLTp2pVAefA3
+ D/hBeoDuZWUYvwDVq0FuNCpnGFO5H0xDBN1kbZcnsGTXI8o8FqKNhtLqGhcIAb9Dlxc0=;
+Received: from mail-pf1-f172.google.com ([209.85.210.172])
  by sfi-mx-1.v28.lw.sourceforge.com with esmtps
  (TLS1.2:ECDHE-RSA-AES128-GCM-SHA256:128) (Exim 4.94.2)
- id 1o6FQX-00HKNw-2k
- for v9fs-developer@lists.sourceforge.net; Tue, 28 Jun 2022 17:55:08 +0000
-Received: by mail-pj1-f50.google.com with SMTP id
- w19-20020a17090a8a1300b001ec79064d8dso16720256pjn.2
+ id 1o6Fb6-00HKyP-7Q
+ for v9fs-developer@lists.sourceforge.net; Tue, 28 Jun 2022 18:06:01 +0000
+Received: by mail-pf1-f172.google.com with SMTP id x4so12732372pfq.2
  for <v9fs-developer@lists.sourceforge.net>;
- Tue, 28 Jun 2022 10:55:05 -0700 (PDT)
+ Tue, 28 Jun 2022 11:06:00 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=chromium.org; s=google;
  h=date:from:to:cc:subject:message-id:references:mime-version
- :content-disposition:in-reply-to;
- bh=Ifakbg1KSXljeCc2KlqlOz+XfzIBohlTVCEx+b5hm2Y=;
- b=Lpc3rw2lUDFTgNuiFkNi7vJ3FOoQQ8sPNV+A/xT7kPgFFi5TelrrdXlIUbrL4j9GT+
- 3+ei8DuymmFwmq4TMtVSFXVwj/BEoFuIu2AqPN9i6R5zOS+ndUs4OIvpg1Fj2tZP3rAs
- mZTqNdFC15vlNUFmjWu7inrraPu1BA3Mkzqts=
+ :content-disposition:content-transfer-encoding:in-reply-to;
+ bh=pTcGgtfSu6n7KkCWKQ4ciWe5XeKK5S4riO8KfNVW7Ig=;
+ b=F/CZTCTDOlhkWqZ+vOzW0DaoZ/EZ1dOhoCSSJ2RrwBNwuY7CCyvEtaLLk8DO+FYVI8
+ oY1bh2Rw2NH/e7uwuajkABgxQQynq/vb9wDrQT1ziurYSmeBDoqa9s9XGmGLyXXXVu1m
+ Ptj/OKkdrLcBprdD9gQ9RffSNU26yKh9HCJiI=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20210112;
  h=x-gm-message-state:date:from:to:cc:subject:message-id:references
- :mime-version:content-disposition:in-reply-to;
- bh=Ifakbg1KSXljeCc2KlqlOz+XfzIBohlTVCEx+b5hm2Y=;
- b=kz+UU51lvCH0RyrGpzwWlRudET3CH7PrK6lq3QaFpuMW30tmwPqQAPwOrjnZi9WyzJ
- Cjks5KqA3aZyulvNf+oKfxkT9AUIl+WcjG6CMwIQgK58PGMXOeRTvpqBNg0WLOJNWAQ+
- ybMotvNjsgUKeIbsz+2jOBt2WrTApFsrIVJO56Hl4UT4j7RY5yFQhglq5VDq0xgq8H0W
- PRNDQ3eLJRCaK+lePwWmCebKWxl6DqeimirVoeoGeJ/sLoNSkBr7H7deLpAV4Z+cHY+2
- UpKyd2dNKxGBXJbm7cu1EyvYSbgyDoeUb/5LLg19NFVUpPIWOflRMXpXkvi1EVl4v5kA
- DnZQ==
-X-Gm-Message-State: AJIora8+bbMBbGDrauFu0UXJVi0RA7hKndpmVeg8oHgtJWX74797Y9Bm
- fTe4F61wK/ej87bv6EmtVELHgQ==
-X-Google-Smtp-Source: AGRyM1vNNODoy68cNcew+BOwykVJS5AyiEbndqdKVVh3DpwTH+wUBJ1HcGxnO6zSsyx2Hva19xbd8w==
-X-Received: by 2002:a17:90b:3b52:b0:1ec:db2a:b946 with SMTP id
- ot18-20020a17090b3b5200b001ecdb2ab946mr838564pjb.229.1656438899502; 
- Tue, 28 Jun 2022 10:54:59 -0700 (PDT)
+ :mime-version:content-disposition:content-transfer-encoding
+ :in-reply-to;
+ bh=pTcGgtfSu6n7KkCWKQ4ciWe5XeKK5S4riO8KfNVW7Ig=;
+ b=Ka9WImZuByL3vD3Aopik9aKVt5Pg9pOLZtN+aExMsIJrpPSkkjD724nOu6nZYqzifr
+ B1NAvIu5pLP9yrLkG7juQrr0meWZQVx8YrtTyXFh0aTcpxFj/mmmrFDqaUsNnh+pUipM
+ i7me7jHuLrYq2EFTccZT6jAaJosoc1vePQ2dLJ22LlGh7RzUM5tN+uGnat9USul4kiJE
+ +LMlsDod3xWCvOML+de/yNjOQsPlJJCvbC5aGLd9AjwKwk86tKoBilnhWLosZ9U5DKrd
+ xFaEwu5nhaeQlq1ArHh6Ld/GlruSPvcfyY6Zs87lc1Y0/bBD0xpqrIaLLZGNyFCOdyZk
+ 5+kw==
+X-Gm-Message-State: AJIora9uesJe60HxTMyM2bL4fXKlYbEeQYxVkGtT0pW4gW+MSmn5y/Ho
+ 4DG/Se7aFwE+grRxgquTDO5bWw==
+X-Google-Smtp-Source: AGRyM1v6cdnwBfGpeB2JnkCbahQ14YUYaqjRd3VUKbR8YPBigZjfWVkzlvmFIFzfbBj+r2XqbA+86w==
+X-Received: by 2002:a63:7412:0:b0:40c:fa27:9d07 with SMTP id
+ p18-20020a637412000000b0040cfa279d07mr18441815pgc.27.1656439554674; 
+ Tue, 28 Jun 2022 11:05:54 -0700 (PDT)
 Received: from www.outflux.net (smtp.outflux.net. [198.145.64.163])
  by smtp.gmail.com with ESMTPSA id
- f15-20020a170902ff0f00b0016a84d232a6sm5432810plj.46.2022.06.28.10.54.58
+ i3-20020a170902cf0300b0016a0ac06424sm9669985plg.51.2022.06.28.11.05.54
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Tue, 28 Jun 2022 10:54:59 -0700 (PDT)
-Date: Tue, 28 Jun 2022 10:54:58 -0700
+ Tue, 28 Jun 2022 11:05:54 -0700 (PDT)
+Date: Tue, 28 Jun 2022 11:05:53 -0700
 From: Kees Cook <keescook@chromium.org>
-To: Jason Gunthorpe <jgg@ziepe.ca>
-Message-ID: <202206281009.4332AA33@keescook>
+To: Geert Uytterhoeven <geert@linux-m68k.org>
+Message-ID: <202206281104.7CC3935@keescook>
 References: <20220627180432.GA136081@embeddedor>
- <6bc1e94c-ce1d-a074-7d0c-8dbe6ce22637@iogearbox.net>
- <20220628004052.GM23621@ziepe.ca>
+ <CAMuHMdU27TG_rpd=WTRPRcY22A4j4aN-6d_8OmK2aNpX06G3ig@mail.gmail.com>
 MIME-Version: 1.0
 Content-Disposition: inline
-In-Reply-To: <20220628004052.GM23621@ziepe.ca>
+In-Reply-To: <CAMuHMdU27TG_rpd=WTRPRcY22A4j4aN-6d_8OmK2aNpX06G3ig@mail.gmail.com>
 X-Spam-Score: -0.9 (/)
 X-Spam-Report: Spam detection software,
  running on the system "util-spamd-1.v13.lw.sourceforge.com", 
@@ -87,17 +86,15 @@ X-Spam-Report: Spam detection software,
  message has been attached to this so you can view it or label
  similar future email.  If you have any questions, see
  the administrator of that system for details.
- Content preview:  On Mon, Jun 27, 2022 at 09:40:52PM -0300, Jason Gunthorpe
- wrote: > On Mon, Jun 27, 2022 at 08:27:37PM +0200, Daniel Borkmann wrote:
- > > [...] > > Fyi, this breaks BPF CI: > > > > https://github.com/ke [...]
+ Content preview:  On Tue, Jun 28, 2022 at 09:27:21AM +0200, Geert Uytterhoeven
+ wrote: > Hi Gustavo, > > Thanks for your patch! > > On Mon, Jun 27, 2022
+ at 8:04 PM Gustavo A. R. Silva > <gustavoars@kernel.org> wrote: > [...] 
  Content analysis details:   (-0.9 points, 6.0 required)
  pts rule name              description
  ---- ---------------------- --------------------------------------------------
- 0.0 SPF_HELO_NONE          SPF: HELO does not publish an SPF Record
- 0.0 RCVD_IN_MSPIKE_H3      RBL: Good reputation (+3)
- [209.85.216.50 listed in wl.mailspike.net]
  -0.0 RCVD_IN_DNSWL_NONE     RBL: Sender listed at https://www.dnswl.org/,
- no trust [209.85.216.50 listed in list.dnswl.org]
+ no trust [209.85.210.172 listed in list.dnswl.org]
+ 0.0 SPF_HELO_NONE          SPF: HELO does not publish an SPF Record
  -0.0 SPF_PASS               SPF: sender matches SPF record
  -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
  -0.1 DKIM_VALID_EF          Message has a valid DKIM or DK signature from
@@ -106,9 +103,10 @@ X-Spam-Report: Spam detection software,
  valid
  -0.1 DKIM_VALID_AU          Message has a valid DKIM or DK signature from
  author's domain
- 0.0 RCVD_IN_MSPIKE_WL      Mailspike good senders
+ -0.0 RCVD_IN_MSPIKE_H2      RBL: Average reputation (+2)
+ [209.85.210.172 listed in wl.mailspike.net]
  -0.7 DKIMWL_WL_HIGH         DKIMwl.org - High trust sender
-X-Headers-End: 1o6FQX-00HKNw-2k
+X-Headers-End: 1o6Fb6-00HKyP-7Q
 Subject: Re: [V9fs-developer] [PATCH][next] treewide: uapi: Replace
  zero-length arrays with flexible-array members
 X-BeenThere: v9fs-developer@lists.sourceforge.net
@@ -122,117 +120,56 @@ List-Post: <mailto:v9fs-developer@lists.sourceforge.net>
 List-Help: <mailto:v9fs-developer-request@lists.sourceforge.net?subject=help>
 List-Subscribe: <https://lists.sourceforge.net/lists/listinfo/v9fs-developer>, 
  <mailto:v9fs-developer-request@lists.sourceforge.net?subject=subscribe>
-Cc: nvdimm@lists.linux.dev, alsa-devel@alsa-project.org, kvm@vger.kernel.org,
- dri-devel@lists.freedesktop.org, "Gustavo A. R. Silva" <gustavoars@kernel.org>,
- dm-devel@redhat.com, target-devel@vger.kernel.org,
- linux-mtd@lists.infradead.org, linux-hardening@vger.kernel.org,
- linux1394-devel@lists.sourceforge.net,
- linux-stm32@st-md-mailman.stormreply.com, linux-s390@vger.kernel.org,
- Daniel Borkmann <daniel@iogearbox.net>, linux-rdma@vger.kernel.org,
- x86@kernel.org, kasan-dev@googlegroups.com, lvs-devel@vger.kernel.org,
- coreteam@netfilter.org, v9fs-developer@lists.sourceforge.net,
- linux-mips@vger.kernel.org, intel-gfx@lists.freedesktop.org,
+Cc: nvdimm@lists.linux.dev,
+ ALSA Development Mailing List <alsa-devel@alsa-project.org>,
+ "Gustavo A. R. Silva" <gustavoars@kernel.org>, KVM list <kvm@vger.kernel.org>,
+ DRI Development <dri-devel@lists.freedesktop.org>,
+ "open list:BROADCOM NVRAM DRIVER" <linux-mips@vger.kernel.org>,
+ dm-devel@redhat.com, target-devel <target-devel@vger.kernel.org>,
+ MTD Maling List <linux-mtd@lists.infradead.org>,
+ linux-hardening@vger.kernel.org, linux1394-devel@lists.sourceforge.net,
+ linux-stm32@st-md-mailman.stormreply.com,
+ linux-s390 <linux-s390@vger.kernel.org>, scsi <linux-scsi@vger.kernel.org>,
+ linux-rdma <linux-rdma@vger.kernel.org>,
+ the arch/x86 maintainers <x86@kernel.org>,
+ kasan-dev <kasan-dev@googlegroups.com>, lvs-devel@vger.kernel.org,
+ coreteam@netfilter.org, V9FS Developers <v9fs-developer@lists.sourceforge.net>,
+ Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
  linux-can@vger.kernel.org, linux-raid@vger.kernel.org,
- linux-m68k@lists.linux-m68k.org, virtualization@lists.linux-foundation.org,
- io-uring@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-scsi@vger.kernel.org, netdev@vger.kernel.org, linux-usb@vger.kernel.org,
- linux-mmc@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-m68k <linux-m68k@lists.linux-m68k.org>,
+ virtualization@lists.linux-foundation.org, io-uring@vger.kernel.org,
+ Linux ARM <linux-arm-kernel@lists.infradead.org>,
+ netdev <netdev@vger.kernel.org>, USB list <linux-usb@vger.kernel.org>,
+ Linux MMC List <linux-mmc@vger.kernel.org>,
+ Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
  linux-perf-users@vger.kernel.org, linux-sctp@vger.kernel.org,
- netfilter-devel@vger.kernel.org, linux-fsdevel@vger.kernel.org,
- bpf@vger.kernel.org, linux-btrfs@vger.kernel.org
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+ NetFilter <netfilter-devel@vger.kernel.org>,
+ Linux FS Devel <linux-fsdevel@vger.kernel.org>, bpf <bpf@vger.kernel.org>,
+ linux-btrfs <linux-btrfs@vger.kernel.org>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: v9fs-developer-bounces@lists.sourceforge.net
 
-On Mon, Jun 27, 2022 at 09:40:52PM -0300, Jason Gunthorpe wrote:
-> On Mon, Jun 27, 2022 at 08:27:37PM +0200, Daniel Borkmann wrote:
-> > [...]
-> > Fyi, this breaks BPF CI:
-> > 
-> > https://github.com/kernel-patches/bpf/runs/7078719372?check_suite_focus=true
-> > 
-> >   [...]
-> >   progs/map_ptr_kern.c:314:26: error: field 'trie_key' with variable sized type 'struct bpf_lpm_trie_key' not at the end of a struct or class is a GNU extension [-Werror,-Wgnu-variable-sized-type-not-at-end]
-> >           struct bpf_lpm_trie_key trie_key;
-> >                                   ^
-
-The issue here seems to be a collision between "unknown array size"
-and known sizes:
-
-struct bpf_lpm_trie_key {
-        __u32   prefixlen;      /* up to 32 for AF_INET, 128 for AF_INET6 */
-        __u8    data[0];        /* Arbitrary size */
-};
-
-struct lpm_key {
-	struct bpf_lpm_trie_key trie_key;
-	__u32 data;
-};
-
-This is treating trie_key as a header, which it's not: it's a complete
-structure. :)
-
-Perhaps:
-
-struct lpm_key {
-        __u32 prefixlen;
-        __u32 data;
-};
-
-I don't see anything else trying to include bpf_lpm_trie_key.
-
-> 
-> This will break the rdma-core userspace as well, with a similar
-> error:
-> 
-> /usr/bin/clang-13 -DVERBS_DEBUG -Dibverbs_EXPORTS -Iinclude -I/usr/include/libnl3 -I/usr/include/drm -g -O2 -fdebug-prefix-map=/__w/1/s=. -fstack-protector-strong -Wformat -Werror=format-security -Wdate-time -D_FORTIFY_SOURCE=2 -Wmissing-prototypes -Wmissing-declarations -Wwrite-strings -Wformat=2 -Wcast-function-type -Wformat-nonliteral -Wdate-time -Wnested-externs -Wshadow -Wstrict-prototypes -Wold-style-definition -Werror -Wredundant-decls -g -fPIC   -std=gnu11 -MD -MT libibverbs/CMakeFiles/ibverbs.dir/cmd_flow.c.o -MF libibverbs/CMakeFiles/ibverbs.dir/cmd_flow.c.o.d -o libibverbs/CMakeFiles/ibverbs.dir/cmd_flow.c.o   -c ../libibverbs/cmd_flow.c
-> In file included from ../libibverbs/cmd_flow.c:33:
-> In file included from include/infiniband/cmd_write.h:36:
-> In file included from include/infiniband/cmd_ioctl.h:41:
-> In file included from include/infiniband/verbs.h:48:
-> In file included from include/infiniband/verbs_api.h:66:
-> In file included from include/infiniband/ib_user_ioctl_verbs.h:38:
-> include/rdma/ib_user_verbs.h:436:34: error: field 'base' with variable sized type 'struct ib_uverbs_create_cq_resp' not at the end of a struct or class is a GNU extension [-Werror,-Wgnu-variable-sized-type-not-at-end]
->         struct ib_uverbs_create_cq_resp base;
->                                         ^
-> include/rdma/ib_user_verbs.h:644:34: error: field 'base' with variable sized type 'struct ib_uverbs_create_qp_resp' not at the end of a struct or class is a GNU extension [-Werror,-Wgnu-variable-sized-type-not-at-end]
->         struct ib_uverbs_create_qp_resp base;
-
-This looks very similar, a struct of unknown size is being treated as a
-header struct:
-
-struct ib_uverbs_create_cq_resp {
-        __u32 cq_handle;
-        __u32 cqe;
-        __aligned_u64 driver_data[0];
-};
-
-struct ib_uverbs_ex_create_cq_resp {
-        struct ib_uverbs_create_cq_resp base;
-        __u32 comp_mask;
-        __u32 response_length;
-};
-
-And it only gets used here:
-
-                DECLARE_UVERBS_WRITE(IB_USER_VERBS_CMD_CREATE_CQ,
-                                     ib_uverbs_create_cq,
-                                     UAPI_DEF_WRITE_UDATA_IO(
-                                             struct ib_uverbs_create_cq,
-                                             struct ib_uverbs_create_cq_resp),
-                                             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-                                     UAPI_DEF_METHOD_NEEDS_FN(create_cq)),
-
-which must also be assuming it's a header. So probably better to just
-drop the driver_data field? I don't see anything using it (that I can
-find) besides as a sanity-check that the field exists and is at the end
-of the struct.
-
--- 
-Kees Cook
-
-
-_______________________________________________
-V9fs-developer mailing list
-V9fs-developer@lists.sourceforge.net
-https://lists.sourceforge.net/lists/listinfo/v9fs-developer
+T24gVHVlLCBKdW4gMjgsIDIwMjIgYXQgMDk6Mjc6MjFBTSArMDIwMCwgR2VlcnQgVXl0dGVyaG9l
+dmVuIHdyb3RlOgo+IEhpIEd1c3Rhdm8sCj4gCj4gVGhhbmtzIGZvciB5b3VyIHBhdGNoIQo+IAo+
+IE9uIE1vbiwgSnVuIDI3LCAyMDIyIGF0IDg6MDQgUE0gR3VzdGF2byBBLiBSLiBTaWx2YQo+IDxn
+dXN0YXZvYXJzQGtlcm5lbC5vcmc+IHdyb3RlOgo+ID4gVGhlcmUgaXMgYSByZWd1bGFyIG5lZWQg
+aW4gdGhlIGtlcm5lbCB0byBwcm92aWRlIGEgd2F5IHRvIGRlY2xhcmUKPiA+IGhhdmluZyBhIGR5
+bmFtaWNhbGx5IHNpemVkIHNldCBvZiB0cmFpbGluZyBlbGVtZW50cyBpbiBhIHN0cnVjdHVyZS4K
+PiA+IEtlcm5lbCBjb2RlIHNob3VsZCBhbHdheXMgdXNlIOKAnGZsZXhpYmxlIGFycmF5IG1lbWJl
+cnPigJ1bMV0gZm9yIHRoZXNlCj4gPiBjYXNlcy4gVGhlIG9sZGVyIHN0eWxlIG9mIG9uZS1lbGVt
+ZW50IG9yIHplcm8tbGVuZ3RoIGFycmF5cyBzaG91bGQKPiA+IG5vIGxvbmdlciBiZSB1c2VkWzJd
+Lgo+IAo+IFRoZXNlIHJ1bGVzIGFwcGx5IHRvIHRoZSBrZXJuZWwsIGJ1dCB1YXBpIGlzIG5vdCBj
+b25zaWRlcmVkIHBhcnQgb2YgdGhlCj4ga2VybmVsLCBzbyBkaWZmZXJlbnQgcnVsZXMgYXBwbHku
+ICBVYXBpIGhlYWRlciBmaWxlcyBzaG91bGQgd29yayB3aXRoCj4gd2hhdGV2ZXIgY29tcGlsZXIg
+dGhhdCBjYW4gYmUgdXNlZCBmb3IgY29tcGlsaW5nIHVzZXJzcGFjZS4KClJpZ2h0LCB1c2Vyc3Bh
+Y2UgaXNuJ3QgYm91bmQgYnkgdGhlc2UgcnVsZXMsIGJ1dCB0aGUga2VybmVsIGVuZHMgdXAKY29u
+c3VtaW5nIHRoZXNlIHN0cnVjdHVyZXMsIHNvIHdlIG5lZWQgdG8gZml4IHRoZW0uIFRoZSBbMF0g
+LT4gW10KY2hhbmdlcyAod2hlbiB0aGV5IGFyZSBub3QgZXJyb25lb3VzbHkgYmVpbmcgdXNlZCB3
+aXRoaW4gb3RoZXIKc3RydWN0dXJlcykgaXMgdmFsaWQgZm9yIGFsbCBjb21waWxlcnMuIEZsZXhp
+YmxlIGFycmF5cyBhcmUgQzk5OyBpdCdzCmJlZW4gMjMgeWVhcnMuIDopCgpCdXQsIHllcywgd2hl
+cmUgd2UgRE8gYnJlYWsgc3R1ZmYgd2UgbmVlZCB0byB3b3JrYXJvdW5kIGl0LCBldGMuCgotLSAK
+S2VlcyBDb29rCgoKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X18KVjlmcy1kZXZlbG9wZXIgbWFpbGluZyBsaXN0ClY5ZnMtZGV2ZWxvcGVyQGxpc3RzLnNvdXJj
+ZWZvcmdlLm5ldApodHRwczovL2xpc3RzLnNvdXJjZWZvcmdlLm5ldC9saXN0cy9saXN0aW5mby92
+OWZzLWRldmVsb3Blcgo=
