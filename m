@@ -2,111 +2,116 @@ Return-Path: <v9fs-developer-bounces@lists.sourceforge.net>
 X-Original-To: lists+v9fs-developer@lfdr.de
 Delivered-To: lists+v9fs-developer@lfdr.de
 Received: from lists.sourceforge.net (lists.sourceforge.net [216.105.38.7])
-	by mail.lfdr.de (Postfix) with ESMTPS id CFA3955EBF0
-	for <lists+v9fs-developer@lfdr.de>; Tue, 28 Jun 2022 20:06:06 +0200 (CEST)
-Received: from [127.0.0.1] (helo=sfs-ml-1.v29.lw.sourceforge.com)
-	by sfs-ml-1.v29.lw.sourceforge.com with esmtp (Exim 4.94.2)
+	by mail.lfdr.de (Postfix) with ESMTPS id 85C3D55ECE6
+	for <lists+v9fs-developer@lfdr.de>; Tue, 28 Jun 2022 20:44:19 +0200 (CEST)
+Received: from [127.0.0.1] (helo=sfs-ml-2.v29.lw.sourceforge.com)
+	by sfs-ml-2.v29.lw.sourceforge.com with esmtp (Exim 4.94.2)
 	(envelope-from <v9fs-developer-bounces@lists.sourceforge.net>)
-	id 1o6Fb9-0003Vy-D0; Tue, 28 Jun 2022 18:06:03 +0000
+	id 1o6GC6-0001PS-9u; Tue, 28 Jun 2022 18:44:15 +0000
 Received: from [172.30.20.202] (helo=mx.sourceforge.net)
- by sfs-ml-1.v29.lw.sourceforge.com with esmtps (TLS1.2) tls
+ by sfs-ml-2.v29.lw.sourceforge.com with esmtps (TLS1.2) tls
  TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384 (Exim 4.94.2)
- (envelope-from <keescook@chromium.org>) id 1o6Fb8-0003Vr-8a
- for v9fs-developer@lists.sourceforge.net; Tue, 28 Jun 2022 18:06:02 +0000
+ (envelope-from <jgg@ziepe.ca>) id 1o6GC3-0001PI-VC
+ for v9fs-developer@lists.sourceforge.net; Tue, 28 Jun 2022 18:44:12 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=sourceforge.net; s=x; h=In-Reply-To:Content-Transfer-Encoding:Content-Type:
- MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Sender:Reply-To:
+ d=sourceforge.net; s=x; h=In-Reply-To:Content-Type:MIME-Version:References:
+ Message-ID:Subject:Cc:To:From:Date:Sender:Reply-To:Content-Transfer-Encoding:
  Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
  Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
  List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=pTcGgtfSu6n7KkCWKQ4ciWe5XeKK5S4riO8KfNVW7Ig=; b=AnYEgcbAAvNLSsO+6LXjZg+6xq
- fusnzYGk+pcr8ty5jOzTpIqlg01rHFlBg4ExtudUNcEqbxwBkpyijuLEHx67dB2TtsRFOXZpL2BIE
- LpdTEgGCG/X9awEtb4ygc5BSIwr6cKtIwAxFUd1Y5herDF/+a8zNf6Su4eR/wtsVpaVs=;
+ bh=srd0vxfduo9pXREXizXvQ1Gwi/kEACFP1rdXcY0Aglg=; b=kzmb/vnscjnNYd08f4x8FfbbR+
+ p3f9ye3NdXRVZrn19F7hT9A1L4D7Uw7/+hBOu567w7ICG3KycTeVmvIN7FIap0IJnumQp+y2Damwo
+ lfS5wNsk9q1DgdhFiYLCrZIxBnM1zXACj1y6HVuf/qAgNEw3Bri4QEfevtcZWwNeMxVE=;
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  ;
- h=In-Reply-To:Content-Transfer-Encoding:Content-Type:MIME-Version:
- References:Message-ID:Subject:Cc:To:From:Date:Sender:Reply-To:Content-ID:
+ h=In-Reply-To:Content-Type:MIME-Version:References:Message-ID:Subject:Cc:To
+ :From:Date:Sender:Reply-To:Content-Transfer-Encoding:Content-ID:
  Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
  :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
  List-Post:List-Owner:List-Archive;
- bh=pTcGgtfSu6n7KkCWKQ4ciWe5XeKK5S4riO8KfNVW7Ig=; b=CZ1oxTQDgTeE56w0h3C60b70gd
- kWEBxyzbMQTlBfjb3dtDA5VPLAS0nYwc7V7VbhhoS+iBvka4fdbOyMsH4t0jqpDitjLTp2pVAefA3
- D/hBeoDuZWUYvwDVq0FuNCpnGFO5H0xDBN1kbZcnsGTXI8o8FqKNhtLqGhcIAb9Dlxc0=;
-Received: from mail-pf1-f172.google.com ([209.85.210.172])
+ bh=srd0vxfduo9pXREXizXvQ1Gwi/kEACFP1rdXcY0Aglg=; b=X0ooZuSQ5SDJ8434ggJ4IrrU85
+ aiWALUyYAh6/6NEDuVnMMLGWyOcpP2HcbjeZgE2+TeL8sDPD2TEzSJ9pwdFYfOmShbjDYS8W2HNs0
+ neiqcCl41vukbrDr5GMgQBdNU7hjnZC5N63j6ZIa+w17tuYU1KpLlM1wx3mIFta1zwJk=;
+Received: from mail-qv1-f45.google.com ([209.85.219.45])
  by sfi-mx-1.v28.lw.sourceforge.com with esmtps
  (TLS1.2:ECDHE-RSA-AES128-GCM-SHA256:128) (Exim 4.94.2)
- id 1o6Fb6-00HKyP-7Q
- for v9fs-developer@lists.sourceforge.net; Tue, 28 Jun 2022 18:06:01 +0000
-Received: by mail-pf1-f172.google.com with SMTP id x4so12732372pfq.2
+ id 1o6GC3-00HN7u-U4
+ for v9fs-developer@lists.sourceforge.net; Tue, 28 Jun 2022 18:44:12 +0000
+Received: by mail-qv1-f45.google.com with SMTP id cu16so21384607qvb.7
  for <v9fs-developer@lists.sourceforge.net>;
- Tue, 28 Jun 2022 11:06:00 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=chromium.org; s=google;
+ Tue, 28 Jun 2022 11:44:11 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ziepe.ca; s=google;
  h=date:from:to:cc:subject:message-id:references:mime-version
- :content-disposition:content-transfer-encoding:in-reply-to;
- bh=pTcGgtfSu6n7KkCWKQ4ciWe5XeKK5S4riO8KfNVW7Ig=;
- b=F/CZTCTDOlhkWqZ+vOzW0DaoZ/EZ1dOhoCSSJ2RrwBNwuY7CCyvEtaLLk8DO+FYVI8
- oY1bh2Rw2NH/e7uwuajkABgxQQynq/vb9wDrQT1ziurYSmeBDoqa9s9XGmGLyXXXVu1m
- Ptj/OKkdrLcBprdD9gQ9RffSNU26yKh9HCJiI=
+ :content-disposition:in-reply-to;
+ bh=srd0vxfduo9pXREXizXvQ1Gwi/kEACFP1rdXcY0Aglg=;
+ b=QDfPPT0fYl+zbzIvYII9znFGb4s02ZWc7rdJXgoVlQii3pb6MPHXUbo2NQcshGpobE
+ dWlWXPBgu4AcM4BoWih7Z1Nr6ImLeGEz2FZoCblM4qyf8MsycIzs6ej4nXX7nwNpGP6Q
+ WS2wAoLm7tunOmWFHsCTXENR5aJ2dwangh3Hiy+KajaZLCQ31/GJ39i5LG+HlW0f/4Yp
+ DzCT3gMR3JvAVHruRt3NJZXTCo87e7XIf3RRiCTD40KLgGYQ8Oy9U016RK3fPhyNykEI
+ VcI+7whSObzV9gDqoR9iwpi6V1hWpQPbHnX1dl7fE5ec/owdsM9r7W03JXKpNXxaLmSi
+ lJng==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20210112;
  h=x-gm-message-state:date:from:to:cc:subject:message-id:references
- :mime-version:content-disposition:content-transfer-encoding
- :in-reply-to;
- bh=pTcGgtfSu6n7KkCWKQ4ciWe5XeKK5S4riO8KfNVW7Ig=;
- b=Ka9WImZuByL3vD3Aopik9aKVt5Pg9pOLZtN+aExMsIJrpPSkkjD724nOu6nZYqzifr
- B1NAvIu5pLP9yrLkG7juQrr0meWZQVx8YrtTyXFh0aTcpxFj/mmmrFDqaUsNnh+pUipM
- i7me7jHuLrYq2EFTccZT6jAaJosoc1vePQ2dLJ22LlGh7RzUM5tN+uGnat9USul4kiJE
- +LMlsDod3xWCvOML+de/yNjOQsPlJJCvbC5aGLd9AjwKwk86tKoBilnhWLosZ9U5DKrd
- xFaEwu5nhaeQlq1ArHh6Ld/GlruSPvcfyY6Zs87lc1Y0/bBD0xpqrIaLLZGNyFCOdyZk
- 5+kw==
-X-Gm-Message-State: AJIora9uesJe60HxTMyM2bL4fXKlYbEeQYxVkGtT0pW4gW+MSmn5y/Ho
- 4DG/Se7aFwE+grRxgquTDO5bWw==
-X-Google-Smtp-Source: AGRyM1v6cdnwBfGpeB2JnkCbahQ14YUYaqjRd3VUKbR8YPBigZjfWVkzlvmFIFzfbBj+r2XqbA+86w==
-X-Received: by 2002:a63:7412:0:b0:40c:fa27:9d07 with SMTP id
- p18-20020a637412000000b0040cfa279d07mr18441815pgc.27.1656439554674; 
- Tue, 28 Jun 2022 11:05:54 -0700 (PDT)
-Received: from www.outflux.net (smtp.outflux.net. [198.145.64.163])
- by smtp.gmail.com with ESMTPSA id
- i3-20020a170902cf0300b0016a0ac06424sm9669985plg.51.2022.06.28.11.05.54
+ :mime-version:content-disposition:in-reply-to;
+ bh=srd0vxfduo9pXREXizXvQ1Gwi/kEACFP1rdXcY0Aglg=;
+ b=E+PhNM7D/fHFuRN5Y8iM3ESqMC4gDe+Jg89tolSt/UmSVpgWLKjWXYkzKHNCmZJ+Kt
+ 7gbcyvy2KMZPm53AXT+rpCsxa96e86Ni0QxWKIYXDdFd9NN12hYw/ZjVHNMKf9ZM+kDU
+ oFW9tACy9K+nb6lwRsokWAPM9ahlckHEluzFW5RPhbBeHRhi8AzVvW9KovUjhsvukGgf
+ PYH5Nv8PSPjLPAO9u0PPi7aRWpvzOgxi9oRNcybqMXplOtol7u1Rb+y+KmTvjXmX8ws7
+ 7lYV1c22h0cTt431OqyDs70Eo6BY2XcnfEXl0WFJ/0ldATMR8cVTk+pFz4+tWAhVfhBs
+ /BwQ==
+X-Gm-Message-State: AJIora+F64O2+hkOvtlzT7T3VNqwx3p/9v1VN64eZepLN5gAM0eaHLMb
+ 1K7Lsi5T7uwclLLn6EaRnuwgFw==
+X-Google-Smtp-Source: AGRyM1uBRJ6m7mmrK5Ju1JW1doBHC+UzIgAGX/xwYqaVx3XSmh4juFCDP3TjiYp7BZ5iZ3elpoeXxg==
+X-Received: by 2002:a05:622a:7:b0:31b:74bd:1597 with SMTP id
+ x7-20020a05622a000700b0031b74bd1597mr6494688qtw.677.1656441846052; 
+ Tue, 28 Jun 2022 11:44:06 -0700 (PDT)
+Received: from ziepe.ca
+ (hlfxns017vw-142-162-113-129.dhcp-dynamic.fibreop.ns.bellaliant.net.
+ [142.162.113.129]) by smtp.gmail.com with ESMTPSA id
+ h9-20020ac85149000000b003050bd1f7c9sm9708477qtn.76.2022.06.28.11.44.04
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Tue, 28 Jun 2022 11:05:54 -0700 (PDT)
-Date: Tue, 28 Jun 2022 11:05:53 -0700
-From: Kees Cook <keescook@chromium.org>
-To: Geert Uytterhoeven <geert@linux-m68k.org>
-Message-ID: <202206281104.7CC3935@keescook>
+ Tue, 28 Jun 2022 11:44:05 -0700 (PDT)
+Received: from jgg by mlx with local (Exim 4.94) (envelope-from <jgg@ziepe.ca>)
+ id 1o6GBw-0035y2-Fs; Tue, 28 Jun 2022 15:44:04 -0300
+Date: Tue, 28 Jun 2022 15:44:04 -0300
+From: Jason Gunthorpe <jgg@ziepe.ca>
+To: Kees Cook <keescook@chromium.org>
+Message-ID: <20220628184404.GS23621@ziepe.ca>
 References: <20220627180432.GA136081@embeddedor>
- <CAMuHMdU27TG_rpd=WTRPRcY22A4j4aN-6d_8OmK2aNpX06G3ig@mail.gmail.com>
+ <6bc1e94c-ce1d-a074-7d0c-8dbe6ce22637@iogearbox.net>
+ <20220628004052.GM23621@ziepe.ca> <202206281009.4332AA33@keescook>
 MIME-Version: 1.0
 Content-Disposition: inline
-In-Reply-To: <CAMuHMdU27TG_rpd=WTRPRcY22A4j4aN-6d_8OmK2aNpX06G3ig@mail.gmail.com>
-X-Spam-Score: -0.9 (/)
+In-Reply-To: <202206281009.4332AA33@keescook>
+X-Spam-Score: -0.2 (/)
 X-Spam-Report: Spam detection software,
- running on the system "util-spamd-1.v13.lw.sourceforge.com", 
+ running on the system "util-spamd-2.v13.lw.sourceforge.com", 
  has NOT identified this incoming email as spam.  The original
  message has been attached to this so you can view it or label
  similar future email.  If you have any questions, see
  the administrator of that system for details.
- Content preview:  On Tue, Jun 28, 2022 at 09:27:21AM +0200, Geert Uytterhoeven
- wrote: > Hi Gustavo, > > Thanks for your patch! > > On Mon, Jun 27, 2022
- at 8:04 PM Gustavo A. R. Silva > <gustavoars@kernel.org> wrote: > [...] 
- Content analysis details:   (-0.9 points, 6.0 required)
+ Content preview:  On Tue, Jun 28, 2022 at 10:54:58AM -0700, Kees Cook wrote:
+ > which must also be assuming it's a header. So probably better to just >
+ drop the driver_data field? I don't see anything using it (that I can > find)
+ besides as a sanity-check that the field exists [...] 
+ Content analysis details:   (-0.2 points, 6.0 required)
  pts rule name              description
  ---- ---------------------- --------------------------------------------------
  -0.0 RCVD_IN_DNSWL_NONE     RBL: Sender listed at https://www.dnswl.org/,
- no trust [209.85.210.172 listed in list.dnswl.org]
- 0.0 SPF_HELO_NONE          SPF: HELO does not publish an SPF Record
+ no trust [209.85.219.45 listed in list.dnswl.org]
  -0.0 SPF_PASS               SPF: sender matches SPF record
+ 0.0 SPF_HELO_NONE          SPF: HELO does not publish an SPF Record
  -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
- -0.1 DKIM_VALID_EF          Message has a valid DKIM or DK signature from
- envelope-from domain
- 0.1 DKIM_SIGNED            Message has a DKIM or DK signature, not necessarily
- valid
  -0.1 DKIM_VALID_AU          Message has a valid DKIM or DK signature from
  author's domain
- -0.0 RCVD_IN_MSPIKE_H2      RBL: Average reputation (+2)
- [209.85.210.172 listed in wl.mailspike.net]
- -0.7 DKIMWL_WL_HIGH         DKIMwl.org - High trust sender
-X-Headers-End: 1o6Fb6-00HKyP-7Q
+ 0.1 DKIM_SIGNED            Message has a DKIM or DK signature, not necessarily
+ valid
+ -0.1 DKIM_VALID_EF          Message has a valid DKIM or DK signature from
+ envelope-from domain
+ -0.0 T_SCC_BODY_TEXT_LINE   No description available.
+X-Headers-End: 1o6GC3-00HN7u-U4
 Subject: Re: [V9fs-developer] [PATCH][next] treewide: uapi: Replace
  zero-length arrays with flexible-array members
 X-BeenThere: v9fs-developer@lists.sourceforge.net
@@ -120,56 +125,43 @@ List-Post: <mailto:v9fs-developer@lists.sourceforge.net>
 List-Help: <mailto:v9fs-developer-request@lists.sourceforge.net?subject=help>
 List-Subscribe: <https://lists.sourceforge.net/lists/listinfo/v9fs-developer>, 
  <mailto:v9fs-developer-request@lists.sourceforge.net?subject=subscribe>
-Cc: nvdimm@lists.linux.dev,
- ALSA Development Mailing List <alsa-devel@alsa-project.org>,
- "Gustavo A. R. Silva" <gustavoars@kernel.org>, KVM list <kvm@vger.kernel.org>,
- DRI Development <dri-devel@lists.freedesktop.org>,
- "open list:BROADCOM NVRAM DRIVER" <linux-mips@vger.kernel.org>,
- dm-devel@redhat.com, target-devel <target-devel@vger.kernel.org>,
- MTD Maling List <linux-mtd@lists.infradead.org>,
- linux-hardening@vger.kernel.org, linux1394-devel@lists.sourceforge.net,
- linux-stm32@st-md-mailman.stormreply.com,
- linux-s390 <linux-s390@vger.kernel.org>, scsi <linux-scsi@vger.kernel.org>,
- linux-rdma <linux-rdma@vger.kernel.org>,
- the arch/x86 maintainers <x86@kernel.org>,
- kasan-dev <kasan-dev@googlegroups.com>, lvs-devel@vger.kernel.org,
- coreteam@netfilter.org, V9FS Developers <v9fs-developer@lists.sourceforge.net>,
- Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
+Cc: nvdimm@lists.linux.dev, alsa-devel@alsa-project.org, kvm@vger.kernel.org,
+ dri-devel@lists.freedesktop.org, "Gustavo A. R. Silva" <gustavoars@kernel.org>,
+ dm-devel@redhat.com, target-devel@vger.kernel.org,
+ linux-mtd@lists.infradead.org, linux-hardening@vger.kernel.org,
+ linux1394-devel@lists.sourceforge.net,
+ linux-stm32@st-md-mailman.stormreply.com, linux-s390@vger.kernel.org,
+ Daniel Borkmann <daniel@iogearbox.net>, linux-rdma@vger.kernel.org,
+ x86@kernel.org, kasan-dev@googlegroups.com, lvs-devel@vger.kernel.org,
+ coreteam@netfilter.org, v9fs-developer@lists.sourceforge.net,
+ linux-mips@vger.kernel.org, intel-gfx@lists.freedesktop.org,
  linux-can@vger.kernel.org, linux-raid@vger.kernel.org,
- linux-m68k <linux-m68k@lists.linux-m68k.org>,
- virtualization@lists.linux-foundation.org, io-uring@vger.kernel.org,
- Linux ARM <linux-arm-kernel@lists.infradead.org>,
- netdev <netdev@vger.kernel.org>, USB list <linux-usb@vger.kernel.org>,
- Linux MMC List <linux-mmc@vger.kernel.org>,
- Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+ linux-m68k@lists.linux-m68k.org, virtualization@lists.linux-foundation.org,
+ io-uring@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-scsi@vger.kernel.org, netdev@vger.kernel.org, linux-usb@vger.kernel.org,
+ linux-mmc@vger.kernel.org, linux-kernel@vger.kernel.org,
  linux-perf-users@vger.kernel.org, linux-sctp@vger.kernel.org,
- NetFilter <netfilter-devel@vger.kernel.org>,
- Linux FS Devel <linux-fsdevel@vger.kernel.org>, bpf <bpf@vger.kernel.org>,
- linux-btrfs <linux-btrfs@vger.kernel.org>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+ netfilter-devel@vger.kernel.org, linux-fsdevel@vger.kernel.org,
+ bpf@vger.kernel.org, linux-btrfs@vger.kernel.org
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: v9fs-developer-bounces@lists.sourceforge.net
 
-T24gVHVlLCBKdW4gMjgsIDIwMjIgYXQgMDk6Mjc6MjFBTSArMDIwMCwgR2VlcnQgVXl0dGVyaG9l
-dmVuIHdyb3RlOgo+IEhpIEd1c3Rhdm8sCj4gCj4gVGhhbmtzIGZvciB5b3VyIHBhdGNoIQo+IAo+
-IE9uIE1vbiwgSnVuIDI3LCAyMDIyIGF0IDg6MDQgUE0gR3VzdGF2byBBLiBSLiBTaWx2YQo+IDxn
-dXN0YXZvYXJzQGtlcm5lbC5vcmc+IHdyb3RlOgo+ID4gVGhlcmUgaXMgYSByZWd1bGFyIG5lZWQg
-aW4gdGhlIGtlcm5lbCB0byBwcm92aWRlIGEgd2F5IHRvIGRlY2xhcmUKPiA+IGhhdmluZyBhIGR5
-bmFtaWNhbGx5IHNpemVkIHNldCBvZiB0cmFpbGluZyBlbGVtZW50cyBpbiBhIHN0cnVjdHVyZS4K
-PiA+IEtlcm5lbCBjb2RlIHNob3VsZCBhbHdheXMgdXNlIOKAnGZsZXhpYmxlIGFycmF5IG1lbWJl
-cnPigJ1bMV0gZm9yIHRoZXNlCj4gPiBjYXNlcy4gVGhlIG9sZGVyIHN0eWxlIG9mIG9uZS1lbGVt
-ZW50IG9yIHplcm8tbGVuZ3RoIGFycmF5cyBzaG91bGQKPiA+IG5vIGxvbmdlciBiZSB1c2VkWzJd
-Lgo+IAo+IFRoZXNlIHJ1bGVzIGFwcGx5IHRvIHRoZSBrZXJuZWwsIGJ1dCB1YXBpIGlzIG5vdCBj
-b25zaWRlcmVkIHBhcnQgb2YgdGhlCj4ga2VybmVsLCBzbyBkaWZmZXJlbnQgcnVsZXMgYXBwbHku
-ICBVYXBpIGhlYWRlciBmaWxlcyBzaG91bGQgd29yayB3aXRoCj4gd2hhdGV2ZXIgY29tcGlsZXIg
-dGhhdCBjYW4gYmUgdXNlZCBmb3IgY29tcGlsaW5nIHVzZXJzcGFjZS4KClJpZ2h0LCB1c2Vyc3Bh
-Y2UgaXNuJ3QgYm91bmQgYnkgdGhlc2UgcnVsZXMsIGJ1dCB0aGUga2VybmVsIGVuZHMgdXAKY29u
-c3VtaW5nIHRoZXNlIHN0cnVjdHVyZXMsIHNvIHdlIG5lZWQgdG8gZml4IHRoZW0uIFRoZSBbMF0g
-LT4gW10KY2hhbmdlcyAod2hlbiB0aGV5IGFyZSBub3QgZXJyb25lb3VzbHkgYmVpbmcgdXNlZCB3
-aXRoaW4gb3RoZXIKc3RydWN0dXJlcykgaXMgdmFsaWQgZm9yIGFsbCBjb21waWxlcnMuIEZsZXhp
-YmxlIGFycmF5cyBhcmUgQzk5OyBpdCdzCmJlZW4gMjMgeWVhcnMuIDopCgpCdXQsIHllcywgd2hl
-cmUgd2UgRE8gYnJlYWsgc3R1ZmYgd2UgbmVlZCB0byB3b3JrYXJvdW5kIGl0LCBldGMuCgotLSAK
-S2VlcyBDb29rCgoKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X18KVjlmcy1kZXZlbG9wZXIgbWFpbGluZyBsaXN0ClY5ZnMtZGV2ZWxvcGVyQGxpc3RzLnNvdXJj
-ZWZvcmdlLm5ldApodHRwczovL2xpc3RzLnNvdXJjZWZvcmdlLm5ldC9saXN0cy9saXN0aW5mby92
-OWZzLWRldmVsb3Blcgo=
+On Tue, Jun 28, 2022 at 10:54:58AM -0700, Kees Cook wrote:
+
+ 
+> which must also be assuming it's a header. So probably better to just
+> drop the driver_data field? I don't see anything using it (that I can
+> find) besides as a sanity-check that the field exists and is at the end
+> of the struct.
+
+The field is guaranteeing alignment of the following structure. IIRC
+there are a few cases that we don't have a u64 already to force this.
+
+Jason
+
+
+_______________________________________________
+V9fs-developer mailing list
+V9fs-developer@lists.sourceforge.net
+https://lists.sourceforge.net/lists/listinfo/v9fs-developer
