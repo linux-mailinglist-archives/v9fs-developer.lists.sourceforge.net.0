@@ -2,105 +2,113 @@ Return-Path: <v9fs-developer-bounces@lists.sourceforge.net>
 X-Original-To: lists+v9fs-developer@lfdr.de
 Delivered-To: lists+v9fs-developer@lfdr.de
 Received: from lists.sourceforge.net (lists.sourceforge.net [216.105.38.7])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7EC375648D3
-	for <lists+v9fs-developer@lfdr.de>; Sun,  3 Jul 2022 19:19:00 +0200 (CEST)
-Received: from [127.0.0.1] (helo=sfs-ml-2.v29.lw.sourceforge.com)
-	by sfs-ml-2.v29.lw.sourceforge.com with esmtp (Exim 4.94.2)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2AE0B5649A2
+	for <lists+v9fs-developer@lfdr.de>; Sun,  3 Jul 2022 21:46:53 +0200 (CEST)
+Received: from [127.0.0.1] (helo=sfs-ml-1.v29.lw.sourceforge.com)
+	by sfs-ml-1.v29.lw.sourceforge.com with esmtp (Exim 4.94.2)
 	(envelope-from <v9fs-developer-bounces@lists.sourceforge.net>)
-	id 1o83FH-0003OW-Nz; Sun, 03 Jul 2022 17:18:56 +0000
+	id 1o85YP-0007ny-VX; Sun, 03 Jul 2022 19:46:49 +0000
 Received: from [172.30.20.202] (helo=mx.sourceforge.net)
- by sfs-ml-2.v29.lw.sourceforge.com with esmtps (TLS1.2) tls
+ by sfs-ml-1.v29.lw.sourceforge.com with esmtps (TLS1.2) tls
  TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384 (Exim 4.94.2)
- (envelope-from <niuyy@znhxgroup.com>) id 1o83FG-0003OQ-AY
- for v9fs-developer@lists.sourceforge.net; Sun, 03 Jul 2022 17:18:55 +0000
+ (envelope-from <kent.overstreet@gmail.com>) id 1o85YO-0007ns-MT
+ for v9fs-developer@lists.sourceforge.net; Sun, 03 Jul 2022 19:46:48 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=sourceforge.net; s=x; h=Content-Type:Mime-Version:Message-ID:Subject:To:
+ d=sourceforge.net; s=x; h=Content-Type:MIME-Version:Message-ID:Subject:To:
  From:Date:Sender:Reply-To:Cc:Content-Transfer-Encoding:Content-ID:
  Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
  :Resent-Message-ID:In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:
  List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=6XIlLJHEw266ANznDiEwzta1EpOVV+uNt+cbosWb5oU=; b=bQaEC6oFwiGIFSEjhGJgr4fK4G
- vGLRtI3aNUpWVoF2ocgCcCgscZ9unO+LNSXIZDiU+wpeolrfB7XgLlwAlQ6g/OAL2Opk+XGGLnxkV
- PxrzLRf5ncsUtL1Pa7AGCcfi16PNy20kIvAAwKHYZ+42frAPansDU375Fs+sCP0/G9jg=;
+ bh=KQ6C8KeFwunjITrxXd1N62GR8QW5BA613iKF9xglW04=; b=Rqv4i4A346rR2l/PXcr4fJSoIM
+ ydtLjJ+r52d279arGug1KKwNVpTpNEeOPYbGwk8GUQ6qfRIpKmeqtM29ysZv4Xq/BxmCJNBy0ZFp7
+ 7zTtVU6ckCNwPUYsHxobhN7n+2jesVBO4AWvwfa5JpGREaVIRmSwZvAG/3dHPBrfzJrA=;
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  ;
- h=Content-Type:Mime-Version:Message-ID:Subject:To:From:Date:Sender:Reply-To
+ h=Content-Type:MIME-Version:Message-ID:Subject:To:From:Date:Sender:Reply-To
  :Cc:Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
  Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:
  References:List-Id:List-Help:List-Unsubscribe:List-Subscribe:List-Post:
- List-Owner:List-Archive; bh=6XIlLJHEw266ANznDiEwzta1EpOVV+uNt+cbosWb5oU=; b=A
- /btzx1W4rqxUvTCjTYRulS60qd42tg4Jk9ih9lmJD6L/XnIFb0L9zXWRtPnW+Xb6k9g6lXWBjiMFD
- xVKKNnKbo2/T2k132vGURppxisgO0jpnzson3To4B7ZQH4jzbs4sko/oxe+fgb33v/48NwPEHQgXQ
- g+SUF1Y5Fss+AEAM=;
-Received: from mail.cgpcgroup.com ([36.112.95.29] helo=znhxgroup.com)
- by sfi-mx-2.v28.lw.sourceforge.com with esmtp (Exim 4.94.2)
- id 1o83FF-0000ly-OU
- for v9fs-developer@lists.sourceforge.net; Sun, 03 Jul 2022 17:18:54 +0000
-Received: from cfxgaqgh (unknown [125.87.84.127])
- by localhost.localdomain (Coremail) with SMTP id
- AQAAfwC3cRBqz8Fi6wp9Aw--.37382S2; 
- Mon, 04 Jul 2022 01:18:34 +0800 (CST)
-Date: Mon, 4 Jul 2022 01:18:26 +0800
-From: "OA" <niuyy@znhxgroup.com>
-To: <v9fs-developer@lists.sourceforge.net>
-Message-ID: <20220704011834140875@znhxgroup.com>
-X-Priority: 1 (Highest)
-X-mailer: Foxmail 6, 13, 102, 15 [cn]
-Mime-Version: 1.0
-X-CM-TRANSID: AQAAfwC3cRBqz8Fi6wp9Aw--.37382S2
-X-Coremail-Antispam: 1UD129KBjDUn29KB7ZKAUJUUUUU529EdanIXcx71UUUUU7v73
- VFW2AGmfu7bjvjm3AaLaJ3UjIYCTnIWjp_UUUoQ7k0a2IF6r1UM7kC6x804xWl14x267AK
- xVWUJVW8JwAFc2x0x2IEx4CE42xK8VAvwI8IcIk0rVWrJVCq3wAFIxvE14AKwVWUJVWUGw
- A2ocxC64kIII0Yj41l84x0c7CEw4AK67xGY2AK021l84ACjcxK6xIIjxv20xvE14v26w1j
- 6s0DM28EF7xvwVC0I7IYx2IY6xkF7I0E14v26r4UJVWxJr1l84ACjcxK6I8E87Iv67AKxV
- W0oVCq3wA2z4x0Y4vEx4A2jsIEc7CjxVAFwI0_GcCE3s1le2I262IYc4CY6c8Ij28IcVAa
- Y2xG8wAqx4xG67k08I80eVW8JVW5JwAqx4xG64kEw2xG04xIwI0_Jr0_Gr1l5I8CrVC2j2
- CE0s8v4I0Ex7kE8s4lYx0E2Ix0cI8IcVAFwI0_Jr0_Jr4lYx0Ex4A2jsIE14v26r1j6r4U
- McvjeVCFs4IE7xkEbVWUJVW8JwACjcxG0xvY0x0EwIxGrwACY4xI67k04243AVAKzVAKj4
- xxM4xvF2IEb7IF0Fy26I8I3I1lc2xSY4AK67AK6r4l42xK82IYc2Ij64vIr41l4c8EcI0E
- n4kS14v26rWUJr0E3s0q3wCF54CYxVCY1x0262kKe7AKxVW7Jr1j6s0q3s1l4I8I3I0E4I
- kC6x0Yz7v_Jr0_Gr1l4IxYO2xFxVAFwI0_Wr1UJVCq3s0DMI8I3I0E5I8CrVAFwI0_JrI_
- JrWlx2IqxVCjr7xvwVAFwI0_JrI_JrWlx4CE17CEb7AF67AKxVWUJVWUXwCIc40Y0x0EwI
- xGrwCI42IY6xIIjxv20xvE14v26w1j6s0DMIIF0xvE2Ix0cI8IcVCY1x0267AKxVW8Jr0_
- Cr1UMIIF0xvE42xK8VAvwI8IcIk0rVWUCVW8JwCI42IY6I8E87Iv67AKxVWxJr0_GcWlIx
- AIcVC2z280aVCY1x0267AKxVWxJr0_GcWl3VCjccxEccI2aVAqY2ADYxBIdaVFxhVjvjDU
- 0xZFpf9x0zE1v3xUUUUU=
-X-CM-SenderInfo: 5qlx55g62qx5pjur31oofrz/
-X-Helo-Check: bad, Forged Random Domain (znhxgroup.com)
-X-Spam-Score: 7.7 (+++++++)
-X-Spam-Report: Spam detection software, running on the system "util-spamd-2.v13.lw.sourceforge.com",
- has identified this incoming email as possible spam.  The original
+ List-Owner:List-Archive; bh=KQ6C8KeFwunjITrxXd1N62GR8QW5BA613iKF9xglW04=; b=Y
+ VaF6kzmXRgHndstsafB/5czLPXPIeRO8WTI/E56mx8IaBbuQdhL8VHyEoEkqNONdL9OGrO9US/wc2
+ BFv6Kxjv+wj0aS84Gp7ai9rqD8DljRp3+PeV3M/9mSQMjzT6ZKQmeZpfeR3A6KCkgRys50GW5bUUs
+ Ltei74qABGZM6A0o=;
+Received: from mail-qt1-f170.google.com ([209.85.160.170])
+ by sfi-mx-2.v28.lw.sourceforge.com with esmtps
+ (TLS1.2:ECDHE-RSA-AES128-GCM-SHA256:128) (Exim 4.94.2)
+ id 1o85YL-0004wh-4N
+ for v9fs-developer@lists.sourceforge.net; Sun, 03 Jul 2022 19:46:48 +0000
+Received: by mail-qt1-f170.google.com with SMTP id c13so7317592qtq.10
+ for <v9fs-developer@lists.sourceforge.net>;
+ Sun, 03 Jul 2022 12:46:45 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
+ h=date:from:to:subject:message-id:mime-version:content-disposition;
+ bh=KQ6C8KeFwunjITrxXd1N62GR8QW5BA613iKF9xglW04=;
+ b=Lxdkb5xphDCM8eOe+Ywsa89soFw8KbRQVS8nPQP1oWPRuurNsasnbU7QDHk9OlG0HW
+ Mn/7AfOhMZkXTv8NhJrhpVRyr9NujWxa4uvLzkZi2pMSjRJ3C7u2M9mexvffqEk/Jcc3
+ iq0Sc/UHeSzFaVMnc/kQhgpULTHi3X2Ylqo6l5W2bQnk1kEe+wISaZDQyrejKSQxmk0R
+ AGhfMO4MTzEdP45VlDBndmUqhhzxzjtARWyTVf8goBS/Pa90pCbwr/zftLE3K+mh/1bC
+ i7riHzZXkkPEt4LfE17ErMnRe0lbckL+p+RqlOmnd3EwzrtlvU8z3DxOIQxYxq/fzd/M
+ o18A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20210112;
+ h=x-gm-message-state:date:from:to:subject:message-id:mime-version
+ :content-disposition;
+ bh=KQ6C8KeFwunjITrxXd1N62GR8QW5BA613iKF9xglW04=;
+ b=kGeMzdELjrMrFzbbFiWYs/3R4tTUECXqnK62zHpnD7oStc+vraerOZYidoGPykz5I5
+ LtOv3i7QyTKhA8aUIiWr90lOukYuRerp2JTz71onwYkea2R8gsT9oAQNn+V9THWYSAl+
+ WFtIWZFLFweuQ2RrA+eG4rmLHlUHorXQag7eJ2pHWt8y1nAFl5jQmpoKAenwzoRnUjTq
+ ZLn1naYxju2K5gQmBZj+7U9YJ3sstqMQX1yv4/uN1h9SfVvA/2sDr0UTnlfgim4Puf5Q
+ viiQ7vBXZ/EaqvnxngqjMusfbxQ4mbgL+F5xBNWQTzoq6marZRg0uMX9kg1PbiufJvLm
+ BjAw==
+X-Gm-Message-State: AJIora/HnqS2HueK2jXkfvTCwwTEO5G1jzX9jJIDTE+RFzsHqrb++mI+
+ +HXDYtBydzP8e7hggANFnB+JNeoQUYVaFFU=
+X-Google-Smtp-Source: AGRyM1upr+ZD2S48cgNiCm11oG+4lT+Vqr2blkRcs80QIA0eky/Qwo5DVSNgxT314vnOVc5fOzE/aQ==
+X-Received: by 2002:a05:6214:2588:b0:470:4592:1039 with SMTP id
+ fq8-20020a056214258800b0047045921039mr24602307qvb.123.1656877598575; 
+ Sun, 03 Jul 2022 12:46:38 -0700 (PDT)
+Received: from localhost (c-73-219-103-14.hsd1.vt.comcast.net. [73.219.103.14])
+ by smtp.gmail.com with ESMTPSA id
+ cc18-20020a05622a411200b0031b7441b02asm12755142qtb.89.2022.07.03.12.46.37
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Sun, 03 Jul 2022 12:46:37 -0700 (PDT)
+Date: Sun, 3 Jul 2022 15:46:36 -0400
+From: Kent Overstreet <kent.overstreet@gmail.com>
+To: v9fs-developer@lists.sourceforge.net, ericvh@gmail.com,
+ lucho@ionkov.net, asmadeus@codewreck.org
+Message-ID: <20220703194636.hex2sa4buchizhbu@moria.home.lan>
+MIME-Version: 1.0
+Content-Disposition: inline
+X-Spam-Score: -0.2 (/)
+X-Spam-Report: Spam detection software,
+ running on the system "util-spamd-1.v13.lw.sourceforge.com", 
+ has NOT identified this incoming email as spam.  The original
  message has been attached to this so you can view it or label
  similar future email.  If you have any questions, see
  the administrator of that system for details.
- 
- Content preview:  Ç×°®µÄÓÃ»§£º ÎªÁË¼ÓÇ¿ÍøÂç°²È«¹ÜÀí£¬Ìá¸ßÓÊ¼þÏµÍ³µÄ°²È«ÐÔºÍÎÈ¶¨ÐÔ£¬±£ÕÏÊÕ·¢³©Í¨£¬ÎªÓÃ»§Ìá¹©ÓÅÖÊµÄ·þÎñ£¬ÏÖ¼´½«ÆôÓÃÐÂ°æÏµÍ³£¬ÓÐ¹ØÊÂÏîÍ¨ÖªÈçÏÂ£º
-    1.ÓÃ»§ÐèµÇÂ¼ÐÂÓÊ¼þÏµÍ³½«Ô­ÓÐÊý¾ÝÇ¨ÒÆÖÁÐÂÏµÍ³¡£ 2.Î´Ç¨ÒÆÊý¾Ýµ [...] 
- 
- Content analysis details:   (7.7 points, 6.0 required)
- 
-  pts rule name              description
+ Content preview:  Hey, so I've been hitting this page allocation failure in
+ v9fs quite a lot and since I use it in my kernel testing infrastructure, it's
+ been impacting test results quite a lot - I'm wondering if we mi [...] 
+ Content analysis details:   (-0.2 points, 6.0 required)
+ pts rule name              description
  ---- ---------------------- --------------------------------------------------
-  3.6 RCVD_IN_PBL            RBL: Received via a relay in Spamhaus PBL
-                             [36.112.95.29 listed in zen.spamhaus.org]
-  1.9 URIBL_ABUSE_SURBL      Contains an URL listed in the ABUSE SURBL
-                             blocklist
-                             [URIs: hxsngg.cyou]
-  0.0 T_PDS_OTHER_BAD_TLD    Untrustworthy TLDs
-                             [URI: 10.10.2.12.hxsngg.cyou (cyou)]
+ 0.0 SPF_HELO_NONE          SPF: HELO does not publish an SPF Record
+ 0.0 FREEMAIL_FROM          Sender email is commonly abused enduser mail
+ provider [kent.overstreet[at]gmail.com]
  -0.0 SPF_PASS               SPF: sender matches SPF record
- -0.0 SPF_HELO_PASS          SPF: HELO matches SPF record
-  0.0 HTML_MESSAGE           BODY: HTML included in message
-  0.0 HTML_FONT_FACE_BAD     BODY: HTML font face is not a word
-  2.0 PYZOR_CHECK            Listed in Pyzor
-                             (https://pyzor.readthedocs.io/en/latest/)
-  0.0 T_KAM_HTML_FONT_INVALID Test for Invalidly Named or Formatted
-                             Colors in HTML
- -0.0 T_SCC_BODY_TEXT_LINE   No description available.
-  0.2 FSL_BULK_SIG           Bulk signature with no Unsubscribe
-X-Headers-End: 1o83FF-0000ly-OU
-X-Content-Filtered-By: Mailman/MimeDel 2.1.21
-Subject: [V9fs-developer] =?gb2312?b?udjT2tPKz+TPtc2zx6jSxrmruObNqNaq?=
+ -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+ -0.1 DKIM_VALID_EF          Message has a valid DKIM or DK signature from
+ envelope-from domain
+ 0.1 DKIM_SIGNED            Message has a DKIM or DK signature, not necessarily
+ valid
+ -0.1 DKIM_VALID_AU          Message has a valid DKIM or DK signature from
+ author's domain
+ 0.0 RCVD_IN_MSPIKE_H3      RBL: Good reputation (+3)
+ [209.85.160.170 listed in wl.mailspike.net]
+ -0.0 RCVD_IN_DNSWL_NONE     RBL: Sender listed at https://www.dnswl.org/,
+ no trust [209.85.160.170 listed in list.dnswl.org]
+ 0.0 RCVD_IN_MSPIKE_WL      Mailspike good senders
+X-Headers-End: 1o85YL-0004wh-4N
+Subject: [V9fs-developer] Memory allocation failure in v9fs
 X-BeenThere: v9fs-developer@lists.sourceforge.net
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -112,17 +120,27 @@ List-Post: <mailto:v9fs-developer@lists.sourceforge.net>
 List-Help: <mailto:v9fs-developer-request@lists.sourceforge.net?subject=help>
 List-Subscribe: <https://lists.sourceforge.net/lists/listinfo/v9fs-developer>, 
  <mailto:v9fs-developer-request@lists.sourceforge.net?subject=subscribe>
-Content-Type: text/plain; charset="gb2312"
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: v9fs-developer-bounces@lists.sourceforge.net
 
-DQrH17CutcTTw7uno7ogDQrOqsHLvNPHv834wuewssirudzA7aOszOG439PKvP7Ptc2ztcSwssir
-0NS6zc7ItqjQ1KOssaPVz8rVt6Kzqc2oo6zOqtPDu6fM4bmp08XWyrXEt/7O8aOsz9a8tL2rxvTT
-w9DCsObPtc2zo6zT0LnYysLP7s2o1qrI58/Co7oNCjEu08O7p9DotcfCvNDC08q8/s+1zbO9q9St
-09DK/b7dx6jSxtbB0MLPtc2zoaMNCjIuzrTHqNLGyv2+3bXE08O7p6Osz7XNs72rxuTIz7aozqrO
-3sjLyrnTw7XE1cu7p7KizaPWubf+zvGhow0KMy7J/by2uvPTw7unw/u6zcPcwuu++bK7seSjrNPD
-u6fO3tDo0N64xL/Nu6e2y8jtvP7J6NbDoaMNCrXjtMu1x8K8zeqzybG+tM7HqNLGDQrM2LTLzajW
-qg0KMjAyMi03LTQNCg0KDQoNCiAKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX18KVjlmcy1kZXZlbG9wZXIgbWFpbGluZyBsaXN0ClY5ZnMtZGV2ZWxvcGVyQGxp
-c3RzLnNvdXJjZWZvcmdlLm5ldApodHRwczovL2xpc3RzLnNvdXJjZWZvcmdlLm5ldC9saXN0cy9s
-aXN0aW5mby92OWZzLWRldmVsb3Blcgo=
+Hey, so I've been hitting this page allocation failure in v9fs quite a lot and
+since I use it in my kernel testing infrastructure, it's been impacting test
+results quite a lot - I'm wondering if we might be able to do something about
+it. Example, from v5.18 + bcachefs:
+
+https://evilpiepirate.org/~testdashboard/c794bfd75e534b05133db1035e4480159001e8c5/xfstests.generic.299
+
+We're doing an order 5 allocation here, so the memory allocation failure is
+unsurprising. Switching to kvmalloc would likely be good enough - but we appear
+to be bouncing the entire write syscall, maybe we could not do that? Has that
+been looked at at all?
+
+Cheers,
+Kent
+
+
+_______________________________________________
+V9fs-developer mailing list
+V9fs-developer@lists.sourceforge.net
+https://lists.sourceforge.net/lists/listinfo/v9fs-developer
