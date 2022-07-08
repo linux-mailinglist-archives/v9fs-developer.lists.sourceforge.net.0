@@ -2,89 +2,105 @@ Return-Path: <v9fs-developer-bounces@lists.sourceforge.net>
 X-Original-To: lists+v9fs-developer@lfdr.de
 Delivered-To: lists+v9fs-developer@lfdr.de
 Received: from lists.sourceforge.net (lists.sourceforge.net [216.105.38.7])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2D82356BA36
-	for <lists+v9fs-developer@lfdr.de>; Fri,  8 Jul 2022 15:01:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5ABDB56BCEA
+	for <lists+v9fs-developer@lfdr.de>; Fri,  8 Jul 2022 17:30:13 +0200 (CEST)
 Received: from [127.0.0.1] (helo=sfs-ml-2.v29.lw.sourceforge.com)
 	by sfs-ml-2.v29.lw.sourceforge.com with esmtp (Exim 4.94.2)
 	(envelope-from <v9fs-developer-bounces@lists.sourceforge.net>)
-	id 1o9nbU-0003JR-Oz; Fri, 08 Jul 2022 13:01:05 +0000
+	id 1o9pvi-0006xn-O5; Fri, 08 Jul 2022 15:30:07 +0000
 Received: from [172.30.20.202] (helo=mx.sourceforge.net)
  by sfs-ml-2.v29.lw.sourceforge.com with esmtps (TLS1.2) tls
- TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384 (Exim 4.94.2)
- (envelope-from <linux_oss@crudebyte.com>) id 1o9nbU-0003JK-1n
- for v9fs-developer@lists.sourceforge.net; Fri, 08 Jul 2022 13:01:04 +0000
+ TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384 (Exim 4.94.2) (envelope-from
+ <01070181de6e5c6f-09de1bb0-96ed-4afc-be54-dfa4605bb9b7-000000@eu-central-1.amazonses.com>)
+ id 1o9pvd-0006xc-MO
+ for v9fs-developer@lists.sourceforge.net; Fri, 08 Jul 2022 15:30:02 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=sourceforge.net; s=x; h=Content-Type:Content-Transfer-Encoding:MIME-Version
- :References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Sender:Reply-To:
+ d=sourceforge.net; s=x; h=List-Unsubscribe:Content-Type:MIME-Version:To:
+ Reply-To:From:Subject:Date:Message-ID:Sender:Cc:Content-Transfer-Encoding:
  Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
- Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
- List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=uUgQz5drJuRxwq718pUlHf9G0oCeKtbwx5N/3KXL+1w=; b=XJtJub9hNy9dZpwqP1A7FakqDw
- cdfkBcr4MtvFEfEoenY3Z0xprNJKb2PIZiRFkM2Km0YtxGVvc7JXleJPeL+5i0lrQVT27sNOgaCe8
- PbG0oMy82VMcBxPdipBx7ShFk1gbtuIn4XURh8oh6hRbcJKLsA2gvW+nJH68p+RVR6Sw=;
+ Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:List-Id:
+ List-Help:List-Subscribe:List-Post:List-Owner:List-Archive;
+ bh=iOaRPDdIv2F00o9b/7gPBhNb5hK52sVQ9otQUBd23Jo=; b=G0xjJ4VI8PQfzJD3L6gfqozTOs
+ USuP3cLrbHawlbWEhoj/mki2Wl07Pd2lu3HynkHGBSox6ghjdsXIcFXriDlZG5LEpgpdJ+QMX4uuG
+ cchGgxK3YAo4ILeLSErs76tFIEWAW23Ky+bMdkz3ShgW8jdRDbW4DHaJGQVp9E4nqSz8=;
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  ;
- h=Content-Type:Content-Transfer-Encoding:MIME-Version:References:
- In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Sender:Reply-To:Content-ID:
- Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
- :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
- List-Post:List-Owner:List-Archive;
- bh=uUgQz5drJuRxwq718pUlHf9G0oCeKtbwx5N/3KXL+1w=; b=CXPzxnQ7gxOJ29IpGwysVAlgiS
- BGh1wakX/4djqvvys6MHCIdozktvTxl58oJDMb0HCB7REA0eIdVmujuhGeBJDsN6ZopiHDuQPqRRz
- jzeZbayL4jBbOdcS5RkcPxamr48/6qIoNrSDRjO/0q9zlFyiv+qFgAzmjNihqVaA+/oo=;
-Received: from kylie.crudebyte.com ([5.189.157.229])
- by sfi-mx-1.v28.lw.sourceforge.com with esmtps
- (TLS1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.94.2)
- id 1o9nbQ-00As8N-Py
- for v9fs-developer@lists.sourceforge.net; Fri, 08 Jul 2022 13:01:04 +0000
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=crudebyte.com; s=kylie; h=Content-Type:Content-Transfer-Encoding:
- MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:
- Content-ID:Content-Description;
- bh=uUgQz5drJuRxwq718pUlHf9G0oCeKtbwx5N/3KXL+1w=; b=egqw9Px4AzMTi3neswF9XadCp3
- Dz2rThAKxZZcCYbacQheOGJ5+UBXrpG/mdk+TOMzS/GvOBKKVrjnw/n5OBoeTXuwtUSgwkQJp2tzJ
- PRUGLiZyORX/Xc5CvsY1WXIhyFLl0F346Ddz57Tr1gvuXDci2ljtCXQUcYbbyOcKrAycCogPHIRWY
- Z+Rkz7P+5SlICTJTRRIpSQC8NnjoI8wrTVGUggl0CdZkkSPKiF2DVfFhIDBZTGtZxqlvx4iD8Slow
- A4eoZdC0+UO/TAUF/Ke1mSqhdU2PIG3q2RWLrxtOQGxwxYM637ajy5MdO63kTYEQGEVFDZA4UcNBC
- GxXFglNjOqwuOgrWWJtldLYnqUHPeyDOGZNLss864Lb6BgUFestpPL+DM1GLZK33er8dTQq4HZ+al
- XT3cq6p7xMwku3g5zv/x5mUCZYwsBZgjfxRO4KUDcfB0gT+4DIafwP2r3/LFwPOZCkAhIewSmV2ai
- uX1uud98Ne0Dbf0m5XjDb/hqxPP2ew0jCMXgK6wcy1wc/5ZiUHk1EKGOwr8zfq8I4TaPjv7k7e+SH
- U4DLkvvDe4ochbfZvir889synhHiuRoorvTGPWcxH25LlPqRFUd/+ucdVL6F+6+YydLL+Zw38Z3iT
- 2Snv5CtneU6rTYNyr8d+eP3xxd6ht1frNC94aIXd8=;
-To: Dominique Martinet <asmadeus@codewreck.org>,
- Eric Van Hensbergen <ericvh@gmail.com>
-Date: Fri, 08 Jul 2022 15:00:45 +0200
-Message-ID: <7969175.Y4Flz6HuuJ@silver>
-In-Reply-To: <YsgXtBsfLEQ9dFux@codewreck.org>
-References: <cover.1640870037.git.linux_oss@crudebyte.com>
- <1690835.L3irNgtgWz@silver> <YsgXtBsfLEQ9dFux@codewreck.org>
+ h=List-Unsubscribe:Content-Type:MIME-Version:To:Reply-To:From:Subject:Date:
+ Message-ID:Sender:Cc:Content-Transfer-Encoding:Content-ID:Content-Description
+ :Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+ In-Reply-To:References:List-Id:List-Help:List-Subscribe:List-Post:List-Owner:
+ List-Archive; bh=iOaRPDdIv2F00o9b/7gPBhNb5hK52sVQ9otQUBd23Jo=; b=nCntOV8d4Hhh
+ meu1rGynvPmOZcMdse7YDZ8zL2Mbju17VzyIqtyFevvBhvR6tBfWKn617Ks7qB+zl7Lmlf21Mc+2L
+ k1r8Aa4y9CL56zpC7IXGH4/kyfnvg3E2SpJxNkJGejRKk7Plvfvm2MLSC6Zr7eIflkgG5gMnTyygZ
+ ognaY=;
+Received: from b227-249.smtp-out.eu-central-1.amazonses.com ([69.169.227.249])
+ by sfi-mx-2.v28.lw.sourceforge.com with esmtps
+ (TLS1.2:ECDHE-RSA-AES128-SHA256:128) (Exim 4.94.2)
+ id 1o9pva-00068N-Hs
+ for v9fs-developer@lists.sourceforge.net; Fri, 08 Jul 2022 15:30:02 +0000
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/simple;
+ s=6dycfttairtwnmbdpqj6xnhm6vx4dept; d=eko-trading.com;
+ t=1657294183;
+ h=Sender:Message-ID:Date:Subject:From:Reply-To:To:MIME-Version:Content-Type:List-Unsubscribe;
+ bh=qI9eRDy0u4ZMsZV9sxg7JFqUAoxH8f8UtUVp416pgVM=;
+ b=GRzlJlIOX9Ir1KChGx2y5Lxp520O2bYuPmtot9yYEjjVdEFeitAFbp8y536+oqCA
+ dZ33XbkEZDtdDVd4q6QeLcuwzeKaXt4g/Uq7f51Qjr4AZHnu5KpN3ap/VdkyU2b1Iem
+ 5WTc0t8JIau9Oif2s11MyZpUMjh7NJXHm5EZQ+ms=
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/simple;
+ s=54ecsf3zk7z4mwxwwox7z7bg6e5gwjsz; d=amazonses.com; t=1657294183;
+ h=Sender:Message-ID:Date:Subject:From:Reply-To:To:MIME-Version:Content-Type:List-Unsubscribe:Feedback-ID;
+ bh=qI9eRDy0u4ZMsZV9sxg7JFqUAoxH8f8UtUVp416pgVM=;
+ b=T5vtfj9CT8FJbQf5k1mfKRrDEthUWxAg6/3mEW9Hbce2PYt6gAwVJ0JtQ53MS5kA
+ 24F6XJpV68/y/Qw+AMu/9d254boKJrARAAA80DyhEn+HrZQOlJvBJT9lKNDMTT8zu/K
+ PunhTsVXJv64G8dXXLhjhndfU1GS96YnW6SZS4/A=
+Message-ID: <01070181de6e5c6f-09de1bb0-96ed-4afc-be54-dfa4605bb9b7-000000@eu-central-1.amazonses.com>
+Date: Fri, 8 Jul 2022 15:29:43 +0000
+From: Office <office@eko-trading.com>
+To: "" <v9fs-developer@lists.sourceforge.net>
 MIME-Version: 1.0
-X-Spam-Score: -0.2 (/)
-X-Spam-Report: Spam detection software,
- running on the system "util-spamd-2.v13.lw.sourceforge.com", 
- has NOT identified this incoming email as spam.  The original
+Feedback-ID: 1.eu-central-1.N8GLPrwMW4DEokEt/uX8R5Dj6lDs1dpqTZ0OFMrLAAo=:AmazonSES
+X-SES-Outgoing: 2022.07.08-69.169.227.249
+X-Spam-Score: 6.2 (++++++)
+X-Spam-Report: Spam detection software, running on the system "util-spamd-2.v13.lw.sourceforge.com",
+ has identified this incoming email as possible spam.  The original
  message has been attached to this so you can view it or label
  similar future email.  If you have any questions, see
  the administrator of that system for details.
- Content preview:  On Freitag, 8. Juli 2022 13:40:36 CEST Dominique Martinet
- wrote: > Christian Schoenebeck wrote on Fri, Jul 08, 2022 at 01:18:40PM +0200:
- > > On Freitag, 8. Juli 2022 04:26:40 CEST Eric Van Hensbergen [...] 
- Content analysis details:   (-0.2 points, 6.0 required)
- pts rule name              description
+ 
+ Content preview:  [Vizualizează asta în navigatorul tău.](https://ekogroup.com.ro?mailpoet_router&endpoint=track&action=click&data=WzE0MzAwNSwibmlxaWF6cXMzYjQ0MGNjZ2s0YzRrNDRzOG9jZ2NrYzQiLCIxNDciLCJkMDBjNmMzZWQ1Yzgi
+    [...] 
+ 
+ Content analysis details:   (6.2 points, 6.0 required)
+ 
+  pts rule name              description
  ---- ---------------------- --------------------------------------------------
- 0.0 SPF_HELO_NONE          SPF: HELO does not publish an SPF Record
+ -0.0 RCVD_IN_DNSWL_NONE     RBL: Sender listed at https://www.dnswl.org/,
+                              no trust
+                             [69.169.227.249 listed in list.dnswl.org]
+  0.0 SPF_HELO_NONE          SPF: HELO does not publish an SPF Record
  -0.0 SPF_PASS               SPF: sender matches SPF record
- 0.1 DKIM_SIGNED            Message has a DKIM or DK signature, not necessarily
- valid
+  0.2 HEADER_FROM_DIFFERENT_DOMAINS From and EnvelopeFrom 2nd level
+                             mail domains are different
+  1.7 URIBL_BLACK            Contains an URL listed in the URIBL blacklist
+                             [URIs: ekogroup.com.ro]
+  0.0 HTML_MESSAGE           BODY: HTML included in message
+  0.1 DKIM_SIGNED            Message has a DKIM or DK signature, not necessarily
+                             valid
  -0.1 DKIM_VALID_AU          Message has a valid DKIM or DK signature from
- author's domain
+                             author's domain
  -0.1 DKIM_VALID_EF          Message has a valid DKIM or DK signature from
- envelope-from domain
- -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+                             envelope-from domain
+ -0.1 DKIM_VALID             Message has at least one valid DKIM or DK signature
+  2.0 PYZOR_CHECK            Listed in Pyzor
+                             (https://pyzor.readthedocs.io/en/latest/)
+  0.0 T_KAM_HTML_FONT_INVALID Test for Invalidly Named or Formatted
+                             Colors in HTML
  -0.0 T_SCC_BODY_TEXT_LINE   No description available.
-X-Headers-End: 1o9nbQ-00As8N-Py
-Subject: Re: [V9fs-developer] [PATCH v4 00/12] remove msize limit in virtio
- transport
+  2.5 URI_WP_HACKED_2        URI for compromised WordPress site, possible
+                             malware
+X-Headers-End: 1o9pva-00068N-Hs
+X-Content-Filtered-By: Mailman/MimeDel 2.1.21
+Subject: [V9fs-developer] White wheat flour 650 bakery, from Romania
 X-BeenThere: v9fs-developer@lists.sourceforge.net
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -96,94 +112,55 @@ List-Post: <mailto:v9fs-developer@lists.sourceforge.net>
 List-Help: <mailto:v9fs-developer-request@lists.sourceforge.net?subject=help>
 List-Subscribe: <https://lists.sourceforge.net/lists/listinfo/v9fs-developer>, 
  <mailto:v9fs-developer-request@lists.sourceforge.net?subject=subscribe>
-From: Christian Schoenebeck via V9fs-developer
- <v9fs-developer@lists.sourceforge.net>
-Reply-To: Christian Schoenebeck <linux_oss@crudebyte.com>
-Cc: Latchesar Ionkov <lucho@ionkov.net>, netdev@vger.kernel.org,
- Nikolay Kichukov <nikolay@oldum.net>, Greg Kurz <groug@kaod.org>,
- v9fs-developer@lists.sourceforge.net
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Reply-To: Office <office@eko-trading.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: v9fs-developer-bounces@lists.sourceforge.net
 
-On Freitag, 8. Juli 2022 13:40:36 CEST Dominique Martinet wrote:
-> Christian Schoenebeck wrote on Fri, Jul 08, 2022 at 01:18:40PM +0200:
-> > On Freitag, 8. Juli 2022 04:26:40 CEST Eric Van Hensbergen wrote:
-[...]
-> https://github.com/kvmtool/kvmtool indeed has a 9p server, I think I
-> used to run it ages ago.
-> I'll give it a fresh spin, thanks for the reminder.
-> 
-> For this one it defines VIRTQUEUE_NUM to 128, so not quite 1024.
-
-Yes, and it does *not* limit client supplied 'msize' either. It just always 
-sends the same 'msize' value as-is back to client. :/ So I would expect it to 
-error (or worse) if client tries msize > 512kB.
-
-> > > > I found https://github.com/moby/hyperkit for OSX but that doesn't
-> > > > really
-> > > > help me, and can't see much else relevant in a quick search
-> > 
-> > So that appears to be a 9p (@virtio-PCI) client for xhyve,
-> 
-> oh the 9p part is client code?
-> the readme says it's a server:
-> "It includes a complete hypervisor, based on xhyve/bhyve"
-> but I can't run it anyway, so I didn't check very hard.
-
-Hmm, I actually just interpreted this for it to be a client:
-
-fprintf(stderr, "virtio-9p: unexpected EOF writing to server-- did the 9P 
-server crash?\n");
-
-But looking at it again, it seems you are right, at least I see that it also 
-handles even 9p message type numbers, but only Twrite and Tflush? I don't see 
-any Tversion or msize handling in general. [shrug]
-
-> > with max. 256kB buffers <=> max. 68 virtio descriptors (memory segments) 
-[1]:
-> huh...
-> 
-> Well, as long as msize is set I assume it'll work out anyway?
-
-If server would limit 'msize' appropriately, yes. But as the kvmtool example 
-shows, that should probably not taken for granted.
-
-> How does virtio queue size work with e.g. parallel messages?
-
-Simple question, complicated to answer.
-
-From virtio spec PoV (and current virtio <= v1.2), the negotiated virtio queue 
-size defines both the max. amount of parallel (round-trip) messages *and* the 
-max. amount of virtio descriptors (memory segments) of *all* currently active/
-parallel messages in total. I "think" because of virtio's origin for 
-virtualized network devices?
-
-So yes, if you are very strict what the virtio spec <= v1.2 says, and say you 
-have a virtio queue size of 128 (e.g. hard coded by QEMU, kvmtool), and say 
-client would send out the first 9p request with 128 memory segments, then the 
-next (i.e. second) parallel 9p request sent to server would already exceed the 
-theoretically allowed max. amount of virtio descriptors.
-
-But in practice, I don't see that this theoretical limitation would exist in 
-actual 9p virtio server implementations. At least in all server 
-implementations I saw so far, they all seem to handle the max. virtio 
-descriptors amount for each request separately.
-
-> Anyway, even if the negotiation part gets done servers won't all get
-> implemented in a day, so we need to think of other servers a bit..
-
-OTOH kernel should have the name of the hypervisor/emulator somewhere, right? 
-So Linux client's max. virtio descriptors could probably made dependent on 
-that name?
-
-Best regards,
-Christian Schoenebeck
-
-
-
-
-_______________________________________________
-V9fs-developer mailing list
-V9fs-developer@lists.sourceforge.net
-https://lists.sourceforge.net/lists/listinfo/v9fs-developer
+W1ZpenVhbGl6ZWF6xIMgYXN0YSDDrm4gbmF2aWdhdG9ydWwgdMSDdS5dKGh0dHBzOi8vZWtvZ3Jv
+dXAuY29tLnJvP21haWxwb2V0X3JvdXRlciZlbmRwb2ludD10cmFjayZhY3Rpb249Y2xpY2smZGF0
+YT1XekUwTXpBd05Td2libWx4YVdGNmNYTXpZalEwTUdOaloyczBZelJyTkRSek9HOWpaMk5yWXpR
+aUxDSXhORGNpTENKa01EQmpObU16WldRMVl6Z2lMR1poYkhObFhRKQoKW0Zhcm1lcnNNYXJrZXQt
+VG9wXQoKW0NhcHR1cmHMhl9kZV9lY3Jhbl9kaW5fMjAyMi0wNy0wNV9sYV8xNC4zOC4zMy1yZW1v
+dmViZy1wcmV2aWV3XShodHRwczovL2Vrb2dyb3VwLmNvbS5ybz9tYWlscG9ldF9yb3V0ZXImZW5k
+cG9pbnQ9dHJhY2smYWN0aW9uPWNsaWNrJmRhdGE9V3pFME16QXdOU3dpYm1seGFXRjZjWE16WWpR
+ME1HTmpaMnMwWXpSck5EUnpPRzlqWjJOcll6UWlMQ0l4TkRjaUxDSTBNVGRtWW1aaVlUQXhaV1Fp
+TEdaaGJITmxYUSkKCltDYXB0dXJhzIYgZGUgZWNyYW4gZGluIDIwMjItMDctMDUgbGEgMDguNTgu
+MDNdKGh0dHBzOi8vZWtvZ3JvdXAuY29tLnJvP21haWxwb2V0X3JvdXRlciZlbmRwb2ludD10cmFj
+ayZhY3Rpb249Y2xpY2smZGF0YT1XekUwTXpBd05Td2libWx4YVdGNmNYTXpZalEwTUdOaloyczBZ
+elJyTkRSek9HOWpaMk5yWXpRaUxDSXhORGNpTENKaU1tTmpPRFE1WVRrM01XRWlMR1poYkhObFhR
+KQoKW0NhcHR1cmHMhiBkZSBlY3JhbiBkaW4gMjAyMi0wNy0wOCBsYSAxNC4xOS40N10oaHR0cHM6
+Ly9la29ncm91cC5jb20ucm8/bWFpbHBvZXRfcm91dGVyJmVuZHBvaW50PXRyYWNrJmFjdGlvbj1j
+bGljayZkYXRhPVd6RTBNekF3TlN3aWJtbHhhV0Y2Y1hNellqUTBNR05qWjJzMFl6UnJORFJ6T0c5
+aloyTnJZelFpTENJeE5EY2lMQ0kwTVRkbVltWmlZVEF4WldRaUxHWmhiSE5sWFEpCgpBcyB5b3Ug
+d2VsbCBrbm93LFJvbWFuaWEgaXMgYSBjb3VudHJ5IHdpdGggZXh0cmVtZWx5IG1hbnlyZXNvdXJj
+ZXNhbmQgd2Ugd2FudCB0byBkZXZlbG9wIGxvbmctdGVybSBwYXJ0bmVyc2hpcHMgd2l0aCBjb3Vu
+dHJpZXMgdGhhdCBjYW4gaGVscCBkZXZlbG9wIFJvbWFuaWFuIGV4cG9ydHMuCk91ciBjb21wYW55
+IGlzIG9uZSBvZiB0aGUgbGVhZGVycyBvbiB0aGUgdHJhZGUgbWFya2V0IGluIFJvbWFuaWEgYW5k
+IHdlIHdhbnQgdG8gZGV2ZWxvcCBsb25nLXRlcm0gcGFydG5lcnNoaXBzIHdpdGggYXMgbWFueSBj
+b3VudHJpZXMgaW4gdGhlIHdvcmxkIGFzIHBvc3NpYmxlLgpJbiB0aGlzIHNlbnNlLCB3ZSB3YW50
+IHRvIGluZm9ybSB5b3Ugb2Ygb3VyIG9mZmVycyBvZiBSb21hbmlhbiBwcm9kdWN0cyBhdmFpbGFi
+bGUgaW1tZWRpYXRlbHkuCgpFS08gVU5JVEVEIElOVkVTVE1FTlQKX19fX19fXwoKU3RyZWV0IEVt
+aWwgUGFuZ3JhdHRpLCBuby4xMCArNCAwNzU3IDc3IDI4IDI4Cm9mZmljZUBla28tdHJhZGluZy5j
+b20KCltmYWNlYm9va10oaHR0cHM6Ly9la29ncm91cC5jb20ucm8/bWFpbHBvZXRfcm91dGVyJmVu
+ZHBvaW50PXRyYWNrJmFjdGlvbj1jbGljayZkYXRhPVd6RTBNekF3TlN3aWJtbHhhV0Y2Y1hNellq
+UTBNR05qWjJzMFl6UnJORFJ6T0c5aloyTnJZelFpTENJeE5EY2lMQ0l3TkRkalpXWmpaV1V6TkRN
+aUxHWmhiSE5sWFEpIFtpbnN0YWdyYW1dKGh0dHBzOi8vZWtvZ3JvdXAuY29tLnJvP21haWxwb2V0
+X3JvdXRlciZlbmRwb2ludD10cmFjayZhY3Rpb249Y2xpY2smZGF0YT1XekUwTXpBd05Td2libWx4
+YVdGNmNYTXpZalEwTUdOaloyczBZelJyTkRSek9HOWpaMk5yWXpRaUxDSXhORGNpTENKaVlUVmlN
+ak16WXpCa1pqSWlMR1poYkhObFhRKQpbVW5zY3JpYmVdKGh0dHBzOi8vZWtvZ3JvdXAuY29tLnJv
+P21haWxwb2V0X3JvdXRlciZlbmRwb2ludD10cmFjayZhY3Rpb249Y2xpY2smZGF0YT1XekUwTXpB
+d05Td2libWx4YVdGNmNYTXpZalEwTUdOaloyczBZelJyTkRSek9HOWpaMk5yWXpRaUxDSXhORGNp
+TENKa1ltSTRNVGt4TXpWbVkyUWlMR1poYkhObFhRKSB8IE1hbmFnZSB5b3VyIHN1YnNjcmlwdGlv
+bltsXShodHRwczovL2Vrb2dyb3VwLmNvbS5ybz9tYWlscG9ldF9yb3V0ZXImZW5kcG9pbnQ9dHJh
+Y2smYWN0aW9uPWNsaWNrJmRhdGE9V3pFME16QXdOU3dpYm1seGFXRjZjWE16WWpRME1HTmpaMnMw
+WXpSck5EUnpPRzlqWjJOcll6UWlMQ0l4TkRjaUxDSXdZemRtWkRFM1lqWmtZVGtpTEdaaGJITmxY
+USkKQWRkIHlvdXIgZW1haWwgYWRyZXNzIGhlcmUhCl9fX19fX18KCkNvcHlyaWdodCDCqSAyMDIy
+IHd3dy5la29ncm91cC5ybywgQWxsIHJpZ2h0cyByZXNlcnZlZC4KCltGYXJtZXJzTWFya2V0LUJv
+dHRvbV0KCltNYWlsUG9ldF0oaHR0cHM6Ly9la29ncm91cC5jb20ucm8/bWFpbHBvZXRfcm91dGVy
+JmVuZHBvaW50PXRyYWNrJmFjdGlvbj1jbGljayZkYXRhPVd6RTBNekF3TlN3aWJtbHhhV0Y2Y1hN
+ellqUTBNR05qWjJzMFl6UnJORFJ6T0c5aloyTnJZelFpTENJeE5EY2lMQ0ptWXpRNU1UVmlOekky
+WTJRaUxHWmhiSE5sWFEpCgpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fXwpWOWZzLWRldmVsb3BlciBtYWlsaW5nIGxpc3QKVjlmcy1kZXZlbG9wZXJAbGlzdHMu
+c291cmNlZm9yZ2UubmV0Cmh0dHBzOi8vbGlzdHMuc291cmNlZm9yZ2UubmV0L2xpc3RzL2xpc3Rp
+bmZvL3Y5ZnMtZGV2ZWxvcGVyCg==
