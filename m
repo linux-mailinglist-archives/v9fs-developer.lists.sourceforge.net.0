@@ -2,93 +2,85 @@ Return-Path: <v9fs-developer-bounces@lists.sourceforge.net>
 X-Original-To: lists+v9fs-developer@lfdr.de
 Delivered-To: lists+v9fs-developer@lfdr.de
 Received: from lists.sourceforge.net (lists.sourceforge.net [216.105.38.7])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0D65156CD8E
-	for <lists+v9fs-developer@lfdr.de>; Sun, 10 Jul 2022 08:38:30 +0200 (CEST)
-Received: from [127.0.0.1] (helo=sfs-ml-4.v29.lw.sourceforge.com)
-	by sfs-ml-4.v29.lw.sourceforge.com with esmtp (Exim 4.94.2)
+	by mail.lfdr.de (Postfix) with ESMTPS id B2A5E56CD8F
+	for <lists+v9fs-developer@lfdr.de>; Sun, 10 Jul 2022 08:45:23 +0200 (CEST)
+Received: from [127.0.0.1] (helo=sfs-ml-2.v29.lw.sourceforge.com)
+	by sfs-ml-2.v29.lw.sourceforge.com with esmtp (Exim 4.94.2)
 	(envelope-from <v9fs-developer-bounces@lists.sourceforge.net>)
-	id 1oAQaJ-0003Gu-Gr; Sun, 10 Jul 2022 06:38:26 +0000
+	id 1oAQgy-00020W-Og; Sun, 10 Jul 2022 06:45:21 +0000
 Received: from [172.30.20.202] (helo=mx.sourceforge.net)
- by sfs-ml-4.v29.lw.sourceforge.com with esmtps (TLS1.2) tls
+ by sfs-ml-2.v29.lw.sourceforge.com with esmtps (TLS1.2) tls
  TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384 (Exim 4.94.2)
- (envelope-from <tyhicks@linux.microsoft.com>) id 1oAQaH-0003Gn-TH
- for v9fs-developer@lists.sourceforge.net; Sun, 10 Jul 2022 06:38:24 +0000
+ (envelope-from <christophe.jaillet@wanadoo.fr>) id 1oAQgx-00020Q-2p
+ for v9fs-developer@lists.sourceforge.net; Sun, 10 Jul 2022 06:45:19 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=sourceforge.net; s=x; h=In-Reply-To:Content-Type:MIME-Version:References:
- Message-ID:Subject:Cc:To:From:Date:Sender:Reply-To:Content-Transfer-Encoding:
+ d=sourceforge.net; s=x; h=Content-Transfer-Encoding:Content-Type:In-Reply-To:
+ From:References:Cc:To:Subject:MIME-Version:Date:Message-ID:Sender:Reply-To:
  Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
  Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
  List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=VbG2aFZzOBvuXpefJTY7qkZ8KfcxF36UmtS/hmfYQsQ=; b=cZOoBCkEuKDLrSFt3TCZ529Nh2
- s8E1XVL5xZBj0903PkQK9rw9dJdGuyGfAcPrmcAUbqCQa6watgo9LO/e+XQinpjJSyUi5mBB6UPox
- Q8RRvuELOXjIjomVrhcUOnrHMY4aUm2nfSC8DMB+asvzI2sxWtIN3rssoX/97VnB9rq4=;
+ bh=SuxhVONG9quAbA4ZGLT2XDljoXjAptxAeH3M8Kl1+kk=; b=Tc2Y7xXVtZ2+K79MH5DviaN9JB
+ asAaPrC+tdlmrrIqHJEANw2U+vLFTvODsBhlChCcV+zVvPDsYBhoT1DN17HSRa9F9GRJIZUH5Q4h4
+ hbkA0c7qHjgQYoSihDpCEF2Wy1FLIjU7OKci/DjFn+7KOfMWgnoFx5zdsopJN28v8MY4=;
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  ;
- h=In-Reply-To:Content-Type:MIME-Version:References:Message-ID:Subject:Cc:To
- :From:Date:Sender:Reply-To:Content-Transfer-Encoding:Content-ID:
+ h=Content-Transfer-Encoding:Content-Type:In-Reply-To:From:References:Cc:To:
+ Subject:MIME-Version:Date:Message-ID:Sender:Reply-To:Content-ID:
  Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
  :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
  List-Post:List-Owner:List-Archive;
- bh=VbG2aFZzOBvuXpefJTY7qkZ8KfcxF36UmtS/hmfYQsQ=; b=YESW9EuARWPpRnQD+zRIbho96i
- 3At2BsiQAF2uSG9s8Cc01HuTmuJqavHGI174GlEQqTeeg1hrbSw1riGY8Phz3Icmwrg4EKify1B8J
- G9K2BaMXHq6NilC1GkVEKKbr7AYmNI9gCiHlphmOwgqLp3317j3uYr2PrrwYCIuEo4c0=;
-Received: from linux.microsoft.com ([13.77.154.182])
- by sfi-mx-1.v28.lw.sourceforge.com with esmtp (Exim 4.94.2)
- id 1oAQaF-00CZYg-Ti
- for v9fs-developer@lists.sourceforge.net; Sun, 10 Jul 2022 06:38:24 +0000
-Received: from sequoia (162-237-133-238.lightspeed.rcsntx.sbcglobal.net
- [162.237.133.238])
- by linux.microsoft.com (Postfix) with ESMTPSA id 2C094204C41E;
- Sat,  9 Jul 2022 23:38:12 -0700 (PDT)
-DKIM-Filter: OpenDKIM Filter v2.11.0 linux.microsoft.com 2C094204C41E
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linux.microsoft.com;
- s=default; t=1657435092;
- bh=VbG2aFZzOBvuXpefJTY7qkZ8KfcxF36UmtS/hmfYQsQ=;
- h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
- b=mfxJx3TxYOTNdcu6ZzlzIwcj/kAC2tn3u7SFCHQevr9PeeAfIUAOcVuu/ZJYwEfCp
- OFQcxvaeTh+VriuYMbDDHApIO+9qCUCWGuWsUWj+wNsdKU2XczmH9Z0LWMBJWHIj9b
- dDMCE9eeocGxbJdv0Op5pMEw6HP/M/n8tQFxa0+A=
-Date: Sun, 10 Jul 2022 01:38:08 -0500
-From: Tyler Hicks <tyhicks@linux.microsoft.com>
-To: Eric Van Hensbergen <ericvh@gmail.com>,
- Latchesar Ionkov <lucho@ionkov.net>,
+ bh=SuxhVONG9quAbA4ZGLT2XDljoXjAptxAeH3M8Kl1+kk=; b=MpbPODf5feOH2II1zbyFYnt/qk
+ Wk4WLSky9ChIutQ7nC6BuAd6K2fl7jFFOERt8kEjqP61jmvHZVrCBzFJAMVWGNkoKcp3prE+1HDTb
+ ow4s6Ou6KGkGSwE6fjJycm7jYbMxuatYw2c2W1IQ6bYs6SZhDYSvELrRmcPGu32GTsMM=;
+Received: from smtp02.smtpout.orange.fr ([80.12.242.124]
+ helo=smtp.smtpout.orange.fr)
+ by sfi-mx-2.v28.lw.sourceforge.com with esmtps
+ (TLS1.2:ECDHE-RSA-AES128-GCM-SHA256:128) (Exim 4.94.2)
+ id 1oAQgt-0001AI-Sg
+ for v9fs-developer@lists.sourceforge.net; Sun, 10 Jul 2022 06:45:19 +0000
+Received: from [192.168.1.18] ([90.11.190.129]) by smtp.orange.fr with ESMTPA
+ id AQgjoJcy1Zfs8AQgjo80s7; Sun, 10 Jul 2022 08:45:07 +0200
+X-ME-Helo: [192.168.1.18]
+X-ME-Auth: YWZlNiIxYWMyZDliZWIzOTcwYTEyYzlhMmU3ZiQ1M2U2MzfzZDfyZTMxZTBkMTYyNDBjNDJlZmQ3ZQ==
+X-ME-Date: Sun, 10 Jul 2022 08:45:07 +0200
+X-ME-IP: 90.11.190.129
+Message-ID: <311190f4-3eba-b2d2-1a5e-a00aad8d64dc@wanadoo.fr>
+Date: Sun, 10 Jul 2022 08:45:04 +0200
+MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.9.1
+Content-Language: en-US
+To: Tyler Hicks <tyhicks@linux.microsoft.com>,
+ Eric Van Hensbergen <ericvh@gmail.com>, Latchesar Ionkov <lucho@ionkov.net>,
  Dominique Martinet <asmadeus@codewreck.org>,
  Christian Schoenebeck <linux_oss@crudebyte.com>
-Message-ID: <20220710063808.GB272934@sequoia>
 References: <20220709200005.681861-1-tyhicks@linux.microsoft.com>
- <20220710062557.GA272934@sequoia>
-MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20220710062557.GA272934@sequoia>
-X-Spam-Score: -17.9 (-----------------)
-X-Spam-Report: Spam detection software,
- running on the system "util-spamd-1.v13.lw.sourceforge.com", 
+From: Christophe JAILLET <christophe.jaillet@wanadoo.fr>
+In-Reply-To: <20220709200005.681861-1-tyhicks@linux.microsoft.com>
+X-Spam-Score: -2.0 (--)
+X-Spam-Report: Spam detection software, running on the system "util-spamd-1.v13.lw.sourceforge.com",
  has NOT identified this incoming email as spam.  The original
  message has been attached to this so you can view it or label
  similar future email.  If you have any questions, see
  the administrator of that system for details.
- Content preview:  On 2022-07-10 01:26:13, Tyler Hicks wrote: > On 2022-07-09
- 15:00:05, Tyler Hicks wrote: > > Ensure that the fid's iounit field is set
- to zero when a new fid is > > created. Certain 9P operations, such [...] 
- Content analysis details:   (-17.9 points, 6.0 required)
- pts rule name              description
+ 
+ Content preview:  Le 09/07/2022 à 22:00, Tyler Hicks a écrit : > Ensure that
+    the fid's iounit field is set to zero when a new fid is > created. Certain
+    9P operations, such as OPEN and CREATE, allow the > server to r [...] 
+ 
+ Content analysis details:   (-2.0 points, 6.0 required)
+ 
+  pts rule name              description
  ---- ---------------------- --------------------------------------------------
- -2.3 RCVD_IN_DNSWL_MED      RBL: Sender listed at https://www.dnswl.org/,
- medium trust [13.77.154.182 listed in list.dnswl.org]
- -7.5 USER_IN_DEF_DKIM_WL    From: address is in the default DKIM
- welcome-list
- -0.0 SPF_HELO_PASS          SPF: HELO matches SPF record
- -7.5 USER_IN_DEF_SPF_WL     From: address is in the default SPF
- white-list
+ -0.0 RCVD_IN_DNSWL_NONE     RBL: Sender listed at https://www.dnswl.org/,
+                              no trust
+                             [80.12.242.124 listed in list.dnswl.org]
+ -0.0 RCVD_IN_MSPIKE_H2      RBL: Average reputation (+2)
+                             [80.12.242.124 listed in wl.mailspike.net]
+  0.0 SPF_HELO_NONE          SPF: HELO does not publish an SPF Record
  -0.0 SPF_PASS               SPF: sender matches SPF record
- -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
- 0.1 DKIM_SIGNED            Message has a DKIM or DK signature, not necessarily
- valid
- -0.1 DKIM_VALID_AU          Message has a valid DKIM or DK signature from
- author's domain
- -0.5 ENV_AND_HDR_SPF_MATCH  Env and Hdr From used in default SPF WL
- Match
-X-Headers-End: 1oAQaF-00CZYg-Ti
+ -2.0 NICE_REPLY_A           Looks like a legit reply (A)
+X-Headers-End: 1oAQgt-0001AI-Sg
 Subject: Re: [V9fs-developer] [PATCH] net/9p: Initialize the iounit field
  during fid creation
 X-BeenThere: v9fs-developer@lists.sourceforge.net
@@ -106,78 +98,61 @@ Cc: netdev@vger.kernel.org, linux-kernel@vger.kernel.org,
  Eric Dumazet <edumazet@google.com>, v9fs-developer@lists.sourceforge.net,
  Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
  "David S. Miller" <davem@davemloft.net>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="utf-8"; Format="flowed"
 Errors-To: v9fs-developer-bounces@lists.sourceforge.net
 
-On 2022-07-10 01:26:13, Tyler Hicks wrote:
-> On 2022-07-09 15:00:05, Tyler Hicks wrote:
-> > Ensure that the fid's iounit field is set to zero when a new fid is
-> > created. Certain 9P operations, such as OPEN and CREATE, allow the
-> > server to reply with an iounit size which the client code assigns to the
-> > fid struct shortly after the fid is created in p9_fid_create(). Other
-> > operations that follow a call to p9_fid_create(), such as an XATTRWALK,
-> > don't include an iounit value in the reply message from the server. In
-> > the latter case, the iounit field remained uninitialized. Depending on
-> > allocation patterns, the iounit value could have been something
-> > reasonable that was carried over from previously freed fids or, in the
-> > worst case, could have been arbitrary values from non-fid related usages
-> > of the memory location.
-> > 
-> > The bug was detected in the Windows Subsystem for Linux 2 (WSL2) kernel
-> > after the uninitialized iounit field resulted in the typical sequence of
-> > two getxattr(2) syscalls, one to get the size of an xattr and another
-> > after allocating a sufficiently sized buffer to fit the xattr value, to
-> > hit an unexpected ERANGE error in the second call to getxattr(2). An
-> > uninitialized iounit field would sometimes force rsize to be smaller
-> > than the xattr value size in p9_client_read_once() and the 9P server in
-> > WSL refused to chunk up the READ on the attr_fid and, instead, returned
-> > ERANGE to the client. The virtfs server in QEMU seems happy to chunk up
-> > the READ and this problem goes undetected there. However, there are
-> > likely other non-xattr implications of this bug that could cause
-> > inefficient communication between the client and server.
-
-^ I think this last sentence can be removed. I now believe that this
-only affects xattr get/set operations because nothing else calling the
-functions that honor iounit is getting the fid directly from a call to
-p9_fid_create().
-
-> > 
-
-Please add the following tag:
-
- Fixes: ebf46264a004 ("fs/9p: Add support user. xattr")
-
-I'm happy to do both of these things in a v2 if any changes/improvements
-are requested. Thanks!
-
-Tyler
-
-> > Cc: stable@vger.kernel.org
-> > Signed-off-by: Tyler Hicks <tyhicks@linux.microsoft.com>
-> > ---
-> > 
-> > Note that I haven't had a chance to identify when this bug was
-> > introduced so I don't yet have a proper Fixes tag. The history looked a
-> > little tricky to me but I'll have another look in the coming days. We
-> > started hitting this bug after trying to move from linux-5.10.y to
-> > linux-5.15.y but I didn't see any obvious changes between those two
-> > series. I'm not confident of this theory but perhaps the fid refcounting
-> > changes impacted the fid allocation patterns enough to uncover the
-> > latent bug?
-> 
-> From reading the source, I believe that this first showed up in commit
-> ebf46264a004 ("fs/9p: Add support user. xattr") which landed in v2.6.36.
-> Before that commit, p9_client_read(), p9_client_write(), and
-> p9_client_readdir() were always passed a fid that came from a file's
-> private_data and went through the open/create functions that initialized
-> iounit. That commit was the first that passed a fid directly from
-> p9_fid_create() to p9_client_read().
-> 
-> Tyler
-
-
-_______________________________________________
-V9fs-developer mailing list
-V9fs-developer@lists.sourceforge.net
-https://lists.sourceforge.net/lists/listinfo/v9fs-developer
+TGUgMDkvMDcvMjAyMiDDoCAyMjowMCwgVHlsZXIgSGlja3MgYSDDqWNyaXTCoDoKPiBFbnN1cmUg
+dGhhdCB0aGUgZmlkJ3MgaW91bml0IGZpZWxkIGlzIHNldCB0byB6ZXJvIHdoZW4gYSBuZXcgZmlk
+IGlzCj4gY3JlYXRlZC4gQ2VydGFpbiA5UCBvcGVyYXRpb25zLCBzdWNoIGFzIE9QRU4gYW5kIENS
+RUFURSwgYWxsb3cgdGhlCj4gc2VydmVyIHRvIHJlcGx5IHdpdGggYW4gaW91bml0IHNpemUgd2hp
+Y2ggdGhlIGNsaWVudCBjb2RlIGFzc2lnbnMgdG8gdGhlCj4gZmlkIHN0cnVjdCBzaG9ydGx5IGFm
+dGVyIHRoZSBmaWQgaXMgY3JlYXRlZCBpbiBwOV9maWRfY3JlYXRlKCkuIE90aGVyCj4gb3BlcmF0
+aW9ucyB0aGF0IGZvbGxvdyBhIGNhbGwgdG8gcDlfZmlkX2NyZWF0ZSgpLCBzdWNoIGFzIGFuIFhB
+VFRSV0FMSywKPiBkb24ndCBpbmNsdWRlIGFuIGlvdW5pdCB2YWx1ZSBpbiB0aGUgcmVwbHkgbWVz
+c2FnZSBmcm9tIHRoZSBzZXJ2ZXIuIEluCj4gdGhlIGxhdHRlciBjYXNlLCB0aGUgaW91bml0IGZp
+ZWxkIHJlbWFpbmVkIHVuaW5pdGlhbGl6ZWQuIERlcGVuZGluZyBvbgo+IGFsbG9jYXRpb24gcGF0
+dGVybnMsIHRoZSBpb3VuaXQgdmFsdWUgY291bGQgaGF2ZSBiZWVuIHNvbWV0aGluZwo+IHJlYXNv
+bmFibGUgdGhhdCB3YXMgY2FycmllZCBvdmVyIGZyb20gcHJldmlvdXNseSBmcmVlZCBmaWRzIG9y
+LCBpbiB0aGUKPiB3b3JzdCBjYXNlLCBjb3VsZCBoYXZlIGJlZW4gYXJiaXRyYXJ5IHZhbHVlcyBm
+cm9tIG5vbi1maWQgcmVsYXRlZCB1c2FnZXMKPiBvZiB0aGUgbWVtb3J5IGxvY2F0aW9uLgo+IAo+
+IFRoZSBidWcgd2FzIGRldGVjdGVkIGluIHRoZSBXaW5kb3dzIFN1YnN5c3RlbSBmb3IgTGludXgg
+MiAoV1NMMikga2VybmVsCj4gYWZ0ZXIgdGhlIHVuaW5pdGlhbGl6ZWQgaW91bml0IGZpZWxkIHJl
+c3VsdGVkIGluIHRoZSB0eXBpY2FsIHNlcXVlbmNlIG9mCj4gdHdvIGdldHhhdHRyKDIpIHN5c2Nh
+bGxzLCBvbmUgdG8gZ2V0IHRoZSBzaXplIG9mIGFuIHhhdHRyIGFuZCBhbm90aGVyCj4gYWZ0ZXIg
+YWxsb2NhdGluZyBhIHN1ZmZpY2llbnRseSBzaXplZCBidWZmZXIgdG8gZml0IHRoZSB4YXR0ciB2
+YWx1ZSwgdG8KPiBoaXQgYW4gdW5leHBlY3RlZCBFUkFOR0UgZXJyb3IgaW4gdGhlIHNlY29uZCBj
+YWxsIHRvIGdldHhhdHRyKDIpLiBBbgo+IHVuaW5pdGlhbGl6ZWQgaW91bml0IGZpZWxkIHdvdWxk
+IHNvbWV0aW1lcyBmb3JjZSByc2l6ZSB0byBiZSBzbWFsbGVyCj4gdGhhbiB0aGUgeGF0dHIgdmFs
+dWUgc2l6ZSBpbiBwOV9jbGllbnRfcmVhZF9vbmNlKCkgYW5kIHRoZSA5UCBzZXJ2ZXIgaW4KPiBX
+U0wgcmVmdXNlZCB0byBjaHVuayB1cCB0aGUgUkVBRCBvbiB0aGUgYXR0cl9maWQgYW5kLCBpbnN0
+ZWFkLCByZXR1cm5lZAo+IEVSQU5HRSB0byB0aGUgY2xpZW50LiBUaGUgdmlydGZzIHNlcnZlciBp
+biBRRU1VIHNlZW1zIGhhcHB5IHRvIGNodW5rIHVwCj4gdGhlIFJFQUQgYW5kIHRoaXMgcHJvYmxl
+bSBnb2VzIHVuZGV0ZWN0ZWQgdGhlcmUuIEhvd2V2ZXIsIHRoZXJlIGFyZQo+IGxpa2VseSBvdGhl
+ciBub24teGF0dHIgaW1wbGljYXRpb25zIG9mIHRoaXMgYnVnIHRoYXQgY291bGQgY2F1c2UKPiBp
+bmVmZmljaWVudCBjb21tdW5pY2F0aW9uIGJldHdlZW4gdGhlIGNsaWVudCBhbmQgc2VydmVyLgo+
+IAo+IENjOiBzdGFibGVAdmdlci5rZXJuZWwub3JnCj4gU2lnbmVkLW9mZi1ieTogVHlsZXIgSGlj
+a3MgPHR5aGlja3NAbGludXgubWljcm9zb2Z0LmNvbT4KPiAtLS0KPiAKPiBOb3RlIHRoYXQgSSBo
+YXZlbid0IGhhZCBhIGNoYW5jZSB0byBpZGVudGlmeSB3aGVuIHRoaXMgYnVnIHdhcwo+IGludHJv
+ZHVjZWQgc28gSSBkb24ndCB5ZXQgaGF2ZSBhIHByb3BlciBGaXhlcyB0YWcuIFRoZSBoaXN0b3J5
+IGxvb2tlZCBhCj4gbGl0dGxlIHRyaWNreSB0byBtZSBidXQgSSdsbCBoYXZlIGFub3RoZXIgbG9v
+ayBpbiB0aGUgY29taW5nIGRheXMuIFdlCj4gc3RhcnRlZCBoaXR0aW5nIHRoaXMgYnVnIGFmdGVy
+IHRyeWluZyB0byBtb3ZlIGZyb20gbGludXgtNS4xMC55IHRvCj4gbGludXgtNS4xNS55IGJ1dCBJ
+IGRpZG4ndCBzZWUgYW55IG9idmlvdXMgY2hhbmdlcyBiZXR3ZWVuIHRob3NlIHR3bwo+IHNlcmll
+cy4gSSdtIG5vdCBjb25maWRlbnQgb2YgdGhpcyB0aGVvcnkgYnV0IHBlcmhhcHMgdGhlIGZpZCBy
+ZWZjb3VudGluZwo+IGNoYW5nZXMgaW1wYWN0ZWQgdGhlIGZpZCBhbGxvY2F0aW9uIHBhdHRlcm5z
+IGVub3VnaCB0byB1bmNvdmVyIHRoZQo+IGxhdGVudCBidWc/Cj4gCj4gICBuZXQvOXAvY2xpZW50
+LmMgfCAxICsKPiAgIDEgZmlsZSBjaGFuZ2VkLCAxIGluc2VydGlvbigrKQo+IAo+IGRpZmYgLS1n
+aXQgYS9uZXQvOXAvY2xpZW50LmMgYi9uZXQvOXAvY2xpZW50LmMKPiBpbmRleCA4YmJhMGQ5Y2Y5
+NzUuLjFkZmNlYjkxNTRmNyAxMDA2NDQKPiAtLS0gYS9uZXQvOXAvY2xpZW50LmMKPiArKysgYi9u
+ZXQvOXAvY2xpZW50LmMKPiBAQCAtODk5LDYgKzg5OSw3IEBAIHN0YXRpYyBzdHJ1Y3QgcDlfZmlk
+ICpwOV9maWRfY3JlYXRlKHN0cnVjdCBwOV9jbGllbnQgKmNsbnQpCj4gICAJZmlkLT5jbG50ID0g
+Y2xudDsKPiAgIAlmaWQtPnJkaXIgPSBOVUxMOwo+ICAgCWZpZC0+ZmlkID0gMDsKPiArCWZpZC0+
+aW91bml0ID0gMDsKPiAgIAlyZWZjb3VudF9zZXQoJmZpZC0+Y291bnQsIDEpOwo+ICAgCj4gICAJ
+aWRyX3ByZWxvYWQoR0ZQX0tFUk5FTCk7CgpIaSwKeW91IGNvdWxkIGFsc28ga3phbGxvYyAnZmlk
+JyBhbmQgcmVtb3ZlIHRoZSBtZW1zZXQsICI9IE5VTEwiIGFuZCAiPSAwIi4KVGhpcyB3b3VsZCBi
+ZSBldmVuIG1vcmUgZnV0dXJlIHByb29mIGFuZCB3b3VsZCBzYXZlIHNvbWUgTG9DLgoKSnVzdCBt
+eSAyYywKCkNKCgoKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X18KVjlmcy1kZXZlbG9wZXIgbWFpbGluZyBsaXN0ClY5ZnMtZGV2ZWxvcGVyQGxpc3RzLnNvdXJj
+ZWZvcmdlLm5ldApodHRwczovL2xpc3RzLnNvdXJjZWZvcmdlLm5ldC9saXN0cy9saXN0aW5mby92
+OWZzLWRldmVsb3Blcgo=
