@@ -2,106 +2,105 @@ Return-Path: <v9fs-developer-bounces@lists.sourceforge.net>
 X-Original-To: lists+v9fs-developer@lfdr.de
 Delivered-To: lists+v9fs-developer@lfdr.de
 Received: from lists.sourceforge.net (lists.sourceforge.net [216.105.38.7])
-	by mail.lfdr.de (Postfix) with ESMTPS id A4D4456D6F8
-	for <lists+v9fs-developer@lfdr.de>; Mon, 11 Jul 2022 09:40:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id B869E570635
+	for <lists+v9fs-developer@lfdr.de>; Mon, 11 Jul 2022 16:52:06 +0200 (CEST)
 Received: from [127.0.0.1] (helo=sfs-ml-1.v29.lw.sourceforge.com)
 	by sfs-ml-1.v29.lw.sourceforge.com with esmtp (Exim 4.94.2)
 	(envelope-from <v9fs-developer-bounces@lists.sourceforge.net>)
-	id 1oAo1f-0008RG-Vw; Mon, 11 Jul 2022 07:40:15 +0000
+	id 1oAulW-0002sI-RH; Mon, 11 Jul 2022 14:52:02 +0000
 Received: from [172.30.20.202] (helo=mx.sourceforge.net)
  by sfs-ml-1.v29.lw.sourceforge.com with esmtps (TLS1.2) tls
- TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384 (Exim 4.94.2)
- (envelope-from <asmadeus@codewreck.org>) id 1oAo1e-0008R9-To
- for v9fs-developer@lists.sourceforge.net; Mon, 11 Jul 2022 07:40:14 +0000
+ TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384 (Exim 4.94.2) (envelope-from
+ <01070181edbe9e3a-0e3b01f7-2b22-4df0-a0c8-7ba8f58437c0-000000@eu-central-1.amazonses.com>)
+ id 1oAulV-0002rs-Vr
+ for v9fs-developer@lists.sourceforge.net; Mon, 11 Jul 2022 14:52:01 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=sourceforge.net; s=x; h=In-Reply-To:Content-Type:MIME-Version:References:
- Message-ID:Subject:Cc:To:From:Date:Sender:Reply-To:Content-Transfer-Encoding:
+ d=sourceforge.net; s=x; h=List-Unsubscribe:Content-Type:MIME-Version:To:
+ Reply-To:From:Subject:Date:Message-ID:Sender:Cc:Content-Transfer-Encoding:
  Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
- Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
- List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=4znMRb8yNMIL2ImNXJHHakTw5e86CC6v8rfhTcy+ZYY=; b=NCxyxZap+iLjBDuX4aQ71Nv9iP
- joZAN7T5uJSy49jEOKU7EqIiG8WBiM6CkUT59LXTOrTjS5cWzHRM0lO+QAvv0XIIfGRyGiuo00W/Y
- r+/ERH61sUQkDJZubYiswxF2BMOJoLG2jUAKDSu+jquHb9QgTRtaqlQmLyYurdKGpuEw=;
+ Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:List-Id:
+ List-Help:List-Subscribe:List-Post:List-Owner:List-Archive;
+ bh=MUjhlsK8myNzYCHRlqVSW8f0TgVOV36z6AMXyCGc0Go=; b=BWXeFq+UjOS2nJaB7/E4RDzjLW
+ exKxIA8mHKkOi986LqQV32ltPbo3FvXZLW6ArnAptnYEhI/dY4JMyKwP1l9Ne9U5vVC1hh2Q3O2Vt
+ 15MJFjljPCdiiPqFwxDUPGUdvxaBfxTJrho9/feceCFQnc9BZRSVJA96mw/aWM4oG5nI=;
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  ;
- h=In-Reply-To:Content-Type:MIME-Version:References:Message-ID:Subject:Cc:To
- :From:Date:Sender:Reply-To:Content-Transfer-Encoding:Content-ID:
- Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
- :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
- List-Post:List-Owner:List-Archive;
- bh=4znMRb8yNMIL2ImNXJHHakTw5e86CC6v8rfhTcy+ZYY=; b=cqxweDFLvNWPbO1qpVwkcGr/ym
- oUTue+DDup8WuUlMKXt47Tpm65YVrFWRiMR6x1/IHb1g0wkZUHD9etpBRkWGu8829rxu2oAYzkMRF
- 13XQ0eEmTT1ThdtFSKZXPnFT29G84cinGD5WQ6liFs+2dkwtzyd9wFamwwNf/nIL4GeA=;
-Received: from nautica.notk.org ([91.121.71.147])
+ h=List-Unsubscribe:Content-Type:MIME-Version:To:Reply-To:From:Subject:Date:
+ Message-ID:Sender:Cc:Content-Transfer-Encoding:Content-ID:Content-Description
+ :Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+ In-Reply-To:References:List-Id:List-Help:List-Subscribe:List-Post:List-Owner:
+ List-Archive; bh=MUjhlsK8myNzYCHRlqVSW8f0TgVOV36z6AMXyCGc0Go=; b=G5KPHuqrhpgI
+ nQ1pDgZrgmrVp4Zwj3KP4V7VsFvXYS+T6DNTmaTvB4iwl5a4UsPR1cs1NLv4IDOasjhWXZieO6T16
+ JxoyjexWWYtAY7CXpPo/FLCbDVsx28eF5/mBUA5kJPmGghwlROBofUd/K8YunPG1RMY8KYREH2RwO
+ b3cP4=;
+Received: from b227-249.smtp-out.eu-central-1.amazonses.com ([69.169.227.249])
  by sfi-mx-1.v28.lw.sourceforge.com with esmtps
- (TLS1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.94.2)
- id 1oAo1b-00DbDO-Ih
- for v9fs-developer@lists.sourceforge.net; Mon, 11 Jul 2022 07:40:14 +0000
-Received: by nautica.notk.org (Postfix, from userid 108)
- id 194E8C01F; Mon, 11 Jul 2022 09:40:05 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=codewreck.org; s=2;
- t=1657525205; bh=4znMRb8yNMIL2ImNXJHHakTw5e86CC6v8rfhTcy+ZYY=;
- h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
- b=0Hp+pjZdW6nvsDpQMwtbcZJsXG4UaF+GS8rGC4AeCNlM/agyHrpB3s+OyC4XivVD+
- zCrblT85F8a97htBCZ7V6w6XacakGklghoTZqzqUc7ZNuiy+y1Bu0yd5JHSwgtdpBy
- TXrWkJlk89SEWozd0l91LgwGLBfPlNMVy1PeQk6TzJWzpR60QMBDqqQWPgRsiMOPsb
- 3QC5RbGHhn9f4fe1pIkWBD7JCV4pBjHqRKfoBiPgYYY/uEtJSMwMw8U02LuZiHsWgn
- vaGV70wkJZT2xLQba66jPV/BE/CCG4KWnTFH8AxdsDykNzB70URPLFpJSQyvwuHyId
- jUUwEAkXOMwtw==
-X-Spam-Checker-Version: SpamAssassin 3.3.2 (2011-06-06) on nautica.notk.org
-X-Spam-Level: 
-X-Spam-Status: No, score=0.0 required=5.0 tests=UNPARSEABLE_RELAY
- autolearn=unavailable version=3.3.2
-Received: from odin.codewreck.org (localhost [127.0.0.1])
- by nautica.notk.org (Postfix) with ESMTPS id A6C79C009;
- Mon, 11 Jul 2022 09:40:00 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=codewreck.org; s=2;
- t=1657525204; bh=4znMRb8yNMIL2ImNXJHHakTw5e86CC6v8rfhTcy+ZYY=;
- h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
- b=APOSJV0WYbmBOmerpJvPFt0U+eh10sL0i+zdv7vzmc+EW0jRxUGJacQN7/3Rr/9iW
- Qt6ZNPhVMYkoXX0VXV2Om/asntBOqpgLoTH2CRKEQdF6VjL3qog2JLbGasmTzZ5l85
- tNG45gtzUEjVx6pBM6wrryisuqFJXXZSFA4p/ZTuO2pg7T/Szs6JjCnWaY7Oqtyna7
- fZhNEKYR4J764OWtaHk3wHhCk5Ze5s3ct67tfhdvX5hLxAkUKUFQ77OqDssV+EQK49
- yPohvHCZ4xhb9Pw3F0DQY5DyZ9+zfK53vJ4WsFSRv91L1hgyRtamHOPYB4bjcgpCnr
- Rnylswyj3je0Q==
-Received: from localhost (odin.codewreck.org [local])
- by odin.codewreck.org (OpenSMTPD) with ESMTPA id d9434db7;
- Mon, 11 Jul 2022 07:39:56 +0000 (UTC)
-Date: Mon, 11 Jul 2022 16:39:41 +0900
-From: asmadeus@codewreck.org
-To: Hangyu Hua <hbh25y@gmail.com>
-Message-ID: <YsvTvalrwd4bxO75@codewreck.org>
-References: <20220711065907.23105-1-hbh25y@gmail.com>
+ (TLS1.2:ECDHE-RSA-AES128-SHA256:128) (Exim 4.94.2)
+ id 1oAulR-00Ds0n-2S
+ for v9fs-developer@lists.sourceforge.net; Mon, 11 Jul 2022 14:52:01 +0000
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/simple;
+ s=6dycfttairtwnmbdpqj6xnhm6vx4dept; d=eko-trading.com;
+ t=1657551101;
+ h=Sender:Message-ID:Date:Subject:From:Reply-To:To:MIME-Version:Content-Type:List-Unsubscribe;
+ bh=lNnbKQcQdzHPoZ0EYbvy2U2gweD1r9bEZI4b8h6dAPM=;
+ b=bEzsowXOgzY32zx6qrRws4sPgdvNx720n8otjcfQJ1jHTEd0BI9qL5Vu5lR+A6BH
+ sKUtElBTKr4QXnBaqgpPTWeYCxQhadOeODc9WvYGKhN8hKjL7292EcY/3kjk8UGjmmy
+ aK7qLUnNPzdos7w3uTBaQs6GKrSfJUCddMg9lOx0=
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/simple;
+ s=54ecsf3zk7z4mwxwwox7z7bg6e5gwjsz; d=amazonses.com; t=1657551101;
+ h=Sender:Message-ID:Date:Subject:From:Reply-To:To:MIME-Version:Content-Type:List-Unsubscribe:Feedback-ID;
+ bh=lNnbKQcQdzHPoZ0EYbvy2U2gweD1r9bEZI4b8h6dAPM=;
+ b=LZQpsPAcubleDkPIaOTZHo0/Wk29LNWd98vqzsnwR7XWf4OjM0Bj13PipdG2QgU+
+ YhJ9kyagCs/4zFBnPW3FMHQY4S09joYerTwL255JH0AX4T5MDmARNIkrXX8f6esqjK6
+ 4YJExFq+7uUnw1YAwtjRBSDo0TG2PA2Kb8iRlq2s=
+Message-ID: <01070181edbe9e3a-0e3b01f7-2b22-4df0-a0c8-7ba8f58437c0-000000@eu-central-1.amazonses.com>
+Date: Mon, 11 Jul 2022 14:51:41 +0000
+From: Office <office@eko-trading.com>
+To: "" <v9fs-developer@lists.sourceforge.net>
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20220711065907.23105-1-hbh25y@gmail.com>
-X-Spam-Score: -0.2 (/)
-X-Spam-Report: Spam detection software,
- running on the system "util-spamd-1.v13.lw.sourceforge.com", 
+Feedback-ID: 1.eu-central-1.N8GLPrwMW4DEokEt/uX8R5Dj6lDs1dpqTZ0OFMrLAAo=:AmazonSES
+X-SES-Outgoing: 2022.07.11-69.169.227.249
+X-Spam-Score: 5.9 (+++++)
+X-Spam-Report: Spam detection software, running on the system "util-spamd-2.v13.lw.sourceforge.com",
  has NOT identified this incoming email as spam.  The original
  message has been attached to this so you can view it or label
  similar future email.  If you have any questions, see
  the administrator of that system for details.
- Content preview:  Hangyu Hua wrote on Mon, Jul 11, 2022 at 02:59:07PM +0800:
- > A ref got in p9_tag_lookup needs to be put when functions enter the > error
- path. > > Fix this by adding p9_req_put in error path. I wish it was that
- simple. Content analysis details:   (-0.2 points, 6.0 required)
- pts rule name              description
+ 
+ Content preview:  [Vizualizează asta în navigatorul tău.](https://ekogroup.com.ro?mailpoet_router&endpoint=track&action=click&data=WzE0MzAwNSwibmlxaWF6cXMzYjQ0MGNjZ2s0YzRrNDRzOG9jZ2NrYzQiLCIxNDkiLCIwODE1MzdhMTY2MjMi
+    [...] 
+ 
+ Content analysis details:   (5.9 points, 6.0 required)
+ 
+  pts rule name              description
  ---- ---------------------- --------------------------------------------------
- 0.0 SPF_HELO_NONE          SPF: HELO does not publish an SPF Record
+  0.2 HEADER_FROM_DIFFERENT_DOMAINS From and EnvelopeFrom 2nd level
+                             mail domains are different
+ -0.0 RCVD_IN_DNSWL_NONE     RBL: Sender listed at https://www.dnswl.org/,
+                              no trust
+                             [69.169.227.249 listed in list.dnswl.org]
+  0.0 SPF_HELO_NONE          SPF: HELO does not publish an SPF Record
  -0.0 SPF_PASS               SPF: sender matches SPF record
- -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
- -0.1 DKIM_VALID_EF          Message has a valid DKIM or DK signature from
- envelope-from domain
- 0.1 DKIM_SIGNED            Message has a DKIM or DK signature, not necessarily
- valid
+  1.7 URIBL_BLACK            Contains an URL listed in the URIBL blacklist
+                             [URIs: ekogroup.com.ro]
+  0.0 HTML_MESSAGE           BODY: HTML included in message
  -0.1 DKIM_VALID_AU          Message has a valid DKIM or DK signature from
- author's domain
- 0.0 UNPARSEABLE_RELAY      Informational: message has unparseable relay
- lines
-X-Headers-End: 1oAo1b-00DbDO-Ih
-Subject: Re: [V9fs-developer] [PATCH] net: 9p: fix possible refcount leak in
- p9_read_work() and recv_done()
+                             author's domain
+ -0.1 DKIM_VALID_EF          Message has a valid DKIM or DK signature from
+                             envelope-from domain
+  0.1 DKIM_SIGNED            Message has a DKIM or DK signature, not necessarily
+                             valid
+ -0.1 DKIM_VALID             Message has at least one valid DKIM or DK signature
+  2.0 PYZOR_CHECK            Listed in Pyzor
+                             (https://pyzor.readthedocs.io/en/latest/)
+ -0.0 T_SCC_BODY_TEXT_LINE   No description available.
+  0.0 T_KAM_HTML_FONT_INVALID Test for Invalidly Named or Formatted
+                             Colors in HTML
+  2.2 URI_WP_HACKED_2        URI for compromised WordPress site, possible
+                             malware
+X-Headers-End: 1oAulR-00Ds0n-2S
+X-Content-Filtered-By: Mailman/MimeDel 2.1.21
+Subject: [V9fs-developer] 335 euro/to wheat from Romania
 X-BeenThere: v9fs-developer@lists.sourceforge.net
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -113,87 +112,55 @@ List-Post: <mailto:v9fs-developer@lists.sourceforge.net>
 List-Help: <mailto:v9fs-developer-request@lists.sourceforge.net?subject=help>
 List-Subscribe: <https://lists.sourceforge.net/lists/listinfo/v9fs-developer>, 
  <mailto:v9fs-developer-request@lists.sourceforge.net?subject=subscribe>
-Cc: lucho@ionkov.net, ericvh@gmail.com, netdev@vger.kernel.org,
- linux_oss@crudebyte.com, linux-kernel@vger.kernel.org, edumazet@google.com,
- v9fs-developer@lists.sourceforge.net, kuba@kernel.org, tomasbortoli@gmail.com,
- pabeni@redhat.com, davem@davemloft.net
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Reply-To: Office <office@eko-trading.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: v9fs-developer-bounces@lists.sourceforge.net
 
-Hangyu Hua wrote on Mon, Jul 11, 2022 at 02:59:07PM +0800:
-> A ref got in p9_tag_lookup needs to be put when functions enter the
-> error path.
-> 
-> Fix this by adding p9_req_put in error path.
-
-I wish it was that simple.
-
-Did you actually observe a leak?
-
-> diff --git a/net/9p/trans_fd.c b/net/9p/trans_fd.c
-> index 8f8f95e39b03..c4ccb7b9e1bf 100644
-> --- a/net/9p/trans_fd.c
-> +++ b/net/9p/trans_fd.c
-> @@ -343,6 +343,7 @@ static void p9_read_work(struct work_struct *work)
->  			p9_debug(P9_DEBUG_ERROR,
->  				 "No recv fcall for tag %d (req %p), disconnecting!\n",
->  				 m->rc.tag, m->rreq);
-> +			p9_req_put(m->rreq);
->  			m->rreq = NULL;
->  			err = -EIO;
->  			goto error;
-> @@ -372,6 +373,8 @@ static void p9_read_work(struct work_struct *work)
->  				 "Request tag %d errored out while we were reading the reply\n",
->  				 m->rc.tag);
->  			err = -EIO;
-> +			p9_req_put(m->rreq);
-> +			m->rreq = NULL;
->  			goto error;
->  		}
->  		spin_unlock(&m->client->lock);
-
-
-for tcp, we still have that request in m->req_list, so we should be
-calling p9_client_cb which will do the p9_req_put in p9_conn_cancel.
-
-If you do it here, you'll get a refcount overflow and use after free.
-
-> diff --git a/net/9p/trans_rdma.c b/net/9p/trans_rdma.c
-> index 88e563826674..82b5d6894ee2 100644
-> --- a/net/9p/trans_rdma.c
-> +++ b/net/9p/trans_rdma.c
-> @@ -317,6 +317,7 @@ recv_done(struct ib_cq *cq, struct ib_wc *wc)
->  	/* Check that we have not yet received a reply for this request.
->  	 */
->  	if (unlikely(req->rc.sdata)) {
-> +		p9_req_put(req);
->  		pr_err("Duplicate reply for request %d", tag);
->  		goto err_out;
->  	}
-
-This one isn't as clear cut, I see that they put the client in a
-FLUSHING state but nothing seems to acton on it... But if this happens
-we're already in the use after free realm -- it means rc.sdata was
-already set so the other thread could be calling p9_client_cb anytime if
-it already hasn't, and yet another thread will then do the final ref put
-and free this.
-We shouldn't free this here as that would also be an overflow. The best
-possible thing to do at this point is just to stop using that pointer.
-
-
-If you actually run into a problem with these refcounts (should get a
-warning on umount that something didn't get freed) then by all mean
-let's look further into it, but please don't send such patches without
-testing the error paths you're "fixing" -- I'm pretty sure a reproducer
-to hit these paths would bark errors in dmesg as refcount has an
-overflow check.
-
---
-Dominique
-
-
-_______________________________________________
-V9fs-developer mailing list
-V9fs-developer@lists.sourceforge.net
-https://lists.sourceforge.net/lists/listinfo/v9fs-developer
+W1ZpenVhbGl6ZWF6xIMgYXN0YSDDrm4gbmF2aWdhdG9ydWwgdMSDdS5dKGh0dHBzOi8vZWtvZ3Jv
+dXAuY29tLnJvP21haWxwb2V0X3JvdXRlciZlbmRwb2ludD10cmFjayZhY3Rpb249Y2xpY2smZGF0
+YT1XekUwTXpBd05Td2libWx4YVdGNmNYTXpZalEwTUdOaloyczBZelJyTkRSek9HOWpaMk5yWXpR
+aUxDSXhORGtpTENJd09ERTFNemRoTVRZMk1qTWlMR1poYkhObFhRKQoKW0Zhcm1lcnNNYXJrZXQt
+VG9wXQoKW0NhcHR1cmHMhl9kZV9lY3Jhbl9kaW5fMjAyMi0wNy0wNV9sYV8xNC4zOC4zMy1yZW1v
+dmViZy1wcmV2aWV3XShodHRwczovL2Vrb2dyb3VwLmNvbS5ybz9tYWlscG9ldF9yb3V0ZXImZW5k
+cG9pbnQ9dHJhY2smYWN0aW9uPWNsaWNrJmRhdGE9V3pFME16QXdOU3dpYm1seGFXRjZjWE16WWpR
+ME1HTmpaMnMwWXpSck5EUnpPRzlqWjJOcll6UWlMQ0l4TkRraUxDSmlZak5oTmpWak1EUmtObU1p
+TEdaaGJITmxYUSkKCltDYXB0dXJhzIYgZGUgZWNyYW4gZGluIDIwMjItMDctMDUgbGEgMDguNTgu
+MDNdKGh0dHBzOi8vZWtvZ3JvdXAuY29tLnJvP21haWxwb2V0X3JvdXRlciZlbmRwb2ludD10cmFj
+ayZhY3Rpb249Y2xpY2smZGF0YT1XekUwTXpBd05Td2libWx4YVdGNmNYTXpZalEwTUdOaloyczBZ
+elJyTkRSek9HOWpaMk5yWXpRaUxDSXhORGtpTENJd05EbGpOVGN6T0RkbVpqQWlMR1poYkhObFhR
+KQoKW0NhcHR1cmHMhiBkZSBlY3JhbiBkaW4gMjAyMi0wNy0wNiBsYSAwOS4zOC41MV0oaHR0cHM6
+Ly9la29ncm91cC5jb20ucm8/bWFpbHBvZXRfcm91dGVyJmVuZHBvaW50PXRyYWNrJmFjdGlvbj1j
+bGljayZkYXRhPVd6RTBNekF3TlN3aWJtbHhhV0Y2Y1hNellqUTBNR05qWjJzMFl6UnJORFJ6T0c5
+aloyTnJZelFpTENJeE5Ea2lMQ0ppWWpOaE5qVmpNRFJrTm1NaUxHWmhiSE5sWFEpCgpBcyB5b3Ug
+d2VsbCBrbm93LFJvbWFuaWEgaXMgYSBjb3VudHJ5IHdpdGggZXh0cmVtZWx5IG1hbnlyZXNvdXJj
+ZXNhbmQgd2Ugd2FudCB0byBkZXZlbG9wIGxvbmctdGVybSBwYXJ0bmVyc2hpcHMgd2l0aCBjb3Vu
+dHJpZXMgdGhhdCBjYW4gaGVscCBkZXZlbG9wIFJvbWFuaWFuIGV4cG9ydHMuCk91ciBjb21wYW55
+IGlzIG9uZSBvZiB0aGUgbGVhZGVycyBvbiB0aGUgdHJhZGUgbWFya2V0IGluIFJvbWFuaWEgYW5k
+IHdlIHdhbnQgdG8gZGV2ZWxvcCBsb25nLXRlcm0gcGFydG5lcnNoaXBzIHdpdGggYXMgbWFueSBj
+b3VudHJpZXMgaW4gdGhlIHdvcmxkIGFzIHBvc3NpYmxlLgpJbiB0aGlzIHNlbnNlLCB3ZSB3YW50
+IHRvIGluZm9ybSB5b3Ugb2Ygb3VyIG9mZmVycyBvZiBSb21hbmlhbiBwcm9kdWN0cyBhdmFpbGFi
+bGUgaW1tZWRpYXRlbHkuCgpFS08gVU5JVEVEIElOVkVTVE1FTlQKX19fX19fXwoKU3RyZWV0IEVt
+aWwgUGFuZ3JhdHRpLCBuby4xMCArNCAwNzU3IDc3IDI4IDI4Cm9mZmljZUBla28tdHJhZGluZy5j
+b20KCltmYWNlYm9va10oaHR0cHM6Ly9la29ncm91cC5jb20ucm8/bWFpbHBvZXRfcm91dGVyJmVu
+ZHBvaW50PXRyYWNrJmFjdGlvbj1jbGljayZkYXRhPVd6RTBNekF3TlN3aWJtbHhhV0Y2Y1hNellq
+UTBNR05qWjJzMFl6UnJORFJ6T0c5aloyTnJZelFpTENJeE5Ea2lMQ0poWkdNMU9HSm1OMlF5WVdV
+aUxHWmhiSE5sWFEpIFtpbnN0YWdyYW1dKGh0dHBzOi8vZWtvZ3JvdXAuY29tLnJvP21haWxwb2V0
+X3JvdXRlciZlbmRwb2ludD10cmFjayZhY3Rpb249Y2xpY2smZGF0YT1XekUwTXpBd05Td2libWx4
+YVdGNmNYTXpZalEwTUdOaloyczBZelJyTkRSek9HOWpaMk5yWXpRaUxDSXhORGtpTENKbE9EbGta
+VGt6TkdObVlqZ2lMR1poYkhObFhRKQpbVW5zY3JpYmVdKGh0dHBzOi8vZWtvZ3JvdXAuY29tLnJv
+P21haWxwb2V0X3JvdXRlciZlbmRwb2ludD10cmFjayZhY3Rpb249Y2xpY2smZGF0YT1XekUwTXpB
+d05Td2libWx4YVdGNmNYTXpZalEwTUdOaloyczBZelJyTkRSek9HOWpaMk5yWXpRaUxDSXhORGtp
+TENKalpqWTNPREpsTXpobU1EWWlMR1poYkhObFhRKSB8IE1hbmFnZSB5b3VyIHN1YnNjcmlwdGlv
+bltsXShodHRwczovL2Vrb2dyb3VwLmNvbS5ybz9tYWlscG9ldF9yb3V0ZXImZW5kcG9pbnQ9dHJh
+Y2smYWN0aW9uPWNsaWNrJmRhdGE9V3pFME16QXdOU3dpYm1seGFXRjZjWE16WWpRME1HTmpaMnMw
+WXpSck5EUnpPRzlqWjJOcll6UWlMQ0l4TkRraUxDSTBaak13TjJObFpURTJNRFlpTEdaaGJITmxY
+USkKQWRkIHlvdXIgZW1haWwgYWRyZXNzIGhlcmUhCl9fX19fX18KCkNvcHlyaWdodCDCqSAyMDIy
+IHd3dy5la29ncm91cC5ybywgQWxsIHJpZ2h0cyByZXNlcnZlZC4KCltGYXJtZXJzTWFya2V0LUJv
+dHRvbV0KCltNYWlsUG9ldF0oaHR0cHM6Ly9la29ncm91cC5jb20ucm8/bWFpbHBvZXRfcm91dGVy
+JmVuZHBvaW50PXRyYWNrJmFjdGlvbj1jbGljayZkYXRhPVd6RTBNekF3TlN3aWJtbHhhV0Y2Y1hN
+ellqUTBNR05qWjJzMFl6UnJORFJ6T0c5aloyTnJZelFpTENJeE5Ea2lMQ0l5TUdNNVkyWTJNamN6
+TURraUxHWmhiSE5sWFEpCgpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fXwpWOWZzLWRldmVsb3BlciBtYWlsaW5nIGxpc3QKVjlmcy1kZXZlbG9wZXJAbGlzdHMu
+c291cmNlZm9yZ2UubmV0Cmh0dHBzOi8vbGlzdHMuc291cmNlZm9yZ2UubmV0L2xpc3RzL2xpc3Rp
+bmZvL3Y5ZnMtZGV2ZWxvcGVyCg==
