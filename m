@@ -2,81 +2,77 @@ Return-Path: <v9fs-developer-bounces@lists.sourceforge.net>
 X-Original-To: lists+v9fs-developer@lfdr.de
 Delivered-To: lists+v9fs-developer@lfdr.de
 Received: from lists.sourceforge.net (lists.sourceforge.net [216.105.38.7])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3F08057121B
-	for <lists+v9fs-developer@lfdr.de>; Tue, 12 Jul 2022 08:07:05 +0200 (CEST)
-Received: from [127.0.0.1] (helo=sfs-ml-1.v29.lw.sourceforge.com)
-	by sfs-ml-1.v29.lw.sourceforge.com with esmtp (Exim 4.94.2)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0D46157121D
+	for <lists+v9fs-developer@lfdr.de>; Tue, 12 Jul 2022 08:08:21 +0200 (CEST)
+Received: from [127.0.0.1] (helo=sfs-ml-4.v29.lw.sourceforge.com)
+	by sfs-ml-4.v29.lw.sourceforge.com with esmtp (Exim 4.94.2)
 	(envelope-from <v9fs-developer-bounces@lists.sourceforge.net>)
-	id 1oB92z-0004SW-Nb; Tue, 12 Jul 2022 06:07:01 +0000
+	id 1oB94G-0001uY-Oq; Tue, 12 Jul 2022 06:08:19 +0000
 Received: from [172.30.20.202] (helo=mx.sourceforge.net)
- by sfs-ml-1.v29.lw.sourceforge.com with esmtps (TLS1.2) tls
+ by sfs-ml-4.v29.lw.sourceforge.com with esmtps (TLS1.2) tls
  TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384 (Exim 4.94.2)
- (envelope-from <asmadeus@codewreck.org>) id 1oB92x-0004SN-Iq
- for v9fs-developer@lists.sourceforge.net; Tue, 12 Jul 2022 06:06:59 +0000
+ (envelope-from <asmadeus@codewreck.org>) id 1oB94F-0001uR-TS
+ for v9fs-developer@lists.sourceforge.net; Tue, 12 Jul 2022 06:08:18 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=sourceforge.net; s=x; h=In-Reply-To:Content-Type:MIME-Version:References:
- Message-ID:Subject:Cc:To:From:Date:Sender:Reply-To:Content-Transfer-Encoding:
- Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
- Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
+ d=sourceforge.net; s=x; h=Content-Transfer-Encoding:MIME-Version:Message-Id:
+ Date:Subject:Cc:To:From:Sender:Reply-To:Content-Type:Content-ID:
+ Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
+ :Resent-Message-ID:In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:
  List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=Oei6nGCRVDIFiTLCYzG4olbX/seA/soTnXGc+IcXkbA=; b=HqLzTESr54pVIOUEkaWRYYyB4h
- YK9Yw1uacfrr+ZhGeIbWGRDcSdJbULyyVAr4jJ3PKktIkalYZC9wN6TwveSCz+6caYHzz5tJw+Jb8
- vNqCcoIG/IkiJLDPOWYjMPGIsqNsFKA1EJ3HSZvr5xzAn8PLBewItTLGuvO6TqFS++fc=;
+ bh=9+XgDA8aWAEcz20Xcn07UDCWgT83/Dl/PKDwXTfq7bA=; b=DmBNQUoL1AOXXtLraLU3iKg7MS
+ kx/VkMzrEaPQ13ODdEKTSi/NTfmvqNdwFwV+JVmu0nbXl/SsQiH/hNokz6VNbjXewgtRS5uBotvPM
+ 4dKxH8VT/cVFAakH67z1n8xuz65qywoDrtDfNGEkVu/MzWU7mmTbNLQmKpzDFc5IDYlU=;
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  ;
- h=In-Reply-To:Content-Type:MIME-Version:References:Message-ID:Subject:Cc:To
- :From:Date:Sender:Reply-To:Content-Transfer-Encoding:Content-ID:
- Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
- :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
- List-Post:List-Owner:List-Archive;
- bh=Oei6nGCRVDIFiTLCYzG4olbX/seA/soTnXGc+IcXkbA=; b=LGH9FrpGX4T170+AU4Ggy898yO
- CetMfQxubihPjnfn8TFm1nPuEFKzmvNQYbuOz88YbjytZ7lPLTS4kR6R62UUvCJf20kGKy2rEUaOO
- hhuzrgR8QXFw96VGWQZcrLVAnZrhkEMwf9E9k3dvCztE8aCUECwea8qQlMMJT9wOuWvA=;
+ h=Content-Transfer-Encoding:MIME-Version:Message-Id:Date:Subject:Cc:To:From
+ :Sender:Reply-To:Content-Type:Content-ID:Content-Description:Resent-Date:
+ Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:
+ References:List-Id:List-Help:List-Unsubscribe:List-Subscribe:List-Post:
+ List-Owner:List-Archive; bh=9+XgDA8aWAEcz20Xcn07UDCWgT83/Dl/PKDwXTfq7bA=; b=l
+ t3BFluc0qmoAbS3rzHGaTBWRaWsPMMtEYnS07dUjGZV0LPeMNdwp0AEp/eH0t/JcjOLpfsFf4+zwB
+ jWxtUtPbE5U0qIo3F7lQFG0i+J2MiSfL7PTNl20EpmSP9BWu4NH0yEi/jVdeng2rC9bwrTN+swVSD
+ 8lmR/UpHKJIY4UOs=;
 Received: from nautica.notk.org ([91.121.71.147])
  by sfi-mx-2.v28.lw.sourceforge.com with esmtps
  (TLS1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.94.2)
- id 1oB92u-0006gu-Bx
- for v9fs-developer@lists.sourceforge.net; Tue, 12 Jul 2022 06:06:59 +0000
+ id 1oB94C-0006kK-HZ
+ for v9fs-developer@lists.sourceforge.net; Tue, 12 Jul 2022 06:08:18 +0000
 Received: by nautica.notk.org (Postfix, from userid 108)
- id 51545C01F; Tue, 12 Jul 2022 08:06:49 +0200 (CEST)
+ id 33112C009; Tue, 12 Jul 2022 08:08:10 +0200 (CEST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=codewreck.org; s=2;
- t=1657606009; bh=Oei6nGCRVDIFiTLCYzG4olbX/seA/soTnXGc+IcXkbA=;
- h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
- b=Nw8anNgxe4VAdmnH1L9hXpyoFSiGLVvs7e6r0fUnWdSCtAwWO49kyYCUBj6Y5/Kd4
- HOzYdqtsh/OjGKF8YNOuvTS8sFALGHGN+CYX1utKfW5KfNpinJP1jx2DKZvioj2k6w
- /u7U8OASYLOh0ciXsOvg0KPI6gqado33BkmDHVUvybydEe/lXFgwAzs4u5rSmkl6hA
- qjwUbT6BsaTiBnPViMBGHTxiVJzAtx5s7RON7OdK2zqFMqcEKzity2cEHSBoufBq0B
- U8PNJjR1Y1MyveOi1EBsrNWNuY1phpt6Ks/vCJrXt7Qm/0RLQ4DNiiE96eqMNI2v3v
- 432JnLmF6XyYw==
+ t=1657606090; bh=9+XgDA8aWAEcz20Xcn07UDCWgT83/Dl/PKDwXTfq7bA=;
+ h=From:To:Cc:Subject:Date:From;
+ b=L5kJxndVBPk5Zf0sJvmpBEboBn8r9ptn8bRN1E2p7AqeegeZDm3GkVSHk0Sa61d6u
+ ChQFLWkpdG+Kqw0zuPn7qobM28O0imzbCDI8656r3wjGVKs0E/H53Q4WukZjjKEU0G
+ eEb9WNKYXddWqpuhIAeIgyEaLRu1x/lS2SgKB2U62dNDehVwOsFM/OH26fsr0pTCa2
+ Bn2Ph0qEY1c5yUO0uaHOhXEnDm9wZgisL0THLUeBj+clCCpl9bjPgZyBXA1dcw++dW
+ HTXltm4HqtTs3Z9mWPlqsHVzcMLZ1j3kLi7Bo9Dy0RBfSy3FXp+YUQutu3wxdFd0Wf
+ OyVSmj8V98EQw==
 X-Spam-Checker-Version: SpamAssassin 3.3.2 (2011-06-06) on nautica.notk.org
 X-Spam-Level: 
 X-Spam-Status: No, score=0.0 required=5.0 tests=UNPARSEABLE_RELAY
  autolearn=unavailable version=3.3.2
 Received: from odin.codewreck.org (localhost [127.0.0.1])
- by nautica.notk.org (Postfix) with ESMTPS id 5F191C009;
- Tue, 12 Jul 2022 08:06:44 +0200 (CEST)
+ by nautica.notk.org (Postfix) with ESMTPS id 57A83C009;
+ Tue, 12 Jul 2022 08:08:06 +0200 (CEST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=codewreck.org; s=2;
- t=1657606008; bh=Oei6nGCRVDIFiTLCYzG4olbX/seA/soTnXGc+IcXkbA=;
- h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
- b=3B3RrEAEVAJkX7uuNdvc44x4wrAh3AA7NTxwiPicFYXICpCTUE22X7JCfauJZ+J2y
- ZM66sIDqK5U52pMU1OTYhUyqXk6whOc5pnHKl6lrQP71VU8aavtp8P0f/dDGIEzTTR
- NPINWN90iNavo0XGruqu1qeyxPT1CTl5BEiTU0KzOK3xs+HoWt8y46z9k7X1xe2Q+h
- 7XybKi8tFU+P5N9nFxgXfs0+tdALfH/aWA607NUUpTQIGVUYEAi4f26llYSFGru4Ly
- sl0yFFSTnrlUtw7OeIHnWN5iuHFmALG9kUNqdUUsnxzgs0uWvQqy6UvrntrIvxzs+g
- pT9ZJi0Bm1ZAA==
+ t=1657606088; bh=9+XgDA8aWAEcz20Xcn07UDCWgT83/Dl/PKDwXTfq7bA=;
+ h=From:To:Cc:Subject:Date:From;
+ b=Ly9wAtHvcFz7jfnu6W+TQMzRrBNhI7E9VBj4cNdxd2Z/LX4/eUBkhQG3amc4piIzD
+ +Z3sXB05r4XQCa0L3VmZSB4mKCgi0Rdj3bIJBqMsOkZxjNuHKXtfeHtTc/eVMugIxp
+ zIx19toxDfgaciRPsCeTESxU7VPfyC7zjNiCeT7WhdzUxe8Dta9+T7uFCN5M2e+9Nu
+ pKZ0l1zGVQHLl5zy5RunH2PTGI36AkAnoBbx2hv1T1RSHKtA3gFgSFdEhAD2b9+0gi
+ eCQUNlMvDYwnKeKYle03IOPPD76TdDD1UzKJjeEdTWj4uTORjQzoGjO18gz5yV+wOj
+ CYSAzdSVwPrBQ==
 Received: from localhost (odin.codewreck.org [local])
- by odin.codewreck.org (OpenSMTPD) with ESMTPA id f581a640;
- Tue, 12 Jul 2022 06:06:40 +0000 (UTC)
-Date: Tue, 12 Jul 2022 15:06:25 +0900
-From: asmadeus@codewreck.org
-To: Hangyu Hua <hbh25y@gmail.com>
-Message-ID: <Ys0PYaD7x7InUpc+@codewreck.org>
-References: <20220711065907.23105-1-hbh25y@gmail.com>
- <YsvTvalrwd4bxO75@codewreck.org>
- <f68df7cf-4b72-4c01-9492-103fa67c5e99@gmail.com>
+ by odin.codewreck.org (OpenSMTPD) with ESMTPA id 3a0d9e5f;
+ Tue, 12 Jul 2022 06:08:03 +0000 (UTC)
+From: Dominique Martinet <asmadeus@codewreck.org>
+To: v9fs-developer@lists.sourceforge.net
+Date: Tue, 12 Jul 2022 15:08:01 +0900
+Message-Id: <20220712060801.2487140-1-asmadeus@codewreck.org>
+X-Mailer: git-send-email 2.36.1
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <f68df7cf-4b72-4c01-9492-103fa67c5e99@gmail.com>
 X-Spam-Score: -0.2 (/)
 X-Spam-Report: Spam detection software,
  running on the system "util-spamd-1.v13.lw.sourceforge.com", 
@@ -84,10 +80,13 @@ X-Spam-Report: Spam detection software,
  message has been attached to this so you can view it or label
  similar future email.  If you have any questions, see
  the administrator of that system for details.
- Content preview:  Hangyu Hua wrote on Tue, Jul 12, 2022 at 11:24:36AM +0800:
- > That's a little weird. If you are right, the three return paths of this
- > function are inconsistent with the handling of refcount. > > stat [...]
- Content analysis details:   (-0.2 points, 6.0 required)
+ Content preview: mempool prep commit removed the awkward kref usage which
+ didn't
+ allow passing client pointer easily with the ref, so we no longer need a
+ separate function to remove the tag from idr. This has the side benefit that
+ it should be more robust in detecting leaks: umount will now properly catch
+ unfreed requests as they still will be in the idr until the last ref is
+ dropped Content analysis details:   (-0.2 points, 6.0 required)
  pts rule name              description
  ---- ---------------------- --------------------------------------------------
  0.0 SPF_HELO_NONE          SPF: HELO does not publish an SPF Record
@@ -101,9 +100,8 @@ X-Spam-Report: Spam detection software,
  author's domain
  0.0 UNPARSEABLE_RELAY      Informational: message has unparseable relay
  lines
-X-Headers-End: 1oB92u-0006gu-Bx
-Subject: Re: [V9fs-developer] [PATCH] net: 9p: fix possible refcount leak in
- p9_read_work() and recv_done()
+X-Headers-End: 1oB94C-0006kK-HZ
+Subject: [V9fs-developer] [PATCH] 9p: roll p9_tag_remove into p9_req_put
 X-BeenThere: v9fs-developer@lists.sourceforge.net
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -115,171 +113,498 @@ List-Post: <mailto:v9fs-developer@lists.sourceforge.net>
 List-Help: <mailto:v9fs-developer-request@lists.sourceforge.net?subject=help>
 List-Subscribe: <https://lists.sourceforge.net/lists/listinfo/v9fs-developer>, 
  <mailto:v9fs-developer-request@lists.sourceforge.net?subject=subscribe>
-Cc: lucho@ionkov.net, ericvh@gmail.com, netdev@vger.kernel.org,
- linux_oss@crudebyte.com, linux-kernel@vger.kernel.org, edumazet@google.com,
- v9fs-developer@lists.sourceforge.net, kuba@kernel.org, tomasbortoli@gmail.com,
- pabeni@redhat.com, davem@davemloft.net
+Cc: Christian Schoenebeck <linux_oss@crudebyte.com>,
+ linux-kernel@vger.kernel.org, Hangyu Hua <hbh25y@gmail.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: v9fs-developer-bounces@lists.sourceforge.net
 
-Hangyu Hua wrote on Tue, Jul 12, 2022 at 11:24:36AM +0800:
-> That's a little weird. If you are right, the three return paths of this
-> function are inconsistent with the handling of refcount.
-> 
-> static void p9_read_work(struct work_struct *work)
-> {
-> ...
-> 	if ((m->rreq) && (m->rc.offset == m->rc.capacity)) {
-> 		p9_debug(P9_DEBUG_TRANS, "got new packet\n");
-> 		m->rreq->rc.size = m->rc.offset;
-> 		spin_lock(&m->client->lock);
-> 		if (m->rreq->status == REQ_STATUS_SENT) {
-> 			list_del(&m->rreq->req_list);
-> 			p9_client_cb(m->client, m->rreq, REQ_STATUS_RCVD);	<---- [1]
-> 		} else if (m->rreq->status == REQ_STATUS_FLSHD) {
-> 			/* Ignore replies associated with a cancelled request. */
-> 			p9_debug(P9_DEBUG_TRANS,
-> 				 "Ignore replies associated with a cancelled request\n");	<---- [2]
-> 		} else {
-> 			spin_unlock(&m->client->lock);
-> 			p9_debug(P9_DEBUG_ERROR,
-> 				 "Request tag %d errored out while we were reading the reply\n",
-> 				 m->rc.tag);
-> 			err = -EIO;
-> 			goto error;	<---- [3]
-> 		}
-> 		spin_unlock(&m->client->lock);
-> 		m->rc.sdata = NULL;
-> 		m->rc.offset = 0;
-> 		m->rc.capacity = 0;
-> 		p9_req_put(m->rreq);	<---- [4]
-> 		m->rreq = NULL;
-> 	}
-> ...
-> error:
-> 	p9_conn_cancel(m, err);		<---- [5]
-> 	clear_bit(Rworksched, &m->wsched);
-> }
-> 
-> There are three return paths here, [1] and [2] and [3].
-> [1]: m->rreq will be put twice in [1] and [4]. And m->rreq will be deleted
-> from the m->req_list in [1].
-> 
-> [2]: m->rreq will be put in [4]. And m->rreq will not be deleted from
-> m->req_list.
+mempool prep commit removed the awkward kref usage which didn't
+allow passing client pointer easily with the ref, so we no longer
+need a separate function to remove the tag from idr.
 
-when req status got put to FLUSHD the req was dropped from the list
-already and put in p9_fd_cancel, so we shouldn't put it here.
+This has the side benefit that it should be more robust in detecting
+leaks: umount will now properly catch unfreed requests as they still
+will be in the idr until the last ref is dropped
 
-> [3]: m->rreq will be put in [5]. And m->rreq will be deleted from the
-> m->req_list in [5].
-
-On this error case I really can't say anything: it depends on how the
-req got in this state in the first place -- more precisely is it still
-in req_list or not?
-
-But even if it is and we leak it here, we return an error here, so the
-connection will be marked as disconnected and won't be usable anymore.
-The memory will be freed when the user umounts after that.
-
-If we took the time to re-init the rreq->req_list everytime we could
-check if it's empty (don't think we can rely on it being poisoned), but
-I just don't think it's worth it: it's better to consume a bit more
-memory until umount than to risk a UAF.
-
-(note: while writing this I noticed p9_tag_cleanup() in
-p9_client_destroy() only tracks requests still in the idr, so doesn't
-work for requests that went through p9_tag_remove().
-We don't need p9_tag_remove() anymore so I've just gotten rid of it and
-we will catch these now)
+Signed-off-by: Dominique Martinet <asmadeus@codewreck.org>
+---
+Discussion with Hangyu Hua made me notice we don't warn on all leaks on
+umount, we can make this more coherent.
+The patche requires Kent's first two cosmetic patches to apply, please use
+my 9p-next branch for testing:
+https://github.com/martinetd/linux/commits/9p-next
 
 
-> If p9_tag_lookup keep the refcount of req which is in m->req_list. There
-> will be a double put in return path [1] and a potential UAF in return path
-> [2]. And this also means a req in m->req_list without getting refcount
-> before p9_tag_lookup.
+ net/9p/client.c   | 122 +++++++++++++++++++++-------------------------
+ net/9p/trans_fd.c |   2 +
+ 2 files changed, 58 insertions(+), 66 deletions(-)
 
-That is the nominal path, we'd notice immediately if there are too many
-puts there.
-A request is initialized with two refs so that we can have one for the
-transport ((a), for fd, "is the request tracked in a list?") and one for
-the main thread ((b), p9_client_rpc which will put it at the end)
-Then you get a third ref from p9_tag_lookup that I was forgetting about,
-(c).
+diff --git a/net/9p/client.c b/net/9p/client.c
+index 0be19ab1f693..9aaef9c90666 100644
+--- a/net/9p/client.c
++++ b/net/9p/client.c
+@@ -298,7 +298,7 @@ p9_tag_alloc(struct p9_client *c, int8_t type, unsigned int max_size)
+ 	/* Init ref to two because in the general case there is one ref
+ 	 * that is put asynchronously by a writer thread, one ref
+ 	 * temporarily given by p9_tag_lookup and put by p9_client_cb
+-	 * in the recv thread, and one ref put by p9_tag_remove in the
++	 * in the recv thread, and one ref put by p9_req_put in the
+ 	 * main thread. The only exception is virtio that does not use
+ 	 * p9_tag_lookup but does not have a writer thread either
+ 	 * (the write happens synchronously in the request/zc_request
+@@ -351,28 +351,18 @@ struct p9_req_t *p9_tag_lookup(struct p9_client *c, u16 tag)
+ }
+ EXPORT_SYMBOL(p9_tag_lookup);
+ 
+-/**
+- * p9_tag_remove - Remove a tag.
+- * @c: Client session.
+- * @r: Request of reference.
+- *
+- * Context: Any context.
+- */
+-static int p9_tag_remove(struct p9_client *c, struct p9_req_t *r)
+-{
+-	unsigned long flags;
+-	u16 tag = r->tc.tag;
+-
+-	p9_debug(P9_DEBUG_MUX, "clnt %p req %p tag: %d\n", c, r, tag);
+-	spin_lock_irqsave(&c->lock, flags);
+-	idr_remove(&c->reqs, tag);
+-	spin_unlock_irqrestore(&c->lock, flags);
+-	return p9_req_put(c, r);
+-}
+-
+ int p9_req_put(struct p9_client *c, struct p9_req_t *r)
+ {
+ 	if (refcount_dec_and_test(&r->refcount)) {
++		unsigned long flags;
++		u16 tag = r->tc.tag;
++
++		p9_debug(P9_DEBUG_MUX, "freeing clnt %p req %p tag: %d\n", c, r, tag);
++
++		spin_lock_irqsave(&c->lock, flags);
++		idr_remove(&c->reqs, tag);
++		spin_unlock_irqrestore(&c->lock, flags);
++
+ 		p9_fcall_fini(&r->tc);
+ 		p9_fcall_fini(&r->rc);
+ 		kmem_cache_free(p9_req_cache, r);
+@@ -397,7 +387,7 @@ static void p9_tag_cleanup(struct p9_client *c)
+ 	rcu_read_lock();
+ 	idr_for_each_entry(&c->reqs, req, id) {
+ 		pr_info("Tag %d still in use\n", id);
+-		if (p9_tag_remove(c, req) == 0)
++		if (p9_req_put(c, req) == 0)
+ 			pr_warn("Packet with tag %d has still references",
+ 				req->tc.tag);
+ 	}
+@@ -670,7 +660,7 @@ static int p9_client_flush(struct p9_client *c, struct p9_req_t *oldreq)
+ 			c->trans_mod->cancelled(c, oldreq);
+ 	}
+ 
+-	p9_tag_remove(c, req);
++	p9_req_put(c, req);
+ 	return 0;
+ }
+ 
+@@ -704,7 +694,7 @@ static struct p9_req_t *p9_client_prepare_req(struct p9_client *c,
+ 	trace_9p_client_req(c, type, req->tc.tag);
+ 	return req;
+ reterr:
+-	p9_tag_remove(c, req);
++	p9_req_put(c, req);
+ 	/* We have to put also the 2nd reference as it won't be used */
+ 	p9_req_put(c, req);
+ 	return ERR_PTR(err);
+@@ -716,7 +706,7 @@ static struct p9_req_t *p9_client_prepare_req(struct p9_client *c,
+  * @type: type of request
+  * @fmt: protocol format string (see protocol.c)
+  *
+- * Returns request structure (which client must free using p9_tag_remove)
++ * Returns request structure (which client must free using p9_req_put)
+  */
+ 
+ static struct p9_req_t *
+@@ -794,7 +784,7 @@ p9_client_rpc(struct p9_client *c, int8_t type, const char *fmt, ...)
+ 	if (!err)
+ 		return req;
+ reterr:
+-	p9_tag_remove(c, req);
++	p9_req_put(c, req);
+ 	return ERR_PTR(safe_errno(err));
+ }
+ 
+@@ -809,7 +799,7 @@ p9_client_rpc(struct p9_client *c, int8_t type, const char *fmt, ...)
+  * @in_hdrlen: reader header size, This is the size of response protocol data
+  * @fmt: protocol format string (see protocol.c)
+  *
+- * Returns request structure (which client must free using p9_tag_remove)
++ * Returns request structure (which client must free using p9_req_put)
+  */
+ static struct p9_req_t *p9_client_zc_rpc(struct p9_client *c, int8_t type,
+ 					 struct iov_iter *uidata,
+@@ -876,7 +866,7 @@ static struct p9_req_t *p9_client_zc_rpc(struct p9_client *c, int8_t type,
+ 	if (!err)
+ 		return req;
+ reterr:
+-	p9_tag_remove(c, req);
++	p9_req_put(c, req);
+ 	return ERR_PTR(safe_errno(err));
+ }
+ 
+@@ -1005,7 +995,7 @@ static int p9_client_version(struct p9_client *c)
+ 
+ error:
+ 	kfree(version);
+-	p9_tag_remove(c, req);
++	p9_req_put(c, req);
+ 
+ 	return err;
+ }
+@@ -1159,7 +1149,7 @@ struct p9_fid *p9_client_attach(struct p9_client *clnt, struct p9_fid *afid,
+ 	err = p9pdu_readf(&req->rc, clnt->proto_version, "Q", &qid);
+ 	if (err) {
+ 		trace_9p_protocol_dump(clnt, &req->rc);
+-		p9_tag_remove(clnt, req);
++		p9_req_put(clnt, req);
+ 		goto error;
+ 	}
+ 
+@@ -1168,7 +1158,7 @@ struct p9_fid *p9_client_attach(struct p9_client *clnt, struct p9_fid *afid,
+ 
+ 	memmove(&fid->qid, &qid, sizeof(struct p9_qid));
+ 
+-	p9_tag_remove(clnt, req);
++	p9_req_put(clnt, req);
+ 	return fid;
+ 
+ error:
+@@ -1215,10 +1205,10 @@ struct p9_fid *p9_client_walk(struct p9_fid *oldfid, uint16_t nwname,
+ 	err = p9pdu_readf(&req->rc, clnt->proto_version, "R", &nwqids, &wqids);
+ 	if (err) {
+ 		trace_9p_protocol_dump(clnt, &req->rc);
+-		p9_tag_remove(clnt, req);
++		p9_req_put(clnt, req);
+ 		goto clunk_fid;
+ 	}
+-	p9_tag_remove(clnt, req);
++	p9_req_put(clnt, req);
+ 
+ 	p9_debug(P9_DEBUG_9P, "<<< RWALK nwqid %d:\n", nwqids);
+ 
+@@ -1294,7 +1284,7 @@ int p9_client_open(struct p9_fid *fid, int mode)
+ 	fid->iounit = iounit;
+ 
+ free_and_error:
+-	p9_tag_remove(clnt, req);
++	p9_req_put(clnt, req);
+ error:
+ 	return err;
+ }
+@@ -1338,7 +1328,7 @@ int p9_client_create_dotl(struct p9_fid *ofid, const char *name, u32 flags,
+ 	ofid->iounit = iounit;
+ 
+ free_and_error:
+-	p9_tag_remove(clnt, req);
++	p9_req_put(clnt, req);
+ error:
+ 	return err;
+ }
+@@ -1382,7 +1372,7 @@ int p9_client_fcreate(struct p9_fid *fid, const char *name, u32 perm, int mode,
+ 	fid->iounit = iounit;
+ 
+ free_and_error:
+-	p9_tag_remove(clnt, req);
++	p9_req_put(clnt, req);
+ error:
+ 	return err;
+ }
+@@ -1416,7 +1406,7 @@ int p9_client_symlink(struct p9_fid *dfid, const char *name,
+ 		 qid->type, qid->path, qid->version);
+ 
+ free_and_error:
+-	p9_tag_remove(clnt, req);
++	p9_req_put(clnt, req);
+ error:
+ 	return err;
+ }
+@@ -1436,7 +1426,7 @@ int p9_client_link(struct p9_fid *dfid, struct p9_fid *oldfid, const char *newna
+ 		return PTR_ERR(req);
+ 
+ 	p9_debug(P9_DEBUG_9P, "<<< RLINK\n");
+-	p9_tag_remove(clnt, req);
++	p9_req_put(clnt, req);
+ 	return 0;
+ }
+ EXPORT_SYMBOL(p9_client_link);
+@@ -1460,7 +1450,7 @@ int p9_client_fsync(struct p9_fid *fid, int datasync)
+ 
+ 	p9_debug(P9_DEBUG_9P, "<<< RFSYNC fid %d\n", fid->fid);
+ 
+-	p9_tag_remove(clnt, req);
++	p9_req_put(clnt, req);
+ 
+ error:
+ 	return err;
+@@ -1488,7 +1478,7 @@ int p9_client_clunk(struct p9_fid *fid)
+ 
+ 	p9_debug(P9_DEBUG_9P, "<<< RCLUNK fid %d\n", fid->fid);
+ 
+-	p9_tag_remove(clnt, req);
++	p9_req_put(clnt, req);
+ error:
+ 	/* Fid is not valid even after a failed clunk
+ 	 * If interrupted, retry once then give up and
+@@ -1522,7 +1512,7 @@ int p9_client_remove(struct p9_fid *fid)
+ 
+ 	p9_debug(P9_DEBUG_9P, "<<< RREMOVE fid %d\n", fid->fid);
+ 
+-	p9_tag_remove(clnt, req);
++	p9_req_put(clnt, req);
+ error:
+ 	if (err == -ERESTARTSYS)
+ 		p9_fid_put(fid);
+@@ -1549,7 +1539,7 @@ int p9_client_unlinkat(struct p9_fid *dfid, const char *name, int flags)
+ 	}
+ 	p9_debug(P9_DEBUG_9P, "<<< RUNLINKAT fid %d %s\n", dfid->fid, name);
+ 
+-	p9_tag_remove(clnt, req);
++	p9_req_put(clnt, req);
+ error:
+ 	return err;
+ }
+@@ -1617,7 +1607,7 @@ p9_client_read_once(struct p9_fid *fid, u64 offset, struct iov_iter *to,
+ 			   "D", &count, &dataptr);
+ 	if (*err) {
+ 		trace_9p_protocol_dump(clnt, &req->rc);
+-		p9_tag_remove(clnt, req);
++		p9_req_put(clnt, req);
+ 		return 0;
+ 	}
+ 	if (rsize < count) {
+@@ -1632,13 +1622,13 @@ p9_client_read_once(struct p9_fid *fid, u64 offset, struct iov_iter *to,
+ 
+ 		if (n != count) {
+ 			*err = -EFAULT;
+-			p9_tag_remove(clnt, req);
++			p9_req_put(clnt, req);
+ 			return n;
+ 		}
+ 	} else {
+ 		iov_iter_advance(to, count);
+ 	}
+-	p9_tag_remove(clnt, req);
++	p9_req_put(clnt, req);
+ 	return count;
+ }
+ EXPORT_SYMBOL(p9_client_read_once);
+@@ -1681,7 +1671,7 @@ p9_client_write(struct p9_fid *fid, u64 offset, struct iov_iter *from, int *err)
+ 		*err = p9pdu_readf(&req->rc, clnt->proto_version, "d", &count);
+ 		if (*err) {
+ 			trace_9p_protocol_dump(clnt, &req->rc);
+-			p9_tag_remove(clnt, req);
++			p9_req_put(clnt, req);
+ 			break;
+ 		}
+ 		if (rsize < count) {
+@@ -1691,7 +1681,7 @@ p9_client_write(struct p9_fid *fid, u64 offset, struct iov_iter *from, int *err)
+ 
+ 		p9_debug(P9_DEBUG_9P, "<<< RWRITE count %d\n", count);
+ 
+-		p9_tag_remove(clnt, req);
++		p9_req_put(clnt, req);
+ 		iov_iter_advance(from, count);
+ 		total += count;
+ 		offset += count;
+@@ -1726,7 +1716,7 @@ struct p9_wstat *p9_client_stat(struct p9_fid *fid)
+ 	err = p9pdu_readf(&req->rc, clnt->proto_version, "wS", &ignored, ret);
+ 	if (err) {
+ 		trace_9p_protocol_dump(clnt, &req->rc);
+-		p9_tag_remove(clnt, req);
++		p9_req_put(clnt, req);
+ 		goto error;
+ 	}
+ 
+@@ -1743,7 +1733,7 @@ struct p9_wstat *p9_client_stat(struct p9_fid *fid)
+ 		 from_kgid(&init_user_ns, ret->n_gid),
+ 		 from_kuid(&init_user_ns, ret->n_muid));
+ 
+-	p9_tag_remove(clnt, req);
++	p9_req_put(clnt, req);
+ 	return ret;
+ 
+ error:
+@@ -1779,7 +1769,7 @@ struct p9_stat_dotl *p9_client_getattr_dotl(struct p9_fid *fid,
+ 	err = p9pdu_readf(&req->rc, clnt->proto_version, "A", ret);
+ 	if (err) {
+ 		trace_9p_protocol_dump(clnt, &req->rc);
+-		p9_tag_remove(clnt, req);
++		p9_req_put(clnt, req);
+ 		goto error;
+ 	}
+ 
+@@ -1805,7 +1795,7 @@ struct p9_stat_dotl *p9_client_getattr_dotl(struct p9_fid *fid,
+ 		 ret->st_btime_sec, ret->st_btime_nsec,
+ 		 ret->st_gen, ret->st_data_version);
+ 
+-	p9_tag_remove(clnt, req);
++	p9_req_put(clnt, req);
+ 	return ret;
+ 
+ error:
+@@ -1877,7 +1867,7 @@ int p9_client_wstat(struct p9_fid *fid, struct p9_wstat *wst)
+ 
+ 	p9_debug(P9_DEBUG_9P, "<<< RWSTAT fid %d\n", fid->fid);
+ 
+-	p9_tag_remove(clnt, req);
++	p9_req_put(clnt, req);
+ error:
+ 	return err;
+ }
+@@ -1909,7 +1899,7 @@ int p9_client_setattr(struct p9_fid *fid, struct p9_iattr_dotl *p9attr)
+ 		goto error;
+ 	}
+ 	p9_debug(P9_DEBUG_9P, "<<< RSETATTR fid %d\n", fid->fid);
+-	p9_tag_remove(clnt, req);
++	p9_req_put(clnt, req);
+ error:
+ 	return err;
+ }
+@@ -1937,7 +1927,7 @@ int p9_client_statfs(struct p9_fid *fid, struct p9_rstatfs *sb)
+ 			  &sb->files, &sb->ffree, &sb->fsid, &sb->namelen);
+ 	if (err) {
+ 		trace_9p_protocol_dump(clnt, &req->rc);
+-		p9_tag_remove(clnt, req);
++		p9_req_put(clnt, req);
+ 		goto error;
+ 	}
+ 
+@@ -1946,7 +1936,7 @@ int p9_client_statfs(struct p9_fid *fid, struct p9_rstatfs *sb)
+ 		 fid->fid, sb->type, sb->bsize, sb->blocks, sb->bfree,
+ 		 sb->bavail, sb->files, sb->ffree, sb->fsid, sb->namelen);
+ 
+-	p9_tag_remove(clnt, req);
++	p9_req_put(clnt, req);
+ error:
+ 	return err;
+ }
+@@ -1974,7 +1964,7 @@ int p9_client_rename(struct p9_fid *fid,
+ 
+ 	p9_debug(P9_DEBUG_9P, "<<< RRENAME fid %d\n", fid->fid);
+ 
+-	p9_tag_remove(clnt, req);
++	p9_req_put(clnt, req);
+ error:
+ 	return err;
+ }
+@@ -2004,7 +1994,7 @@ int p9_client_renameat(struct p9_fid *olddirfid, const char *old_name,
+ 	p9_debug(P9_DEBUG_9P, "<<< RRENAMEAT newdirfid %d new name %s\n",
+ 		 newdirfid->fid, new_name);
+ 
+-	p9_tag_remove(clnt, req);
++	p9_req_put(clnt, req);
+ error:
+ 	return err;
+ }
+@@ -2040,10 +2030,10 @@ struct p9_fid *p9_client_xattrwalk(struct p9_fid *file_fid,
+ 	err = p9pdu_readf(&req->rc, clnt->proto_version, "q", attr_size);
+ 	if (err) {
+ 		trace_9p_protocol_dump(clnt, &req->rc);
+-		p9_tag_remove(clnt, req);
++		p9_req_put(clnt, req);
+ 		goto clunk_fid;
+ 	}
+-	p9_tag_remove(clnt, req);
++	p9_req_put(clnt, req);
+ 	p9_debug(P9_DEBUG_9P, "<<<  RXATTRWALK fid %d size %llu\n",
+ 		 attr_fid->fid, *attr_size);
+ 	return attr_fid;
+@@ -2077,7 +2067,7 @@ int p9_client_xattrcreate(struct p9_fid *fid, const char *name,
+ 		goto error;
+ 	}
+ 	p9_debug(P9_DEBUG_9P, "<<< RXATTRCREATE fid %d\n", fid->fid);
+-	p9_tag_remove(clnt, req);
++	p9_req_put(clnt, req);
+ error:
+ 	return err;
+ }
+@@ -2139,11 +2129,11 @@ int p9_client_readdir(struct p9_fid *fid, char *data, u32 count, u64 offset)
+ 	if (non_zc)
+ 		memmove(data, dataptr, count);
+ 
+-	p9_tag_remove(clnt, req);
++	p9_req_put(clnt, req);
+ 	return count;
+ 
+ free_and_error:
+-	p9_tag_remove(clnt, req);
++	p9_req_put(clnt, req);
+ error:
+ 	return err;
+ }
+@@ -2175,7 +2165,7 @@ int p9_client_mknod_dotl(struct p9_fid *fid, const char *name, int mode,
+ 		 qid->type, qid->path, qid->version);
+ 
+ error:
+-	p9_tag_remove(clnt, req);
++	p9_req_put(clnt, req);
+ 	return err;
+ }
+ EXPORT_SYMBOL(p9_client_mknod_dotl);
+@@ -2205,7 +2195,7 @@ int p9_client_mkdir_dotl(struct p9_fid *fid, const char *name, int mode,
+ 		 qid->path, qid->version);
+ 
+ error:
+-	p9_tag_remove(clnt, req);
++	p9_req_put(clnt, req);
+ 	return err;
+ }
+ EXPORT_SYMBOL(p9_client_mkdir_dotl);
+@@ -2237,7 +2227,7 @@ int p9_client_lock_dotl(struct p9_fid *fid, struct p9_flock *flock, u8 *status)
+ 	}
+ 	p9_debug(P9_DEBUG_9P, "<<< RLOCK status %i\n", *status);
+ error:
+-	p9_tag_remove(clnt, req);
++	p9_req_put(clnt, req);
+ 	return err;
+ }
+ EXPORT_SYMBOL(p9_client_lock_dotl);
+@@ -2274,7 +2264,7 @@ int p9_client_getlock_dotl(struct p9_fid *fid, struct p9_getlock *glock)
+ 		 glock->type, glock->start, glock->length,
+ 		 glock->proc_id, glock->client_id);
+ error:
+-	p9_tag_remove(clnt, req);
++	p9_req_put(clnt, req);
+ 	return err;
+ }
+ EXPORT_SYMBOL(p9_client_getlock_dotl);
+@@ -2300,7 +2290,7 @@ int p9_client_readlink(struct p9_fid *fid, char **target)
+ 	}
+ 	p9_debug(P9_DEBUG_9P, "<<< RREADLINK target %s\n", *target);
+ error:
+-	p9_tag_remove(clnt, req);
++	p9_req_put(clnt, req);
+ 	return err;
+ }
+ EXPORT_SYMBOL(p9_client_readlink);
+diff --git a/net/9p/trans_fd.c b/net/9p/trans_fd.c
+index 007c3f45fe05..507974ce880c 100644
+--- a/net/9p/trans_fd.c
++++ b/net/9p/trans_fd.c
+@@ -272,6 +272,8 @@ static int p9_fd_read(struct p9_client *client, void *v, int len)
+  *
+  */
+ 
++static int failme;
++
+ static void p9_read_work(struct work_struct *work)
+ {
+ 	__poll_t n;
+-- 
+2.35.1
 
-Going through [1] removes it from the list, and removes the associated
-ref (a), then through p9_client_cb which removes ref (c) and wakes up
-p9_client_rpc which takes the last ref (b), freeing the request.
-
-
-Now you were correct on one of these error paths not described in your
-last mail: we -are- missing a p9_req_ut in the "No recv fcall for tag
-%d" error path shortly after p9_tag_lookup, for the ref obtained from
-p9_tag_lookup itself -- feel free to resend a patch with just that one.
-But once again the connection is now unusable and it'll be caught on
-umount so it's not the end of the world...
-
-(I'd appreciate if you base the new patch on top of
-https://github.com/martinetd/linux/commits/9p-next )
-
-> 
-> static void p9_write_work(struct work_struct *work)
-> {
-> ...
-> 		list_move_tail(&req->req_list, &m->req_list);
-> 
-> 		m->wbuf = req->tc.sdata;
-> 		m->wsize = req->tc.size;
-> 		m->wpos = 0;
-> 		p9_req_get(req);
-> ...
-> }
-> 
-> But if you check out p9_write_work, a refcount already get after
-> list_move_tail. We don't need to rely on p9_tag_lookup to keep a list's
-> refcount.
-
-This refcount is because we are keeping a ref in m->wreq, and is freed
-when m->wreq is set back to null when the packet is done writing a few
-lines below (but possibly in another call of the function).
-
-refs don't have to come from p9_tag_lookup, they're managing pointers
-lifecycle: we're making a copy of the pointer, so we should increment
-the refcount so another thread can't free the req under us. In this case
-the p9_req_get() is under the trans fd m->client->lock where we got the
-req from the list, so req can't be freed between its obtention from the
-list and then; once the lock is dropped the req is protected by the ref.
-
-
-> Whatsmore, code comments in p9_tag_alloc also proves that the
-> refcount get by p9_tag_lookup is a temporary refcount.
-
-comments don't prove anything, but yes I forgot p9_tag_alloc takes a ref
-when I commented earlier, sorry.
-
-> > This one isn't as clear cut, I see that they put the client in a
-> > FLUSHING state but nothing seems to acton on it... But if this happens
-> > we're already in the use after free realm -- it means rc.sdata was
-> > already set so the other thread could be calling p9_client_cb anytime if
-> > it already hasn't, and yet another thread will then do the final ref put
-> > and free this.
-> > We shouldn't free this here as that would also be an overflow. The best
-> > possible thing to do at this point is just to stop using that pointer.
-> > 
-> 
-> But p9_tag_lookup have a lock inside. Doesn't this mean p9_tag_lookup won't
-> return a freed req? Otherwise we should fix the lock to avoid falling into
-> the use after free realm.
-
-Right, that falls into the p9_tag_lookup ref, I had implemented this
-better than I thought I did...
-
-I agree that one is also more correct to add, although I'd really want
-to make some rdma setup and trigger a few errors to test.
-
---
-Dominique
 
 
 _______________________________________________
