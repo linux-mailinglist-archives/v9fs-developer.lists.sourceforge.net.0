@@ -2,27 +2,27 @@ Return-Path: <v9fs-developer-bounces@lists.sourceforge.net>
 X-Original-To: lists+v9fs-developer@lfdr.de
 Delivered-To: lists+v9fs-developer@lfdr.de
 Received: from lists.sourceforge.net (lists.sourceforge.net [216.105.38.7])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7453C571EC0
-	for <lists+v9fs-developer@lfdr.de>; Tue, 12 Jul 2022 17:17:46 +0200 (CEST)
-Received: from [127.0.0.1] (helo=sfs-ml-2.v29.lw.sourceforge.com)
-	by sfs-ml-2.v29.lw.sourceforge.com with esmtp (Exim 4.94.2)
+	by mail.lfdr.de (Postfix) with ESMTPS id 94056571EBD
+	for <lists+v9fs-developer@lfdr.de>; Tue, 12 Jul 2022 17:17:42 +0200 (CEST)
+Received: from [127.0.0.1] (helo=sfs-ml-1.v29.lw.sourceforge.com)
+	by sfs-ml-1.v29.lw.sourceforge.com with esmtp (Exim 4.94.2)
 	(envelope-from <v9fs-developer-bounces@lists.sourceforge.net>)
-	id 1oBHdw-0004db-4O; Tue, 12 Jul 2022 15:17:45 +0000
+	id 1oBHdt-0008RB-5M; Tue, 12 Jul 2022 15:17:41 +0000
 Received: from [172.30.20.202] (helo=mx.sourceforge.net)
- by sfs-ml-2.v29.lw.sourceforge.com with esmtps (TLS1.2) tls
+ by sfs-ml-1.v29.lw.sourceforge.com with esmtps (TLS1.2) tls
  TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384 (Exim 4.94.2)
- (envelope-from <2506fd2ed484f688826cdc33c177c467e2b0506c@lizzy.crudebyte.com>)
- id 1oBHdh-0004d6-Nx
- for v9fs-developer@lists.sourceforge.net; Tue, 12 Jul 2022 15:17:34 +0000
+ (envelope-from <13a7181ea6264264923effcbc8eb5691892731b8@lizzy.crudebyte.com>)
+ id 1oBHds-0008R0-2E
+ for v9fs-developer@lists.sourceforge.net; Tue, 12 Jul 2022 15:17:40 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
  d=sourceforge.net; s=x; h=Cc:To:Subject:Date:From:References:In-Reply-To:
  Message-Id:Sender:Reply-To:MIME-Version:Content-Type:
  Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
  Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:
  List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=p78n0j+aija+d8Yb4f8ouk+I4Dnzsq0NMzCi4AYsSxU=; b=VTp7PBTUpitqaU2qaDyoA5AH0C
- 68Xum9qQT9d0+jb9c+XcpZFqyBwQ2JKyZksRq3qa0ONgXZdXI0QvbnFeOhYbkktHqC+Ug3WVFefvu
- E7LzjHMGMHt0p9EbUZc/48GiI98ticQXFplUVMJTJ6NWnUsGBzPCnA1T6uBGoJuzOnLI=;
+ bh=JMpUBU0faqNlIU1d4S3Q7wytCNCfKZ32SXUnAyXuU0s=; b=bzLYfmzwTAzOL2B/GF2rvyU5Zh
+ ciiGqt9xUoKYoZKfIIOsnRYkk8TG9V75ByuLDGKqIOf0I0dlGHG5LyCbGI35zqrBcBmXa8/eW13EJ
+ YbE5OOVinCKTgCF1QPdOCg/yk7rhgDVCzhEfkfMdnguc/W27WdxCFyKwJ5p5vm5FYHCk=;
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  ;
  h=Cc:To:Subject:Date:From:References:In-Reply-To:Message-Id:Sender:Reply-To
@@ -30,27 +30,27 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
  :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
  List-Post:List-Owner:List-Archive;
- bh=p78n0j+aija+d8Yb4f8ouk+I4Dnzsq0NMzCi4AYsSxU=; b=MKDhHsTViMnD1dFPwWv3Ehz0LR
- 0dz5KI+2yn7VpCVMVAswaxbjCmd6DSvKUrMWdxrNdBCAp0MYB0lMC39wMfsAjZOc+BY+BMQqfwPJV
- IJtk2jKgpBcSfOMBHJGN6Y/b1F+FC6iE2RKC7UOQPvFBbWtyTnt/Ct+GqzBUDCdKg56c=;
+ bh=JMpUBU0faqNlIU1d4S3Q7wytCNCfKZ32SXUnAyXuU0s=; b=GsHL3cKUo556Oj1kv0KHmyz/SI
+ JRQxRNUhJwsSLk4BXzbyL9sFU8tY1vjsRhV9vNo+GvxSXp30RpQnjcVH4NpfPHjf6j852joM+HJly
+ Ka7vrFP0wsrR0CE8nUlXApxMU9Vl9DCMj/0qqvDB/B1XuLr7vnGDNj6P82Ni7NeVLOts=;
 Received: from lizzy.crudebyte.com ([91.194.90.13])
- by sfi-mx-1.v28.lw.sourceforge.com with esmtps
+ by sfi-mx-2.v28.lw.sourceforge.com with esmtps
  (TLS1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.94.2)
- id 1oBHdh-00Epqd-Qv
- for v9fs-developer@lists.sourceforge.net; Tue, 12 Jul 2022 15:17:30 +0000
+ id 1oBHdo-0000X9-E7
+ for v9fs-developer@lists.sourceforge.net; Tue, 12 Jul 2022 15:17:39 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
  d=crudebyte.com; s=lizzy; h=Cc:To:Subject:Date:From:References:In-Reply-To:
  Message-Id:Content-Type:Content-Transfer-Encoding:MIME-Version:Content-ID:
- Content-Description; bh=p78n0j+aija+d8Yb4f8ouk+I4Dnzsq0NMzCi4AYsSxU=; b=py8F9
- hYhY8+dGDBcqTZo9UX97sZyab9Y+6UPXYg0gOLCs7L3OLhWmfg3z1U644dBCLnsyw7oRXVQiuRwtq
- 8JLYjO5ccPMq5heCaEVdu0v7TFCcR/F5IP1vNoz1YqsFehoV2ezv+XfkE4wwIdcRENrAH6whjXWxH
- 58sh5ty23IexJWLD7Uk0dBdYN2il93xNGyb9o62IQN/m72jxVsgPWJIEMpQF5Ntr+s6rU6WBJgAF5
- wwulgVLcm3P/8D6RnrmX2FEB8LT2r6jQUiSvxAHpn7MDWOuNsfXKVhVGInW8e5OY3glai+/Mi4w3h
- S4odkqtNIsrHsf733KObRlUyM3asg==;
-Message-Id: <2506fd2ed484f688826cdc33c177c467e2b0506c.1657636554.git.linux_oss@crudebyte.com>
+ Content-Description; bh=JMpUBU0faqNlIU1d4S3Q7wytCNCfKZ32SXUnAyXuU0s=; b=l5jMp
+ ahtD82dcoJIxOpadC+7Ya05P5Y6jrL3x9n2/0e5x/mJMHr3LXQZYJrrSTRS9QZi2LMVR3n83jBXa+
+ UgAGM5H1snVgtfqbTycQK9AzR0z/2le+ktS8UZYrvkIXqaq2RXX1UkiciUM/i+1Um1XvKzyPoGjht
+ Yt00ON/MNJmgRiTQ0YYLUbO+FyFeqeA7zV4IHttRmr6fcvH3IKOvrt5EfgQ7Xn3ra4SezWh3chPtw
+ bd0NO3sSX1H7YTkM3vhzezsCd03KneFG3dimkAtVVqNDYz1WJnDcNhCeYOP+7ST+WiF39sZ1wwSg/
+ Xpv6NIA7JAUvFSjJq7mVjLqKuhqbQ==;
+Message-Id: <13a7181ea6264264923effcbc8eb5691892731b8.1657636554.git.linux_oss@crudebyte.com>
 In-Reply-To: <cover.1657636554.git.linux_oss@crudebyte.com>
 References: <cover.1657636554.git.linux_oss@crudebyte.com>
-Date: Tue, 12 Jul 2022 16:31:26 +0200
+Date: Tue, 12 Jul 2022 16:31:28 +0200
 To: v9fs-developer@lists.sourceforge.net
 X-Spam-Score: -0.2 (/)
 X-Spam-Report: Spam detection software,
@@ -59,9 +59,9 @@ X-Spam-Report: Spam detection software,
  message has been attached to this so you can view it or label
  similar future email.  If you have any questions, see
  the administrator of that system for details.
- Content preview:  This 9p client implementation is yet using linear message
- buffers for most message types, i.e. they use kmalloc() et al. for allocating
- continuous physical memory pages, which is usually limited to 4M [...] 
+ Content preview: Refactor 'max_size' argument of p9_tag_alloc() and 'req_size'
+ argument of p9_client_prepare_req() both into a pair of arguments 't_size'
+ and 'r_size' respectively to allow handling the buffer size for [...] 
  Content analysis details:   (-0.2 points, 6.0 required)
  pts rule name              description
  ---- ---------------------- --------------------------------------------------
@@ -74,9 +74,9 @@ X-Spam-Report: Spam detection software,
  envelope-from domain
  0.1 DKIM_SIGNED            Message has a DKIM or DK signature, not necessarily
  valid -0.0 T_SCC_BODY_TEXT_LINE   No description available.
-X-Headers-End: 1oBHdh-00Epqd-Qv
-Subject: [V9fs-developer] [PATCH v5 07/11] net/9p: limit 'msize' to
- KMALLOC_MAX_SIZE for all transports
+X-Headers-End: 1oBHdo-0000X9-E7
+Subject: [V9fs-developer] [PATCH v5 08/11] net/9p: split message size
+ argument into 't_size' and 'r_size' pair
 X-BeenThere: v9fs-developer@lists.sourceforge.net
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -99,54 +99,88 @@ Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: v9fs-developer-bounces@lists.sourceforge.net
 
-This 9p client implementation is yet using linear message buffers for
-most message types, i.e. they use kmalloc() et al. for allocating
-continuous physical memory pages, which is usually limited to 4MB
-buffers. Use KMALLOC_MAX_SIZE though instead of a hard coded 4MB for
-constraining this more safely.
-
-Unfortunately we cannot simply replace the existing kmalloc() calls by
-vmalloc() ones, because that would yield in non-logical kernel addresses
-(for any vmalloc(>4MB) that is) which are in general not accessible by
-hosts like QEMU.
-
-In future we would replace those linear buffers by scatter/gather lists
-to eventually get rid of this limit (struct p9_fcall's sdata member by
-p9_fcall_init() and struct p9_fid's rdir member by
-v9fs_alloc_rdir_buf()).
+Refactor 'max_size' argument of p9_tag_alloc() and 'req_size' argument
+of p9_client_prepare_req() both into a pair of arguments 't_size' and
+'r_size' respectively to allow handling the buffer size for request and
+reply separately from each other.
 
 Signed-off-by: Christian Schoenebeck <linux_oss@crudebyte.com>
 ---
-
-Hmm, that's a bit too simple, as we also need a bit of headroom for
-transport specific overhead. So maybe this has to be handled by each
-transport appropriately instead?
-
- net/9p/client.c | 11 +++++++++++
- 1 file changed, 11 insertions(+)
+ net/9p/client.c | 20 +++++++++++---------
+ 1 file changed, 11 insertions(+), 9 deletions(-)
 
 diff --git a/net/9p/client.c b/net/9p/client.c
-index 20054addd81b..fab939541c81 100644
+index fab939541c81..56be1658870d 100644
 --- a/net/9p/client.c
 +++ b/net/9p/client.c
-@@ -1042,6 +1042,17 @@ struct p9_client *p9_client_create(const char *dev_name, char *options)
- 	p9_debug(P9_DEBUG_MUX, "clnt %p trans %p msize %d protocol %d\n",
- 		 clnt, clnt->trans_mod, clnt->msize, clnt->proto_version);
+@@ -255,24 +255,26 @@ static struct kmem_cache *p9_req_cache;
+  * p9_tag_alloc - Allocate a new request.
+  * @c: Client session.
+  * @type: Transaction type.
+- * @max_size: Maximum packet size for this request.
++ * @t_size: Buffer size for holding this request.
++ * @r_size: Buffer size for holding server's reply on this request.
+  *
+  * Context: Process context.
+  * Return: Pointer to new request.
+  */
+ static struct p9_req_t *
+-p9_tag_alloc(struct p9_client *c, int8_t type, unsigned int max_size)
++p9_tag_alloc(struct p9_client *c, int8_t type, uint t_size, uint r_size)
+ {
+ 	struct p9_req_t *req = kmem_cache_alloc(p9_req_cache, GFP_NOFS);
+-	int alloc_msize = min(c->msize, max_size);
++	int alloc_tsize = min(c->msize, t_size);
++	int alloc_rsize = min(c->msize, r_size);
+ 	int tag;
  
-+	/*
-+	 * due to linear message buffers being used by client ATM
-+	 */
-+	if (clnt->msize > KMALLOC_MAX_SIZE) {
-+		clnt->msize = KMALLOC_MAX_SIZE;
-+		pr_info("Limiting 'msize' to %zu as this is the maximum "
-+			"supported by this client version.\n",
-+			(size_t) KMALLOC_MAX_SIZE
-+		);
-+	}
-+
- 	err = clnt->trans_mod->create(clnt, dev_name, options);
- 	if (err)
- 		goto put_trans;
+ 	if (!req)
+ 		return ERR_PTR(-ENOMEM);
+ 
+-	if (p9_fcall_init(c, &req->tc, alloc_msize))
++	if (p9_fcall_init(c, &req->tc, alloc_tsize))
+ 		goto free_req;
+-	if (p9_fcall_init(c, &req->rc, alloc_msize))
++	if (p9_fcall_init(c, &req->rc, alloc_rsize))
+ 		goto free;
+ 
+ 	p9pdu_reset(&req->tc);
+@@ -678,7 +680,7 @@ static int p9_client_flush(struct p9_client *c, struct p9_req_t *oldreq)
+ }
+ 
+ static struct p9_req_t *p9_client_prepare_req(struct p9_client *c,
+-					      int8_t type, int req_size,
++					      int8_t type, uint t_size, uint r_size,
+ 					      const char *fmt, va_list ap)
+ {
+ 	int err;
+@@ -694,7 +696,7 @@ static struct p9_req_t *p9_client_prepare_req(struct p9_client *c,
+ 	if (c->status == BeginDisconnect && type != P9_TCLUNK)
+ 		return ERR_PTR(-EIO);
+ 
+-	req = p9_tag_alloc(c, type, req_size);
++	req = p9_tag_alloc(c, type, t_size, r_size);
+ 	if (IS_ERR(req))
+ 		return req;
+ 
+@@ -731,7 +733,7 @@ p9_client_rpc(struct p9_client *c, int8_t type, const char *fmt, ...)
+ 	struct p9_req_t *req;
+ 
+ 	va_start(ap, fmt);
+-	req = p9_client_prepare_req(c, type, c->msize, fmt, ap);
++	req = p9_client_prepare_req(c, type, c->msize, c->msize, fmt, ap);
+ 	va_end(ap);
+ 	if (IS_ERR(req))
+ 		return req;
+@@ -829,7 +831,7 @@ static struct p9_req_t *p9_client_zc_rpc(struct p9_client *c, int8_t type,
+ 	/* We allocate a inline protocol data of only 4k bytes.
+ 	 * The actual content is passed in zero-copy fashion.
+ 	 */
+-	req = p9_client_prepare_req(c, type, P9_ZC_HDR_SZ, fmt, ap);
++	req = p9_client_prepare_req(c, type, P9_ZC_HDR_SZ, P9_ZC_HDR_SZ, fmt, ap);
+ 	va_end(ap);
+ 	if (IS_ERR(req))
+ 		return req;
 -- 
 2.30.2
 
