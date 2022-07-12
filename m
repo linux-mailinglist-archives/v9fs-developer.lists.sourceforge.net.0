@@ -2,117 +2,84 @@ Return-Path: <v9fs-developer-bounces@lists.sourceforge.net>
 X-Original-To: lists+v9fs-developer@lfdr.de
 Delivered-To: lists+v9fs-developer@lfdr.de
 Received: from lists.sourceforge.net (lists.sourceforge.net [216.105.38.7])
-	by mail.lfdr.de (Postfix) with ESMTPS id 705A3571784
-	for <lists+v9fs-developer@lfdr.de>; Tue, 12 Jul 2022 12:45:12 +0200 (CEST)
-Received: from [127.0.0.1] (helo=sfs-ml-4.v29.lw.sourceforge.com)
-	by sfs-ml-4.v29.lw.sourceforge.com with esmtp (Exim 4.94.2)
+	by mail.lfdr.de (Postfix) with ESMTPS id E2222571EB0
+	for <lists+v9fs-developer@lfdr.de>; Tue, 12 Jul 2022 17:16:56 +0200 (CEST)
+Received: from [127.0.0.1] (helo=sfs-ml-2.v29.lw.sourceforge.com)
+	by sfs-ml-2.v29.lw.sourceforge.com with esmtp (Exim 4.94.2)
 	(envelope-from <v9fs-developer-bounces@lists.sourceforge.net>)
-	id 1oBDOA-0008RU-76; Tue, 12 Jul 2022 10:45:09 +0000
+	id 1oBHd6-0004bM-Eh; Tue, 12 Jul 2022 15:16:53 +0000
 Received: from [172.30.20.202] (helo=mx.sourceforge.net)
- by sfs-ml-4.v29.lw.sourceforge.com with esmtps (TLS1.2) tls
+ by sfs-ml-2.v29.lw.sourceforge.com with esmtps (TLS1.2) tls
  TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384 (Exim 4.94.2)
- (envelope-from <hbh25y@gmail.com>) id 1oBDO5-0008QG-PI
- for v9fs-developer@lists.sourceforge.net; Tue, 12 Jul 2022 10:45:04 +0000
+ (envelope-from <ecd622e4cd058c47eae518b01d67a715ee04108d@lizzy.crudebyte.com>)
+ id 1oBHd4-0004bF-Kx
+ for v9fs-developer@lists.sourceforge.net; Tue, 12 Jul 2022 15:16:51 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=sourceforge.net; s=x; h=Content-Transfer-Encoding:MIME-Version:Message-Id:
- Date:Subject:Cc:To:From:Sender:Reply-To:Content-Type:Content-ID:
- Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
- :Resent-Message-ID:In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:
- List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=LHFcdt/M7EFun7/LtZfwRF7i8tXqFEDcoXVMpTsmevI=; b=gJ7ef6FTrWShgCUIwj7HSxYfLR
- IUZQx7tp1ae9r2uPJsTy+vCmzl+71Tal77r1oM0NBZf5z7N/FTvIDJ9CKbzpS70jtK6i8vKCbFivd
- qp+JO8UtlswWWgx/9rEPochXpJn8mvdh9rmm5rVs792rCubkRgp+qtDWpPgPD97+lWu8=;
+ d=sourceforge.net; s=x; h=Cc:To:Subject:Date:From:References:In-Reply-To:
+ Message-Id:Sender:Reply-To:MIME-Version:Content-Type:
+ Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+ Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:
+ List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
+ bh=xq+qB+6LSBSIw4B37E9JgHNJIm1VN9v6g48FmouXfvs=; b=du7I3+GGVk6nSMKQFl4xwjScO8
+ j1TI1WssVXKu3Fj3fWKWJGRWjrK8xGpHsZW2U2USfuBearq70jnIZiBm1BQ/V9y2M6dgtjJCTcvaB
+ SrcMEpQdY7bHu0cT4R8UGXfoFZC0zIbStHTzlz1y/VA8YVCtnnSoZ9LSNypxbyApxtX4=;
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  ;
- h=Content-Transfer-Encoding:MIME-Version:Message-Id:Date:Subject:Cc:To:From
- :Sender:Reply-To:Content-Type:Content-ID:Content-Description:Resent-Date:
- Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:
- References:List-Id:List-Help:List-Unsubscribe:List-Subscribe:List-Post:
- List-Owner:List-Archive; bh=LHFcdt/M7EFun7/LtZfwRF7i8tXqFEDcoXVMpTsmevI=; b=f
- HWowYzo/0uMHx8aNaZaziZ+zWgv9lkXhhkI43RMNepwzX+2B2kUW34SJCFiQNB7xdl4y3RtL/Wgdx
- Lu61LUrNbQ3xYIWFdgG1OtOVu+AhDa1D1ApHYN01O3RAd+EFIEri1kn2Vk8TZCF+I2m4dbmr2Ewlf
- DcBL37ULvpd3ViLg=;
-Received: from mail-pl1-f196.google.com ([209.85.214.196])
+ h=Cc:To:Subject:Date:From:References:In-Reply-To:Message-Id:Sender:Reply-To
+ :MIME-Version:Content-Type:Content-Transfer-Encoding:Content-ID:
+ Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
+ :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
+ List-Post:List-Owner:List-Archive;
+ bh=xq+qB+6LSBSIw4B37E9JgHNJIm1VN9v6g48FmouXfvs=; b=E8KjteSasIJyP80IVewXFkJcYt
+ pWis/qFd8MPDiLRuNC2P+6zGoVx/Y+e354y5fGGaN+fu5dFQccM/vLxdIZ40fv83x6OOWEMc2m+lg
+ nHeTC9NKEiMNTPgMPNDqe6JfwTzosu50lH0xT/fAXuoQDsHIjHfDjw+n76hZ1UeSybtQ=;
+Received: from lizzy.crudebyte.com ([91.194.90.13])
  by sfi-mx-1.v28.lw.sourceforge.com with esmtps
- (TLS1.2:ECDHE-RSA-AES128-GCM-SHA256:128) (Exim 4.94.2)
- id 1oBDO1-00EhM0-5D
- for v9fs-developer@lists.sourceforge.net; Tue, 12 Jul 2022 10:45:04 +0000
-Received: by mail-pl1-f196.google.com with SMTP id b2so6913725plx.7
- for <v9fs-developer@lists.sourceforge.net>;
- Tue, 12 Jul 2022 03:45:01 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
- h=from:to:cc:subject:date:message-id:mime-version
- :content-transfer-encoding;
- bh=LHFcdt/M7EFun7/LtZfwRF7i8tXqFEDcoXVMpTsmevI=;
- b=CM6E0gWMLJ5qt1wx2A0YMDp8y9kCQQgtYbH1SKHLAFqJVb63vwoe/DZn5fwC1LwOcr
- Y0vht9vEm5cX6CMdJSfktp7VvHZBTWyvjBZJs13dbyWLzPZzh0TIgWi4JjL01TuBUwxJ
- KjOk/5ujryU/QK8/g0zh2ogzWP/RIrtGFfpZ+mBKgNBXf94PbeCTDVelL/n66A/cWl+d
- 8OTa0f8rMJNoKL2KuvMIFuUO3/IWeBz6SH+5IQFEBfej9z3j5PvdBIh6QHflaVwSfQsr
- 5ApVBLrcIxJUsFf4blFPQMH6WlOz8X8Uj4Z/8Voz4Gnu+Lj04YOYZdJzBGMeY8NPtpUY
- Z/Ww==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20210112;
- h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
- :content-transfer-encoding;
- bh=LHFcdt/M7EFun7/LtZfwRF7i8tXqFEDcoXVMpTsmevI=;
- b=uhDS8/Hxr8NwLITO/ylCPZ9ExP1MFBmt/bGNLHWXTox66lImL48+C3P+vaCKDJadis
- yUCY0ZNC8tzPG2cY6ZeeCXazY2UMMmgJYpsHVOpA1cCiV4ar/23mK51SZKkoQfYcopAg
- GnXSy+bIVRkAH8UConET3Igs+JmWgwynRwvqWl/YgTCBq1dZ1ml3csWfNRvs8HaXjKiw
- nqNrC1OJYhnr3J2hkLzsEF+ZHxAj6xYAn4C9nbMncekPj0iwS44ChJS0+P4AEnexWhw5
- HNVRR19BWvyL33TQ25fJHhwS710Oho2s+6mKPlzTjmJF3iLUz+LvTJr8lilPtil+MljA
- 9eHA==
-X-Gm-Message-State: AJIora94ZRdmxUDB2iYSr7IX2tXLPcC0HXXjRtiit83w3WoFrhHR6ljp
- QeD5xbZaQuIYO/RcXmZVxc8=
-X-Google-Smtp-Source: AGRyM1sY+jWNlR0EFF9t2eMZ6mOWYimqBONWbupdaAhQg9KJfZr6VZpWoVzoBUG0ZYdInWu3ykHutA==
-X-Received: by 2002:a17:902:8345:b0:167:879c:abe8 with SMTP id
- z5-20020a170902834500b00167879cabe8mr22981968pln.7.1657622693149; 
- Tue, 12 Jul 2022 03:44:53 -0700 (PDT)
-Received: from localhost.localdomain ([223.104.159.146])
- by smtp.gmail.com with ESMTPSA id
- p10-20020a1709028a8a00b0016c0408932dsm6438727plo.129.2022.07.12.03.44.48
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Tue, 12 Jul 2022 03:44:52 -0700 (PDT)
-From: Hangyu Hua <hbh25y@gmail.com>
-To: ericvh@gmail.com, lucho@ionkov.net, asmadeus@codewreck.org,
- linux_oss@crudebyte.com, davem@davemloft.net, edumazet@google.com,
- kuba@kernel.org, pabeni@redhat.com, tomasbortoli@gmail.com
-Date: Tue, 12 Jul 2022 18:44:38 +0800
-Message-Id: <20220712104438.30800-1-hbh25y@gmail.com>
-X-Mailer: git-send-email 2.25.1
-MIME-Version: 1.0
+ (TLS1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.94.2)
+ id 1oBHd4-00EppN-QB
+ for v9fs-developer@lists.sourceforge.net; Tue, 12 Jul 2022 15:16:51 +0000
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+ d=crudebyte.com; s=lizzy; h=Cc:To:Subject:Date:From:References:In-Reply-To:
+ Message-Id:Content-Type:Content-Transfer-Encoding:MIME-Version:Content-ID:
+ Content-Description; bh=xq+qB+6LSBSIw4B37E9JgHNJIm1VN9v6g48FmouXfvs=; b=Iizer
+ 5m+yT4yIEgA8pfP+JqDQ+kLypZzQY91RErkvjS8Os51RSQUW+Qeipo6S5lDzUOb7v5PDSS7ddiOXR
+ tzWbbKLJ3sg2WHvoF1WYEc7HFsmPkP9kvrHgIKqhwwiSadMpBwfMs2HN2nq385zirxz4rfnQQCDWD
+ ej4iORqTnmpXSu/ylZ1d7To1MH2Jdku6Z1tkuMvthFcpz711HOpJxf8Ruf9Lcd2vlYMiOKL2xuVRj
+ zZwk7ryoCVgQdfNEQi9Gal0GniO/pSoA5S7uVowN6kluYWogeJa8gQM6cXFtpmC45b3CRACDdiBwA
+ 38+bUmlBCo5WqjNwg1ZfoEV/0+OmQ==;
+Message-Id: <ecd622e4cd058c47eae518b01d67a715ee04108d.1657636554.git.linux_oss@crudebyte.com>
+In-Reply-To: <cover.1657636554.git.linux_oss@crudebyte.com>
+References: <cover.1657636554.git.linux_oss@crudebyte.com>
+Date: Tue, 12 Jul 2022 16:31:09 +0200
+To: v9fs-developer@lists.sourceforge.net
 X-Spam-Score: -0.2 (/)
 X-Spam-Report: Spam detection software,
- running on the system "util-spamd-1.v13.lw.sourceforge.com", 
+ running on the system "util-spamd-2.v13.lw.sourceforge.com", 
  has NOT identified this incoming email as spam.  The original
  message has been attached to this so you can view it or label
  similar future email.  If you have any questions, see
  the administrator of that system for details.
- Content preview: p9_req_put need to be called when m->rreq->rc.sdata is NULL
- to avoid possible refcount leak. Fixes: 728356dedeff ("9p: Add refcount to
- p9_req_t") Signed-off-by: Hangyu Hua --- Add p9_req_put in the "No recv fcall
- for tag..." error path according to Dominique's suggestion. 
+ Content preview: The scatter gather list in struct virtio_chan currently
+ resides
+ as compile-time constant size array directly within the contiguous struct
+ virtio_chan's memory space. Separate memory space and allocation of the
+ scatter
+ gather list from memory space and allocation of struct virtio_chan. 
  Content analysis details:   (-0.2 points, 6.0 required)
  pts rule name              description
  ---- ---------------------- --------------------------------------------------
  0.0 SPF_HELO_NONE          SPF: HELO does not publish an SPF Record
- 0.0 FREEMAIL_FROM          Sender email is commonly abused enduser mail
- provider [hbh25y[at]gmail.com]
- -0.0 SPF_PASS               SPF: sender matches SPF record
+ 0.0 SPF_NONE               SPF: sender does not publish an SPF Record
  -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+ -0.1 DKIM_VALID_AU          Message has a valid DKIM or DK signature from
+ author's domain
  -0.1 DKIM_VALID_EF          Message has a valid DKIM or DK signature from
  envelope-from domain
  0.1 DKIM_SIGNED            Message has a DKIM or DK signature, not necessarily
- valid
- -0.1 DKIM_VALID_AU          Message has a valid DKIM or DK signature from
- author's domain
- 0.0 RCVD_IN_MSPIKE_H3      RBL: Good reputation (+3)
- [209.85.214.196 listed in wl.mailspike.net]
- -0.0 RCVD_IN_DNSWL_NONE     RBL: Sender listed at https://www.dnswl.org/,
- no trust [209.85.214.196 listed in list.dnswl.org]
- 0.0 RCVD_IN_MSPIKE_WL      Mailspike good senders
-X-Headers-End: 1oBDO1-00EhM0-5D
-Subject: [V9fs-developer] [PATCH] net: 9p: fix possible refcount leak in
- p9_read_work()
+ valid -0.0 T_SCC_BODY_TEXT_LINE   No description available.
+X-Headers-End: 1oBHd4-00EppN-QB
+Subject: [V9fs-developer] [PATCH v5 01/11] 9p/trans_virtio: separate
+ allocation of scatter gather list
 X-BeenThere: v9fs-developer@lists.sourceforge.net
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -124,38 +91,76 @@ List-Post: <mailto:v9fs-developer@lists.sourceforge.net>
 List-Help: <mailto:v9fs-developer-request@lists.sourceforge.net?subject=help>
 List-Subscribe: <https://lists.sourceforge.net/lists/listinfo/v9fs-developer>, 
  <mailto:v9fs-developer-request@lists.sourceforge.net?subject=subscribe>
-Cc: Hangyu Hua <hbh25y@gmail.com>, v9fs-developer@lists.sourceforge.net,
- linux-kernel@vger.kernel.org, netdev@vger.kernel.org
+From: Christian Schoenebeck via V9fs-developer
+ <v9fs-developer@lists.sourceforge.net>
+Reply-To: Christian Schoenebeck <linux_oss@crudebyte.com>
+Cc: Latchesar Ionkov <lucho@ionkov.net>, Eric Van Hensbergen <ericvh@gmail.com>,
+ netdev@vger.kernel.org, linux-kernel@vger.kernel.org,
+ Nikolay Kichukov <nikolay@oldum.net>
+MIME-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: v9fs-developer-bounces@lists.sourceforge.net
 
-p9_req_put need to be called when m->rreq->rc.sdata is NULL to avoid
-possible refcount leak.
+The scatter gather list in struct virtio_chan currently
+resides as compile-time constant size array directly within the
+contiguous struct virtio_chan's memory space.
 
-Fixes: 728356dedeff ("9p: Add refcount to p9_req_t")
-Signed-off-by: Hangyu Hua <hbh25y@gmail.com>
+Separate memory space and allocation of the scatter gather list
+from memory space and allocation of struct virtio_chan.
+
+Signed-off-by: Christian Schoenebeck <linux_oss@crudebyte.com>
 ---
+ net/9p/trans_virtio.c | 13 ++++++++++++-
+ 1 file changed, 12 insertions(+), 1 deletion(-)
 
-Add p9_req_put in the "No recv fcall for tag..." error path according to Dominique's suggestion.
-
- net/9p/trans_fd.c | 1 +
- 1 file changed, 1 insertion(+)
-
-diff --git a/net/9p/trans_fd.c b/net/9p/trans_fd.c
-index 507974ce880c..090337f446d7 100644
---- a/net/9p/trans_fd.c
-+++ b/net/9p/trans_fd.c
-@@ -345,6 +345,7 @@ static void p9_read_work(struct work_struct *work)
- 			p9_debug(P9_DEBUG_ERROR,
- 				 "No recv fcall for tag %d (req %p), disconnecting!\n",
- 				 m->rc.tag, m->rreq);
-+			p9_req_put(m->rreq);
- 			m->rreq = NULL;
- 			err = -EIO;
- 			goto error;
+diff --git a/net/9p/trans_virtio.c b/net/9p/trans_virtio.c
+index b24a4fb0f0a2..2693e618080c 100644
+--- a/net/9p/trans_virtio.c
++++ b/net/9p/trans_virtio.c
+@@ -77,7 +77,7 @@ struct virtio_chan {
+ 	 */
+ 	unsigned long p9_max_pages;
+ 	/* Scatterlist: can be too big for stack. */
+-	struct scatterlist sg[VIRTQUEUE_NUM];
++	struct scatterlist *sg;
+ 	/**
+ 	 * @tag: name to identify a mount null terminated
+ 	 */
+@@ -574,6 +574,14 @@ static int p9_virtio_probe(struct virtio_device *vdev)
+ 		goto fail;
+ 	}
+ 
++	chan->sg = kmalloc_array(VIRTQUEUE_NUM,
++				 sizeof(struct scatterlist), GFP_KERNEL);
++	if (!chan->sg) {
++		pr_err("Failed to allocate virtio 9P channel\n");
++		err = -ENOMEM;
++		goto out_free_chan_shallow;
++	}
++
+ 	chan->vdev = vdev;
+ 
+ 	/* We expect one virtqueue, for requests. */
+@@ -635,6 +643,8 @@ static int p9_virtio_probe(struct virtio_device *vdev)
+ out_free_vq:
+ 	vdev->config->del_vqs(vdev);
+ out_free_chan:
++	kfree(chan->sg);
++out_free_chan_shallow:
+ 	kfree(chan);
+ fail:
+ 	return err;
+@@ -728,6 +738,7 @@ static void p9_virtio_remove(struct virtio_device *vdev)
+ 	kobject_uevent(&(vdev->dev.kobj), KOBJ_CHANGE);
+ 	kfree(chan->tag);
+ 	kfree(chan->vc_wq);
++	kfree(chan->sg);
+ 	kfree(chan);
+ 
+ }
 -- 
-2.25.1
+2.30.2
 
 
 
