@@ -2,26 +2,26 @@ Return-Path: <v9fs-developer-bounces@lists.sourceforge.net>
 X-Original-To: lists+v9fs-developer@lfdr.de
 Delivered-To: lists+v9fs-developer@lfdr.de
 Received: from lists.sourceforge.net (lists.sourceforge.net [216.105.38.7])
-	by mail.lfdr.de (Postfix) with ESMTPS id 17D0D57276E
-	for <lists+v9fs-developer@lfdr.de>; Tue, 12 Jul 2022 22:39:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4BB80572843
+	for <lists+v9fs-developer@lfdr.de>; Tue, 12 Jul 2022 23:12:17 +0200 (CEST)
 Received: from [127.0.0.1] (helo=sfs-ml-2.v29.lw.sourceforge.com)
 	by sfs-ml-2.v29.lw.sourceforge.com with esmtp (Exim 4.94.2)
 	(envelope-from <v9fs-developer-bounces@lists.sourceforge.net>)
-	id 1oBMex-0004Qx-4f; Tue, 12 Jul 2022 20:39:08 +0000
+	id 1oBNAz-0005Cm-Ds; Tue, 12 Jul 2022 21:12:14 +0000
 Received: from [172.30.20.202] (helo=mx.sourceforge.net)
  by sfs-ml-2.v29.lw.sourceforge.com with esmtps (TLS1.2) tls
  TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384 (Exim 4.94.2)
- (envelope-from <asmadeus@codewreck.org>) id 1oBMev-0004Qq-WF
- for v9fs-developer@lists.sourceforge.net; Tue, 12 Jul 2022 20:39:06 +0000
+ (envelope-from <asmadeus@codewreck.org>) id 1oBNAx-0005Cc-67
+ for v9fs-developer@lists.sourceforge.net; Tue, 12 Jul 2022 21:12:12 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
  d=sourceforge.net; s=x; h=In-Reply-To:Content-Type:MIME-Version:References:
  Message-ID:Subject:Cc:To:From:Date:Sender:Reply-To:Content-Transfer-Encoding:
  Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
  Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
  List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=xoIWT0+MGU+XdIrhk6lVq1lEsSSRx8pWavkPy8XPrhc=; b=WB8sVv24f0zL9FYtj/z5aXpHJl
- FMTEza3anKI403TI4zjMsV+wGUb0P2iO8Wrt9Q1N2eV5JTls4XBVKumTEFo+N4kXEAmJSuXVNH2Iy
- iCnjFTnwzsBQZTIs777Jv8hJg0wkHH3taNIi0Fc+mk7hCIvroMgR4r+7XzI1ar979T50=;
+ bh=eiN+XhbOvX8WghrfI1OIJHzddrvBj7ZBjjDv3Q3CGk4=; b=IyQ5RZ1Brx0/+Jze0hV0RkUVPl
+ VV6mDl63egd2eoMI+WiwYDADfFPexp73+kZppN37uJTcLp7kJ7Ih6n4vMwy02A69gC62qVCL2BKMq
+ +XW4L9j43UE+BzLwk/rtDkmjvbakEcmfBb5TGGYfj0MpCKIqi4OxCRv6Blyo7azeT8Kc=;
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  ;
  h=In-Reply-To:Content-Type:MIME-Version:References:Message-ID:Subject:Cc:To
@@ -29,53 +29,54 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
  :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
  List-Post:List-Owner:List-Archive;
- bh=xoIWT0+MGU+XdIrhk6lVq1lEsSSRx8pWavkPy8XPrhc=; b=DlFievl7EBp9g4ipyRTTOJTCar
- jjxpLe26FdJg0iYOP+vPih/IAsevmlO2IoVTZ2Lp5RGHQxgTvSBswnwsN1SN4pzt41pHDxB+J4WOf
- EaRkRjecDbFnVMEg+gBHGm1old6L1pBZcUPsbauUzAcruL2AW1w+DvgFBvdTBI9eFdVU=;
+ bh=eiN+XhbOvX8WghrfI1OIJHzddrvBj7ZBjjDv3Q3CGk4=; b=BjxQIvfKwpI985bT2H7vfZqLsW
+ tdPBDOpglxvbMQHItBEXgmXEsRNz0i9EeVvkXUhwtIDP4JHIscSjEZ4vcgbmI8DcTT7RJ9bKGtt7X
+ Vl9HdHRPuLl6PfxxPD1cLhf8v6D3dhHsOBicSxTuFpig67DT/FsWJI2toelAnHnhVroA=;
 Received: from nautica.notk.org ([91.121.71.147])
  by sfi-mx-1.v28.lw.sourceforge.com with esmtps
  (TLS1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.94.2)
- id 1oBMev-00F4G2-Po
- for v9fs-developer@lists.sourceforge.net; Tue, 12 Jul 2022 20:39:06 +0000
+ id 1oBNAv-00F5kD-SZ
+ for v9fs-developer@lists.sourceforge.net; Tue, 12 Jul 2022 21:12:11 +0000
 Received: by nautica.notk.org (Postfix, from userid 108)
- id 7B425C01E; Tue, 12 Jul 2022 22:38:59 +0200 (CEST)
+ id 70985C009; Tue, 12 Jul 2022 23:12:03 +0200 (CEST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=codewreck.org; s=2;
- t=1657658339; bh=xoIWT0+MGU+XdIrhk6lVq1lEsSSRx8pWavkPy8XPrhc=;
+ t=1657660323; bh=eiN+XhbOvX8WghrfI1OIJHzddrvBj7ZBjjDv3Q3CGk4=;
  h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
- b=ESwoFOV316NhH0R9hOku2o0Bv1JXDoxMNFNlEvvRNmPtkOIKPtoifOHWnBmPMSG1H
- sQuiZNdjPK41hGT5j6xd3vLuvdbxV60GAO5SGLpx55rwCoKLo5EJncytk/FBiijncl
- XjCLjOPDKP81lY2LQcRcB2B8Z/sBsLgjZVc6vXGiQNqXWXWi99nZB4akvi8AB+91zv
- rXKuD1bvt4T6Izsjswxn4oWgf67mHj7yxrgy1GntzyHB/gYy1g+nMN6nxoeqRNbbeH
- CXabD/kGDAGulEBIp+qtaVDPUWJJSdy9OcOTgNGGsFjTewNiP834hnS322EqSKw7u7
- efofqaeojbX0g==
+ b=EUZ32aVlw1e2tAzktlNuxLyX5X7B0FmXxoJ46QPUd+4bpVojHcKUQRxrD0j4Af2Jw
+ RTO7MEoyUQL0qFx7eYDhzWa3BHvUcjGVoe2z53IppjBvEN0K9FdyLbzfmvPpvIRZcr
+ uj6y/M2AYkeRYaOoBUNTbUz2Qvsh/WQw6h2ih7bOLijgP1v1CQs5Y+05LPuNm3Rs2c
+ Icd2/LOVkGQh74GHI6hHz4fWfPBMQn9QdxKSNhyv1g7qw23o72SjGUiM1jifswSHVL
+ PjDryJ2mDz2uP6XZrzoZx+CVl8ALGIoX9Tk7QHD7SHU5QZnv2fP5r64fBdWSfL5Hvh
+ sSU7c63Y56/ng==
 X-Spam-Checker-Version: SpamAssassin 3.3.2 (2011-06-06) on nautica.notk.org
 X-Spam-Level: 
 X-Spam-Status: No, score=0.0 required=5.0 tests=UNPARSEABLE_RELAY
  autolearn=unavailable version=3.3.2
 Received: from odin.codewreck.org (localhost [127.0.0.1])
- by nautica.notk.org (Postfix) with ESMTPS id BA27CC009;
- Tue, 12 Jul 2022 22:38:55 +0200 (CEST)
+ by nautica.notk.org (Postfix) with ESMTPS id B6C96C009;
+ Tue, 12 Jul 2022 23:12:00 +0200 (CEST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=codewreck.org; s=2;
- t=1657658337; bh=xoIWT0+MGU+XdIrhk6lVq1lEsSSRx8pWavkPy8XPrhc=;
+ t=1657660322; bh=eiN+XhbOvX8WghrfI1OIJHzddrvBj7ZBjjDv3Q3CGk4=;
  h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
- b=hYL5aJsYK2K6nSHFdG4wihmfLZ2pKaJNYRNn9/sRs9KgdPw0WLHjBL6IyvyCSoqu6
- ovIy4KNGT2pknVIw2waXODhEQufmtk2X97AiyQx0KjQyD376bfgsnDjyR6lUks0FHt
- x/XWxDAQ2NLOsEct8O5WQo5miBCXSYVIJVJzyoMMwvPj70x3SB/k5HAlC6fzXHhhXL
- j/9JrkXz3XAybJDUuTXed/jCsrFkzOEWcdn8gTODyzAu7oIGsZ8UBg2r3fJmWTsh+u
- BMCVMc65maV7GhMn+uRpwdVs5SfNcWz63tPFgiuxgMawK+kycCftFu3/xtoNYeP82X
- m7/1QJ0ZYBZLQ==
+ b=whF+2hsQE5IlwguKvo69lZPFa4ZLhnyjqMZIdisEC8g3LQ6IyW+TiitL7m1wqEKlu
+ t1Rc2Ybd6E6c8CTcAxWG6wkFcp5uItE1W8JTMtlnN1yJiHQe3XPhcgS7RXBRAUi0uT
+ ijufJiLZT95CD4cBAu4fc2MLW5ABqaeAkgQMVbokubiSv7EU2v/4hRR99xKbg868RO
+ XPLbH2NvOaKd2aii5tU6dgHXTDdpKZ5RmRqmd19v2D+QVFMTfpJMr77ekkLIenLl6P
+ GlcOuoslEFMGyjxWrYlZ0YgedIkvQ5r8iznbvJpeq3cv6lCXPiWpvPcg1bYIvwwtsW
+ 4Ux4mGteDf3TQ==
 Received: from localhost (odin.codewreck.org [local])
- by odin.codewreck.org (OpenSMTPD) with ESMTPA id 436c2c9e;
- Tue, 12 Jul 2022 20:38:53 +0000 (UTC)
-Date: Wed, 13 Jul 2022 05:38:38 +0900
+ by odin.codewreck.org (OpenSMTPD) with ESMTPA id 0c84a27d;
+ Tue, 12 Jul 2022 21:11:57 +0000 (UTC)
+Date: Wed, 13 Jul 2022 06:11:42 +0900
 From: Dominique Martinet <asmadeus@codewreck.org>
 To: Christian Schoenebeck <linux_oss@crudebyte.com>
-Message-ID: <Ys3bzjuDgseOliUW@codewreck.org>
+Message-ID: <Ys3jjg52EIyITPua@codewreck.org>
 References: <cover.1657636554.git.linux_oss@crudebyte.com>
- <2506fd2ed484f688826cdc33c177c467e2b0506c.1657636554.git.linux_oss@crudebyte.com>
+ <5fb0bcc402e032cbc0779f428be5797cddfd291c.1657636554.git.linux_oss@crudebyte.com>
+ <Ys3Mj+SgWLzhQGWK@codewreck.org>
 MIME-Version: 1.0
 Content-Disposition: inline
-In-Reply-To: <2506fd2ed484f688826cdc33c177c467e2b0506c.1657636554.git.linux_oss@crudebyte.com>
+In-Reply-To: <Ys3Mj+SgWLzhQGWK@codewreck.org>
 X-Spam-Score: -0.2 (/)
 X-Spam-Report: Spam detection software,
  running on the system "util-spamd-1.v13.lw.sourceforge.com", 
@@ -83,10 +84,9 @@ X-Spam-Report: Spam detection software,
  message has been attached to this so you can view it or label
  similar future email.  If you have any questions, see
  the administrator of that system for details.
- Content preview:  Christian Schoenebeck wrote on Tue, Jul 12,
- 2022 at 04:31:26PM
- +0200: > This 9p client implementation is yet using linear message buffers
- for > most message types, i.e. they use kmalloc() et al. for a [...] 
+ Content preview:  Dominique Martinet wrote on Wed, Jul 13, 2022 at 04:33:35AM
+ +0900: > Christian Schoenebeck wrote on Tue, Jul 12, 2022 at 04:31:36PM +0200:
+ > > So far 'msize' was simply used for all 9p message types, [...] 
  Content analysis details:   (-0.2 points, 6.0 required)
  pts rule name              description
  ---- ---------------------- --------------------------------------------------
@@ -101,9 +101,9 @@ X-Spam-Report: Spam detection software,
  author's domain
  0.0 UNPARSEABLE_RELAY      Informational: message has unparseable relay
  lines
-X-Headers-End: 1oBMev-00F4G2-Po
-Subject: Re: [V9fs-developer] [PATCH v5 07/11] net/9p: limit 'msize' to
- KMALLOC_MAX_SIZE for all transports
+X-Headers-End: 1oBNAv-00F5kD-SZ
+Subject: Re: [V9fs-developer] [PATCH v5 11/11] net/9p: allocate appropriate
+ reduced message buffers
 X-BeenThere: v9fs-developer@lists.sourceforge.net
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -122,59 +122,35 @@ Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: v9fs-developer-bounces@lists.sourceforge.net
 
-Christian Schoenebeck wrote on Tue, Jul 12, 2022 at 04:31:26PM +0200:
-> This 9p client implementation is yet using linear message buffers for
-> most message types, i.e. they use kmalloc() et al. for allocating
-> continuous physical memory pages, which is usually limited to 4MB
-> buffers. Use KMALLOC_MAX_SIZE though instead of a hard coded 4MB for
-> constraining this more safely.
-> 
-> Unfortunately we cannot simply replace the existing kmalloc() calls by
-> vmalloc() ones, because that would yield in non-logical kernel addresses
-> (for any vmalloc(>4MB) that is) which are in general not accessible by
-> hosts like QEMU.
-> 
-> In future we would replace those linear buffers by scatter/gather lists
-> to eventually get rid of this limit (struct p9_fcall's sdata member by
-> p9_fcall_init() and struct p9_fid's rdir member by
-> v9fs_alloc_rdir_buf()).
-> 
-> Signed-off-by: Christian Schoenebeck <linux_oss@crudebyte.com>
-> ---
-> 
-> Hmm, that's a bit too simple, as we also need a bit of headroom for
-> transport specific overhead. So maybe this has to be handled by each
-> transport appropriately instead?
+Dominique Martinet wrote on Wed, Jul 13, 2022 at 04:33:35AM +0900:
+> Christian Schoenebeck wrote on Tue, Jul 12, 2022 at 04:31:36PM +0200:
+> > So far 'msize' was simply used for all 9p message types, which is far
+> > too much and slowed down performance tremendously with large values
+> > for user configurable 'msize' option.
+> > 
+> > Let's stop this waste by using the new p9_msg_buf_size() function for
+> > allocating more appropriate, smaller buffers according to what is
+> > actually sent over the wire.
+> > 
+> > Only exception: RDMA transport is currently excluded from this, as
+> > it would not cope with it. [1]
 
-hm yes I'd say it's redundant with each transports max size already --
-let's just keep appropriate max values in each transport.
+Thinking back on RDMA:
+- vs. one or two buffers as discussed in another thread, rdma will still
+require two buffers, we post the receive buffer before sending as we
+could otherwise be raced (reply from server during the time it'd take to
+recycle the send buffer)
+In practice the recv buffers should act liks a fifo and we might be able
+to post the buffer we're about to send for recv before sending it and it
+shouldn't be overwritten until it's sent, but that doesn't look quite good.
 
-> 
->  net/9p/client.c | 11 +++++++++++
->  1 file changed, 11 insertions(+)
-> 
-> diff --git a/net/9p/client.c b/net/9p/client.c
-> index 20054addd81b..fab939541c81 100644
-> --- a/net/9p/client.c
-> +++ b/net/9p/client.c
-> @@ -1042,6 +1042,17 @@ struct p9_client *p9_client_create(const char *dev_name, char *options)
->  	p9_debug(P9_DEBUG_MUX, "clnt %p trans %p msize %d protocol %d\n",
->  		 clnt, clnt->trans_mod, clnt->msize, clnt->proto_version);
->  
-> +	/*
-> +	 * due to linear message buffers being used by client ATM
-> +	 */
-> +	if (clnt->msize > KMALLOC_MAX_SIZE) {
-> +		clnt->msize = KMALLOC_MAX_SIZE;
-> +		pr_info("Limiting 'msize' to %zu as this is the maximum "
-> +			"supported by this client version.\n",
-> +			(size_t) KMALLOC_MAX_SIZE
-> +		);
-> +	}
-> +
->  	err = clnt->trans_mod->create(clnt, dev_name, options);
->  	if (err)
->  		goto put_trans;
+- for this particular patch, we can still allocate smaller short buffers
+for requests, so we should probably keep tsize to 0.
+rsize there really isn't much we can do without a protocol change
+though...
+
+--
+Dominique
 
 
 _______________________________________________
