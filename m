@@ -2,81 +2,62 @@ Return-Path: <v9fs-developer-bounces@lists.sourceforge.net>
 X-Original-To: lists+v9fs-developer@lfdr.de
 Delivered-To: lists+v9fs-developer@lfdr.de
 Received: from lists.sourceforge.net (lists.sourceforge.net [216.105.38.7])
-	by mail.lfdr.de (Postfix) with ESMTPS id 43DED57339B
-	for <lists+v9fs-developer@lfdr.de>; Wed, 13 Jul 2022 11:56:43 +0200 (CEST)
-Received: from [127.0.0.1] (helo=sfs-ml-1.v29.lw.sourceforge.com)
-	by sfs-ml-1.v29.lw.sourceforge.com with esmtp (Exim 4.94.2)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8B589573411
+	for <lists+v9fs-developer@lfdr.de>; Wed, 13 Jul 2022 12:23:54 +0200 (CEST)
+Received: from [127.0.0.1] (helo=sfs-ml-2.v29.lw.sourceforge.com)
+	by sfs-ml-2.v29.lw.sourceforge.com with esmtp (Exim 4.94.2)
 	(envelope-from <v9fs-developer-bounces@lists.sourceforge.net>)
-	id 1oBZ6m-0001nL-Iq; Wed, 13 Jul 2022 09:56:40 +0000
+	id 1oBZX4-0006QB-Cz; Wed, 13 Jul 2022 10:23:51 +0000
 Received: from [172.30.20.202] (helo=mx.sourceforge.net)
- by sfs-ml-1.v29.lw.sourceforge.com with esmtps (TLS1.2) tls
+ by sfs-ml-2.v29.lw.sourceforge.com with esmtps (TLS1.2) tls
  TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384 (Exim 4.94.2)
- (envelope-from <asmadeus@codewreck.org>) id 1oBZ6h-0001mS-S7
- for v9fs-developer@lists.sourceforge.net; Wed, 13 Jul 2022 09:56:35 +0000
+ (envelope-from <linux_oss@crudebyte.com>) id 1oBZWl-0006Pr-R7
+ for v9fs-developer@lists.sourceforge.net; Wed, 13 Jul 2022 10:23:32 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=sourceforge.net; s=x; h=In-Reply-To:Content-Type:MIME-Version:References:
- Message-ID:Subject:Cc:To:From:Date:Sender:Reply-To:Content-Transfer-Encoding:
+ d=sourceforge.net; s=x; h=Content-Type:Content-Transfer-Encoding:MIME-Version
+ :References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Sender:Reply-To:
  Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
  Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
  List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=pjiAEa60Alkw3UWG+MQjG9CTRo60uCCBhIdRs0otWFc=; b=CMKJokC+Zh/vxZcFw4E7GDHlcB
- TSBMY/P14f0TdUjqgb6DGP7sUX88ZjAoF1NTwW0dhNexR1ZIqsxBT8IhP20Brf7dPvnjOiGK9qi/U
- cYe3I24m7m/S38t0glFtwsVTICGJc02PPJN4gHDOtKKNBMiPmBlhGpminV7VwXr4xrzw=;
+ bh=wHmQ4QutF9xLy8a32/xGDr4CB2rcz5qRvqhIsboHxus=; b=kytfr0VNoTvms2ESQy+5frCshz
+ RIFBoZ523SR7571klvkRkTBid1Za2tB5TKtZcyqD0vcpCrhjj6yIgtBPuT5uLxhSlB4SikTY0PRCN
+ LYTKgGLITobfv2nYwd1KxIDa9JlwApwqe8MZZ29F1dfTZAAe4NzNo5LU9ogCt+sypz90=;
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  ;
- h=In-Reply-To:Content-Type:MIME-Version:References:Message-ID:Subject:Cc:To
- :From:Date:Sender:Reply-To:Content-Transfer-Encoding:Content-ID:
+ h=Content-Type:Content-Transfer-Encoding:MIME-Version:References:
+ In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Sender:Reply-To:Content-ID:
  Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
  :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
  List-Post:List-Owner:List-Archive;
- bh=pjiAEa60Alkw3UWG+MQjG9CTRo60uCCBhIdRs0otWFc=; b=Mmw27wmu8XtKbqyp2DUo7RyXri
- QbYbsqaEFCiITxgyRkUHrB4dvn5LV5qF/+SCEIuDrHgK+3mh16u5tGlIXuoiNgnuf+KG5TIAqgBXn
- zH3g6s6xqeCKTRdSul056nS3FdXhyU8F5mVECqynDzH84xIfv5D0alsrT1PSy1YVGQyk=;
-Received: from nautica.notk.org ([91.121.71.147])
- by sfi-mx-2.v28.lw.sourceforge.com with esmtps
+ bh=wHmQ4QutF9xLy8a32/xGDr4CB2rcz5qRvqhIsboHxus=; b=NdE/HCLrgbEFE8wjgM0BqlMwfn
+ 0JEEwLE0lKpwLrK4DEUBuSdo25ENklF34q7rybs17L5OBMaY2TGHBtvHIXoOdcsOPgPjgxs70Iekd
+ S9tiO6XRtHHLS2Eb1KjEtYJ4u5ixjudv0xqHG3vYkZgS1VCd+bsAKtGv4aZeOK2fzmRk=;
+Received: from kylie.crudebyte.com ([5.189.157.229])
+ by sfi-mx-1.v28.lw.sourceforge.com with esmtps
  (TLS1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.94.2)
- id 1oBZ6g-0001ev-RB
- for v9fs-developer@lists.sourceforge.net; Wed, 13 Jul 2022 09:56:35 +0000
-Received: by nautica.notk.org (Postfix, from userid 108)
- id 5CA65C01C; Wed, 13 Jul 2022 11:56:28 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=codewreck.org; s=2;
- t=1657706188; bh=pjiAEa60Alkw3UWG+MQjG9CTRo60uCCBhIdRs0otWFc=;
- h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
- b=oWmdA5i9zqTEWirP6yj0ZQ3tI3n/29ATEa6esdIR5yvp+HITlzHeZDdnhHCUQUJQ3
- FmCJH4GdJAYSJ3KP5H6961KfFSk/4PQZkZjlBvIvMn1Wg/foE8TYp6EzjLls1OrgfP
- Rp+O+p+nIoJ0wtGMYNFwmv3kuKVaztM2Rmww0apJCX2vbXKH0JaEebdnwOMLlJKNKy
- CbGBO4reBCOoTXx7bucrX3VKfo0cP5kxUOhRqq8yBZGgEAOVIFGcrrcHpjyURCZQ0p
- S69LhEvNNr9PhuQ+zsJUeiiBwjXJdab0pGmLbW8Od3TykW0XgEIscpPQ/cClMT1ViP
- 9tUSyiZNkvQrA==
-X-Spam-Checker-Version: SpamAssassin 3.3.2 (2011-06-06) on nautica.notk.org
-X-Spam-Level: 
-X-Spam-Status: No, score=0.0 required=5.0 tests=UNPARSEABLE_RELAY
- autolearn=unavailable version=3.3.2
-Received: from odin.codewreck.org (localhost [127.0.0.1])
- by nautica.notk.org (Postfix) with ESMTPS id D8981C009;
- Wed, 13 Jul 2022 11:56:25 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=codewreck.org; s=2;
- t=1657706188; bh=pjiAEa60Alkw3UWG+MQjG9CTRo60uCCBhIdRs0otWFc=;
- h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
- b=oWmdA5i9zqTEWirP6yj0ZQ3tI3n/29ATEa6esdIR5yvp+HITlzHeZDdnhHCUQUJQ3
- FmCJH4GdJAYSJ3KP5H6961KfFSk/4PQZkZjlBvIvMn1Wg/foE8TYp6EzjLls1OrgfP
- Rp+O+p+nIoJ0wtGMYNFwmv3kuKVaztM2Rmww0apJCX2vbXKH0JaEebdnwOMLlJKNKy
- CbGBO4reBCOoTXx7bucrX3VKfo0cP5kxUOhRqq8yBZGgEAOVIFGcrrcHpjyURCZQ0p
- S69LhEvNNr9PhuQ+zsJUeiiBwjXJdab0pGmLbW8Od3TykW0XgEIscpPQ/cClMT1ViP
- 9tUSyiZNkvQrA==
-Received: from localhost (odin.codewreck.org [local])
- by odin.codewreck.org (OpenSMTPD) with ESMTPA id 1435d5b7;
- Wed, 13 Jul 2022 09:56:23 +0000 (UTC)
-Date: Wed, 13 Jul 2022 18:56:08 +0900
-From: Dominique Martinet <asmadeus@codewreck.org>
-To: Christian Schoenebeck <linux_oss@crudebyte.com>
-Message-ID: <Ys6WuOh2MaicETuw@codewreck.org>
+ id 1oBZWk-00FaCB-MR
+ for v9fs-developer@lists.sourceforge.net; Wed, 13 Jul 2022 10:23:32 +0000
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+ d=crudebyte.com; s=kylie; h=Content-Type:Content-Transfer-Encoding:
+ MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:
+ Content-ID:Content-Description;
+ bh=wHmQ4QutF9xLy8a32/xGDr4CB2rcz5qRvqhIsboHxus=; b=FCMpJerlIFQDhcbFGN31XMhAlB
+ Dyb1l9AOPzR26jZVjqfwDKgBNmKaTYL7nVXoA1xai6NsXQeQQ82Qzu589JcDOZfcDGzuAiO+R0o5g
+ fIPQi9dnf81OW5s4HZkKLLqY5LPwNfFrvSe6ACpDCPVthMmSBMHdVr/kHEC8kiR3izaHxZdceeGhi
+ 5romADZ0TD7SoBKMNsygQcPINfBc3vg8Wa4Gfp/ewx5OvPWnpxN37hKdt8ufHXwkp86aVv7eNXrBc
+ i8tYPo8uVO8dhZecQCjxTogwEK95Oqp498g+hstlJm/xJ/+3FFEprFpk+AYMbbbfweuppmgQlAArX
+ QrKjHzP2FnJp6E/eu7UF5UzyLsdnmlX3O6hZKPsvDox7jAUBpwb+rDXDUhmFK8jkmLTNFHdRKELW+
+ a33x8rNmc+JRWYifK1WMN/pIqHBwGXvm8yxhj5uJAVnsRLqBYcXphx6xtTq7qJTXMAvgbl03FM8+D
+ CutdT+XiAoBlWHfbOz3balCpDiXuYsx30BwPfQybZ3B3V2uSg2N69pJzgSaGipwn3tofYDBSqOARK
+ 76E4aiOGlLSh+xAG0nYZtr1PofnrUboxRWnapzHgqWT3cR4oej7MaDMiRGnBy3Of+zEj4YCMcYRpI
+ GzK3XIU2qpRX+/RTTFVzP1jnbeDC77jN4sjQvyA8Y=;
+To: Dominique Martinet <asmadeus@codewreck.org>
+Date: Wed, 13 Jul 2022 12:22:50 +0200
+Message-ID: <3177156.tURSKFNe1E@silver>
+In-Reply-To: <Ys6QlcShhji2sx9V@codewreck.org>
 References: <cover.1657636554.git.linux_oss@crudebyte.com>
- <Ys3jjg52EIyITPua@codewreck.org> <4284956.GYXQZuIPEp@silver>
- <1998718.eTOXZt5M9a@silver>
+ <4284956.GYXQZuIPEp@silver> <Ys6QlcShhji2sx9V@codewreck.org>
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <1998718.eTOXZt5M9a@silver>
 X-Spam-Score: -0.2 (/)
 X-Spam-Report: Spam detection software,
  running on the system "util-spamd-2.v13.lw.sourceforge.com", 
@@ -84,10 +65,9 @@ X-Spam-Report: Spam detection software,
  message has been attached to this so you can view it or label
  similar future email.  If you have any questions, see
  the administrator of that system for details.
- Content preview:  Christian Schoenebeck wrote on Wed, Jul 13,
- 2022 at 11:29:13AM
- +0200: > > As this flag is going to be very RDMA-transport specific, I'm
- still > > scratching my head for a good name though. > > Or, ins [...] 
+ Content preview:  On Mittwoch, 13. Juli 2022 11:29:57 CEST Dominique Martinet
+ wrote: > Christian Schoenebeck wrote on Wed, Jul 13, 2022 at 11:19:48AM +0200:
+ > > > - for this particular patch, we can still allocate smal [...] 
  Content analysis details:   (-0.2 points, 6.0 required)
  pts rule name              description
  ---- ---------------------- --------------------------------------------------
@@ -101,9 +81,7 @@ X-Spam-Report: Spam detection software,
  author's domain
  -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
  -0.0 T_SCC_BODY_TEXT_LINE   No description available.
- 0.0 UNPARSEABLE_RELAY      Informational: message has unparseable relay
- lines
-X-Headers-End: 1oBZ6g-0001ev-RB
+X-Headers-End: 1oBZWk-00FaCB-MR
 Subject: Re: [V9fs-developer] [PATCH v5 11/11] net/9p: allocate appropriate
  reduced message buffers
 X-BeenThere: v9fs-developer@lists.sourceforge.net
@@ -117,6 +95,9 @@ List-Post: <mailto:v9fs-developer@lists.sourceforge.net>
 List-Help: <mailto:v9fs-developer-request@lists.sourceforge.net?subject=help>
 List-Subscribe: <https://lists.sourceforge.net/lists/listinfo/v9fs-developer>, 
  <mailto:v9fs-developer-request@lists.sourceforge.net?subject=subscribe>
+From: Christian Schoenebeck via V9fs-developer
+ <v9fs-developer@lists.sourceforge.net>
+Reply-To: Christian Schoenebeck <linux_oss@crudebyte.com>
 Cc: Latchesar Ionkov <lucho@ionkov.net>, Eric Van Hensbergen <ericvh@gmail.com>,
  netdev@vger.kernel.org, linux-kernel@vger.kernel.org,
  v9fs-developer@lists.sourceforge.net, Nikolay Kichukov <nikolay@oldum.net>
@@ -124,17 +105,39 @@ Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: v9fs-developer-bounces@lists.sourceforge.net
 
-Christian Schoenebeck wrote on Wed, Jul 13, 2022 at 11:29:13AM +0200:
+On Mittwoch, 13. Juli 2022 11:29:57 CEST Dominique Martinet wrote:
+> Christian Schoenebeck wrote on Wed, Jul 13, 2022 at 11:19:48AM +0200:
+> > > - for this particular patch, we can still allocate smaller short buffers
+> > > for requests, so we should probably keep tsize to 0.
+> > > rsize there really isn't much we can do without a protocol change
+> > > though...
+> > 
+> > Good to know! I don't have any RDMA setup here to test, so I rely on what
+> > you say and adjust this in v6 accordingly, along with the strcmp -> flag
+> > change of course.
+> 
+> Yeah... I've got a connect-x 3 (mlx4, got a cheap old one) card laying
+> around, I need to find somewhere to plug it in and actually run some
+> validation again at some point.
+> Haven't used 9p/RDMA since I left my previous work in 2020...
+> 
+> I'll try to find time for that before the merge
+> 
 > > As this flag is going to be very RDMA-transport specific, I'm still
 > > scratching my head for a good name though.
 > 
-> Or, instead of inventing some exotic flag name, maybe introducing an enum for 
-> the individual 9p transport types?
+> The actual limitation is that receive buffers are pooled, so something
+> to like pooled_rcv_buffers or shared_rcv_buffers or anything along that
+> line?
 
-That works for me as well
+OK, I'll go this way then, as it's the easiest to do, can easily be refactored 
+in future if someone really cares, and it feels less like a hack than 
+injecting "if transport == rdma" into client code directly.
 
---
-Dominique
+Best regards,
+Christian Schoenebeck
+
+
 
 
 _______________________________________________
