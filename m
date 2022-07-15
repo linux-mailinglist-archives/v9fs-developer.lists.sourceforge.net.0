@@ -2,17 +2,17 @@ Return-Path: <v9fs-developer-bounces@lists.sourceforge.net>
 X-Original-To: lists+v9fs-developer@lfdr.de
 Delivered-To: lists+v9fs-developer@lfdr.de
 Received: from lists.sourceforge.net (lists.sourceforge.net [216.105.38.7])
-	by mail.lfdr.de (Postfix) with ESMTPS id 06D445769CC
-	for <lists+v9fs-developer@lfdr.de>; Sat, 16 Jul 2022 00:22:29 +0200 (CEST)
-Received: from [127.0.0.1] (helo=sfs-ml-1.v29.lw.sourceforge.com)
-	by sfs-ml-1.v29.lw.sourceforge.com with esmtp (Exim 4.94.2)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4F92F5769CB
+	for <lists+v9fs-developer@lfdr.de>; Sat, 16 Jul 2022 00:22:28 +0200 (CEST)
+Received: from [127.0.0.1] (helo=sfs-ml-2.v29.lw.sourceforge.com)
+	by sfs-ml-2.v29.lw.sourceforge.com with esmtp (Exim 4.94.2)
 	(envelope-from <v9fs-developer-bounces@lists.sourceforge.net>)
-	id 1oCThb-0000h6-J7; Fri, 15 Jul 2022 22:22:27 +0000
+	id 1oCThY-00034d-JA; Fri, 15 Jul 2022 22:22:25 +0000
 Received: from [172.30.20.202] (helo=mx.sourceforge.net)
- by sfs-ml-1.v29.lw.sourceforge.com with esmtps (TLS1.2) tls
+ by sfs-ml-2.v29.lw.sourceforge.com with esmtps (TLS1.2) tls
  TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384 (Exim 4.94.2)
- (envelope-from <692c3018766fa2fbb8d2654abcb4e43790364a2c@lizzy.crudebyte.com>)
- id 1oCThY-0000gz-FI
+ (envelope-from <6e0f8699c793357f0c6e6fb3bbab249142b9ef6c@lizzy.crudebyte.com>)
+ id 1oCThX-00034S-J9
  for v9fs-developer@lists.sourceforge.net; Fri, 15 Jul 2022 22:22:24 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
  d=sourceforge.net; s=x; h=Cc:To:Subject:Date:From:References:In-Reply-To:
@@ -20,9 +20,9 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
  Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
  Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:
  List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=xq+qB+6LSBSIw4B37E9JgHNJIm1VN9v6g48FmouXfvs=; b=T6J6COmS6WrOntXe3mR5W6zh+m
- q2QF+t0mHmXAWJSt+PdU7QFFm0rNotBKO2D9hgtB3Zi3PBwuq2293zpdoqdyCqKpEPNvhkTYI4xYg
- /P0ak0uJzaDCeyqfa7PR5p8eXv/qlxVThxeM7RkZCn1i4gcddkY63lS+p7XSU8T4WHrI=;
+ bh=Hw21+wotN9D+Z0hozfXdxMixZLaL8X+liJ1Yr85K26w=; b=R2tgE7DCE9yTYf2vJkJxZUZVRH
+ QoVGbC8EPGOljjnEjcEtWzncGz1vIB5dYv013KJIap4/609ZMycmNdHyf3la1hxjgWjLZH0l+1Dmt
+ dwBFiSe7K9z7+gLoNMLLfmu4up/nDHHnk4owQgAstVDr8uaH2oXnfNEnxC2hdGIFi/j8=;
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  ;
  h=Cc:To:Subject:Date:From:References:In-Reply-To:Message-Id:Sender:Reply-To
@@ -30,27 +30,27 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
  :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
  List-Post:List-Owner:List-Archive;
- bh=xq+qB+6LSBSIw4B37E9JgHNJIm1VN9v6g48FmouXfvs=; b=UcALE2NCZUlgWUqTnDQ5FLZcD2
- /IYHy8QrbkG9zWqfWO+s7bVpzILG8B2lRcoNWhd0v5cJqDTpykq4XUkDPvqOFpES6zSZvdqoT5yVV
- 1ahm0J/J7A8rJb7VTYzcFvOKI4ebKagQeWbKlLqLsCTlP7zk/CjbdlA2fCEOnxLa37A0=;
+ bh=Hw21+wotN9D+Z0hozfXdxMixZLaL8X+liJ1Yr85K26w=; b=MgAzwmR1BUMn4MEi+PM3uzgm/q
+ kTWvrgpQ2INcWrin7jku42dv9j4SyfS62Lekruc4Tqhx4omHboQtC0cSZC3IeiPLXMQU+cKeNszEv
+ W+GkospDEZSiGCpZcZZdTmIxPZhUWaaJPceOIIYL0krzn6d142dNfe52t6UpEyF7pH8I=;
 Received: from lizzy.crudebyte.com ([91.194.90.13])
  by sfi-mx-1.v28.lw.sourceforge.com with esmtps
  (TLS1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.94.2)
- id 1oCThS-000WdH-Pf
- for v9fs-developer@lists.sourceforge.net; Fri, 15 Jul 2022 22:22:19 +0000
+ id 1oCThU-000WdV-ML
+ for v9fs-developer@lists.sourceforge.net; Fri, 15 Jul 2022 22:22:21 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
  d=crudebyte.com; s=lizzy; h=Cc:To:Subject:Date:From:References:In-Reply-To:
  Message-Id:Content-Type:Content-Transfer-Encoding:MIME-Version:Content-ID:
- Content-Description; bh=xq+qB+6LSBSIw4B37E9JgHNJIm1VN9v6g48FmouXfvs=; b=PfR2R
- Mgcvo0wVAM8pQYMtGKaxu3eb+Anpl/ljkBpGDGBxS1YrgjsrtTWn+FCCeRt21TqMJGsdXKg+JvIyG
- wqK5pxbn7Dp6aSYvEIO9uedfa0+UZDjSa1m+HF/sh2hlCkA6WYUsjoVtwI3x1fR3xeDdPOMYGuazK
- ffLEMU0ebR2kqxn3QX5fZwR9WgWrS2XMh/uOkWUQSfS8HUB9iudGaUgAVyavXsA9jZOczO6TgLlPW
- Iqmc5g5GB1G3hlov3B0e33mH7MeBedxqNHKvYuYjjhvfvZRz7VkC9Dp+WZPjfsG7YvPL4e9BCQiAR
- hY3SDLjGb2Uqz7vyZ+BbV3HXqrCFQ==;
-Message-Id: <692c3018766fa2fbb8d2654abcb4e43790364a2c.1657920926.git.linux_oss@crudebyte.com>
+ Content-Description; bh=Hw21+wotN9D+Z0hozfXdxMixZLaL8X+liJ1Yr85K26w=; b=bqWSW
+ qbwnSAzZLNuFJSgHqSN5Y4TsADurVnQgQSFB2/HIn4nBAUBs3+WkBLrMm2qzJ2UPi4321tNQydAd2
+ RB4XN5OzHSU+prD1liYj2ZUzkZ+19AUtxiBM1cjz6+Tbemc/8bfEi9sDRuy5knxsYMVObjiX8L4VU
+ m5L6tghyISEgbPk6x0KjG/nRnQlUy5tZLIMhGHGtySTQWla0Gv/HjHK0gGWcTF/QoI8RF1mkW8+Pl
+ 0gYP4wFQQHGP/au1wFlnxiztj8ugX1k1LJqbLyoXUG/VIN4X9b+FAEVxIAvrSp8XfKK36ldXaViou
+ 0srlmunzvZRDYfticUqCBCeZXfQmg==;
+Message-Id: <6e0f8699c793357f0c6e6fb3bbab249142b9ef6c.1657920926.git.linux_oss@crudebyte.com>
 In-Reply-To: <cover.1657920926.git.linux_oss@crudebyte.com>
 References: <cover.1657920926.git.linux_oss@crudebyte.com>
-Date: Fri, 15 Jul 2022 23:32:12 +0200
+Date: Fri, 15 Jul 2022 23:32:15 +0200
 To: v9fs-developer@lists.sourceforge.net
 X-Spam-Score: -0.2 (/)
 X-Spam-Report: Spam detection software,
@@ -59,12 +59,11 @@ X-Spam-Report: Spam detection software,
  message has been attached to this so you can view it or label
  similar future email.  If you have any questions, see
  the administrator of that system for details.
- Content preview: The scatter gather list in struct virtio_chan currently
- resides
- as compile-time constant size array directly within the contiguous struct
- virtio_chan's memory space. Separate memory space and allocation of the
- scatter
- gather list from memory space and allocation of struct virtio_chan. 
+ Content preview: The size of scatter/gather lists used by the virtio transport
+ is currently hard coded. Refactor this to using a runtime variable.
+ Signed-off-by:
+ Christian Schoenebeck <linux_oss@crudebyte.com> --- net/9p/trans_virtio.c
+ | 23 +++++++++++++ 1 file changed, 13 insertions(+), 10 deletions(-) 
  Content analysis details:   (-0.2 points, 6.0 required)
  pts rule name              description
  ---- ---------------------- --------------------------------------------------
@@ -77,9 +76,9 @@ X-Spam-Report: Spam detection software,
  valid
  -0.1 DKIM_VALID_AU          Message has a valid DKIM or DK signature from
  author's domain
-X-Headers-End: 1oCThS-000WdH-Pf
-Subject: [V9fs-developer] [PATCH v6 01/11] 9p/trans_virtio: separate
- allocation of scatter gather list
+X-Headers-End: 1oCThU-000WdV-ML
+Subject: [V9fs-developer] [PATCH v6 02/11] 9p/trans_virtio: turn amount of
+ sg lists into runtime info
 X-BeenThere: v9fs-developer@lists.sourceforge.net
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -102,63 +101,125 @@ Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: v9fs-developer-bounces@lists.sourceforge.net
 
-The scatter gather list in struct virtio_chan currently
-resides as compile-time constant size array directly within the
-contiguous struct virtio_chan's memory space.
-
-Separate memory space and allocation of the scatter gather list
-from memory space and allocation of struct virtio_chan.
+The size of scatter/gather lists used by the virtio transport is
+currently hard coded. Refactor this to using a runtime variable.
 
 Signed-off-by: Christian Schoenebeck <linux_oss@crudebyte.com>
 ---
- net/9p/trans_virtio.c | 13 ++++++++++++-
- 1 file changed, 12 insertions(+), 1 deletion(-)
+ net/9p/trans_virtio.c | 23 +++++++++++++----------
+ 1 file changed, 13 insertions(+), 10 deletions(-)
 
 diff --git a/net/9p/trans_virtio.c b/net/9p/trans_virtio.c
-index b24a4fb0f0a2..2693e618080c 100644
+index 2693e618080c..18bdfa64b934 100644
 --- a/net/9p/trans_virtio.c
 +++ b/net/9p/trans_virtio.c
-@@ -77,7 +77,7 @@ struct virtio_chan {
- 	 */
+@@ -36,7 +36,7 @@
+ #include <linux/virtio_9p.h>
+ #include "trans_common.h"
+ 
+-#define VIRTQUEUE_NUM	128
++#define VIRTQUEUE_DEFAULT_NUM	128
+ 
+ /* a single mutex to manage channel initialization and attachment */
+ static DEFINE_MUTEX(virtio_9p_lock);
+@@ -54,6 +54,7 @@ static atomic_t vp_pinned = ATOMIC_INIT(0);
+  * @vc_wq: wait queue for waiting for thing to be added to ring buf
+  * @p9_max_pages: maximum number of pinned pages
+  * @sg: scatter gather list which is used to pack a request (protected?)
++ * @sg_n: amount of elements in sg array
+  * @chan_list: linked list of channels
+  *
+  * We keep all per-channel information in a structure.
+@@ -78,6 +79,7 @@ struct virtio_chan {
  	unsigned long p9_max_pages;
  	/* Scatterlist: can be too big for stack. */
--	struct scatterlist sg[VIRTQUEUE_NUM];
-+	struct scatterlist *sg;
+ 	struct scatterlist *sg;
++	size_t sg_n;
  	/**
  	 * @tag: name to identify a mount null terminated
  	 */
-@@ -574,6 +574,14 @@ static int p9_virtio_probe(struct virtio_device *vdev)
+@@ -270,12 +272,12 @@ p9_virtio_request(struct p9_client *client, struct p9_req_t *req)
+ 	out_sgs = in_sgs = 0;
+ 	/* Handle out VirtIO ring buffers */
+ 	out = pack_sg_list(chan->sg, 0,
+-			   VIRTQUEUE_NUM, req->tc.sdata, req->tc.size);
++			   chan->sg_n, req->tc.sdata, req->tc.size);
+ 	if (out)
+ 		sgs[out_sgs++] = chan->sg;
+ 
+ 	in = pack_sg_list(chan->sg, out,
+-			  VIRTQUEUE_NUM, req->rc.sdata, req->rc.capacity);
++			  chan->sg_n, req->rc.sdata, req->rc.capacity);
+ 	if (in)
+ 		sgs[out_sgs + in_sgs++] = chan->sg + out;
+ 
+@@ -447,14 +449,14 @@ p9_virtio_zc_request(struct p9_client *client, struct p9_req_t *req,
+ 
+ 	/* out data */
+ 	out = pack_sg_list(chan->sg, 0,
+-			   VIRTQUEUE_NUM, req->tc.sdata, req->tc.size);
++			   chan->sg_n, req->tc.sdata, req->tc.size);
+ 
+ 	if (out)
+ 		sgs[out_sgs++] = chan->sg;
+ 
+ 	if (out_pages) {
+ 		sgs[out_sgs++] = chan->sg + out;
+-		out += pack_sg_list_p(chan->sg, out, VIRTQUEUE_NUM,
++		out += pack_sg_list_p(chan->sg, out, chan->sg_n,
+ 				      out_pages, out_nr_pages, offs, outlen);
+ 	}
+ 
+@@ -466,13 +468,13 @@ p9_virtio_zc_request(struct p9_client *client, struct p9_req_t *req,
+ 	 * allocated memory and payload onto the user buffer.
+ 	 */
+ 	in = pack_sg_list(chan->sg, out,
+-			  VIRTQUEUE_NUM, req->rc.sdata, in_hdr_len);
++			  chan->sg_n, req->rc.sdata, in_hdr_len);
+ 	if (in)
+ 		sgs[out_sgs + in_sgs++] = chan->sg + out;
+ 
+ 	if (in_pages) {
+ 		sgs[out_sgs + in_sgs++] = chan->sg + out + in;
+-		in += pack_sg_list_p(chan->sg, out + in, VIRTQUEUE_NUM,
++		in += pack_sg_list_p(chan->sg, out + in, chan->sg_n,
+ 				     in_pages, in_nr_pages, offs, inlen);
+ 	}
+ 
+@@ -574,13 +576,14 @@ static int p9_virtio_probe(struct virtio_device *vdev)
  		goto fail;
  	}
  
-+	chan->sg = kmalloc_array(VIRTQUEUE_NUM,
-+				 sizeof(struct scatterlist), GFP_KERNEL);
-+	if (!chan->sg) {
-+		pr_err("Failed to allocate virtio 9P channel\n");
-+		err = -ENOMEM;
-+		goto out_free_chan_shallow;
-+	}
-+
+-	chan->sg = kmalloc_array(VIRTQUEUE_NUM,
++	chan->sg = kmalloc_array(VIRTQUEUE_DEFAULT_NUM,
+ 				 sizeof(struct scatterlist), GFP_KERNEL);
+ 	if (!chan->sg) {
+ 		pr_err("Failed to allocate virtio 9P channel\n");
+ 		err = -ENOMEM;
+ 		goto out_free_chan_shallow;
+ 	}
++	chan->sg_n = VIRTQUEUE_DEFAULT_NUM;
+ 
  	chan->vdev = vdev;
  
- 	/* We expect one virtqueue, for requests. */
-@@ -635,6 +643,8 @@ static int p9_virtio_probe(struct virtio_device *vdev)
- out_free_vq:
- 	vdev->config->del_vqs(vdev);
- out_free_chan:
-+	kfree(chan->sg);
-+out_free_chan_shallow:
- 	kfree(chan);
- fail:
- 	return err;
-@@ -728,6 +738,7 @@ static void p9_virtio_remove(struct virtio_device *vdev)
- 	kobject_uevent(&(vdev->dev.kobj), KOBJ_CHANGE);
- 	kfree(chan->tag);
- 	kfree(chan->vc_wq);
-+	kfree(chan->sg);
- 	kfree(chan);
+@@ -593,7 +596,7 @@ static int p9_virtio_probe(struct virtio_device *vdev)
+ 	chan->vq->vdev->priv = chan;
+ 	spin_lock_init(&chan->lock);
  
- }
+-	sg_init_table(chan->sg, VIRTQUEUE_NUM);
++	sg_init_table(chan->sg, chan->sg_n);
+ 
+ 	chan->inuse = false;
+ 	if (virtio_has_feature(vdev, VIRTIO_9P_MOUNT_TAG)) {
+@@ -777,7 +780,7 @@ static struct p9_trans_module p9_virtio_trans = {
+ 	 * that are not at page boundary, that can result in an extra
+ 	 * page in zero copy.
+ 	 */
+-	.maxsize = PAGE_SIZE * (VIRTQUEUE_NUM - 3),
++	.maxsize = PAGE_SIZE * (VIRTQUEUE_DEFAULT_NUM - 3),
+ 	.def = 1,
+ 	.owner = THIS_MODULE,
+ };
 -- 
 2.30.2
 
