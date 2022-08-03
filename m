@@ -2,115 +2,159 @@ Return-Path: <v9fs-developer-bounces@lists.sourceforge.net>
 X-Original-To: lists+v9fs-developer@lfdr.de
 Delivered-To: lists+v9fs-developer@lfdr.de
 Received: from lists.sourceforge.net (lists.sourceforge.net [216.105.38.7])
-	by mail.lfdr.de (Postfix) with ESMTPS id 67AC0585016
-	for <lists+v9fs-developer@lfdr.de>; Fri, 29 Jul 2022 14:31:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id E02C7589192
+	for <lists+v9fs-developer@lfdr.de>; Wed,  3 Aug 2022 19:37:47 +0200 (CEST)
 Received: from [127.0.0.1] (helo=sfs-ml-4.v29.lw.sourceforge.com)
 	by sfs-ml-4.v29.lw.sourceforge.com with esmtp (Exim 4.94.2)
 	(envelope-from <v9fs-developer-bounces@lists.sourceforge.net>)
-	id 1oHP9I-0006kh-0B; Fri, 29 Jul 2022 12:31:22 +0000
+	id 1oJIJU-0006gZ-L4; Wed, 03 Aug 2022 17:37:43 +0000
 Received: from [172.30.20.202] (helo=mx.sourceforge.net)
  by sfs-ml-4.v29.lw.sourceforge.com with esmtps (TLS1.2) tls
  TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384 (Exim 4.94.2)
- (envelope-from <dvyukov@google.com>) id 1oHP9G-0006ka-9V
- for v9fs-developer@lists.sourceforge.net; Fri, 29 Jul 2022 12:31:21 +0000
+ (envelope-from <care@geek-squadupdates41.co>) id 1oJIJT-0006gT-4Y
+ for v9fs-developer@lists.sourceforge.net; Wed, 03 Aug 2022 17:37:42 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=sourceforge.net; s=x; h=Content-Type:Cc:To:Subject:Message-ID:Date:From:
- In-Reply-To:References:MIME-Version:Sender:Reply-To:Content-Transfer-Encoding
- :Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
- Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
+ d=sourceforge.net; s=x; h=MIME-Version:Content-Type:Message-ID:Date:Subject:
+ To:From:Sender:Reply-To:Cc:Content-Transfer-Encoding:Content-ID:
+ Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
+ :Resent-Message-ID:In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:
  List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=UscPiVc3W69u2SDEZgLhh627QT22j/EkeFjDm8ewhDU=; b=e5coMELaXBepFFsMWBxlm9nOnR
- uxgy9vDaMni6JEJ12sMSVR4CT3UiVuYfxN9wKqCahddTTaTnko0bhCr3oWJlIm3zal0qdYEFnxC7k
- hHAotdhZPwGxOcH5yOvwhWFh6ZI6JFyA1oT4jyGX50Kwzphz4fueQI4feXSV6bVRNQhw=;
+ bh=hYYCONIN9B1CErYgqVMcdf7IpJ8nhHSMH9xx47smKlQ=; b=fuewExSP8w9dDZIJFgtwntqPeZ
+ IjgoZNsN/bozzsaK5PgVyViHCThzeTbDEDEPXlRSBlWyMUy5a3K3wyMOswzdejrC2BKqCQhYnZhMv
+ cjyFVmG8HWzQW3qDvGIiM1RZw2Z3GWABz7/8WTwZQnzGs3RNU8FPJxI3z2QSgE8dmkYo=;
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  ;
- h=Content-Type:Cc:To:Subject:Message-ID:Date:From:In-Reply-To:References:
- MIME-Version:Sender:Reply-To:Content-Transfer-Encoding:Content-ID:
- Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
- :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
- List-Post:List-Owner:List-Archive;
- bh=UscPiVc3W69u2SDEZgLhh627QT22j/EkeFjDm8ewhDU=; b=ERIWOr2yKtKhnUkYx5ttfWIwh1
- om0QsOvJ2qh1cpWQtZyVnx/2kyBh5YNsQdnLoO/UmDIn/q2xVApkQ4MDstComn9WfOQaGDz2riFiH
- big8XNNHvH0b9QWBJvrddtpUVijdN8HJW/7bMWk+Qlz/O9Wib4LHxqOUJRuiprh4qrTM=;
-Received: from mail-lf1-f53.google.com ([209.85.167.53])
+ h=MIME-Version:Content-Type:Message-ID:Date:Subject:To:From:Sender:Reply-To
+ :Cc:Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+ Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:
+ References:List-Id:List-Help:List-Unsubscribe:List-Subscribe:List-Post:
+ List-Owner:List-Archive; bh=hYYCONIN9B1CErYgqVMcdf7IpJ8nhHSMH9xx47smKlQ=; b=G
+ P4ezQbI/RRajZQKnP7y0m0XeV9n3YKuvZoA21FqFoQOZGIzMmRzFysTxnEpgyTC0YHK0mwsoJCFEX
+ ftm/qAjCes9t7fezovwYHNzHKNYoZFW0vESjKb5UzDmL/ngnk9dZB0MbPq/FkuUcdvCo3YtSsmC+p
+ 2Dbtgixpi6pq5TnY=;
+Received: from mail-bmxind01on2094.outbound.protection.outlook.com
+ ([40.107.239.94] helo=IND01-BMX-obe.outbound.protection.outlook.com)
  by sfi-mx-1.v28.lw.sourceforge.com with esmtps
- (TLS1.2:ECDHE-RSA-AES128-GCM-SHA256:128) (Exim 4.94.2)
- id 1oHP9E-00DxjZ-CC
- for v9fs-developer@lists.sourceforge.net; Fri, 29 Jul 2022 12:31:20 +0000
-Received: by mail-lf1-f53.google.com with SMTP id t17so7166575lfk.0
- for <v9fs-developer@lists.sourceforge.net>;
- Fri, 29 Jul 2022 05:31:20 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=20210112;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=UscPiVc3W69u2SDEZgLhh627QT22j/EkeFjDm8ewhDU=;
- b=nJrpxtj3/Yr1byjkae9e+eAEwtAZS6cQLSq9Wf/FbOweTm1lCQVUsPbRKq3KsquHix
- Ahx76WP2GWkQOvWSzNFy/ojyGd9Wrx02NkjPklNTCGLCJEyvOFX2lCKqmtSGsrSciIga
- juEvUdPxt4sxwKHufQCBxHAQGnMZw0p0eyn1K88qjYMCqpIC8Hj5RFCIHsOW7O6qvkuU
- 6U2SdnxZg83UIY3mAlDL62txLD3y11abWwFFIGB9Klz0ZvA0NHYkD7Lmo1AXFwWl4L10
- LCF2cCFW4VSrlv8DHIP2JK3k43qO7RHanKnUtmINBDajIStTnQ7okAWfcVh35ThcWcQl
- Hrbw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20210112;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc;
- bh=UscPiVc3W69u2SDEZgLhh627QT22j/EkeFjDm8ewhDU=;
- b=OSFGzxuemADDhSECR/ysyaeTEbmrCT7htBy5MoVho/0lpgA2eh2GpWFM3XBofXC2/w
- WeUHOngVcHDw7ulktSpf3iptD7+nvcje0ffYucVNXAkjzBS+rNkGLp2RlcxlI6xKZvDX
- bbhj1EPg/QtLsmQMhHKgvnvwKdsdHWmsBPJ44A8q2TVFk2fTIS/GMuRRu/vpTQIo1LiV
- 4l4ZQQNpPZvzEF4MLQa+b8yMuTii/W/B13DJVG3PaDvxI/Jzw1P3XjJ+TNJGC+LgPHAN
- oy/VBmVar7pDHgK/luY31QknlfpJMgitsU+tGdkacrwA5TCXyHqllPAiEWRMzLlJctkv
- l/eQ==
-X-Gm-Message-State: AJIora8O34VqNsZOxWYDzKVT+fNVFdH7dHdglZdzvwGD+n96zHaXeyrV
- YlzOMoP0guqJVXwLzwl2zggEuNJVQjBx5UAoab+v4g==
-X-Google-Smtp-Source: AA6agR62HeE51l5IAK04JRZwMFJ1wYjG83cpBLDmLAJjptPk6vF7HAk3w0wXXYaTfDZ+/dbgsxR4PZ99SvySsvQiBoI=
-X-Received: by 2002:a05:6512:1093:b0:48a:7c08:8d29 with SMTP id
- j19-20020a056512109300b0048a7c088d29mr1161026lfg.540.1659097873241; Fri, 29
- Jul 2022 05:31:13 -0700 (PDT)
+ (TLS1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.94.2)
+ id 1oJIJP-002400-H0
+ for v9fs-developer@lists.sourceforge.net; Wed, 03 Aug 2022 17:37:41 +0000
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=ZGIBh6gFmzdiDnB1jj1a0RVrXsutg4Fo04hZhtuyFShea5YS7L5CbydKTMJVnoo6CqiKWP2YiE6DUe5WSAA3lTLsm8+tD5Y4Lkh1HkHPNHGZ8jvtFfh4okPsrRFEnL8t7duj2bcCcbSWGOVW2LnOPObsmMmz4pwQ0k6lVD5EqVyVmv27vunQrkh+W0u/OMPDYgeyXraHCb0iCiFO8VlXbhKXBICISTzuULIqfTfSKaGHnhzV7IsYrYN2JGjy2opkTIJAZU3VBKk1y8QW8sTNryitV4ziQtnsMCf7/fRNZzvrtYKD2OluZNWRno9IiNuPD/iFxk+U+v/oM0MYL0h5xQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=hYYCONIN9B1CErYgqVMcdf7IpJ8nhHSMH9xx47smKlQ=;
+ b=WMFPc/s+4JxJ92Qp6ZROU1rWvH//Y4KfqP6TPAaysGimrRtoABdXmfRSRNKk5zAMLprvcO7CgG03wn5YrYsYVDW6Wb9xkQOVyi8rTjFbr1E3pyAt/HG2O3Jlhf2Gfn3Rxl9zoLj8McWgLV8mTP2mtIBkJpZ79VebmEhcXpTYSWODb/sgGh4xHEa3bynvaQ3OwmNUSOfTSnKDmSJATEYUDMZQQg1JLFucQ6wla0Iu05/jUrDnbILY31zkJss+zOUYODTOd1yp/O94ItoZyIlCdtdopREmH1GBnpjWBT3Gwz+4wxOdc2KlLsBRB7jSG4bNiUcdJh560Mqr7wOoZPM6Hw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=geek-squadupdates41.co; dmarc=pass action=none
+ header.from=geek-squadupdates41.co; dkim=pass
+ header.d=geek-squadupdates41.co; arc=none
+Received: from MA0PR01MB7625.INDPRD01.PROD.OUTLOOK.COM (2603:1096:a01:27::12)
+ by PNYPR01MB8706.INDPRD01.PROD.OUTLOOK.COM (2603:1096:c01:57::6) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5504.14; Wed, 3 Aug
+ 2022 17:23:10 +0000
+Received: from MA0PR01MB7625.INDPRD01.PROD.OUTLOOK.COM
+ ([fe80::8dfa:60d:4bd1:f820]) by MA0PR01MB7625.INDPRD01.PROD.OUTLOOK.COM
+ ([fe80::8dfa:60d:4bd1:f820%6]) with mapi id 15.20.5482.016; Wed, 3 Aug 2022
+ 17:23:10 +0000
+From: Order Status <care@geek-squadupdates41.co>
+To: "v9fs-developer@lists.sourceforge.net"
+ <v9fs-developer@lists.sourceforge.net>
+Thread-Topic: Your service renewal #GS03-RENEW-10715565
+Thread-Index: AQHYp12m3ThAxF9uWE2BVR46ndrM6Q==
+Date: Wed, 3 Aug 2022 17:22:47 +0000
+Message-ID: <4a75ef24-b515-8873-d8cc-b4bc3eaa51b1@geek-squadupdates41.co>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=geek-squadupdates41.co;
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-correlation-id: fa980a21-6d44-4eaf-f747-08da7574d6d3
+x-ms-traffictypediagnostic: PNYPR01MB8706:EE_
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: gTl+oqv8PqQ0CZcWkwXqaZjlt7Uc/YFRsRb8qEfL0Kg23LoFLecBfFGU9AYG2hlX1zEA/0yDOq1zKzVw5zZ9F/k0mejNBZrBlIft9Kqh5eMa4NBUuAeUXUC9vEXHm1zh8WfZI78uq/UooWQwTjsGZRgPBoFCpsbNgXtmgpEvJWdF/ZWz0pb6k3WL7pdgXvMpigt4G9xN2Lfoe7toyif8AmYBtCBiqt45z4+/Db9njMl4vaP4q8MITPdxTJrqVhxWbIyZ2QnaPiPZO51iBgdKhOjzRKikUxOPQD/5nyoAnWURM5UJAw3AEqZEn0Io+bWyL0TBCyhsa6BO0r3xpOjsRWjFc5kym/Rv3R17F5sOQuakU5uDaCdU0zaYUJAOLjKP22H7jnm8ie8QKSEQnHmwBek3ZOfcPrWOJedxFuhM9T+DeEz1aRrfWYgy5hyN+kBbgCtvBbjLR7LxR3vheFK0l8+0EfzthQqUJBBRSjdFOLXbv3UOSxgyFE9holklC8SuxsUqa6TQ9ZhH1TUe55KM96JRQTCoUhkGBklG5oSDNWdxdn5vHi2rgLLNqUhurd8nPedUDw9YWGs+j07HXj+w9WC+HRYiXEEcX25o2wVL6G1Dx6pNyx3Yj5hQ5hjL+c7iNjwfXn/upS3ZKqIoU/K4Oz6PbCe+hMW/8nmllBUrUs3I0lO0jJZEgKCENFxxSiawowR3Gdd4LVbpH09K4U+8IpYX+zpLLDKmLA35oqY4kEipURheoGhN7AY5DKPbAUJyVTmG2gQ06la5yHtqr9qbQiBnAB6Ff9n2O/R7lKHCljCCeHB+WVXcroZkSgOKAq6R
+x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:MA0PR01MB7625.INDPRD01.PROD.OUTLOOK.COM; PTR:; CAT:NONE;
+ SFS:(13230016)(39850400004)(34096005)(39510400003)(346002)(136003)(376002)(366004)(396003)(448600002)(91956017)(38610400001)(71200400001)(586005)(6486002)(6916009)(2906002)(5660300002)(76116006)(66476007)(64756008)(8676002)(66446008)(66946007)(4744005)(66556008)(8936002)(19626265004)(38070700005)(38100700002)(122000001)(31686004)(6506007)(83380400001)(6512007)(26005)(41300700001)(6666004)(186003)(86362001)(31696002)(36756003)(2616005)(40140700001)(45980500001);
+ DIR:OUT; SFP:1102; 
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: =?utf-8?B?ekxqMXJMcEJrT1dMenNRQkxaeGxzb08rRXNpZ29tSUVCdFhObFBMdHUrNklz?=
+ =?utf-8?B?NDliRHFFRlYrcXYyMC80aTFYTlJFa282QWNlNEFRK3d4MUQ1TjdlWXdWRUh4?=
+ =?utf-8?B?YUlNZjhYblI4SXFQT3ZHNi93YUlFTWhQK09wdlIyRGNUNmFERlFFNGIvODds?=
+ =?utf-8?B?cTg1Z25qU20wdFh0dkQ3bVFhSTFIem5Ed05IZ0h4aWtUcml4YStoaDZ6TGJT?=
+ =?utf-8?B?Vk82OUUzZ2tDSlkyQW9LQWYxZUorQ0NsRFZIL1hsMkNaWEZWTStmT0ZjcU1u?=
+ =?utf-8?B?REdESXVxSEVEeFNNQWxGaWxUUWpwN3JzRHpQb2ZaVkF6NWNiVFBGekxKbEQv?=
+ =?utf-8?B?SkZKWVUvYy9NRWRYSDZwUlpKVmRDMlFLUlJiV0ZTNnJUaHJyUFViNC9SZDhM?=
+ =?utf-8?B?UTRrODIvVmxGaHc2VjUrMTFwT0gyM200cDhHWVZzNzdVbUZ3Y0lzQTBjdHVi?=
+ =?utf-8?B?OWpEZjBRUGZtU2x1UHhlM1J4SmlpR2UzZ1YzQkRUcHJLY0pMR2hYL0NZVzZq?=
+ =?utf-8?B?V1lta3AyRnN1Y0M4V1ZkUFVjaURCWXUyMjFIOFdGL0IxMG5iaXJYMzZRaHEz?=
+ =?utf-8?B?OS90R0hvUzB3d05QcVYwNEJ2ZVBhZVNjV2REZVo1cE0wbk52WWY1ZnU3QlBM?=
+ =?utf-8?B?Y2UrMSt5M3FRUU1qUzI0c21OaTU3bzlqZklBNlFaNnQxMmljUXczekJ4K2hC?=
+ =?utf-8?B?aVVya3FDZ0lTK0FjRVdSZE0rcEpzT3VzYmpiZWdUM1Q3Z3JkQlExQzZwTGlO?=
+ =?utf-8?B?V1dsOXpTRm8xT0NlTDlOMjBmMWluQmg4OStPUjdSc3E2WGVpYUVEdFQxYXh1?=
+ =?utf-8?B?eEFmQTIvbDZ1N2RXeG1LMFcvNUlZRU15UjJya0prRkpMZDRaYkdvT1dPdEVp?=
+ =?utf-8?B?VW9uUXVyaTJQSlJXeVl6U1V2ZVk1dzFtY2RnVGZudmlqK3l6eGpFUnBzU3Ru?=
+ =?utf-8?B?RTNyOVE3Tm9ISXdaUGZmZExkbUNwZmJXWjNJNG1FTmljamdtaDNxNTk0WSth?=
+ =?utf-8?B?bkgzN0VCc0U3Nm1WTU0xUGdoN29NSHZuTlZLOE1xcmY2d2tMdTQ2Z0lVMDVx?=
+ =?utf-8?B?TXowM0pPaDFDR2toaUdiQTZRTXlqcnk0ZWVZRHNlejlaeXp6cWF0bEYxWmtv?=
+ =?utf-8?B?ang4NTBSTklteW5xOStHRUdiZWdQOUpmQ3UzTHA0Znl6ZUMxMmwvVFJiWnRR?=
+ =?utf-8?B?N0RLbTd0K2dOaHNFUlJnVVZRc016Q0pXcDVIK0JETlZTVllzb0VhYXhDWmtY?=
+ =?utf-8?B?bG9jZDdUd1lsb003U0Y5OVFLWlB5cXV2anVnRVFYSlBJQ3FScis0ekI5NDBq?=
+ =?utf-8?B?cnBUenF3NzkvS3JvaVFTVnhBSDI5NVFVZVFJWWE3SENjS0NOWHVUTTlQam1H?=
+ =?utf-8?B?bWQxcE1lTmxuL29sMnRxSWFmMWp6bXNVWnFJOS9oNUpEUmxlZnUzTENsek1F?=
+ =?utf-8?B?dUp6VHdUYkR1cXBWeUNUdU55NTdtZUlGNmF4Z1JpUjdYb09xVGd6QVFlNTNY?=
+ =?utf-8?B?RkgrWTJjc0RBb3FsY1EwSzNhcTNSMXFCc1lBL1QrQk1UR0F4aU1DWE83VGZo?=
+ =?utf-8?B?WVZSSnROWDVEMjBLc1NGZUtDdWtpdDVSR2xaVmhROXpWVGVaUXFEdDVtSDJr?=
+ =?utf-8?B?c3JLbEoyb0E2RFNYN3pFZnA5TjBoMXM1MEVxQklVNVI1a2Z0MFh1VzBjaVNq?=
+ =?utf-8?B?TmxvTG9pQ05XOFVwT1FROHBtU1ZXSU1UM1VtMkxxUWNDZHVUWHJVNDJ4anZP?=
+ =?utf-8?B?alBNcDY3emhRREFNMFRWbkZLbEFVcWlvUnZWK2JDdGRQSG0ySkw2UFRnUEhO?=
+ =?utf-8?B?Y2RDU3c0czN0OWVaUkc2bVp5WENUcG5TVWhDNURwclBIM3pWa2tNVFVrRkF1?=
+ =?utf-8?B?K3Q4THpmS3JhcHdMOUhFUis2VmFieGY3cGRPdWhDUTVFV1ROMXNpOEFyK1dY?=
+ =?utf-8?B?VjdIQ0tSYkp3Sm4wV2pNOEpYZlZ1aHRuN0R0Tm0va3FtcmdBTmM3czNmR2l1?=
+ =?utf-8?B?UzgzSWh0cjJrcDFRaFVub05oVFYxZU1jVCtESWFwbVZnanFMdGJGMHpMNW1k?=
+ =?utf-8?B?bEREaUtGbE1kT2NvNzdoTFpDSTdGeXhEaEJMc2w1WW9qbHU2alQ3bjYyQ1pl?=
+ =?utf-8?Q?+8/8/WxQlrngMY5fLctUZwf7D?=
 MIME-Version: 1.0
-References: <000000000000e6917605e48ce2bf@google.com>
- <Yt6DjrMdIhpQmm7V@codewreck.org>
- <CACT4Y+Yx2MZ9KEX9gfm-LahQE4KaXX=u4RQBuj-1gS57KL0OSw@mail.gmail.com>
- <2916828.W3qMjvkFlE@silver>
-In-Reply-To: <2916828.W3qMjvkFlE@silver>
-Date: Fri, 29 Jul 2022 14:31:01 +0200
-Message-ID: <CACT4Y+Ycz2a2tuPs4R2WS3Gs+rvLBrusamCq3kQ3wj8R+=rX6w@mail.gmail.com>
-To: Christian Schoenebeck <linux_oss@crudebyte.com>
-X-Spam-Score: -15.7 (---------------)
+X-OriginatorOrg: geek-squadupdates41.co
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: MA0PR01MB7625.INDPRD01.PROD.OUTLOOK.COM
+X-MS-Exchange-CrossTenant-Network-Message-Id: fa980a21-6d44-4eaf-f747-08da7574d6d3
+X-MS-Exchange-CrossTenant-originalarrivaltime: 03 Aug 2022 17:22:47.5459 (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 1af29bda-d362-4e19-aa30-7f2c5c65cb2d
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: etJ5BsfHJegrWIv7980LKWAMSk0Gu8TX9dTAEKUPQHaZ8o5haZNwgGAX+TOLYy6/hLl6yQmr+KL3saqs/s399Sol+vKgzszxwofXeG53RTk=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PNYPR01MB8706
+X-Spam-Score: 0.0 (/)
 X-Spam-Report: Spam detection software,
- running on the system "util-spamd-2.v13.lw.sourceforge.com", 
+ running on the system "util-spamd-1.v13.lw.sourceforge.com", 
  has NOT identified this incoming email as spam.  The original
  message has been attached to this so you can view it or label
  similar future email.  If you have any questions, see
  the administrator of that system for details.
- Content preview:  On Tue, 26 Jul 2022 at 14:10,
- Christian Schoenebeck <linux_oss@crudebyte.com>
- wrote: > > On Montag, 25. Juli 2022 14:45:08 CEST Dmitry Vyukov wrote: >
- > On Mon, 25 Jul 2022 at 13:51, <asmadeus@codewre [...] 
- Content analysis details:   (-15.7 points, 6.0 required)
+ Content preview:  [GSS] Welcome to G Squad Hi, 
+ Content analysis details:   (0.0 points, 6.0 required)
  pts rule name              description
  ---- ---------------------- --------------------------------------------------
- 0.0 SPF_HELO_NONE          SPF: HELO does not publish an SPF Record
- -7.5 USER_IN_DEF_SPF_WL     From: address is in the default SPF
- welcome-list
- -7.5 USER_IN_DEF_DKIM_WL    From: address is in the default DKIM
- welcome-list
- -0.0 SPF_PASS               SPF: sender matches SPF record
+ -0.0 SPF_HELO_PASS          SPF: HELO matches SPF record
  -0.0 RCVD_IN_MSPIKE_H2      RBL: Average reputation (+2)
- [209.85.167.53 listed in wl.mailspike.net]
- -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
- 0.1 DKIM_SIGNED            Message has a DKIM or DK signature, not necessarily
- valid
- -0.1 DKIM_VALID_AU          Message has a valid DKIM or DK signature from
- author's domain
- -0.1 DKIM_VALID_EF          Message has a valid DKIM or DK signature from
- envelope-from domain
+ [40.107.239.94 listed in wl.mailspike.net]
+ -0.0 SPF_PASS               SPF: sender matches SPF record
+ 0.0 HTML_FONT_LOW_CONTRAST BODY: HTML font color similar or
+ identical to background
+ 0.0 HTML_MESSAGE           BODY: HTML included in message
  -0.0 RCVD_IN_DNSWL_NONE     RBL: Sender listed at https://www.dnswl.org/,
- no trust [209.85.167.53 listed in list.dnswl.org]
- -0.5 ENV_AND_HDR_SPF_MATCH  Env and Hdr From used in default SPF WL
- Match
- -0.0 DKIMWL_WL_MED          DKIMwl.org - Medium trust sender
-X-Headers-End: 1oHP9E-00DxjZ-CC
-Subject: Re: [V9fs-developer] [syzbot] WARNING in p9_client_destroy
+ no trust [40.107.239.94 listed in list.dnswl.org]
+ 0.0 T_FILL_THIS_FORM_SHORT Fill in a short form with personal
+ information
+X-Headers-End: 1oJIJP-002400-H0
+X-Content-Filtered-By: Mailman/MimeDel 2.1.21
+Subject: [V9fs-developer] Your service renewal #GS03-RENEW-10715565
 X-BeenThere: v9fs-developer@lists.sourceforge.net
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -122,69 +166,47 @@ List-Post: <mailto:v9fs-developer@lists.sourceforge.net>
 List-Help: <mailto:v9fs-developer-request@lists.sourceforge.net?subject=help>
 List-Subscribe: <https://lists.sourceforge.net/lists/listinfo/v9fs-developer>, 
  <mailto:v9fs-developer-request@lists.sourceforge.net?subject=subscribe>
-From: Dmitry Vyukov via V9fs-developer <v9fs-developer@lists.sourceforge.net>
-Reply-To: Dmitry Vyukov <dvyukov@google.com>
-Cc: lucho@ionkov.net, k.kahurani@gmail.com, elver@google.com,
- syzbot <syzbot+5e28cdb7ebd0f2389ca4@syzkaller.appspotmail.com>,
- ericvh@gmail.com, netdev@vger.kernel.org, syzkaller-bugs@googlegroups.com,
- hdanton@sina.com, linux-kernel@vger.kernel.org,
- v9fs-developer@lists.sourceforge.net, edumazet@google.com, rientjes@google.com,
- kuba@kernel.org, pabeni@redhat.com, torvalds@linux-foundation.org,
- davem@davemloft.net, Vlastimil Babka <vbabka@suse.cz>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: v9fs-developer-bounces@lists.sourceforge.net
 
-On Tue, 26 Jul 2022 at 14:10, Christian Schoenebeck
-<linux_oss@crudebyte.com> wrote:
->
-> On Montag, 25. Juli 2022 14:45:08 CEST Dmitry Vyukov wrote:
-> > On Mon, 25 Jul 2022 at 13:51, <asmadeus@codewreck.org> wrote:
-> > > Vlastimil Babka wrote on Mon, Jul 25, 2022 at 12:15:24PM +0200:
-> > > > On 7/24/22 15:17, syzbot wrote:
-> > > > > syzbot has bisected this issue to:
-> > > > >
-> > > > > commit 7302e91f39a81a9c2efcf4bc5749d18128366945
-> > > > > Author: Marco Elver <elver@google.com>
-> > > > > Date:   Fri Jan 14 22:03:58 2022 +0000
-> > > > >
-> > > > >     mm/slab_common: use WARN() if cache still has objects on destroy
-> > > >
-> > > > Just to state the obvious, bisection pointed to a commit that added the
-> > > > warning, but the reason for the warning would be that p9 is destroying a
-> > > > kmem_cache without freeing all the objects there first, and that would
-> > > > be
-> > > > true even before the commit.
-> > >
-> > > Probably true from the moment that cache/idr was introduced... I've got
-> > > a couple of fixes in next but given syzcaller claims that's the tree it
-> > > was produced on I guess there can be more such leaks.
-> > > (well, the lines it sent in the backtrace yesterday don't match next,
-> > > but I wouldn't count on it)
-> > >
-> > > If someone wants to have a look please feel free, I would bet the
-> > > problem is just that p9_fd_close() doesn't call or does something
-> > > equivalent to p9_conn_cancel() and there just are some requests that
-> > > haven't been sent yet when the mount is closed..
-> > > But I don't have/can/want to take the time to check right now as I
-> > > consider such a leak harmless enough, someone has to be root or
-> > > equivalent to do 9p mounts in most cases.
-> >
-> > FWIW with KASAN we have allocation stacks for each heap object. So
-> > when KASAN is enabled that warning could list all live object
-> > allocation stacks.
->
-> With allocation stack you mean the backtrace/call stack at the point in time
-> when the memory originally was acquired?
->
-> If the answer is yes, then sure, if someone had a chance to post those
-> backtraces, then that would help us to take a closer look at where this leak
-> might happen. Otherwise I fear it will end up among those other "lack of
-> priority" issues.
 
-Yes, I meant providing allocation stacks for leaked objects.
-Filed https://bugzilla.kernel.org/show_bug.cgi?id=216306 for this feature.
+[GSS]
 
+Welcome to G Squad
+
+Hi,
+
+Thanks for renewing your G Squad Subscription. Now you can set up G Squad on your computer, phone, tablet, and more to start enjoying online freedom.
+
+Support Center: +1 (805) 250-0772
+
+Your account details
+Email address
+v9fs-developer@lists.sourceforge.net<mailto:v9fs-developer@lists.sourceforge.net>
+
+Plan
+1 year
+
+Price
+384.59 USD
+Save 35% with the 03 year plan
+
+Payment method
+Card
+
+Your subscription will expire
+August 3, 2023
+
+PLAN ID
+GS03-RENEW-10715565
+
+Upgrade
+
+
+        Need help? Reach Support Center
+unsubscribe
+Support Center  Privacy Policy
 
 _______________________________________________
 V9fs-developer mailing list
