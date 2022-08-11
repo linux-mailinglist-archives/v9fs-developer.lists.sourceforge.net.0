@@ -2,88 +2,105 @@ Return-Path: <v9fs-developer-bounces@lists.sourceforge.net>
 X-Original-To: lists+v9fs-developer@lfdr.de
 Delivered-To: lists+v9fs-developer@lfdr.de
 Received: from lists.sourceforge.net (lists.sourceforge.net [216.105.38.7])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1462658F7F3
-	for <lists+v9fs-developer@lfdr.de>; Thu, 11 Aug 2022 08:52:25 +0200 (CEST)
-Received: from [127.0.0.1] (helo=sfs-ml-2.v29.lw.sourceforge.com)
-	by sfs-ml-2.v29.lw.sourceforge.com with esmtp (Exim 4.94.2)
+	by mail.lfdr.de (Postfix) with ESMTPS id 03E1058F7F6
+	for <lists+v9fs-developer@lfdr.de>; Thu, 11 Aug 2022 08:54:01 +0200 (CEST)
+Received: from [127.0.0.1] (helo=sfs-ml-4.v29.lw.sourceforge.com)
+	by sfs-ml-4.v29.lw.sourceforge.com with esmtp (Exim 4.94.2)
 	(envelope-from <v9fs-developer-bounces@lists.sourceforge.net>)
-	id 1oM23B-0003Go-1K; Thu, 11 Aug 2022 06:52:13 +0000
+	id 1oM24m-0000nO-KM; Thu, 11 Aug 2022 06:53:51 +0000
 Received: from [172.30.20.202] (helo=mx.sourceforge.net)
- by sfs-ml-2.v29.lw.sourceforge.com with esmtps (TLS1.2) tls
+ by sfs-ml-4.v29.lw.sourceforge.com with esmtps (TLS1.2) tls
  TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384 (Exim 4.94.2)
- (envelope-from <penguin-kernel@I-love.SAKURA.ne.jp>)
- id 1oM238-0003Gd-H8
- for v9fs-developer@lists.sourceforge.net; Thu, 11 Aug 2022 06:52:11 +0000
+ (envelope-from <asmadeus@codewreck.org>) id 1oM24l-0000nD-2B
+ for v9fs-developer@lists.sourceforge.net; Thu, 11 Aug 2022 06:53:49 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=sourceforge.net; s=x; h=Content-Transfer-Encoding:Content-Type:In-Reply-To:
- From:Cc:References:To:Subject:MIME-Version:Date:Message-ID:Sender:Reply-To:
+ d=sourceforge.net; s=x; h=In-Reply-To:Content-Type:MIME-Version:References:
+ Message-ID:Subject:Cc:To:From:Date:Sender:Reply-To:Content-Transfer-Encoding:
  Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
  Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
  List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=hlMXMHb3Ek7nz4m6GrrGqfjuCNrM1ObCuu1qKDWJDng=; b=XEgKAXklbOr6yO2ijcyx8LoDjr
- udkb2V4nZqN5SxEqUhgNDBI6nqcXsDfveau7RgRsygQa0DGbXy6J3yRgJGB2LYinCtAaiYQZW0LoI
- j69g6PaFRhpazBxEyOpn/abDbsKKyv3tz2p+GoTY7/HU0Wb9gFDj2QDKvXUavD+iQ3s0=;
+ bh=nhBlDGBzdW/ef8TRsMdZP7ZIRUnOqyqodEb3SWZVQ7U=; b=YkoUunhJucTQWDnfWH35Aci5J5
+ 3zmrh3O9Uv3ybfUzPlpSGzsnyD081ZW8Ej8qstb2fTFeTraBfJeyTQAo6jRfHPkEBM5IaArRgC1qy
+ rTd+W4fXIo3n9PxJ4JLwDqt8ng92STtIACpdS0OI/MzO0O58VVZcSmldvh1+x1DCEeB4=;
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  ;
- h=Content-Transfer-Encoding:Content-Type:In-Reply-To:From:Cc:References:To:
- Subject:MIME-Version:Date:Message-ID:Sender:Reply-To:Content-ID:
+ h=In-Reply-To:Content-Type:MIME-Version:References:Message-ID:Subject:Cc:To
+ :From:Date:Sender:Reply-To:Content-Transfer-Encoding:Content-ID:
  Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
  :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
  List-Post:List-Owner:List-Archive;
- bh=hlMXMHb3Ek7nz4m6GrrGqfjuCNrM1ObCuu1qKDWJDng=; b=k7vvfD8HgoS12AST/gsvi0Xr+K
- vLe244Qyu0Uqdxd2WdC/htuC2w1GyDQWILCn63FVD3ssEAJa7rGlUbWNnqC3vgbtTdmBh7+GdW22i
- g2mPj5vlWFGzMsbhc5Y7AReSTuS/5bLOuWlPZae5AP6nNJf7KuvOKUhtxtn+4K7KaA1s=;
-Received: from www262.sakura.ne.jp ([202.181.97.72])
- by sfi-mx-1.v28.lw.sourceforge.com with esmtps
+ bh=nhBlDGBzdW/ef8TRsMdZP7ZIRUnOqyqodEb3SWZVQ7U=; b=HvhHCwOtYZv1k24OBtG1ndU8Vi
+ kzny0IjvFpQJHG03VrZjD7xcYTDSg1yTB/UW9UW7NWnzfky5zvf3eQyTPV0uroAKcocvqGzRVEtmn
+ WB1QIzJyfQwiFY+bnGWZWESEgrKqYgk4a+G9A0ceuiHGGJnUwb6VdtGci7J0DRv3eM/o=;
+Received: from nautica.notk.org ([91.121.71.147])
+ by sfi-mx-2.v28.lw.sourceforge.com with esmtps
  (TLS1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.94.2)
- id 1oM235-00BMCq-4I
- for v9fs-developer@lists.sourceforge.net; Thu, 11 Aug 2022 06:52:11 +0000
-Received: from fsav117.sakura.ne.jp (fsav117.sakura.ne.jp [27.133.134.244])
- by www262.sakura.ne.jp (8.15.2/8.15.2) with ESMTP id 27B61Nmu069124;
- Thu, 11 Aug 2022 15:01:23 +0900 (JST)
- (envelope-from penguin-kernel@I-love.SAKURA.ne.jp)
-Received: from www262.sakura.ne.jp (202.181.97.72)
- by fsav117.sakura.ne.jp (F-Secure/fsigk_smtp/550/fsav117.sakura.ne.jp);
- Thu, 11 Aug 2022 15:01:23 +0900 (JST)
-X-Virus-Status: clean(F-Secure/fsigk_smtp/550/fsav117.sakura.ne.jp)
-Received: from [192.168.1.9] (M106072142033.v4.enabler.ne.jp [106.72.142.33])
- (authenticated bits=0)
- by www262.sakura.ne.jp (8.15.2/8.15.2) with ESMTPSA id 27B61NJB069121
- (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=NO);
- Thu, 11 Aug 2022 15:01:23 +0900 (JST)
- (envelope-from penguin-kernel@I-love.SAKURA.ne.jp)
-Message-ID: <f00146b5-0a14-ac24-3d7b-3d4deeb96359@I-love.SAKURA.ne.jp>
-Date: Thu, 11 Aug 2022 15:01:23 +0900
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 6.3; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.1.2
-Content-Language: en-US
-To: Eric Van Hensbergen <ericvh@gmail.com>,
- Latchesar Ionkov <lucho@ionkov.net>,
- Dominique Martinet <asmadeus@codewreck.org>,
- Christian Schoenebeck <linux_oss@crudebyte.com>
+ id 1oM24e-00060G-Qu
+ for v9fs-developer@lists.sourceforge.net; Thu, 11 Aug 2022 06:53:49 +0000
+Received: by nautica.notk.org (Postfix, from userid 108)
+ id 31F8DC01D; Thu, 11 Aug 2022 08:53:37 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=codewreck.org; s=2;
+ t=1660200817; bh=nhBlDGBzdW/ef8TRsMdZP7ZIRUnOqyqodEb3SWZVQ7U=;
+ h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+ b=Bay5QxYSivGYW+8i3QnLyWyFkH6AUqS8erDhFkSJhUHNMTpAdFGEaPxYd9bjAYYdT
+ lqgwC2JlwtXpvuzXeSZn78cLnCPQ1T3oT94ZDWbIjdV2J0M2iw677Wnn3tARdurvIZ
+ oUrXXgHH6sbM5RbGfQnXEmfyHbu5h9LAWDCtC3Iuji9h1afI9/qqdgVtlPWT4jdjih
+ LWJTjvtAxLndE5BkHf3SYWZSYD+B5qzT6MuT+KE0GejMecg14waCquWVbAijOq0tNr
+ WpAb7apE2b7KWTTNB3JeUDOSJiF5i/SAMN0883YEspVA+Uc2lnbU9yyxjKuq8J2kJz
+ JaoLZ3H3LufNQ==
+X-Spam-Checker-Version: SpamAssassin 3.3.2 (2011-06-06) on nautica.notk.org
+X-Spam-Level: 
+X-Spam-Status: No, score=0.0 required=5.0 tests=UNPARSEABLE_RELAY
+ autolearn=unavailable version=3.3.2
+Received: from odin.codewreck.org (localhost [127.0.0.1])
+ by nautica.notk.org (Postfix) with ESMTPS id 0029EC009;
+ Thu, 11 Aug 2022 08:53:33 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=codewreck.org; s=2;
+ t=1660200816; bh=nhBlDGBzdW/ef8TRsMdZP7ZIRUnOqyqodEb3SWZVQ7U=;
+ h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+ b=tyWiPXvYZRGOxODrrkkASrryb0OKgCaqlyKaWB/dmHk7G6KWd4FAzvxndQhBCCqFq
+ bpqUMeYP6XCBNw/oczqQ5Bt1qMbZELfY+3tM5U0Jkjaf4Uh4q22dCoSOyM7IUtBoBw
+ BPKEKBa17TW1bWdVCcqeRyJQmBJIGr619f5hlMgEhEpCZodIfn94Hak2RA16dyYffV
+ nU74kKuo7OQ69z6TT5u/CY9lZ+Iim0P/X+An5u7mzP3GrWyucp1nLUPt70a7YNYyOI
+ dfByLVurgikEBuWJDVa2k/4rjsPkZiMRecOZ/ZkGezrYBXmx4VHYmSq+COY+1U4B9P
+ KBFfQwfz3zVQg==
+Received: from localhost (odin.codewreck.org [local])
+ by odin.codewreck.org (OpenSMTPD) with ESMTPA id ce3c10db;
+ Thu, 11 Aug 2022 06:53:29 +0000 (UTC)
+Date: Thu, 11 Aug 2022 15:53:14 +0900
+From: Dominique Martinet <asmadeus@codewreck.org>
+To: Tetsuo Handa <penguin-kernel@I-love.SAKURA.ne.jp>
+Message-ID: <YvSnWrfU7kM4Ia9r@codewreck.org>
 References: <000000000000da8a9b0570a29c01@google.com>
-From: Tetsuo Handa <penguin-kernel@I-love.SAKURA.ne.jp>
-In-Reply-To: <000000000000da8a9b0570a29c01@google.com>
-X-Spam-Score: -2.0 (--)
+ <f00146b5-0a14-ac24-3d7b-3d4deeb96359@I-love.SAKURA.ne.jp>
+MIME-Version: 1.0
+Content-Disposition: inline
+In-Reply-To: <f00146b5-0a14-ac24-3d7b-3d4deeb96359@I-love.SAKURA.ne.jp>
+X-Spam-Score: -0.2 (/)
 X-Spam-Report: Spam detection software,
  running on the system "util-spamd-1.v13.lw.sourceforge.com", 
  has NOT identified this incoming email as spam.  The original
  message has been attached to this so you can view it or label
  similar future email.  If you have any questions, see
  the administrator of that system for details.
- Content preview: Hello.
- https://syzkaller.appspot.com/text?tag=CrashReport&x=154869fd080000
- suggests that p9_client_rpc() is trapped at infinite retry loop again: /*
- Wait for the response */ err = wait_event_killable(req->wq, req->status >=
- REQ_STATUS_RCVD); 
- Content analysis details:   (-2.0 points, 6.0 required)
+ Content preview:  Hi, Tetsuo Handa wrote on Thu, Aug 11, 2022 at 03:01:23PM
+ +0900: > https://syzkaller.appspot.com/text?tag=CrashReport&x=154869fd080000
+ > suggests that p9_client_rpc() is trapped at infinite retry loop 
+ Content analysis details:   (-0.2 points, 6.0 required)
  pts rule name              description
  ---- ---------------------- --------------------------------------------------
  0.0 SPF_HELO_NONE          SPF: HELO does not publish an SPF Record
- 0.0 SPF_NONE               SPF: sender does not publish an SPF Record
- -2.0 NICE_REPLY_A           Looks like a legit reply (A)
-X-Headers-End: 1oM235-00BMCq-4I
+ -0.0 SPF_PASS               SPF: sender matches SPF record
+ -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+ -0.1 DKIM_VALID_EF          Message has a valid DKIM or DK signature from
+ envelope-from domain
+ 0.1 DKIM_SIGNED            Message has a DKIM or DK signature, not necessarily
+ valid
+ -0.1 DKIM_VALID_AU          Message has a valid DKIM or DK signature from
+ author's domain
+ 0.0 UNPARSEABLE_RELAY      Informational: message has unparseable relay
+ lines
+X-Headers-End: 1oM24e-00060G-Qu
 Subject: Re: [V9fs-developer] INFO: task hung in iterate_supers
 X-BeenThere: v9fs-developer@lists.sourceforge.net
 X-Mailman-Version: 2.1.21
@@ -96,49 +113,87 @@ List-Post: <mailto:v9fs-developer@lists.sourceforge.net>
 List-Help: <mailto:v9fs-developer-request@lists.sourceforge.net?subject=help>
 List-Subscribe: <https://lists.sourceforge.net/lists/listinfo/v9fs-developer>, 
  <mailto:v9fs-developer-request@lists.sourceforge.net?subject=subscribe>
-Cc: linux-fsdevel@vger.kernel.org, "v9fs-developer@lists.sourceforge.net"
- <v9fs-developer@lists.sourceforge.net>,
+Cc: Latchesar Ionkov <lucho@ionkov.net>, Eric Van Hensbergen <ericvh@gmail.com>,
  syzbot <syzbot+2349f5067b1772c1d8a5@syzkaller.appspotmail.com>,
- syzkaller-bugs@googlegroups.com
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+ Christian Schoenebeck <linux_oss@crudebyte.com>,
+ syzkaller-bugs@googlegroups.com, linux-fsdevel@vger.kernel.org,
+ "v9fs-developer@lists.sourceforge.net" <v9fs-developer@lists.sourceforge.net>
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: v9fs-developer-bounces@lists.sourceforge.net
 
-SGVsbG8uCgpodHRwczovL3N5emthbGxlci5hcHBzcG90LmNvbS90ZXh0P3RhZz1DcmFzaFJlcG9y
-dCZ4PTE1NDg2OWZkMDgwMDAwCnN1Z2dlc3RzIHRoYXQgcDlfY2xpZW50X3JwYygpIGlzIHRyYXBw
-ZWQgYXQgaW5maW5pdGUgcmV0cnkgbG9vcAoKLS0tLS0tLS0tLQphZ2FpbjoKICAgICAgICAvKiBX
-YWl0IGZvciB0aGUgcmVzcG9uc2UgKi8KICAgICAgICBlcnIgPSB3YWl0X2V2ZW50X2tpbGxhYmxl
-KHJlcS0+d3EsIHJlcS0+c3RhdHVzID49IFJFUV9TVEFUVVNfUkNWRCk7CgogICAgICAgIC8qIE1h
-a2Ugc3VyZSBvdXIgcmVxIGlzIGNvaGVyZW50IHdpdGggcmVnYXJkIHRvIHVwZGF0ZXMgaW4gb3Ro
-ZXIKICAgICAgICAgKiB0aHJlYWRzIC0gZWNob2VzIHRvIHdtYigpIGluIHRoZSBjYWxsYmFjawog
-ICAgICAgICAqLwogICAgICAgIHNtcF9ybWIoKTsKCiAgICAgICAgaWYgKGVyciA9PSAtRVJFU1RB
-UlRTWVMgJiYgYy0+c3RhdHVzID09IENvbm5lY3RlZCAmJgogICAgICAgICAgICB0eXBlID09IFA5
-X1RGTFVTSCkgewogICAgICAgICAgICAgICAgc2lncGVuZGluZyA9IDE7CiAgICAgICAgICAgICAg
-ICBjbGVhcl90aHJlYWRfZmxhZyhUSUZfU0lHUEVORElORyk7CiAgICAgICAgICAgICAgICBnb3Rv
-IGFnYWluOwogICAgICAgIH0KLS0tLS0tLS0tLQoKd2hpY2ggSSBndWVzcyB0aGF0IG5ldC85cC90
-cmFuc19mZC5jIGlzIGZhaWxpbmcgdG8gY2FsbCBwOV9jbGllbnRfY2IoKQppbiBvcmRlciB0byB1
-cGRhdGUgcmVxLT5zdGF0dXMgYW5kIHdha2UgdXAgcmVxLT53cS4KCkJ1dCB3aHkgZG9lcyBwOSB0
-aGluayB0aGF0IEZsdXNoIG9wZXJhdGlvbiB3b3J0aCByZXRyeWluZyBmb3JldmVyPwoKVGhlIHBl
-ZXIgc2lkZSBzaG91bGQgYmUgYWJsZSB0byBkZXRlY3QgY2xvc2Ugb2YgZmlsZSBkZXNjcmlwdG9y
-IG9uIGxvY2FsCnNpZGUgZHVlIHRvIHByb2Nlc3MgdGVybWluYXRpb24gdmlhIFNJR0tJTEwsIGFu
-ZCB0aGUgcGVlciBzaWRlIHNob3VsZCBiZQphYmxlIHRvIHBlcmZvcm0gYXBwcm9wcmlhdGUgcmVj
-b3Zlcnkgb3BlcmF0aW9uIGV2ZW4gaWYgbG9jYWwgc2lkZSBjYW5ub3QKcmVjZWl2ZSByZXNwb25z
-ZSBmb3IgRmx1c2ggb3BlcmF0aW9uLgoKVGh1cywgd2h5IG5vdCB0byBnaXZlIHVwIHVwb24gU0lH
-S0lMTD8KCgpPbiAyMDE4LzA3LzEwIDE5OjMwLCBzeXpib3Qgd3JvdGU6Cj4gSGVsbG8sCj4gCj4g
-c3l6Ym90IGZvdW5kIHRoZSBmb2xsb3dpbmcgY3Jhc2ggb246Cj4gCj4gSEVBRCBjb21taXQ6wqDC
-oMKgIGQwMGQ2ZDlhMzM5ZCBBZGQgbGludXgtbmV4dCBzcGVjaWZpYyBmaWxlcyBmb3IgMjAxODA3
-MDkKPiBnaXQgdHJlZTrCoMKgwqDCoMKgwqAgbGludXgtbmV4dAo+IGNvbnNvbGUgb3V0cHV0OiBo
-dHRwczovL3N5emthbGxlci5hcHBzcG90LmNvbS94L2xvZy50eHQ/eD0xMTExNzliMjQwMDAwMAo+
-IGtlcm5lbCBjb25maWc6wqAgaHR0cHM6Ly9zeXprYWxsZXIuYXBwc3BvdC5jb20veC8uY29uZmln
-P3g9OTRmZTJiNTg2YmVjY2FjZAo+IGRhc2hib2FyZCBsaW5rOiBodHRwczovL3N5emthbGxlci5h
-cHBzcG90LmNvbS9idWc/ZXh0aWQ9MjM0OWY1MDY3YjE3NzJjMWQ4YTUKPiBjb21waWxlcjrCoMKg
-wqDCoMKgwqAgZ2NjIChHQ0MpIDguMC4xIDIwMTgwNDEzIChleHBlcmltZW50YWwpCj4gc3l6a2Fs
-bGVyIHJlcHJvOmh0dHBzOi8vc3l6a2FsbGVyLmFwcHNwb3QuY29tL3gvcmVwcm8uc3l6P3g9MTc0
-MzI5YjI0MDAwMDAKPiBDIHJlcHJvZHVjZXI6wqDCoCBodHRwczovL3N5emthbGxlci5hcHBzcG90
-LmNvbS94L3JlcHJvLmM/eD0xMTIyOTA0NDQwMDAwMAo+IAo+IElNUE9SVEFOVDogaWYgeW91IGZp
-eCB0aGUgYnVnLCBwbGVhc2UgYWRkIHRoZSBmb2xsb3dpbmcgdGFnIHRvIHRoZSBjb21taXQ6Cj4g
-UmVwb3J0ZWQtYnk6IHN5emJvdCsyMzQ5ZjUwNjdiMTc3MmMxZDhhNUBzeXprYWxsZXIuYXBwc3Bv
-dG1haWwuY29tCj4gCgoKCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fClY5ZnMtZGV2ZWxvcGVyIG1haWxpbmcgbGlzdApWOWZzLWRldmVsb3BlckBsaXN0cy5z
-b3VyY2Vmb3JnZS5uZXQKaHR0cHM6Ly9saXN0cy5zb3VyY2Vmb3JnZS5uZXQvbGlzdHMvbGlzdGlu
-Zm8vdjlmcy1kZXZlbG9wZXIK
+Hi,
+
+Tetsuo Handa wrote on Thu, Aug 11, 2022 at 03:01:23PM +0900:
+> https://syzkaller.appspot.com/text?tag=CrashReport&x=154869fd080000
+> suggests that p9_client_rpc() is trapped at infinite retry loop
+
+Would be far from the first one, Dmitry brought this up years ago...
+
+
+> But why does p9 think that Flush operation worth retrying forever?
+
+I can't answer much more than "it's how it was done"; I started
+implementing asynchronous flush back when this was first discussed but
+my implementation introduced a regression somewhere and I never had time
+to debug it; the main "problem" is that we (currently) have no way of
+freeing up resources associated with that request if we leave the
+thread.
+The first step was adding refcounting to requests and this is somewhat
+holding up, so all's left now would be to properly clean things up if we
+leave this call.
+
+You can find inspiration in my old patches[1] if you'd like to give it a
+try:
+[1] https://lore.kernel.org/all/20181217110111.GB17466@nautica/T/
+
+
+Note that there is one point that wasn't discussed back then, but
+according to the 9p man page for flush[2], the request should be
+considered successful if the original request's reply comes before the
+flush reply.
+This might be important e.g. with caching enabled and mkdir, create or
+unlink with caching enabled as the 9p client has no notion of cache
+coherency... So even if the caller itself will be busy dealing with a
+signal at least the cache should be kept coherent, somehow.
+I don't see any way of doing that with the current 9pfs/9pnet layering,
+9pnet cannot call back in the vfs.
+
+[2] https://9fans.github.io/plan9port/man/man9/flush.html
+
+
+> The peer side should be able to detect close of file descriptor on local
+> side due to process termination via SIGKILL, and the peer side should be
+> able to perform appropriate recovery operation even if local side cannot
+> receive response for Flush operation.
+
+The peer side (= server in my vocabulary) has no idea about processes or
+file descriptors, it's the 9p client's job to do any such cleanup.
+
+The vfs takes care of calling the proper close functions that'll end up
+in clunk for fids properly, there was a report of fid leak recently but
+these are rare enough...
+
+The problem isn't open fids though, but really resources associated with
+the request itself; it shouldn't be too hard to do (ignoring any cache
+coherency issue), but...
+
+> Thus, why not to give up upon SIGKILL?
+
+... "Nobody has done it yet".
+
+
+Last year I'd probably have answered that I'm open to funding, but
+franlky don't have the time anyway; I'll be happy to review and lightly
+test anything sent my way in my meager free time though.
+
+(And yes, I agree ignoring sigkill is bad user experience)
+
+-- 
+Dominique
+
+
+_______________________________________________
+V9fs-developer mailing list
+V9fs-developer@lists.sourceforge.net
+https://lists.sourceforge.net/lists/listinfo/v9fs-developer
