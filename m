@@ -2,106 +2,102 @@ Return-Path: <v9fs-developer-bounces@lists.sourceforge.net>
 X-Original-To: lists+v9fs-developer@lfdr.de
 Delivered-To: lists+v9fs-developer@lfdr.de
 Received: from lists.sourceforge.net (lists.sourceforge.net [216.105.38.7])
-	by mail.lfdr.de (Postfix) with ESMTPS id 03E1058F7F6
-	for <lists+v9fs-developer@lfdr.de>; Thu, 11 Aug 2022 08:54:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 17A1B5942CE
+	for <lists+v9fs-developer@lfdr.de>; Tue, 16 Aug 2022 00:24:45 +0200 (CEST)
 Received: from [127.0.0.1] (helo=sfs-ml-4.v29.lw.sourceforge.com)
-	by sfs-ml-4.v29.lw.sourceforge.com with esmtp (Exim 4.94.2)
+	by sfs-ml-4.v29.lw.sourceforge.com with esmtp (Exim 4.95)
 	(envelope-from <v9fs-developer-bounces@lists.sourceforge.net>)
-	id 1oM24m-0000nO-KM; Thu, 11 Aug 2022 06:53:51 +0000
+	id 1oNiVk-0006KT-QW;
+	Mon, 15 Aug 2022 22:24:40 +0000
 Received: from [172.30.20.202] (helo=mx.sourceforge.net)
  by sfs-ml-4.v29.lw.sourceforge.com with esmtps (TLS1.2) tls
- TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384 (Exim 4.94.2)
- (envelope-from <asmadeus@codewreck.org>) id 1oM24l-0000nD-2B
- for v9fs-developer@lists.sourceforge.net; Thu, 11 Aug 2022 06:53:49 +0000
+ TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384 (Exim 4.95) (envelope-from
+ <3lsf6YgkbAC8djkVLWWPcLaaTO.RZZRWPfdPcNZYePYe.NZX@M3KW2WVRGUFZ5GODRSRYTGD7.apphosting.bounces.google.com>)
+ id 1oNiVi-0006KJ-LE for v9fs-developer@lists.sourceforge.net;
+ Mon, 15 Aug 2022 22:24:38 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=sourceforge.net; s=x; h=In-Reply-To:Content-Type:MIME-Version:References:
- Message-ID:Subject:Cc:To:From:Date:Sender:Reply-To:Content-Transfer-Encoding:
- Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
- Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
+ d=sourceforge.net; s=x; h=Content-Type:To:From:Subject:Message-ID:Date:
+ MIME-Version:Sender:Reply-To:Cc:Content-Transfer-Encoding:Content-ID:
+ Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
+ :Resent-Message-ID:In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:
  List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=nhBlDGBzdW/ef8TRsMdZP7ZIRUnOqyqodEb3SWZVQ7U=; b=YkoUunhJucTQWDnfWH35Aci5J5
- 3zmrh3O9Uv3ybfUzPlpSGzsnyD081ZW8Ej8qstb2fTFeTraBfJeyTQAo6jRfHPkEBM5IaArRgC1qy
- rTd+W4fXIo3n9PxJ4JLwDqt8ng92STtIACpdS0OI/MzO0O58VVZcSmldvh1+x1DCEeB4=;
+ bh=H7UiU1sSMkI2uPnOnfB4y3ObJwOrcNNrp7E87VZ9Yjw=; b=MM0eGmsgcy7xO7zAT6qG/LxMvL
+ BI+xs6WnZce2ZOrA62Kzqqn3vSl1vK5WvqVDDFCqpJphHLkvNBFJvt2c3ku5Ye/CNw5V4hGFsRI2p
+ Ybtuoy0Woh+2oTBMc1trqQ3CrpCQm0rmdEvLJZE+ZrRQESNxkqAelVGbnAIwX7GDTLgY=;
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  ;
- h=In-Reply-To:Content-Type:MIME-Version:References:Message-ID:Subject:Cc:To
- :From:Date:Sender:Reply-To:Content-Transfer-Encoding:Content-ID:
- Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
- :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
- List-Post:List-Owner:List-Archive;
- bh=nhBlDGBzdW/ef8TRsMdZP7ZIRUnOqyqodEb3SWZVQ7U=; b=HvhHCwOtYZv1k24OBtG1ndU8Vi
- kzny0IjvFpQJHG03VrZjD7xcYTDSg1yTB/UW9UW7NWnzfky5zvf3eQyTPV0uroAKcocvqGzRVEtmn
- WB1QIzJyfQwiFY+bnGWZWESEgrKqYgk4a+G9A0ceuiHGGJnUwb6VdtGci7J0DRv3eM/o=;
-Received: from nautica.notk.org ([91.121.71.147])
+ h=Content-Type:To:From:Subject:Message-ID:Date:MIME-Version:Sender:Reply-To
+ :Cc:Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+ Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:
+ References:List-Id:List-Help:List-Unsubscribe:List-Subscribe:List-Post:
+ List-Owner:List-Archive; bh=H7UiU1sSMkI2uPnOnfB4y3ObJwOrcNNrp7E87VZ9Yjw=; b=K
+ Y/Ah8Q5VvsuZFeqN/VqO79+uv9P6olu0A4uyTv7rwV2uTCOHKG87KLjM+jQBb1nVhrWCgNClM65xt
+ K3j6GK7LHDHGlsqEOYB3QXmCM6E3VCFP8mDLzdUsZM3fpZIwF2LuASDpMy/LV+4S6ux70d+bOXx0I
+ hRgDHJvpGA9zvhEo=;
+Received: from mail-il1-f199.google.com ([209.85.166.199])
  by sfi-mx-2.v28.lw.sourceforge.com with esmtps
- (TLS1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.94.2)
- id 1oM24e-00060G-Qu
- for v9fs-developer@lists.sourceforge.net; Thu, 11 Aug 2022 06:53:49 +0000
-Received: by nautica.notk.org (Postfix, from userid 108)
- id 31F8DC01D; Thu, 11 Aug 2022 08:53:37 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=codewreck.org; s=2;
- t=1660200817; bh=nhBlDGBzdW/ef8TRsMdZP7ZIRUnOqyqodEb3SWZVQ7U=;
- h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
- b=Bay5QxYSivGYW+8i3QnLyWyFkH6AUqS8erDhFkSJhUHNMTpAdFGEaPxYd9bjAYYdT
- lqgwC2JlwtXpvuzXeSZn78cLnCPQ1T3oT94ZDWbIjdV2J0M2iw677Wnn3tARdurvIZ
- oUrXXgHH6sbM5RbGfQnXEmfyHbu5h9LAWDCtC3Iuji9h1afI9/qqdgVtlPWT4jdjih
- LWJTjvtAxLndE5BkHf3SYWZSYD+B5qzT6MuT+KE0GejMecg14waCquWVbAijOq0tNr
- WpAb7apE2b7KWTTNB3JeUDOSJiF5i/SAMN0883YEspVA+Uc2lnbU9yyxjKuq8J2kJz
- JaoLZ3H3LufNQ==
-X-Spam-Checker-Version: SpamAssassin 3.3.2 (2011-06-06) on nautica.notk.org
-X-Spam-Level: 
-X-Spam-Status: No, score=0.0 required=5.0 tests=UNPARSEABLE_RELAY
- autolearn=unavailable version=3.3.2
-Received: from odin.codewreck.org (localhost [127.0.0.1])
- by nautica.notk.org (Postfix) with ESMTPS id 0029EC009;
- Thu, 11 Aug 2022 08:53:33 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=codewreck.org; s=2;
- t=1660200816; bh=nhBlDGBzdW/ef8TRsMdZP7ZIRUnOqyqodEb3SWZVQ7U=;
- h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
- b=tyWiPXvYZRGOxODrrkkASrryb0OKgCaqlyKaWB/dmHk7G6KWd4FAzvxndQhBCCqFq
- bpqUMeYP6XCBNw/oczqQ5Bt1qMbZELfY+3tM5U0Jkjaf4Uh4q22dCoSOyM7IUtBoBw
- BPKEKBa17TW1bWdVCcqeRyJQmBJIGr619f5hlMgEhEpCZodIfn94Hak2RA16dyYffV
- nU74kKuo7OQ69z6TT5u/CY9lZ+Iim0P/X+An5u7mzP3GrWyucp1nLUPt70a7YNYyOI
- dfByLVurgikEBuWJDVa2k/4rjsPkZiMRecOZ/ZkGezrYBXmx4VHYmSq+COY+1U4B9P
- KBFfQwfz3zVQg==
-Received: from localhost (odin.codewreck.org [local])
- by odin.codewreck.org (OpenSMTPD) with ESMTPA id ce3c10db;
- Thu, 11 Aug 2022 06:53:29 +0000 (UTC)
-Date: Thu, 11 Aug 2022 15:53:14 +0900
-From: Dominique Martinet <asmadeus@codewreck.org>
-To: Tetsuo Handa <penguin-kernel@I-love.SAKURA.ne.jp>
-Message-ID: <YvSnWrfU7kM4Ia9r@codewreck.org>
-References: <000000000000da8a9b0570a29c01@google.com>
- <f00146b5-0a14-ac24-3d7b-3d4deeb96359@I-love.SAKURA.ne.jp>
+ (TLS1.2:ECDHE-RSA-AES128-GCM-SHA256:128) (Exim 4.95)
+ id 1oNiVb-0001q9-7m for v9fs-developer@lists.sourceforge.net;
+ Mon, 15 Aug 2022 22:24:38 +0000
+Received: by mail-il1-f199.google.com with SMTP id
+ z9-20020a056e02088900b002e35dba878cso6005295ils.10
+ for <v9fs-developer@lists.sourceforge.net>;
+ Mon, 15 Aug 2022 15:24:31 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20210112;
+ h=to:from:subject:message-id:date:mime-version:x-gm-message-state
+ :from:to:cc;
+ bh=H7UiU1sSMkI2uPnOnfB4y3ObJwOrcNNrp7E87VZ9Yjw=;
+ b=wW2BOHN3jxEFb2YmYClHGpHVyTKE+39X8uEJg/L5Khhh50aaukCZT+YA3GNz9/vTGF
+ Vg00HUEZWSAVWsGUocact/Z198dNsRL/es5S7sLjMNZJSBi2isZ9pFakQ3MugGJiuRlc
+ z+Jkw5XoSUEz6PE9X0n2AXa6igazO2ZIVvlXJKfh/1LETRP3R0lpgimNH7jpuXeO4owe
+ zjh5ktKTMtvx6LbXgyPVI+2xrR4I8GqXcA5dgg8loaHv42f31SLUbZiGVzQ5W540bRwa
+ 0IQKs1hZBhXmDa06Xr1yYR0ql8CzbUODQe+z7bmnKFHfmBx71jXc/85nzz0mZ1eAaGUX
+ FVSQ==
+X-Gm-Message-State: ACgBeo0eZ59I0fNSOR0EgT4D5KgePHkHXCrK++VQJz8do7oM3rrNaF4C
+ 3ay7Z6JTwx2nPJdoTxdehlbfM2ABp7NY9Ip2j1i6S9KEVGP7
+X-Google-Smtp-Source: AA6agR5YKV2bK7ocELduCy6QalIpkbY3lU41hNXGT3iv2+92/aaGzW8grbAmrFTzqlumWyCDkPRWah7U/IjMzK9lopaK+MO7BZky
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <f00146b5-0a14-ac24-3d7b-3d4deeb96359@I-love.SAKURA.ne.jp>
-X-Spam-Score: -0.2 (/)
+X-Received: by 2002:a05:6638:2684:b0:344:ccfc:ce62 with SMTP id
+ o4-20020a056638268400b00344ccfcce62mr4109067jat.131.1660602262500; Mon, 15
+ Aug 2022 15:24:22 -0700 (PDT)
+Date: Mon, 15 Aug 2022 15:24:22 -0700
+X-Google-Appengine-App-Id: s~syzkaller
+X-Google-Appengine-App-Id-Alias: syzkaller
+Message-ID: <000000000000f842c805e64f17a8@google.com>
+From: syzbot <syzbot+2f20b523930c32c160cc@syzkaller.appspotmail.com>
+To: asmadeus@codewreck.org, davem@davemloft.net, edumazet@google.com, 
+ ericvh@gmail.com, kuba@kernel.org, linux-kernel@vger.kernel.org, 
+ linux_oss@crudebyte.com, lucho@ionkov.net, netdev@vger.kernel.org, 
+ pabeni@redhat.com, syzkaller-bugs@googlegroups.com, 
+ v9fs-developer@lists.sourceforge.net
+X-Spam-Score: 3.1 (+++)
 X-Spam-Report: Spam detection software,
  running on the system "util-spamd-1.v13.lw.sourceforge.com", 
  has NOT identified this incoming email as spam.  The original
  message has been attached to this so you can view it or label
  similar future email.  If you have any questions, see
  the administrator of that system for details.
- Content preview:  Hi, Tetsuo Handa wrote on Thu, Aug 11, 2022 at 03:01:23PM
- +0900: > https://syzkaller.appspot.com/text?tag=CrashReport&x=154869fd080000
- > suggests that p9_client_rpc() is trapped at infinite retry loop 
- Content analysis details:   (-0.2 points, 6.0 required)
+ Content preview:  Hello,
+ syzbot found the following issue on: HEAD commit: f6eb0fed6a39
+ Merge tag 'timers-urgent-2022-08-13' of git:/.. git tree: upstream console
+ output: https://syzkaller.appspot.com/x/log.txt?x=1184fec3080000 kernel
+ config: https://syzkaller.a [...] 
+ Content analysis details:   (3.1 points, 6.0 required)
  pts rule name              description
  ---- ---------------------- --------------------------------------------------
+ 0.3 FROM_LOCAL_HEX         From: localpart has long hexadecimal sequence
  0.0 SPF_HELO_NONE          SPF: HELO does not publish an SPF Record
+ 0.2 HEADER_FROM_DIFFERENT_DOMAINS From and EnvelopeFrom 2nd level
+ mail domains are different
+ -0.0 RCVD_IN_MSPIKE_H2      RBL: Average reputation (+2)
+ [209.85.166.199 listed in wl.mailspike.net]
+ -0.0 RCVD_IN_DNSWL_NONE     RBL: Sender listed at https://www.dnswl.org/,
+ no trust [209.85.166.199 listed in list.dnswl.org]
  -0.0 SPF_PASS               SPF: sender matches SPF record
- -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
- -0.1 DKIM_VALID_EF          Message has a valid DKIM or DK signature from
- envelope-from domain
- 0.1 DKIM_SIGNED            Message has a DKIM or DK signature, not necessarily
- valid
- -0.1 DKIM_VALID_AU          Message has a valid DKIM or DK signature from
- author's domain
- 0.0 UNPARSEABLE_RELAY      Informational: message has unparseable relay
- lines
-X-Headers-End: 1oM24e-00060G-Qu
-Subject: Re: [V9fs-developer] INFO: task hung in iterate_supers
+ 2.5 SORTED_RECIPS          Recipient list is sorted by address
+X-Headers-End: 1oNiVb-0001q9-7m
+Subject: [V9fs-developer] [syzbot] inconsistent lock state in p9_req_put
 X-BeenThere: v9fs-developer@lists.sourceforge.net
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -113,84 +109,191 @@ List-Post: <mailto:v9fs-developer@lists.sourceforge.net>
 List-Help: <mailto:v9fs-developer-request@lists.sourceforge.net?subject=help>
 List-Subscribe: <https://lists.sourceforge.net/lists/listinfo/v9fs-developer>, 
  <mailto:v9fs-developer-request@lists.sourceforge.net?subject=subscribe>
-Cc: Latchesar Ionkov <lucho@ionkov.net>, Eric Van Hensbergen <ericvh@gmail.com>,
- syzbot <syzbot+2349f5067b1772c1d8a5@syzkaller.appspotmail.com>,
- Christian Schoenebeck <linux_oss@crudebyte.com>,
- syzkaller-bugs@googlegroups.com, linux-fsdevel@vger.kernel.org,
- "v9fs-developer@lists.sourceforge.net" <v9fs-developer@lists.sourceforge.net>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: v9fs-developer-bounces@lists.sourceforge.net
 
-Hi,
+Hello,
 
-Tetsuo Handa wrote on Thu, Aug 11, 2022 at 03:01:23PM +0900:
-> https://syzkaller.appspot.com/text?tag=CrashReport&x=154869fd080000
-> suggests that p9_client_rpc() is trapped at infinite retry loop
+syzbot found the following issue on:
 
-Would be far from the first one, Dmitry brought this up years ago...
+HEAD commit:    f6eb0fed6a39 Merge tag 'timers-urgent-2022-08-13' of git:/..
+git tree:       upstream
+console output: https://syzkaller.appspot.com/x/log.txt?x=1184fec3080000
+kernel config:  https://syzkaller.appspot.com/x/.config?x=ffbab52ef9fab60
+dashboard link: https://syzkaller.appspot.com/bug?extid=2f20b523930c32c160cc
+compiler:       gcc (Debian 10.2.1-6) 10.2.1 20210110, GNU ld (GNU Binutils for Debian) 2.35.2
+
+Unfortunately, I don't have any reproducer for this issue yet.
+
+IMPORTANT: if you fix the issue, please add the following tag to the commit:
+Reported-by: syzbot+2f20b523930c32c160cc@syzkaller.appspotmail.com
+
+================================
+WARNING: inconsistent lock state
+5.19.0-syzkaller-14264-gf6eb0fed6a39 #0 Not tainted
+--------------------------------
+inconsistent {HARDIRQ-ON-W} -> {IN-HARDIRQ-W} usage.
+syz-executor.3/10062 [HC1[1]:SC1[1]:HE0:SE0] takes:
+ffff88801ceb8c18 (&clnt->lock){?.+.}-{2:2}, at: p9_tag_remove net/9p/client.c:367 [inline]
+ffff88801ceb8c18 (&clnt->lock){?.+.}-{2:2}, at: p9_req_put net/9p/client.c:375 [inline]
+ffff88801ceb8c18 (&clnt->lock){?.+.}-{2:2}, at: p9_req_put+0xc6/0x250 net/9p/client.c:372
+{HARDIRQ-ON-W} state was registered at:
+  lock_acquire kernel/locking/lockdep.c:5666 [inline]
+  lock_acquire+0x1ab/0x570 kernel/locking/lockdep.c:5631
+  __raw_spin_lock include/linux/spinlock_api_smp.h:133 [inline]
+  _raw_spin_lock+0x2a/0x40 kernel/locking/spinlock.c:154
+  spin_lock include/linux/spinlock.h:349 [inline]
+  p9_fd_request+0x85/0x330 net/9p/trans_fd.c:672
+  p9_client_rpc+0x2f0/0xce0 net/9p/client.c:660
+  p9_client_version net/9p/client.c:880 [inline]
+  p9_client_create+0xaec/0x1070 net/9p/client.c:985
+  v9fs_session_init+0x1e2/0x1810 fs/9p/v9fs.c:408
+  v9fs_mount+0xba/0xc90 fs/9p/vfs_super.c:126
+  legacy_get_tree+0x105/0x220 fs/fs_context.c:610
+  vfs_get_tree+0x89/0x2f0 fs/super.c:1530
+  do_new_mount fs/namespace.c:3040 [inline]
+  path_mount+0x1326/0x1e20 fs/namespace.c:3370
+  do_mount fs/namespace.c:3383 [inline]
+  __do_sys_mount fs/namespace.c:3591 [inline]
+  __se_sys_mount fs/namespace.c:3568 [inline]
+  __x64_sys_mount+0x27f/0x300 fs/namespace.c:3568
+  do_syscall_x64 arch/x86/entry/common.c:50 [inline]
+  do_syscall_64+0x35/0xb0 arch/x86/entry/common.c:80
+  entry_SYSCALL_64_after_hwframe+0x63/0xcd
+irq event stamp: 1139
+hardirqs last  enabled at (1138): [<ffffffff89c00190>] __do_softirq+0x190/0x9c6 kernel/softirq.c:555
+hardirqs last disabled at (1139): [<ffffffff897eaf31>] common_interrupt+0x11/0xc0 arch/x86/kernel/irq.c:240
+softirqs last  enabled at (62): [<ffffffff81483e73>] invoke_softirq kernel/softirq.c:445 [inline]
+softirqs last  enabled at (62): [<ffffffff81483e73>] __irq_exit_rcu+0x123/0x180 kernel/softirq.c:650
+softirqs last disabled at (1137): [<ffffffff81483e73>] invoke_softirq kernel/softirq.c:445 [inline]
+softirqs last disabled at (1137): [<ffffffff81483e73>] __irq_exit_rcu+0x123/0x180 kernel/softirq.c:650
+
+other info that might help us debug this:
+ Possible unsafe locking scenario:
+
+       CPU0
+       ----
+  lock(&clnt->lock);
+  <Interrupt>
+    lock(&clnt->lock);
+
+ *** DEADLOCK ***
+
+3 locks held by syz-executor.3/10062:
+ #0: ffff888066ee2ab0 (&p->alloc_lock){+.+.}-{2:2}, at: spin_lock include/linux/spinlock.h:349 [inline]
+ #0: ffff888066ee2ab0 (&p->alloc_lock){+.+.}-{2:2}, at: task_lock include/linux/sched/task.h:174 [inline]
+ #0: ffff888066ee2ab0 (&p->alloc_lock){+.+.}-{2:2}, at: exit_fs+0x5a/0x170 fs/fs_struct.c:101
+ #1: ffff88801b98ca20 (&fs->lock){+.+.}-{2:2}, at: spin_lock include/linux/spinlock.h:349 [inline]
+ #1: ffff88801b98ca20 (&fs->lock){+.+.}-{2:2}, at: exit_fs+0x62/0x170 fs/fs_struct.c:102
+ #2: ffff888022720020 (&chan->lock#2){-.-.}-{2:2}, at: req_done+0xcf/0x2e0 net/9p/trans_virtio.c:139
+
+stack backtrace:
+CPU: 0 PID: 10062 Comm: syz-executor.3 Not tainted 5.19.0-syzkaller-14264-gf6eb0fed6a39 #0
+Hardware name: QEMU Standard PC (Q35 + ICH9, 2009), BIOS 1.14.0-2 04/01/2014
+Call Trace:
+ <IRQ>
+ __dump_stack lib/dump_stack.c:88 [inline]
+ dump_stack_lvl+0xcd/0x134 lib/dump_stack.c:106
+ print_usage_bug kernel/locking/lockdep.c:3961 [inline]
+ valid_state kernel/locking/lockdep.c:3973 [inline]
+ mark_lock_irq kernel/locking/lockdep.c:4176 [inline]
+ mark_lock.part.0.cold+0x18/0xd8 kernel/locking/lockdep.c:4632
+ mark_lock kernel/locking/lockdep.c:4596 [inline]
+ mark_usage kernel/locking/lockdep.c:4524 [inline]
+ __lock_acquire+0x14a2/0x56d0 kernel/locking/lockdep.c:5007
+ lock_acquire kernel/locking/lockdep.c:5666 [inline]
+ lock_acquire+0x1ab/0x570 kernel/locking/lockdep.c:5631
+ __raw_spin_lock_irqsave include/linux/spinlock_api_smp.h:110 [inline]
+ _raw_spin_lock_irqsave+0x39/0x50 kernel/locking/spinlock.c:162
+ p9_tag_remove net/9p/client.c:367 [inline]
+ p9_req_put net/9p/client.c:375 [inline]
+ p9_req_put+0xc6/0x250 net/9p/client.c:372
+ req_done+0x1de/0x2e0 net/9p/trans_virtio.c:148
+ vring_interrupt drivers/virtio/virtio_ring.c:2454 [inline]
+ vring_interrupt+0x29d/0x3d0 drivers/virtio/virtio_ring.c:2429
+ __handle_irq_event_percpu+0x227/0x870 kernel/irq/handle.c:158
+ handle_irq_event_percpu kernel/irq/handle.c:193 [inline]
+ handle_irq_event+0xa7/0x1e0 kernel/irq/handle.c:210
+ handle_edge_irq+0x25f/0xd00 kernel/irq/chip.c:819
+ generic_handle_irq_desc include/linux/irqdesc.h:158 [inline]
+ handle_irq arch/x86/kernel/irq.c:231 [inline]
+ __common_interrupt+0x9d/0x210 arch/x86/kernel/irq.c:250
+ common_interrupt+0x4d/0xc0 arch/x86/kernel/irq.c:240
+ asm_common_interrupt+0x22/0x40 arch/x86/include/asm/idtentry.h:640
+RIP: 0010:__do_softirq+0x196/0x9c6 kernel/softirq.c:557
+Code: 00 48 01 f0 48 89 44 24 18 48 c7 c7 c0 41 eb 89 e8 5f ff be ff 65 66 c7 05 35 94 43 76 00 00 e8 70 ab c1 f7 fb b8 ff ff ff ff <48> c7 c3 c0 a0 c0 8b 41 0f bc c5 41 89 c7 41 83 c7 01 0f 85 ad 00
+RSP: 0018:ffffc90000007f70 EFLAGS: 00000206
+RAX: 00000000ffffffff RBX: ffff888066ee2140 RCX: 1ffffffff211cc2e
+RDX: 0000000000000000 RSI: 0000000000000102 RDI: 0000000000000000
+RBP: ffff8880125241c0 R08: 0000000000000001 R09: ffffffff908d9967
+R10: 0000000000000001 R11: 0000000000000001 R12: 0000000000000000
+R13: 0000000000000080 R14: 0000000000000000 R15: 0000000000000000
+ invoke_softirq kernel/softirq.c:445 [inline]
+ __irq_exit_rcu+0x123/0x180 kernel/softirq.c:650
+ irq_exit_rcu+0x5/0x20 kernel/softirq.c:662
+ sysvec_apic_timer_interrupt+0x93/0xc0 arch/x86/kernel/apic/apic.c:1106
+ </IRQ>
+ <TASK>
+ asm_sysvec_apic_timer_interrupt+0x16/0x20 arch/x86/include/asm/idtentry.h:649
+RIP: 0010:lock_acquire+0x1ef/0x570 kernel/locking/lockdep.c:5634
+Code: d2 a3 7e 83 f8 01 0f 85 e8 02 00 00 9c 58 f6 c4 02 0f 85 fb 02 00 00 48 83 7c 24 08 00 74 01 fb 48 b8 00 00 00 00 00 fc ff df <48> 01 c3 48 c7 03 00 00 00 00 48 c7 43 08 00 00 00 00 48 8b 84 24
+RSP: 0018:ffffc9000357fa48 EFLAGS: 00000206
+RAX: dffffc0000000000 RBX: 1ffff920006aff4b RCX: ffffffff815e513e
+RDX: 1ffff1100cddc576 RSI: 0000000000000002 RDI: 0000000000000000
+RBP: 0000000000000001 R08: 0000000000000000 R09: ffffffff908d9967
+R10: fffffbfff211b32c R11: 0000000000000000 R12: 0000000000000000
+R13: 0000000000000000 R14: ffff88801b98ca20 R15: 0000000000000000
+ __raw_spin_lock include/linux/spinlock_api_smp.h:133 [inline]
+ _raw_spin_lock+0x2a/0x40 kernel/locking/spinlock.c:154
+ spin_lock include/linux/spinlock.h:349 [inline]
+ exit_fs+0x62/0x170 fs/fs_struct.c:102
+ do_exit+0xaa6/0x29b0 kernel/exit.c:791
+ do_group_exit+0xd2/0x2f0 kernel/exit.c:925
+ get_signal+0x238c/0x2610 kernel/signal.c:2857
+ arch_do_signal_or_restart+0x82/0x2300 arch/x86/kernel/signal.c:869
+ exit_to_user_mode_loop kernel/entry/common.c:166 [inline]
+ exit_to_user_mode_prepare+0x15f/0x250 kernel/entry/common.c:201
+ __syscall_exit_to_user_mode_work kernel/entry/common.c:283 [inline]
+ syscall_exit_to_user_mode+0x19/0x50 kernel/entry/common.c:294
+ do_syscall_64+0x42/0xb0 arch/x86/entry/common.c:86
+ entry_SYSCALL_64_after_hwframe+0x63/0xcd
+RIP: 0033:0x7f0b07489279
+Code: Unable to access opcode bytes at RIP 0x7f0b0748924f.
+RSP: 002b:00007f0b085a3218 EFLAGS: 00000246 ORIG_RAX: 00000000000000ca
+RAX: fffffffffffffe00 RBX: 00007f0b0759bf88 RCX: 00007f0b07489279
+RDX: 0000000000000000 RSI: 0000000000000080 RDI: 00007f0b0759bf88
+RBP: 00007f0b0759bf80 R08: 0000000000000000 R09: 0000000000000000
+R10: 0000000000000000 R11: 0000000000000246 R12: 00007f0b0759bf8c
+R13: 00007ffdfa1bfd4f R14: 00007f0b085a3300 R15: 0000000000022000
+ </TASK>
+----------------
+Code disassembly (best guess):
+   0:	00 48 01             	add    %cl,0x1(%rax)
+   3:	f0 48 89 44 24 18    	lock mov %rax,0x18(%rsp)
+   9:	48 c7 c7 c0 41 eb 89 	mov    $0xffffffff89eb41c0,%rdi
+  10:	e8 5f ff be ff       	callq  0xffbeff74
+  15:	65 66 c7 05 35 94 43 	movw   $0x0,%gs:0x76439435(%rip)        # 0x76439454
+  1c:	76 00 00
+  1f:	e8 70 ab c1 f7       	callq  0xf7c1ab94
+  24:	fb                   	sti
+  25:	b8 ff ff ff ff       	mov    $0xffffffff,%eax
+* 2a:	48 c7 c3 c0 a0 c0 8b 	mov    $0xffffffff8bc0a0c0,%rbx <-- trapping instruction
+  31:	41 0f bc c5          	bsf    %r13d,%eax
+  35:	41 89 c7             	mov    %eax,%r15d
+  38:	41 83 c7 01          	add    $0x1,%r15d
+  3c:	0f                   	.byte 0xf
+  3d:	85                   	.byte 0x85
+  3e:	ad                   	lods   %ds:(%rsi),%eax
 
 
-> But why does p9 think that Flush operation worth retrying forever?
+---
+This report is generated by a bot. It may contain errors.
+See https://goo.gl/tpsmEJ for more information about syzbot.
+syzbot engineers can be reached at syzkaller@googlegroups.com.
 
-I can't answer much more than "it's how it was done"; I started
-implementing asynchronous flush back when this was first discussed but
-my implementation introduced a regression somewhere and I never had time
-to debug it; the main "problem" is that we (currently) have no way of
-freeing up resources associated with that request if we leave the
-thread.
-The first step was adding refcounting to requests and this is somewhat
-holding up, so all's left now would be to properly clean things up if we
-leave this call.
-
-You can find inspiration in my old patches[1] if you'd like to give it a
-try:
-[1] https://lore.kernel.org/all/20181217110111.GB17466@nautica/T/
-
-
-Note that there is one point that wasn't discussed back then, but
-according to the 9p man page for flush[2], the request should be
-considered successful if the original request's reply comes before the
-flush reply.
-This might be important e.g. with caching enabled and mkdir, create or
-unlink with caching enabled as the 9p client has no notion of cache
-coherency... So even if the caller itself will be busy dealing with a
-signal at least the cache should be kept coherent, somehow.
-I don't see any way of doing that with the current 9pfs/9pnet layering,
-9pnet cannot call back in the vfs.
-
-[2] https://9fans.github.io/plan9port/man/man9/flush.html
-
-
-> The peer side should be able to detect close of file descriptor on local
-> side due to process termination via SIGKILL, and the peer side should be
-> able to perform appropriate recovery operation even if local side cannot
-> receive response for Flush operation.
-
-The peer side (= server in my vocabulary) has no idea about processes or
-file descriptors, it's the 9p client's job to do any such cleanup.
-
-The vfs takes care of calling the proper close functions that'll end up
-in clunk for fids properly, there was a report of fid leak recently but
-these are rare enough...
-
-The problem isn't open fids though, but really resources associated with
-the request itself; it shouldn't be too hard to do (ignoring any cache
-coherency issue), but...
-
-> Thus, why not to give up upon SIGKILL?
-
-... "Nobody has done it yet".
-
-
-Last year I'd probably have answered that I'm open to funding, but
-franlky don't have the time anyway; I'll be happy to review and lightly
-test anything sent my way in my meager free time though.
-
-(And yes, I agree ignoring sigkill is bad user experience)
-
--- 
-Dominique
+syzbot will keep track of this issue. See:
+https://goo.gl/tpsmEJ#status for how to communicate with syzbot.
 
 
 _______________________________________________
