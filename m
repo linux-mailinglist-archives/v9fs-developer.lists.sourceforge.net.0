@@ -2,102 +2,111 @@ Return-Path: <v9fs-developer-bounces@lists.sourceforge.net>
 X-Original-To: lists+v9fs-developer@lfdr.de
 Delivered-To: lists+v9fs-developer@lfdr.de
 Received: from lists.sourceforge.net (lists.sourceforge.net [216.105.38.7])
-	by mail.lfdr.de (Postfix) with ESMTPS id 678955968A6
-	for <lists+v9fs-developer@lfdr.de>; Wed, 17 Aug 2022 07:36:40 +0200 (CEST)
-Received: from [127.0.0.1] (helo=sfs-ml-1.v29.lw.sourceforge.com)
-	by sfs-ml-1.v29.lw.sourceforge.com with esmtp (Exim 4.95)
+	by mail.lfdr.de (Postfix) with ESMTPS id 132F8596911
+	for <lists+v9fs-developer@lfdr.de>; Wed, 17 Aug 2022 08:00:30 +0200 (CEST)
+Received: from [127.0.0.1] (helo=sfs-ml-4.v29.lw.sourceforge.com)
+	by sfs-ml-4.v29.lw.sourceforge.com with esmtp (Exim 4.95)
 	(envelope-from <v9fs-developer-bounces@lists.sourceforge.net>)
-	id 1oOBjI-0005RE-Bx;
-	Wed, 17 Aug 2022 05:36:36 +0000
+	id 1oOC6N-00085w-DF;
+	Wed, 17 Aug 2022 06:00:27 +0000
 Received: from [172.30.20.202] (helo=mx.sourceforge.net)
- by sfs-ml-1.v29.lw.sourceforge.com with esmtps (TLS1.2) tls
- TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384 (Exim 4.95) (envelope-from
- <3XH78YgkbAGkZfgRHSSLYHWWPK.NVVNSLbZLYJVUaLUa.JVT@M3KW2WVRGUFZ5GODRSRYTGD7.apphosting.bounces.google.com>)
- id 1oOBjG-0005R1-Ul for v9fs-developer@lists.sourceforge.net;
- Wed, 17 Aug 2022 05:36:34 +0000
+ by sfs-ml-4.v29.lw.sourceforge.com with esmtps (TLS1.2) tls
+ TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384 (Exim 4.95)
+ (envelope-from <asmadeus@codewreck.org>) id 1oOC6L-00085p-Qb
+ for v9fs-developer@lists.sourceforge.net;
+ Wed, 17 Aug 2022 06:00:25 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=sourceforge.net; s=x; h=Content-Type:To:From:Subject:Message-ID:Date:
- MIME-Version:Sender:Reply-To:Cc:Content-Transfer-Encoding:Content-ID:
- Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
- :Resent-Message-ID:In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:
+ d=sourceforge.net; s=x; h=In-Reply-To:Content-Type:MIME-Version:References:
+ Message-ID:Subject:Cc:To:From:Date:Sender:Reply-To:Content-Transfer-Encoding:
+ Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+ Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
  List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=AQiV7l2fMg2LPAi+6vJ1uxufyFpYypLNRSEB17s09p0=; b=NWF9gwWr2yUkrPlV1ktum+tKqk
- FRkw7y7ad5+dO5cN5p5ARKBqGmLJUar7AUAJMNJkd5X7VXDd9CqQlDZ2rGygDvqIKgQnl677JS6v1
- IIX69XAPI1UYAtfWjsV6uKthl77fwJdVl9OM8qD0I8/9EdFpoyQsE/jcdi+Hh4r2FWw8=;
+ bh=oLawsTDNpKCPBs4WfqX5ZpLPu+XeYzk8pF8CByNEE9U=; b=iWnFuuuPb4CJd/ezfWULYZ4fiJ
+ J230IMZzl47qGfNpQ0l06GluwUlaQf+ZvXqOKRUsQ45KEdV0hvoCcr7E7rgmtVsYGISjSdXULhJQG
+ IMMtoB8teA8d1G+rbEGiMN/anWtgiZz8vD1ftlY+Q2oISI57HZfwDwZDa/MvSVKF+kjI=;
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  ;
- h=Content-Type:To:From:Subject:Message-ID:Date:MIME-Version:Sender:Reply-To
- :Cc:Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
- Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:
- References:List-Id:List-Help:List-Unsubscribe:List-Subscribe:List-Post:
- List-Owner:List-Archive; bh=AQiV7l2fMg2LPAi+6vJ1uxufyFpYypLNRSEB17s09p0=; b=i
- rJ7i+izOGdIlGVKjuMgIm3bQPIVS/KkwAMabjIugzIakIDIT0z8D+WGclGkPY402TDgcQ7SuJnTY+
- bUE66rOi69V0GU4uD+lD5DbOXzAb3UWI7WwBI2hbE0gFl889J+rqz7hGvd63/T2IlR1F+4R/Z0vUd
- 3rGl5tEJVM21w6gY=;
-Received: from mail-il1-f199.google.com ([209.85.166.199])
+ h=In-Reply-To:Content-Type:MIME-Version:References:Message-ID:Subject:Cc:To
+ :From:Date:Sender:Reply-To:Content-Transfer-Encoding:Content-ID:
+ Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
+ :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
+ List-Post:List-Owner:List-Archive;
+ bh=oLawsTDNpKCPBs4WfqX5ZpLPu+XeYzk8pF8CByNEE9U=; b=kc+ApC2goHCSbI180tyTzq9vgS
+ 2UXNwRBihkFy1N3ksRyHasSTeDt9SHJM+Ulzf+wzaxBAjh+CScfC9DLyng8VE00kkZ9KW1n9FHkc4
+ vfIOQAFe4o2M0YsKu2A2sqMpn7ZQEyXEMv8Qg65vBej7456ItB/OLaMTx5o9kFhZLce8=;
+Received: from nautica.notk.org ([91.121.71.147])
  by sfi-mx-1.v28.lw.sourceforge.com with esmtps
- (TLS1.2:ECDHE-RSA-AES128-GCM-SHA256:128) (Exim 4.95)
- id 1oOBjF-005BZP-Rn for v9fs-developer@lists.sourceforge.net;
- Wed, 17 Aug 2022 05:36:34 +0000
-Received: by mail-il1-f199.google.com with SMTP id
- l20-20020a056e02067400b002dfa7256498so8479174ilt.4
- for <v9fs-developer@lists.sourceforge.net>;
- Tue, 16 Aug 2022 22:36:33 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20210112;
- h=to:from:subject:message-id:date:mime-version:x-gm-message-state
- :from:to:cc;
- bh=AQiV7l2fMg2LPAi+6vJ1uxufyFpYypLNRSEB17s09p0=;
- b=k+bMxZPAM+stUd6fNCEqY7Kxke0ZvtD5jmChInXYW24FrEfI8ncbuHBtsDPBHS723x
- VCwr3J5XG0OdZNN3sa7QlhHIiEQ+jV2dIBGE7cY9TLNMUcr66DcH2FWZMQZE/ycikCQs
- E7xwmJX2LPyYHVX5wVCYvnBoeHDrqUW81CpemN68cUGfkKAikqgVmB4wSn58MO9lulRP
- 6TKuq9In2s51E/ph96Ioo1HxS5awB3r7PdvHjMKxThDvkPjKFRusaz3DVeulXsrP2UEq
- 6Y8sQvkglwuugeaLhodErYA7r54UPt40K0bkHuwWIl/aPU8gqyc2EW2bkR6CehjMmnGL
- TlqA==
-X-Gm-Message-State: ACgBeo0+OM1udsK8tehECTWNEw/ULS7uac0SEpTkYdK/x8nyLjbg4hDx
- NFUdPfsmiFcEMpN/CEqzcCeoNn9x1SxdUphICRoGj4Q149/3
-X-Google-Smtp-Source: AA6agR6p+RRhuiteKXAo3yV9OmDelO5OECbCZrUPC44q/+qS58sS++Pj7IZLMLebx7aM7CELpyZQpVgndUzOla9v/NcD1mQTvGNS
+ (TLS1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.95)
+ id 1oOC6F-005DEd-CZ for v9fs-developer@lists.sourceforge.net;
+ Wed, 17 Aug 2022 06:00:25 +0000
+Received: by nautica.notk.org (Postfix, from userid 108)
+ id 5B90FC020; Wed, 17 Aug 2022 08:00:10 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=codewreck.org; s=2;
+ t=1660716010; bh=oLawsTDNpKCPBs4WfqX5ZpLPu+XeYzk8pF8CByNEE9U=;
+ h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+ b=Q8kyToz4gT4qpFyv4SW3MaYKZeh1z/1Vtbq64ZONJx+68wN1zoFXakjvp09eIAP40
+ Us4DyYKA/qYnl5+XwdnCOH10431pAYXNxBFr+239yymvX98r33qK1kP0/cMP99GLUT
+ 11BUvfYMy7buHGPfDBxfTj891YKpKjYTJSwDbadCyhsBMsiOxnfwUbiakiKE4kez3b
+ a3A5yd5xw8UYvf+RTyXGu6c0E0V7nv5pKuwirpSxrWZVlhUYMbIZMdtu0rJN7mbbBS
+ 3wkTdj/Vkx2r3Gayq+P9BKTcyOgzP1Kov5zyNK4Vv2lmO6L9WiKOvRjsh4eITKHYLc
+ JzHDY71836eEA==
+X-Spam-Checker-Version: SpamAssassin 3.3.2 (2011-06-06) on nautica.notk.org
+X-Spam-Level: 
+X-Spam-Status: No, score=0.0 required=5.0 tests=UNPARSEABLE_RELAY
+ autolearn=unavailable version=3.3.2
+Received: from odin.codewreck.org (localhost [127.0.0.1])
+ by nautica.notk.org (Postfix) with ESMTPS id 9C693C009;
+ Wed, 17 Aug 2022 08:00:05 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=codewreck.org; s=2;
+ t=1660716009; bh=oLawsTDNpKCPBs4WfqX5ZpLPu+XeYzk8pF8CByNEE9U=;
+ h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+ b=wIPUcYFMZFE6d29/F20PcsGJHWz99spLgop5LaFfEhHJY7aVmwEWCc0xuxGK81jzX
+ 5gKyEZehHb67HXExYY1GozBD69Jogpu27xTayMLiwHdBRbUexiKSIXMIuNUNzUUcdy
+ sW5fEPWypWT3DZt8dxfpDMTiP+CeYMqWWx7Mgm5tMwRqYDbIAQ4+Lqt88ayGCJlcM1
+ tro98Mo8P4E14RTlW1BwaJxeadg83HQjfXtuTQhXO9UbVwbNFA6vctVwtv5NWtXG16
+ +2JZSL1kgiqv1ZCVpFKPRe3umCXMAeDMpVA0fwBwspi1JFbucsu7sREXMv06nwXAV4
+ y1c9aNpFiEgVQ==
+Received: from localhost (odin.codewreck.org [local])
+ by odin.codewreck.org (OpenSMTPD) with ESMTPA id a01f3657;
+ Wed, 17 Aug 2022 06:00:02 +0000 (UTC)
+Date: Wed, 17 Aug 2022 14:59:47 +0900
+From: asmadeus@codewreck.org
+To: syzbot <syzbot+de52531662ebb8823b26@syzkaller.appspotmail.com>
+Message-ID: <YvyD053bdbGE9xoo@codewreck.org>
+References: <0000000000001c3efc05e6693f06@google.com>
 MIME-Version: 1.0
-X-Received: by 2002:a05:6602:180c:b0:67c:296:2561 with SMTP id
- t12-20020a056602180c00b0067c02962561mr10227890ioh.173.1660714588322; Tue, 16
- Aug 2022 22:36:28 -0700 (PDT)
-Date: Tue, 16 Aug 2022 22:36:28 -0700
-X-Google-Appengine-App-Id: s~syzkaller
-X-Google-Appengine-App-Id-Alias: syzkaller
-Message-ID: <0000000000001c3efc05e6693f06@google.com>
-From: syzbot <syzbot+de52531662ebb8823b26@syzkaller.appspotmail.com>
-To: asmadeus@codewreck.org, davem@davemloft.net, edumazet@google.com, 
- ericvh@gmail.com, kuba@kernel.org, linux-kernel@vger.kernel.org, 
- linux_oss@crudebyte.com, lucho@ionkov.net, netdev@vger.kernel.org, 
- pabeni@redhat.com, syzkaller-bugs@googlegroups.com, 
- v9fs-developer@lists.sourceforge.net
-X-Spam-Score: 3.1 (+++)
+Content-Disposition: inline
+In-Reply-To: <0000000000001c3efc05e6693f06@google.com>
+X-Spam-Score: -0.2 (/)
 X-Spam-Report: Spam detection software,
  running on the system "util-spamd-1.v13.lw.sourceforge.com", 
  has NOT identified this incoming email as spam.  The original
  message has been attached to this so you can view it or label
  similar future email.  If you have any questions, see
  the administrator of that system for details.
- Content preview:  Hello,
- syzbot found the following issue on: HEAD commit: c3adefb5baf3
- Merge tag 'for-6.0/dm-fixes' of git://git.ker.. git tree: upstream console
- output: https://syzkaller.appspot.com/x/log.txt?x=17552e35080000 kernel
- config: https://syzkaller.a [...] 
- Content analysis details:   (3.1 points, 6.0 required)
+ Content preview: syzbot having a fresh look at 9p? Well at least that one
+ should
+ be easy enough, the following (untested) probably should work around that
+ issue: ----- From 433138e5d36a5b29b46b043c542e14b9dc908460 Mon Sep 17 00:00:00
+ 2001 From: Dominique Martinet <asmadeus@codewreck.org> Date: Wed, 17 Aug
+ 2022 14:49:29 +0900 Subject: [PATCH] 9p: p9_client_crea [...] 
+ Content analysis details:   (-0.2 points, 6.0 required)
  pts rule name              description
  ---- ---------------------- --------------------------------------------------
- 0.3 FROM_LOCAL_HEX         From: localpart has long hexadecimal sequence
  0.0 SPF_HELO_NONE          SPF: HELO does not publish an SPF Record
- 0.2 HEADER_FROM_DIFFERENT_DOMAINS From and EnvelopeFrom 2nd level
- mail domains are different
- -0.0 RCVD_IN_MSPIKE_H2      RBL: Average reputation (+2)
- [209.85.166.199 listed in wl.mailspike.net]
- -0.0 RCVD_IN_DNSWL_NONE     RBL: Sender listed at https://www.dnswl.org/,
- no trust [209.85.166.199 listed in list.dnswl.org]
  -0.0 SPF_PASS               SPF: sender matches SPF record
- 2.5 SORTED_RECIPS          Recipient list is sorted by address
-X-Headers-End: 1oOBjF-005BZP-Rn
-Subject: [V9fs-developer] [syzbot] KASAN: use-after-free Read in p9_req_put
+ -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+ -0.1 DKIM_VALID_EF          Message has a valid DKIM or DK signature from
+ envelope-from domain
+ 0.1 DKIM_SIGNED            Message has a DKIM or DK signature, not necessarily
+ valid
+ -0.1 DKIM_VALID_AU          Message has a valid DKIM or DK signature from
+ author's domain
+ 0.0 UNPARSEABLE_RELAY      Informational: message has unparseable relay
+ lines
+X-Headers-End: 1oOC6F-005DEd-CZ
+Subject: Re: [V9fs-developer] [syzbot] KASAN: use-after-free Read in
+ p9_req_put
 X-BeenThere: v9fs-developer@lists.sourceforge.net
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -109,275 +118,149 @@ List-Post: <mailto:v9fs-developer@lists.sourceforge.net>
 List-Help: <mailto:v9fs-developer-request@lists.sourceforge.net?subject=help>
 List-Subscribe: <https://lists.sourceforge.net/lists/listinfo/v9fs-developer>, 
  <mailto:v9fs-developer-request@lists.sourceforge.net?subject=subscribe>
+Cc: lucho@ionkov.net, ericvh@gmail.com, netdev@vger.kernel.org,
+ linux_oss@crudebyte.com, syzkaller-bugs@googlegroups.com,
+ linux-kernel@vger.kernel.org, edumazet@google.com,
+ v9fs-developer@lists.sourceforge.net, kuba@kernel.org, pabeni@redhat.com,
+ davem@davemloft.net
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: v9fs-developer-bounces@lists.sourceforge.net
 
-Hello,
+syzbot having a fresh look at 9p?
 
-syzbot found the following issue on:
+Well at least that one should be easy enough, the following (untested)
+probably should work around that issue:
 
-HEAD commit:    c3adefb5baf3 Merge tag 'for-6.0/dm-fixes' of git://git.ker..
-git tree:       upstream
-console output: https://syzkaller.appspot.com/x/log.txt?x=17552e35080000
-kernel config:  https://syzkaller.appspot.com/x/.config?x=c15de4ee7650fb42
-dashboard link: https://syzkaller.appspot.com/bug?extid=de52531662ebb8823b26
-compiler:       gcc (Debian 10.2.1-6) 10.2.1 20210110, GNU ld (GNU Binutils for Debian) 2.35.2
+-----
+From 433138e5d36a5b29b46b043c542e14b9dc908460 Mon Sep 17 00:00:00 2001
+From: Dominique Martinet <asmadeus@codewreck.org>
+Date: Wed, 17 Aug 2022 14:49:29 +0900
+Subject: [PATCH] 9p: p9_client_create: use p9_client_destroy on failure
 
-Unfortunately, I don't have any reproducer for this issue yet.
+If trans was connected it's somehow possible to fail with requests in
+flight that could still be accessed after free if we just free the clnt
+on failure.
+Just use p9_client_destroy instead that has proper safeguards.
 
-IMPORTANT: if you fix the issue, please add the following tag to the commit:
 Reported-by: syzbot+de52531662ebb8823b26@syzkaller.appspotmail.com
+Signed-off-by: Dominique Martinet <asmadeus@codewreck.org>
 
-==================================================================
-BUG: KASAN: use-after-free in __lock_acquire+0x3ee7/0x56d0 kernel/locking/lockdep.c:4923
-Read of size 8 at addr ffff888022724c18 by task kworker/u16:6/9419
+diff --git a/net/9p/client.c b/net/9p/client.c
+index 5bf4dfef0c70..da5d43848600 100644
+--- a/net/9p/client.c
++++ b/net/9p/client.c
+@@ -948,7 +948,7 @@ struct p9_client *p9_client_create(const char *dev_name, char *options)
+ 
+ 	err = parse_opts(options, clnt);
+ 	if (err < 0)
+-		goto free_client;
++		goto out;
+ 
+ 	if (!clnt->trans_mod)
+ 		clnt->trans_mod = v9fs_get_default_trans();
+@@ -957,7 +957,7 @@ struct p9_client *p9_client_create(const char *dev_name, char *options)
+ 		err = -EPROTONOSUPPORT;
+ 		p9_debug(P9_DEBUG_ERROR,
+ 			 "No transport defined or default transport\n");
+-		goto free_client;
++		goto out;
+ 	}
+ 
+ 	p9_debug(P9_DEBUG_MUX, "clnt %p trans %p msize %d protocol %d\n",
+@@ -965,7 +965,7 @@ struct p9_client *p9_client_create(const char *dev_name, char *options)
+ 
+ 	err = clnt->trans_mod->create(clnt, dev_name, options);
+ 	if (err)
+-		goto put_trans;
++		goto out;
+ 
+ 	if (clnt->msize > clnt->trans_mod->maxsize) {
+ 		clnt->msize = clnt->trans_mod->maxsize;
+@@ -979,12 +979,12 @@ struct p9_client *p9_client_create(const char *dev_name, char *options)
+ 		p9_debug(P9_DEBUG_ERROR,
+ 			 "Please specify a msize of at least 4k\n");
+ 		err = -EINVAL;
+-		goto close_trans;
++		goto out;
+ 	}
+ 
+ 	err = p9_client_version(clnt);
+ 	if (err)
+-		goto close_trans;
++		goto out;
+ 
+ 	/* P9_HDRSZ + 4 is the smallest packet header we can have that is
+ 	 * followed by data accessed from userspace by read
+@@ -997,12 +997,8 @@ struct p9_client *p9_client_create(const char *dev_name, char *options)
+ 
+ 	return clnt;
+ 
+-close_trans:
+-	clnt->trans_mod->close(clnt);
+-put_trans:
+-	v9fs_put_trans(clnt->trans_mod);
+-free_client:
+-	kfree(clnt);
++out:
++	p9_client_destroy(clnt);
+ 	return ERR_PTR(err);
+ }
+ EXPORT_SYMBOL(p9_client_create);
+-----
 
-CPU: 0 PID: 9419 Comm: kworker/u16:6 Not tainted 5.19.0-syzkaller-13940-gc3adefb5baf3 #0
-Hardware name: QEMU Standard PC (Q35 + ICH9, 2009), BIOS 1.14.0-2 04/01/2014
-Workqueue: netns cleanup_net
-Call Trace:
- <IRQ>
- __dump_stack lib/dump_stack.c:88 [inline]
- dump_stack_lvl+0xcd/0x134 lib/dump_stack.c:106
- print_address_description mm/kasan/report.c:317 [inline]
- print_report.cold+0x2ba/0x6e9 mm/kasan/report.c:433
- kasan_report+0xb1/0x1e0 mm/kasan/report.c:495
- __lock_acquire+0x3ee7/0x56d0 kernel/locking/lockdep.c:4923
- lock_acquire kernel/locking/lockdep.c:5666 [inline]
- lock_acquire+0x1ab/0x570 kernel/locking/lockdep.c:5631
- __raw_spin_lock_irqsave include/linux/spinlock_api_smp.h:110 [inline]
- _raw_spin_lock_irqsave+0x39/0x50 kernel/locking/spinlock.c:162
- p9_tag_remove net/9p/client.c:367 [inline]
- p9_req_put net/9p/client.c:375 [inline]
- p9_req_put+0xc6/0x250 net/9p/client.c:372
- req_done+0x1de/0x2e0 net/9p/trans_virtio.c:148
- vring_interrupt drivers/virtio/virtio_ring.c:2176 [inline]
- vring_interrupt+0x29d/0x3d0 drivers/virtio/virtio_ring.c:2151
- __handle_irq_event_percpu+0x227/0x870 kernel/irq/handle.c:158
- handle_irq_event_percpu kernel/irq/handle.c:193 [inline]
- handle_irq_event+0xa7/0x1e0 kernel/irq/handle.c:210
- handle_edge_irq+0x25f/0xd00 kernel/irq/chip.c:819
- generic_handle_irq_desc include/linux/irqdesc.h:158 [inline]
- handle_irq arch/x86/kernel/irq.c:231 [inline]
- __common_interrupt+0x9d/0x210 arch/x86/kernel/irq.c:250
- common_interrupt+0xa4/0xc0 arch/x86/kernel/irq.c:240
- </IRQ>
- <TASK>
- asm_common_interrupt+0x22/0x40 arch/x86/include/asm/idtentry.h:640
-RIP: 0010:lock_acquire+0x1ef/0x570 kernel/locking/lockdep.c:5634
-Code: d2 a3 7e 83 f8 01 0f 85 e8 02 00 00 9c 58 f6 c4 02 0f 85 fb 02 00 00 48 83 7c 24 08 00 74 01 fb 48 b8 00 00 00 00 00 fc ff df <48> 01 c3 48 c7 03 00 00 00 00 48 c7 43 08 00 00 00 00 48 8b 84 24
-RSP: 0018:ffffc9000373fa50 EFLAGS: 00000206
-RAX: dffffc0000000000 RBX: 1ffff920006e7f4c RCX: c54d55f18b925c0c
-RDX: 1ffff1100466a15e RSI: 0000000000000000 RDI: 0000000000000000
-RBP: 0000000000000000 R08: 0000000000000000 R09: ffffffff908d8947
-R10: fffffbfff211b128 R11: 1ffffffff17f21a9 R12: 0000000000000002
-R13: 0000000000000000 R14: ffffffff8bf86740 R15: 0000000000000000
- rcu_lock_acquire include/linux/rcupdate.h:280 [inline]
- rcu_read_lock include/linux/rcupdate.h:706 [inline]
- inet_twsk_purge+0x117/0x850 net/ipv4/inet_timewait_sock.c:270
- ops_exit_list+0x125/0x170 net/core/net_namespace.c:168
- cleanup_net+0x4ea/0xb00 net/core/net_namespace.c:595
- process_one_work+0x991/0x1610 kernel/workqueue.c:2289
- worker_thread+0x665/0x1080 kernel/workqueue.c:2436
- kthread+0x2e4/0x3a0 kernel/kthread.c:376
- ret_from_fork+0x1f/0x30 arch/x86/entry/entry_64.S:306
- </TASK>
+I'll test and submit to Linus over the next few weeks.
 
-Allocated by task 18072:
- kasan_save_stack+0x1e/0x40 mm/kasan/common.c:38
- kasan_set_track mm/kasan/common.c:45 [inline]
- set_alloc_info mm/kasan/common.c:437 [inline]
- ____kasan_kmalloc mm/kasan/common.c:516 [inline]
- ____kasan_kmalloc mm/kasan/common.c:475 [inline]
- __kasan_kmalloc+0xa6/0xd0 mm/kasan/common.c:525
- kasan_kmalloc include/linux/kasan.h:234 [inline]
- kmem_cache_alloc_trace+0x25a/0x460 mm/slab.c:3559
- kmalloc include/linux/slab.h:600 [inline]
- p9_client_create+0xaf/0x1070 net/9p/client.c:934
- v9fs_session_init+0x1e2/0x1810 fs/9p/v9fs.c:408
- v9fs_mount+0xba/0xc90 fs/9p/vfs_super.c:126
- legacy_get_tree+0x105/0x220 fs/fs_context.c:610
- vfs_get_tree+0x89/0x2f0 fs/super.c:1530
- do_new_mount fs/namespace.c:3040 [inline]
- path_mount+0x1326/0x1e20 fs/namespace.c:3370
- do_mount fs/namespace.c:3383 [inline]
- __do_sys_mount fs/namespace.c:3591 [inline]
- __se_sys_mount fs/namespace.c:3568 [inline]
- __x64_sys_mount+0x27f/0x300 fs/namespace.c:3568
- do_syscall_x64 arch/x86/entry/common.c:50 [inline]
- do_syscall_64+0x35/0xb0 arch/x86/entry/common.c:80
- entry_SYSCALL_64_after_hwframe+0x63/0xcd
+I had a quick look at the other new syzbot warnings and:
+ - 'possible deadlock in p9_req_put' is clear enough, we can just drop
+the lock before running through the cancel list and I don't think
+that'll cause any problem as everything has been moved to a local list
+and that lock is abused by trans fd for its local stuff. I'll also send
+that after quick testing.
+----
+From c46435a4af7c119bd040922886ed2ea3a2a842d7 Mon Sep 17 00:00:00 2001
+From: Dominique Martinet <asmadeus@codewreck.org>
+Date: Wed, 17 Aug 2022 14:58:44 +0900
+Subject: [PATCH] 9p: trans_fd/p9_conn_cancel: drop client lock earlier
 
-Freed by task 18072:
- kasan_save_stack+0x1e/0x40 mm/kasan/common.c:38
- kasan_set_track+0x21/0x30 mm/kasan/common.c:45
- kasan_set_free_info+0x20/0x30 mm/kasan/generic.c:370
- ____kasan_slab_free mm/kasan/common.c:367 [inline]
- ____kasan_slab_free+0x13d/0x1a0 mm/kasan/common.c:329
- kasan_slab_free include/linux/kasan.h:200 [inline]
- __cache_free mm/slab.c:3418 [inline]
- kfree+0x173/0x390 mm/slab.c:3786
- p9_client_create+0x7a6/0x1070 net/9p/client.c:1005
- v9fs_session_init+0x1e2/0x1810 fs/9p/v9fs.c:408
- v9fs_mount+0xba/0xc90 fs/9p/vfs_super.c:126
- legacy_get_tree+0x105/0x220 fs/fs_context.c:610
- vfs_get_tree+0x89/0x2f0 fs/super.c:1530
- do_new_mount fs/namespace.c:3040 [inline]
- path_mount+0x1326/0x1e20 fs/namespace.c:3370
- do_mount fs/namespace.c:3383 [inline]
- __do_sys_mount fs/namespace.c:3591 [inline]
- __se_sys_mount fs/namespace.c:3568 [inline]
- __x64_sys_mount+0x27f/0x300 fs/namespace.c:3568
- do_syscall_x64 arch/x86/entry/common.c:50 [inline]
- do_syscall_64+0x35/0xb0 arch/x86/entry/common.c:80
- entry_SYSCALL_64_after_hwframe+0x63/0xcd
+syzbot reported a double-lock here and we no longer need this
+lock after requests have been moved off to local list:
+just drop the lock earlier.
 
-Last potentially related work creation:
- kasan_save_stack+0x1e/0x40 mm/kasan/common.c:38
- __kasan_record_aux_stack+0x7e/0x90 mm/kasan/generic.c:348
- insert_work+0x48/0x350 kernel/workqueue.c:1358
- __queue_work+0x625/0x1210 kernel/workqueue.c:1517
- call_timer_fn+0x1a0/0x6b0 kernel/time/timer.c:1474
- expire_timers kernel/time/timer.c:1514 [inline]
- __run_timers.part.0+0x4a3/0xa80 kernel/time/timer.c:1790
- __run_timers kernel/time/timer.c:1768 [inline]
- run_timer_softirq+0xb3/0x1d0 kernel/time/timer.c:1803
- __do_softirq+0x1d3/0x9c6 kernel/softirq.c:571
+Reported-by: syzbot+50f7e8d06c3768dd97f3@syzkaller.appspotmail.com
+Signed-off-by: Dominique Martinet <asmadeus@codewreck.org>
 
-Second to last potentially related work creation:
- kasan_save_stack+0x1e/0x40 mm/kasan/common.c:38
- __kasan_record_aux_stack+0x7e/0x90 mm/kasan/generic.c:348
- call_rcu+0x99/0x790 kernel/rcu/tree.c:2793
- inetdev_destroy net/ipv4/devinet.c:331 [inline]
- inetdev_event+0xd4a/0x1610 net/ipv4/devinet.c:1602
- notifier_call_chain+0xb5/0x200 kernel/notifier.c:87
- call_netdevice_notifiers_info+0xb5/0x130 net/core/dev.c:1945
- call_netdevice_notifiers_extack net/core/dev.c:1983 [inline]
- call_netdevice_notifiers net/core/dev.c:1997 [inline]
- unregister_netdevice_many+0xa62/0x1980 net/core/dev.c:10862
- ip_tunnel_delete_nets+0x39f/0x5b0 net/ipv4/ip_tunnel.c:1125
- ops_exit_list+0x125/0x170 net/core/net_namespace.c:168
- cleanup_net+0x4ea/0xb00 net/core/net_namespace.c:595
- process_one_work+0x991/0x1610 kernel/workqueue.c:2289
- worker_thread+0x665/0x1080 kernel/workqueue.c:2436
- kthread+0x2e4/0x3a0 kernel/kthread.c:376
- ret_from_fork+0x1f/0x30 arch/x86/entry/entry_64.S:306
+diff --git a/net/9p/trans_fd.c b/net/9p/trans_fd.c
+index e758978b44be..60fcc6b30b46 100644
+--- a/net/9p/trans_fd.c
++++ b/net/9p/trans_fd.c
+@@ -205,6 +205,8 @@ static void p9_conn_cancel(struct p9_conn *m, int err)
+ 		list_move(&req->req_list, &cancel_list);
+ 	}
+ 
++	spin_unlock(&m->client->lock);
++
+ 	list_for_each_entry_safe(req, rtmp, &cancel_list, req_list) {
+ 		p9_debug(P9_DEBUG_ERROR, "call back req %p\n", req);
+ 		list_del(&req->req_list);
+@@ -212,7 +214,6 @@ static void p9_conn_cancel(struct p9_conn *m, int err)
+ 			req->t_err = err;
+ 		p9_client_cb(m->client, req, REQ_STATUS_ERROR);
+ 	}
+-	spin_unlock(&m->client->lock);
+ }
+ 
+ static __poll_t
+----
 
-The buggy address belongs to the object at ffff888022724c00
- which belongs to the cache kmalloc-512 of size 512
-The buggy address is located 24 bytes inside of
- 512-byte region [ffff888022724c00, ffff888022724e00)
+ - but I don't get the two 'inconsistent lock state', the hint says it's
+possibly an interrupt while the lock was held but that doesn't seem to
+be the case from the stack trace (unless we leaked the lock, at which
+point anything goes)
+I'd need to take time to look at it, feel free to beat me to these.
 
-The buggy address belongs to the physical page:
-page:ffffea000089c900 refcount:1 mapcount:0 mapping:0000000000000000 index:0xffff888022724000 pfn:0x22724
-flags: 0xfff00000000200(slab|node=0|zone=1|lastcpupid=0x7ff)
-raw: 00fff00000000200 ffffea0000794788 ffffea0000763948 ffff888011840600
-raw: ffff888022724000 ffff888022724000 0000000100000003 0000000000000000
-page dumped because: kasan: bad access detected
-page_owner tracks the page as allocated
-page last allocated via order 0, migratetype Unmovable, gfp_mask 0x2c2220(__GFP_HIGH|__GFP_ATOMIC|__GFP_NOWARN|__GFP_COMP|__GFP_NOMEMALLOC|__GFP_THISNODE), pid 3769, tgid 3769 (syz-executor.0), ts 230243023347, free_ts 223689823370
- prep_new_page mm/page_alloc.c:2532 [inline]
- get_page_from_freelist+0x109b/0x2ce0 mm/page_alloc.c:4283
- __alloc_pages_slowpath.constprop.0+0x2d7/0x2240 mm/page_alloc.c:5058
- __alloc_pages+0x43d/0x510 mm/page_alloc.c:5528
- __alloc_pages_node include/linux/gfp.h:243 [inline]
- kmem_getpages mm/slab.c:1363 [inline]
- cache_grow_begin+0x75/0x360 mm/slab.c:2569
- cache_alloc_refill+0x27f/0x380 mm/slab.c:2942
- ____cache_alloc mm/slab.c:3018 [inline]
- ____cache_alloc mm/slab.c:3001 [inline]
- slab_alloc_node mm/slab.c:3220 [inline]
- kmem_cache_alloc_node_trace+0x50a/0x570 mm/slab.c:3601
- __do_kmalloc_node mm/slab.c:3623 [inline]
- __kmalloc_node_track_caller+0x38/0x60 mm/slab.c:3638
- kmalloc_reserve net/core/skbuff.c:358 [inline]
- __alloc_skb+0xd9/0x2f0 net/core/skbuff.c:430
- alloc_skb include/linux/skbuff.h:1257 [inline]
- nlmsg_new include/net/netlink.h:953 [inline]
- inet6_ifa_notify+0x118/0x230 net/ipv6/addrconf.c:5492
- __ipv6_ifa_notify net/ipv6/addrconf.c:6140 [inline]
- ipv6_ifa_notify net/ipv6/addrconf.c:6192 [inline]
- inet6_addr_add+0x687/0xae0 net/ipv6/addrconf.c:2981
- inet6_rtm_newaddr+0xfa4/0x1a60 net/ipv6/addrconf.c:4923
- rtnetlink_rcv_msg+0x43a/0xc90 net/core/rtnetlink.c:6089
- netlink_rcv_skb+0x153/0x420 net/netlink/af_netlink.c:2501
- netlink_unicast_kernel net/netlink/af_netlink.c:1319 [inline]
- netlink_unicast+0x543/0x7f0 net/netlink/af_netlink.c:1345
- netlink_sendmsg+0x917/0xe10 net/netlink/af_netlink.c:1921
- sock_sendmsg_nosec net/socket.c:714 [inline]
- sock_sendmsg+0xcf/0x120 net/socket.c:734
-page last free stack trace:
- reset_page_owner include/linux/page_owner.h:24 [inline]
- free_pages_prepare mm/page_alloc.c:1449 [inline]
- free_pcp_prepare+0x5e4/0xd20 mm/page_alloc.c:1499
- free_unref_page_prepare mm/page_alloc.c:3380 [inline]
- free_unref_page+0x19/0x4d0 mm/page_alloc.c:3476
- slab_destroy mm/slab.c:1615 [inline]
- slabs_destroy+0x89/0xc0 mm/slab.c:1635
- cache_flusharray mm/slab.c:3389 [inline]
- ___cache_free+0x2a8/0x3d0 mm/slab.c:3452
- qlink_free mm/kasan/quarantine.c:168 [inline]
- qlist_free_all+0x4f/0x1b0 mm/kasan/quarantine.c:187
- kasan_quarantine_reduce+0x180/0x200 mm/kasan/quarantine.c:294
- __kasan_slab_alloc+0x97/0xb0 mm/kasan/common.c:447
- kasan_slab_alloc include/linux/kasan.h:224 [inline]
- slab_post_alloc_hook mm/slab.h:727 [inline]
- slab_alloc_node mm/slab.c:3232 [inline]
- kmem_cache_alloc_node+0x2f1/0x560 mm/slab.c:3583
- __alloc_skb+0x210/0x2f0 net/core/skbuff.c:418
- alloc_skb include/linux/skbuff.h:1257 [inline]
- nlmsg_new include/net/netlink.h:953 [inline]
- netlink_ack+0x1f0/0xa80 net/netlink/af_netlink.c:2436
- netlink_rcv_skb+0x33d/0x420 net/netlink/af_netlink.c:2507
- netlink_unicast_kernel net/netlink/af_netlink.c:1319 [inline]
- netlink_unicast+0x543/0x7f0 net/netlink/af_netlink.c:1345
- netlink_sendmsg+0x917/0xe10 net/netlink/af_netlink.c:1921
- sock_sendmsg_nosec net/socket.c:714 [inline]
- sock_sendmsg+0xcf/0x120 net/socket.c:734
- __sys_sendto+0x236/0x340 net/socket.c:2117
- __do_sys_sendto net/socket.c:2129 [inline]
- __se_sys_sendto net/socket.c:2125 [inline]
- __x64_sys_sendto+0xdd/0x1b0 net/socket.c:2125
-
-Memory state around the buggy address:
- ffff888022724b00: fc fc fc fc fc fc fc fc fc fc fc fc fc fc fc fc
- ffff888022724b80: fc fc fc fc fc fc fc fc fc fc fc fc fc fc fc fc
->ffff888022724c00: fa fb fb fb fb fb fb fb fb fb fb fb fb fb fb fb
-                            ^
- ffff888022724c80: fb fb fb fb fb fb fb fb fb fb fb fb fb fb fb fb
- ffff888022724d00: fb fb fb fb fb fb fb fb fb fb fb fb fb fb fb fb
-==================================================================
-----------------
-Code disassembly (best guess):
-   0:	d2 a3 7e 83 f8 01    	shlb   %cl,0x1f8837e(%rbx)
-   6:	0f 85 e8 02 00 00    	jne    0x2f4
-   c:	9c                   	pushfq
-   d:	58                   	pop    %rax
-   e:	f6 c4 02             	test   $0x2,%ah
-  11:	0f 85 fb 02 00 00    	jne    0x312
-  17:	48 83 7c 24 08 00    	cmpq   $0x0,0x8(%rsp)
-  1d:	74 01                	je     0x20
-  1f:	fb                   	sti
-  20:	48 b8 00 00 00 00 00 	movabs $0xdffffc0000000000,%rax
-  27:	fc ff df
-* 2a:	48 01 c3             	add    %rax,%rbx <-- trapping instruction
-  2d:	48 c7 03 00 00 00 00 	movq   $0x0,(%rbx)
-  34:	48 c7 43 08 00 00 00 	movq   $0x0,0x8(%rbx)
-  3b:	00
-  3c:	48                   	rex.W
-  3d:	8b                   	.byte 0x8b
-  3e:	84                   	.byte 0x84
-  3f:	24                   	.byte 0x24
-
-
----
-This report is generated by a bot. It may contain errors.
-See https://goo.gl/tpsmEJ for more information about syzbot.
-syzbot engineers can be reached at syzkaller@googlegroups.com.
-
-syzbot will keep track of this issue. See:
-https://goo.gl/tpsmEJ#status for how to communicate with syzbot.
+--
+Dominique
 
 
 _______________________________________________
