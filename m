@@ -2,94 +2,127 @@ Return-Path: <v9fs-developer-bounces@lists.sourceforge.net>
 X-Original-To: lists+v9fs-developer@lfdr.de
 Delivered-To: lists+v9fs-developer@lfdr.de
 Received: from lists.sourceforge.net (lists.sourceforge.net [216.105.38.7])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0084D5A600B
-	for <lists+v9fs-developer@lfdr.de>; Tue, 30 Aug 2022 12:01:18 +0200 (CEST)
-Received: from [127.0.0.1] (helo=sfs-ml-4.v29.lw.sourceforge.com)
-	by sfs-ml-4.v29.lw.sourceforge.com with esmtp (Exim 4.95)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2916D5A851A
+	for <lists+v9fs-developer@lfdr.de>; Wed, 31 Aug 2022 20:10:32 +0200 (CEST)
+Received: from [127.0.0.1] (helo=sfs-ml-2.v29.lw.sourceforge.com)
+	by sfs-ml-2.v29.lw.sourceforge.com with esmtp (Exim 4.95)
 	(envelope-from <v9fs-developer-bounces@lists.sourceforge.net>)
-	id 1oSy3U-00022h-N2;
-	Tue, 30 Aug 2022 10:01:12 +0000
+	id 1oTSAV-00025j-Op;
+	Wed, 31 Aug 2022 18:10:27 +0000
 Received: from [172.30.20.202] (helo=mx.sourceforge.net)
- by sfs-ml-4.v29.lw.sourceforge.com with esmtps (TLS1.2) tls
- TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384 (Exim 4.95) (envelope-from
- <01070182ee321035-3e60afa0-65a1-4a05-9694-522ca76ad000-000000@eu-central-1.amazonses.com>)
- id 1oSy37-000226-W2 for v9fs-developer@lists.sourceforge.net;
- Tue, 30 Aug 2022 10:00:50 +0000
+ by sfs-ml-2.v29.lw.sourceforge.com with esmtps (TLS1.2) tls
+ TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384 (Exim 4.95)
+ (envelope-from <schspa@gmail.com>) id 1oTSAQ-00025Y-MR
+ for v9fs-developer@lists.sourceforge.net;
+ Wed, 31 Aug 2022 18:10:25 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=sourceforge.net; s=x; h=List-Unsubscribe:Content-Type:MIME-Version:To:
- Reply-To:From:Subject:Date:Message-ID:Sender:Cc:Content-Transfer-Encoding:
- Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
- Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:List-Id:
- List-Help:List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=pcusqz/ji1mLVrSep2uDcr/TrfXx3BOzTgg5kvKS3AA=; b=haja4OwCgNG/JssdPQzft3L1xX
- zlLe4YdM7Dz4BJ8Dk90A/wx0V9YH5//osLx9zxHdgakufQD3hlORMGd+v29YS2K79ZX1+Q667s1yA
- KnaC32fO/DYvb7YHPuv/z//tQLyTF44clgErF7LxcL7oaYgq26pV4KZruZrU4wjkTTQQ=;
+ d=sourceforge.net; s=x; h=Content-Transfer-Encoding:MIME-Version:Message-Id:
+ Date:Subject:Cc:To:From:Sender:Reply-To:Content-Type:Content-ID:
+ Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
+ :Resent-Message-ID:In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:
+ List-Subscribe:List-Post:List-Owner:List-Archive;
+ bh=UgxFIowahszZp3YqmiisiqrkN1WXXLGBv+HLJWO87II=; b=WOzHxrHI1AUEIpCUSG1mqK0Azr
+ BWK0gXDnuPIkF3fH8ylnT5RjO6+S/ciImcOvY8j8S3v/7uFvsX9K5LYuy4gUmTlWQKle2HUThMfuv
+ Bwj1QJZA9PPSBzw16KMuzoxIpbbDCTMOg4UtCXJE4wGJzh+INf+iP/zR8IGY799ro8To=;
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  ;
- h=List-Unsubscribe:Content-Type:MIME-Version:To:Reply-To:From:Subject:Date:
- Message-ID:Sender:Cc:Content-Transfer-Encoding:Content-ID:Content-Description
- :Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
- In-Reply-To:References:List-Id:List-Help:List-Subscribe:List-Post:List-Owner:
- List-Archive; bh=pcusqz/ji1mLVrSep2uDcr/TrfXx3BOzTgg5kvKS3AA=; b=jevg7xG75WZN
- JPzsLfKb36dlQ2fsEd0OdcmtPWRejfZWJqu592587zHDJAU2Q6lygmM5P+Kjlp6+7TtyH9bxlvXTz
- Ygjnr0vjL4CRkqBhPlVZKXV5k5kxa+TIeSuBQtmaYvcRznsfxRdWAbpqYUwZ6Vm8uBCm4ouolKGzI
- VgFms=;
-Received: from b224-10.smtp-out.eu-central-1.amazonses.com ([69.169.224.10])
+ h=Content-Transfer-Encoding:MIME-Version:Message-Id:Date:Subject:Cc:To:From
+ :Sender:Reply-To:Content-Type:Content-ID:Content-Description:Resent-Date:
+ Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:
+ References:List-Id:List-Help:List-Unsubscribe:List-Subscribe:List-Post:
+ List-Owner:List-Archive; bh=UgxFIowahszZp3YqmiisiqrkN1WXXLGBv+HLJWO87II=; b=Q
+ s0vQZBBQ5SvKWKSxJVAEN+EBi/jvvTwDvP22LOqhGGGBQPX/hj3BI0yV2jFapHGYt1oJAl2THllcB
+ qqTRYz2PNiKC/YkaiB0ffbeMMprOq9TXPwtpHx7q66Ds3S3lfBRkV2KsazMYI+oVmDZUZzrFFjru6
+ jak2l1EOmU4wHZh4=;
+Received: from mail-pj1-f46.google.com ([209.85.216.46])
  by sfi-mx-1.v28.lw.sourceforge.com with esmtps
- (TLS1.2:ECDHE-RSA-AES128-SHA256:128) (Exim 4.95) id 1oSy30-007MuQ-6q
- for v9fs-developer@lists.sourceforge.net;
- Tue, 30 Aug 2022 10:00:44 +0000
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/simple;
- s=54ecsf3zk7z4mwxwwox7z7bg6e5gwjsz; d=amazonses.com; t=1661853634;
- h=Sender:Message-ID:Date:Subject:From:Reply-To:To:MIME-Version:Content-Type:List-Unsubscribe:Feedback-ID;
- bh=0YNT+BS28OTZ2KsIpKbEQ+yzhDYkQmYsEO4063sctg4=;
- b=f689sVbFk3vK1wIxzCsbjZV9Juz0P56444mOe++ggV/pu5XwQpikqV1J9ASI6sz3
- XWfUSrV+91lGKkQrVDeZI6fjgKz0hXEFKhcwWz5xy9rNTCxbs/4m5szkQE5mHYsXmbx
- uASy7nqkn1n++kbQh7j7ldGZlHpeRwC8YHSst8ko=
-Message-ID: <01070182ee321035-3e60afa0-65a1-4a05-9694-522ca76ad000-000000@eu-central-1.amazonses.com>
-Date: Tue, 30 Aug 2022 10:00:34 +0000
-From: Office <office@eko-med.ro>
-To: "" <v9fs-developer@lists.sourceforge.net>
+ (TLS1.2:ECDHE-RSA-AES128-GCM-SHA256:128) (Exim 4.95)
+ id 1oTSAO-0094om-Ta for v9fs-developer@lists.sourceforge.net;
+ Wed, 31 Aug 2022 18:10:21 +0000
+Received: by mail-pj1-f46.google.com with SMTP id
+ m10-20020a17090a730a00b001fa986fd8eeso97804pjk.0
+ for <v9fs-developer@lists.sourceforge.net>;
+ Wed, 31 Aug 2022 11:10:20 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
+ h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+ :to:from:from:to:cc:subject:date;
+ bh=UgxFIowahszZp3YqmiisiqrkN1WXXLGBv+HLJWO87II=;
+ b=fI5WQhRVN2gjyq/VfwgKVUUSxu94g7sATcfU8pa+n63z0kIiVGbGFnblJV01nSNpjA
+ IilbjGvM/mfscoJeAHl3+rnnyJSyViEvXi5uO3UYnQfmDK4wq0sItgJuJyslvWIuJ1xK
+ xgy4lYlx8TBhrHvYOeWLqeIlhpC0E7rOWDvjqo8vcpndgDffNyYZP6vY8HULGL3eE8mk
+ A+QpZaqX66TxUyh+lf8CD5cAwUMI1dwyk8V5ilGqGGtHTYyBFJKtgBqWyEmoLF2mOslr
+ 2Mme5B5yAK4DybIKEW/XvNlw2+d1ZnsHWEgDhWPm0uWaqJyircivF3tmV3nel1qDk9bH
+ MEkA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20210112;
+ h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+ :to:from:x-gm-message-state:from:to:cc:subject:date;
+ bh=UgxFIowahszZp3YqmiisiqrkN1WXXLGBv+HLJWO87II=;
+ b=yJf8qHyqRiKaqrn83qDvyIvoHsJSYiMcJh2xA/AakcT35uAPuNS3Fsn2+0O7Nrsxt6
+ cvAt/ExQtgdHzWdbvea53H+LpBG1v8qMtZI+dJvdJ+seSFMLUSMOmR63t9Z5JL4SDvVD
+ kbIDcZ2bWNpRLnZ0UfF+9qyRh2KMNTQk2cRRViUz22ZE8cmgvjcjgRrF3w2Q4kh559I5
+ Pbw1VzbDoXWPtqBoxkHMFNglJdYVrVkf7shUMg9dBy5yG0gjE57Rd2I2d85niJJrqS01
+ CtiQyS/edkQI3QGhRi7Avjc2Eym85TrOg6r8K7oWAjuwnWAqq40udx2GF1k0O6Ld0hVJ
+ abiw==
+X-Gm-Message-State: ACgBeo0m/KHSPZ0wZAqv858yiUvHa9QCjBiG+7bksuyHSoIWVWSqtCSi
+ 8fJZ3GNiYG0WC8wdsvcrHmY=
+X-Google-Smtp-Source: AA6agR68NCpgTVFenk7zMwhUValscToqoiIu27dAadrbzR2TvTiklXVBckP6992zWHmQtl26DJnD6g==
+X-Received: by 2002:a17:902:e748:b0:175:2ffe:927d with SMTP id
+ p8-20020a170902e74800b001752ffe927dmr7086642plf.168.1661969414955; 
+ Wed, 31 Aug 2022 11:10:14 -0700 (PDT)
+Received: from localhost.localdomain
+ (ec2-18-117-95-84.us-east-2.compute.amazonaws.com. [18.117.95.84])
+ by smtp.gmail.com with ESMTPSA id
+ d68-20020a621d47000000b00535e46171c1sm11418557pfd.117.2022.08.31.11.10.06
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Wed, 31 Aug 2022 11:10:14 -0700 (PDT)
+From: Schspa Shi <schspa@gmail.com>
+To: ericvh@gmail.com, lucho@ionkov.net, asmadeus@codewreck.org,
+ linux_oss@crudebyte.com, davem@davemloft.net, edumazet@google.com,
+ kuba@kernel.org, pabeni@redhat.com
+Date: Thu,  1 Sep 2022 02:09:50 +0800
+Message-Id: <20220831180950.76907-1-schspa@gmail.com>
+X-Mailer: git-send-email 2.37.2
 MIME-Version: 1.0
-Feedback-ID: 1.eu-central-1.djyq42v8KkM0/QeLxShdouHjGcCwozGoD2tdHmaPOOk=:AmazonSES
-X-SES-Outgoing: 2022.08.30-69.169.224.10
-X-Spam-Score: 6.3 (++++++)
+X-Spam-Score: -0.2 (/)
 X-Spam-Report: Spam detection software,
- running on the system "util-spamd-1.v13.lw.sourceforge.com", 
- has identified this incoming email as possible spam.  The original
+ running on the system "util-spamd-2.v13.lw.sourceforge.com", 
+ has NOT identified this incoming email as spam.  The original
  message has been attached to this so you can view it or label
  similar future email.  If you have any questions, see
  the administrator of that system for details.
- Content preview: Pretruile sunt negociabile [FarmersMarket-Top]
- [eko-med](https://ekogroup.com.ro?mailpoet_router&endpoint=track&action=click&data=WzE0MzAwNSwibmlxaWF6cXMzYjQ0MGNjZ2s0YzRrNDRzOG9jZ2NrYzQiLCIxNjQiLCI5MjA2MTE2MzBhN2QiLGZhbHNlXQ)
- Content analysis details:   (6.3 points, 6.0 required)
+ Content preview: There is a deadlock condition when connection canceled.
+ Please
+ refer to the following scenarios. task 0 task1 p9_client_rpc req =
+ p9_client_prepare_req(c, 
+ type, c->msize, fmt, ap); // refco [...] 
+ Content analysis details:   (-0.2 points, 6.0 required)
  pts rule name              description
  ---- ---------------------- --------------------------------------------------
- 1.7 URIBL_BLACK            Contains an URL listed in the URIBL blacklist
- [URIs: ekogroup.com.ro]
  -0.0 RCVD_IN_DNSWL_NONE     RBL: Sender listed at https://www.dnswl.org/,
- no trust [69.169.224.10 listed in list.dnswl.org]
- 0.2 HEADER_FROM_DIFFERENT_DOMAINS From and EnvelopeFrom 2nd level
- mail domains are different
- -0.0 SPF_HELO_PASS          SPF: HELO matches SPF record
+ no trust [209.85.216.46 listed in list.dnswl.org]
+ 0.0 FREEMAIL_FROM          Sender email is commonly abused enduser mail
+ provider [schspa[at]gmail.com]
+ 0.0 SPF_HELO_NONE          SPF: HELO does not publish an SPF Record
  -0.0 SPF_PASS               SPF: sender matches SPF record
- -0.0 RCVD_IN_MSPIKE_H2      RBL: Average reputation (+2)
- [69.169.224.10 listed in wl.mailspike.net]
- 0.0 HTML_MESSAGE           BODY: HTML included in message
+ 0.0 RCVD_IN_MSPIKE_H3      RBL: Good reputation (+3)
+ [209.85.216.46 listed in wl.mailspike.net]
  0.1 DKIM_SIGNED            Message has a DKIM or DK signature, not necessarily
  valid
+ -0.1 DKIM_VALID_AU          Message has a valid DKIM or DK signature from
+ author's domain
  -0.1 DKIM_VALID_EF          Message has a valid DKIM or DK signature from
  envelope-from domain
  -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
- 2.0 PYZOR_CHECK            Listed in Pyzor
- (https://pyzor.readthedocs.io/en/latest/)
- 0.0 T_KAM_HTML_FONT_INVALID Test for Invalidly Named or Formatted
- Colors in HTML
- 2.5 URI_WP_HACKED_2        URI for compromised WordPress site, possible
- malware
-X-Headers-End: 1oSy30-007MuQ-6q
-X-Content-Filtered-By: Mailman/MimeDel 2.1.21
-Subject: [V9fs-developer] Produse anti-covid | negociaza preturile
+ 0.0 URIBL_BLOCKED          ADMINISTRATOR NOTICE: The query to URIBL was
+ blocked.  See
+ http://wiki.apache.org/spamassassin/DnsBlocklists#dnsbl-block
+ for more information. [URIs: qemu.org]
+ 0.0 RCVD_IN_MSPIKE_WL      Mailspike good senders
+ -0.0 T_SCC_BODY_TEXT_LINE   No description available.
+X-Headers-End: 1oTSAO-0094om-Ta
+Subject: [V9fs-developer] [PATCH] p9: trans_fd: Fix deadlock when connection
+ cancel
 X-BeenThere: v9fs-developer@lists.sourceforge.net
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -101,113 +134,131 @@ List-Post: <mailto:v9fs-developer@lists.sourceforge.net>
 List-Help: <mailto:v9fs-developer-request@lists.sourceforge.net?subject=help>
 List-Subscribe: <https://lists.sourceforge.net/lists/listinfo/v9fs-developer>, 
  <mailto:v9fs-developer-request@lists.sourceforge.net?subject=subscribe>
-Reply-To: Office <office@eko-med.ro>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Cc: v9fs-developer@lists.sourceforge.net, Schspa Shi <schspa@gmail.com>,
+ linux-kernel@vger.kernel.org, netdev@vger.kernel.org
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: v9fs-developer-bounces@lists.sourceforge.net
 
-UHJldHJ1aWxlIHN1bnQgbmVnb2NpYWJpbGUKCltGYXJtZXJzTWFya2V0LVRvcF0KCltla28tbWVk
-XShodHRwczovL2Vrb2dyb3VwLmNvbS5ybz9tYWlscG9ldF9yb3V0ZXImZW5kcG9pbnQ9dHJhY2sm
-YWN0aW9uPWNsaWNrJmRhdGE9V3pFME16QXdOU3dpYm1seGFXRjZjWE16WWpRME1HTmpaMnMwWXpS
-ck5EUnpPRzlqWjJOcll6UWlMQ0l4TmpRaUxDSTVNakEyTVRFMk16QmhOMlFpTEdaaGJITmxYUSkK
-ClBFU1RFIDUwMCBNSUxJT0FORSBERSBQUk9EVVNFCkFOVEktQ09WSUQgMTkKVkFORFVURSBJTiBU
-T0FUQSBFVVJPUEEKCk9mZXJ0YSBub2FzdHJhIGN1cHJpbmRlOgotIHByb2R1c2UgYW50aS1jb3Zp
-ZCAxOQotIGRpc3Bveml0aXZlIG1lZGljYWxlIGF2aXphdGUgTVMKLSBnYW1hIEhpZ3llbml1bQpf
-X19fXwpPRkZJQ0VARUtPR1JPVVAuUk8KT0ZGSUNFQEVLTy1NRUQuUk8KKzQgMDc3MSA2NzUgMjQw
-CgpbaWFtZ2UxXShodHRwczovL2Vrb2dyb3VwLmNvbS5ybz9tYWlscG9ldF9yb3V0ZXImZW5kcG9p
-bnQ9dHJhY2smYWN0aW9uPWNsaWNrJmRhdGE9V3pFME16QXdOU3dpYm1seGFXRjZjWE16WWpRME1H
-TmpaMnMwWXpSck5EUnpPRzlqWjJOcll6UWlMQ0l4TmpRaUxDSTVNakEyTVRFMk16QmhOMlFpTEda
-aGJITmxYUSkKCkVLT0dST1VQLlJPIGlzIGFuIGludGVybmF0aW9uYWwgVFJBREUgY29tcGFueSB3
-aXRoIGFyZWFzIG9mIGFjdGlvbiBpbiBkaWZmZXJlbnQgcmVnaW9ucyBvZiB0aGUgd29ybGQuCkFz
-ayBmb3IgYSBwcmljZSBxdW90ZSBhbmQgeW91IHdpbGwgYmUgYW5zd2VyZWQgaW4gYSBtYXhpbXVt
-IG9mIDQ4IGhvdXJzLgoKW3Rlc3RlIGNvdmlkXShodHRwczovL2Vrb2dyb3VwLmNvbS5ybz9tYWls
-cG9ldF9yb3V0ZXImZW5kcG9pbnQ9dHJhY2smYWN0aW9uPWNsaWNrJmRhdGE9V3pFME16QXdOU3dp
-Ym1seGFXRjZjWE16WWpRME1HTmpaMnMwWXpSck5EUnpPRzlqWjJOcll6UWlMQ0l4TmpRaUxDSmxN
-RGxqTVdZeFpXUXhaVEVpTEdaaGJITmxYUSkKCjgsNSBsZWksIHR2YSB6ZXJvCk9SSUNFIFRFU1Qg
-YW50aS1jb3ZpZCAxOQoKW05lZ29jaWF6YSBwcmV0dXJpbGUgdGVsZWZvbmljXShodHRwczovL2Vr
-b2dyb3VwLmNvbS5ybz9tYWlscG9ldF9yb3V0ZXImZW5kcG9pbnQ9dHJhY2smYWN0aW9uPWNsaWNr
-JmRhdGE9V3pFME16QXdOU3dpYm1seGFXRjZjWE16WWpRME1HTmpaMnMwWXpSck5EUnpPRzlqWjJO
-cll6UWlMQ0l4TmpRaUxDSmxNRGxqTVdZeFpXUXhaVEVpTEdaaGJITmxYUSkKCltNYXNjYSBtZWRp
-Y2FsYV0oaHR0cHM6Ly9la29ncm91cC5jb20ucm8/bWFpbHBvZXRfcm91dGVyJmVuZHBvaW50PXRy
-YWNrJmFjdGlvbj1jbGljayZkYXRhPVd6RTBNekF3TlN3aWJtbHhhV0Y2Y1hNellqUTBNR05qWjJz
-MFl6UnJORFJ6T0c5aloyTnJZelFpTENJeE5qUWlMQ0psTURsak1XWXhaV1F4WlRFaUxHWmhiSE5s
-WFEpCgowLDEyIGxlaSt0dmEKT1JJQ0UgTUFTQ0EgbWVkaWNhbGEKCltOZWdvY2lhemEgcHJldHVy
-aWxlIHRlbGVmb25pY10oaHR0cHM6Ly9la29ncm91cC5jb20ucm8/bWFpbHBvZXRfcm91dGVyJmVu
-ZHBvaW50PXRyYWNrJmFjdGlvbj1jbGljayZkYXRhPVd6RTBNekF3TlN3aWJtbHhhV0Y2Y1hNellq
-UTBNR05qWjJzMFl6UnJORFJ6T0c5aloyTnJZelFpTENJeE5qUWlMQ0psTURsak1XWXhaV1F4WlRF
-aUxHWmhiSE5sWFEpCgpbbWFzY2EgbWVkaWNhbGFdKGh0dHBzOi8vZWtvZ3JvdXAuY29tLnJvP21h
-aWxwb2V0X3JvdXRlciZlbmRwb2ludD10cmFjayZhY3Rpb249Y2xpY2smZGF0YT1XekUwTXpBd05T
-d2libWx4YVdGNmNYTXpZalEwTUdOaloyczBZelJyTkRSek9HOWpaMk5yWXpRaUxDSXhOalFpTENK
-bE1EbGpNV1l4WldReFpURWlMR1poYkhObFhRKQoKMTkgbGVpICsgdHZhCk9SSUNFIFBST0RVUyBj
-b3ZpZCAxOQoKW05lZ29jaWF6YSBwcmV0dXJpbGUgdGVsZWZvbmljXShodHRwczovL2Vrb2dyb3Vw
-LmNvbS5ybz9tYWlscG9ldF9yb3V0ZXImZW5kcG9pbnQ9dHJhY2smYWN0aW9uPWNsaWNrJmRhdGE9
-V3pFME16QXdOU3dpYm1seGFXRjZjWE16WWpRME1HTmpaMnMwWXpSck5EUnpPRzlqWjJOcll6UWlM
-Q0l4TmpRaUxDSmxNRGxqTVdZeFpXUXhaVEVpTEdaaGJITmxYUSkKCltDYXB0dXJhzIZfZGVfZWNy
-YW5fZGluXzIwMjItMDEtMDRfbGFfMTQuMDMuMTktcmVtb3ZlYmctcHJldmlld10oaHR0cHM6Ly9l
-a29ncm91cC5jb20ucm8/bWFpbHBvZXRfcm91dGVyJmVuZHBvaW50PXRyYWNrJmFjdGlvbj1jbGlj
-ayZkYXRhPVd6RTBNekF3TlN3aWJtbHhhV0Y2Y1hNellqUTBNR05qWjJzMFl6UnJORFJ6T0c5aloy
-TnJZelFpTENJeE5qUWlMQ0psTURsak1XWXhaV1F4WlRFaUxHWmhiSE5sWFEpCgowLDI1IGxlaSAr
-IHR2YQpNYXN0aSBuZWdyZQoKW05lZ29jaWF6YSBwcmV0dXJpbGUgdGVsZWZvbmljXShodHRwczov
-L2Vrb2dyb3VwLmNvbS5ybz9tYWlscG9ldF9yb3V0ZXImZW5kcG9pbnQ9dHJhY2smYWN0aW9uPWNs
-aWNrJmRhdGE9V3pFME16QXdOU3dpYm1seGFXRjZjWE16WWpRME1HTmpaMnMwWXpSck5EUnpPRzlq
-WjJOcll6UWlMQ0l4TmpRaUxDSmxNRGxqTVdZeFpXUXhaVEVpTEdaaGJITmxYUSkKCltDYXB0dXJh
-zIZfZGVfZWNyYW5fZGluXzIwMjItMDEtMDRfbGFfMTQuMDQuMTktcmVtb3ZlYmctcHJldmlld10o
-aHR0cHM6Ly9la29ncm91cC5jb20ucm8/bWFpbHBvZXRfcm91dGVyJmVuZHBvaW50PXRyYWNrJmFj
-dGlvbj1jbGljayZkYXRhPVd6RTBNekF3TlN3aWJtbHhhV0Y2Y1hNellqUTBNR05qWjJzMFl6UnJO
-RFJ6T0c5aloyTnJZelFpTENJeE5qUWlMQ0psTURsak1XWXhaV1F4WlRFaUxHWmhiSE5sWFEpCgox
-LDQgbGVpICsKTWFzdGkgRkZQIDIKCltOZWdvY2lhemEgcHJldHVyaWxlIHRlbGVmb25pY10oaHR0
-cHM6Ly9la29ncm91cC5jb20ucm8/bWFpbHBvZXRfcm91dGVyJmVuZHBvaW50PXRyYWNrJmFjdGlv
-bj1jbGljayZkYXRhPVd6RTBNekF3TlN3aWJtbHhhV0Y2Y1hNellqUTBNR05qWjJzMFl6UnJORFJ6
-T0c5aloyTnJZelFpTENJeE5qUWlMQ0psTURsak1XWXhaV1F4WlRFaUxHWmhiSE5sWFEpCgpbaW1h
-Z2U3XShodHRwczovL2Vrb2dyb3VwLmNvbS5ybz9tYWlscG9ldF9yb3V0ZXImZW5kcG9pbnQ9dHJh
-Y2smYWN0aW9uPWNsaWNrJmRhdGE9V3pFME16QXdOU3dpYm1seGFXRjZjWE16WWpRME1HTmpaMnMw
-WXpSck5EUnpPRzlqWjJOcll6UWlMQ0l4TmpRaUxDSmxNRGxqTVdZeFpXUXhaVEVpTEdaaGJITmxY
-USkKCjgsNSBsZWkgdHZhIHplcm8KVGVzdGUgMSBidWMvY3V0aWUKCltOZWdvY2lhemEgcHJldHVy
-aWxlIHRlbGVmb25pY10oaHR0cHM6Ly9la29ncm91cC5jb20ucm8/bWFpbHBvZXRfcm91dGVyJmVu
-ZHBvaW50PXRyYWNrJmFjdGlvbj1jbGljayZkYXRhPVd6RTBNekF3TlN3aWJtbHhhV0Y2Y1hNellq
-UTBNR05qWjJzMFl6UnJORFJ6T0c5aloyTnJZelFpTENJeE5qUWlMQ0psTURsak1XWXhaV1F4WlRF
-aUxHWmhiSE5sWFEpCgpbSGlnZW55dW1dKGh0dHBzOi8vZWtvZ3JvdXAuY29tLnJvP21haWxwb2V0
-X3JvdXRlciZlbmRwb2ludD10cmFjayZhY3Rpb249Y2xpY2smZGF0YT1XekUwTXpBd05Td2libWx4
-YVdGNmNYTXpZalEwTUdOaloyczBZelJyTkRSek9HOWpaMk5yWXpRaUxDSXhOalFpTENJNU1qQTJN
-VEUyTXpCaE4yUWlMR1poYkhObFhRKQoKQ2VyZSBvZmVydGEgSGlnZW55dW0KCltOZWdvY2lhemEg
-cHJldHVyaWxlXShodHRwczovL2Vrb2dyb3VwLmNvbS5ybz9tYWlscG9ldF9yb3V0ZXImZW5kcG9p
-bnQ9dHJhY2smYWN0aW9uPWNsaWNrJmRhdGE9V3pFME16QXdOU3dpYm1seGFXRjZjWE16WWpRME1H
-TmpaMnMwWXpSck5EUnpPRzlqWjJOcll6UWlMQ0l4TmpRaUxDSTVNakEyTVRFMk16QmhOMlFpTEda
-aGJITmxYUSkKCltQcm9kdXNlIGNvdmlkXShodHRwczovL2Vrb2dyb3VwLmNvbS5ybz9tYWlscG9l
-dF9yb3V0ZXImZW5kcG9pbnQ9dHJhY2smYWN0aW9uPWNsaWNrJmRhdGE9V3pFME16QXdOU3dpYm1s
-eGFXRjZjWE16WWpRME1HTmpaMnMwWXpSck5EUnpPRzlqWjJOcll6UWlMQ0l4TmpRaUxDSTVNakEy
-TVRFMk16QmhOMlFpTEdaaGJITmxYUSkKCkNlcmUgb2ZlcnRhIGNvbXBsZXRhCgpbTmVnb2NpYXph
-IHByZXR1cmlsZV0oaHR0cHM6Ly9la29ncm91cC5jb20ucm8/bWFpbHBvZXRfcm91dGVyJmVuZHBv
-aW50PXRyYWNrJmFjdGlvbj1jbGljayZkYXRhPVd6RTBNekF3TlN3aWJtbHhhV0Y2Y1hNellqUTBN
-R05qWjJzMFl6UnJORFJ6T0c5aloyTnJZelFpTENJeE5qUWlMQ0k1TWpBMk1URTJNekJoTjJRaUxH
-WmhiSE5sWFEpCgpbUHJvZHVzZSBtZWRpY2FsZV0oaHR0cHM6Ly9la29ncm91cC5jb20ucm8/bWFp
-bHBvZXRfcm91dGVyJmVuZHBvaW50PXRyYWNrJmFjdGlvbj1jbGljayZkYXRhPVd6RTBNekF3TlN3
-aWJtbHhhV0Y2Y1hNellqUTBNR05qWjJzMFl6UnJORFJ6T0c5aloyTnJZelFpTENJeE5qUWlMQ0k1
-TWpBMk1URTJNekJoTjJRaUxHWmhiSE5sWFEpCgpPcmljZSBhcGFyYXQgbWVkaWNhbAoKW0NlcmUg
-b2ZlcnRhIHBlIG1haWxdKGh0dHBzOi8vZWtvZ3JvdXAuY29tLnJvP21haWxwb2V0X3JvdXRlciZl
-bmRwb2ludD10cmFjayZhY3Rpb249Y2xpY2smZGF0YT1XekUwTXpBd05Td2libWx4YVdGNmNYTXpZ
-alEwTUdOaloyczBZelJyTkRSek9HOWpaMk5yWXpRaUxDSXhOalFpTENJNU1qQTJNVEUyTXpCaE4y
-UWlMR1poYkhObFhRKQoKW2Vrby1tZWRdKGh0dHBzOi8vZWtvZ3JvdXAuY29tLnJvP21haWxwb2V0
-X3JvdXRlciZlbmRwb2ludD10cmFjayZhY3Rpb249Y2xpY2smZGF0YT1XekUwTXpBd05Td2libWx4
-YVdGNmNYTXpZalEwTUdOaloyczBZelJyTkRSek9HOWpaMk5yWXpRaUxDSXhOalFpTENJNU1qQTJN
-VEUyTXpCaE4yUWlMR1poYkhObFhRKQoKW2ZhY2Vib29rXShodHRwczovL2Vrb2dyb3VwLmNvbS5y
-bz9tYWlscG9ldF9yb3V0ZXImZW5kcG9pbnQ9dHJhY2smYWN0aW9uPWNsaWNrJmRhdGE9V3pFME16
-QXdOU3dpYm1seGFXRjZjWE16WWpRME1HTmpaMnMwWXpSck5EUnpPRzlqWjJOcll6UWlMQ0l4TmpR
-aUxDSmtPVEl3WlRrMk5UZG1ObVFpTEdaaGJITmxYUSkgW2luc3RhZ3JhbV0oaHR0cHM6Ly9la29n
-cm91cC5jb20ucm8/bWFpbHBvZXRfcm91dGVyJmVuZHBvaW50PXRyYWNrJmFjdGlvbj1jbGljayZk
-YXRhPVd6RTBNekF3TlN3aWJtbHhhV0Y2Y1hNellqUTBNR05qWjJzMFl6UnJORFJ6T0c5aloyTnJZ
-elFpTENJeE5qUWlMQ0ppWXpReU9EQm1NR1k1WmpjaUxHWmhiSE5sWFEpCltVbnN1YnNjcmliZV0o
-aHR0cHM6Ly9la29ncm91cC5jb20ucm8/bWFpbHBvZXRfcm91dGVyJmVuZHBvaW50PXRyYWNrJmFj
-dGlvbj1jbGljayZkYXRhPVd6RTBNekF3TlN3aWJtbHhhV0Y2Y1hNellqUTBNR05qWjJzMFl6UnJO
-RFJ6T0c5aloyTnJZelFpTENJeE5qUWlMQ0prTlRVNFlXWTJZV1E0TVdJaUxHWmhiSE5sWFEpIHwg
-W01hbmFnZSB5b3VyIHN1YnNjcmlwdGlvbl0oaHR0cHM6Ly9la29ncm91cC5jb20ucm8/bWFpbHBv
-ZXRfcm91dGVyJmVuZHBvaW50PXRyYWNrJmFjdGlvbj1jbGljayZkYXRhPVd6RTBNekF3TlN3aWJt
-bHhhV0Y2Y1hNellqUTBNR05qWjJzMFl6UnJORFJ6T0c5aloyTnJZelFpTENJeE5qUWlMQ0l5T1Rs
-ak1qa3hOekF5TWpBaUxHWmhiSE5sWFEpCl9fX19fXwpvZmZpY2VAZWtvLW1lZC5ybworNCAwNzcx
-IDY3NSAyNDAKCltGYXJtZXJzTWFya2V0LUJvdHRvbV0KCltNYWlsUG9ldF0oaHR0cHM6Ly9la29n
-cm91cC5jb20ucm8/bWFpbHBvZXRfcm91dGVyJmVuZHBvaW50PXRyYWNrJmFjdGlvbj1jbGljayZk
-YXRhPVd6RTBNekF3TlN3aWJtbHhhV0Y2Y1hNellqUTBNR05qWjJzMFl6UnJORFJ6T0c5aloyTnJZ
-elFpTENJeE5qUWlMQ0k0WVdRNFltVTBNekUzTkdJaUxHWmhiSE5sWFEpCgpfX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpWOWZzLWRldmVsb3BlciBtYWlsaW5n
-IGxpc3QKVjlmcy1kZXZlbG9wZXJAbGlzdHMuc291cmNlZm9yZ2UubmV0Cmh0dHBzOi8vbGlzdHMu
-c291cmNlZm9yZ2UubmV0L2xpc3RzL2xpc3RpbmZvL3Y5ZnMtZGV2ZWxvcGVyCg==
+There is a deadlock condition when connection canceled.
+
+Please refer to the following scenarios.
+           task 0                task1
+------------------------------------------------------------------
+p9_client_rpc
+  req = p9_client_prepare_req(c, type, c->msize, fmt, ap);
+  // refcount = 2
+  err = c->trans_mod->request(c, req);
+  // req was added to unsent_req_list
+  wait_event_killable(req->wq, req->status >= REQ_STATUS_RCVD);
+
+                           p9_read_work
+                             // IO error happen
+                           error:
+                             p9_conn_cancel(m, err);
+                              spin_lock(&m->client->lock);
+                              // hold client->lock now
+                              p9_client_cb
+                                req->status = REQ_STATUS_ERROR;
+                                wake_up(&req->wq);
+                                // task 0 wakeup
+                                << preempted >>
+
+reterr:
+	p9_req_put(c, req);
+    // refcount = 1 now
+                                << got scheduled >>
+                                p9_req_put
+                                  // refcount = 0
+                                  p9_tag_remove(c, r);
+                                    spin_lock_irqsave(&c->lock, flags);
+                           ------------- deadlock -------------
+
+[  651.564169] rcu: INFO: rcu_preempt detected stalls on CPUs/tasks:
+[  651.564176] rcu:     3-...0: (8 ticks this GP) idle=40b4/1/0x4000000000000000 softirq=1289/1290 fqs=83762
+[  651.564185]  (detected by 2, t=420047 jiffies, g=1601, q=992 ncpus=4)
+[  651.564190] Sending NMI from CPU 2 to CPUs 3:
+[  651.539301] NMI backtrace for cpu 3
+[  651.539301] CPU: 3 PID: 46 Comm: kworker/3:1 Not tainted 6.0.0-rc2-rt3-00493-g2af9a9504166 #3
+[  651.539301] Hardware name: QEMU Standard PC (i440FX + PIIX, 1996), BIOS rel-1.16.0-0-gd239552ce722-prebuilt.qemu.org 04/01/2014
+[  651.539301] Workqueue: events p9_read_work
+[  651.539301] RIP: 0010:queued_spin_lock_slowpath+0xfc/0x590
+[  651.539301] Code: 00 00 00 65 48 2b 04 25 28 00 00 00 0f 85 a5 04 00 00 48 81 c4 88 00 00 00 5b 5d 41 5c 41 5d 41 5e 41 5f c3 cc0
+[  651.539301] RSP: 0018:ffff888002987ad8 EFLAGS: 00000002
+[  651.539301] RAX: 0000000000000000 RBX: 0000000000000001 RCX: dffffc0000000000
+[  651.539301] RDX: 0000000000000003 RSI: 0000000000000004 RDI: ffff888004adf600
+[  651.539301] RBP: ffff888004adf600 R08: ffffffff81d341a0 R09: ffff888004adf603
+[  651.539301] R10: ffffed100095bec0 R11: 0000000000000001 R12: 0000000000000001
+[  651.539301] R13: 1ffff11000530f5c R14: ffff888004adf600 R15: ffff888002987c38
+[  651.539301] FS:  0000000000000000(0000) GS:ffff888036580000(0000) knlGS:0000000000000000
+[  651.539301] CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+[  651.539301] CR2: 00007fe012d608dc CR3: 000000000bc16000 CR4: 0000000000350ee0
+[  651.539301] DR0: 0000000000000000 DR1: 0000000000000000 DR2: 0000000000000000
+[  651.539301] DR3: 0000000000000000 DR6: 00000000fffe0ff0 DR7: 0000000000000400
+[  651.539301] Call Trace:
+[  651.539301]  <TASK>
+[  651.539301]  ? osq_unlock+0x100/0x100
+[  651.539301]  ? ret_from_fork+0x1f/0x30
+[  651.539301]  do_raw_spin_lock+0x196/0x1a0
+[  651.539301]  ? spin_bug+0x90/0x90
+[  651.539301]  ? do_raw_spin_lock+0x114/0x1a0
+[  651.539301]  _raw_spin_lock_irqsave+0x1c/0x30
+[  651.539301]  p9_req_put+0x61/0x130
+[  651.539301]  p9_conn_cancel+0x321/0x3b0
+[  651.539301]  ? p9_conn_create+0x1f0/0x1f0
+[  651.539301]  p9_read_work+0x207/0x7d0
+[  651.539301]  ? p9_fd_create+0x1d0/0x1d0
+[  651.539301]  ? spin_bug+0x90/0x90
+[  651.539301]  ? read_word_at_a_time+0xe/0x20
+[  651.539301]  process_one_work+0x420/0x720
+[  651.539301]  worker_thread+0x2b9/0x700
+[  651.539301]  ? rescuer_thread+0x620/0x620
+[  651.539301]  kthread+0x176/0x1b0
+[  651.539301]  ? kthread_complete_and_exit+0x20/0x20
+[  651.539301]  ret_from_fork+0x1f/0x30
+
+To fix it, we can add extra reference counter to avoid deadlock, and
+decrease it after we unlock the client->lock.
+
+Fixes: 67dd8e445ee0 ("9p: roll p9_tag_remove into p9_req_put")
+
+Signed-off-by: Schspa Shi <schspa@gmail.com>
+---
+ net/9p/trans_fd.c | 9 +++++++--
+ 1 file changed, 7 insertions(+), 2 deletions(-)
+
+diff --git a/net/9p/trans_fd.c b/net/9p/trans_fd.c
+index e758978b44bee..2e4e039b38e3e 100644
+--- a/net/9p/trans_fd.c
++++ b/net/9p/trans_fd.c
+@@ -205,14 +205,19 @@ static void p9_conn_cancel(struct p9_conn *m, int err)
+ 		list_move(&req->req_list, &cancel_list);
+ 	}
+ 
+-	list_for_each_entry_safe(req, rtmp, &cancel_list, req_list) {
++	list_for_each_entry(req, &cancel_list, req_list) {
+ 		p9_debug(P9_DEBUG_ERROR, "call back req %p\n", req);
+-		list_del(&req->req_list);
+ 		if (!req->t_err)
+ 			req->t_err = err;
++		p9_req_get(req);
+ 		p9_client_cb(m->client, req, REQ_STATUS_ERROR);
+ 	}
+ 	spin_unlock(&m->client->lock);
++
++	list_for_each_entry_safe(req, rtmp, &cancel_list, req_list) {
++		list_del(&req->req_list);
++		p9_req_put(m->client, req);
++	}
+ }
+ 
+ static __poll_t
+-- 
+2.37.2
+
+
+
+_______________________________________________
+V9fs-developer mailing list
+V9fs-developer@lists.sourceforge.net
+https://lists.sourceforge.net/lists/listinfo/v9fs-developer
