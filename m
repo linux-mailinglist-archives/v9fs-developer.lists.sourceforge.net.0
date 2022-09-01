@@ -2,89 +2,92 @@ Return-Path: <v9fs-developer-bounces@lists.sourceforge.net>
 X-Original-To: lists+v9fs-developer@lfdr.de
 Delivered-To: lists+v9fs-developer@lfdr.de
 Received: from lists.sourceforge.net (lists.sourceforge.net [216.105.38.7])
-	by mail.lfdr.de (Postfix) with ESMTPS id DBE815A9B9A
-	for <lists+v9fs-developer@lfdr.de>; Thu,  1 Sep 2022 17:28:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id DE4125AA2FB
+	for <lists+v9fs-developer@lfdr.de>; Fri,  2 Sep 2022 00:27:27 +0200 (CEST)
 Received: from [127.0.0.1] (helo=sfs-ml-2.v29.lw.sourceforge.com)
 	by sfs-ml-2.v29.lw.sourceforge.com with esmtp (Exim 4.95)
 	(envelope-from <v9fs-developer-bounces@lists.sourceforge.net>)
-	id 1oTm75-000834-VY;
-	Thu, 01 Sep 2022 15:28:15 +0000
+	id 1oTsei-0007mL-Nv;
+	Thu, 01 Sep 2022 22:27:24 +0000
 Received: from [172.30.20.202] (helo=mx.sourceforge.net)
  by sfs-ml-2.v29.lw.sourceforge.com with esmtps (TLS1.2) tls
  TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384 (Exim 4.95)
- (envelope-from <linux_oss@crudebyte.com>) id 1oTm74-00082x-Cj
- for v9fs-developer@lists.sourceforge.net;
- Thu, 01 Sep 2022 15:28:14 +0000
+ (envelope-from <penguin-kernel@I-love.SAKURA.ne.jp>)
+ id 1oTseh-0007mF-JY for v9fs-developer@lists.sourceforge.net;
+ Thu, 01 Sep 2022 22:27:23 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=sourceforge.net; s=x; h=Content-Type:Content-Transfer-Encoding:MIME-Version
- :References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Sender:Reply-To:
+ d=sourceforge.net; s=x; h=Content-Transfer-Encoding:Content-Type:In-Reply-To:
+ From:References:Cc:To:Subject:MIME-Version:Date:Message-ID:Sender:Reply-To:
  Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
  Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
  List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=iVZmXkRo7BKC/ObnBuv9eAWgxqprDCQYopbDV0cm8ZA=; b=manuFTH99tyLli2v8KkuZ0jjE8
- 23+dm+gl5wtfNJwgt+ng2kyBQ//A9wVrQq13n9OnA7NcChSAC9mkxcOmUZGmiDZN1CT+4o7gj+D8v
- a4Hu8zx94cXnn2/w/h6ZF1S5PgOsI4Yf6Pm/836d3pzaGXjMdo0eF24fGf8tgFRCx0iU=;
+ bh=7LpUCSDAWXiExrOJOQNmVYWEh/gctZhHFq87KO6CkI4=; b=JidKQyJ4f/Dj9ldDwRxmx6Bt/Y
+ cQpOpWdzvw8m7wqp7LbGAS85BfIGZZH2chKO6yjxMgs89KWSj4DGdx2xOqCbGg13W6JPBtO+EH1ZL
+ cABV1WBCMH35KNlSBCx3mTw0XJVxsxEsb0EsVbw1x32i7KCH340V10HZx5jsBxBdwKI8=;
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  ;
- h=Content-Type:Content-Transfer-Encoding:MIME-Version:References:
- In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Sender:Reply-To:Content-ID:
+ h=Content-Transfer-Encoding:Content-Type:In-Reply-To:From:References:Cc:To:
+ Subject:MIME-Version:Date:Message-ID:Sender:Reply-To:Content-ID:
  Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
  :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
  List-Post:List-Owner:List-Archive;
- bh=iVZmXkRo7BKC/ObnBuv9eAWgxqprDCQYopbDV0cm8ZA=; b=VTITQ9U3B+AFk14Ua1OW2xrKfV
- bBzrJSTfqBFh0bWPD2F+YiB6W3cuUZ0My+4UobfH1wPxal3tZJRu/LISh9Y9RIZAQLAbZGn8W4PQK
- bgTdxplWZBQ3xy0XoeiY1SSxo3UDfLxPPSyk+U3xmSK3MKm5NT1e+2Tegg5wsXF3xmm0=;
-Received: from kylie.crudebyte.com ([5.189.157.229])
- by sfi-mx-1.v28.lw.sourceforge.com with esmtps
+ bh=7LpUCSDAWXiExrOJOQNmVYWEh/gctZhHFq87KO6CkI4=; b=DH9UZYRPq9QFENa7M4NoUULVpZ
+ PScn3G4hqN+LSyIkktY9zKX/6HkVzbyZhL+AROgshe07GD52ZSZH6Y/kejuqYZCrOlBkS9Zc5DlvF
+ 4fJllAywtGRV5GW6RXn0xAlQJcWy6urh799xt9Mi1t/3++XG0TON9tLi2FzB9fpxraio=;
+Received: from www262.sakura.ne.jp ([202.181.97.72])
+ by sfi-mx-2.v28.lw.sourceforge.com with esmtps
  (TLS1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.95)
- id 1oTm6y-00AED6-0u for v9fs-developer@lists.sourceforge.net;
- Thu, 01 Sep 2022 15:28:14 +0000
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=crudebyte.com; s=kylie; h=Content-Type:Content-Transfer-Encoding:
- MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:
- Content-ID:Content-Description;
- bh=iVZmXkRo7BKC/ObnBuv9eAWgxqprDCQYopbDV0cm8ZA=; b=R+861XU5V5SAXZ6YWA8ropbfi1
- ZuvDKzYCbOhxZvRdUPuqyNRMmwBCmRE+eYTUGjXOCnC9kwk9L8ldpNkP7E41txt+kfyIlI4AskHiQ
- /mA3ZiLe6noHRotbtsARf/0ttGGJNC25YrILvQbJlFyiRLcXxVNQ2TwYIPMejFR/e28K5/7jXtuFX
- Ol2ngJ4ODZY+OCeFb0RXKMmSdajColXb3alNeSASgAFUeLvv9PvNX5Qej/aMEAN0wXfjv/INOaDCL
- rP9pcDsPpHRukUR4RNAWMXGLCiFb9vRWCmhiyoBvM+MJtgQJJxpg0Jz6c674sjVIlLXbeOMUmpXE/
- NBaRJWOhumtC8IV2lDBSdugPhNguo7rH0l2pdS3qlPIwTUUPPXXPfU6AND4hIBH1OsCAKaSZql42h
- P29kr0ZVK2j4dCAEe0YOXS2LFhARIvUIf/8hHRfk53oA8FmlWMkgYWdbA0qUcb8nwsLwOXgYy8zj2
- utkUOTarINxD40ClcNNmk1G8hn1Ay0gdFG47A+z8wzhCb4U9CBN6ghh7mLOnHQklCOE88998/TSMb
- H17fX4p6wuy8osELaHFJy2gM13884RKYjjKlkMS6epGR8lT6rhgAkiA33JAArWIq0U4vypd3w/Gvo
- oQ5DVn5LlzunLTQEPSdSdBHUTrDRsPDixuM6lqFvQ=;
-To: asmadeus@codewreck.org, Schspa Shi <schspa@gmail.com>
-Date: Thu, 01 Sep 2022 17:27:53 +0200
-Message-ID: <2739602.9NfmOOc9RC@silver>
-In-Reply-To: <m2bkrz7qc8.fsf@gmail.com>
-References: <20220831180950.76907-1-schspa@gmail.com>
- <Yw/HmHcmXBVIg/SW@codewreck.org> <m2bkrz7qc8.fsf@gmail.com>
+ id 1oTseg-0001HB-ES for v9fs-developer@lists.sourceforge.net;
+ Thu, 01 Sep 2022 22:27:23 +0000
+Received: from fsav414.sakura.ne.jp (fsav414.sakura.ne.jp [133.242.250.113])
+ by www262.sakura.ne.jp (8.15.2/8.15.2) with ESMTP id 281MPY1f007699;
+ Fri, 2 Sep 2022 07:25:34 +0900 (JST)
+ (envelope-from penguin-kernel@I-love.SAKURA.ne.jp)
+Received: from www262.sakura.ne.jp (202.181.97.72)
+ by fsav414.sakura.ne.jp (F-Secure/fsigk_smtp/550/fsav414.sakura.ne.jp);
+ Fri, 02 Sep 2022 07:25:34 +0900 (JST)
+X-Virus-Status: clean(F-Secure/fsigk_smtp/550/fsav414.sakura.ne.jp)
+Received: from [192.168.1.9] (M106072142033.v4.enabler.ne.jp [106.72.142.33])
+ (authenticated bits=0)
+ by www262.sakura.ne.jp (8.15.2/8.15.2) with ESMTPSA id 281MPY2R007696
+ (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=NO);
+ Fri, 2 Sep 2022 07:25:34 +0900 (JST)
+ (envelope-from penguin-kernel@I-love.SAKURA.ne.jp)
+Message-ID: <e96a8dce-9444-c363-2dfa-83fe5c7012b5@I-love.SAKURA.ne.jp>
+Date: Fri, 2 Sep 2022 07:25:30 +0900
 MIME-Version: 1.0
-X-Spam-Score: -0.2 (/)
+User-Agent: Mozilla/5.0 (Windows NT 6.3; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.2.0
+Content-Language: en-US
+To: Christian Schoenebeck <linux_oss@crudebyte.com>,
+ Eric Van Hensbergen <ericvh@gmail.com>,
+ Latchesar Ionkov <lucho@ionkov.net>,
+ Dominique Martinet <asmadeus@codewreck.org>
+References: <00000000000039af4d05915a9f56@google.com>
+ <345de429-a88b-7097-d177-adecf9fed342@I-love.SAKURA.ne.jp>
+ <4293faaf-8279-77e2-8b1a-aff765416980@I-love.SAKURA.ne.jp>
+ <69253379.JACLdFHAbQ@silver>
+From: Tetsuo Handa <penguin-kernel@I-love.SAKURA.ne.jp>
+In-Reply-To: <69253379.JACLdFHAbQ@silver>
+X-Spam-Score: -2.0 (--)
 X-Spam-Report: Spam detection software,
- running on the system "util-spamd-2.v13.lw.sourceforge.com", 
+ running on the system "util-spamd-1.v13.lw.sourceforge.com", 
  has NOT identified this incoming email as spam.  The original
  message has been attached to this so you can view it or label
  similar future email.  If you have any questions, see
  the administrator of that system for details.
- Content preview:  On Donnerstag, 1. September 2022 04:55:36 CEST Schspa Shi
- wrote: > asmadeus@codewreck.org writes: > > Schspa Shi wrote on Thu, Sep 01,
- 2022 at 02:09:50AM +0800: > >> To fix it, we can add extra refere [...] 
- Content analysis details:   (-0.2 points, 6.0 required)
+ Content preview:  On 2022/09/02 0:23, Christian Schoenebeck wrote: > So the
+ intention in this alternative approach is to allow user space apps > still
+ being able to perform blocking I/O, while at the same time making t [...]
+ Content analysis details:   (-2.0 points, 6.0 required)
  pts rule name              description
  ---- ---------------------- --------------------------------------------------
- -0.0 SPF_PASS               SPF: sender matches SPF record
+ 0.0 SPF_NONE               SPF: sender does not publish an SPF Record
  0.0 SPF_HELO_NONE          SPF: HELO does not publish an SPF Record
- -0.1 DKIM_VALID_EF          Message has a valid DKIM or DK signature from
- envelope-from domain
- -0.1 DKIM_VALID_AU          Message has a valid DKIM or DK signature from
- author's domain
- -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
- 0.1 DKIM_SIGNED            Message has a DKIM or DK signature, not necessarily
- valid -0.0 T_SCC_BODY_TEXT_LINE   No description available.
-X-Headers-End: 1oTm6y-00AED6-0u
-Subject: Re: [V9fs-developer] [PATCH] p9: trans_fd: Fix deadlock when
- connection cancel
+ -2.0 NICE_REPLY_A           Looks like a legit reply (A)
+X-Headers-End: 1oTseg-0001HB-ES
+Subject: Re: [V9fs-developer] [PATCH v2] 9p/trans_fd: perform read/write
+ with TIF_SIGPENDING set
 X-BeenThere: v9fs-developer@lists.sourceforge.net
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -96,60 +99,57 @@ List-Post: <mailto:v9fs-developer@lists.sourceforge.net>
 List-Help: <mailto:v9fs-developer-request@lists.sourceforge.net?subject=help>
 List-Subscribe: <https://lists.sourceforge.net/lists/listinfo/v9fs-developer>, 
  <mailto:v9fs-developer-request@lists.sourceforge.net?subject=subscribe>
-From: Christian Schoenebeck via V9fs-developer
- <v9fs-developer@lists.sourceforge.net>
-Reply-To: Christian Schoenebeck <linux_oss@crudebyte.com>
-Cc: lucho@ionkov.net, ericvh@gmail.com, netdev@vger.kernel.org,
- linux-kernel@vger.kernel.org, edumazet@google.com,
- v9fs-developer@lists.sourceforge.net, kuba@kernel.org, pabeni@redhat.com,
- davem@davemloft.net
+Cc: syzbot <syzbot+8b41a1365f1106fd0f33@syzkaller.appspotmail.com>,
+ v9fs-developer@lists.sourceforge.net,
+ linux-fsdevel <linux-fsdevel@vger.kernel.org>, syzkaller-bugs@googlegroups.com,
+ netdev@vger.kernel.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: v9fs-developer-bounces@lists.sourceforge.net
 
-On Donnerstag, 1. September 2022 04:55:36 CEST Schspa Shi wrote:
-> asmadeus@codewreck.org writes:
-> > Schspa Shi wrote on Thu, Sep 01, 2022 at 02:09:50AM +0800:
-> >> To fix it, we can add extra reference counter to avoid deadlock, and
-> >> decrease it after we unlock the client->lock.
-> > 
-> > Thanks for the patch!
-> > 
-> > Unfortunately I already sent a slightly different version to the list,
-> > hidden in another syzbot thread, here:
-> > https://lkml.kernel.org/r/YvyD053bdbGE9xoo@codewreck.org
-> > 
-> > (yes, sorry, not exactly somewhere I'd expect someone to find it... 9p
-> > hasn't had many contributors recently)
-> > 
-> > 
-> > Basically instead of taking an extra lock I just released the client
-> > lock before calling p9_client_cb, so it shouldn't hang anymore.
-> > 
-> > We don't need the lock to call the cb as in p9_conn_cancel we already
-> > won't accept any new request and by this point the requests are in a
-> > local list that isn't shared anywhere.
+On 2022/09/02 0:23, Christian Schoenebeck wrote:
+> So the intention in this alternative approach is to allow user space apps  
+> still being able to perform blocking I/O, while at the same time making the 
+> kernel thread interruptible to fix this hung task issue, correct?
+
+Making the kernel thread "non-blocking" (rather than "interruptible") in order
+not to be blocked on I/O on pipes.
+
+Since kernel threads by default do not receive signals, being "interruptible"
+or "killable" does not help (except for silencing khungtaskd warning). Being
+"non-blocking" like I/O on sockets helps.
+
+>> --- a/net/9p/trans_fd.c
+>> +++ b/net/9p/trans_fd.c
+>> @@ -256,11 +256,13 @@ static int p9_fd_read(struct p9_client *client, void
+>> *v, int len) if (!ts)
+>>  		return -EREMOTEIO;
+>>
+>> -	if (!(ts->rd->f_flags & O_NONBLOCK))
+>> -		p9_debug(P9_DEBUG_ERROR, "blocking read ...\n");
+>> -
+>>  	pos = ts->rd->f_pos;
+>> +	/* Force non-blocking read() even without O_NONBLOCK. */
+>> +	set_thread_flag(TIF_SIGPENDING);
+>>  	ret = kernel_read(ts->rd, v, len, &pos);
+>> +	spin_lock_irq(&current->sighand->siglock);
+>> +	recalc_sigpending();
+>> +	spin_unlock_irq(&current->sighand->siglock);
 > 
-> Ok, thank you for pointing that out.
-> 
-> > If you have a test setup, would you mind testing my patch?
-> > That's the main reason I was delaying pushing it.
-> 
-> I have test it with my enviroment, it not hang anymore.
+> Is the recalc_sigpending() block here actually needed? The TIF_SIGPENDING flag 
+> is already cleared by net/9p/client.c, no?
 
-Are you fine with that Dominique, or do you want me to test your linked patch 
-as well?
+This is actually needed.
 
-You can also explicitly tell me if you need something to be reviewed/tested.
+The thread which processes this function is a kernel workqueue thread which
+is supposed to process other functions (which might call "interruptible"
+functions even if signals are not received by default).
 
-> > Since you went out of your way to make this patch if you agree with my
-> > approach I don't mind adding your sign off or another mark of having
-> > worked on it.
-> > 
-> > Thank you,
-
-
-
+The thread which currently clearing the TIF_SIGPENDING flag is a user process
+(which are calling "killable" functions from syscall context but effectively
+"uninterruptible" due to clearing the TIF_SIGPENDING flag and retrying).
+By the way, clearing the TIF_SIGPENDING flag before retrying "killable" functions
+(like p9_client_rpc() does) is very bad and needs to be avoided...
 
 
 
