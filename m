@@ -2,72 +2,70 @@ Return-Path: <v9fs-developer-bounces@lists.sourceforge.net>
 X-Original-To: lists+v9fs-developer@lfdr.de
 Delivered-To: lists+v9fs-developer@lfdr.de
 Received: from lists.sourceforge.net (lists.sourceforge.net [216.105.38.7])
-	by mail.lfdr.de (Postfix) with ESMTPS id B00435AC1D9
-	for <lists+v9fs-developer@lfdr.de>; Sun,  4 Sep 2022 02:28:08 +0200 (CEST)
-Received: from [127.0.0.1] (helo=sfs-ml-4.v29.lw.sourceforge.com)
-	by sfs-ml-4.v29.lw.sourceforge.com with esmtp (Exim 4.95)
+	by mail.lfdr.de (Postfix) with ESMTPS id 43A095AC2ED
+	for <lists+v9fs-developer@lfdr.de>; Sun,  4 Sep 2022 08:10:37 +0200 (CEST)
+Received: from [127.0.0.1] (helo=sfs-ml-2.v29.lw.sourceforge.com)
+	by sfs-ml-2.v29.lw.sourceforge.com with esmtp (Exim 4.95)
 	(envelope-from <v9fs-developer-bounces@lists.sourceforge.net>)
-	id 1oUdUb-0004jm-2Q;
-	Sun, 04 Sep 2022 00:28:05 +0000
+	id 1oUiq1-0000Te-OG;
+	Sun, 04 Sep 2022 06:10:33 +0000
 Received: from [172.30.20.202] (helo=mx.sourceforge.net)
- by sfs-ml-4.v29.lw.sourceforge.com with esmtps (TLS1.2) tls
+ by sfs-ml-2.v29.lw.sourceforge.com with esmtps (TLS1.2) tls
  TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384 (Exim 4.95)
  (envelope-from <penguin-kernel@I-love.SAKURA.ne.jp>)
- id 1oUdUa-0004jf-0z for v9fs-developer@lists.sourceforge.net;
- Sun, 04 Sep 2022 00:28:04 +0000
+ id 1oUipy-0000TX-65 for v9fs-developer@lists.sourceforge.net;
+ Sun, 04 Sep 2022 06:10:30 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
  d=sourceforge.net; s=x; h=Content-Transfer-Encoding:Content-Type:In-Reply-To:
- From:References:Cc:To:Subject:MIME-Version:Date:Message-ID:Sender:Reply-To:
+ From:Cc:References:To:Subject:MIME-Version:Date:Message-ID:Sender:Reply-To:
  Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
  Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
  List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=LhWcleYSVUVIi0tK45xaLq0cMaipn09WSSNVsJsJUuM=; b=kS+6df+Ya9BqToQSmxnEngHfSZ
- OZTRdCytPJQgDC4ZyzrcNiGVAIGY+aQLzjOSGO/JEmZt7VrqXwVNvGxc1sZFj0xukVHx2siZIy/nr
- uSfC6D9eVvpanLPTE6i730EqeOsdcn2i417gd8ZuMpIYbBWN55dLEkX7+1w8tcB/GDTE=;
+ bh=XDFvyBP4gp4AgPt76UYOFyxvSZN07V9WvX5ONu0ZEzk=; b=QgbhcKjLoDGDNs3GxCnlSyRYwh
+ aMaD0Y4ebK00tJsmY81rdxxyXwgFwPEzyGGzgYSifQn09kZkhdEPNTcxafemHR7AaWkVxU1M/DiIW
+ LH9XmsG3wI4OsTzP5C7E+YJ976vDiieFYuhXoXzdxo9OAA4dQHYRdMqWZUKqKfwNox2A=;
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  ;
- h=Content-Transfer-Encoding:Content-Type:In-Reply-To:From:References:Cc:To:
+ h=Content-Transfer-Encoding:Content-Type:In-Reply-To:From:Cc:References:To:
  Subject:MIME-Version:Date:Message-ID:Sender:Reply-To:Content-ID:
  Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
  :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
  List-Post:List-Owner:List-Archive;
- bh=LhWcleYSVUVIi0tK45xaLq0cMaipn09WSSNVsJsJUuM=; b=Asy5Ilq6t/sKFMUR7iKcuzTmfp
- xyKDjkLOMC98tyLtVqeIUwVkIfNF+uYnvhmeFLTlvBAmTUXqO6e7YPuYJcyiesUpKkoAZosoG2LBA
- HbfSwhLf1ENC5BabbUCme+ksPg3+XD2LihDdS5d3m0VPgLJ2oplI6zkVJ8etcXJcq8uY=;
+ bh=XDFvyBP4gp4AgPt76UYOFyxvSZN07V9WvX5ONu0ZEzk=; b=MLqUzUM2RW0RhgjGQMEYhDNukq
+ gu+7XohvxYpUHqsLmoNL1DzjsQ+ELtlOCevqP2xWRUtz3nviwcmK/Cz9T43vsQ+wOULsu9hoGZ3D7
+ 0xYviRJLBDTmv7+Ew627twqQZ3x3qypRlJAS9SpuiXaVTvnIi/ghWmWhK0ev1wyRanTg=;
 Received: from www262.sakura.ne.jp ([202.181.97.72])
- by sfi-mx-1.v28.lw.sourceforge.com with esmtps
+ by sfi-mx-2.v28.lw.sourceforge.com with esmtps
  (TLS1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.95)
- id 1oUdUU-00D8hY-NB for v9fs-developer@lists.sourceforge.net;
- Sun, 04 Sep 2022 00:28:03 +0000
-Received: from fsav112.sakura.ne.jp (fsav112.sakura.ne.jp [27.133.134.239])
- by www262.sakura.ne.jp (8.15.2/8.15.2) with ESMTP id 2840RRg8093852;
- Sun, 4 Sep 2022 09:27:27 +0900 (JST)
+ id 1oUipg-0001fU-W1 for v9fs-developer@lists.sourceforge.net;
+ Sun, 04 Sep 2022 06:10:17 +0000
+Received: from fsav115.sakura.ne.jp (fsav115.sakura.ne.jp [27.133.134.242])
+ by www262.sakura.ne.jp (8.15.2/8.15.2) with ESMTP id 28469XNa064425;
+ Sun, 4 Sep 2022 15:09:33 +0900 (JST)
  (envelope-from penguin-kernel@I-love.SAKURA.ne.jp)
 Received: from www262.sakura.ne.jp (202.181.97.72)
- by fsav112.sakura.ne.jp (F-Secure/fsigk_smtp/550/fsav112.sakura.ne.jp);
- Sun, 04 Sep 2022 09:27:27 +0900 (JST)
-X-Virus-Status: clean(F-Secure/fsigk_smtp/550/fsav112.sakura.ne.jp)
+ by fsav115.sakura.ne.jp (F-Secure/fsigk_smtp/550/fsav115.sakura.ne.jp);
+ Sun, 04 Sep 2022 15:09:33 +0900 (JST)
+X-Virus-Status: clean(F-Secure/fsigk_smtp/550/fsav115.sakura.ne.jp)
 Received: from [192.168.1.9] (M106072142033.v4.enabler.ne.jp [106.72.142.33])
  (authenticated bits=0)
- by www262.sakura.ne.jp (8.15.2/8.15.2) with ESMTPSA id 2840RQqi093848
+ by www262.sakura.ne.jp (8.15.2/8.15.2) with ESMTPSA id 28469XDq064422
  (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=NO);
- Sun, 4 Sep 2022 09:27:27 +0900 (JST)
+ Sun, 4 Sep 2022 15:09:33 +0900 (JST)
  (envelope-from penguin-kernel@I-love.SAKURA.ne.jp)
-Message-ID: <38d892bd-8ace-c4e9-9d73-777d3828acbc@I-love.SAKURA.ne.jp>
-Date: Sun, 4 Sep 2022 09:27:22 +0900
+Message-ID: <2470e028-9b05-2013-7198-1fdad071d999@I-love.SAKURA.ne.jp>
+Date: Sun, 4 Sep 2022 15:09:28 +0900
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (Windows NT 6.3; Win64; x64; rv:102.0) Gecko/20100101
  Thunderbird/102.2.1
 Content-Language: en-US
-To: Dominique Martinet <asmadeus@codewreck.org>
-References: <00000000000039af4d05915a9f56@google.com>
- <345de429-a88b-7097-d177-adecf9fed342@I-love.SAKURA.ne.jp>
- <4293faaf-8279-77e2-8b1a-aff765416980@I-love.SAKURA.ne.jp>
- <69253379.JACLdFHAbQ@silver>
- <e96a8dce-9444-c363-2dfa-83fe5c7012b5@I-love.SAKURA.ne.jp>
- <YxPlzlJAKObm88p8@codewreck.org>
+To: Eric Van Hensbergen <ericvh@gmail.com>,
+ Latchesar Ionkov <lucho@ionkov.net>,
+ Dominique Martinet <asmadeus@codewreck.org>,
+ Christian Schoenebeck <linux_oss@crudebyte.com>
+References: <000000000000f842c805e64f17a8@google.com>
 From: Tetsuo Handa <penguin-kernel@I-love.SAKURA.ne.jp>
-In-Reply-To: <YxPlzlJAKObm88p8@codewreck.org>
+In-Reply-To: <000000000000f842c805e64f17a8@google.com>
 X-Spam-Score: -0.0 (/)
 X-Spam-Report: Spam detection software,
  running on the system "util-spamd-2.v13.lw.sourceforge.com", 
@@ -75,22 +73,19 @@ X-Spam-Report: Spam detection software,
  message has been attached to this so you can view it or label
  similar future email.  If you have any questions, see
  the administrator of that system for details.
- Content preview:  On 2022/09/04 8:39, Dominique Martinet wrote: > Is there any
- reason you spent time working on v2, or is that just > theorical for not
- messing with userland fd ? Just theoretical for not messing with userland
- fd, for programs generated by fuzzers might use fds passed to the mount()
- syscall. I imagined that syzbot again reports this problem when it started
- play [...] 
+ Content preview:  syzbot is reporting inconsistent lock state in p9_req_put(), 
+ for p9_tag_remove() from p9_req_put() from IRQ context is using
+ spin_lock_irqsave()
+ on "struct p9_client"->lock but other locations not fro [...] 
  Content analysis details:   (-0.0 points, 6.0 required)
  pts rule name              description
  ---- ---------------------- --------------------------------------------------
  0.0 SPF_HELO_NONE          SPF: HELO does not publish an SPF Record
  0.0 SPF_NONE               SPF: sender does not publish an SPF Record
  -0.0 T_SCC_BODY_TEXT_LINE   No description available.
- -0.0 NICE_REPLY_A           Looks like a legit reply (A)
-X-Headers-End: 1oUdUU-00D8hY-NB
-Subject: Re: [V9fs-developer] [PATCH v2] 9p/trans_fd: perform read/write
- with TIF_SIGPENDING set
+X-Headers-End: 1oUipg-0001fU-W1
+Subject: [V9fs-developer] [PATCH] net/9p: use a dedicated spinlock for
+ modifying IDR
 X-BeenThere: v9fs-developer@lists.sourceforge.net
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -102,46 +97,105 @@ List-Post: <mailto:v9fs-developer@lists.sourceforge.net>
 List-Help: <mailto:v9fs-developer-request@lists.sourceforge.net?subject=help>
 List-Subscribe: <https://lists.sourceforge.net/lists/listinfo/v9fs-developer>, 
  <mailto:v9fs-developer-request@lists.sourceforge.net?subject=subscribe>
-Cc: Latchesar Ionkov <lucho@ionkov.net>, Eric Van Hensbergen <ericvh@gmail.com>,
- netdev@vger.kernel.org, Christian Schoenebeck <linux_oss@crudebyte.com>,
- syzkaller-bugs@googlegroups.com,
- syzbot <syzbot+8b41a1365f1106fd0f33@syzkaller.appspotmail.com>,
- linux-fsdevel <linux-fsdevel@vger.kernel.org>,
- v9fs-developer@lists.sourceforge.net
+Cc: v9fs-developer@lists.sourceforge.net, syzkaller-bugs@googlegroups.com,
+ syzbot <syzbot+2f20b523930c32c160cc@syzkaller.appspotmail.com>,
+ netdev@vger.kernel.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: v9fs-developer-bounces@lists.sourceforge.net
 
-On 2022/09/04 8:39, Dominique Martinet wrote:
-> Is there any reason you spent time working on v2, or is that just
-> theorical for not messing with userland fd ?
+syzbot is reporting inconsistent lock state in p9_req_put(), for
+p9_tag_remove() from p9_req_put() from IRQ context is using
+spin_lock_irqsave() on "struct p9_client"->lock but other locations
+not from IRQ context are using spin_lock().
 
-Just theoretical for not messing with userland fd, for programs generated
-by fuzzers might use fds passed to the mount() syscall. I imagined that
-syzbot again reports this problem when it started playing with fcntl().
+Since spin_lock() => spin_lock_irqsave() conversion on this lock will
+needlessly disable IRQ for infrequent event, and p9_tag_remove() needs
+to disable IRQ only for modifying IDR (RCU read lock can be used for
+reading IDR), let's introduce a spinlock dedicated for serializing
+idr_alloc()/idr_alloc_u32()/idr_remove() calls. Since this spinlock
+will be held as innermost lock, circular locking dependency problem
+won't happen by adding this spinlock.
 
-For robustness, not messing with userland fd is the better. ;-)
+Link: https://syzkaller.appspot.com/bug?extid=2f20b523930c32c160cc [1]
+Reported-by: syzbot <syzbot+2f20b523930c32c160cc@syzkaller.appspotmail.com>
+Signed-off-by: Tetsuo Handa <penguin-kernel@I-love.SAKURA.ne.jp>
+---
+This patch is not tested, for reproducer is not available.
 
-> 
-> unless there's any reason I'll try to find time to test v1 and queue it
-> for 6.1
+ net/9p/client.c | 18 ++++++++++--------
+ 1 file changed, 10 insertions(+), 8 deletions(-)
 
-OK.
+diff --git a/net/9p/client.c b/net/9p/client.c
+index 0a6110e15d0f..20f0a2d8dd38 100644
+--- a/net/9p/client.c
++++ b/net/9p/client.c
+@@ -28,6 +28,8 @@
+ #define CREATE_TRACE_POINTS
+ #include <trace/events/9p.h>
+ 
++static DEFINE_SPINLOCK(p9_idr_lock);
++
+ #define DEFAULT_MSIZE (128 * 1024)
+ 
+ /* Client Option Parsing (code inspired by NFS code)
+@@ -283,14 +285,14 @@ p9_tag_alloc(struct p9_client *c, int8_t type, unsigned int max_size)
+ 	INIT_LIST_HEAD(&req->req_list);
+ 
+ 	idr_preload(GFP_NOFS);
+-	spin_lock_irq(&c->lock);
++	spin_lock_irq(&p9_idr_lock);
+ 	if (type == P9_TVERSION)
+ 		tag = idr_alloc(&c->reqs, req, P9_NOTAG, P9_NOTAG + 1,
+ 				GFP_NOWAIT);
+ 	else
+ 		tag = idr_alloc(&c->reqs, req, 0, P9_NOTAG, GFP_NOWAIT);
+ 	req->tc.tag = tag;
+-	spin_unlock_irq(&c->lock);
++	spin_unlock_irq(&p9_idr_lock);
+ 	idr_preload_end();
+ 	if (tag < 0)
+ 		goto free;
+@@ -364,9 +366,9 @@ static void p9_tag_remove(struct p9_client *c, struct p9_req_t *r)
+ 	u16 tag = r->tc.tag;
+ 
+ 	p9_debug(P9_DEBUG_MUX, "freeing clnt %p req %p tag: %d\n", c, r, tag);
+-	spin_lock_irqsave(&c->lock, flags);
++	spin_lock_irqsave(&p9_idr_lock, flags);
+ 	idr_remove(&c->reqs, tag);
+-	spin_unlock_irqrestore(&c->lock, flags);
++	spin_unlock_irqrestore(&p9_idr_lock, flags);
+ }
+ 
+ int p9_req_put(struct p9_client *c, struct p9_req_t *r)
+@@ -813,10 +815,10 @@ static struct p9_fid *p9_fid_create(struct p9_client *clnt)
+ 	refcount_set(&fid->count, 1);
+ 
+ 	idr_preload(GFP_KERNEL);
+-	spin_lock_irq(&clnt->lock);
++	spin_lock_irq(&p9_idr_lock);
+ 	ret = idr_alloc_u32(&clnt->fids, fid, &fid->fid, P9_NOFID - 1,
+ 			    GFP_NOWAIT);
+-	spin_unlock_irq(&clnt->lock);
++	spin_unlock_irq(&p9_idr_lock);
+ 	idr_preload_end();
+ 	if (!ret) {
+ 		trace_9p_fid_ref(fid, P9_FID_REF_CREATE);
+@@ -835,9 +837,9 @@ static void p9_fid_destroy(struct p9_fid *fid)
+ 	p9_debug(P9_DEBUG_FID, "fid %d\n", fid->fid);
+ 	trace_9p_fid_ref(fid, P9_FID_REF_DESTROY);
+ 	clnt = fid->clnt;
+-	spin_lock_irqsave(&clnt->lock, flags);
++	spin_lock_irqsave(&p9_idr_lock, flags);
+ 	idr_remove(&clnt->fids, fid->fid);
+-	spin_unlock_irqrestore(&clnt->lock, flags);
++	spin_unlock_irqrestore(&p9_idr_lock, flags);
+ 	kfree(fid->rdir);
+ 	kfree(fid);
+ }
+-- 
+2.34.1
 
-> We seem to check for EAGAIN where kernel_read/write end up being called
-> and there's a poll for scheduling so it -should- work, but I assume this
-> hasn't been tested much and might take a bit of time to test.
-
-Right. Since the I/O in kernel side is poll based multiplexing, forcing
-non-blocking I/O -should- work. (But I can't test e.g. changes in CPU time
-usage because I don't have environment to test. I assume that poll based
-multiplexing saves us from doing busy looping.)
-
-We are currently checking for ERESTARTSYS and EAGAIN. The former is for
-non-socket fds which do not have O_NONBLOCK flag, and the latter is for
-socket fds which have O_NONBLOCK flag. If we enforce O_NONBLOCK flag,
-the former will become redundant. I think we can remove the former check
-after you tested that setting O_NONBLOCK flag on non-socket fds does not break.
 
 
 
