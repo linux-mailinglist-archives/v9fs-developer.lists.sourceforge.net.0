@@ -2,91 +2,110 @@ Return-Path: <v9fs-developer-bounces@lists.sourceforge.net>
 X-Original-To: lists+v9fs-developer@lfdr.de
 Delivered-To: lists+v9fs-developer@lfdr.de
 Received: from lists.sourceforge.net (lists.sourceforge.net [216.105.38.7])
-	by mail.lfdr.de (Postfix) with ESMTPS id 945295AC571
-	for <lists+v9fs-developer@lfdr.de>; Sun,  4 Sep 2022 18:31:34 +0200 (CEST)
-Received: from [127.0.0.1] (helo=sfs-ml-4.v29.lw.sourceforge.com)
-	by sfs-ml-4.v29.lw.sourceforge.com with esmtp (Exim 4.95)
+	by mail.lfdr.de (Postfix) with ESMTPS id DEAE45ADCE8
+	for <lists+v9fs-developer@lfdr.de>; Tue,  6 Sep 2022 03:32:37 +0200 (CEST)
+Received: from [127.0.0.1] (helo=sfs-ml-1.v29.lw.sourceforge.com)
+	by sfs-ml-1.v29.lw.sourceforge.com with esmtp (Exim 4.95)
 	(envelope-from <v9fs-developer-bounces@lists.sourceforge.net>)
-	id 1oUsWv-0004GJ-Vz;
-	Sun, 04 Sep 2022 16:31:29 +0000
+	id 1oVNS5-00078L-Jf;
+	Tue, 06 Sep 2022 01:32:33 +0000
 Received: from [172.30.20.202] (helo=mx.sourceforge.net)
- by sfs-ml-4.v29.lw.sourceforge.com with esmtps (TLS1.2) tls
- TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384 (Exim 4.95)
- (envelope-from <linux_oss@crudebyte.com>) id 1oUsWu-0004GB-Qg
- for v9fs-developer@lists.sourceforge.net;
- Sun, 04 Sep 2022 16:31:28 +0000
+ by sfs-ml-1.v29.lw.sourceforge.com with esmtps (TLS1.2) tls
+ TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384 (Exim 4.95) (envelope-from
+ <01070183106d3e6d-40058129-f17f-4d62-a089-cff9aaf9ea6d-000000@eu-central-1.amazonses.com>)
+ id 1oVNS4-00078D-I8 for v9fs-developer@lists.sourceforge.net;
+ Tue, 06 Sep 2022 01:32:32 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=sourceforge.net; s=x; h=Content-Type:Content-Transfer-Encoding:MIME-Version
- :References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Sender:Reply-To:
+ d=sourceforge.net; s=x; h=List-Unsubscribe:Content-Type:MIME-Version:To:
+ Reply-To:From:Subject:Date:Message-ID:Sender:Cc:Content-Transfer-Encoding:
  Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
- Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
- List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=vmMX29tPh/NH4P7ezbbad6kpxdk9LRYNKFDT/DUOtT8=; b=gVq8nbRvbJanvTB7Vur1JPh/Lw
- YUFwUOhh1MfhSFBraVYzaK10kJjHndfZ+m1Ph2VQdrHJxHJf0wTcWfCyLWURpbRWdPvtp63Guqxbd
- r2it9g0MLTz/YtoDpFs8ZGKOAiybEV+90aE6SLb7wozsH3XZ3CEYqmtkaTww29LGFYZw=;
+ Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:List-Id:
+ List-Help:List-Subscribe:List-Post:List-Owner:List-Archive;
+ bh=lvQUsUXZCW+eIHtyjUvU69acyCWlW3+mj44t42McFHk=; b=JHHshLMRQ+iUDkFlXAp+pVgSa9
+ 9ZQPUZQ1IlsIBfo0xunEQ9uYKQzu7m7ZFbRu4gLli0z2I5//PjvaAUJ+herpkHdyLbqwS63T7+MFp
+ SMEHqNd5IlEgNxkl3zsTvDrSLndn8UINInkp9E+Eu4KBJEgkpI15tUJNDODXbqBRWjug=;
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  ;
- h=Content-Type:Content-Transfer-Encoding:MIME-Version:References:
- In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Sender:Reply-To:Content-ID:
- Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
- :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
- List-Post:List-Owner:List-Archive;
- bh=vmMX29tPh/NH4P7ezbbad6kpxdk9LRYNKFDT/DUOtT8=; b=iSRUZQCum/PSea9uwugLHTsiuB
- HOz/GRk6smelxvuFHny79dPTN9aZzHP2i9Sc7bAlxjhT1oXITJlQXNc/l41H4EycO6z5Sj5AeSziw
- +nh8h2v4C5qbqxtPRRQ+G5ouy1joyJRxyCXSeBn/k5DxPBi/IsDzuEeZxnrGgrAISz3Q=;
-Received: from kylie.crudebyte.com ([5.189.157.229])
+ h=List-Unsubscribe:Content-Type:MIME-Version:To:Reply-To:From:Subject:Date:
+ Message-ID:Sender:Cc:Content-Transfer-Encoding:Content-ID:Content-Description
+ :Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+ In-Reply-To:References:List-Id:List-Help:List-Subscribe:List-Post:List-Owner:
+ List-Archive; bh=lvQUsUXZCW+eIHtyjUvU69acyCWlW3+mj44t42McFHk=; b=DwveCciKLYZd
+ QwJ2RxRuPXe6L7EUEuIniVhPJdPnk+EjtfuqQfTSo/XRdjlWXz2uLsWjlWyyujhHRr/BZgeHv4YQB
+ mO7q2EJGmM57VJzPtou5BHcXEC+/Viyjml4osUSpM6eK+lnRg7o7wgm10KjDzt+UYNX9ayJCKyHl7
+ DWNTs=;
+Received: from b224-10.smtp-out.eu-central-1.amazonses.com ([69.169.224.10])
  by sfi-mx-1.v28.lw.sourceforge.com with esmtps
- (TLS1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.95)
- id 1oUsWp-00ERpL-96 for v9fs-developer@lists.sourceforge.net;
- Sun, 04 Sep 2022 16:31:27 +0000
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=crudebyte.com; s=kylie; h=Content-Type:Content-Transfer-Encoding:
- MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:
- Content-ID:Content-Description;
- bh=vmMX29tPh/NH4P7ezbbad6kpxdk9LRYNKFDT/DUOtT8=; b=SLWzikcmV3SC2D2WeYjbroHM5e
- sJbz9FMw5KZgxHO3RIcqARU5jNQXgDgikS3meEmjyP5rZx6eSbWCfGR3KCfKA3AXIQW9zKHNa/GkW
- cnueVeyK9digO19gW+rBlOVxCKcPr58jo2323eG0pJpyJ1FsBvleL0ujbrfieSyEPpQcdQRVLYDeX
- wIuQC5Mi74i9UJyuBCfxvU4lqg/ki3lZoNBiaSzTUisEcMf9BiK6KqoKDtft+b1+ZFj62hKQna7qP
- 2Grk55Tgk4OplwFSjtam2oFKH/UcHsbJnAnYRsPTmwXkzyVqKbWn4KQKgzqKR7WVsVLqGSvgQcPxC
- YEqXnNkxRHrvyyt8zqJL8ltnOEpsKSpOYVa6T3zup9JOMR0QlwTcHtYmqeKgX0MfFsFHC/7QMK8aq
- ANqi0ZxlR7CkzkJ8ob2z/U9c08T9qIcGiYIe2H/ymFYu+VfpSvKR5uDua+hiXzdKByXQ1L0PG1tRa
- 7+WY4WbH7pP6iVCHBYHX7DV4lVavfbgkBe+CD44nTqAfRd15dtjYd6aFz9IX3oEeT9d3Rm+ACx2ns
- NnlnLkb7+GE4kxGH921GecMddB5XSmz6O3+3RpPmtokVwIlVkf5tdulZf5xoBsAcILHi4I+WNiaJM
- 67rA3iZ0A9zGKULtVd9+EPyPITd4t8BZa9bAxM03o=;
-To: v9fs-developer@lists.sourceforge.net,
- Dominique Martinet <asmadeus@codewreck.org>
-Date: Sun, 04 Sep 2022 18:31:12 +0200
-Message-ID: <7389539.FyhnmifhmU@silver>
-In-Reply-To: <20220904063936.1305139-1-asmadeus@codewreck.org>
-References: <0000000000001c3efc05e6693f06@google.com>
- <20220904063936.1305139-1-asmadeus@codewreck.org>
+ (TLS1.2:ECDHE-RSA-AES128-SHA256:128) (Exim 4.95) id 1oVNS0-00GnbI-Ji
+ for v9fs-developer@lists.sourceforge.net;
+ Tue, 06 Sep 2022 01:32:32 +0000
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/simple;
+ s=rs3pg3nubqjweh4ftg7z7rkpbs5c5az5; d=publicitateooh.ro;
+ t=1662427938;
+ h=Sender:Message-ID:Date:Subject:From:Reply-To:To:MIME-Version:Content-Type:List-Unsubscribe;
+ bh=kz+85sPy7J9PMN1L62xFTE/E5Bqmfe+ojcmoluXyV9A=;
+ b=Yd4RnORnXaRWzayeFlHGJM+x2QZFM6vbkwi5KI3/Fz8kTDn3C3NnLmF4V3Yl7eY9
+ L8aWNGMoqUzjjFuRKfLK1nGYbC50YZHoUSAqZObGBih2O0jOTr3D81vU7y1pPMWoXjy
+ +4eVkD9tJOyRRL18dLy9u9O6M+uohpyJJ1huZWv+V6+OL9HwoVxdzXJZ07miDLFjD9J
+ 5pfOKAF8Dp3UVhJjgxA0kzmc3N0HNW41yUZ3LBapCc9I8zkKuSh2GHD/12rfxu7TfZn
+ 8fYZti7tqMphKMkg+q397ahhsqyV8hM2YGDOKRkvjt15btJ7kJ+i0OHvIYTuRDSfKKP
+ B/WAwZ5SCA==
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/simple;
+ s=54ecsf3zk7z4mwxwwox7z7bg6e5gwjsz; d=amazonses.com; t=1662427938;
+ h=Sender:Message-ID:Date:Subject:From:Reply-To:To:MIME-Version:Content-Type:List-Unsubscribe:Feedback-ID;
+ bh=kz+85sPy7J9PMN1L62xFTE/E5Bqmfe+ojcmoluXyV9A=;
+ b=HeGCRo4XEPGsOuh43olY7mFVT0jjqU09278f89qpWrKYcU3BFyMEFKTtLwXYFBlY
+ LQ9evWNJ1Q7J4/ii46xu+XVRpddvhIaBYyTHnxsFaxbUfIesOqcVw851UFBFKXuxUwL
+ 1XHhPynNI6WQlZ2mNutmkxSh1mc+tuij3201LixU=
+Message-ID: <01070183106d3e6d-40058129-f17f-4d62-a089-cff9aaf9ea6d-000000@eu-central-1.amazonses.com>
+Date: Tue, 6 Sep 2022 01:32:18 +0000
+From: Office <office@publicitateooh.ro>
+To: "" <v9fs-developer@lists.sourceforge.net>
 MIME-Version: 1.0
-X-Spam-Score: -0.2 (/)
+Feedback-ID: 1.eu-central-1.djyq42v8KkM0/QeLxShdouHjGcCwozGoD2tdHmaPOOk=:AmazonSES
+X-SES-Outgoing: 2022.09.06-69.169.224.10
+X-Spam-Score: 6.3 (++++++)
 X-Spam-Report: Spam detection software,
- running on the system "util-spamd-1.v13.lw.sourceforge.com", 
- has NOT identified this incoming email as spam.  The original
+ running on the system "util-spamd-2.v13.lw.sourceforge.com", 
+ has identified this incoming email as possible spam.  The original
  message has been attached to this so you can view it or label
  similar future email.  If you have any questions, see
  the administrator of that system for details.
- Content preview:  On Sonntag,
- 4. September 2022 08:39:36 CEST Dominique Martinet
- wrote: > If trans was connected it's somehow possible to fail with requests
- in > flight that could still be accessed after free if we jus [...] 
- Content analysis details:   (-0.2 points, 6.0 required)
+ Content preview: [View this in your
+ browser.](https://ekogroup.com.ro?mailpoet_router&endpoint=track&action=click&data=WzE0MzAwNSwibmlxaWF6cXMzYjQ0MGNjZ2s0YzRrNDRzOG9jZ2NrYzQiLCIxNjUiLCI2OTkwY2JkYTdkNWQiLGZhbHNlXQ)
+ [FarmersMarket-Top] 
+ Content analysis details:   (6.3 points, 6.0 required)
  pts rule name              description
  ---- ---------------------- --------------------------------------------------
- 0.0 SPF_HELO_NONE          SPF: HELO does not publish an SPF Record
+ 1.7 URIBL_BLACK            Contains an URL listed in the URIBL blacklist
+ [URIs: ekogroup.com.ro]
+ -0.0 SPF_HELO_PASS          SPF: HELO matches SPF record
+ 0.2 HEADER_FROM_DIFFERENT_DOMAINS From and EnvelopeFrom 2nd level
+ mail domains are different
  -0.0 SPF_PASS               SPF: sender matches SPF record
- 0.1 DKIM_SIGNED            Message has a DKIM or DK signature, not necessarily
- valid
+ -0.0 RCVD_IN_DNSWL_NONE     RBL: Sender listed at https://www.dnswl.org/,
+ no trust [69.169.224.10 listed in list.dnswl.org]
+ -0.0 RCVD_IN_MSPIKE_H2      RBL: Average reputation (+2)
+ [69.169.224.10 listed in wl.mailspike.net]
+ 0.0 HTML_MESSAGE           BODY: HTML included in message
  -0.1 DKIM_VALID_EF          Message has a valid DKIM or DK signature from
  envelope-from domain
- -0.1 DKIM_VALID_AU          Message has a valid DKIM or DK signature from
- author's domain
+ 0.1 DKIM_SIGNED            Message has a DKIM or DK signature, not necessarily
+ valid
  -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-X-Headers-End: 1oUsWp-00ERpL-96
-Subject: Re: [V9fs-developer] [PATCH 1/2] 9p: p9_client_create: use
- p9_client_destroy on failure
+ -0.1 DKIM_VALID_AU          Message has a valid DKIM or DK signature from
+ author's domain 2.0 PYZOR_CHECK            Listed in Pyzor
+ (https://pyzor.readthedocs.io/en/latest/)
+ 0.1 PLING_QUERY            Subject has exclamation mark and question mark
+ 0.0 T_KAM_HTML_FONT_INVALID Test for Invalidly Named or Formatted
+ Colors in HTML
+ -0.0 T_SCC_BODY_TEXT_LINE   No description available.
+ 2.5 URI_WP_HACKED_2        URI for compromised WordPress site, possible
+ malware
+X-Headers-End: 1oVNS0-00GnbI-Ji
+X-Content-Filtered-By: Mailman/MimeDel 2.1.21
+Subject: [V9fs-developer] De ce steaguri pentru afacerea ta? Urmareste
+ video-urile!
 X-BeenThere: v9fs-developer@lists.sourceforge.net
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -98,117 +117,104 @@ List-Post: <mailto:v9fs-developer@lists.sourceforge.net>
 List-Help: <mailto:v9fs-developer-request@lists.sourceforge.net?subject=help>
 List-Subscribe: <https://lists.sourceforge.net/lists/listinfo/v9fs-developer>, 
  <mailto:v9fs-developer-request@lists.sourceforge.net?subject=subscribe>
-From: Christian Schoenebeck via V9fs-developer
- <v9fs-developer@lists.sourceforge.net>
-Reply-To: Christian Schoenebeck <linux_oss@crudebyte.com>
-Cc: syzkaller-bugs@googlegroups.com, linux-kernel@vger.kernel.org,
- syzbot+de52531662ebb8823b26@syzkaller.appspotmail.com
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Reply-To: Office <office@publicitateooh.ro>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: v9fs-developer-bounces@lists.sourceforge.net
 
-On Sonntag, 4. September 2022 08:39:36 CEST Dominique Martinet wrote:
-> If trans was connected it's somehow possible to fail with requests in
-> flight that could still be accessed after free if we just free the clnt
-> on failure.
-> Just use p9_client_destroy instead that has proper safeguards.
-> 
-> Reported-by: syzbot+de52531662ebb8823b26@syzkaller.appspotmail.com
-> Signed-off-by: Dominique Martinet <asmadeus@codewreck.org>
-> ---
-
-Reviewed-by: Christian Schoenebeck <linux_oss@crudebyte.com>
-
->  net/9p/client.c | 24 ++++++++----------------
->  1 file changed, 8 insertions(+), 16 deletions(-)
-> 
-> diff --git a/net/9p/client.c b/net/9p/client.c
-> index 0a6110e15d0f..d340dbbd2ace 100644
-> --- a/net/9p/client.c
-> +++ b/net/9p/client.c
-> @@ -931,14 +931,10 @@ struct p9_client *p9_client_create(const char
-> *dev_name, char *options) char *client_id;
-> 
->  	err = 0;
-> -	clnt = kmalloc(sizeof(*clnt), GFP_KERNEL);
-> +	clnt = kzalloc(sizeof(*clnt), GFP_KERNEL);
->  	if (!clnt)
->  		return ERR_PTR(-ENOMEM);
-> 
-> -	clnt->trans_mod = NULL;
-> -	clnt->trans = NULL;
-> -	clnt->fcall_cache = NULL;
-> -
->  	client_id = utsname()->nodename;
->  	memcpy(clnt->name, client_id, strlen(client_id) + 1);
-> 
-> @@ -948,7 +944,7 @@ struct p9_client *p9_client_create(const char *dev_name,
-> char *options)
-> 
->  	err = parse_opts(options, clnt);
->  	if (err < 0)
-> -		goto free_client;
-> +		goto out;
-> 
->  	if (!clnt->trans_mod)
->  		clnt->trans_mod = v9fs_get_default_trans();
-> @@ -957,7 +953,7 @@ struct p9_client *p9_client_create(const char *dev_name,
-> char *options) err = -EPROTONOSUPPORT;
->  		p9_debug(P9_DEBUG_ERROR,
->  			 "No transport defined or default transport\n");
-> -		goto free_client;
-> +		goto out;
->  	}
-> 
->  	p9_debug(P9_DEBUG_MUX, "clnt %p trans %p msize %d protocol %d\n",
-> @@ -965,7 +961,7 @@ struct p9_client *p9_client_create(const char *dev_name,
-> char *options)
-> 
->  	err = clnt->trans_mod->create(clnt, dev_name, options);
->  	if (err)
-> -		goto put_trans;
-> +		goto out;
-> 
->  	if (clnt->msize > clnt->trans_mod->maxsize) {
->  		clnt->msize = clnt->trans_mod->maxsize;
-> @@ -979,12 +975,12 @@ struct p9_client *p9_client_create(const char
-> *dev_name, char *options) p9_debug(P9_DEBUG_ERROR,
->  			 "Please specify a msize of at least 4k\n");
->  		err = -EINVAL;
-> -		goto close_trans;
-> +		goto out;
->  	}
-> 
->  	err = p9_client_version(clnt);
->  	if (err)
-> -		goto close_trans;
-> +		goto out;
-> 
->  	/* P9_HDRSZ + 4 is the smallest packet header we can have that is
->  	 * followed by data accessed from userspace by read
-> @@ -997,12 +993,8 @@ struct p9_client *p9_client_create(const char
-> *dev_name, char *options)
-> 
->  	return clnt;
-> 
-> -close_trans:
-> -	clnt->trans_mod->close(clnt);
-> -put_trans:
-> -	v9fs_put_trans(clnt->trans_mod);
-> -free_client:
-> -	kfree(clnt);
-> +out:
-> +	p9_client_destroy(clnt);
->  	return ERR_PTR(err);
->  }
->  EXPORT_SYMBOL(p9_client_create);
-
-
-
-
-
-
-_______________________________________________
-V9fs-developer mailing list
-V9fs-developer@lists.sourceforge.net
-https://lists.sourceforge.net/lists/listinfo/v9fs-developer
+W1ZpZXcgdGhpcyBpbiB5b3VyIGJyb3dzZXIuXShodHRwczovL2Vrb2dyb3VwLmNvbS5ybz9tYWls
+cG9ldF9yb3V0ZXImZW5kcG9pbnQ9dHJhY2smYWN0aW9uPWNsaWNrJmRhdGE9V3pFME16QXdOU3dp
+Ym1seGFXRjZjWE16WWpRME1HTmpaMnMwWXpSck5EUnpPRzlqWjJOcll6UWlMQ0l4TmpVaUxDSTJP
+VGt3WTJKa1lUZGtOV1FpTEdaaGJITmxYUSkKCltGYXJtZXJzTWFya2V0LVRvcF0KCltDYXB0dXJh
+zIZfZGVfZWNyYW5fZGluXzIwMjItMDctMDVfbGFfMDkuMDQuNDAtcmVtb3ZlYmctcHJldmlld10o
+aHR0cHM6Ly9la29ncm91cC5jb20ucm8/bWFpbHBvZXRfcm91dGVyJmVuZHBvaW50PXRyYWNrJmFj
+dGlvbj1jbGljayZkYXRhPVd6RTBNekF3TlN3aWJtbHhhV0Y2Y1hNellqUTBNR05qWjJzMFl6UnJO
+RFJ6T0c5aloyTnJZelFpTENJeE5qVWlMQ0ptTlRZek56YzJOVGhsWlRjaUxHWmhiSE5sWFEpCgpb
+Q2FwdHVyYcyGIGRlIGVjcmFuIGRpbiAyMDIyLTA3LTA1IGxhIDA5LjUzLjM2XShodHRwczovL2Vr
+b2dyb3VwLmNvbS5ybz9tYWlscG9ldF9yb3V0ZXImZW5kcG9pbnQ9dHJhY2smYWN0aW9uPWNsaWNr
+JmRhdGE9V3pFME16QXdOU3dpYm1seGFXRjZjWE16WWpRME1HTmpaMnMwWXpSck5EUnpPRzlqWjJO
+cll6UWlMQ0l4TmpVaUxDSTVZMkl6WWpneFlqWm1OV0VpTEdaaGJITmxYUSkKCltDYXB0dXJhzIYg
+ZGUgZWNyYW4gZGluIDIwMjItMDctMDUgbGEgMDkuMTEuNDBdKGh0dHBzOi8vZWtvZ3JvdXAuY29t
+LnJvP21haWxwb2V0X3JvdXRlciZlbmRwb2ludD10cmFjayZhY3Rpb249Y2xpY2smZGF0YT1XekUw
+TXpBd05Td2libWx4YVdGNmNYTXpZalEwTUdOaloyczBZelJyTkRSek9HOWpaMk5yWXpRaUxDSXhO
+alVpTENKbVpqRmlNbUV3WmpWbFl6SWlMR1poYkhObFhRKQoKW0ZlZWRiYWNrIGNsaWVudCBPT0hd
+KGh0dHBzOi8vZWtvZ3JvdXAuY29tLnJvP21haWxwb2V0X3JvdXRlciZlbmRwb2ludD10cmFjayZh
+Y3Rpb249Y2xpY2smZGF0YT1XekUwTXpBd05Td2libWx4YVdGNmNYTXpZalEwTUdOaloyczBZelJy
+TkRSek9HOWpaMk5yWXpRaUxDSXhOalVpTENKbVpqRmlNbUV3WmpWbFl6SWlMR1poYkhObFhRKQoK
+W0NhcHR1cmHMhiBkZSBlY3JhbiBkaW4gMjAyMi0wNy0wNSBsYSAwOS4xMi4xOF0oaHR0cHM6Ly9l
+a29ncm91cC5jb20ucm8/bWFpbHBvZXRfcm91dGVyJmVuZHBvaW50PXRyYWNrJmFjdGlvbj1jbGlj
+ayZkYXRhPVd6RTBNekF3TlN3aWJtbHhhV0Y2Y1hNellqUTBNR05qWjJzMFl6UnJORFJ6T0c5aloy
+TnJZelFpTENJeE5qVWlMQ0k0WkRjNU56WTBaR1JsTXpNaUxHWmhiSE5sWFEpCgpbRmVlZGJhY2sg
+Y2xpZW50IE9PSF0oaHR0cHM6Ly9la29ncm91cC5jb20ucm8/bWFpbHBvZXRfcm91dGVyJmVuZHBv
+aW50PXRyYWNrJmFjdGlvbj1jbGljayZkYXRhPVd6RTBNekF3TlN3aWJtbHhhV0Y2Y1hNellqUTBN
+R05qWjJzMFl6UnJORFJ6T0c5aloyTnJZelFpTENJeE5qVWlMQ0k0WkRjNU56WTBaR1JsTXpNaUxH
+WmhiSE5sWFEpCgpbQ2FwdHVyYcyGIGRlIGVjcmFuIGRpbiAyMDIyLTA3LTA1IGxhIDA5LjEzLjE3
+XShodHRwczovL2Vrb2dyb3VwLmNvbS5ybz9tYWlscG9ldF9yb3V0ZXImZW5kcG9pbnQ9dHJhY2sm
+YWN0aW9uPWNsaWNrJmRhdGE9V3pFME16QXdOU3dpYm1seGFXRjZjWE16WWpRME1HTmpaMnMwWXpS
+ck5EUnpPRzlqWjJOcll6UWlMQ0l4TmpVaUxDSmtPRFJqTm1FeFpEWXlNR1lpTEdaaGJITmxYUSkK
+CltGZWVkYmFjayBjbGllbnQgT09IXShodHRwczovL2Vrb2dyb3VwLmNvbS5ybz9tYWlscG9ldF9y
+b3V0ZXImZW5kcG9pbnQ9dHJhY2smYWN0aW9uPWNsaWNrJmRhdGE9V3pFME16QXdOU3dpYm1seGFX
+RjZjWE16WWpRME1HTmpaMnMwWXpSck5EUnpPRzlqWjJOcll6UWlMQ0l4TmpVaUxDSmtPRFJqTm1F
+eFpEWXlNR1lpTEdaaGJITmxYUSkKCltDYXB0dXJhzIYgZGUgZWNyYW4gZGluIDIwMjItMDctMDUg
+bGEgMDkuMDkuMzddKGh0dHBzOi8vZWtvZ3JvdXAuY29tLnJvP21haWxwb2V0X3JvdXRlciZlbmRw
+b2ludD10cmFjayZhY3Rpb249Y2xpY2smZGF0YT1XekUwTXpBd05Td2libWx4YVdGNmNYTXpZalEw
+TUdOaloyczBZelJyTkRSek9HOWpaMk5yWXpRaUxDSXhOalVpTENKaVpEWmpPRGt4TUdZeU1tSWlM
+R1poYkhObFhRKQoKW1VuIGJ1bGV2YXJkIGludHJlZyBkZSBzdGVhZ3VyaT9dKGh0dHBzOi8vZWtv
+Z3JvdXAuY29tLnJvP21haWxwb2V0X3JvdXRlciZlbmRwb2ludD10cmFjayZhY3Rpb249Y2xpY2sm
+ZGF0YT1XekUwTXpBd05Td2libWx4YVdGNmNYTXpZalEwTUdOaloyczBZelJyTkRSek9HOWpaMk5y
+WXpRaUxDSXhOalVpTENKaVpEWmpPRGt4TUdZeU1tSWlMR1poYkhObFhRKQoKW0NhcHR1cmHMhiBk
+ZSBlY3JhbiBkaW4gMjAyMi0wNy0wNSBsYSAwOS4wOC41NV0oaHR0cHM6Ly9la29ncm91cC5jb20u
+cm8/bWFpbHBvZXRfcm91dGVyJmVuZHBvaW50PXRyYWNrJmFjdGlvbj1jbGljayZkYXRhPVd6RTBN
+ekF3TlN3aWJtbHhhV0Y2Y1hNellqUTBNR05qWjJzMFl6UnJORFJ6T0c5aloyTnJZelFpTENJeE5q
+VWlMQ0kxTW1NM1lqTXdObUZtTVRraUxHWmhiSE5sWFEpCgpbRGUgY2UgbWluaW0gMyBzdGVhZ3Vy
+aSBjb25zZWN1dGl2ZSFdKGh0dHBzOi8vZWtvZ3JvdXAuY29tLnJvP21haWxwb2V0X3JvdXRlciZl
+bmRwb2ludD10cmFjayZhY3Rpb249Y2xpY2smZGF0YT1XekUwTXpBd05Td2libWx4YVdGNmNYTXpZ
+alEwTUdOaloyczBZelJyTkRSek9HOWpaMk5yWXpRaUxDSXhOalVpTENJMU1tTTNZak13Tm1GbU1U
+a2lMR1poYkhObFhRKQoKW0NhcHR1cmHMhiBkZSBlY3JhbiBkaW4gMjAyMi0wNy0wNyBsYSAxMC41
+Ni4zN10oaHR0cHM6Ly9la29ncm91cC5jb20ucm8/bWFpbHBvZXRfcm91dGVyJmVuZHBvaW50PXRy
+YWNrJmFjdGlvbj1jbGljayZkYXRhPVd6RTBNekF3TlN3aWJtbHhhV0Y2Y1hNellqUTBNR05qWjJz
+MFl6UnJORFJ6T0c5aloyTnJZelFpTENJeE5qVWlMQ0l5TmpWbU5URXlNREl4WlRFaUxHWmhiSE5s
+WFEpCgpbQ2UgZXN0ZSBPT0g/IChvdXQtb2YtaG9tZSldKGh0dHBzOi8vZWtvZ3JvdXAuY29tLnJv
+P21haWxwb2V0X3JvdXRlciZlbmRwb2ludD10cmFjayZhY3Rpb249Y2xpY2smZGF0YT1XekUwTXpB
+d05Td2libWx4YVdGNmNYTXpZalEwTUdOaloyczBZelJyTkRSek9HOWpaMk5yWXpRaUxDSXhOalVp
+TENJeU5qVm1OVEV5TURJeFpURWlMR1poYkhObFhRKQoKW0NhcHR1cmHMhiBkZSBlY3JhbiBkaW4g
+MjAyMi0wNy0wNyBsYSAxMC41NS41OV0oaHR0cHM6Ly9la29ncm91cC5jb20ucm8/bWFpbHBvZXRf
+cm91dGVyJmVuZHBvaW50PXRyYWNrJmFjdGlvbj1jbGljayZkYXRhPVd6RTBNekF3TlN3aWJtbHhh
+V0Y2Y1hNellqUTBNR05qWjJzMFl6UnJORFJ6T0c5aloyTnJZelFpTENJeE5qVWlMQ0psTUdaaFpt
+UTVNVEkyWmpraUxHWmhiSE5sWFEpCgpbRGUgY2Ugc2Egb3B0ZXppIHBlbnRydSBPT0g/XShodHRw
+czovL2Vrb2dyb3VwLmNvbS5ybz9tYWlscG9ldF9yb3V0ZXImZW5kcG9pbnQ9dHJhY2smYWN0aW9u
+PWNsaWNrJmRhdGE9V3pFME16QXdOU3dpYm1seGFXRjZjWE16WWpRME1HTmpaMnMwWXpSck5EUnpP
+RzlqWjJOcll6UWlMQ0l4TmpVaUxDSmxNR1poWm1RNU1USTJaamtpTEdaaGJITmxYUSkKCltDYXB0
+dXJhzIYgZGUgZWNyYW4gZGluIDIwMjItMDctMDcgbGEgMTAuNTUuMTNdKGh0dHBzOi8vZWtvZ3Jv
+dXAuY29tLnJvP21haWxwb2V0X3JvdXRlciZlbmRwb2ludD10cmFjayZhY3Rpb249Y2xpY2smZGF0
+YT1XekUwTXpBd05Td2libWx4YVdGNmNYTXpZalEwTUdOaloyczBZelJyTkRSek9HOWpaMk5yWXpR
+aUxDSXhOalVpTENJM01qWTFaV00zTnpBNFlURWlMR1poYkhObFhRKQoKW0RlIGNlIHN1bnQgaW1w
+b3J0YW50ZSBncmFmaWNhIHNpIG1lc2FqZWxlP10oaHR0cHM6Ly9la29ncm91cC5jb20ucm8/bWFp
+bHBvZXRfcm91dGVyJmVuZHBvaW50PXRyYWNrJmFjdGlvbj1jbGljayZkYXRhPVd6RTBNekF3TlN3
+aWJtbHhhV0Y2Y1hNellqUTBNR05qWjJzMFl6UnJORFJ6T0c5aloyTnJZelFpTENJeE5qVWlMQ0kz
+TWpZMVpXTTNOekE0WVRFaUxHWmhiSE5sWFEpCgpbbG9nb19la29ncm91cC1yZW1vdmViZy1wcmV2
+aWV3XShodHRwczovL2Vrb2dyb3VwLmNvbS5ybz9tYWlscG9ldF9yb3V0ZXImZW5kcG9pbnQ9dHJh
+Y2smYWN0aW9uPWNsaWNrJmRhdGE9V3pFME16QXdOU3dpYm1seGFXRjZjWE16WWpRME1HTmpaMnMw
+WXpSck5EUnpPRzlqWjJOcll6UWlMQ0l4TmpVaUxDSm1OMkkxTkRNd01ERTNZVGdpTEdaaGJITmxY
+USkKCltmYWNlYm9va10oaHR0cHM6Ly9la29ncm91cC5jb20ucm8/bWFpbHBvZXRfcm91dGVyJmVu
+ZHBvaW50PXRyYWNrJmFjdGlvbj1jbGljayZkYXRhPVd6RTBNekF3TlN3aWJtbHhhV0Y2Y1hNellq
+UTBNR05qWjJzMFl6UnJORFJ6T0c5aloyTnJZelFpTENJeE5qVWlMQ0l3WXpGaU1tVTNaalkzTjJZ
+aUxHWmhiSE5sWFEpIFtpbnN0YWdyYW1dKGh0dHBzOi8vZWtvZ3JvdXAuY29tLnJvP21haWxwb2V0
+X3JvdXRlciZlbmRwb2ludD10cmFjayZhY3Rpb249Y2xpY2smZGF0YT1XekUwTXpBd05Td2libWx4
+YVdGNmNYTXpZalEwTUdOaloyczBZelJyTkRSek9HOWpaMk5yWXpRaUxDSXhOalVpTENKbVlXWTBN
+elF3WWpsbU1HWWlMR1poYkhObFhRKQpbVW5zdWJzY3JpYmVdKGh0dHBzOi8vZWtvZ3JvdXAuY29t
+LnJvP21haWxwb2V0X3JvdXRlciZlbmRwb2ludD10cmFjayZhY3Rpb249Y2xpY2smZGF0YT1XekUw
+TXpBd05Td2libWx4YVdGNmNYTXpZalEwTUdOaloyczBZelJyTkRSek9HOWpaMk5yWXpRaUxDSXhO
+alVpTENJeU9ESmlabU0wTnpOaE1HSWlMR1poYkhObFhRKSB8IFtNYW5hZ2UgeW91ciBzdWJzY3Jp
+cHRpb25dKGh0dHBzOi8vZWtvZ3JvdXAuY29tLnJvP21haWxwb2V0X3JvdXRlciZlbmRwb2ludD10
+cmFjayZhY3Rpb249Y2xpY2smZGF0YT1XekUwTXpBd05Td2libWx4YVdGNmNYTXpZalEwTUdOaloy
+czBZelJyTkRSek9HOWpaMk5yWXpRaUxDSXhOalVpTENKbFptTXpORFExT1RKa056SWlMR1poYkhO
+bFhRKQpBZGQgeW91ciBwb3N0YWwgYWRkcmVzcyBoZXJlIQoKb2ZmaWNlQHB1YmxpY2l0YXRlT09I
+LnJvCnd3dy5wdWJsaWNpdGF0ZU9PSC5ybwoKW0Zhcm1lcnNNYXJrZXQtQm90dG9tXQoKW01haWxQ
+b2V0XShodHRwczovL2Vrb2dyb3VwLmNvbS5ybz9tYWlscG9ldF9yb3V0ZXImZW5kcG9pbnQ9dHJh
+Y2smYWN0aW9uPWNsaWNrJmRhdGE9V3pFME16QXdOU3dpYm1seGFXRjZjWE16WWpRME1HTmpaMnMw
+WXpSck5EUnpPRzlqWjJOcll6UWlMQ0l4TmpVaUxDSm1NR0UxTkdVMU5XUTNNakFpTEdaaGJITmxY
+USkKCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fClY5ZnMt
+ZGV2ZWxvcGVyIG1haWxpbmcgbGlzdApWOWZzLWRldmVsb3BlckBsaXN0cy5zb3VyY2Vmb3JnZS5u
+ZXQKaHR0cHM6Ly9saXN0cy5zb3VyY2Vmb3JnZS5uZXQvbGlzdHMvbGlzdGluZm8vdjlmcy1kZXZl
+bG9wZXIK
