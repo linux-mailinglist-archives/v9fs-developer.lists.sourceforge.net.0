@@ -2,102 +2,127 @@ Return-Path: <v9fs-developer-bounces@lists.sourceforge.net>
 X-Original-To: lists+v9fs-developer@lfdr.de
 Delivered-To: lists+v9fs-developer@lfdr.de
 Received: from lists.sourceforge.net (lists.sourceforge.net [216.105.38.7])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5B7155E66CA
-	for <lists+v9fs-developer@lfdr.de>; Thu, 22 Sep 2022 17:19:00 +0200 (CEST)
-Received: from [127.0.0.1] (helo=sfs-ml-4.v29.lw.sourceforge.com)
-	by sfs-ml-4.v29.lw.sourceforge.com with esmtp (Exim 4.95)
+	by mail.lfdr.de (Postfix) with ESMTPS id E61B75E68CA
+	for <lists+v9fs-developer@lfdr.de>; Thu, 22 Sep 2022 18:47:53 +0200 (CEST)
+Received: from [127.0.0.1] (helo=sfs-ml-2.v29.lw.sourceforge.com)
+	by sfs-ml-2.v29.lw.sourceforge.com with esmtp (Exim 4.95)
 	(envelope-from <v9fs-developer-bounces@lists.sourceforge.net>)
-	id 1obNyP-0000zr-MI;
-	Thu, 22 Sep 2022 15:18:58 +0000
+	id 1obPMd-0004C0-5y;
+	Thu, 22 Sep 2022 16:47:51 +0000
 Received: from [172.30.20.202] (helo=mx.sourceforge.net)
- by sfs-ml-4.v29.lw.sourceforge.com with esmtps (TLS1.2) tls
+ by sfs-ml-2.v29.lw.sourceforge.com with esmtps (TLS1.2) tls
  TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384 (Exim 4.95)
- (envelope-from <brauner@kernel.org>) id 1obNyP-0000zl-7E
+ (envelope-from <casey@schaufler-ca.com>) id 1obPMR-0004Bn-4d
  for v9fs-developer@lists.sourceforge.net;
- Thu, 22 Sep 2022 15:18:57 +0000
+ Thu, 22 Sep 2022 16:47:39 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=sourceforge.net; s=x; h=Content-Transfer-Encoding:MIME-Version:References:
- In-Reply-To:Message-Id:Date:Subject:Cc:To:From:Sender:Reply-To:Content-Type:
+ d=sourceforge.net; s=x; h=Content-Transfer-Encoding:Content-Type:In-Reply-To:
+ From:References:Cc:To:Subject:MIME-Version:Date:Message-ID:Sender:Reply-To:
  Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
  Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
  List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=q22p67zYbHX6aTd6nHDp5cQe3fzhKELi+GGS4CdHx0A=; b=LgSRSH8Mb5kBvu6yxoIw0678eB
- cuPOlKJddoziwLdYPKLlppsbJphfzaeb9WINJjBjJOrYbukU7qWaKTq4kiYs5Huj6ofBDgh/2djI3
- Ii/C6Cs/8TOFwH8e23PaC/nwzr57BzIQg8WFdqt/8rlqdl/bMDzvg2id4IeJ82vnvgGo=;
+ bh=HLuQousOxe85ItzKBGOzCJooyd+X6tRLuu1h8Oz3VYg=; b=Qx/8CiC6ewbMkj1PzOx2ZLUqO8
+ gJU7MICQ/cSCp2mKRiDYreuF2qN54u5rFbNWTDVbXKP4UAmqZ8f5Ahpc6VTlDrTan3vPc8rdrdnwc
+ fbcnHpdeqyYM2JBO4HbOj6cAi/jtYVr5+1EYtZMdjsm1J6k/Jmeo8iYqslUzQhuto56o=;
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  ;
- h=Content-Transfer-Encoding:MIME-Version:References:In-Reply-To:Message-Id:
- Date:Subject:Cc:To:From:Sender:Reply-To:Content-Type:Content-ID:
+ h=Content-Transfer-Encoding:Content-Type:In-Reply-To:From:References:Cc:To:
+ Subject:MIME-Version:Date:Message-ID:Sender:Reply-To:Content-ID:
  Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
  :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
  List-Post:List-Owner:List-Archive;
- bh=q22p67zYbHX6aTd6nHDp5cQe3fzhKELi+GGS4CdHx0A=; b=dECYZb3sfQa+dZ1iNDOrF0HM8S
- 1u1SqohhY12piGY/ZkBZUJWqybc29+yuMz2b7NdHQLe5UzLMNxB6KYJIbYkjmtycdiv87GcTquj29
- M638TUgP7ivtxVIUOIakgKbEK2ukPZDePMuXjICB3x+02GHyNgF7xDKeSPSX6LQT7Lb0=;
-Received: from ams.source.kernel.org ([145.40.68.75])
+ bh=HLuQousOxe85ItzKBGOzCJooyd+X6tRLuu1h8Oz3VYg=; b=Yu0wqKUkSNRTxs48YpYzOijyPB
+ Fs56rNnZMRBWDNUQFf9aFXZfSTcpthpkfm9WFsumu08DrQQmdQgnMizJXQzN80l07ZLjUSIzbl6f0
+ WU22nLICbpwQ1e5btLIDnAN3eryyepQSBSKZ4R4WK/7LIJec6yC20Lq04m4J2aMsGeXY=;
+Received: from sonic306-27.consmr.mail.ne1.yahoo.com ([66.163.189.89])
  by sfi-mx-1.v28.lw.sourceforge.com with esmtps
- (TLS1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.95)
- id 1obNya-00GfOh-Ta for v9fs-developer@lists.sourceforge.net;
- Thu, 22 Sep 2022 15:18:57 +0000
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
- (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
- (No client certificate requested)
- by ams.source.kernel.org (Postfix) with ESMTPS id AAB5BB83841;
- Thu, 22 Sep 2022 15:18:50 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 51A18C433D6;
- Thu, 22 Sep 2022 15:18:47 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1663859929;
- bh=5n5uujRREZjQVxR5Xb8M2kXzoUMcHCvRiB5/s0v59Ls=;
- h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
- b=gaSfs80Y1dIGsf5eAtabiNuaZNItm1FSmR1S8zlWZa03dci6U3jDwQd6DYIxSVUXl
- Rpisd8/6PG51b3iByDg6tE1oETD/KsmLztJi148pPauj9klJb11mPFKl2pW4RXr0MY
- PA/ZDmH1WO82gBk/iOPrStJkEEJY+LVeNTSAf854IXvaLbLH62fdgauBnqeC1v81Jv
- rr6NjXKy7wVq5fe7FcitTOvWeatxMCwBBcsQS1AAhcRWDBq5UzaqBg8ccm6kRyZX4I
- 15KYtq1YqrcSuetxdvd2iMZvkS+Dw11nIVm4OlI74JUqUtr2GFdzDdirk6Esokak2x
- c2hj/X6iYshsg==
-From: Christian Brauner <brauner@kernel.org>
-To: linux-fsdevel@vger.kernel.org
-Date: Thu, 22 Sep 2022 17:17:26 +0200
-Message-Id: <20220922151728.1557914-29-brauner@kernel.org>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20220922151728.1557914-1-brauner@kernel.org>
-References: <20220922151728.1557914-1-brauner@kernel.org>
+ (TLS1.2:ECDHE-RSA-AES128-GCM-SHA256:128) (Exim 4.95)
+ id 1obPMQ-00Gj7X-9g for v9fs-developer@lists.sourceforge.net;
+ Thu, 22 Sep 2022 16:47:39 +0000
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yahoo.com; s=s2048;
+ t=1663865252; bh=HLuQousOxe85ItzKBGOzCJooyd+X6tRLuu1h8Oz3VYg=;
+ h=Date:Subject:To:Cc:References:From:In-Reply-To:From:Subject:Reply-To;
+ b=JvGtuPQ9Dy4Oaek5OC4w6eB3t1wKsg2nh4yV8TPKPhFC0jfk99BF24AZiIMhMB+80JDvaM6l3RKsL9tObtS5H9pEMTAqz+pcjERAWGSYb2gAsxLzjB4o793DLVKmmWdtj53PQ51JecwIuhgUlod6RVb1LBlDLGEk5exkRPEfp10E3eSKjyxd03i2URBmT4AeX4x0SCkRui+mZYHqN9lmNei0VhZxHPGsoSf4LyvhMjWFAFs88WYgNnnN8MowcoPhcNCXquoCs/Po5BVQJpzlyCxe9xB1JOEtd5Ega9DQd98gaa2T5p5VmeXLAc5tIJ3kmQ8E9hZDRlXjAsZraA1HZQ==
+X-SONIC-DKIM-SIGN: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yahoo.com; s=s2048;
+ t=1663865252; bh=WPJaKObeKUrol5KuGvsZxgB+wqBYE8xXrlkksQHpX6O=;
+ h=X-Sonic-MF:Date:Subject:To:From:From:Subject;
+ b=Yi3b4i+IIilsSrpA1Mt/7m0I3QeWxSX/hxckG0xx2JjXLOnSUD0QU4SveDYaGeFUNnyh18iP/otuSupFHa3I2kD4YJ++BygqXDksvAiSACP9i+W/O2VjrhzwteM1SUJaNCH7m5FUngx91j3n5r9Kly5KPb5xHi4/2StGkOqsuh1fI3uiEHl83V5dXhi7mrsLzOZSFQfoBwBDjNfd4ouGkkfetpXT/u0Ybk5vbURiyhSYzOlHDHaZgv9lBrz8SqnY5RZ6lCbxQiH51LxRGaglxXGH4IZGiFVJxrZeVhQEPVDBB1N1kA8EybtP7fus1Xg9whk2meVsFOJCYSqchaH05Q==
+X-YMail-OSG: f5ydc9QVM1k7l1ohbr0jcrv8Un_EBpkKiqfkcN1GW_4p2A5EoNiwnZqiq2Gahix
+ tIfkYa2DOehcBuyYAwgsjrioDTGPCpagtmSQ2HNOqqq5vH3jGzjKkjW3XyXuz07fdGxRLVKh3bLg
+ aQhdHshX.G4R3h3Zh1HTcjs.B4BMb8U9WSFf5_SU0aAPQtC1tSwhqNyE5c3O3UwfhoAirGEG.7cC
+ pkJqhHWJf.s1J09eC3XNLeg18kn3yXN3ZBTF3JNwr4dtgJak9l9f0LGKYtN1uiLj8hjKt13t9vCZ
+ jSSyh0ry_pI9tYXN5.nJlIXjAAKn01Ma7idTpgKRSN5OReHlkoKh6CxcPoptMFDWUYMzcsN7O1Ql
+ IhLkVvl_WnFVpx7awaPtO_ILCl9EYxCwMiiZIrBDKstze9kuEujQq3U8t3JwirU5N47kusx70O6C
+ N6VH5rc6S8eWusPTqN1Dj_sH9XsxvtYWV3gxR7yTL4rZH.grFVvqrt0iEe.TlLypS_x1e_k0vYok
+ op4blUDGKCPwbXsE6hlClgDy28AYa42poGZoHHsmZSTKopAg7QPqSw5gwnDP7ZFFZO8IijbOWKJh
+ 3daYLhnHp.aTT190DGZq81OggjA7aWJSO1ArH5xMZcKFHFr7FTq39_SL2YftUDNBFoshl9xZsN1p
+ 7jpa0RRtkL99457X97Y35Co.12Ca394JZLTfCOO93qzWJjRa150NmzXKU7oAgKTIgkSpYdfZ7tJI
+ TBR4AyYqDx7CPvknwaED5fpSyX8CqzDknnSwAPMgbm3mWEprjz5yAo_f.m2IVUeDFnPxnjbnA_YV
+ 1KiSm3qxb0WRwfkqTpenCHG.5qpLK8nYa4jgLf.o.maFjWqx0TDSM_nLnPb_2gHKE3zpAP4ffS3y
+ 57G7D5sEnKmeUQr6Tt1.yozx_.kJCKB_H70ObOyNQ0E4xOwdZyiRsjevl3t_f4CYfwnXcnyieuDd
+ rydogEf6aRLtATGNqp2iziCIY.Jug0I9Gaa0dK_.SE5cYzUgqHIDWjvO4rZdrq2.KU5yNANYgsG2
+ d4POCv5x9TGi_toDam3vlfqgljywx0gmJiCcGKEDp.M0iyToPySKn7RObpAse2t5cc8NJDYaaO2P
+ pWi7j5N_mZwwWYnBVpcyJWpCr4J5DLjRhPsjEJkPJ1smYdKq7ZDfZ0E1ZOKRwOnE3BfFf_pfFZ7O
+ jOwvXiwLQK4ihhu4669.NifzP2vLzfrvN0eSfMU2b5GjMbsOuu7gd8iLfoieNgCnvIcWIECGb29T
+ BUCosGkL_NeIw_ahIgMNwVXUTaOBPtZtZJsXCjfywgj4Q25BaS1qahrlGkVgGfnMGDlr5WAGuRW0
+ N8IhuuCuSxY.SdjMdVlhlHO9ADB1TR6RVpoyCqCW2Qb4j3_amERC6Pfq0YGGpwJm_IcKejb67QHV
+ fF3L5LAxR8yQ.vs1ewfoMJ_vQN3rY0.ffCNwk9KdmmtY5fBF1jpECEeWYgnhSu4XGcSt0BEuFqPj
+ ZBImzjTWj5x.kkDMBaa4s3hTYXplWLiR5hfH8VCUBGWShxNfd1LZ.nJA9L6QJm_6WFbKEc88qNoV
+ JBioltqYz_U5ut92wwGvmu7AI6RFYB89Pg7saJm.h9Sye88F_NtM38mN3Kaa5LBnOZyBCrsax5L1
+ ANY.df7R61EdyKopPbuBdvvNQzd_hh41NhjED01_IOzbK978uK9x9aDG2RHbTFxBJ4F_EGPUBFL8
+ BnCWLZyo8XMtTeToI8E36mNSBMj_xU.ICEaoKv.u3f2SJMh_7hMHc1BxpMEb5gNCe4Z9sbiMe6.x
+ kfqa.Pn2kzrP4gjQ1UGpWNBTTUqn180V7dKMrC7T2.tLI0Gd3c1I0tUhPx7JulMrCKhXzzH_0_wq
+ 2CPUripjjJSX_e2ojdt3baExHLhw7QmFjcrFU71tHkjne1m8gcH494dewy0tPxoIZyKaYYbkShH6
+ SKIJ9TNPuloXeFvQpSPlpvcYudPKbZLP8l3CvxuAs7ZJ9nom.m_BWr_1WqCTeWDDmvGlh9X6.g6W
+ M6BQOZo1uJXAEAHA7Nc6riHhUXup_yjSPDI26AISc4TwmfABtlFcFJndJxO7aRJQRcnsf5K0W8ei
+ ELJti6viwuAdDtJ7gULm1Mmrg6QFjHvkHzQoC2Eh3a8b0gZXPzijVe3Rfp1sQI0hE20X6RxmLJzs
+ uetAlHe_kGU7Jb97icngcoJH4.A1UbSdw7UML2gaQ9.dt8zNBA4Qy19EPRW2k6Ww59S8wIw0I5ox
+ ahmLcH580L4vuppt2g9tBxo78_IZkPAb89JvbE8U6rGFEcGhkcZ1Pf9o5fzM5lt8GQkXDAcRGy0N
+ RIOtdITdM73m0aeRTJ15YgDopgQ--
+X-Sonic-MF: <casey@schaufler-ca.com>
+Received: from sonic.gate.mail.ne1.yahoo.com by
+ sonic306.consmr.mail.ne1.yahoo.com with HTTP; Thu, 22 Sep 2022 16:47:32 +0000
+Received: by hermes--production-bf1-64b498bbdd-ds6cg (Yahoo Inc. Hermes SMTP
+ Server) with ESMTPA ID 803b97668af2e2870df2ffe80b36b598; 
+ Thu, 22 Sep 2022 16:27:13 +0000 (UTC)
+Message-ID: <d74030ae-4b9a-5b39-c203-4b813decd9eb@schaufler-ca.com>
+Date: Thu, 22 Sep 2022 09:27:10 -0700
 MIME-Version: 1.0
-X-Developer-Signature: v=1; a=openpgp-sha256; l=5343; i=brauner@kernel.org;
- h=from:subject; bh=5n5uujRREZjQVxR5Xb8M2kXzoUMcHCvRiB5/s0v59Ls=;
- b=owGbwMvMwCU28Zj0gdSKO4sYT6slMSTr1NTWa90Orsx0X9L72O0uh/vztTfeTFoV8urZTP+0Qx/F
- dKxfdpSyMIhxMciKKbI4tJuEyy3nqdhslKkBM4eVCWQIAxenAEzk0BJGhr8Gr1z9p0lv/l3S/cix0U
- fB2O2P1laBvEsyT7/kVHhEhjIy7EtOn5S2otNogkGaiOPll4+TSw3OSH82+cjk9POmuIoqHwA=
-X-Developer-Key: i=brauner@kernel.org; a=openpgp;
- fpr=4880B8C9BD0E5106FC070F4F7B3C391EFEA93624
-X-Spam-Score: -5.9 (-----)
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
+ Thunderbird/91.13.1
+Content-Language: en-US
+To: Christian Brauner <brauner@kernel.org>, linux-fsdevel@vger.kernel.org
+References: <20220922151728.1557914-1-brauner@kernel.org>
+From: Casey Schaufler <casey@schaufler-ca.com>
+In-Reply-To: <20220922151728.1557914-1-brauner@kernel.org>
+X-Mailer: WebService/1.1.20663
+ mail.backend.jedi.jws.acl:role.jedi.acl.token.atz.jws.hermes.yahoo
+X-Spam-Score: -2.0 (--)
 X-Spam-Report: Spam detection software,
  running on the system "util-spamd-1.v13.lw.sourceforge.com", 
  has NOT identified this incoming email as spam.  The original
  message has been attached to this so you can view it or label
  similar future email.  If you have any questions, see
  the administrator of that system for details.
- Content preview:  Now that 9p supports the get and set acl inode operations
- and the vfs has been switched to the new posi api, 9p can simply rely on the
- stub posix acl handlers. The custom xattr handlers and associated [...] 
- Content analysis details:   (-5.9 points, 6.0 required)
+ Content preview:  On 9/22/2022 8:16 AM,
+ Christian Brauner wrote: > From: "Christian
+ Brauner (Microsoft)" <brauner@kernel.org> Could we please see the entire
+ patch set on the LSM list? ( linux-security-module@vger.kernel.org ) It's
+ really tough to judge the importance of adding a new LSM hook without seeing
+ both how it is cal [...] 
+ Content analysis details:   (-2.0 points, 6.0 required)
  pts rule name              description
  ---- ---------------------- --------------------------------------------------
- -5.0 RCVD_IN_DNSWL_HI       RBL: Sender listed at https://www.dnswl.org/,
- high trust [145.40.68.75 listed in list.dnswl.org]
+ -0.0 RCVD_IN_DNSWL_NONE     RBL: Sender listed at https://www.dnswl.org/,
+ no trust [66.163.189.89 listed in list.dnswl.org]
+ 0.0 SPF_NONE               SPF: sender does not publish an SPF Record
  0.0 SPF_HELO_NONE          SPF: HELO does not publish an SPF Record
- -0.0 SPF_PASS               SPF: sender matches SPF record
  0.1 DKIM_SIGNED            Message has a DKIM or DK signature, not necessarily
  valid
- -0.1 DKIM_VALID_EF          Message has a valid DKIM or DK signature from
- envelope-from domain
- -0.1 DKIM_VALID_AU          Message has a valid DKIM or DK signature from
- author's domain
  -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
- -0.7 DKIMWL_WL_HIGH         DKIMwl.org - High trust sender
-X-Headers-End: 1obNya-00GfOh-Ta
-Subject: [V9fs-developer] [PATCH 28/29] 9p: use stub posix acl handlers
+ -2.0 NICE_REPLY_A           Looks like a legit reply (A)
+X-Headers-End: 1obPMQ-00Gj7X-9g
+Subject: Re: [V9fs-developer] [RFC PATCH 00/29] acl: add vfs posix acl api
 X-BeenThere: v9fs-developer@lists.sourceforge.net
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -109,196 +134,25 @@ List-Post: <mailto:v9fs-developer@lists.sourceforge.net>
 List-Help: <mailto:v9fs-developer-request@lists.sourceforge.net?subject=help>
 List-Subscribe: <https://lists.sourceforge.net/lists/listinfo/v9fs-developer>, 
  <mailto:v9fs-developer-request@lists.sourceforge.net?subject=subscribe>
-Cc: Latchesar Ionkov <lucho@ionkov.net>, Christian Brauner <brauner@kernel.org>,
- Eric Van Hensbergen <ericvh@gmail.com>,
- Christian Schoenebeck <linux_oss@crudebyte.com>,
- Seth Forshee <sforshee@kernel.org>, v9fs-developer@lists.sourceforge.net,
- Christoph Hellwig <hch@lst.de>, Al Viro <viro@zeniv.linux.org.uk>
+Cc: linux-cifs@vger.kernel.org, linux-security-module@vger.kernel.org,
+ Seth Forshee <sforshee@kernel.org>, casey@schaufler-ca.com,
+ v9fs-developer@lists.sourceforge.net, linux-integrity@vger.kernel.org,
+ Linus Torvalds <torvalds@linux-foundation.org>, Christoph Hellwig <hch@lst.de>,
+ Al Viro <viro@zeniv.linux.org.uk>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: v9fs-developer-bounces@lists.sourceforge.net
 
-Now that 9p supports the get and set acl inode operations and the vfs
-has been switched to the new posi api, 9p can simply rely on the stub
-posix acl handlers. The custom xattr handlers and associated unused
-helpers can be removed.
+On 9/22/2022 8:16 AM, Christian Brauner wrote:
+> From: "Christian Brauner (Microsoft)" <brauner@kernel.org>
 
-Signed-off-by: Christian Brauner (Microsoft) <brauner@kernel.org>
----
- fs/9p/acl.c   | 121 --------------------------------------------------
- fs/9p/xattr.c |   7 +--
- fs/9p/xattr.h |   2 -
- 3 files changed, 4 insertions(+), 126 deletions(-)
-
-diff --git a/fs/9p/acl.c b/fs/9p/acl.c
-index ad54f8ce0804..8fb88e440602 100644
---- a/fs/9p/acl.c
-+++ b/fs/9p/acl.c
-@@ -357,124 +357,3 @@ int v9fs_acl_mode(struct inode *dir, umode_t *modep,
- 	*modep  = mode;
- 	return 0;
- }
--
--static int v9fs_xattr_get_acl(const struct xattr_handler *handler,
--			      struct dentry *dentry, struct inode *inode,
--			      const char *name, void *buffer, size_t size)
--{
--	struct v9fs_session_info *v9ses;
--	struct posix_acl *acl;
--	int error;
--
--	v9ses = v9fs_dentry2v9ses(dentry);
--	/*
--	 * We allow set/get/list of acl when access=client is not specified
--	 */
--	if ((v9ses->flags & V9FS_ACCESS_MASK) != V9FS_ACCESS_CLIENT)
--		return v9fs_xattr_get(dentry, handler->name, buffer, size);
--
--	acl = v9fs_get_cached_acl(inode, handler->flags);
--	if (IS_ERR(acl))
--		return PTR_ERR(acl);
--	if (acl == NULL)
--		return -ENODATA;
--	error = posix_acl_to_xattr(&init_user_ns, acl, buffer, size);
--	posix_acl_release(acl);
--
--	return error;
--}
--
--static int v9fs_xattr_set_acl(const struct xattr_handler *handler,
--			      struct user_namespace *mnt_userns,
--			      struct dentry *dentry, struct inode *inode,
--			      const char *name, const void *value,
--			      size_t size, int flags)
--{
--	int retval;
--	struct posix_acl *acl;
--	struct v9fs_session_info *v9ses;
--
--	v9ses = v9fs_dentry2v9ses(dentry);
--	/*
--	 * set the attribute on the remote. Without even looking at the
--	 * xattr value. We leave it to the server to validate
--	 */
--	if ((v9ses->flags & V9FS_ACCESS_MASK) != V9FS_ACCESS_CLIENT)
--		return v9fs_xattr_set(dentry, handler->name, value, size,
--				      flags);
--
--	if (S_ISLNK(inode->i_mode))
--		return -EOPNOTSUPP;
--	if (!inode_owner_or_capable(&init_user_ns, inode))
--		return -EPERM;
--	if (value) {
--		/* update the cached acl value */
--		acl = posix_acl_from_xattr(&init_user_ns, value, size);
--		if (IS_ERR(acl))
--			return PTR_ERR(acl);
--		else if (acl) {
--			retval = posix_acl_valid(inode->i_sb->s_user_ns, acl);
--			if (retval)
--				goto err_out;
--		}
--	} else
--		acl = NULL;
--
--	switch (handler->flags) {
--	case ACL_TYPE_ACCESS:
--		if (acl) {
--			struct iattr iattr = { 0 };
--			struct posix_acl *old_acl = acl;
--
--			retval = posix_acl_update_mode(&init_user_ns, inode,
--						       &iattr.ia_mode, &acl);
--			if (retval)
--				goto err_out;
--			if (!acl) {
--				/*
--				 * ACL can be represented
--				 * by the mode bits. So don't
--				 * update ACL.
--				 */
--				posix_acl_release(old_acl);
--				value = NULL;
--				size = 0;
--			}
--			iattr.ia_valid = ATTR_MODE;
--			/* FIXME should we update ctime ?
--			 * What is the following setxattr update the
--			 * mode ?
--			 */
--			v9fs_vfs_setattr_dotl(&init_user_ns, dentry, &iattr);
--		}
--		break;
--	case ACL_TYPE_DEFAULT:
--		if (!S_ISDIR(inode->i_mode)) {
--			retval = acl ? -EINVAL : 0;
--			goto err_out;
--		}
--		break;
--	default:
--		BUG();
--	}
--	retval = v9fs_xattr_set(dentry, handler->name, value, size, flags);
--	if (!retval)
--		set_cached_acl(inode, handler->flags, acl);
--err_out:
--	posix_acl_release(acl);
--	return retval;
--}
--
--const struct xattr_handler v9fs_xattr_acl_access_handler = {
--	.name	= XATTR_NAME_POSIX_ACL_ACCESS,
--	.flags	= ACL_TYPE_ACCESS,
--	.get	= v9fs_xattr_get_acl,
--	.set	= v9fs_xattr_set_acl,
--};
--
--const struct xattr_handler v9fs_xattr_acl_default_handler = {
--	.name	= XATTR_NAME_POSIX_ACL_DEFAULT,
--	.flags	= ACL_TYPE_DEFAULT,
--	.get	= v9fs_xattr_get_acl,
--	.set	= v9fs_xattr_set_acl,
--};
-diff --git a/fs/9p/xattr.c b/fs/9p/xattr.c
-index 1f9298a4bd42..ae6a93871338 100644
---- a/fs/9p/xattr.c
-+++ b/fs/9p/xattr.c
-@@ -8,6 +8,7 @@
- #include <linux/fs.h>
- #include <linux/sched.h>
- #include <linux/uio.h>
-+#include <linux/posix_acl_xattr.h>
- #include <net/9p/9p.h>
- #include <net/9p/client.h>
- 
-@@ -182,9 +183,9 @@ static struct xattr_handler v9fs_xattr_security_handler = {
- const struct xattr_handler *v9fs_xattr_handlers[] = {
- 	&v9fs_xattr_user_handler,
- 	&v9fs_xattr_trusted_handler,
--#ifdef CONFIG_9P_FS_POSIX_ACL
--	&v9fs_xattr_acl_access_handler,
--	&v9fs_xattr_acl_default_handler,
-+#ifdef CONFIG_FS_POSIX_ACL
-+	&posix_acl_access_xattr_handler,
-+	&posix_acl_default_xattr_handler,
- #endif
- #ifdef CONFIG_9P_FS_SECURITY
- 	&v9fs_xattr_security_handler,
-diff --git a/fs/9p/xattr.h b/fs/9p/xattr.h
-index 3e11fc3331eb..b5636e544c8a 100644
---- a/fs/9p/xattr.h
-+++ b/fs/9p/xattr.h
-@@ -11,8 +11,6 @@
- #include <net/9p/client.h>
- 
- extern const struct xattr_handler *v9fs_xattr_handlers[];
--extern const struct xattr_handler v9fs_xattr_acl_access_handler;
--extern const struct xattr_handler v9fs_xattr_acl_default_handler;
- 
- ssize_t v9fs_fid_xattr_get(struct p9_fid *fid, const char *name,
- 			   void *buffer, size_t buffer_size);
--- 
-2.34.1
+Could we please see the entire patch set on the LSM list?
+( linux-security-module@vger.kernel.org )
+It's really tough to judge the importance of adding a new
+LSM hook without seeing both how it is called and how the
+security modules are expected to fulfill it. In particular,
+it is important to see how a posix acl is different from
+any other xattr. 
 
 
 
