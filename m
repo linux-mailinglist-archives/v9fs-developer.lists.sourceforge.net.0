@@ -2,117 +2,75 @@ Return-Path: <v9fs-developer-bounces@lists.sourceforge.net>
 X-Original-To: lists+v9fs-developer@lfdr.de
 Delivered-To: lists+v9fs-developer@lfdr.de
 Received: from lists.sourceforge.net (lists.sourceforge.net [216.105.38.7])
-	by mail.lfdr.de (Postfix) with ESMTPS id F03205E6CFA
-	for <lists+v9fs-developer@lfdr.de>; Thu, 22 Sep 2022 22:23:56 +0200 (CEST)
-Received: from [127.0.0.1] (helo=sfs-ml-2.v29.lw.sourceforge.com)
-	by sfs-ml-2.v29.lw.sourceforge.com with esmtp (Exim 4.95)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0D26F5E6EEE
+	for <lists+v9fs-developer@lfdr.de>; Thu, 22 Sep 2022 23:57:53 +0200 (CEST)
+Received: from [127.0.0.1] (helo=sfs-ml-1.v29.lw.sourceforge.com)
+	by sfs-ml-1.v29.lw.sourceforge.com with esmtp (Exim 4.95)
 	(envelope-from <v9fs-developer-bounces@lists.sourceforge.net>)
-	id 1obSji-0008Sv-43;
-	Thu, 22 Sep 2022 20:23:54 +0000
+	id 1obUCZ-0003Sr-MW;
+	Thu, 22 Sep 2022 21:57:47 +0000
 Received: from [172.30.20.202] (helo=mx.sourceforge.net)
- by sfs-ml-2.v29.lw.sourceforge.com with esmtps (TLS1.2) tls
+ by sfs-ml-1.v29.lw.sourceforge.com with esmtps (TLS1.2) tls
  TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384 (Exim 4.95)
- (envelope-from <floridsleeves@gmail.com>) id 1obSjf-0008So-So
+ (envelope-from <serge@mail.hallyn.com>) id 1obUCX-0003Sk-FJ
  for v9fs-developer@lists.sourceforge.net;
- Thu, 22 Sep 2022 20:23:52 +0000
+ Thu, 22 Sep 2022 21:57:45 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=sourceforge.net; s=x; h=Content-Transfer-Encoding:MIME-Version:Message-Id:
- Date:Subject:Cc:To:From:Sender:Reply-To:Content-Type:Content-ID:
- Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
- :Resent-Message-ID:In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:
+ d=sourceforge.net; s=x; h=In-Reply-To:Content-Type:MIME-Version:References:
+ Message-ID:Subject:Cc:To:From:Date:Sender:Reply-To:Content-Transfer-Encoding:
+ Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+ Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
  List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=rnAvdVu9FLu4hHv77Hq5ubLTsOszBSQGiSlWfmI2aZ4=; b=bapwEVsymdv/+tb8WO3Gp6S9im
- ds6VMLS8iDiS1iwX0d+YP1u212TbU/Lk57+W/AeUJRznte0gC28rTLEO5D4RG+uZy5PEtjd0f0G+7
- gnku98JdfHOcZLY0sCnLBUYVfG/HWqaMIW4GfjMbmoIdbao6urXuBzpMBtZOI8BGvzTc=;
+ bh=wJUxzQDvo7TogwCTq5zrgUTo98sK/zDoZLElaK/NKVs=; b=m0kd5cubZOST+LNynCyf5OlM1A
+ x0wdWES4OjcAWkURHGpdLKnJ/llnaMvyb95jEjFXYZMUrrCTqlHlx8h0OotNSuCJUJb5vnmWjouHw
+ Cp/WouN2zJpgX3qMtOY7kbnMOAPiA7MNR650sJPu+7PS0p7Ca8VvaOSuJXzMSKFsPZe8=;
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  ;
- h=Content-Transfer-Encoding:MIME-Version:Message-Id:Date:Subject:Cc:To:From
- :Sender:Reply-To:Content-Type:Content-ID:Content-Description:Resent-Date:
- Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:
- References:List-Id:List-Help:List-Unsubscribe:List-Subscribe:List-Post:
- List-Owner:List-Archive; bh=rnAvdVu9FLu4hHv77Hq5ubLTsOszBSQGiSlWfmI2aZ4=; b=N
- MQtRA5iIOmO9sGnm95hXaMAKJQ/dMTIHAhZB2y/jkAhle0YCsb63YnYqyC6GAOiYC6X/FERzNumuo
- CGu6QtXZMoWN8MmsxVtZNgGsIOokKTNRAxFnOh1j7qiGIc4o2DFkecFmRN9f1F/HnaUdgXIcCa4M7
- 2SwIUtM4BcjInVMs=;
-Received: from mail-pg1-f179.google.com ([209.85.215.179])
+ h=In-Reply-To:Content-Type:MIME-Version:References:Message-ID:Subject:Cc:To
+ :From:Date:Sender:Reply-To:Content-Transfer-Encoding:Content-ID:
+ Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
+ :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
+ List-Post:List-Owner:List-Archive;
+ bh=wJUxzQDvo7TogwCTq5zrgUTo98sK/zDoZLElaK/NKVs=; b=esj86lLW6Sev5jNXr9xPLnoSCG
+ i5Y28SrzGG9ULZOJU2tl2wXJC7TLDP7/5evuMm0BQmxLa7wUsMSCx6nJh5sQIxZhxQJ4WQh/b2AbO
+ kvvWUq0CKzfk0pEkYnoIrQM3e6YVWOzYyu1Z7I7ayiT9I33t25hXaO9vw83JmLpRoxfc=;
+Received: from mail.hallyn.com ([178.63.66.53])
  by sfi-mx-1.v28.lw.sourceforge.com with esmtps
- (TLS1.2:ECDHE-RSA-AES128-GCM-SHA256:128) (Exim 4.95)
- id 1obSjb-00Gtmj-Ki for v9fs-developer@lists.sourceforge.net;
- Thu, 22 Sep 2022 20:23:51 +0000
-Received: by mail-pg1-f179.google.com with SMTP id 78so10257110pgb.13
- for <v9fs-developer@lists.sourceforge.net>;
- Thu, 22 Sep 2022 13:23:47 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
- h=content-transfer-encoding:mime-version:message-id:date:subject:cc
- :to:from:from:to:cc:subject:date;
- bh=rnAvdVu9FLu4hHv77Hq5ubLTsOszBSQGiSlWfmI2aZ4=;
- b=kE6za50xvtoastKvMIJRTIGHsR3JNvDBA8AnSVVBZ7+qfsQ0N6KrP1ml7dZm4lvZOD
- UgCW/Y++wX+aihZOGtVFMzSzjba/Ejn0LYEmszKLAsGUfEhqQgfAFh3s22u3LkeTHsSb
- c2yZ2tKofdsPKgUMtyz+t4gPaBWTNJ5GzfkiHwNUYusCetiZHM4nKjWKdAO+PLYey9ls
- 1DEyrFIdt8DMkhmz9inif/4VZpby02U+7IbUtKWyjgz7erfuyZEubS3WtmKQGUjcGELe
- pPs4Gc3FeGcoeIcwzZ296e5CZJmPiWjOiWdDVP/QnevGY5xpWMIpbPAQDp5IOoOBQa8g
- 0Gqg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20210112;
- h=content-transfer-encoding:mime-version:message-id:date:subject:cc
- :to:from:x-gm-message-state:from:to:cc:subject:date;
- bh=rnAvdVu9FLu4hHv77Hq5ubLTsOszBSQGiSlWfmI2aZ4=;
- b=G3q30op3PFKaVZITxrifb76B+nBJF+BHTxGcMyZpdY5l8Ie3pJsSgLpvQwrAD9uEFK
- 583P+VOhQcvTCFXesx6Y1ACit8zdnsulJQ8h/2r8MWkuZKKKt8VJSsdxSINVOHT+TBZa
- 2hSoogxwGtSFZp8p7casHY/ujYh/jwp5pp+PBhnrkLYH0tphc3aa+ewJqUdbXZ2kkNBD
- 83l09HLD62kBgqSVsN5Cn5/lqSP4C+PvuM/od8Kh8u9ynz8DnGhGdtlKBZsa3ITsh6pZ
- t2OYpjc/9O84O1d6/oUgDs/EDsotcl8GWx0chFFey6F1gKnPOpBfH6aV+i11boIX9EJW
- eoAg==
-X-Gm-Message-State: ACrzQf0IQwIkt6HjLrWlVhUAtsN/rB7AUtp/KRX+XZQTNDhnragJhC+0
- nj2lmpI20u3QRrKeEaBMlQs=
-X-Google-Smtp-Source: AMsMyM4qvEC/Guf3tdC1kRI3dUlyCSiXHylfJP+UC90zfvcOP5hZd/Euh9mdrPmZNB7sPBXE6zDLUw==
-X-Received: by 2002:a63:1554:0:b0:43b:f03d:8651 with SMTP id
- 20-20020a631554000000b0043bf03d8651mr4411783pgv.422.1663878221879; 
- Thu, 22 Sep 2022 13:23:41 -0700 (PDT)
-Received: from localhost.localdomain (lily-optiplex-3070.dynamic.ucsd.edu.
- [2607:f720:1300:3033::1:4dd]) by smtp.googlemail.com with ESMTPSA id
- k18-20020aa79732000000b00545832dd969sm4934312pfg.145.2022.09.22.13.23.40
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Thu, 22 Sep 2022 13:23:41 -0700 (PDT)
-From: Li Zhong <floridsleeves@gmail.com>
-To: netdev@vger.kernel.org,
-	v9fs-developer@lists.sourceforge.net
-Date: Thu, 22 Sep 2022 13:23:21 -0700
-Message-Id: <20220922202321.1705245-1-floridsleeves@gmail.com>
-X-Mailer: git-send-email 2.25.1
+ (TLS1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.95)
+ id 1obUCW-00GxKC-5Q for v9fs-developer@lists.sourceforge.net;
+ Thu, 22 Sep 2022 21:57:45 +0000
+Received: by mail.hallyn.com (Postfix, from userid 1001)
+ id DEE18C1D; Thu, 22 Sep 2022 16:57:31 -0500 (CDT)
+Date: Thu, 22 Sep 2022 16:57:31 -0500
+From: "Serge E. Hallyn" <serge@hallyn.com>
+To: Paul Moore <paul@paul-moore.com>
+Message-ID: <20220922215731.GA28876@mail.hallyn.com>
+References: <20220922151728.1557914-1-brauner@kernel.org>
+ <d74030ae-4b9a-5b39-c203-4b813decd9eb@schaufler-ca.com>
+ <CAHk-=whLbq9oX5HDaMpC59qurmwj6geteNcNOtQtb5JN9J0qFw@mail.gmail.com>
+ <16ca7e4c-01df-3585-4334-6be533193ba6@schaufler-ca.com>
+ <CAHC9VhQRST66pVuNM0WGJsh-W01mDD-bX=GpFxCceUJ1FMWrmg@mail.gmail.com>
 MIME-Version: 1.0
-X-Spam-Score: -0.2 (/)
+Content-Disposition: inline
+In-Reply-To: <CAHC9VhQRST66pVuNM0WGJsh-W01mDD-bX=GpFxCceUJ1FMWrmg@mail.gmail.com>
+User-Agent: Mutt/1.9.4 (2018-02-28)
+X-Spam-Score: -0.0 (/)
 X-Spam-Report: Spam detection software,
  running on the system "util-spamd-2.v13.lw.sourceforge.com", 
  has NOT identified this incoming email as spam.  The original
  message has been attached to this so you can view it or label
  similar future email.  If you have any questions, see
  the administrator of that system for details.
- Content preview:  parse_opts() could fail when there is error parsing mount
- options into p9_fd_opts structure due to allocation failure. In that case
- opts will contain invalid data. Though the value check on opts will [...] 
- Content analysis details:   (-0.2 points, 6.0 required)
+ Content preview:  On Thu, Sep 22, 2022 at 03:07:44PM -0400, Paul Moore wrote:
+ > On Thu, Sep 22, 2022 at 2:54 PM Casey Schaufler <casey@schaufler-ca.com>
+ wrote: > > On 9/22/2022 10:57 AM, Linus Torvalds wrote: > > > On [...] 
+ Content analysis details:   (-0.0 points, 6.0 required)
  pts rule name              description
  ---- ---------------------- --------------------------------------------------
- 0.0 FREEMAIL_FROM          Sender email is commonly abused enduser mail
- provider [floridsleeves[at]gmail.com]
- 0.0 SPF_HELO_NONE          SPF: HELO does not publish an SPF Record
  -0.0 SPF_PASS               SPF: sender matches SPF record
- -0.1 DKIM_VALID_AU          Message has a valid DKIM or DK signature from
- author's domain
- -0.1 DKIM_VALID_EF          Message has a valid DKIM or DK signature from
- envelope-from domain
- 0.1 DKIM_SIGNED            Message has a DKIM or DK signature, not necessarily
- valid
- -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
- 0.0 RCVD_IN_MSPIKE_H3      RBL: Good reputation (+3)
- [209.85.215.179 listed in wl.mailspike.net]
- -0.0 RCVD_IN_DNSWL_NONE     RBL: Sender listed at https://www.dnswl.org/,
- no trust [209.85.215.179 listed in list.dnswl.org]
- 0.0 RCVD_IN_MSPIKE_WL      Mailspike good senders
-X-Headers-End: 1obSjb-00Gtmj-Ki
-Subject: [V9fs-developer] [PATCH net-next v2] net/9p/trans_fd: check the
- return value of parse_opts
+ -0.0 SPF_HELO_PASS          SPF: HELO matches SPF record
+X-Headers-End: 1obUCW-00GxKC-5Q
+Subject: Re: [V9fs-developer] [RFC PATCH 00/29] acl: add vfs posix acl api
 X-BeenThere: v9fs-developer@lists.sourceforge.net
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -124,42 +82,57 @@ List-Post: <mailto:v9fs-developer@lists.sourceforge.net>
 List-Help: <mailto:v9fs-developer-request@lists.sourceforge.net?subject=help>
 List-Subscribe: <https://lists.sourceforge.net/lists/listinfo/v9fs-developer>, 
  <mailto:v9fs-developer-request@lists.sourceforge.net?subject=subscribe>
-Cc: lucho@ionkov.net, ericvh@gmail.com, linux_oss@crudebyte.com,
- edumazet@google.com, Li Zhong <floridsleeves@gmail.com>, kuba@kernel.org,
- pabeni@redhat.com, davem@davemloft.net
+Cc: linux-cifs@vger.kernel.org, Christian Brauner <brauner@kernel.org>,
+ linux-fsdevel@vger.kernel.org, linux-security-module@vger.kernel.org,
+ Seth Forshee <sforshee@kernel.org>, Casey Schaufler <casey@schaufler-ca.com>,
+ v9fs-developer@lists.sourceforge.net, linux-integrity@vger.kernel.org,
+ Linus Torvalds <torvalds@linux-foundation.org>, Christoph Hellwig <hch@lst.de>,
+ Al Viro <viro@zeniv.linux.org.uk>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: v9fs-developer-bounces@lists.sourceforge.net
 
-parse_opts() could fail when there is error parsing mount options into
-p9_fd_opts structure due to allocation failure. In that case opts will
-contain invalid data. Though the value check on opts will prevent
-invalid data from being used, we still add the check and return the
-error code to avoid confusions for developers.
+On Thu, Sep 22, 2022 at 03:07:44PM -0400, Paul Moore wrote:
+> On Thu, Sep 22, 2022 at 2:54 PM Casey Schaufler <casey@schaufler-ca.com> wrote:
+> > On 9/22/2022 10:57 AM, Linus Torvalds wrote:
+> > > On Thu, Sep 22, 2022 at 9:27 AM Casey Schaufler <casey@schaufler-ca.com> wrote:
+> > >> Could we please see the entire patch set on the LSM list?
+> > > While I don't think that's necessarily wrong, I would like to point
+> > > out that the gitweb interface actually does make it fairly easy to
+> > > just see the whole patch-set.
+> > >
+> > > IOW, that
+> > >
+> > >   https://git.kernel.org/pub/scm/linux/kernel/git/vfs/idmapping.git/log/?h=fs.acl.rework
+> > >
+> > > that Christian pointed to is not a horrible way to see it all. Go to
+> > > the top-most commit, and it's easy to follow the parent links.
+> >
+> > I understand that the web interface is fine for browsing the changes.
+> > It isn't helpful for making comments on the changes. The discussion
+> > on specific patches (e.g. selinux) may have impact on other parts of
+> > the system (e.g. integrity) or be relevant elsewhere (e.g. smack). It
+> > can be a real problem if the higher level mailing list (the LSM list
+> > in this case) isn't included.
+> 
+> This is probably one of those few cases where Casey and I are in
+> perfect agreement.  I'd much rather see the patches hit my inbox than
+> have to go hunting for them and then awkwardly replying to them (and
+> yes, I know there are ways to do that, I just personally find it
+> annoying).  I figure we are all deluged with email on a daily basis
+> and have developed mechanisms to deal with that in a sane way, what is
+> 29 more patches on the pile?
 
-Signed-off-by: Li Zhong <floridsleeves@gmail.com>
----
- net/9p/trans_fd.c | 4 +++-
- 1 file changed, 3 insertions(+), 1 deletion(-)
+Even better than the web interface, is find the message-id in any of the
+emails you did get, and run
 
-diff --git a/net/9p/trans_fd.c b/net/9p/trans_fd.c
-index e758978b44be..11ae64c1a24b 100644
---- a/net/9p/trans_fd.c
-+++ b/net/9p/trans_fd.c
-@@ -1061,7 +1061,9 @@ p9_fd_create(struct p9_client *client, const char *addr, char *args)
- 	int err;
- 	struct p9_fd_opts opts;
- 
--	parse_opts(args, &opts);
-+	err = parse_opts(args, &opts);
-+	if (err < 0)
-+		return err;
- 	client->trans_opts.fd.rfd = opts.rfd;
- 	client->trans_opts.fd.wfd = opts.wfd;
- 
--- 
-2.25.1
+b4 mbox 20220922151728.1557914-1-brauner@kernel.org
 
+In general I'd agree with sending the whole set to the lsm list, but
+then one needs to start knowing which lists do and don't want the whole
+set...  b4 mbox and lei are now how I read all kernel related lists.
+
+-serge
 
 
 _______________________________________________
