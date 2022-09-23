@@ -2,101 +2,110 @@ Return-Path: <v9fs-developer-bounces@lists.sourceforge.net>
 X-Original-To: lists+v9fs-developer@lfdr.de
 Delivered-To: lists+v9fs-developer@lfdr.de
 Received: from lists.sourceforge.net (lists.sourceforge.net [216.105.38.7])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5B67D5E7642
-	for <lists+v9fs-developer@lfdr.de>; Fri, 23 Sep 2022 10:53:39 +0200 (CEST)
-Received: from [127.0.0.1] (helo=sfs-ml-4.v29.lw.sourceforge.com)
-	by sfs-ml-4.v29.lw.sourceforge.com with esmtp (Exim 4.95)
+	by mail.lfdr.de (Postfix) with ESMTPS id 340265E7DE7
+	for <lists+v9fs-developer@lfdr.de>; Fri, 23 Sep 2022 17:06:01 +0200 (CEST)
+Received: from [127.0.0.1] (helo=sfs-ml-2.v29.lw.sourceforge.com)
+	by sfs-ml-2.v29.lw.sourceforge.com with esmtp (Exim 4.95)
 	(envelope-from <v9fs-developer-bounces@lists.sourceforge.net>)
-	id 1obeR3-0003lT-7y;
-	Fri, 23 Sep 2022 08:53:37 +0000
+	id 1obkFa-0004Am-A7;
+	Fri, 23 Sep 2022 15:05:58 +0000
 Received: from [172.30.20.202] (helo=mx.sourceforge.net)
- by sfs-ml-4.v29.lw.sourceforge.com with esmtps (TLS1.2) tls
+ by sfs-ml-2.v29.lw.sourceforge.com with esmtps (TLS1.2) tls
  TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384 (Exim 4.95)
- (envelope-from <brauner@kernel.org>) id 1obeQi-0003l8-O6
+ (envelope-from <paul@paul-moore.com>) id 1obkFY-0004Ae-3u
  for v9fs-developer@lists.sourceforge.net;
- Fri, 23 Sep 2022 08:53:17 +0000
+ Fri, 23 Sep 2022 15:05:56 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=sourceforge.net; s=x; h=In-Reply-To:Content-Type:MIME-Version:References:
- Message-ID:Subject:Cc:To:From:Date:Sender:Reply-To:Content-Transfer-Encoding:
- Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+ d=sourceforge.net; s=x; h=Content-Type:Cc:To:Subject:Message-ID:Date:From:
+ In-Reply-To:References:MIME-Version:Sender:Reply-To:Content-Transfer-Encoding
+ :Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
  Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
  List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=darG64KYs9HMJkS6NjDB06TuCxk3WnQECkDg/eGQEmA=; b=OAL4V3TRWSLKZsdcOL+kviVWRM
- DRHURm098gMfJn7GCjYv87sTuYFHdY2MA3k1FC4Bqe8g9BnmdKXvlGBglGD9MdUCMdkf+fcsnONMa
- bveUgVRqja6zNYOprDb9eYE6dmnPpq3XOOF+mNNJ7dmy3SEHofVITY/sSpEwaOzJiUzs=;
+ bh=HO2AvJTBi2QfRYWbbvhuQ6oKeOfsWSwPhLgWOk8zYZY=; b=isuApPyPQmNAPb0TDwoCw5qDvp
+ Pnbi4S81rgbFH0SXmOCspbEpHDByODzY9Gwahp0WX4cXoijHlDMC9xbqp5rzEbfFRuifC4GdnWv8K
+ 4ayJ7cfZBK7pgyfQTjwctXlurvzf0ErlIS9fnwv+xoIeP92aEYNYnf+lsIKWXiLjnc0Q=;
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  ;
- h=In-Reply-To:Content-Type:MIME-Version:References:Message-ID:Subject:Cc:To
- :From:Date:Sender:Reply-To:Content-Transfer-Encoding:Content-ID:
+ h=Content-Type:Cc:To:Subject:Message-ID:Date:From:In-Reply-To:References:
+ MIME-Version:Sender:Reply-To:Content-Transfer-Encoding:Content-ID:
  Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
  :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
  List-Post:List-Owner:List-Archive;
- bh=darG64KYs9HMJkS6NjDB06TuCxk3WnQECkDg/eGQEmA=; b=gQxyOqSlc5VvtMwsFY666281Vt
- Z6K0/2WewvsZL9zV7bsCJ+3Wki5n057/ENfIQ/K6xS3xff+pOZHOdS41WqDg4I8LqwULQ4u9u+LiG
- fe5iqY6ALbcMKlbU1tEPELWxDC5ytbb8shU3WhH/41TxBObWvssPLWBU3cyp50e9q0ec=;
-Received: from ams.source.kernel.org ([145.40.68.75])
+ bh=HO2AvJTBi2QfRYWbbvhuQ6oKeOfsWSwPhLgWOk8zYZY=; b=W8/6ydMIjIxpXAbSYS1ruyj3nX
+ lD9w6w2DUbFV9EDhz9N9KxmKX0oyDAfim8cqYE8kDlfjAPN2fBTYI1k4h0xXr8Wg8/5iWAzofqlp0
+ TELLQ+Kru7QfPYgolR++WSl2k8WFokXqwZ9OA24TWtMHRPoSknYLiXZepVRvo8sp/eNA=;
+Received: from mail-ot1-f52.google.com ([209.85.210.52])
  by sfi-mx-2.v28.lw.sourceforge.com with esmtps
- (TLS1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.95)
- id 1obeQt-0001Cp-77 for v9fs-developer@lists.sourceforge.net;
- Fri, 23 Sep 2022 08:53:17 +0000
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
- (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
- (No client certificate requested)
- by ams.source.kernel.org (Postfix) with ESMTPS id 26CEBB825E8;
- Fri, 23 Sep 2022 08:53:04 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 82E77C433C1;
- Fri, 23 Sep 2022 08:52:59 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1663923182;
- bh=6UkifW9opBuMiDyAjvnxiHu2FKrBLty2CaTZoLX1Qf8=;
- h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
- b=fuMMxSihZdLFcnHxLfHUb1BkuwfWdTeggmnBd3ei4gKudohhYIFgUKLJumYoKoCti
- x62wROUR3srA6pEupaT2QuwXqAMyTDOCbvPrRyhK331ablFW6VjJjjL9Lgeo16Xkbn
- kcP6mqIfuGDyX/GE0SuxV7ZFBUQlgR8Hv3voEXFGe0eTwnSBLo0f7i1UbDxI3wxOye
- KWS90gaEv/h5cv+t8dSHarFtQegDs0wGdSTLIyJ+jhLiT5ojCi3QmlVq6NVq8a+W5N
- Jgy2EIk59xsdbPHu3tTY35yY0RMk9AYXnL3e4rJBaG332J12GTsVh2GB9/0mn853lw
- W1fO3xgL+uqag==
-Date: Fri, 23 Sep 2022 10:52:56 +0200
-From: Christian Brauner <brauner@kernel.org>
-To: Paul Moore <paul@paul-moore.com>, "Serge E. Hallyn" <serge@hallyn.com>,
- Casey Schaufler <casey@schaufler-ca.com>
-Message-ID: <20220923085256.2ic6ivf4iuacu5sg@wittgenstein>
+ (TLS1.2:ECDHE-RSA-AES128-GCM-SHA256:128) (Exim 4.95)
+ id 1obkFS-0006iD-2X for v9fs-developer@lists.sourceforge.net;
+ Fri, 23 Sep 2022 15:05:56 +0000
+Received: by mail-ot1-f52.google.com with SMTP id
+ j17-20020a9d7f11000000b0065a20212349so180782otq.12
+ for <v9fs-developer@lists.sourceforge.net>;
+ Fri, 23 Sep 2022 08:05:50 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=paul-moore-com.20210112.gappssmtp.com; s=20210112;
+ h=cc:to:subject:message-id:date:from:in-reply-to:references
+ :mime-version:from:to:cc:subject:date;
+ bh=HO2AvJTBi2QfRYWbbvhuQ6oKeOfsWSwPhLgWOk8zYZY=;
+ b=NHXgpkbklpQY1dujkTxtgfpxjRfII6eFpWmZSiA94BsmX9afxqU758gbbWdD1qv4DZ
+ JoTmy1STKapeGJaAgqqjvA+xpmdZWFxiMRR3inRInB+3S7y8k9Cs6sQzjVaNL0b3Fn1H
+ PStOgZVxWclUZJQHy8i0NeYGisONz5lsSzTX8eVG2s5pGmMVrnRKNJbfHyeE5teKHP45
+ WJvJnzu3R1+twTmRMEHTMm+QNhtaQrSTgjISgkdk+uPageY2jCkJPpMh8O/cK+mHXBNC
+ lHemW5id3LXX/oEy5gYDrOhXB4BryhiqdHQ1zof+3HYEO5MojDCqpnl/MRHH9B9V7kPe
+ DQpQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20210112;
+ h=cc:to:subject:message-id:date:from:in-reply-to:references
+ :mime-version:x-gm-message-state:from:to:cc:subject:date;
+ bh=HO2AvJTBi2QfRYWbbvhuQ6oKeOfsWSwPhLgWOk8zYZY=;
+ b=SQ1VAqnyR52N+NN8OuOjgquf36X4H931+k08EQfVITpOICoXhugQhwoEHTkGZC+P5n
+ bOoDJ9q0lBdLV0YLJWuHpxX+YsOdrDZaINMY3JB63mVNZJNxaNra9RLalRDj+OJJ9A/E
+ 4sQ3b+qgCWe4LttiLETs0Sy4Ts/ZqKoqW5zbYO27DwuYJ18jCP0rMPFoE47/Ra7FEGUj
+ wo+1m6Sj+RoAzeWaU9MGtUNcS8G1FmjaOBeyMo0uackIIa/Cvy0j46A41XJJ88Rh8JlL
+ IRkzgeJIaG56v6EIOH6JMXZBFGRfjhKsMwVyUWdCRMRY18ZiI4CxQ5ITtviDpwMhu40Y
+ Bdgg==
+X-Gm-Message-State: ACrzQf08mqNG+b/ArFInB4DrodmUOb8GatPyifYRLMMfgdlNQ+VBaN6+
+ R+Fojs/h4NAtU6jnLsk7ZbnWF7bJLI2+/lZO0OpJPpjaxA==
+X-Google-Smtp-Source: AMsMyM7D3kMRKr/61cWceGGLPP8+nkrbp44T14E6MBNWlxKrHZ7Y8XAD0aPfsm+uqT+6w6wN/CfDBmHsj4twkIhQwhQ=
+X-Received: by 2002:a9d:1b70:0:b0:658:cfeb:d221 with SMTP id
+ l103-20020a9d1b70000000b00658cfebd221mr4096556otl.34.1663944132441; Fri, 23
+ Sep 2022 07:42:12 -0700 (PDT)
+MIME-Version: 1.0
 References: <20220922151728.1557914-1-brauner@kernel.org>
  <d74030ae-4b9a-5b39-c203-4b813decd9eb@schaufler-ca.com>
  <CAHk-=whLbq9oX5HDaMpC59qurmwj6geteNcNOtQtb5JN9J0qFw@mail.gmail.com>
- <16ca7e4c-01df-3585-4334-6be533193ba6@schaufler-ca.com>
- <CAHC9VhQRST66pVuNM0WGJsh-W01mDD-bX=GpFxCceUJ1FMWrmg@mail.gmail.com>
- <20220922215731.GA28876@mail.hallyn.com>
- <CAHC9VhSBwavTLcgkgJ-AYwH9wzECi3B7BtwdKOx5FJ3n7M+WYg@mail.gmail.com>
-MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <CAHC9VhSBwavTLcgkgJ-AYwH9wzECi3B7BtwdKOx5FJ3n7M+WYg@mail.gmail.com>
-X-Spam-Score: -5.2 (-----)
+ <20220923084539.vazq4eiceovoclcf@wittgenstein>
+In-Reply-To: <20220923084539.vazq4eiceovoclcf@wittgenstein>
+From: Paul Moore <paul@paul-moore.com>
+Date: Fri, 23 Sep 2022 10:42:01 -0400
+Message-ID: <CAHC9VhRroVU6vOoNtpdRYXVkjJZZ+nwXC5sObGoPDw0d4Z1UBw@mail.gmail.com>
+To: Christian Brauner <brauner@kernel.org>
+X-Spam-Score: 0.0 (/)
 X-Spam-Report: Spam detection software,
- running on the system "util-spamd-2.v13.lw.sourceforge.com", 
+ running on the system "util-spamd-1.v13.lw.sourceforge.com", 
  has NOT identified this incoming email as spam.  The original
  message has been attached to this so you can view it or label
  similar future email.  If you have any questions, see
  the administrator of that system for details.
- Content preview:  On Thu, Sep 22, 2022 at 06:13:44PM -0400, Paul Moore wrote:
- > On Thu, Sep 22, 2022 at 5:57 PM Serge E. Hallyn <serge@hallyn.com> wrote:
- > > On Thu, Sep 22, 2022 at 03:07:44PM -0400, Paul Moore wrote: [...] 
- Content analysis details:   (-5.2 points, 6.0 required)
+ Content preview:  On Fri, Sep 23,
+ 2022 at 4:46 AM Christian Brauner <brauner@kernel.org>
+ wrote: > On Thu, Sep 22, 2022 at 10:57:38AM -0700, Linus Torvalds wrote:
+ > > On Thu, Sep 22, 2022 at 9:27 AM Casey Schaufler <cas [...] 
+ Content analysis details:   (0.0 points, 6.0 required)
  pts rule name              description
  ---- ---------------------- --------------------------------------------------
- -5.0 RCVD_IN_DNSWL_HI       RBL: Sender listed at https://www.dnswl.org/,
- high trust [145.40.68.75 listed in list.dnswl.org]
- -0.0 SPF_PASS               SPF: sender matches SPF record
+ -0.0 RCVD_IN_DNSWL_NONE     RBL: Sender listed at https://www.dnswl.org/,
+ no trust [209.85.210.52 listed in list.dnswl.org]
+ 0.0 RCVD_IN_MSPIKE_H3      RBL: Good reputation (+3)
+ [209.85.210.52 listed in wl.mailspike.net]
+ 0.0 SPF_NONE               SPF: sender does not publish an SPF Record
  0.0 SPF_HELO_NONE          SPF: HELO does not publish an SPF Record
- -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
- -0.1 DKIM_VALID_EF          Message has a valid DKIM or DK signature from
- envelope-from domain
  0.1 DKIM_SIGNED            Message has a DKIM or DK signature, not necessarily
  valid
- -0.1 DKIM_VALID_AU          Message has a valid DKIM or DK signature from
- author's domain
- -0.0 DKIMWL_WL_HIGH         DKIMwl.org - High trust sender
-X-Headers-End: 1obeQt-0001Cp-77
+ -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+ 0.0 RCVD_IN_MSPIKE_WL      Mailspike good senders
+X-Headers-End: 1obkFS-0006iD-2X
 Subject: Re: [V9fs-developer] [RFC PATCH 00/29] acl: add vfs posix acl api
 X-BeenThere: v9fs-developer@lists.sourceforge.net
 X-Mailman-Version: 2.1.21
@@ -109,83 +118,84 @@ List-Post: <mailto:v9fs-developer@lists.sourceforge.net>
 List-Help: <mailto:v9fs-developer-request@lists.sourceforge.net?subject=help>
 List-Subscribe: <https://lists.sourceforge.net/lists/listinfo/v9fs-developer>, 
  <mailto:v9fs-developer-request@lists.sourceforge.net?subject=subscribe>
-Cc: linux-cifs@vger.kernel.org, Al Viro <viro@zeniv.linux.org.uk>,
- linux-fsdevel@vger.kernel.org, linux-security-module@vger.kernel.org,
- Seth Forshee <sforshee@kernel.org>, Casey Schaufler <casey@schaufler-ca.com>,
- v9fs-developer@lists.sourceforge.net, linux-integrity@vger.kernel.org,
+Cc: linux-cifs@vger.kernel.org, linux-fsdevel@vger.kernel.org,
+ linux-security-module@vger.kernel.org, Seth Forshee <sforshee@kernel.org>,
+ Casey Schaufler <casey@schaufler-ca.com>, v9fs-developer@lists.sourceforge.net,
+ linux-integrity@vger.kernel.org,
  Linus Torvalds <torvalds@linux-foundation.org>, Christoph Hellwig <hch@lst.de>,
- "Serge E. Hallyn" <serge@hallyn.com>
+ Al Viro <viro@zeniv.linux.org.uk>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: v9fs-developer-bounces@lists.sourceforge.net
 
-On Thu, Sep 22, 2022 at 06:13:44PM -0400, Paul Moore wrote:
-> On Thu, Sep 22, 2022 at 5:57 PM Serge E. Hallyn <serge@hallyn.com> wrote:
-> > On Thu, Sep 22, 2022 at 03:07:44PM -0400, Paul Moore wrote:
-> > > On Thu, Sep 22, 2022 at 2:54 PM Casey Schaufler <casey@schaufler-ca.com> wrote:
-> > > > On 9/22/2022 10:57 AM, Linus Torvalds wrote:
-> > > > > On Thu, Sep 22, 2022 at 9:27 AM Casey Schaufler <casey@schaufler-ca.com> wrote:
-> > > > >> Could we please see the entire patch set on the LSM list?
-> > > > > While I don't think that's necessarily wrong, I would like to point
-> > > > > out that the gitweb interface actually does make it fairly easy to
-> > > > > just see the whole patch-set.
-> > > > >
-> > > > > IOW, that
-> > > > >
-> > > > >   https://git.kernel.org/pub/scm/linux/kernel/git/vfs/idmapping.git/log/?h=fs.acl.rework
-> > > > >
-> > > > > that Christian pointed to is not a horrible way to see it all. Go to
-> > > > > the top-most commit, and it's easy to follow the parent links.
-> > > >
-> > > > I understand that the web interface is fine for browsing the changes.
-> > > > It isn't helpful for making comments on the changes. The discussion
-> > > > on specific patches (e.g. selinux) may have impact on other parts of
-> > > > the system (e.g. integrity) or be relevant elsewhere (e.g. smack). It
-> > > > can be a real problem if the higher level mailing list (the LSM list
-> > > > in this case) isn't included.
+On Fri, Sep 23, 2022 at 4:46 AM Christian Brauner <brauner@kernel.org> wrote:
+> On Thu, Sep 22, 2022 at 10:57:38AM -0700, Linus Torvalds wrote:
+> > On Thu, Sep 22, 2022 at 9:27 AM Casey Schaufler <casey@schaufler-ca.com> wrote:
 > > >
-> > > This is probably one of those few cases where Casey and I are in
-> > > perfect agreement.  I'd much rather see the patches hit my inbox than
-> > > have to go hunting for them and then awkwardly replying to them (and
-> > > yes, I know there are ways to do that, I just personally find it
-> > > annoying).  I figure we are all deluged with email on a daily basis
-> > > and have developed mechanisms to deal with that in a sane way, what is
-> > > 29 more patches on the pile?
+> > > Could we please see the entire patch set on the LSM list?
 > >
-> > Even better than the web interface, is find the message-id in any of the
-> > emails you did get, and run
+> > While I don't think that's necessarily wrong, I would like to point
+> > out that the gitweb interface actually does make it fairly easy to
+> > just see the whole patch-set.
 > >
-> > b4 mbox 20220922151728.1557914-1-brauner@kernel.org
+> > IOW, that
 > >
-> > In general I'd agree with sending the whole set to the lsm list, but
-> > then one needs to start knowing which lists do and don't want the whole
-> > set...  b4 mbox and lei are now how I read all kernel related lists.
-> 
-> In my opinion, sending the entire patchset to the relevant lists
-> should be the default for all the reasons mentioned above.  All the
-> other methods are fine, and I don't want to stop anyone from using
-> their favorite tool, but *requiring* the use of a separate tool to
-> properly review and comment on patches gets us away from the
-> email-is-universal argument.  Yes, all the other tools mentioned are
-> still based in a world of email, but if you are not emailing the
-> relevant stakeholders directly (or indirectly via a list), you are
-> placing another hurdle in front of the reviewers by requiring them to
-> leave their email client based workflow and jump over to lore, b4,
-> etc. to review the patchset.
-> 
-> The lore.kernel.org instance is wonderful, full stop, and the b4 tool
-> is equally wonderful, full stop, but they are tools intended to assist
-> and optimize; they should not replace the practice of sending patches,
-> with the full context, to the relevant parties.
+> >   https://git.kernel.org/pub/scm/linux/kernel/git/vfs/idmapping.git/log/?h=fs.acl.rework
+> >
+> > that Christian pointed to is not a horrible way to see it all. Go to
+> > the top-most commit, and it's easy to follow the parent links.
+> >
+> > It's a bit more work to see them in another order, but I find the
+> > easiest way is actually to just follow the parent links to get the
+> > overview of what is going on (reading just the commit messages), and
+> > then after that you "reverse course" and use the browser back button
+> > to just go the other way while looking at the details of the patches.
+> >
+> > And I suspect a lot of people are happier *without* large patch-sets
+> > being posted to the mailing lists when most patches aren't necessarily
+> > at all relevant to that mailing list except as context.
+>
+> The problem is also that it's impossible to please both parties here.
 
-I'm happy to send all of v2 to the security mailing list.
+Oh the trials and tribulations of Linux Kernel development! ;)
 
-But for v1 could you compromise and just use b4?
+I'm joking, but I do understand the difficulty of pleasing a large
+group of people with very different desires.
 
-b4 mbox 20220922151728.1557914-1-brauner@kernel.org
+> A good portion of people doesn't like being flooded with patches they
+> don't really care about and the other portion gets worked up when they
+> only see a single patch.
 
-This would mean you could provide reviews for v1 and we don't need to
-fragment the v1 discussion because of a resend to include a mailing list.
+You are obviously never going to be able to make everyone happy, and
+everyone with a solution to share obviously has some bias (I'm
+definitely including myself in this statement), but I tend to fall
+back on the idea that upstream kernel development has always required
+those involved to deal with a large amount of email, so sending a full
+patchset is not new.
+
+> So honestly I just always make a judgement call based on the series. But
+> b4 makes it so so easy to just retrieve the whole series. So even if I
+> only receive a single patch and am curious then I just use b4.
+
+As I mentioned previously in this thread, the issue is more on the
+reply side.  Reading from lore or b4 isn't terrible for me, but
+replying is a pain for me and my mail setup.
+
+> I've even got it integrated into mutt directly:
+
+I'm glad it works for you.  Although I would like to take this
+opportunity to remind anyone still following this tangent that not
+everyone uses mutt, some of us* really dislike it, but due to the
+magic of email we are still able to participate with other mail
+clients, services, and tools.
+
+* I'm using "us" somewhat liberally here, I have no data to back up my
+claims.  However, I'm fully prepared to accept the idea that I'm the
+only person out of the thousands of kernel devs who dislikes mutt.
+Bring it on haters, just know that you're all wrong ;)
+
+-- 
+paul-moore.com
 
 
 _______________________________________________
