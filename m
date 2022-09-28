@@ -2,28 +2,28 @@ Return-Path: <v9fs-developer-bounces@lists.sourceforge.net>
 X-Original-To: lists+v9fs-developer@lfdr.de
 Delivered-To: lists+v9fs-developer@lfdr.de
 Received: from lists.sourceforge.net (lists.sourceforge.net [216.105.38.7])
-	by mail.lfdr.de (Postfix) with ESMTPS id 421725EE8CA
-	for <lists+v9fs-developer@lfdr.de>; Wed, 28 Sep 2022 23:58:18 +0200 (CEST)
-Received: from [127.0.0.1] (helo=sfs-ml-1.v29.lw.sourceforge.com)
-	by sfs-ml-1.v29.lw.sourceforge.com with esmtp (Exim 4.95)
+	by mail.lfdr.de (Postfix) with ESMTPS id 14E075EE947
+	for <lists+v9fs-developer@lfdr.de>; Thu, 29 Sep 2022 00:19:47 +0200 (CEST)
+Received: from [127.0.0.1] (helo=sfs-ml-2.v29.lw.sourceforge.com)
+	by sfs-ml-2.v29.lw.sourceforge.com with esmtp (Exim 4.95)
 	(envelope-from <v9fs-developer-bounces@lists.sourceforge.net>)
-	id 1odf4K-0004Ps-W4;
-	Wed, 28 Sep 2022 21:58:16 +0000
+	id 1odfP6-0006Ty-52;
+	Wed, 28 Sep 2022 22:19:44 +0000
 Received: from [172.30.20.202] (helo=mx.sourceforge.net)
- by sfs-ml-1.v29.lw.sourceforge.com with esmtps (TLS1.2) tls
+ by sfs-ml-2.v29.lw.sourceforge.com with esmtps (TLS1.2) tls
  TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384 (Exim 4.95)
- (envelope-from <asmadeus@codewreck.org>) id 1odf4J-0004Pm-7q
+ (envelope-from <asmadeus@codewreck.org>) id 1odfP4-0006To-41
  for v9fs-developer@lists.sourceforge.net;
- Wed, 28 Sep 2022 21:58:15 +0000
+ Wed, 28 Sep 2022 22:19:42 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
  d=sourceforge.net; s=x; h=Content-Transfer-Encoding:MIME-Version:References:
  In-Reply-To:Message-Id:Date:Subject:Cc:To:From:Sender:Reply-To:Content-Type:
  Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
  Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
  List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=Xms6OhcaZEPNuIqUCXLPQE9kG90emaV6twlho5yTI74=; b=ZYPMmev8kwM4TpK7GRd3x53rpz
- cilc4ws2s1vO8sJJ3f8UrqC4enf0zC9ptn2zwGRfSOvwErHz/1M/hbuPjLXHOibd+wCLMJfEFVsQu
- 109j113lTm4biIKA5S+J3Uis9BDJUzRqUiH8P9t9sJV4fIILEAW3Z2WEA8hNhNWpPchI=;
+ bh=s8v7euaD+Iw8Rlbt89l6wSiw8vlpRm5+S9b6T6Y34jM=; b=c4ATqAhe0Umk2i1VPAeTFEeGoY
+ pqqzFkGsa+4j0oD5ak6lBfAkUkUEG7P+JS30WiwDDbbg3C/gRjo2n+CubocwtyaVOj55NaNXj16dd
+ MbjBkreLUhke2RyOVM0B9kh3I5ykB7YedaYk2o/kU0hYYtl6PEZIK99DSt52ajZntmVU=;
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  ;
  h=Content-Transfer-Encoding:MIME-Version:References:In-Reply-To:Message-Id:
@@ -31,51 +31,51 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
  :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
  List-Post:List-Owner:List-Archive;
- bh=Xms6OhcaZEPNuIqUCXLPQE9kG90emaV6twlho5yTI74=; b=Ppn0xKnN3SxdgFcLBk16UdU2+J
- nvla1OeGUbznG27kQDwy3zqqWhkeMBwjTGWS1EC1WcchGYiVmsbeVGC6Acp7Hl5qnANMOavaLWUbM
- XO9Ay3o/HiazLvHzW7/DNh/1+AabL1+fXG/VqPjp13MWNfnx31snBSSZMnSf7cCYMGvI=;
+ bh=s8v7euaD+Iw8Rlbt89l6wSiw8vlpRm5+S9b6T6Y34jM=; b=ljDkpQeOIsGtkzQlq6lwTO5IX8
+ /UqPYY562ouwQAPnp75GwvCkzCSF2zZ2b9O4sL8HsGM6av6Mnye1gRYJZaEdVFgvuf8nzVAVW0u2o
+ d93U4k8KsAnDq04LtCkKxr4zSH8ps0mVdPRxeDuy8yxTMG/z+IJzQroTO+QW0PzzC6eU=;
 Received: from nautica.notk.org ([91.121.71.147])
- by sfi-mx-2.v28.lw.sourceforge.com with esmtps
+ by sfi-mx-1.v28.lw.sourceforge.com with esmtps
  (TLS1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.95)
- id 1odf4I-0003rz-8w for v9fs-developer@lists.sourceforge.net;
- Wed, 28 Sep 2022 21:58:15 +0000
+ id 1odfP2-005xsg-Q3 for v9fs-developer@lists.sourceforge.net;
+ Wed, 28 Sep 2022 22:19:41 +0000
 Received: by nautica.notk.org (Postfix, from userid 108)
- id 1A30EC01C; Wed, 28 Sep 2022 23:58:07 +0200 (CEST)
+ id 7820FC01D; Thu, 29 Sep 2022 00:19:33 +0200 (CEST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=codewreck.org; s=2;
- t=1664402287; bh=Xms6OhcaZEPNuIqUCXLPQE9kG90emaV6twlho5yTI74=;
+ t=1664403573; bh=s8v7euaD+Iw8Rlbt89l6wSiw8vlpRm5+S9b6T6Y34jM=;
  h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
- b=XTY3wRxaUDIhe38PxByPCNAAUQUE6P7HVlJE6U1HEfyUlWlPOTwpj6eCv1diEzL0Y
- e+YojKW38ZnNXsqsaMbr6bma3ullio5lO1yZxMdV5Vp9gqjCqhwOtHEkUwOny5aZzQ
- nAv6bh2y3gbI/nPZOnBziCPokVNeUZ1NH46JgcPjScz1x9JSYhv9HDiU6K9OhoqLO6
- WJEdrOPTiaBAqGYCRVDgnQoPW0XqrVmHL5oMXsviZUrO1WfG6gU4LZtJVkBTBFir6T
- L+VcXGbl0XNBQK6udUzvEsST+jG/KYvLByNip6sMLaBgRTCdkxuiqtjszG5mHqioin
- DjNOuQLO+SIDg==
+ b=bjKKgo02VyBfUDesqIscXbdMQ+WAfJkenJJ0PDjW3Qu9Uc0QwV4rnJCi1BC8XqqkB
+ wFC2LHZZ+Yr9NR6CkWrOISv2N26h9IDeRTjetCE7/c76ozRz+TtpAxFHDRe2sZWF48
+ t4KBaCuk6F81M4kOZDlFBX/+3sFje4SlrZK1XQHnUZBNjg4D0HpJeQpdSw/aeq2cqZ
+ SRupt5WBZQlH1v2VTrQMI+pI+BcbzRN2KaVYGih0cSsl/KPkGv4M8P+VRIwRjEZlzC
+ zKuBjPdthbH/9gUI0aSDdN7XL//OZUxBW72jbPn3CRwrFY8+3kuWEuBIxKmVDMG6XA
+ 4hhR1IFVAqIAw==
 X-Spam-Checker-Version: SpamAssassin 3.3.2 (2011-06-06) on nautica.notk.org
 X-Spam-Level: 
 X-Spam-Status: No, score=0.0 required=5.0 tests=UNPARSEABLE_RELAY
  autolearn=unavailable version=3.3.2
 Received: from odin.codewreck.org (localhost [127.0.0.1])
- by nautica.notk.org (Postfix) with ESMTPS id 44333C009;
- Wed, 28 Sep 2022 23:58:04 +0200 (CEST)
+ by nautica.notk.org (Postfix) with ESMTPS id C38ADC009;
+ Thu, 29 Sep 2022 00:19:29 +0200 (CEST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=codewreck.org; s=2;
- t=1664402286; bh=Xms6OhcaZEPNuIqUCXLPQE9kG90emaV6twlho5yTI74=;
+ t=1664403571; bh=s8v7euaD+Iw8Rlbt89l6wSiw8vlpRm5+S9b6T6Y34jM=;
  h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
- b=FcNNyH5VJD3MWqo305PALLdeO9RvzGf3OesebRR3BBOb3ZOrYjYg2sVJhWTIXd154
- jZ7p065pdWNCO6/0jWVd8JcaOxhjku3TaO1Fp2xPtgsy8ISp/fiuHNS8Aqx8OgiO6u
- 2lQbktiDFTd9Tdn8fq60Vnk/6UM+IzXS0uKRnUn0bKCVOr8L7uftIpPY2OgIe30L7/
- X7TDVZZ8uOC/gmcfE7k8eMlaIR2Tw4XajPC0U0imVaR9A4X1rEzVfyfLGD37BhLDP4
- FCU+YwZocIpZ2HtS7UAvXg9vHjACMm8cvZ8mjTCQuyFUYE/ZPSvdBic9B6RN5m6KMv
- odQ4cgMzlzFlw==
+ b=Ox6s95DptvlFBuo1ui9DuVQpX3L9L+dkPkIzGxN+NGTqYNDtz5QoiJ3lj26mZFcnH
+ aw/zkXbTd9oT/pJHr74ciAYbYjq76OprOEswHbjRmA+XBEfa/f7C7pRqXZ4oRwoOV2
+ 5F56au5wAOMNejb05sim3xlzmyCrxP+NwB9T5KHs+fGmK0GLUuOhcNXiYSHIffQfb1
+ Ipj28OrzztVgxqFmv9j7CYg7+iHPwBCxDeBgjn8hLhJ98Pl2illvt+YhQMDHRHe8av
+ JXtELYFFphefvYYXqCZddXRDqJy6gmc3slOgUvHGJ4jpQUF6ZfA159DAkWGTa2aDj4
+ qvi1vADRqPFBg==
 Received: from localhost (odin.codewreck.org [local])
- by odin.codewreck.org (OpenSMTPD) with ESMTPA id 90872eb6;
- Wed, 28 Sep 2022 21:58:02 +0000 (UTC)
+ by odin.codewreck.org (OpenSMTPD) with ESMTPA id 8a009fd5;
+ Wed, 28 Sep 2022 22:19:27 +0000 (UTC)
 From: Dominique Martinet <asmadeus@codewreck.org>
 To: v9fs-developer@lists.sourceforge.net
-Date: Thu, 29 Sep 2022 06:58:00 +0900
-Message-Id: <20220928215800.1749929-1-asmadeus@codewreck.org>
+Date: Thu, 29 Sep 2022 07:19:23 +0900
+Message-Id: <20220928221923.1751130-1-asmadeus@codewreck.org>
 X-Mailer: git-send-email 2.37.1
-In-Reply-To: <20220928214417.1749609-1-asmadeus@codewreck.org>
-References: <20220928214417.1749609-1-asmadeus@codewreck.org>
+In-Reply-To: <20220928215800.1749929-1-asmadeus@codewreck.org>
+References: <20220928215800.1749929-1-asmadeus@codewreck.org>
 MIME-Version: 1.0
 X-Spam-Score: -0.2 (/)
 X-Spam-Report: Spam detection software,
@@ -87,10 +87,10 @@ X-Spam-Report: Spam detection software,
  Content preview: destroy code would incorrectly call close() if trans_mod
  exists
  after some hasty code cleanup: we need to make sure we only call close after
- create Link: https://lkml.kernel.org/r/00000000000015ac7905e97ebaed@google.com
- Reported-by: syzbot+67d13108d855f451cafc@syzkaller.appspotmail.com
- Reported-by:
- Leon Romanovsky <leon@kernel.org> Fixes: 3ff5129 [...] 
+ create Link:
+ https://lkml.kernel.org/r/20220928214417.1749609-1-asmadeus@codewreck.org
+ Link: https://lkml.kernel.org/r/00000000000015ac7905e97ebaed@google.com
+ Reported-by: syzbot+67d13108d855f451cafc@syzkall [...] 
  Content analysis details:   (-0.2 points, 6.0 required)
  pts rule name              description
  ---- ---------------------- --------------------------------------------------
@@ -109,9 +109,9 @@ X-Spam-Report: Spam detection software,
  -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
  0.0 UNPARSEABLE_RELAY      Informational: message has unparseable relay
  lines
-X-Headers-End: 1odf4I-0003rz-8w
-Subject: [V9fs-developer] [PATCH 1/2 v2] 9p: client_create/destroy: only
- call trans_mod->close after create
+X-Headers-End: 1odfP2-005xsg-Q3
+Subject: [V9fs-developer] [PATCH v3] 9p: client_create/destroy: only call
+ trans_mod->close after create
 X-BeenThere: v9fs-developer@lists.sourceforge.net
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -133,25 +133,24 @@ Errors-To: v9fs-developer-bounces@lists.sourceforge.net
 destroy code would incorrectly call close() if trans_mod exists after some
 hasty code cleanup: we need to make sure we only call close after create
 
+Link: https://lkml.kernel.org/r/20220928214417.1749609-1-asmadeus@codewreck.org
 Link: https://lkml.kernel.org/r/00000000000015ac7905e97ebaed@google.com
 Reported-by: syzbot+67d13108d855f451cafc@syzkaller.appspotmail.com
 Reported-by: Leon Romanovsky <leon@kernel.org>
 Fixes: 3ff51294a055 ("9p: p9_client_create: use p9_client_destroy on failure")
 Signed-off-by: Dominique Martinet <asmadeus@codewreck.org>
 ---
+v1->v2: also reset trans on create error
+v2->v3: fix silly compile errors
 
-As pointed out in later mail, rdma actually does set trans->priv then
-fails, so we also need to reset clnt->trans on create errors.
-
-That's getting uglier than I wish it'd be, but the cleanup code I just
-trashed away really isn't pretty either so I guess it'll have to do...
-At least close() should now really never be called on create failures.
+Sorry for the multiple mails, that's what I get for not even doing basic
+tests before talking...
 
  net/9p/client.c | 11 +++++++++--
  1 file changed, 9 insertions(+), 2 deletions(-)
 
 diff --git a/net/9p/client.c b/net/9p/client.c
-index bfa80f01992e..8cf952f2de68 100644
+index bfa80f01992e..41e825a8da7c 100644
 --- a/net/9p/client.c
 +++ b/net/9p/client.c
 @@ -971,6 +971,7 @@ struct p9_client *p9_client_create(const char *dev_name, char *options)
@@ -170,7 +169,7 @@ index bfa80f01992e..8cf952f2de68 100644
 +	// ensure clnt->trans is initialized to call close() on destroy
 +	// if and only if create succeeded
 +	if (err < 0) {
-+		clnt->trans = PTR_ERR(err);
++		clnt->trans = ERR_PTR(err);
  		goto out;
 +	}
 +	if (IS_ERR(clnt->trans))
@@ -183,7 +182,7 @@ index bfa80f01992e..8cf952f2de68 100644
  	p9_debug(P9_DEBUG_MUX, "clnt %p\n", clnt);
  
 -	if (clnt->trans_mod)
-+	if (clnt->trans_mod && !IS_ERR(client->trans))
++	if (clnt->trans_mod && !IS_ERR(clnt->trans))
  		clnt->trans_mod->close(clnt);
  
  	v9fs_put_trans(clnt->trans_mod);
