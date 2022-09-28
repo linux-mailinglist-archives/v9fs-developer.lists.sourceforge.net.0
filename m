@@ -2,28 +2,28 @@ Return-Path: <v9fs-developer-bounces@lists.sourceforge.net>
 X-Original-To: lists+v9fs-developer@lfdr.de
 Delivered-To: lists+v9fs-developer@lfdr.de
 Received: from lists.sourceforge.net (lists.sourceforge.net [216.105.38.7])
-	by mail.lfdr.de (Postfix) with ESMTPS id 394CE5EE887
-	for <lists+v9fs-developer@lfdr.de>; Wed, 28 Sep 2022 23:44:48 +0200 (CEST)
-Received: from [127.0.0.1] (helo=sfs-ml-1.v29.lw.sourceforge.com)
-	by sfs-ml-1.v29.lw.sourceforge.com with esmtp (Exim 4.95)
+	by mail.lfdr.de (Postfix) with ESMTPS id F2AE15EE888
+	for <lists+v9fs-developer@lfdr.de>; Wed, 28 Sep 2022 23:44:56 +0200 (CEST)
+Received: from [127.0.0.1] (helo=sfs-ml-2.v29.lw.sourceforge.com)
+	by sfs-ml-2.v29.lw.sourceforge.com with esmtp (Exim 4.95)
 	(envelope-from <v9fs-developer-bounces@lists.sourceforge.net>)
-	id 1oderH-0004ET-07;
-	Wed, 28 Sep 2022 21:44:47 +0000
+	id 1oderP-0005ut-Nw;
+	Wed, 28 Sep 2022 21:44:55 +0000
 Received: from [172.30.20.202] (helo=mx.sourceforge.net)
- by sfs-ml-1.v29.lw.sourceforge.com with esmtps (TLS1.2) tls
+ by sfs-ml-2.v29.lw.sourceforge.com with esmtps (TLS1.2) tls
  TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384 (Exim 4.95)
- (envelope-from <asmadeus@codewreck.org>) id 1oderG-0004EN-7C
+ (envelope-from <asmadeus@codewreck.org>) id 1oderN-0005ui-R4
  for v9fs-developer@lists.sourceforge.net;
- Wed, 28 Sep 2022 21:44:46 +0000
+ Wed, 28 Sep 2022 21:44:53 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
  d=sourceforge.net; s=x; h=Content-Transfer-Encoding:MIME-Version:References:
  In-Reply-To:Message-Id:Date:Subject:Cc:To:From:Sender:Reply-To:Content-Type:
  Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
  Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
  List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=UmhaJMECcRYmREt7/tMqA6aB1TydkXl9QzrOPmc/ArE=; b=FGSuYvBTyRDIFl6q9Efca0XvXa
- OFf23AJXkRJwo+o6DT06aKGDHlj6ZKS4KdmGSx/7G3lW4y4mxtzuAiNBEGb2W5gAxhXKm1rk9WBK7
- rkD2hsvUG/ymLZoBcpwbFUlUqvdhft41jnXRHBhwFsVN6j7A17ykOyRfH6hSOe1FljLg=;
+ bh=B52/mFabXVyZkWM6X1umFbbhvQzlpiRJF9pARLLSDwc=; b=aq2NJ4LayZ6qv7Iv5DG8ZM1xQ/
+ I/lCED+krm296qN4DnlLxTRtjgHl7vdKD7KUzrrK4BG7KdSXejqPU5hUroPa/al+FcU5yJ3+rrSMM
+ UFytiFOH1s96PLzq7i+w2E+2wkqjU4sGz6m2gah+57foZ94k0NNNiJFBmWtti4DjS7/k=;
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  ;
  h=Content-Transfer-Encoding:MIME-Version:References:In-Reply-To:Message-Id:
@@ -31,66 +31,63 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
  :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
  List-Post:List-Owner:List-Archive;
- bh=UmhaJMECcRYmREt7/tMqA6aB1TydkXl9QzrOPmc/ArE=; b=JP2tTmR5NGONnRs9thGrg/OtDR
- wqRtJPGgyY58folccubOZo7fagTf3cg5ubZY6p8317A0QJi+trub598OHHg+AYH7uKbQQ36iHpgEi
- iHvZ0cOaWjNg9ezdaTGartOXweQs+lA/2z49m2DXff94Y9CcSQyPPymFCysqILsLQj2c=;
+ bh=B52/mFabXVyZkWM6X1umFbbhvQzlpiRJF9pARLLSDwc=; b=k+I322GIUnU6YwaiNovjXk1wYP
+ drSf8HMO28EgIE23pf6wkbh+6q2XqYGRlbe1IyCSBVPIyqaiCngVyqMc92mJJ4E/PDMV0PExNpACc
+ YRLXgbo9NRNvvO831SIEpxytEKIFQApIqSSKM51bReF188Q2CfcV00+x0heHw98e3mKk=;
 Received: from nautica.notk.org ([91.121.71.147])
- by sfi-mx-2.v28.lw.sourceforge.com with esmtps
+ by sfi-mx-1.v28.lw.sourceforge.com with esmtps
  (TLS1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.95)
- id 1oderB-00038Z-SF for v9fs-developer@lists.sourceforge.net;
- Wed, 28 Sep 2022 21:44:46 +0000
+ id 1oderL-005wEa-PR for v9fs-developer@lists.sourceforge.net;
+ Wed, 28 Sep 2022 21:44:52 +0000
 Received: by nautica.notk.org (Postfix, from userid 108)
- id 79723C01E; Wed, 28 Sep 2022 23:44:34 +0200 (CEST)
+ id AA60BC009; Wed, 28 Sep 2022 23:44:38 +0200 (CEST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=codewreck.org; s=2;
- t=1664401474; bh=UmhaJMECcRYmREt7/tMqA6aB1TydkXl9QzrOPmc/ArE=;
+ t=1664401478; bh=B52/mFabXVyZkWM6X1umFbbhvQzlpiRJF9pARLLSDwc=;
  h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
- b=EgiHNJZSmT706nye3erb+e0zf8MszeHX5843yn+BSuaO1TSnEul/h1Pnn0lrPoce1
- WCmXZYSo+k/PFLQtCHFCHLQ+/Uhpks+2WX98PB9CrR/DElNCYvqbFQSd1nUNHQjAQa
- 7R0LD9Oz7GavNZ9L7Zjd3c6jQ075mxpGRQcOlsOr1u+e9SM+ljOJcEgf7VQkdd0KGP
- 5f9xqtEzABpRxvuSs5ZKp/Fnbt2wJbh1hyRuAS+2mf2uKo+V2LLRnGG+EpHQYG/CPx
- 5TSXPKPua+M0R2d0E8FnVO0vb+eYBCIcCugK5wxKE1G6U1NxUD0R9eng8yo4gEwpLr
- 4OEmESu6xL5Dg==
+ b=RKsaER1TSz6n0eV+uMs7nT7c/m9mdyIn2BXDs2vMqjO43OH95d+6tc0Y8yvtGMPso
+ ojNc2QCUPrANTJ9US3wHM1N5I8MlaaWXu2GOF2rc3oYrKz+S+xzAanciQlfUgPzcL9
+ MytmctiDVca/hSpYDNivV5EgIrLqM7TXbTq0n9LBJkkdMAtotB4PksHP2s8Xb2UMyo
+ PJf2phCoE1O2IBCd8kbzMaL1boKcMEy4zJc5wvSZr7Bs7fQjQzCeT44o0itTF3B/21
+ XDKJo1bD4lgV/XQ/76cCg9myRmh5d6tw+G4RXEaFqHldVFaAjCdd6LkHuqjK2mC+Yv
+ R/HawAtsJv7mw==
 X-Spam-Checker-Version: SpamAssassin 3.3.2 (2011-06-06) on nautica.notk.org
 X-Spam-Level: 
 X-Spam-Status: No, score=0.0 required=5.0 tests=UNPARSEABLE_RELAY
  autolearn=unavailable version=3.3.2
 Received: from odin.codewreck.org (localhost [127.0.0.1])
- by nautica.notk.org (Postfix) with ESMTPS id 8622EC009;
- Wed, 28 Sep 2022 23:44:31 +0200 (CEST)
+ by nautica.notk.org (Postfix) with ESMTPS id 55700C01A;
+ Wed, 28 Sep 2022 23:44:34 +0200 (CEST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=codewreck.org; s=2;
- t=1664401473; bh=UmhaJMECcRYmREt7/tMqA6aB1TydkXl9QzrOPmc/ArE=;
+ t=1664401478; bh=B52/mFabXVyZkWM6X1umFbbhvQzlpiRJF9pARLLSDwc=;
  h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
- b=yltSH9hCDL97tJShageOdXo1pcVGpvqc7R5PJjb/bkqxP4ZqJhuoOtaLKZLuu7QC9
- DJ0nLnbWKlbK7KUltKxQewcdvOwkC0KpYUoVbOdmbJUeC8StHnZ7Ja//aI3jz7dCoe
- 7l6AsIH1cGK8sP07aobThwBARiZmrWmfteJzGnymQUhoTiJRBmZBm88huGBKgSj4Uf
- 4XRGy8T5E4x/IytD4nK8oZR3galJZN/n13kWdPVS21e8myCFFRu8V6dULP847x8XRV
- UEFk+C6VBTNPh1rbu5uPxvnu6xgLt0tOe49b0Uc8wTK3Zx4Viij6q1FlcrwWU5CbBy
- nfGWembNZqeuA==
+ b=RKsaER1TSz6n0eV+uMs7nT7c/m9mdyIn2BXDs2vMqjO43OH95d+6tc0Y8yvtGMPso
+ ojNc2QCUPrANTJ9US3wHM1N5I8MlaaWXu2GOF2rc3oYrKz+S+xzAanciQlfUgPzcL9
+ MytmctiDVca/hSpYDNivV5EgIrLqM7TXbTq0n9LBJkkdMAtotB4PksHP2s8Xb2UMyo
+ PJf2phCoE1O2IBCd8kbzMaL1boKcMEy4zJc5wvSZr7Bs7fQjQzCeT44o0itTF3B/21
+ XDKJo1bD4lgV/XQ/76cCg9myRmh5d6tw+G4RXEaFqHldVFaAjCdd6LkHuqjK2mC+Yv
+ R/HawAtsJv7mw==
 Received: from localhost (odin.codewreck.org [local])
- by odin.codewreck.org (OpenSMTPD) with ESMTPA id 8209d52e;
- Wed, 28 Sep 2022 21:44:29 +0000 (UTC)
+ by odin.codewreck.org (OpenSMTPD) with ESMTPA id f0a11f89;
+ Wed, 28 Sep 2022 21:44:34 +0000 (UTC)
 From: Dominique Martinet <asmadeus@codewreck.org>
 To: v9fs-developer@lists.sourceforge.net
-Date: Thu, 29 Sep 2022 06:44:16 +0900
-Message-Id: <20220928214417.1749609-1-asmadeus@codewreck.org>
+Date: Thu, 29 Sep 2022 06:44:17 +0900
+Message-Id: <20220928214417.1749609-2-asmadeus@codewreck.org>
 X-Mailer: git-send-email 2.37.1
-In-Reply-To: <YzQc2yaDufjp+rHc@unreal>
+In-Reply-To: <20220928214417.1749609-1-asmadeus@codewreck.org>
 References: <YzQc2yaDufjp+rHc@unreal>
+ <20220928214417.1749609-1-asmadeus@codewreck.org>
 MIME-Version: 1.0
 X-Spam-Score: -0.2 (/)
 X-Spam-Report: Spam detection software,
- running on the system "util-spamd-2.v13.lw.sourceforge.com", 
+ running on the system "util-spamd-1.v13.lw.sourceforge.com", 
  has NOT identified this incoming email as spam.  The original
  message has been attached to this so you can view it or label
  similar future email.  If you have any questions, see
  the administrator of that system for details.
- Content preview: destroy code would incorrectly call close() if trans_mod
- exists
- after some hasty code cleanup: we need to make sure we only call close after
- create Link: https://lkml.kernel.org/r/00000000000015ac7905e97ebaed@google.com
- Reported-by: syzbot+67d13108d855f451cafc@syzkaller.appspotmail.com
- Reported-by:
- Leon Romanovsky <leon@kernel.org> Fixes: 3ff5129 [...] 
+ Content preview:  fcall cache was init'd last for some reason, but we actually
+ allocate some requests for the version check before that. Moving the cache
+ creation towards the start also makes p9_client_destroy's order [...] 
  Content analysis details:   (-0.2 points, 6.0 required)
  pts rule name              description
  ---- ---------------------- --------------------------------------------------
@@ -100,18 +97,18 @@ X-Spam-Report: Spam detection software,
  for more information. [URIs: codewreck.org]
  0.0 SPF_HELO_NONE          SPF: HELO does not publish an SPF Record
  -0.0 SPF_PASS               SPF: sender matches SPF record
- -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
- -0.1 DKIM_VALID_EF          Message has a valid DKIM or DK signature from
- envelope-from domain
  0.1 DKIM_SIGNED            Message has a DKIM or DK signature, not necessarily
  valid
+ -0.1 DKIM_VALID_EF          Message has a valid DKIM or DK signature from
+ envelope-from domain
  -0.1 DKIM_VALID_AU          Message has a valid DKIM or DK signature from
  author's domain
+ -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
  0.0 UNPARSEABLE_RELAY      Informational: message has unparseable relay
  lines
-X-Headers-End: 1oderB-00038Z-SF
-Subject: [V9fs-developer] [PATCH 1/2] 9p: client_create/destroy: only call
- trans_mod->close after create
+X-Headers-End: 1oderL-005wEa-PR
+Subject: [V9fs-developer] [PATCH 2/2] 9p: client_create: init fcall_cache
+ earlier
 X-BeenThere: v9fs-developer@lists.sourceforge.net
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -123,62 +120,60 @@ List-Post: <mailto:v9fs-developer@lists.sourceforge.net>
 List-Help: <mailto:v9fs-developer-request@lists.sourceforge.net?subject=help>
 List-Subscribe: <https://lists.sourceforge.net/lists/listinfo/v9fs-developer>, 
  <mailto:v9fs-developer-request@lists.sourceforge.net?subject=subscribe>
-Cc: Leon Romanovsky <leon@kernel.org>,
- syzbot+67d13108d855f451cafc@syzkaller.appspotmail.com, linux_oss@crudebyte.com,
- syzkaller-bugs@googlegroups.com, linux-kernel@vger.kernel.org
+Cc: linux_oss@crudebyte.com, syzkaller-bugs@googlegroups.com,
+ linux-kernel@vger.kernel.org, Leon Romanovsky <leon@kernel.org>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: v9fs-developer-bounces@lists.sourceforge.net
 
-destroy code would incorrectly call close() if trans_mod exists after some
-hasty code cleanup: we need to make sure we only call close after create
+fcall cache was init'd last for some reason, but we actually allocate
+some requests for the version check before that.
+Moving the cache creation towards the start also makes p9_client_destroy's
+order match the allocation order, which might be easier to think about
 
-Link: https://lkml.kernel.org/r/00000000000015ac7905e97ebaed@google.com
-Reported-by: syzbot+67d13108d855f451cafc@syzkaller.appspotmail.com
-Reported-by: Leon Romanovsky <leon@kernel.org>
-Fixes: 3ff51294a055 ("9p: p9_client_create: use p9_client_destroy on failure")
 Signed-off-by: Dominique Martinet <asmadeus@codewreck.org>
 ---
-I tried to make trans->create() return clnt->trans to assign directly
-from there, but rdma callbacks need clnt->trans to be set early during
-init and the diff was just too big for a simple fix.
-This should work for all transports without any change, and ensures we
-only call close if create succeeded.
-
- net/9p/client.c | 6 +++++-
- 1 file changed, 5 insertions(+), 1 deletion(-)
+ net/9p/client.c | 20 +++++++++++---------
+ 1 file changed, 11 insertions(+), 9 deletions(-)
 
 diff --git a/net/9p/client.c b/net/9p/client.c
-index bfa80f01992e..40b59431a566 100644
+index 40b59431a566..1ea326e6e271 100644
 --- a/net/9p/client.c
 +++ b/net/9p/client.c
-@@ -971,6 +971,7 @@ struct p9_client *p9_client_create(const char *dev_name, char *options)
- 	spin_lock_init(&clnt->lock);
- 	idr_init(&clnt->fids);
- 	idr_init(&clnt->reqs);
-+	clnt->trans = ERR_PTR(-EINVAL);
- 
- 	err = parse_opts(options, clnt);
+@@ -977,6 +977,17 @@ struct p9_client *p9_client_create(const char *dev_name, char *options)
  	if (err < 0)
-@@ -992,6 +993,9 @@ struct p9_client *p9_client_create(const char *dev_name, char *options)
- 	err = clnt->trans_mod->create(clnt, dev_name, options);
+ 		goto out;
+ 
++	/* P9_HDRSZ + 4 is the smallest packet header we can have that is
++	 * followed by data accessed from userspace by read
++	 * Note we do not check for failure here because the cache is
++	 * optional; warning will be issued on dmesg for failure.
++	 */
++	clnt->fcall_cache =
++		kmem_cache_create_usercopy("9p-fcall-cache", clnt->msize,
++					   0, 0, P9_HDRSZ + 4,
++					   clnt->msize - (P9_HDRSZ + 4),
++					   NULL);
++
+ 	if (!clnt->trans_mod)
+ 		clnt->trans_mod = v9fs_get_default_trans();
+ 
+@@ -1016,15 +1027,6 @@ struct p9_client *p9_client_create(const char *dev_name, char *options)
  	if (err)
  		goto out;
-+	// ensure clnt->trans is initialized to call close() on destroy
-+	if (IS_ERR(clnt->trans))
-+		clnt->trans = NULL;
  
- 	if (clnt->msize > clnt->trans_mod->maxsize) {
- 		clnt->msize = clnt->trans_mod->maxsize;
-@@ -1036,7 +1040,7 @@ void p9_client_destroy(struct p9_client *clnt)
+-	/* P9_HDRSZ + 4 is the smallest packet header we can have that is
+-	 * followed by data accessed from userspace by read
+-	 */
+-	clnt->fcall_cache =
+-		kmem_cache_create_usercopy("9p-fcall-cache", clnt->msize,
+-					   0, 0, P9_HDRSZ + 4,
+-					   clnt->msize - (P9_HDRSZ + 4),
+-					   NULL);
+-
+ 	return clnt;
  
- 	p9_debug(P9_DEBUG_MUX, "clnt %p\n", clnt);
- 
--	if (clnt->trans_mod)
-+	if (clnt->trans_mod && !IS_ERR(client->trans))
- 		clnt->trans_mod->close(clnt);
- 
- 	v9fs_put_trans(clnt->trans_mod);
+ out:
 -- 
 2.35.1
 
