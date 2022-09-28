@@ -2,128 +2,101 @@ Return-Path: <v9fs-developer-bounces@lists.sourceforge.net>
 X-Original-To: lists+v9fs-developer@lfdr.de
 Delivered-To: lists+v9fs-developer@lfdr.de
 Received: from lists.sourceforge.net (lists.sourceforge.net [216.105.38.7])
-	by mail.lfdr.de (Postfix) with ESMTPS id 540025ED120
-	for <lists+v9fs-developer@lfdr.de>; Wed, 28 Sep 2022 01:38:14 +0200 (CEST)
-Received: from [127.0.0.1] (helo=sfs-ml-4.v29.lw.sourceforge.com)
-	by sfs-ml-4.v29.lw.sourceforge.com with esmtp (Exim 4.95)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4F10B5ED9D1
+	for <lists+v9fs-developer@lfdr.de>; Wed, 28 Sep 2022 12:07:47 +0200 (CEST)
+Received: from [127.0.0.1] (helo=sfs-ml-1.v29.lw.sourceforge.com)
+	by sfs-ml-1.v29.lw.sourceforge.com with esmtp (Exim 4.95)
 	(envelope-from <v9fs-developer-bounces@lists.sourceforge.net>)
-	id 1odK9H-0008Uc-CU;
-	Tue, 27 Sep 2022 23:38:11 +0000
+	id 1odTyi-00053l-8z;
+	Wed, 28 Sep 2022 10:07:44 +0000
 Received: from [172.30.20.202] (helo=mx.sourceforge.net)
- by sfs-ml-4.v29.lw.sourceforge.com with esmtps (TLS1.2) tls
+ by sfs-ml-1.v29.lw.sourceforge.com with esmtps (TLS1.2) tls
  TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384 (Exim 4.95)
- (envelope-from <casey@schaufler-ca.com>) id 1odK9F-0008UW-Ce
+ (envelope-from <leon@kernel.org>) id 1odTyg-00053S-GC
  for v9fs-developer@lists.sourceforge.net;
- Tue, 27 Sep 2022 23:38:09 +0000
+ Wed, 28 Sep 2022 10:07:42 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=sourceforge.net; s=x; h=Content-Transfer-Encoding:Content-Type:In-Reply-To:
- From:References:Cc:To:Subject:MIME-Version:Date:Message-ID:Sender:Reply-To:
+ d=sourceforge.net; s=x; h=In-Reply-To:Content-Type:MIME-Version:References:
+ Message-ID:Subject:Cc:To:From:Date:Sender:Reply-To:Content-Transfer-Encoding:
  Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
  Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
  List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=dcoJeyML+0RbcNiEVPffEvxaFIftFIaaNOl8mKiOxH0=; b=fXe4PNNNupqRHtX5XpRh8B3hop
- /NlUUf/YVsM0oGOl+kzuRx6yXGIr2lTKXJkBWncVhd5LnxGy0SmzrlTx1FBG45baKzjLCuuptV5Cg
- 0nR1wX2nlJvlhbZuWraftM609gIyuF/+ZUKGGBX6UVWG0BmDyyDWsKLPvSv942NGVFkc=;
+ bh=svJ0rZ38VSCInSMEMEnX7EDQ0CNN7LVaSTqefQwxAZU=; b=CLJOZ+BA1qPfQnIjex8aXY1fQa
+ D8jBYZPKVvbUanWXJ0eEBU8DRjQWiqScHKwumuoV53+jeRhUGGXmjmGiQg5AGrMSSPWjT7UDXE0sp
+ iLhAt0YFp9zVppW/dlcqSlWrciQD2yaQQjG0iSC8dIlKa9F5eFVEzUeypws1QSaBtY9o=;
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  ;
- h=Content-Transfer-Encoding:Content-Type:In-Reply-To:From:References:Cc:To:
- Subject:MIME-Version:Date:Message-ID:Sender:Reply-To:Content-ID:
+ h=In-Reply-To:Content-Type:MIME-Version:References:Message-ID:Subject:Cc:To
+ :From:Date:Sender:Reply-To:Content-Transfer-Encoding:Content-ID:
  Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
  :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
  List-Post:List-Owner:List-Archive;
- bh=dcoJeyML+0RbcNiEVPffEvxaFIftFIaaNOl8mKiOxH0=; b=m+EzmvsAPSIxzyNDmmG8Oepukm
- gd+TiJ/W7QIIaIb0CDps9mC2pVtd5PEz9RxQEOftqBK0nsS2CkSNesjE9MP2aeqjjwNtpaiVuY9Zm
- FPSnpr3ylUJP7l2BXzio1O0R8kAE2c/H7pEdSMc7iDJRuL6BMzCrGzfjiQ+vOKhAg0tA=;
-Received: from sonic308-16.consmr.mail.ne1.yahoo.com ([66.163.187.39])
- by sfi-mx-2.v28.lw.sourceforge.com with esmtps
- (TLS1.2:ECDHE-RSA-AES128-GCM-SHA256:128) (Exim 4.95)
- id 1odK9N-0000nP-Cw for v9fs-developer@lists.sourceforge.net;
- Tue, 27 Sep 2022 23:38:08 +0000
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yahoo.com; s=s2048;
- t=1664321879; bh=dcoJeyML+0RbcNiEVPffEvxaFIftFIaaNOl8mKiOxH0=;
- h=Date:Subject:To:Cc:References:From:In-Reply-To:From:Subject:Reply-To;
- b=RcChjhewUU/yqn7GWVsj8OZ8sB/qzeclFs49E+iEtpqv6EWP2wwjwKjYOuZktksHKVvANTMu+gB3Mys3cBESqCwOA4eVqV8CyfpQAN1/jNH7hrrDMYyX5pxV+qa8bocQTOD5J+cEHQBtzBMm1XqWnPFw12RODVyQ0/u0YGgFCZw2FiLbpoquJD99C7j/p7v3TuJlQDZY1S3/89qhy6S5GKe++2MiknR6MY0CGJo2UEykoJfAEjuYi1R17JRHaTPF8+C1GZy7no3V3Vgd6SUTD1DNiAGkt0FoQodWaYM2EqMtN/YNcpLErv0LbtRCxjPgpfDormH1VCxc6MfUBVX46Q==
-X-SONIC-DKIM-SIGN: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yahoo.com; s=s2048;
- t=1664321879; bh=Ik0PYjOuc7lxbFxdO2yAjC6eVPf0i0AdrVbA0qtDBB7=;
- h=X-Sonic-MF:Date:Subject:To:From:From:Subject;
- b=Kiv+wprQoXOI55JIkEzkSiEaFr9gS3j7FKE1Sy91BR96//PoleU09LKMqx0LJ5VKCB625cZOYrXI9PIcau61JcdfSh60STrOjq0qgIMBjC2059yYuhB3jLOLVG1lWADYui1vTOJ8iviVuvN0s2ykHU3bH9ZwGubEJ90i5jL9xdhFed55EqPMtvQaJcJu7wwznFkumugLUvs7En85Ybw/KnHGAG1vP/8FLR2VQvBN7ZngasGFhfuKfPsSI2iN7P1BJZOkwDbuGe9hmjfII8d+eTD6dx8KfvAKcqOrJNnDXhhA+r04sfM28T+HlcG0eNyQZfLFOc/OUR3ejpvH67CdmQ==
-X-YMail-OSG: 9FZcd74VM1nIsnhlS8k4XujrMNRf1tm5BWXhXDB8Y50igsqWYSobkypOn8FrM3q
- _hPfMuom8fVjihzlQCab0E2bPurfrZz_GSBhFUrQv54hTgazW7A9QcEozzE8Bv4VzN2wOJcPorcx
- NQOu4WuLC.XOkH6dSyFeMrxtr49_2b0sHnwQzs602nD9TdFeXhoAw8g_2cq9tSzI9Dtr5TxFqLPv
- N58LBY8zPILuFtTLs_AVwbyc6pkF.I6APGoxJKa59.e563qGsZi0KpQyS.oiZzTI_ut1UcOkjeEq
- GhkBwwI_X80cvyi6mPeHuaHEfhbLvqwe.puoJT1ST.V87NbbgK18R.OEOPzkPjL5IX5KouTDdqS7
- MGQeGNLPFx1tusGUDO1EjRPOZEzUQwjHLW_c.URdmC7xpzOHxMCHle7QEdzQNYiRMsygNWg6qkkf
- 1g_vdmAFk..iwfHJlDj6YggUMr9y.hH1YpthB3FZnnzIWlGDw0ExNakQ0SqH2cXhWKte5CJ8cIFh
- 4B_TqSveZ0wDoRK9gy7En8_9eftyeh3NRI_A4DlM4XaDvY6Qy0JmJ64Ehcip.YtdviOb3GNZcwx_
- edpc0gkdYpAuk7enZ1sncc1pN87Fclcm7irdaaU63XeK3C47t_3pZBfMr3F2G4WbHIq.7h4I68fZ
- pmCGRlzmmSluk9QsqxKyjv5e21JHCckNMq96ULDOdMj1sUN6IE4VPJtO8c6fmVrsx_9F8ZQsjR62
- YBU4cxj5QyuoGO7nuMnxLcR1pvEXm.0c0n5KmkR_smUFwRZr8vTFvyQrNQdNcqcynZ.HALYKfl47
- iFHWXiNh6ddGHhSPWnWhcADNXrWegcxpBTLIJSF98XZlH1ri.teIb0djfeEv7K1l9Vytvy5QrbGt
- RMdZjctj5L0OX10RCBSk3xhB3qY9gsM4pCuDCPrSl3_rlfUj8Ql.R9Aj9v2nzOMGxd_IL4YBa99r
- L6KwnWNJn6FrwbAjsbFgUMO2ql_Sw5IQREHZsTbtQY1X_T7oplSYBibjkVSh8Qypo5Cej4I3i4on
- JfI1DTsGoOtBZA6rqcAigMA8KroFnoDe6pZUPErAiYqFHhxoliRYnMcPJCAgPVqSm5cH0dGgobdD
- Z6glosu.vhnnISjsV7vYuO343DrGG.bCy1xHXsxMQJwZEEDDNFg0XrDYcJIPeIVwHveWJJD82pLD
- yBRqToFG1OyPiCL8CpX1q2fJYuOS39CsAoamXjF7Mp7by71A7nzNF_RJwU5EjSipSmDNkTa_oT0K
- wFprPzbfWdxPmsFlVc75F6DB4It2JEl9xRb0J0Wa9odsJgxtLzj6UKjth.eieUldQgz8g.FJga8A
- aV9bSdift_fqYcsGXbS2SFmOeH3q4NE45WtH5VCa7hbDhPYc8Jxhi3RKAsNpzV2IH7puodtqx2MW
- mPcyybNoje4lnkD6yxwVgzlgNDbh3.0Bi4UzB5qoFkjbkmHvMI7JuakBBCm.yJn.BcXHjz1pdpaj
- zayojCB0VOE.pil0xBT0kwQWRra5mNVuJI7YA5iOCdOrYugcEKLYNdnHOVdNjV.nSnBYfjs4tOPv
- 0.fSK5DjyWm8eK8_hPz6ZFNVf.5BynwY6xgado5tbWWlNc_vJY1m7C_HeFrUhHMjhj9YBg1bmUIR
- .EA6QBQslhUwZXCjuaryQlDhZvbAXvsQ.JTYTjMSQcc3IgTaufqAvREHdANjgGkP3FCPI948YaE_
- MbwkO3E5y3PurbgJNGMOXo4LGVxNb4BWFIVc1w7yAPvx_vEBoPUF2EvvpNBwOTyoFNhdvcbPiSbH
- vkXAqcoNQHOlP5xdhSBcIs2I7rPKZ13oOyGsraJ9ULzapO9NWbHkLTZji84FsvMOW1IeMvq_YrE1
- o9Gh9yZCzirOgWbS1p7nBj.LIooDvTPrmv1vqIL.gRLODOg_3ja9TwL2i_FPXH6EBcFvTf2JZH.J
- c068T8niVYx0O.X17grb95y5PKLbTaeyYW8Nrd2Pmr77oLoa8_njRFcUEaSfQMAA1xrK50eOaMqK
- rB_w9oZL6pBd99T9sX_2QLnBp_dqaepGzNmZ.TwVzMsT51xfvz8WO8u66UFx3XkteK0fARQziNUi
- gPwIxGGisRqbveqtsACwVofSi7abZAU2Y5VPjFd_BUMLPTewNfpUX6AbYVLs9YQWbJs8qQIB9cHk
- O6hfKnnQGNL5X6.wg9lZ78AObU9trTk5xnyDoiFnQin3phl0NaIZHr.W9fQYK6w6BmPVk5MkdRPa
- O94129SQoL18H3Uw4x1E44jqXy3zmJL7Xv0JPIKyU0fVxZdC7MDjXj7FPlQ--
-X-Sonic-MF: <casey@schaufler-ca.com>
-Received: from sonic.gate.mail.ne1.yahoo.com by
- sonic308.consmr.mail.ne1.yahoo.com with HTTP; Tue, 27 Sep 2022 23:37:59 +0000
-Received: by hermes--production-bf1-759bcdd488-x5z77 (Yahoo Inc. Hermes SMTP
- Server) with ESMTPA ID 1ada386b527abdaae554e50e8733736f; 
- Tue, 27 Sep 2022 23:37:55 +0000 (UTC)
-Message-ID: <6dcd0fe7-3fc6-9edc-349c-0133ab1f918a@schaufler-ca.com>
-Date: Tue, 27 Sep 2022 16:37:51 -0700
+ bh=svJ0rZ38VSCInSMEMEnX7EDQ0CNN7LVaSTqefQwxAZU=; b=UY/pEELP/PxGhXpzrRGKLWujr/
+ UfDkAuC+ukH3ajmjchK8xL73VnLr+UetRCeUxVwZjNn6atlyc6vX6yP6aEQQn4zSCI3aopk+eXbc2
+ qCptMjuaQVA+IB3GELQI4GunTyYN8WcFUSRASVV6KUH9E5eL7SVa5OqNyUcmqMMm2d9E=;
+Received: from ams.source.kernel.org ([145.40.68.75])
+ by sfi-mx-1.v28.lw.sourceforge.com with esmtps
+ (TLS1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.95)
+ id 1odTyc-005Rel-7t for v9fs-developer@lists.sourceforge.net;
+ Wed, 28 Sep 2022 10:07:42 +0000
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+ (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+ (No client certificate requested)
+ by ams.source.kernel.org (Postfix) with ESMTPS id BFB3EB82022;
+ Wed, 28 Sep 2022 10:07:28 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 080A9C433C1;
+ Wed, 28 Sep 2022 10:07:26 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+ s=k20201202; t=1664359647;
+ bh=h0nDlbC/dZHzfRyNu6g+FNQFymHs+yO1wz2etuCjlKs=;
+ h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+ b=oPg/RbF7j4iXbWJl1PmXufJMaS/veLl2bQ+5cJMIHghLeC/n9IYME8D8bRECWwqHa
+ EaLSpEi5MVoVtLtlAAdeNy/Ix0a4OVGTOYHfxFmiYSubKcmJnLcIJhRLkYKaz//plN
+ pFeLobPsRuYDjtstFSKTrfiQ3tjyGokdDz6GIPe1dqhK1CDUCEHaUwQvlguckosn8E
+ btEDIwOT085sfIvDJLAjrtn97marSMOyArYgAs3Px0tG7gHb2H8FD9cam/r0VoeMY0
+ gHBEwer7u/hVKH7d7f35uRkLQAtqjZgjjaKCNnk77d5FvSNAIv/kCSJGnWbm6kcox1
+ 7O2SxXIqj2U+Q==
+Date: Wed, 28 Sep 2022 13:07:23 +0300
+From: Leon Romanovsky <leon@kernel.org>
+To: syzbot <syzbot+67d13108d855f451cafc@syzkaller.appspotmail.com>
+Message-ID: <YzQc2yaDufjp+rHc@unreal>
+References: <00000000000015ac7905e97ebaed@google.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
- Thunderbird/91.13.1
-Content-Language: en-US
-To: Paul Moore <paul@paul-moore.com>
-References: <20220926140827.142806-1-brauner@kernel.org>
- <99173046-ab2e-14de-7252-50cac1f05d27@schaufler-ca.com>
- <20220927074101.GA17464@lst.de>
- <a0cf3efb-dea1-9cb0-2365-2bcc2ca1fdba@schaufler-ca.com>
- <CAHC9VhToUZici98r10UJOQhE48j-58hUheT0P8GE9nC38p=ijQ@mail.gmail.com>
-From: Casey Schaufler <casey@schaufler-ca.com>
-In-Reply-To: <CAHC9VhToUZici98r10UJOQhE48j-58hUheT0P8GE9nC38p=ijQ@mail.gmail.com>
-X-Mailer: WebService/1.1.20702
- mail.backend.jedi.jws.acl:role.jedi.acl.token.atz.jws.hermes.yahoo
-X-Spam-Score: -2.0 (--)
+Content-Disposition: inline
+In-Reply-To: <00000000000015ac7905e97ebaed@google.com>
+X-Spam-Score: -2.8 (--)
 X-Spam-Report: Spam detection software,
- running on the system "util-spamd-1.v13.lw.sourceforge.com", 
+ running on the system "util-spamd-2.v13.lw.sourceforge.com", 
  has NOT identified this incoming email as spam.  The original
  message has been attached to this so you can view it or label
  similar future email.  If you have any questions, see
  the administrator of that system for details.
- Content preview:  On 9/27/2022 4:24 PM, Paul Moore wrote: > On Tue, Sep 27,
- 2022 at 10:13 AM Casey Schaufler <casey@schaufler-ca.com> wrote: >> On
- 9/27/2022
- 12:41 AM, Christoph Hellwig wrote: >>> On Mon, Sep 26, 2022 a [...] 
- Content analysis details:   (-2.0 points, 6.0 required)
+ Content preview:  On Sun, Sep 25, 2022 at 04:29:40AM -0700, syzbot wrote: >
+ Hello, > > syzbot found the following issue on: > > HEAD commit: 483fed3b5dc8
+ Add linux-next specific files for 20220921 > git tree: linux-nex [...] 
+ Content analysis details:   (-2.8 points, 6.0 required)
  pts rule name              description
  ---- ---------------------- --------------------------------------------------
- -0.0 RCVD_IN_DNSWL_NONE     RBL: Sender listed at https://www.dnswl.org/,
- no trust [66.163.187.39 listed in list.dnswl.org]
- 0.0 SPF_NONE               SPF: sender does not publish an SPF Record
+ 0.0 URIBL_BLOCKED          ADMINISTRATOR NOTICE: The query to URIBL was
+ blocked.  See
+ http://wiki.apache.org/spamassassin/DnsBlocklists#dnsbl-block
+ for more information. [URIs: googleapis.com]
+ -5.0 RCVD_IN_DNSWL_HI       RBL: Sender listed at https://www.dnswl.org/,
+ high trust [145.40.68.75 listed in list.dnswl.org]
  0.0 SPF_HELO_NONE          SPF: HELO does not publish an SPF Record
+ -0.0 SPF_PASS               SPF: sender matches SPF record
+ 2.5 SORTED_RECIPS          Recipient list is sorted by address
+ -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+ -0.1 DKIM_VALID_EF          Message has a valid DKIM or DK signature from
+ envelope-from domain
  0.1 DKIM_SIGNED            Message has a DKIM or DK signature, not necessarily
  valid
- -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
- -2.0 NICE_REPLY_A           Looks like a legit reply (A)
-X-Headers-End: 1odK9N-0000nP-Cw
-Subject: Re: [V9fs-developer] [PATCH v2 00/30] acl: add vfs posix acl api
+ -0.1 DKIM_VALID_AU          Message has a valid DKIM or DK signature from
+ author's domain
+ -0.1 DKIMWL_WL_HIGH         DKIMwl.org - High trust sender
+X-Headers-End: 1odTyc-005Rel-7t
+Subject: Re: [V9fs-developer] [syzbot] KASAN: use-after-free Read in
+ rdma_close
 X-BeenThere: v9fs-developer@lists.sourceforge.net
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -135,56 +108,195 @@ List-Post: <mailto:v9fs-developer@lists.sourceforge.net>
 List-Help: <mailto:v9fs-developer-request@lists.sourceforge.net?subject=help>
 List-Subscribe: <https://lists.sourceforge.net/lists/listinfo/v9fs-developer>, 
  <mailto:v9fs-developer-request@lists.sourceforge.net?subject=subscribe>
-Cc: linux-cifs@vger.kernel.org, Christian Brauner <brauner@kernel.org>,
- casey@schaufler-ca.com, linux-security-module@vger.kernel.org,
- Al Viro <viro@zeniv.linux.org.uk>, linux-fsdevel@vger.kernel.org,
- v9fs-developer@lists.sourceforge.net, linux-integrity@vger.kernel.org,
- Linus Torvalds <torvalds@linux-foundation.org>, Christoph Hellwig <hch@lst.de>,
- Seth Forshee <sforshee@kernel.org>
+Cc: lucho@ionkov.net, ericvh@gmail.com, netdev@vger.kernel.org,
+ linux_oss@crudebyte.com, syzkaller-bugs@googlegroups.com,
+ linux-kernel@vger.kernel.org, edumazet@google.com,
+ v9fs-developer@lists.sourceforge.net, kuba@kernel.org, pabeni@redhat.com,
+ davem@davemloft.net
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: v9fs-developer-bounces@lists.sourceforge.net
 
-On 9/27/2022 4:24 PM, Paul Moore wrote:
-> On Tue, Sep 27, 2022 at 10:13 AM Casey Schaufler <casey@schaufler-ca.com> wrote:
->> On 9/27/2022 12:41 AM, Christoph Hellwig wrote:
->>> On Mon, Sep 26, 2022 at 05:22:45PM -0700, Casey Schaufler wrote:
->>>> I suggest that you might focus on the acl/evm interface rather than the entire
->>>> LSM interface. Unless there's a serious plan to make ima/evm into a proper LSM
->>>> I don't see how the breadth of this patch set is appropriate.
->>> Umm. The problem is the historically the Linux xattr interface was
->>> intended for unstructured data, while some of it is very much structured
->>> and requires interpretation by the VFS and associated entities.  So
->>> splitting these out and add proper interface is absolutely the right
->>> thing to do and long overdue (also for other thing like capabilities).
->>> It might make things a little more verbose for LSM, but it fixes a very
->>> real problem.
->> Here's the problem I see. All of the LSMs see xattrs, except for their own,
->> as opaque objects. Introducing LSM hooks to address the data interpretation
->> issues between VFS and EVM, which is not an LSM, adds to an already overlarge
->> and interface. And the "real" users of the interface don't need the new hook.
->> I'm not saying that the ACL doesn't have problems. I'm not saying that the
->> solution you've proposed isn't better than what's there now. I am saying that
->> using LSM as a conduit between VFS and EVM at the expense of the rest of the
->> modules is dubious. A lot of change to LSM for no value to LSM.
-> Let's take a step back and look not just at the LSM changes, but the
-> patchset as a whole.  Forgive my paraphrasing, but what Christian is
-> trying to do here is introduce a proper ACL API in the kernel to
-> remove a lot of kludges, special-cases, etc. in the VFS layer,
-> enabling better type checking, code abstractions, and all the nice
-> things you get when you have nice APIs.  This is admirable work, even
-> if it does result in some duplication at the LSM layer (and below).
->
-> It is my opinion that the impact to the LSM, both at the LSM layer,
-> and in the individual affected LSMs is not significant enough to
-> outweigh the other advantages offered by this patchset.
+On Sun, Sep 25, 2022 at 04:29:40AM -0700, syzbot wrote:
+> Hello,
+> 
+> syzbot found the following issue on:
+> 
+> HEAD commit:    483fed3b5dc8 Add linux-next specific files for 20220921
+> git tree:       linux-next
+> console+strace: https://syzkaller.appspot.com/x/log.txt?x=11450b0f080000
+> kernel config:  https://syzkaller.appspot.com/x/.config?x=849cb9f70f15b1ba
+> dashboard link: https://syzkaller.appspot.com/bug?extid=67d13108d855f451cafc
+> compiler:       gcc (Debian 10.2.1-6) 10.2.1 20210110, GNU ld (GNU Binutils for Debian) 2.35.2
+> syz repro:      https://syzkaller.appspot.com/x/repro.syz?x=11c18ce4880000
+> C reproducer:   https://syzkaller.appspot.com/x/repro.c?x=12046b8c880000
+> 
+> Downloadable assets:
+> disk image: https://storage.googleapis.com/1cb3f4618323/disk-483fed3b.raw.xz
+> vmlinux: https://storage.googleapis.com/cc02cb30b495/vmlinux-483fed3b.xz
+> 
+> IMPORTANT: if you fix the issue, please add the following tag to the commit:
+> Reported-by: syzbot+67d13108d855f451cafc@syzkaller.appspotmail.com
+> 
+> ==================================================================
+> BUG: KASAN: use-after-free in rdma_close+0xaf/0xc0 net/9p/trans_rdma.c:555
+> Read of size 8 at addr ffff888016c73408 by task syz-executor151/3608
+> 
+> CPU: 0 PID: 3608 Comm: syz-executor151 Not tainted 6.0.0-rc6-next-20220921-syzkaller #0
+> Hardware name: Google Google Compute Engine/Google Compute Engine, BIOS Google 09/16/2022
+> Call Trace:
+>  <TASK>
+>  __dump_stack lib/dump_stack.c:88 [inline]
+>  dump_stack_lvl+0xcd/0x134 lib/dump_stack.c:106
+>  print_address_description mm/kasan/report.c:284 [inline]
+>  print_report+0x15e/0x45d mm/kasan/report.c:395
+>  kasan_report+0xbb/0x1f0 mm/kasan/report.c:495
+>  rdma_close+0xaf/0xc0 net/9p/trans_rdma.c:555
+>  p9_client_destroy+0xbe/0x370 net/9p/client.c:1040
+>  p9_client_create+0x728/0xf20 net/9p/client.c:1027
+>  v9fs_session_init+0x1e2/0x1810 fs/9p/v9fs.c:408
+>  v9fs_mount+0xba/0xc90 fs/9p/vfs_super.c:126
+>  legacy_get_tree+0x105/0x220 fs/fs_context.c:610
+>  vfs_get_tree+0x89/0x2f0 fs/super.c:1530
+>  do_new_mount fs/namespace.c:3040 [inline]
+>  path_mount+0x1326/0x1e20 fs/namespace.c:3370
+>  do_mount fs/namespace.c:3383 [inline]
+>  __do_sys_mount fs/namespace.c:3591 [inline]
+>  __se_sys_mount fs/namespace.c:3568 [inline]
+>  __x64_sys_mount+0x27f/0x300 fs/namespace.c:3568
+>  do_syscall_x64 arch/x86/entry/common.c:50 [inline]
+>  do_syscall_64+0x35/0xb0 arch/x86/entry/common.c:80
+>  entry_SYSCALL_64_after_hwframe+0x63/0xcd
+> RIP: 0033:0x7f9a65969039
+> Code: 28 c3 e8 5a 14 00 00 66 2e 0f 1f 84 00 00 00 00 00 48 89 f8 48 89 f7 48 89 d6 48 89 ca 4d 89 c2 4d 89 c8 4c 8b 4c 24 08 0f 05 <48> 3d 01 f0 ff ff 73 01 c3 48 c7 c1 c0 ff ff ff f7 d8 64 89 01 48
+> RSP: 002b:00007ffda4b921e8 EFLAGS: 00000246 ORIG_RAX: 00000000000000a5
+> RAX: ffffffffffffffda RBX: 00007ffda4b921f8 RCX: 00007f9a65969039
+> RDX: 0000000020000080 RSI: 0000000020000040 RDI: 0000000020000000
+> RBP: 00007ffda4b921f0 R08: 00000000200000c0 R09: 00007f9a65927300
+> R10: 0000000000000000 R11: 0000000000000246 R12: 0000000000000000
+> R13: 0000000000000000 R14: 0000000000000000 R15: 0000000000000000
+>  </TASK>
+> 
+> Allocated by task 3608:
+>  kasan_save_stack+0x1e/0x40 mm/kasan/common.c:45
+>  kasan_set_track+0x21/0x30 mm/kasan/common.c:52
+>  ____kasan_kmalloc mm/kasan/common.c:371 [inline]
+>  ____kasan_kmalloc mm/kasan/common.c:330 [inline]
+>  __kasan_kmalloc+0xa1/0xb0 mm/kasan/common.c:380
+>  kmalloc include/linux/slab.h:559 [inline]
+>  kzalloc include/linux/slab.h:695 [inline]
+>  alloc_rdma net/9p/trans_rdma.c:567 [inline]
+>  rdma_create_trans+0x24f/0x13d0 net/9p/trans_rdma.c:644
+>  p9_client_create+0x7ef/0xf20 net/9p/client.c:992
+>  v9fs_session_init+0x1e2/0x1810 fs/9p/v9fs.c:408
+>  v9fs_mount+0xba/0xc90 fs/9p/vfs_super.c:126
+>  legacy_get_tree+0x105/0x220 fs/fs_context.c:610
+>  vfs_get_tree+0x89/0x2f0 fs/super.c:1530
+>  do_new_mount fs/namespace.c:3040 [inline]
+>  path_mount+0x1326/0x1e20 fs/namespace.c:3370
+>  do_mount fs/namespace.c:3383 [inline]
+>  __do_sys_mount fs/namespace.c:3591 [inline]
+>  __se_sys_mount fs/namespace.c:3568 [inline]
+>  __x64_sys_mount+0x27f/0x300 fs/namespace.c:3568
+>  do_syscall_x64 arch/x86/entry/common.c:50 [inline]
+>  do_syscall_64+0x35/0xb0 arch/x86/entry/common.c:80
+>  entry_SYSCALL_64_after_hwframe+0x63/0xcd
+> 
+> Freed by task 3608:
+>  kasan_save_stack+0x1e/0x40 mm/kasan/common.c:45
+>  kasan_set_track+0x21/0x30 mm/kasan/common.c:52
+>  kasan_save_free_info+0x2a/0x40 mm/kasan/generic.c:511
+>  ____kasan_slab_free mm/kasan/common.c:236 [inline]
+>  ____kasan_slab_free+0x160/0x1c0 mm/kasan/common.c:200
+>  kasan_slab_free include/linux/kasan.h:177 [inline]
+>  slab_free_hook mm/slub.c:1669 [inline]
+>  slab_free_freelist_hook+0x8b/0x1c0 mm/slub.c:1695
+>  slab_free mm/slub.c:3599 [inline]
+>  __kmem_cache_free+0xab/0x3b0 mm/slub.c:3612
+>  rdma_destroy_trans+0x196/0x210 net/9p/trans_rdma.c:380
+>  rdma_create_trans+0x1076/0x13d0 net/9p/trans_rdma.c:735
+>  p9_client_create+0x7ef/0xf20 net/9p/client.c:992
+>  v9fs_session_init+0x1e2/0x1810 fs/9p/v9fs.c:408
+>  v9fs_mount+0xba/0xc90 fs/9p/vfs_super.c:126
+>  legacy_get_tree+0x105/0x220 fs/fs_context.c:610
+>  vfs_get_tree+0x89/0x2f0 fs/super.c:1530
+>  do_new_mount fs/namespace.c:3040 [inline]
+>  path_mount+0x1326/0x1e20 fs/namespace.c:3370
+>  do_mount fs/namespace.c:3383 [inline]
+>  __do_sys_mount fs/namespace.c:3591 [inline]
+>  __se_sys_mount fs/namespace.c:3568 [inline]
+>  __x64_sys_mount+0x27f/0x300 fs/namespace.c:3568
+>  do_syscall_x64 arch/x86/entry/common.c:50 [inline]
+>  do_syscall_64+0x35/0xb0 arch/x86/entry/common.c:80
+>  entry_SYSCALL_64_after_hwframe+0x63/0xcd
+> 
+> The buggy address belongs to the object at ffff888016c73400
+>  which belongs to the cache kmalloc-512 of size 512
+> The buggy address is located 8 bytes inside of
+>  512-byte region [ffff888016c73400, ffff888016c73600)
+> 
+> The buggy address belongs to the physical page:
+> page:ffffea00005b1c00 refcount:1 mapcount:0 mapping:0000000000000000 index:0x0 pfn:0x16c70
+> head:ffffea00005b1c00 order:2 compound_mapcount:0 compound_pincount:0
+> flags: 0xfff00000010200(slab|head|node=0|zone=1|lastcpupid=0x7ff)
+> raw: 00fff00000010200 ffff888011841c80 dead000080100010 0000000000000000
+> raw: 0000000000000000 dead000000000001 00000001ffffffff 0000000000000000
+> page dumped because: kasan: bad access detected
+> page_owner tracks the page as allocated
+> page last allocated via order 2, migratetype Unmovable, gfp_mask 0xd20c0(__GFP_IO|__GFP_FS|__GFP_NOWARN|__GFP_NORETRY|__GFP_COMP|__GFP_NOMEMALLOC), pid 1, tgid 1 (swapper/0), ts 2303057531, free_ts 0
+>  prep_new_page mm/page_alloc.c:2538 [inline]
+>  get_page_from_freelist+0x1092/0x2d20 mm/page_alloc.c:4286
+>  __alloc_pages+0x1c7/0x5a0 mm/page_alloc.c:5545
+>  alloc_page_interleave+0x1e/0x200 mm/mempolicy.c:2113
+>  alloc_pages+0x22f/0x270 mm/mempolicy.c:2275
+>  alloc_slab_page mm/slub.c:1739 [inline]
+>  allocate_slab+0x213/0x300 mm/slub.c:1884
+>  new_slab mm/slub.c:1937 [inline]
+>  ___slab_alloc+0xac1/0x1430 mm/slub.c:3119
+>  __slab_alloc.constprop.0+0x4d/0xa0 mm/slub.c:3217
+>  slab_alloc_node mm/slub.c:3302 [inline]
+>  __kmem_cache_alloc_node+0x18a/0x3d0 mm/slub.c:3375
+>  __do_kmalloc_node mm/slab_common.c:933 [inline]
+>  __kmalloc+0x44/0xc0 mm/slab_common.c:947
+>  kmalloc include/linux/slab.h:564 [inline]
+>  kzalloc include/linux/slab.h:695 [inline]
+>  alloc_workqueue+0x14b/0x1020 kernel/workqueue.c:4314
+>  padata_alloc+0xc8/0x4d0 kernel/padata.c:984
+>  pcrypt_init_padata+0x1b/0xf5 crypto/pcrypt.c:323
+>  pcrypt_init+0x70/0xef crypto/pcrypt.c:348
+>  do_one_initcall+0x13d/0x780 init/main.c:1307
+>  do_initcall_level init/main.c:1382 [inline]
+>  do_initcalls init/main.c:1398 [inline]
+>  do_basic_setup init/main.c:1417 [inline]
+>  kernel_init_freeable+0x6ff/0x788 init/main.c:1637
+>  kernel_init+0x1a/0x1d0 init/main.c:1525
+> page_owner free stack trace missing
+> 
+> Memory state around the buggy address:
+>  ffff888016c73300: fc fc fc fc fc fc fc fc fc fc fc fc fc fc fc fc
+>  ffff888016c73380: fc fc fc fc fc fc fc fc fc fc fc fc fc fc fc fc
+> >ffff888016c73400: fa fb fb fb fb fb fb fb fb fb fb fb fb fb fb fb
+>                       ^
+>  ffff888016c73480: fb fb fb fb fb fb fb fb fb fb fb fb fb fb fb fb
+>  ffff888016c73500: fb fb fb fb fb fb fb fb fb fb fb fb fb fb fb fb
+> ==================================================================
 
-Hey, in the end it's your call. I agree that cleaning up kludgy code
-is inherently good. I'm willing to believe that putting further effort
-into the patch set to make the LSM aspects cleaner isn't cost effective.
-If everyone else thinks this is the right approach, I don't need to
-question it further.
+The bug is in commit 3ff51294a055 ("9p: p9_client_create: use p9_client_destroy on failure").
+It is wrong to call to p9_client_destroy() if clnt->trans_mod->create fails.
 
+Thanks
+
+> 
+> 
+> ---
+> This report is generated by a bot. It may contain errors.
+> See https://goo.gl/tpsmEJ for more information about syzbot.
+> syzbot engineers can be reached at syzkaller@googlegroups.com.
+> 
+> syzbot will keep track of this issue. See:
+> https://goo.gl/tpsmEJ#status for how to communicate with syzbot.
+> syzbot can test patches for this issue, for details see:
+> https://goo.gl/tpsmEJ#testing-patches
 
 
 _______________________________________________
