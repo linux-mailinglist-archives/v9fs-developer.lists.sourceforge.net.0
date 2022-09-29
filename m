@@ -2,28 +2,28 @@ Return-Path: <v9fs-developer-bounces@lists.sourceforge.net>
 X-Original-To: lists+v9fs-developer@lfdr.de
 Delivered-To: lists+v9fs-developer@lfdr.de
 Received: from lists.sourceforge.net (lists.sourceforge.net [216.105.38.7])
-	by mail.lfdr.de (Postfix) with ESMTPS id 79B755EF372
-	for <lists+v9fs-developer@lfdr.de>; Thu, 29 Sep 2022 12:30:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 736C95EF3BC
+	for <lists+v9fs-developer@lfdr.de>; Thu, 29 Sep 2022 12:53:51 +0200 (CEST)
 Received: from [127.0.0.1] (helo=sfs-ml-2.v29.lw.sourceforge.com)
 	by sfs-ml-2.v29.lw.sourceforge.com with esmtp (Exim 4.95)
 	(envelope-from <v9fs-developer-bounces@lists.sourceforge.net>)
-	id 1odqnw-0003ZB-Oq;
-	Thu, 29 Sep 2022 10:30:08 +0000
+	id 1odrAq-0003vS-SH;
+	Thu, 29 Sep 2022 10:53:48 +0000
 Received: from [172.30.20.202] (helo=mx.sourceforge.net)
  by sfs-ml-2.v29.lw.sourceforge.com with esmtps (TLS1.2) tls
  TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384 (Exim 4.95)
- (envelope-from <asmadeus@codewreck.org>) id 1odqnu-0003Z1-1p
+ (envelope-from <leon@kernel.org>) id 1odrAp-0003vM-V1
  for v9fs-developer@lists.sourceforge.net;
- Thu, 29 Sep 2022 10:30:06 +0000
+ Thu, 29 Sep 2022 10:53:47 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
  d=sourceforge.net; s=x; h=In-Reply-To:Content-Type:MIME-Version:References:
  Message-ID:Subject:Cc:To:From:Date:Sender:Reply-To:Content-Transfer-Encoding:
  Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
  Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
  List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=q1JuDuxPM80imtWmD4gg39v+nFleKhM8uTwldv2ouMY=; b=ktefXzNUYpDl/tGiy4Mn6weYRl
- yyWu8O5wlb7qE2EbiGCC6b6JpVny7DJEUNs0xUqljuX+A0OmzSjpbJ0Ku85P3q5qjh16oCk8V47Nn
- bLvNF5nIQ9C5z2t9f9pzXC1oreEa0gpHtfsMESYFkC7awyssMaafIi4ngqVI1/9VqKvs=;
+ bh=VsiLCIM10mqGVVl6aZ/p5pxtzTZtLCwyrHSQFvwSTGo=; b=cDGo+tvfQZRfI9FnOYcfTo1kVV
+ BJ4zKthXyQ4AQXYhHrlnpBGxvt/gq9MJwl4KUP0LTXBfJgE2zgi1No8yFoxDfutYHuDojUtsUxImJ
+ KDXYcpRbyrEmFpXxHFtyvV3O3Gb36mbB7RztZlWte0h9RWxy6rQkuEnqth3CDPYtiHQc=;
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  ;
  h=In-Reply-To:Content-Type:MIME-Version:References:Message-ID:Subject:Cc:To
@@ -31,66 +31,52 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
  :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
  List-Post:List-Owner:List-Archive;
- bh=q1JuDuxPM80imtWmD4gg39v+nFleKhM8uTwldv2ouMY=; b=DMWaSwpRdqsTW/KoYW8NejfMsd
- 81e6QaKZAtN+SAdNli00k6HPaSGprP+BtpZePyhXW6hO2d8Ikq7BpM6ZcfUkTxsmzjOOKXCeH4dlL
- PQaXbOGFEr0iWTUYsBXaX1VlhWDTpgrKN1kIgxHSzHgmrFtzK5/PB4o//7d3i3YijeW4=;
-Received: from nautica.notk.org ([91.121.71.147])
+ bh=VsiLCIM10mqGVVl6aZ/p5pxtzTZtLCwyrHSQFvwSTGo=; b=CznMRBY0CP734+OI5FuviZSAMM
+ ay5k41fjXOfkQ7Y9tc+ifjc2uhnEjEoYVbHNDR7De/qAadQbmfAHixsegWpLmMnVITYAVM+PMYo0s
+ gQaaFsFYRR7WQzYRHIHjm9NQE8ZKUAetHYGBiMkbwqOgHRbrGkaGutbxQR64JVWELdEQ=;
+Received: from dfw.source.kernel.org ([139.178.84.217])
  by sfi-mx-2.v28.lw.sourceforge.com with esmtps
  (TLS1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.95)
- id 1odqnq-0006ji-Vp for v9fs-developer@lists.sourceforge.net;
- Thu, 29 Sep 2022 10:30:05 +0000
-Received: by nautica.notk.org (Postfix, from userid 108)
- id B801FC01E; Thu, 29 Sep 2022 12:29:54 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=codewreck.org; s=2;
- t=1664447394; bh=q1JuDuxPM80imtWmD4gg39v+nFleKhM8uTwldv2ouMY=;
+ id 1odrAk-0007tB-Rg for v9fs-developer@lists.sourceforge.net;
+ Thu, 29 Sep 2022 10:53:47 +0000
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+ (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+ (No client certificate requested)
+ by dfw.source.kernel.org (Postfix) with ESMTPS id 9FC9960AF7;
+ Thu, 29 Sep 2022 10:53:32 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 748E2C433D6;
+ Thu, 29 Sep 2022 10:53:31 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+ s=k20201202; t=1664448812;
+ bh=sZuIjfSp6Vx+HwrCQ+D8Xsx9v7jNEhaZgxEAhP0d0Lo=;
  h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
- b=30/yviptwrioaqHhru9F8bp8TLherPm25w1M2Sqkv9OKYRHljD+LLkjkY+U7wEiN5
- AqgeyLjlvdMi+HehSgk52ITf0OpRtJxBSIjuGf4UO6/jKDNZC9w5AdPnOxEvDdIId8
- H4aQfnzy05q5e6QpbJOh1dRnyKizzttAaoBAH3VxFKgkWdfhTHqHDyfzg6bhR3DA4q
- Y+Y3mHl7n6r+EHke8BQlogycXchBZgn8CbacMEX+ZBsSSPJZfLcT6M3dnAa/Gtzp8n
- 6ipU0R7p33fckw0DoAmOyVHAaj8FO4yI2Gfjy+KvqXmxjc1C7MkxbBeP9U/88xpHcy
- UwujdoyFQsQ8A==
-X-Spam-Checker-Version: SpamAssassin 3.3.2 (2011-06-06) on nautica.notk.org
-X-Spam-Level: 
-X-Spam-Status: No, score=0.0 required=5.0 tests=UNPARSEABLE_RELAY
- autolearn=unavailable version=3.3.2
-Received: from odin.codewreck.org (localhost [127.0.0.1])
- by nautica.notk.org (Postfix) with ESMTPS id E1839C009;
- Thu, 29 Sep 2022 12:29:49 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=codewreck.org; s=2;
- t=1664447393; bh=q1JuDuxPM80imtWmD4gg39v+nFleKhM8uTwldv2ouMY=;
- h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
- b=Rznw3nVdTw/N22lYinrDRHbBvshtkZrX7+LAx6hZITG1omSNQxUg56Jz0PWNd/2sn
- aBO4JfJHUmJ5Ev7+2FOllEfaOQwLMB0SL5vuUdwTbDTxSlFBb0lrmIO2fjgFzkIMZO
- TCNvtODBNURRovM9apRQGOTEHmzSI8l868BjU/JSbJixZHjH79sO9rXjp6YnMhRcYV
- +FcxMWKodYEY+/SkON6go4Qc03su0dGKqAAyTaP+kWikGXmTFbFE1+tSazdLFW2Uvl
- PK+Qv3e82PW1tuwZV4nvSIY5P5515phZTDf3wQX3TCIKhjH7AI4GrzUsvajoAY0HZ1
- OrKbJk9azbUPw==
-Received: from localhost (odin.codewreck.org [local])
- by odin.codewreck.org (OpenSMTPD) with ESMTPA id 3d07a534;
- Thu, 29 Sep 2022 10:29:48 +0000 (UTC)
-Date: Thu, 29 Sep 2022 19:29:33 +0900
-From: Dominique Martinet <asmadeus@codewreck.org>
-To: Leon Romanovsky <leon@kernel.org>
-Message-ID: <YzVzjR4Yz3Oo3JS+@codewreck.org>
+ b=UIGYnWCORoxVctFfgurybpC7Qcu+d8brtglYNBF4Kor8mm0CuuF3IVyXdhuYWpYBR
+ Pahdn4Yq2lFl38tW0TxZYqu+athqnnuqL2oy5SjHYDpA8yvFpc2fL+zteX5Ky9h2S2
+ 3W656moZ/R66QyK+2ao3kziqvXHy3aKALshwMi167k/by/UHIgGCNZwKWCx063JlGJ
+ u2EIf1QREk6MTKS0Mk/8sfnhW3DEDPs6S0QmRNDuJeUFo7oGzI+5xEvN+nXquDsjze
+ 8t6DVOh8VwiTWSuLHY2rgtFnJnnmmnUPo/6Z6TdIChRH5SfkAMz+wMYvoEvvNfcSqy
+ yyf+YJ2p1pkKA==
+Date: Thu, 29 Sep 2022 13:53:27 +0300
+From: Leon Romanovsky <leon@kernel.org>
+To: Dominique Martinet <asmadeus@codewreck.org>
+Message-ID: <YzV5J9NmL7hijFTR@unreal>
 References: <cover.1664442592.git.leonro@nvidia.com>
  <743fc62b2e8d15c84e234744e3f3f136c467752d.1664442592.git.leonro@nvidia.com>
+ <YzVzjR4Yz3Oo3JS+@codewreck.org>
 MIME-Version: 1.0
 Content-Disposition: inline
-In-Reply-To: <743fc62b2e8d15c84e234744e3f3f136c467752d.1664442592.git.leonro@nvidia.com>
-X-Spam-Score: -0.2 (/)
+In-Reply-To: <YzVzjR4Yz3Oo3JS+@codewreck.org>
+X-Spam-Score: -5.3 (-----)
 X-Spam-Report: Spam detection software,
  running on the system "util-spamd-2.v13.lw.sourceforge.com", 
  has NOT identified this incoming email as spam.  The original
  message has been attached to this so you can view it or label
  similar future email.  If you have any questions, see
  the administrator of that system for details.
- Content preview:  Leon Romanovsky wrote on Thu, Sep 29,
- 2022 at 12:37:56PM +0300:
- > Make sure that all variables are initialized and released in correct >
- order. Haven't tried running or compiling, comments out of my head that might
- be wrong below 
- Content analysis details:   (-0.2 points, 6.0 required)
+ Content preview:  On Thu, Sep 29, 2022 at 07:29:33PM +0900, Dominique Martinet
+ wrote: > Leon Romanovsky wrote on Thu, Sep 29, 2022 at 12:37:56PM +0300:
+ > > Make sure that all variables are initialized and released in c [...] 
+ Content analysis details:   (-5.3 points, 6.0 required)
  pts rule name              description
  ---- ---------------------- --------------------------------------------------
  -0.0 SPF_PASS               SPF: sender matches SPF record
@@ -102,9 +88,10 @@ X-Spam-Report: Spam detection software,
  -0.1 DKIM_VALID_AU          Message has a valid DKIM or DK signature from
  author's domain
  -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
- 0.0 UNPARSEABLE_RELAY      Informational: message has unparseable relay
- lines
-X-Headers-End: 1odqnq-0006ji-Vp
+ -5.0 RCVD_IN_DNSWL_HI       RBL: Sender listed at https://www.dnswl.org/,
+ high trust [139.178.84.217 listed in list.dnswl.org]
+ -0.1 DKIMWL_WL_HIGH         DKIMwl.org - High trust sender
+X-Headers-End: 1odrAk-0007tB-Rg
 Subject: Re: [V9fs-developer] [PATCH 2/2] 9p: destroy client in symmetric
  order
 X-BeenThere: v9fs-developer@lists.sourceforge.net
@@ -128,161 +115,46 @@ Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: v9fs-developer-bounces@lists.sourceforge.net
 
-Leon Romanovsky wrote on Thu, Sep 29, 2022 at 12:37:56PM +0300:
-> Make sure that all variables are initialized and released in correct
-> order.
-
-Haven't tried running or compiling, comments out of my head that might
-be wrong below
-
+On Thu, Sep 29, 2022 at 07:29:33PM +0900, Dominique Martinet wrote:
+> Leon Romanovsky wrote on Thu, Sep 29, 2022 at 12:37:56PM +0300:
+> > Make sure that all variables are initialized and released in correct
+> > order.
 > 
-> Reported-by: syzbot+de52531662ebb8823b26@syzkaller.appspotmail.com
-
-You're adding this report tag but I don't see how you fix that failure.
-What you need is p9_tag_cleanup(clnt) from p9_client_destroy -- I assume
-this isn't possible for any fid to be allocated at this point so the fid
-destroying loop is -probably- optional.
-
-I would assume it is needed from p9_client_version failures.
-
-
-> Signed-off-by: Leon Romanovsky <leon@kernel.org>
-> ---
->  net/9p/client.c | 37 ++++++++++++-------------------------
->  1 file changed, 12 insertions(+), 25 deletions(-)
+> Haven't tried running or compiling, comments out of my head that might
+> be wrong below
 > 
-> diff --git a/net/9p/client.c b/net/9p/client.c
-> index aaa37b07e30a..8277e33506e7 100644
-> --- a/net/9p/client.c
-> +++ b/net/9p/client.c
-> @@ -179,7 +179,6 @@ static int parse_opts(char *opts, struct p9_client *clnt)
->  				goto free_and_return;
->  			}
->  
-> -			v9fs_put_trans(clnt->trans_mod);
+> > 
+> > Reported-by: syzbot+de52531662ebb8823b26@syzkaller.appspotmail.com
+> 
+> You're adding this report tag but I don't see how you fix that failure.
+> What you need is p9_tag_cleanup(clnt) from p9_client_destroy -- I assume
+> this isn't possible for any fid to be allocated at this point so the fid
+> destroying loop is -probably- optional.
+> 
+> I would assume it is needed from p9_client_version failures.
+> 
+> 
+> > Signed-off-by: Leon Romanovsky <leon@kernel.org>
+> > ---
+> >  net/9p/client.c | 37 ++++++++++++-------------------------
+> >  1 file changed, 12 insertions(+), 25 deletions(-)
+> > 
+> > diff --git a/net/9p/client.c b/net/9p/client.c
+> > index aaa37b07e30a..8277e33506e7 100644
+> > --- a/net/9p/client.c
+> > +++ b/net/9p/client.c
+> > @@ -179,7 +179,6 @@ static int parse_opts(char *opts, struct p9_client *clnt)
+> >  				goto free_and_return;
+> >  			}
+> >  
+> > -			v9fs_put_trans(clnt->trans_mod);
+> 
+> Pretty sure you'll be "leaking transports" if someone tries to pass
+> trans=foo multiple times; this can't be removed...(continues below)...
 
-Pretty sure you'll be "leaking transports" if someone tries to pass
-trans=foo multiple times; this can't be removed...(continues below)...
+It is pity, you are right.
 
-
->  			clnt->trans_mod = v9fs_get_trans_by_name(s);
->  			if (!clnt->trans_mod) {
->  				pr_info("Could not find request transport: %s\n",
-> @@ -187,7 +186,7 @@ static int parse_opts(char *opts, struct p9_client *clnt)
->  				ret = -EINVAL;
->  			}
->  			kfree(s);
-> -			break;
-> +			goto free_and_return;
-
-... unless you also break the whole parsing, with this asking for -o
-trans=virtio,msize=1M will just ignore the msize argument.
-(or anything else that follows)
-
-I appreciate that you're trying to avoid the get_default_trans below,
-but unless you just remember the last string and try to get it get/put
-trans is the most straight forward way to go.
-
-
-(Note you just got me to try weird parsing and my old version was
-double-puting these modules because of the put_trans below in this
-function echoes with the client destroy. That'd just require removing
-the put here though (or nulling after put), yet another invariant I had
-wrongly assumed... Anyway.)
-
-
->  		case Opt_legacy:
->  			clnt->proto_version = p9_proto_legacy;
->  			break;
-> @@ -211,9 +210,14 @@ static int parse_opts(char *opts, struct p9_client *clnt)
->  		}
->  	}
->  
-> +	clnt->trans_mod = v9fs_get_default_trans();
-> +	if (!clnt->trans_mod) {
-> +		ret = -EPROTONOSUPPORT;
-> +		p9_debug(P9_DEBUG_ERROR,
-> +			 "No transport defined or default transport\n");
-> +	}
-> +
->  free_and_return:
-> -	if (ret)
-> -		v9fs_put_trans(clnt->trans_mod);
-
-(oh, and if you parse options after trans= you'll need some sort of
-escape hatch here...)
-
->  	kfree(tmp_options);
->  	return ret;
->  }
-> @@ -956,19 +960,14 @@ static int p9_client_version(struct p9_client *c)
->  
->  struct p9_client *p9_client_create(const char *dev_name, char *options)
->  {
-> -	int err;
->  	struct p9_client *clnt;
->  	char *client_id;
-> +	int err = 0;
->  
-> -	err = 0;
-> -	clnt = kmalloc(sizeof(*clnt), GFP_KERNEL);
-> +	clnt = kzalloc(sizeof(*clnt), GFP_KERNEL);
->  	if (!clnt)
->  		return ERR_PTR(-ENOMEM);
->  
-> -	clnt->trans_mod = NULL;
-> -	clnt->trans = NULL;
-> -	clnt->fcall_cache = NULL;
-> -
->  	client_id = utsname()->nodename;
->  	memcpy(clnt->name, client_id, strlen(client_id) + 1);
->  
-> @@ -980,16 +979,6 @@ struct p9_client *p9_client_create(const char *dev_name, char *options)
->  	if (err < 0)
->  		goto free_client;
->  
-> -	if (!clnt->trans_mod)
-> -		clnt->trans_mod = v9fs_get_default_trans();
-> -
-> -	if (!clnt->trans_mod) {
-> -		err = -EPROTONOSUPPORT;
-> -		p9_debug(P9_DEBUG_ERROR,
-> -			 "No transport defined or default transport\n");
-> -		goto free_client;
-> -	}
-> -
->  	p9_debug(P9_DEBUG_MUX, "clnt %p trans %p msize %d protocol %d\n",
->  		 clnt, clnt->trans_mod, clnt->msize, clnt->proto_version);
->  
-> @@ -1044,9 +1033,8 @@ void p9_client_destroy(struct p9_client *clnt)
->  
->  	p9_debug(P9_DEBUG_MUX, "clnt %p\n", clnt);
->  
-> -	if (clnt->trans_mod)
-> -		clnt->trans_mod->close(clnt);
-> -
-> +	kmem_cache_destroy(clnt->fcall_cache);
-
-Pretty sure kmem_cache used to issue a warning when we did that (hence
-me trying to move it up on allocation) -- at this point there can still
-be in flight requests we need to finish freeing before we can destroy
-the cache.
-
-> +	clnt->trans_mod->close(clnt);
->  	v9fs_put_trans(clnt->trans_mod);
->  
->  	idr_for_each_entry(&clnt->fids, fid, id) {
-> @@ -1056,7 +1044,6 @@ void p9_client_destroy(struct p9_client *clnt)
->  
->  	p9_tag_cleanup(clnt);
->  
-> -	kmem_cache_destroy(clnt->fcall_cache);
->  	kfree(clnt);
->  }
->  EXPORT_SYMBOL(p9_client_destroy);
-
---
-Dominique
+Thanks
 
 
 _______________________________________________
