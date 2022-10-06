@@ -2,197 +2,93 @@ Return-Path: <v9fs-developer-bounces@lists.sourceforge.net>
 X-Original-To: lists+v9fs-developer@lfdr.de
 Delivered-To: lists+v9fs-developer@lfdr.de
 Received: from lists.sourceforge.net (lists.sourceforge.net [216.105.38.7])
-	by mail.lfdr.de (Postfix) with ESMTPS id B1F075F43FA
-	for <lists+v9fs-developer@lfdr.de>; Tue,  4 Oct 2022 15:12:04 +0200 (CEST)
-Received: from [127.0.0.1] (helo=sfs-ml-2.v29.lw.sourceforge.com)
-	by sfs-ml-2.v29.lw.sourceforge.com with esmtp (Exim 4.95)
+	by mail.lfdr.de (Postfix) with ESMTPS id 03B025F67A0
+	for <lists+v9fs-developer@lfdr.de>; Thu,  6 Oct 2022 15:17:42 +0200 (CEST)
+Received: from [127.0.0.1] (helo=sfs-ml-4.v29.lw.sourceforge.com)
+	by sfs-ml-4.v29.lw.sourceforge.com with esmtp (Exim 4.95)
 	(envelope-from <v9fs-developer-bounces@lists.sourceforge.net>)
-	id 1ofhiL-0000pc-7u;
-	Tue, 04 Oct 2022 13:12:01 +0000
+	id 1ogQks-0003fG-CA;
+	Thu, 06 Oct 2022 13:17:38 +0000
 Received: from [172.30.20.202] (helo=mx.sourceforge.net)
- by sfs-ml-2.v29.lw.sourceforge.com with esmtps (TLS1.2) tls
+ by sfs-ml-4.v29.lw.sourceforge.com with esmtps (TLS1.2) tls
  TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384 (Exim 4.95)
- (envelope-from <dan.carpenter@oracle.com>) id 1ofhhx-0000pD-Hd
+ (envelope-from <linux_oss@crudebyte.com>) id 1ogQkl-0003f3-GM
  for v9fs-developer@lists.sourceforge.net;
- Tue, 04 Oct 2022 13:11:37 +0000
+ Thu, 06 Oct 2022 13:17:32 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=sourceforge.net; s=x; h=MIME-Version:In-Reply-To:Content-Type:References:
- Message-ID:Subject:Cc:To:From:Date:Sender:Reply-To:Content-Transfer-Encoding:
+ d=sourceforge.net; s=x; h=Content-Type:Content-Transfer-Encoding:MIME-Version
+ :References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Sender:Reply-To:
  Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
  Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
  List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=faKg5jyFvoc7ulz5/2ZXMK3jXwlOwm42o93ZEoNGJww=; b=MuAEHf149zvw+6Lq1uMAvqX/UH
- A+47+7Jwp0SEoMkCtqa8ghxNkbS5ClJ3xGB2mY6IBVDbaVhxwD08vQBYGEgECQ1lUqGF1huTPCiC4
- bJKA6G5/SS+aSO/GyF8CX2A2EGaPzy/h2Q690gK+vQ/XZGnQXozxaWdNJyqtrpRMG+Ss=;
+ bh=8T2sFVcyf0kuqa8Hcqks7UqJO8ynKlOIJSB8sPGVj5E=; b=QZWjA8wYXxieEFOfJGkgNkPS/z
+ DWv1fxT4toW8AX9aZEvWVT69flBBt6Hkm3kQauI8/1Vbb89VB2RuyWs1aZ/EGyxTnRS4ZNV/RbBbQ
+ ObKotuWJYsWSKkf/cR9CfQtSB6M4Ovj8u5jCE/dzQvbLhvzixJWcrSKSwAKys6h4kplw=;
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  ;
- h=MIME-Version:In-Reply-To:Content-Type:References:Message-ID:Subject:Cc:To
- :From:Date:Sender:Reply-To:Content-Transfer-Encoding:Content-ID:
+ h=Content-Type:Content-Transfer-Encoding:MIME-Version:References:
+ In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Sender:Reply-To:Content-ID:
  Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
  :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
  List-Post:List-Owner:List-Archive;
- bh=faKg5jyFvoc7ulz5/2ZXMK3jXwlOwm42o93ZEoNGJww=; b=ZaKp0eChCVot2jObdVWBqcpRKc
- JXymrhkqBObKTwstZ6DbU3C2r/XhKLHyV60QGNM4iQcIdYAPQURCGVmsl538l3FnscfZEIlg+RlJB
- iEXi/yYS19aZnkvafBigGfcJ4x1E12AgwAW5hQZofZyZcH5Qziqjsn1v2+Ys/AJYrVFI=;
-Received: from mx0b-00069f02.pphosted.com ([205.220.177.32])
+ bh=8T2sFVcyf0kuqa8Hcqks7UqJO8ynKlOIJSB8sPGVj5E=; b=lz6pXuMP+MtligpSJbdpTcURv4
+ VrOM/nf/arlgj6+G/G1cdBiLwVlJxLc/OYFiVnmAre2pWqunHUSw3S+wcOtzi1gHivD+9xSAXwl+E
+ oD08RE4et3/vWjSyP5fgPu2exUm533c9ibz6bgtB134ZB6/FKIfZknQEiLAHI++B7+50=;
+Received: from kylie.crudebyte.com ([5.189.157.229])
  by sfi-mx-1.v28.lw.sourceforge.com with esmtps
  (TLS1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.95)
- id 1ofhhm-00COaA-7s for v9fs-developer@lists.sourceforge.net;
- Tue, 04 Oct 2022 13:11:37 +0000
-Received: from pps.filterd (m0246631.ppops.net [127.0.0.1])
- by mx0b-00069f02.pphosted.com (8.17.1.5/8.17.1.5) with ESMTP id 294B22Eg029891;
- Tue, 4 Oct 2022 13:10:58 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=oracle.com;
- h=date : from : to : cc
- : subject : message-id : references : content-type : in-reply-to :
- mime-version; s=corp-2022-7-12;
- bh=faKg5jyFvoc7ulz5/2ZXMK3jXwlOwm42o93ZEoNGJww=;
- b=qlI3tW5g1Avb8ShARlDbwC8fw2T45VxQaz4CRmcrDYgLBkWszx2LeVdFSnjyqttx29DI
- JkTaaTsswugPiE0lBs3P9AF+AmSGy6HmGrun5egIGFFlCgAIEIEvc06PmyMI/wViAG6D
- liBvk7frV/PGc4UOWR8HWkSNO3C+QVa3xfFYIII1D3uY6fKER6SAl04N3eCc6U2qtQYj
- TynbbCxkf6jQQVuEs9I3bvu6x6KglmbIKcvfJlPJyeKLlZBzu4Tt7TkNDArySBtwEZdo
- p3e+Xkis1Aajq1n6mIH6noi5hKhJJne9a/wpaWSwxUHXKP69nwx/bEANQhcg+RhzGNMg Zw== 
-Received: from iadpaimrmta03.imrmtpd1.prodappiadaev1.oraclevcn.com
- (iadpaimrmta03.appoci.oracle.com [130.35.103.27])
- by mx0b-00069f02.pphosted.com (PPS) with ESMTPS id 3jxcb2pc3n-1
- (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
- Tue, 04 Oct 2022 13:10:58 +0000
-Received: from pps.filterd
- (iadpaimrmta03.imrmtpd1.prodappiadaev1.oraclevcn.com [127.0.0.1])
- by iadpaimrmta03.imrmtpd1.prodappiadaev1.oraclevcn.com (8.17.1.5/8.17.1.5)
- with ESMTP id 294BJVdT020017; Tue, 4 Oct 2022 13:10:58 GMT
-Received: from nam12-dm6-obe.outbound.protection.outlook.com
- (mail-dm6nam12lp2168.outbound.protection.outlook.com [104.47.59.168])
- by iadpaimrmta03.imrmtpd1.prodappiadaev1.oraclevcn.com (PPS) with ESMTPS id
- 3jxc0afb16-1
- (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
- Tue, 04 Oct 2022 13:10:57 +0000
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=Hun2CHqWZjzrQJyGZA6t6ncDot4/x+eWAHQqBgf61PFrjcrGmENy3lb/m+H7HvITRdZAUc0AW4kgUbTdJfQSMFKgVrB6DA8XT9ee8l5mC+6rl4UYx6qmy8eniGJdG8S1CxzGFWlbVWIbU7LXkUbD5stBTQM9zUyoHbx2LpzlcyN9VLY97ve6zvPrRi95wGPC3NCF87OP1vIcUaf0bjcoxK+izu4EXTSf1HveJ1bOrR6Pi7P1HLKkuhERTu9ebJNXyEJ158OleuvR3ErFOTAzjGAbXNoi+A7PD+Kt6uOWDcN1nIHZFZxIMTH/i4/J1Hx72h8Veorhrcf1gYL4RnbBng==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=faKg5jyFvoc7ulz5/2ZXMK3jXwlOwm42o93ZEoNGJww=;
- b=MfLBeh2Cs6uvPb9HBzkuWmkzMBJpqgg5OcVBw+YdmqJRvTj5g+fDtYDIMytXueqARahygma6YZkBqpH/iktFjj0/j3AqXYcazDT3vFyk85z2/IRikEziGh+qS1gG6rAYFJzQCoKLXlaJIaw6dIm1+q5lCnmXUpHoY3C0ppxEAOGNvlgBtU4ba7bEBsgUj8Ru0yDWbpzZSoeSBDFJjI+vz7FS516UaX6QIBp6jyRmDBRN5A6u84O1/r3tmXAXgXkUnHKLM4dI3dcFGIoDY6gcO96AnwTlMq2W7MgGHACkzIVl9hR8+w9w5DDH3nhcz3pXevnFguhIN0Ub6JAcD3V4Xw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=oracle.com; dmarc=pass action=none header.from=oracle.com;
- dkim=pass header.d=oracle.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=oracle.onmicrosoft.com; s=selector2-oracle-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=faKg5jyFvoc7ulz5/2ZXMK3jXwlOwm42o93ZEoNGJww=;
- b=lpDfIQEiBEmK93nqPzI2g4Lx/MAQ/4plqDwwU4nOOe/RoN8lvhrYUUriwqhWs1C5neQW1L+soZgotlApw2UPwkVpLTroIe+JNnMpAKTba6dW33U2Jr2CLBs03ShQdX+PCx4y7hDU+iKkEk2zGq69PMpevsRRnOizKePS+gP1lM4=
-Received: from MWHPR1001MB2365.namprd10.prod.outlook.com
- (2603:10b6:301:2d::28) by DM6PR10MB4123.namprd10.prod.outlook.com
- (2603:10b6:5:210::10) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5676.24; Tue, 4 Oct
- 2022 13:10:55 +0000
-Received: from MWHPR1001MB2365.namprd10.prod.outlook.com
- ([fe80::1b8e:540e:10f0:9aec]) by MWHPR1001MB2365.namprd10.prod.outlook.com
- ([fe80::1b8e:540e:10f0:9aec%4]) with mapi id 15.20.5676.031; Tue, 4 Oct 2022
- 13:10:55 +0000
-Date: Tue, 4 Oct 2022 16:10:44 +0300
-From: Dan Carpenter <dan.carpenter@oracle.com>
-To: Leon Romanovsky <leon@kernel.org>
-Message-ID: <Yzww1LRLIE+It6J8@kadam>
-References: <cover.1664442592.git.leonro@nvidia.com>
- <024537aa138893c838d9cacc2e24f311c1e83d25.1664442592.git.leonro@nvidia.com>
-Content-Disposition: inline
-In-Reply-To: <024537aa138893c838d9cacc2e24f311c1e83d25.1664442592.git.leonro@nvidia.com>
-X-ClientProxiedBy: MR1P264CA0016.FRAP264.PROD.OUTLOOK.COM
- (2603:10a6:501:2e::21) To MWHPR1001MB2365.namprd10.prod.outlook.com
- (2603:10b6:301:2d::28)
+ id 1ogQkd-00Ej3n-F4 for v9fs-developer@lists.sourceforge.net;
+ Thu, 06 Oct 2022 13:17:27 +0000
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+ d=crudebyte.com; s=kylie; h=Content-Type:Content-Transfer-Encoding:
+ MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:
+ Content-ID:Content-Description;
+ bh=8T2sFVcyf0kuqa8Hcqks7UqJO8ynKlOIJSB8sPGVj5E=; b=RjZOS2m9aaIZKYJtK4OLvKk2yG
+ efbClYQBz3qcI6Zkwn+exlZBqr4DRAsW64VVvZwCguJG4YNG7ACGqzHrnF5BYRxvs5+a7LYIGKUDm
+ dHCY6BQHyF2QXGtmKZU3JgAvxonLu32KLXJCrdl002eYQdylFApe31CJQXdhpl2NlzPzaW7nMOjFZ
+ a1LzUChIysxuApOVqHdEQWp84oNDwlI4u7mRZP4lg036gdoY0jSdNyUMTOFVwqAtkNXpOLvMBhj8E
+ pPiCqf3WdMmvfS18c7UlS2qZq6eJc04FmwqpeZz0QpsQ8yfVr1obfwaA6Q1417T0bOHz/84DhiMHy
+ R8vesyTbuanSZLLVGt7EVx6/75J05vs3d+uVI707DXxudMQuQ5y83PO5pn+3JaB2cI3QxHP9/aueu
+ 0c62iBtngpUyo+pzdCYSHXGykgknplnCdYKpoUKQz5LvhHUzD126sFO3oboeUQ2OMChuLVpOX6NJV
+ z6JsyrYIgAZqCKIQPbKKRDkETX17Nzdig3uCcrLLOwWYgwWcLQoP+TJ/zcXJfImTsdphdkBw1m4pW
+ TowYyAZGSArJ0NrAkKbpIbdoj/uA+5jq/spNvNj9c4xNPcaeJ+zPCkkKPdF+hVOfwT9Y1yrObRtzg
+ 4j8UcrxNbpFuk5SuUfckUk3KAhHprahGc02zc3YA8=;
+To: v9fs-developer@lists.sourceforge.net,
+ Tetsuo Handa <penguin-kernel@i-love.sakura.ne.jp>,
+ Dominique Martinet <asmadeus@codewreck.org>,
+ syzbot <syzbot+2f20b523930c32c160cc@syzkaller.appspotmail.com>
+Date: Thu, 06 Oct 2022 15:16:40 +0200
+Message-ID: <2356596.7K3kzkM6Yp@silver>
+In-Reply-To: <20220904112928.1308799-1-asmadeus@codewreck.org>
+References: <2470e028-9b05-2013-7198-1fdad071d999@I-love.SAKURA.ne.jp>
+ <20220904112928.1308799-1-asmadeus@codewreck.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: MWHPR1001MB2365:EE_|DM6PR10MB4123:EE_
-X-MS-Office365-Filtering-Correlation-Id: 86650115-2223-412f-4159-08daa609dccf
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: pJx1wjtav+W4Ic9KSgRCELm6biZCDYW/KcnwVidRI/CO5OMiraJxIQRvPSNa+3CiUFCE3PAT2odaLwqtxbRO/kHgYEAxl8Dzb1FnZbjRkBX28IUNt9Nw+AU/e27DcIWQfUuvI/RlKeE14n5mzpEJaYH9OZsD8jIXq9FB3qMmSHEkYxDsWJJik7ilg8PV7qu0uT26t30WbdVOVsCxLLUKUPHErQP85ImvOtYesyCYRb+amSu7FhDduTbxtrdb46FGYvcAMKpSyxPXWFO+23EVYLA5mBRBtL22eLZkD6mzt9lJmX91i0UMLFQI6etfP9phxsUJkbVdzo2F4huPfJlimiFD3SnklNqIqzm0QRq/THVZ4CrBjRbkcXUMbFK4HtFeArs1yFZtPanhJ/VaE9VFsdmQhKnHcb9sm5hwCTMok+R9qfK1pjsTy+0MG/qF8kImslFwIp1X66UBQoV0waCYSkTFxdOOY0bUPhvA5SnRRoqEsPGC+gGFYJ7wU81R3omsOsLcv88Q12do5K6Xnjy2CHxu8nxp2NuHoIL5ZChAzZ6mcG2noH2MX6wcqEW6ICp1jVrwfCJS0M1Xl7MaTgpTb9imx4YAn1swtYMnbkw9RSjGCobnMXixIy9zIS+vpaHBjisasOG69QolLrCEClnUkxAW6wEsc4ZRkgE5F7fs69Kq5CY7dNcFHkrlgNeUlawsmaUKIou8GzPUrisIoFKEjUUkLh/zrNK+7NMNTATLwNj9DsgeHLDoGr1PXJPjp7RM
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:MWHPR1001MB2365.namprd10.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230022)(7916004)(39860400002)(346002)(136003)(376002)(396003)(366004)(451199015)(6512007)(9686003)(38100700002)(6666004)(33716001)(66946007)(66556008)(66476007)(8676002)(4326008)(6506007)(26005)(86362001)(478600001)(83380400001)(6486002)(6916009)(186003)(316002)(8936002)(7416002)(4744005)(5660300002)(44832011)(2906002)(41300700001)(67856001);
- DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?hC6/PhX+ni0OI4i7EKV0hRd0+kTzqWNKgyTY86sIQzRjSzLkiDxpo6iJ5NmZ?=
- =?us-ascii?Q?HhC8DpppJYjunBD0iu5NWAWSFqjxlToNAziO6yO+mBikhf0DPuFB+1Fd76IN?=
- =?us-ascii?Q?I656uhtsMtn566LvV8mtQPTGyS8Gyf3zhtYQx+a+3YhegB/vvBBXAMjAkCwE?=
- =?us-ascii?Q?N4TacPvly1/1b9+OqDF84lXafMoCQygjqHNrJTLYCIZcaSIOra9QLzCdhKxN?=
- =?us-ascii?Q?SL3scpcroeF1afSvVBOabVznfdXviDAKa8Y+Q1tZeuY4PDra68TXE1Dezd6F?=
- =?us-ascii?Q?8pnEL5dP8LFYR1Bngp7fZAGPpcZ41cZNTbdwCO/lgb4kM18sZsEg9lbr4vdM?=
- =?us-ascii?Q?Fh6qWnX3BS5ttjDGB4vniZeNH9hPDbg5uk6Da9b0VnhJp9OQtr07vbkPnXix?=
- =?us-ascii?Q?Q5jXuHahnWoMdJqw7VVW+Z1V8RzI6JHpixWxrZdFeP9TnY/Gt21C8iEQLBu5?=
- =?us-ascii?Q?GGjVVCKUgE3EO/NB/6Yj8/B3j0ZPJgTJnhQ6MPotwJb1HwdYLs7SRUyvRcbd?=
- =?us-ascii?Q?moWHQbBpLw6p8bcXvox5Amfo7k4H4+R3AsT9P68MrJMhwpwyqtEZWK3ZfQDw?=
- =?us-ascii?Q?SlNqpxkvO3ppN9mFSGI4yAVz3E/Je/xkv6OWjPkkIHAeFCiK02XMeA+ZU9P7?=
- =?us-ascii?Q?pr/fS7syO98mPlSXPiXlnYbvWOJOHHsdxdCOY/ltz6O9T5KlWfEUgF5JLmVo?=
- =?us-ascii?Q?Ohl1t4cHKdJmrTQt1XnHr3DSO2H2QfHofF6JZjvblFkXIXPhIJf8xrX7XgKY?=
- =?us-ascii?Q?NuI97PKNrvM1hQ7t+kBoViLnqsZMSXUaqn5G2z7uxATQB/fSrF9pd857Zq28?=
- =?us-ascii?Q?ggsxfVBnceo6qJ2zz+IJ7aHvgZvald9Xlp4NYCjQA6Vmd6QO7v5dDWB+2GQc?=
- =?us-ascii?Q?we6a35oJS8bJHzoW34OuK+8/KRFN4LoVfdohdHKaRmH92AXeQAWv3AELMewg?=
- =?us-ascii?Q?GPC4ONU6OhM1baX910wvhgfGqNdsJhfQxg7AMS90GIalRmMnv/IZmI31Waz+?=
- =?us-ascii?Q?OuAAh3xFywtSxqcrZTK8KK4wvLHQyQV1tazC2u5FnCqASGFcZGt7OfGE5v/X?=
- =?us-ascii?Q?1F0xios/tUkQRAWVI73CnnjYxyhJMl9glIVIRPYoILUWNvW3aQf/1CTh2UGk?=
- =?us-ascii?Q?MRqkZFWQmBM3eKKqFljr4xhgEOaT4yIAuqVUHLdK7bK5n/TJ6dlim70LIQuZ?=
- =?us-ascii?Q?vGeAsLTDR5WZm0u+kJ5Xuvwuu3B5PYUSp2RSxb+rNuNTFgNVcpRX81AvRDqD?=
- =?us-ascii?Q?0gokF0uCfSBFASFB1JQijpZxeB/lU01pPVCHFDjF6nZkBsyzfgzsBCpE5B4M?=
- =?us-ascii?Q?a20SkVcAsI+GIAN8baPj2nqREiO9Io9t6Bx/Vl1eo0Fa36RyOYYGWrIChqsb?=
- =?us-ascii?Q?ajev1TDVIqoTiaQGU3jazXi0DyTv11K1ZWRVjEh+/LBdT3rS7BbcY3fJnsLB?=
- =?us-ascii?Q?IpOMzMgV2RObjhtPoZDdv6vG3ZGEhJRzcp6GXZBy8+yEVqdAzV2sZj9SclOH?=
- =?us-ascii?Q?MJyOkGt6dKh4SA53ZS9NWT3YXQrcrwtvXvrgIvvONpZEi9RTFjp4evRXNZub?=
- =?us-ascii?Q?k9358uKzKffFpTxq/t5xkx1Yww5p/TaOPaqggUXuKbikHBSSYsS57K8cV8QH?=
- =?us-ascii?Q?Ew=3D=3D?=
-X-OriginatorOrg: oracle.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 86650115-2223-412f-4159-08daa609dccf
-X-MS-Exchange-CrossTenant-AuthSource: MWHPR1001MB2365.namprd10.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 04 Oct 2022 13:10:55.7079 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 4e2c6054-71cb-48f1-bd6c-3a9705aca71b
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: 5SxQ5na+wOQuJRvt3DTR0guvlwCnUSXtS8viovRr0w8dkpe8vFW62vRMJnyZ+ZA6b+j24YEaVrtCaqHw/xIxzJmr7lhyAT/uQpvPPUWc9UY=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM6PR10MB4123
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.205,Aquarius:18.0.895,Hydra:6.0.528,FMLib:17.11.122.1
- definitions=2022-10-04_05,2022-09-29_03,2022-06-22_01
-X-Proofpoint-Spam-Details: rule=notspam policy=default score=0 spamscore=0
- phishscore=0 adultscore=0
- mlxlogscore=724 malwarescore=0 bulkscore=0 mlxscore=0 suspectscore=0
- classifier=spam adjust=0 reason=mlx scancount=1 engine=8.12.0-2209130000
- definitions=main-2210040086
-X-Proofpoint-GUID: WBQX3YDIpEM-s3vfadxag6LTpXf-mOqx
-X-Proofpoint-ORIG-GUID: WBQX3YDIpEM-s3vfadxag6LTpXf-mOqx
-X-Spam-Score: -0.9 (/)
+X-Spam-Score: -0.2 (/)
 X-Spam-Report: Spam detection software,
  running on the system "util-spamd-2.v13.lw.sourceforge.com", 
  has NOT identified this incoming email as spam.  The original
  message has been attached to this so you can view it or label
  similar future email.  If you have any questions, see
  the administrator of that system for details.
- Content preview:  On Thu, Sep 29, 2022 at 12:37:55PM +0300, Leon Romanovsky
- wrote: > Rely on proper unwind order. > > This reverts commit
- 3ff51294a05529d0baf6d4b2517e561d12efb9f9.
- > > Reported-by: syzbot+67d13108d855f4 [...] 
- Content analysis details:   (-0.9 points, 6.0 required)
+ Content preview:  On Sonntag,
+ 4. September 2022 13:29:28 CEST Dominique Martinet
+ wrote: > Shamelessly copying the explanation from Tetsuo Handa's suggested
+ > patch[1] (slightly reworded): > syzbot is reporting inconsis [...] 
+ Content analysis details:   (-0.2 points, 6.0 required)
  pts rule name              description
  ---- ---------------------- --------------------------------------------------
- 0.0 SPF_HELO_NONE          SPF: HELO does not publish an SPF Record
- -0.0 RCVD_IN_MSPIKE_H2      RBL: Average reputation (+2)
- [205.220.177.32 listed in wl.mailspike.net]
- -0.7 RCVD_IN_DNSWL_LOW      RBL: Sender listed at https://www.dnswl.org/,
- low trust [205.220.177.32 listed in list.dnswl.org]
  -0.0 SPF_PASS               SPF: sender matches SPF record
+ 0.0 SPF_HELO_NONE          SPF: HELO does not publish an SPF Record
  -0.1 DKIM_VALID_EF          Message has a valid DKIM or DK signature from
  envelope-from domain
  -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
- 0.1 DKIM_SIGNED            Message has a DKIM or DK signature, not necessarily
- valid
  -0.1 DKIM_VALID_AU          Message has a valid DKIM or DK signature from
  author's domain
-X-Headers-End: 1ofhhm-00COaA-7s
-Subject: Re: [V9fs-developer] [PATCH 1/2] Revert "9p: p9_client_create: use
- p9_client_destroy on failure"
+ 0.1 DKIM_SIGNED            Message has a DKIM or DK signature, not necessarily
+ valid
+X-Headers-End: 1ogQkd-00Ej3n-F4
+Subject: Re: [V9fs-developer] [PATCH] net/9p: use a dedicated spinlock for
+ trans_fd
 X-BeenThere: v9fs-developer@lists.sourceforge.net
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -204,28 +100,240 @@ List-Post: <mailto:v9fs-developer@lists.sourceforge.net>
 List-Help: <mailto:v9fs-developer-request@lists.sourceforge.net?subject=help>
 List-Subscribe: <https://lists.sourceforge.net/lists/listinfo/v9fs-developer>, 
  <mailto:v9fs-developer-request@lists.sourceforge.net?subject=subscribe>
-Cc: lucho@ionkov.net, ericvh@gmail.com, netdev@vger.kernel.org,
- syzbot+67d13108d855f451cafc@syzkaller.appspotmail.com, linux_oss@crudebyte.com,
- syzkaller-bugs@googlegroups.com, linux-kernel@vger.kernel.org,
- davem@davemloft.net, edumazet@google.com, kuba@kernel.org,
- v9fs-developer@lists.sourceforge.net
+From: Christian Schoenebeck via V9fs-developer
+ <v9fs-developer@lists.sourceforge.net>
+Reply-To: Christian Schoenebeck <linux_oss@crudebyte.com>
+Cc: syzkaller-bugs@googlegroups.com, linux-kernel@vger.kernel.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: v9fs-developer-bounces@lists.sourceforge.net
 
-On Thu, Sep 29, 2022 at 12:37:55PM +0300, Leon Romanovsky wrote:
-> Rely on proper unwind order.
+On Sonntag, 4. September 2022 13:29:28 CEST Dominique Martinet wrote:
+> Shamelessly copying the explanation from Tetsuo Handa's suggested
+> patch[1] (slightly reworded):
+> syzbot is reporting inconsistent lock state in p9_req_put()[2],
+> for p9_tag_remove() from p9_req_put() from IRQ context is using
+> spin_lock_irqsave() on "struct p9_client"->lock but trans_fd
+> (not from IRQ context) is using spin_lock().
 > 
-> This reverts commit 3ff51294a05529d0baf6d4b2517e561d12efb9f9.
+> Since the locks actually protect different things in client.c and in
+> trans_fd.c, just replace trans_fd.c's lock by a new one specific to the
+> transport instead of using spin_lock_irq* variants everywhere
+> (client.c's protect the idr for tag allocations, while
+> trans_fd.c's protects its own req list and request status field
+> that acts as the transport's state machine)
 > 
-> Reported-by: syzbot+67d13108d855f451cafc@syzkaller.appspotmail.com
-> Signed-off-by: Leon Romanovsky <leon@kernel.org>
+> Link:
+> https://lkml.kernel.org/r/2470e028-9b05-2013-7198-1fdad071d999@I-love.SAKUR
+> A.ne.jp [1] Link:
+> https://syzkaller.appspot.com/bug?extid=2f20b523930c32c160cc [2]
+> Reported-by: syzbot <syzbot+2f20b523930c32c160cc@syzkaller.appspotmail.com>
+> Reported-by: Tetsuo Handa <penguin-kernel@I-love.SAKURA.ne.jp>
+> Signed-off-by: Dominique Martinet <asmadeus@codewreck.org>
+> ---
+> Tetsuo Handa-san, thank you very much!
+> I'm sorry for not respecting your opinion but it's been a pleasure to
+> have submissions from someone on JST :)
+> 
+> Both this and your previous patch only impact trans_fd which I can't
+> test super easily, so while I've sent the patch here I'll only queue it
+> to -next hopefully next week after I've had time to setup a compatible
+> server again...
+> 
+>  net/9p/trans_fd.c | 42 ++++++++++++++++++++++++++----------------
+>  1 file changed, 26 insertions(+), 16 deletions(-)
+>
 
-The commit message doesn't really say what the problem is to the user.
-Is this just to make the next patch easier?
+Late on the party, sorry. Note that you already queued a slightly different 
+version than this patch here, anyway, one thing ...
 
-regards,
-dan carpenter
+> diff --git a/net/9p/trans_fd.c b/net/9p/trans_fd.c
+> index ef5760971f1e..5b4807411281 100644
+> --- a/net/9p/trans_fd.c
+> +++ b/net/9p/trans_fd.c
+> @@ -91,6 +91,7 @@ struct p9_poll_wait {
+>   * @mux_list: list link for mux to manage multiple connections (?)
+>   * @client: reference to client instance for this connection
+>   * @err: error state
+> + * @req_lock: lock protecting req_list and requests statuses
+>   * @req_list: accounting for requests which have been sent
+>   * @unsent_req_list: accounting for requests that haven't been sent
+>   * @rreq: read request
+> @@ -114,6 +115,7 @@ struct p9_conn {
+>  	struct list_head mux_list;
+>  	struct p9_client *client;
+>  	int err;
+> +	spinlock_t req_lock;
+>  	struct list_head req_list;
+>  	struct list_head unsent_req_list;
+>  	struct p9_req_t *rreq;
+> @@ -189,10 +191,10 @@ static void p9_conn_cancel(struct p9_conn *m, int err)
+> 
+>  	p9_debug(P9_DEBUG_ERROR, "mux %p err %d\n", m, err);
+> 
+> -	spin_lock(&m->client->lock);
+> +	spin_lock(&m->req_lock);
+> 
+>  	if (m->err) {
+> -		spin_unlock(&m->client->lock);
+> +		spin_unlock(&m->req_lock);
+>  		return;
+>  	}
+> 
+> @@ -205,7 +207,7 @@ static void p9_conn_cancel(struct p9_conn *m, int err)
+>  		list_move(&req->req_list, &cancel_list);
+>  	}
+> 
+> -	spin_unlock(&m->client->lock);
+> +	spin_unlock(&m->req_lock);
+> 
+>  	list_for_each_entry_safe(req, rtmp, &cancel_list, req_list) {
+>  		p9_debug(P9_DEBUG_ERROR, "call back req %p\n", req);
+> @@ -360,7 +362,7 @@ static void p9_read_work(struct work_struct *work)
+>  	if ((m->rreq) && (m->rc.offset == m->rc.capacity)) {
+>  		p9_debug(P9_DEBUG_TRANS, "got new packet\n");
+>  		m->rreq->rc.size = m->rc.offset;
+> -		spin_lock(&m->client->lock);
+> +		spin_lock(&m->req_lock);
+>  		if (m->rreq->status == REQ_STATUS_SENT) {
+>  			list_del(&m->rreq->req_list);
+>  			p9_client_cb(m->client, m->rreq, 
+REQ_STATUS_RCVD);
+> @@ -369,14 +371,14 @@ static void p9_read_work(struct work_struct *work)
+>  			p9_debug(P9_DEBUG_TRANS,
+>  				 "Ignore replies associated with a 
+cancelled request\n");
+>  		} else {
+> -			spin_unlock(&m->client->lock);
+> +			spin_unlock(&m->req_lock);
+>  			p9_debug(P9_DEBUG_ERROR,
+>  				 "Request tag %d errored out while we 
+were reading the reply\n",
+>  				 m->rc.tag);
+>  			err = -EIO;
+>  			goto error;
+>  		}
+> -		spin_unlock(&m->client->lock);
+> +		spin_unlock(&m->req_lock);
+>  		m->rc.sdata = NULL;
+>  		m->rc.offset = 0;
+>  		m->rc.capacity = 0;
+> @@ -454,10 +456,10 @@ static void p9_write_work(struct work_struct *work)
+>  	}
+> 
+>  	if (!m->wsize) {
+> -		spin_lock(&m->client->lock);
+> +		spin_lock(&m->req_lock);
+>  		if (list_empty(&m->unsent_req_list)) {
+>  			clear_bit(Wworksched, &m->wsched);
+> -			spin_unlock(&m->client->lock);
+> +			spin_unlock(&m->req_lock);
+>  			return;
+>  		}
+> 
+> @@ -472,7 +474,7 @@ static void p9_write_work(struct work_struct *work)
+>  		m->wpos = 0;
+>  		p9_req_get(req);
+>  		m->wreq = req;
+> -		spin_unlock(&m->client->lock);
+> +		spin_unlock(&m->req_lock);
+>  	}
+> 
+>  	p9_debug(P9_DEBUG_TRANS, "mux %p pos %d size %d\n",
+> @@ -670,10 +672,10 @@ static int p9_fd_request(struct p9_client *client,
+> struct p9_req_t *req) if (m->err < 0)
+>  		return m->err;
+> 
+> -	spin_lock(&client->lock);
+> +	spin_lock(&m->req_lock);
+>  	req->status = REQ_STATUS_UNSENT;
+>  	list_add_tail(&req->req_list, &m->unsent_req_list);
+> -	spin_unlock(&client->lock);
+> +	spin_unlock(&m->req_lock);
+> 
+>  	if (test_and_clear_bit(Wpending, &m->wsched))
+>  		n = EPOLLOUT;
+> @@ -688,11 +690,13 @@ static int p9_fd_request(struct p9_client *client,
+> struct p9_req_t *req)
+> 
+>  static int p9_fd_cancel(struct p9_client *client, struct p9_req_t *req)
+>  {
+> +	struct p9_trans_fd *ts = client->trans;
+> +	struct p9_conn *m = &ts->conn;
+>  	int ret = 1;
+> 
+>  	p9_debug(P9_DEBUG_TRANS, "client %p req %p\n", client, req);
+> 
+> -	spin_lock(&client->lock);
+> +	spin_lock(&m->req_lock);
+> 
+>  	if (req->status == REQ_STATUS_UNSENT) {
+>  		list_del(&req->req_list);
+> @@ -700,21 +704,24 @@ static int p9_fd_cancel(struct p9_client *client,
+> struct p9_req_t *req) p9_req_put(client, req);
+>  		ret = 0;
+>  	}
+> -	spin_unlock(&client->lock);
+> +	spin_unlock(&m->req_lock);
+> 
+>  	return ret;
+>  }
+> 
+>  static int p9_fd_cancelled(struct p9_client *client, struct p9_req_t *req)
+>  {
+> +	struct p9_trans_fd *ts = client->trans;
+> +	struct p9_conn *m = &ts->conn;
+> +
+>  	p9_debug(P9_DEBUG_TRANS, "client %p req %p\n", client, req);
+> 
+> -	spin_lock(&client->lock);
+> +	spin_lock(&m->req_lock);
+>  	/* Ignore cancelled request if message has been received
+>  	 * before lock.
+>  	 */
+>  	if (req->status == REQ_STATUS_RCVD) {
+> -		spin_unlock(&client->lock);
+> +		spin_unlock(&m->req_lock);
+>  		return 0;
+>  	}
+> 
+> @@ -723,7 +730,8 @@ static int p9_fd_cancelled(struct p9_client *client,
+> struct p9_req_t *req) */
+>  	list_del(&req->req_list);
+>  	req->status = REQ_STATUS_FLSHD;
+> -	spin_unlock(&client->lock);
+> +	spin_unlock(&m->req_lock);
+> +
+>  	p9_req_put(client, req);
+> 
+>  	return 0;
+> @@ -832,6 +840,7 @@ static int p9_fd_open(struct p9_client *client, int rfd,
+> int wfd)
+> 
+>  	client->trans = ts;
+>  	client->status = Connected;
+> +	spin_lock_init(&ts->conn.req_lock);
+
+Are you sure this is the right place for spin_lock_init()? Not rather in 
+p9_conn_create()?
+
+>  	return 0;
+> 
+> @@ -866,6 +875,7 @@ static int p9_socket_open(struct p9_client *client,
+> struct socket *csocket) p->wr = p->rd = file;
+>  	client->trans = p;
+>  	client->status = Connected;
+> +	spin_lock_init(&p->conn.req_lock);
+
+Same here.
+
+> 
+>  	p->rd->f_flags |= O_NONBLOCK;
+
+The rest LGTM.
+
+Best regards,
+Christian Schoenebeck
 
 
 
