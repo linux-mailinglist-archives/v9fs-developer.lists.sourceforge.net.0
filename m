@@ -2,28 +2,28 @@ Return-Path: <v9fs-developer-bounces@lists.sourceforge.net>
 X-Original-To: lists+v9fs-developer@lfdr.de
 Delivered-To: lists+v9fs-developer@lfdr.de
 Received: from lists.sourceforge.net (lists.sourceforge.net [216.105.38.7])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5F3A15F7275
-	for <lists+v9fs-developer@lfdr.de>; Fri,  7 Oct 2022 03:06:15 +0200 (CEST)
-Received: from [127.0.0.1] (helo=sfs-ml-2.v29.lw.sourceforge.com)
-	by sfs-ml-2.v29.lw.sourceforge.com with esmtp (Exim 4.95)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1FFE05F7291
+	for <lists+v9fs-developer@lfdr.de>; Fri,  7 Oct 2022 03:41:03 +0200 (CEST)
+Received: from [127.0.0.1] (helo=sfs-ml-4.v29.lw.sourceforge.com)
+	by sfs-ml-4.v29.lw.sourceforge.com with esmtp (Exim 4.95)
 	(envelope-from <v9fs-developer-bounces@lists.sourceforge.net>)
-	id 1ogboY-0007No-7a;
-	Fri, 07 Oct 2022 01:06:10 +0000
+	id 1ogcMF-0001so-UX;
+	Fri, 07 Oct 2022 01:40:59 +0000
 Received: from [172.30.20.202] (helo=mx.sourceforge.net)
- by sfs-ml-2.v29.lw.sourceforge.com with esmtps (TLS1.2) tls
+ by sfs-ml-4.v29.lw.sourceforge.com with esmtps (TLS1.2) tls
  TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384 (Exim 4.95)
- (envelope-from <asmadeus@codewreck.org>) id 1ogboW-0007Ni-NP
+ (envelope-from <asmadeus@codewreck.org>) id 1ogcME-0001sh-D3
  for v9fs-developer@lists.sourceforge.net;
- Fri, 07 Oct 2022 01:06:09 +0000
+ Fri, 07 Oct 2022 01:40:58 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
  d=sourceforge.net; s=x; h=In-Reply-To:Content-Type:MIME-Version:References:
  Message-ID:Subject:Cc:To:From:Date:Sender:Reply-To:Content-Transfer-Encoding:
  Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
  Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
  List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=nIw/4SZLODP2q/AJ8PriciNPLFxNn+7AHozKzYHKCNA=; b=W/ojVs6cf8guFsEIrkMfMfgoIO
- 08mS01PYsI1NV9nd01abMZm00WOMHIF0yLH8DL5ZCQD9w3oHeqURXO1SKozdkmSgPqplnqyvmH7IR
- x/Jc2im15G4c6KdLXRP2Vuf108bL/9feo4ZxL5ir9knQjMPzcLUhF/ESchn6Cgyy/HYI=;
+ bh=rzoBfsAiCdEWZQ20WCaCW3PZC2FVyXXDBzt8MmnFLEA=; b=H+IHkgnOs0ivHeBjgHQSB36LOs
+ xS+neE+Ve4rYVPxnJXejA3+k2TCT0XxrhKQ1bjTbwZwQI5oZkxVfGU7mjtoc0AesmivxE3kGkMnGl
+ 68lkbjYAQ9p1v8iBpUYStIQ3fU9MK8tiElddFDH3NEIpWIa7xeH4mJERsKcX5Grh9m9c=;
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  ;
  h=In-Reply-To:Content-Type:MIME-Version:References:Message-ID:Subject:Cc:To
@@ -31,54 +31,58 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
  :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
  List-Post:List-Owner:List-Archive;
- bh=nIw/4SZLODP2q/AJ8PriciNPLFxNn+7AHozKzYHKCNA=; b=CL9Mm9jmCc+XAWhfw6GvQd8gYw
- qDmZjtOw8wIJlKuZtwhvfDO56bcDKwD4HQFsdZm+UQHI6bO6sOqj5jAxQdP0FCUrd0fU8uHHztbix
- PUiVAkTv2uXfZjMlFCJjMSn/6i7Vrm643K5sSrr91Zk4Mp0YPQXOnb9VKIakOPrRPQ0g=;
+ bh=rzoBfsAiCdEWZQ20WCaCW3PZC2FVyXXDBzt8MmnFLEA=; b=JkZiM0YubrCuijPxHAd7sfQyrN
+ I44CelH4KVp6xBkI/EflsoehDrt1m61GNNwBoLQe1uua8T/mAfAvw6aOhmhtjP5g+xfiOq+IB60FA
+ 9cONVQb5jTC9gprfwpngqczgz10Z0k9R3U8WgyCAnqK/gE9ncXiS0abqi22PmFavg4XI=;
 Received: from nautica.notk.org ([91.121.71.147])
- by sfi-mx-1.v28.lw.sourceforge.com with esmtps
+ by sfi-mx-2.v28.lw.sourceforge.com with esmtps
  (TLS1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.95)
- id 1ogboV-00FJ1C-O9 for v9fs-developer@lists.sourceforge.net;
- Fri, 07 Oct 2022 01:06:08 +0000
+ id 1ogcMB-00068G-RV for v9fs-developer@lists.sourceforge.net;
+ Fri, 07 Oct 2022 01:40:58 +0000
 Received: by nautica.notk.org (Postfix, from userid 108)
- id C701EC01C; Fri,  7 Oct 2022 03:06:00 +0200 (CEST)
+ id 49960C01C; Fri,  7 Oct 2022 03:40:49 +0200 (CEST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=codewreck.org; s=2;
- t=1665104760; bh=nIw/4SZLODP2q/AJ8PriciNPLFxNn+7AHozKzYHKCNA=;
+ t=1665106849; bh=rzoBfsAiCdEWZQ20WCaCW3PZC2FVyXXDBzt8MmnFLEA=;
  h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
- b=H9bvW+2C31XdGRO5RhWTrzGyi5oPl/KXRhMTAjYbxXllu2SujAD6JhfCwzdc+PL9C
- U62JrCHiOXDNkkGwigi9uPRTRa6BzO76x8vALEwbPapo4b8Va/khIN6LaVpAIsjarS
- 9qhBvHFG73KmS3ZsRx+AsWBosY04SdtD7Y4w06VJnj1rh87l3xKDnW6SURdRJrBHc5
- tvleIcLegIi9IJO8foHMsozFrPjZ8/2U0mvYSuywiKBXXFFwZI3YqnsTPFuz977UZZ
- H1cFm7EfaQY5bAv++X9iI/8rU1J3m6x1a7eUVKrjpLstCufw1+BJR8ebMBno0eCrks
- /Yr4MlH61d+ig==
+ b=VXpSDetbKGqvRvd3qmLOF2C2HLYQ5r5IFfpIKb9JQMZ65k3L9xxAGgRIPChT4vRX5
+ UpqY1f080hL8BUWwivmThmEbtlLXunQrbvX78eyw8vtoxTYAJaH1Fv2DwvY0s7i7kc
+ WHEN8NbB7DkPnn1V8xfboBc2n5gzqVr8fOYGufKlOx3fp4QtKFnoRtIQEMHf4rt++Q
+ A8solBbRy+pldK9SJc6RT0rKbwUTgN7DyJwRgalj2PN+4KIo8SSw6g1ISJRuMCt3ms
+ pJ2VDHYigwxvclJJwgPrpWZEbbieTg4rXK54B5LDXHL89aj0gPr6P88745BRnVmSeL
+ ih+McuJgH16/A==
 X-Spam-Checker-Version: SpamAssassin 3.3.2 (2011-06-06) on nautica.notk.org
 X-Spam-Level: 
 X-Spam-Status: No, score=0.0 required=5.0 tests=UNPARSEABLE_RELAY
  autolearn=unavailable version=3.3.2
 Received: from odin.codewreck.org (localhost [127.0.0.1])
- by nautica.notk.org (Postfix) with ESMTPS id 8595EC009;
- Fri,  7 Oct 2022 03:05:57 +0200 (CEST)
+ by nautica.notk.org (Postfix) with ESMTPS id 14BF6C009;
+ Fri,  7 Oct 2022 03:40:45 +0200 (CEST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=codewreck.org; s=2;
- t=1665104759; bh=nIw/4SZLODP2q/AJ8PriciNPLFxNn+7AHozKzYHKCNA=;
+ t=1665106848; bh=rzoBfsAiCdEWZQ20WCaCW3PZC2FVyXXDBzt8MmnFLEA=;
  h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
- b=rWjvkBLRO48TqxnHhm5nc2ra3J4C/bDU/osydRnSASDijKTSMZW9RnNdapGsWv+Q8
- EY0NLLD7sG5kqQ95TGOaLsmtaDLUpUqspmJPEoAgP+R90EF6Wexc42fxJFT9jtviz7
- V2nX+AoYZLLN2QRw2+VVrP2m3ny14jHJZQII+o1ZLGYMtU+2IYHOZN2+JrtRijExWn
- mAe9S1POyjYAH0Wjxs0J/4tVv801hl6rFBadqQ/84hTyaBkDnPJzc4iJ2el+1oBUxq
- NyilNr6OMg/eihIxCybxscs1qCa1+BVh0+Wq5EpOfwEaOIbn7e7vOKeoPoDsUnqPkR
- xTRXjcKe1QIwg==
+ b=lG/j5Hy41YweyC74PFrJP4/crGLUSOa5BMJbxgJ3I5Ly6Qfa3KZMoLuVV17hvKzMA
+ W9mn/2gismC43drGOrsegXOqEoGQyIfKV9gBy5vl5B8OWKB2WmHnw3hwJsTAiAxu0c
+ ku4cHwyp8yUuo/dYiBj+lq2Q2eV5CuHcvUQoFGldBHhyUPUWtNLJDpvOUz/UOERQOg
+ 6Jp2wLU2Ogz78EUC7Nvd6IbygR8Xq7SXQFeQtII4qiSY87o0QRhRo/gmMC1h92DEFT
+ R09SBdhD5YlcV9SKn7Z2QKLtVeHpZ4Tc+RPKmONracCekA7SL2omodZaEkF2O0Axz/
+ xGTg8Txpqa3QQ==
 Received: from localhost (odin.codewreck.org [local])
- by odin.codewreck.org (OpenSMTPD) with ESMTPA id 557c5d50;
- Fri, 7 Oct 2022 01:05:55 +0000 (UTC)
-Date: Fri, 7 Oct 2022 10:05:39 +0900
+ by odin.codewreck.org (OpenSMTPD) with ESMTPA id e4b8ba3e;
+ Fri, 7 Oct 2022 01:40:42 +0000 (UTC)
+Date: Fri, 7 Oct 2022 10:40:27 +0900
 From: Dominique Martinet <asmadeus@codewreck.org>
-To: Christian Schoenebeck <linux_oss@crudebyte.com>
-Message-ID: <Yz97YyDlV8tOr82t@codewreck.org>
-References: <2470e028-9b05-2013-7198-1fdad071d999@I-love.SAKURA.ne.jp>
- <20220904112928.1308799-1-asmadeus@codewreck.org>
- <2356596.7K3kzkM6Yp@silver>
+To: Tetsuo Handa <penguin-kernel@I-love.SAKURA.ne.jp>
+Message-ID: <Yz+Di8tJiyPPJUaK@codewreck.org>
+References: <00000000000039af4d05915a9f56@google.com>
+ <345de429-a88b-7097-d177-adecf9fed342@I-love.SAKURA.ne.jp>
+ <4293faaf-8279-77e2-8b1a-aff765416980@I-love.SAKURA.ne.jp>
+ <69253379.JACLdFHAbQ@silver>
+ <e96a8dce-9444-c363-2dfa-83fe5c7012b5@I-love.SAKURA.ne.jp>
+ <YxPlzlJAKObm88p8@codewreck.org>
+ <38d892bd-8ace-c4e9-9d73-777d3828acbc@I-love.SAKURA.ne.jp>
 MIME-Version: 1.0
 Content-Disposition: inline
-In-Reply-To: <2356596.7K3kzkM6Yp@silver>
+In-Reply-To: <38d892bd-8ace-c4e9-9d73-777d3828acbc@I-love.SAKURA.ne.jp>
 X-Spam-Score: -0.2 (/)
 X-Spam-Report: Spam detection software,
  running on the system "util-spamd-1.v13.lw.sourceforge.com", 
@@ -86,10 +90,9 @@ X-Spam-Report: Spam detection software,
  message has been attached to this so you can view it or label
  similar future email.  If you have any questions, see
  the administrator of that system for details.
- Content preview:  Christian Schoenebeck wrote on Thu, Oct 06,
- 2022 at 03:16:40PM
- +0200: > > net/9p/trans_fd.c | 42 ++++++++++++++++++++++++++ > > 1 file
- changed, 26 insertions(+), 16 deletions(-) > > La [...] 
+ Content preview:  Tetsuo Handa wrote on Sun, Sep 04, 2022 at 09:27:22AM +0900:
+ > On 2022/09/04 8:39, Dominique Martinet wrote: > > Is there any reason you
+ spent time working on v2, or is that just > > theorical for not [...] 
  Content analysis details:   (-0.2 points, 6.0 required)
  pts rule name              description
  ---- ---------------------- --------------------------------------------------
@@ -104,9 +107,9 @@ X-Spam-Report: Spam detection software,
  -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
  0.0 UNPARSEABLE_RELAY      Informational: message has unparseable relay
  lines
-X-Headers-End: 1ogboV-00FJ1C-O9
-Subject: Re: [V9fs-developer] [PATCH] net/9p: use a dedicated spinlock for
- trans_fd
+X-Headers-End: 1ogcMB-00068G-RV
+Subject: Re: [V9fs-developer] [PATCH v2] 9p/trans_fd: perform read/write
+ with TIF_SIGPENDING set
 X-BeenThere: v9fs-developer@lists.sourceforge.net
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -118,102 +121,45 @@ List-Post: <mailto:v9fs-developer@lists.sourceforge.net>
 List-Help: <mailto:v9fs-developer-request@lists.sourceforge.net?subject=help>
 List-Subscribe: <https://lists.sourceforge.net/lists/listinfo/v9fs-developer>, 
  <mailto:v9fs-developer-request@lists.sourceforge.net?subject=subscribe>
-Cc: Tetsuo Handa <penguin-kernel@i-love.sakura.ne.jp>,
- v9fs-developer@lists.sourceforge.net, syzkaller-bugs@googlegroups.com,
- syzbot <syzbot+2f20b523930c32c160cc@syzkaller.appspotmail.com>,
- linux-kernel@vger.kernel.org
+Cc: Latchesar Ionkov <lucho@ionkov.net>, Eric Van Hensbergen <ericvh@gmail.com>,
+ netdev@vger.kernel.org, Christian Schoenebeck <linux_oss@crudebyte.com>,
+ syzkaller-bugs@googlegroups.com,
+ syzbot <syzbot+8b41a1365f1106fd0f33@syzkaller.appspotmail.com>,
+ linux-fsdevel <linux-fsdevel@vger.kernel.org>,
+ v9fs-developer@lists.sourceforge.net
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: v9fs-developer-bounces@lists.sourceforge.net
 
-Christian Schoenebeck wrote on Thu, Oct 06, 2022 at 03:16:40PM +0200:
-> >  net/9p/trans_fd.c | 42 ++++++++++++++++++++++++++----------------
-> >  1 file changed, 26 insertions(+), 16 deletions(-)
+Tetsuo Handa wrote on Sun, Sep 04, 2022 at 09:27:22AM +0900:
+> On 2022/09/04 8:39, Dominique Martinet wrote:
+> > Is there any reason you spent time working on v2, or is that just
+> > theorical for not messing with userland fd ?
 > 
-> Late on the party, sorry. Note that you already queued a slightly different 
-> version than this patch here, anyway, one thing ...
-
-Did I? Oh, I apparently reworded the commit message a bit, sorry:
-
-(where HEAD is this patch and 1622... the queued patch)
-
-$ git range-diff HEAD^- 16228c9a4215^-
-1:  e35fb8546af2 ! 1:  16228c9a4215 net/9p: use a dedicated spinlock for trans_fd
-    @@ Commit message
-     
-         Since the locks actually protect different things in client.c and in
-         trans_fd.c, just replace trans_fd.c's lock by a new one specific to the
-    -    transport instead of using spin_lock_irq* variants everywhere
-    -    (client.c's protect the idr for tag allocations, while
-    -    trans_fd.c's protects its own req list and request status field
-    +    transport (client.c's protect the idr for fid/tag allocations,
-    +    while trans_fd.c's protects its own req list and request status field
-         that acts as the transport's state machine)
-     
-    -    Link: https://lkml.kernel.org/r/20220904112928.1308799-1-asmadeus@codewreck.org
-    +    Link: https://lore.kernel.org/r/20220904112928.1308799-1-asmadeus@codewreck.org
-         Link: https://lkml.kernel.org/r/2470e028-9b05-2013-7198-1fdad071d999@I-love.SAKURA.ne.jp [1]
-         Link: https://syzkaller.appspot.com/bug?extid=2f20b523930c32c160cc [2]
-         Reported-by: syzbot <syzbot+2f20b523930c32c160cc@syzkaller.appspotmail.com>
-
-
-> > @@ -832,6 +840,7 @@ static int p9_fd_open(struct p9_client *client, int rfd,
-> > int wfd)
-> > 
-> >  	client->trans = ts;
-> >  	client->status = Connected;
-> > +	spin_lock_init(&ts->conn.req_lock);
+> Just theoretical for not messing with userland fd, for programs generated
+> by fuzzers might use fds passed to the mount() syscall. I imagined that
+> syzbot again reports this problem when it started playing with fcntl().
 > 
-> Are you sure this is the right place for spin_lock_init()? Not rather in 
-> p9_conn_create()?
+> For robustness, not messing with userland fd is the better. ;-)
 
-Good point, 'ts->conn' (named... m over there for some reason...) is
-mostly initialized in p9_conn_create; it makes much more sense to move
-it there despite being slightly further away from the allocation.
+By the way digging this back made me think about this a bit again.
+My opinion hasn't really changed that if you want to shoot yourself in
+the foot I don't think we're crossing any priviledge boundary here, but
+we could probably prevent it by saying the mount call with close that fd
+and somehow steal it? (drop the fget, close_fd after get_file perhaps?)
 
-It's a bit of a pain to check as the code is spread over many paths (fd,
-unix, tcp) but it looks equivalent to me:
- - p9_fd_open is only called from p9_fd_create which immediately calls
-p9_conn_create
- - below p9_socket_open itself immediately calls p9_conn_create
+That should address your concern about robustess and syzbot will no
+longer be able to play with fcntl on "our" end of the pipe. I think it's
+fair to say that once you pass it to the kernel all bets are off, so
+closing it for the userspace application could make sense, and the mount
+already survives when short processes do the mount call and immediately
+exit so it's not like we need that fd to be open...
 
-I've moved the init and updated my next branch after very basic check
-https://github.com/martinetd/linux/commit/e5cfd99e9ea6c13b3f0134585f269c509247ac0e:
-----
-diff --git a/net/9p/trans_fd.c b/net/9p/trans_fd.c
-index 5b4807411281..d407f31bb49d 100644
---- a/net/9p/trans_fd.c
-+++ b/net/9p/trans_fd.c
-@@ -591,6 +591,7 @@ static void p9_conn_create(struct p9_client *client)
- 	INIT_LIST_HEAD(&m->mux_list);
- 	m->client = client;
- 
-+	spin_lock_init(&m->req_lock);
- 	INIT_LIST_HEAD(&m->req_list);
- 	INIT_LIST_HEAD(&m->unsent_req_list);
- 	INIT_WORK(&m->rq, p9_read_work);
-@@ -840,7 +841,6 @@ static int p9_fd_open(struct p9_client *client, int rfd, int wfd)
- 
- 	client->trans = ts;
- 	client->status = Connected;
--	spin_lock_init(&ts->conn.req_lock);
- 
- 	return 0;
- 
-@@ -875,7 +875,6 @@ static int p9_socket_open(struct p9_client *client, struct socket *csocket)
- 	p->wr = p->rd = file;
- 	client->trans = p;
- 	client->status = Connected;
--	spin_lock_init(&p->conn.req_lock);
- 
- 	p->rd->f_flags |= O_NONBLOCK;
- 
-----
 
-> The rest LGTM.
+What do you think?
 
-Thank you for the look :)
-
+(either way would be for 6.2, the patch is already good enough as is for
+me)
 --
 Dominique
 
