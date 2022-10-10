@@ -2,95 +2,105 @@ Return-Path: <v9fs-developer-bounces@lists.sourceforge.net>
 X-Original-To: lists+v9fs-developer@lfdr.de
 Delivered-To: lists+v9fs-developer@lfdr.de
 Received: from lists.sourceforge.net (lists.sourceforge.net [216.105.38.7])
-	by mail.lfdr.de (Postfix) with ESMTPS id 778165F77B2
-	for <lists+v9fs-developer@lfdr.de>; Fri,  7 Oct 2022 13:53:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id BEC4A5F97BD
+	for <lists+v9fs-developer@lfdr.de>; Mon, 10 Oct 2022 07:23:44 +0200 (CEST)
 Received: from [127.0.0.1] (helo=sfs-ml-4.v29.lw.sourceforge.com)
 	by sfs-ml-4.v29.lw.sourceforge.com with esmtp (Exim 4.95)
 	(envelope-from <v9fs-developer-bounces@lists.sourceforge.net>)
-	id 1ogluz-0005O6-1A;
-	Fri, 07 Oct 2022 11:53:29 +0000
+	id 1ohlGN-0002z5-Ie;
+	Mon, 10 Oct 2022 05:23:39 +0000
 Received: from [172.30.20.202] (helo=mx.sourceforge.net)
  by sfs-ml-4.v29.lw.sourceforge.com with esmtps (TLS1.2) tls
  TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384 (Exim 4.95)
- (envelope-from <penguin-kernel@I-love.SAKURA.ne.jp>)
- id 1ogluw-0005NI-Up for v9fs-developer@lists.sourceforge.net;
- Fri, 07 Oct 2022 11:53:26 +0000
+ (envelope-from <asmadeus@codewreck.org>) id 1ohlGL-0002yz-Uv
+ for v9fs-developer@lists.sourceforge.net;
+ Mon, 10 Oct 2022 05:23:37 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=sourceforge.net; s=x; h=Content-Transfer-Encoding:Content-Type:In-Reply-To:
- From:References:Cc:To:Subject:MIME-Version:Date:Message-ID:Sender:Reply-To:
- Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
- Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
+ d=sourceforge.net; s=x; h=Content-Type:MIME-Version:Message-ID:Subject:Cc:To:
+ From:Date:Sender:Reply-To:Content-Transfer-Encoding:Content-ID:
+ Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
+ :Resent-Message-ID:In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:
  List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=DPm8Ve5BwlbYIklhB0I+zd8Uhh4UeeNoLhvCanmXkZ0=; b=OYx255LeqjdrB1DMAa1Wps4r43
- EHHxHUFFAyTOtY+UKlM7kyjnzQ1TUgbTyEg9lKpEjBDQTAWZxOB8IgdRTk6oD68/x3FHmEHffOOEU
- cf4wtYWI5cUY7/2orvFJCKf/aTEEI/xa+d1TViLOwSmO0PHK7WIIz4PoSouH94XpErJc=;
+ bh=h7iN0yHsOk2Yc2OCw7yoF/YgYNpNTDxAmdvaxJlSsfk=; b=MQP1pG0L2l/LRB7mQQw0RGhVGC
+ z2f/6u9UX50U4XZLAlLRTp0IaR/Tf0+kr6ZsXEXM36ax/a49+lKVMXLeArk7mfKEfX2RbQlwGfvVf
+ Omq7c5yGFc4cRJ54k+y6dqgQKyw7YLlJvbohGWV9sQeN/6EExR2iXjLa3vg6qqbgD0j0=;
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  ;
- h=Content-Transfer-Encoding:Content-Type:In-Reply-To:From:References:Cc:To:
- Subject:MIME-Version:Date:Message-ID:Sender:Reply-To:Content-ID:
- Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
- :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
- List-Post:List-Owner:List-Archive;
- bh=DPm8Ve5BwlbYIklhB0I+zd8Uhh4UeeNoLhvCanmXkZ0=; b=BzydvPKrhgQrxQV5fA5WAS6jlM
- m8AOx1vAdXMU15CjCHDVUyoJ1T0ahl6o7Ym4lCKVT2PDdiUYB/EfYabpM4wmhuWvPpAeN3PppxHKK
- MXL4+eCoOOIcZi/U6o13IUjZ6GGAAq57ybKWtaN11YMzIAtSZvs3DILvnCUSinltPf3o=;
-Received: from www262.sakura.ne.jp ([202.181.97.72])
- by sfi-mx-2.v28.lw.sourceforge.com with esmtps
+ h=Content-Type:MIME-Version:Message-ID:Subject:Cc:To:From:Date:Sender:
+ Reply-To:Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date
+ :Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:
+ References:List-Id:List-Help:List-Unsubscribe:List-Subscribe:List-Post:
+ List-Owner:List-Archive; bh=h7iN0yHsOk2Yc2OCw7yoF/YgYNpNTDxAmdvaxJlSsfk=; b=k
+ 6MlJHFIDq+zccxEg3fLO63F8ZPSdNQQRQpugvoEsiCTvu+YjPV5tPUv6wrNA2cjy39BVwLpGgy3zZ
+ 1315WG/dniGN9RkpgLlo9AXcopVhtVf0utsBmsLcqjWzfxmkhPoy6TXCL+XxtmPJBgjyo1CF7s0IM
+ URCtjP0m6qmXvryM=;
+Received: from nautica.notk.org ([91.121.71.147])
+ by sfi-mx-1.v28.lw.sourceforge.com with esmtps
  (TLS1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.95)
- id 1ogluu-0006d8-Oj for v9fs-developer@lists.sourceforge.net;
- Fri, 07 Oct 2022 11:53:26 +0000
-Received: from fsav113.sakura.ne.jp (fsav113.sakura.ne.jp [27.133.134.240])
- by www262.sakura.ne.jp (8.15.2/8.15.2) with ESMTP id 297Bqjsi041794;
- Fri, 7 Oct 2022 20:52:45 +0900 (JST)
- (envelope-from penguin-kernel@I-love.SAKURA.ne.jp)
-Received: from www262.sakura.ne.jp (202.181.97.72)
- by fsav113.sakura.ne.jp (F-Secure/fsigk_smtp/550/fsav113.sakura.ne.jp);
- Fri, 07 Oct 2022 20:52:45 +0900 (JST)
-X-Virus-Status: clean(F-Secure/fsigk_smtp/550/fsav113.sakura.ne.jp)
-Received: from [192.168.1.9] (M106072142033.v4.enabler.ne.jp [106.72.142.33])
- (authenticated bits=0)
- by www262.sakura.ne.jp (8.15.2/8.15.2) with ESMTPSA id 297Bqi3r041791
- (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=NO);
- Fri, 7 Oct 2022 20:52:45 +0900 (JST)
- (envelope-from penguin-kernel@I-love.SAKURA.ne.jp)
-Message-ID: <0362d03f-9332-0b37-02e0-2b1b169f4c6f@I-love.SAKURA.ne.jp>
-Date: Fri, 7 Oct 2022 20:52:44 +0900
+ id 1ohlGG-000hQ1-UQ for v9fs-developer@lists.sourceforge.net;
+ Mon, 10 Oct 2022 05:23:37 +0000
+Received: by nautica.notk.org (Postfix, from userid 108)
+ id 91877C01C; Mon, 10 Oct 2022 07:23:26 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=codewreck.org; s=2;
+ t=1665379406; bh=h7iN0yHsOk2Yc2OCw7yoF/YgYNpNTDxAmdvaxJlSsfk=;
+ h=Date:From:To:Cc:Subject:From;
+ b=Tn82eudrPlb9PodZoc3hzbckAKkd3eJWFNIkueNiBbmz+hC6gSopoTdMrETZbj8N4
+ QMWGq2zLFuxc1fy04LXxtwIlZBjWuvtCdBPpRbJuSRkPZn696jUKjbLEUiIBNRAXWU
+ zObUzsTfdAVjRO489hf915vJ2pRZRuDVBNWcDneqRVLCIx09duvVVYzZrFq98lh9+U
+ TqYuK70+JF1AXAV2ImpeIRbtXbWT3vR5ZMNRDdgEJBYmZKJXSeFM3NJLBfMpZaT8F0
+ 4nMCChj4KkcNlrQPEquGUH9/JQbwgfQHJHwJqAuLR+eFOPnzngo1L+2ei/gtnHoW2P
+ xkURFxtMW7LGA==
+X-Spam-Checker-Version: SpamAssassin 3.3.2 (2011-06-06) on nautica.notk.org
+X-Spam-Level: 
+X-Spam-Status: No, score=0.0 required=5.0 tests=UNPARSEABLE_RELAY
+ autolearn=unavailable version=3.3.2
+Received: from odin.codewreck.org (localhost [127.0.0.1])
+ by nautica.notk.org (Postfix) with ESMTPS id 57F46C009;
+ Mon, 10 Oct 2022 07:23:24 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=codewreck.org; s=2;
+ t=1665379405; bh=h7iN0yHsOk2Yc2OCw7yoF/YgYNpNTDxAmdvaxJlSsfk=;
+ h=Date:From:To:Cc:Subject:From;
+ b=GqZBfNmbOjG22+M+cZzTCo4n8z9X7V67QyS/7n+alJFR/6IlDKczYTXM72lu3zcfP
+ nItJqgINqgcDYC/gJP7nrwbsY2UicmslzaJqFR3fRCCzPUEiO3yefAVyuuNOZROJD4
+ M2u9Xbgzqn79SR1FHAUGOhTs8DkGIxxs/eMVFDUVDHrPdhcyvyYLSxuxZl2kEoxLGf
+ rWvdqdSq3C6w7Lc6+6s0T+ZXYoUkMLg5UyKcfitM4R/bSPEABRwzxw6zAvUR2nJhiC
+ hivN63/v9blAuYFvl/Gp8vlIPJklEpgA5Ib62sh2APPPmTSnWMFD7/8/VI8VBDHVsL
+ MhHlT5+DIGRiw==
+Received: from localhost (odin.codewreck.org [local])
+ by odin.codewreck.org (OpenSMTPD) with ESMTPA id 0979a99b;
+ Mon, 10 Oct 2022 05:23:20 +0000 (UTC)
+Date: Mon, 10 Oct 2022 14:23:05 +0900
+From: Dominique Martinet <asmadeus@codewreck.org>
+To: Linus Torvalds <torvalds@linux-foundation.org>
+Message-ID: <Y0OsOYmG+PU2CgcH@codewreck.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 6.3; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.3.1
-Content-Language: en-US
-To: Dominique Martinet <asmadeus@codewreck.org>,
- Alexander Viro <viro@zeniv.linux.org.uk>
-References: <00000000000039af4d05915a9f56@google.com>
- <345de429-a88b-7097-d177-adecf9fed342@I-love.SAKURA.ne.jp>
- <4293faaf-8279-77e2-8b1a-aff765416980@I-love.SAKURA.ne.jp>
- <69253379.JACLdFHAbQ@silver>
- <e96a8dce-9444-c363-2dfa-83fe5c7012b5@I-love.SAKURA.ne.jp>
- <YxPlzlJAKObm88p8@codewreck.org>
- <38d892bd-8ace-c4e9-9d73-777d3828acbc@I-love.SAKURA.ne.jp>
- <Yz+Di8tJiyPPJUaK@codewreck.org>
-From: Tetsuo Handa <penguin-kernel@I-love.SAKURA.ne.jp>
-In-Reply-To: <Yz+Di8tJiyPPJUaK@codewreck.org>
-X-Spam-Score: -2.7 (--)
+Content-Disposition: inline
+X-Spam-Score: -0.2 (/)
 X-Spam-Report: Spam detection software,
  running on the system "util-spamd-2.v13.lw.sourceforge.com", 
  has NOT identified this incoming email as spam.  The original
  message has been attached to this so you can view it or label
  similar future email.  If you have any questions, see
  the administrator of that system for details.
- Content preview:  On 2022/10/07 10:40, Dominique Martinet wrote: > Tetsuo Handa
- wrote on Sun, Sep 04, 2022 at 09:27:22AM +0900: >> On 2022/09/04 8:39,
- Dominique
- Martinet wrote: >>> Is there any reason you spent time wo [...] 
- Content analysis details:   (-2.7 points, 6.0 required)
+ Content preview: The following changes since commit
+ b90cb1053190353cc30f0fef0ef1f378ccc063c5:
+ Linux 6.0-rc3 (2022-08-28 15:05:29 -0700) are available in the Git repository
+ at: Content analysis details:   (-0.2 points, 6.0 required)
  pts rule name              description
  ---- ---------------------- --------------------------------------------------
- 0.0 SPF_NONE               SPF: sender does not publish an SPF Record
  0.0 SPF_HELO_NONE          SPF: HELO does not publish an SPF Record
- -2.7 NICE_REPLY_A           Looks like a legit reply (A)
-X-Headers-End: 1ogluu-0006d8-Oj
-Subject: Re: [V9fs-developer] [PATCH v2] 9p/trans_fd: perform read/write
- with TIF_SIGPENDING set
+ -0.0 SPF_PASS               SPF: sender matches SPF record
+ -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+ -0.1 DKIM_VALID_EF          Message has a valid DKIM or DK signature from
+ envelope-from domain
+ 0.1 DKIM_SIGNED            Message has a DKIM or DK signature, not necessarily
+ valid
+ -0.1 DKIM_VALID_AU          Message has a valid DKIM or DK signature from
+ author's domain
+ 0.0 UNPARSEABLE_RELAY      Informational: message has unparseable relay
+ lines
+X-Headers-End: 1ohlGG-000hQ1-UQ
+Subject: [V9fs-developer] [GIT PULL] 9p fixes for 6.1
 X-BeenThere: v9fs-developer@lists.sourceforge.net
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -102,77 +112,70 @@ List-Post: <mailto:v9fs-developer@lists.sourceforge.net>
 List-Help: <mailto:v9fs-developer-request@lists.sourceforge.net?subject=help>
 List-Subscribe: <https://lists.sourceforge.net/lists/listinfo/v9fs-developer>, 
  <mailto:v9fs-developer-request@lists.sourceforge.net?subject=subscribe>
-Cc: Latchesar Ionkov <lucho@ionkov.net>, Eric Van Hensbergen <ericvh@gmail.com>,
- netdev@vger.kernel.org, Christian Schoenebeck <linux_oss@crudebyte.com>,
- syzkaller-bugs@googlegroups.com,
- syzbot <syzbot+8b41a1365f1106fd0f33@syzkaller.appspotmail.com>,
- linux-fsdevel <linux-fsdevel@vger.kernel.org>,
- v9fs-developer@lists.sourceforge.net
+Cc: linux-fsdevel@vger.kernel.org, v9fs-developer@lists.sourceforge.net,
+ Christian Schoenebeck <linux_oss@crudebyte.com>, linux-kernel@vger.kernel.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: v9fs-developer-bounces@lists.sourceforge.net
 
-On 2022/10/07 10:40, Dominique Martinet wrote:
-> Tetsuo Handa wrote on Sun, Sep 04, 2022 at 09:27:22AM +0900:
->> On 2022/09/04 8:39, Dominique Martinet wrote:
->>> Is there any reason you spent time working on v2, or is that just
->>> theorical for not messing with userland fd ?
->>
->> Just theoretical for not messing with userland fd, for programs generated
->> by fuzzers might use fds passed to the mount() syscall. I imagined that
->> syzbot again reports this problem when it started playing with fcntl().
->>
->> For robustness, not messing with userland fd is the better. ;-)
-> 
-> By the way digging this back made me think about this a bit again.
-> My opinion hasn't really changed that if you want to shoot yourself in
-> the foot I don't think we're crossing any priviledge boundary here, but
-> we could probably prevent it by saying the mount call with close that fd
-> and somehow steal it? (drop the fget, close_fd after get_file perhaps?)
-> 
-> That should address your concern about robustess and syzbot will no
-> longer be able to play with fcntl on "our" end of the pipe. I think it's
-> fair to say that once you pass it to the kernel all bets are off, so
-> closing it for the userspace application could make sense, and the mount
-> already survives when short processes do the mount call and immediately
-> exit so it's not like we need that fd to be open...
-> 
-> 
-> What do you think?
 
-I found that pipe is using alloc_file_clone() which allocates "struct file"
-instead of just incrementing "struct file"->f_count.
+The following changes since commit b90cb1053190353cc30f0fef0ef1f378ccc063c5:
 
-Then, can we add EXPORT_SYMBOL_GPL(alloc_file_clone) to fs/file_table.c and
-use it like
+  Linux 6.0-rc3 (2022-08-28 15:05:29 -0700)
 
-  struct file *f;
+are available in the Git repository at:
 
-  ts->rd = fget(rfd);
-  if (!ts->rd)
-    goto out_free_ts;
-  if (!(ts->rd->f_mode & FMODE_READ))
-    goto out_put_rd;
-  f = alloc_file_clone(ts->rd, ts->rd->f_flags | O_NONBLOCK, ts->rd->f_op);
-  if (IS_ERR(f))
-    goto out_put_rd;
-  fput(ts->rd);
-  ts->rd = f;
+  https://github.com/martinetd/linux tags/9p-for-6.1
 
-  ts->wr = fget(wfd);
-  if (!ts->wr)
-    goto out_put_rd;
-  if (!(ts->wr->f_mode & FMODE_WRITE))
-    goto out_put_wr;
-  f = alloc_file_clone(ts->wr, ts->wr->f_flags | O_NONBLOCK, ts->wr->f_op);
-  if (IS_ERR(f))
-    goto out_put_wr;
-  fput(ts->wr);
-  ts->wr = f;
+for you to fetch changes up to a8e633c604476e24d26a636582c0f5bdb421e70d:
 
- from p9_fd_open() for cloning "struct file" with O_NONBLOCK flag added?
-Just an idea. I don't know whether alloc_file_clone() arguments are correct...
+  net/9p: clarify trans_fd parse_opt failure handling (2022-10-07 21:23:09 +0900)
 
+----------------------------------------------------------------
+9p-for-6.1: smaller buffers for small messages and fixes
+
+The highlight of this PR is Christian's patch to allocate smaller buffers
+for most metadata requests: 9p with a big msize would try to allocate large
+buffers when just 4 or 8k would be more than enough; this brings in nice
+performance improvements.
+
+There's also a few fixes for problems reported by syzkaller (thanks to
+Schspa Shi, Tetsuo Handa for tests and feedback/patches) as well as some
+minor cleanup
+
+----------------------------------------------------------------
+Christian Schoenebeck (5):
+      net/9p: split message size argument into 't_size' and 'r_size' pair
+      9p: add P9_ERRMAX for 9p2000 and 9p2000.u
+      net/9p: add p9_msg_buf_size()
+      net/9p: add 'pooled_rbuffers' flag to struct p9_trans_module
+      net/9p: allocate appropriate reduced message buffers
+
+Dominique Martinet (2):
+      9p: trans_fd/p9_conn_cancel: drop client lock earlier
+      net/9p: use a dedicated spinlock for trans_fd
+
+Li Zhong (1):
+      net/9p: clarify trans_fd parse_opt failure handling
+
+Tetsuo Handa (1):
+      9p/trans_fd: always use O_NONBLOCK read/write
+
+Xiu Jianfeng (1):
+      net/9p: add __init/__exit annotations to module init/exit funcs
+
+ include/net/9p/9p.h        |   3 +++
+ include/net/9p/transport.h |   5 ++++
+ net/9p/client.c            |  48 +++++++++++++++++++++++++++++++--------
+ net/9p/protocol.c          | 167 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+ net/9p/protocol.h          |   2 ++
+ net/9p/trans_fd.c          |  50 ++++++++++++++++++++++++++--------------
+ net/9p/trans_rdma.c        |   1 +
+ net/9p/trans_virtio.c      |   1 +
+ net/9p/trans_xen.c         |   5 ++--
+ 9 files changed, 254 insertions(+), 28 deletions(-)
+--
+Dominique
 
 
 _______________________________________________
