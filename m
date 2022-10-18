@@ -2,100 +2,103 @@ Return-Path: <v9fs-developer-bounces@lists.sourceforge.net>
 X-Original-To: lists+v9fs-developer@lfdr.de
 Delivered-To: lists+v9fs-developer@lfdr.de
 Received: from lists.sourceforge.net (lists.sourceforge.net [216.105.38.7])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7FD8F60263F
-	for <lists+v9fs-developer@lfdr.de>; Tue, 18 Oct 2022 09:56:39 +0200 (CEST)
-Received: from [127.0.0.1] (helo=sfs-ml-2.v29.lw.sourceforge.com)
-	by sfs-ml-2.v29.lw.sourceforge.com with esmtp (Exim 4.95)
+	by mail.lfdr.de (Postfix) with ESMTPS id A57B1602AA6
+	for <lists+v9fs-developer@lfdr.de>; Tue, 18 Oct 2022 13:57:30 +0200 (CEST)
+Received: from [127.0.0.1] (helo=sfs-ml-4.v29.lw.sourceforge.com)
+	by sfs-ml-4.v29.lw.sourceforge.com with esmtp (Exim 4.95)
 	(envelope-from <v9fs-developer-bounces@lists.sourceforge.net>)
-	id 1okhSm-0003VL-M1;
-	Tue, 18 Oct 2022 07:56:36 +0000
+	id 1oklDr-0000kx-Mw;
+	Tue, 18 Oct 2022 11:57:27 +0000
 Received: from [172.30.20.202] (helo=mx.sourceforge.net)
- by sfs-ml-2.v29.lw.sourceforge.com with esmtps (TLS1.2) tls
+ by sfs-ml-4.v29.lw.sourceforge.com with esmtps (TLS1.2) tls
  TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384 (Exim 4.95)
- (envelope-from <cnc@e1.nkemails.com>) id 1okhSk-0003VE-N3
+ (envelope-from <brauner@kernel.org>) id 1oklDq-0000ki-7l
  for v9fs-developer@lists.sourceforge.net;
- Tue, 18 Oct 2022 07:56:34 +0000
+ Tue, 18 Oct 2022 11:57:26 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=sourceforge.net; s=x; h=Content-Type:MIME-Version:List-Unsubscribe:To:
- Sender:Reply-To:Message-Id:Subject:Date:From:Cc:Content-Transfer-Encoding:
- Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
- Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:List-Id:
- List-Help:List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=+lTqX1zqY04UOG2hU8eaELCakseWhIQFcGcMkD+VPJE=; b=RhNWNRy/GtYtD3eQcHmRKkpigA
- mUKj+tslHacEfy4CTgWHUKVDadh7+XKEMWAH9pm0lfKz4fPxS3u5RoP2jwweQwBsQG58jwraNI6Pk
- YX30n+iwjzWYefCtZ317W4WNDMsK+Gc3WwQHcUrODsY/8/UvUJm+2AHxb3QwFhi0KuOc=;
+ d=sourceforge.net; s=x; h=Content-Transfer-Encoding:MIME-Version:Message-Id:
+ Date:Subject:Cc:To:From:Sender:Reply-To:Content-Type:Content-ID:
+ Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
+ :Resent-Message-ID:In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:
+ List-Subscribe:List-Post:List-Owner:List-Archive;
+ bh=HKLeHNUCVBk2Jf1ej/YTpWUy8yS38ZusR1vCiYB3LVA=; b=EsgMh1cZlpUXuZPWBwGmk1GPLA
+ o/Gg+sWXPnQAfbDmjnIcnZxtCwOsDRYHmrRtbhWb3QKn7QFHmLcsnY/Y8L+lRIeENiIu6HcfZ+dvb
+ 9oc6dNNz+xhF60oNP99PjKcfM1fSsUTJmEAwWbPzn7pE42T5XWxjc7rxleeus1EQy13I=;
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  ;
- h=Content-Type:MIME-Version:List-Unsubscribe:To:Sender:Reply-To:Message-Id:
- Subject:Date:From:Cc:Content-Transfer-Encoding:Content-ID:Content-Description
- :Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
- In-Reply-To:References:List-Id:List-Help:List-Subscribe:List-Post:List-Owner:
- List-Archive; bh=+lTqX1zqY04UOG2hU8eaELCakseWhIQFcGcMkD+VPJE=; b=eupuJUuenV+g
- pFPRKpDf5lumneh/0NkEB8DmqGIAQm/wFZ3GmAMAXLgRH1mCZpVsuFV2BkEBBZtHdJrSCq7B0vpCq
- Hu3rf9VubgvZ5AJWGpjVcDc6fv1rdqV6cFhtzbi8sXtlX6y72sEV4BalCUYhKwl3kJZqWhyBcc05v
- wUMak=;
-Received: from np150.mxout.mta3.net ([216.169.98.150])
+ h=Content-Transfer-Encoding:MIME-Version:Message-Id:Date:Subject:Cc:To:From
+ :Sender:Reply-To:Content-Type:Content-ID:Content-Description:Resent-Date:
+ Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:
+ References:List-Id:List-Help:List-Unsubscribe:List-Subscribe:List-Post:
+ List-Owner:List-Archive; bh=HKLeHNUCVBk2Jf1ej/YTpWUy8yS38ZusR1vCiYB3LVA=; b=D
+ jCRhB/heZBs5fVpM96EzG624WDiVFrm2nkErdFRdRk2P6haSZvFz7QuSO/poCNB7glAZL9AzWm0Lr
+ 7jhFgP/wscsrDQP6jHrUJT2y+cF0mm72dlRM/DFfzZSkImDn1xDFabinkZPIOtAAKBTlgO/bMDlQF
+ tkMLhG35igps8c9k=;
+Received: from dfw.source.kernel.org ([139.178.84.217])
  by sfi-mx-1.v28.lw.sourceforge.com with esmtps
- (TLS1.2:ECDHE-RSA-AES256-SHA384:256) (Exim 4.95) id 1okhSj-00809R-Jb
- for v9fs-developer@lists.sourceforge.net;
- Tue, 18 Oct 2022 07:56:34 +0000
-DKIM-Signature: v=1; a=rsa-sha256; d=e1.nkemails.com; s=api; c=relaxed/simple; 
- t=1666079784;
- h=from:date:subject:reply-to:to:list-unsubscribe:mime-version; 
- bh=+lTqX1zqY04UOG2hU8eaELCakseWhIQFcGcMkD+VPJE=;
- b=WAidyT61Mdid13rIw0d8d57wkhz66Fe0zUet8Mgo9BkpDnOPRKUN8t5D7UeFoYSKXVkIxQwuaUY
- ZmxAFpNcjMNYmPZ/1YRUSHVWY42WVaX/xLe83hI9jfmPCNWBfQOEz7sIzoy+TItPj3K9g850wsaoh
- Wj6ZF38xck8X1dNuBGo=
-DKIM-Signature: v=1; a=rsa-sha256; d=elasticemail.com; s=api;
- c=relaxed/simple; t=1666079784;
- h=from:date:subject:reply-to:to:list-unsubscribe;
- bh=+lTqX1zqY04UOG2hU8eaELCakseWhIQFcGcMkD+VPJE=;
- b=SSd0jsYdU8cZqXPIkG9cjdB/vqZZN4B4V0yQbF61qK7bykwOVjln9u1XVw+Djd1s52cvPmIwUNX
- /Yq5fE2ULbDXZMD64M6RJ8Isu6YOeJ4mfX2c+/lp5+AG9aMTriQlvmhvhJOwzpvicfVvg/Lbsw7Yb
- RPdMzJsfFMpW49+kCfA=
-From: Lisa Yu <cnc@e1.nkemails.com>
-Date: Tue, 18 Oct 2022 07:56:24 +0000
-Message-Id: <4ui62fxauecd.U8Mqio-RE3C7VPOjkNSNtA2@tracking.e1.nkemails.com>
-To: "v9fs-developer@lists.sourceforge.net"
- <v9fs-developer@lists.sourceforge.net>
-X-Msg-EID: U8Mqio-RE3C7VPOjkNSNtA2
+ (TLS1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.95)
+ id 1oklDp-008KzN-7n for v9fs-developer@lists.sourceforge.net;
+ Tue, 18 Oct 2022 11:57:26 +0000
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+ (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+ (No client certificate requested)
+ by dfw.source.kernel.org (Postfix) with ESMTPS id E89CC61525;
+ Tue, 18 Oct 2022 11:57:18 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E3215C433D6;
+ Tue, 18 Oct 2022 11:57:15 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+ s=k20201202; t=1666094238;
+ bh=rMOlroa8EDtexXDPU+ZRmMrYgKK5YamKQ+dhvvvDdig=;
+ h=From:To:Cc:Subject:Date:From;
+ b=oS6NIUTFGGSB3LcRrVBTXIZsaY+39c0L8NJyK4h68kEa3YIVVabujBkvTZP9JdHha
+ qxa6/xjBcn+lq06J3EAYWAYW36YfL3KPfvafRfnntq6DEfNAoiQP5tnUmFzAPr5Ovw
+ DSRu1Sjcmxz4F4r7j0eJ/JV7pWgcSYCxykpbwKQFs1fNHwa+hdiOE2b1lgrOcYA9T5
+ RcKtEDuLCP/5Qnj2T/HiR2FgQlM9CyjcCIwwXurP2lECiltZ9qfyCgoFRmzpWwdBUH
+ pgnT7vKEeZ5dll872KNP8S8nwht/KHLwibyiSW5KgeGwsPeq6PGhR1bPdLLJr7zQLP
+ vrSoqFNaIK4VQ==
+From: Christian Brauner <brauner@kernel.org>
+To: linux-fsdevel@vger.kernel.org
+Date: Tue, 18 Oct 2022 13:56:30 +0200
+Message-Id: <20221018115700.166010-1-brauner@kernel.org>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-X-Spam-Score: 2.6 (++)
+X-Developer-Signature: v=1; a=openpgp-sha256; l=15009; i=brauner@kernel.org;
+ h=from:subject; bh=POAx6y8vFu9JacfqSNqJcOMgJPfobX8lpb7j8rbq7/E=;
+ b=owGbwMvMwCU28Zj0gdSKO4sYT6slMST7TVF5VmVr2n0pLdBUputM+E7f/9M0hY77bfCunvRT7QOr
+ EfOfjlIWBjEuBlkxRRaHdpNwueU8FZuNMjVg5rAygQxh4OIUgIk8iWP4Z/r5XqVEksHxuxPW2n2d+m
+ SB5bK8mE+58y9srs0UdZyhksPI0L9UZY2RpHHPhIJfn8KOznj2t/vHz94lekfNPdO2WLjdYAcA
+X-Developer-Key: i=brauner@kernel.org; a=openpgp;
+ fpr=4880B8C9BD0E5106FC070F4F7B3C391EFEA93624
+X-Spam-Score: -5.5 (-----)
 X-Spam-Report: Spam detection software,
- running on the system "util-spamd-1.v13.lw.sourceforge.com", 
+ running on the system "util-spamd-2.v13.lw.sourceforge.com", 
  has NOT identified this incoming email as spam.  The original
  message has been attached to this so you can view it or label
  similar future email.  If you have any questions, see
  the administrator of that system for details.
- Content preview:  Dear manager, I am Lisa from XinBo Precision Co.,
- Ltd in China, 
- thank you for taking the time to read this email I writing for you. Since
- 2011, we have been providing high-precision CNC parts machinin [...] 
- Content analysis details:   (2.6 points, 6.0 required)
+ Content preview:  From: "Christian Brauner (Microsoft)" <brauner@kernel.org>
+ Hey everyone, /* v5 */ Rebased onto v6.1-rc1 and adressed some fs specific
+ feedback. Reran xfstests and LTP and no regressions or bugs were reported.
+ Content analysis details:   (-5.5 points, 6.0 required)
  pts rule name              description
  ---- ---------------------- --------------------------------------------------
+ -0.0 SPF_PASS               SPF: sender matches SPF record
+ 0.0 SPF_HELO_NONE          SPF: HELO does not publish an SPF Record
  0.0 URIBL_BLOCKED          ADMINISTRATOR NOTICE: The query to URIBL was
  blocked.  See
  http://wiki.apache.org/spamassassin/DnsBlocklists#dnsbl-block
- for more information. [URIs: nkemails.com]
- -0.0 RCVD_IN_MSPIKE_H2      RBL: Average reputation (+2)
- [216.169.98.150 listed in wl.mailspike.net]
- -0.0 RCVD_IN_DNSWL_NONE     RBL: Sender listed at https://www.dnswl.org/,
- no trust [216.169.98.150 listed in list.dnswl.org]
- 0.0 SPF_HELO_NONE          SPF: HELO does not publish an SPF Record
- -0.0 SPF_PASS               SPF: sender matches SPF record
- 0.7 HTML_IMAGE_ONLY_20     BODY: HTML: images with 1600-2000 bytes of
- words 0.0 HTML_MESSAGE           BODY: HTML included in message
+ for more information. [URIs: gitlab.com]
+ -5.0 RCVD_IN_DNSWL_HI       RBL: Sender listed at https://www.dnswl.org/,
+ high trust [139.178.84.217 listed in list.dnswl.org]
  -0.1 DKIM_VALID_AU          Message has a valid DKIM or DK signature from
  author's domain
- 0.1 DKIM_SIGNED            Message has a DKIM or DK signature, not necessarily
- valid
  -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
- 2.0 PYZOR_CHECK            Listed in Pyzor
- (https://pyzor.readthedocs.io/en/latest/)
-X-Headers-End: 1okhSj-00809R-Jb
-X-Content-Filtered-By: Mailman/MimeDel 2.1.21
-Subject: [V9fs-developer] High-precision CNC parts respond quickly
+ -0.1 DKIM_VALID_EF          Message has a valid DKIM or DK signature from
+ envelope-from domain
+ 0.1 DKIM_SIGNED            Message has a DKIM or DK signature, not necessarily
+ valid -0.3 DKIMWL_WL_HIGH         DKIMwl.org - High trust sender
+X-Headers-End: 1oklDp-008KzN-7n
+Subject: [V9fs-developer] [PATCH v5 00/30] acl: add vfs posix acl api
 X-BeenThere: v9fs-developer@lists.sourceforge.net
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -107,28 +110,356 @@ List-Post: <mailto:v9fs-developer@lists.sourceforge.net>
 List-Help: <mailto:v9fs-developer-request@lists.sourceforge.net?subject=help>
 List-Subscribe: <https://lists.sourceforge.net/lists/listinfo/v9fs-developer>, 
  <mailto:v9fs-developer-request@lists.sourceforge.net?subject=subscribe>
-Reply-To: Lisa Yu <lisa@cncprecision-parts.cn>
+Cc: linux-cifs@vger.kernel.org,
+ "Christian Brauner \(Microsoft\)" <brauner@kernel.org>,
+ linux-security-module@vger.kernel.org, Seth Forshee <sforshee@kernel.org>,
+ v9fs-developer@lists.sourceforge.net, linux-integrity@vger.kernel.org,
+ Linus Torvalds <torvalds@linux-foundation.org>, Christoph Hellwig <hch@lst.de>,
+ Al Viro <viro@zeniv.linux.org.uk>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: v9fs-developer-bounces@lists.sourceforge.net
 
-Dear manager,
-I am Lisa from XinBo Precision Co., Ltd in China, thank you for taking
-the time to read this email I writing for you.
-Since 2011, we have been providing high-precision CNC parts machining
-services for some global brands, such as Canon, Sumitomo, GE, etc.;
-Customers are not only satisfied with our CNC machining capabilities
-but also amazed by our quick response services. HIGH PRECISION OF
-0.005MM; 8 HOURS QUICK QUOTATION PROCESS; SAMPLES ARE AVAILABLE WITHIN
-3-10 DAYS; it can shorten your project development time.
-If you have drawings of high-precision parts that need to be machined,
-welcome to send us for evaluation and quotation. thanks.
-Best regards,
-Lisa yu
-Lisa@cncprecision-parts. cn
-Xinbo Precision
-Unsubscribe
-[/http://tracking.e1.nkemails.com/tracking/unsubscribe?d=AyNMGcjZJxUOBOjtoRyWFfFkKLEm2XOC1Ntcgr7lH-n8thG9aqUV3cUAW6NvbhmHr4AtBRcVBSEkm0j8-ZE8PahEbsBhc2UGWDvDqnEvIdokAeK1Ic6QmX6Z9uwWbnvgOrcdiTCPBKfCLpfqCA5T5krjkCHm-PquxRspzsa8ekw3EiMkpznDyDylK0liCLlp6Jak0YqNc3gUedQMGzcQk4AIp0xAVYlBlFR5q2zUfoynDOyz40AUCmJLU1yOgktRaieK_spUA3dUBqMMazqw58l5uVlxB7i6UH6tkYq-mHvRIvh2kMEOM_JcShTkchpDf2nD2a---RDuwo3Auc42H8WxxEov72xax0GbjFiTe4DTkKJTxuxebpB9IxznWjTog5Ol1-nAP9YRIxRtFfTj3lkbhsrz9ZHOmh6z7qwCYZOX5oz7igiZ5-76bJf1eFdGjGlvbW39glNv1INdPfwFyAr7NRh4ds98x9hMIUXkfeRu-nKAsHwzOTcYxlZm2XqwKQ2]
+From: "Christian Brauner (Microsoft)" <brauner@kernel.org>
+
+Hey everyone,
+
+/* v5 */
+Rebased onto v6.1-rc1 and adressed some fs specific feedback.
+Reran xfstests and LTP and no regressions or bugs were reported.
+
+As we discussed and seen multiple times the current state of how posix
+acls are handled isn't nice and comes with a lot of problems. For a long
+and detailed explanation for just some of the issues [1] provides a good
+summary.
+
+The current way of handling posix acls via the generic xattr api is
+error prone, hard to maintain, and type unsafe for the vfs until we call
+into the filesystem's dedicated get and set inode operations.
+
+It is already the case that posix acls are special-cased to death all
+the way through the vfs. There are an uncounted number of hacks that
+operate on the uapi posix acl struct instead of the dedicated vfs struct
+posix_acl. And the vfs must be involved in order to interpret and fixup
+posix acls before storing them to the backing store, caching them,
+reporting them to userspace, or for permission checking.
+
+Currently a range of hacks and duct tape exist to make this work. As
+with most things this is really no ones fault it's just something that
+happened over time. But the code is hard to understand and difficult
+to maintain and one is constantly at risk of introducing bugs and
+regressions when having to touch it.
+
+Instead of continuing to hack posix acls through the xattr handlers this
+series builds a dedicated posix acl api solely around the get and set
+inode operations. Going forward, the vfs_get_acl(), vfs_remove_acl(),
+and vfs_set_acl() helpers must be used in order to interact with posix
+acls. They operate directly on the vfs internal struct posix_acl instead
+of abusing the uapi posix acl struct as we currently do. In the end this
+removes all of the hackiness, makes the codepaths easier to maintain,
+and gets us type safety.
+
+This series passes the LTP and xfstests suites without any regressions.
+For xfstests the following combinations were tested:
+
+* xfs
+* ext4
+* btrfs
+* overlayfs
+* overlayfs on top of idmapped mounts
+
+For people wanting to run their own xfstests I'd recommend to shorten
+their test runs via:
+
+./check -g acl,attr,cap,idmapped,io_uring,perms,subvol,unlink
+
+I would appreciate if the 9p and cifs folks could run any posix acl
+related tests as I have no setup to really do this without causing me a
+lot of pain.
+
+Very likely there's a lot more simplifications for posix acls that we
+can make in the future if the basic api has made it.
+
+A few implementation details:
+
+* The series makes sure to retain exactly the same security and
+  integrity module permission checks. See [2] for annotated callchains.
+  Especially for the integrity modules this api is a win because right
+  now they convert the uapi posix acl struct passed to them via a void
+  pointer into the vfs struct posix_acl format to perform permission
+  checking on the mode.
+
+  There's a new dedicated security hook for setting posix acls which
+  passes the vfs struct posix_acl not a void pointer. Basing checking on
+  the posix acl stored in the uapi format is really unreliable. The vfs
+  currently hacks around directly in the uapi struct storing values that
+  frankly the security and integrity modules can't correctly interpret
+  as evidenced by bugs we reported and fixed in this area. It's not
+  necessarily even their fault it's just that the format we provide to
+  them is sub optimal.
+
+* Some filesystems like 9p and cifs need access to the dentry in order
+  to get and set posix acls which is why they either only partially or
+  not even at all implement get and set inode operations. For example,
+  cifs allows setxattr() and getxattr() operations but doesn't allow
+  permission checking based on posix acls because it can't implement a
+  get acl inode operation.
+
+  Thus, this patch series updates the set acl inode operation to take a
+  dentry instead of an inode argument. However, for the get acl inode
+  operation we can't do this as the old get acl method is called in
+  e.g., generic_permission() and inode_permission(). These helpers in
+  turn are called in various filesystem's permission inode operation. So
+  passing a dentry argument to the old get acl inode operation would
+  amount to passing a dentry to the permission inode operation which we
+  shouldn't and probably can't do.
+
+  So instead of extending the existing inode operation Christoph
+  suggested to add a new one. He also requested to ensure that the get
+  and set acl inode operation taking a dentry are consistently named. So
+  for this version the old get acl operation is renamed to
+  ->get_inode_acl() and a new ->get_acl() inode operation taking a
+  dentry is added. With this we can give both 9p and cifs get and set
+  acl inode operations and in turn remove their complex custom posix
+  xattr handlers.
+
+* I've done a full audit of every codepaths using variant of the
+  current generic xattr api to get and set posix acls and surprisingly
+  it isn't that many places. There's of course always a chance that I
+  might have missed some and I'm sure we'll find them soon enough.
+
+  The crucial codepaths to be converted are obviously stacking
+  filesystems such as ecryptfs and overlayfs.
+
+  For a list of all callers currently using generic xattr api helpers
+  see [2] including comments whether they support posix acls or not.
+
+* The old vfs generic posix acl infrastructure doesn't obey
+  the create and replace semantics promised on the setxattr(2) manpage.
+  This patch series doesn't address this. It really is something we
+  should revisit later though.
+
+The patch series is roughly organized as follows:
+
+// intended to be a non-functional change
+1. Change existing set acl inode operation to take a dentry argument.
+
+// intended to be a non-functional change
+2. Rename existing get acl method.
+
+// intended to be a non-functional change
+3. Implement get and set acl inode operations for filesystems that
+   couldn't implement one before because of the missing dentry. That's
+   mostly 9p and cifs.
+
+// intended to be a non-functional change
+4. Build posix acl api, i.e., add vfs_get_acl(), vfs_remove_acl(), and
+   vfs_set_acl() including security and integrity hooks.
+
+// intended to be a non-functional change
+5. Implement get and set acl inode operations for stacking filesystems.
+
+// semantical change
+6. Switch posix acl handling in stacking filesystems to new posix acl
+   api now that all filesystems it can stack upon support it.
+
+// semantical change
+7. Switch vfs to new posix acl api
+
+8. Remove all now unused helpers
+
+The series can be pulled from:
+
+https://gitlab.com/brauner/linux/-/commits/fs.acl.rework
+https://git.kernel.org/pub/scm/linux/kernel/git/vfs/idmapping.git/log/?h=fs.acl.rework
+
+The series contains a few preliminary patches which are scheduled for
+the next merge window. It was just easier to base the series on top of
+them. But if you pull this branch you'll get them included.
+
+I've been working on this for a while and before going any further it'd
+be nice to get some reviews. I think that it should be fine to have get
+and set acl inode operations that operate on the dentry at least nothing
+stuck out immediately that would prevent this. But obviously having
+other people point out issues with that would be helpful.
+
+Thanks to Seth for a lot of good discussion around this and
+encouragement and input from Christoph.
+
+[1]: https://lore.kernel.org/all/20220801145520.1532837-1-brauner@kernel.org
+[2]: https://gist.github.com/brauner/12c795b93a05dc3b3056b1982549a633
+
+Thanks!
+Christian
+
+/* v1 */
+Link: https://lore.kernel.org/linux-cifs/20220922151728.1557914-1-brauner@kernel.org
+
+/* v2 */
+Link: https://lore.kernel.org/linux-cifs/20220926140827.142806-1-brauner@kernel.org
+This fixes various things pointed out during review. The individual
+commits contain more details were appropriate.
+
+/* v3 */
+Link: https://lore.kernel.org/linux-cifs/20220928160843.382601-1-brauner@kernel.org
+As requested this adds dedicated get and remove security hooks in
+addition to the set hook instead of reusing the generic xattr hooks.
+
+/* v4 */
+Various minor changes. Details in the notes to the commits.
+
+Christian Brauner (30):
+  orangefs: rework posix acl handling when creating new filesystem
+    objects
+  fs: pass dentry to set acl method
+  fs: rename current get acl method
+  fs: add new get acl method
+  cifs: implement get acl method
+  cifs: implement set acl method
+  9p: implement get acl method
+  9p: implement set acl method
+  security: add get, remove and set acl hook
+  selinux: implement get, set and remove acl hook
+  smack: implement get, set and remove acl hook
+  integrity: implement get and set acl hook
+  evm: add post set acl hook
+  internal: add may_write_xattr()
+  acl: add vfs_set_acl()
+  acl: add vfs_get_acl()
+  acl: add vfs_remove_acl()
+  ksmbd: use vfs_remove_acl()
+  ecryptfs: implement get acl method
+  ecryptfs: implement set acl method
+  ovl: implement get acl method
+  ovl: implement set acl method
+  ovl: use posix acl api
+  xattr: use posix acl api
+  evm: remove evm_xattr_acl_change()
+  ecryptfs: use stub posix acl handlers
+  ovl: use stub posix acl handlers
+  cifs: use stub posix acl handlers
+  9p: use stub posix acl handlers
+  acl: remove a slew of now unused helpers
+
+ Documentation/filesystems/locking.rst |   4 +-
+ Documentation/filesystems/porting.rst |   4 +-
+ Documentation/filesystems/vfs.rst     |   5 +-
+ fs/9p/acl.c                           | 295 ++++++-----
+ fs/9p/acl.h                           |   8 +-
+ fs/9p/vfs_inode_dotl.c                |   4 +
+ fs/9p/xattr.c                         |   7 +-
+ fs/9p/xattr.h                         |   2 -
+ fs/bad_inode.c                        |   4 +-
+ fs/btrfs/acl.c                        |   3 +-
+ fs/btrfs/ctree.h                      |   2 +-
+ fs/btrfs/inode.c                      |   8 +-
+ fs/ceph/acl.c                         |   3 +-
+ fs/ceph/dir.c                         |   2 +-
+ fs/ceph/inode.c                       |   4 +-
+ fs/ceph/super.h                       |   2 +-
+ fs/cifs/cifsacl.c                     | 141 +++++
+ fs/cifs/cifsfs.c                      |   4 +
+ fs/cifs/cifsproto.h                   |  20 +-
+ fs/cifs/cifssmb.c                     | 206 +++++---
+ fs/cifs/xattr.c                       |  68 +--
+ fs/ecryptfs/inode.c                   |  32 ++
+ fs/erofs/inode.c                      |   6 +-
+ fs/erofs/namei.c                      |   2 +-
+ fs/ext2/acl.c                         |   3 +-
+ fs/ext2/acl.h                         |   2 +-
+ fs/ext2/file.c                        |   2 +-
+ fs/ext2/inode.c                       |   2 +-
+ fs/ext2/namei.c                       |   4 +-
+ fs/ext4/acl.c                         |   3 +-
+ fs/ext4/acl.h                         |   2 +-
+ fs/ext4/file.c                        |   2 +-
+ fs/ext4/ialloc.c                      |   2 +-
+ fs/ext4/inode.c                       |   2 +-
+ fs/ext4/namei.c                       |   4 +-
+ fs/f2fs/acl.c                         |   4 +-
+ fs/f2fs/acl.h                         |   2 +-
+ fs/f2fs/file.c                        |   4 +-
+ fs/f2fs/namei.c                       |   4 +-
+ fs/fuse/acl.c                         |   3 +-
+ fs/fuse/dir.c                         |   4 +-
+ fs/fuse/fuse_i.h                      |   2 +-
+ fs/gfs2/acl.c                         |   3 +-
+ fs/gfs2/acl.h                         |   2 +-
+ fs/gfs2/inode.c                       |   6 +-
+ fs/internal.h                         |   5 +
+ fs/jffs2/acl.c                        |   3 +-
+ fs/jffs2/acl.h                        |   2 +-
+ fs/jffs2/dir.c                        |   2 +-
+ fs/jffs2/file.c                       |   2 +-
+ fs/jffs2/fs.c                         |   2 +-
+ fs/jfs/acl.c                          |   3 +-
+ fs/jfs/file.c                         |   4 +-
+ fs/jfs/jfs_acl.h                      |   2 +-
+ fs/jfs/namei.c                        |   2 +-
+ fs/ksmbd/smb2pdu.c                    |   8 +-
+ fs/ksmbd/smbacl.c                     |   6 +-
+ fs/ksmbd/vfs.c                        |  21 +-
+ fs/ksmbd/vfs.h                        |   4 +-
+ fs/namei.c                            |   4 +-
+ fs/nfs/nfs3_fs.h                      |   2 +-
+ fs/nfs/nfs3acl.c                      |   9 +-
+ fs/nfs/nfs3proc.c                     |   4 +-
+ fs/nfsd/nfs2acl.c                     |   8 +-
+ fs/nfsd/nfs3acl.c                     |   8 +-
+ fs/nfsd/nfs4acl.c                     |   4 +-
+ fs/nfsd/vfs.c                         |   4 +-
+ fs/ntfs3/file.c                       |   4 +-
+ fs/ntfs3/namei.c                      |   4 +-
+ fs/ntfs3/ntfs_fs.h                    |   4 +-
+ fs/ntfs3/xattr.c                      |   9 +-
+ fs/ocfs2/acl.c                        |   3 +-
+ fs/ocfs2/acl.h                        |   2 +-
+ fs/ocfs2/file.c                       |   4 +-
+ fs/ocfs2/namei.c                      |   2 +-
+ fs/orangefs/acl.c                     |  47 +-
+ fs/orangefs/inode.c                   |  47 +-
+ fs/orangefs/namei.c                   |   2 +-
+ fs/orangefs/orangefs-kernel.h         |   8 +-
+ fs/orangefs/orangefs-utils.c          |  10 +-
+ fs/overlayfs/copy_up.c                |  38 ++
+ fs/overlayfs/dir.c                    |  22 +-
+ fs/overlayfs/inode.c                  | 187 ++++++-
+ fs/overlayfs/overlayfs.h              |  42 +-
+ fs/overlayfs/super.c                  | 107 +---
+ fs/posix_acl.c                        | 718 +++++++++++++-------------
+ fs/reiserfs/acl.h                     |   6 +-
+ fs/reiserfs/file.c                    |   2 +-
+ fs/reiserfs/inode.c                   |   2 +-
+ fs/reiserfs/namei.c                   |   4 +-
+ fs/reiserfs/xattr_acl.c               |  11 +-
+ fs/xattr.c                            |  85 +--
+ fs/xfs/xfs_acl.c                      |   3 +-
+ fs/xfs/xfs_acl.h                      |   2 +-
+ fs/xfs/xfs_iops.c                     |  16 +-
+ include/linux/evm.h                   |  49 ++
+ include/linux/fs.h                    |  10 +-
+ include/linux/ima.h                   |  24 +
+ include/linux/lsm_hook_defs.h         |   6 +
+ include/linux/lsm_hooks.h             |  12 +
+ include/linux/posix_acl.h             |  41 +-
+ include/linux/posix_acl_xattr.h       |  53 +-
+ include/linux/security.h              |  29 ++
+ include/linux/xattr.h                 |   6 +
+ mm/shmem.c                            |   2 +-
+ security/integrity/evm/evm_main.c     | 147 +++---
+ security/integrity/ima/ima_appraise.c |   9 +
+ security/security.c                   |  42 ++
+ security/selinux/hooks.c              |  22 +
+ security/smack/smack_lsm.c            |  71 +++
+ 110 files changed, 1809 insertions(+), 1112 deletions(-)
+
+
+base-commit: 9abf2313adc1ca1b6180c508c25f22f9395cc780
+-- 
+2.34.1
+
+
+
 _______________________________________________
 V9fs-developer mailing list
 V9fs-developer@lists.sourceforge.net
