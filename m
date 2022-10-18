@@ -2,76 +2,84 @@ Return-Path: <v9fs-developer-bounces@lists.sourceforge.net>
 X-Original-To: lists+v9fs-developer@lfdr.de
 Delivered-To: lists+v9fs-developer@lfdr.de
 Received: from lists.sourceforge.net (lists.sourceforge.net [216.105.38.7])
-	by mail.lfdr.de (Postfix) with ESMTPS id A1F2F6015E4
-	for <lists+v9fs-developer@lfdr.de>; Mon, 17 Oct 2022 20:03:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3A758601E3D
+	for <lists+v9fs-developer@lfdr.de>; Tue, 18 Oct 2022 02:08:43 +0200 (CEST)
 Received: from [127.0.0.1] (helo=sfs-ml-2.v29.lw.sourceforge.com)
 	by sfs-ml-2.v29.lw.sourceforge.com with esmtp (Exim 4.95)
 	(envelope-from <v9fs-developer-bounces@lists.sourceforge.net>)
-	id 1okUSq-0004Z1-JZ;
-	Mon, 17 Oct 2022 18:03:48 +0000
+	id 1oka9w-0003Oq-RN;
+	Tue, 18 Oct 2022 00:08:40 +0000
 Received: from [172.30.20.202] (helo=mx.sourceforge.net)
  by sfs-ml-2.v29.lw.sourceforge.com with esmtps (TLS1.2) tls
  TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384 (Exim 4.95)
- (envelope-from <linux_oss@crudebyte.com>) id 1okUSo-0004Yt-A2
+ (envelope-from <sashal@kernel.org>) id 1oka9w-0003Ok-16
  for v9fs-developer@lists.sourceforge.net;
- Mon, 17 Oct 2022 18:03:46 +0000
+ Tue, 18 Oct 2022 00:08:40 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=sourceforge.net; s=x; h=Content-Type:Content-Transfer-Encoding:MIME-Version
- :References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Sender:Reply-To:
+ d=sourceforge.net; s=x; h=Content-Transfer-Encoding:MIME-Version:References:
+ In-Reply-To:Message-Id:Date:Subject:Cc:To:From:Sender:Reply-To:Content-Type:
  Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
  Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
  List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=FU3Btm3EGBwXY4LS7OhQ2d8cTy/b/4HQKovRbcKBjos=; b=aqJC/JkdTwaTRGTz1N93AjpX4U
- UuwRwnTf6SV4f6AsnOaYbySIsh4J+t9HNe6oTNqKv8T1WLNubLoVHg383ZjWvmvKk2O7FyU5qttAo
- 641T1+VmV+Ph/gk436tDa5lMzf0qAPb5oea/8RWsLQuQWHLy796NH4gX/pIJ6majBIuY=;
+ bh=b4YRuTqF4/xlJx7MiB3PEOpCODYVHjDYMJE5zDQtGCY=; b=lySpR+B6AEq3WVPN2qPo9FgB6A
+ ooP50+2tLzt00z9LqTGofls7/ecTMDTlf/YXgmgRQP0o7RCxJO590pPyEV3DJnli7Vdwdpkel1fkM
+ wfkFpS3ZDnlcMpGy8JLYm96Y51oP898KQSvwyiIbzvnbSCcT2QnwipF4HrfPebunZdew=;
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  ;
- h=Content-Type:Content-Transfer-Encoding:MIME-Version:References:
- In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Sender:Reply-To:Content-ID:
+ h=Content-Transfer-Encoding:MIME-Version:References:In-Reply-To:Message-Id:
+ Date:Subject:Cc:To:From:Sender:Reply-To:Content-Type:Content-ID:
  Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
  :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
  List-Post:List-Owner:List-Archive;
- bh=FU3Btm3EGBwXY4LS7OhQ2d8cTy/b/4HQKovRbcKBjos=; b=ZCSntJ+Y79FuMG0dc9k9f4/7FY
- MyKTb1BM+N80nPRA6/ND1YDlgbgjkC3/97axSBhGfTe6edKCzKbLKXAhPNKO67Vb8mzWs05m4ZxM5
- WsJSxk2EEduCQdg+aZFZaErlDMj0r5twgQBLmHpz6V2XP1YU7yacfxkaLh3OTth3c1Qc=;
-Received: from kylie.crudebyte.com ([5.189.157.229])
- by sfi-mx-2.v28.lw.sourceforge.com with esmtps
+ bh=b4YRuTqF4/xlJx7MiB3PEOpCODYVHjDYMJE5zDQtGCY=; b=aInVBY95grSuamDI5Gk7IBHTUZ
+ jPiBQ7AyPQFBXc8iwDXqwBk8uP5xZn9jTupG/4aMv3d/lvjYmgFCj9ThkJOdvkXZbQ+idvHj5EFcA
+ tNs380Uo5ZNdJiQ+SPopSI57dbgLx/unAgICc8JXiY1lLrJmnIGnZz4zDnebkXNYv3Iw=;
+Received: from ams.source.kernel.org ([145.40.68.75])
+ by sfi-mx-1.v28.lw.sourceforge.com with esmtps
  (TLS1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.95)
- id 1okUSj-0001mS-Ic for v9fs-developer@lists.sourceforge.net;
- Mon, 17 Oct 2022 18:03:46 +0000
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=crudebyte.com; s=kylie; h=Content-Type:Content-Transfer-Encoding:
- MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:
- Content-ID:Content-Description;
- bh=FU3Btm3EGBwXY4LS7OhQ2d8cTy/b/4HQKovRbcKBjos=; b=YSx/KHgYLgMvLP92fQqt+LbqTm
- oqJ27ciBM3x8dNSImEPv5MwHeucHHzZZe7/+jmm0N1XwRvo1WGd7UadkAKUl2GHLHWACgps45uxkB
- NcOse+D8Zoz0Fuz+EfvKX+cno4JILAqGZ62QebfEkIyf+O5spjYCCaYGX9aqCd1p/znDN2Blfd1Tv
- SoRK94PsA31EzF6d9pWdnkePt8rAXi7OQVF6uEBNlD4OBdVdknSqHOosA/R1jD/LcRcBIIKtkPGc8
- 0mOstPbsyC1TNSEtWqyrsHVa4lZP1GZbop3aBW0o6o4cZpOpQnurDKjgDM5NZXSv6U937D6GC8L8O
- 7nal5D+PuliyNChsjus11wi+Yh/EZxqDHaZD3JDQXBNC9UL/Bc/lTPUsWyEePPg5Qvw+WZRVHy9Nb
- z2VHF+nib+ZYXZWujt4jjDReaPrrC3TF0LyzoumgcZbx0eTzqEBtW0pNzWiZHJ8Z6/6cQQz2iAyMt
- W1DczxcPrWz3HvPRGmdVHTu8CAGW5+GA1hXQ/MPtNebBXjMtMv76t2S9oXwShlb4bUci313YjKafz
- e/YrkqHNXaxXSRjnnJKVEBElnIY88BXfLuP03KZIdlQHrmmNZoUUXyazvJbMw1nHU4SEbXvvn1awb
- 62as9NgYYlckuc68u4ruBqlGIua/uN9yjO3Ywj17I=;
-To: Jason Gunthorpe <jgg@nvidia.com>
-Date: Mon, 17 Oct 2022 20:03:28 +0200
-Message-ID: <4858768.YlS1rbApJJ@silver>
-In-Reply-To: <Y02Kz2xuntFrKXhV@nvidia.com>
-References: <cover.1657920926.git.linux_oss@crudebyte.com>
- <3f51590535dc96ed0a165b8218c57639cfa5c36c.1657920926.git.linux_oss@crudebyte.com>
- <Y02Kz2xuntFrKXhV@nvidia.com>
+ id 1oka9v-007doS-B3 for v9fs-developer@lists.sourceforge.net;
+ Tue, 18 Oct 2022 00:08:39 +0000
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+ (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+ (No client certificate requested)
+ by ams.source.kernel.org (Postfix) with ESMTPS id 71E40B81B62;
+ Tue, 18 Oct 2022 00:08:31 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id CA5D8C433D7;
+ Tue, 18 Oct 2022 00:08:28 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+ s=k20201202; t=1666051710;
+ bh=PwiZ3RNcmlNNDBXZcrRLQQX5aRk1EaJx4/ZQ6t+xBY0=;
+ h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
+ b=CPPsfnctafN+HCxtlLcMxxu+I5Y4/wJ3dRBInoIL+F+LXC6fTr09zcfo7SicCNazB
+ 2Oq2WWVnR9oTC0Ir55ME18wDWA4oQRK8oEYIWm62zZ5pribq253T6jRdIlbrwPRsLN
+ WVhIqeI/YZ11FGtVOqMOYHIi+Ik8R5Zc0T4yVrZJbj4VrwXbT0d0xyqXi1RCofJuFP
+ Gdi51xOobitotCf468N6E0Y7iD26hXTf6ubgd61bfHp/wTD+ng6cFKautFfEBsQZ9E
+ yUpJbfk52N13gQbR1PT1pv6PLh1GDC27BBZiLcGf9hCAkhkrHIFGKBFqPPt3zfuXbL
+ qN8g4QCCyKCFQ==
+From: Sasha Levin <sashal@kernel.org>
+To: linux-kernel@vger.kernel.org,
+	stable@vger.kernel.org
+Date: Mon, 17 Oct 2022 20:07:24 -0400
+Message-Id: <20221018000729.2730519-27-sashal@kernel.org>
+X-Mailer: git-send-email 2.35.1
+In-Reply-To: <20221018000729.2730519-1-sashal@kernel.org>
+References: <20221018000729.2730519-1-sashal@kernel.org>
 MIME-Version: 1.0
-X-Spam-Score: -0.2 (/)
+X-stable: review
+X-Patchwork-Hint: Ignore
+X-Spam-Score: -5.5 (-----)
 X-Spam-Report: Spam detection software,
- running on the system "util-spamd-1.v13.lw.sourceforge.com", 
+ running on the system "util-spamd-2.v13.lw.sourceforge.com", 
  has NOT identified this incoming email as spam.  The original
  message has been attached to this so you can view it or label
  similar future email.  If you have any questions, see
  the administrator of that system for details.
- Content preview:  On Monday, October 17, 2022 7:03:11 PM CEST Jason Gunthorpe
- wrote: > On Fri, Jul 15, 2022 at 11:33:56PM +0200, Christian Schoenebeck
- wrote: > > So far 'msize' was simply used for all 9p message types, [...] 
- Content analysis details:   (-0.2 points, 6.0 required)
+ Content preview: From: Dominique Martinet <asmadeus@codewreck.org> [ Upstream
+ commit 52f1c45dde9136f964d63a77d19826c8a74e2c7f ] syzbot reported a
+ double-lock
+ here and we no longer need this lock after requests have been moved off to
+ local list: just drop the lock earlier. 
+ Content analysis details:   (-5.5 points, 6.0 required)
  pts rule name              description
  ---- ---------------------- --------------------------------------------------
  0.0 SPF_HELO_NONE          SPF: HELO does not publish an SPF Record
@@ -80,12 +88,15 @@ X-Spam-Report: Spam detection software,
  author's domain
  -0.1 DKIM_VALID_EF          Message has a valid DKIM or DK signature from
  envelope-from domain
+ -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
  0.1 DKIM_SIGNED            Message has a DKIM or DK signature, not necessarily
  valid
- -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-X-Headers-End: 1okUSj-0001mS-Ic
-Subject: Re: [V9fs-developer] [PATCH v6 11/11] net/9p: allocate appropriate
- reduced message buffers
+ -5.0 RCVD_IN_DNSWL_HI       RBL: Sender listed at https://www.dnswl.org/,
+ high trust [145.40.68.75 listed in list.dnswl.org]
+ -0.3 DKIMWL_WL_HIGH         DKIMwl.org - High trust sender
+X-Headers-End: 1oka9v-007doS-B3
+Subject: [V9fs-developer] [PATCH AUTOSEL 6.0 27/32] 9p:
+ trans_fd/p9_conn_cancel: drop client lock earlier
 X-BeenThere: v9fs-developer@lists.sourceforge.net
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -97,77 +108,55 @@ List-Post: <mailto:v9fs-developer@lists.sourceforge.net>
 List-Help: <mailto:v9fs-developer-request@lists.sourceforge.net?subject=help>
 List-Subscribe: <https://lists.sourceforge.net/lists/listinfo/v9fs-developer>, 
  <mailto:v9fs-developer-request@lists.sourceforge.net?subject=subscribe>
-From: Christian Schoenebeck via V9fs-developer
- <v9fs-developer@lists.sourceforge.net>
-Reply-To: Christian Schoenebeck <linux_oss@crudebyte.com>
-Cc: Latchesar Ionkov <lucho@ionkov.net>, Eric Van Hensbergen <ericvh@gmail.com>,
- netdev@vger.kernel.org, linux-kernel@vger.kernel.org,
- Greg Kurz <groug@kaod.org>, v9fs-developer@lists.sourceforge.net,
- Nikolay Kichukov <nikolay@oldum.net>,
- Stefano Stabellini <stefano.stabellini@xilinx.com>,
- Leon Romanovsky <leonro@nvidia.com>
+Cc: Sasha Levin <sashal@kernel.org>, lucho@ionkov.net,
+ Schspa Shi <schspa@gmail.com>, ericvh@gmail.com, netdev@vger.kernel.org,
+ edumazet@google.com, v9fs-developer@lists.sourceforge.net, kuba@kernel.org,
+ pabeni@redhat.com, syzbot+50f7e8d06c3768dd97f3@syzkaller.appspotmail.com,
+ davem@davemloft.net
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: v9fs-developer-bounces@lists.sourceforge.net
 
-On Monday, October 17, 2022 7:03:11 PM CEST Jason Gunthorpe wrote:
-> On Fri, Jul 15, 2022 at 11:33:56PM +0200, Christian Schoenebeck wrote:
-> > So far 'msize' was simply used for all 9p message types, which is far
-> > too much and slowed down performance tremendously with large values
-> > for user configurable 'msize' option.
-> > 
-> > Let's stop this waste by using the new p9_msg_buf_size() function for
-> > allocating more appropriate, smaller buffers according to what is
-> > actually sent over the wire.
-> > 
-> > Only exception: RDMA transport is currently excluded from this message
-> > size optimization - for its response buffers that is - as RDMA transport
-> > would not cope with it, due to its response buffers being pulled from a
-> > shared pool. [1]
-> > 
-> > Link: https://lore.kernel.org/all/Ys3jjg52EIyITPua@codewreck.org/ [1]
-> > Signed-off-by: Christian Schoenebeck <linux_oss@crudebyte.com>
-> > ---
-> > 
-> >  net/9p/client.c | 42 +++++++++++++++++++++++++++++++++++-------
-> >  1 file changed, 35 insertions(+), 7 deletions(-)
-> 
-> It took me a while to sort out, but for any others - this patch is
-> incompatible with qemu 5.0. It starts working again after this qemu
-> patch:
-> 
-> commit cf45183b718f02b1369e18c795dc51bc1821245d
-> Author: Stefano Stabellini <stefano.stabellini@xilinx.com>
-> Date:   Thu May 21 12:26:25 2020 -0700
-> 
->     Revert "9p: init_in_iov_from_pdu can truncate the size"
-> 
->     This reverts commit 16724a173049ac29c7b5ade741da93a0f46edff7.
->     It causes https://bugs.launchpad.net/bugs/1877688.
-> 
->     Signed-off-by: Stefano Stabellini <stefano.stabellini@xilinx.com>
->     Reviewed-by: Christian Schoenebeck <qemu_oss@crudebyte.com>
->     Message-Id: <20200521192627.15259-1-sstabellini@kernel.org>
->     Signed-off-by: Greg Kurz <groug@kaod.org>
-> 
-> It causes something like this:
-> 
-> # modprobe ib_cm
-> qemu-system-x86_64: VirtFS reply type 117 needs 17 bytes, buffer has 17,
-> less than minimum
+From: Dominique Martinet <asmadeus@codewreck.org>
 
-9p server in QEMU 5.0 was broken by mentioned, reverted QEMU patch, and it was 
-already fixed in stable release 5.0.1.
+[ Upstream commit 52f1c45dde9136f964d63a77d19826c8a74e2c7f ]
 
-It is not that recent kernel patch is breaking behaviour, but it triggers that 
-(short-lived) QEMU bug more reliably, as 9p client is now using smaller 
-messages more often. But even without this kernel patch, you would still get a 
-QEMU hang with short I/O. So it is not a good idea to continue using that 
-particular, old QEMU version, please update at least to QEMU 5.0.1.
+syzbot reported a double-lock here and we no longer need this
+lock after requests have been moved off to local list:
+just drop the lock earlier.
 
-Best regards,
-Christian Schoenebeck
+Link: https://lkml.kernel.org/r/20220904064028.1305220-1-asmadeus@codewreck.org
+Reported-by: syzbot+50f7e8d06c3768dd97f3@syzkaller.appspotmail.com
+Signed-off-by: Dominique Martinet <asmadeus@codewreck.org>
+Tested-by: Schspa Shi <schspa@gmail.com>
+Signed-off-by: Sasha Levin <sashal@kernel.org>
+---
+ net/9p/trans_fd.c | 3 ++-
+ 1 file changed, 2 insertions(+), 1 deletion(-)
 
+diff --git a/net/9p/trans_fd.c b/net/9p/trans_fd.c
+index e758978b44be..60fcc6b30b46 100644
+--- a/net/9p/trans_fd.c
++++ b/net/9p/trans_fd.c
+@@ -205,6 +205,8 @@ static void p9_conn_cancel(struct p9_conn *m, int err)
+ 		list_move(&req->req_list, &cancel_list);
+ 	}
+ 
++	spin_unlock(&m->client->lock);
++
+ 	list_for_each_entry_safe(req, rtmp, &cancel_list, req_list) {
+ 		p9_debug(P9_DEBUG_ERROR, "call back req %p\n", req);
+ 		list_del(&req->req_list);
+@@ -212,7 +214,6 @@ static void p9_conn_cancel(struct p9_conn *m, int err)
+ 			req->t_err = err;
+ 		p9_client_cb(m->client, req, REQ_STATUS_ERROR);
+ 	}
+-	spin_unlock(&m->client->lock);
+ }
+ 
+ static __poll_t
+-- 
+2.35.1
 
 
 
