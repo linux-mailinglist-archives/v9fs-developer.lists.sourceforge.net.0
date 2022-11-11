@@ -2,134 +2,101 @@ Return-Path: <v9fs-developer-bounces@lists.sourceforge.net>
 X-Original-To: lists+v9fs-developer@lfdr.de
 Delivered-To: lists+v9fs-developer@lfdr.de
 Received: from lists.sourceforge.net (lists.sourceforge.net [216.105.38.7])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7BF42625E89
-	for <lists+v9fs-developer@lfdr.de>; Fri, 11 Nov 2022 16:42:09 +0100 (CET)
-Received: from [127.0.0.1] (helo=sfs-ml-4.v29.lw.sourceforge.com)
-	by sfs-ml-4.v29.lw.sourceforge.com with esmtp (Exim 4.95)
+	by mail.lfdr.de (Postfix) with ESMTPS id CDF706262B0
+	for <lists+v9fs-developer@lfdr.de>; Fri, 11 Nov 2022 21:18:07 +0100 (CET)
+Received: from [127.0.0.1] (helo=sfs-ml-2.v29.lw.sourceforge.com)
+	by sfs-ml-2.v29.lw.sourceforge.com with esmtp (Exim 4.95)
 	(envelope-from <v9fs-developer-bounces@lists.sourceforge.net>)
-	id 1otWAP-0003Sr-Qi;
-	Fri, 11 Nov 2022 15:42:05 +0000
+	id 1otaTU-0001jN-7q;
+	Fri, 11 Nov 2022 20:18:04 +0000
 Received: from [172.30.20.202] (helo=mx.sourceforge.net)
- by sfs-ml-4.v29.lw.sourceforge.com with esmtps (TLS1.2) tls
- TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384 (Exim 4.95)
- (envelope-from <currency1000000@gmail.com>) id 1otWAL-0003Sc-Dw
- for v9fs-developer@lists.sourceforge.net;
- Fri, 11 Nov 2022 15:42:01 +0000
+ by sfs-ml-2.v29.lw.sourceforge.com with esmtps (TLS1.2) tls
+ TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384 (Exim 4.95) (envelope-from
+ <37q1uYwkbACcVbcNDOOHUDSSLG.JRRJOHXVHUFRQWHQW.FRP@M3KW2WVRGUFZ5GODRSRYTGD7.apphosting.bounces.google.com>)
+ id 1otaTO-0001j3-A5 for v9fs-developer@lists.sourceforge.net;
+ Fri, 11 Nov 2022 20:17:59 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=sourceforge.net; s=x; h=Content-Type:To:Subject:Message-ID:Date:From:
- Reply-To:MIME-Version:Sender:Cc:Content-Transfer-Encoding:Content-ID:
+ d=sourceforge.net; s=x; h=Content-Type:To:From:Subject:Message-ID:Date:
+ MIME-Version:Sender:Reply-To:Cc:Content-Transfer-Encoding:Content-ID:
  Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
  :Resent-Message-ID:In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:
  List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=qwajhoYO4BTZrs1KQ9gbjpM/bG6OnBpfPOqsnd7QyJE=; b=TbyI7kIHjTVemxc5m7PmmKqG8T
- MkMsVRbmL1Qf6LWxvdn6++g2Y2/JxxLg+U8x17pYAAphY27c8gGVNw1chC5adzs00agC0eSb7nVEr
- TAvPidaZ4Gi9W0haqHpu+vr+zsW9guGSj/A8VOttdaNFmVCYH7mNw/9ddOXTEbtoGQY8=;
+ bh=gyaZcp8B8nRUIyPycYcHuv+4RGt52VgPhOpupxsL+qw=; b=KTcDkaSZz7YKoB0n1vYBUUFgs4
+ aBjMDgwf4hy1CyHI4z0Bw743D2Gmvo0vr/1Zhd5YMooqQ1lOeDL6hCCzGLgW2oa8nmByWlg6emHAJ
+ k0meIeJWJS1r8jIb2XVXbxTUJc6cDQ3npsEd8phfiIqDmUjHLAV28/8LI7/5Enrkp52Y=;
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  ;
- h=Content-Type:To:Subject:Message-ID:Date:From:Reply-To:MIME-Version:Sender
+ h=Content-Type:To:From:Subject:Message-ID:Date:MIME-Version:Sender:Reply-To
  :Cc:Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
  Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:
  References:List-Id:List-Help:List-Unsubscribe:List-Subscribe:List-Post:
- List-Owner:List-Archive; bh=qwajhoYO4BTZrs1KQ9gbjpM/bG6OnBpfPOqsnd7QyJE=; b=T
- 7F6VcUR1UzBXPAMvI6x8nEpH8AV2X2oGs+GVEWdoGASXKz1wkA9/l4rZUX0XnCZVViX46zrHRB/OY
- wx9zhJlaHkRhiCWN50bMDu3zo2eW/3js9sC2P2//BoE0gDx+Wa4smFIimkmo/wTt1/Nw8owje1VrG
- Ca8ByL85JbKQxMrk=;
-Received: from mail-ej1-f49.google.com ([209.85.218.49])
+ List-Owner:List-Archive; bh=gyaZcp8B8nRUIyPycYcHuv+4RGt52VgPhOpupxsL+qw=; b=D
+ Oi1cLwqdceM0RZh1AvK2RMhw2ljG5Lh9Ai0+5aNCH74CaamvhVaeQGNHP9S0aAJ9bn0WnC1a+GkiO
+ azSfW9Y4Non7bLMHjXTBeh2eSeOsGsuJfHmA6DqLqd9yj6szUyaVu2xeLRkDmgdyUaHN3HiKgEPzZ
+ 6o6D4j463i5MwoNQ=;
+Received: from mail-il1-f199.google.com ([209.85.166.199])
  by sfi-mx-1.v28.lw.sourceforge.com with esmtps
  (TLS1.2:ECDHE-RSA-AES128-GCM-SHA256:128) (Exim 4.95)
- id 1otWAG-004Sna-Pl for v9fs-developer@lists.sourceforge.net;
- Fri, 11 Nov 2022 15:42:01 +0000
-Received: by mail-ej1-f49.google.com with SMTP id t25so13362807ejb.8
+ id 1otaTM-004eT4-J5 for v9fs-developer@lists.sourceforge.net;
+ Fri, 11 Nov 2022 20:17:58 +0000
+Received: by mail-il1-f199.google.com with SMTP id
+ c4-20020a056e020bc400b0030098df879dso4627526ilu.6
  for <v9fs-developer@lists.sourceforge.net>;
- Fri, 11 Nov 2022 07:41:56 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
- h=to:subject:message-id:date:from:reply-to:mime-version:from:to:cc
- :subject:date:message-id:reply-to;
- bh=qwajhoYO4BTZrs1KQ9gbjpM/bG6OnBpfPOqsnd7QyJE=;
- b=Uu1U96VDn4hZIwqVJcgdyREpQvxy6Nn5udmCaIIjn/vHluWPb/goU0hUTLSlt3x7c3
- hmfgsDLKhmI76RS9Dj66UEcZD2HjIgfKDwUX8+Iz+MmX8mO6S5ur7yvK6DO5qQeOnw/g
- omflLc3HExjfkKFR+6TJf59ANkFPtZSIbpV/VAfykqltxQ3ySk9Qwr9dEWnEyUNphzFW
- 8xmnjfrGpb8DI5ORs6lbQTO+VamzVPNQR39B0PFEcuEZM5hmgrNAZ8e5GSc0yERAnS12
- 8vaV/seiKbKS8cSY9KrCmQupvyvCLfurayYXUTLDLDLOkXErZ+eTr5P6iE2iNNINWu5i
- bxZg==
+ Fri, 11 Nov 2022 12:17:56 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20210112;
- h=to:subject:message-id:date:from:reply-to:mime-version
- :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
- bh=qwajhoYO4BTZrs1KQ9gbjpM/bG6OnBpfPOqsnd7QyJE=;
- b=FlQ9TVi5ej/BLDzyy5qByBxTsDpC/0Z5j9/b9UXCP+l/GcHzlKE5SV+nHgv3KpKPMp
- e6iekaaoHdv46lYoZJgHYHs6RQvCPRemZ5NxBoBUj3ZYZiNNyTnCX2SCCKnqutuomIRX
- 0Dgg9AyhXzQRUPMlonU4AqM+qjah/EqOOJ7Cm4Ak+9hpQ875wTdxSTfHcURYYTDG+Gkh
- gHu93nOwy6W52oCvhObGMIuVhMHn52h8Um2mJNryVGE9kA9GLpr+0u8HQfI7LbwEk+pO
- +ZdNld/MQJvdnsKoJImEtLVg4HNze65z+EMSN0t98/GWzDGlv+kyBsSsMVN4nEAFGSa7
- JWTg==
-X-Gm-Message-State: ANoB5pl25Ar4qKKHcLEudTiUDUYw9/YeRtxjaruzJ6drYMGXWZycNd57
- 4Uw3Nx4WPzRVUnSUD0gykzL4mT0mv4nSOp/6LwbPumJb
-X-Google-Smtp-Source: AA0mqf6IfnZJqi9rmZjaSOiU9cpeqdF7+N4XYYa4L9pSTdHC/EOKrx9hk8fJ3KpUZifYYxvBgk4gmiwPQqNmE4LZFAk=
-X-Received: by 2002:a17:906:5959:b0:780:8c5d:f86 with SMTP id
- g25-20020a170906595900b007808c5d0f86mr2236692ejr.391.1668181310093; Fri, 11
- Nov 2022 07:41:50 -0800 (PST)
+ h=to:from:subject:message-id:date:mime-version:x-gm-message-state
+ :from:to:cc:subject:date:message-id:reply-to;
+ bh=gyaZcp8B8nRUIyPycYcHuv+4RGt52VgPhOpupxsL+qw=;
+ b=yn2zvDIe8AWRjDsfsKvu5r31HISNNG20GuNIYVpOh8iTm6QL0Kp6ePLdInk/IlPrfp
+ qiSTYugcHds29O2XhjWLEGtODZykTNzV2nk3IQcfCbu9DcUnDZq48C2s1aE2ey8OSVpn
+ Hb2AywmNGPnDyNCWVUSVxGkrVRkjbGosyTErFzOYyvWds4ShLwYUpVMVVc2SbBEO7v0b
+ NbszUDm0e5HhsRGHddpXBSpc7+Ra18Lc/+BbRSOArq4jYSQHcRsStCQ/+8kYjzbgxkFV
+ ZJ2acyvPIgTHN6FwQ/mrkZ9aScvJIGvqCehuPw1QCp3gKdGKxqRINUW0D87OvcUy7yDm
+ T9LA==
+X-Gm-Message-State: ANoB5pmcAc5KolgcYj37UhA1BlvJm5Zagw/pqgiKmFP3a7YujnqjMLrn
+ QzeLUN+BmdoFXPR0nbDoW7YPNTa8WWsUr8a5Hk/+gT/yAUcp
+X-Google-Smtp-Source: AA0mqf7aY02f/kA19ZQ1ZdkUtTdYfGVMXDVjfXYR51Rq8aSOU+asihFQhkFWO5oFHHuZ0HKrmu5hAbVvT2p4SGDGFglCBefL6CU7
 MIME-Version: 1.0
-From: CURRENCY <currency1000000@gmail.com>
-Date: Fri, 11 Nov 2022 17:29:35 +0100
-Message-ID: <CAPqfnSEdNe2pM0G=u1eWqzy21kVnWy2+g0_3zzPuTXwT-X75Tw@mail.gmail.com>
-To: v9fs-developer@lists.sourceforge.net, golapraj@gmail.com
-X-Spam-Score: 5.3 (+++++)
+X-Received: by 2002:a92:c144:0:b0:302:36a2:4d3b with SMTP id
+ b4-20020a92c144000000b0030236a24d3bmr1783894ilh.258.1668197870991; Fri, 11
+ Nov 2022 12:17:50 -0800 (PST)
+Date: Fri, 11 Nov 2022 12:17:50 -0800
+X-Google-Appengine-App-Id: s~syzkaller
+X-Google-Appengine-App-Id-Alias: syzkaller
+Message-ID: <0000000000008400d405ed3795a5@google.com>
+From: syzbot <syzbot+84a3c66e4b9dbbb678a8@syzkaller.appspotmail.com>
+To: asmadeus@codewreck.org, ericvh@gmail.com, linux-kernel@vger.kernel.org, 
+ linux_oss@crudebyte.com, lucho@ionkov.net, syzkaller-bugs@googlegroups.com, 
+ v9fs-developer@lists.sourceforge.net
+X-Spam-Score: 3.1 (+++)
 X-Spam-Report: Spam detection software,
  running on the system "util-spamd-2.v13.lw.sourceforge.com", 
  has NOT identified this incoming email as spam.  The original
  message has been attached to this so you can view it or label
  similar future email.  If you have any questions, see
  the administrator of that system for details.
- Content preview: DID YOU SEND MR. MARK JOHNSON TO RECEIVE YOUR TRANSFER TOTAL
- AMOUNT $15.8M USD FROM THIS OFFICE? If not, Contact ACCESS BANK BENIN, to
- receive your transfer $15,800,000m USD deposited this morning. th [...] 
- Content analysis details:   (5.3 points, 6.0 required)
+ Content preview:  Hello,
+ syzbot found the following issue on: HEAD commit: f0c4d9fc9cc9
+ Linux 6.1-rc4 git tree:
+ git://git.kernel.org/pub/scm/linux/kernel/git/arm64/linux.git
+ for-kernelci console output:
+ https://syzkaller.appspot.com/x/log.txt?x=17204056880000
+ ke [...] Content analysis details:   (3.1 points, 6.0 required)
  pts rule name              description
  ---- ---------------------- --------------------------------------------------
- -0.0 RCVD_IN_DNSWL_NONE     RBL: Sender listed at https://www.dnswl.org/,
- no trust [209.85.218.49 listed in list.dnswl.org]
+ 0.3 FROM_LOCAL_HEX         From: localpart has long hexadecimal sequence
  0.0 SPF_HELO_NONE          SPF: HELO does not publish an SPF Record
- 0.0 RCVD_IN_MSPIKE_H3      RBL: Good reputation (+3)
- [209.85.218.49 listed in wl.mailspike.net]
+ -0.0 RCVD_IN_DNSWL_NONE     RBL: Sender listed at https://www.dnswl.org/,
+ no trust [209.85.166.199 listed in list.dnswl.org]
+ -0.0 RCVD_IN_MSPIKE_H2      RBL: Average reputation (+2)
+ [209.85.166.199 listed in wl.mailspike.net]
  -0.0 SPF_PASS               SPF: sender matches SPF record
- 0.0 FREEMAIL_FROM          Sender email is commonly abused enduser mail
- provider [currency1000000[at]gmail.com]
- 0.2 FREEMAIL_ENVFROM_END_DIGIT Envelope-from freemail username ends
- in digit [currency1000000[at]gmail.com]
- 0.2 FREEMAIL_REPLYTO_END_DIGIT Reply-To freemail username ends in
- digit [currency1000000[at]gmail.com]
- 0.0 HTML_MESSAGE           BODY: HTML included in message
- -0.1 DKIM_VALID_AU          Message has a valid DKIM or DK signature from
- author's domain
- 0.1 DKIM_SIGNED            Message has a DKIM or DK signature, not necessarily
- valid
- -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
- -0.1 DKIM_VALID_EF          Message has a valid DKIM or DK signature from
- envelope-from domain
- 2.0 HK_SCAM                No description available.
- 0.0 LOTS_OF_MONEY          Huge... sums of money
- 0.0 RCVD_IN_MSPIKE_WL      Mailspike good senders
- 1.0 FREEMAIL_REPLYTO       Reply-To/From or Reply-To/body contain
- different freemails
- 2.0 MONEY_FREEMAIL_REPTO   Lots of money from someone using free
- email?
-X-Headers-End: 1otWAG-004Sna-Pl
-X-Content-Filtered-By: Mailman/MimeDel 2.1.21
-Subject: [V9fs-developer] DID YOU SEND MR. MARK JOHNSON TO RECEIVE YOUR
- TRANSFER TOTAL AMOUNT $15.8M USD FROM THIS OFFICE? If not,
- Contact ACCESS BANK BENIN, to receive your transfer $15, 800,
- 000m USD deposited this morning. this is your final chance to receive your
- compensation payment of $15.8m today. Be a lucky today to receive or lost
- to Miss this opportunity. CONTACT AUTHORIZED BANK,
- TO RECEIVE PAYMENT TODAY. ACCESS BANK BENIN. Email-
- accessbankintlplcbenin@gmail.com Phone number,
- +229 99063939. Contact BANK and confirm your transfer today ok. Please Donot
- forgotten,
- the only money you are required to send to ACCESS BANK BENIN is cost of your
- transfer fee,
- $25.I assure you receive your transfer by installed. Remember my efforts.
- MRS. MARY B. GEORGE.
+ 2.5 SORTED_RECIPS          Recipient list is sorted by address
+ 0.2 HEADER_FROM_DIFFERENT_DOMAINS From and EnvelopeFrom 2nd level
+ mail domains are different
+X-Headers-End: 1otaTM-004eT4-J5
+Subject: [V9fs-developer] [syzbot] WARNING in ida_free
 X-BeenThere: v9fs-developer@lists.sourceforge.net
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -141,29 +108,127 @@ List-Post: <mailto:v9fs-developer@lists.sourceforge.net>
 List-Help: <mailto:v9fs-developer-request@lists.sourceforge.net?subject=help>
 List-Subscribe: <https://lists.sourceforge.net/lists/listinfo/v9fs-developer>, 
  <mailto:v9fs-developer-request@lists.sourceforge.net?subject=subscribe>
-Reply-To: currency1000000@gmail.com
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: v9fs-developer-bounces@lists.sourceforge.net
 
-DID YOU SEND MR. MARK JOHNSON TO RECEIVE YOUR TRANSFER TOTAL AMOUNT $15.8M
-USD FROM THIS OFFICE?
-If not, Contact ACCESS BANK BENIN, to receive your transfer $15,800,000m
-USD deposited this morning. this is your final chance to receive your
-compensation payment of $15.8m today. Be a lucky today to receive or lost
-to Miss this opportunity. CONTACT AUTHORIZED BANK,  TO RECEIVE PAYMENT
-TODAY.
-ACCESS BANK BENIN.
-Email- <Email-pm.music1111@gmail.com>
-accessbankintlplcbenin@gmail.com
-Phone number, +229 99063939.
+Hello,
 
-Contact BANK and confirm your transfer today ok.
-Please Donot forgotten, the only money you are required to send to ACCESS
-BANK BENIN is cost of your transfer fee,$25.I assure you receive your
-transfer by installed.
-Remember my efforts.
-MRS. MARY B. GEORGE.
+syzbot found the following issue on:
+
+HEAD commit:    f0c4d9fc9cc9 Linux 6.1-rc4
+git tree:       git://git.kernel.org/pub/scm/linux/kernel/git/arm64/linux.git for-kernelci
+console output: https://syzkaller.appspot.com/x/log.txt?x=17204056880000
+kernel config:  https://syzkaller.appspot.com/x/.config?x=ff27f0c8b406726e
+dashboard link: https://syzkaller.appspot.com/bug?extid=84a3c66e4b9dbbb678a8
+compiler:       Debian clang version 13.0.1-++20220126092033+75e33f71c2da-1~exp1~20220126212112.63, GNU ld (GNU Binutils for Debian) 2.35.2
+userspace arch: arm64
+
+Unfortunately, I don't have any reproducer for this issue yet.
+
+Downloadable assets:
+disk image: https://storage.googleapis.com/syzbot-assets/92c7e839ac32/disk-f0c4d9fc.raw.xz
+vmlinux: https://storage.googleapis.com/syzbot-assets/b7bedbc08fb4/vmlinux-f0c4d9fc.xz
+kernel image: https://storage.googleapis.com/syzbot-assets/3fe25e2dfdb7/Image-f0c4d9fc.gz.xz
+
+IMPORTANT: if you fix the issue, please add the following tag to the commit:
+Reported-by: syzbot+84a3c66e4b9dbbb678a8@syzkaller.appspotmail.com
+
+------------[ cut here ]------------
+ida_free called for id=0 which is not allocated.
+WARNING: CPU: 0 PID: 3066 at lib/idr.c:525 ida_free+0x1b0/0x208 lib/idr.c:525
+Modules linked in:
+CPU: 0 PID: 3066 Comm: syz-executor.1 Not tainted 6.1.0-rc4-syzkaller-31833-gf0c4d9fc9cc9 #0
+Hardware name: Google Google Compute Engine/Google Compute Engine, BIOS Google 09/30/2022
+pstate: 60400005 (nZCv daif +PAN -UAO -TCO -DIT -SSBS BTYPE=--)
+pc : ida_free+0x1b0/0x208 lib/idr.c:525
+lr : ida_free+0x1b0/0x208 lib/idr.c:525
+sp : ffff800012bf3c40
+x29: ffff800012bf3c80 x28: ffff0000c4048000 x27: 0000000000000000
+x26: 00000000000000c0 x25: 0000000000000002 x24: ffff80000d2dd050
+x23: 0007fffffffffffe x22: 0000000000000001 x21: 0000000000000000
+x20: 0000000000000000 x19: 0000000000000000 x18: 000000000000033b
+x17: 0000000000000000 x16: ffff80000db2a158 x15: ffff0000c4048000
+x14: 0000000000000000 x13: 00000000ffffffff x12: ffff0000c4048000
+x11: ff808000081c06c8 x10: 0000000000000000 x9 : 16d63cd4e166ba00
+x8 : 16d63cd4e166ba00 x7 : ffff800008162114 x6 : 0000000000000000
+x5 : 0000000000000080 x4 : 0000000000000001 x3 : 0000000000000000
+x2 : ffff0001fefbecc8 x1 : 0000000100000000 x0 : 0000000000000030
+Call trace:
+ ida_free+0x1b0/0x208 lib/idr.c:525
+ free_anon_bdev fs/super.c:1073 [inline]
+ kill_anon_super+0x34/0x44 fs/super.c:1087
+ v9fs_kill_super+0x24/0x50 fs/9p/vfs_super.c:223
+ deactivate_locked_super+0x70/0xe8 fs/super.c:332
+ deactivate_super+0xd0/0xd4 fs/super.c:363
+ cleanup_mnt+0x184/0x1c0 fs/namespace.c:1186
+ __cleanup_mnt+0x20/0x30 fs/namespace.c:1193
+ task_work_run+0x100/0x148 kernel/task_work.c:179
+ resume_user_mode_work include/linux/resume_user_mode.h:49 [inline]
+ do_notify_resume+0x174/0x1f0 arch/arm64/kernel/signal.c:1127
+ prepare_exit_to_user_mode arch/arm64/kernel/entry-common.c:137 [inline]
+ exit_to_user_mode arch/arm64/kernel/entry-common.c:142 [inline]
+ el0_svc+0x9c/0x150 arch/arm64/kernel/entry-common.c:638
+ el0t_64_sync_handler+0x84/0xf0 arch/arm64/kernel/entry-common.c:655
+ el0t_64_sync+0x18c/0x190 arch/arm64/kernel/entry.S:581
+irq event stamp: 13153724
+hardirqs last  enabled at (13153723): [<ffff8000081621a4>] raw_spin_rq_unlock_irq kernel/sched/sched.h:1366 [inline]
+hardirqs last  enabled at (13153723): [<ffff8000081621a4>] finish_lock_switch+0x94/0xe8 kernel/sched/core.c:4950
+hardirqs last disabled at (13153724): [<ffff80000c00eacc>] el1_dbg+0x24/0x80 arch/arm64/kernel/entry-common.c:405
+softirqs last  enabled at (13153716): [<ffff8000080102e4>] _stext+0x2e4/0x37c
+softirqs last disabled at (13153683): [<ffff800008017c68>] ____do_softirq+0x14/0x20 arch/arm64/kernel/irq.c:79
+---[ end trace 0000000000000000 ]---
+list_del corruption, ffff00012527d000->next is NULL
+------------[ cut here ]------------
+kernel BUG at lib/list_debug.c:50!
+Internal error: Oops - BUG: 00000000f2000800 [#1] PREEMPT SMP
+Modules linked in:
+CPU: 1 PID: 3066 Comm: syz-executor.1 Tainted: G        W          6.1.0-rc4-syzkaller-31833-gf0c4d9fc9cc9 #0
+Hardware name: Google Google Compute Engine/Google Compute Engine, BIOS Google 09/30/2022
+pstate: 60400005 (nZCv daif +PAN -UAO -TCO -DIT -SSBS BTYPE=--)
+pc : __list_del_entry_valid+0x70/0xd0 lib/list_debug.c:49
+lr : __list_del_entry_valid+0x70/0xd0 lib/list_debug.c:49
+sp : ffff800012bf3cc0
+x29: ffff800012bf3cc0 x28: ffff0000c4048000 x27: 0000000000000000
+x26: 00000000000000c0 x25: 0000000000000002 x24: ffff80000d2dd050
+x23: ffff80000d2d9000 x22: 0000000000000000 x21: 0000000000000000
+x20: 0000000000000000 x19: ffff00012527d000 x18: 00000000000000c0
+x17: ffff80000dcec198 x16: ffff80000db2a158 x15: ffff0000c4048000
+x14: 0000000000000000 x13: 00000000ffffffff x12: ffff0000c4048000
+x11: ff808000081c06c8 x10: 0000000000000000 x9 : 16d63cd4e166ba00
+x8 : 16d63cd4e166ba00 x7 : ffff80000c01c69c x6 : 0000000000000000
+x5 : 0000000000000080 x4 : 0000000000000001 x3 : 0000000000000000
+x2 : ffff0001fefddcc8 x1 : 0000000100000001 x0 : 0000000000000033
+Call trace:
+ __list_del_entry_valid+0x70/0xd0 lib/list_debug.c:49
+ __list_del_entry include/linux/list.h:134 [inline]
+ list_del_init include/linux/list.h:206 [inline]
+ __put_super+0x48/0x198 fs/super.c:289
+ put_super fs/super.c:311 [inline]
+ deactivate_locked_super+0xa0/0xe8 fs/super.c:343
+ deactivate_super+0xd0/0xd4 fs/super.c:363
+ cleanup_mnt+0x184/0x1c0 fs/namespace.c:1186
+ __cleanup_mnt+0x20/0x30 fs/namespace.c:1193
+ task_work_run+0x100/0x148 kernel/task_work.c:179
+ resume_user_mode_work include/linux/resume_user_mode.h:49 [inline]
+ do_notify_resume+0x174/0x1f0 arch/arm64/kernel/signal.c:1127
+ prepare_exit_to_user_mode arch/arm64/kernel/entry-common.c:137 [inline]
+ exit_to_user_mode arch/arm64/kernel/entry-common.c:142 [inline]
+ el0_svc+0x9c/0x150 arch/arm64/kernel/entry-common.c:638
+ el0t_64_sync_handler+0x84/0xf0 arch/arm64/kernel/entry-common.c:655
+ el0t_64_sync+0x18c/0x190 arch/arm64/kernel/entry.S:581
+Code: d65f03c0 b001b160 91341000 94a843f8 (d4210000) 
+---[ end trace 0000000000000000 ]---
+
+
+---
+This report is generated by a bot. It may contain errors.
+See https://goo.gl/tpsmEJ for more information about syzbot.
+syzbot engineers can be reached at syzkaller@googlegroups.com.
+
+syzbot will keep track of this issue. See:
+https://goo.gl/tpsmEJ#status for how to communicate with syzbot.
+
 
 _______________________________________________
 V9fs-developer mailing list
