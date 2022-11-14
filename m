@@ -2,80 +2,107 @@ Return-Path: <v9fs-developer-bounces@lists.sourceforge.net>
 X-Original-To: lists+v9fs-developer@lfdr.de
 Delivered-To: lists+v9fs-developer@lfdr.de
 Received: from lists.sourceforge.net (lists.sourceforge.net [216.105.38.7])
-	by mail.lfdr.de (Postfix) with ESMTPS id 45546627118
-	for <lists+v9fs-developer@lfdr.de>; Sun, 13 Nov 2022 18:02:40 +0100 (CET)
-Received: from [127.0.0.1] (helo=sfs-ml-2.v29.lw.sourceforge.com)
-	by sfs-ml-2.v29.lw.sourceforge.com with esmtp (Exim 4.95)
+	by mail.lfdr.de (Postfix) with ESMTPS id A281F628488
+	for <lists+v9fs-developer@lfdr.de>; Mon, 14 Nov 2022 17:02:48 +0100 (CET)
+Received: from [127.0.0.1] (helo=sfs-ml-1.v29.lw.sourceforge.com)
+	by sfs-ml-1.v29.lw.sourceforge.com with esmtp (Exim 4.95)
 	(envelope-from <v9fs-developer-bounces@lists.sourceforge.net>)
-	id 1ouGNP-0006cy-NI;
-	Sun, 13 Nov 2022 17:02:35 +0000
+	id 1oubv4-0001w9-Ek;
+	Mon, 14 Nov 2022 16:02:46 +0000
 Received: from [172.30.20.202] (helo=mx.sourceforge.net)
- by sfs-ml-2.v29.lw.sourceforge.com with esmtps (TLS1.2) tls
+ by sfs-ml-1.v29.lw.sourceforge.com with esmtps (TLS1.2) tls
  TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384 (Exim 4.95)
- (envelope-from <mail@contact.vpass.ne.jp>) id 1ouGNO-0006cr-Fu
+ (envelope-from <dhowells@redhat.com>) id 1oubuv-0001vP-FG
  for v9fs-developer@lists.sourceforge.net;
- Sun, 13 Nov 2022 17:02:34 +0000
+ Mon, 14 Nov 2022 16:02:37 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=sourceforge.net; s=x; h=Content-Type:Mime-Version:Message-ID:Subject:To:
- From:Date:Sender:Reply-To:Cc:Content-Transfer-Encoding:Content-ID:
+ d=sourceforge.net; s=x; h=Content-Transfer-Encoding:Content-Type:MIME-Version
+ :Message-ID:Date:Cc:To:From:Subject:Sender:Reply-To:Content-ID:
  Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
  :Resent-Message-ID:In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:
  List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=D2XuCR+jvEDtF5ccmT+Bp/m/8G1qV+nNl3pVcWBqMOQ=; b=CcR3x7ofZf3HAyWBziQ2NLqxyn
- mmwB3ITqzcsrKuUIDmws6pF73uleBpSWNxbmmFSccXdAkA0sX+N4LoN0Vl1D4XrUrkRCm/dTHTCRa
- qWmQ9oPotOGqz49hkfdaSSBRJVcCLSF/qBUcgDpRgGThEXec1G8uxq/5HH7/3vzQdw84=;
+ bh=P3nkTLNGE0zyZA7iNRXj43qY6De8MwuHFpNo8xiUkSQ=; b=L4av4JyXaGLOdor00HwgxaOitt
+ 3jk9+H8PBHH5zrDbOa9jy0INDFPldPsqUFyDV6Lm99EOfhBBRKIXqDjI09xA/j55ZGNTyjHAFCL4G
+ oqS9Yo6A6OMQb3a6nt0lj3DnxbPvnL6cdoN44wpehqxcWJUYraI4D1/nlBPf3CtLc9Dk=;
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  ;
- h=Content-Type:Mime-Version:Message-ID:Subject:To:From:Date:Sender:Reply-To
- :Cc:Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+ h=Content-Transfer-Encoding:Content-Type:MIME-Version:Message-ID:Date:Cc:To
+ :From:Subject:Sender:Reply-To:Content-ID:Content-Description:Resent-Date:
  Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:
  References:List-Id:List-Help:List-Unsubscribe:List-Subscribe:List-Post:
- List-Owner:List-Archive; bh=D2XuCR+jvEDtF5ccmT+Bp/m/8G1qV+nNl3pVcWBqMOQ=; b=T
- hcjeVeZLahVw+C7jSIw3oNXiQeH6cTfOU3wcWWUXxLWXIzB7ERBD0cuJXEI/p4RNw9A8pnpSDZLe9
- lgS8Weg/P4bIDrRcPo7ml9LoNvQoPxsCnC8jUcgrMNmi1hSdS30+R6fzu0tjVsWd2hJ9yP5r/hnDs
- bM5ZpsgqIu6Vdj2M=;
-Received: from [122.241.83.23] (helo=contact.vpass.ne.jp)
- by sfi-mx-2.v28.lw.sourceforge.com with esmtp (Exim 4.95)
- id 1ouGNL-00054l-JR for v9fs-developer@lists.sourceforge.net;
- Sun, 13 Nov 2022 17:02:34 +0000
-Date: Mon, 14 Nov 2022 01:02:14 +0800
-From: =?utf-8?B?5LiJ5LqV5L2P5Y+L44Kr44O844OJ?= <mail@contact.vpass.ne.jp>
-To: <v9fs-developer@lists.sourceforge.net>
-Message-ID: <20221114010224600610@contact.vpass.ne.jp>
-X-mailer: Foxmail 6, 13, 102, 15 [cn]
-Mime-Version: 1.0
-X-Spam-Score: 7.8 (+++++++)
-X-Spam-Report: Spam detection software, running on the system "util-spamd-2.v13.lw.sourceforge.com",
- has identified this incoming email as possible spam.  The original
+ List-Owner:List-Archive; bh=P3nkTLNGE0zyZA7iNRXj43qY6De8MwuHFpNo8xiUkSQ=; b=m
+ BZnagC9CicaoKT0d0fcysnPmBX4CxjjVKXC1PvuJWRWbtHTU0xkHOBs5wNVhZnfI5WyDg4QW/RFqr
+ gqVp3ON/tGh9p3IO9BsAJa2+dj/ti8go6Vz+h02Lnnl1t6unq2ZqRREFNECXgO6CKbIxLUvHsZqK7
+ J5fKnE1w11qk165o=;
+Received: from us-smtp-delivery-124.mimecast.com ([170.10.129.124])
+ by sfi-mx-1.v28.lw.sourceforge.com with esmtps
+ (TLS1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.95)
+ id 1oubuu-00833a-7V for v9fs-developer@lists.sourceforge.net;
+ Mon, 14 Nov 2022 16:02:37 +0000
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+ s=mimecast20190719; t=1668441750;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding;
+ bh=P3nkTLNGE0zyZA7iNRXj43qY6De8MwuHFpNo8xiUkSQ=;
+ b=VVmaXGUUDnqidyMRrB11CEs8rON3ObJ9XBGRh94uhcn1kEcMrmdpuxEEioyI3CZOBhYn7v
+ NkPwM+X8pnlVeBGCaTIAgLOb2ZFeYkecu8o60krGKMAifRCP2MlhWuudPdvE9Z7LBzUCva
+ Srmk26lS9O5cM5BDRAfaeyTvzQnNlbk=
+Received: from mimecast-mx02.redhat.com (mx3-rdu2.redhat.com
+ [66.187.233.73]) by relay.mimecast.com with ESMTP with STARTTLS
+ (version=TLSv1.2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ us-mta-663-ZmRuoXOxM_KLJzUdYTPc9A-1; Mon, 14 Nov 2022 11:02:26 -0500
+X-MC-Unique: ZmRuoXOxM_KLJzUdYTPc9A-1
+Received: from smtp.corp.redhat.com (int-mx02.intmail.prod.int.rdu2.redhat.com
+ [10.11.54.2])
+ (using TLSv1.2 with cipher AECDH-AES256-SHA (256/256 bits))
+ (No client certificate requested)
+ by mimecast-mx02.redhat.com (Postfix) with ESMTPS id 955C52A2AD7B;
+ Mon, 14 Nov 2022 16:02:25 +0000 (UTC)
+Received: from warthog.procyon.org.uk (unknown [10.33.36.24])
+ by smtp.corp.redhat.com (Postfix) with ESMTP id 632E240D298B;
+ Mon, 14 Nov 2022 16:02:23 +0000 (UTC)
+Organization: Red Hat UK Ltd. Registered Address: Red Hat UK Ltd, Amberley
+ Place, 107-111 Peascod Street, Windsor, Berkshire, SI4 1TE, United
+ Kingdom.
+ Registered in England and Wales under Company Registration No. 3798903
+From: David Howells <dhowells@redhat.com>
+To: willy@infradead.org, dwysocha@redhat.com
+Date: Mon, 14 Nov 2022 16:02:20 +0000
+Message-ID: <166844174069.1124521.10890506360974169994.stgit@warthog.procyon.org.uk>
+User-Agent: StGit/1.5
+MIME-Version: 1.0
+X-Scanned-By: MIMEDefang 3.1 on 10.11.54.2
+X-Spam-Score: -0.2 (/)
+X-Spam-Report: Spam detection software,
+ running on the system "util-spamd-2.v13.lw.sourceforge.com", 
+ has NOT identified this incoming email as spam.  The original
  message has been attached to this so you can view it or label
  similar future email.  If you have any questions, see
  the administrator of that system for details.
- 
- Content preview:  ＳＭＢＣＣＡＲＤクラシック※会員 様 平素は三井住友カードをご利用いただき、誠にありがとうございます。
-    このたび、ご本人様のご利用かどう� [...] 
- 
- Content analysis details:   (7.8 points, 6.0 required)
- 
-  pts rule name              description
+ Content preview:  Fscache has an optimisation by which reads from the cache
+ are skipped until we know that (a) there's data there to be read and (b) that
+ data isn't entirely covered by pages resident in the netfs pagec [...] 
+ Content analysis details:   (-0.2 points, 6.0 required)
+ pts rule name              description
  ---- ---------------------- --------------------------------------------------
-  3.6 RCVD_IN_PBL            RBL: Received via a relay in Spamhaus PBL
-                             [122.241.83.23 listed in zen.spamhaus.org]
-  0.9 SPF_FAIL               SPF: sender does not match SPF record (fail)
- [SPF failed: Please see http://www.openspf.org/Why?s=mfrom;id=mail%40contact.vpass.ne.jp;ip=122.241.83.23;r=util-spamd-2.v13.lw.sourceforge.com]
-  0.0 SPF_HELO_FAIL          SPF: HELO does not match SPF record (fail)
- [SPF failed: Please see http://www.openspf.org/Why?s=helo;id=contact.vpass.ne.jp;ip=122.241.83.23;r=util-spamd-2.v13.lw.sourceforge.com]
-  0.0 HTML_FONT_FACE_BAD     BODY: HTML font face is not a word
-  0.0 HTML_MESSAGE           BODY: HTML included in message
-  2.0 PYZOR_CHECK            Listed in Pyzor
-                             (https://pyzor.readthedocs.io/en/latest/)
-  1.3 RDNS_NONE              Delivered to internal network by a host with no rDNS
-  0.0 FSL_BULK_SIG           Bulk signature with no Unsubscribe
-  0.0 T_REMOTE_IMAGE         Message contains an external image
-X-Headers-End: 1ouGNL-00054l-JR
-X-Content-Filtered-By: Mailman/MimeDel 2.1.21
-Subject: [V9fs-developer] =?utf-8?b?44CQ6YeN6KaB44CR5LiJ5LqV5L2P5Y+L44Kr?=
-	=?utf-8?b?44O844OJ44K144O844OT44K544Gu57eK5oCl6YCj57Wh44CB5oOF5aCx?=
-	=?utf-8?b?44KS56K66KqN44GX44Gm44GP44Gg44GV44GE44CC?=
+ -0.0 RCVD_IN_DNSWL_NONE     RBL: Sender listed at https://www.dnswl.org/,
+ no trust [170.10.129.124 listed in list.dnswl.org]
+ -0.0 RCVD_IN_MSPIKE_H2      RBL: Average reputation (+2)
+ [170.10.129.124 listed in wl.mailspike.net]
+ 0.0 SPF_HELO_NONE          SPF: HELO does not publish an SPF Record
+ -0.0 SPF_PASS               SPF: sender matches SPF record
+ -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+ 0.1 DKIM_SIGNED            Message has a DKIM or DK signature, not necessarily
+ valid
+ -0.1 DKIM_VALID_EF          Message has a valid DKIM or DK signature from
+ envelope-from domain
+ -0.1 DKIM_VALID_AU          Message has a valid DKIM or DK signature from
+ author's domain
+ -0.0 DKIMWL_WL_HIGH         DKIMwl.org - High trust sender
+X-Headers-End: 1oubuu-00833a-7V
+Subject: [V9fs-developer] [RFC PATCH v2] mm, netfs,
+ fscache: Stop read optimisation when folio removed from pagecache
 X-BeenThere: v9fs-developer@lists.sourceforge.net
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -87,33 +114,409 @@ List-Post: <mailto:v9fs-developer@lists.sourceforge.net>
 List-Help: <mailto:v9fs-developer-request@lists.sourceforge.net?subject=help>
 List-Subscribe: <https://lists.sourceforge.net/lists/listinfo/v9fs-developer>, 
  <mailto:v9fs-developer-request@lists.sourceforge.net?subject=subscribe>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Cc: Shyam Prasad N <nspmangalore@gmail.com>, linux-cifs@vger.kernel.org,
+ linux-nfs@vger.kernel.org, Rohith Surabattula <rohiths.msft@gmail.com>,
+ ceph-devel@vger.kernel.org, linux-kernel@vger.kernel.org,
+ Steve French <sfrench@samba.org>, linux-mm@kvack.org, linux-cachefs@redhat.com,
+ dhowells@redhat.com, linux-fsdevel@vger.kernel.org,
+ v9fs-developer@lists.sourceforge.net, Ilya Dryomov <idryomov@gmail.com>,
+ linux-afs@lists.infradead.org
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: v9fs-developer-bounces@lists.sourceforge.net
 
-ICANCg0KIA0KDQoNCg0K77yz77yt77yi77yj77yj77yh77yy77yk44Kv44Op44K344OD44Kv4oC7
-5Lya5ZOhIOanmA0K5bmz57Sg44Gv5LiJ5LqV5L2P5Y+L44Kr44O844OJ44KS44GU5Yip55So44GE
-44Gf44Gg44GN44CB6Kqg44Gr44GC44KK44GM44Go44GG44GU44GW44GE44G+44GZ44CCDQrjgZPj
-ga7jgZ/jgbPjgIHjgZTmnKzkurrmp5jjga7jgZTliKnnlKjjgYvjganjgYbjgYvjgpLnorroqo3j
-gZXjgZvjgabjgYTjgZ/jgaDjgY3jgZ/jgYTjgYrlj5blvJXjgYzjgYLjgorjgb7jgZfjgZ/jga7j
-gafjgIHoqqDjgavli53miYvjgarjgYzjgonjgIHjgrXjg7zjg5Pjgrnjga7jgZTliKnnlKjjgpLk
-uIDpg6jliLbpmZDjgZXjgZvjgabjgYTjgZ/jgaDjgY3jgIHjgYrlrqLmp5jjga7jgqLjgqvjgqbj
-g7Pjg4jjga7jgavnmbvpjLLjgZXjgozjgZ/pm7voqbHnlarlj7fjgavjgZTpgKPntaHjgYTjgZ/j
-gZfjgb7jgZfjgZ/jgYzjgIHjgYrlrqLmp5jjgavpgKPntaHjgpLlj5bjgovjgZPjgajjgYzjgafj
-gY3jgb7jgZvjgpPjgafjgZfjgZ/jgILjgZ3jga7jgZ/jgoHjgIHjgZTnmbvpjLLjgZXjgozjgabj
-gYTjgovjg6Hjg7zjg6vjgqLjg4njg6zjgrnjgavjgabjgZTpgKPntaHjgZXjgZvjgabjgYTjgZ/j
-gaDjgY3jgb7jgZfjgZ/jgIINCuOBlOWbnuetlOOCkuOBhOOBn+OBoOOBkeOBquOBhOWgtOWQiOOA
-geOCteODvOODk+OCueOBruOBlOWIqeeUqOWItumZkOOBjOe2mee2muOBleOCjOOCi+OBk+OBqOOC
-guOBlOOBluOBhOOBvuOBmeOBruOBp+OAgeS6iOOCgeOBlOS6huaJv+S4i+OBleOBhOOAgg0K44GU
-5Yip55So56K66KqN44Gv44GT44Gh44KJDQoNCuKWoOazqOaEj+S6i+mghQ0K4oC744Kr44O844OJ
-44Gu5YCL5Lq65oOF5aCx44Gr44KI44Gj44Gm44Gv6Zu76Kmx44Gn6YCj57Wh44GZ44KL5aC05ZCI
-44KC44GU44GW44GE44G+44GZ44CCDQrigLvmraPnorrjgarmg4XloLHjga/lv4XjgZroqJjlhaXj
-gZfjgabjgY/jgaDjgZXjgYTjgIINCuKWoOeZuuihjOiAhQ0K5LiJ5LqV5L2P5Y+L44Kr44O844OJ
-5qCq5byP5Lya56S+DQpodHRwczovL3d3dy5zbWJjLWNhcmQuY29tLw0K44CSMTM1LTAwNjEg5p2x
-5Lqs6YO95rGf5p2x5Yy66LGK5rSyMuS4geebrjLnlaozMeWPtyBTTUJD6LGK5rSy44OT44OrDQoN
-CuKAig0KDQoNCuacrOODoeODvOODq+OBq+mWouOBmeOCi+S4gOWIh+OBruiomOS6i+OBrueEoeaW
-rei7oui8ieOBiuOCiOOBs+WGjemFjeW4g+OCkuemgeOBmOOBvuOBmeOAgg0KQ29weXJpZ2h0IChD
-KSBTdW1pdG9tbyBNaXRzdWkgQ2FyZCBDby4sIEx0ZC4KX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX18KVjlmcy1kZXZlbG9wZXIgbWFpbGluZyBsaXN0ClY5ZnMt
-ZGV2ZWxvcGVyQGxpc3RzLnNvdXJjZWZvcmdlLm5ldApodHRwczovL2xpc3RzLnNvdXJjZWZvcmdl
-Lm5ldC9saXN0cy9saXN0aW5mby92OWZzLWRldmVsb3Blcgo=
+Fscache has an optimisation by which reads from the cache are skipped until
+we know that (a) there's data there to be read and (b) that data isn't
+entirely covered by pages resident in the netfs pagecache.  This is done
+with two flags manipulated by fscache_note_page_release():
+
+	if (...
+	    test_bit(FSCACHE_COOKIE_HAVE_DATA, &cookie->flags) &&
+	    test_bit(FSCACHE_COOKIE_NO_DATA_TO_READ, &cookie->flags))
+		clear_bit(FSCACHE_COOKIE_NO_DATA_TO_READ, &cookie->flags);
+
+where the NO_DATA_TO_READ flag causes cachefiles_prepare_read() to indicate
+that netfslib should download from the server or clear the page instead.
+
+The fscache_note_page_release() function is intended to be called from
+->releasepage() - but that only gets called if PG_private or PG_private_2
+is set - and currently the former is at the discretion of the network
+filesystem and the latter is only set whilst a page is being written to the
+cache, so sometimes we miss clearing the optimisation.
+
+Fix this by following Willy's suggestion[1] and adding an address_space
+flag, AS_RELEASE_ALWAYS, that causes filemap_release_folio() to always call
+->release_folio() if it's set, even if PG_private or PG_private_2 aren't
+set.
+
+Note that this would require folio_test_private() and page_has_private() to
+become more complicated.  To avoid that, in the places[*] where these are
+used to conditionalise calls to filemap_release_folio() and
+try_to_release_page(), the tests are removed the those functions just
+jumped to unconditionally and the test is performed there.
+
+[*] There are some exceptions in vmscan.c where the check guards more than
+just a call to the releaser.  I've added a function, folio_needs_release()
+to wrap all the checks for that.
+
+AS_RELEASE_ALWAYS should be set if a non-NULL cookie is obtained from
+fscache and cleared in ->evict_inode() before truncate_inode_pages_final()
+is called.
+
+Additionally, the FSCACHE_COOKIE_NO_DATA_TO_READ flag needs to be cleared
+and the optimisation cancelled if a cachefiles object already contains data
+when we open it.
+
+Reported-by: Rohith Surabattula <rohiths.msft@gmail.com>
+Suggested-by: Matthew Wilcox <willy@infradead.org>
+Signed-off-by: David Howells <dhowells@redhat.com>
+cc: Matthew Wilcox <willy@infradead.org>
+cc: Steve French <sfrench@samba.org>
+cc: Shyam Prasad N <nspmangalore@gmail.com>
+cc: Rohith Surabattula <rohiths.msft@gmail.com>
+cc: Dave Wysochanski <dwysocha@redhat.com>
+cc: Dominique Martinet <asmadeus@codewreck.org>
+cc: Ilya Dryomov <idryomov@gmail.com>
+cc: linux-cachefs@redhat.com
+cc: linux-cifs@vger.kernel.org
+cc: linux-afs@lists.infradead.org
+cc: v9fs-developer@lists.sourceforge.net
+cc: ceph-devel@vger.kernel.org
+cc: linux-nfs@vger.kernel.org
+cc: linux-fsdevel@vger.kernel.org
+cc: linux-mm@kvack.org
+Link: https://lore.kernel.org/r/Yk9V/03wgdYi65Lb@casper.infradead.org/ [1]
+Link: https://lore.kernel.org/r/164928630577.457102.8519251179327601178.stgit@warthog.procyon.org.uk/ # v1
+---
+
+ fs/9p/cache.c           |    2 ++
+ fs/9p/vfs_inode.c       |    1 +
+ fs/afs/inode.c          |    1 +
+ fs/afs/internal.h       |    2 ++
+ fs/cachefiles/namei.c   |    2 ++
+ fs/ceph/cache.c         |    2 ++
+ fs/ceph/inode.c         |    1 +
+ fs/cifs/cifsfs.c        |    1 +
+ fs/cifs/fscache.c       |    2 ++
+ fs/splice.c             |    3 +--
+ include/linux/pagemap.h |   16 ++++++++++++++++
+ mm/filemap.c            |    4 ++++
+ mm/huge_memory.c        |    3 +--
+ mm/khugepaged.c         |    3 +--
+ mm/memory-failure.c     |    3 +--
+ mm/migrate.c            |    3 +--
+ mm/truncate.c           |    6 ++----
+ mm/vmscan.c             |   15 +++++++++++----
+ 18 files changed, 52 insertions(+), 18 deletions(-)
+
+diff --git a/fs/9p/cache.c b/fs/9p/cache.c
+index cebba4eaa0b5..12c0ae29f185 100644
+--- a/fs/9p/cache.c
++++ b/fs/9p/cache.c
+@@ -68,6 +68,8 @@ void v9fs_cache_inode_get_cookie(struct inode *inode)
+ 				       &path, sizeof(path),
+ 				       &version, sizeof(version),
+ 				       i_size_read(&v9inode->netfs.inode));
++	if (v9inode->netfs.cache)
++		mapping_set_release_always(inode->i_mapping);
+ 
+ 	p9_debug(P9_DEBUG_FSC, "inode %p get cookie %p\n",
+ 		 inode, v9fs_inode_cookie(v9inode));
+diff --git a/fs/9p/vfs_inode.c b/fs/9p/vfs_inode.c
+index 4d1a4a8d9277..b553fe3484c1 100644
+--- a/fs/9p/vfs_inode.c
++++ b/fs/9p/vfs_inode.c
+@@ -394,6 +394,7 @@ void v9fs_evict_inode(struct inode *inode)
+ 	version = cpu_to_le32(v9inode->qid.version);
+ 	fscache_clear_inode_writeback(v9fs_inode_cookie(v9inode), inode,
+ 				      &version);
++	mapping_clear_release_always(inode->i_mapping);
+ 	clear_inode(inode);
+ 	filemap_fdatawrite(&inode->i_data);
+ 
+diff --git a/fs/afs/inode.c b/fs/afs/inode.c
+index 6d3a3dbe4928..7790977780ca 100644
+--- a/fs/afs/inode.c
++++ b/fs/afs/inode.c
+@@ -805,6 +805,7 @@ void afs_evict_inode(struct inode *inode)
+ 
+ 	afs_set_cache_aux(vnode, &aux);
+ 	fscache_clear_inode_writeback(afs_vnode_cache(vnode), inode, &aux);
++	mapping_clear_release_always(inode->i_mapping);
+ 	clear_inode(inode);
+ 
+ 	while (!list_empty(&vnode->wb_keys)) {
+diff --git a/fs/afs/internal.h b/fs/afs/internal.h
+index 723d162078a3..310f4111c648 100644
+--- a/fs/afs/internal.h
++++ b/fs/afs/internal.h
+@@ -680,6 +680,8 @@ static inline void afs_vnode_set_cache(struct afs_vnode *vnode,
+ {
+ #ifdef CONFIG_AFS_FSCACHE
+ 	vnode->netfs.cache = cookie;
++	if (cookie)
++		mapping_set_release_always(vnode->netfs.inode.i_mapping);
+ #endif
+ }
+ 
+diff --git a/fs/cachefiles/namei.c b/fs/cachefiles/namei.c
+index 03ca8f2f657a..50b2ee163af6 100644
+--- a/fs/cachefiles/namei.c
++++ b/fs/cachefiles/namei.c
+@@ -584,6 +584,8 @@ static bool cachefiles_open_file(struct cachefiles_object *object,
+ 	if (ret < 0)
+ 		goto check_failed;
+ 
++	clear_bit(FSCACHE_COOKIE_NO_DATA_TO_READ, &object->cookie->flags);
++
+ 	object->file = file;
+ 
+ 	/* Always update the atime on an object we've just looked up (this is
+diff --git a/fs/ceph/cache.c b/fs/ceph/cache.c
+index 177d8e8d73fe..de1dee46d3df 100644
+--- a/fs/ceph/cache.c
++++ b/fs/ceph/cache.c
+@@ -36,6 +36,8 @@ void ceph_fscache_register_inode_cookie(struct inode *inode)
+ 				       &ci->i_vino, sizeof(ci->i_vino),
+ 				       &ci->i_version, sizeof(ci->i_version),
+ 				       i_size_read(inode));
++	if (ci->netfs.cache)
++		mapping_set_release_always(inode->i_mapping);
+ }
+ 
+ void ceph_fscache_unregister_inode_cookie(struct ceph_inode_info *ci)
+diff --git a/fs/ceph/inode.c b/fs/ceph/inode.c
+index 4af5e55abc15..2e8481da6583 100644
+--- a/fs/ceph/inode.c
++++ b/fs/ceph/inode.c
+@@ -572,6 +572,7 @@ void ceph_evict_inode(struct inode *inode)
+ 	truncate_inode_pages_final(&inode->i_data);
+ 	if (inode->i_state & I_PINNING_FSCACHE_WB)
+ 		ceph_fscache_unuse_cookie(inode, true);
++	mapping_clear_release_always(inode->i_mapping);
+ 	clear_inode(inode);
+ 
+ 	ceph_fscache_unregister_inode_cookie(ci);
+diff --git a/fs/cifs/cifsfs.c b/fs/cifs/cifsfs.c
+index fe220686bba4..ceb92b536475 100644
+--- a/fs/cifs/cifsfs.c
++++ b/fs/cifs/cifsfs.c
+@@ -423,6 +423,7 @@ cifs_free_inode(struct inode *inode)
+ static void
+ cifs_evict_inode(struct inode *inode)
+ {
++	mapping_clear_release_always(inode->i_mapping);
+ 	truncate_inode_pages_final(&inode->i_data);
+ 	if (inode->i_state & I_PINNING_FSCACHE_WB)
+ 		cifs_fscache_unuse_inode_cookie(inode, true);
+diff --git a/fs/cifs/fscache.c b/fs/cifs/fscache.c
+index a1751b956318..d3f484ab1213 100644
+--- a/fs/cifs/fscache.c
++++ b/fs/cifs/fscache.c
+@@ -108,6 +108,8 @@ void cifs_fscache_get_inode_cookie(struct inode *inode)
+ 				       &cifsi->uniqueid, sizeof(cifsi->uniqueid),
+ 				       &cd, sizeof(cd),
+ 				       i_size_read(&cifsi->netfs.inode));
++	if (cifsi->netfs.cache)
++		mapping_set_release_always(inode->i_mapping);
+ }
+ 
+ void cifs_fscache_unuse_inode_cookie(struct inode *inode, bool update)
+diff --git a/fs/splice.c b/fs/splice.c
+index 0878b852b355..563105304ccc 100644
+--- a/fs/splice.c
++++ b/fs/splice.c
+@@ -65,8 +65,7 @@ static bool page_cache_pipe_buf_try_steal(struct pipe_inode_info *pipe,
+ 		 */
+ 		folio_wait_writeback(folio);
+ 
+-		if (folio_has_private(folio) &&
+-		    !filemap_release_folio(folio, GFP_KERNEL))
++		if (!filemap_release_folio(folio, GFP_KERNEL))
+ 			goto out_unlock;
+ 
+ 		/*
+diff --git a/include/linux/pagemap.h b/include/linux/pagemap.h
+index bbccb4044222..3db9a6225bc0 100644
+--- a/include/linux/pagemap.h
++++ b/include/linux/pagemap.h
+@@ -199,6 +199,7 @@ enum mapping_flags {
+ 	/* writeback related tags are not used */
+ 	AS_NO_WRITEBACK_TAGS = 5,
+ 	AS_LARGE_FOLIO_SUPPORT = 6,
++	AS_RELEASE_ALWAYS,	/* Call ->release_folio(), even if no private data */
+ };
+ 
+ /**
+@@ -269,6 +270,21 @@ static inline int mapping_use_writeback_tags(struct address_space *mapping)
+ 	return !test_bit(AS_NO_WRITEBACK_TAGS, &mapping->flags);
+ }
+ 
++static inline bool mapping_release_always(const struct address_space *mapping)
++{
++	return test_bit(AS_RELEASE_ALWAYS, &mapping->flags);
++}
++
++static inline void mapping_set_release_always(struct address_space *mapping)
++{
++	set_bit(AS_RELEASE_ALWAYS, &mapping->flags);
++}
++
++static inline void mapping_clear_release_always(struct address_space *mapping)
++{
++	set_bit(AS_RELEASE_ALWAYS, &mapping->flags);
++}
++
+ static inline gfp_t mapping_gfp_mask(struct address_space * mapping)
+ {
+ 	return mapping->gfp_mask;
+diff --git a/mm/filemap.c b/mm/filemap.c
+index 08341616ae7a..34c5a08ae3f1 100644
+--- a/mm/filemap.c
++++ b/mm/filemap.c
+@@ -3941,6 +3941,10 @@ bool filemap_release_folio(struct folio *folio, gfp_t gfp)
+ 	struct address_space * const mapping = folio->mapping;
+ 
+ 	BUG_ON(!folio_test_locked(folio));
++	if ((!mapping || !mapping_release_always(mapping))
++	    && !folio_test_private(folio) &&
++	    !folio_test_private_2(folio))
++		return true;
+ 	if (folio_test_writeback(folio))
+ 		return false;
+ 
+diff --git a/mm/huge_memory.c b/mm/huge_memory.c
+index 561a42567477..847014ee2f3c 100644
+--- a/mm/huge_memory.c
++++ b/mm/huge_memory.c
+@@ -2680,8 +2680,7 @@ int split_huge_page_to_list(struct page *page, struct list_head *list)
+ 		gfp = current_gfp_context(mapping_gfp_mask(mapping) &
+ 							GFP_RECLAIM_MASK);
+ 
+-		if (folio_test_private(folio) &&
+-				!filemap_release_folio(folio, gfp)) {
++		if (!filemap_release_folio(folio, gfp)) {
+ 			ret = -EBUSY;
+ 			goto out;
+ 		}
+diff --git a/mm/khugepaged.c b/mm/khugepaged.c
+index 4734315f7940..7e9e0e3e678e 100644
+--- a/mm/khugepaged.c
++++ b/mm/khugepaged.c
+@@ -1883,8 +1883,7 @@ static int collapse_file(struct mm_struct *mm, unsigned long addr,
+ 			goto out_unlock;
+ 		}
+ 
+-		if (page_has_private(page) &&
+-		    !try_to_release_page(page, GFP_KERNEL)) {
++		if (!try_to_release_page(page, GFP_KERNEL)) {
+ 			result = SCAN_PAGE_HAS_PRIVATE;
+ 			putback_lru_page(page);
+ 			goto out_unlock;
+diff --git a/mm/memory-failure.c b/mm/memory-failure.c
+index 145bb561ddb3..1ca51c986a88 100644
+--- a/mm/memory-failure.c
++++ b/mm/memory-failure.c
+@@ -831,8 +831,7 @@ static int truncate_error_page(struct page *p, unsigned long pfn,
+ 
+ 		if (err != 0) {
+ 			pr_info("%#lx: Failed to punch page: %d\n", pfn, err);
+-		} else if (page_has_private(p) &&
+-			   !try_to_release_page(p, GFP_NOIO)) {
++		} else if (!try_to_release_page(p, GFP_NOIO)) {
+ 			pr_info("%#lx: failed to release buffers\n", pfn);
+ 		} else {
+ 			ret = MF_RECOVERED;
+diff --git a/mm/migrate.c b/mm/migrate.c
+index dff333593a8a..d721ef340943 100644
+--- a/mm/migrate.c
++++ b/mm/migrate.c
+@@ -905,8 +905,7 @@ static int fallback_migrate_folio(struct address_space *mapping,
+ 	 * Buffers may be managed in a filesystem specific way.
+ 	 * We must have no buffers or drop them.
+ 	 */
+-	if (folio_test_private(src) &&
+-	    !filemap_release_folio(src, GFP_KERNEL))
++	if (!filemap_release_folio(src, GFP_KERNEL))
+ 		return mode == MIGRATE_SYNC ? -EAGAIN : -EBUSY;
+ 
+ 	return migrate_folio(mapping, dst, src, mode);
+diff --git a/mm/truncate.c b/mm/truncate.c
+index c0be77e5c008..0d4dd233f518 100644
+--- a/mm/truncate.c
++++ b/mm/truncate.c
+@@ -19,7 +19,6 @@
+ #include <linux/highmem.h>
+ #include <linux/pagevec.h>
+ #include <linux/task_io_accounting_ops.h>
+-#include <linux/buffer_head.h>	/* grr. try_to_release_page */
+ #include <linux/shmem_fs.h>
+ #include <linux/rmap.h>
+ #include "internal.h"
+@@ -276,7 +275,7 @@ static long mapping_evict_folio(struct address_space *mapping,
+ 	if (folio_ref_count(folio) >
+ 			folio_nr_pages(folio) + folio_has_private(folio) + 1)
+ 		return 0;
+-	if (folio_has_private(folio) && !filemap_release_folio(folio, 0))
++	if (!filemap_release_folio(folio, 0))
+ 		return 0;
+ 
+ 	return remove_mapping(mapping, folio);
+@@ -581,8 +580,7 @@ static int invalidate_complete_folio2(struct address_space *mapping,
+ 	if (folio->mapping != mapping)
+ 		return 0;
+ 
+-	if (folio_has_private(folio) &&
+-	    !filemap_release_folio(folio, GFP_KERNEL))
++	if (!filemap_release_folio(folio, GFP_KERNEL))
+ 		return 0;
+ 
+ 	spin_lock(&mapping->host->i_lock);
+diff --git a/mm/vmscan.c b/mm/vmscan.c
+index 04d8b88e5216..a2d5ffee5f8f 100644
+--- a/mm/vmscan.c
++++ b/mm/vmscan.c
+@@ -186,6 +186,14 @@ struct scan_control {
+ #define prefetchw_prev_lru_folio(_folio, _base, _field) do { } while (0)
+ #endif
+ 
++static bool folio_needs_release(struct folio *folio)
++{
++	struct address_space *mapping = folio->mapping;
++
++	return folio_has_private(folio) ||
++		(mapping && mapping_release_always(mapping));
++}
++
+ /*
+  * From 0 .. 200.  Higher means more swappy.
+  */
+@@ -1978,7 +1986,7 @@ static unsigned int shrink_folio_list(struct list_head *folio_list,
+ 		 * (refcount == 1) it can be freed.  Otherwise, leave
+ 		 * the folio on the LRU so it is swappable.
+ 		 */
+-		if (folio_has_private(folio)) {
++		if (folio_needs_release(folio)) {
+ 			if (!filemap_release_folio(folio, sc->gfp_mask))
+ 				goto activate_locked;
+ 			if (!mapping && folio_ref_count(folio) == 1) {
+@@ -2592,9 +2600,8 @@ static void shrink_active_list(unsigned long nr_to_scan,
+ 		}
+ 
+ 		if (unlikely(buffer_heads_over_limit)) {
+-			if (folio_test_private(folio) && folio_trylock(folio)) {
+-				if (folio_test_private(folio))
+-					filemap_release_folio(folio, 0);
++			if (folio_needs_release(folio) && folio_trylock(folio)) {
++				filemap_release_folio(folio, 0);
+ 				folio_unlock(folio);
+ 			}
+ 		}
+
+
+
+
+_______________________________________________
+V9fs-developer mailing list
+V9fs-developer@lists.sourceforge.net
+https://lists.sourceforge.net/lists/listinfo/v9fs-developer
