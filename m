@@ -2,112 +2,87 @@ Return-Path: <v9fs-developer-bounces@lists.sourceforge.net>
 X-Original-To: lists+v9fs-developer@lfdr.de
 Delivered-To: lists+v9fs-developer@lfdr.de
 Received: from lists.sourceforge.net (lists.sourceforge.net [216.105.38.7])
-	by mail.lfdr.de (Postfix) with ESMTPS id A255262948E
-	for <lists+v9fs-developer@lfdr.de>; Tue, 15 Nov 2022 10:41:12 +0100 (CET)
-Received: from [127.0.0.1] (helo=sfs-ml-1.v29.lw.sourceforge.com)
-	by sfs-ml-1.v29.lw.sourceforge.com with esmtp (Exim 4.95)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2B6466297E7
+	for <lists+v9fs-developer@lfdr.de>; Tue, 15 Nov 2022 13:02:01 +0100 (CET)
+Received: from [127.0.0.1] (helo=sfs-ml-2.v29.lw.sourceforge.com)
+	by sfs-ml-2.v29.lw.sourceforge.com with esmtp (Exim 4.95)
 	(envelope-from <v9fs-developer-bounces@lists.sourceforge.net>)
-	id 1ousRJ-0005GY-SU;
-	Tue, 15 Nov 2022 09:41:09 +0000
+	id 1ouuda-0004SF-AQ;
+	Tue, 15 Nov 2022 12:01:58 +0000
 Received: from [172.30.20.202] (helo=mx.sourceforge.net)
- by sfs-ml-1.v29.lw.sourceforge.com with esmtps (TLS1.2) tls
+ by sfs-ml-2.v29.lw.sourceforge.com with esmtps (TLS1.2) tls
  TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384 (Exim 4.95)
- (envelope-from <dhowells@redhat.com>) id 1ousRI-0005GR-3n
+ (envelope-from <zhangpeng362@huawei.com>) id 1ouudX-0004S8-Cq
  for v9fs-developer@lists.sourceforge.net;
- Tue, 15 Nov 2022 09:41:08 +0000
+ Tue, 15 Nov 2022 12:01:55 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=sourceforge.net; s=x; h=Message-ID:Date:Content-Transfer-Encoding:
- Content-ID:Content-Type:MIME-Version:Subject:Cc:To:References:In-Reply-To:
- From:Sender:Reply-To:Content-Description:Resent-Date:Resent-From:
- Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:
- List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=/jXxnn30oH1htkAEq4c8BajVXG6A/m7p7p9RvVlC1SI=; b=Pnkq2/KRr4zWUNkJvwDDwzil+u
- KxZRHkm+x+1b1syLhcQ/6nOkdQG0SVlqMngnN46wxQQ7jCTk3VAi+Ktu3C4nMM11FDxmfNcCPwEb2
- ZOxcTpVrchKxyp66SynYMfaNUDpffgdkKmw4mXJuWdBpByuz2S4xvjH/hTBrmMO+eiUY=;
+ d=sourceforge.net; s=x; h=Content-Type:Content-Transfer-Encoding:MIME-Version
+ :Message-ID:Date:Subject:CC:To:From:Sender:Reply-To:Content-ID:
+ Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
+ :Resent-Message-ID:In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:
+ List-Subscribe:List-Post:List-Owner:List-Archive;
+ bh=r+dDAejIpOzWK/twCb3kw5A7Stk7zRAfE4+gijcGOQE=; b=Ds8gMSxsgrdefE7O/e1Uyrn75b
+ heigLepPuycCPvGimprjkxJ1q7xWV/9Tk7UDsdU7RS3MxF1owAzdVOo50YbxpfjBoRwJw4Zfxcm6z
+ McZlOfMxg0+vz4CpvMkyVSqWfwKH8UTnXG0WXJjDqMWowl6U1UMdS96hvVNyTzip2NTI=;
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  ;
- h=Message-ID:Date:Content-Transfer-Encoding:Content-ID:Content-Type:
- MIME-Version:Subject:Cc:To:References:In-Reply-To:From:Sender:Reply-To:
- Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
- :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
- List-Post:List-Owner:List-Archive;
- bh=/jXxnn30oH1htkAEq4c8BajVXG6A/m7p7p9RvVlC1SI=; b=OAvpQJx9qxY7+lUwnWoTMD8Ybe
- gJcuo2LiXaEQzmSUX8zHD+QcRXapEziix/MgL/xeEF9gVZgnX/gMZzsgNPLWP006ln5BWLPMbvNW+
- msiVmJOHhV3ORh5rQtHqjEwK9wVtUmSCI89mUIOi9R4IxBTd1Lw4YK0J4RNOcdqvJ7O4=;
-Received: from us-smtp-delivery-124.mimecast.com ([170.10.129.124])
+ h=Content-Type:Content-Transfer-Encoding:MIME-Version:Message-ID:Date:
+ Subject:CC:To:From:Sender:Reply-To:Content-ID:Content-Description:Resent-Date
+ :Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:
+ References:List-Id:List-Help:List-Unsubscribe:List-Subscribe:List-Post:
+ List-Owner:List-Archive; bh=r+dDAejIpOzWK/twCb3kw5A7Stk7zRAfE4+gijcGOQE=; b=i
+ zNpoY/h5jM49PJ/7uLU5n/bk7mcA5KdWrzeFt+Ml1vFKKvWLY4oWPm8L7m3DMD1L3imKzhp2CMVIl
+ Hph/HUQhHejLHaLb5OC31Xn7P2soj0v2KKdehGeAmiMz43pm8Ht+jwYd6f15+viHgIHrRmoXtdwqY
+ +qnaguLx1+RwiQbM=;
+Received: from szxga01-in.huawei.com ([45.249.212.187])
  by sfi-mx-1.v28.lw.sourceforge.com with esmtps
  (TLS1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.95)
- id 1ousRF-008xsY-9U for v9fs-developer@lists.sourceforge.net;
- Tue, 15 Nov 2022 09:41:08 +0000
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
- s=mimecast20190719; t=1668505259;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references;
- bh=/jXxnn30oH1htkAEq4c8BajVXG6A/m7p7p9RvVlC1SI=;
- b=JG7XnaBW7BYDgjhiTFGHCngASN9puOYOTtAxmPH7xnofTJR4+BUbpAbaQzNpNWzL1v8MqU
- 5E3xW9KEtRuRVs8DEh05ZkJ9QBDykxiJ7wcHOkN+hErZM1Gj5GDGaLqxJ19Uq0jYl2y4/Z
- U5h4sZc8Clf8kUowZRRTMkXxzHlUvNU=
-Received: from mimecast-mx02.redhat.com (mimecast-mx02.redhat.com
- [66.187.233.88]) by relay.mimecast.com with ESMTP with STARTTLS
- (version=TLSv1.2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- us-mta-373-MkvcghZ8OraPCsSquUNZLw-1; Tue, 15 Nov 2022 04:40:54 -0500
-X-MC-Unique: MkvcghZ8OraPCsSquUNZLw-1
-Received: from smtp.corp.redhat.com (int-mx04.intmail.prod.int.rdu2.redhat.com
- [10.11.54.4])
- (using TLSv1.2 with cipher AECDH-AES256-SHA (256/256 bits))
- (No client certificate requested)
- by mimecast-mx02.redhat.com (Postfix) with ESMTPS id F0E008027EB;
- Tue, 15 Nov 2022 09:40:53 +0000 (UTC)
-Received: from warthog.procyon.org.uk (unknown [10.33.36.24])
- by smtp.corp.redhat.com (Postfix) with ESMTP id E9A352024CC0;
- Tue, 15 Nov 2022 09:40:51 +0000 (UTC)
-Organization: Red Hat UK Ltd. Registered Address: Red Hat UK Ltd, Amberley
- Place, 107-111 Peascod Street, Windsor, Berkshire, SI4 1TE, United
- Kingdom.
- Registered in England and Wales under Company Registration No. 3798903
-From: David Howells <dhowells@redhat.com>
-In-Reply-To: <Y3MQ4l1AJOgniprT@casper.infradead.org>
-References: <Y3MQ4l1AJOgniprT@casper.infradead.org>
- <166844174069.1124521.10890506360974169994.stgit@warthog.procyon.org.uk>
-To: Matthew Wilcox <willy@infradead.org>
+ id 1ouudS-0093Hm-WC for v9fs-developer@lists.sourceforge.net;
+ Tue, 15 Nov 2022 12:01:55 +0000
+Received: from dggemv704-chm.china.huawei.com (unknown [172.30.72.55])
+ by szxga01-in.huawei.com (SkyGuard) with ESMTP id 4NBPsW30K6zmW1D;
+ Tue, 15 Nov 2022 20:01:19 +0800 (CST)
+Received: from kwepemm600020.china.huawei.com (7.193.23.147) by
+ dggemv704-chm.china.huawei.com (10.3.19.47) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2375.31; Tue, 15 Nov 2022 20:01:39 +0800
+Received: from localhost.localdomain (10.175.112.125) by
+ kwepemm600020.china.huawei.com (7.193.23.147) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2375.31; Tue, 15 Nov 2022 20:01:38 +0800
+To: <ericvh@gmail.com>, <lucho@ionkov.net>, <asmadeus@codewreck.org>,
+ <linux_oss@crudebyte.com>, <dhowells@redhat.com>, <jlayton@kernel.org>,
+ <v9fs-developer@lists.sourceforge.net>
+Date: Tue, 15 Nov 2022 12:27:01 +0000
+Message-ID: <20221115122701.2117502-1-zhangpeng362@huawei.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-ID: <1493971.1668505249.1@warthog.procyon.org.uk>
-Date: Tue, 15 Nov 2022 09:40:49 +0000
-Message-ID: <1493972.1668505249@warthog.procyon.org.uk>
-X-Scanned-By: MIMEDefang 3.1 on 10.11.54.4
-X-Spam-Score: -0.2 (/)
+X-Originating-IP: [10.175.112.125]
+X-ClientProxiedBy: dggems704-chm.china.huawei.com (10.3.19.181) To
+ kwepemm600020.china.huawei.com (7.193.23.147)
+X-CFilter-Loop: Reflected
+X-Spam-Score: -2.3 (--)
 X-Spam-Report: Spam detection software,
- running on the system "util-spamd-2.v13.lw.sourceforge.com", 
+ running on the system "util-spamd-1.v13.lw.sourceforge.com", 
  has NOT identified this incoming email as spam.  The original
  message has been attached to this so you can view it or label
  similar future email.  If you have any questions, see
  the administrator of that system for details.
- Content preview:  Matthew Wilcox <willy@infradead.org> wrote: > On Mon, Nov
- 14, 2022 at 04:02:20PM +0000, David Howells wrote: > > +++ b/mm/filemap.c
- > > @@ -3941,6 +3941,10 @@ bool filemap_release_folio(struct folio *folio,
- gfp_t gfp) > > struct address_space * [...] 
- Content analysis details:   (-0.2 points, 6.0 required)
+ Content preview:  From: ZhangPeng <zhangpeng362@huawei.com> Syzbot reported
+ slab-out-of-bounds Read in __fscache_acquire_volume.
+ ==================================================================
+ BUG: KASAN: slab-out-of-bounds in memcmp+0x16f/0x1c0 lib/string.c:757 Read
+ of size 8 at addr ffff888016f3aa90 by task syz-executor344 [...] 
+ Content analysis details:   (-2.3 points, 6.0 required)
  pts rule name              description
  ---- ---------------------- --------------------------------------------------
- -0.0 RCVD_IN_MSPIKE_H2      RBL: Average reputation (+2)
- [170.10.129.124 listed in wl.mailspike.net]
- -0.0 RCVD_IN_DNSWL_NONE     RBL: Sender listed at https://www.dnswl.org/,
- no trust [170.10.129.124 listed in list.dnswl.org]
- -0.0 SPF_PASS               SPF: sender matches SPF record
+ -2.3 RCVD_IN_DNSWL_MED      RBL: Sender listed at https://www.dnswl.org/,
+ medium trust [45.249.212.187 listed in list.dnswl.org]
  0.0 SPF_HELO_NONE          SPF: HELO does not publish an SPF Record
- -0.1 DKIM_VALID_EF          Message has a valid DKIM or DK signature from
- envelope-from domain
- -0.1 DKIM_VALID_AU          Message has a valid DKIM or DK signature from
- author's domain
- 0.1 DKIM_SIGNED            Message has a DKIM or DK signature, not necessarily
- valid
- -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
- -0.0 DKIMWL_WL_HIGH         DKIMwl.org - High trust sender
-X-Headers-End: 1ousRF-008xsY-9U
-Subject: Re: [V9fs-developer] [RFC PATCH v2] mm, netfs,
- fscache: Stop read optimisation when folio removed from pagecache
+ -0.0 SPF_PASS               SPF: sender matches SPF record
+X-Headers-End: 1ouudS-0093Hm-WC
+Subject: [V9fs-developer] [PATCH] fscache: fix OOB Read in
+ __fscache_acquire_volume
 X-BeenThere: v9fs-developer@lists.sourceforge.net
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -119,92 +94,106 @@ List-Post: <mailto:v9fs-developer@lists.sourceforge.net>
 List-Help: <mailto:v9fs-developer-request@lists.sourceforge.net?subject=help>
 List-Subscribe: <https://lists.sourceforge.net/lists/listinfo/v9fs-developer>, 
  <mailto:v9fs-developer-request@lists.sourceforge.net?subject=subscribe>
-Cc: Shyam Prasad N <nspmangalore@gmail.com>, Steve French <sfrench@samba.org>,
- linux-nfs@vger.kernel.org, linux-cifs@vger.kernel.org,
- Rohith Surabattula <rohiths.msft@gmail.com>, dwysocha@redhat.com,
- ceph-devel@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-afs@lists.infradead.org, dhowells@redhat.com, linux-mm@kvack.org,
- linux-cachefs@redhat.com, linux-fsdevel@vger.kernel.org,
- v9fs-developer@lists.sourceforge.net, Ilya Dryomov <idryomov@gmail.com>
+From: Peng Zhang via V9fs-developer <v9fs-developer@lists.sourceforge.net>
+Reply-To: Peng Zhang <zhangpeng362@huawei.com>
+Cc: syzbot+a76f6a6e524cf2080aa3@syzkaller.appspotmail.com,
+ linux-kernel@vger.kernel.org, ZhangPeng <zhangpeng362@huawei.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: v9fs-developer-bounces@lists.sourceforge.net
 
-Matthew Wilcox <willy@infradead.org> wrote:
+From: ZhangPeng <zhangpeng362@huawei.com>
 
-> On Mon, Nov 14, 2022 at 04:02:20PM +0000, David Howells wrote:
-> > +++ b/mm/filemap.c
-> > @@ -3941,6 +3941,10 @@ bool filemap_release_folio(struct folio *folio, gfp_t gfp)
-> >  	struct address_space * const mapping = folio->mapping;
-> >  
-> >  	BUG_ON(!folio_test_locked(folio));
-> > +	if ((!mapping || !mapping_release_always(mapping))
-> > +	    && !folio_test_private(folio) &&
-> > +	    !folio_test_private_2(folio))
-> > +		return true;
-> 
-> Why do you need to test 'mapping' here?
+Syzbot reported slab-out-of-bounds Read in __fscache_acquire_volume.
 
-Why does the function do:
+==================================================================
+BUG: KASAN: slab-out-of-bounds in memcmp+0x16f/0x1c0 lib/string.c:757
+Read of size 8 at addr ffff888016f3aa90 by task syz-executor344/3613
 
-	if (mapping && mapping->a_ops->release_folio)
+CPU: 0 PID: 3613 Comm: syz-executor344 Not tainted
+6.0.0-rc2-syzkaller-00327-g8379c0b31fbc #0
+Hardware name: Google Compute Engine/Google Compute Engine, BIOS
+Google 07/22/2022
+Call Trace:
+ <TASK>
+ __dump_stack lib/dump_stack.c:88 [inline]
+ dump_stack_lvl+0xcd/0x134 lib/dump_stack.c:106
+ print_address_description mm/kasan/report.c:317 [inline]
+ print_report.cold+0x2ba/0x719 mm/kasan/report.c:433
+ kasan_report+0xb1/0x1e0 mm/kasan/report.c:495
+ memcmp+0x16f/0x1c0 lib/string.c:757
+ memcmp include/linux/fortify-string.h:420 [inline]
+ fscache_volume_same fs/fscache/volume.c:133 [inline]
+ fscache_hash_volume fs/fscache/volume.c:171 [inline]
+ __fscache_acquire_volume+0x76c/0x1080 fs/fscache/volume.c:328
+ fscache_acquire_volume include/linux/fscache.h:204 [inline]
+ v9fs_cache_session_get_cookie+0x143/0x240 fs/9p/cache.c:34
+ v9fs_session_init+0x1166/0x1810 fs/9p/v9fs.c:473
+ v9fs_mount+0xba/0xc90 fs/9p/vfs_super.c:126
+ legacy_get_tree+0x105/0x220 fs/fs_context.c:610
+ vfs_get_tree+0x89/0x2f0 fs/super.c:1530
+ do_new_mount fs/namespace.c:3040 [inline]
+ path_mount+0x1326/0x1e20 fs/namespace.c:3370
+ do_mount fs/namespace.c:3383 [inline]
+ __do_sys_mount fs/namespace.c:3591 [inline]
+ __se_sys_mount fs/namespace.c:3568 [inline]
+ __x64_sys_mount+0x27f/0x300 fs/namespace.c:3568
+ do_syscall_x64 arch/x86/entry/common.c:50 [inline]
+ do_syscall_64+0x35/0xb0 arch/x86/entry/common.c:80
+ entry_SYSCALL_64_after_hwframe+0x63/0xcd
+RIP: 0033:0x7f7d5064b1d9
+Code: 28 00 00 00 75 05 48 83 c4 28 c3 e8 e1 14 00 00 90 48 89 f8 48 89
+f7 48 89 d6 48 89 ca 4d 89 c2 4d 89 c8 4c 8b 4c 24 08 0f 05 <48> 3d 01
+f0 ff ff 73 01 c3 48 c7 c1 c0 ff ff ff f7 d8 64 89 01 48
+RSP: 002b:00007ffd1700c028 EFLAGS: 00000246 ORIG_RAX: 00000000000000a5
+RAX: ffffffffffffffda RBX: 00007ffd1700c060 RCX: 00007f7d5064b1d9
+RDX: 0000000020000040 RSI: 0000000020000000 RDI: 0000000000000000
+RBP: 0000000000000000 R08: 0000000020000200 R09: 0000000000000000
+R10: 0000000000000000 R11: 0000000000000246 R12: 00000000000f4240
+R13: 0000000000000000 R14: 00007ffd1700c04c R15: 00007ffd1700c050
+==================================================================
 
-later then?  There are callers of the function, such as shrink_folio_list(),
-that seem to think that folio->mapping might be NULL.
+The type of a->key[0] is char. If the length of cache volume key is
+greater than 127, the value of a->key[0] is less than 0. In this case,
+klen becomes much larger than 255 after type conversion, because the
+type of klen is size_t. As a result, memcmp() is read out of bounds. Fix
+this by adding a check on the length of the key in
+v9fs_cache_session_get_cookie().
 
-> Also this is the most inconsistent style ...
+Reported-by: syzbot+a76f6a6e524cf2080aa3@syzkaller.appspotmail.com
+Fixes: 24e42e32d347 ("9p: Use fscache indexing rewrite and reenable caching")
+Signed-off-by: ZhangPeng <zhangpeng362@huawei.com>
+---
+ fs/9p/cache.c | 8 ++++++++
+ 1 file changed, 8 insertions(+)
 
-Yeah, I accidentally pushed the '&&' onto the next line.
-
-> > @@ -276,7 +275,7 @@ static long mapping_evict_folio(struct address_space *mapping,
-> >  	if (folio_ref_count(folio) >
-> >  			folio_nr_pages(folio) + folio_has_private(folio) + 1)
-> 
-> I think this line is incorrect, right?  You don't increment the folio
-> refcount just because the folio has private2 set, do you?
-
-Errr, yes:
-
-	static inline void folio_start_fscache(struct folio *folio)
-	{
-		VM_BUG_ON_FOLIO(folio_test_private_2(folio), folio);
-		folio_get(folio);
-		folio_set_private_2(folio);
-	}
-
-Someone insisted - might even have been you;-)
-
-I'm working on getting rid of the use of PG_private_2 from the network
-filesystems, but it's still in progress.  Kind of blocked on the iov_iter
-stuff.
-
-> >  		return 0;
-> > -	if (folio_has_private(folio) && !filemap_release_folio(folio, 0))
-> > +	if (!filemap_release_folio(folio, 0))
-> >  		return 0;
-> >  
-> >  	return remove_mapping(mapping, folio);
-> 
-> Can we get rid of folio_has_private()
-
-That would be nice, but there are still places that check it, and until we get
-rid of the use of PG_private_2, we can't reduce it to just a check on
-PG_private.  Truncate, for example, checks it to see if it should can
-->invalidate_folio().
-
-It's only used in mm/, so it could be moved into mm/internal.h.
-
-> / page_has_private() now?
-
-That's used in some a number of places outside of mm/.  The arch/s390/ usage
-is just to calculate the expected refcount.  I wonder if calculation of the
-expected refcount could be potted into a function as it's performed in a
-number of places - though the expectation isn't always the same.
-
-Ext3 and fuse both use it - but those probably need to check PG_private_2 and
-could use a "folio_test_private()" function when fully foliated.
-
-David
+diff --git a/fs/9p/cache.c b/fs/9p/cache.c
+index cebba4eaa0b5..2688840b734e 100644
+--- a/fs/9p/cache.c
++++ b/fs/9p/cache.c
+@@ -21,12 +21,20 @@ int v9fs_cache_session_get_cookie(struct v9fs_session_info *v9ses,
+ {
+ 	struct fscache_volume *vcookie;
+ 	char *name, *p;
++	size_t nlen;
+ 
+ 	name = kasprintf(GFP_KERNEL, "9p,%s,%s",
+ 			 dev_name, v9ses->cachetag ?: v9ses->aname);
+ 	if (!name)
+ 		return -ENOMEM;
+ 
++	nlen = strlen(name);
++	if (nlen > 127) {
++		pr_err("Invalid cache volume key length: %d\n", nlen);
++		kfree(name);
++		return -EINVAL;
++	}
++
+ 	for (p = name; *p; p++)
+ 		if (*p == '/')
+ 			*p = ';';
+-- 
+2.25.1
 
 
 
