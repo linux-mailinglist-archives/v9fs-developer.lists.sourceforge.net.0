@@ -2,109 +2,107 @@ Return-Path: <v9fs-developer-bounces@lists.sourceforge.net>
 X-Original-To: lists+v9fs-developer@lfdr.de
 Delivered-To: lists+v9fs-developer@lfdr.de
 Received: from lists.sourceforge.net (lists.sourceforge.net [216.105.38.7])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4B8F062AE15
-	for <lists+v9fs-developer@lfdr.de>; Tue, 15 Nov 2022 23:17:05 +0100 (CET)
-Received: from [127.0.0.1] (helo=sfs-ml-4.v29.lw.sourceforge.com)
-	by sfs-ml-4.v29.lw.sourceforge.com with esmtp (Exim 4.95)
+	by mail.lfdr.de (Postfix) with ESMTPS id 63E3B62C935
+	for <lists+v9fs-developer@lfdr.de>; Wed, 16 Nov 2022 20:49:53 +0100 (CET)
+Received: from [127.0.0.1] (helo=sfs-ml-2.v29.lw.sourceforge.com)
+	by sfs-ml-2.v29.lw.sourceforge.com with esmtp (Exim 4.95)
 	(envelope-from <v9fs-developer-bounces@lists.sourceforge.net>)
-	id 1ov4Eo-0002dF-Cl;
-	Tue, 15 Nov 2022 22:17:02 +0000
+	id 1ovOPs-0006pX-Pr;
+	Wed, 16 Nov 2022 19:49:48 +0000
 Received: from [172.30.20.202] (helo=mx.sourceforge.net)
- by sfs-ml-4.v29.lw.sourceforge.com with esmtps (TLS1.2) tls
- TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384 (Exim 4.95)
- (envelope-from <asmadeus@codewreck.org>) id 1ov4Em-0002d0-TC
- for v9fs-developer@lists.sourceforge.net;
- Tue, 15 Nov 2022 22:17:00 +0000
+ by sfs-ml-2.v29.lw.sourceforge.com with esmtps (TLS1.2) tls
+ TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384 (Exim 4.95) (envelope-from
+ <30j51YwkbAEc178tjuun0jyyrm.pxxpun31n0lxw2nw2.lxv@M3KW2WVRGUFZ5GODRSRYTGD7.apphosting.bounces.google.com>)
+ id 1ovOPr-0006pQ-Cv for v9fs-developer@lists.sourceforge.net;
+ Wed, 16 Nov 2022 19:49:47 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=sourceforge.net; s=x; h=In-Reply-To:Content-Type:MIME-Version:References:
- Message-ID:Subject:Cc:To:From:Date:Sender:Reply-To:Content-Transfer-Encoding:
- Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
- Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
+ d=sourceforge.net; s=x; h=Content-Type:To:From:Subject:Message-ID:Date:
+ MIME-Version:Sender:Reply-To:Cc:Content-Transfer-Encoding:Content-ID:
+ Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
+ :Resent-Message-ID:In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:
  List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=OZL5LNQ/qoo+PMydbsm4DsIY24R1XznjxSjLJYR8vVM=; b=CIFs9yU/3wqovb8Gk3oXeCCPIw
- 8HyjYlWE1g18/m7PXXFFaLv+xu8m8sNw1vKV00FnDDRX9M46uL3O6aIv1qWyeQfNaNIU1xUZap9qf
- S/ebIcPB7ldRdhSr2KrO+QZP8fzLoxd4BBmwV73ykMEzmyjiG6xkeiFAjufQVl/gPLNs=;
+ bh=Ylx9QLebQ8HlwldCA/mF1PGxYhL2fUmTzgnhvgEJwW8=; b=MfU2x28iAb3UgsnjBwyhResCV1
+ g521XSmvGTkKpqtb+nUCvzeebnnrjCKmkS91qdRHXIjUczk443qqvOpXUsdByb4SMfPSYF6Umg/Gt
+ zfwDLH5sA9H9Hy2pkRtzcU9tUEN/lzW197Q+4bUwvtIr/vUayxWNR+htNT08D/li6/N8=;
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  ;
- h=In-Reply-To:Content-Type:MIME-Version:References:Message-ID:Subject:Cc:To
- :From:Date:Sender:Reply-To:Content-Transfer-Encoding:Content-ID:
- Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
- :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
- List-Post:List-Owner:List-Archive;
- bh=OZL5LNQ/qoo+PMydbsm4DsIY24R1XznjxSjLJYR8vVM=; b=NQuweKD7aR4BKJE4PqKTKad2C5
- Bmuw5ctOZLzWzRGLwTKepUwrvzf5v21hs8z5juexzsjeQ7hstWz3LqTFd2No3MgzCBAqUJE01a/wR
- IbOIxpFuknSh7S4uKPZXUqLjfGtz2uGh+HCf3hHUeviKvXfNRIUn/b2nrEOcSBNLjVdU=;
-Received: from nautica.notk.org ([91.121.71.147])
+ h=Content-Type:To:From:Subject:Message-ID:Date:MIME-Version:Sender:Reply-To
+ :Cc:Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+ Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:
+ References:List-Id:List-Help:List-Unsubscribe:List-Subscribe:List-Post:
+ List-Owner:List-Archive; bh=Ylx9QLebQ8HlwldCA/mF1PGxYhL2fUmTzgnhvgEJwW8=; b=S
+ kw3GyxNttE0Q62GEl4yshi5sLtqRQaIwVCop0M3dYpOptfqF0OvNRrprot+mV8CmEK5L184n2WEUu
+ 5Uqaol9P/KdzbZOz9/0UA/eqqpqvzpZhWEr946eYLgcvPF0nClVLzNhJFzvHOhvUThSWDOlX2mw9a
+ 1mUffzI4Tkl00mBw=;
+Received: from mail-io1-f69.google.com ([209.85.166.69])
  by sfi-mx-1.v28.lw.sourceforge.com with esmtps
- (TLS1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.95)
- id 1ov4Ei-009iKZ-HJ for v9fs-developer@lists.sourceforge.net;
- Tue, 15 Nov 2022 22:17:00 +0000
-Received: by nautica.notk.org (Postfix, from userid 108)
- id B6A24C01F; Tue, 15 Nov 2022 23:16:55 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=codewreck.org; s=2;
- t=1668550615; bh=OZL5LNQ/qoo+PMydbsm4DsIY24R1XznjxSjLJYR8vVM=;
- h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
- b=fh6HyKDf0DVD+mvNnRo1MlBIY64D8IAD+YqyBw55Q9Y8CTc1xc22BhpXIJbFZtMiO
- v1Tl3w2Id4eLacpHimdWenZzVHR1cVnLcumorPcujCWfyawEM61vqpkqCEfD5pcKMQ
- fm1/De+3UDCKCFSVKcSPeD4b33KS7AEb5X17orxTYnLKyn7GuKpA7Z85qziIoKhKvx
- EMbW9GL6Z3HuzvU2W5LmTTJEkL8GVP9hONHgDz4+jeAWqYuCJQWlIewTCWm8M6XBz4
- +Ebhmbzy2SRSwCU7i1aHlDxWIyve48PRdxOVlEHW7eAc3TPXfMS3/nDbkJ8YJZ6TX2
- FRj7AZbw7yDRA==
-X-Spam-Checker-Version: SpamAssassin 3.3.2 (2011-06-06) on nautica.notk.org
-X-Spam-Level: 
-X-Spam-Status: No, score=0.0 required=5.0 tests=UNPARSEABLE_RELAY
- autolearn=unavailable version=3.3.2
-Received: from odin.codewreck.org (localhost [127.0.0.1])
- by nautica.notk.org (Postfix) with ESMTPS id E7333C009;
- Tue, 15 Nov 2022 23:16:51 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=codewreck.org; s=2;
- t=1668550614; bh=OZL5LNQ/qoo+PMydbsm4DsIY24R1XznjxSjLJYR8vVM=;
- h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
- b=GZWtUl4my76Dw99vycRNoUgSegPrGhpMi9fi7IYYTswgacGz+53Vfkowb3l+qqVuZ
- 43rxNdMClHGGmUWnkAoAveEQueR2Z7V9TBvDZY9ixRtsxuN79JuQNwbIzaXzZJqliV
- 7TZwNFHga+FzpOG2JFxghrTLu7qZIGUzSpHz2CLUMnP+4UPTu3woB7Yytke8SgdSQZ
- dB5hoCm00ebFyleCrpD91Zy3nCnxHT/9i4SUWbtodmDwDkv40Q665KsB0DAVx+iViC
- gPIYW/9/RsqEKfgHy79y7ctH+6LJbDIag9VQLerjYBDdlEosgoFVrSGZGpYNvGqAOy
- GKfoZUNaYlw9Q==
-Received: from localhost (odin.codewreck.org [local])
- by odin.codewreck.org (OpenSMTPD) with ESMTPA id 6a874494;
- Tue, 15 Nov 2022 22:16:42 +0000 (UTC)
-Date: Wed, 16 Nov 2022 07:16:27 +0900
-From: asmadeus@codewreck.org
-To: Peng Zhang <zhangpeng362@huawei.com>
-Message-ID: <Y3QPu9TM8LEdu07l@codewreck.org>
-References: <20221115140447.2971680-1-zhangpeng362@huawei.com>
+ (TLS1.2:ECDHE-RSA-AES128-GCM-SHA256:128) (Exim 4.95)
+ id 1ovOPn-00Aj02-SX for v9fs-developer@lists.sourceforge.net;
+ Wed, 16 Nov 2022 19:49:47 +0000
+Received: by mail-io1-f69.google.com with SMTP id
+ f25-20020a5d8799000000b006a44e33ddb6so9262403ion.1
+ for <v9fs-developer@lists.sourceforge.net>;
+ Wed, 16 Nov 2022 11:49:43 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20210112;
+ h=to:from:subject:message-id:date:mime-version:x-gm-message-state
+ :from:to:cc:subject:date:message-id:reply-to;
+ bh=Ylx9QLebQ8HlwldCA/mF1PGxYhL2fUmTzgnhvgEJwW8=;
+ b=Ka1HISjD/9bntQ1ntBlL9Os8cpKmGCCUJJeSM+qPBcwQkDy3vzKsWTEBDJWnBjDKQs
+ rbsDC8qje9kd5mdmf1d99sDxCdDNvOoNy1ybcv78aRatHkXycVM192iRobg+MrNeKxPm
+ ggu5SsVTG3ieLbgrP17fLYg19A4yOw/KMBiuI33LxVaNhSp2BpMZnW6uUAQ1TskHoBld
+ PfKCOeJC91FbeDuVmiNugG1VKMouFkvqP1lj6CKDUjiczWilnU8G+XenrweKpOvHKrUW
+ 8+yREZzECsGL02hT2/yGIK+CJ7KdlIie8/wrJA16el/2aHv2hrad5XmCssjgGI2XdwWL
+ kItw==
+X-Gm-Message-State: ANoB5pnEUjQRiFZ6If+1JRukzAJOK20YZsbgPl1oatpHkhqmqo5HLTBe
+ MzWdluyLX/TuUcLPUpRuIKBCyoI9DSXUo/L7+awN0TW1p9t0
+X-Google-Smtp-Source: AA0mqf69YPhcGGUxa9GkyzmgDq5B5IKNcF87mVDxLG211elxXgiSy1QpD2lEwGMPYSL4SZ8zHatI+575ZdDayi8LjVYE05btFqNP
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20221115140447.2971680-1-zhangpeng362@huawei.com>
-X-Spam-Score: -0.2 (/)
+X-Received: by 2002:a02:cba5:0:b0:375:175c:b00e with SMTP id
+ v5-20020a02cba5000000b00375175cb00emr10778411jap.215.1668628178282; Wed, 16
+ Nov 2022 11:49:38 -0800 (PST)
+Date: Wed, 16 Nov 2022 11:49:38 -0800
+X-Google-Appengine-App-Id: s~syzkaller
+X-Google-Appengine-App-Id-Alias: syzkaller
+Message-ID: <000000000000d433c705ed9bc569@google.com>
+From: syzbot <syzbot+69c3bf057b7a81f47758@syzkaller.appspotmail.com>
+To: asmadeus@codewreck.org, davem@davemloft.net, edumazet@google.com, 
+ ericvh@gmail.com, kuba@kernel.org, linux-kernel@vger.kernel.org, 
+ linux_oss@crudebyte.com, lucho@ionkov.net, netdev@vger.kernel.org, 
+ pabeni@redhat.com, syzkaller-bugs@googlegroups.com, 
+ v9fs-developer@lists.sourceforge.net
+X-Spam-Score: 3.1 (+++)
 X-Spam-Report: Spam detection software,
- running on the system "util-spamd-1.v13.lw.sourceforge.com", 
+ running on the system "util-spamd-2.v13.lw.sourceforge.com", 
  has NOT identified this incoming email as spam.  The original
  message has been attached to this so you can view it or label
  similar future email.  If you have any questions, see
  the administrator of that system for details.
- Content preview:  Peng Zhang wrote on Tue, Nov 15, 2022 at 02:04:47PM +0000:
- > From: ZhangPeng <zhangpeng362@huawei.com> > > Syzbot reported
- slab-out-of-bounds
- Read in __fscache_acquire_volume. > > ==================== [...] 
- Content analysis details:   (-0.2 points, 6.0 required)
+ Content preview:  Hello,
+ syzbot found the following issue on: HEAD commit: 9500fc6e9e60
+ Merge branch 'for-next/core' into for-kernelci git tree:
+ git://git.kernel.org/pub/scm/linux/kernel/git/arm64/linux.git
+ for-kernelci console output: https://syzkaller.appspot. [...] 
+ Content analysis details:   (3.1 points, 6.0 required)
  pts rule name              description
  ---- ---------------------- --------------------------------------------------
+ 0.3 FROM_LOCAL_HEX         From: localpart has long hexadecimal sequence
+ 0.0 URIBL_BLOCKED          ADMINISTRATOR NOTICE: The query to URIBL was
+ blocked.  See
+ http://wiki.apache.org/spamassassin/DnsBlocklists#dnsbl-block
+ for more information. [URIs: googleapis.com]
  0.0 SPF_HELO_NONE          SPF: HELO does not publish an SPF Record
  -0.0 SPF_PASS               SPF: sender matches SPF record
- -0.1 DKIM_VALID_AU          Message has a valid DKIM or DK signature from
- author's domain
- -0.1 DKIM_VALID_EF          Message has a valid DKIM or DK signature from
- envelope-from domain
- 0.1 DKIM_SIGNED            Message has a DKIM or DK signature, not necessarily
- valid
- -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
- 0.0 UNPARSEABLE_RELAY      Informational: message has unparseable relay
- lines
-X-Headers-End: 1ov4Ei-009iKZ-HJ
-Subject: Re: [V9fs-developer] [PATCH v2] fscache: fix OOB Read in
- __fscache_acquire_volume
+ 0.2 HEADER_FROM_DIFFERENT_DOMAINS From and EnvelopeFrom 2nd level
+ mail domains are different
+ 2.5 SORTED_RECIPS          Recipient list is sorted by address
+ -0.0 RCVD_IN_MSPIKE_H2      RBL: Average reputation (+2)
+ [209.85.166.69 listed in wl.mailspike.net]
+ -0.0 RCVD_IN_DNSWL_NONE     RBL: Sender listed at https://www.dnswl.org/,
+ no trust [209.85.166.69 listed in list.dnswl.org]
+X-Headers-End: 1ovOPn-00Aj02-SX
+Subject: [V9fs-developer] [syzbot] BUG: unable to handle kernel paging
+ request in p9_client_prepare_req
 X-BeenThere: v9fs-developer@lists.sourceforge.net
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -116,110 +114,114 @@ List-Post: <mailto:v9fs-developer@lists.sourceforge.net>
 List-Help: <mailto:v9fs-developer-request@lists.sourceforge.net?subject=help>
 List-Subscribe: <https://lists.sourceforge.net/lists/listinfo/v9fs-developer>, 
  <mailto:v9fs-developer-request@lists.sourceforge.net?subject=subscribe>
-Cc: lucho@ionkov.net, ericvh@gmail.com, linux_oss@crudebyte.com,
- jlayton@kernel.org, linux-kernel@vger.kernel.org, dhowells@redhat.com,
- syzbot+a76f6a6e524cf2080aa3@syzkaller.appspotmail.com,
- v9fs-developer@lists.sourceforge.net
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: v9fs-developer-bounces@lists.sourceforge.net
 
-Peng Zhang wrote on Tue, Nov 15, 2022 at 02:04:47PM +0000:
-> From: ZhangPeng <zhangpeng362@huawei.com>
-> 
-> Syzbot reported slab-out-of-bounds Read in __fscache_acquire_volume.
-> 
-> ==================================================================
-> BUG: KASAN: slab-out-of-bounds in memcmp+0x16f/0x1c0 lib/string.c:757
-> Read of size 8 at addr ffff888016f3aa90 by task syz-executor344/3613
-> 
-> CPU: 0 PID: 3613 Comm: syz-executor344 Not tainted
-> 6.0.0-rc2-syzkaller-00327-g8379c0b31fbc #0
-> Hardware name: Google Compute Engine/Google Compute Engine, BIOS
-> Google 07/22/2022
-> Call Trace:
->  <TASK>
->  __dump_stack lib/dump_stack.c:88 [inline]
->  dump_stack_lvl+0xcd/0x134 lib/dump_stack.c:106
->  print_address_description mm/kasan/report.c:317 [inline]
->  print_report.cold+0x2ba/0x719 mm/kasan/report.c:433
->  kasan_report+0xb1/0x1e0 mm/kasan/report.c:495
->  memcmp+0x16f/0x1c0 lib/string.c:757
->  memcmp include/linux/fortify-string.h:420 [inline]
->  fscache_volume_same fs/fscache/volume.c:133 [inline]
->  fscache_hash_volume fs/fscache/volume.c:171 [inline]
->  __fscache_acquire_volume+0x76c/0x1080 fs/fscache/volume.c:328
->  fscache_acquire_volume include/linux/fscache.h:204 [inline]
->  v9fs_cache_session_get_cookie+0x143/0x240 fs/9p/cache.c:34
->  v9fs_session_init+0x1166/0x1810 fs/9p/v9fs.c:473
->  v9fs_mount+0xba/0xc90 fs/9p/vfs_super.c:126
->  legacy_get_tree+0x105/0x220 fs/fs_context.c:610
->  vfs_get_tree+0x89/0x2f0 fs/super.c:1530
->  do_new_mount fs/namespace.c:3040 [inline]
->  path_mount+0x1326/0x1e20 fs/namespace.c:3370
->  do_mount fs/namespace.c:3383 [inline]
->  __do_sys_mount fs/namespace.c:3591 [inline]
->  __se_sys_mount fs/namespace.c:3568 [inline]
->  __x64_sys_mount+0x27f/0x300 fs/namespace.c:3568
->  do_syscall_x64 arch/x86/entry/common.c:50 [inline]
->  do_syscall_64+0x35/0xb0 arch/x86/entry/common.c:80
->  entry_SYSCALL_64_after_hwframe+0x63/0xcd
-> RIP: 0033:0x7f7d5064b1d9
-> Code: 28 00 00 00 75 05 48 83 c4 28 c3 e8 e1 14 00 00 90 48 89 f8 48 89
-> f7 48 89 d6 48 89 ca 4d 89 c2 4d 89 c8 4c 8b 4c 24 08 0f 05 <48> 3d 01
-> f0 ff ff 73 01 c3 48 c7 c1 c0 ff ff ff f7 d8 64 89 01 48
-> RSP: 002b:00007ffd1700c028 EFLAGS: 00000246 ORIG_RAX: 00000000000000a5
-> RAX: ffffffffffffffda RBX: 00007ffd1700c060 RCX: 00007f7d5064b1d9
-> RDX: 0000000020000040 RSI: 0000000020000000 RDI: 0000000000000000
-> RBP: 0000000000000000 R08: 0000000020000200 R09: 0000000000000000
-> R10: 0000000000000000 R11: 0000000000000246 R12: 00000000000f4240
-> R13: 0000000000000000 R14: 00007ffd1700c04c R15: 00007ffd1700c050
-> ==================================================================
-> 
-> The type of a->key[0] is char in fscache_volume_same(). If the length of
-> cache volume key is greater than 127, the value of a->key[0] is less
-> than 0. In this case, klen becomes much larger than 255 after type
-> conversion, because the type of klen is size_t. As a result, memcmp() is
-> read out of bounds. Fix this by adding a check on the length of the key
-> in fscache_alloc_volume().
-> ---
-> v1 -> v2:
-> - Make sure the length of cache volume key (klen) fits a signed char
-> before writing key[0] that'd benefit everyone, thanks to Dominique
-> Martinet.
-> 
-> Reported-by: syzbot+a76f6a6e524cf2080aa3@syzkaller.appspotmail.com
-> Fixes: 62ab63352350 ("fscache: Implement volume registration")
-> Signed-off-by: ZhangPeng <zhangpeng362@huawei.com>
+Hello,
 
-These tags should go above the '---' line, or git am will be confused and drop
-them.
-(I assume David or whoever picks this up can manually fix this, letting
-them comment)
+syzbot found the following issue on:
 
-That aside:
-Acked-by: Dominique Martinet <asmadeus@codewreck.org>
+HEAD commit:    9500fc6e9e60 Merge branch 'for-next/core' into for-kernelci
+git tree:       git://git.kernel.org/pub/scm/linux/kernel/git/arm64/linux.git for-kernelci
+console output: https://syzkaller.appspot.com/x/log.txt?x=13bdf3f1880000
+kernel config:  https://syzkaller.appspot.com/x/.config?x=b25c9f218686dd5e
+dashboard link: https://syzkaller.appspot.com/bug?extid=69c3bf057b7a81f47758
+compiler:       Debian clang version 13.0.1-++20220126092033+75e33f71c2da-1~exp1~20220126212112.63, GNU ld (GNU Binutils for Debian) 2.35.2
+userspace arch: arm64
+syz repro:      https://syzkaller.appspot.com/x/repro.syz?x=17f6d5cd880000
+C reproducer:   https://syzkaller.appspot.com/x/repro.c?x=154f2a45880000
 
-> ---
->  fs/fscache/volume.c | 2 ++
->  1 file changed, 2 insertions(+)
-> 
-> diff --git a/fs/fscache/volume.c b/fs/fscache/volume.c
-> index a058e0136bfe..cc206d5e4cc7 100644
-> --- a/fs/fscache/volume.c
-> +++ b/fs/fscache/volume.c
-> @@ -230,6 +230,8 @@ static struct fscache_volume *fscache_alloc_volume(const char *volume_key,
->  	 * hashing easier.
->  	 */
->  	klen = strlen(volume_key);
-> +	if (klen > 127)
-> +		goto err_cache;
->  	hlen = round_up(1 + klen + 1, sizeof(__le32));
->  	key = kzalloc(hlen, GFP_KERNEL);
->  	if (!key)
+Downloadable assets:
+disk image: https://storage.googleapis.com/syzbot-assets/1363e60652f7/disk-9500fc6e.raw.xz
+vmlinux: https://storage.googleapis.com/syzbot-assets/fcc4da811bb6/vmlinux-9500fc6e.xz
+kernel image: https://storage.googleapis.com/syzbot-assets/0b554298f1fa/Image-9500fc6e.gz.xz
 
---
-Dominique
+IMPORTANT: if you fix the issue, please add the following tag to the commit:
+Reported-by: syzbot+69c3bf057b7a81f47758@syzkaller.appspotmail.com
+
+Unable to handle kernel paging request at virtual address bf908d5e7640333a
+Mem abort info:
+  ESR = 0x0000000096000004
+  EC = 0x25: DABT (current EL), IL = 32 bits
+  SET = 0, FnV = 0
+  EA = 0, S1PTW = 0
+  FSC = 0x04: level 0 translation fault
+Data abort info:
+  ISV = 0, ISS = 0x00000004
+  CM = 0, WnR = 0
+[bf908d5e7640333a] address between user and kernel address ranges
+Internal error: Oops: 0000000096000004 [#1] PREEMPT SMP
+Modules linked in:
+CPU: 0 PID: 3084 Comm: syz-executor291 Not tainted 6.1.0-rc5-syzkaller-32269-g9500fc6e9e60 #0
+Hardware name: Google Google Compute Engine/Google Compute Engine, BIOS Google 09/30/2022
+pstate: 40400005 (nZcv daif +PAN -UAO -TCO -DIT -SSBS BTYPE=--)
+pc : __kmem_cache_alloc_node+0x17c/0x350 mm/slub.c:3437
+lr : slab_pre_alloc_hook mm/slab.h:712 [inline]
+lr : slab_alloc_node mm/slub.c:3318 [inline]
+lr : __kmem_cache_alloc_node+0x80/0x350 mm/slub.c:3437
+sp : ffff80000ff636c0
+x29: ffff80000ff636d0 x28: ffff0000c9848000 x27: 0000000000000000
+x26: 0000000000001000 x25: 00000000ffffffff x24: ffff80000bea07bc
+x23: 0000000000001000 x22: bf908d5e76402b3a x21: 0000000000000000
+x20: 0000000000000c40 x19: ffff0000c0001700 x18: 000000000000ba7e
+x17: 000000000000b67e x16: ffff80000dc18158 x15: ffff0000c9848000
+x14: 0000000000000010 x13: 0000000000000000 x12: ffff0000c9848000
+x11: 0000000000000001 x10: 0000000000000000 x9 : 0000000000000800
+x8 : 00000000000613f9 x7 : ffff8000084c0640 x6 : 0000000000000000
+x5 : 0000000000000000 x4 : 0000000000000001 x3 : 0000000000061401
+x2 : 0000000000000000 x1 : 0000000000000c40 x0 : fffffc00032ed000
+Call trace:
+ next_tid mm/slub.c:2349 [inline]
+ slab_alloc_node mm/slub.c:3382 [inline]
+ __kmem_cache_alloc_node+0x17c/0x350 mm/slub.c:3437
+ __do_kmalloc_node mm/slab_common.c:954 [inline]
+ __kmalloc+0xb4/0x140 mm/slab_common.c:968
+ kmalloc include/linux/slab.h:558 [inline]
+ p9_fcall_init net/9p/client.c:228 [inline]
+ p9_tag_alloc net/9p/client.c:293 [inline]
+ p9_client_prepare_req+0x2b0/0x53c net/9p/client.c:631
+ p9_client_rpc+0xbc/0x548 net/9p/client.c:678
+ p9_client_flush+0x118/0x1b0 net/9p/client.c:596
+ p9_client_rpc+0x4cc/0x548 net/9p/client.c:724
+ p9_client_create+0x4d8/0x758 net/9p/client.c:1015
+ v9fs_session_init+0xa4/0x9f0 fs/9p/v9fs.c:408
+ v9fs_mount+0x6c/0x568 fs/9p/vfs_super.c:126
+ legacy_get_tree+0x30/0x74 fs/fs_context.c:610
+ vfs_get_tree+0x40/0x140 fs/super.c:1531
+ do_new_mount+0x1dc/0x4e4 fs/namespace.c:3040
+ path_mount+0x358/0x890 fs/namespace.c:3370
+ do_mount fs/namespace.c:3383 [inline]
+ __do_sys_mount fs/namespace.c:3591 [inline]
+ __se_sys_mount fs/namespace.c:3568 [inline]
+ __arm64_sys_mount+0x2c4/0x3c4 fs/namespace.c:3568
+ __invoke_syscall arch/arm64/kernel/syscall.c:38 [inline]
+ invoke_syscall arch/arm64/kernel/syscall.c:52 [inline]
+ el0_svc_common+0x138/0x220 arch/arm64/kernel/syscall.c:142
+ do_el0_svc+0x48/0x164 arch/arm64/kernel/syscall.c:206
+ el0_svc+0x58/0x150 arch/arm64/kernel/entry-common.c:637
+ el0t_64_sync_handler+0x84/0xf0 arch/arm64/kernel/entry-common.c:655
+ el0t_64_sync+0x190/0x194 arch/arm64/kernel/entry.S:584
+Code: 54000ee1 34000eeb b9402a69 91002103 (f8696ada) 
+---[ end trace 0000000000000000 ]---
+----------------
+Code disassembly (best guess):
+   0:	54000ee1 	b.ne	0x1dc  // b.any
+   4:	34000eeb 	cbz	w11, 0x1e0
+   8:	b9402a69 	ldr	w9, [x19, #40]
+   c:	91002103 	add	x3, x8, #0x8
+* 10:	f8696ada 	ldr	x26, [x22, x9] <-- trapping instruction
+
+
+---
+This report is generated by a bot. It may contain errors.
+See https://goo.gl/tpsmEJ for more information about syzbot.
+syzbot engineers can be reached at syzkaller@googlegroups.com.
+
+syzbot will keep track of this issue. See:
+https://goo.gl/tpsmEJ#status for how to communicate with syzbot.
+syzbot can test patches for this issue, for details see:
+https://goo.gl/tpsmEJ#testing-patches
 
 
 _______________________________________________
