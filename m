@@ -2,86 +2,106 @@ Return-Path: <v9fs-developer-bounces@lists.sourceforge.net>
 X-Original-To: lists+v9fs-developer@lfdr.de
 Delivered-To: lists+v9fs-developer@lfdr.de
 Received: from lists.sourceforge.net (lists.sourceforge.net [216.105.38.7])
-	by mail.lfdr.de (Postfix) with ESMTPS id 16BB362F259
-	for <lists+v9fs-developer@lfdr.de>; Fri, 18 Nov 2022 11:18:57 +0100 (CET)
-Received: from [127.0.0.1] (helo=sfs-ml-2.v29.lw.sourceforge.com)
-	by sfs-ml-2.v29.lw.sourceforge.com with esmtp (Exim 4.95)
+	by mail.lfdr.de (Postfix) with ESMTPS id 94CD762F6A1
+	for <lists+v9fs-developer@lfdr.de>; Fri, 18 Nov 2022 14:56:41 +0100 (CET)
+Received: from [127.0.0.1] (helo=sfs-ml-1.v29.lw.sourceforge.com)
+	by sfs-ml-1.v29.lw.sourceforge.com with esmtp (Exim 4.95)
 	(envelope-from <v9fs-developer-bounces@lists.sourceforge.net>)
-	id 1ovySU-0000KO-Dg;
-	Fri, 18 Nov 2022 10:18:54 +0000
+	id 1ow1rE-0000rr-AS;
+	Fri, 18 Nov 2022 13:56:40 +0000
 Received: from [172.30.20.202] (helo=mx.sourceforge.net)
- by sfs-ml-2.v29.lw.sourceforge.com with esmtps (TLS1.2) tls
+ by sfs-ml-1.v29.lw.sourceforge.com with esmtps (TLS1.2) tls
  TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384 (Exim 4.95)
- (envelope-from <guozihua@huawei.com>) id 1ovySB-0000K3-OU
+ (envelope-from <asmadeus@codewreck.org>) id 1ow1rA-0000qD-RE
  for v9fs-developer@lists.sourceforge.net;
- Fri, 18 Nov 2022 10:18:35 +0000
+ Fri, 18 Nov 2022 13:56:36 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=sourceforge.net; s=x; h=Content-Transfer-Encoding:Content-Type:In-Reply-To:
- From:References:CC:To:Subject:MIME-Version:Date:Message-ID:Sender:Reply-To:
- Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
- Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
+ d=sourceforge.net; s=x; h=Content-Transfer-Encoding:MIME-Version:Message-Id:
+ Date:Subject:Cc:To:From:Sender:Reply-To:Content-Type:Content-ID:
+ Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
+ :Resent-Message-ID:In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:
  List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=xHVP3fcrteL+8r1Xrxo98qT0ErrTRLbvsbWMbmOMm+o=; b=L3u4aStKZAfJ7NnXqg9z7C/l0h
- wHAnIU/UvSEQYsawSSVv7QGfJo+JEtVsJIz/PlgoPXY1oXMGVnQ4IiJq+IR2twjuJWcV6jlHMWtCQ
- pybssPGKyYI7rEDG1Y5lweM6Ik8T23+3tBULXP0jeEP1IdimiAn12sO0ZXWN3OgBDwMc=;
+ bh=CQZUY2pFucgWJB1sP94KlRMevw8XHM75WorqTLQ5yWo=; b=eWh+hGMJlKDY8Zn0cPWHUXQcDr
+ y6P50H5wHJA5/+6yGgHx0xAQ6ZSfyy4cp9fyhzSEyliVFvJGTCilTaDoXvatjfJFVQpO8XDOkng8Z
+ yYlg9mz/h+vySFAYxLLA/LIWkUg+m/StTKx3k5gPThoV3tZjyjMvIRhcObxExHqAtcCo=;
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  ;
- h=Content-Transfer-Encoding:Content-Type:In-Reply-To:From:References:CC:To:
- Subject:MIME-Version:Date:Message-ID:Sender:Reply-To:Content-ID:
- Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
- :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
- List-Post:List-Owner:List-Archive;
- bh=xHVP3fcrteL+8r1Xrxo98qT0ErrTRLbvsbWMbmOMm+o=; b=ERK0kGEwRKCpz8bScmeB9rHT3R
- n6cWP6e99qDOC1622w1uuf9h/iHn6NpmUmeN6t4R3wonG7mustBH3DbyHSH7F6dZKdD8SaxA/4XsP
- OX2CWCN9OXmmisnjF3Lw38n6+XOP4Qum94Av0UCEisbziXxVm1wUcmbsYz6Fc2a5wpys=;
-Received: from szxga08-in.huawei.com ([45.249.212.255])
- by sfi-mx-2.v28.lw.sourceforge.com with esmtps
+ h=Content-Transfer-Encoding:MIME-Version:Message-Id:Date:Subject:Cc:To:From
+ :Sender:Reply-To:Content-Type:Content-ID:Content-Description:Resent-Date:
+ Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:
+ References:List-Id:List-Help:List-Unsubscribe:List-Subscribe:List-Post:
+ List-Owner:List-Archive; bh=CQZUY2pFucgWJB1sP94KlRMevw8XHM75WorqTLQ5yWo=; b=l
+ WLlHuBlDO0zmmvb/dYOvObdFgqq0OYLki8h3OO3eYYzn90g8lLgzU20dn/ZZ0+mIakdBH79k9MxE2
+ RYvwxMkXJrDctJGa5zSIHB77GuN9bEWLXlQryYWoApQ5TXspxj6TWhln6Y22norWwcomhco7i3Xw+
+ 8UkgbIbNNokfq480=;
+Received: from nautica.notk.org ([91.121.71.147])
+ by sfi-mx-1.v28.lw.sourceforge.com with esmtps
  (TLS1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.95)
- id 1ovyS1-0003JR-O2 for v9fs-developer@lists.sourceforge.net;
- Fri, 18 Nov 2022 10:18:29 +0000
-Received: from dggpemm500024.china.huawei.com (unknown [172.30.72.54])
- by szxga08-in.huawei.com (SkyGuard) with ESMTP id 4NDCQm4tfDz15Mj6;
- Fri, 18 Nov 2022 18:17:52 +0800 (CST)
-Received: from [10.67.110.173] (10.67.110.173) by
- dggpemm500024.china.huawei.com (7.185.36.203) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2375.31; Fri, 18 Nov 2022 18:18:16 +0800
-Message-ID: <a6aec93a-1166-1d8a-48de-767bc1eb2214@huawei.com>
-Date: Fri, 18 Nov 2022 18:18:16 +0800
+ id 1ow1qm-00CZzp-PC for v9fs-developer@lists.sourceforge.net;
+ Fri, 18 Nov 2022 13:56:18 +0000
+Received: by nautica.notk.org (Postfix, from userid 108)
+ id D333DC01C; Fri, 18 Nov 2022 14:56:09 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=codewreck.org; s=2;
+ t=1668779769; bh=CQZUY2pFucgWJB1sP94KlRMevw8XHM75WorqTLQ5yWo=;
+ h=From:To:Cc:Subject:Date:From;
+ b=uSvAaMZ0OpQj5Glb1zO0fX4Vtf2UxJ5sbZfbsKWIfztAOXVUTsOHzFmFyc0pmE+t5
+ GQrWZvuuh3a4liNcgeOQwvCoEHFs6y2K7+Yt/77E3yJDKEzFtZGiT3WjkeWt0H/iwl
+ 82ZX0SajJI92Rqi3iomzgjTv9stjt2NyPtAGTpBmygKeGXdJgg8r0vstY/LgzWvsFK
+ tyAHuR1PD6EHY3hz5GWH16hYAsYjBEYo9IM3arp7YcJD4h/hdUtX38LCkhCSNOORBg
+ gWmorINpw+gHsHqP1SOebXgTBaNQYE0ydZ5qQRSt1lzWsAO422MKQjywksSUlOO7wg
+ gFS1rQN5O+GGw==
+X-Spam-Checker-Version: SpamAssassin 3.3.2 (2011-06-06) on nautica.notk.org
+X-Spam-Level: 
+X-Spam-Status: No, score=0.0 required=5.0 tests=UNPARSEABLE_RELAY
+ autolearn=unavailable version=3.3.2
+Received: from odin.codewreck.org (localhost [127.0.0.1])
+ by nautica.notk.org (Postfix) with ESMTPS id 6A553C009;
+ Fri, 18 Nov 2022 14:55:58 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=codewreck.org; s=2;
+ t=1668779760; bh=CQZUY2pFucgWJB1sP94KlRMevw8XHM75WorqTLQ5yWo=;
+ h=From:To:Cc:Subject:Date:From;
+ b=XiMNoADAAyrOPpLTaJNzk8a4IsyZYtJ+O7/RXIn5s83g068QaP45+jsLpxBpwDnfo
+ C5+OMLcLzxe40UuXlB7wiAwffKkXW9YveqbrK5IVaa9RH/AuJ8whqMXlyFG0G1UziS
+ lGWwTs0s8GmziCje641LY3z6twFh3tHcype78ggsA7Hu92Lp+GfQkzjlrmOoK+p19f
+ X9prWTCp8OX5ByauPLfYvkIsBpzcL4TsnSaOuOqmhi9sac1b6FjPcyKq1PDoBPbiZA
+ jHzQxFgLOlkWJ36wmqfexu+Y9wAqpdP3vdSONWV9ImJSC9UtKlNy/YWd7WPY3okRFb
+ 62TjSrtWPcbGA==
+Received: from localhost (odin.codewreck.org [local])
+ by odin.codewreck.org (OpenSMTPD) with ESMTPA id 286f58e1;
+ Fri, 18 Nov 2022 13:55:49 +0000 (UTC)
+From: Dominique Martinet <asmadeus@codewreck.org>
+To: Stefano Stabellini <sstabellini@kernel.org>
+Date: Fri, 18 Nov 2022 22:55:41 +0900
+Message-Id: <20221118135542.63400-1-asmadeus@codewreck.org>
+X-Mailer: git-send-email 2.38.0
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.3.2
-Content-Language: en-US
-To: <asmadeus@codewreck.org>, Christian Schoenebeck <linux_oss@crudebyte.com>
-References: <20221117091159.31533-1-guozihua@huawei.com>
- <3918617.6eBe0Ihrjo@silver> <Y3cRJsRFCZaKrzhe@codewreck.org>
-In-Reply-To: <Y3cRJsRFCZaKrzhe@codewreck.org>
-X-Originating-IP: [10.67.110.173]
-X-ClientProxiedBy: dggems705-chm.china.huawei.com (10.3.19.182) To
- dggpemm500024.china.huawei.com (7.185.36.203)
-X-CFilter-Loop: Reflected
-X-Spam-Score: -4.3 (----)
+X-Spam-Score: -0.2 (/)
 X-Spam-Report: Spam detection software,
- running on the system "util-spamd-1.v13.lw.sourceforge.com", 
+ running on the system "util-spamd-2.v13.lw.sourceforge.com", 
  has NOT identified this incoming email as spam.  The original
  message has been attached to this so you can view it or label
  similar future email.  If you have any questions, see
  the administrator of that system for details.
- Content preview:  On 2022/11/18 12:59,
- asmadeus@codewreck.org wrote: > Christian
- Schoenebeck wrote on Thu, Nov 17, 2022 at 02:33:28PM +0100: >>> GUO Zihua
- (3): >>> 9p: Fix write overflow in p9_read_work >>> 9p: Remove [...] 
- Content analysis details:   (-4.3 points, 6.0 required)
+ Content preview: trans_xen did not check the data fits into the buffer before
+ copying from the xen ring, but we probably should. Add a check that just
+ skips the request and return an error to userspace if it did not f [...] 
+ Content analysis details:   (-0.2 points, 6.0 required)
  pts rule name              description
  ---- ---------------------- --------------------------------------------------
- -2.3 RCVD_IN_DNSWL_MED      RBL: Sender listed at https://www.dnswl.org/,
- medium trust [45.249.212.255 listed in list.dnswl.org]
  0.0 SPF_HELO_NONE          SPF: HELO does not publish an SPF Record
  -0.0 SPF_PASS               SPF: sender matches SPF record
- -2.0 NICE_REPLY_A           Looks like a legit reply (A)
-X-Headers-End: 1ovyS1-0003JR-O2
-Subject: Re: [V9fs-developer] [PATCH 0/3 v2] 9p: Fix write overflow in
- p9_read_work
+ -0.1 DKIM_VALID_EF          Message has a valid DKIM or DK signature from
+ envelope-from domain
+ 0.1 DKIM_SIGNED            Message has a DKIM or DK signature, not necessarily
+ valid
+ -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+ -0.1 DKIM_VALID_AU          Message has a valid DKIM or DK signature from
+ author's domain
+ 0.0 UNPARSEABLE_RELAY      Informational: message has unparseable relay
+ lines
+X-Headers-End: 1ow1qm-00CZzp-PC
+Subject: [V9fs-developer] [PATCH 1/2] 9p/xen: check logical size for buffer
+ size
 X-BeenThere: v9fs-developer@lists.sourceforge.net
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -93,57 +113,70 @@ List-Post: <mailto:v9fs-developer@lists.sourceforge.net>
 List-Help: <mailto:v9fs-developer-request@lists.sourceforge.net?subject=help>
 List-Subscribe: <https://lists.sourceforge.net/lists/listinfo/v9fs-developer>, 
  <mailto:v9fs-developer-request@lists.sourceforge.net?subject=subscribe>
-From: "Guozihua \(Scott\) via V9fs-developer"
- <v9fs-developer@lists.sourceforge.net>
-Reply-To: "Guozihua \(Scott\)" <guozihua@huawei.com>
-Cc: lucho@ionkov.net, ericvh@gmail.com, netdev@vger.kernel.org,
- edumazet@google.com, v9fs-developer@lists.sourceforge.net, kuba@kernel.org,
- pabeni@redhat.com, davem@davemloft.net
-Content-Transfer-Encoding: base64
-Content-Type: text/plain; charset="utf-8"; Format="flowed"
+Cc: v9fs-developer@lists.sourceforge.net, linux_oss@crudebyte.com,
+ linux-kernel@vger.kernel.org, GUO Zihua <guozihua@huawei.com>
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: v9fs-developer-bounces@lists.sourceforge.net
 
-T24gMjAyMi8xMS8xOCAxMjo1OSwgYXNtYWRldXNAY29kZXdyZWNrLm9yZyB3cm90ZToKPiBDaHJp
-c3RpYW4gU2Nob2VuZWJlY2sgd3JvdGUgb24gVGh1LCBOb3YgMTcsIDIwMjIgYXQgMDI6MzM6MjhQ
-TSArMDEwMDoKPj4+IEdVTyBaaWh1YSAoMyk6Cj4+PiAgICA5cDogRml4IHdyaXRlIG92ZXJmbG93
-IGluIHA5X3JlYWRfd29yawo+Pj4gICAgOXA6IFJlbW92ZSByZWR1bmRlbnQgY2hlY2tzIGZvciBt
-ZXNzYWdlIHNpemUgYWdhaW5zdCBtc2l6ZS4KPj4+ICAgIDlwOiBVc2UgUDlfSERSU1ogZm9yIGhl
-YWRlciBzaXplCj4+Cj4+IEZvciBlbnRpcmUgc2VyaWVzOgo+Pgo+PiBSZXZpZXdlZC1ieTogQ2hy
-aXN0aWFuIFNjaG9lbmViZWNrIDxsaW51eF9vc3NAY3J1ZGVieXRlLmNvbT4KPj4KPj4gSSBhZ3Jl
-ZSB3aXRoIERvbWluaXF1ZSB0aGF0IHBhdGNoIDEgYW5kIDIgc2hvdWxkIGJlIG1lcmdlZC4KPiAK
-PiBUaGFuayB5b3UgYm90aCEKPiAKPiBJJ3ZlIGp1c3QgcHVzaGVkIHRoZSBwYXRjaGVzIHRvIG15
-IG5leHQgYnJhbmNoOgo+IGh0dHBzOi8vZ2l0aHViLmNvbS9tYXJ0aW5ldGQvbGludXgvY29tbWl0
-cy85cC1uZXh0Cj4gCj4gLi4uIHdpdGggYSB0d2lzdCwgYXMgdGhlIG9yaWdpbmFsIHBhdGNoIGZh
-aWxzIG9uIGFueSBub3JtYWwgd29ya2xvYWQ6Cj4gLS0tCj4gLyAjIGxzIC9tbnQKPiA5cG5ldDog
-LS0gcDlfcmVhZF93b3JrICgxOSk6IHJlcXVlc3RlZCBwYWNrZXQgc2l6ZSB0b28gYmlnOiA5IGZv
-ciB0YWcgMCB3aXRoIGNhcGFjaXR5IDExCj4gLS0tCj4gKHNvIG11Y2ggZm9yIGhhdmluZyB0d28g
-cGFpcnMgb2YgZXllcyA6LUQKPiBCeSB0aGUgd2F5IHdlIC1yZWFsbHktIG5lZWQgdG8gcmVwbGFj
-ZSBQOV9ERUJVR19FUlJPUiBieSBwcl9lcnJvciBvcgo+IHNvbWV0aGluZywgdGhlc2Ugc2hvdWxk
-IGJlIGRpc3BsYXllZCB3aXRob3V0IGhhdmluZyB0byBzcGVjaWZ5Cj4gZGVidWc9MS4uLikKPiAK
-PiAKPiBjYXBhY2l0eSBpcyBvbmx5IHNldCBpbiBhIGhhbmRmdWwgb2YgcGxhY2VzIChhbGxvYyB0
-aW1lLCBoYXJkY29kZWQgNyBpbgo+IHRyYW5zX2ZkLCBhZnRlciByZWNlaXZpbmcgcGFja2V0KSBz
-byBJJ3ZlIGFkZGVkIGxvZ3MgYW5kIG91ciBhbGxvYwo+IHJlYWxseSBwYXNzZWQgJzExJyBmb3Ig
-YWxsb2NfcnNpemUgKGxvZ2dpbmcgdHNpemUvcnNpemUpCj4gCj4gOXBuZXQ6ICgwMDAwMDA4Nykg
-Pj4+IFRXQUxLIGZpZHMgMSwyIG53bmFtZSAwZCB3bmFtZVswXSAobnVsbCkKPiA5cG5ldDogLS0g
-cDlfdGFnX2FsbG9jICg4Nyk6IGFsbG9jYXRpbmcgY2FwYWNpdHkgdG8gMTcvMTEgZm9yIHRhZyAw
-Cj4gOXBuZXQ6IC0tIHA5X3JlYWRfd29yayAoMTkpOiByZXF1ZXN0ZWQgcGFja2V0IHNpemUgdG9v
-IGJpZzogOSBmb3IgdGFnIDAgd2l0aCBjYXBhY2l0eSAxMQo+IAo+IC4uLiBTbyB0aGlzIGlzIFJX
-QUxLLCByaWdodDoKPiBzaXplWzRdIFJ3YWxrIHRhZ1syXSBud3FpZFsyXSBud3FpZCood3FpZFsx
-M10pCj4gNCAuLi4uLiA1Li4uLiA3Li4uLi4gOS4uLi4uLi4gcGFja2V0IGVuZCBhdCA5IGFzIDAg
-bndxaWQuCj4gV2UgaGF2ZSBjYXBhY2l0eSAxMSB0byBhbGxvdyBybGVycm9yX3NpemUgd2hpY2gg
-aXMgYmlnZ2VyOyBldmVyeXRoaW5nIGlzCj4gZ29vZC4KPiAKPiBMb25nIHN0b3J5IHNob3J0LCB0
-aGUgc2l6ZSBoZWFkZXIgaW5jbHVkZXMgdGhlIGhlYWRlciBzaXplLCB3aGVuIEkKPiBtaXNyZWFk
-IGh0dHBzOi8vOWZhbnMuZ2l0aHViLmlvL3BsYW45cG9ydC9tYW4vbWFuOS92ZXJzaW9uLmh0bWwg
-dG8KPiBzYXkgaXQgZGlkbid0IChpdCBqdXN0IHNheXMgaXQgZG9lc24ndCBpbmNsdWRlIHRoZSBl
-bnZlbG9waW5nIHRyYW5zcG9ydAo+IHByb3RvY29sLCBpdCBzdGFydHMgZnJvbSBzaXplIGFscmln
-aHQgYW5kIEkganVzdCBtaXNyZWFkIHRoYXQpCj4gVGhhbmtzZnVsbHkgdGhlIGNvZGUgY2F1Z2h0
-IGl0Lgo+IAo+IFNvIEkndmUganVzdCByZW1vdmVkIHRoZSAtIG9mZnNldCBwYXJ0IGFuZCB0aGlu
-Z3MgYXBwZWFyIHRvIHdvcmsgYWdhaW4uCj4gCj4gR3VvIFppaHVhLCBjYW4geW91IGNoZWNrIHRo
-aXMgc3RpbGwgZml4ZXMgeW91ciBzeXogcmVwcm8sIG9yIHdhcyB0aGF0Cj4gc3Vic3RyYWN0aW9u
-IG5lZWRlZD8gSWYgaXQncyBzdGlsbCBuZWVkZWQgd2UgaGF2ZSBhbiBvZmYgYnkgMSBzb21ld2hl
-cmUKPiB0byBsb29rIGZvci4KPiAKCkhpIERvbWluaXF1ZSwgSSByZXRyaWVkIHRoZSByZXBybyBv
-biB5b3VyIGJyYW5jaCwgdGhlIGlzc3VlIGRvZXMgbm90IApyZXByb2R1Y2UuIFdoYXQgYSBnb29k
-IHBhaXIgb2YgZXllcyA6Ke+8gQoKLS0gCkJlc3QKR1VPIFppaHVhCgoKCl9fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fClY5ZnMtZGV2ZWxvcGVyIG1haWxpbmcg
-bGlzdApWOWZzLWRldmVsb3BlckBsaXN0cy5zb3VyY2Vmb3JnZS5uZXQKaHR0cHM6Ly9saXN0cy5z
-b3VyY2Vmb3JnZS5uZXQvbGlzdHMvbGlzdGluZm8vdjlmcy1kZXZlbG9wZXIK
+trans_xen did not check the data fits into the buffer before copying
+from the xen ring, but we probably should.
+Add a check that just skips the request and return an error to
+userspace if it did not fit
+
+Signed-off-by: Dominique Martinet <asmadeus@codewreck.org>
+---
+
+This comes more or less as a follow up of a fix for trans_fd:
+https://lkml.kernel.org/r/20221117091159.31533-1-guozihua@huawei.com
+Where msize should be replaced by capacity check, except trans_xen
+did not actually use to check the size fits at all.
+
+While we normally trust the hypervisor (they can probably do whatever
+they want with our memory), a bug in the 9p server is always possible so
+sanity checks never hurt, especially now buffers got drastically smaller
+with a recent patch.
+
+My setup for xen is unfortunately long dead so I cannot test this:
+Stefano, you've tested v9fs xen patches in the past, would you mind
+verifying this works as well?
+
+ net/9p/trans_xen.c | 9 +++++++++
+ 1 file changed, 9 insertions(+)
+
+diff --git a/net/9p/trans_xen.c b/net/9p/trans_xen.c
+index b15c64128c3e..66ceb3b3ae30 100644
+--- a/net/9p/trans_xen.c
++++ b/net/9p/trans_xen.c
+@@ -208,6 +208,14 @@ static void p9_xen_response(struct work_struct *work)
+ 			continue;
+ 		}
+ 
++		if (h.size > req->rc.capacity) {
++			dev_warn(&priv->dev->dev,
++				 "requested packet size too big: %d for tag %d with capacity %zd\n",
++		                 h.size, h.tag, rreq->rc.capacity);
++			req->status = REQ_STATUS_ERROR;
++			goto recv_error;
++		}
++
+ 		memcpy(&req->rc, &h, sizeof(h));
+ 		req->rc.offset = 0;
+ 
+@@ -217,6 +225,7 @@ static void p9_xen_response(struct work_struct *work)
+ 				     masked_prod, &masked_cons,
+ 				     XEN_9PFS_RING_SIZE(ring));
+ 
++recv_error:
+ 		virt_mb();
+ 		cons += h.size;
+ 		ring->intf->in_cons = cons;
+-- 
+2.38.1
+
+
+
+_______________________________________________
+V9fs-developer mailing list
+V9fs-developer@lists.sourceforge.net
+https://lists.sourceforge.net/lists/listinfo/v9fs-developer
