@@ -2,74 +2,72 @@ Return-Path: <v9fs-developer-bounces@lists.sourceforge.net>
 X-Original-To: lists+v9fs-developer@lfdr.de
 Delivered-To: lists+v9fs-developer@lfdr.de
 Received: from lists.sourceforge.net (lists.sourceforge.net [216.105.38.7])
-	by mail.lfdr.de (Postfix) with ESMTPS id B70A26328FF
-	for <lists+v9fs-developer@lfdr.de>; Mon, 21 Nov 2022 17:08:59 +0100 (CET)
-Received: from [127.0.0.1] (helo=sfs-ml-4.v29.lw.sourceforge.com)
-	by sfs-ml-4.v29.lw.sourceforge.com with esmtp (Exim 4.95)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6D034632913
+	for <lists+v9fs-developer@lfdr.de>; Mon, 21 Nov 2022 17:11:51 +0100 (CET)
+Received: from [127.0.0.1] (helo=sfs-ml-1.v29.lw.sourceforge.com)
+	by sfs-ml-1.v29.lw.sourceforge.com with esmtp (Exim 4.95)
 	(envelope-from <v9fs-developer-bounces@lists.sourceforge.net>)
-	id 1ox9Lt-0006UM-OQ;
-	Mon, 21 Nov 2022 16:08:57 +0000
+	id 1ox9Og-0006e9-1T;
+	Mon, 21 Nov 2022 16:11:50 +0000
 Received: from [172.30.20.202] (helo=mx.sourceforge.net)
- by sfs-ml-4.v29.lw.sourceforge.com with esmtps (TLS1.2) tls
+ by sfs-ml-1.v29.lw.sourceforge.com with esmtps (TLS1.2) tls
  TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384 (Exim 4.95) (envelope-from
- <3kaJ7YwkbAOYaghSITTMZIXXQL.OWWOTMcaMZKWVbMVb.KWU@M3KW2WVRGUFZ5GODRSRYTGD7.apphosting.bounces.google.com>)
- id 1ox9Ls-0006UD-5H for v9fs-developer@lists.sourceforge.net;
- Mon, 21 Nov 2022 16:08:56 +0000
+ <3PKN7YwkbAJMFLM7x881ExCC50.3BB381HF1EzBAG1AG.zB9@M3KW2WVRGUFZ5GODRSRYTGD7.apphosting.bounces.google.com>)
+ id 1ox9Of-0006du-2U for v9fs-developer@lists.sourceforge.net;
+ Mon, 21 Nov 2022 16:11:49 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
  d=sourceforge.net; s=x; h=Content-Type:To:From:Subject:Message-ID:Date:
  MIME-Version:Sender:Reply-To:Cc:Content-Transfer-Encoding:Content-ID:
  Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
  :Resent-Message-ID:In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:
  List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=cRtF/7G+l7epFRHts1bcn9egmT7R8SSB4Y+ewG7hPuc=; b=Wd8wqqvtnaeYQX+EtSOsWKBW+G
- jjYNuEJE9pb+t2sx3mKXvWdGvKvGJ/LjnA3W5+xEUde6fqPwXGuBAwYEoMSXDfffPOeB2vovzL8gg
- QtLHptlBQkd4L3nxXvRimM5zE5ZQa0uUng97rIgNpPj2p1Kr1xGCVoTiwbU8f7jvIPe8=;
+ bh=wQ1zfeFmNsAsIxaKH/SjGFqk5lQttN1A1CeY8+UIilU=; b=Z+zo+AMz2stlWrt88UFqJnUnyp
+ gtB1ZDvIU9C5mezcvGt5EUGB7+s6+i66367vGNRxjN816dhKuqNFw7vvjp+ZQxTJ1FkEn3YELPf+y
+ dtCWRwzX+HMZfGvM5htFtzTE3/RmT5Wx/b0cICt1nxwYNyBg2GrPDru0rnX6sJxkhvgk=;
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  ;
  h=Content-Type:To:From:Subject:Message-ID:Date:MIME-Version:Sender:Reply-To
  :Cc:Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
  Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:
  References:List-Id:List-Help:List-Unsubscribe:List-Subscribe:List-Post:
- List-Owner:List-Archive; bh=cRtF/7G+l7epFRHts1bcn9egmT7R8SSB4Y+ewG7hPuc=; b=R
- SWVv1O25frQI5vbjV8iQMFcktSyJjQqr4a62VU9oJ+EJ3H5UPbtKw8Jlk9j38Bwkfmkyd06qgJjdN
- JWyJC45f4rxDMhyjwiwVVcvvsDmlgftML64PXHj794d2m360yW09Nfs+AfDUXSiZ0WYy2+SJIwX8F
- Mq1pHysRBxCUsUUE=;
-Received: from mail-il1-f198.google.com ([209.85.166.198])
+ List-Owner:List-Archive; bh=wQ1zfeFmNsAsIxaKH/SjGFqk5lQttN1A1CeY8+UIilU=; b=m
+ V1cMTYXbjH8B5VRkC7JPphnVsiHRAD53Yjx7jJE9GpMZaoEB3NVkkg9GSfpEyk8lV60z+YRAJhSnT
+ COZfRqj6tHyKkN4x0Q8XFz4KtcTLB2tOSU0C5DEOueEPNz9eqIBNAkvHmeASTRhE7VlEfOsv7QNUk
+ ueIuazOjJk3SrZB4=;
+Received: from mail-io1-f71.google.com ([209.85.166.71])
  by sfi-mx-1.v28.lw.sourceforge.com with esmtps
  (TLS1.2:ECDHE-RSA-AES128-GCM-SHA256:128) (Exim 4.95)
- id 1ox9Lr-007rWo-Df for v9fs-developer@lists.sourceforge.net;
- Mon, 21 Nov 2022 16:08:56 +0000
-Received: by mail-il1-f198.google.com with SMTP id
- g4-20020a92cda4000000b00301ff06da14so8870558ild.11
+ id 1ox9Ob-007se3-M6 for v9fs-developer@lists.sourceforge.net;
+ Mon, 21 Nov 2022 16:11:49 +0000
+Received: by mail-io1-f71.google.com with SMTP id
+ f2-20020a5ec602000000b006dc67829888so5662643iok.3
  for <v9fs-developer@lists.sourceforge.net>;
- Mon, 21 Nov 2022 08:08:55 -0800 (PST)
+ Mon, 21 Nov 2022 08:11:45 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20210112;
  h=to:from:subject:message-id:date:mime-version:x-gm-message-state
  :from:to:cc:subject:date:message-id:reply-to;
- bh=cRtF/7G+l7epFRHts1bcn9egmT7R8SSB4Y+ewG7hPuc=;
- b=5fxzOlHkrnF+HcXWcNtpdABJjlbgughQ72A6GVxl25OVRlqJQ+NwBaEy30pNf+nBCR
- Rt1d6IKTLZjlSfeY0KBl1aQGLqabWPW8U7mLbCvfcgqOxhrC0U056rgXeobkowRZg0pO
- Wpa5ieu6AM4BGzHNjNiFRPpXd6bLGDmNc/BKx0lZ3/Ar1fDY+1X/QR2+2wmSf5HAwkIf
- D1UXpocMSTcs4LbXEElu0IaQ9ct5QvSUkOb4SV4UJorLevW01ZDRu+mWqo+/kSHjoAQu
- 8a/IatPFCbsv13guSeDiu+gI6WqSZA5LBlLd8NJI/YvXzdFcdrP4jyLOCmIH5xQJbN8Y
- 7ekQ==
-X-Gm-Message-State: ANoB5pmxZRDNLItjCQywv0VGKHRU8/GO7HE9G7RhE8rkLgHCY2h7w58n
- C6rQEuDJf4rTEq0z590pc9U1/UJym3kSmxNITAie95epekKR
-X-Google-Smtp-Source: AA0mqf75ZfOjsU8OI3y+wawtTrScE+Uvt6LleEz39iHh+6x6XAkzYqCeiGVl1bisjjoKNgV6BfvFixWeANz2HuHb99EEvi8rRx3z
+ bh=wQ1zfeFmNsAsIxaKH/SjGFqk5lQttN1A1CeY8+UIilU=;
+ b=MzExwVDKGV8bADxFkhBeE7TRxTOYbGuRqjpJIyczvIX3Tn4PcqrD44YORvcoJANg80
+ Wu8fLMMGdLUXx8LTIDWRgLjs0+CYRPoHF5hNDt2WYcHB8lVjkYeIGmPFui6HMKgwhb8h
+ XwjQEUgyBTv6igh3LCv+PB62xHZ2xq/f+/2DfTjFX+6piYb2zbmttpenwL2415smFeBw
+ QoFyhBQouuogwjG4gE9cgODqy9q300/DataFsrz99RPJ8sgXrK+anRnYTgzVuC4kKAoj
+ trqKPGs3ZbuPrDc3sqYuyosyZg++bFQQi9oBzqmQ4/bmxczlBWsy5SKpnwgX3aZ95XK0
+ rUCA==
+X-Gm-Message-State: ANoB5plY0u9OGnW75uPHFiXsRf3oIGu7JflRgPyyXm9gB83aDgsVzRmm
+ St498bpLMh/FM2xXtWyuU2unkY7CcB2v5f+Id/OuIZhm71Ss
+X-Google-Smtp-Source: AA0mqf5TKpsu7cjyArCHQI4Bv/jOsQ9WA1NfZ8/8TVAf98OxGihpm9pZJD/r4zuyXKu5LbcMUz7XKuSIdY/0TGtqYL+OgaNOkCfA
 MIME-Version: 1.0
-X-Received: by 2002:a02:9627:0:b0:375:1998:9e4f with SMTP id
- c36-20020a029627000000b0037519989e4fmr1816061jai.136.1669046929469; Mon, 21
- Nov 2022 08:08:49 -0800 (PST)
-Date: Mon, 21 Nov 2022 08:08:49 -0800
+X-Received: by 2002:a92:280a:0:b0:302:47fc:5578 with SMTP id
+ l10-20020a92280a000000b0030247fc5578mr37957ilf.45.1669047100041; Mon, 21 Nov
+ 2022 08:11:40 -0800 (PST)
+Date: Mon, 21 Nov 2022 08:11:40 -0800
 X-Google-Appengine-App-Id: s~syzkaller
 X-Google-Appengine-App-Id-Alias: syzkaller
-Message-ID: <00000000000058348b05edfd45ff@google.com>
-From: syzbot <syzbot+2600f43a81c05675a9ae@syzkaller.appspotmail.com>
-To: asmadeus@codewreck.org, davem@davemloft.net, edumazet@google.com, 
- ericvh@gmail.com, kuba@kernel.org, linux-kernel@vger.kernel.org, 
- linux_oss@crudebyte.com, lucho@ionkov.net, netdev@vger.kernel.org, 
- pabeni@redhat.com, syzkaller-bugs@googlegroups.com, 
+Message-ID: <00000000000082f1d605edfd4f60@google.com>
+From: syzbot <syzbot+fbd9516e00e67ffaf87d@syzkaller.appspotmail.com>
+To: asmadeus@codewreck.org, ericvh@gmail.com, linux-kernel@vger.kernel.org, 
+ linux_oss@crudebyte.com, lucho@ionkov.net, syzkaller-bugs@googlegroups.com, 
  v9fs-developer@lists.sourceforge.net
 X-Spam-Score: 3.1 (+++)
 X-Spam-Report: Spam detection software,
@@ -92,12 +90,12 @@ X-Spam-Report: Spam detection software,
  0.2 HEADER_FROM_DIFFERENT_DOMAINS From and EnvelopeFrom 2nd level
  mail domains are different
  -0.0 SPF_PASS               SPF: sender matches SPF record
- -0.0 RCVD_IN_MSPIKE_H2      RBL: Average reputation (+2)
- [209.85.166.198 listed in wl.mailspike.net]
  -0.0 RCVD_IN_DNSWL_NONE     RBL: Sender listed at https://www.dnswl.org/,
- no trust [209.85.166.198 listed in list.dnswl.org]
-X-Headers-End: 1ox9Lr-007rWo-Df
-Subject: [V9fs-developer] [syzbot] WARNING: refcount bug in p9_client_walk
+ no trust [209.85.166.71 listed in list.dnswl.org]
+ -0.0 RCVD_IN_MSPIKE_H2      RBL: Average reputation (+2)
+ [209.85.166.71 listed in wl.mailspike.net]
+X-Headers-End: 1ox9Ob-007se3-M6
+Subject: [V9fs-developer] [syzbot] BUG: corrupted list in v9fs_session_close
 X-BeenThere: v9fs-developer@lists.sourceforge.net
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -119,13 +117,13 @@ syzbot found the following issue on:
 
 HEAD commit:    9500fc6e9e60 Merge branch 'for-next/core' into for-kernelci
 git tree:       git://git.kernel.org/pub/scm/linux/kernel/git/arm64/linux.git for-kernelci
-console output: https://syzkaller.appspot.com/x/log.txt?x=1519526e880000
+console output: https://syzkaller.appspot.com/x/log.txt?x=10ca37d9880000
 kernel config:  https://syzkaller.appspot.com/x/.config?x=b25c9f218686dd5e
-dashboard link: https://syzkaller.appspot.com/bug?extid=2600f43a81c05675a9ae
+dashboard link: https://syzkaller.appspot.com/bug?extid=fbd9516e00e67ffaf87d
 compiler:       Debian clang version 13.0.1-++20220126092033+75e33f71c2da-1~exp1~20220126212112.63, GNU ld (GNU Binutils for Debian) 2.35.2
 userspace arch: arm64
-syz repro:      https://syzkaller.appspot.com/x/repro.syz?x=15ff2aed880000
-C reproducer:   https://syzkaller.appspot.com/x/repro.c?x=13b38365880000
+
+Unfortunately, I don't have any reproducer for this issue yet.
 
 Downloadable assets:
 disk image: https://storage.googleapis.com/syzbot-assets/1363e60652f7/disk-9500fc6e.raw.xz
@@ -133,61 +131,48 @@ vmlinux: https://storage.googleapis.com/syzbot-assets/fcc4da811bb6/vmlinux-9500f
 kernel image: https://storage.googleapis.com/syzbot-assets/0b554298f1fa/Image-9500fc6e.gz.xz
 
 IMPORTANT: if you fix the issue, please add the following tag to the commit:
-Reported-by: syzbot+2600f43a81c05675a9ae@syzkaller.appspotmail.com
+Reported-by: syzbot+fbd9516e00e67ffaf87d@syzkaller.appspotmail.com
 
+list_del corruption. prev->next should be ffff00011fd79548, but was ffff00014c2e3030. (prev=ffff00010c388948)
 ------------[ cut here ]------------
-refcount_t: underflow; use-after-free.
-WARNING: CPU: 1 PID: 3083 at lib/refcount.c:28 refcount_warn_saturate+0x1a0/0x1c8 lib/refcount.c:28
+kernel BUG at lib/list_debug.c:61!
+Internal error: Oops - BUG: 00000000f2000800 [#1] PREEMPT SMP
 Modules linked in:
-CPU: 1 PID: 3083 Comm: syz-executor181 Not tainted 6.1.0-rc5-syzkaller-32269-g9500fc6e9e60 #0
+CPU: 1 PID: 3127 Comm: syz-executor.4 Not tainted 6.1.0-rc5-syzkaller-32269-g9500fc6e9e60 #0
 Hardware name: Google Google Compute Engine/Google Compute Engine, BIOS Google 09/30/2022
 pstate: 60400005 (nZCv daif +PAN -UAO -TCO -DIT -SSBS BTYPE=--)
-pc : refcount_warn_saturate+0x1a0/0x1c8 lib/refcount.c:28
-lr : refcount_warn_saturate+0x1a0/0x1c8 lib/refcount.c:28
-sp : ffff800012e7b9b0
-x29: ffff800012e7b9b0 x28: ffff0000c6b51a40 x27: 0000000020000040
-x26: 0000000000010002 x25: 0000000000000000 x24: ffff0000cd574088
-x23: 0000000000000000 x22: 0000000000000000 x21: ffff0000ca9ffc0c
-x20: 0000000000000003 x19: ffff80000d98f000 x18: 00000000000001cc
-x17: 0000000000000000 x16: ffff80000dc18158 x15: ffff0000c6b51a40
-x14: 0000000000000000 x13: 00000000ffffffff x12: ffff0000c6b51a40
-x11: ff808000081c6510 x10: 0000000000000000 x9 : 2060ebe174811d00
-x8 : 2060ebe174811d00 x7 : ffff800008165f54 x6 : 0000000000000000
+pc : __list_del_entry_valid+0xbc/0xd0 lib/list_debug.c:59
+lr : __list_del_entry_valid+0xbc/0xd0 lib/list_debug.c:59
+sp : ffff800012ddbcb0
+x29: ffff800012ddbcb0 x28: ffff0000c3e69a40 x27: 0000000000000000
+x26: 00000000000000c0 x25: 0000000000000002 x24: ffff80000d3ad050
+x23: ffff80000d3a9000 x22: 0000000000000000 x21: 0000000000000000
+x20: 0000000000000000 x19: ffff00011fd79500 x18: 00000000000000c0
+x17: 20747562202c3834 x16: ffff80000dc18158 x15: ffff0000c3e69a40
+x14: 0000000000000000 x13: 00000000ffffffff x12: ffff0000c3e69a40
+x11: ff808000081c6510 x10: 0000000000000000 x9 : d3c609970caf8000
+x8 : d3c609970caf8000 x7 : ffff80000c0b2b74 x6 : 0000000000000000
 x5 : 0000000000000080 x4 : 0000000000000001 x3 : 0000000000000000
-x2 : ffff0001fefddcc8 x1 : 0000000100000000 x0 : 0000000000000026
+x2 : ffff0001fefddcc8 x1 : 0000000100000001 x0 : 000000000000006d
 Call trace:
- refcount_warn_saturate+0x1a0/0x1c8 lib/refcount.c:28
- __refcount_sub_and_test include/linux/refcount.h:283 [inline]
- __refcount_dec_and_test include/linux/refcount.h:315 [inline]
- refcount_dec_and_test include/linux/refcount.h:333 [inline]
- p9_fid_put include/net/9p/client.h:275 [inline]
- p9_client_walk+0x2a4/0x2e8 net/9p/client.c:1190
- v9fs_vfs_lookup+0xa0/0x37c fs/9p/vfs_inode.c:777
- __lookup_slow+0x14c/0x204 fs/namei.c:1685
- lookup_slow+0x44/0x68 fs/namei.c:1702
- walk_component+0x178/0x1b0 fs/namei.c:1993
- lookup_last fs/namei.c:2450 [inline]
- path_lookupat+0xc4/0x208 fs/namei.c:2474
- filename_lookup+0xf8/0x264 fs/namei.c:2503
- user_path_at_empty+0x5c/0x114 fs/namei.c:2876
- user_path_at include/linux/namei.h:57 [inline]
- do_mount fs/namespace.c:3380 [inline]
- __do_sys_mount fs/namespace.c:3591 [inline]
- __se_sys_mount fs/namespace.c:3568 [inline]
- __arm64_sys_mount+0x28c/0x3c4 fs/namespace.c:3568
- __invoke_syscall arch/arm64/kernel/syscall.c:38 [inline]
- invoke_syscall arch/arm64/kernel/syscall.c:52 [inline]
- el0_svc_common+0x138/0x220 arch/arm64/kernel/syscall.c:142
- do_el0_svc+0x48/0x164 arch/arm64/kernel/syscall.c:206
- el0_svc+0x58/0x150 arch/arm64/kernel/entry-common.c:637
+ __list_del_entry_valid+0xbc/0xd0 lib/list_debug.c:59
+ __list_del_entry include/linux/list.h:134 [inline]
+ list_del include/linux/list.h:148 [inline]
+ v9fs_session_close+0x8c/0xd8 fs/9p/v9fs.c:516
+ v9fs_kill_super+0x34/0x50 fs/9p/vfs_super.c:226
+ deactivate_locked_super+0x70/0xe8 fs/super.c:332
+ deactivate_super+0xd0/0xd4 fs/super.c:363
+ cleanup_mnt+0x184/0x1c0 fs/namespace.c:1186
+ __cleanup_mnt+0x20/0x30 fs/namespace.c:1193
+ task_work_run+0x100/0x148 kernel/task_work.c:179
+ resume_user_mode_work include/linux/resume_user_mode.h:49 [inline]
+ do_notify_resume+0x174/0x1f0 arch/arm64/kernel/signal.c:1127
+ prepare_exit_to_user_mode arch/arm64/kernel/entry-common.c:137 [inline]
+ exit_to_user_mode arch/arm64/kernel/entry-common.c:142 [inline]
+ el0_svc+0x9c/0x150 arch/arm64/kernel/entry-common.c:638
  el0t_64_sync_handler+0x84/0xf0 arch/arm64/kernel/entry-common.c:655
  el0t_64_sync+0x190/0x194 arch/arm64/kernel/entry.S:584
-irq event stamp: 1078
-hardirqs last  enabled at (1077): [<ffff800008165fe4>] raw_spin_rq_unlock_irq kernel/sched/sched.h:1366 [inline]
-hardirqs last  enabled at (1077): [<ffff800008165fe4>] finish_lock_switch+0x94/0xe8 kernel/sched/core.c:4950
-hardirqs last disabled at (1078): [<ffff80000c0a4f34>] el1_dbg+0x24/0x80 arch/arm64/kernel/entry-common.c:405
-softirqs last  enabled at (1070): [<ffff8000080102e4>] _stext+0x2e4/0x37c
-softirqs last disabled at (1059): [<ffff800008017c88>] ____do_softirq+0x14/0x20 arch/arm64/kernel/irq.c:79
+Code: f001b780 912ce000 aa0803e3 94aa876f (d4210000) 
 ---[ end trace 0000000000000000 ]---
 
 
@@ -198,8 +183,6 @@ syzbot engineers can be reached at syzkaller@googlegroups.com.
 
 syzbot will keep track of this issue. See:
 https://goo.gl/tpsmEJ#status for how to communicate with syzbot.
-syzbot can test patches for this issue, for details see:
-https://goo.gl/tpsmEJ#testing-patches
 
 
 _______________________________________________
