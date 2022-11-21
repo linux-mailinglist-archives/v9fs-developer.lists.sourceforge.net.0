@@ -2,124 +2,98 @@ Return-Path: <v9fs-developer-bounces@lists.sourceforge.net>
 X-Original-To: lists+v9fs-developer@lfdr.de
 Delivered-To: lists+v9fs-developer@lfdr.de
 Received: from lists.sourceforge.net (lists.sourceforge.net [216.105.38.7])
-	by mail.lfdr.de (Postfix) with ESMTPS id 30464632FE3
-	for <lists+v9fs-developer@lfdr.de>; Mon, 21 Nov 2022 23:32:18 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 9A671633072
+	for <lists+v9fs-developer@lfdr.de>; Tue, 22 Nov 2022 00:02:11 +0100 (CET)
 Received: from [127.0.0.1] (helo=sfs-ml-2.v29.lw.sourceforge.com)
 	by sfs-ml-2.v29.lw.sourceforge.com with esmtp (Exim 4.95)
 	(envelope-from <v9fs-developer-bounces@lists.sourceforge.net>)
-	id 1oxFKp-0007KT-S5;
-	Mon, 21 Nov 2022 22:32:15 +0000
+	id 1oxFnl-0007v1-DN;
+	Mon, 21 Nov 2022 23:02:09 +0000
 Received: from [172.30.20.202] (helo=mx.sourceforge.net)
  by sfs-ml-2.v29.lw.sourceforge.com with esmtps (TLS1.2) tls
  TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384 (Exim 4.95)
- (envelope-from <skhan@linuxfoundation.org>) id 1oxFKn-0007KJ-HE
+ (envelope-from <sstabellini@kernel.org>) id 1oxFnj-0007uv-IH
  for v9fs-developer@lists.sourceforge.net;
- Mon, 21 Nov 2022 22:32:13 +0000
+ Mon, 21 Nov 2022 23:02:07 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=sourceforge.net; s=x; h=Content-Transfer-Encoding:Content-Type:In-Reply-To:
- From:References:Cc:To:Subject:MIME-Version:Date:Message-ID:Sender:Reply-To:
- Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+ d=sourceforge.net; s=x; h=Content-Type:MIME-Version:References:Message-ID:
+ In-Reply-To:Subject:cc:To:From:Date:Sender:Reply-To:Content-Transfer-Encoding
+ :Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
  Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
  List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=C14m+5yBrv+u7QhAN78BFentZAFfnah8l0PUC4om7m8=; b=nKWHVBljokuYP2IMu7Psr6ZKHm
- P+qer2gjtmMlQqVr5OA9Qt8DPduMZvg9tIULTWr6QyVb/mpDHKhvIjfa0nslFDsthlnfgnYjwC7OR
- /kIYTiIjRaX2faFKyAzjgOssSIN4awj96vNdOAY7B3vDiaJ4PQrRseC9wp/eFCiM4e8M=;
+ bh=8xmTN0+jHD3TbhyXOVEAKEiECQoFTCIEoVXpBVC+Uag=; b=BFT7ZJscFDLjB43Vb53iC/XTRx
+ wFvEeyFnSWsxBfonaAPzTK8s5LneRylH3ya6hEOCu8IruOyaZhgaEdC7X59R8rr/qjDCXVo9HsbFy
+ iANSP8z/lwd9H/IxiGnm98ifyXkRx9BDvl3MVq6lGaAxfqic9MxqmV6sR3MOmZlxpiS4=;
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  ;
- h=Content-Transfer-Encoding:Content-Type:In-Reply-To:From:References:Cc:To:
- Subject:MIME-Version:Date:Message-ID:Sender:Reply-To:Content-ID:
+ h=Content-Type:MIME-Version:References:Message-ID:In-Reply-To:Subject:cc:To
+ :From:Date:Sender:Reply-To:Content-Transfer-Encoding:Content-ID:
  Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
  :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
  List-Post:List-Owner:List-Archive;
- bh=C14m+5yBrv+u7QhAN78BFentZAFfnah8l0PUC4om7m8=; b=AubjUhe31TP2aXlUDcUWL9x0EQ
- a2pA2HxW1j+vLLJ4MIkWYbi0+m8nTZen69NDJr0o/i009UOamm2bDwAbuABKsd2D9a6PpzTKayA0M
- fmKkPyDR8ZOqjOBTa9hNwfe1Ym+npAEfrKJdyisnX9rTGNOv9fMGV0XLLnr07Kjmfv9A=;
-Received: from mail-io1-f54.google.com ([209.85.166.54])
+ bh=8xmTN0+jHD3TbhyXOVEAKEiECQoFTCIEoVXpBVC+Uag=; b=igDN2xjZ0h3eCOJY3ueRYfk2u4
+ eDqpVOLEvhwHMvOq7W2AnlZ8Fd3GHdqM2gaO0KMOobKLTwIUoDhTSvRdijFyTj7MVI4r57dptYd5v
+ mKnRb43bVq8qVolub1n+X2wiK6SAUVnJ6bcVOJL4AgftZJgxtecbW25K+Ey1RHjHai5M=;
+Received: from dfw.source.kernel.org ([139.178.84.217])
  by sfi-mx-1.v28.lw.sourceforge.com with esmtps
- (TLS1.2:ECDHE-RSA-AES128-GCM-SHA256:128) (Exim 4.95)
- id 1oxFKl-009DzF-7v for v9fs-developer@lists.sourceforge.net;
- Mon, 21 Nov 2022 22:32:13 +0000
-Received: by mail-io1-f54.google.com with SMTP id p141so9706273iod.6
- for <v9fs-developer@lists.sourceforge.net>;
- Mon, 21 Nov 2022 14:32:11 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=linuxfoundation.org; s=google;
- h=content-transfer-encoding:in-reply-to:from:references:cc:to
- :content-language:subject:user-agent:mime-version:date:message-id
- :from:to:cc:subject:date:message-id:reply-to;
- bh=C14m+5yBrv+u7QhAN78BFentZAFfnah8l0PUC4om7m8=;
- b=Hffgzad5MotJq5EstTpwFVQ55zJ2m4sb3dYfhAhqq6QB33wEMcRLHmm2P2eeaxcyl7
- AuWzz1/l9u/1PZyxMCWxsiA0Q6e5fRCsSvqJb8QkirXxS7f+WkWGHtcgrG5qSrXeSLS7
- dJYa3L0ToHNG/CDOCknNOKSmu/izuTLa+EFwY=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20210112;
- h=content-transfer-encoding:in-reply-to:from:references:cc:to
- :content-language:subject:user-agent:mime-version:date:message-id
- :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
- bh=C14m+5yBrv+u7QhAN78BFentZAFfnah8l0PUC4om7m8=;
- b=2goFsVfWCQ/U9IZV7Lp+Ni7s2Qgoau+irbWxyNvSm6qchFQjecAE1adqgaOIa+mKoV
- 8CDjOOkLP9iTGepFXD+Qhlle+F5gP1yuSCGj7acCdHM+12HWJIjtrqDJn1uyoc670EOG
- Fsbl0CBkH0yOOtr4SJ8+6OVI8fkDjGoD8EmMgr8dOyOuSkvGSqtYwvBo/xEg9HE0tyEN
- iL3GXb660oQV8K73Wp4phNjIijeoAx78go1GM3Dukovm0eazF18eS+tcmzRVVC9aRJtd
- 4xdoBMYUr1y+/5EQXKZnTuWlzzF2TINENCjjAQBS2GUCLLnxpC/75MI3rBW7QPH4uNVd
- wkzw==
-X-Gm-Message-State: ANoB5pmPJtcTu67Y43e7OVdP1lwwIjIR6FYPdWnQonzepAhFb7wSU5L/
- VmaI6Nc1S4jWmdFg49dpv8Yxlw==
-X-Google-Smtp-Source: AA0mqf7LzJaZLZ7BN/ieedWyHJVfNYy1D/3fvJQ9uHDra09xLMDQnM+TgsskrmQ988UMBIXzYDc/Wg==
-X-Received: by 2002:a02:cba6:0:b0:375:a360:a130 with SMTP id
- v6-20020a02cba6000000b00375a360a130mr9477313jap.307.1669069925449; 
- Mon, 21 Nov 2022 14:32:05 -0800 (PST)
-Received: from [192.168.1.128] ([38.15.45.1]) by smtp.gmail.com with ESMTPSA id
- f15-20020a056638112f00b0037502ffac71sm4612316jar.18.2022.11.21.14.32.02
- (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Mon, 21 Nov 2022 14:32:04 -0800 (PST)
-Message-ID: <96114bec-1df7-0dcb-ec99-4f907587658d@linuxfoundation.org>
-Date: Mon, 21 Nov 2022 15:32:02 -0700
+ (TLS1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.95)
+ id 1oxFnf-009KWJ-FD for v9fs-developer@lists.sourceforge.net;
+ Mon, 21 Nov 2022 23:02:07 +0000
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+ (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+ (No client certificate requested)
+ by dfw.source.kernel.org (Postfix) with ESMTPS id 40B1D614C3;
+ Mon, 21 Nov 2022 23:01:57 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id BE7EEC433C1;
+ Mon, 21 Nov 2022 23:01:55 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+ s=k20201202; t=1669071716;
+ bh=4BiwOETwQYdt5roOa+pyNI4BC0UtBQJIK+gof+CXNgo=;
+ h=Date:From:To:cc:Subject:In-Reply-To:References:From;
+ b=tMT3E6D8Od7ZaPXYacJ0XmiiEdRQ6J4P13ZPab1S1+rTTaOqC1XLoFw6sxvx8ZK/j
+ ns0TT1bq/e1rr0PqD/S4lSby5OXcQPbhJ+9JxW286Th27f8y3H3Z7e9nOqNsCLP0wO
+ 8/rtl+SbV4mxQ227rClC0S5HldW4+ZTixPjNJqohTtWFxtPD74d3p5WAEFhqLhnHJ6
+ CWNK1a+SA3O+WWnAD5mDhoncTWhrK3yVnw5/sPAalelDPYE/pmlriv9hqLiD+UdEFn
+ XzlZk+pqQvR5eqPlSPXIYW1D9exxess1/AbZvmmyUDKdabK+WiLbBJEtW6M3IrIscu
+ KRh2t2CbQd/1g==
+Date: Mon, 21 Nov 2022 15:01:54 -0800 (PST)
+From: Stefano Stabellini <sstabellini@kernel.org>
+X-X-Sender: sstabellini@ubuntu-linux-20-04-desktop
+To: Christian Schoenebeck <linux_oss@crudebyte.com>
+In-Reply-To: <37091478.n1eaNAWdo1@silver>
+Message-ID: <alpine.DEB.2.22.394.2211211454540.1049131@ubuntu-linux-20-04-desktop>
+References: <20221118135542.63400-1-asmadeus@codewreck.org>
+ <37091478.n1eaNAWdo1@silver>
+User-Agent: Alpine 2.22 (DEB 394 2020-01-19)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.4.2
-Content-Language: en-US
-To: Benjamin Coddington <bcodding@redhat.com>
-References: <c2ec184226acd21a191ccc1aa46a1d7e43ca7104.1669036433.git.bcodding@redhat.com>
- <cover.1669036433.git.bcodding@redhat.com>
- <382872.1669039019@warthog.procyon.org.uk>
- <51B5418D-34FB-4E87-B87A-6C3FCDF8B21C@redhat.com>
- <4585e331-03ad-959f-e715-29af15f63712@linuxfoundation.org>
- <26d98c8f-372b-b9c8-c29f-096cddaff149@linuxfoundation.org>
- <A860595D-5BAB-461B-B449-8975C0424311@redhat.com>
-From: Shuah Khan <skhan@linuxfoundation.org>
-In-Reply-To: <A860595D-5BAB-461B-B449-8975C0424311@redhat.com>
-X-Spam-Score: -2.9 (--)
+X-Spam-Score: -5.2 (-----)
 X-Spam-Report: Spam detection software,
- running on the system "util-spamd-1.v13.lw.sourceforge.com", 
+ running on the system "util-spamd-2.v13.lw.sourceforge.com", 
  has NOT identified this incoming email as spam.  The original
  message has been attached to this so you can view it or label
  similar future email.  If you have any questions, see
  the administrator of that system for details.
- Content preview:  On 11/21/22 15:01, Benjamin Coddington wrote: > On 21 Nov
- 2022, at 16:43, Shuah Khan wrote: > >> On 11/21/22 14:40, Shuah Khan wrote:
- >>> On 11/21/22 07:34, Benjamin Coddington wrote: >>>> On 21 Nov 2 [...] 
- Content analysis details:   (-2.9 points, 6.0 required)
+ Content preview:  On Mon, 21 Nov 2022, Christian Schoenebeck wrote: > On Friday,
+ November 18, 2022 2:55:41 PM CET Dominique Martinet wrote: > > trans_xen
+ did not check the data fits into the buffer before copying > > f [...] 
+ Content analysis details:   (-5.2 points, 6.0 required)
  pts rule name              description
  ---- ---------------------- --------------------------------------------------
- -0.0 RCVD_IN_DNSWL_NONE     RBL: Sender listed at https://www.dnswl.org/,
- no trust [209.85.166.54 listed in list.dnswl.org]
- -0.0 RCVD_IN_MSPIKE_H2      RBL: Average reputation (+2)
- [209.85.166.54 listed in wl.mailspike.net]
- 0.0 SPF_HELO_NONE          SPF: HELO does not publish an SPF Record
  -0.0 SPF_PASS               SPF: sender matches SPF record
- -0.1 DKIM_VALID_AU          Message has a valid DKIM or DK signature from
- author's domain
- -0.1 DKIM_VALID_EF          Message has a valid DKIM or DK signature from
- envelope-from domain
+ 0.0 SPF_HELO_NONE          SPF: HELO does not publish an SPF Record
+ -5.0 RCVD_IN_DNSWL_HI       RBL: Sender listed at https://www.dnswl.org/,
+ high trust [139.178.84.217 listed in list.dnswl.org]
  0.1 DKIM_SIGNED            Message has a DKIM or DK signature, not necessarily
  valid
  -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
- -2.0 NICE_REPLY_A           Looks like a legit reply (A)
- -0.7 DKIMWL_WL_HIGH         DKIMwl.org - High trust sender
-X-Headers-End: 1oxFKl-009DzF-7v
-Subject: Re: [V9fs-developer] [PATCH v1 2/3] Treewide: Stop corrupting
- socket's task_frag
+ -0.1 DKIM_VALID_EF          Message has a valid DKIM or DK signature from
+ envelope-from domain
+ -0.1 DKIM_VALID_AU          Message has a valid DKIM or DK signature from
+ author's domain
+ -0.0 DKIMWL_WL_HIGH         DKIMwl.org - High trust sender
+X-Headers-End: 1oxFnf-009KWJ-FD
+Subject: Re: [V9fs-developer] [PATCH 1/2] 9p/xen: check logical size for
+ buffer size
 X-BeenThere: v9fs-developer@lists.sourceforge.net
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -131,83 +105,75 @@ List-Post: <mailto:v9fs-developer@lists.sourceforge.net>
 List-Help: <mailto:v9fs-developer-request@lists.sourceforge.net?subject=help>
 List-Subscribe: <https://lists.sourceforge.net/lists/listinfo/v9fs-developer>, 
  <mailto:v9fs-developer-request@lists.sourceforge.net?subject=subscribe>
-Cc: Latchesar Ionkov <lucho@ionkov.net>, samba-technical@lists.samba.org,
- Shuah Khan <skhan@linuxfoundation.org>,
- Valentina Manea <valentina.manea.m@gmail.com>, linux-nvme@lists.infradead.org,
- Philipp Reisner <philipp.reisner@linbit.com>,
- David Howells <dhowells@redhat.com>, Joseph Qi <joseph.qi@linux.alibaba.com>,
- Eric Dumazet <edumazet@google.com>, linux-nfs@vger.kernel.org,
- Marc Dionne <marc.dionne@auristor.com>, Shuah Khan <shuah@kernel.org>,
- Christoph Hellwig <hch@lst.de>, Mike Christie <michael.christie@oracle.com>,
- drbd-dev@lists.linbit.com, linux-cifs@vger.kernel.org,
- Sagi Grimberg <sagi@grimberg.me>, linux-scsi@vger.kernel.org,
- Mark Fasheh <mark@fasheh.com>, linux-afs@lists.infradead.org,
- cluster-devel@redhat.com, Christine Caulfield <ccaulfie@redhat.com>,
- Jakub Kicinski <kuba@kernel.org>, Ilya Dryomov <idryomov@gmail.com>,
- Paolo Abeni <pabeni@redhat.com>, Anna Schumaker <anna@kernel.org>,
- Eric Van Hensbergen <ericvh@gmail.com>,
- "James E.J. Bottomley" <jejb@linux.ibm.com>,
- Josef Bacik <josef@toxicpanda.com>, nbd@other.debian.org,
- linux-block@vger.kernel.org, David Teigland <teigland@redhat.com>,
- Joel Becker <jlbec@evilplan.org>, v9fs-developer@lists.sourceforge.net,
- Keith Busch <kbusch@kernel.org>, ceph-devel@vger.kernel.org,
- Xiubo Li <xiubli@redhat.com>,
- Trond Myklebust <trond.myklebust@hammerspace.com>,
- Jens Axboe <axboe@kernel.dk>, Chris Leech <cleech@redhat.com>,
- open-iscsi@googlegroups.com, "Martin K. Petersen" <martin.petersen@oracle.com>,
- netdev@vger.kernel.org, linux-usb@vger.kernel.org,
- Jeff Layton <jlayton@kernel.org>, linux-kernel@vger.kernel.org,
- Steve French <sfrench@samba.org>,
- =?UTF-8?Q?Christoph_B=c3=b6hmwalder?= <christoph.boehmwalder@linbit.com>,
- Chuck Lever <chuck.lever@oracle.com>, Lee Duncan <lduncan@suse.com>,
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- Lars Ellenberg <lars.ellenberg@linbit.com>,
- "David S. Miller" <davem@davemloft.net>, ocfs2-devel@oss.oracle.com
+Cc: v9fs-developer@lists.sourceforge.net,
+ Stefano Stabellini <sstabellini@kernel.org>, linux-kernel@vger.kernel.org,
+ GUO Zihua <guozihua@huawei.com>
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Errors-To: v9fs-developer-bounces@lists.sourceforge.net
 
-On 11/21/22 15:01, Benjamin Coddington wrote:
-> On 21 Nov 2022, at 16:43, Shuah Khan wrote:
+On Mon, 21 Nov 2022, Christian Schoenebeck wrote:
+> On Friday, November 18, 2022 2:55:41 PM CET Dominique Martinet wrote:
+> > trans_xen did not check the data fits into the buffer before copying
+> > from the xen ring, but we probably should.
+> > Add a check that just skips the request and return an error to
+> > userspace if it did not fit
+> > 
+> > Signed-off-by: Dominique Martinet <asmadeus@codewreck.org>
+> > ---
+> > 
+> > This comes more or less as a follow up of a fix for trans_fd:
+> > https://lkml.kernel.org/r/20221117091159.31533-1-guozihua@huawei.com
+> > Where msize should be replaced by capacity check, except trans_xen
+> > did not actually use to check the size fits at all.
+> > 
+> > While we normally trust the hypervisor (they can probably do whatever
+> > they want with our memory), a bug in the 9p server is always possible so
+> > sanity checks never hurt, especially now buffers got drastically smaller
+> > with a recent patch.
+> > 
+> > My setup for xen is unfortunately long dead so I cannot test this:
+> > Stefano, you've tested v9fs xen patches in the past, would you mind
+> > verifying this works as well?
+> > 
+> >  net/9p/trans_xen.c | 9 +++++++++
+> >  1 file changed, 9 insertions(+)
+> > 
+> > diff --git a/net/9p/trans_xen.c b/net/9p/trans_xen.c
+> > index b15c64128c3e..66ceb3b3ae30 100644
+> > --- a/net/9p/trans_xen.c
+> > +++ b/net/9p/trans_xen.c
+> > @@ -208,6 +208,14 @@ static void p9_xen_response(struct work_struct *work)
+> >  			continue;
+> >  		}
+> >  
+> > +		if (h.size > req->rc.capacity) {
+> > +			dev_warn(&priv->dev->dev,
+> > +				 "requested packet size too big: %d for tag %d with capacity %zd\n",
+> > +		                 h.size, h.tag, rreq->rc.capacity);
+> > +			req->status = REQ_STATUS_ERROR;
+> > +			goto recv_error;
+> > +		}
+> > +
 > 
->> On 11/21/22 14:40, Shuah Khan wrote:
->>> On 11/21/22 07:34, Benjamin Coddington wrote:
->>>> On 21 Nov 2022, at 8:56, David Howells wrote:
->>>>
->>>>> Benjamin Coddington <bcodding@redhat.com> wrote:
->>>>>
->>>>>> Since moving to memalloc_nofs_save/restore, SUNRPC has stopped setting the
->>>>>> GFP_NOIO flag on sk_allocation which the networking system uses to decide
->>>>>> when it is safe to use current->task_frag.
->>>>>
->>>>> Um, what's task_frag?
->>>>
->>>> Its a per-task page_frag used to coalesce small writes for networking -- see:
->>>>
->>>> 5640f7685831 net: use a per task frag allocator
->>>>
->>>> Ben
->>>>
->>>>
->>>
->>> I am not seeing this in the mainline. Where can find this commit?
->>>
->>
->> Okay. I see this commit in the mainline. However, I don't see the
->> sk_use_task_frag in mainline.
+> Looks good (except of s/rreq/req/ mentioned by Stefano already).
 > 
-> sk_use_task_frag is in patch 1/3 in this posting.
+> >  		memcpy(&req->rc, &h, sizeof(h));
 > 
-> https://lore.kernel.org/netdev/26d98c8f-372b-b9c8-c29f-096cddaff149@linuxfoundation.org/T/#m3271959c4cf8dcff1c0c6ba023b2b3821d9e7e99
+> Is that really OK?
 > 
+> 1. `h` is of type xen_9pfs_header and declared as packed, whereas `rc` is of 
+>    type p9_fcall not declared as packed.
+> 
+> 2. Probably a bit dangerous to assume the layout of xen_9pfs_header being in
+>    sync with the starting layout of p9_fcall without any compile-time 
+>    assertion?
 
-Aha. I don't have 1/3 in my Inbox - I think it would make
-sense to cc people on the first patch so we can understand
-the premise for the change.
+You are right. It would be better to replace the memcpy with:
 
-thanks,
--- Shuah
-  
+req->rc.size = h.size;
+req->rc.id = h.id;
+req->rc.tag = h.tag;
 
 
 
