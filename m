@@ -2,73 +2,94 @@ Return-Path: <v9fs-developer-bounces@lists.sourceforge.net>
 X-Original-To: lists+v9fs-developer@lfdr.de
 Delivered-To: lists+v9fs-developer@lfdr.de
 Received: from lists.sourceforge.net (lists.sourceforge.net [216.105.38.7])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4A9A9631B1D
-	for <lists+v9fs-developer@lfdr.de>; Mon, 21 Nov 2022 09:18:24 +0100 (CET)
-Received: from [127.0.0.1] (helo=sfs-ml-4.v29.lw.sourceforge.com)
-	by sfs-ml-4.v29.lw.sourceforge.com with esmtp (Exim 4.95)
+	by mail.lfdr.de (Postfix) with ESMTPS id 84B0F631ACB
+	for <lists+v9fs-developer@lfdr.de>; Mon, 21 Nov 2022 08:57:04 +0100 (CET)
+Received: from [127.0.0.1] (helo=sfs-ml-2.v29.lw.sourceforge.com)
+	by sfs-ml-2.v29.lw.sourceforge.com with esmtp (Exim 4.95)
 	(envelope-from <v9fs-developer-bounces@lists.sourceforge.net>)
-	id 1ox20U-0005TF-3r;
-	Mon, 21 Nov 2022 08:18:22 +0000
+	id 1ox1fr-0006uS-8K;
+	Mon, 21 Nov 2022 07:57:03 +0000
 Received: from [172.30.20.202] (helo=mx.sourceforge.net)
- by sfs-ml-4.v29.lw.sourceforge.com with esmtps (TLS1.2) tls
+ by sfs-ml-2.v29.lw.sourceforge.com with esmtps (TLS1.2) tls
  TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384 (Exim 4.95)
- (envelope-from <hch@lst.de>) id 1ox207-0005Sj-N3
+ (envelope-from <yebin@huaweicloud.com>) id 1ox1fR-0006th-6s
  for v9fs-developer@lists.sourceforge.net;
- Mon, 21 Nov 2022 08:17:59 +0000
+ Mon, 21 Nov 2022 07:56:37 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=sourceforge.net; s=x; h=In-Reply-To:Content-Type:MIME-Version:References:
- Message-ID:Subject:Cc:To:From:Date:Sender:Reply-To:Content-Transfer-Encoding:
- Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
- Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
+ d=sourceforge.net; s=x; h=Content-Transfer-Encoding:MIME-Version:Message-Id:
+ Date:Subject:Cc:To:From:Sender:Reply-To:Content-Type:Content-ID:
+ Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
+ :Resent-Message-ID:In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:
  List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=epTd5jMMpPQ3E7czo3hQO3SfTf/vqHGb8C+urqM6C2g=; b=mYd8zcCQYTwqpki8o2OnFF02jq
- wcY5sAUtlQY1/DLj8gDMOBU48UC1jvlkapvykiz2ziutFBGA0UkaSMV0K70+1FmpfhOYxvUPPjMaX
- tYhWRzlAk0T9N6PZDDy3zcQ8MGfi9NACyPIp+60I/fBwCb7SEIe1VLDkNCmmKBKXqWuc=;
+ bh=xyguC5+kW3hurkqtrBqV4LW5sAXb3FLudkqv27odt2w=; b=JS6q969Sr9P+UiIyqlHCrCGTKf
+ +fE+7nKkd4Eb+1kUf3OXtev2lC5VXqeoDs1qN4gnzT0bh88/vlBUdNyfSP10IYSDYnWFp4+k/2vou
+ dx9LnLsig7Y39LZvJGpwTrhxK+kzP56qc8b7LD9Re1e9fYQxYwCeexsCbaT0d1t0sxT0=;
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  ;
- h=In-Reply-To:Content-Type:MIME-Version:References:Message-ID:Subject:Cc:To
- :From:Date:Sender:Reply-To:Content-Transfer-Encoding:Content-ID:
- Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
- :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
- List-Post:List-Owner:List-Archive;
- bh=epTd5jMMpPQ3E7czo3hQO3SfTf/vqHGb8C+urqM6C2g=; b=BqxhZxGfIaUNTDYSyjHPZJxqlj
- cmZDqwxVMBDPpVSfhjIhLBvzzaAZp6klXGlEfusBIEqJ0xNC0eWAceytuGkl1yjCggY4AmU/VPOVa
- Rvu+KsNtBelFsaOpRNgKqWTN38xwHwpyo0iKOv4Qmw0TfhQrCK6lCz3ueGEm03OiCXEE=;
-Received: from verein.lst.de ([213.95.11.211])
+ h=Content-Transfer-Encoding:MIME-Version:Message-Id:Date:Subject:Cc:To:From
+ :Sender:Reply-To:Content-Type:Content-ID:Content-Description:Resent-Date:
+ Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:
+ References:List-Id:List-Help:List-Unsubscribe:List-Subscribe:List-Post:
+ List-Owner:List-Archive; bh=xyguC5+kW3hurkqtrBqV4LW5sAXb3FLudkqv27odt2w=; b=h
+ 3oFKtWGy56P6oG9yQIZs3o4V2+7telOIAQqynMUrUFgnvdslSrCx2bLo4QDm7kvQkZZVxjXXB0JS/
+ McfcK7d0WP4iuqNiabvZEl6CFm7Ns+gQzranQyQzfQpohgqrWnv7+7cmvLoNE94nT0tm/BUm/kXJI
+ eQzpE9oAg0u8YxaU=;
+Received: from [45.249.212.51] (helo=dggsgout11.his.huawei.com)
  by sfi-mx-2.v28.lw.sourceforge.com with esmtps
  (TLS1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.95)
- id 1ox203-0003tR-L4 for v9fs-developer@lists.sourceforge.net;
- Mon, 21 Nov 2022 08:17:57 +0000
-Received: by verein.lst.de (Postfix, from userid 2407)
- id 4B01168AA6; Mon, 21 Nov 2022 08:59:51 +0100 (CET)
-Date: Mon, 21 Nov 2022 08:59:51 +0100
-From: Christoph Hellwig <hch@lst.de>
-To: Jeff Layton <jlayton@kernel.org>
-Message-ID: <20221121075951.GB24878@lst.de>
-References: <20221120210004.381842-1-jlayton@kernel.org>
+ id 1ox1fL-0006JX-Oq for v9fs-developer@lists.sourceforge.net;
+ Mon, 21 Nov 2022 07:56:37 +0000
+Received: from mail02.huawei.com (unknown [172.30.67.153])
+ by dggsgout11.his.huawei.com (SkyGuard) with ESMTP id 4NFzmf6fmMz4f3tpt
+ for <v9fs-developer@lists.sourceforge.net>;
+ Mon, 21 Nov 2022 15:39:30 +0800 (CST)
+Received: from huaweicloud.com (unknown [10.175.127.227])
+ by APP4 (Coremail) with SMTP id gCh0CgC329g0K3tj2M2XAw--.53628S4;
+ Mon, 21 Nov 2022 15:39:33 +0800 (CST)
+From: Ye Bin <yebin@huaweicloud.com>
+To: ericvh@gmail.com, lucho@ionkov.net, asmadeus@codewreck.org,
+ linux_oss@crudebyte.com, davem@davemloft.net, edumazet@google.com,
+ kuba@kernel.org, pabeni@redhat.com, v9fs-developer@lists.sourceforge.net,
+ netdev@vger.kernel.org
+Date: Mon, 21 Nov 2022 16:00:44 +0800
+Message-Id: <20221121080049.3850133-1-yebin@huaweicloud.com>
+X-Mailer: git-send-email 2.31.1
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20221120210004.381842-1-jlayton@kernel.org>
-User-Agent: Mutt/1.5.17 (2007-11-01)
-X-Spam-Score: 0.0 (/)
+X-CM-TRANSID: gCh0CgC329g0K3tj2M2XAw--.53628S4
+X-Coremail-Antispam: 1UD129KBjDUn29KB7ZKAUJUUUUU529EdanIXcx71UUUUU7v73
+ VFW2AGmfu7bjvjm3AaLaJ3UjIYCTnIWjp_UUUYc7AC8VAFwI0_Gr0_Xr1l1xkIjI8I6I8E
+ 6xAIw20EY4v20xvaj40_Wr0E3s1l1IIY67AEw4v_Jr0_Jr4l8cAvFVAK0II2c7xJM28Cjx
+ kF64kEwVA0rcxSw2x7M28EF7xvwVC0I7IYx2IY67AKxVW7JVWDJwA2z4x0Y4vE2Ix0cI8I
+ cVCY1x0267AKxVW8Jr0_Cr1UM28EF7xvwVC2z280aVAFwI0_GcCE3s1l84ACjcxK6I8E87
+ Iv6xkF7I0E14v26rxl6s0DM2AIxVAIcxkEcVAq07x20xvEncxIr21l5I8CrVACY4xI64kE
+ 6c02F40Ex7xfMcIj6xIIjxv20xvE14v26r1j6r18McIj6I8E87Iv67AKxVWUJVW8JwAm72
+ CE4IkC6x0Yz7v_Jr0_Gr1lF7xvr2IYc2Ij64vIr41lF7I21c0EjII2zVCS5cI20VAGYxC7
+ M4IIrI8v6xkF7I0E8cxan2IY04v7MxAIw28IcxkI7VAKI48JMxC20s026xCaFVCjc4AY6r
+ 1j6r4UMI8I3I0E5I8CrVAFwI0_Jr0_Jr4lx2IqxVCjr7xvwVAFwI0_JrI_JrWlx4CE17CE
+ b7AF67AKxVWUtVW8ZwCIc40Y0x0EwIxGrwCI42IY6xIIjxv20xvE14v26r1j6r1xMIIF0x
+ vE2Ix0cI8IcVCY1x0267AKxVW8JVWxJwCI42IY6xAIw20EY4v20xvaj40_WFyUJVCq3wCI
+ 42IY6I8E87Iv67AKxVWUJVW8JwCI42IY6I8E87Iv6xkF7I0E14v26r4j6r4UJbIYCTnIWI
+ evJa73UjIFyTuYvjfUoOJ5UUUUU
+X-CM-SenderInfo: p1hex046kxt4xhlfz01xgou0bp/
+X-CFilter-Loop: Reflected
+X-Spam-Score: 1.3 (+)
 X-Spam-Report: Spam detection software,
- running on the system "util-spamd-2.v13.lw.sourceforge.com", 
+ running on the system "util-spamd-1.v13.lw.sourceforge.com", 
  has NOT identified this incoming email as spam.  The original
  message has been attached to this so you can view it or label
  similar future email.  If you have any questions, see
  the administrator of that system for details.
- Content preview: Looks good: Reviewed-by: Christoph Hellwig <hch@lst.de>
- Although
- it would be nice to drop all the pointless externs in the new file while
- you're at it. 
- Content analysis details:   (0.0 points, 6.0 required)
+ Content preview:  Ye Bin (5): 9p: fix miss unmap request in 'rdma_request()'
+ 9p: fix miss release semaphore in 'rdma_request()' 9p: fix error handle in
+ 'post_recv()' 9p: factor out 'post_send()' 9p: refactor 'post_recv [...] 
+ Content analysis details:   (1.3 points, 6.0 required)
  pts rule name              description
  ---- ---------------------- --------------------------------------------------
- 0.0 SPF_NONE               SPF: sender does not publish an SPF Record
  0.0 SPF_HELO_NONE          SPF: HELO does not publish an SPF Record
-X-Headers-End: 1ox203-0003tR-L4
-Subject: Re: [V9fs-developer] [PATCH] filelock: move file locking
- definitions to separate header file
+ -0.0 SPF_PASS               SPF: sender matches SPF record
+ 1.3 RDNS_NONE Delivered to internal network by a host with no rDNS
+X-Headers-End: 1ox1fL-0006JX-Oq
+Subject: [V9fs-developer] [PATCH 0/5] Fix error handle in 'rdma_request()'
 X-BeenThere: v9fs-developer@lists.sourceforge.net
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -80,40 +101,25 @@ List-Post: <mailto:v9fs-developer@lists.sourceforge.net>
 List-Help: <mailto:v9fs-developer-request@lists.sourceforge.net?subject=help>
 List-Subscribe: <https://lists.sourceforge.net/lists/listinfo/v9fs-developer>, 
  <mailto:v9fs-developer-request@lists.sourceforge.net?subject=subscribe>
-Cc: Latchesar Ionkov <lucho@ionkov.net>,
- Martin Brandenburg <martin@omnibond.com>,
- "Darrick J. Wong" <djwong@kernel.org>,
- Christian Schoenebeck <linux_oss@crudebyte.com>,
- David Howells <dhowells@redhat.com>, Joseph Qi <joseph.qi@linux.alibaba.com>,
- Marc Dionne <marc.dionne@auristor.com>, linux-xfs@vger.kernel.org, hch@lst.de,
- Mike Marshall <hubcap@omnibond.com>, linux-cifs@vger.kernel.org,
- Andreas Gruenbacher <agruenba@redhat.com>, Miklos Szeredi <miklos@szeredi.hu>,
- Mark Fasheh <mark@fasheh.com>, linux-afs@lists.infradead.org,
- cluster-devel@redhat.com, Christine Caulfield <ccaulfie@redhat.com>,
- v9fs-developer@lists.sourceforge.net, Ilya Dryomov <idryomov@gmail.com>,
- Namjae Jeon <linkinjeon@kernel.org>, devel@lists.orangefs.org,
- Shyam Prasad N <sprasad@microsoft.com>, Eric Van Hensbergen <ericvh@gmail.com>,
- Tom Talpey <tom@talpey.com>, linux-fsdevel@vger.kernel.org,
- David Teigland <teigland@redhat.com>, Alexander Viro <viro@zeniv.linux.org.uk>,
- ceph-devel@vger.kernel.org, Xiubo Li <xiubli@redhat.com>,
- Trond Myklebust <trond.myklebust@hammerspace.com>, linux-nfs@vger.kernel.org,
- Paulo Alcantara <pc@cjr.nz>, samba-technical@lists.samba.org,
- linux-kernel@vger.kernel.org, Ronnie Sahlberg <lsahlber@redhat.com>,
- Steve French <sfrench@samba.org>,
- Sergey Senozhatsky <senozhatsky@chromium.org>,
- Chuck Lever <chuck.lever@oracle.com>, Anna Schumaker <anna@kernel.org>,
- Bob Peterson <rpeterso@redhat.com>, ocfs2-devel@oss.oracle.com,
- Joel Becker <jlbec@evilplan.org>
+Cc: linux-kernel@vger.kernel.org, yebin10@huawei.com,
+ Ye Bin <yebin@huaweicloud.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: v9fs-developer-bounces@lists.sourceforge.net
 
-Looks good:
+Ye Bin (5):
+  9p: fix miss unmap request in 'rdma_request()'
+  9p: fix miss release semaphore in 'rdma_request()'
+  9p: fix error handle in 'post_recv()'
+  9p: factor out 'post_send()'
+  9p: refactor 'post_recv()'
 
-Reviewed-by: Christoph Hellwig <hch@lst.de>
+ net/9p/trans_rdma.c | 181 ++++++++++++++++++++++++--------------------
+ 1 file changed, 101 insertions(+), 80 deletions(-)
 
-Although it would be nice to drop all the pointless externs in the
-new file while you're at it.
+-- 
+2.31.1
+
 
 
 _______________________________________________
