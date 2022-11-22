@@ -2,76 +2,80 @@ Return-Path: <v9fs-developer-bounces@lists.sourceforge.net>
 X-Original-To: lists+v9fs-developer@lfdr.de
 Delivered-To: lists+v9fs-developer@lfdr.de
 Received: from lists.sourceforge.net (lists.sourceforge.net [216.105.38.7])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8FF3D633AA9
-	for <lists+v9fs-developer@lfdr.de>; Tue, 22 Nov 2022 11:58:42 +0100 (CET)
-Received: from [127.0.0.1] (helo=sfs-ml-4.v29.lw.sourceforge.com)
-	by sfs-ml-4.v29.lw.sourceforge.com with esmtp (Exim 4.95)
+	by mail.lfdr.de (Postfix) with ESMTPS id E81CB633AF3
+	for <lists+v9fs-developer@lfdr.de>; Tue, 22 Nov 2022 12:14:16 +0100 (CET)
+Received: from [127.0.0.1] (helo=sfs-ml-2.v29.lw.sourceforge.com)
+	by sfs-ml-2.v29.lw.sourceforge.com with esmtp (Exim 4.95)
 	(envelope-from <v9fs-developer-bounces@lists.sourceforge.net>)
-	id 1oxQzA-0002Z0-IE;
-	Tue, 22 Nov 2022 10:58:40 +0000
+	id 1oxREF-00042O-E8;
+	Tue, 22 Nov 2022 11:14:15 +0000
 Received: from [172.30.20.202] (helo=mx.sourceforge.net)
- by sfs-ml-4.v29.lw.sourceforge.com with esmtps (TLS1.2) tls
+ by sfs-ml-2.v29.lw.sourceforge.com with esmtps (TLS1.2) tls
  TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384 (Exim 4.95)
- (envelope-from <linux_oss@crudebyte.com>) id 1oxQz9-0002Yt-9R
+ (envelope-from <jlayton@kernel.org>) id 1oxRE9-00042C-BU
  for v9fs-developer@lists.sourceforge.net;
- Tue, 22 Nov 2022 10:58:39 +0000
+ Tue, 22 Nov 2022 11:14:09 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=sourceforge.net; s=x; h=Content-Type:Content-Transfer-Encoding:MIME-Version
- :References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Sender:Reply-To:
+ d=sourceforge.net; s=x; h=MIME-Version:Content-Transfer-Encoding:Content-Type
+ :References:In-Reply-To:Date:Cc:To:From:Subject:Message-ID:Sender:Reply-To:
  Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
  Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
  List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=NFmQ4BHqkfYXHJbxs2dTDkAt9Y6OhHoJPxA7yM9/MD0=; b=UzRH3yBOZh8AFJUyTjJYZWBYOj
- VcwUEci3RcL9w5nYp1XA0EDtXjXsnRI9KSF6gt7nELb/1UVGJ7TbG+O5gBwa0ejCqA22QaBTzuz7c
- vL5klJeKILQByBUysp0RTDDcE/I7LhKDDBoHzAZMdEnAhL2/Vc6tReFQUwlbkRYMKx0k=;
+ bh=SOJndy9oAQaULvL0DdDwPqbrgnyzProJoxd3/mKZ2aI=; b=XoDaLxkTTpFBVpVYiJ+7XxawNO
+ KeGW+dmpLLFu6sQEYO+6fcSAIdpcy5m/YRv/J+9zFsDFN6au3WIgFMbi7gXgqQ+uLuseooiuCb0oY
+ m4zbxbKRCsWgSvyjJuMOb9oc5Gk9OHZgAQZyWfGWKu/P5ipT4qUlGFKan4FtGuTrFyxE=;
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  ;
- h=Content-Type:Content-Transfer-Encoding:MIME-Version:References:
- In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Sender:Reply-To:Content-ID:
+ h=MIME-Version:Content-Transfer-Encoding:Content-Type:References:
+ In-Reply-To:Date:Cc:To:From:Subject:Message-ID:Sender:Reply-To:Content-ID:
  Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
  :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
  List-Post:List-Owner:List-Archive;
- bh=NFmQ4BHqkfYXHJbxs2dTDkAt9Y6OhHoJPxA7yM9/MD0=; b=Po92NatEqvD2VNs9oMHWMVEDbE
- rn/iN7AhHBBkggl8KrK6mPJ+lpQdvPTSHZ/bc6fQmRQBgXmn+x1ZLMLNat7GUoEGGkGVxLalApQkg
- Dt2yXLXpzm+4R+uQIS8wFllyCXfxIcn8sOHlasQ55v20w0p07OVVW1HMkItXJIEnUIy4=;
-Received: from kylie.crudebyte.com ([5.189.157.229])
+ bh=SOJndy9oAQaULvL0DdDwPqbrgnyzProJoxd3/mKZ2aI=; b=Do6LSQBYdnONl7fpfgSDiI+9Pa
+ qqVGmTrKXEGi5nO1KS8+OxPcmkzXhX0pwOVvl6ih+6nV7VIO0g1xwFS7/NxLOWOMoqlnLVR4AKQab
+ xbJqEh/E1kZau5ZgT/sHXOhQLYLda1PtwDoGQ5vp83LQ9HEMSi3az70NU5lQYW+TWcjc=;
+Received: from dfw.source.kernel.org ([139.178.84.217])
  by sfi-mx-2.v28.lw.sourceforge.com with esmtps
  (TLS1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.95)
- id 1oxQz6-0001iM-2C for v9fs-developer@lists.sourceforge.net;
- Tue, 22 Nov 2022 10:58:39 +0000
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=crudebyte.com; s=kylie; h=Content-Type:Content-Transfer-Encoding:
- MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:
- Content-ID:Content-Description;
- bh=NFmQ4BHqkfYXHJbxs2dTDkAt9Y6OhHoJPxA7yM9/MD0=; b=jX5AbsTOTPWw97x7bnntdg6Lmp
- wB9CV0UkXgWqIYIaWdWNtep50iCxoweH1Bw3Z70pmgb4IxkMp5QinylflkFiG3BNkwKZ0gNXJePmy
- TMD+pd2zOCgszFCscGuEbG3QvEm1A8LHOBhbgyHhnHL23kXjm+35L6utQZdbSohCgkQBN9m1HwJKY
- p3vUAd8asloTPM1xYK5C77OfwdVmdIhWGuvS5tqiC2WJ0Aa+VM1+L8XxFEHuwqtp3I+xBETBK92Gt
- EQJDp2lX0duL0dQKb4VfKjEZ99Ds+zFajwSt51i3UrJmmU8nvX9Ftdd7kRUMIUATCyx9mOcnUbfh0
- +Os/QOg0uega6pFpISltbZbbz4sV8/8LniCX0ZKk3ARcrGSunOVnGVlag+qdNd9LB3hWXLp7a+23q
- Cq37lwRVvlw9Ul64L/j5AKuFB6bm3cbVqZSX7VWAAKYDToJAAMkErg51GiYXYGhSrKzh2THVmtybA
- z91ZYNE79pKVpAGwKNHvJho5QPcb7PF4NtdWpvLp9X0subBbxFFGMaSG3qZsABydiiioq+DkPnnks
- aVSQ+aodqK63mpX6dew2cX3sLzR2kuA4CQz3vPqdz8xdo1qBf6bLDEL8aQAwDiQBRIbC1qVOUTOAn
- HySKBI6Z0bFFvWYzBIzabnxCviroZ135WgCC3tu4M=;
-To: Stefano Stabellini <sstabellini@kernel.org>,
- Dominique Martinet <asmadeus@codewreck.org>
-Date: Tue, 22 Nov 2022 11:58:26 +0100
-Message-ID: <2044434.5qkcZKU06U@silver>
-In-Reply-To: <20221122001025.119121-1-asmadeus@codewreck.org>
-References: <20221122001025.119121-1-asmadeus@codewreck.org>
+ id 1oxRE5-00048D-2X for v9fs-developer@lists.sourceforge.net;
+ Tue, 22 Nov 2022 11:14:09 +0000
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+ (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+ (No client certificate requested)
+ by dfw.source.kernel.org (Postfix) with ESMTPS id A6EDD6164C;
+ Tue, 22 Nov 2022 11:13:59 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 99661C433C1;
+ Tue, 22 Nov 2022 11:13:55 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+ s=k20201202; t=1669115639;
+ bh=bl116Cg89IGIZVG9NrRKWmlP6ed4aJACzNI0Wp3w7MQ=;
+ h=Subject:From:To:Cc:Date:In-Reply-To:References:From;
+ b=PW904WXq7B5dnjaE/n6/stkLttLw66q95uzaVXXfC57Gr8fGyA50W/Y+6YMHj6/Z6
+ C+bp2zR/HpD7AL2kDXCaUnJHLo0QYTjCM7B7srSBYzv9QSoZunuSXqgWz/eURLlX6f
+ bkLmFZpbKLyi6RqKREvtIsB+vKfLjAYsE4lMeS50ONpsJGmxbLEBM8TI6eOVtcA0LK
+ FmF5vJc1DjzHEZ764Fk6lm5yRoCPsh46VllB8mEkIzIHUVtq1E/Ip3Df/1o0TdNO5Q
+ AIsD9dU2QJjYYPKYl3/NasVd/l9SRjkJBU0cAIKGCY06yaw8kwOzVXEKArpk5buENB
+ HvI5i9aGVVUAA==
+Message-ID: <fcc7161712a2c8ff84420477b12b9114195e6624.camel@kernel.org>
+From: Jeff Layton <jlayton@kernel.org>
+To: Matthew Wilcox <willy@infradead.org>
+Date: Tue, 22 Nov 2022 06:13:54 -0500
+In-Reply-To: <Y3xHQwM3UiD/SK0K@casper.infradead.org>
+References: <20221120210004.381842-1-jlayton@kernel.org>
+ <Y3xHQwM3UiD/SK0K@casper.infradead.org>
+User-Agent: Evolution 3.46.1 (3.46.1-1.fc37) 
 MIME-Version: 1.0
-X-Spam-Score: -0.2 (/)
+X-Spam-Score: -5.2 (-----)
 X-Spam-Report: Spam detection software,
  running on the system "util-spamd-2.v13.lw.sourceforge.com", 
  has NOT identified this incoming email as spam.  The original
  message has been attached to this so you can view it or label
  similar future email.  If you have any questions, see
  the administrator of that system for details.
- Content preview:  On Tuesday, November 22,
- 2022 1:10:25 AM CET Dominique Martinet
- wrote: > while 'h' is packed and can be assumed to match the request payload, 
- > req->rc is a struct p9_fcall which is not packed and tha [...] 
- Content analysis details:   (-0.2 points, 6.0 required)
+ Content preview:  On Tue, 2022-11-22 at 03:51 +0000, Matthew Wilcox wrote: >
+ On Sun, Nov 20, 2022 at 03:59:57PM -0500, Jeff Layton wrote: > > Move the
+ file locking definitions to a new header file, and add the > > appr [...]
+ Content analysis details:   (-5.2 points, 6.0 required)
  pts rule name              description
  ---- ---------------------- --------------------------------------------------
  -0.0 SPF_PASS               SPF: sender matches SPF record
@@ -83,9 +87,12 @@ X-Spam-Report: Spam detection software,
  valid
  -0.1 DKIM_VALID_EF          Message has a valid DKIM or DK signature from
  envelope-from domain
-X-Headers-End: 1oxQz6-0001iM-2C
-Subject: Re: [V9fs-developer] [PATCH] 9p/xen: do not memcpy header into
- req->rc
+ -5.0 RCVD_IN_DNSWL_HI       RBL: Sender listed at https://www.dnswl.org/,
+ high trust [139.178.84.217 listed in list.dnswl.org]
+ -0.0 DKIMWL_WL_HIGH         DKIMwl.org - High trust sender
+X-Headers-End: 1oxRE5-00048D-2X
+Subject: Re: [V9fs-developer] [PATCH] filelock: move file locking
+ definitions to separate header file
 X-BeenThere: v9fs-developer@lists.sourceforge.net
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -97,58 +104,63 @@ List-Post: <mailto:v9fs-developer@lists.sourceforge.net>
 List-Help: <mailto:v9fs-developer-request@lists.sourceforge.net?subject=help>
 List-Subscribe: <https://lists.sourceforge.net/lists/listinfo/v9fs-developer>, 
  <mailto:v9fs-developer-request@lists.sourceforge.net?subject=subscribe>
-From: Christian Schoenebeck via V9fs-developer
- <v9fs-developer@lists.sourceforge.net>
-Reply-To: Christian Schoenebeck <linux_oss@crudebyte.com>
-Cc: v9fs-developer@lists.sourceforge.net, linux-kernel@vger.kernel.org
+Cc: Latchesar Ionkov <lucho@ionkov.net>,
+ Martin Brandenburg <martin@omnibond.com>,
+ "Darrick J. Wong" <djwong@kernel.org>,
+ Christian Schoenebeck <linux_oss@crudebyte.com>,
+ David Howells <dhowells@redhat.com>, Joseph Qi <joseph.qi@linux.alibaba.com>,
+ Marc Dionne <marc.dionne@auristor.com>, linux-xfs@vger.kernel.org, hch@lst.de,
+ Mike Marshall <hubcap@omnibond.com>, linux-cifs@vger.kernel.org,
+ Andreas Gruenbacher <agruenba@redhat.com>, Miklos Szeredi <miklos@szeredi.hu>,
+ Mark Fasheh <mark@fasheh.com>, linux-afs@lists.infradead.org,
+ cluster-devel@redhat.com, Christine Caulfield <ccaulfie@redhat.com>,
+ v9fs-developer@lists.sourceforge.net, Ilya Dryomov <idryomov@gmail.com>,
+ Namjae Jeon <linkinjeon@kernel.org>, devel@lists.orangefs.org,
+ Shyam Prasad N <sprasad@microsoft.com>, Eric Van Hensbergen <ericvh@gmail.com>,
+ Tom Talpey <tom@talpey.com>, linux-fsdevel@vger.kernel.org,
+ David Teigland <teigland@redhat.com>, Alexander Viro <viro@zeniv.linux.org.uk>,
+ ceph-devel@vger.kernel.org, Xiubo Li <xiubli@redhat.com>,
+ Trond Myklebust <trond.myklebust@hammerspace.com>, linux-nfs@vger.kernel.org,
+ Paulo Alcantara <pc@cjr.nz>, samba-technical@lists.samba.org,
+ linux-kernel@vger.kernel.org, Ronnie Sahlberg <lsahlber@redhat.com>,
+ Steve French <sfrench@samba.org>,
+ Sergey Senozhatsky <senozhatsky@chromium.org>,
+ Chuck Lever <chuck.lever@oracle.com>, Anna Schumaker <anna@kernel.org>,
+ Bob Peterson <rpeterso@redhat.com>, ocfs2-devel@oss.oracle.com,
+ Joel Becker <jlbec@evilplan.org>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: v9fs-developer-bounces@lists.sourceforge.net
 
-On Tuesday, November 22, 2022 1:10:25 AM CET Dominique Martinet wrote:
-> while 'h' is packed and can be assumed to match the request payload,
-> req->rc is a struct p9_fcall which is not packed and that memcpy
-> could be wrong.
+On Tue, 2022-11-22 at 03:51 +0000, Matthew Wilcox wrote:
+> On Sun, Nov 20, 2022 at 03:59:57PM -0500, Jeff Layton wrote:
+> > Move the file locking definitions to a new header file, and add the
+> > appropriate #include directives to the source files that need them. By
+> > doing this we trim down fs.h a bit and limit the amount of rebuilding
+> > that has to be done when we make changes to the file locking APIs.
 > 
-> Fix this by copying each fields individually instead.
+> I'm in favour of this in general, but I think there's a few implicit
+> includes.  Can you create a test.c that only #include
+> <linnux/filelock.h> and see if there's anything missing?
 > 
-> Reported-by: Christian Schoenebeck <linux_oss@crudebyte.com>
-> Suggested-by: Stefano Stabellini <sstabellini@kernel.org>
-> Link: https://lkml.kernel.org/r/alpine.DEB.2.22.394.2211211454540.1049131@ubuntu-linux-20-04-desktop
-> Signed-off-by: Dominique Martinet <asmadeus@codewreck.org>
-> ---
-
-Reviewed-by: Christian Schoenebeck <linux_oss@crudebyte.com>
-
-> Follow up from the previous xen patch's review.
+> > +	wait_queue_head_t fl_wait;
+> > +	struct file *fl_file;
 > 
-> This isn't an immediate fix so I don't think this one should be rushed
-> in with the rest of the overflow fixes -- I'll let this sit a bit in
-> -next after reviews.
+> These two seem undefined at this point.
 > 
->  net/9p/trans_xen.c | 4 +++-
->  1 file changed, 3 insertions(+), 1 deletion(-)
+> > +	struct fasync_struct *	fl_fasync; /* for lease break notifications */
 > 
-> diff --git a/net/9p/trans_xen.c b/net/9p/trans_xen.c
-> index 4665215bc98b..e8e3f54a837e 100644
-> --- a/net/9p/trans_xen.c
-> +++ b/net/9p/trans_xen.c
-> @@ -216,7 +216,9 @@ static void p9_xen_response(struct work_struct *work)
->  			goto recv_error;
->  		}
->  
-> -		memcpy(&req->rc, &h, sizeof(h));
-> +		req->rc.size = h.size;
-> +		req->rc.id = h.id;
-> +		req->rc.tag = h.tag;
->  		req->rc.offset = 0;
->  
->  		masked_cons = xen_9pfs_mask(cons, XEN_9PFS_RING_SIZE(ring));
+> Likewise.
 > 
 
+Yeah, there is quite a bit missing. I think I'll have to add this at the
+head of filelock.h:
 
+#include <linux/fs.h>
 
-
+...as we need several definitions from fs.h for this header.
+-- 
+Jeff Layton <jlayton@kernel.org>
 
 
 _______________________________________________
