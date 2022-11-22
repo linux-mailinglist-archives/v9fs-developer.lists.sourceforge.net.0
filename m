@@ -2,80 +2,82 @@ Return-Path: <v9fs-developer-bounces@lists.sourceforge.net>
 X-Original-To: lists+v9fs-developer@lfdr.de
 Delivered-To: lists+v9fs-developer@lfdr.de
 Received: from lists.sourceforge.net (lists.sourceforge.net [216.105.38.7])
-	by mail.lfdr.de (Postfix) with ESMTPS id 589AC633126
-	for <lists+v9fs-developer@lfdr.de>; Tue, 22 Nov 2022 01:11:02 +0100 (CET)
-Received: from [127.0.0.1] (helo=sfs-ml-2.v29.lw.sourceforge.com)
-	by sfs-ml-2.v29.lw.sourceforge.com with esmtp (Exim 4.95)
+	by mail.lfdr.de (Postfix) with ESMTPS id BC6C6633148
+	for <lists+v9fs-developer@lfdr.de>; Tue, 22 Nov 2022 01:22:18 +0100 (CET)
+Received: from [127.0.0.1] (helo=sfs-ml-4.v29.lw.sourceforge.com)
+	by sfs-ml-4.v29.lw.sourceforge.com with esmtp (Exim 4.95)
 	(envelope-from <v9fs-developer-bounces@lists.sourceforge.net>)
-	id 1oxGsO-0000ig-41;
-	Tue, 22 Nov 2022 00:11:00 +0000
+	id 1oxH3J-0007WB-A0;
+	Tue, 22 Nov 2022 00:22:17 +0000
 Received: from [172.30.20.202] (helo=mx.sourceforge.net)
- by sfs-ml-2.v29.lw.sourceforge.com with esmtps (TLS1.2) tls
+ by sfs-ml-4.v29.lw.sourceforge.com with esmtps (TLS1.2) tls
  TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384 (Exim 4.95)
- (envelope-from <asmadeus@codewreck.org>) id 1oxGsM-0000ia-9Q
+ (envelope-from <asmadeus@codewreck.org>) id 1oxH3I-0007W5-DZ
  for v9fs-developer@lists.sourceforge.net;
- Tue, 22 Nov 2022 00:10:58 +0000
+ Tue, 22 Nov 2022 00:22:16 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=sourceforge.net; s=x; h=Content-Transfer-Encoding:MIME-Version:Message-Id:
- Date:Subject:Cc:To:From:Sender:Reply-To:Content-Type:Content-ID:
- Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
- :Resent-Message-ID:In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:
+ d=sourceforge.net; s=x; h=In-Reply-To:Content-Type:MIME-Version:References:
+ Message-ID:Subject:Cc:To:From:Date:Sender:Reply-To:Content-Transfer-Encoding:
+ Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+ Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
  List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=QzhrOUAQP1dDRAYbRqs4t/e9Y2uqBB20wcovyN9kH70=; b=J9/3iKxQsHCfQ243GlInBjB2m0
- 9zV02dECUuR7FK11UUIIGhuOM/LXxdnwrXJX9ETDxZb5RBMCK5IIUoJ8fjvp8DIxFofz2EQr5js51
- EUhxvrSOCzb2rhD2eD1fFdVJmaGI3+MNglbQWtgSJlwr9WQdsJYOD02+fFIdAtFjsypw=;
+ bh=vM/wC+9ICJ1E4nrONeaPjLJNoVIGOsJr7BNc+BzMDJY=; b=hgSs1FFChHlcq0ZcSivxj+FzS7
+ U1lGbtNsPpgSVHLMJhSCLvuMBdypFfLAeX84qpMGe7OPogvNIe8wapxgbVcVRjNTduvAYkkSHRxkA
+ dXGTcBR1innsVxcLNzJ4CQpGbMEY3v8COOuFtjtsVKBrDiqfiBSwGcwEv8+hpULeg+ek=;
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  ;
- h=Content-Transfer-Encoding:MIME-Version:Message-Id:Date:Subject:Cc:To:From
- :Sender:Reply-To:Content-Type:Content-ID:Content-Description:Resent-Date:
- Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:
- References:List-Id:List-Help:List-Unsubscribe:List-Subscribe:List-Post:
- List-Owner:List-Archive; bh=QzhrOUAQP1dDRAYbRqs4t/e9Y2uqBB20wcovyN9kH70=; b=j
- Kzrutl0/OlDoD7k9PvQ8l5Pel4IjOcrnY5hrMZo82x3MI+OJ1RZWFcjtWwjE59+PVVp1PzMLyd6lw
- igtvFXOqfZE/hujwX5aSk3XRoeCXCrRK6O7fU7gF0lwnPfLgAZ7ZPtCcg/oZv1kYolPeZbO4a5xOM
- wVGIvBipgwj1vyN8=;
+ h=In-Reply-To:Content-Type:MIME-Version:References:Message-ID:Subject:Cc:To
+ :From:Date:Sender:Reply-To:Content-Transfer-Encoding:Content-ID:
+ Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
+ :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
+ List-Post:List-Owner:List-Archive;
+ bh=vM/wC+9ICJ1E4nrONeaPjLJNoVIGOsJr7BNc+BzMDJY=; b=jlI/7XXJhIHXOBqgLkOsSLNl7W
+ yQbBVJ2LvzdGvyCMed56G/MItAvJn5XqE2GZrGlaRM+DEpXA1R385hcfBrb29o4gFCGOTEdIfjDKF
+ TFnDbXK+UaO8aNdhHsufBIZMWWnHZ3l19CCwxbHDwjTuZoiTTp6zS0/+69L+KE+STqMY=;
 Received: from nautica.notk.org ([91.121.71.147])
- by sfi-mx-1.v28.lw.sourceforge.com with esmtps
+ by sfi-mx-2.v28.lw.sourceforge.com with esmtps
  (TLS1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.95)
- id 1oxGsI-009gzt-6A for v9fs-developer@lists.sourceforge.net;
- Tue, 22 Nov 2022 00:10:58 +0000
+ id 1oxH3F-0006v0-Dl for v9fs-developer@lists.sourceforge.net;
+ Tue, 22 Nov 2022 00:22:16 +0000
 Received: by nautica.notk.org (Postfix, from userid 108)
- id 02F9BC01C; Tue, 22 Nov 2022 01:10:51 +0100 (CET)
+ id 1D644C01D; Tue, 22 Nov 2022 01:22:10 +0100 (CET)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=codewreck.org; s=2;
- t=1669075852; bh=QzhrOUAQP1dDRAYbRqs4t/e9Y2uqBB20wcovyN9kH70=;
- h=From:To:Cc:Subject:Date:From;
- b=ebP10oNt+Dk7e7sKAIMGn+EDo0M4/jy6chix7SjOPRB9L9nDLibOE9dzuF20XwTzE
- e1vAMBPrj3lrkt/hsYcAS72CHY/gxut86NpVay/CrrqdRaR7lWpMDB/7CeEc+cZ8cV
- I+ZuwNizIbymaBIOJs7c9VqALx3PmilWcqsN22XdlH9QTajh2xM2yV9ZAJTvQybM8y
- UPxYNTIYQfIbGSAylgUV3PuAbQcMdEfpEpbJFTwiBfGjmuvI3Dq1Qa7pOmJ0mh0PSq
- jzzpDx/uB+ym1j55KZqI5bNNaWUFGMVXIsJgGnxztTl5Z95ozskh5qC+NEE/OgG01+
- e0l0QmcHxfCaQ==
+ t=1669076531; bh=vM/wC+9ICJ1E4nrONeaPjLJNoVIGOsJr7BNc+BzMDJY=;
+ h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+ b=vIjKLPrsg3FMz7iYQrv8nJOeLWQJeV7HrP5gu7PUgAR19sM8DbYU9xaTI29HkTqRu
+ 5sFafQw0OYQMYbTmIaEJGFR5lcSxbXFuOzyZyxvgZCiZsg4z+Y6txnBBeZGM4Pry44
+ cy9R5z0TGsRnuj8tC1CYcyHXRwDyCJYRmrTxqpwgtITtpAImkfvW0RXLnvZjXa/TOM
+ xQjeRiepZw4ehmhrod1t/WS1/AnCPCfBqAJ96KuYXgQF11JaVF+DsP3lJ5I41Gr/oG
+ dhowSN7yjtbIlh0sPEMTgwO7BZNGTpsSLg/crOlGRbeKFjYjkEaxmRonxL/4C7zWFJ
+ gJpvn1U4s9+Bw==
 X-Spam-Checker-Version: SpamAssassin 3.3.2 (2011-06-06) on nautica.notk.org
 X-Spam-Level: 
 X-Spam-Status: No, score=0.0 required=5.0 tests=UNPARSEABLE_RELAY
  autolearn=unavailable version=3.3.2
 Received: from odin.codewreck.org (localhost [127.0.0.1])
- by nautica.notk.org (Postfix) with ESMTPS id AD670C009;
- Tue, 22 Nov 2022 01:10:49 +0100 (CET)
+ by nautica.notk.org (Postfix) with ESMTPS id 82C4DC009;
+ Tue, 22 Nov 2022 01:22:08 +0100 (CET)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=codewreck.org; s=2;
- t=1669075851; bh=QzhrOUAQP1dDRAYbRqs4t/e9Y2uqBB20wcovyN9kH70=;
- h=From:To:Cc:Subject:Date:From;
- b=zHlCKufGNvI4Xksi9kl1ZNwMiMPmJsegF7rbq9KZAYBSn3hpeHGnZKQ9BIRnoyXFM
- 9lOO9XcrHbJlPZzH7/5vyHrikq2bObB7Iaa/BZvlxNpy/vKIzobjlv0S+aCvZIt9gU
- y5jhnOVbYTJfSAzlbz14q99/YGhBs+v0gA/HloLNr1IW/lAg1zZVHzmFs9mubM+tEO
- QPKfhcUgLip0NL/WZevnmlGlgtnbc74AKp74GlJ8X8RcTSkZEdKZpP52IjVcYWJyAy
- /HNJfOaxycYPHRybzt+OWUofWEMbTpybtExNDSQX/K+9z8+OgsFLl3jXlwhS1ngRAz
- gC07QcDRfpRdA==
+ t=1669076530; bh=vM/wC+9ICJ1E4nrONeaPjLJNoVIGOsJr7BNc+BzMDJY=;
+ h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+ b=Azpd+Ag7r50uyVvo3SYjrM1ns9DPJ9H8KV5jIAgDPd/2FctqIxvaTYOGd11KUrGTx
+ e6SGxZOqtm0DUcJp2hrHcKc2sAlwJs4hEQcJ7fSQdEq3yIPGP4lV8TculjCIXJlmUL
+ LhY7MFumlAFAKhMMwAH7MT2oXym6cgv3XRvhxMGVPiLBDrfIdiiv84KwIm4f8r6L5s
+ wgb5rpWaANh9zHqWM0YLOe13T8No3FIWellJPs6T17H1fh3K/VgXiSo1X0AlZkn3GK
+ 5+0a2DT+mOOcz+VYF+Rsrbn1U72uZ4X+auOJjugnUi+v2S2lgTgUOth1fUwlA76hv3
+ 6yxZHHFg5VkRA==
 Received: from localhost (odin.codewreck.org [local])
- by odin.codewreck.org (OpenSMTPD) with ESMTPA id 9b56555b;
- Tue, 22 Nov 2022 00:10:39 +0000 (UTC)
+ by odin.codewreck.org (OpenSMTPD) with ESMTPA id fe24522f;
+ Tue, 22 Nov 2022 00:21:59 +0000 (UTC)
+Date: Tue, 22 Nov 2022 09:21:43 +0900
 From: Dominique Martinet <asmadeus@codewreck.org>
-To: Stefano Stabellini <sstabellini@kernel.org>,
- Christian Schoenebeck <linux_oss@crudebyte.com>
-Date: Tue, 22 Nov 2022 09:10:25 +0900
-Message-Id: <20221122001025.119121-1-asmadeus@codewreck.org>
-X-Mailer: git-send-email 2.38.0
+To: Christian Schoenebeck <linux_oss@crudebyte.com>
+Message-ID: <Y3wWFxRVpei71PQt@codewreck.org>
+References: <cover.1669072186.git.linux_oss@crudebyte.com>
+ <fffb512c532bf1290f0f2b1df6068b2ff6cd14c0.1669072186.git.linux_oss@crudebyte.com>
 MIME-Version: 1.0
+Content-Disposition: inline
+In-Reply-To: <fffb512c532bf1290f0f2b1df6068b2ff6cd14c0.1669072186.git.linux_oss@crudebyte.com>
 X-Spam-Score: -0.2 (/)
 X-Spam-Report: Spam detection software,
  running on the system "util-spamd-2.v13.lw.sourceforge.com", 
@@ -83,9 +85,10 @@ X-Spam-Report: Spam detection software,
  message has been attached to this so you can view it or label
  similar future email.  If you have any questions, see
  the administrator of that system for details.
- Content preview: while 'h' is packed and can be assumed to match the request
- payload, req->rc is a struct p9_fcall which is not packed and that memcpy
- could be wrong. Fix this by copying each fields individually instead. 
+ Content preview:  Christian Schoenebeck wrote on Tue, Nov 22,
+ 2022 at 12:04:08AM
+ +0100: > Since 60ece0833b6c (net/9p: allocate appropriate reduced message
+ buffers) > it is no longer appropriate to check server's respon [...] 
  Content analysis details:   (-0.2 points, 6.0 required)
  pts rule name              description
  ---- ---------------------- --------------------------------------------------
@@ -100,8 +103,9 @@ X-Spam-Report: Spam detection software,
  author's domain
  0.0 UNPARSEABLE_RELAY      Informational: message has unparseable relay
  lines
-X-Headers-End: 1oxGsI-009gzt-6A
-Subject: [V9fs-developer] [PATCH] 9p/xen: do not memcpy header into req->rc
+X-Headers-End: 1oxH3F-0006v0-Dl
+Subject: Re: [V9fs-developer] [PATCH 2/2] net/9p: fix response size check in
+ p9_check_errors()
 X-BeenThere: v9fs-developer@lists.sourceforge.net
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -113,49 +117,99 @@ List-Post: <mailto:v9fs-developer@lists.sourceforge.net>
 List-Help: <mailto:v9fs-developer-request@lists.sourceforge.net?subject=help>
 List-Subscribe: <https://lists.sourceforge.net/lists/listinfo/v9fs-developer>, 
  <mailto:v9fs-developer-request@lists.sourceforge.net?subject=subscribe>
-Cc: v9fs-developer@lists.sourceforge.net, linux-kernel@vger.kernel.org
+Cc: v9fs-developer@lists.sourceforge.net,
+ Stefano Stabellini <sstabellini@kernel.org>, linux-kernel@vger.kernel.org,
+ GUO Zihua <guozihua@huawei.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: v9fs-developer-bounces@lists.sourceforge.net
 
-while 'h' is packed and can be assumed to match the request payload,
-req->rc is a struct p9_fcall which is not packed and that memcpy
-could be wrong.
+Christian Schoenebeck wrote on Tue, Nov 22, 2022 at 12:04:08AM +0100:
+> Since 60ece0833b6c (net/9p: allocate appropriate reduced message buffers)
+> it is no longer appropriate to check server's response size against
+> msize. Check against the previously allocated buffer capacity instead.
 
-Fix this by copying each fields individually instead.
+Thanks for the follow up!
 
-Reported-by: Christian Schoenebeck <linux_oss@crudebyte.com>
-Suggested-by: Stefano Stabellini <sstabellini@kernel.org>
-Link: https://lkml.kernel.org/r/alpine.DEB.2.22.394.2211211454540.1049131@ubuntu-linux-20-04-desktop
-Signed-off-by: Dominique Martinet <asmadeus@codewreck.org>
----
-Follow up from the previous xen patch's review.
+>  - Omit this size check entirely for zero-copy messages, as those always
+>    allocate 4k (P9_ZC_HDR_SZ) linear buffers which are not used for actual
+>    payload and can be much bigger than 4k.
 
-This isn't an immediate fix so I don't think this one should be rushed
-in with the rest of the overflow fixes -- I'll let this sit a bit in
--next after reviews.
+[review includes the new flag patch]
 
- net/9p/trans_xen.c | 4 +++-
- 1 file changed, 3 insertions(+), 1 deletion(-)
+hmm, unless there's anywhere else you think we might use these flags it
+looks simpler to just pass a flag to p9_check_errors?
 
-diff --git a/net/9p/trans_xen.c b/net/9p/trans_xen.c
-index 4665215bc98b..e8e3f54a837e 100644
---- a/net/9p/trans_xen.c
-+++ b/net/9p/trans_xen.c
-@@ -216,7 +216,9 @@ static void p9_xen_response(struct work_struct *work)
- 			goto recv_error;
- 		}
- 
--		memcpy(&req->rc, &h, sizeof(h));
-+		req->rc.size = h.size;
-+		req->rc.id = h.id;
-+		req->rc.tag = h.tag;
- 		req->rc.offset = 0;
- 
- 		masked_cons = xen_9pfs_mask(cons, XEN_9PFS_RING_SIZE(ring));
+In particular adding a bool in this position is not particularly efficient:
+-------(pahole)-----
+struct p9_fcall {
+	u32                        size;                 /*     0     4 */
+	u8                         id;                   /*     4     1 */
+
+	/* XXX 1 byte hole, try to pack */
+
+	u16                        tag;                  /*     6     2 */
+	size_t                     offset;               /*     8     8 */
+	size_t                     capacity;             /*    16     8 */
+	bool                       zc;                   /*    24     1 */
+
+	/* XXX 7 bytes hole, try to pack */
+
+	struct kmem_cache *        cache;                /*    32     8 */
+	u8 *                       sdata;                /*    40     8 */
+
+	/* size: 48, cachelines: 1, members: 8 */
+	/* sum members: 40, holes: 2, sum holes: 8 */
+	/* last cacheline: 48 bytes */
+};
+----------------
+Not that adding it between id and tag sounds better to me, so this is
+probably just as good as anywhere else :-D
+
+Anyway, I'm just nitpicking -- on principle I agree just whitelisting zc
+requests from this check makes most sense, happy with either way if you
+think this is better for the future.
+
+>  - Replace p9_debug() by pr_err() to make sure this message is always
+>    printed in case this error is triggered.
+> 
+>  - Add 9p message type to error message to ease investigation.
+
+Yes to these log changes!
+
+> 
+> Signed-off-by: Christian Schoenebeck <linux_oss@crudebyte.com>
+> ---
+>  net/9p/client.c | 8 ++++----
+>  1 file changed, 4 insertions(+), 4 deletions(-)
+> 
+> diff --git a/net/9p/client.c b/net/9p/client.c
+> index 30dd82f49b28..63f13dd1ecff 100644
+> --- a/net/9p/client.c
+> +++ b/net/9p/client.c
+> @@ -514,10 +514,10 @@ static int p9_check_errors(struct p9_client *c, struct p9_req_t *req)
+>  	int ecode;
+>  
+>  	err = p9_parse_header(&req->rc, NULL, &type, NULL, 0);
+> -	if (req->rc.size >= c->msize) {
+> -		p9_debug(P9_DEBUG_ERROR,
+> -			 "requested packet size too big: %d\n",
+> -			 req->rc.size);
+> +	if (req->rc.size > req->rc.capacity && !req->rc.zc) {
+> +		pr_err(
+> +			 "requested packet size too big: %d does not fit %ld (type=%d)\n",
+> +			 req->rc.size, req->rc.capacity, req->rc.id);
+
+Haven't seen this style before -- is that what qemu uses?
+We normally keep the message on first line and align e.g.
+> +             pr_err("requested packet size too big: %d does not fit %ld (type=%d)\n",
+> +                    req->rc.size, req->rc.capacity, req->rc.id);
+
+(at least what's what other grep -A 1 'pr_err.*,$' seem to do, and
+checkpatch is happier with that)
+
 -- 
-2.35.1
-
+Dominique
 
 
 _______________________________________________
