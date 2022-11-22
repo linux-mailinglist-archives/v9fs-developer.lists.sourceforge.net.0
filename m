@@ -2,89 +2,113 @@ Return-Path: <v9fs-developer-bounces@lists.sourceforge.net>
 X-Original-To: lists+v9fs-developer@lfdr.de
 Delivered-To: lists+v9fs-developer@lfdr.de
 Received: from lists.sourceforge.net (lists.sourceforge.net [216.105.38.7])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7B5CD633E30
-	for <lists+v9fs-developer@lfdr.de>; Tue, 22 Nov 2022 14:54:59 +0100 (CET)
-Received: from [127.0.0.1] (helo=sfs-ml-2.v29.lw.sourceforge.com)
-	by sfs-ml-2.v29.lw.sourceforge.com with esmtp (Exim 4.95)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7ADE1633ED7
+	for <lists+v9fs-developer@lfdr.de>; Tue, 22 Nov 2022 15:24:19 +0100 (CET)
+Received: from [127.0.0.1] (helo=sfs-ml-1.v29.lw.sourceforge.com)
+	by sfs-ml-1.v29.lw.sourceforge.com with esmtp (Exim 4.95)
 	(envelope-from <v9fs-developer-bounces@lists.sourceforge.net>)
-	id 1oxTjl-0007FQ-Ll;
-	Tue, 22 Nov 2022 13:54:57 +0000
+	id 1oxUC9-0006rT-CJ;
+	Tue, 22 Nov 2022 14:24:17 +0000
 Received: from [172.30.20.202] (helo=mx.sourceforge.net)
- by sfs-ml-2.v29.lw.sourceforge.com with esmtps (TLS1.2) tls
+ by sfs-ml-1.v29.lw.sourceforge.com with esmtps (TLS1.2) tls
  TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384 (Exim 4.95)
- (envelope-from <joseph.qi@linux.alibaba.com>) id 1oxTjb-0007FD-9t
+ (envelope-from <bcodding@redhat.com>) id 1oxUBs-0006pg-EW
  for v9fs-developer@lists.sourceforge.net;
- Tue, 22 Nov 2022 13:54:47 +0000
+ Tue, 22 Nov 2022 14:24:00 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=sourceforge.net; s=x; h=Content-Transfer-Encoding:Content-Type:In-Reply-To:
- From:References:Cc:To:Subject:MIME-Version:Date:Message-ID:Sender:Reply-To:
+ d=sourceforge.net; s=x; h=Content-Transfer-Encoding:Content-Type:MIME-Version
+ :References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Sender:Reply-To:
  Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
  Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
  List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=5iU3Hpkc/79sBspdwJuJHqr5Kn9U5ziqVacQ/9YHEe8=; b=Zrs93Jg6h/yQgpm6X+wXgIHr2t
- LDwcgAcaAxt9g6wRRPS7yN4to2nuJ4oC/MGNhWH2t/8bcQMxrKo9J8erGvTgBP23IqRLhNnOYi+wY
- QWeQQSkPUMUA7zO8Ot0oaSLEfDRX9nnzJtoaJD0t+WkS+FKKtNGkNhldStB9hxQ1dRO4=;
+ bh=geVsTAOXAFmfC1p8NU5oUZW9hh2dqn+X7qlWo6CR96Y=; b=VqTr/jFRGHpP5zTd5oPW6O81OO
+ qyrIyQfqLmSezr53A62PM+m0VU9muw4pD3sut0Fib9u1M3N5BQFrLBOGLUdzCDmmjlk61i9ZqLkkl
+ PaMJJxLI2jbfn/sN6r4858zSqA7HC3bIXeStIEK7xJYcaDIDOEVUGHt5R3hzmLp8M8co=;
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  ;
- h=Content-Transfer-Encoding:Content-Type:In-Reply-To:From:References:Cc:To:
- Subject:MIME-Version:Date:Message-ID:Sender:Reply-To:Content-ID:
+ h=Content-Transfer-Encoding:Content-Type:MIME-Version:References:
+ In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Sender:Reply-To:Content-ID:
  Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
  :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
  List-Post:List-Owner:List-Archive;
- bh=5iU3Hpkc/79sBspdwJuJHqr5Kn9U5ziqVacQ/9YHEe8=; b=e3r+FDqdN+bnmJpLEZWOz7jsOH
- ULmBIJPZRg39c4vLGx8EjXs65794M7w9NkxdnKMb1mL0ZI/STLe1EKN/Yjx6rIF8024GW1FvjeMcu
- +3GM6uybuNb8vp1jceIrhUgP1uCz13Zi3JnrqYwqpUr6BNI9mzXO0ubwWMageOGVlI48=;
-Received: from out30-44.freemail.mail.aliyun.com ([115.124.30.44])
- by sfi-mx-2.v28.lw.sourceforge.com with esmtps
+ bh=geVsTAOXAFmfC1p8NU5oUZW9hh2dqn+X7qlWo6CR96Y=; b=WYuZqCS4okb7ut2p2j3oOvdZY2
+ BfiElOufRO7R2w0mMwB1vwg7NbNqFIgZzDbChGUZ4zHF5XJkcfFqc7M0i/t1iX6wK1I8rNT+U4d9J
+ rPOZS+coAzW/pAatnfGe45Vk1nXCgs5/8E9fBs8OPRIcP5T4Pk6IENhxr393Rneo/NCw=;
+Received: from us-smtp-delivery-124.mimecast.com ([170.10.129.124])
+ by sfi-mx-1.v28.lw.sourceforge.com with esmtps
  (TLS1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.95)
- id 1oxTjZ-0004rp-8o for v9fs-developer@lists.sourceforge.net;
- Tue, 22 Nov 2022 13:54:47 +0000
-X-Alimail-AntiSpam: AC=PASS; BC=-1|-1; BR=01201311R131e4; CH=green; DM=||false|;
- DS=||; FP=0|-1|-1|-1|0|-1|-1|-1; HT=ay29a033018046049;
- MF=joseph.qi@linux.alibaba.com; NM=1; PH=DS; RN=16; SR=0;
- TI=SMTPD_---0VVSj4Yo_1669125271; 
-Received: from 30.32.119.53(mailfrom:joseph.qi@linux.alibaba.com
- fp:SMTPD_---0VVSj4Yo_1669125271) by smtp.aliyun-inc.com;
- Tue, 22 Nov 2022 21:54:33 +0800
-Message-ID: <9cc55d4f-d864-aca5-78a0-ea7602c35176@linux.alibaba.com>
-Date: Tue, 22 Nov 2022 21:54:31 +0800
+ id 1oxUBl-00C1As-E3 for v9fs-developer@lists.sourceforge.net;
+ Tue, 22 Nov 2022 14:23:56 +0000
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+ s=mimecast20190719; t=1669127026;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references;
+ bh=geVsTAOXAFmfC1p8NU5oUZW9hh2dqn+X7qlWo6CR96Y=;
+ b=QD9HNhfwpjcZAyrcVDtGcyvcJC1Jt05Njs2nDDlxTHOvhswfgrgNAdHBiLEZ9+1+paIjfS
+ xvMFD3qCbJf6A6xMlIn0VpgRM8BByfNqUyTTD/aKI8613kGDOh1+aFjPHhlm3ubdqQY76a
+ 4fjNNftK21PKnaEPXhuRK9+8oDaXYTo=
+Received: from mimecast-mx02.redhat.com (mimecast-mx02.redhat.com
+ [66.187.233.88]) by relay.mimecast.com with ESMTP with STARTTLS
+ (version=TLSv1.2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ us-mta-583-clNrV_glOTiRpOT7AptSQA-1; Tue, 22 Nov 2022 09:23:45 -0500
+X-MC-Unique: clNrV_glOTiRpOT7AptSQA-1
+Received: from smtp.corp.redhat.com (int-mx03.intmail.prod.int.rdu2.redhat.com
+ [10.11.54.3])
+ (using TLSv1.2 with cipher AECDH-AES256-SHA (256/256 bits))
+ (No client certificate requested)
+ by mimecast-mx02.redhat.com (Postfix) with ESMTPS id E5F22101A52A;
+ Tue, 22 Nov 2022 14:23:42 +0000 (UTC)
+Received: from [172.16.176.1] (unknown [10.22.50.6])
+ by smtp.corp.redhat.com (Postfix) with ESMTPS id E09D61121325;
+ Tue, 22 Nov 2022 14:23:33 +0000 (UTC)
+From: Benjamin Coddington <bcodding@redhat.com>
+To: Shuah Khan <skhan@linuxfoundation.org>
+Date: Tue, 22 Nov 2022 09:23:29 -0500
+Message-ID: <C3E8B434-BAEE-42A8-85AF-3B676C65B2A6@redhat.com>
+In-Reply-To: <96114bec-1df7-0dcb-ec99-4f907587658d@linuxfoundation.org>
+References: <c2ec184226acd21a191ccc1aa46a1d7e43ca7104.1669036433.git.bcodding@redhat.com>
+ <cover.1669036433.git.bcodding@redhat.com>
+ <382872.1669039019@warthog.procyon.org.uk>
+ <51B5418D-34FB-4E87-B87A-6C3FCDF8B21C@redhat.com>
+ <4585e331-03ad-959f-e715-29af15f63712@linuxfoundation.org>
+ <26d98c8f-372b-b9c8-c29f-096cddaff149@linuxfoundation.org>
+ <A860595D-5BAB-461B-B449-8975C0424311@redhat.com>
+ <96114bec-1df7-0dcb-ec99-4f907587658d@linuxfoundation.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:102.0)
- Gecko/20100101 Thunderbird/102.4.2
-Content-Language: en-US
-To: Jeff Layton <jlayton@kernel.org>, Mark Fasheh <mark@fasheh.com>,
- Joel Becker <jlbec@evilplan.org>
-References: <20221120210004.381842-1-jlayton@kernel.org>
- <0c6a44ff-409e-99b2-eaa9-fd6e87a9e104@linux.alibaba.com>
- <a731e688122d1a6fdb2f7bdbd71d403fa110e9f2.camel@kernel.org>
-From: Joseph Qi <joseph.qi@linux.alibaba.com>
-In-Reply-To: <a731e688122d1a6fdb2f7bdbd71d403fa110e9f2.camel@kernel.org>
-X-Spam-Score: -10.0 (----------)
+X-Scanned-By: MIMEDefang 3.1 on 10.11.54.3
+X-Spam-Score: -0.9 (/)
 X-Spam-Report: Spam detection software,
  running on the system "util-spamd-1.v13.lw.sourceforge.com", 
  has NOT identified this incoming email as spam.  The original
  message has been attached to this so you can view it or label
  similar future email.  If you have any questions, see
  the administrator of that system for details.
- Content preview:  On 11/22/22 8:20 PM, Jeff Layton wrote: > On Tue, 2022-11-22
- at 09:51 +0800, Joseph Qi wrote: >> Hi, >> >> On 11/21/22 4:59 AM, Jeff Layton
- wrote: >>> The file locking definitions have lived in fs.h s [...] 
- Content analysis details:   (-10.0 points, 6.0 required)
+ Content preview:  On 21 Nov 2022, at 17:32, Shuah Khan wrote: > On 11/21/22
+ 15:01, Benjamin Coddington wrote: >> On 21 Nov 2022, at 16:43, Shuah Khan
+ wrote: >> >>> On 11/21/22 14:40, Shuah Khan wrote: >>>> On 11/21/22 07:34,
+ Benjamin Coddington wrote: >>>>> On 2 [...] 
+ Content analysis details:   (-0.9 points, 6.0 required)
  pts rule name              description
  ---- ---------------------- --------------------------------------------------
  -0.0 RCVD_IN_DNSWL_NONE     RBL: Sender listed at https://www.dnswl.org/,
- no trust [115.124.30.44 listed in list.dnswl.org]
+ no trust [170.10.129.124 listed in list.dnswl.org]
+ -0.0 RCVD_IN_MSPIKE_H2      RBL: Average reputation (+2)
+ [170.10.129.124 listed in wl.mailspike.net]
  0.0 SPF_HELO_NONE          SPF: HELO does not publish an SPF Record
- -7.5 USER_IN_DEF_SPF_WL     From: address is in the default SPF
- white-list
  -0.0 SPF_PASS               SPF: sender matches SPF record
- 0.0 UNPARSEABLE_RELAY      Informational: message has unparseable relay
- lines
- -0.5 ENV_AND_HDR_SPF_MATCH  Env and Hdr From used in default SPF WL
- Match -2.0 NICE_REPLY_A           Looks like a legit reply (A)
-X-Headers-End: 1oxTjZ-0004rp-8o
-Subject: Re: [V9fs-developer] [PATCH] filelock: move file locking
- definitions to separate header file
+ -0.1 DKIM_VALID_AU          Message has a valid DKIM or DK signature from
+ author's domain
+ -0.1 DKIM_VALID_EF          Message has a valid DKIM or DK signature from
+ envelope-from domain
+ 0.1 DKIM_SIGNED            Message has a DKIM or DK signature, not necessarily
+ valid
+ -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+ -0.7 DKIMWL_WL_HIGH         DKIMwl.org - High trust sender
+X-Headers-End: 1oxUBl-00C1As-E3
+Subject: Re: [V9fs-developer] [PATCH v1 2/3] Treewide: Stop corrupting
+ socket's task_frag
 X-BeenThere: v9fs-developer@lists.sourceforge.net
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -96,75 +120,86 @@ List-Post: <mailto:v9fs-developer@lists.sourceforge.net>
 List-Help: <mailto:v9fs-developer-request@lists.sourceforge.net?subject=help>
 List-Subscribe: <https://lists.sourceforge.net/lists/listinfo/v9fs-developer>, 
  <mailto:v9fs-developer-request@lists.sourceforge.net?subject=subscribe>
-Cc: linux-cifs@vger.kernel.org, linux-nfs@vger.kernel.org,
- samba-technical@lists.samba.org, linux-kernel@vger.kernel.org, hch@lst.de,
- cluster-devel@redhat.com, devel@lists.orangefs.org,
- linux-fsdevel@vger.kernel.org, v9fs-developer@lists.sourceforge.net,
- ceph-devel@vger.kernel.org, linux-xfs@vger.kernel.org,
- linux-afs@lists.infradead.org, ocfs2-devel@oss.oracle.com
+Cc: Latchesar Ionkov <lucho@ionkov.net>, samba-technical@lists.samba.org,
+ Valentina Manea <valentina.manea.m@gmail.com>, linux-nvme@lists.infradead.org,
+ Philipp Reisner <philipp.reisner@linbit.com>,
+ David Howells <dhowells@redhat.com>, Joseph Qi <joseph.qi@linux.alibaba.com>,
+ Eric Dumazet <edumazet@google.com>, linux-nfs@vger.kernel.org,
+ Marc Dionne <marc.dionne@auristor.com>, Shuah Khan <shuah@kernel.org>,
+ Christoph Hellwig <hch@lst.de>, Mike Christie <michael.christie@oracle.com>,
+ drbd-dev@lists.linbit.com, linux-cifs@vger.kernel.org,
+ Sagi Grimberg <sagi@grimberg.me>, linux-scsi@vger.kernel.org,
+ Mark Fasheh <mark@fasheh.com>, linux-afs@lists.infradead.org,
+ cluster-devel@redhat.com, Christine Caulfield <ccaulfie@redhat.com>,
+ Jakub Kicinski <kuba@kernel.org>, Ilya Dryomov <idryomov@gmail.com>,
+ Paolo Abeni <pabeni@redhat.com>, Anna Schumaker <anna@kernel.org>,
+ Eric Van Hensbergen <ericvh@gmail.com>,
+ "James E.J. Bottomley" <jejb@linux.ibm.com>,
+ Josef Bacik <josef@toxicpanda.com>, nbd@other.debian.org,
+ linux-block@vger.kernel.org, David Teigland <teigland@redhat.com>,
+ Joel Becker <jlbec@evilplan.org>, v9fs-developer@lists.sourceforge.net,
+ Keith Busch <kbusch@kernel.org>, ceph-devel@vger.kernel.org,
+ Xiubo Li <xiubli@redhat.com>,
+ Trond Myklebust <trond.myklebust@hammerspace.com>,
+ Jens Axboe <axboe@kernel.dk>, Chris Leech <cleech@redhat.com>,
+ open-iscsi@googlegroups.com, "Martin K. Petersen" <martin.petersen@oracle.com>,
+ netdev@vger.kernel.org, linux-usb@vger.kernel.org,
+ Jeff Layton <jlayton@kernel.org>, linux-kernel@vger.kernel.org,
+ Steve French <sfrench@samba.org>,
+ =?utf-8?q?Christoph_B=C3=B6hmwalder?= <christoph.boehmwalder@linbit.com>,
+ Chuck Lever <chuck.lever@oracle.com>, Lee Duncan <lduncan@suse.com>,
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+ Lars Ellenberg <lars.ellenberg@linbit.com>,
+ "David S. Miller" <davem@davemloft.net>, ocfs2-devel@oss.oracle.com
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: v9fs-developer-bounces@lists.sourceforge.net
 
+On 21 Nov 2022, at 17:32, Shuah Khan wrote:
 
-
-On 11/22/22 8:20 PM, Jeff Layton wrote:
-> On Tue, 2022-11-22 at 09:51 +0800, Joseph Qi wrote:
->> Hi,
+> On 11/21/22 15:01, Benjamin Coddington wrote:
+>> On 21 Nov 2022, at 16:43, Shuah Khan wrote:
 >>
->> On 11/21/22 4:59 AM, Jeff Layton wrote:
->>> The file locking definitions have lived in fs.h since the dawn of time,
->>> but they are only used by a small subset of the source files that
->>> include it.
+>>> On 11/21/22 14:40, Shuah Khan wrote:
+>>>> On 11/21/22 07:34, Benjamin Coddington wrote:
+>>>>> On 21 Nov 2022, at 8:56, David Howells wrote:
+>>>>>
+>>>>>> Benjamin Coddington <bcodding@redhat.com> wrote:
+>>>>>>
+>>>>>>> Since moving to memalloc_nofs_save/restore, SUNRPC has stopped setting the
+>>>>>>> GFP_NOIO flag on sk_allocation which the networking system uses to decide
+>>>>>>> when it is safe to use current->task_frag.
+>>>>>>
+>>>>>> Um, what's task_frag?
+>>>>>
+>>>>> Its a per-task page_frag used to coalesce small writes for networking -- see:
+>>>>>
+>>>>> 5640f7685831 net: use a per task frag allocator
+>>>>>
+>>>>> Ben
+>>>>>
+>>>>>
+>>>>
+>>>> I am not seeing this in the mainline. Where can find this commit?
+>>>>
 >>>
->>> Move the file locking definitions to a new header file, and add the
->>> appropriate #include directives to the source files that need them. By
->>> doing this we trim down fs.h a bit and limit the amount of rebuilding
->>> that has to be done when we make changes to the file locking APIs.
->>>
->>> Signed-off-by: Jeff Layton <jlayton@kernel.org>
->>> ---
->>>  fs/9p/vfs_file.c          |   1 +
->>>  fs/afs/internal.h         |   1 +
->>>  fs/attr.c                 |   1 +
->>>  fs/ceph/locks.c           |   1 +
->>>  fs/cifs/cifsfs.c          |   1 +
->>>  fs/cifs/cifsglob.h        |   1 +
->>>  fs/cifs/cifssmb.c         |   1 +
->>>  fs/cifs/file.c            |   1 +
->>>  fs/cifs/smb2file.c        |   1 +
->>>  fs/dlm/plock.c            |   1 +
->>>  fs/fcntl.c                |   1 +
->>>  fs/file_table.c           |   1 +
->>>  fs/fuse/file.c            |   1 +
->>>  fs/gfs2/file.c            |   1 +
->>>  fs/inode.c                |   1 +
->>>  fs/ksmbd/smb2pdu.c        |   1 +
->>>  fs/ksmbd/vfs.c            |   1 +
->>>  fs/ksmbd/vfs_cache.c      |   1 +
->>>  fs/lockd/clntproc.c       |   1 +
->>>  fs/lockd/netns.h          |   1 +
->>>  fs/locks.c                |   1 +
->>>  fs/namei.c                |   1 +
->>>  fs/nfs/nfs4_fs.h          |   1 +
->>>  fs/nfs_common/grace.c     |   1 +
->>>  fs/nfsd/netns.h           |   1 +
->>>  fs/ocfs2/locks.c          |   1 +
->>>  fs/ocfs2/stack_user.c     |   1 +
+>>> Okay. I see this commit in the mainline. However, I don't see the
+>>> sk_use_task_frag in mainline.
 >>
->> Seems it misses the related changes in:
->> fs/ocfs2/stackglue.c
+>> sk_use_task_frag is in patch 1/3 in this posting.
 >>
-> 
-> I was able to build ocfs2.ko just fine without any changes to
-> stackglue.c. What problem do you see here?
-> 
-Okay, that's because there is prototype declaration in
-fs/ocfs2/stackglue.h, and it seems has no real effect in current
-version.
+>> https://lore.kernel.org/netdev/26d98c8f-372b-b9c8-c29f-096cddaff149@linuxfoundation.org/T/#m3271959c4cf8dcff1c0c6ba023b2b3821d9e7e99
+>>
+>
+> Aha. I don't have 1/3 in my Inbox - I think it would make
+> sense to cc people on the first patch so we can understand
+> the premise for the change.
 
-So it looks good to me. For ocfs2 part,
-Acked-by: Joseph Qi <joseph.qi@linux.alibaba.com>
+Yeah, I can do that if it goes to another version, I was just trying to be
+considerate of all the noise this sort of posting generates.
+
+Ben
+
 
 
 _______________________________________________
