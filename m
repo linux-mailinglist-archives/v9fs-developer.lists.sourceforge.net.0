@@ -2,98 +2,89 @@ Return-Path: <v9fs-developer-bounces@lists.sourceforge.net>
 X-Original-To: lists+v9fs-developer@lfdr.de
 Delivered-To: lists+v9fs-developer@lfdr.de
 Received: from lists.sourceforge.net (lists.sourceforge.net [216.105.38.7])
-	by mail.lfdr.de (Postfix) with ESMTPS id 68929633341
-	for <lists+v9fs-developer@lfdr.de>; Tue, 22 Nov 2022 03:27:21 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 9B1BE63342E
+	for <lists+v9fs-developer@lfdr.de>; Tue, 22 Nov 2022 04:46:14 +0100 (CET)
 Received: from [127.0.0.1] (helo=sfs-ml-1.v29.lw.sourceforge.com)
 	by sfs-ml-1.v29.lw.sourceforge.com with esmtp (Exim 4.95)
 	(envelope-from <v9fs-developer-bounces@lists.sourceforge.net>)
-	id 1oxJ0J-0001y2-0e;
-	Tue, 22 Nov 2022 02:27:19 +0000
+	id 1oxKEe-0005P9-9y;
+	Tue, 22 Nov 2022 03:46:12 +0000
 Received: from [172.30.20.202] (helo=mx.sourceforge.net)
  by sfs-ml-1.v29.lw.sourceforge.com with esmtps (TLS1.2) tls
  TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384 (Exim 4.95)
- (envelope-from <sstabellini@kernel.org>) id 1oxJ0H-0001xw-V6
+ (envelope-from <willy@infradead.org>) id 1oxKER-0005Oc-Pm
  for v9fs-developer@lists.sourceforge.net;
- Tue, 22 Nov 2022 02:27:17 +0000
+ Tue, 22 Nov 2022 03:45:59 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=sourceforge.net; s=x; h=Content-Type:MIME-Version:References:Message-ID:
- In-Reply-To:Subject:cc:To:From:Date:Sender:Reply-To:Content-Transfer-Encoding
- :Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+ d=sourceforge.net; s=x; h=In-Reply-To:Content-Type:MIME-Version:References:
+ Message-ID:Subject:Cc:To:From:Date:Sender:Reply-To:Content-Transfer-Encoding:
+ Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
  Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
  List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=tJFWBTue8OBH2dnfi6eA94on2C11SstGOCnv7waFDx4=; b=kRYqA6vxzc3dFM5pdb7ZKx8u92
- VUDjx5EmxXqEneLFqquf6IGmhfFn160LubuUcTH4nfWPUMYaymapV+WYo/4vDG15+SPFHv2vj+bED
- XjoYHiZQjFVc1usJGg6v81aLaPRXN8cW/Ux5DH0jXUwm6ZbmxPrbPe8K2YiLhbwu0mAI=;
+ bh=uiFDQ6s5XgAcT9HYz21ROzPo6ZCyN/YsiViP9JuL2Vc=; b=lHoYn7Ar+liJHW1acRHobRC76k
+ eV/h8GauiWmHaY4QZNx61ApeBoHIlW93mjsstfqPdE5mm3bB3g+8a144oGO6sH5Ph1ZIELSHRETuf
+ vd3pM40Ukr0jHHJIyQ5J221C5Jj+/kQW4vgAuniqT2TeANYgYCfShZkqVyOfpVaEWAsw=;
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  ;
- h=Content-Type:MIME-Version:References:Message-ID:In-Reply-To:Subject:cc:To
+ h=In-Reply-To:Content-Type:MIME-Version:References:Message-ID:Subject:Cc:To
  :From:Date:Sender:Reply-To:Content-Transfer-Encoding:Content-ID:
  Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
  :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
  List-Post:List-Owner:List-Archive;
- bh=tJFWBTue8OBH2dnfi6eA94on2C11SstGOCnv7waFDx4=; b=USu6FCKaDnBxXdReVZYQlzizBh
- AvWesvMh6FJ+bZKaf5KSqWp3TII7Zxp7saMggx57C0Ly0Ayn/czhvY2ShIUAmCq4kPf6om3oSooVI
- ionEH4FtxSCiQSyf4vR3yAUfZwy2y1L57tmaVq8i/WuUxUBf4s+8ZgkY/+MOLsOLhK4I=;
-Received: from ams.source.kernel.org ([145.40.68.75])
- by sfi-mx-2.v28.lw.sourceforge.com with esmtps
+ bh=uiFDQ6s5XgAcT9HYz21ROzPo6ZCyN/YsiViP9JuL2Vc=; b=BiLsql0Eie+0qAFhMwX+zgcg0W
+ p7T6yA8qDmV4H1qnoyPXhcK0kDHWyclnE7Geyx42zQhHLNnZUlUKQJYM96hgEoyAhjgY2+YMhWAwJ
+ qem29ta5MBnA0ZngX9DVAM4DXafGBjCTnmo6hVfuuY1FbPU8+2hcYame17Uw3ZQmpT7Y=;
+Received: from casper.infradead.org ([90.155.50.34])
+ by sfi-mx-1.v28.lw.sourceforge.com with esmtps
  (TLS1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.95)
- id 1oxJ0H-0007Cp-8W for v9fs-developer@lists.sourceforge.net;
- Tue, 22 Nov 2022 02:27:17 +0000
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
- (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
- (No client certificate requested)
- by ams.source.kernel.org (Postfix) with ESMTPS id E8434B8190D;
- Tue, 22 Nov 2022 02:27:10 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id BB3E8C433D6;
- Tue, 22 Nov 2022 02:27:08 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1669084029;
- bh=f8p3NDnP/ojCepGk1AfQOss+D4LjgykOMOD0RmRlGuY=;
- h=Date:From:To:cc:Subject:In-Reply-To:References:From;
- b=E5+sYQuKK2lhq+DeQ130EEzF0FrgB7RmSmgtfMWx0SAUYOdv3FqvcLjKJCCWBSaiM
- mjw1/nBicH/Z48AK2xGmScKOTVNBJCBhq0mYDdPzpjMcFmaWdp2WzkOgd6s0qHRktS
- bBsj83kgnscLSe3eKy1kOYt58hZloDz7mBDFc86Nm0s4IizQ9Fpvwut7LsYilwWVON
- X8OMr/0QQMdWFXL1YjpvWZ6yVu13arhmPaXL09cuzU26r4WhN/FAXzZa6MxR1Jo/Wg
- 4qzgE3G7hgynJQro473jfFw/ehKsoUfH793UVunXmi/sOlk4AvKciTXZLqzbJuLiPA
- rt1/5+MeVKTVg==
-Date: Mon, 21 Nov 2022 18:27:08 -0800 (PST)
-From: Stefano Stabellini <sstabellini@kernel.org>
-X-X-Sender: sstabellini@ubuntu-linux-20-04-desktop
-To: Christian Schoenebeck <linux_oss@crudebyte.com>
-In-Reply-To: <cover.1669072186.git.linux_oss@crudebyte.com>
-Message-ID: <alpine.DEB.2.22.394.2211211826570.1049131@ubuntu-linux-20-04-desktop>
-References: <cover.1669072186.git.linux_oss@crudebyte.com>
-User-Agent: Alpine 2.22 (DEB 394 2020-01-19)
+ id 1oxKEP-00AMdo-SC for v9fs-developer@lists.sourceforge.net;
+ Tue, 22 Nov 2022 03:45:59 +0000
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+ d=infradead.org; s=casper.20170209; h=In-Reply-To:Content-Type:MIME-Version:
+ References:Message-ID:Subject:Cc:To:From:Date:Sender:Reply-To:
+ Content-Transfer-Encoding:Content-ID:Content-Description;
+ bh=uiFDQ6s5XgAcT9HYz21ROzPo6ZCyN/YsiViP9JuL2Vc=; b=NJJwrm6IpzOJ+nUmhrd1OXfoCk
+ G7FtSuALDx10w2NwiIqoKiG9ykgmyUGgqgtM+aJpa2oS2fQRQ+RCGSFLUVL1nV3H67iQsoM+ZXI+P
+ 75G75qOGTBUz2j3XL00qgcUTJotjzi0OfiKIf+ALXzMf3ZoQMf3KRnGWl+fsNnIUD5GBw7fYM0qpK
+ 68xmJhc99PpF71YEvdwSpdkfVDQQinCYdj6BfJplncqBsPQyicO+REFgABedNNQo6QpK9GD/KJOMG
+ I2YH4RdEbuSk9AKSGChXb1wwhkouk4nfTA4WUiJD8aJEXUyng2vGvKiEnZPT7EPwwj7AX43JZiVeT
+ eCgYCCfg==;
+Received: from willy by casper.infradead.org with local (Exim 4.94.2 #2 (Red
+ Hat Linux)) id 1oxKCp-005u2i-VP; Tue, 22 Nov 2022 03:44:20 +0000
+Date: Tue, 22 Nov 2022 03:44:19 +0000
+From: Matthew Wilcox <willy@infradead.org>
+To: Xiubo Li <xiubli@redhat.com>
+Message-ID: <Y3xFkyZykWp5/Rvq@casper.infradead.org>
+References: <20221120210004.381842-1-jlayton@kernel.org>
+ <6627384e-5514-048f-308e-57414d0c5b31@redhat.com>
 MIME-Version: 1.0
-X-Spam-Score: -5.2 (-----)
+Content-Disposition: inline
+In-Reply-To: <6627384e-5514-048f-308e-57414d0c5b31@redhat.com>
+X-Spam-Score: -0.2 (/)
 X-Spam-Report: Spam detection software,
- running on the system "util-spamd-2.v13.lw.sourceforge.com", 
+ running on the system "util-spamd-1.v13.lw.sourceforge.com", 
  has NOT identified this incoming email as spam.  The original
  message has been attached to this so you can view it or label
  similar future email.  If you have any questions, see
  the administrator of that system for details.
- Content preview:  On Tue, 22 Nov 2022, Christian Schoenebeck wrote: > Follow-up
- fix for: >
- https://lore.kernel.org/linux-kernel/Y3hADWgV9JeajmfF@codewreck.org/
- > > Stefano, I am optimistic that this also works with Xen [...] 
- Content analysis details:   (-5.2 points, 6.0 required)
+ Content preview:  On Mon, Nov 21, 2022 at 09:26:16AM +0800, Xiubo Li wrote:
+ [1300+ lines snipped] > LGTM. > > Reviewed-by: Xiubo Li <xiubli@redhat.com>
+ You really don't need to quote the whole thing. Please be more considerate.
+ Content analysis details:   (-0.2 points, 6.0 required)
  pts rule name              description
  ---- ---------------------- --------------------------------------------------
- -5.0 RCVD_IN_DNSWL_HI       RBL: Sender listed at https://www.dnswl.org/,
- high trust [145.40.68.75 listed in list.dnswl.org]
- -0.0 SPF_PASS               SPF: sender matches SPF record
  0.0 SPF_HELO_NONE          SPF: HELO does not publish an SPF Record
+ 0.0 SPF_NONE               SPF: sender does not publish an SPF Record
+ -0.1 DKIM_VALID_AU          Message has a valid DKIM or DK signature from
+ author's domain
+ -0.1 DKIM_VALID_EF          Message has a valid DKIM or DK signature from
+ envelope-from domain
  0.1 DKIM_SIGNED            Message has a DKIM or DK signature, not necessarily
  valid
  -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
- -0.1 DKIM_VALID_EF          Message has a valid DKIM or DK signature from
- envelope-from domain
- -0.1 DKIM_VALID_AU          Message has a valid DKIM or DK signature from
- author's domain
- -0.0 DKIMWL_WL_HIGH         DKIMwl.org - High trust sender
-X-Headers-End: 1oxJ0H-0007Cp-8W
-Subject: Re: [V9fs-developer] [PATCH 0/2] net/9p: fix response size check in
- p9_check_errors()
+X-Headers-End: 1oxKEP-00AMdo-SC
+Subject: Re: [V9fs-developer] [PATCH] filelock: move file locking
+ definitions to separate header file
 X-BeenThere: v9fs-developer@lists.sourceforge.net
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -105,34 +96,42 @@ List-Post: <mailto:v9fs-developer@lists.sourceforge.net>
 List-Help: <mailto:v9fs-developer-request@lists.sourceforge.net?subject=help>
 List-Subscribe: <https://lists.sourceforge.net/lists/listinfo/v9fs-developer>, 
  <mailto:v9fs-developer-request@lists.sourceforge.net?subject=subscribe>
-Cc: v9fs-developer@lists.sourceforge.net,
- Stefano Stabellini <sstabellini@kernel.org>, linux-kernel@vger.kernel.org,
- GUO Zihua <guozihua@huawei.com>
+Cc: Latchesar Ionkov <lucho@ionkov.net>,
+ Martin Brandenburg <martin@omnibond.com>,
+ "Darrick J. Wong" <djwong@kernel.org>,
+ Christian Schoenebeck <linux_oss@crudebyte.com>,
+ David Howells <dhowells@redhat.com>, Joseph Qi <joseph.qi@linux.alibaba.com>,
+ Marc Dionne <marc.dionne@auristor.com>, samba-technical@lists.samba.org,
+ linux-xfs@vger.kernel.org, hch@lst.de, Mike Marshall <hubcap@omnibond.com>,
+ linux-cifs@vger.kernel.org, Andreas Gruenbacher <agruenba@redhat.com>,
+ Miklos Szeredi <miklos@szeredi.hu>, Mark Fasheh <mark@fasheh.com>,
+ linux-afs@lists.infradead.org, cluster-devel@redhat.com,
+ Christine Caulfield <ccaulfie@redhat.com>,
+ v9fs-developer@lists.sourceforge.net, Ilya Dryomov <idryomov@gmail.com>,
+ Namjae Jeon <linkinjeon@kernel.org>, devel@lists.orangefs.org,
+ Shyam Prasad N <sprasad@microsoft.com>, Eric Van Hensbergen <ericvh@gmail.com>,
+ Tom Talpey <tom@talpey.com>, linux-fsdevel@vger.kernel.org,
+ David Teigland <teigland@redhat.com>, Alexander Viro <viro@zeniv.linux.org.uk>,
+ ceph-devel@vger.kernel.org, Trond Myklebust <trond.myklebust@hammerspace.com>,
+ linux-nfs@vger.kernel.org, Paulo Alcantara <pc@cjr.nz>,
+ Jeff Layton <jlayton@kernel.org>, linux-kernel@vger.kernel.org,
+ Ronnie Sahlberg <lsahlber@redhat.com>, Steve French <sfrench@samba.org>,
+ Sergey Senozhatsky <senozhatsky@chromium.org>,
+ Chuck Lever <chuck.lever@oracle.com>, Anna Schumaker <anna@kernel.org>,
+ Bob Peterson <rpeterso@redhat.com>, ocfs2-devel@oss.oracle.com,
+ Joel Becker <jlbec@evilplan.org>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: v9fs-developer-bounces@lists.sourceforge.net
 
-On Tue, 22 Nov 2022, Christian Schoenebeck wrote:
-> Follow-up fix for:
-> https://lore.kernel.org/linux-kernel/Y3hADWgV9JeajmfF@codewreck.org/
+On Mon, Nov 21, 2022 at 09:26:16AM +0800, Xiubo Li wrote:
+[1300+ lines snipped]
+> LGTM.
 > 
-> Stefano, I am optimistic that this also works with Xen, but I have not
-> tested it.
+> Reviewed-by: Xiubo Li <xiubli@redhat.com>
 
-Tested-by: Stefano Stabellini <sstabellini@kernel.org>
-
-
-> Christian Schoenebeck (2):
->   net/9p: distinguish zero-copy requests
->   net/9p: fix response size check in p9_check_errors()
-> 
->  include/net/9p/9p.h |  2 ++
->  net/9p/client.c     | 12 ++++++++----
->  2 files changed, 10 insertions(+), 4 deletions(-)
-> 
-> -- 
-> 2.30.2
-> 
+You really don't need to quote the whole thing.  Please be more
+considerate.
 
 
 _______________________________________________
