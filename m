@@ -2,80 +2,77 @@ Return-Path: <v9fs-developer-bounces@lists.sourceforge.net>
 X-Original-To: lists+v9fs-developer@lfdr.de
 Delivered-To: lists+v9fs-developer@lfdr.de
 Received: from lists.sourceforge.net (lists.sourceforge.net [216.105.38.7])
-	by mail.lfdr.de (Postfix) with ESMTPS id E81CB633AF3
-	for <lists+v9fs-developer@lfdr.de>; Tue, 22 Nov 2022 12:14:16 +0100 (CET)
-Received: from [127.0.0.1] (helo=sfs-ml-2.v29.lw.sourceforge.com)
-	by sfs-ml-2.v29.lw.sourceforge.com with esmtp (Exim 4.95)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3DD5E633B2F
+	for <lists+v9fs-developer@lfdr.de>; Tue, 22 Nov 2022 12:20:25 +0100 (CET)
+Received: from [127.0.0.1] (helo=sfs-ml-1.v29.lw.sourceforge.com)
+	by sfs-ml-1.v29.lw.sourceforge.com with esmtp (Exim 4.95)
 	(envelope-from <v9fs-developer-bounces@lists.sourceforge.net>)
-	id 1oxREF-00042O-E8;
-	Tue, 22 Nov 2022 11:14:15 +0000
+	id 1oxRKB-00010H-PC;
+	Tue, 22 Nov 2022 11:20:23 +0000
 Received: from [172.30.20.202] (helo=mx.sourceforge.net)
- by sfs-ml-2.v29.lw.sourceforge.com with esmtps (TLS1.2) tls
+ by sfs-ml-1.v29.lw.sourceforge.com with esmtps (TLS1.2) tls
  TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384 (Exim 4.95)
- (envelope-from <jlayton@kernel.org>) id 1oxRE9-00042C-BU
+ (envelope-from <linux_oss@crudebyte.com>) id 1oxRKA-0000zs-Fw
  for v9fs-developer@lists.sourceforge.net;
- Tue, 22 Nov 2022 11:14:09 +0000
+ Tue, 22 Nov 2022 11:20:23 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=sourceforge.net; s=x; h=MIME-Version:Content-Transfer-Encoding:Content-Type
- :References:In-Reply-To:Date:Cc:To:From:Subject:Message-ID:Sender:Reply-To:
+ d=sourceforge.net; s=x; h=Content-Type:Content-Transfer-Encoding:MIME-Version
+ :References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Sender:Reply-To:
  Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
  Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
  List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=SOJndy9oAQaULvL0DdDwPqbrgnyzProJoxd3/mKZ2aI=; b=XoDaLxkTTpFBVpVYiJ+7XxawNO
- KeGW+dmpLLFu6sQEYO+6fcSAIdpcy5m/YRv/J+9zFsDFN6au3WIgFMbi7gXgqQ+uLuseooiuCb0oY
- m4zbxbKRCsWgSvyjJuMOb9oc5Gk9OHZgAQZyWfGWKu/P5ipT4qUlGFKan4FtGuTrFyxE=;
+ bh=i7zhY67HvXsANWaMrM7PgcglBFkDMzl8D8aIeEogL08=; b=KM/uCzF3TylEuPf2kvAQzk9o27
+ eXbfvUArcl9qNisOLOacToBGqjR/kRpFabOtbSoih++xry5HI8uiS3SBJbz3n2ThBNmV/amnTPPqk
+ 3fKDfCzagnVweL02dVejPeFgqGETFJjoqhKF80LDRkq7C0CciS+BqJ8gMhTEtaCdN7lw=;
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  ;
- h=MIME-Version:Content-Transfer-Encoding:Content-Type:References:
- In-Reply-To:Date:Cc:To:From:Subject:Message-ID:Sender:Reply-To:Content-ID:
+ h=Content-Type:Content-Transfer-Encoding:MIME-Version:References:
+ In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Sender:Reply-To:Content-ID:
  Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
  :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
  List-Post:List-Owner:List-Archive;
- bh=SOJndy9oAQaULvL0DdDwPqbrgnyzProJoxd3/mKZ2aI=; b=Do6LSQBYdnONl7fpfgSDiI+9Pa
- qqVGmTrKXEGi5nO1KS8+OxPcmkzXhX0pwOVvl6ih+6nV7VIO0g1xwFS7/NxLOWOMoqlnLVR4AKQab
- xbJqEh/E1kZau5ZgT/sHXOhQLYLda1PtwDoGQ5vp83LQ9HEMSi3az70NU5lQYW+TWcjc=;
-Received: from dfw.source.kernel.org ([139.178.84.217])
- by sfi-mx-2.v28.lw.sourceforge.com with esmtps
+ bh=i7zhY67HvXsANWaMrM7PgcglBFkDMzl8D8aIeEogL08=; b=SVmONPqmhB8Xb7Q7I2NXuXxLZI
+ MuBDcTAD9mZx8S6LFmMwxtemE5LAtMjnTYvQ07qyDphjkUys+jEUKeOLkqxtc2njtKr1Q2DgFfKhw
+ SIkDmtc2PPbqQzNXKhVhIrQ3HupMqlzjBsvniu77pGed935Ltib4fIUK5Nx5vaeQ6iXI=;
+Received: from kylie.crudebyte.com ([5.189.157.229])
+ by sfi-mx-1.v28.lw.sourceforge.com with esmtps
  (TLS1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.95)
- id 1oxRE5-00048D-2X for v9fs-developer@lists.sourceforge.net;
- Tue, 22 Nov 2022 11:14:09 +0000
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
- (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
- (No client certificate requested)
- by dfw.source.kernel.org (Postfix) with ESMTPS id A6EDD6164C;
- Tue, 22 Nov 2022 11:13:59 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 99661C433C1;
- Tue, 22 Nov 2022 11:13:55 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1669115639;
- bh=bl116Cg89IGIZVG9NrRKWmlP6ed4aJACzNI0Wp3w7MQ=;
- h=Subject:From:To:Cc:Date:In-Reply-To:References:From;
- b=PW904WXq7B5dnjaE/n6/stkLttLw66q95uzaVXXfC57Gr8fGyA50W/Y+6YMHj6/Z6
- C+bp2zR/HpD7AL2kDXCaUnJHLo0QYTjCM7B7srSBYzv9QSoZunuSXqgWz/eURLlX6f
- bkLmFZpbKLyi6RqKREvtIsB+vKfLjAYsE4lMeS50ONpsJGmxbLEBM8TI6eOVtcA0LK
- FmF5vJc1DjzHEZ764Fk6lm5yRoCPsh46VllB8mEkIzIHUVtq1E/Ip3Df/1o0TdNO5Q
- AIsD9dU2QJjYYPKYl3/NasVd/l9SRjkJBU0cAIKGCY06yaw8kwOzVXEKArpk5buENB
- HvI5i9aGVVUAA==
-Message-ID: <fcc7161712a2c8ff84420477b12b9114195e6624.camel@kernel.org>
-From: Jeff Layton <jlayton@kernel.org>
-To: Matthew Wilcox <willy@infradead.org>
-Date: Tue, 22 Nov 2022 06:13:54 -0500
-In-Reply-To: <Y3xHQwM3UiD/SK0K@casper.infradead.org>
-References: <20221120210004.381842-1-jlayton@kernel.org>
- <Y3xHQwM3UiD/SK0K@casper.infradead.org>
-User-Agent: Evolution 3.46.1 (3.46.1-1.fc37) 
+ id 1oxRK8-00BYJu-NK for v9fs-developer@lists.sourceforge.net;
+ Tue, 22 Nov 2022 11:20:22 +0000
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+ d=crudebyte.com; s=kylie; h=Content-Type:Content-Transfer-Encoding:
+ MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:
+ Content-ID:Content-Description;
+ bh=i7zhY67HvXsANWaMrM7PgcglBFkDMzl8D8aIeEogL08=; b=T922QQ41QNfXRiKkPBs6IilCD2
+ mfwcj4X4w9JP9blv78Y36yEJXwYQTEuxvWDbjuFOGv888tfIcdl+URcwnTK3zFKfUkpfnOeHKT2/8
+ dE7h9O0yVj9jFIwS2qWExD/cXlRFN/OC7fFs8bt8ff5eYQPICphtC29cpK1LqG7OmKzaor2WOJp0W
+ 1JVXlpw9uDRmQtaHU4sjZT9ucyPNXqltGSKxhb1r1Z2SLDMsVpEMjWyj69VFun8uSp5dhIVmWgzZI
+ 8acITSPAfWoVsSQLjPxVQzi5boMPeAU3BMLvtpCYLyYjgqhPZMG6vOVkGhwOegLz4jcBYdHGk103p
+ OE/c/jRbdCkkv6gbteXYAxsN5lpmIjDfhymSGZV7hTRKEeGJ1lsM/KnUmLI+0fy+Thdg4+Bvp01CZ
+ qpGKffntcK+z8Gf+GJNyR+sfzjVpalQLzG8PvgQDxZjckR8CkztmSOkZD2npMBzWcNzCNPNlMNt1R
+ Hh6u5MIQr7qYIPNyPuDlyoR8UOirpomSaQBOvyZ23cpMUte3Oe0J2zVz1cneJ/Y+IhHBvds257wcy
+ C1uTchNGh2fviTgpIEJbGSiG9NkhV/zWvmyFxCBkziY0J5J0di1OVah4e2Rxf/YsqiNXse93XyycL
+ tjb5Lnn/VFO658Fb+w2CzXstf8XP6hxfrvmldB+oM=;
+To: Dominique Martinet <asmadeus@codewreck.org>
+Date: Tue, 22 Nov 2022 12:20:12 +0100
+Message-ID: <2474218.LCornM2og2@silver>
+In-Reply-To: <Y3wWFxRVpei71PQt@codewreck.org>
+References: <cover.1669072186.git.linux_oss@crudebyte.com>
+ <fffb512c532bf1290f0f2b1df6068b2ff6cd14c0.1669072186.git.linux_oss@crudebyte.com>
+ <Y3wWFxRVpei71PQt@codewreck.org>
 MIME-Version: 1.0
-X-Spam-Score: -5.2 (-----)
+X-Spam-Score: -0.2 (/)
 X-Spam-Report: Spam detection software,
  running on the system "util-spamd-2.v13.lw.sourceforge.com", 
  has NOT identified this incoming email as spam.  The original
  message has been attached to this so you can view it or label
  similar future email.  If you have any questions, see
  the administrator of that system for details.
- Content preview:  On Tue, 2022-11-22 at 03:51 +0000, Matthew Wilcox wrote: >
- On Sun, Nov 20, 2022 at 03:59:57PM -0500, Jeff Layton wrote: > > Move the
- file locking definitions to a new header file, and add the > > appr [...]
- Content analysis details:   (-5.2 points, 6.0 required)
+ Content preview:  On Tuesday, November 22,
+ 2022 1:21:43 AM CET Dominique Martinet
+ wrote: > Christian Schoenebeck wrote on Tue, Nov 22, 2022 at 12:04:08AM +0100:
+ > > Since 60ece0833b6c (net/9p: allocate appropriate redu [...] 
+ Content analysis details:   (-0.2 points, 6.0 required)
  pts rule name              description
  ---- ---------------------- --------------------------------------------------
  -0.0 SPF_PASS               SPF: sender matches SPF record
@@ -87,12 +84,9 @@ X-Spam-Report: Spam detection software,
  valid
  -0.1 DKIM_VALID_EF          Message has a valid DKIM or DK signature from
  envelope-from domain
- -5.0 RCVD_IN_DNSWL_HI       RBL: Sender listed at https://www.dnswl.org/,
- high trust [139.178.84.217 listed in list.dnswl.org]
- -0.0 DKIMWL_WL_HIGH         DKIMwl.org - High trust sender
-X-Headers-End: 1oxRE5-00048D-2X
-Subject: Re: [V9fs-developer] [PATCH] filelock: move file locking
- definitions to separate header file
+X-Headers-End: 1oxRK8-00BYJu-NK
+Subject: Re: [V9fs-developer] [PATCH 2/2] net/9p: fix response size check in
+ p9_check_errors()
 X-BeenThere: v9fs-developer@lists.sourceforge.net
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -104,63 +98,117 @@ List-Post: <mailto:v9fs-developer@lists.sourceforge.net>
 List-Help: <mailto:v9fs-developer-request@lists.sourceforge.net?subject=help>
 List-Subscribe: <https://lists.sourceforge.net/lists/listinfo/v9fs-developer>, 
  <mailto:v9fs-developer-request@lists.sourceforge.net?subject=subscribe>
-Cc: Latchesar Ionkov <lucho@ionkov.net>,
- Martin Brandenburg <martin@omnibond.com>,
- "Darrick J. Wong" <djwong@kernel.org>,
- Christian Schoenebeck <linux_oss@crudebyte.com>,
- David Howells <dhowells@redhat.com>, Joseph Qi <joseph.qi@linux.alibaba.com>,
- Marc Dionne <marc.dionne@auristor.com>, linux-xfs@vger.kernel.org, hch@lst.de,
- Mike Marshall <hubcap@omnibond.com>, linux-cifs@vger.kernel.org,
- Andreas Gruenbacher <agruenba@redhat.com>, Miklos Szeredi <miklos@szeredi.hu>,
- Mark Fasheh <mark@fasheh.com>, linux-afs@lists.infradead.org,
- cluster-devel@redhat.com, Christine Caulfield <ccaulfie@redhat.com>,
- v9fs-developer@lists.sourceforge.net, Ilya Dryomov <idryomov@gmail.com>,
- Namjae Jeon <linkinjeon@kernel.org>, devel@lists.orangefs.org,
- Shyam Prasad N <sprasad@microsoft.com>, Eric Van Hensbergen <ericvh@gmail.com>,
- Tom Talpey <tom@talpey.com>, linux-fsdevel@vger.kernel.org,
- David Teigland <teigland@redhat.com>, Alexander Viro <viro@zeniv.linux.org.uk>,
- ceph-devel@vger.kernel.org, Xiubo Li <xiubli@redhat.com>,
- Trond Myklebust <trond.myklebust@hammerspace.com>, linux-nfs@vger.kernel.org,
- Paulo Alcantara <pc@cjr.nz>, samba-technical@lists.samba.org,
- linux-kernel@vger.kernel.org, Ronnie Sahlberg <lsahlber@redhat.com>,
- Steve French <sfrench@samba.org>,
- Sergey Senozhatsky <senozhatsky@chromium.org>,
- Chuck Lever <chuck.lever@oracle.com>, Anna Schumaker <anna@kernel.org>,
- Bob Peterson <rpeterso@redhat.com>, ocfs2-devel@oss.oracle.com,
- Joel Becker <jlbec@evilplan.org>
+From: Christian Schoenebeck via V9fs-developer
+ <v9fs-developer@lists.sourceforge.net>
+Reply-To: Christian Schoenebeck <linux_oss@crudebyte.com>
+Cc: v9fs-developer@lists.sourceforge.net,
+ Stefano Stabellini <sstabellini@kernel.org>, linux-kernel@vger.kernel.org,
+ GUO Zihua <guozihua@huawei.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: v9fs-developer-bounces@lists.sourceforge.net
 
-On Tue, 2022-11-22 at 03:51 +0000, Matthew Wilcox wrote:
-> On Sun, Nov 20, 2022 at 03:59:57PM -0500, Jeff Layton wrote:
-> > Move the file locking definitions to a new header file, and add the
-> > appropriate #include directives to the source files that need them. By
-> > doing this we trim down fs.h a bit and limit the amount of rebuilding
-> > that has to be done when we make changes to the file locking APIs.
+On Tuesday, November 22, 2022 1:21:43 AM CET Dominique Martinet wrote:
+> Christian Schoenebeck wrote on Tue, Nov 22, 2022 at 12:04:08AM +0100:
+> > Since 60ece0833b6c (net/9p: allocate appropriate reduced message buffers)
+> > it is no longer appropriate to check server's response size against
+> > msize. Check against the previously allocated buffer capacity instead.
 > 
-> I'm in favour of this in general, but I think there's a few implicit
-> includes.  Can you create a test.c that only #include
-> <linnux/filelock.h> and see if there's anything missing?
+> Thanks for the follow up!
 > 
-> > +	wait_queue_head_t fl_wait;
-> > +	struct file *fl_file;
+> >  - Omit this size check entirely for zero-copy messages, as those always
+> >    allocate 4k (P9_ZC_HDR_SZ) linear buffers which are not used for actual
+> >    payload and can be much bigger than 4k.
 > 
-> These two seem undefined at this point.
+> [review includes the new flag patch]
 > 
-> > +	struct fasync_struct *	fl_fasync; /* for lease break notifications */
-> 
-> Likewise.
-> 
+> hmm, unless there's anywhere else you think we might use these flags it
+> looks simpler to just pass a flag to p9_check_errors?
 
-Yeah, there is quite a bit missing. I think I'll have to add this at the
-head of filelock.h:
+For now that would do as well of course. I just had a feeling that this might
+be used for other purposes as well in future and some of these functions are
+already somewhat overloaded with arguments.
 
-#include <linux/fs.h>
+No strong opinion, your choice.
 
-...as we need several definitions from fs.h for this header.
--- 
-Jeff Layton <jlayton@kernel.org>
+> In particular adding a bool in this position is not particularly efficient:
+> -------(pahole)-----
+> struct p9_fcall {
+> 	u32                        size;                 /*     0     4 */
+> 	u8                         id;                   /*     4     1 */
+> 
+> 	/* XXX 1 byte hole, try to pack */
+> 
+> 	u16                        tag;                  /*     6     2 */
+> 	size_t                     offset;               /*     8     8 */
+> 	size_t                     capacity;             /*    16     8 */
+> 	bool                       zc;                   /*    24     1 */
+> 
+> 	/* XXX 7 bytes hole, try to pack */
+> 
+> 	struct kmem_cache *        cache;                /*    32     8 */
+> 	u8 *                       sdata;                /*    40     8 */
+> 
+> 	/* size: 48, cachelines: 1, members: 8 */
+> 	/* sum members: 40, holes: 2, sum holes: 8 */
+> 	/* last cacheline: 48 bytes */
+> };
+> ----------------
+> Not that adding it between id and tag sounds better to me, so this is
+> probably just as good as anywhere else :-D
+
+Yeah, that layout optimization would make sense indeed.
+
+> Anyway, I'm just nitpicking -- on principle I agree just whitelisting zc
+> requests from this check makes most sense, happy with either way if you
+> think this is better for the future.
+> 
+> >  - Replace p9_debug() by pr_err() to make sure this message is always
+> >    printed in case this error is triggered.
+> > 
+> >  - Add 9p message type to error message to ease investigation.
+> 
+> Yes to these log changes!
+> 
+> > 
+> > Signed-off-by: Christian Schoenebeck <linux_oss@crudebyte.com>
+> > ---
+> >  net/9p/client.c | 8 ++++----
+> >  1 file changed, 4 insertions(+), 4 deletions(-)
+> > 
+> > diff --git a/net/9p/client.c b/net/9p/client.c
+> > index 30dd82f49b28..63f13dd1ecff 100644
+> > --- a/net/9p/client.c
+> > +++ b/net/9p/client.c
+> > @@ -514,10 +514,10 @@ static int p9_check_errors(struct p9_client *c, struct p9_req_t *req)
+> >  	int ecode;
+> >  
+> >  	err = p9_parse_header(&req->rc, NULL, &type, NULL, 0);
+> > -	if (req->rc.size >= c->msize) {
+> > -		p9_debug(P9_DEBUG_ERROR,
+> > -			 "requested packet size too big: %d\n",
+> > -			 req->rc.size);
+> > +	if (req->rc.size > req->rc.capacity && !req->rc.zc) {
+> > +		pr_err(
+> > +			 "requested packet size too big: %d does not fit %ld (type=%d)\n",
+> > +			 req->rc.size, req->rc.capacity, req->rc.id);
+> 
+> Haven't seen this style before -- is that what qemu uses?
+> We normally keep the message on first line and align e.g.
+
+Lazy me, I haven't run checkpatch.pl this time. I'll fix that.
+
+I also have to fix the format specifier for `capacity` that kernel test bot
+barked on.
+
+> > +             pr_err("requested packet size too big: %d does not fit %ld (type=%d)\n",
+> > +                    req->rc.size, req->rc.capacity, req->rc.id);
+> 
+> (at least what's what other grep -A 1 'pr_err.*,$' seem to do, and
+> checkpatch is happier with that)
+
+
+
 
 
 _______________________________________________
