@@ -2,28 +2,28 @@ Return-Path: <v9fs-developer-bounces@lists.sourceforge.net>
 X-Original-To: lists+v9fs-developer@lfdr.de
 Delivered-To: lists+v9fs-developer@lfdr.de
 Received: from lists.sourceforge.net (lists.sourceforge.net [216.105.38.7])
-	by mail.lfdr.de (Postfix) with ESMTPS id E95E26368F6
-	for <lists+v9fs-developer@lfdr.de>; Wed, 23 Nov 2022 19:34:06 +0100 (CET)
-Received: from [127.0.0.1] (helo=sfs-ml-1.v29.lw.sourceforge.com)
-	by sfs-ml-1.v29.lw.sourceforge.com with esmtp (Exim 4.95)
+	by mail.lfdr.de (Postfix) with ESMTPS id EC699636997
+	for <lists+v9fs-developer@lfdr.de>; Wed, 23 Nov 2022 20:09:18 +0100 (CET)
+Received: from [127.0.0.1] (helo=sfs-ml-2.v29.lw.sourceforge.com)
+	by sfs-ml-2.v29.lw.sourceforge.com with esmtp (Exim 4.95)
 	(envelope-from <v9fs-developer-bounces@lists.sourceforge.net>)
-	id 1oxuZP-0002WG-SR;
-	Wed, 23 Nov 2022 18:34:03 +0000
+	id 1oxv7U-00080u-E3;
+	Wed, 23 Nov 2022 19:09:16 +0000
 Received: from [172.30.20.202] (helo=mx.sourceforge.net)
- by sfs-ml-1.v29.lw.sourceforge.com with esmtps (TLS1.2) tls
+ by sfs-ml-2.v29.lw.sourceforge.com with esmtps (TLS1.2) tls
  TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384 (Exim 4.95)
- (envelope-from <torvalds@linuxfoundation.org>) id 1oxuZ6-0002Vi-T5
+ (envelope-from <torvalds@linuxfoundation.org>) id 1oxv7R-00080n-Hg
  for v9fs-developer@lists.sourceforge.net;
- Wed, 23 Nov 2022 18:33:45 +0000
+ Wed, 23 Nov 2022 19:09:13 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
  d=sourceforge.net; s=x; h=Content-Type:Cc:To:Subject:Message-ID:Date:From:
  In-Reply-To:References:MIME-Version:Sender:Reply-To:Content-Transfer-Encoding
  :Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
  Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
  List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=T/jG5QaYqTRKNFcJtqKGHj4SfbKFSJH0wslCbBk+0rc=; b=enaSwNgAgOSccQxZgufWpRbKNZ
- I4whENOpFh+gUjUTSmX+nDVO+VEPyzCV9TpMBqhn7XwPKLWHWCXuA+bX3ZIA9u5RoK8arQxjKaKst
- QSMJjSWua4i/gKHsbjBMUTCTh/Qmlzqpl19crz7NxIfQiOLpcK8uxCoZbqf5lC/W1S04=;
+ bh=yPgzuaoqHuz3hc6GKBXrRYZsP8U7EhvDm+I1zVt6Kyc=; b=IE6wF/osDHWkWX6AHl/As9QoTI
+ uMBsJfOfYYZ9SlclgZRBMSVgNXTpr32ORe8RnDlIhgscmyUxrE8Uix8WeqTE240SpMrzJqDO771Mq
+ MMD0Kvp7S+oSxyR/v0L8h1QfSCNmACRFuTdfKPTFhO0ZPN89BWEf8wxIGdJo49GF44e8=;
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  ;
  h=Content-Type:Cc:To:Subject:Message-ID:Date:From:In-Reply-To:References:
@@ -31,93 +31,92 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
  :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
  List-Post:List-Owner:List-Archive;
- bh=T/jG5QaYqTRKNFcJtqKGHj4SfbKFSJH0wslCbBk+0rc=; b=kRFzoBgG5TwImu4C9YThZBjzj3
- pVRNetVVBRKTFAjtU0RYsqoECmcAECkAbOhH0cLl+sJ3mMD4L+l54avhxxNfrwKqZThQF4W6YD0Si
- P0wiTdfgbULMMEEA5PGI3SYWgbi/jP7ToyGPB00ZNbA2n6O7k8d73K9n4kmfMQPAfUBo=;
+ bh=yPgzuaoqHuz3hc6GKBXrRYZsP8U7EhvDm+I1zVt6Kyc=; b=AsI0Zc4fZ2lXzu2043okdwwF3h
+ xuXWqPNEgyQVGiNzAyKfj+fdFEgcccNmJZKWbFbjSQRqO7D2+ahzZt+wODMlug1xCJ1kbYf9KAlMo
+ I5MuwQkYIl+wBkaGTMNrNrn6VxziadWjGh7PO4h0v8DQZORH4dGMjK0KxocC69q17e7g=;
 Received: from mail-qk1-f181.google.com ([209.85.222.181])
  by sfi-mx-1.v28.lw.sourceforge.com with esmtps
  (TLS1.2:ECDHE-RSA-AES128-GCM-SHA256:128) (Exim 4.95)
- id 1oxuZ3-00Gn7k-2C for v9fs-developer@lists.sourceforge.net;
- Wed, 23 Nov 2022 18:33:44 +0000
-Received: by mail-qk1-f181.google.com with SMTP id z1so13056708qkl.9
+ id 1oxv7P-00GuW5-NX for v9fs-developer@lists.sourceforge.net;
+ Wed, 23 Nov 2022 19:09:13 +0000
+Received: by mail-qk1-f181.google.com with SMTP id x18so13140152qki.4
  for <v9fs-developer@lists.sourceforge.net>;
- Wed, 23 Nov 2022 10:33:41 -0800 (PST)
+ Wed, 23 Nov 2022 11:09:11 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=linux-foundation.org; s=google;
  h=cc:to:subject:message-id:date:from:in-reply-to:references
  :mime-version:from:to:cc:subject:date:message-id:reply-to;
- bh=T/jG5QaYqTRKNFcJtqKGHj4SfbKFSJH0wslCbBk+0rc=;
- b=WtEZfFy9CjWS25vRvH8BUGmfQ5TppWVPJY29aYmVjK2t/Gqd80v173byCSBDvOcqZ5
- GS3iagkeA7ssVh/ddKEkJKHeWkCPYto/COdNwh44sfuBXjAau3yrVZ6HAJiXAaELgCMQ
- DakZoiuRSNhC/sDbjfyndFBio5BbqUEFc1b48=
+ bh=yPgzuaoqHuz3hc6GKBXrRYZsP8U7EhvDm+I1zVt6Kyc=;
+ b=EFNC4tQlvCILCh89xvIkqHD2HaIjFKosUdVGMRAv1CFQL71EGGppxAhkFklcwgTSBC
+ DHCoZhz3mvQ7jOPniFnrjTEdj3Ju25j/2/tkns12FsXfLuvllqmlGAwtDPqcAFeaDJST
+ IkO304Om2ISQ4EzhQM5kzUC5yFRh1EPVo8X9M=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20210112;
  h=cc:to:subject:message-id:date:from:in-reply-to:references
  :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
  :reply-to;
- bh=T/jG5QaYqTRKNFcJtqKGHj4SfbKFSJH0wslCbBk+0rc=;
- b=QxDRpFEnP52atCW2HwF4Rw/qok+ucyHtnvbcU2xDt2hdQAgTJqgfIOA3xpId9DJbU1
- QzDyzYfeyxOLZFoeDzn7IXeyIQAYUN2PmROg3BmrKsfX3XjBHUdLtlA/VkGANVhIGEKS
- vbRDhamKtFGaKie5GJt9+fo/xvF9rA0ORAN1ywf6NjaP1Qib9MPJRiM5dKR/xInfuxxL
- LXc26qOShe8x+JzZdD2GzVzcltdbvxKvnwHzr8qlYjutBODTB382sQvcopzE/xY7YK/v
- aMKfinYafXMeyNnB1E1ZMtQThllkL/z0QZmtW/KvSdwTXbMliIXALfDqQPKnzkfKy2IQ
- rb8g==
-X-Gm-Message-State: ANoB5plLOykKQM9O4vbEScnNdA+LuL+b3Q0ViHL59X9rmYbPiMRpKqVI
- jHovwkOZfGmwqLub04Q3vC76elbstZeMKw==
-X-Google-Smtp-Source: AA0mqf4ZZxQ4Q6/q1JzkmjsbN5V1Zr9mwEgTVXS8zblgGjF7oJFILlVdwVolzRpCeVv1fetrTlsWNA==
-X-Received: by 2002:a05:620a:108c:b0:6cd:fd44:d83e with SMTP id
- g12-20020a05620a108c00b006cdfd44d83emr12462312qkk.594.1669228414954; 
- Wed, 23 Nov 2022 10:33:34 -0800 (PST)
-Received: from mail-qk1-f170.google.com (mail-qk1-f170.google.com.
- [209.85.222.170]) by smtp.gmail.com with ESMTPSA id
- k18-20020a05620a415200b006e54251993esm12882076qko.97.2022.11.23.10.33.34
+ bh=yPgzuaoqHuz3hc6GKBXrRYZsP8U7EhvDm+I1zVt6Kyc=;
+ b=FLPIcodprmc3k2JOi+4aBOvsdm4Gj6SGHBHBuG1liCPAKmuakWWxhGG+SGsFYOo9Ng
+ bttxLYpTCXIvyDpf4wBjC5NDVO6+fZos62bPW01UHmGCCwM/T4dVxkh5bRuBTW8QRNW5
+ a1SGzv1ImhS4lE/FaRBernLBbeB3P7XQE6DFfb5kbK8tFk3GPV1nQStqtPxADYB8W2EO
+ V2ZFeoK+mJUFISE+0Ai7sctL7COOEjPCsBQSMODxLu28x6Mr+JHwFHEd46EE04bZQcWh
+ TRC6dWR8LJMxIh5fVbF75Zv8uCJMyzdFgXMZH4uSDFZDquugeHIQ6H2igWtGUuAl7p6J
+ qAXw==
+X-Gm-Message-State: ANoB5pnYK1Gv8ast3LEgOFqIrBdVzZmc1pLhln+atsVaKdOnTYFvLt5L
+ VWwpnXZpJClxH+lij8NCDDCRO66YtKU8lQ==
+X-Google-Smtp-Source: AA0mqf5G8dwsIWZRY3wqd8nAHsy3OP6gHS8xOgwqfjK0mbUF2u5/xhv7QYDbcBEM31l4sJooRgxqaA==
+X-Received: by 2002:a37:58a:0:b0:6fa:d64:c018 with SMTP id
+ 132-20020a37058a000000b006fa0d64c018mr10845977qkf.145.1669230545598; 
+ Wed, 23 Nov 2022 11:09:05 -0800 (PST)
+Received: from mail-qv1-f51.google.com (mail-qv1-f51.google.com.
+ [209.85.219.51]) by smtp.gmail.com with ESMTPSA id
+ u18-20020a05620a455200b006cdd0939ffbsm12968977qkp.86.2022.11.23.11.09.04
  for <v9fs-developer@lists.sourceforge.net>
  (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Wed, 23 Nov 2022 10:33:34 -0800 (PST)
-Received: by mail-qk1-f170.google.com with SMTP id z1so13056674qkl.9
+ Wed, 23 Nov 2022 11:09:05 -0800 (PST)
+Received: by mail-qv1-f51.google.com with SMTP id s18so11177301qvo.9
  for <v9fs-developer@lists.sourceforge.net>;
- Wed, 23 Nov 2022 10:33:34 -0800 (PST)
-X-Received: by 2002:ac8:41cd:0:b0:3a5:1ba7:717d with SMTP id
- o13-20020ac841cd000000b003a51ba7717dmr9188380qtm.678.1669228012067; Wed, 23
- Nov 2022 10:26:52 -0800 (PST)
+ Wed, 23 Nov 2022 11:09:04 -0800 (PST)
+X-Received: by 2002:ad4:4101:0:b0:4b1:856b:4277 with SMTP id
+ i1-20020ad44101000000b004b1856b4277mr9787467qvp.129.1669230544666; Wed, 23
+ Nov 2022 11:09:04 -0800 (PST)
 MIME-Version: 1.0
-References: <1459152.1669208550@warthog.procyon.org.uk>
-In-Reply-To: <1459152.1669208550@warthog.procyon.org.uk>
+References: <Y32sfX54JJbldBIt@codewreck.org>
+In-Reply-To: <Y32sfX54JJbldBIt@codewreck.org>
 From: Linus Torvalds <torvalds@linux-foundation.org>
-Date: Wed, 23 Nov 2022 10:26:36 -0800
-X-Gmail-Original-Message-ID: <CAHk-=wghJtq-952e_8jd=vtV68y_HsDJ8=e0=C3-AsU2WL-8YA@mail.gmail.com>
-Message-ID: <CAHk-=wghJtq-952e_8jd=vtV68y_HsDJ8=e0=C3-AsU2WL-8YA@mail.gmail.com>
-To: David Howells <dhowells@redhat.com>
+Date: Wed, 23 Nov 2022 11:08:48 -0800
+X-Gmail-Original-Message-ID: <CAHk-=winPSOAoRAc3vUSy9UZ-kLpjehVkEsncbiyqZ4cZfV0xg@mail.gmail.com>
+Message-ID: <CAHk-=winPSOAoRAc3vUSy9UZ-kLpjehVkEsncbiyqZ4cZfV0xg@mail.gmail.com>
+To: Dominique Martinet <asmadeus@codewreck.org>
 X-Spam-Score: 0.1 (/)
 X-Spam-Report: Spam detection software,
- running on the system "util-spamd-1.v13.lw.sourceforge.com", 
+ running on the system "util-spamd-2.v13.lw.sourceforge.com", 
  has NOT identified this incoming email as spam.  The original
  message has been attached to this so you can view it or label
  similar future email.  If you have any questions, see
  the administrator of that system for details.
- Content preview:  On Wed, Nov 23,
- 2022 at 5:02 AM David Howells <dhowells@redhat.com>
- wrote: > > Is the attached patch too heavy to be applied this late in the
- merge cycle? > Or would you prefer it to wait for the merg [...] 
+ Content preview:  On Tue, Nov 22,
+ 2022 at 9:16 PM Dominique Martinet <asmadeus@codewreck.org>
+ wrote: > > net/9p/trans_fd.c | 24 +++++++++++++ > net/9p/trans_xen.c | 9
+ +++++++++ > 2 files changed, 22 insertio [...] 
  Content analysis details:   (0.1 points, 6.0 required)
  pts rule name              description
  ---- ---------------------- --------------------------------------------------
  -0.0 RCVD_IN_DNSWL_NONE     RBL: Sender listed at https://www.dnswl.org/,
  no trust [209.85.222.181 listed in list.dnswl.org]
+ -0.0 RCVD_IN_MSPIKE_H2      RBL: Average reputation (+2)
+ [209.85.222.181 listed in wl.mailspike.net]
  0.0 SPF_HELO_NONE          SPF: HELO does not publish an SPF Record
  0.2 HEADER_FROM_DIFFERENT_DOMAINS From and EnvelopeFrom 2nd level
  mail domains are different
  -0.0 SPF_PASS               SPF: sender matches SPF record
- -0.0 RCVD_IN_MSPIKE_H2      RBL: Average reputation (+2)
- [209.85.222.181 listed in wl.mailspike.net]
- -0.1 DKIM_VALID_AU          Message has a valid DKIM or DK signature from
- author's domain
  0.1 DKIM_SIGNED            Message has a DKIM or DK signature, not necessarily
  valid
  -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-X-Headers-End: 1oxuZ3-00Gn7k-2C
-Subject: Re: [V9fs-developer] [PATCH v3] mm, netfs,
- fscache: Stop read optimisation when folio removed from pagecache
+ -0.1 DKIM_VALID_AU          Message has a valid DKIM or DK signature from
+ author's domain
+X-Headers-End: 1oxv7P-00GuW5-NX
+Subject: Re: [V9fs-developer] [GIT PULL] 9p fixes for 6.1-rc7
 X-BeenThere: v9fs-developer@lists.sourceforge.net
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -129,69 +128,27 @@ List-Post: <mailto:v9fs-developer@lists.sourceforge.net>
 List-Help: <mailto:v9fs-developer-request@lists.sourceforge.net?subject=help>
 List-Subscribe: <https://lists.sourceforge.net/lists/listinfo/v9fs-developer>, 
  <mailto:v9fs-developer-request@lists.sourceforge.net?subject=subscribe>
-Cc: Shyam Prasad N <nspmangalore@gmail.com>, linux-cifs@vger.kernel.org,
- linux-nfs@vger.kernel.org, Rohith Surabattula <rohiths.msft@gmail.com>,
- dwysocha@redhat.com, ceph-devel@vger.kernel.org, linux-kernel@vger.kernel.org,
- willy@infradead.org, linux-afs@lists.infradead.org,
- Steve French <sfrench@samba.org>, linux-mm@kvack.org, linux-cachefs@redhat.com,
- linux-fsdevel@vger.kernel.org, v9fs-developer@lists.sourceforge.net,
- Ilya Dryomov <idryomov@gmail.com>
+Cc: linux-fsdevel@vger.kernel.org, v9fs-developer@lists.sourceforge.net,
+ Christian Schoenebeck <linux_oss@crudebyte.com>, linux-kernel@vger.kernel.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: v9fs-developer-bounces@lists.sourceforge.net
 
-On Wed, Nov 23, 2022 at 5:02 AM David Howells <dhowells@redhat.com> wrote:
+On Tue, Nov 22, 2022 at 9:16 PM Dominique Martinet
+<asmadeus@codewreck.org> wrote:
 >
-> Is the attached patch too heavy to be applied this late in the merge cycle?
-> Or would you prefer it to wait for the merge window?
+>  net/9p/trans_fd.c  | 24 +++++++++++++-----------
+>  net/9p/trans_xen.c |  9 +++++++++
+>  2 files changed, 22 insertions(+), 11 deletions(-)
+>  9 files changed, 254 insertions(+), 28 deletions(-)
 
-This patch is much too much for this point in the release.
+Strange bogus second line of statistics.
 
-But I also think it's strange in another way, with that odd placement of
+But the first line looks right, and I've pulled it. I'm assuming this
+is some odd cut-and-paste error on your part where you had some stale
+data from before.
 
-        mapping_clear_release_always(inode->i_mapping);
-
-at inode eviction time. That just feels very random.
-
-Similarly, that change to shrink_folio_list() looks strange, with the
-nasty folio_needs_release() helper. It seems entirely pointless, with
-the use then being
-
-                if (folio_needs_release(folio)) {
-                        if (!filemap_release_folio(folio, sc->gfp_mask))
-                                goto activate_locked;
-
-when everybody else is just using filemap_release_folio() and checking
-its return value. I like how you changed other cases of
-
-        if (folio_has_private(folio) && !filemap_release_folio(folio, 0))
-                return 0;
-
-to just use "!filemap_release_folio()" directly, and that felt like a
-cleanup, but the shrink_folio_list() changes look like a step
-backwards.
-
-And the change to mm/filemap.c is completely unacceptable in all
-forms, and this added test
-
-+       if ((!mapping || !mapping_release_always(mapping)) &&
-+           !folio_test_private(folio) &&
-+           !folio_test_private_2(folio))
-+               return true;
-
-will not be accepted even during the merge window. That code makes no
-sense what-so-ever, and is in no way acceptable.
-
-That code makes no sense what-so-ever. Why isn't it using
-"folio_has_private()"? Why is it using it's own illegible version of
-that that doesn't match any other case? Why is this done as an
-open-coded - and *badly* so - version of !folio_needs_release() that
-you for some reason made private to mm/vmscan.c?
-
-So no, this patch is too ugly to apply as-is *ever*, much less during
-the late rc series.
-
-                 Linus
+               Linus
 
 
 _______________________________________________
