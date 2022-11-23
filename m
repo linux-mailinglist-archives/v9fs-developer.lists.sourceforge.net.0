@@ -2,123 +2,103 @@ Return-Path: <v9fs-developer-bounces@lists.sourceforge.net>
 X-Original-To: lists+v9fs-developer@lfdr.de
 Delivered-To: lists+v9fs-developer@lfdr.de
 Received: from lists.sourceforge.net (lists.sourceforge.net [216.105.38.7])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6EC5A636B59
-	for <lists+v9fs-developer@lfdr.de>; Wed, 23 Nov 2022 21:39:36 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 99150636D81
+	for <lists+v9fs-developer@lfdr.de>; Wed, 23 Nov 2022 23:48:48 +0100 (CET)
 Received: from [127.0.0.1] (helo=sfs-ml-4.v29.lw.sourceforge.com)
 	by sfs-ml-4.v29.lw.sourceforge.com with esmtp (Exim 4.95)
 	(envelope-from <v9fs-developer-bounces@lists.sourceforge.net>)
-	id 1oxwWr-0000dG-UN;
-	Wed, 23 Nov 2022 20:39:33 +0000
+	id 1oxyXu-0003LN-B5;
+	Wed, 23 Nov 2022 22:48:46 +0000
 Received: from [172.30.20.202] (helo=mx.sourceforge.net)
  by sfs-ml-4.v29.lw.sourceforge.com with esmtps (TLS1.2) tls
  TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384 (Exim 4.95)
- (envelope-from <torvalds@linuxfoundation.org>) id 1oxwWq-0000dA-MY
+ (envelope-from <dhowells@redhat.com>) id 1oxyXt-0003LH-SY
  for v9fs-developer@lists.sourceforge.net;
- Wed, 23 Nov 2022 20:39:32 +0000
+ Wed, 23 Nov 2022 22:48:45 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=sourceforge.net; s=x; h=Content-Type:Cc:To:Subject:Message-ID:Date:From:
- In-Reply-To:References:MIME-Version:Sender:Reply-To:Content-Transfer-Encoding
- :Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
- Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
+ d=sourceforge.net; s=x; h=Content-Transfer-Encoding:Content-Type:MIME-Version
+ :Message-ID:Date:Cc:To:From:Subject:Sender:Reply-To:Content-ID:
+ Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
+ :Resent-Message-ID:In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:
  List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=CqmvkkESPfhDMe/qDmW4BJUOiTicPIv5an9zs8Gyv18=; b=KJggmFaT9CjEKSmPEfLeGA7B19
- 0zqc7Blz67EXDYsCEhkcbvCZSW2Rc17QzECj80R3gH9mIjZuuhLzAKrQQ6V20Q65AqPJd609jsjn3
- d2AMaqVS6b49zucGS08QWl1+mRZdYnotSdexFmqa0uyu1CQ3wvbwUFbvH6YkR7Y8WRGU=;
+ bh=RwK92HT6uXaeNFI0ryIilaUvN1ewEQDVvt+89pcPgvc=; b=TMWylzo8rL3PHFxAoXq6IrV00S
+ 7ysxuFOTw4tm4g5Ngjdy6vWq3M47IFNMutHiIALrfxCdaK6qEVFBNk85pz9aqJx3yHtynL46qy74b
+ yQMoD+GZvjQDmDttH96JJ8Zu/pcKUXzJmz1M2VxB2k8g8+NW8mgXjRGMNCcVF99WVsjs=;
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  ;
- h=Content-Type:Cc:To:Subject:Message-ID:Date:From:In-Reply-To:References:
- MIME-Version:Sender:Reply-To:Content-Transfer-Encoding:Content-ID:
- Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
- :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
- List-Post:List-Owner:List-Archive;
- bh=CqmvkkESPfhDMe/qDmW4BJUOiTicPIv5an9zs8Gyv18=; b=TxTLj6VEKkqQep3WY1Tf8RDcKc
- 6PTY1dMAdjqKWWSedFhy8TVYOaoI57OvRMdLpXLdWOY9dV66t/SPkFs4whzD2ZYShNCUQNVBv1ZNR
- 0UEXJV+FDJNqZw5akvQDmn9JBpKLJ1rJn0q/2PGVOkM8+FIvKU5nRyD8rOWAYqujTTnk=;
-Received: from mail-oi1-f179.google.com ([209.85.167.179])
- by sfi-mx-1.v28.lw.sourceforge.com with esmtps
- (TLS1.2:ECDHE-RSA-AES128-GCM-SHA256:128) (Exim 4.95)
- id 1oxwWj-00HHwH-Nl for v9fs-developer@lists.sourceforge.net;
- Wed, 23 Nov 2022 20:39:32 +0000
-Received: by mail-oi1-f179.google.com with SMTP id n205so20288866oib.1
- for <v9fs-developer@lists.sourceforge.net>;
- Wed, 23 Nov 2022 12:39:25 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=linux-foundation.org; s=google;
- h=cc:to:subject:message-id:date:from:in-reply-to:references
- :mime-version:from:to:cc:subject:date:message-id:reply-to;
- bh=CqmvkkESPfhDMe/qDmW4BJUOiTicPIv5an9zs8Gyv18=;
- b=H05YjYlWatbzx/wYDWLZlWtlE1KBwjnnlgWrAS57YeODNFQbfnbqnkGjrw+7lnDaor
- oScBBYPzE4yA/do2o0oXxJV/7PAgcLDU8MGXopXi7Hyz2CY8RYXjIOxuZIHXCxSyrV4d
- 4jeZ+ngrXKdb0oQJMIfkShcljtHyJ8LXyw7yk=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20210112;
- h=cc:to:subject:message-id:date:from:in-reply-to:references
- :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
- :reply-to;
- bh=CqmvkkESPfhDMe/qDmW4BJUOiTicPIv5an9zs8Gyv18=;
- b=PSD+5fMw4CIZbe4tGoVwxAk0b4fwiihFwc1K4Y6fdd42NgZtn8BJskTsJPyM7EJCZd
- YephE48QLe7V5Pwg0zXSxSMHKPPW+4JNjI116W9LSFJircdjUbEq+ZxLrdBoJELA4YWm
- bXFA74lXLnaggb5hmAzqyf/5N4t7V8A9uTXg3AuZPl+f4kEDKgrho+M6uSDliyU/R/1n
- x2b014T1wtff9ESB1mNUhITJ7MkQry1SS530a4Gxat/LQ7oPQIVxOsGJYIQ5WTmIILad
- WWitjmI3k3XFeExB8yiFIfx53zd5q2CmyFj3EFQ1iWplmgKPrHiOVY1DyF5ep4OhyjSR
- acMA==
-X-Gm-Message-State: ANoB5pk3Mq0z15zMujMJrzAyK8u5PvCeswRNwCyNjHBK2juVANDPKuWY
- sN0/nnFmAppj3R09dgpOP9y1gxytIXAoFQ==
-X-Google-Smtp-Source: AA0mqf4o38pNhZKTRCxAQgfWpRKBT+KvL/yY1e32HQSfRtNk8dkOULspAqirW1TG+Y/gXtU3Pl8sAg==
-X-Received: by 2002:a17:90b:2686:b0:218:bb0a:e295 with SMTP id
- pl6-20020a17090b268600b00218bb0ae295mr15165188pjb.80.1669235574427; 
- Wed, 23 Nov 2022 12:32:54 -0800 (PST)
-Received: from mail-pf1-f173.google.com (mail-pf1-f173.google.com.
- [209.85.210.173]) by smtp.gmail.com with ESMTPSA id
- x15-20020a63fe4f000000b00434272fe870sm11277684pgj.88.2022.11.23.12.32.54
- for <v9fs-developer@lists.sourceforge.net>
- (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Wed, 23 Nov 2022 12:32:54 -0800 (PST)
-Received: by mail-pf1-f173.google.com with SMTP id 130so18361973pfu.8
- for <v9fs-developer@lists.sourceforge.net>;
- Wed, 23 Nov 2022 12:32:54 -0800 (PST)
-X-Received: by 2002:ad4:4101:0:b0:4b1:856b:4277 with SMTP id
- i1-20020ad44101000000b004b1856b4277mr10112261qvp.129.1669235172559; Wed, 23
- Nov 2022 12:26:12 -0800 (PST)
+ h=Content-Transfer-Encoding:Content-Type:MIME-Version:Message-ID:Date:Cc:To
+ :From:Subject:Sender:Reply-To:Content-ID:Content-Description:Resent-Date:
+ Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:
+ References:List-Id:List-Help:List-Unsubscribe:List-Subscribe:List-Post:
+ List-Owner:List-Archive; bh=RwK92HT6uXaeNFI0ryIilaUvN1ewEQDVvt+89pcPgvc=; b=i
+ 9ID5PmlI2GT4TMvYxMfItoSot5ZOv2FXbxyi15RAf+yLpnjCsOeDgEZeteVTAAg6aB+A3uDEAUzUl
+ lmHRbpQjXy3Q3Iv6uZU7jldl8/iATYpepgCeEqMyZcCPCZtj8VphCzkPaV8xea5SqvkFpPbGG0XiF
+ XSx2bHLdspf1HF4M=;
+Received: from us-smtp-delivery-124.mimecast.com ([170.10.129.124])
+ by sfi-mx-2.v28.lw.sourceforge.com with esmtps
+ (TLS1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.95)
+ id 1oxyXp-000157-Dv for v9fs-developer@lists.sourceforge.net;
+ Wed, 23 Nov 2022 22:48:45 +0000
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+ s=mimecast20190719; t=1669243715;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding;
+ bh=RwK92HT6uXaeNFI0ryIilaUvN1ewEQDVvt+89pcPgvc=;
+ b=Wf+8pB/jqNPR7kw15wkeU3bRsrkKw9ZSEDvFTdY9Jdxp7gINfOHt5R1t57vEjSebhKumC6
+ EuvNaSoeP6Ulr8TZDy1cWkmd9yQncLuu6lAsLfY0TG+8apGc4YMX0KRhRCabZJtDH4LAd2
+ kM7gLpy7VWnRDdTbqA1DAd8wigKVato=
+Received: from mimecast-mx02.redhat.com (mx3-rdu2.redhat.com
+ [66.187.233.73]) by relay.mimecast.com with ESMTP with STARTTLS
+ (version=TLSv1.2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ us-mta-621-fSIlp9HwOd2_S9Kz1Ymq0w-1; Wed, 23 Nov 2022 17:48:32 -0500
+X-MC-Unique: fSIlp9HwOd2_S9Kz1Ymq0w-1
+Received: from smtp.corp.redhat.com (int-mx09.intmail.prod.int.rdu2.redhat.com
+ [10.11.54.9])
+ (using TLSv1.2 with cipher AECDH-AES256-SHA (256/256 bits))
+ (No client certificate requested)
+ by mimecast-mx02.redhat.com (Postfix) with ESMTPS id B9D1A3802B89;
+ Wed, 23 Nov 2022 22:48:30 +0000 (UTC)
+Received: from warthog.procyon.org.uk (unknown [10.33.36.14])
+ by smtp.corp.redhat.com (Postfix) with ESMTP id 6684249BB62;
+ Wed, 23 Nov 2022 22:48:28 +0000 (UTC)
+From: David Howells <dhowells@redhat.com>
+To: Linus Torvalds <torvalds@linux-foundation.org>
+Date: Wed, 23 Nov 2022 22:48:25 +0000
+Message-ID: <166924370539.1772793.13730698360771821317.stgit@warthog.procyon.org.uk>
+User-Agent: StGit/1.5
 MIME-Version: 1.0
-References: <1459152.1669208550@warthog.procyon.org.uk>
- <CAHk-=wghJtq-952e_8jd=vtV68y_HsDJ8=e0=C3-AsU2WL-8YA@mail.gmail.com>
- <1619343.1669233783@warthog.procyon.org.uk>
-In-Reply-To: <1619343.1669233783@warthog.procyon.org.uk>
-From: Linus Torvalds <torvalds@linux-foundation.org>
-Date: Wed, 23 Nov 2022 12:25:56 -0800
-X-Gmail-Original-Message-ID: <CAHk-=whJBOAOqB8wWxeAtKy3b9r4rn2Y48+zsuDDhKJ3D3D4cw@mail.gmail.com>
-Message-ID: <CAHk-=whJBOAOqB8wWxeAtKy3b9r4rn2Y48+zsuDDhKJ3D3D4cw@mail.gmail.com>
-To: David Howells <dhowells@redhat.com>
-X-Spam-Score: 0.1 (/)
+X-Scanned-By: MIMEDefang 3.1 on 10.11.54.9
+X-Spam-Score: -0.9 (/)
 X-Spam-Report: Spam detection software,
- running on the system "util-spamd-1.v13.lw.sourceforge.com", 
+ running on the system "util-spamd-2.v13.lw.sourceforge.com", 
  has NOT identified this incoming email as spam.  The original
  message has been attached to this so you can view it or label
  similar future email.  If you have any questions, see
  the administrator of that system for details.
- Content preview:  On Wed, Nov 23,
- 2022 at 12:03 PM David Howells <dhowells@redhat.com>
- wrote: > > Linus Torvalds <torvalds@linux-foundation.org> wrote: > > > But
- I also think it's strange in another way, with that odd [...] 
- Content analysis details:   (0.1 points, 6.0 required)
+ Content preview:  Hi Linus, How about this then? I've split the
+ folio_has_private()/filemap_release_folio()
+ call pair merging into its own patch, separate from the actual bugfix and
+ pulled out the folio_needs_release() function into mm/internal.h an [...]
+ Content analysis details:   (-0.9 points, 6.0 required)
  pts rule name              description
  ---- ---------------------- --------------------------------------------------
+ -0.7 RCVD_IN_DNSWL_LOW      RBL: Sender listed at https://www.dnswl.org/,
+ low trust [170.10.129.124 listed in list.dnswl.org]
+ -0.0 RCVD_IN_MSPIKE_H2      RBL: Average reputation (+2)
+ [170.10.129.124 listed in wl.mailspike.net]
  0.0 SPF_HELO_NONE          SPF: HELO does not publish an SPF Record
- 0.2 HEADER_FROM_DIFFERENT_DOMAINS From and EnvelopeFrom 2nd level
- mail domains are different
  -0.0 SPF_PASS               SPF: sender matches SPF record
- -0.1 DKIM_VALID_AU          Message has a valid DKIM or DK signature from
- author's domain
  0.1 DKIM_SIGNED            Message has a DKIM or DK signature, not necessarily
  valid
+ -0.1 DKIM_VALID_EF          Message has a valid DKIM or DK signature from
+ envelope-from domain
  -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
- -0.0 RCVD_IN_MSPIKE_H2      RBL: Average reputation (+2)
- [209.85.167.179 listed in wl.mailspike.net]
- -0.0 RCVD_IN_DNSWL_NONE     RBL: Sender listed at https://www.dnswl.org/,
- no trust [209.85.167.179 listed in list.dnswl.org]
-X-Headers-End: 1oxwWj-00HHwH-Nl
-Subject: Re: [V9fs-developer] [PATCH v3] mm, netfs,
+ -0.1 DKIM_VALID_AU          Message has a valid DKIM or DK signature from
+ author's domain
+ -0.0 DKIMWL_WL_HIGH         DKIMwl.org - High trust sender
+X-Headers-End: 1oxyXp-000157-Dv
+Subject: [V9fs-developer] [PATCH v4 0/3] mm, netfs,
  fscache: Stop read optimisation when folio removed from pagecache
 X-BeenThere: v9fs-developer@lists.sourceforge.net
 X-Mailman-Version: 2.1.21
@@ -133,73 +113,81 @@ List-Subscribe: <https://lists.sourceforge.net/lists/listinfo/v9fs-developer>,
  <mailto:v9fs-developer-request@lists.sourceforge.net?subject=subscribe>
 Cc: Shyam Prasad N <nspmangalore@gmail.com>, linux-cifs@vger.kernel.org,
  linux-nfs@vger.kernel.org, Rohith Surabattula <rohiths.msft@gmail.com>,
- dwysocha@redhat.com, ceph-devel@vger.kernel.org, linux-kernel@vger.kernel.org,
- willy@infradead.org, linux-afs@lists.infradead.org,
+ Jeff Layton <jlayton@kernel.org>, Dave Wysochanski <dwysocha@redhat.com>,
+ ceph-devel@vger.kernel.org, linux-kernel@vger.kernel.org,
+ Matthew Wilcox <willy@infradead.org>, linux-afs@lists.infradead.org,
  Steve French <sfrench@samba.org>, linux-mm@kvack.org, linux-cachefs@redhat.com,
- linux-fsdevel@vger.kernel.org, v9fs-developer@lists.sourceforge.net,
- Ilya Dryomov <idryomov@gmail.com>
+ dhowells@redhat.com, linux-fsdevel@vger.kernel.org,
+ v9fs-developer@lists.sourceforge.net, Ilya Dryomov <idryomov@gmail.com>,
+ linux-erofs@lists.ozlabs.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: v9fs-developer-bounces@lists.sourceforge.net
 
-On Wed, Nov 23, 2022 at 12:03 PM David Howells <dhowells@redhat.com> wrote:
->
-> Linus Torvalds <torvalds@linux-foundation.org> wrote:
->
-> > But I also think it's strange in another way, with that odd placement of
-> >
-> >         mapping_clear_release_always(inode->i_mapping);
-> >
-> > at inode eviction time. That just feels very random.
->
-> I was under the impression that a warning got splashed if unexpected
-> address_space flags were set when ->evict_inode() returned.  I may be thinking
-> of page flags.  If it doesn't, fine, this isn't required.
 
-I don't know if the warning happens or not, but the thing I reacted to
-was just how *random* this was. There was no logic to it, nor any
-explanation.
+Hi Linus,
 
-I *suspect* that if we add this kind of new generic address space
-flag, then that flag should just be cleared by generic code when the
-address space is released.
+How about this then?
 
-But I'm not saying it has to be done that way - I'm just saying that
-however it is done, please don't make it this random mess with no
-explanation.
+I've split the folio_has_private()/filemap_release_folio() call pair
+merging into its own patch, separate from the actual bugfix and pulled out
+the folio_needs_release() function into mm/internal.h and made
+filemap_release_folio() use it.  I've also got rid of the bit clearances
+from the network filesystem evict_inode functions as they doesn't seem to
+be necessary.
 
-The *setting* of the flag was at least fairly obvious. I didn't find
-code like this odd:
+I've also added an additional experimental patch to see if the pair in
+shrink_folio_list() can be reduced cleanly to just the release call.  This
+involves making filemap_release_folio() have a three-state return.
 
-+       if (v9inode->netfs.cache)
-+               mapping_set_release_always(inode->i_mapping);
+David
 
-and it makes all kinds of sense (ie I can read it as a "if I use netfs
-caching for this inode, then I want to be informed when a folio is
-released from this mapping").
+Changes:
+========
+ver #4)
+ - Split has_private/release call pairs into own patch.
+ - Moved folio_needs_release() to mm/internal.h and removed open-coded
+   version from filemap_release_folio().
+ - Don't need to clear AS_RELEASE_ALWAYS in ->evict_inode().
+ - Added experimental patch to reduce shrink_folio_list().
 
-It's just the clearing that looked very random to me.
+ver #3)
+ - Fixed mapping_clear_release_always() to use clear_bit() not set_bit().
+ - Moved a '&&' to the correct line.
 
-Maybe just a comment would have helped, but I get the feeling that it
-migth as well just be cleared in "clear_inode()" or something like
-that.
+ver #2)
+ - Rewrote entirely according to Willy's suggestion[1].
 
-> > That code makes no sense what-so-ever. Why isn't it using
-> > "folio_has_private()"?
->
-> It should be, yes.
->
-> > Why is this done as an open-coded - and *badly* so - version of
-> > !folio_needs_release() that you for some reason made private to mm/vmscan.c?
->
-> Yeah, in retrospect, I should have put that in mm/internal.h.
+Link: https://lore.kernel.org/r/Yk9V/03wgdYi65Lb@casper.infradead.org/ [1]
+Link: https://lore.kernel.org/r/164928630577.457102.8519251179327601178.stgit@warthog.procyon.org.uk/ # v1
+Link: https://lore.kernel.org/r/166844174069.1124521.10890506360974169994.stgit@warthog.procyon.org.uk/ # v2
+Link: https://lore.kernel.org/r/166869495238.3720468.4878151409085146764.stgit@warthog.procyon.org.uk/ # v3
+Link: https://lore.kernel.org/r/1459152.1669208550@warthog.procyon.org.uk/ # v3 also
+---
+David Howells (3):
+      mm: Merge folio_has_private()/filemap_release_folio() call pairs
+      mm, netfs, fscache: Stop read optimisation when folio removed from pagecache
+      mm: Make filemap_release_folio() better inform shrink_folio_list()
 
-So if folio_needs_release() is in mm/internal.h, and then mm/filemap.c
-uses it in filemap_release_folio() instead of the odd open-coding, I
-think that would clear up my worries about both mm/filemap.c and
-mm/vmscan.c.
 
-                Linus
+ fs/9p/cache.c           |  2 ++
+ fs/afs/internal.h       |  2 ++
+ fs/cachefiles/namei.c   |  2 ++
+ fs/ceph/cache.c         |  2 ++
+ fs/cifs/fscache.c       |  2 ++
+ fs/splice.c             |  3 +--
+ include/linux/pagemap.h | 23 ++++++++++++++++++++++-
+ mm/filemap.c            | 20 +++++++++++++++-----
+ mm/huge_memory.c        |  3 +--
+ mm/internal.h           | 11 +++++++++++
+ mm/khugepaged.c         |  3 +--
+ mm/memory-failure.c     |  3 +--
+ mm/migrate.c            |  3 +--
+ mm/truncate.c           |  6 ++----
+ mm/vmscan.c             | 34 +++++++++++++++++-----------------
+ 15 files changed, 82 insertions(+), 37 deletions(-)
+
+
 
 
 _______________________________________________
