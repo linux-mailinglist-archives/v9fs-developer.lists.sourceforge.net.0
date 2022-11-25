@@ -2,95 +2,87 @@ Return-Path: <v9fs-developer-bounces@lists.sourceforge.net>
 X-Original-To: lists+v9fs-developer@lfdr.de
 Delivered-To: lists+v9fs-developer@lfdr.de
 Received: from lists.sourceforge.net (lists.sourceforge.net [216.105.38.7])
-	by mail.lfdr.de (Postfix) with ESMTPS id BA6C3638B1A
-	for <lists+v9fs-developer@lfdr.de>; Fri, 25 Nov 2022 14:24:10 +0100 (CET)
-Received: from [127.0.0.1] (helo=sfs-ml-2.v29.lw.sourceforge.com)
-	by sfs-ml-2.v29.lw.sourceforge.com with esmtp (Exim 4.95)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2F9A9638E75
+	for <lists+v9fs-developer@lfdr.de>; Fri, 25 Nov 2022 17:45:44 +0100 (CET)
+Received: from [127.0.0.1] (helo=sfs-ml-1.v29.lw.sourceforge.com)
+	by sfs-ml-1.v29.lw.sourceforge.com with esmtp (Exim 4.95)
 	(envelope-from <v9fs-developer-bounces@lists.sourceforge.net>)
-	id 1oyYgY-00051D-Nh;
-	Fri, 25 Nov 2022 13:24:06 +0000
+	id 1oybpd-0005dZ-Va;
+	Fri, 25 Nov 2022 16:45:41 +0000
 Received: from [172.30.20.202] (helo=mx.sourceforge.net)
- by sfs-ml-2.v29.lw.sourceforge.com with esmtps (TLS1.2) tls
+ by sfs-ml-1.v29.lw.sourceforge.com with esmtps (TLS1.2) tls
  TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384 (Exim 4.95)
- (envelope-from <jlayton@kernel.org>) id 1oyYgW-000513-67
+ (envelope-from <viro@ftp.linux.org.uk>) id 1oybpc-0005dM-9X
  for v9fs-developer@lists.sourceforge.net;
- Fri, 25 Nov 2022 13:24:04 +0000
+ Fri, 25 Nov 2022 16:45:40 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=sourceforge.net; s=x; h=MIME-Version:Content-Transfer-Encoding:Content-Type
- :References:In-Reply-To:Date:Cc:To:From:Subject:Message-ID:Sender:Reply-To:
- Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
- Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
- List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=Ohsolls9DG7p4nHgUl8d/8tWg3FXUi0ogi48k3T7g60=; b=DGQAwOXToAjsl78xJVBVv+18l/
- HxLRNcdKqBDU7BMGQNqp1phXOTDrrfBB7lpLEUsNb+7+5ZZ/UdKqA9uAbm/xJ0H4PtWtLlC9qgs/e
- l7VJAlm25P/OgELx31+KF1jbXvz5Tiv9+6fOBLvQzRsiGr4BWfM56DSkKO10Br0sANug=;
+ d=sourceforge.net; s=x; h=Sender:In-Reply-To:Content-Type:MIME-Version:
+ References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
+ Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+ Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:
+ List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
+ bh=x53sQaWDa/88sDZr4eyy32ZPwwt0aIb86EtvxNAGN44=; b=OQQz+FI5+GG/sb1KQzNs3L7n3L
+ OJOIhn7sHfCDSK20kvjQLUCdnWKr13MIEXcbxxAi6zI3AAKb5+upeUiQk6BwTHmXfjAtJireJux/v
+ rB5vSAcuJ5+7yhgR7dYOBPKZDiwcsqitW1JuELhqRdXUrnadZuBJ3CgEqr2nhXcMWsh0=;
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  ;
- h=MIME-Version:Content-Transfer-Encoding:Content-Type:References:
- In-Reply-To:Date:Cc:To:From:Subject:Message-ID:Sender:Reply-To:Content-ID:
+ h=Sender:In-Reply-To:Content-Type:MIME-Version:References:Message-ID:
+ Subject:Cc:To:From:Date:Reply-To:Content-Transfer-Encoding:Content-ID:
  Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
  :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
  List-Post:List-Owner:List-Archive;
- bh=Ohsolls9DG7p4nHgUl8d/8tWg3FXUi0ogi48k3T7g60=; b=cfe6/gmLzA7y61kXv+HSNgz+6k
- bmy/c/U9F+4m4QhAoBNzWJVpIjb4SsS/7pc+zU2v1c3ab9P9d8uwcbVcj2dadqHScr3BB3jo7PHH6
- WO7pC12QWsq+4sRvHC1Ly3i/wJEqWUHtfqhvxuMWMsCmlySsw264klwsoJsq91VN4SVQ=;
-Received: from dfw.source.kernel.org ([139.178.84.217])
- by sfi-mx-1.v28.lw.sourceforge.com with esmtps
+ bh=x53sQaWDa/88sDZr4eyy32ZPwwt0aIb86EtvxNAGN44=; b=T6z45BjS4O3q7PhIYXOz2WxL2p
+ hR6sv4BIEbQu6xX5I8r/JI7HIdasfbJy+Fi//R084Gt5nmdqDKVuRmIF9nJjce+G813TIRS/OMe8W
+ KpXg3e70Pj5lyL6Ht7gJ9MQNAXtUr8F1GUVo3p+0k7UYQOEwcSzrUedET8dAkS2VtKCk=;
+Received: from zeniv.linux.org.uk ([62.89.141.173])
+ by sfi-mx-2.v28.lw.sourceforge.com with esmtps
  (TLS1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.95)
- id 1oyYgR-00A2Ui-UA for v9fs-developer@lists.sourceforge.net;
- Fri, 25 Nov 2022 13:24:04 +0000
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
- (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
- (No client certificate requested)
- by dfw.source.kernel.org (Postfix) with ESMTPS id 4995162404;
- Fri, 25 Nov 2022 13:23:51 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id DC855C433C1;
- Fri, 25 Nov 2022 13:23:46 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1669382630;
- bh=EGJ1sbVmh8zfuee638fIF/XO+8/weuDlINdqpi5zZtE=;
- h=Subject:From:To:Cc:Date:In-Reply-To:References:From;
- b=ITYmgIWGeb/7tfCFFc4kVDpIzqmupq1CVJap5fhBl/OT/PtkT4fvz+47vLok2k5y+
- 9CRsV+JeWA0KEW85LVZu0FSIZep4yXbkGkq4EGBqpjWl9J4R07ZmdftvaN+jO6GvVh
- UV+8CnZQsig9drGP5ocCBKCwdeh2CEjv01ouksVCHxKjEnYvQ0VQOwyYDVIftWVHKE
- GsZuPwqfzHVqHsCgI2NSiNlqWlCXseI+0MB2Oq49i12gvBk+OTgmkxmQgpHo2z4CO0
- KgxgBErlyuKDTZUoexdSzNPrYs0i7nPI8jo2JLFO4nl05cBpvzph4ae7XpMCDCSp+4
- bOGw2Qy+6YgWg==
-Message-ID: <1d474f53670771f324745f597ec94b63a006d687.camel@kernel.org>
-From: Jeff Layton <jlayton@kernel.org>
-To: Al Viro <viro@zeniv.linux.org.uk>
-Date: Fri, 25 Nov 2022 08:23:45 -0500
-In-Reply-To: <Y4A6/ozhUncxbimi@ZenIV>
+ id 1oybpa-0004CA-Ad for v9fs-developer@lists.sourceforge.net;
+ Fri, 25 Nov 2022 16:45:40 +0000
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+ d=linux.org.uk; s=zeniv-20220401; h=Sender:In-Reply-To:Content-Type:
+ MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
+ Content-Transfer-Encoding:Content-ID:Content-Description;
+ bh=x53sQaWDa/88sDZr4eyy32ZPwwt0aIb86EtvxNAGN44=; b=FgIlSpJUVdmZH0PghTbL44P7IF
+ e4NY5MC1spnQ/Hghs2BPEnAn4l+90NGdQnegTxnvF3OJ+U61eJwM1xO7mu1dExG7v6tzYFJlIwp6P
+ B2aUL8HMJfhwXPEFKGEUx8W81rpFniQnI/SO1y7EbgaIaJZ1BUdY5gveE/1N4GNXa8B97uvPu85K6
+ Yklhfru9ymFK8ftcM08F8KvpHHcaOQRkbEAd2Tsqc4ddBcwjQEZAIlZg7vNI/YdzW+wA2axEbhN4Z
+ espCpyFT59uiQWc205hVxBxnTMNyu5Rhgwc6LnCyra/HjzGVoTTOmo0NKot9JbtDIoan182Jla8Wi
+ UlV/To0w==;
+Received: from viro by zeniv.linux.org.uk with local (Exim 4.96 #2 (Red Hat
+ Linux)) id 1oyboR-006i8e-1U; Fri, 25 Nov 2022 16:44:27 +0000
+Date: Fri, 25 Nov 2022 16:44:27 +0000
+From: Al Viro <viro@zeniv.linux.org.uk>
+To: Jeff Layton <jlayton@kernel.org>
+Message-ID: <Y4Dw65Nzt4bX9esd@ZenIV>
 References: <20221120210004.381842-1-jlayton@kernel.org>
  <Y4A6/ozhUncxbimi@ZenIV>
-User-Agent: Evolution 3.46.1 (3.46.1-1.fc37) 
+ <1d474f53670771f324745f597ec94b63a006d687.camel@kernel.org>
 MIME-Version: 1.0
-X-Spam-Score: -5.2 (-----)
+Content-Disposition: inline
+In-Reply-To: <1d474f53670771f324745f597ec94b63a006d687.camel@kernel.org>
+X-Spam-Score: -0.1 (/)
 X-Spam-Report: Spam detection software,
  running on the system "util-spamd-2.v13.lw.sourceforge.com", 
  has NOT identified this incoming email as spam.  The original
  message has been attached to this so you can view it or label
  similar future email.  If you have any questions, see
  the administrator of that system for details.
- Content preview:  On Fri, 2022-11-25 at 03:48 +0000, Al Viro wrote: > On Sun, 
- Nov 20, 2022 at 03:59:57PM -0500, Jeff Layton wrote: > > > --- /dev/null
- > > +++ b/include/linux/filelock.h > > @@ -0,0 +1,428 @@ > > +/* SP [...] 
- Content analysis details:   (-5.2 points, 6.0 required)
+ Content preview:  On Fri, Nov 25, 2022 at 08:23:45AM -0500, Jeff Layton wrote:
+ > I left it in fs.h for now. Some of the file_operations prototypes need
+ > that typedef, and I figure that anyone who is including filelock.h will
+ > almost certainly need to include fs.h anyway. We co [...] 
+ Content analysis details:   (-0.1 points, 6.0 required)
  pts rule name              description
  ---- ---------------------- --------------------------------------------------
- -5.0 RCVD_IN_DNSWL_HI       RBL: Sender listed at https://www.dnswl.org/,
- high trust [139.178.84.217 listed in list.dnswl.org]
  0.0 SPF_HELO_NONE          SPF: HELO does not publish an SPF Record
- -0.0 SPF_PASS               SPF: sender matches SPF record
+ 0.0 SPF_NONE               SPF: sender does not publish an SPF Record
  0.1 DKIM_SIGNED            Message has a DKIM or DK signature, not necessarily
  valid
- -0.1 DKIM_VALID_AU          Message has a valid DKIM or DK signature from
- author's domain
  -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
  -0.1 DKIM_VALID_EF          Message has a valid DKIM or DK signature from
  envelope-from domain
- -0.0 DKIMWL_WL_HIGH         DKIMwl.org - High trust sender
-X-Headers-End: 1oyYgR-00A2Ui-UA
+X-Headers-End: 1oybpa-0004CA-Ad
 Subject: Re: [V9fs-developer] [PATCH] filelock: move file locking
  definitions to separate header file
 X-BeenThere: v9fs-developer@lists.sourceforge.net
@@ -131,63 +123,38 @@ Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: v9fs-developer-bounces@lists.sourceforge.net
 
-On Fri, 2022-11-25 at 03:48 +0000, Al Viro wrote:
-> On Sun, Nov 20, 2022 at 03:59:57PM -0500, Jeff Layton wrote:
+On Fri, Nov 25, 2022 at 08:23:45AM -0500, Jeff Layton wrote:
+
+> I left it in fs.h for now. Some of the file_operations prototypes need
+> that typedef, and I figure that anyone who is including filelock.h will
+> almost certainly need to include fs.h anyway. We could move it into a
+> separate header too, but it's probably not worth it.
 > 
-> > --- /dev/null
-> > +++ b/include/linux/filelock.h
-> > @@ -0,0 +1,428 @@
-> > +/* SPDX-License-Identifier: GPL-2.0 */
-> > +#ifndef _LINUX_FILELOCK_H
-> > +#define _LINUX_FILELOCK_H
-> > +
-> > +#include <linux/list.h>
-> > +#include <linux/nfs_fs_i.h>
+> HCH mentioned years ago though that we should just get rid of fl_owner_t
+> altogether and just use 'void *'. I didn't do it at the time because I
+> was focused on other changes, but this might be a good time to change
+> it.
+
+Might be...
+
+> > > +extern void show_fd_locks(struct seq_file *f,
+> > > +			 struct file *filp, struct files_struct *files);
+> > 
+> > If anything, that would be better off as fl_owner_t...  Again, a separate
+> > patch.
 > 
-> Umm... I'd add a comment along the lines of "struct file_lock has
-> a BS union by fs type; NFS side of things needs nfs_fs_i.h"
-> 
+> I'm not sure what you mean here. This prototype hasn't changed, and is
+> only called from procfs.
 
-Ok.
+Take a look at that function and its caller.  The use of 'files' argument there
+is (and can be) only as an opaque pointer to be compared to ->fl_owner; at that
+point it might be pointing to freed memory, for all we know (and give false
+positives if already reused).
 
-> > +struct lock_manager_operations {
-> > +	void *lm_mod_owner;
-> > +	fl_owner_t (*lm_get_owner)(fl_owner_t);
-> 
-> Probably take fl_owner_t to some more neutral header...
-> 
-
-I left it in fs.h for now. Some of the file_operations prototypes need
-that typedef, and I figure that anyone who is including filelock.h will
-almost certainly need to include fs.h anyway. We could move it into a
-separate header too, but it's probably not worth it.
-
-HCH mentioned years ago though that we should just get rid of fl_owner_t
-altogether and just use 'void *'. I didn't do it at the time because I
-was focused on other changes, but this might be a good time to change
-it.
-
-> > +#define locks_inode(f) file_inode(f)
-> 
-> Why do we still have that one, anyway?  Separate patch, obviously,
-> but I would take Occam's Razor to that entity...
-> 
-
-I can spin up a patch to nuke that too. I count only 30 callsites
-remaining anyway.
-
-> > +struct files_struct;
-> > +extern void show_fd_locks(struct seq_file *f,
-> > +			 struct file *filp, struct files_struct *files);
-> 
-> If anything, that would be better off as fl_owner_t...  Again, a separate
-> patch.
-
-I'm not sure what you mean here. This prototype hasn't changed, and is
-only called from procfs.
-
--- 
-Jeff Layton <jlayton@kernel.org>
+TBH, I'd never been able to finish the audit of files_struct pointers passed
+into locks subsystem; there definitely are moments when code from fs/locks.c
+is dealing with pointers to already freed instances - show_fd_locks() at the
+very least.  They are not dereferenced, but beyond that...
 
 
 _______________________________________________
