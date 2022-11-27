@@ -2,90 +2,88 @@ Return-Path: <v9fs-developer-bounces@lists.sourceforge.net>
 X-Original-To: lists+v9fs-developer@lfdr.de
 Delivered-To: lists+v9fs-developer@lfdr.de
 Received: from lists.sourceforge.net (lists.sourceforge.net [216.105.38.7])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7C358639B3D
-	for <lists+v9fs-developer@lfdr.de>; Sun, 27 Nov 2022 15:07:35 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 9E073639B6D
+	for <lists+v9fs-developer@lfdr.de>; Sun, 27 Nov 2022 15:45:50 +0100 (CET)
 Received: from [127.0.0.1] (helo=sfs-ml-4.v29.lw.sourceforge.com)
 	by sfs-ml-4.v29.lw.sourceforge.com with esmtp (Exim 4.95)
 	(envelope-from <v9fs-developer-bounces@lists.sourceforge.net>)
-	id 1ozIJh-000683-Al;
-	Sun, 27 Nov 2022 14:07:33 +0000
+	id 1ozIui-0006iM-8Z;
+	Sun, 27 Nov 2022 14:45:48 +0000
 Received: from [172.30.20.202] (helo=mx.sourceforge.net)
  by sfs-ml-4.v29.lw.sourceforge.com with esmtps (TLS1.2) tls
  TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384 (Exim 4.95)
- (envelope-from <linux_oss@crudebyte.com>) id 1ozIJV-00067l-V0
+ (envelope-from <christophe.jaillet@wanadoo.fr>) id 1ozIuY-0006iE-AL
  for v9fs-developer@lists.sourceforge.net;
- Sun, 27 Nov 2022 14:07:22 +0000
+ Sun, 27 Nov 2022 14:45:38 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=sourceforge.net; s=x; h=Content-Type:Content-Transfer-Encoding:MIME-Version
- :References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Sender:Reply-To:
+ d=sourceforge.net; s=x; h=Content-Transfer-Encoding:Content-Type:In-Reply-To:
+ From:References:Cc:To:Subject:MIME-Version:Date:Message-ID:Sender:Reply-To:
  Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
  Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
  List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=wtGluwXH/2Qxz5BbrxLDhKs0b/USvsd3CSaSU2mXw24=; b=D5S0PQtdAGMjSTaolJXwSXZ3JY
- l0GI+MjjUPmFgrOUHSaEMB73hT+Wt0brQpI8hqkAVGlarhC7ABUEzUhroWlRtZMtjuhQROgpA+GC7
- Qe3jDHd61wSWPCVavoTJEiPmIEAOTVQIq5UWXE1ghRWYaeQQBceOKSmwNimeiMNkj65s=;
+ bh=2CGnXYFu9aZJr0/A6mMpcQDwUc6BYbp7DcJASxLkqpw=; b=k6ORxhjCcUemcS7WddoObmVDmq
+ /WSmu99H6sM8lEy4AH40QDu0oKXWIJwcOt6SDgyhiqoG1QtaHb+edR8b4Sddc2CvFLre0MHDkY9zc
+ 1LlFVMYuH2CwQBeH5bUCoja7CfYgON/geFu627zfHQQs5zLNBu7HITFPWwuLRrRU/AQw=;
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  ;
- h=Content-Type:Content-Transfer-Encoding:MIME-Version:References:
- In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Sender:Reply-To:Content-ID:
+ h=Content-Transfer-Encoding:Content-Type:In-Reply-To:From:References:Cc:To:
+ Subject:MIME-Version:Date:Message-ID:Sender:Reply-To:Content-ID:
  Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
  :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
  List-Post:List-Owner:List-Archive;
- bh=wtGluwXH/2Qxz5BbrxLDhKs0b/USvsd3CSaSU2mXw24=; b=J8+mWDXw8J50TeMsqz1AnQYtJ0
- gzYN5e1oe7+jptUPwDPdLox6kfvaYL9GAkodo1bWwN3596633p/GoVynEiJ0xMF5WxcMs5OWhwk3E
- w2be9Ex0Lt6yNillwCVuJ5XXE556tufx8ADGS86nEmz7RWsFrDDbOxJEkgwWn6uy21XI=;
-Received: from kylie.crudebyte.com ([5.189.157.229])
+ bh=2CGnXYFu9aZJr0/A6mMpcQDwUc6BYbp7DcJASxLkqpw=; b=XNbkVvkQ32GeLCqdzIOxshCIUN
+ zvCe1+Uaw8OhZZkAdBP3ZYOsFACPQrgP0ZBfcPK+EdwmNDMuRhrkRnelqReNy3PflCDZVThmj2DjS
+ rJ8bMsXBY413L1VvIuejs1DkLaYZIGULjrgmpHecrEBdiepDbiIPNQAIO1Pwn/lVSGEo=;
+Received: from smtp-12.smtpout.orange.fr ([80.12.242.12]
+ helo=smtp.smtpout.orange.fr)
  by sfi-mx-1.v28.lw.sourceforge.com with esmtps
- (TLS1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.95)
- id 1ozIJR-00FX3o-Uy for v9fs-developer@lists.sourceforge.net;
- Sun, 27 Nov 2022 14:07:21 +0000
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=crudebyte.com; s=kylie; h=Content-Type:Content-Transfer-Encoding:
- MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:
- Content-ID:Content-Description;
- bh=wtGluwXH/2Qxz5BbrxLDhKs0b/USvsd3CSaSU2mXw24=; b=oiEkTjE2+hjPKah7Tw6noMkEHn
- wMlebCwUurbqU01UVli/LPitljmkfeFzMwoHDbK9F9ljdLm4DxYgnWmC1jxM9lduJQsOSLSvBC2M7
- KPAMa/50bmPB5USua/X2Go9MlBAFMNf09Z0WGGxZu1G6r5v6kVc2Ry/DC/8avDu5YTAWQzT2OI8zY
- x0O5vwJ5J4zQNkQa9eb5V0x9sXT8+XYO6M1t6M+vb9UbosZqzLRc0q+NE2cR9IR8btKs3DXfpclRZ
- As4ZPo7+LvPK91vpvBMU1Dg8fsX4+75aBQEVuCtfOGKLV4FbUebsZHRgeEbKkvE3wzKxo69nzCMwW
- lrodwc1SrS8Z6hMmrqzj6msjIBpdhf3hgNr80Rmryfl32lJX3c+jp9c8VOVn8XlBfti5TvgazfJQs
- bSJyuvDrpG9eWMUxR1hCbK9w//Mms7mUSqpUWTra2iL5IAGOL7dqjPU2AYLp5FXAclA2zpSIX2EZL
- nvvfKe3q+NZbPUEkbEm0og3vvkb1ZViQzhAOOIdehsTREYkYO9IvtfMsXd0gV9cbNRZocyO3Cmzdv
- nvhcUT3NqxBFBS7bmqPS2wIi7vlMakqqJgsraltikB/ji3fXQ2YDZoytEsnw+87strsohIC6qclPh
- PqTir6iG7pv0WmNJEiin5h4wnfFeqhMbgHoUzGUFo=;
-To: Eric Van Hensbergen <ericvh@gmail.com>,
- Latchesar Ionkov <lucho@ionkov.net>,
- Dominique Martinet <asmadeus@codewreck.org>,
- Christophe JAILLET <christophe.jaillet@wanadoo.fr>
-Date: Sun, 27 Nov 2022 15:07:00 +0100
-Message-ID: <16697035.zmtlf8e6Si@silver>
-In-Reply-To: <3d1e0ed9714eaee7e18d9f5b0b4bfa49b00b286d.1669553950.git.christophe.jaillet@wanadoo.fr>
-References: <3d1e0ed9714eaee7e18d9f5b0b4bfa49b00b286d.1669553950.git.christophe.jaillet@wanadoo.fr>
+ (TLS1.2:ECDHE-RSA-AES128-GCM-SHA256:128) (Exim 4.95)
+ id 1ozIuR-00FY4X-NZ for v9fs-developer@lists.sourceforge.net;
+ Sun, 27 Nov 2022 14:45:36 +0000
+Received: from [192.168.1.18] ([86.243.100.34]) by smtp.orange.fr with ESMTPA
+ id zIuHonJ77ap0YzIuIofEV6; Sun, 27 Nov 2022 15:45:23 +0100
+X-ME-Helo: [192.168.1.18]
+X-ME-Auth: Y2hyaXN0b3BoZS5qYWlsbGV0QHdhbmFkb28uZnI=
+X-ME-Date: Sun, 27 Nov 2022 15:45:23 +0100
+X-ME-IP: 86.243.100.34
+Message-ID: <d2df2462-518e-4085-57de-5bacd621a3a2@wanadoo.fr>
+Date: Sun, 27 Nov 2022 15:45:21 +0100
 MIME-Version: 1.0
-X-Spam-Score: -0.2 (/)
-X-Spam-Report: Spam detection software,
- running on the system "util-spamd-2.v13.lw.sourceforge.com", 
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.2.2
+To: Christian Schoenebeck <linux_oss@crudebyte.com>,
+ Eric Van Hensbergen <ericvh@gmail.com>, Latchesar Ionkov <lucho@ionkov.net>,
+ Dominique Martinet <asmadeus@codewreck.org>
+References: <3d1e0ed9714eaee7e18d9f5b0b4bfa49b00b286d.1669553950.git.christophe.jaillet@wanadoo.fr>
+ <16697035.zmtlf8e6Si@silver>
+Content-Language: fr
+From: Christophe JAILLET <christophe.jaillet@wanadoo.fr>
+In-Reply-To: <16697035.zmtlf8e6Si@silver>
+X-Spam-Score: -2.0 (--)
+X-Spam-Report: Spam detection software, running on the system "util-spamd-1.v13.lw.sourceforge.com",
  has NOT identified this incoming email as spam.  The original
  message has been attached to this so you can view it or label
  similar future email.  If you have any questions, see
  the administrator of that system for details.
- Content preview:  On Sunday, November 27,
- 2022 1:59:25 PM CET Christophe JAILLET
- wrote: > The 9p fs does not use IDR or IDA functionalities. So there is no
- point in > including <linux/idr.h>. > Remove it. > > Signed-of [...] 
- Content analysis details:   (-0.2 points, 6.0 required)
- pts rule name              description
+ 
+ Content preview:  Le 27/11/2022 à 15:07, Christian Schoenebeck a écrit :
+   > On Sunday, November 27, 2022 1:59:25 PM CET Christophe JAILLET wrote: >>
+    The 9p fs does not use IDR or IDA functionalities. So there is no p [...]
+    
+ 
+ Content analysis details:   (-2.0 points, 6.0 required)
+ 
+  pts rule name              description
  ---- ---------------------- --------------------------------------------------
- 0.0 SPF_HELO_NONE          SPF: HELO does not publish an SPF Record
+ -0.0 RCVD_IN_MSPIKE_H2      RBL: Average reputation (+2)
+                             [80.12.242.12 listed in wl.mailspike.net]
+ -0.0 RCVD_IN_DNSWL_NONE     RBL: Sender listed at https://www.dnswl.org/,
+                              no trust
+                             [80.12.242.12 listed in list.dnswl.org]
  -0.0 SPF_PASS               SPF: sender matches SPF record
- -0.1 DKIM_VALID_AU          Message has a valid DKIM or DK signature from
- author's domain
- -0.1 DKIM_VALID_EF          Message has a valid DKIM or DK signature from
- envelope-from domain
- -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
- 0.1 DKIM_SIGNED            Message has a DKIM or DK signature, not necessarily
- valid
-X-Headers-End: 1ozIJR-00FX3o-Uy
+ -0.0 SPF_HELO_PASS          SPF: HELO matches SPF record
+ -2.0 NICE_REPLY_A           Looks like a legit reply (A)
+X-Headers-End: 1ozIuR-00FY4X-NZ
 Subject: Re: [V9fs-developer] [PATCH] 9p: Remove some unneeded #include
 X-BeenThere: v9fs-developer@lists.sourceforge.net
 X-Mailman-Version: 2.1.21
@@ -98,34 +96,24 @@ List-Post: <mailto:v9fs-developer@lists.sourceforge.net>
 List-Help: <mailto:v9fs-developer-request@lists.sourceforge.net?subject=help>
 List-Subscribe: <https://lists.sourceforge.net/lists/listinfo/v9fs-developer>, 
  <mailto:v9fs-developer-request@lists.sourceforge.net?subject=subscribe>
-From: Christian Schoenebeck via V9fs-developer
- <v9fs-developer@lists.sourceforge.net>
-Reply-To: Christian Schoenebeck <linux_oss@crudebyte.com>
-Cc: Christophe JAILLET <christophe.jaillet@wanadoo.fr>,
- kernel-janitors@vger.kernel.org, linux-kernel@vger.kernel.org,
- v9fs-developer@lists.sourceforge.net
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Cc: v9fs-developer@lists.sourceforge.net, kernel-janitors@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="utf-8"; Format="flowed"
 Errors-To: v9fs-developer-bounces@lists.sourceforge.net
 
-On Sunday, November 27, 2022 1:59:25 PM CET Christophe JAILLET wrote:
-> The 9p fs does not use IDR or IDA functionalities. So there is no point in
-> including <linux/idr.h>.
-> Remove it.
-> 
-> Signed-off-by: Christophe JAILLET <christophe.jaillet@wanadoo.fr>
-> ---
-
-Right, it's used by net/9p/client.c only. Probably some more files in net/9p
-could therefore be deflated as well. Anyway:
-
-Reviewed-by: Christian Schoenebeck <linux_oss@crudebyte.com>
-
-
-
-
-
-_______________________________________________
-V9fs-developer mailing list
-V9fs-developer@lists.sourceforge.net
-https://lists.sourceforge.net/lists/listinfo/v9fs-developer
+TGUgMjcvMTEvMjAyMiDDoCAxNTowNywgQ2hyaXN0aWFuIFNjaG9lbmViZWNrIGEgw6ljcml0wqA6
+Cj4gT24gU3VuZGF5LCBOb3ZlbWJlciAyNywgMjAyMiAxOjU5OjI1IFBNIENFVCBDaHJpc3RvcGhl
+IEpBSUxMRVQgd3JvdGU6Cj4+IFRoZSA5cCBmcyBkb2VzIG5vdCB1c2UgSURSIG9yIElEQSBmdW5j
+dGlvbmFsaXRpZXMuIFNvIHRoZXJlIGlzIG5vIHBvaW50IGluCj4+IGluY2x1ZGluZyA8bGludXgv
+aWRyLmg+Lgo+PiBSZW1vdmUgaXQuCj4+Cj4+IFNpZ25lZC1vZmYtYnk6IENocmlzdG9waGUgSkFJ
+TExFVCA8Y2hyaXN0b3BoZS5qYWlsbGV0QHdhbmFkb28uZnI+Cj4+IC0tLQo+IAo+IFJpZ2h0LCBp
+dCdzIHVzZWQgYnkgbmV0LzlwL2NsaWVudC5jIG9ubHkuIFByb2JhYmx5IHNvbWUgbW9yZSBmaWxl
+cyBpbiBuZXQvOXAKPiBjb3VsZCB0aGVyZWZvcmUgYmUgZGVmbGF0ZWQgYXMgd2VsbC4gQW55d2F5
+Ogo+IAo+IFJldmlld2VkLWJ5OiBDaHJpc3RpYW4gU2Nob2VuZWJlY2sgPGxpbnV4X29zc0BjcnVk
+ZWJ5dGUuY29tPgo+IAo+IAoKSGksCmkgd2FzIHVuc3VyZSBpZiBuZXQvOXAgYW5kIGZzLzlwIHNo
+b3VsZCBiZSBwYXRjaGVkIGF0IHRoZSBzYW1lIHRpbWUgb3Igbm90LgoKSSdsbCBzZW5kIGFub3Ro
+ZXIgcGF0Y2ggZm9yIG5ldC85cC4KCkNKCgoKCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fClY5ZnMtZGV2ZWxvcGVyIG1haWxpbmcgbGlzdApWOWZzLWRldmVs
+b3BlckBsaXN0cy5zb3VyY2Vmb3JnZS5uZXQKaHR0cHM6Ly9saXN0cy5zb3VyY2Vmb3JnZS5uZXQv
+bGlzdHMvbGlzdGluZm8vdjlmcy1kZXZlbG9wZXIK
