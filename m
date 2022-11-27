@@ -2,89 +2,87 @@ Return-Path: <v9fs-developer-bounces@lists.sourceforge.net>
 X-Original-To: lists+v9fs-developer@lfdr.de
 Delivered-To: lists+v9fs-developer@lfdr.de
 Received: from lists.sourceforge.net (lists.sourceforge.net [216.105.38.7])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9E073639B6D
-	for <lists+v9fs-developer@lfdr.de>; Sun, 27 Nov 2022 15:45:50 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id A4DD9639B71
+	for <lists+v9fs-developer@lfdr.de>; Sun, 27 Nov 2022 15:47:04 +0100 (CET)
 Received: from [127.0.0.1] (helo=sfs-ml-4.v29.lw.sourceforge.com)
 	by sfs-ml-4.v29.lw.sourceforge.com with esmtp (Exim 4.95)
 	(envelope-from <v9fs-developer-bounces@lists.sourceforge.net>)
-	id 1ozIui-0006iM-8Z;
-	Sun, 27 Nov 2022 14:45:48 +0000
+	id 1ozIvu-0006jz-JL;
+	Sun, 27 Nov 2022 14:47:02 +0000
 Received: from [172.30.20.202] (helo=mx.sourceforge.net)
  by sfs-ml-4.v29.lw.sourceforge.com with esmtps (TLS1.2) tls
  TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384 (Exim 4.95)
- (envelope-from <christophe.jaillet@wanadoo.fr>) id 1ozIuY-0006iE-AL
+ (envelope-from <christophe.jaillet@wanadoo.fr>) id 1ozIvt-0006jl-BP
  for v9fs-developer@lists.sourceforge.net;
- Sun, 27 Nov 2022 14:45:38 +0000
+ Sun, 27 Nov 2022 14:47:01 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=sourceforge.net; s=x; h=Content-Transfer-Encoding:Content-Type:In-Reply-To:
- From:References:Cc:To:Subject:MIME-Version:Date:Message-ID:Sender:Reply-To:
- Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
- Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
+ d=sourceforge.net; s=x; h=Content-Transfer-Encoding:MIME-Version:Message-Id:
+ Date:Subject:Cc:To:From:Sender:Reply-To:Content-Type:Content-ID:
+ Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
+ :Resent-Message-ID:In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:
  List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=2CGnXYFu9aZJr0/A6mMpcQDwUc6BYbp7DcJASxLkqpw=; b=k6ORxhjCcUemcS7WddoObmVDmq
- /WSmu99H6sM8lEy4AH40QDu0oKXWIJwcOt6SDgyhiqoG1QtaHb+edR8b4Sddc2CvFLre0MHDkY9zc
- 1LlFVMYuH2CwQBeH5bUCoja7CfYgON/geFu627zfHQQs5zLNBu7HITFPWwuLRrRU/AQw=;
+ bh=PvTSIRS1SvtRt1LGpp54iqJ2bCAo1BGE54zkZFJw4kg=; b=QqNS5/4noKrrskHU4ImZZoGO37
+ Q7SXw5WEep93o0OWINlqTMz9ur7ymz/BHjpGSR2TyP0nS7r4hOhS2N6FdksA/w3tajX8Ywr93/r09
+ ANadEQR2Syg3k/kLRoIrBK0PQnSjrB9inrxo1UrCP0aAyHVu3ywTN5UIcgE6F6Wv6ZhY=;
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  ;
- h=Content-Transfer-Encoding:Content-Type:In-Reply-To:From:References:Cc:To:
- Subject:MIME-Version:Date:Message-ID:Sender:Reply-To:Content-ID:
- Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
- :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
- List-Post:List-Owner:List-Archive;
- bh=2CGnXYFu9aZJr0/A6mMpcQDwUc6BYbp7DcJASxLkqpw=; b=XNbkVvkQ32GeLCqdzIOxshCIUN
- zvCe1+Uaw8OhZZkAdBP3ZYOsFACPQrgP0ZBfcPK+EdwmNDMuRhrkRnelqReNy3PflCDZVThmj2DjS
- rJ8bMsXBY413L1VvIuejs1DkLaYZIGULjrgmpHecrEBdiepDbiIPNQAIO1Pwn/lVSGEo=;
-Received: from smtp-12.smtpout.orange.fr ([80.12.242.12]
+ h=Content-Transfer-Encoding:MIME-Version:Message-Id:Date:Subject:Cc:To:From
+ :Sender:Reply-To:Content-Type:Content-ID:Content-Description:Resent-Date:
+ Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:
+ References:List-Id:List-Help:List-Unsubscribe:List-Subscribe:List-Post:
+ List-Owner:List-Archive; bh=PvTSIRS1SvtRt1LGpp54iqJ2bCAo1BGE54zkZFJw4kg=; b=H
+ bGCumYkxZp2Bdd89FpO9Vz6/wHK8aqYwHcG0eMu8F/TQFORhwzU5jsW2kUXP/qzCGGcfn48CI6fuT
+ zxmdQR2xf6QTwPipSZJRQDyQyAtMnmWYFfRqyxHGzwRimsRT4169hA2yvWXa/srnNEqUvleiKHnLY
+ n5YjAQpL0Yj97oa8=;
+Received: from smtp-24.smtpout.orange.fr ([80.12.242.24]
  helo=smtp.smtpout.orange.fr)
- by sfi-mx-1.v28.lw.sourceforge.com with esmtps
+ by sfi-mx-2.v28.lw.sourceforge.com with esmtps
  (TLS1.2:ECDHE-RSA-AES128-GCM-SHA256:128) (Exim 4.95)
- id 1ozIuR-00FY4X-NZ for v9fs-developer@lists.sourceforge.net;
- Sun, 27 Nov 2022 14:45:36 +0000
-Received: from [192.168.1.18] ([86.243.100.34]) by smtp.orange.fr with ESMTPA
- id zIuHonJ77ap0YzIuIofEV6; Sun, 27 Nov 2022 15:45:23 +0100
-X-ME-Helo: [192.168.1.18]
+ id 1ozIvn-00031N-M6 for v9fs-developer@lists.sourceforge.net;
+ Sun, 27 Nov 2022 14:47:01 +0000
+Received: from pop-os.home ([86.243.100.34]) by smtp.orange.fr with ESMTPA
+ id zIveos02xGPMszIveoBAEd; Sun, 27 Nov 2022 15:46:49 +0100
+X-ME-Helo: pop-os.home
 X-ME-Auth: Y2hyaXN0b3BoZS5qYWlsbGV0QHdhbmFkb28uZnI=
-X-ME-Date: Sun, 27 Nov 2022 15:45:23 +0100
+X-ME-Date: Sun, 27 Nov 2022 15:46:49 +0100
 X-ME-IP: 86.243.100.34
-Message-ID: <d2df2462-518e-4085-57de-5bacd621a3a2@wanadoo.fr>
-Date: Sun, 27 Nov 2022 15:45:21 +0100
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.2.2
-To: Christian Schoenebeck <linux_oss@crudebyte.com>,
- Eric Van Hensbergen <ericvh@gmail.com>, Latchesar Ionkov <lucho@ionkov.net>,
- Dominique Martinet <asmadeus@codewreck.org>
-References: <3d1e0ed9714eaee7e18d9f5b0b4bfa49b00b286d.1669553950.git.christophe.jaillet@wanadoo.fr>
- <16697035.zmtlf8e6Si@silver>
-Content-Language: fr
 From: Christophe JAILLET <christophe.jaillet@wanadoo.fr>
-In-Reply-To: <16697035.zmtlf8e6Si@silver>
-X-Spam-Score: -2.0 (--)
-X-Spam-Report: Spam detection software, running on the system "util-spamd-1.v13.lw.sourceforge.com",
+To: Eric Van Hensbergen <ericvh@gmail.com>,
+ Latchesar Ionkov <lucho@ionkov.net>,
+ Dominique Martinet <asmadeus@codewreck.org>,
+ Christian Schoenebeck <linux_oss@crudebyte.com>,
+ "David S. Miller" <davem@davemloft.net>,
+ Eric Dumazet <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>,
+ Paolo Abeni <pabeni@redhat.com>
+Date: Sun, 27 Nov 2022 15:46:45 +0100
+Message-Id: <9e386018601d7e4a9e5d7da8fc3e9555ebb25c87.1669560387.git.christophe.jaillet@wanadoo.fr>
+X-Mailer: git-send-email 2.34.1
+MIME-Version: 1.0
+X-Spam-Score: -0.0 (/)
+X-Spam-Report: Spam detection software,
+ running on the system "util-spamd-2.v13.lw.sourceforge.com", 
  has NOT identified this incoming email as spam.  The original
  message has been attached to this so you can view it or label
  similar future email.  If you have any questions, see
  the administrator of that system for details.
- 
- Content preview:  Le 27/11/2022 à 15:07, Christian Schoenebeck a écrit :
-   > On Sunday, November 27, 2022 1:59:25 PM CET Christophe JAILLET wrote: >>
-    The 9p fs does not use IDR or IDA functionalities. So there is no p [...]
-    
- 
- Content analysis details:   (-2.0 points, 6.0 required)
- 
-  pts rule name              description
+ Content preview:  The 9p net files don't use IDR or IDA functionalities. So
+ there is no point in including <linux/idr.h>. Remove it. Signed-off-by:
+ Christophe
+ JAILLET <christophe.jaillet@wanadoo.fr> --- net/9p/trans_fd.c | 1 -
+ net/9p/trans_rdma.c
+ | 1 - net/9p/trans_virtio.c | 1 - 3 files changed, 3 deletions(-) 
+ Content analysis details:   (-0.0 points, 6.0 required)
+ pts rule name              description
  ---- ---------------------- --------------------------------------------------
  -0.0 RCVD_IN_MSPIKE_H2      RBL: Average reputation (+2)
-                             [80.12.242.12 listed in wl.mailspike.net]
+ [80.12.242.24 listed in wl.mailspike.net]
  -0.0 RCVD_IN_DNSWL_NONE     RBL: Sender listed at https://www.dnswl.org/,
-                              no trust
-                             [80.12.242.12 listed in list.dnswl.org]
- -0.0 SPF_PASS               SPF: sender matches SPF record
+ no trust [80.12.242.24 listed in list.dnswl.org]
  -0.0 SPF_HELO_PASS          SPF: HELO matches SPF record
- -2.0 NICE_REPLY_A           Looks like a legit reply (A)
-X-Headers-End: 1ozIuR-00FY4X-NZ
-Subject: Re: [V9fs-developer] [PATCH] 9p: Remove some unneeded #include
+ -0.0 SPF_PASS               SPF: sender matches SPF record
+X-Headers-End: 1ozIvn-00031N-M6
+Subject: [V9fs-developer] [PATCH] 9p: Remove unneeded idr.h #include in the
+ net/9p directory
 X-BeenThere: v9fs-developer@lists.sourceforge.net
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -96,24 +94,66 @@ List-Post: <mailto:v9fs-developer@lists.sourceforge.net>
 List-Help: <mailto:v9fs-developer-request@lists.sourceforge.net?subject=help>
 List-Subscribe: <https://lists.sourceforge.net/lists/listinfo/v9fs-developer>, 
  <mailto:v9fs-developer-request@lists.sourceforge.net?subject=subscribe>
-Cc: v9fs-developer@lists.sourceforge.net, kernel-janitors@vger.kernel.org,
- linux-kernel@vger.kernel.org
-Content-Transfer-Encoding: base64
-Content-Type: text/plain; charset="utf-8"; Format="flowed"
+Cc: Christophe JAILLET <christophe.jaillet@wanadoo.fr>, netdev@vger.kernel.org,
+ kernel-janitors@vger.kernel.org, linux-kernel@vger.kernel.org,
+ v9fs-developer@lists.sourceforge.net
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: v9fs-developer-bounces@lists.sourceforge.net
 
-TGUgMjcvMTEvMjAyMiDDoCAxNTowNywgQ2hyaXN0aWFuIFNjaG9lbmViZWNrIGEgw6ljcml0wqA6
-Cj4gT24gU3VuZGF5LCBOb3ZlbWJlciAyNywgMjAyMiAxOjU5OjI1IFBNIENFVCBDaHJpc3RvcGhl
-IEpBSUxMRVQgd3JvdGU6Cj4+IFRoZSA5cCBmcyBkb2VzIG5vdCB1c2UgSURSIG9yIElEQSBmdW5j
-dGlvbmFsaXRpZXMuIFNvIHRoZXJlIGlzIG5vIHBvaW50IGluCj4+IGluY2x1ZGluZyA8bGludXgv
-aWRyLmg+Lgo+PiBSZW1vdmUgaXQuCj4+Cj4+IFNpZ25lZC1vZmYtYnk6IENocmlzdG9waGUgSkFJ
-TExFVCA8Y2hyaXN0b3BoZS5qYWlsbGV0QHdhbmFkb28uZnI+Cj4+IC0tLQo+IAo+IFJpZ2h0LCBp
-dCdzIHVzZWQgYnkgbmV0LzlwL2NsaWVudC5jIG9ubHkuIFByb2JhYmx5IHNvbWUgbW9yZSBmaWxl
-cyBpbiBuZXQvOXAKPiBjb3VsZCB0aGVyZWZvcmUgYmUgZGVmbGF0ZWQgYXMgd2VsbC4gQW55d2F5
-Ogo+IAo+IFJldmlld2VkLWJ5OiBDaHJpc3RpYW4gU2Nob2VuZWJlY2sgPGxpbnV4X29zc0BjcnVk
-ZWJ5dGUuY29tPgo+IAo+IAoKSGksCmkgd2FzIHVuc3VyZSBpZiBuZXQvOXAgYW5kIGZzLzlwIHNo
-b3VsZCBiZSBwYXRjaGVkIGF0IHRoZSBzYW1lIHRpbWUgb3Igbm90LgoKSSdsbCBzZW5kIGFub3Ro
-ZXIgcGF0Y2ggZm9yIG5ldC85cC4KCkNKCgoKCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fClY5ZnMtZGV2ZWxvcGVyIG1haWxpbmcgbGlzdApWOWZzLWRldmVs
-b3BlckBsaXN0cy5zb3VyY2Vmb3JnZS5uZXQKaHR0cHM6Ly9saXN0cy5zb3VyY2Vmb3JnZS5uZXQv
-bGlzdHMvbGlzdGluZm8vdjlmcy1kZXZlbG9wZXIK
+The 9p net files don't use IDR or IDA functionalities. So there is no point
+in including <linux/idr.h>.
+Remove it.
+
+Signed-off-by: Christophe JAILLET <christophe.jaillet@wanadoo.fr>
+---
+ net/9p/trans_fd.c     | 1 -
+ net/9p/trans_rdma.c   | 1 -
+ net/9p/trans_virtio.c | 1 -
+ 3 files changed, 3 deletions(-)
+
+diff --git a/net/9p/trans_fd.c b/net/9p/trans_fd.c
+index eeea0a6a75b6..06ec9f7d3318 100644
+--- a/net/9p/trans_fd.c
++++ b/net/9p/trans_fd.c
+@@ -20,7 +20,6 @@
+ #include <linux/un.h>
+ #include <linux/uaccess.h>
+ #include <linux/inet.h>
+-#include <linux/idr.h>
+ #include <linux/file.h>
+ #include <linux/parser.h>
+ #include <linux/slab.h>
+diff --git a/net/9p/trans_rdma.c b/net/9p/trans_rdma.c
+index 6ff706760676..33a9ac6f2d55 100644
+--- a/net/9p/trans_rdma.c
++++ b/net/9p/trans_rdma.c
+@@ -21,7 +21,6 @@
+ #include <linux/un.h>
+ #include <linux/uaccess.h>
+ #include <linux/inet.h>
+-#include <linux/idr.h>
+ #include <linux/file.h>
+ #include <linux/parser.h>
+ #include <linux/semaphore.h>
+diff --git a/net/9p/trans_virtio.c b/net/9p/trans_virtio.c
+index e757f0601304..19bccfa0d593 100644
+--- a/net/9p/trans_virtio.c
++++ b/net/9p/trans_virtio.c
+@@ -22,7 +22,6 @@
+ #include <linux/un.h>
+ #include <linux/uaccess.h>
+ #include <linux/inet.h>
+-#include <linux/idr.h>
+ #include <linux/file.h>
+ #include <linux/highmem.h>
+ #include <linux/slab.h>
+-- 
+2.34.1
+
+
+
+_______________________________________________
+V9fs-developer mailing list
+V9fs-developer@lists.sourceforge.net
+https://lists.sourceforge.net/lists/listinfo/v9fs-developer
