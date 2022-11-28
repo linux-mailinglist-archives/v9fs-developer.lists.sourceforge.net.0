@@ -2,83 +2,79 @@ Return-Path: <v9fs-developer-bounces@lists.sourceforge.net>
 X-Original-To: lists+v9fs-developer@lfdr.de
 Delivered-To: lists+v9fs-developer@lfdr.de
 Received: from lists.sourceforge.net (lists.sourceforge.net [216.105.38.7])
-	by mail.lfdr.de (Postfix) with ESMTPS id 99AF463A6D1
-	for <lists+v9fs-developer@lfdr.de>; Mon, 28 Nov 2022 12:10:45 +0100 (CET)
-Received: from [127.0.0.1] (helo=sfs-ml-4.v29.lw.sourceforge.com)
-	by sfs-ml-4.v29.lw.sourceforge.com with esmtp (Exim 4.95)
+	by mail.lfdr.de (Postfix) with ESMTPS id DF26263AAD7
+	for <lists+v9fs-developer@lfdr.de>; Mon, 28 Nov 2022 15:28:02 +0100 (CET)
+Received: from [127.0.0.1] (helo=sfs-ml-1.v29.lw.sourceforge.com)
+	by sfs-ml-1.v29.lw.sourceforge.com with esmtp (Exim 4.95)
 	(envelope-from <v9fs-developer-bounces@lists.sourceforge.net>)
-	id 1ozc27-0003RZ-Up;
-	Mon, 28 Nov 2022 11:10:43 +0000
+	id 1ozf72-0004hg-SP;
+	Mon, 28 Nov 2022 14:28:00 +0000
 Received: from [172.30.20.202] (helo=mx.sourceforge.net)
- by sfs-ml-4.v29.lw.sourceforge.com with esmtps (TLS1.2) tls
+ by sfs-ml-1.v29.lw.sourceforge.com with esmtps (TLS1.2) tls
  TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384 (Exim 4.95)
- (envelope-from <patchwork-bot+netdevbpf@kernel.org>)
- id 1ozc27-0003RT-By for v9fs-developer@lists.sourceforge.net;
- Mon, 28 Nov 2022 11:10:43 +0000
+ (envelope-from <linux_oss@crudebyte.com>) id 1ozf71-0004hQ-LZ
+ for v9fs-developer@lists.sourceforge.net;
+ Mon, 28 Nov 2022 14:27:59 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=sourceforge.net; s=x; h=Cc:To:In-Reply-To:References:Date:Message-Id:From:
- Subject:Content-Transfer-Encoding:MIME-Version:Content-Type:Sender:Reply-To:
+ d=sourceforge.net; s=x; h=Content-Type:Content-Transfer-Encoding:MIME-Version
+ :References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Sender:Reply-To:
  Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
  Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
  List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=uv7Jptbe5ueu/yDl+R0x9AOxm6KSJaYViBGynYSbRe4=; b=S7AeTOBLV/fGnG8qXoegt4My5Q
- zGCeOnj5R5bZsDWfSWlgyLcFVs4mHV6D2H2KXif0L4UgtXmjfr07GyOmocBk/M0J3zsbdWCjpUZwF
- jcmVuqYRMvTl7neygbMsNXYPr67RaIwgUi7Kc3mcYFAVBwGr877/q4g4Dl8IrchHWMtg=;
+ bh=6y8qtBVWyVYV+kHOTmBodkRQ5Mtx1AgXX7cehonYoLI=; b=VudIEOR5UNrXOHUwp8FrCjzQdZ
+ dNkCpUOt+ifVdyvWBlPsjVkLUiLCpLhvhqovXvOJM9CjWisOSQ7yDBdw6XRiov7AmSgqUP8JFljzW
+ Dhg5e0rYsT3SMC5qUbaFw3zGETQdYukxo4pRcWBnj+UCfw8Swu297S7t5sYgZ3NZbUR0=;
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
- ; h=Cc:To:In-Reply-To:References:Date:Message-Id:From:Subject:
- Content-Transfer-Encoding:MIME-Version:Content-Type:Sender:Reply-To:
- Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
- Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
- List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=uv7Jptbe5ueu/yDl+R0x9AOxm6KSJaYViBGynYSbRe4=; b=AtlmRdJ+diYZ8bjh+ZqvkA6O1v
- 0d51ZeHTXmsT7YpSIZmPKZVuqksRqDagRqgAJNnUQuOIXb3sZS8rsRSuTG1Uos7kHiOuBwsruuwXY
- gzJX9QdUGGwAgECMNErU+GM9w1m3yAS1719Xqrv6qv1KC72hbrsJJ5zcKEcNGF2WqtU4=;
-Received: from ams.source.kernel.org ([145.40.68.75])
+ ;
+ h=Content-Type:Content-Transfer-Encoding:MIME-Version:References:
+ In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Sender:Reply-To:Content-ID:
+ Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
+ :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
+ List-Post:List-Owner:List-Archive;
+ bh=6y8qtBVWyVYV+kHOTmBodkRQ5Mtx1AgXX7cehonYoLI=; b=P5gOheeHgv64AWztDdQByB65R2
+ /sr0YEHljfUzRFhkd+3UvYMV7CezjqOZjGsbGTyq8s/gFPAFH/7k0uq+zlBZfiCIPKk50c3IKMuRM
+ xx/U+QeoN4HvOC7p8/6t5i7boI2N1HKg8MHm8jTEsKICHJh2eYX819bg+MfCfvZSLP/E=;
+Received: from kylie.crudebyte.com ([5.189.157.229])
  by sfi-mx-1.v28.lw.sourceforge.com with esmtps
  (TLS1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.95)
- id 1ozc26-00GYxo-Kl for v9fs-developer@lists.sourceforge.net;
- Mon, 28 Nov 2022 11:10:43 +0000
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
- (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
- (No client certificate requested)
- by ams.source.kernel.org (Postfix) with ESMTPS id 0905CB80D48;
- Mon, 28 Nov 2022 11:10:33 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPS id A12C6C433B5;
- Mon, 28 Nov 2022 11:10:31 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1669633831;
- bh=z1o4hJOm9/9hcMA3ap+7ixzMjC/MFG4lVyFiMBfaNT0=;
- h=Subject:From:Date:References:In-Reply-To:To:Cc:From;
- b=PE/SoITpvK1SoSCazHoFMoRO4gC6trGjqX7OOWxcRrAYTHlh6bhjaABCR1xO72BQr
- Xrfb2xL+JHQpSL7smoafBuzLOY77UrAOYfXaM5Ncwm0qydrl7FqL3wj37VSSDPSUNU
- +AsKGQfeCqwplKGoh7ey46L6XjDIzG17V2Jez+Wi8/Xnvw0H7y7D3N3YF9FJvf7mOh
- 4mlO5Spi5J+5VD2GBPFaswF3SbagcprXi+C6Z8yxv/3+eQnq5zZ/fndS5DpdVSidl9
- QAUkIRllTL26ne54bOMxN8A1wJSVp8d5m1tAedctJrJUj7N9WjULdkvi3Rq0682q84
- Xg5qVq8LwX/UQ==
-Received: from aws-us-west-2-korg-oddjob-1.ci.codeaurora.org
- (localhost.localdomain [127.0.0.1])
- by aws-us-west-2-korg-oddjob-1.ci.codeaurora.org (Postfix) with ESMTP id
- 81050C395EC; Mon, 28 Nov 2022 11:10:31 +0000 (UTC)
+ id 1ozf6x-00Gh7t-7S for v9fs-developer@lists.sourceforge.net;
+ Mon, 28 Nov 2022 14:27:59 +0000
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+ d=crudebyte.com; s=kylie; h=Content-Type:Content-Transfer-Encoding:
+ MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:
+ Content-ID:Content-Description;
+ bh=6y8qtBVWyVYV+kHOTmBodkRQ5Mtx1AgXX7cehonYoLI=; b=MnC6Hi29ZLGxJmlJOrpukroGFu
+ Gx+zUdlvsgFJXJnbdbA/MDiHDgEv99YPt72TJOxn00O8JogVMcbmKx50sjdJxj6qBedQyMgH2hYyi
+ OsUxLmAz5qct429ffXgYRWfTb6LlqBriGYBWqkDVZlwVYPjslEb35+3gyd+6cGSkw7fOwpqUK7aTP
+ pLcdtXpgoxq8yIu84pEAzwuPtlngHNQ83jMe0g/FOR8AOSo8QWTAhqS8NNMVFldMUvlsFzAILbbsv
+ +3+Pt8oYGB8ouP5Gni5ql3iACYHNnBQDWO1uuVUHyXt/lpq0ZT9WU4OToD7H7bP/dFj7p0Gf01dM6
+ Q/83nsFfNKvPKfLCRnabao9+cQApCUC6Rajzq8ySmdCQVYqKaiun8A1OAPT69fS+/5kBgt91lCZ01
+ a6htQUJw/PQytt9gNExLtjAkHoDGj5eLZYsAcUvZV9wG7FXMJWdbU1Off/e3CtqEoDHOcooX9dN4W
+ 1PyZjyU2Nd8WxJ6HBLO0vvH5wmpAMESfkiCJpOFghmM9dDQQ+rk0Z30lJS8qtAnRfJMfW4/di8vtz
+ fpVfMaog+ZGC3J55w9uVSh55VtBDmVfvE6tTp5CTRUrSKx0YIHYQE0y8iRcgqFdv9UUYfTuut0Eg7
+ YA1FND8HIdKagQiNtjiLdB3Q+XyIns4lvnvVlHoqA=;
+To: mst@redhat.com, jasowang@redhat.com, pbonzini@redhat.com,
+ stefanha@redhat.com, axboe@kernel.dk, kraxel@redhat.com, david@redhat.com,
+ ericvh@gmail.com, lucho@ionkov.net, asmadeus@codewreck.org,
+ davem@davemloft.net, edumazet@google.com, kuba@kernel.org, pabeni@redhat.com, 
+ rusty@rustcorp.com.au, Li Zetao <lizetao1@huawei.com>
+Date: Mon, 28 Nov 2022 15:27:16 +0100
+Message-ID: <12013317.ToeGUHxLYt@silver>
+In-Reply-To: <20221128021005.232105-2-lizetao1@huawei.com>
+References: <20221128021005.232105-1-lizetao1@huawei.com>
+ <20221128021005.232105-2-lizetao1@huawei.com>
 MIME-Version: 1.0
-From: patchwork-bot+netdevbpf@kernel.org
-Message-Id: <166963383152.22058.5742377206245481714.git-patchwork-notify@kernel.org>
-Date: Mon, 28 Nov 2022 11:10:31 +0000
-References: <20221124081005.66579-1-wanghai38@huawei.com>
-In-Reply-To: <20221124081005.66579-1-wanghai38@huawei.com>
-To: wanghai (M) <wanghai38@huawei.com>
-X-Spam-Score: -5.9 (-----)
+X-Spam-Score: -0.2 (/)
 X-Spam-Report: Spam detection software,
  running on the system "util-spamd-1.v13.lw.sourceforge.com", 
  has NOT identified this incoming email as spam.  The original
  message has been attached to this so you can view it or label
  similar future email.  If you have any questions, see
  the administrator of that system for details.
- Content preview: Hello: This patch was applied to netdev/net.git (master) by
- David S. Miller <davem@davemloft.net>: On Thu, 24 Nov 2022 16:10:05 +0800
- you wrote: > Both p9_fd_create_tcp() and p9_fd_create_unix() will call >
- p9_socket_open(). If the creation of p9_trans_fd fails, > p9_fd_create_tcp()
- and p9_fd_creat [...] 
- Content analysis details:   (-5.9 points, 6.0 required)
+ Content preview:  On Monday, November 28, 2022 3:10:02 AM CET Li Zetao wrote:
+ > When doing the following test steps, an error was found: > step 1: modprobe
+ 9pnet_virtio succeeded > # modprobe 9pnet_virtio <-- OK > > st [...] 
+ Content analysis details:   (-0.2 points, 6.0 required)
  pts rule name              description
  ---- ---------------------- --------------------------------------------------
  0.0 SPF_HELO_NONE          SPF: HELO does not publish an SPF Record
@@ -90,12 +86,9 @@ X-Spam-Report: Spam detection software,
  0.1 DKIM_SIGNED            Message has a DKIM or DK signature, not necessarily
  valid
  -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
- -5.0 RCVD_IN_DNSWL_HI       RBL: Sender listed at https://www.dnswl.org/,
- high trust [145.40.68.75 listed in list.dnswl.org]
- -0.7 DKIMWL_WL_HIGH         DKIMwl.org - High trust sender
-X-Headers-End: 1ozc26-00GYxo-Kl
-Subject: Re: [V9fs-developer] [PATCH net] net/9p: Fix a potential socket
- leak in p9_socket_open
+X-Headers-End: 1ozf6x-00Gh7t-7S
+Subject: Re: [V9fs-developer] [PATCH 1/4] 9p: Fix probe failed when modprobe
+ 9pnet_virtio
 X-BeenThere: v9fs-developer@lists.sourceforge.net
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -107,38 +100,86 @@ List-Post: <mailto:v9fs-developer@lists.sourceforge.net>
 List-Help: <mailto:v9fs-developer-request@lists.sourceforge.net?subject=help>
 List-Subscribe: <https://lists.sourceforge.net/lists/listinfo/v9fs-developer>, 
  <mailto:v9fs-developer-request@lists.sourceforge.net?subject=subscribe>
-Cc: lucho@ionkov.net, ericvh@gmail.com, netdev@vger.kernel.org,
- linux_oss@crudebyte.com, linux-kernel@vger.kernel.org, edumazet@google.com,
- viro@zeniv.linux.org.uk, v9fs-developer@lists.sourceforge.net, kuba@kernel.org,
- pabeni@redhat.com, davem@davemloft.net
+From: Christian Schoenebeck via V9fs-developer
+ <v9fs-developer@lists.sourceforge.net>
+Reply-To: Christian Schoenebeck <linux_oss@crudebyte.com>
+Cc: netdev@vger.kernel.org, lizetao1@huawei.com, linux-kernel@vger.kernel.org,
+ virtualization@lists.linux-foundation.org, linux-block@vger.kernel.org,
+ v9fs-developer@lists.sourceforge.net
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: v9fs-developer-bounces@lists.sourceforge.net
 
-Hello:
-
-This patch was applied to netdev/net.git (master)
-by David S. Miller <davem@davemloft.net>:
-
-On Thu, 24 Nov 2022 16:10:05 +0800 you wrote:
-> Both p9_fd_create_tcp() and p9_fd_create_unix() will call
-> p9_socket_open(). If the creation of p9_trans_fd fails,
-> p9_fd_create_tcp() and p9_fd_create_unix() will return an
-> error directly instead of releasing the cscoket, which will
-> result in a socket leak.
+On Monday, November 28, 2022 3:10:02 AM CET Li Zetao wrote:
+> When doing the following test steps, an error was found:
+>   step 1: modprobe 9pnet_virtio succeeded
+>     # modprobe 9pnet_virtio      <-- OK
 > 
-> This patch adds sock_release() to fix the leak issue.
+>   step 2: fault injection in sysfs_create_file()
+>     # modprobe -r 9pnet_virtio   <-- OK
+>     # ...
+>       FAULT_INJECTION: forcing a failure.
+>       name failslab, interval 1, probability 0, space 0, times 0
+>       CPU: 0 PID: 3790 Comm: modprobe Tainted: G        W
+>       6.1.0-rc6-00285-g6a1e40c4b995-dirty #108
+>       Hardware name: QEMU Standard PC (i440FX + PIIX, 1996)
+>       Call Trace:
+>        <TASK>
+>        ...
+>        should_failslab+0xa/0x20
+>        ...
+>        sysfs_create_file_ns+0x130/0x1d0
+>        p9_virtio_probe+0x662/0xb30 [9pnet_virtio]
+>        virtio_dev_probe+0x608/0xae0
+>        ...
+>        </TASK>
+>       9pnet_virtio: probe of virtio3 failed with error -12
 > 
-> [...]
+>   step 3: modprobe virtio_net failed
+>     # modprobe 9pnet_virtio       <-- failed
+>       9pnet_virtio: probe of virtio3 failed with error -2
+> 
+> The root cause of the problem is that the virtqueues are not
+> stopped on the error handling path when sysfs_create_file()
+> fails in p9_virtio_probe(), resulting in an error "-ENOENT"
+> returned in the next modprobe call in setup_vq().
+> 
+> virtio_pci_modern_device uses virtqueues to send or
+> receive message, and "queue_enable" records whether the
+> queues are available. In vp_modern_find_vqs(), all queues
+> will be selected and activated, but once queues are enabled
+> there is no way to go back except reset.
+> 
+> Fix it by reset virtio device on error handling path. After
+> virtio_find_single_vq() succeeded, all virtqueues should be
+> stopped on error handling path.
+> 
+> Fixes: 1fcf0512c9c8 ("virtio_pci: modern driver")
+> Signed-off-by: Li Zetao <lizetao1@huawei.com>
+> ---
 
-Here is the summary with links:
-  - [net] net/9p: Fix a potential socket leak in p9_socket_open
-    https://git.kernel.org/netdev/net/c/dcc14cfd7deb
+As others said, comment should probably be adjusted, apart from that:
 
-You are awesome, thank you!
--- 
-Deet-doot-dot, I am a bot.
-https://korg.docs.kernel.org/patchwork/pwbot.html
+Reviewed-by: Christian Schoenebeck <linux_oss@crudebyte.com>
+
+>  net/9p/trans_virtio.c | 1 +
+>  1 file changed, 1 insertion(+)
+> 
+> diff --git a/net/9p/trans_virtio.c b/net/9p/trans_virtio.c
+> index e757f0601304..39933187284b 100644
+> --- a/net/9p/trans_virtio.c
+> +++ b/net/9p/trans_virtio.c
+> @@ -668,6 +668,7 @@ static int p9_virtio_probe(struct virtio_device *vdev)
+>  out_free_tag:
+>  	kfree(tag);
+>  out_free_vq:
+> +	virtio_reset_device(vdev);
+>  	vdev->config->del_vqs(vdev);
+>  out_free_chan:
+>  	kfree(chan);
+> 
+
+
 
 
 
