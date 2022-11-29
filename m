@@ -2,123 +2,98 @@ Return-Path: <v9fs-developer-bounces@lists.sourceforge.net>
 X-Original-To: lists+v9fs-developer@lfdr.de
 Delivered-To: lists+v9fs-developer@lfdr.de
 Received: from lists.sourceforge.net (lists.sourceforge.net [216.105.38.7])
-	by mail.lfdr.de (Postfix) with ESMTPS id 23BDE63C67C
-	for <lists+v9fs-developer@lfdr.de>; Tue, 29 Nov 2022 18:34:14 +0100 (CET)
-Received: from [127.0.0.1] (helo=sfs-ml-2.v29.lw.sourceforge.com)
-	by sfs-ml-2.v29.lw.sourceforge.com with esmtp (Exim 4.95)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0A23363C69B
+	for <lists+v9fs-developer@lfdr.de>; Tue, 29 Nov 2022 18:42:56 +0100 (CET)
+Received: from [127.0.0.1] (helo=sfs-ml-1.v29.lw.sourceforge.com)
+	by sfs-ml-1.v29.lw.sourceforge.com with esmtp (Exim 4.95)
 	(envelope-from <v9fs-developer-bounces@lists.sourceforge.net>)
-	id 1p04Ul-00039H-Uw;
-	Tue, 29 Nov 2022 17:34:11 +0000
+	id 1p04dC-0003cB-3o;
+	Tue, 29 Nov 2022 17:42:54 +0000
 Received: from [172.30.20.202] (helo=mx.sourceforge.net)
- by sfs-ml-2.v29.lw.sourceforge.com with esmtps (TLS1.2) tls
+ by sfs-ml-1.v29.lw.sourceforge.com with esmtps (TLS1.2) tls
  TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384 (Exim 4.95)
- (envelope-from <axboe@kernel.dk>) id 1p04Ui-000396-Ek
+ (envelope-from <jlayton@kernel.org>) id 1p04dB-0003c5-HI
  for v9fs-developer@lists.sourceforge.net;
- Tue, 29 Nov 2022 17:34:08 +0000
+ Tue, 29 Nov 2022 17:42:53 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=sourceforge.net; s=x; h=Content-Transfer-Encoding:Content-Type:In-Reply-To:
- From:References:Cc:To:Subject:MIME-Version:Date:Message-ID:Sender:Reply-To:
+ d=sourceforge.net; s=x; h=MIME-Version:Content-Transfer-Encoding:Content-Type
+ :References:In-Reply-To:Date:Cc:To:From:Subject:Message-ID:Sender:Reply-To:
  Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
  Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
  List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=cfz3Mcgxkqb1OqUShW9AvM1bJWJ5IVPUimuhgnHTUfM=; b=OskJSEsZIXTy5r9AcCtlE11y3n
- 0//dzDz2c7Fv4AEmrgx7PdcwPoYaRhgFVMMWdqEpGex24Rp7Kl2r82i42jIZkmpR8vocnFftCenpw
- OaFry7Q9q8LHwN1Fr3grqtMeVaJjY9ptJGiEa5/98xKah6D3NHHsdFzCLRrmL3WdcQlI=;
+ bh=lI1SnYDQnoAIwuHc+2Au1N5HfzgXszJlpUCPTOWFs38=; b=J1PqqeRkMP/RiB7I9zp08jLmUF
+ tOJbRsrHb2NYjPpytIJZ+hc7Ip2fxV6aGnzHSjnJ/qNFfXAsBGd58THZnTOvnUZmtbzZtpm1Xu/sD
+ a69oRkYRjLmLdU0EUKjnralyREJYitEHecut7dbijK7esHgI6Pg/+ECClIX0hl1/PSGw=;
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  ;
- h=Content-Transfer-Encoding:Content-Type:In-Reply-To:From:References:Cc:To:
- Subject:MIME-Version:Date:Message-ID:Sender:Reply-To:Content-ID:
+ h=MIME-Version:Content-Transfer-Encoding:Content-Type:References:
+ In-Reply-To:Date:Cc:To:From:Subject:Message-ID:Sender:Reply-To:Content-ID:
  Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
  :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
  List-Post:List-Owner:List-Archive;
- bh=cfz3Mcgxkqb1OqUShW9AvM1bJWJ5IVPUimuhgnHTUfM=; b=lv18QyuK+NGpt/s/8mJQzIYlbb
- Z8sIlOh5SFNw/mU69B8MKyR78DDb8jW9IiNqhtiCLFFKjzoc8M+egtDlHPAQSkzSZKMo363nwTn8V
- BV0EIGDw9dtM2D3OznNsjsntf+SW/8k7poufcYV6TR1AKlF1FUtCEymToyZJBYiX1u6Q=;
-Received: from mail-il1-f173.google.com ([209.85.166.173])
+ bh=lI1SnYDQnoAIwuHc+2Au1N5HfzgXszJlpUCPTOWFs38=; b=fPU09OvQ5PF6Xf0L1vp+J4e/mG
+ o+JrN/LnPHSq4nibC2pq3lPU/hBmKdvHbLVGUKo3yhnZnFCQjHfwYtzb4MQXhtt0zQXvbXn+RIZNY
+ se8KPYbTl0gtZXEf5/noGeBqCLQSqOTau3j6K+WSBG0ICXpr21VDJqEhtO9J3zbEMB0c=;
+Received: from sin.source.kernel.org ([145.40.73.55])
  by sfi-mx-2.v28.lw.sourceforge.com with esmtps
- (TLS1.2:ECDHE-RSA-AES128-GCM-SHA256:128) (Exim 4.95)
- id 1p04Uc-0002pF-57 for v9fs-developer@lists.sourceforge.net;
- Tue, 29 Nov 2022 17:34:07 +0000
-Received: by mail-il1-f173.google.com with SMTP id z9so6949027ilu.10
- for <v9fs-developer@lists.sourceforge.net>;
- Tue, 29 Nov 2022 09:34:02 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=kernel-dk.20210112.gappssmtp.com; s=20210112;
- h=content-transfer-encoding:in-reply-to:from:references:cc:to
- :content-language:subject:user-agent:mime-version:date:message-id
- :from:to:cc:subject:date:message-id:reply-to;
- bh=cfz3Mcgxkqb1OqUShW9AvM1bJWJ5IVPUimuhgnHTUfM=;
- b=aB+ZuGMOzbK18zkd0jlC4zEUTSM38tp9K/bCtuVmGeRWETnLRpEwg6Cfsis6G/o8YB
- 2HqB7jorwoOw6h/LjLMxu5ed5EZE92927W/9yhpp/QruynXSUNxJp0OMoVkixJnRoaDz
- PSuOZAOkF9I4gSS32lclTss+2DBuTn/ncV2ntYH8YMzg9PF3tm8qf0hVKILYBg2UDCmD
- wbUFp/1Fi7NjOLDWJsNeD/wtnDvCVPYo4knWim39AeNTc1EFLvMkEGW6VYwyktGtW5Qx
- +UBWGG0y4yJft2CYMgbAUi9qHrNg41pvQg2NXxZ0NdMCIm2c1JLzlQ89YLhdvsbn7Bys
- PI7g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20210112;
- h=content-transfer-encoding:in-reply-to:from:references:cc:to
- :content-language:subject:user-agent:mime-version:date:message-id
- :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
- bh=cfz3Mcgxkqb1OqUShW9AvM1bJWJ5IVPUimuhgnHTUfM=;
- b=1IKkAvu919XYkP2Q+2DQ9svKwNzx4W2MagVxZ1edlu66pcZurPuJ9fRjJwsXa2SOtT
- B3rJhiIRNBEJZL5pEjfS+3GaSvdysPkbJRN8qfXLR8843jsTCTO7Tjv3kASKjmbC7MTd
- 6hSoUoZuNuOJGT3OjoUKGbYaeLspMB1piEM9Hdg9mlO6KP1UWsyvpZTCXkMdz+2TdPO6
- zisF0m6Vo9cyaj6HqzZLXsHM7mv7c3GA3otH+3cXK4Q51VmXG0Ug+h7byFJUU4/mxj7q
- UAlYE+nuyFMUlGNcQOUCFdUN9u7FrqlNVDAzF/MNY+AVE6INEKlZKe7Fopz9+Pmw2+oH
- g/PA==
-X-Gm-Message-State: ANoB5pnurCTHR2ZasU3rpYUunC0mjlHpFofripa6UZ8mTLNsiCNO5rlI
- +9p/lJ2Vi+uWp8ZcAmch+M+sGrjNYLJJlNf8
-X-Google-Smtp-Source: AA0mqf5swFLksPgiEDo6TRTvtGl0tdoW1L9fhbh0pRyA3vgdzDg/DHK7jSPhCQbx1VNNnHFBlq3wIw==
-X-Received: by 2002:a63:ce58:0:b0:473:e2bb:7fc0 with SMTP id
- r24-20020a63ce58000000b00473e2bb7fc0mr33307253pgi.604.1669741713274; 
- Tue, 29 Nov 2022 09:08:33 -0800 (PST)
-Received: from [192.168.1.136] ([198.8.77.157])
- by smtp.gmail.com with ESMTPSA id
- h23-20020a63e157000000b00434272fe870sm8633883pgk.88.2022.11.29.09.08.30
- (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Tue, 29 Nov 2022 09:08:32 -0800 (PST)
-Message-ID: <9044e2b7-193f-ade4-b4a3-69e40b12088a@kernel.dk>
-Date: Tue, 29 Nov 2022 10:08:30 -0700
+ (TLS1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.95)
+ id 1p04d9-0003Bc-FW for v9fs-developer@lists.sourceforge.net;
+ Tue, 29 Nov 2022 17:42:53 +0000
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+ (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+ (No client certificate requested)
+ by sin.source.kernel.org (Postfix) with ESMTPS id 1BB80CE13C9;
+ Tue, 29 Nov 2022 17:42:41 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 88D66C433C1;
+ Tue, 29 Nov 2022 17:42:34 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+ s=k20201202; t=1669743759;
+ bh=3+jgbqIH2MJTIsVHlcxt6FoqC9JTTWJi5HGZCaZxgug=;
+ h=Subject:From:To:Cc:Date:In-Reply-To:References:From;
+ b=QUm6mA5J8FMakXMYs9TxR1saaYz2xtuB1WQ4vJJERTQPls5BaIPHVnOKz8jZIo9kT
+ XulObDx1A347icJCI3BmL1Pf+V0Y6vDE7c7GJVgCQGxPvlvdctmnzKGaymxCYNMyXQ
+ dKw/DfIH615h0CSbluMrGHtANR4WOUzVKajaI/Lk7UG43sRTDV3681zTOgmNB5PA42
+ 4z8cYl3L4lhD0Mvd0OcboC2hB3hl3nwz3MNA3jwsaSJnlHZe8k2mACwlMT6PMRhQUD
+ 9V/1JVeknQRJ/G2/votnmVuu78OlhM7g7yW8UlJERa2tg+7VQlKisF3sYHT8GaId68
+ G+E9LkyPR/ygQ==
+Message-ID: <d0a8f7a5e307e201926ae8e80d629da10c706a91.camel@kernel.org>
+From: Jeff Layton <jlayton@kernel.org>
+To: Christoph Hellwig <hch@lst.de>, Benjamin Coddington <bcodding@redhat.com>
+Date: Tue, 29 Nov 2022 12:42:33 -0500
+In-Reply-To: <20221129140242.GA15747@lst.de>
+References: <cover.1669036433.git.bcodding@redhat.com>
+ <c2ec184226acd21a191ccc1aa46a1d7e43ca7104.1669036433.git.bcodding@redhat.com>
+ <20221129140242.GA15747@lst.de>
+User-Agent: Evolution 3.46.1 (3.46.1-1.fc37) 
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux aarch64; rv:102.0) Gecko/20100101
- Thunderbird/102.5.0
-Content-Language: en-US
-To: Li Zetao <lizetao1@huawei.com>
-References: <20221128021005.232105-1-lizetao1@huawei.com>
- <20221129160615.3343036-1-lizetao1@huawei.com>
-From: Jens Axboe <axboe@kernel.dk>
-In-Reply-To: <20221129160615.3343036-1-lizetao1@huawei.com>
-X-Spam-Score: -2.0 (--)
-X-Spam-Report: Spam detection software, running on the system "util-spamd-1.v13.lw.sourceforge.com",
+X-Spam-Score: -5.9 (-----)
+X-Spam-Report: Spam detection software,
+ running on the system "util-spamd-1.v13.lw.sourceforge.com", 
  has NOT identified this incoming email as spam.  The original
  message has been attached to this so you can view it or label
  similar future email.  If you have any questions, see
  the administrator of that system for details.
- 
- Content preview:  On 11/29/22 9:06 AM, Li Zetao wrote: > This patchset fixes
-    similar issue, the root cause of the > problem is that the virtqueues are
-    not stopped on error > handling path. Not related to just this patchset,
-   but guys, Huawei really *REALLY* need to get the email situation sorted. I'm
-    digging whole/half patchsets out of spam every morning. 
- 
- Content analysis details:   (-2.0 points, 6.0 required)
- 
-  pts rule name              description
+ Content preview:  On Tue, 2022-11-29 at 15:02 +0100, Christoph Hellwig wrote:
+ > Hmm. Having to set a flag to not accidentally corrupt per-task > state
+ seems a bit fragile. Wouldn't it make sense to find a way to opt > [...] 
+ Content analysis details:   (-5.9 points, 6.0 required)
+ pts rule name              description
  ---- ---------------------- --------------------------------------------------
- -0.0 RCVD_IN_DNSWL_NONE     RBL: Sender listed at https://www.dnswl.org/,
-                              no trust
-                             [209.85.166.173 listed in list.dnswl.org]
- -0.0 RCVD_IN_MSPIKE_H2      RBL: Average reputation (+2)
-                             [209.85.166.173 listed in wl.mailspike.net]
-  0.0 SPF_HELO_NONE          SPF: HELO does not publish an SPF Record
+ 0.0 SPF_HELO_NONE          SPF: HELO does not publish an SPF Record
  -0.0 SPF_PASS               SPF: sender matches SPF record
-  0.1 DKIM_SIGNED            Message has a DKIM or DK signature, not necessarily
-                             valid
- -0.1 DKIM_VALID             Message has at least one valid DKIM or DK signature
- -2.0 NICE_REPLY_A           Looks like a legit reply (A)
-X-Headers-End: 1p04Uc-0002pF-57
-Subject: Re: [V9fs-developer] [PATCH v2 0/5] Fix probe failed when modprobe
- modules
+ -0.1 DKIM_VALID_AU          Message has a valid DKIM or DK signature from
+ author's domain
+ -0.1 DKIM_VALID_EF          Message has a valid DKIM or DK signature from
+ envelope-from domain
+ 0.1 DKIM_SIGNED            Message has a DKIM or DK signature, not necessarily
+ valid
+ -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+ -5.0 RCVD_IN_DNSWL_HI       RBL: Sender listed at https://www.dnswl.org/,
+ high trust [145.40.73.55 listed in list.dnswl.org]
+ -0.7 DKIMWL_WL_HIGH         DKIMwl.org - High trust sender
+X-Headers-End: 1p04d9-0003Bc-FW
+Subject: Re: [V9fs-developer] [PATCH v1 2/3] Treewide: Stop corrupting
+ socket's task_frag
 X-BeenThere: v9fs-developer@lists.sourceforge.net
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -130,34 +105,63 @@ List-Post: <mailto:v9fs-developer@lists.sourceforge.net>
 List-Help: <mailto:v9fs-developer-request@lists.sourceforge.net?subject=help>
 List-Subscribe: <https://lists.sourceforge.net/lists/listinfo/v9fs-developer>, 
  <mailto:v9fs-developer-request@lists.sourceforge.net?subject=subscribe>
-Cc: lucho@ionkov.net, david@redhat.com, jasowang@redhat.com,
- linux_oss@crudebyte.com, pmorel@linux.vnet.ibm.com,
- dri-devel@lists.freedesktop.org, gurchetansingh@chromium.org,
- edumazet@google.com, kraxel@redhat.com, airlied@gmail.com, kuba@kernel.org,
- pabeni@redhat.com, olvaffe@gmail.com, st@redhat.com, ericvh@gmail.com,
- rusty@rustcorp.com.au, linux-block@vger.kernel.org,
- v9fs-developer@lists.sourceforge.net, stefanha@redhat.com, airlied@redhat.com,
- cornelia.huck@de.ibm.com, virtualization@lists.linux-foundation.org,
- pankaj.gupta.linux@gmail.com, netdev@vger.kernel.org,
- linux-kernel@vger.kernel.org, daniel@ffwll.ch, pbonzini@redhat.com,
- davem@davemloft.net
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Cc: Latchesar Ionkov <lucho@ionkov.net>,
+ Valentina Manea <valentina.manea.m@gmail.com>, linux-nvme@lists.infradead.org,
+ Philipp Reisner <philipp.reisner@linbit.com>,
+ David Howells <dhowells@redhat.com>, Joseph Qi <joseph.qi@linux.alibaba.com>,
+ Eric Dumazet <edumazet@google.com>, linux-nfs@vger.kernel.org,
+ Marc Dionne <marc.dionne@auristor.com>, Shuah Khan <shuah@kernel.org>,
+ linux-afs@lists.infradead.org, Mike Christie <michael.christie@oracle.com>,
+ drbd-dev@lists.linbit.com, linux-cifs@vger.kernel.org,
+ Sagi Grimberg <sagi@grimberg.me>, linux-scsi@vger.kernel.org,
+ Mark Fasheh <mark@fasheh.com>, cluster-devel@redhat.com,
+ Christine Caulfield <ccaulfie@redhat.com>, Jakub Kicinski <kuba@kernel.org>,
+ Ilya Dryomov <idryomov@gmail.com>, Paolo Abeni <pabeni@redhat.com>,
+ Anna Schumaker <anna@kernel.org>, Eric Van Hensbergen <ericvh@gmail.com>,
+ "James E.J. Bottomley" <jejb@linux.ibm.com>,
+ Josef Bacik <josef@toxicpanda.com>, nbd@other.debian.org,
+ linux-block@vger.kernel.org, David Teigland <teigland@redhat.com>,
+ Joel Becker <jlbec@evilplan.org>, v9fs-developer@lists.sourceforge.net,
+ Keith Busch <kbusch@kernel.org>, ceph-devel@vger.kernel.org,
+ Xiubo Li <xiubli@redhat.com>,
+ Trond Myklebust <trond.myklebust@hammerspace.com>,
+ Jens Axboe <axboe@kernel.dk>, Chris Leech <cleech@redhat.com>,
+ open-iscsi@googlegroups.com, "Martin K. Petersen" <martin.petersen@oracle.com>,
+ netdev@vger.kernel.org, linux-usb@vger.kernel.org,
+ samba-technical@lists.samba.org, linux-kernel@vger.kernel.org,
+ Steve French <sfrench@samba.org>,
+ Christoph =?ISO-8859-1?Q?B=F6hmwalder?= <christoph.boehmwalder@linbit.com>,
+ Chuck Lever <chuck.lever@oracle.com>, Lee Duncan <lduncan@suse.com>,
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+ Lars Ellenberg <lars.ellenberg@linbit.com>,
+ "David S. Miller" <davem@davemloft.net>, ocfs2-devel@oss.oracle.com
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: v9fs-developer-bounces@lists.sourceforge.net
 
-T24gMTEvMjkvMjIgOTowNuKAr0FNLCBMaSBaZXRhbyB3cm90ZToKPiBUaGlzIHBhdGNoc2V0IGZp
-eGVzIHNpbWlsYXIgaXNzdWUsIHRoZSByb290IGNhdXNlIG9mIHRoZQo+IHByb2JsZW0gaXMgdGhh
-dCB0aGUgdmlydHF1ZXVlcyBhcmUgbm90IHN0b3BwZWQgb24gZXJyb3IKPiBoYW5kbGluZyBwYXRo
-LgoKTm90IHJlbGF0ZWQgdG8ganVzdCB0aGlzIHBhdGNoc2V0LCBidXQgZ3V5cywgSHVhd2VpIHJl
-YWxseSAqUkVBTExZKiBuZWVkCnRvIGdldCB0aGUgZW1haWwgc2l0dWF0aW9uIHNvcnRlZC4gSSdt
-IGRpZ2dpbmcgd2hvbGUvaGFsZiBwYXRjaHNldHMgb3V0Cm9mIHNwYW0gZXZlcnkgbW9ybmluZy4K
-ClRoaXMgaGFzIGJlZW4gYnJvdWdodCB1cCBpbiB0aGUgcGFzdC4gQW5kIG5vLCB0aGUgY2xvdWQg
-dmFyaWFudCBvZgp0aGUgZW1haWwgYWxzbyBkb2Vzbid0IHdvcmsgcHJvcGVybHkuCgpUYWxrIHRv
-IHlvdXIgSVQgZGVwYXJ0bWVudCwgZ2V0IHRoaXMgc29ydGVkIG9uY2UgYW5kIGZvciBhbGwuIFlv
-dSByaXNrCnlvdXIgcGF0Y2hlcyBiZWluZyBkdW1wZWQgb24gdGhlIGZsb29yIGJlY2F1c2UgcGVv
-cGxlIGRvbid0IHNlZSB0aGVtLApvciBvbmx5IHNlZSBzbWFsbCBwYXJ0cyBvZiBhIHBhdGNoc2V0
-LiBBbmQgaXQncyByZWFsbHkgYW5ub3lpbmcgdG8gaGF2ZQp0byBkZWFsIHdpdGggYXMgYSByZWNp
-cGllbnQuCgotLSAKSmVucyBBeGJvZQoKCgoKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX18KVjlmcy1kZXZlbG9wZXIgbWFpbGluZyBsaXN0ClY5ZnMtZGV2ZWxv
-cGVyQGxpc3RzLnNvdXJjZWZvcmdlLm5ldApodHRwczovL2xpc3RzLnNvdXJjZWZvcmdlLm5ldC9s
-aXN0cy9saXN0aW5mby92OWZzLWRldmVsb3Blcgo=
+On Tue, 2022-11-29 at 15:02 +0100, Christoph Hellwig wrote:
+> Hmm.  Having to set a flag to not accidentally corrupt per-task
+> state seems a bit fragile.  Wouldn't it make sense to find a way to opt
+> into the feature only for sockets created from the syscall layer?
+
+I agree that that would be cleaner. task_frag should have been an opt-in
+thing all along. That change regressed all of the in-kernel users of
+sockets.
+
+Where would be the right place to set that flag for only userland
+sockets? A lot of the in-kernel socket users hook into the socket API at
+a fairly high-level. 9P and CIFS, for instance, call __sock_create.
+
+We could set it in the syscall handlers (and maybe in iouring) I
+suppose, but that seems like the wrong thing to do too.
+
+In the absence of a clean place to do this, I think we're going to be
+stuck doing it the way Ben has proposed...
+-- 
+Jeff Layton <jlayton@kernel.org>
+
+
+_______________________________________________
+V9fs-developer mailing list
+V9fs-developer@lists.sourceforge.net
+https://lists.sourceforge.net/lists/listinfo/v9fs-developer
