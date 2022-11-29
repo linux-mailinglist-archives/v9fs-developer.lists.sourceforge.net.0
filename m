@@ -2,83 +2,84 @@ Return-Path: <v9fs-developer-bounces@lists.sourceforge.net>
 X-Original-To: lists+v9fs-developer@lfdr.de
 Delivered-To: lists+v9fs-developer@lfdr.de
 Received: from lists.sourceforge.net (lists.sourceforge.net [216.105.38.7])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0A23363C69B
-	for <lists+v9fs-developer@lfdr.de>; Tue, 29 Nov 2022 18:42:56 +0100 (CET)
-Received: from [127.0.0.1] (helo=sfs-ml-1.v29.lw.sourceforge.com)
-	by sfs-ml-1.v29.lw.sourceforge.com with esmtp (Exim 4.95)
+	by mail.lfdr.de (Postfix) with ESMTPS id CAA9963C71C
+	for <lists+v9fs-developer@lfdr.de>; Tue, 29 Nov 2022 19:23:47 +0100 (CET)
+Received: from [127.0.0.1] (helo=sfs-ml-2.v29.lw.sourceforge.com)
+	by sfs-ml-2.v29.lw.sourceforge.com with esmtp (Exim 4.95)
 	(envelope-from <v9fs-developer-bounces@lists.sourceforge.net>)
-	id 1p04dC-0003cB-3o;
-	Tue, 29 Nov 2022 17:42:54 +0000
+	id 1p05Gj-0004AN-Be;
+	Tue, 29 Nov 2022 18:23:45 +0000
 Received: from [172.30.20.202] (helo=mx.sourceforge.net)
- by sfs-ml-1.v29.lw.sourceforge.com with esmtps (TLS1.2) tls
+ by sfs-ml-2.v29.lw.sourceforge.com with esmtps (TLS1.2) tls
  TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384 (Exim 4.95)
- (envelope-from <jlayton@kernel.org>) id 1p04dB-0003c5-HI
+ (envelope-from <linux_oss@crudebyte.com>) id 1p05Gi-0004AG-9f
  for v9fs-developer@lists.sourceforge.net;
- Tue, 29 Nov 2022 17:42:53 +0000
+ Tue, 29 Nov 2022 18:23:44 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=sourceforge.net; s=x; h=MIME-Version:Content-Transfer-Encoding:Content-Type
- :References:In-Reply-To:Date:Cc:To:From:Subject:Message-ID:Sender:Reply-To:
+ d=sourceforge.net; s=x; h=Content-Type:Content-Transfer-Encoding:MIME-Version
+ :References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Sender:Reply-To:
  Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
  Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
  List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=lI1SnYDQnoAIwuHc+2Au1N5HfzgXszJlpUCPTOWFs38=; b=J1PqqeRkMP/RiB7I9zp08jLmUF
- tOJbRsrHb2NYjPpytIJZ+hc7Ip2fxV6aGnzHSjnJ/qNFfXAsBGd58THZnTOvnUZmtbzZtpm1Xu/sD
- a69oRkYRjLmLdU0EUKjnralyREJYitEHecut7dbijK7esHgI6Pg/+ECClIX0hl1/PSGw=;
+ bh=5ZSzUkPwSZlE7lwVIYK/zlxt6BpFN/kJRekUXyW8GJk=; b=FnqMWyWDtMcq+EZcjXsNDewRTD
+ gspm3DeVSYtQ55OBxBFHsDiz7ErnOxF2GzIW59vxIQwJSU/LCe/CTntZOGCbVzeFbG4/FNkco57fN
+ b4Ojzj0FwVvuzEuD1rjrGmJtkmfD4k7/BUiGYXjmRptFPXpdAO6Tg1+GI8CUFXSBFsek=;
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  ;
- h=MIME-Version:Content-Transfer-Encoding:Content-Type:References:
- In-Reply-To:Date:Cc:To:From:Subject:Message-ID:Sender:Reply-To:Content-ID:
+ h=Content-Type:Content-Transfer-Encoding:MIME-Version:References:
+ In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Sender:Reply-To:Content-ID:
  Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
  :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
  List-Post:List-Owner:List-Archive;
- bh=lI1SnYDQnoAIwuHc+2Au1N5HfzgXszJlpUCPTOWFs38=; b=fPU09OvQ5PF6Xf0L1vp+J4e/mG
- o+JrN/LnPHSq4nibC2pq3lPU/hBmKdvHbLVGUKo3yhnZnFCQjHfwYtzb4MQXhtt0zQXvbXn+RIZNY
- se8KPYbTl0gtZXEf5/noGeBqCLQSqOTau3j6K+WSBG0ICXpr21VDJqEhtO9J3zbEMB0c=;
-Received: from sin.source.kernel.org ([145.40.73.55])
- by sfi-mx-2.v28.lw.sourceforge.com with esmtps
+ bh=5ZSzUkPwSZlE7lwVIYK/zlxt6BpFN/kJRekUXyW8GJk=; b=dGJdYAlAXEl2WNwvqsqwBe280n
+ pe2fnzqbIuy6vhfHbArhP8jTLwr6SdusfhgB4SXAX7P+jZZIDYpC+24umeFM5mntukKgR9+eif1GX
+ Y4P159vW8viNsQ0wXiIDUxC99jgmwL3P24ZqDKrGxKvwWi0ZUhG9tb8KHz3BTXSONxCU=;
+Received: from kylie.crudebyte.com ([5.189.157.229])
+ by sfi-mx-1.v28.lw.sourceforge.com with esmtps
  (TLS1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.95)
- id 1p04d9-0003Bc-FW for v9fs-developer@lists.sourceforge.net;
- Tue, 29 Nov 2022 17:42:53 +0000
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
- (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
- (No client certificate requested)
- by sin.source.kernel.org (Postfix) with ESMTPS id 1BB80CE13C9;
- Tue, 29 Nov 2022 17:42:41 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 88D66C433C1;
- Tue, 29 Nov 2022 17:42:34 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1669743759;
- bh=3+jgbqIH2MJTIsVHlcxt6FoqC9JTTWJi5HGZCaZxgug=;
- h=Subject:From:To:Cc:Date:In-Reply-To:References:From;
- b=QUm6mA5J8FMakXMYs9TxR1saaYz2xtuB1WQ4vJJERTQPls5BaIPHVnOKz8jZIo9kT
- XulObDx1A347icJCI3BmL1Pf+V0Y6vDE7c7GJVgCQGxPvlvdctmnzKGaymxCYNMyXQ
- dKw/DfIH615h0CSbluMrGHtANR4WOUzVKajaI/Lk7UG43sRTDV3681zTOgmNB5PA42
- 4z8cYl3L4lhD0Mvd0OcboC2hB3hl3nwz3MNA3jwsaSJnlHZe8k2mACwlMT6PMRhQUD
- 9V/1JVeknQRJ/G2/votnmVuu78OlhM7g7yW8UlJERa2tg+7VQlKisF3sYHT8GaId68
- G+E9LkyPR/ygQ==
-Message-ID: <d0a8f7a5e307e201926ae8e80d629da10c706a91.camel@kernel.org>
-From: Jeff Layton <jlayton@kernel.org>
-To: Christoph Hellwig <hch@lst.de>, Benjamin Coddington <bcodding@redhat.com>
-Date: Tue, 29 Nov 2022 12:42:33 -0500
-In-Reply-To: <20221129140242.GA15747@lst.de>
-References: <cover.1669036433.git.bcodding@redhat.com>
- <c2ec184226acd21a191ccc1aa46a1d7e43ca7104.1669036433.git.bcodding@redhat.com>
- <20221129140242.GA15747@lst.de>
-User-Agent: Evolution 3.46.1 (3.46.1-1.fc37) 
+ id 1p05Gb-000UvV-Qc for v9fs-developer@lists.sourceforge.net;
+ Tue, 29 Nov 2022 18:23:44 +0000
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+ d=crudebyte.com; s=kylie; h=Content-Type:Content-Transfer-Encoding:
+ MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:
+ Content-ID:Content-Description;
+ bh=5ZSzUkPwSZlE7lwVIYK/zlxt6BpFN/kJRekUXyW8GJk=; b=VbJ+rXDlSrYHfgeC2Iew3PURBK
+ big7AR0VqNOdMaZFqdekRc1hj8yZDPfKUV3Bgyfh459GvTU75BOsFViXpq++WtktoynNnhRJWkuEr
+ xOnagvByYPCoCccB+zEcQiu+sH08VgdDYeI5ASOnTqwNwJWIeqEfj0sJM16aQDBjlQzhrxcwg7z/r
+ t9gvX8sk7tbrIhKZa2hXc3qznZFSydt1FXtLLx012BVpZJVjMPyGn1A/w7ltbaVcqY5cFZGH48BLr
+ Tsut2PsSYQ9uP1b144SzAoxU2QJGqQoAx5+xXoSQZO22gXe5qw69H0VvFTwaEq27Ve8IZy0TtC0dT
+ rTN2Kp9+PhhMDVlKx6F28pbidKBIBTilA2HhLhh9x3A2Qe/Y/8zGob782F0tHNBPX+JA5Iy2qxiNt
+ a3vYZrxgjSpGOxz7uNV+M3nIlgxHqtJdCRotI6zTkGgR2593+9afngf/qUhzXE+Qym9s5UW7Mv6Wm
+ mwbI8FCuq8cp7tZJErIv+LQAnJk5tewABZYhUa7qpj+cNdcScG9ltGjJvLfAvtiwBRJv0RPY5lW2x
+ GVpmU9tLuHKZCR1vgi7e7W71IKF809i1hCoWoGTKzDyod4WWY4VH/zJdqRkOxVrPeMoYo5d4ZzlMl
+ KOnfagswQd05C7hznra6z0VDHn1kAxtvmR9M9P/1U=;
+To: ericvh@gmail.com, lucho@ionkov.net, asmadeus@codewreck.org,
+ davem@davemloft.net, edumazet@google.com, kuba@kernel.org, pabeni@redhat.com, 
+ Schspa Shi <schspa@gmail.com>
+Date: Tue, 29 Nov 2022 19:23:19 +0100
+Message-ID: <4282856.sKfH6co6qd@silver>
+In-Reply-To: <m2r0xlu3l9.fsf@gmail.com>
+References: <20221129162251.90790-1-schspa@gmail.com>
+ <m2r0xlu3l9.fsf@gmail.com>
 MIME-Version: 1.0
-X-Spam-Score: -5.9 (-----)
+X-Spam-Score: -0.2 (/)
 X-Spam-Report: Spam detection software,
  running on the system "util-spamd-1.v13.lw.sourceforge.com", 
  has NOT identified this incoming email as spam.  The original
  message has been attached to this so you can view it or label
  similar future email.  If you have any questions, see
  the administrator of that system for details.
- Content preview:  On Tue, 2022-11-29 at 15:02 +0100, Christoph Hellwig wrote:
- > Hmm. Having to set a flag to not accidentally corrupt per-task > state
- seems a bit fragile. Wouldn't it make sense to find a way to opt > [...] 
- Content analysis details:   (-5.9 points, 6.0 required)
+ Content preview:  On Tuesday, November 29,
+ 2022 5:26:46 PM CET Schspa Shi wrote:
+ > > Schspa Shi <schspa@gmail.com> writes: > > > The transport layer of fs
+ does not fully support the cancel request. > > When the request [...] 
+ Content analysis details:   (-0.2 points, 6.0 required)
  pts rule name              description
  ---- ---------------------- --------------------------------------------------
+ 0.0 URIBL_BLOCKED          ADMINISTRATOR NOTICE: The query to URIBL was
+ blocked.  See
+ http://wiki.apache.org/spamassassin/DnsBlocklists#dnsbl-block
+ for more information. [URIs: crudebyte.com]
  0.0 SPF_HELO_NONE          SPF: HELO does not publish an SPF Record
  -0.0 SPF_PASS               SPF: sender matches SPF record
  -0.1 DKIM_VALID_AU          Message has a valid DKIM or DK signature from
@@ -88,12 +89,8 @@ X-Spam-Report: Spam detection software,
  0.1 DKIM_SIGNED            Message has a DKIM or DK signature, not necessarily
  valid
  -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
- -5.0 RCVD_IN_DNSWL_HI       RBL: Sender listed at https://www.dnswl.org/,
- high trust [145.40.73.55 listed in list.dnswl.org]
- -0.7 DKIMWL_WL_HIGH         DKIMwl.org - High trust sender
-X-Headers-End: 1p04d9-0003Bc-FW
-Subject: Re: [V9fs-developer] [PATCH v1 2/3] Treewide: Stop corrupting
- socket's task_frag
+X-Headers-End: 1p05Gb-000UvV-Qc
+Subject: Re: [V9fs-developer] [PATCH] 9p: fix crash when transaction killed
 X-BeenThere: v9fs-developer@lists.sourceforge.net
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -105,60 +102,171 @@ List-Post: <mailto:v9fs-developer@lists.sourceforge.net>
 List-Help: <mailto:v9fs-developer-request@lists.sourceforge.net?subject=help>
 List-Subscribe: <https://lists.sourceforge.net/lists/listinfo/v9fs-developer>, 
  <mailto:v9fs-developer-request@lists.sourceforge.net?subject=subscribe>
-Cc: Latchesar Ionkov <lucho@ionkov.net>,
- Valentina Manea <valentina.manea.m@gmail.com>, linux-nvme@lists.infradead.org,
- Philipp Reisner <philipp.reisner@linbit.com>,
- David Howells <dhowells@redhat.com>, Joseph Qi <joseph.qi@linux.alibaba.com>,
- Eric Dumazet <edumazet@google.com>, linux-nfs@vger.kernel.org,
- Marc Dionne <marc.dionne@auristor.com>, Shuah Khan <shuah@kernel.org>,
- linux-afs@lists.infradead.org, Mike Christie <michael.christie@oracle.com>,
- drbd-dev@lists.linbit.com, linux-cifs@vger.kernel.org,
- Sagi Grimberg <sagi@grimberg.me>, linux-scsi@vger.kernel.org,
- Mark Fasheh <mark@fasheh.com>, cluster-devel@redhat.com,
- Christine Caulfield <ccaulfie@redhat.com>, Jakub Kicinski <kuba@kernel.org>,
- Ilya Dryomov <idryomov@gmail.com>, Paolo Abeni <pabeni@redhat.com>,
- Anna Schumaker <anna@kernel.org>, Eric Van Hensbergen <ericvh@gmail.com>,
- "James E.J. Bottomley" <jejb@linux.ibm.com>,
- Josef Bacik <josef@toxicpanda.com>, nbd@other.debian.org,
- linux-block@vger.kernel.org, David Teigland <teigland@redhat.com>,
- Joel Becker <jlbec@evilplan.org>, v9fs-developer@lists.sourceforge.net,
- Keith Busch <kbusch@kernel.org>, ceph-devel@vger.kernel.org,
- Xiubo Li <xiubli@redhat.com>,
- Trond Myklebust <trond.myklebust@hammerspace.com>,
- Jens Axboe <axboe@kernel.dk>, Chris Leech <cleech@redhat.com>,
- open-iscsi@googlegroups.com, "Martin K. Petersen" <martin.petersen@oracle.com>,
- netdev@vger.kernel.org, linux-usb@vger.kernel.org,
- samba-technical@lists.samba.org, linux-kernel@vger.kernel.org,
- Steve French <sfrench@samba.org>,
- Christoph =?ISO-8859-1?Q?B=F6hmwalder?= <christoph.boehmwalder@linbit.com>,
- Chuck Lever <chuck.lever@oracle.com>, Lee Duncan <lduncan@suse.com>,
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- Lars Ellenberg <lars.ellenberg@linbit.com>,
- "David S. Miller" <davem@davemloft.net>, ocfs2-devel@oss.oracle.com
+From: Christian Schoenebeck via V9fs-developer
+ <v9fs-developer@lists.sourceforge.net>
+Reply-To: Christian Schoenebeck <linux_oss@crudebyte.com>
+Cc: v9fs-developer@lists.sourceforge.net, Schspa Shi <schspa@gmail.com>,
+ linux-kernel@vger.kernel.org,
+ syzbot+8f1060e2aaf8ca55220b@syzkaller.appspotmail.com, netdev@vger.kernel.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: v9fs-developer-bounces@lists.sourceforge.net
 
-On Tue, 2022-11-29 at 15:02 +0100, Christoph Hellwig wrote:
-> Hmm.  Having to set a flag to not accidentally corrupt per-task
-> state seems a bit fragile.  Wouldn't it make sense to find a way to opt
-> into the feature only for sockets created from the syscall layer?
+On Tuesday, November 29, 2022 5:26:46 PM CET Schspa Shi wrote:
+> 
+> Schspa Shi <schspa@gmail.com> writes:
+> 
+> > The transport layer of fs does not fully support the cancel request.
+> > When the request is in the REQ_STATUS_SENT state, p9_fd_cancelled
+> > will forcibly delete the request, and at this time p9_[read/write]_work
+> > may continue to use the request. Therefore, it causes UAF .
+> >
+> > There is the logs from syzbot.
+> >
+> > Corrupted memory at 0xffff88807eade00b [ 0xff 0x07 0x00 0x00 0x00 0x00
+> > 0x00 0x00 . . . . . . . . ] (in kfence-#110):
+> >  p9_fcall_fini net/9p/client.c:248 [inline]
+> >  p9_req_put net/9p/client.c:396 [inline]
+> >  p9_req_put+0x208/0x250 net/9p/client.c:390
+> >  p9_client_walk+0x247/0x540 net/9p/client.c:1165
+> >  clone_fid fs/9p/fid.h:21 [inline]
+> >  v9fs_fid_xattr_set+0xe4/0x2b0 fs/9p/xattr.c:118
+> >  v9fs_xattr_set fs/9p/xattr.c:100 [inline]
+> >  v9fs_xattr_handler_set+0x6f/0x120 fs/9p/xattr.c:159
+> >  __vfs_setxattr+0x119/0x180 fs/xattr.c:182
+> >  __vfs_setxattr_noperm+0x129/0x5f0 fs/xattr.c:216
+> >  __vfs_setxattr_locked+0x1d3/0x260 fs/xattr.c:277
+> >  vfs_setxattr+0x143/0x340 fs/xattr.c:309
+> >  setxattr+0x146/0x160 fs/xattr.c:617
+> >  path_setxattr+0x197/0x1c0 fs/xattr.c:636
+> >  __do_sys_setxattr fs/xattr.c:652 [inline]
+> >  __se_sys_setxattr fs/xattr.c:648 [inline]
+> >  __ia32_sys_setxattr+0xc0/0x160 fs/xattr.c:648
+> >  do_syscall_32_irqs_on arch/x86/entry/common.c:112 [inline]
+> >  __do_fast_syscall_32+0x65/0xf0 arch/x86/entry/common.c:178
+> >  do_fast_syscall_32+0x33/0x70 arch/x86/entry/common.c:203
+> >  entry_SYSENTER_compat_after_hwframe+0x70/0x82
+> >
+> > Below is a similar scenario, the scenario in the syzbot log looks more
+> > complicated than this one, but the root cause seems to be the same.
+> >
+> >      T21124               p9_write_work        p9 read_work
+> > ======================== first trans =================================
+> > p9_client_walk
+> >   p9_client_rpc
+> >     p9_client_prepare_req
+> >     /* req->refcount == 2 */
+> >     c->trans_mod->request(c, req);
+> >       p9_fd_request
+> >         req move to unsent_req_list
+> >                             req->status = REQ_STATUS_SENT;
+> >                             req move to req_list
+> >                             << send to server >>
+> >     wait_event_killable
+> >     << get kill signal >>
+> >     if (c->trans_mod->cancel(c, req))
+> >        p9_client_flush(c, req);
+> >          /* send flush request */
+> >          req = p9_client_rpc(c, P9_TFLUSH, "w", oldtag);
+> > 		 if (c->trans_mod->cancelled)
+> >             c->trans_mod->cancelled(c, oldreq);
+> >               /* old req was deleted from req_list */
+> >               /* req->refcount == 1 */
+> >   p9_req_put
+> >     /* req->refcount == 0 */
+> >     << preempted >>
+> >                                        << get response, UAF here >>
+> >                                        m->rreq = p9_tag_lookup(m->client, m->rc.tag);
+> >                                          /* req->refcount == 1 */
+> >                                        << do response >>
+> >                                        p9_client_cb(m->client, m->rreq, REQ_STATUS_RCVD);
+> >                                          /* req->refcount == 0 */
+> >                                          p9_fcall_fini
+> >                                          /* request have been freed */
+> >     p9_fcall_fini
+> >      /* double free */
+> >                                        p9_req_put(m->client, m->rreq);
+> >                                          /* req->refcount == 1 */
+> >
+> > To fix it, we can wait the request with status REQ_STATUS_SENT returned.
 
-I agree that that would be cleaner. task_frag should have been an opt-in
-thing all along. That change regressed all of the in-kernel users of
-sockets.
+9p server might or might not send a reply on cancelled request. If 9p server
+notices client's Tflush request early enough, then it would simply discard the
+old=cancelled request and not send any reply on that old request. If server
+notices Tflush too late, then server would send a response to the old request.
 
-Where would be the right place to set that flag for only userland
-sockets? A lot of the in-kernel socket users hook into the socket API at
-a fairly high-level. 9P and CIFS, for instance, call __sock_create.
+http://ericvh.github.io/9p-rfc/rfc9p2000.html#anchor28
 
-We could set it in the syscall handlers (and maybe in iouring) I
-suppose, but that seems like the wrong thing to do too.
+However after sending Tflush client waits for the corresponding Rflush
+response, and at this point situation should be clear; no further response
+expected from server for old request at this point. And that's what Linux
+client does.
 
-In the absence of a clean place to do this, I think we're going to be
-stuck doing it the way Ben has proposed...
--- 
-Jeff Layton <jlayton@kernel.org>
+Which server implementation caused that?
+
+> >
+> > Reported-by: syzbot+8f1060e2aaf8ca55220b@syzkaller.appspotmail.com
+> >
+> > Signed-off-by: Schspa Shi <schspa@gmail.com>
+> > ---
+> >  net/9p/client.c   |  2 +-
+> >  net/9p/trans_fd.c | 12 ++++++++++++
+> >  2 files changed, 13 insertions(+), 1 deletion(-)
+> >
+> > diff --git a/net/9p/client.c b/net/9p/client.c
+> > index aaa37b07e30a..963cf91aa0d5 100644
+> > --- a/net/9p/client.c
+> > +++ b/net/9p/client.c
+> > @@ -440,7 +440,7 @@ void p9_client_cb(struct p9_client *c, struct p9_req_t *req, int status)
+> >  	smp_wmb();
+> >  	req->status = status;
+> >  
+> > -	wake_up(&req->wq);
+> > +	wake_up_all(&req->wq);
+
+Purpose?
+
+> >  	p9_debug(P9_DEBUG_MUX, "wakeup: %d\n", req->tc.tag);
+> >  	p9_req_put(c, req);
+> >  }
+> > diff --git a/net/9p/trans_fd.c b/net/9p/trans_fd.c
+> > index eeea0a6a75b6..ee2d6b231af1 100644
+> > --- a/net/9p/trans_fd.c
+> > +++ b/net/9p/trans_fd.c
+> > @@ -30,6 +30,7 @@
+> >  #include <net/9p/transport.h>
+> >  
+> >  #include <linux/syscalls.h> /* killme */
+> > +#include <linux/wait.h>
+> >  
+> >  #define P9_PORT 564
+> >  #define MAX_SOCK_BUF (1024*1024)
+> > @@ -728,6 +729,17 @@ static int p9_fd_cancelled(struct p9_client *client, struct p9_req_t *req)
+> >  		return 0;
+> >  	}
+> >  
+> > +	/* If the request is been sent to the server, we need to wait for the
+> > +	 * job to finish.
+> > +	 */
+> > +	if (req->status == REQ_STATUS_SENT) {
+> > +		spin_unlock(&m->req_lock);
+> > +		p9_debug(P9_DEBUG_TRANS, "client %p req %p wait done\n",
+> > +			 client, req);
+> > +		wait_event(req->wq, req->status >= REQ_STATUS_RCVD);
+> > +
+> > +		return 0;
+> > +	}
+> >  	/* we haven't received a response for oldreq,
+> >  	 * remove it from the list.
+> >  	 */
+> 
+> Add Christian Schoenebeck for bad mail address typo.
+> 
+> 
+
+
+
+
 
 
 _______________________________________________
