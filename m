@@ -2,88 +2,82 @@ Return-Path: <v9fs-developer-bounces@lists.sourceforge.net>
 X-Original-To: lists+v9fs-developer@lfdr.de
 Delivered-To: lists+v9fs-developer@lfdr.de
 Received: from lists.sourceforge.net (lists.sourceforge.net [216.105.38.7])
-	by mail.lfdr.de (Postfix) with ESMTPS id AC01163CDD1
-	for <lists+v9fs-developer@lfdr.de>; Wed, 30 Nov 2022 04:29:27 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id B7AF963CF25
+	for <lists+v9fs-developer@lfdr.de>; Wed, 30 Nov 2022 07:17:05 +0100 (CET)
 Received: from [127.0.0.1] (helo=sfs-ml-4.v29.lw.sourceforge.com)
 	by sfs-ml-4.v29.lw.sourceforge.com with esmtp (Exim 4.95)
 	(envelope-from <v9fs-developer-bounces@lists.sourceforge.net>)
-	id 1p0Dmn-0007ng-VP;
-	Wed, 30 Nov 2022 03:29:25 +0000
+	id 1p0GP0-0002VA-UA;
+	Wed, 30 Nov 2022 06:17:02 +0000
 Received: from [172.30.20.202] (helo=mx.sourceforge.net)
  by sfs-ml-4.v29.lw.sourceforge.com with esmtps (TLS1.2) tls
  TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384 (Exim 4.95)
- (envelope-from <schspa@gmail.com>) id 1p0Dmm-0007nW-To
+ (envelope-from <asmadeus@codewreck.org>) id 1p0GOz-0002V2-TE
  for v9fs-developer@lists.sourceforge.net;
- Wed, 30 Nov 2022 03:29:24 +0000
+ Wed, 30 Nov 2022 06:17:01 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=sourceforge.net; s=x; h=Content-Type:MIME-Version:Message-ID:In-reply-to:
- Date:Subject:Cc:To:From:References:Sender:Reply-To:Content-Transfer-Encoding:
+ d=sourceforge.net; s=x; h=In-Reply-To:Content-Type:MIME-Version:References:
+ Message-ID:Subject:Cc:To:From:Date:Sender:Reply-To:Content-Transfer-Encoding:
  Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
  Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
  List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=lebAyROdAaGL5cCiZBzusDkqy/6QSgZX5wOW/tInSfs=; b=UnPHN08wa+JcgDA9TCc09RE5F6
- pyXS4NJB5WpBeL/ZXZPCA/6Ip2dD2wFcaUSAt8ZHRXGqNOrIgXDFscJstteTHL0Bs8jcwbihkGrdu
- 8unci3KiDjyEn8Q30aR2mPqLEUTnwDQr2XfKf+qWT2fHn1dtQC2pp2MYekrYS5mr7LpI=;
+ bh=W9hCW6luP/6v5RJwLkkF/k888Scy0g/o6MDl4j/XRHU=; b=cvVd5UF9nEfQ/gTxQ5FdlQhJC8
+ 4YryYOP0daWQvxQl72nsbb54YDYA/j8NoQHf5cCMYGTG9wExfvB8+yCODQWz4b+LrcN61imuGboBb
+ XBzQL5Vcow3GT0G8dhdlcs6m2H7DgRzSTxHV1C4+8otRPDtihTNA6/CurIPcEBiayBKM=;
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  ;
- h=Content-Type:MIME-Version:Message-ID:In-reply-to:Date:Subject:Cc:To:From:
- References:Sender:Reply-To:Content-Transfer-Encoding:Content-ID:
+ h=In-Reply-To:Content-Type:MIME-Version:References:Message-ID:Subject:Cc:To
+ :From:Date:Sender:Reply-To:Content-Transfer-Encoding:Content-ID:
  Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
  :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
  List-Post:List-Owner:List-Archive;
- bh=lebAyROdAaGL5cCiZBzusDkqy/6QSgZX5wOW/tInSfs=; b=aQvtJZNvLwycDwVTSGhAllKxdS
- KY8ibQpHOJBHG0N0xHrkZUXfOWp3iX2FR/DHs1hJvPnRWROqYfA3mui+bW5a/WTwxsT9bQUAOO7cm
- F65Rif6Vv3mSgQWUuWxMSv4bc0Rq1jjCJhNLonC3YRNYbeu+/6+xCbNQdhtRu34t+FzI=;
-Received: from mail-io1-f41.google.com ([209.85.166.41])
+ bh=W9hCW6luP/6v5RJwLkkF/k888Scy0g/o6MDl4j/XRHU=; b=QD6pT/2emzicbuCKeGkL3k3Hoq
+ 8VPWsbQhhlm/BceEiFB+8fXP2M0kHYpq3QhtGvrfndBWKf1V10uYbx9JbF7SKciZ+ZTjNp2Kv6amz
+ 7+pYKT13cjYdWnQlwxv5rp1xhg5xpD9SY5CCaAPqOV6TMFfjsszBJHf+PEXP5ZX16EiU=;
+Received: from nautica.notk.org ([91.121.71.147])
  by sfi-mx-1.v28.lw.sourceforge.com with esmtps
- (TLS1.2:ECDHE-RSA-AES128-GCM-SHA256:128) (Exim 4.95)
- id 1p0Dmj-000sIp-9P for v9fs-developer@lists.sourceforge.net;
- Wed, 30 Nov 2022 03:29:24 +0000
-Received: by mail-io1-f41.google.com with SMTP id e189so11550607iof.1
- for <v9fs-developer@lists.sourceforge.net>;
- Tue, 29 Nov 2022 19:29:21 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
- h=mime-version:message-id:in-reply-to:date:subject:cc:to:from
- :user-agent:references:from:to:cc:subject:date:message-id:reply-to;
- bh=lebAyROdAaGL5cCiZBzusDkqy/6QSgZX5wOW/tInSfs=;
- b=Rr7SFdLF6OgiyUEk1qJ7BaPBEicENUZMFvHE2g7BWKeTfpxBqImPa5ilJPuicb00Zm
- uwXzLXNxhKGmQ512gLv/4TIfQMw+aFi/tZbGXyURxeU7QjcP291jXTPj2X9y4nrZZEVG
- goXoRpfTUcOsYAXH7f5+3kgyczkdv8ssPbnoa/VD36K36zIJzAzKabV9MlBZyBk6TDjp
- UEGS8n9KGPxogtnRRbrLRhm/Oc/KYgXNdHqWxcO/3/nZJPX+ZRcNBBF7AzAHLvhoQ4/P
- 1kULc4ILVdXlpkHK53TdOYm1J4ONcN25DuJPfOqQMkFDxqPWUC95IZIS6bHEDt7myidh
- JkCg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20210112;
- h=mime-version:message-id:in-reply-to:date:subject:cc:to:from
- :user-agent:references:x-gm-message-state:from:to:cc:subject:date
- :message-id:reply-to;
- bh=lebAyROdAaGL5cCiZBzusDkqy/6QSgZX5wOW/tInSfs=;
- b=S2X8hOdOU1h0/sEIH4/gvAVlxB2CB6ENCOcG2xJBtlpEdY/9AvZR/Sjhzxa1oAqUeh
- ebX0b6W50Y0cx57h5zVfbhp7MJ6JWLs4qQ6ES9IYv6FLdZEB49+HQUyqN4DIf99YWypT
- oPjdWOagxylCCLsOa2AyArMvNppVJ4QYTMHt8esXc9Lg8GOA8bJruIGcJLPGscCmHi+f
- QUc+XpbE52s9W6YVsrFuCAEgI0xytLRY45Xow2iVaaN3wC+GVDNHpmGfIN/OtAvVLpaU
- OTEdYgax8Mjza3PlPRLW83iY8WrWMA/sy9/ZrK8se19foE1lMK4Y6C0o2hmkB9g6IvC7
- serg==
-X-Gm-Message-State: ANoB5pmLSv3we4kBaYYyokwMOxbSYwRxzJUXCm1dlsNAZ5pED2KEJMuq
- 0/GJq2jA3ZP5ER7Rq7+CpVuqKy1+eTbAJg==
-X-Google-Smtp-Source: AA0mqf7PlUk1CrkpLXkz5ugfn+yZrUlhlMt8T6g9PiIMso4FB57pXqityTW9GopEHFq6uX5fd5fQdw==
-X-Received: by 2002:a05:6638:2b7:b0:389:c2fd:bc13 with SMTP id
- d23-20020a05663802b700b00389c2fdbc13mr10968187jaq.12.1669778955615; 
- Tue, 29 Nov 2022 19:29:15 -0800 (PST)
-Received: from MBP (ec2-18-117-95-84.us-east-2.compute.amazonaws.com.
- [18.117.95.84]) by smtp.gmail.com with ESMTPSA id
- s1-20020a92cc01000000b00302b029131bsm164814ilp.61.2022.11.29.19.29.10
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Tue, 29 Nov 2022 19:29:15 -0800 (PST)
+ (TLS1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.95)
+ id 1p0GOv-000xkz-JB for v9fs-developer@lists.sourceforge.net;
+ Wed, 30 Nov 2022 06:17:01 +0000
+Received: by nautica.notk.org (Postfix, from userid 108)
+ id 8FE71C01C; Wed, 30 Nov 2022 07:16:58 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=codewreck.org; s=2;
+ t=1669789018; bh=W9hCW6luP/6v5RJwLkkF/k888Scy0g/o6MDl4j/XRHU=;
+ h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+ b=1/WStNFu/qvvUeJzbRrYmBBmJm5F3XViTKHrJOCR3zXkxpll1kHROlVW4jx4zE1Wj
+ vDMjfYZumSudB1G6Q92ZlEOrFYzQEh5z0S/WGcclSF4iWIEquytdGstE58SC48lNpc
+ LvRn1hcUVOpvmCE5Y8Y2+AINouobOy8au46aeONML6m9zpHrcqZffWM+Bwxvpy4vkn
+ oPGPqviOM+KYE9KKF4ZCMpAcWjEk8C+/viR0zzwX498IYZ8FAlJUcpnr/aLiUykbSH
+ 6p23ieTooboPr4dEeSuBmH2q9nsApN54L9aUjnmYJed+cm2/SXPgLaSkATlWgeav7u
+ DUpMcfnt/AHBA==
+X-Spam-Checker-Version: SpamAssassin 3.3.2 (2011-06-06) on nautica.notk.org
+X-Spam-Level: 
+X-Spam-Status: No, score=0.0 required=5.0 tests=UNPARSEABLE_RELAY
+ autolearn=unavailable version=3.3.2
+Received: from odin.codewreck.org (localhost [127.0.0.1])
+ by nautica.notk.org (Postfix) with ESMTPS id B9D6BC009;
+ Wed, 30 Nov 2022 07:16:44 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=codewreck.org; s=2;
+ t=1669789008; bh=W9hCW6luP/6v5RJwLkkF/k888Scy0g/o6MDl4j/XRHU=;
+ h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+ b=BYFRPQXzBgX7gJTqn47e4RxS/7ps97i2zn3eVZuaHgaKv2hDkmzps3FlohwTNURPd
+ 71YfW1/fCri2W7mzIphgRoxP+AXz1VfbvcEMmCoRmgZRZVEo2PuUopH9hkqk1A+K2g
+ ggwUkEBKG2I0UF4cm7ziFvO8ULQJdWdbOBi9nwzrSnFsKYkCmPbI+9cYMjzonE/OJh
+ Zk6tjZMWmgbn6zcedPOwCi/kWIffm/JSk1OF5sXivUZYREfQr+JSPaFP0PYraf6pwE
+ Icw/YK9dhvyzzUI7EWbdl5aP2GyqmlcMVK3zlir1r8o2BTTKcj4Mk8NYhTshSNuRYm
+ GctMFTzkWI/hw==
+Received: from localhost (odin.codewreck.org [local])
+ by odin.codewreck.org (OpenSMTPD) with ESMTPA id 074f5648;
+ Wed, 30 Nov 2022 06:16:32 +0000 (UTC)
+Date: Wed, 30 Nov 2022 15:16:17 +0900
+From: asmadeus@codewreck.org
+To: Schspa Shi <schspa@gmail.com>
+Message-ID: <Y4b1MQaEsPRK+3lF@codewreck.org>
 References: <20221129162251.90790-1-schspa@gmail.com>
  <Y4aJzjlkkt5VKy0G@codewreck.org> <m2r0xli1mq.fsf@gmail.com>
-User-agent: mu4e 1.8.10; emacs 28.2
-From: Schspa Shi <schspa@gmail.com>
-To: asmadeus@codewreck.org
-Date: Wed, 30 Nov 2022 11:26:02 +0800
-In-reply-to: <m2r0xli1mq.fsf@gmail.com>
-Message-ID: <m2ilix6ry5.fsf@gmail.com>
 MIME-Version: 1.0
+Content-Disposition: inline
+In-Reply-To: <m2r0xli1mq.fsf@gmail.com>
 X-Spam-Score: -0.2 (/)
 X-Spam-Report: Spam detection software,
  running on the system "util-spamd-2.v13.lw.sourceforge.com", 
@@ -91,21 +85,20 @@ X-Spam-Report: Spam detection software,
  message has been attached to this so you can view it or label
  similar future email.  If you have any questions, see
  the administrator of that system for details.
- Content preview:  Schspa Shi writes: > > >> Schspa Shi wrote on Wed, Nov 30,
- 2022 at 12:22:51AM +0800: >>> The transport layer of fs does not fully support
- the cancel request. >>> When the request is in the REQ_STATUS_SENT state,
- p9_fd [...] 
+ Content preview:  (fixed Christophe's address,
+ hopefully that will do for good...)
+ Schspa Shi wrote on Wed, Nov 30, 2022 at 10:22:44AM +0800: > > I'm happy
+ to believe we have a race somewhere (even if no sane server > > would produce
+ it), but right now I don't see it looking at the [...] 
  Content analysis details:   (-0.2 points, 6.0 required)
  pts rule name              description
  ---- ---------------------- --------------------------------------------------
- -0.0 RCVD_IN_DNSWL_NONE     RBL: Sender listed at https://www.dnswl.org/,
- no trust [209.85.166.41 listed in list.dnswl.org]
+ 0.0 URIBL_BLOCKED          ADMINISTRATOR NOTICE: The query to URIBL was
+ blocked.  See
+ http://wiki.apache.org/spamassassin/DnsBlocklists#dnsbl-block
+ for more information. [URIs: codewreck.org]
  0.0 SPF_HELO_NONE          SPF: HELO does not publish an SPF Record
  -0.0 SPF_PASS               SPF: sender matches SPF record
- 0.0 FREEMAIL_FROM          Sender email is commonly abused enduser mail
- provider [schspa[at]gmail.com]
- -0.0 RCVD_IN_MSPIKE_H2      RBL: Average reputation (+2)
- [209.85.166.41 listed in wl.mailspike.net]
  0.1 DKIM_SIGNED            Message has a DKIM or DK signature, not necessarily
  valid
  -0.1 DKIM_VALID_EF          Message has a valid DKIM or DK signature from
@@ -113,7 +106,9 @@ X-Spam-Report: Spam detection software,
  -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
  -0.1 DKIM_VALID_AU          Message has a valid DKIM or DK signature from
  author's domain
-X-Headers-End: 1p0Dmj-000sIp-9P
+ 0.0 UNPARSEABLE_RELAY      Informational: message has unparseable relay
+ lines
+X-Headers-End: 1p0GOv-000xkz-JB
 Subject: Re: [V9fs-developer] [PATCH] 9p: fix crash when transaction killed
 X-BeenThere: v9fs-developer@lists.sourceforge.net
 X-Mailman-Version: 2.1.21
@@ -135,134 +130,45 @@ Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: v9fs-developer-bounces@lists.sourceforge.net
 
+(fixed Christophe's address, hopefully that will do for good...)
 
-Schspa Shi <schspa@gmail.com> writes:
-
-> asmadeus@codewreck.org writes:
->
->> Schspa Shi wrote on Wed, Nov 30, 2022 at 12:22:51AM +0800:
->>> The transport layer of fs does not fully support the cancel request.
->>> When the request is in the REQ_STATUS_SENT state, p9_fd_cancelled
->>> will forcibly delete the request, and at this time p9_[read/write]_work
->>> may continue to use the request. Therefore, it causes UAF .
->>> 
->>> There is the logs from syzbot.
->>> 
->>> Corrupted memory at 0xffff88807eade00b [ 0xff 0x07 0x00 0x00 0x00 0x00
->>> 0x00 0x00 . . . . . . . . ] (in kfence-#110):
->>>  p9_fcall_fini net/9p/client.c:248 [inline]
->>>  p9_req_put net/9p/client.c:396 [inline]
->>>  p9_req_put+0x208/0x250 net/9p/client.c:390
->>>  p9_client_walk+0x247/0x540 net/9p/client.c:1165
->>>  clone_fid fs/9p/fid.h:21 [inline]
->>>  v9fs_fid_xattr_set+0xe4/0x2b0 fs/9p/xattr.c:118
->>>  v9fs_xattr_set fs/9p/xattr.c:100 [inline]
->>>  v9fs_xattr_handler_set+0x6f/0x120 fs/9p/xattr.c:159
->>>  __vfs_setxattr+0x119/0x180 fs/xattr.c:182
->>>  __vfs_setxattr_noperm+0x129/0x5f0 fs/xattr.c:216
->>>  __vfs_setxattr_locked+0x1d3/0x260 fs/xattr.c:277
->>>  vfs_setxattr+0x143/0x340 fs/xattr.c:309
->>>  setxattr+0x146/0x160 fs/xattr.c:617
->>>  path_setxattr+0x197/0x1c0 fs/xattr.c:636
->>>  __do_sys_setxattr fs/xattr.c:652 [inline]
->>>  __se_sys_setxattr fs/xattr.c:648 [inline]
->>>  __ia32_sys_setxattr+0xc0/0x160 fs/xattr.c:648
->>>  do_syscall_32_irqs_on arch/x86/entry/common.c:112 [inline]
->>>  __do_fast_syscall_32+0x65/0xf0 arch/x86/entry/common.c:178
->>>  do_fast_syscall_32+0x33/0x70 arch/x86/entry/common.c:203
->>>  entry_SYSENTER_compat_after_hwframe+0x70/0x82
->>> 
->>> Below is a similar scenario, the scenario in the syzbot log looks more
->>> complicated than this one, but the root cause seems to be the same.
->>> 
->>>      T21124               p9_write_work        p9 read_work
->>> ======================== first trans =================================
->>> p9_client_walk
->>>   p9_client_rpc
->>>     p9_client_prepare_req
->>>     /* req->refcount == 2 */
->>>     c->trans_mod->request(c, req);
->>>       p9_fd_request
->>>         req move to unsent_req_list
->>>                             req->status = REQ_STATUS_SENT;
->>>                             req move to req_list
->>>                             << send to server >>
->>>     wait_event_killable
->>>     << get kill signal >>
->>>     if (c->trans_mod->cancel(c, req))
->>>        p9_client_flush(c, req);
->>>          /* send flush request */
->>>          req = p9_client_rpc(c, P9_TFLUSH, "w", oldtag);
->>> 		 if (c->trans_mod->cancelled)
->>>             c->trans_mod->cancelled(c, oldreq);
->>>               /* old req was deleted from req_list */
->>>               /* req->refcount == 1 */
->>>   p9_req_put
->>>     /* req->refcount == 0 */
->>>     << preempted >>
->>>                                        << get response, UAF here >>
->>>                                        m->rreq = p9_tag_lookup(m->client, m->rc.tag);
->>>                                          /* req->refcount == 1 */
->>>                                        << do response >>
->>>                                        p9_client_cb(m->client, m->rreq, REQ_STATUS_RCVD);
->>>                                          /* req->refcount == 0 */
->>>                                          p9_fcall_fini
->>>                                          /* request have been freed */
->>>     p9_fcall_fini
->>>      /* double free */
->>>                                        p9_req_put(m->client, m->rreq);
->>>                                          /* req->refcount == 1 */
->>> 
->>> To fix it, we can wait the request with status REQ_STATUS_SENT returned.
->>
->> Christian replied on this (we cannot wait) but I agree with him -- the
->
-> Yes, this is where I worry about too, this wait maybe cause a deadlock.
->
-
-@Christian: It seems we don't need this wait, The problem maybe cause by
-lack of lock in p9_tag_lookup.
-
->> scenario you describe is proteced by p9_tag_lookup checking for refcount
->> with refcount_inc_not_zero (p9_req_try_get).
->
-> Thanks for pointing out the zero value check here, the scene in the
-> commit message does not hold.
->
->>
->> The normal scenarii for flush are as follow:
->>  - cancel before request is sent: no flush, just free
->>  - flush is ignored and reply comes first: we get reply from original
->> request then reply from flush
->>  - flush is handled and reply never comes: we only get reply from flush
->>
->> Protocol-wise, we can safely reuse the tag after the flush reply got
->> received; and as far as I can follow the code we only ever free the tag
->> (last p9_call_fini) after flush has returned so the entry should be
->> protected.
->>
->> If we receive a response on the given tag between cancelled and the main
->> thread going out the request has been marked as FLSHD and should be
->> ignored. . . here is one p9_req_put in p9_read_work() in this case but
->> it corresponds to the ref obtained by p9_tag_lookup() so it should be
->> valid.
->>
->>
->> I'm happy to believe we have a race somewhere (even if no sane server
->> would produce it), but right now I don't see it looking at the code.. :/
->
+Schspa Shi wrote on Wed, Nov 30, 2022 at 10:22:44AM +0800:
+> > I'm happy to believe we have a race somewhere (even if no sane server
+> > would produce it), but right now I don't see it looking at the code.. :/
+> 
 > And I think there is a race too. because the syzbot report about 9p fs
 > memory corruption multi times.
->
+
+Yes, no point in denying that :)
+
 > As for the problem, the p9_tag_lookup only takes the rcu_read_lock when
 > accessing the IDR, why it doesn't take the p9_client->lock? Maybe the
 > root cause is that a lock is missing here.
 
-Add Christian Schoenebeck for bad mail address typo.
+It shouldn't need to, but happy to try adding it.
+For the logic:
+ - idr_find is RCU-safe (trusting the comment above it)
+ - reqs are alloced in a kmem_cache created with SLAB_TYPESAFE_BY_RCU.
+ This means that if we get a req from idr_find, even if it has just been
+ freed, it either is still in the state it was freed at (hence refcount
+ 0, we ignore it) or is another req coming from the same cache (if
+ refcount isn't zero, we can check its tag)
+ The refcount itself is an atomic operation so doesn't require lock.
+ ... And in the off chance I hadn't considered that we're already
+ dealing with a new request with the same tag here, we'll be updating
+ its status so another receive for it shouldn't use it?...
+
+I don't think adding the client lock helps with anything here, but it'll
+certainly simplify this logic as we then are guaranteed not to get
+obsolete results from idr_find.
+
+Unfortunately adding a lock will slow things down regardless of
+correctness, so it might just make the race much harder to hit without
+fixing it and we might not notice that, so it'd be good to understand
+the race.
 
 -- 
-BRs
-Schspa Shi
+Dominique
 
 
 _______________________________________________
