@@ -2,28 +2,28 @@ Return-Path: <v9fs-developer-bounces@lists.sourceforge.net>
 X-Original-To: lists+v9fs-developer@lfdr.de
 Delivered-To: lists+v9fs-developer@lfdr.de
 Received: from lists.sourceforge.net (lists.sourceforge.net [216.105.38.7])
-	by mail.lfdr.de (Postfix) with ESMTPS id 02C7F648F64
-	for <lists+v9fs-developer@lfdr.de>; Sat, 10 Dec 2022 16:13:47 +0100 (CET)
-Received: from [127.0.0.1] (helo=sfs-ml-4.v29.lw.sourceforge.com)
-	by sfs-ml-4.v29.lw.sourceforge.com with esmtp (Exim 4.95)
+	by mail.lfdr.de (Postfix) with ESMTPS id E154B6495A9
+	for <lists+v9fs-developer@lfdr.de>; Sun, 11 Dec 2022 19:28:38 +0100 (CET)
+Received: from [127.0.0.1] (helo=sfs-ml-1.v29.lw.sourceforge.com)
+	by sfs-ml-1.v29.lw.sourceforge.com with esmtp (Exim 4.95)
 	(envelope-from <v9fs-developer-bounces@lists.sourceforge.net>)
-	id 1p41Xt-00016a-6N;
-	Sat, 10 Dec 2022 15:13:45 +0000
+	id 1p4R40-0005ze-1x;
+	Sun, 11 Dec 2022 18:28:36 +0000
 Received: from [172.30.20.202] (helo=mx.sourceforge.net)
- by sfs-ml-4.v29.lw.sourceforge.com with esmtps (TLS1.2) tls
+ by sfs-ml-1.v29.lw.sourceforge.com with esmtps (TLS1.2) tls
  TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384 (Exim 4.95)
- (envelope-from <ericvh@gmail.com>) id 1p41Xr-00016T-AR
+ (envelope-from <torvalds@linuxfoundation.org>) id 1p4R3m-0005zV-0N
  for v9fs-developer@lists.sourceforge.net;
- Sat, 10 Dec 2022 15:13:43 +0000
+ Sun, 11 Dec 2022 18:28:22 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
  d=sourceforge.net; s=x; h=Content-Type:Cc:To:Subject:Message-ID:Date:From:
  In-Reply-To:References:MIME-Version:Sender:Reply-To:Content-Transfer-Encoding
  :Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
  Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
  List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=ufoDZAA3PEM8xHbXjs2Gq1xDyCJPYYfPvifOPzCSH7o=; b=kmL09QDM4Q05hcFlKlrFUSoSeT
- fCBmfLm/EHSn87gWLaTat4ThKjKKUYIwu+nxCj/+4BBE2XhdQx1chjlKAU8RY1ieIYLBcbeNwZ+xG
- FRNxC7po9m73e+lrozaLFPbGBpzCmz6zvkSF6ykHICJlk+RoanP4SySj5+bJ28MO4a7s=;
+ bh=VcIjNZvmXhwLlIH4qzTb3os7YT1CTCX89zz+g7s11S8=; b=ejZ6v3cltdNU3owL6Ve9JwjVn0
+ 7Jf5hQb34WUqUAFMvFx8Q6Z0pQSo9uocTyv1dm4vTR0pWIZ8kT5g3MXiUqWWmGRfhRoaHny/0X1M4
+ rhUHTVy0trg3klpNuvrDdnIF2hN4+qRvwFZQWPBGgmQjhvA0QoTnJ65RfVQ+wU+22pEI=;
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  ;
  h=Content-Type:Cc:To:Subject:Message-ID:Date:From:In-Reply-To:References:
@@ -31,89 +31,94 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
  :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
  List-Post:List-Owner:List-Archive;
- bh=ufoDZAA3PEM8xHbXjs2Gq1xDyCJPYYfPvifOPzCSH7o=; b=U1bzoTlA8d4UJsZFmspLuVN5gE
- pwtArNj3IjxlxpQuESLOLo2od3ToZr6f2bV0xH39vp6Ahz/pfuZ4IQX+gVuji3d4Ox7XJdS9MUuJ3
- Sh7Jfm5lBHkT+M6f5zIzl3SbOGF3zLVjNDlidBR4QSLvBXHoR43gSOSbR4Vzc/IcdL60=;
-Received: from mail-wm1-f46.google.com ([209.85.128.46])
+ bh=VcIjNZvmXhwLlIH4qzTb3os7YT1CTCX89zz+g7s11S8=; b=UxTmDhpmB399Ey6h4IJ7bIzI11
+ SeZzVdbKvGZtMLINqUaR0QmORZZjnxsrvOU4GBpo8RZWyin1cvKAqj0VdZw+lRV35yHLeGEdS1KSb
+ 9JzG0C6YVW68v+v5vTV8hC1fUVV5jYd8mgK/35iwILWS3jNvqZ0VGYC8ReGxkfhlWUJs=;
+Received: from mail-qt1-f182.google.com ([209.85.160.182])
  by sfi-mx-1.v28.lw.sourceforge.com with esmtps
  (TLS1.2:ECDHE-RSA-AES128-GCM-SHA256:128) (Exim 4.95)
- id 1p41Xq-00Cpu1-8S for v9fs-developer@lists.sourceforge.net;
- Sat, 10 Dec 2022 15:13:43 +0000
-Received: by mail-wm1-f46.google.com with SMTP id bg10so1890199wmb.1
+ id 1p4R3f-00E1ha-K9 for v9fs-developer@lists.sourceforge.net;
+ Sun, 11 Dec 2022 18:28:21 +0000
+Received: by mail-qt1-f182.google.com with SMTP id ay32so7380972qtb.11
  for <v9fs-developer@lists.sourceforge.net>;
- Sat, 10 Dec 2022 07:13:42 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
+ Sun, 11 Dec 2022 10:28:15 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=linux-foundation.org; s=google;
  h=cc:to:subject:message-id:date:from:in-reply-to:references
  :mime-version:from:to:cc:subject:date:message-id:reply-to;
- bh=ufoDZAA3PEM8xHbXjs2Gq1xDyCJPYYfPvifOPzCSH7o=;
- b=pWZj9TxTWFIjvv6g1xLAVeAoSqKvPP+/ZxkSiG095WgUjZFDbuavyFIeeVv6+ptLQP
- gX95HBRyiTfwSr/TpjpgwNZ4ZpTcmEHgVmwsNm2HYT4HVI2wJ7SV2ZWJAYW/nFle3s/K
- YsG/n3S4vWVW10G7q47KOEtBeYiDNQmYvvZVBd0Vokud8a7IS0Hs3gv4ayzZcfpcoNRV
- 1OCJvUq/65beVhBfgHYOuqyg/TLbIdFwsO7pQZUYgLzCFtYkx7EOugyl5DTen0voQrOL
- Id4i8UU8G8WIic9wYIYO0EnYYBezv3NglSwZu4eighcGPDjUkBGGeXIaeN+UT/jVfZ+E
- 6SEw==
+ bh=VcIjNZvmXhwLlIH4qzTb3os7YT1CTCX89zz+g7s11S8=;
+ b=MGBmNEXQ9KDFHMWkhfA16f3WXE9+n6bQWGbQ/WBcrwvvD7XGUxNJ4lULAQ4bF52hyX
+ I45Gmp4HDqpBwWuXX3l+4nvpELR0hLZgp15u/sM1JcfxMioNWKmTXOmZ3q/OnbB9HyzY
+ NTeZGgpA0T0hHbjbfhGwL2uIoepMHlEZ6wf+E=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20210112;
  h=cc:to:subject:message-id:date:from:in-reply-to:references
  :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
  :reply-to;
- bh=ufoDZAA3PEM8xHbXjs2Gq1xDyCJPYYfPvifOPzCSH7o=;
- b=r6oe4m7NmKgyYJ4kIWJIKSHyEwbQWc1gN1ks4MDjKjpPBMW8qIOOn1/QatbH2+/sXq
- UDzvJL9nq/qn9SHd0l/AMhiasue+ZCXzbrNQp0dd38999BZLGEZ9hQ++hjuHvoQmeZrv
- xQbIvfE64v0yJH/izStpz1y+fTeLCgV4TclDbawDQsoshiaVwkiePT98Pizg6D0DG/SF
- fVf0E8d1XK/bff4WXvosf14TQPCS+hTAMl8BeLJWZrklJlTJCnWkvJaTArU3a2SBthmL
- +uaB6IMZ26doorjiXdWFJSdqkIAdWAKLwgzOQNz3r4XK7SjPw8pQZ5fAduTzQCBGNAkg
- +ebA==
-X-Gm-Message-State: ANoB5pllOn68T4yJfvlyinyqyFcTbHKYgzcYXqmDevnG0zNN5v6EzrJZ
- 152lvmqbRoBm0TTfboycf6L2Xy4X920M3On/elE=
-X-Google-Smtp-Source: AA0mqf5I5rHp+q+bQiMWStOp79d6wYXyg+2a3yFgHp9nZGMP4+v/QG+laQXLCoStBo1uOPexRDnfLLgqsIIFU/P98O8=
-X-Received: by 2002:a05:600c:654e:b0:3d0:8a5e:e8d1 with SMTP id
- dn14-20020a05600c654e00b003d08a5ee8d1mr18432627wmb.82.1670685215332; Sat, 10
- Dec 2022 07:13:35 -0800 (PST)
+ bh=VcIjNZvmXhwLlIH4qzTb3os7YT1CTCX89zz+g7s11S8=;
+ b=35gGP7/OL4irq+RfBNGR5L70/S3VTRCoePZCakUxFvbb0AzVbJrzUG528TEnQiRE4a
+ kCKxzPXJd3EnOWWEK48OoNZGBhUJszWajKbYRcYMkkOkXz5PcKmScwkrvwN4XIbCLO3J
+ RdI3ZCL7x0DLUfsOa1JBzRNkQz+wXHKGKR4gFI1SBtcjn8OVp1IyAbi9lVodKxxn01p8
+ q4fuvlLu/weoQY4so7rndGQzHDRy4oV5W1S1UK4FFL5lBE3X+QPbmUZP2dpbAa+u8POI
+ /ttq0VDBTu7kMAuPaAfWiZUphi85fkis2MqjPj45BIZ/O+s+phfJ0X7myRxKRfyPr5h0
+ yU3w==
+X-Gm-Message-State: ANoB5pkIApcFjX7oi19tcmkGac9rdQDF0Ih7nR+vzK/5qbhT32L6jFgT
+ QlXEMSgENH2vzLNNdI0rzT2hqY2ofKWyjsT/
+X-Google-Smtp-Source: AA0mqf6aihkyP16H3DDcTsV5uRtS7xBaBE4ZR9WmRA3gpGeS2zP9BTCv8NChyvyc2NQxRr6VgM5BVA==
+X-Received: by 2002:a05:622a:6108:b0:3a7:e838:11c8 with SMTP id
+ hg8-20020a05622a610800b003a7e83811c8mr15718773qtb.45.1670783289400; 
+ Sun, 11 Dec 2022 10:28:09 -0800 (PST)
+Received: from mail-qv1-f54.google.com (mail-qv1-f54.google.com.
+ [209.85.219.54]) by smtp.gmail.com with ESMTPSA id
+ e2-20020ac845c2000000b003a5c6ad428asm4456077qto.92.2022.12.11.10.28.05
+ for <v9fs-developer@lists.sourceforge.net>
+ (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+ Sun, 11 Dec 2022 10:28:07 -0800 (PST)
+Received: by mail-qv1-f54.google.com with SMTP id mn15so6830092qvb.13
+ for <v9fs-developer@lists.sourceforge.net>;
+ Sun, 11 Dec 2022 10:28:05 -0800 (PST)
+X-Received: by 2002:ad4:4101:0:b0:4b1:856b:4277 with SMTP id
+ i1-20020ad44101000000b004b1856b4277mr70224982qvp.129.1670783284766; Sun, 11
+ Dec 2022 10:28:04 -0800 (PST)
 MIME-Version: 1.0
-References: <CAFkjPTn+F0-PD76G4m2Lp1_MbS_WdvsCngzD7Aa1w7qQYdgqjg@mail.gmail.com>
- <5781766.0gPXg4q8St@silver>
- <CAFkjPTkNi6uPs-f9ccrg2JiYq5wmBPkA2PQi+B+jZn1Z0BzpRg@mail.gmail.com>
- <2364529.sG8EZHsgjA@silver>
-In-Reply-To: <2364529.sG8EZHsgjA@silver>
-From: Eric Van Hensbergen <ericvh@gmail.com>
-Date: Sat, 10 Dec 2022 09:13:24 -0600
-Message-ID: <CAFkjPTnk0BxF7bxUtEdVMjAMT7BDXy8xXcj9L_PfPK7SJVZS3g@mail.gmail.com>
-To: Christian Schoenebeck <linux_oss@crudebyte.com>
-X-Spam-Score: -0.2 (/)
+References: <202212112131.994277de-oliver.sang@intel.com>
+In-Reply-To: <202212112131.994277de-oliver.sang@intel.com>
+From: Linus Torvalds <torvalds@linux-foundation.org>
+Date: Sun, 11 Dec 2022 10:27:48 -0800
+X-Gmail-Original-Message-ID: <CAHk-=wipgS=05hJdztC8sJj01wpxMKQ67tV53UyFa2WtZ93o5A@mail.gmail.com>
+Message-ID: <CAHk-=wipgS=05hJdztC8sJj01wpxMKQ67tV53UyFa2WtZ93o5A@mail.gmail.com>
+To: kernel test robot <oliver.sang@intel.com>
+X-Spam-Score: 0.2 (/)
 X-Spam-Report: Spam detection software,
- running on the system "util-spamd-2.v13.lw.sourceforge.com", 
+ running on the system "util-spamd-1.v13.lw.sourceforge.com", 
  has NOT identified this incoming email as spam.  The original
  message has been attached to this so you can view it or label
  similar future email.  If you have any questions, see
  the administrator of that system for details.
- Content preview:  On Sat, Dec 10,
- 2022 at 7:07 AM Christian Schoenebeck < wrote:
- > > > I also have a sketch of how to do speculative async for other operations
- > to > > maybe > > trim down the latency for meta-data operations (whether
- caching or not). > > ... 
- Content analysis details:   (-0.2 points, 6.0 required)
+ Content preview:  The disassembly isn't great, because the test robot doesn't
+ try to find where the instructions start, but before that > 4: 48 8b 57 18
+ mov 0x18(%rdi),%rdx instruction we also had a 
+ Content analysis details:   (0.2 points, 6.0 required)
  pts rule name              description
  ---- ---------------------- --------------------------------------------------
  -0.0 RCVD_IN_DNSWL_NONE     RBL: Sender listed at https://www.dnswl.org/,
- no trust [209.85.128.46 listed in list.dnswl.org]
- 0.0 FREEMAIL_FROM          Sender email is commonly abused enduser mail
- provider [ericvh[at]gmail.com]
- -0.0 RCVD_IN_MSPIKE_H2      RBL: Average reputation (+2)
- [209.85.128.46 listed in wl.mailspike.net]
+ no trust [209.85.160.182 listed in list.dnswl.org]
+ 0.0 RCVD_IN_MSPIKE_H3      RBL: Good reputation (+3)
+ [209.85.160.182 listed in wl.mailspike.net]
  0.0 SPF_HELO_NONE          SPF: HELO does not publish an SPF Record
+ 0.2 HEADER_FROM_DIFFERENT_DOMAINS From and EnvelopeFrom 2nd level
+ mail domains are different
  -0.0 SPF_PASS               SPF: sender matches SPF record
- 0.0 HTML_MESSAGE           BODY: HTML included in message
  -0.1 DKIM_VALID_AU          Message has a valid DKIM or DK signature from
  author's domain
  0.1 DKIM_SIGNED            Message has a DKIM or DK signature, not necessarily
  valid
  -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
- -0.1 DKIM_VALID_EF          Message has a valid DKIM or DK signature from
- envelope-from domain
-X-Headers-End: 1p41Xq-00Cpu1-8S
-X-Content-Filtered-By: Mailman/MimeDel 2.1.21
-Subject: Re: [V9fs-developer] 9p cache code
+ 0.0 RCVD_IN_MSPIKE_WL      Mailspike good senders
+X-Headers-End: 1p4R3f-00E1ha-K9
+Subject: Re: [V9fs-developer]
+ [ammarfaizi2-block:dhowells/linux-fs/fscache-fixes] [mm, netfs,
+ fscache] 6919cda8e0: canonical_address#:#[##]
 X-BeenThere: v9fs-developer@lists.sourceforge.net
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -125,149 +130,115 @@ List-Post: <mailto:v9fs-developer@lists.sourceforge.net>
 List-Help: <mailto:v9fs-developer-request@lists.sourceforge.net?subject=help>
 List-Subscribe: <https://lists.sourceforge.net/lists/listinfo/v9fs-developer>, 
  <mailto:v9fs-developer-request@lists.sourceforge.net?subject=subscribe>
-Cc: Greg Kurz <groug@kaod.org>, David Howells <dhowells@redhat.com>,
- Ron Minnich <rminnich@gmail.com>,
- V9FS Developers <v9fs-developer@lists.sourceforge.net>,
- Jim Garlick <garlick.jim@gmail.com>
+Cc: Shyam Prasad N <nspmangalore@gmail.com>, Steve French <sfrench@samba.org>,
+ samba-technical@lists.samba.org, lkp@intel.com,
+ Ammar Faizi <ammarfaizi2@gnuweeb.org>,
+ Rohith Surabattula <rohiths.msft@gmail.com>, linux-cifs@vger.kernel.org,
+ Dave Wysochanski <dwysocha@redhat.com>, ceph-devel@vger.kernel.org,
+ Matthew Wilcox <willy@infradead.org>, linux-afs@lists.infradead.org,
+ David Howells <dhowells@redhat.com>, linux-fsdevel@vger.kernel.org,
+ linux-cachefs@redhat.com, GNU/Weeb Mailing List <gwml@vger.gnuweeb.org>,
+ oe-lkp@lists.linux.dev, v9fs-developer@lists.sourceforge.net,
+ Ilya Dryomov <idryomov@gmail.com>, linux-mm@kvack.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: v9fs-developer-bounces@lists.sourceforge.net
 
-On Sat, Dec 10, 2022 at 7:07 AM Christian Schoenebeck <
-linux_oss@crudebyte.com> wrote:
+The disassembly isn't great, because the test robot doesn't try to
+find where the instructions start, but before that
 
->
-> > I also have a sketch of how to do speculative async for other operations
-> to
-> > maybe
-> > trim down the latency for meta-data operations (whether caching or not).
->
-> ...
+>    4:   48 8b 57 18             mov    0x18(%rdi),%rdx
 
-> Most of the latency I observed was not the I/O itself, but other messages
-> that
-> were sent prior for permission assurance, like Treaddir, then it would stat
-> every directory entry, retrieve attributes for each one, and so forth, and
-> I
-> had the impression that this happens serialized by Linux client (not truely
-> async)? So these probably have a higher potential to be fixed regarding
-> latency.
->
+instruction we also had a
 
-Indeed, serialized dirread/stat behavior is pretty much the highest nail
-with user observable latency.  I was picking off readahead by default, etc.
-because they were low hanging fruit and really maximize the use of your
-msize changes regardless of read block size.
+      mov    (%rdi),%rax
 
-Fixing the dir cache code shouldn't be too hard and will provide a degree
-of relief.  There are some interesting choices for fixing directory reading
---
-original (nont .L) code reads all meta-data with the file listing.  Without
-caching, this extra information gets discarded in the Linux client.  .L code
-just reads the filenames with a bit of meta-data (qid & type) but doesn't
-bulk read the stat.  qid could be used to validate the cache so we are only
-re-stating things that have changed -- but in the case where we don't have
-anything cached, we could revert to the pre-.L functionality and batch
-populate the entire directory listing.  As you point out I could also
-asynchronously fire off the getattrs for the various directory elements
-while we are parsing the name listing when we find uncached or out
-of date entries.  I'll have to do some perf studies to understand the
-tradeoffs.
+and it looks like this is the very top of 'filemap_release_folio()',
+so '%rdi' contains the folio pointer coming into this.
 
-> > > >
-> > > > > One question I had for the community is if anyone has been using
-> the
-> > > > > fscache code (code=fscache).  On inspection there are several
-> things
-> > >
-> > > I use 9p-fscache a lot.
-> > >
->
-> Oh, I just noticed I was always using cache=loose, not cache=fscache. For
-> testing purposes I also use cache=mmap, and only very seldomly cache=none
-> for
-> testing only (as it is IMO not useful in practice).
->
->
-Okay - that makes more sense, I have mostly been testing with cache loose
-as the regression case.  I didn't quite see how fscache could work in its
-current
-state.  I was thinking of stripping it out for the time being, but opted
-instead for
-just some more aggressive ifdefing (since the fscache ifdefs seem to be used
-randomly in the code right now and we are calling into fscache routines
-where
-it doesn't make sense (like loose asking for cookies when the returned
-cookie
-is always 0 because no backing store is configured).  As I start to
-populate the
-regression test matrix I'll try and come up with a reasonable backing store
-based
-fscache configuration as well -- its just my current expectation is that
-its not going
-to pass many of the tests.  As it is xattr and loose seem to mess each
-other up
-on some of the fsx tests.
+End result:
 
+On Sun, Dec 11, 2022 at 6:27 AM kernel test robot <oliver.sang@intel.com> wrote:
 >
-> > >
-> > Yes, this is tightly coupled to the code I'm currently looking at related
-> > to the
-> > writeback_fid handling.
->
-> Maybe it would help you to emit consecutive tag numbers for protocol
-> debugging? I plan to send a patch for that soon:
-> https://lore.kernel.org/all/4084178.bTz7GqEF8p@silver/
->
->
-I think this is unrelated, that thread is interesting though with the race
-conditions
-around flushed operations.  I have to review some of the other servers to
-look
-at the concerns around tag lookup.  Right now anything that adds latency
-might
-be a concern - so would be good to do some perf testing on heavily
-multithreaded
-workloads with any such patches.
+>    4:   48 8b 57 18             mov    0x18(%rdi),%rdx
+>    8:   83 e0 01                and    $0x1,%eax
+>    b:   74 59                   je     0x66
 
+The
 
-> > > Eric, for testing I recommend using latest QEMU (i.e. upcoming 7.2
-> which is
-> > > released in few days) or at least apply the following patch:
-> > >
-> > > https://wiki.qemu.org/ChangeLog/7.2#9pfs
-> > >
-> > > This patch brings a *massive* performance improvement by around x6 ..
-> x12
-> > > which especially did hurt before when there was a large amount of open
-> > > FIDs.
-> > >
-> > >
-> > I am using self-built qemu, current as of Nov 17
-> > a082fab9d259473a9d5d53307cf83b1223301181
-> > I did that specifically to pick up those performance changes, hopefully I
-> > got
-> > it right.
->
-> LGTM. If you are using default networking, make sure slirp is installed on
-> host side and that QEMU's configure script detected it, as slirp is no
-> longer
-> a git submodule in QEMU and it already made a bunch of people scratch their
-> head why networking stopped working on guest.
->
-> > like some help trying to get them into qemu as I can't directly
-> contribute
-> > to qemu because of some weirdness around my employer.
->
-> So a license issue. No problem, if you need a change on QEMU side then just
-> give me a hint and I will try to address it accordingly.
->
+    and    $0x1,%eax
+    je     0x66
 
-Perfect, the diod and npfs code are very similar to the qemu code (Anthony's
-qemu code was originally based on npfs) so the examples I work out in diod
-should be directly applicable to qemu.
+above is the test for
 
-               -eric
+    BUG_ON(!folio_test_locked(folio));
+
+where it's jumping out to the 'ud2' in case the lock bit (bit #0) isn't set.
+
+Then we have this:
+
+>    d:   48 f7 07 00 60 00 00    testq  $0x6000,(%rdi)
+>   14:   74 22                   je     0x38
+
+Which is testing PG_private | PG_private2, and jumping out (which we
+also don't do) if neither is set.
+
+And then we have:
+
+>   16:   48 8b 07                mov    (%rdi),%rax
+>   19:   f6 c4 80                test   $0x80,%ah
+>   1c:   75 32                   jne    0x50
+
+Which is checking for PG_writeback.
+
+So then we get to
+
+    if (mapping && mapping->a_ops->release_folio)
+            return mapping->a_ops->release_folio(folio, gfp);
+
+which is this:
+
+>   1e:   48 85 d2                test   %rdx,%rdx
+>   21:   74 34                   je     0x57
+
+This %rdx value is the early load from the top of the function, it's
+checking 'mapping' for NULL.
+
+It's not NULL, but it's some odd value according to the oops report:
+
+  RDX: ffff889f03987f71
+
+which doesn't look like it's valid (well, it's a valid kernel pointer,
+but it's not aligned like a 'mapping' pointer should be.
+
+So now when we're going to load 'a_ops' from there, we load another
+garbage value:
+
+>   23:   48 8b 82 90 00 00 00    mov    0x90(%rdx),%rax
+
+and we now have RAX: b000000000000000
+
+and then the 'a_ops->release_folio' access will trap:
+
+>   2a:*  48 8b 40 48             mov    0x48(%rax),%rax          <-- trapping instruction
+>   2e:   48 85 c0                test   %rax,%rax
+>   31:   74 24                   je     0x57
+
+The above is the "load a_ops->release_folio and test it for NULL", but
+the load took a page fault because RAX was garbage.
+
+But RAX was garbage because we already had a bogus "mapping" pointer earlier.
+
+Now, why 'mapping' was bogus, I don't know. Maybe that page wasn't a
+page cache page at all? The mapping field is in a union and can
+contain other things.
+
+So I have no explanation for the oops, but I thought I'd just post the
+decoding of the instruction stream in case that helps somebody else to
+figure it out.
+
+                 Linus
+
 
 _______________________________________________
 V9fs-developer mailing list
