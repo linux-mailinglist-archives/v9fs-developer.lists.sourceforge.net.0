@@ -2,195 +2,194 @@ Return-Path: <v9fs-developer-bounces@lists.sourceforge.net>
 X-Original-To: lists+v9fs-developer@lfdr.de
 Delivered-To: lists+v9fs-developer@lfdr.de
 Received: from lists.sourceforge.net (lists.sourceforge.net [216.105.38.7])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3CDBB64FBEC
+	by mail.lfdr.de (Postfix) with ESMTPS id 9315664FBED
 	for <lists+v9fs-developer@lfdr.de>; Sat, 17 Dec 2022 19:57:42 +0100 (CET)
 Received: from [127.0.0.1] (helo=sfs-ml-3.v29.lw.sourceforge.com)
 	by sfs-ml-3.v29.lw.sourceforge.com with esmtp (Exim 4.95)
 	(envelope-from <v9fs-developer-bounces@lists.sourceforge.net>)
-	id 1p6cNQ-0000Sq-UA;
-	Sat, 17 Dec 2022 18:57:40 +0000
+	id 1p6cNR-0000Sw-AG;
+	Sat, 17 Dec 2022 18:57:41 +0000
 Received: from [172.30.20.202] (helo=mx.sourceforge.net)
- by sfs-ml-2.v29.lw.sourceforge.com with esmtps (TLS1.2) tls
+ by sfs-ml-1.v29.lw.sourceforge.com with esmtps (TLS1.2) tls
  TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384 (Exim 4.95)
- (envelope-from <yujie.liu@intel.com>) id 1ozUcx-0001j2-Sn
+ (envelope-from <oliver.sang@intel.com>) id 1p4NIP-0006ct-6h
  for v9fs-developer@lists.sourceforge.net;
- Mon, 28 Nov 2022 03:16:15 +0000
+ Sun, 11 Dec 2022 14:27:13 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
  d=sourceforge.net; s=x; h=MIME-Version:Content-Type:Message-ID:Subject:CC:To:
  From:Date:Sender:Reply-To:Content-Transfer-Encoding:Content-ID:
  Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
  :Resent-Message-ID:In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:
  List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=QLkuerjQq+iBBHzG5Q0YrWgq3tjWCIvZjMIAk7LxD5E=; b=lpVdLEvBKACvmkMLYSKXbNHKHq
- hquyw0B0jfGmHhehb5l3YzQ7JMVGrXLkIdHANx9MP09AK7WaVhsq7nQ0k7LtTdkavQ22eRX1CjM3z
- j+6we5kSihu8dLl7+exBOcfqW9ciuWJSs/9evMBm2LYXd7znl4Ai9INmfJXgNxMhM2rI=;
+ bh=go8PHvy+9UCuVAArK+z3j0QSrawn8Lz1IutrulcI/VM=; b=LuZoyuoispzdJ4K37F9Xgx7DZy
+ 87cDhca6cLbUfBmYlVAobuAhuD3lrEktw+xE5KQuu4BwS4rJsu+OsgGIbTNQzx9tP1B1Zqx8bAJxV
+ 4GmdVG5d7Y+c40RVS7evDh9PPmlTAE9zgcpdbcf7Yk0Am/m99woG9CO3IDou15d8Ji2I=;
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  ;
  h=MIME-Version:Content-Type:Message-ID:Subject:CC:To:From:Date:Sender:
  Reply-To:Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date
  :Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:
  References:List-Id:List-Help:List-Unsubscribe:List-Subscribe:List-Post:
- List-Owner:List-Archive; bh=QLkuerjQq+iBBHzG5Q0YrWgq3tjWCIvZjMIAk7LxD5E=; b=D
- ZTIMRxcBykW8i3GCHAGZX+u/4oLogdtYnv1pD0SKQP8M59FWNFC7+lOdmNppkBsYICFS+GatU6VH0
- p6NpuAt3tzOFYh+E5+miO7AyPAkUepu8iT3wgJUZawAQNsBGs0oPrurBGpk8YbY4fBy404+h7NVx7
- Fw2ODqNIZsXvCm1c=;
-Received: from mga17.intel.com ([192.55.52.151])
- by sfi-mx-1.v28.lw.sourceforge.com with esmtps
+ List-Owner:List-Archive; bh=go8PHvy+9UCuVAArK+z3j0QSrawn8Lz1IutrulcI/VM=; b=W
+ 9dquOAYxF9SqAOP88MdQdVl9OQs8sQqOLmOR7oYXqh1IuxZVDZuWoHt6lpiQaIqDqClRCaI6O6qox
+ tMgGiuJ/RgPK9yRkRtTA8a64Lsv41AixRuVLag3HytDKM1b7FqXr/W6kGvWbi9Pfzcl9b6oI822Ok
+ CrNVDqAiRUTU3qUc=;
+Received: from mga07.intel.com ([134.134.136.100])
+ by sfi-mx-2.v28.lw.sourceforge.com with esmtps
  (TLS1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.95)
- id 1ozUct-00G7zC-Qo for v9fs-developer@lists.sourceforge.net;
- Mon, 28 Nov 2022 03:16:15 +0000
+ id 1p4NIK-0002ZV-2E for v9fs-developer@lists.sourceforge.net;
+ Sun, 11 Dec 2022 14:27:13 +0000
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1669605371; x=1701141371;
+ t=1670768828; x=1702304828;
  h=date:from:to:cc:subject:message-id:mime-version;
- bh=tq31Zbf7FipcypPc3L/H2vTFb/4PnfxVD9Afp+D6bBw=;
- b=IxRJDHbLa0fG8LMUViFaYn/aIUesAlq2jMGghc5siV/cyiK5/uFcorBn
- jfMRY/RLrnjRAthzY49g0qJgRQLojgJOCQ4Au/5Ff+ZijJzxOitXaUsgF
- 8meV3qipSSg8HpuGmNxqSezAwQj86I8oycaFUG9slXwk6340gOWN4HTew
- eg2vdI0cG67T07fQX622fSHaIXUlzeuyaSgX+q27fL/FEXN+LsjKIc5ns
- Ahc3+m62B7LAkdxHifko3Yyat3w1EGDTdfWMmbFah/dMvaU15xrL3+dgr
- IpzRmdMO5+tb3imKDt5p7KR14pN3ZQ6JI1Ae4AuBSErhR2A6BpjK8NuYh w==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10544"; a="295122681"
-X-IronPort-AV: E=Sophos;i="5.96,199,1665471600"; 
- d="xz'?yaml'?scan'208";a="295122681"
-Received: from fmsmga005.fm.intel.com ([10.253.24.32])
- by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Nov 2022 19:16:05 -0800
+ bh=rOQpL8JL3+l+wStsvXjEeGeQ7HpJBTB59ROlwy4HQPw=;
+ b=bY5w+qJp/LtU3k80Nd02LQcVHlQeJoOo9bg5nJyackpOhXilAgjnOv3q
+ rHqCVn+ZNcrU9qy11cjRwPolI29PU4o/Bemj3tBUt+tSLWLu+aFMI9q0l
+ y9K7IrpCrPr0SV8sexf9N+98pAKcZirzpEMOiTZG0p2mO0CQ+y7Q0i1Vo
+ keLHe+BrRcPH6uqaKCF538lTHMYfpw6+nbmFFc7N2A65VLQaz2TuEqxm6
+ BNoqFSI8Q0w1w4cx0KRxPB8EfnRBgDHSEtR7KlPG0TiYaP4uCdZHE+ukh
+ FuEDvxOETqahu+RKYGrVkAAzn25V4DQ52hV2TZLBZJnSb5NSBNF1zxRQ8 w==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10558"; a="382009928"
+X-IronPort-AV: E=Sophos;i="5.96,236,1665471600"; 
+ d="xz'?yaml'?scan'208";a="382009928"
+Received: from fmsmga003.fm.intel.com ([10.253.24.29])
+ by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 11 Dec 2022 06:26:58 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6500,9779,10544"; a="972098943"
-X-IronPort-AV: E=Sophos;i="5.96,199,1665471600"; 
- d="xz'?yaml'?scan'208";a="972098943"
-Received: from orsmsx602.amr.corp.intel.com ([10.22.229.15])
- by fmsmga005.fm.intel.com with ESMTP; 27 Nov 2022 19:16:04 -0800
-Received: from orsmsx611.amr.corp.intel.com (10.22.229.24) by
- ORSMSX602.amr.corp.intel.com (10.22.229.15) with Microsoft SMTP Server
+X-IronPort-AV: E=McAfee;i="6500,9779,10558"; a="736684441"
+X-IronPort-AV: E=Sophos;i="5.96,236,1665471600"; 
+ d="xz'?yaml'?scan'208";a="736684441"
+Received: from orsmsx601.amr.corp.intel.com ([10.22.229.14])
+ by FMSMGA003.fm.intel.com with ESMTP; 11 Dec 2022 06:26:57 -0800
+Received: from orsmsx603.amr.corp.intel.com (10.22.229.16) by
+ ORSMSX601.amr.corp.intel.com (10.22.229.14) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.16; Sun, 27 Nov 2022 19:16:04 -0800
-Received: from orsmsx611.amr.corp.intel.com (10.22.229.24) by
- ORSMSX611.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.16; Sun, 27 Nov 2022 19:16:03 -0800
+ 15.1.2507.16; Sun, 11 Dec 2022 06:26:56 -0800
 Received: from ORSEDG602.ED.cps.intel.com (10.7.248.7) by
- orsmsx611.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
+ orsmsx603.amr.corp.intel.com (10.22.229.16) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.16 via Frontend Transport; Sun, 27 Nov 2022 19:16:03 -0800
-Received: from NAM10-DM6-obe.outbound.protection.outlook.com (104.47.58.107)
+ 15.1.2507.16 via Frontend Transport; Sun, 11 Dec 2022 06:26:56 -0800
+Received: from NAM11-BN8-obe.outbound.protection.outlook.com (104.47.58.169)
  by edgegateway.intel.com (134.134.137.103) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.16; Sun, 27 Nov 2022 19:16:03 -0800
+ 15.1.2507.16; Sun, 11 Dec 2022 06:26:55 -0800
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=kFJqhntgOdhvuzzCdCIeQgOLkiUUHp0g0+R7gepaV4KVGJbibfPaDtdC+KmASd3r6Mt7ilyFl9Wz8vlCcHm29X4JuE+s7VsmJ+YX6KBD6GHT1BydyExQkPg7Sl2t23YOqPW3LXPxVYbCOThaTsoGOovXe7STVCWL3pQTad121fSXQ8TGAdjGFLXPQsOyhk/CrDyzCKkcac2wGU3403hUGQxPqyp29bLFxg5KrsUJbRgVFeIESddZfdh+QKFfUTJxqrSR4zlRYsq+t0VENm1bNmiu1Hr6z1VcPX1/iZnaFzakbNWp4DXJMbKZrU7LpFBt43binZ+gAq2elQvxd2+88A==
+ b=jVHS6Sa1pEp5IWrV9bNgG9ar38CcNq16TVNy/Ej5UvS4hMNVnfpIGAA4GsJakkH0uokVdJk61cSjKnThcYaybNVNqkeNZI7f7iqDOGsLFMsc/H1IiLti0tmvAd4/bsCDosJFdLgfjilO3qId+11x76TCEd4KN48CmLsmA/UD8HvMet/qYkBpbatcvAveWAc1Hx+TyPhD5adfG6cJLEuvt8HHQm9DFShGDT5r0TwRLsAq3sdkHw9ma4ebjsQKJ0FFFEIgAzK8U35e7Ah2mKRA8AQs8A1l3yNWph79TTgx3cx1X/kr/QI54+5s1Gv5VXmQHMp9cIrarLSdZ8RMBv1r1w==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=NzTmC/hitOLsfuo2yC65v6xosz79Rz6apVUA+CB4Gkg=;
- b=fGdzzaUJXLm2zX3ok9E6MwplAz4vcudp2iigx0MvoDlZTbJ69dz+FByAk9bEK/Uvp+ydkt3Wt/l5ndTvaC3cz3DfVtQq8/89dvGzhm5+jcICNEI+pMmUDKqKnL47Rk9KIl3fHR0fXNZPUBJgYW+KJVR//k4Xpb4yTJjGXxzebgJDVZqlDm8MOXmuSkFuUMGtC/anoAqZ4p+RSXbTsD+DFH7NazWlzzzPzmwkhvCAb2GUaxb6hd7boVSYobEjKlbQCV0ycltuOUiW1dpl9KhF1xEI9x9doixicqG2pGX25kml0F2XPh0c84gijRiMZ8IB9Hqoea79SV0OZoxm9bLYbA==
+ bh=HNnoUzhzpwNQkj7yu0pVzs0HaTQohrV2VYTpQuvFtzU=;
+ b=dafqjBi0xe0y8nkpaHR/FvbhxNW8N3c1Rb4gLInisp5J/66l1bPGANdaTP1XSwYvmz4jdxDEV0fG2VBKKCJiI6exDN8kBwS++dAtbdEcHtbGTyT32MEErgWZZnUrThcHyBmWEou4PgE2fOuIgin7W7r3+U+U4bGCtrC5/U0jD5GQ3eM0W/U8ijtM4ltD5fefF3yVZ0B9PgkFe4N6qMTN7BSkG8i2iB3rk63XxeOq+aV3sI9fDxUpnAb69+YDgQbsiHxwliKZKuH4YMpT1apyLtn6ztYH6ESp5PH3xcCA3GEwMXidtKfPkz4TX05zRu1LmnN5/+HOEfLk9viWhtfRDg==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
 Authentication-Results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from CY5PR11MB6392.namprd11.prod.outlook.com (2603:10b6:930:37::15)
- by SA0PR11MB4685.namprd11.prod.outlook.com (2603:10b6:806:9e::7) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5857.22; Mon, 28 Nov
- 2022 03:15:55 +0000
-Received: from CY5PR11MB6392.namprd11.prod.outlook.com
- ([fe80::513a:f91a:b65c:be1d]) by CY5PR11MB6392.namprd11.prod.outlook.com
- ([fe80::513a:f91a:b65c:be1d%6]) with mapi id 15.20.5857.023; Mon, 28 Nov 2022
- 03:15:55 +0000
-Date: Mon, 28 Nov 2022 11:13:46 +0800
-From: kernel test robot <yujie.liu@intel.com>
+Received: from PH8PR11MB6779.namprd11.prod.outlook.com (2603:10b6:510:1ca::17)
+ by BL1PR11MB5317.namprd11.prod.outlook.com (2603:10b6:208:309::21)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5880.19; Sun, 11 Dec
+ 2022 14:26:43 +0000
+Received: from PH8PR11MB6779.namprd11.prod.outlook.com
+ ([fe80::fce6:d181:2417:f241]) by PH8PR11MB6779.namprd11.prod.outlook.com
+ ([fe80::fce6:d181:2417:f241%7]) with mapi id 15.20.5880.019; Sun, 11 Dec 2022
+ 14:26:43 +0000
+Date: Sun, 11 Dec 2022 22:26:29 +0800
+From: kernel test robot <oliver.sang@intel.com>
 To: David Howells <dhowells@redhat.com>
-Message-ID: <202211281001.99962236-yujie.liu@intel.com>
-Content-Type: multipart/mixed; boundary="mTy4u7PHkNO9A32K"
+Message-ID: <202212112131.994277de-oliver.sang@intel.com>
+Content-Type: multipart/mixed; boundary="c/gGYUq7IJqfapPr"
 Content-Disposition: inline
-X-ClientProxiedBy: SG2PR06CA0228.apcprd06.prod.outlook.com
- (2603:1096:4:68::36) To CY5PR11MB6392.namprd11.prod.outlook.com
- (2603:10b6:930:37::15)
+User-Agent: Mutt/1.10.1 (2018-07-13)
+X-ClientProxiedBy: SG2PR04CA0196.apcprd04.prod.outlook.com
+ (2603:1096:4:14::34) To PH8PR11MB6779.namprd11.prod.outlook.com
+ (2603:10b6:510:1ca::17)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: CY5PR11MB6392:EE_|SA0PR11MB4685:EE_
-X-MS-Office365-Filtering-Correlation-Id: 76297d33-3594-4914-801c-08dad0eedc91
+X-MS-TrafficTypeDiagnostic: PH8PR11MB6779:EE_|BL1PR11MB5317:EE_
+X-MS-Office365-Filtering-Correlation-Id: 1aba39db-ec95-4a49-2db6-08dadb83b909
 X-LD-Processed: 46c98d88-e344-4ed4-8496-4ed7712e255d,ExtAddr
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: 7lHhNgagd0mj1ndzKuR5Yt+5LobLy3iPfYJeqItGACKP+4anQ8EXoYHafKWbTVNOKZKZ8noYgef8I3nH85eiTmsxOnG2gCmGHxMUPQxLmI5R3YT51xvezoWdg0IPvdG8mCHPlxLqlIcmYmz3nd5Xniho9hvJP86pcaPA8J0JlYncvx7sAz9LJ9r+HEK75HTXO7+eGbYJUVhx7jW4pV0RcAUfnfd4BRrlI8a4GRm+SdV24XEBnkdPt3gJZ4Fpk8mb0vUYA91O66xWAc4xLPQMLm33WmFEzTVe9sjba4QWy0Dnw1VgFMAcnhE17qwPl+SKfolerso4ndVdvWPx4GkLZXLseBSEcHwGy0t9vl/MboaKP5BNsQmsro4nu8d6j3VwDLZD1stctxymg/PWtNnMnVTqna4jMkPWOg7nbxZuUsLup3Gxhh3FvbagwuaU9jdMK8gb5HKjk2h3IUHiOlNzHzeW2jL50Z4GUHAvXtlg+TQMGtmYRnPD1LtlkqyPHwbPjR2yE4wRs0+xLPG1uYvmYNaxXPxA/xzLMHFQZekNpDIot3k464lRZsjpH3popBGLeKi9GvrvApnxi8GLaDxoUQHu6cwbGdNPACccnv7+KW225qPafV5TKk3iJOcSxLiFNCwZPynkHu95Bd3EK9T9iES33S28QFamwAQKbQ3O6u7s8CRG83Wuk4a324Lg7lDuw/Pn21GdoZUXgZK2+gvrQREt3dspXUaV8kT+/HFCV+g+df7B9vcaBnhFza3DWJh3
+X-Microsoft-Antispam-Message-Info: ovao2gWjTK3LaqIUkwpb6b5tCm/qCSGB24jynlPJwXEZ6buY1m+cUoKu/e/071Khz0trIGPlTDrI3ODKvevW7f9e6Hw55K+sOMZtIdFxHlwflI6kHwUr8bwyy01wgqikAbJ8e4oY+GRHpIXf9iPUyDjDgSwsd5emadhDVq4d/LtbqiHg1FC6Qe9+YsZrGUgQsJNQCmMZt0e12yaKdAvD7MuGcl5fcN4k35nEkUy//E8+w4h2uS9yQGuk3/MHehY05oCgFGzU981R9dENHJy0le6RvF0PgGb2yHOdkNUbSgXxMrzTMlQi0UixRGV2X+J7adQ7XPFCm7It2XKmnsE28OoSNwEXFmxJYOT6tzDxBmxW1JFFDPtrkKhUjJayceduI9VMTVs6ud4OsGQDWZtxriUqAdd4qngxZ7CSgUNxZearMR+gOaCuVX9Juijq5M9QCSKGXKVzMon0DE0crbIUgjTLFXcqKMRhuw7T6R1vMkm3N5qip6FmqTM9ZP4V9XEUiOZfGDYcYA1SRJJC4gg739OXNUU2zCrhrWfUfr68OCCV3ksTSERXT/uE21iDZSwASmYd3xBKfqfTiVn6PysTGmbs5WuOpqgMDpXRxO8YJf6TlwMTmz2PIrU8QLl80Ikmwd/Yj6v0ftaE/0ctMYq1ZBrP/DtwYCf2KvydqVfuvRwankOpC3MVvGHaPH169rUZCwMJEcBK62WPucGKF8sNjR5B2MhLyn/sBKObeRn1hb1LDi+Lnh6i74ukkwOOd7Ok
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:CY5PR11MB6392.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230022)(396003)(136003)(366004)(346002)(39860400002)(376002)(451199015)(316002)(6916009)(54906003)(6666004)(44144004)(45080400002)(6506007)(38100700002)(36756003)(82960400001)(1076003)(41300700001)(21490400003)(8936002)(186003)(86362001)(7416002)(5660300002)(235185007)(2616005)(26005)(6512007)(66476007)(8676002)(4326008)(66556008)(66946007)(2906002)(83380400001)(478600001)(966005)(6486002)(2700100001);
+ IPV:NLI; SFV:NSPM; H:PH8PR11MB6779.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230022)(376002)(136003)(346002)(39860400002)(396003)(366004)(451199015)(478600001)(6666004)(6486002)(966005)(21490400003)(44144004)(6506007)(6512007)(26005)(186003)(83380400001)(6916009)(1076003)(316002)(5660300002)(235185007)(7416002)(2906002)(54906003)(66476007)(66946007)(36756003)(66556008)(4326008)(2616005)(8676002)(8936002)(86362001)(41300700001)(82960400001)(38100700002)(2700100001);
  DIR:OUT; SFP:1102; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?tLR7NNegcbFOYnn3rRcMmxDguRatGPT1segwYt0S7STMmdgPyJFh+fR8Xdg+?=
- =?us-ascii?Q?d/QOtYBKJ0BY4RYM4XofRVX5V5+JfxTfn4tQMxZVAUzqHEPrlur+ORlKCFnA?=
- =?us-ascii?Q?poIfgwNm0cUBKc+r1HE/P17Gb5Oi1JHkf2SJNzH51yl+8ix0AhEk4XMUQy+p?=
- =?us-ascii?Q?8anzux2ngE30LXFKtP/BpBr+MAqRSpWzMP/qEAzWwk2AyScUk1t50GsFyOIL?=
- =?us-ascii?Q?a/OCc1YX6zL9RhFKDUevtCTBOQbMknMJ7uBB9LJp8i5Y2UUOSzA8jfDrGUvP?=
- =?us-ascii?Q?f6ngUVxI5MMGHlM49rtI1pWOMoL1JrKnBrOvU3EhmR+6xs3/ZvRYg9K0Tu3u?=
- =?us-ascii?Q?FbcRzXQTQ5uV1Fb0KlDNTl9+fcbxtOhpX5cX2CKC2DsEv0wP4uf/QTKM913I?=
- =?us-ascii?Q?qeiViGAWHLOQF+1fsCYMoI8vgk3IFm/NiRS9xuvyvDgLzF+AUh55WZaNyixJ?=
- =?us-ascii?Q?Pt63CP3P0QMwENcWg2xIRJuH4JDbh5KQYfX9siab4Al8XXYN6bRUxNm6nEoH?=
- =?us-ascii?Q?s9czYm5fTESIchpVtu/lYja+2achKRTi1K3TaL9syfaRsncydxiA0cD1R5cQ?=
- =?us-ascii?Q?gbZnmrkaTCF/kZf1I+mYie1PuoCt6QHmQFVB0a7fd8F+Kaa+FjPF8WKCaRNL?=
- =?us-ascii?Q?1Uub9fcCqO7ncOWHsrnKZ+LgT7kDO70j3nh0BmeqipG7ZMcJIPzQTGFH3v3V?=
- =?us-ascii?Q?qIuZzBbw3vnlxjGGtpnuIjkQ0OWJLVArhoMliNHslelp/dqWXypWdehf9p4z?=
- =?us-ascii?Q?0MQIKbNAtthd4PGTb0k+QA8r/+SqfCUUsSAgzSbNvDl2/u9+L5fRM6DLO24g?=
- =?us-ascii?Q?Ik6pvl8l8xFl6vmtZMV87rOJKFolMJx9i/1u1xgmQkyY+z3hx8KnsVg46PRx?=
- =?us-ascii?Q?LgcWZ2CNx/6VoIiKM15sUPEM3c0wYmNEkEweHqWWXkapyuMxlHUYb5v2R9sL?=
- =?us-ascii?Q?1wRDSLXx7Qk+onErwLkYZq9DQSp2lRUa3aZnZorESO9z8ISBUU6YgGEdEx3H?=
- =?us-ascii?Q?/m+yFGVwarndEETy9TmS0VD12Kko5MmXZmRCSOsVEuhFQmuQOkvJmfhJuG0w?=
- =?us-ascii?Q?yaPrM40VbLhEz0xujM8RqH4IXmR+6XqXolAb2SikCVXyQXWN+0oWk7E7H4tg?=
- =?us-ascii?Q?0+TPkunw1EXe3HZN5MzBle8Rm4VuaYUL0d8D2Drc0mJYswa9gNJMwBsCB0tf?=
- =?us-ascii?Q?XlW8hV2JzPKUtsE0lfvoQMCFqR0Vqg8oqHS4n9T7K7SPfmQUU3d5xst5UoMD?=
- =?us-ascii?Q?MMhTGBVW78udlP8Hl/VxyAgrZwaLJ4GeZm+Nup2XhdlN3zQ4LhG4ALLeBAVQ?=
- =?us-ascii?Q?ZjsjOWSeTJmIoKI6XseYzbRMv3IJ07e2xKBVWNPzUBIJiMRs06jgwoldvKnW?=
- =?us-ascii?Q?Zw06LEz6V0BX5sBB72oYuy4L3GLe50pC05zhSHjE7FWNbbwc6JOqBfo/goDN?=
- =?us-ascii?Q?f3v+6mPX9PPiv3QYkDQWLWh7rnstsjndjhnJ/XG6DSLPAdViO3xUuPqgboPY?=
- =?us-ascii?Q?SM8EEJEY/cCUxCin+NmjDiecAivVDF8XSKiz6FhwgPfLZ8IpoVLSfd+QmUV4?=
- =?us-ascii?Q?zdEqkW5ChLN8xAzrOfB/hLOx4OITe0UaZ75I77u3?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: 76297d33-3594-4914-801c-08dad0eedc91
-X-MS-Exchange-CrossTenant-AuthSource: CY5PR11MB6392.namprd11.prod.outlook.com
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?WZcJx7jXBoSX5DrI3XSxwT57jIzuCNrYokpOPKpGF25m+7Bs/p13hPFFDO3/?=
+ =?us-ascii?Q?H7pcW2aHRfJzfkS29rExmzunQCrpxZUVSjNMK6kg/3kbnR+d0tUZDF/AS3/r?=
+ =?us-ascii?Q?Mp71xsQz09KZi0Hw0Cv5HhsmncY2GZnrJmUaOFegEjgrZVOYmEZddwPunXlq?=
+ =?us-ascii?Q?g4u3aiHRb3qnLaNfuF2IhFp9/MKRlHghetGzPQW6aO6zU0GJgMebmQp1QtSt?=
+ =?us-ascii?Q?Y+ptSw6Ru/TVGXSJkh+WWKpr+LdqS0n+Zn0Db304pCG3Om+14Iecp/cebfns?=
+ =?us-ascii?Q?GypzledmzEfWRV3drOpANnjqYzMAtLdOY60a2CTJc6A0ggEccyQodmAMVaL5?=
+ =?us-ascii?Q?aVMHepXrs3fLFayO6AAmfBC61ZZkFiqWn8t9dPdkdMo7/fkskD50/rNEcd3O?=
+ =?us-ascii?Q?EUIQg6FYABtY5l6d4lILeawgBjuj0PXN7jkuwuEujYmuN8iDeS2fPQtYMA0f?=
+ =?us-ascii?Q?5pPMXpmRkFOfGPyEG74fnNGRTg4KdDJt/jjQ4rwWuse/z8PWDKy6gFdJu4aQ?=
+ =?us-ascii?Q?4P1shVZPo8iNrwD1iQyKT3EyP2RBrbQ7e1EOanEyMHUfWy/JW6F617SxSRjp?=
+ =?us-ascii?Q?Ls1Tljo6zJTax1WL/tzv9EPHcFWVUfMCAG8Le17953G8tm38fxU484JHoeNw?=
+ =?us-ascii?Q?X6HPM2xGqmeqrv0M23aVOABJuzyZlg6WO6SUcI1IXm4azxhM/jxvQ8kBZ7jB?=
+ =?us-ascii?Q?ZZ/HyeNr0cBsg3qqRA+VTjJP4+Hte6FWKOEPYp7KIJuTMXolgu1sTJuKXXkW?=
+ =?us-ascii?Q?Yv19prN+AxdLOK3LyBqGLmzZFlvmsROJXPLKjcTCZx0dqZsv0THPtoP4jnZs?=
+ =?us-ascii?Q?/VSXtyHrplDegfNwJNiLEKu3yEmEOT0ar8z+1GOBuhyyg2syULq5MTD1Sy33?=
+ =?us-ascii?Q?n58bPNJg7v64Gj2gOixEH8+W+ydZWboQwG6gqmg3LGa5CBS7YhKJBa7A7bji?=
+ =?us-ascii?Q?EZwssLiZ4pOFNWcrt2dYIIxFsRjkguanrH9WNBpjKjqDPeTx+6e4v4WkayK5?=
+ =?us-ascii?Q?kSaXwc42jKQFwEAYik6vycSMK7rNTW9NTkEZzjsz1O5W/cfPvSfNwcagIEs8?=
+ =?us-ascii?Q?qEd2BixKIq6VhTZ1jEBHb/RLLJZd1KVJNjYkevzvV0yfMsQRbtJSbiBb4/Qc?=
+ =?us-ascii?Q?ub2nS5AU6K3K4cNuTz9F2gEtG54gRFwcmYajvD2SPS39sk3aA1/dF8oZW07c?=
+ =?us-ascii?Q?SGiBgUqSuGDfcEzlImwlLupolnPlVcJeeVz6PqoYxwQhI6PoYkUue1k7xV2f?=
+ =?us-ascii?Q?SdK7UI8d83XNA432QScKm8SUqV1xdNSxkRKG2aLMcayEDwTgmT/2sL42sZr+?=
+ =?us-ascii?Q?Lw9KwTdkVYJ+hFqBWmmrDhtIc1P+RDa7vNSpmZJCG5a2zZZcRQ4BLaBY6C2d?=
+ =?us-ascii?Q?V5lL/sdHgqNf+oxdTNIhVd5mRKfVSpF0muOtkkDIHLeC7ywnXjz6VLscLQdR?=
+ =?us-ascii?Q?PdLIs5feQeIK067T3GBQ99IdIOUevmQOhK1kwLt/c7IlciAiIQah8Tn9D7mU?=
+ =?us-ascii?Q?RWijPO4K5oOxFgaCuNIhs3LpUSIX8IeCTx/v9pyDAmlI+bAzHcAO8UlSHzhg?=
+ =?us-ascii?Q?nqW9B2Q3tke6ANSYtUmsQffEDPGhJTHQJK9KA+32?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: 1aba39db-ec95-4a49-2db6-08dadb83b909
+X-MS-Exchange-CrossTenant-AuthSource: PH8PR11MB6779.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 28 Nov 2022 03:15:55.6101 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 11 Dec 2022 14:26:42.8722 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: V8JJVAXt+582ZArfP6lZW/vfpD0vMkXeQfZ1To2tEDlcF2KM5RWEK/1sN5mdlEtbXD/pbcuVDq2h6wcUhmbmGg==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA0PR11MB4685
+X-MS-Exchange-CrossTenant-UserPrincipalName: 1/2WVFD4Bgf7Ej5J6hZk0wTmsObSM7AoyAgg1FTKmNW1/+Lx78QmhXV/qLqPUDE0jYr4YeAYGB5pGU6Qfrv4QQ==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BL1PR11MB5317
 X-OriginatorOrg: intel.com
-X-Spam-Score: -2.4 (--)
+X-Spam-Score: -1.7 (-)
 X-Spam-Report: Spam detection software,
- running on the system "util-spamd-1.v13.lw.sourceforge.com", 
+ running on the system "util-spamd-2.v13.lw.sourceforge.com", 
  has NOT identified this incoming email as spam.  The original
  message has been attached to this so you can view it or label
  similar future email.  If you have any questions, see
  the administrator of that system for details.
- Content preview:  Greeting, FYI, we noticed non-canonical address due to commit
- (built with gcc-11): commit: 8cbd3a2c63383e4025b1b46444e51df916ff66d7 ("mm,
- netfs, fscache: Stop read optimisation when folio removed from pagecache")
- https://github.com/ammarfaizi2/linux-block dhowells/linux-fs/netfs-lib 
- Content analysis details:   (-2.4 points, 6.0 required)
+ Content preview:  Greeting, FYI, we noticed canonical_address#:#[##] due to
+ commit (built with gcc-11): commit: 6919cda8e0f127fe773cad2553f0648de1c48445
+ ("mm, netfs,
+ fscache: Stop read optimisation when folio removed from pagecache")
+ https://github.com/ammarfaizi2/linux-block dhowells/linux-fs/fscache-f [...]
+ Content analysis details:   (-1.7 points, 6.0 required)
  pts rule name              description
  ---- ---------------------- --------------------------------------------------
  -2.3 RCVD_IN_DNSWL_MED      RBL: Sender listed at https://www.dnswl.org/,
- medium trust [192.55.52.151 listed in list.dnswl.org]
+ medium trust [134.134.136.100 listed in list.dnswl.org]
  0.0 SPF_HELO_NONE          SPF: HELO does not publish an SPF Record
  -0.0 SPF_PASS               SPF: sender matches SPF record
  -0.1 DKIM_VALID_AU          Message has a valid DKIM or DK signature from
  author's domain
- -0.1 DKIM_VALID_EF          Message has a valid DKIM or DK signature from
- envelope-from domain
  0.1 DKIM_SIGNED            Message has a DKIM or DK signature, not necessarily
  valid
  -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+ -0.1 DKIM_VALID_EF          Message has a valid DKIM or DK signature from
+ envelope-from domain
  0.8 UPPERCASE_50_75        message body is 50-75% uppercase
- -0.7 DKIMWL_WL_HIGH         DKIMwl.org - High trust sender
-X-Headers-End: 1ozUct-00G7zC-Qo
+ -0.0 DKIMWL_WL_HIGH         DKIMwl.org - High trust sender
+X-Headers-End: 1p4NIK-0002ZV-2E
 X-Mailman-Approved-At: Sat, 17 Dec 2022 18:57:39 +0000
 X-Content-Filtered-By: Mailman/MimeDel 2.1.21
-Subject: [V9fs-developer] [ammarfaizi2-block:dhowells/linux-fs/netfs-lib]
- [mm, netfs, fscache] 8cbd3a2c63: non-canonical address
+Subject: [V9fs-developer]
+ [ammarfaizi2-block:dhowells/linux-fs/fscache-fixes] [mm, netfs,
+ fscache]  6919cda8e0: canonical_address#:#[##]
 X-BeenThere: v9fs-developer@lists.sourceforge.net
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -209,20 +208,22 @@ Cc: Shyam Prasad N <nspmangalore@gmail.com>, linux-cifs@vger.kernel.org,
  Matthew Wilcox <willy@infradead.org>, linux-afs@lists.infradead.org,
  Steve French <sfrench@samba.org>, linux-fsdevel@vger.kernel.org,
  linux-cachefs@redhat.com, GNU/Weeb Mailing List <gwml@vger.gnuweeb.org>,
- oe-lkp@lists.linux.dev, v9fs-developer@lists.sourceforge.net,
- Ilya Dryomov <idryomov@gmail.com>
+ oe-lkp@lists.linux.dev, v9fs-developer@lists.sourceforge.net, Ilya
+ Dryomov <idryomov@gmail.com>, Linus
+ Torvalds <torvalds@linux-foundation.org>
 Errors-To: v9fs-developer-bounces@lists.sourceforge.net
 
---mTy4u7PHkNO9A32K
+--c/gGYUq7IJqfapPr
 Content-Type: text/plain; charset="us-ascii"
 Content-Disposition: inline
 
+
 Greeting,
 
-FYI, we noticed non-canonical address due to commit (built with gcc-11):
+FYI, we noticed canonical_address#:#[##] due to commit (built with gcc-11):
 
-commit: 8cbd3a2c63383e4025b1b46444e51df916ff66d7 ("mm, netfs, fscache: Stop read optimisation when folio removed from pagecache")
-https://github.com/ammarfaizi2/linux-block dhowells/linux-fs/netfs-lib
+commit: 6919cda8e0f127fe773cad2553f0648de1c48445 ("mm, netfs, fscache: Stop read optimisation when folio removed from pagecache")
+https://github.com/ammarfaizi2/linux-block dhowells/linux-fs/fscache-fixes
 
 in testcase: vm-scalability
 version: vm-scalability-x86_64-1.0-0_20220518
@@ -239,64 +240,81 @@ with following parameters:
 test-description: The motivation behind this suite is to exercise functions and regions of the mm/ of the Linux kernel which are of interest to us.
 test-url: https://git.kernel.org/cgit/linux/kernel/git/wfg/vm-scalability.git/
 
-on test machine: 144 threads 4 sockets Intel(R) Xeon(R) Gold 5318H CPU @ 2.50GHz (Cooper Lake) with 128G memory
+
+on test machine: 144 threads 4 sockets Intel(R) Xeon(R) CPU E7-8890 v3 @ 2.50GHz (Haswell-EX) with 512G memory
 
 caused below changes (please refer to attached dmesg/kmsg for entire log/backtrace):
 
 
-[   72.532218][  T935] general protection fault, probably for non-canonical address 0x2500000006063818: 0000 [#1] SMP NOPTI
-[   72.543765][  T935] CPU: 0 PID: 935 Comm: kswapd0 Not tainted 6.1.0-rc4-00005-g8cbd3a2c6338 #1
-[   72.553057][  T935] RIP: 0010:filemap_release_folio+0x54/0x80
-[   72.559481][  T935] Code: c0 c3 cc cc cc cc 48 8b 0f 80 e5 20 75 08 48 8b 0f 80 e5 40 74 22 48 8b 07 f6 c4 80 75 e1 48 85 d2 74 1a 48 8b 82 90 00 00 00 <48> 8b 40 48 48 85 c0 74 0a ff e0 cc 66 90 c3 cc cc cc cc e9 d4 11
-[   72.580252][  T935] RSP: 0000:ffffc90009d57b28 EFLAGS: 00010246
-[   72.587246][  T935] RAX: 25000000060637d0 RBX: ffffc90009d57c08 RCX: 25000000060637e0
-[   72.596409][  T935] RDX: ffff88a07b4aaf71 RSI: 0000000000000cc0 RDI: ffffea001bbc9780
-[   72.605416][  T935] RBP: ffffc90009d57b98 R08: 000000000003091e R09: 0000000000000001
-[   72.614362][  T935] R10: ffff88877ffd5000 R11: 0000000000030900 R12: ffffc90009d57c1c
-[   72.623393][  T935] R13: ffffea001bbc9780 R14: ffffea001bbc9788 R15: ffffc90009d57e10
-[   72.632113][  T935] FS:  0000000000000000(0000) GS:ffff888777800000(0000) knlGS:0000000000000000
-[   72.642105][  T935] CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
-[   72.649387][  T935] CR2: 00007fcf37b50000 CR3: 0000000cce4f8005 CR4: 00000000007706f0
-[   72.658226][  T935] DR0: 0000000000000000 DR1: 0000000000000000 DR2: 0000000000000000
-[   72.667200][  T935] DR3: 0000000000000000 DR6: 00000000fffe0ff0 DR7: 0000000000000400
-[   72.675964][  T935] PKRU: 55555554
-[   72.680693][  T935] Call Trace:
-[   72.684966][  T935]  <TASK>
-[   72.688637][  T935]  shrink_folio_list+0xa2a/0xb40
-[   72.694966][  T935]  shrink_inactive_list+0x157/0x440
-[   72.701019][  T935]  shrink_lruvec+0x2b5/0x3c0
-[   72.706671][  T935]  shrink_node_memcgs+0x175/0x200
-[   72.712644][  T935]  shrink_node+0xb6/0x300
-[   72.717733][  T935]  balance_pgdat+0x31c/0x700
-[   72.723264][  T935]  kswapd+0x101/0x1c0
-[   72.728176][  T935]  ? balance_pgdat+0x700/0x700
-[   72.734092][  T935]  kthread+0xd6/0x100
-[   72.738963][  T935]  ? kthread_complete_and_exit+0x40/0x40
-[   72.745817][  T935]  ret_from_fork+0x1f/0x30
-[   72.751362][  T935]  </TASK>
-[   72.755177][  T935] Modules linked in: xfs loop intel_rapl_msr intel_rapl_common skx_edac nfit x86_pkg_temp_thermal intel_powerclamp btrfs coretemp kvm_intel blake2b_generic xor kvm raid6_pq zstd_compress ast libcrc32c drm_vram_helper irqbypass crct10dif_pclmul drm_ttm_helper crc32_pclmul ttm nvme ipmi_ssif crc32c_intel ghash_clmulni_intel nd_pmem sha512_ssse3 nd_btt dax_pmem ahci rapl drm_kms_helper nvme_core t10_pi nd_e820 syscopyarea libahci intel_cstate mei_me acpi_ipmi sysfillrect crc64_rocksoft_generic ioatdma sysimgblt crc64_rocksoft libnvdimm intel_uncore ipmi_si libata mei crc64 fb_sys_fops joydev intel_pch_thermal dca wmi ipmi_devintf ipmi_msghandler acpi_pad acpi_power_meter drm fuse ip_tables
-[   72.824424][  T935] ---[ end trace 0000000000000000 ]---
-[   72.884123][  T935] RIP: 0010:filemap_release_folio+0x54/0x80
-[   72.890997][  T935] Code: c0 c3 cc cc cc cc 48 8b 0f 80 e5 20 75 08 48 8b 0f 80 e5 40 74 22 48 8b 07 f6 c4 80 75 e1 48 85 d2 74 1a 48 8b 82 90 00 00 00 <48> 8b 40 48 48 85 c0 74 0a ff e0 cc 66 90 c3 cc cc cc cc e9 d4 11
-[   72.912874][  T935] RSP: 0000:ffffc90009d57b28 EFLAGS: 00010246
-[   72.919974][  T935] RAX: 25000000060637d0 RBX: ffffc90009d57c08 RCX: 25000000060637e0
-[   72.929181][  T935] RDX: ffff88a07b4aaf71 RSI: 0000000000000cc0 RDI: ffffea001bbc9780
-[   72.938070][  T935] RBP: ffffc90009d57b98 R08: 000000000003091e R09: 0000000000000001
-[   72.946847][  T935] R10: ffff88877ffd5000 R11: 0000000000030900 R12: ffffc90009d57c1c
-[   72.955736][  T935] R13: ffffea001bbc9780 R14: ffffea001bbc9788 R15: ffffc90009d57e10
-[   72.964244][  T935] FS:  0000000000000000(0000) GS:ffff888777800000(0000) knlGS:0000000000000000
-[   72.974077][  T935] CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
-[   72.981585][  T935] CR2: 00007fcf37b50000 CR3: 0000000cce4f8005 CR4: 00000000007706f0
-[   72.990159][  T935] DR0: 0000000000000000 DR1: 0000000000000000 DR2: 0000000000000000
-[   72.998973][  T935] DR3: 0000000000000000 DR6: 00000000fffe0ff0 DR7: 0000000000000400
-[   73.008103][  T935] PKRU: 55555554
-[   73.012338][  T935] Kernel panic - not syncing: Fatal exception
-[   73.149277][  T935] Kernel Offset: disabled
-
-
 If you fix the issue, kindly add following tag
-| Reported-by: kernel test robot <yujie.liu@intel.com>
-| Link: https://lore.kernel.org/oe-lkp/202211281001.99962236-yujie.liu@intel.com
+| Reported-by: kernel test robot <oliver.sang@intel.com>
+| Link: https://lore.kernel.org/oe-lkp/202212112131.994277de-oliver.sang@intel.com
+
+
+[   67.400229][ T1600] /lkp/lkp/src/bin/run-lkp: 66: echo_to_tty: not found
+[   67.400236][ T1600]
+[   67.410835][ T1600] Events disabled
+[   67.410839][ T1600]
+[   67.688429][ T6678] Scheduler tracepoints stat_sleep, stat_iowait, stat_blocked and stat_runtime require the kernel parameter schedstats=enable or kernel.sched_schedstats=1
+[   67.808556][  T924] general protection fault, probably for non-canonical address 0xb000000000000048: 0000 [#1] SMP PTI
+[   67.820666][  T924] CPU: 72 PID: 924 Comm: kswapd0 Not tainted 6.1.0-rc5-00020-g6919cda8e0f1 #1
+[   67.830527][  T924] Hardware name: Intel Corporation BRICKLAND/BRICKLAND, BIOS BRHSXSD1.86B.0067.R02.1507221722 07/22/2015
+[ 67.843012][ T924] RIP: 0010:filemap_release_folio (kbuild/src/consumer/mm/filemap.c:3949 (discriminator 1)) 
+[ 67.849545][ T924] Code: 00 48 8b 07 48 8b 57 18 83 e0 01 74 59 48 f7 07 00 60 00 00 74 22 48 8b 07 f6 c4 80 75 32 48 85 d2 74 34 48 8b 82 90 00 00 00 <48> 8b 40 48 48 85 c0 74 24 e9 c4 c1 d2 00 48 85 d2 74 1f 48 8b 8a
+All code
+========
+   0:	00 48 8b             	add    %cl,-0x75(%rax)
+   3:	07                   	(bad)  
+   4:	48 8b 57 18          	mov    0x18(%rdi),%rdx
+   8:	83 e0 01             	and    $0x1,%eax
+   b:	74 59                	je     0x66
+   d:	48 f7 07 00 60 00 00 	testq  $0x6000,(%rdi)
+  14:	74 22                	je     0x38
+  16:	48 8b 07             	mov    (%rdi),%rax
+  19:	f6 c4 80             	test   $0x80,%ah
+  1c:	75 32                	jne    0x50
+  1e:	48 85 d2             	test   %rdx,%rdx
+  21:	74 34                	je     0x57
+  23:	48 8b 82 90 00 00 00 	mov    0x90(%rdx),%rax
+  2a:*	48 8b 40 48          	mov    0x48(%rax),%rax		<-- trapping instruction
+  2e:	48 85 c0             	test   %rax,%rax
+  31:	74 24                	je     0x57
+  33:	e9 c4 c1 d2 00       	jmpq   0xd2c1fc
+  38:	48 85 d2             	test   %rdx,%rdx
+  3b:	74 1f                	je     0x5c
+  3d:	48                   	rex.W
+  3e:	8b                   	.byte 0x8b
+  3f:	8a                   	.byte 0x8a
+
+Code starting with the faulting instruction
+===========================================
+   0:	48 8b 40 48          	mov    0x48(%rax),%rax
+   4:	48 85 c0             	test   %rax,%rax
+   7:	74 24                	je     0x2d
+   9:	e9 c4 c1 d2 00       	jmpq   0xd2c1d2
+   e:	48 85 d2             	test   %rdx,%rdx
+  11:	74 1f                	je     0x32
+  13:	48                   	rex.W
+  14:	8b                   	.byte 0x8b
+  15:	8a                   	.byte 0x8a
+[   67.871488][  T924] RSP: 0018:ffffc900061efb28 EFLAGS: 00010246
+[   67.878209][  T924] RAX: b000000000000000 RBX: ffffc900061efc08 RCX: 00ffff889f0005be
+[   67.887094][  T924] RDX: ffff889f03987f71 RSI: 0000000000000cc0 RDI: ffffea007c573840
+[   67.891233][ T1600] ------------------------------------------------------------
+[   67.895832][  T924] RBP: ffffc900061efb98 R08: ffff88be945000c0 R09: 0000000000000001
+[   67.895833][  T924] R10: ffff88a07ffd5000 R11: 0000000000030900 R12: ffffc900061efc1c
+[   67.895835][  T924] R13: ffffea007c573840 R14: ffffea007c573848 R15: ffffc900061efe10
+[   67.895837][  T924] FS:  0000000000000000(0000) GS:ffff88a077880000(0000) knlGS:0000000000000000
+[   67.895838][  T924] CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+[   67.895840][  T924] CR2: 000055d74170e000 CR3: 000000807ee0a002 CR4: 00000000001706e0
+[   67.895841][  T924] DR0: 0000000000000000 DR1: 0000000000000000 DR2: 0000000000000000
+[   67.895842][  T924] DR3: 0000000000000000 DR6: 00000000fffe0ff0 DR7: 0000000000000400
+[   67.895844][  T924] Call Trace:
+[   67.904106][ T1600]
+[   67.912835][  T924]  <TASK>
+[ 67.912837][ T924] shrink_folio_list (kbuild/src/consumer/mm/vmscan.c:1982) 
+[ 67.912848][ T924] shrink_inactive_list (kbuild/src/consumer/include/linux/spinlock.h:375 kbuild/src/consumer/mm/vmscan.c:2491) 
+[   67.921991][ T1600] perf_event_attr:
 
 
 To reproduce:
@@ -311,18 +329,21 @@ To reproduce:
         # please remove ~/.lkp and /lkp dir to run from a clean state.
 
 
+
 -- 
 0-DAY CI Kernel Test Service
 https://01.org/lkp
 
---mTy4u7PHkNO9A32K
+
+
+--c/gGYUq7IJqfapPr
 Content-Type: text/plain; charset="us-ascii"
 Content-Disposition: attachment;
-	filename="config-6.1.0-rc4-00005-g8cbd3a2c6338"
+	filename="config-6.1.0-rc5-00020-g6919cda8e0f1"
 
 #
 # Automatically generated file; DO NOT EDIT.
-# Linux/x86_64 6.1.0-rc4 Kernel Configuration
+# Linux/x86_64 6.1.0-rc5 Kernel Configuration
 #
 CONFIG_CC_VERSION_TEXT="gcc-11 (Debian 11.3.0-8) 11.3.0"
 CONFIG_CC_IS_GCC=y
@@ -6797,6 +6818,7 @@ CONFIG_RUNTIME_TESTING_MENU=y
 # CONFIG_TEST_BITMAP is not set
 # CONFIG_TEST_UUID is not set
 # CONFIG_TEST_XARRAY is not set
+# CONFIG_TEST_MAPLE_TREE is not set
 # CONFIG_TEST_RHASHTABLE is not set
 # CONFIG_TEST_SIPHASH is not set
 # CONFIG_TEST_IDA is not set
@@ -6830,7 +6852,7 @@ CONFIG_ARCH_USE_MEMTEST=y
 # end of Rust hacking
 # end of Kernel hacking
 
---mTy4u7PHkNO9A32K
+--c/gGYUq7IJqfapPr
 Content-Type: text/plain; charset="us-ascii"
 Content-Disposition: attachment; filename="job-script"
 
@@ -6844,31 +6866,28 @@ export_top_env()
 	export runtime=
 	export size=
 	export nr_task=64
-	export need_memory='106G'
-	export job_origin='vm-scalability-swap-4pmem-lkp-cpl-4sp1.yaml'
+	export need_memory='506G'
+	export job_origin='vm-scalability-swap-4pmem-lkp-hsw-4ex1.yaml'
 	export queue_cmdline_keys='branch
 commit
 kbuild_queue_analysis'
 	export queue='validate'
-	export testbox='lkp-cpl-4sp1'
-	export tbox_group='lkp-cpl-4sp1'
-	export submit_id='63839ead5b05679c0bc76251'
-	export job_file='/lkp/jobs/scheduled/lkp-cpl-4sp1/vm-scalability-performance-4-64-1-swap-w-seq-never-never-debian-11.1-x86_64-20220510.cgz-8cbd3a2c63383e4025b1b46444e51df916ff66d-20221128-39947-zr7h2b-2.yaml'
-	export id='7e8dcb1d93fae0a2c48d9d43456961d5e18ea00f'
+	export testbox='lkp-hsw-4ex1'
+	export tbox_group='lkp-hsw-4ex1'
+	export submit_id='6394e79b453c9ebd1ac2651c'
+	export job_file='/lkp/jobs/scheduled/lkp-hsw-4ex1/vm-scalability-performance-4-64-1-swap-w-seq-never-never-debian-11.1-x86_64-20220510.cgz-6919cda8e0f127fe773cad2553f0648de1c4844-20221211-48410-z585x5-5.yaml'
+	export id='efecd01035163739ab4a758e4fee04a9daed4d1d'
 	export queuer_version='/zday/lkp'
-	export model='Cooper Lake'
+	export model='Haswell-EX'
 	export nr_node=4
 	export nr_cpu=144
-	export memory='128G'
-	export nr_hdd_partitions=
-	export nr_ssd_partitions=2
-	export hdd_partitions=
-	export ssd_partitions='/dev/disk/by-id/nvme-INTEL_SSDPE2KX040T7_PHLF741401DF4P0IGN-part4
-/dev/disk/by-id/nvme-INTEL_SSDPE2KX040T7_PHLF741401DF4P0IGN-part5'
+	export memory='512G'
+	export nr_ssd_partitions=1
+	export nr_hdd_partitions=1
+	export hdd_partitions='/dev/disk/by-id/wwn-0x5000c50067bdf9c3-part1'
+	export ssd_partitions='/dev/disk/by-id/wwn-0x55cd2e40003aeb61-part1'
 	export swap_partitions=
-	export rootfs_partition='/dev/disk/by-id/nvme-INTEL_SSDPE2KX040T7_PHLF741401DF4P0IGN-part3'
-	export kernel_cmdline_hw='acpi_rsdp=0x695fd014'
-	export brand='Intel(R) Xeon(R) Gold 5318H CPU @ 2.50GHz'
+	export brand='Intel(R) Xeon(R) CPU E7-8890 v3 @ 2.50GHz'
 	export need_kconfig='LIBNVDIMM
 BTT
 BLK_DEV_PMEM
@@ -6878,43 +6897,45 @@ SWAP
 MMU
 BLOCK
 BLK_DEV_LOOP'
-	export commit='8cbd3a2c63383e4025b1b46444e51df916ff66d7'
-	export need_kconfig_hw='{"PTP_1588_CLOCK"=>"y"}
-{"IGB"=>"y"}
+	export commit='6919cda8e0f127fe773cad2553f0648de1c48445'
+	export ucode='0x1a'
+	export kernel_cmdline_hw='cma=0'
+	export need_kconfig_hw='{"IXGBE"=>"y"}
+{"SCSI_LOWLEVEL"=>"y"}
+SCSI_MPT3SAS
 SATA_AHCI'
-	export ucode='0x7002501'
 	export bisect_dmesg=true
 	export kconfig='x86_64-rhel-8.3'
-	export enqueue_time='2022-11-28 01:30:22 +0800'
-	export _id='63839ead5b05679c0bc76251'
-	export _rt='/result/vm-scalability/performance-4-64-1-swap-w-seq-never-never/lkp-cpl-4sp1/debian-11.1-x86_64-20220510.cgz/x86_64-rhel-8.3/gcc-11/8cbd3a2c63383e4025b1b46444e51df916ff66d7'
+	export enqueue_time='2022-12-11 04:10:04 +0800'
+	export _id='6394e7b2453c9ebd1ac2651e'
+	export _rt='/result/vm-scalability/performance-4-64-1-swap-w-seq-never-never/lkp-hsw-4ex1/debian-11.1-x86_64-20220510.cgz/x86_64-rhel-8.3/gcc-11/6919cda8e0f127fe773cad2553f0648de1c48445'
 	export user='lkp'
 	export compiler='gcc-11'
 	export LKP_SERVER='internal-lkp-server'
-	export head_commit='eb6e3dfe84b4f0e22406e7409c1eea49869409d9'
-	export base_commit='eb7081409f94a9a8608593d0fb63a1aa3d6f95d8'
-	export branch='ammarfaizi2-block/dhowells/linux-fs/netfs-lib'
+	export head_commit='bcbcb4ea6a613481baf84f09e4bb95b90e85c7ad'
+	export base_commit='76dcd734eca23168cb008912c0f69ff408905235'
+	export branch='ammarfaizi2-block/dhowells/linux-fs/fscache-fixes'
 	export rootfs='debian-11.1-x86_64-20220510.cgz'
-	export result_root='/result/vm-scalability/performance-4-64-1-swap-w-seq-never-never/lkp-cpl-4sp1/debian-11.1-x86_64-20220510.cgz/x86_64-rhel-8.3/gcc-11/8cbd3a2c63383e4025b1b46444e51df916ff66d7/3'
-	export scheduler_version='/lkp/lkp/.src-20221125-171939'
+	export result_root='/result/vm-scalability/performance-4-64-1-swap-w-seq-never-never/lkp-hsw-4ex1/debian-11.1-x86_64-20220510.cgz/x86_64-rhel-8.3/gcc-11/6919cda8e0f127fe773cad2553f0648de1c48445/3'
+	export scheduler_version='/lkp/lkp/src'
 	export arch='x86_64'
 	export max_uptime=2100
 	export initrd='/osimage/debian/debian-11.1-x86_64-20220510.cgz'
 	export bootloader_append='root=/dev/ram0
-RESULT_ROOT=/result/vm-scalability/performance-4-64-1-swap-w-seq-never-never/lkp-cpl-4sp1/debian-11.1-x86_64-20220510.cgz/x86_64-rhel-8.3/gcc-11/8cbd3a2c63383e4025b1b46444e51df916ff66d7/3
-BOOT_IMAGE=/pkg/linux/x86_64-rhel-8.3/gcc-11/8cbd3a2c63383e4025b1b46444e51df916ff66d7/vmlinuz-6.1.0-rc4-00005-g8cbd3a2c6338
-branch=ammarfaizi2-block/dhowells/linux-fs/netfs-lib
-job=/lkp/jobs/scheduled/lkp-cpl-4sp1/vm-scalability-performance-4-64-1-swap-w-seq-never-never-debian-11.1-x86_64-20220510.cgz-8cbd3a2c63383e4025b1b46444e51df916ff66d-20221128-39947-zr7h2b-2.yaml
+RESULT_ROOT=/result/vm-scalability/performance-4-64-1-swap-w-seq-never-never/lkp-hsw-4ex1/debian-11.1-x86_64-20220510.cgz/x86_64-rhel-8.3/gcc-11/6919cda8e0f127fe773cad2553f0648de1c48445/3
+BOOT_IMAGE=/pkg/linux/x86_64-rhel-8.3/gcc-11/6919cda8e0f127fe773cad2553f0648de1c48445/vmlinuz-6.1.0-rc5-00020-g6919cda8e0f1
+branch=ammarfaizi2-block/dhowells/linux-fs/fscache-fixes
+job=/lkp/jobs/scheduled/lkp-hsw-4ex1/vm-scalability-performance-4-64-1-swap-w-seq-never-never-debian-11.1-x86_64-20220510.cgz-6919cda8e0f127fe773cad2553f0648de1c4844-20221211-48410-z585x5-5.yaml
 user=lkp
 ARCH=x86_64
 kconfig=x86_64-rhel-8.3
-commit=8cbd3a2c63383e4025b1b46444e51df916ff66d7
+commit=6919cda8e0f127fe773cad2553f0648de1c48445
 initcall_debug
-acpi_rsdp=0x695fd014
-memmap=20G!4G
-memmap=20G!30G
-memmap=20G!58G
-memmap=20G!86G
+cma=0
+memmap=120G!4G
+memmap=120G!130G
+memmap=120G!258G
+memmap=120G!386G
 max_uptime=2100
 LKP_SERVER=internal-lkp-server
 nokaslr
@@ -6939,20 +6960,21 @@ earlyprintk=ttyS0,115200
 console=ttyS0,115200
 vga=normal
 rw'
-	export modules_initrd='/pkg/linux/x86_64-rhel-8.3/gcc-11/8cbd3a2c63383e4025b1b46444e51df916ff66d7/modules.cgz'
-	export bm_initrd='/osimage/deps/debian-11.1-x86_64-20220510.cgz/run-ipconfig_20220515.cgz,/osimage/deps/debian-11.1-x86_64-20220510.cgz/lkp_20220513.cgz,/osimage/deps/debian-11.1-x86_64-20220510.cgz/rsync-rootfs_20220515.cgz,/osimage/deps/debian-11.1-x86_64-20220510.cgz/perf_20221127.cgz,/osimage/pkg/debian-11.1-x86_64-20220510.cgz/perf-x86_64-faf68e3523c2-1_20221127.cgz,/osimage/deps/debian-11.1-x86_64-20220510.cgz/vm-scalability_20220514.cgz,/osimage/pkg/debian-11.1-x86_64-20220510.cgz/vm-scalability-x86_64-1.0-0_20220518.cgz,/osimage/deps/debian-11.1-x86_64-20220510.cgz/mpstat_20220516.cgz,/osimage/deps/debian-11.1-x86_64-20220510.cgz/turbostat_20220514.cgz,/osimage/pkg/debian-11.1-x86_64-20220510.cgz/turbostat-x86_64-210e04ff7681-1_20220518.cgz,/osimage/pkg/debian-11.1-x86_64-20220510.cgz/sar-x86_64-c5bb321-1_20220518.cgz,/osimage/deps/debian-11.1-x86_64-20220510.cgz/hw_20220526.cgz'
+	export modules_initrd='/pkg/linux/x86_64-rhel-8.3/gcc-11/6919cda8e0f127fe773cad2553f0648de1c48445/modules.cgz'
+	export bm_initrd='/osimage/deps/debian-11.1-x86_64-20220510.cgz/lkp_20220513.cgz,/osimage/deps/debian-11.1-x86_64-20220510.cgz/run-ipconfig_20220515.cgz,/osimage/deps/debian-11.1-x86_64-20220510.cgz/rsync-rootfs_20220515.cgz,/osimage/deps/debian-11.1-x86_64-20220510.cgz/perf_20221210.cgz,/osimage/pkg/debian-11.1-x86_64-20220510.cgz/perf-x86_64-296a7b7eb792-1_20221210.cgz,/osimage/deps/debian-11.1-x86_64-20220510.cgz/vm-scalability_20220514.cgz,/osimage/pkg/debian-11.1-x86_64-20220510.cgz/vm-scalability-x86_64-1.0-0_20220518.cgz,/osimage/deps/debian-11.1-x86_64-20220510.cgz/mpstat_20220516.cgz,/osimage/deps/debian-11.1-x86_64-20220510.cgz/turbostat_20220514.cgz,/osimage/pkg/debian-11.1-x86_64-20220510.cgz/turbostat-x86_64-210e04ff7681-1_20220518.cgz,/osimage/pkg/debian-11.1-x86_64-20220510.cgz/sar-x86_64-c5bb321-1_20220518.cgz,/osimage/deps/debian-11.1-x86_64-20220510.cgz/hw_20220526.cgz'
 	export ucode_initrd='/osimage/ucode/intel-ucode-20220804.cgz'
 	export lkp_initrd='/osimage/user/lkp/lkp-x86_64.cgz'
 	export site='inn'
 	export LKP_CGI_PORT=80
 	export LKP_CIFS_PORT=139
-	export last_kernel='5.5.0-0.bpo.2-amd64'
+	export last_kernel='6.1.0-rc8-00152-g3ecc37918c80'
 	export repeat_to=6
-	export schedule_notify_address=
+	export stop_repeat_if_found='dmesg.RIP:filemap_release_folio'
 	export kbuild_queue_analysis=1
-	export kernel='/pkg/linux/x86_64-rhel-8.3/gcc-11/8cbd3a2c63383e4025b1b46444e51df916ff66d7/vmlinuz-6.1.0-rc4-00005-g8cbd3a2c6338'
-	export dequeue_time='2022-11-28 01:48:03 +0800'
-	export job_initrd='/lkp/jobs/scheduled/lkp-cpl-4sp1/vm-scalability-performance-4-64-1-swap-w-seq-never-never-debian-11.1-x86_64-20220510.cgz-8cbd3a2c63383e4025b1b46444e51df916ff66d-20221128-39947-zr7h2b-2.cgz'
+	export schedule_notify_address=
+	export kernel='/pkg/linux/x86_64-rhel-8.3/gcc-11/6919cda8e0f127fe773cad2553f0648de1c48445/vmlinuz-6.1.0-rc5-00020-g6919cda8e0f1'
+	export dequeue_time='2022-12-11 04:35:13 +0800'
+	export job_initrd='/lkp/jobs/scheduled/lkp-hsw-4ex1/vm-scalability-performance-4-64-1-swap-w-seq-never-never-debian-11.1-x86_64-20220510.cgz-6919cda8e0f127fe773cad2553f0648de1c4844-20221211-48410-z585x5-5.cgz'
 
 	[ -n "$LKP_SRC" ] ||
 	export LKP_SRC=/lkp/${user:-lkp}/src
@@ -6970,7 +6992,7 @@ run_job()
 
 	run_setup thp_enabled='never' thp_defrag='never' $LKP_SRC/setup/transparent_hugepage
 
-	run_setup bp1_memmap='20G!4G' bp2_memmap='20G!30G' bp3_memmap='20G!58G' bp4_memmap='20G!86G' $LKP_SRC/setup/boot_params
+	run_setup bp1_memmap='120G!4G' bp2_memmap='120G!130G' bp3_memmap='120G!258G' bp4_memmap='120G!386G' $LKP_SRC/setup/boot_params
 
 	run_setup ssd_partitions= nr_pmem=4 $LKP_SRC/setup/disk
 
@@ -7006,6 +7028,7 @@ run_job()
 	run_monitor $LKP_SRC/monitors/wrapper sched_debug
 	run_monitor $LKP_SRC/monitors/wrapper perf-stat
 	run_monitor $LKP_SRC/monitors/wrapper mpstat
+	run_monitor $LKP_SRC/monitors/wrapper syscalls
 	run_monitor $LKP_SRC/monitors/wrapper oom-killer
 	run_monitor $LKP_SRC/monitors/plain/watchdog
 
@@ -7042,6 +7065,7 @@ extract_stats()
 	$LKP_SRC/stats/wrapper sched_debug
 	$LKP_SRC/stats/wrapper perf-stat
 	$LKP_SRC/stats/wrapper mpstat
+	$LKP_SRC/stats/wrapper syscalls
 
 	$LKP_SRC/stats/wrapper time vm-scalability.time
 	$LKP_SRC/stats/wrapper dmesg
@@ -7053,13 +7077,13 @@ extract_stats()
 
 "$@"
 
---mTy4u7PHkNO9A32K
+--c/gGYUq7IJqfapPr
 Content-Type: text/plain; charset="us-ascii"
 Content-Disposition: attachment; filename="job.yaml"
 
 ---
 
-#! jobs/vm-scalability-swap-4pmem-lkp-cpl-4sp1.yaml
+#! jobs/vm-scalability-swap-4pmem-lkp-hsw-4ex1.yaml
 suite: vm-scalability
 testcase: vm-scalability
 category: benchmark
@@ -7070,11 +7094,11 @@ runtime:
 size:
 nr_task: 64
 boot_params:
-  bp1_memmap: 20G!4G
-  bp2_memmap: 20G!30G
-  bp3_memmap: 20G!58G
-  bp4_memmap: 20G!86G
-need_memory: 106G
+  bp1_memmap: 120G!4G
+  bp2_memmap: 120G!130G
+  bp3_memmap: 120G!258G
+  bp4_memmap: 120G!386G
+need_memory: 506G
 disk:
   ssd_partitions:
   nr_pmem: 4
@@ -7085,35 +7109,31 @@ perf-profile:
 perf-node:
 vm-scalability:
   test: swap-w-seq
-job_origin: vm-scalability-swap-4pmem-lkp-cpl-4sp1.yaml
+job_origin: vm-scalability-swap-4pmem-lkp-hsw-4ex1.yaml
 
 #! queue options
 queue_cmdline_keys:
 - branch
 - commit
 queue: bisect
-testbox: lkp-cpl-4sp1
-tbox_group: lkp-cpl-4sp1
-submit_id: 6383884f5b05679197439ff7
-job_file: "/lkp/jobs/scheduled/lkp-cpl-4sp1/vm-scalability-performance-4-64-1-swap-w-seq-never-never-debian-11.1-x86_64-20220510.cgz-8cbd3a2c63383e4025b1b46444e51df916ff66d-20221128-37271-17v0hjh-0.yaml"
-id: 12e6ff412b4e5dbe795e4b70aa685e7f0d2c351e
+testbox: lkp-hsw-4ex1
+tbox_group: lkp-hsw-4ex1
+submit_id: 6394926602d6867a4be2cb95
+job_file: "/lkp/jobs/scheduled/lkp-hsw-4ex1/vm-scalability-performance-4-64-1-swap-w-seq-never-never-debian-11.1-x86_64-20220510.cgz-6919cda8e0f127fe773cad2553f0648de1c4844-20221210-31307-1s05up6-0.yaml"
+id: 45a1cb13fbf1e7277486f69cfc660338630efec9
 queuer_version: "/zday/lkp"
 
-#! hosts/lkp-cpl-4sp1
-model: Cooper Lake
+#! hosts/lkp-hsw-4ex1
+model: Haswell-EX
 nr_node: 4
 nr_cpu: 144
-memory: 128G
-nr_hdd_partitions:
-nr_ssd_partitions: 2
-hdd_partitions:
-ssd_partitions:
-- "/dev/disk/by-id/nvme-INTEL_SSDPE2KX040T7_PHLF741401DF4P0IGN-part4"
-- "/dev/disk/by-id/nvme-INTEL_SSDPE2KX040T7_PHLF741401DF4P0IGN-part5"
+memory: 512G
+nr_ssd_partitions: 1
+nr_hdd_partitions: 1
+hdd_partitions: "/dev/disk/by-id/wwn-0x5000c50067bdf9c3-part1"
+ssd_partitions: "/dev/disk/by-id/wwn-0x55cd2e40003aeb61-part1"
 swap_partitions:
-rootfs_partition: "/dev/disk/by-id/nvme-INTEL_SSDPE2KX040T7_PHLF741401DF4P0IGN-part3"
-kernel_cmdline_hw: acpi_rsdp=0x695fd014
-brand: Intel(R) Xeon(R) Gold 5318H CPU @ 2.50GHz
+brand: Intel(R) Xeon(R) CPU E7-8890 v3 @ 2.50GHz
 
 #! include/category/benchmark
 kmsg:
@@ -7164,49 +7184,52 @@ need_kconfig:
 #! include/vm-scalability
 
 #! include/queue/cyclic
-commit: 8cbd3a2c63383e4025b1b46444e51df916ff66d7
+commit: 6919cda8e0f127fe773cad2553f0648de1c48445
 
-#! include/testbox/lkp-cpl-4sp1
+#! include/testbox/lkp-hsw-4ex1
+syscalls:
+ucode: '0x1a'
+kernel_cmdline_hw: cma=0
 need_kconfig_hw:
-- PTP_1588_CLOCK: y
-- IGB: y
+- IXGBE: y
+- SCSI_LOWLEVEL: y
+- SCSI_MPT3SAS
 - SATA_AHCI
-ucode: '0x7002501'
 bisect_dmesg: true
 kconfig: x86_64-rhel-8.3
-enqueue_time: 2022-11-27 23:54:55.172004911 +08:00
-_id: 6383884f5b05679197439ff7
-_rt: "/result/vm-scalability/performance-4-64-1-swap-w-seq-never-never/lkp-cpl-4sp1/debian-11.1-x86_64-20220510.cgz/x86_64-rhel-8.3/gcc-11/8cbd3a2c63383e4025b1b46444e51df916ff66d7"
+enqueue_time: 2022-12-10 22:06:30.714806326 +08:00
+_id: 6394926602d6867a4be2cb95
+_rt: "/result/vm-scalability/performance-4-64-1-swap-w-seq-never-never/lkp-hsw-4ex1/debian-11.1-x86_64-20220510.cgz/x86_64-rhel-8.3/gcc-11/6919cda8e0f127fe773cad2553f0648de1c48445"
 
 #! schedule options
 user: lkp
 compiler: gcc-11
 LKP_SERVER: internal-lkp-server
-head_commit: eb6e3dfe84b4f0e22406e7409c1eea49869409d9
-base_commit: eb7081409f94a9a8608593d0fb63a1aa3d6f95d8
-branch: linux-devel/devel-hourly-20221123-183014
+head_commit: bcbcb4ea6a613481baf84f09e4bb95b90e85c7ad
+base_commit: 76dcd734eca23168cb008912c0f69ff408905235
+branch: linux-devel/devel-hourly-20221209-093320
 rootfs: debian-11.1-x86_64-20220510.cgz
-result_root: "/result/vm-scalability/performance-4-64-1-swap-w-seq-never-never/lkp-cpl-4sp1/debian-11.1-x86_64-20220510.cgz/x86_64-rhel-8.3/gcc-11/8cbd3a2c63383e4025b1b46444e51df916ff66d7/0"
-scheduler_version: "/lkp/lkp/.src-20221125-171939"
+result_root: "/result/vm-scalability/performance-4-64-1-swap-w-seq-never-never/lkp-hsw-4ex1/debian-11.1-x86_64-20220510.cgz/x86_64-rhel-8.3/gcc-11/6919cda8e0f127fe773cad2553f0648de1c48445/0"
+scheduler_version: "/lkp/lkp/src"
 arch: x86_64
 max_uptime: 2100
 initrd: "/osimage/debian/debian-11.1-x86_64-20220510.cgz"
 bootloader_append:
 - root=/dev/ram0
-- RESULT_ROOT=/result/vm-scalability/performance-4-64-1-swap-w-seq-never-never/lkp-cpl-4sp1/debian-11.1-x86_64-20220510.cgz/x86_64-rhel-8.3/gcc-11/8cbd3a2c63383e4025b1b46444e51df916ff66d7/0
-- BOOT_IMAGE=/pkg/linux/x86_64-rhel-8.3/gcc-11/8cbd3a2c63383e4025b1b46444e51df916ff66d7/vmlinuz-6.1.0-rc4-00005-g8cbd3a2c6338
-- branch=linux-devel/devel-hourly-20221123-183014
-- job=/lkp/jobs/scheduled/lkp-cpl-4sp1/vm-scalability-performance-4-64-1-swap-w-seq-never-never-debian-11.1-x86_64-20220510.cgz-8cbd3a2c63383e4025b1b46444e51df916ff66d-20221128-37271-17v0hjh-0.yaml
+- RESULT_ROOT=/result/vm-scalability/performance-4-64-1-swap-w-seq-never-never/lkp-hsw-4ex1/debian-11.1-x86_64-20220510.cgz/x86_64-rhel-8.3/gcc-11/6919cda8e0f127fe773cad2553f0648de1c48445/0
+- BOOT_IMAGE=/pkg/linux/x86_64-rhel-8.3/gcc-11/6919cda8e0f127fe773cad2553f0648de1c48445/vmlinuz-6.1.0-rc5-00020-g6919cda8e0f1
+- branch=linux-devel/devel-hourly-20221209-093320
+- job=/lkp/jobs/scheduled/lkp-hsw-4ex1/vm-scalability-performance-4-64-1-swap-w-seq-never-never-debian-11.1-x86_64-20220510.cgz-6919cda8e0f127fe773cad2553f0648de1c4844-20221210-31307-1s05up6-0.yaml
 - user=lkp
 - ARCH=x86_64
 - kconfig=x86_64-rhel-8.3
-- commit=8cbd3a2c63383e4025b1b46444e51df916ff66d7
+- commit=6919cda8e0f127fe773cad2553f0648de1c48445
 - initcall_debug
-- acpi_rsdp=0x695fd014
-- memmap=20G!4G
-- memmap=20G!30G
-- memmap=20G!58G
-- memmap=20G!86G
+- cma=0
+- memmap=120G!4G
+- memmap=120G!130G
+- memmap=120G!258G
+- memmap=120G!386G
 - max_uptime=2100
 - LKP_SERVER=internal-lkp-server
 - nokaslr
@@ -7233,35 +7256,33 @@ bootloader_append:
 - rw
 
 #! runtime status
-modules_initrd: "/pkg/linux/x86_64-rhel-8.3/gcc-11/8cbd3a2c63383e4025b1b46444e51df916ff66d7/modules.cgz"
-bm_initrd: "/osimage/deps/debian-11.1-x86_64-20220510.cgz/run-ipconfig_20220515.cgz,/osimage/deps/debian-11.1-x86_64-20220510.cgz/lkp_20220513.cgz,/osimage/deps/debian-11.1-x86_64-20220510.cgz/rsync-rootfs_20220515.cgz,/osimage/deps/debian-11.1-x86_64-20220510.cgz/perf_20221127.cgz,/osimage/pkg/debian-11.1-x86_64-20220510.cgz/perf-x86_64-faf68e3523c2-1_20221127.cgz,/osimage/deps/debian-11.1-x86_64-20220510.cgz/vm-scalability_20220514.cgz,/osimage/pkg/debian-11.1-x86_64-20220510.cgz/vm-scalability-x86_64-1.0-0_20220518.cgz,/osimage/deps/debian-11.1-x86_64-20220510.cgz/mpstat_20220516.cgz,/osimage/deps/debian-11.1-x86_64-20220510.cgz/turbostat_20220514.cgz,/osimage/pkg/debian-11.1-x86_64-20220510.cgz/turbostat-x86_64-210e04ff7681-1_20220518.cgz,/osimage/pkg/debian-11.1-x86_64-20220510.cgz/sar-x86_64-c5bb321-1_20220518.cgz,/osimage/deps/debian-11.1-x86_64-20220510.cgz/hw_20220526.cgz"
+modules_initrd: "/pkg/linux/x86_64-rhel-8.3/gcc-11/6919cda8e0f127fe773cad2553f0648de1c48445/modules.cgz"
+bm_initrd: "/osimage/deps/debian-11.1-x86_64-20220510.cgz/run-ipconfig_20220515.cgz,/osimage/deps/debian-11.1-x86_64-20220510.cgz/lkp_20220513.cgz,/osimage/deps/debian-11.1-x86_64-20220510.cgz/rsync-rootfs_20220515.cgz,/osimage/deps/debian-11.1-x86_64-20220510.cgz/perf_20221209.cgz,/osimage/pkg/debian-11.1-x86_64-20220510.cgz/perf-x86_64-bce9332220bd-1_20221206.cgz,/osimage/deps/debian-11.1-x86_64-20220510.cgz/vm-scalability_20220514.cgz,/osimage/pkg/debian-11.1-x86_64-20220510.cgz/vm-scalability-x86_64-1.0-0_20220518.cgz,/osimage/deps/debian-11.1-x86_64-20220510.cgz/mpstat_20220516.cgz,/osimage/deps/debian-11.1-x86_64-20220510.cgz/turbostat_20220514.cgz,/osimage/pkg/debian-11.1-x86_64-20220510.cgz/turbostat-x86_64-210e04ff7681-1_20220518.cgz,/osimage/pkg/debian-11.1-x86_64-20220510.cgz/sar-x86_64-c5bb321-1_20220518.cgz,/osimage/deps/debian-11.1-x86_64-20220510.cgz/hw_20220526.cgz"
 ucode_initrd: "/osimage/ucode/intel-ucode-20220804.cgz"
 lkp_initrd: "/osimage/user/lkp/lkp-x86_64.cgz"
 site: inn
 
-#! /cephfs/db/releases/20221125091426/lkp-src/include/site/inn
+#! /db/releases/20221209185942/lkp-src/include/site/inn
 LKP_CGI_PORT: 80
 LKP_CIFS_PORT: 139
 oom-killer:
 watchdog:
-last_kernel: 6.1.0-rc6-10916-ga837755c58fc
-
-#! /cephfs/db/releases/20221127161702/lkp-src/include/site/inn
+last_kernel: 5.9.0-02772-gbd99d200e4b1b
 schedule_notify_address:
 
 #! user overrides
-kernel: "/pkg/linux/x86_64-rhel-8.3/gcc-11/8cbd3a2c63383e4025b1b46444e51df916ff66d7/vmlinuz-6.1.0-rc4-00005-g8cbd3a2c6338"
-dequeue_time: 2022-11-28 00:19:23.831175314 +08:00
-job_state: booting
+kernel: "/pkg/linux/x86_64-rhel-8.3/gcc-11/6919cda8e0f127fe773cad2553f0648de1c48445/vmlinuz-6.1.0-rc5-00020-g6919cda8e0f1"
+dequeue_time: 2022-12-10 22:27:37.712594603 +08:00
+job_state: running
 
---mTy4u7PHkNO9A32K
+--c/gGYUq7IJqfapPr
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
 Content-Disposition: inline
 
 
---mTy4u7PHkNO9A32K
+--c/gGYUq7IJqfapPr
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -7272,5 +7293,5 @@ V9fs-developer mailing list
 V9fs-developer@lists.sourceforge.net
 https://lists.sourceforge.net/lists/listinfo/v9fs-developer
 
---mTy4u7PHkNO9A32K--
+--c/gGYUq7IJqfapPr--
 
