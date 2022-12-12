@@ -2,123 +2,89 @@ Return-Path: <v9fs-developer-bounces@lists.sourceforge.net>
 X-Original-To: lists+v9fs-developer@lfdr.de
 Delivered-To: lists+v9fs-developer@lfdr.de
 Received: from lists.sourceforge.net (lists.sourceforge.net [216.105.38.7])
-	by mail.lfdr.de (Postfix) with ESMTPS id E154B6495A9
-	for <lists+v9fs-developer@lfdr.de>; Sun, 11 Dec 2022 19:28:38 +0100 (CET)
-Received: from [127.0.0.1] (helo=sfs-ml-1.v29.lw.sourceforge.com)
-	by sfs-ml-1.v29.lw.sourceforge.com with esmtp (Exim 4.95)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4D85E64A124
+	for <lists+v9fs-developer@lfdr.de>; Mon, 12 Dec 2022 14:35:54 +0100 (CET)
+Received: from [127.0.0.1] (helo=sfs-ml-2.v29.lw.sourceforge.com)
+	by sfs-ml-2.v29.lw.sourceforge.com with esmtp (Exim 4.95)
 	(envelope-from <v9fs-developer-bounces@lists.sourceforge.net>)
-	id 1p4R40-0005ze-1x;
-	Sun, 11 Dec 2022 18:28:36 +0000
+	id 1p4iyG-0008It-AD;
+	Mon, 12 Dec 2022 13:35:52 +0000
 Received: from [172.30.20.202] (helo=mx.sourceforge.net)
- by sfs-ml-1.v29.lw.sourceforge.com with esmtps (TLS1.2) tls
+ by sfs-ml-2.v29.lw.sourceforge.com with esmtps (TLS1.2) tls
  TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384 (Exim 4.95)
- (envelope-from <torvalds@linuxfoundation.org>) id 1p4R3m-0005zV-0N
+ (envelope-from <linux_oss@crudebyte.com>) id 1p4iyF-0008Ii-HI
  for v9fs-developer@lists.sourceforge.net;
- Sun, 11 Dec 2022 18:28:22 +0000
+ Mon, 12 Dec 2022 13:35:51 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=sourceforge.net; s=x; h=Content-Type:Cc:To:Subject:Message-ID:Date:From:
- In-Reply-To:References:MIME-Version:Sender:Reply-To:Content-Transfer-Encoding
- :Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+ d=sourceforge.net; s=x; h=Content-Type:Content-Transfer-Encoding:MIME-Version
+ :References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Sender:Reply-To:
+ Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
  Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
  List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=VcIjNZvmXhwLlIH4qzTb3os7YT1CTCX89zz+g7s11S8=; b=ejZ6v3cltdNU3owL6Ve9JwjVn0
- 7Jf5hQb34WUqUAFMvFx8Q6Z0pQSo9uocTyv1dm4vTR0pWIZ8kT5g3MXiUqWWmGRfhRoaHny/0X1M4
- rhUHTVy0trg3klpNuvrDdnIF2hN4+qRvwFZQWPBGgmQjhvA0QoTnJ65RfVQ+wU+22pEI=;
+ bh=HEmAqWujrVxNCQMKl7ptRdTCY1TyWIcI8oh1636jxcU=; b=ML4PPZbfXi/7GeTFAR7viy749r
+ vbk/sMQy41LG3I4FOGhGvMm0N527XRJE1cniyGgjnfjGcr9LDtGUS309ogEPUlKFreyBRx+bLhzTL
+ zoR0VZPTAYcpLIy+lYL47bQpDLiO+FKZfyfYL/y8iEH7ShKu4ozeWomiWWFkkGEz+ly4=;
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  ;
- h=Content-Type:Cc:To:Subject:Message-ID:Date:From:In-Reply-To:References:
- MIME-Version:Sender:Reply-To:Content-Transfer-Encoding:Content-ID:
+ h=Content-Type:Content-Transfer-Encoding:MIME-Version:References:
+ In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Sender:Reply-To:Content-ID:
  Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
  :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
  List-Post:List-Owner:List-Archive;
- bh=VcIjNZvmXhwLlIH4qzTb3os7YT1CTCX89zz+g7s11S8=; b=UxTmDhpmB399Ey6h4IJ7bIzI11
- SeZzVdbKvGZtMLINqUaR0QmORZZjnxsrvOU4GBpo8RZWyin1cvKAqj0VdZw+lRV35yHLeGEdS1KSb
- 9JzG0C6YVW68v+v5vTV8hC1fUVV5jYd8mgK/35iwILWS3jNvqZ0VGYC8ReGxkfhlWUJs=;
-Received: from mail-qt1-f182.google.com ([209.85.160.182])
- by sfi-mx-1.v28.lw.sourceforge.com with esmtps
- (TLS1.2:ECDHE-RSA-AES128-GCM-SHA256:128) (Exim 4.95)
- id 1p4R3f-00E1ha-K9 for v9fs-developer@lists.sourceforge.net;
- Sun, 11 Dec 2022 18:28:21 +0000
-Received: by mail-qt1-f182.google.com with SMTP id ay32so7380972qtb.11
- for <v9fs-developer@lists.sourceforge.net>;
- Sun, 11 Dec 2022 10:28:15 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=linux-foundation.org; s=google;
- h=cc:to:subject:message-id:date:from:in-reply-to:references
- :mime-version:from:to:cc:subject:date:message-id:reply-to;
- bh=VcIjNZvmXhwLlIH4qzTb3os7YT1CTCX89zz+g7s11S8=;
- b=MGBmNEXQ9KDFHMWkhfA16f3WXE9+n6bQWGbQ/WBcrwvvD7XGUxNJ4lULAQ4bF52hyX
- I45Gmp4HDqpBwWuXX3l+4nvpELR0hLZgp15u/sM1JcfxMioNWKmTXOmZ3q/OnbB9HyzY
- NTeZGgpA0T0hHbjbfhGwL2uIoepMHlEZ6wf+E=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20210112;
- h=cc:to:subject:message-id:date:from:in-reply-to:references
- :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
- :reply-to;
- bh=VcIjNZvmXhwLlIH4qzTb3os7YT1CTCX89zz+g7s11S8=;
- b=35gGP7/OL4irq+RfBNGR5L70/S3VTRCoePZCakUxFvbb0AzVbJrzUG528TEnQiRE4a
- kCKxzPXJd3EnOWWEK48OoNZGBhUJszWajKbYRcYMkkOkXz5PcKmScwkrvwN4XIbCLO3J
- RdI3ZCL7x0DLUfsOa1JBzRNkQz+wXHKGKR4gFI1SBtcjn8OVp1IyAbi9lVodKxxn01p8
- q4fuvlLu/weoQY4so7rndGQzHDRy4oV5W1S1UK4FFL5lBE3X+QPbmUZP2dpbAa+u8POI
- /ttq0VDBTu7kMAuPaAfWiZUphi85fkis2MqjPj45BIZ/O+s+phfJ0X7myRxKRfyPr5h0
- yU3w==
-X-Gm-Message-State: ANoB5pkIApcFjX7oi19tcmkGac9rdQDF0Ih7nR+vzK/5qbhT32L6jFgT
- QlXEMSgENH2vzLNNdI0rzT2hqY2ofKWyjsT/
-X-Google-Smtp-Source: AA0mqf6aihkyP16H3DDcTsV5uRtS7xBaBE4ZR9WmRA3gpGeS2zP9BTCv8NChyvyc2NQxRr6VgM5BVA==
-X-Received: by 2002:a05:622a:6108:b0:3a7:e838:11c8 with SMTP id
- hg8-20020a05622a610800b003a7e83811c8mr15718773qtb.45.1670783289400; 
- Sun, 11 Dec 2022 10:28:09 -0800 (PST)
-Received: from mail-qv1-f54.google.com (mail-qv1-f54.google.com.
- [209.85.219.54]) by smtp.gmail.com with ESMTPSA id
- e2-20020ac845c2000000b003a5c6ad428asm4456077qto.92.2022.12.11.10.28.05
- for <v9fs-developer@lists.sourceforge.net>
- (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Sun, 11 Dec 2022 10:28:07 -0800 (PST)
-Received: by mail-qv1-f54.google.com with SMTP id mn15so6830092qvb.13
- for <v9fs-developer@lists.sourceforge.net>;
- Sun, 11 Dec 2022 10:28:05 -0800 (PST)
-X-Received: by 2002:ad4:4101:0:b0:4b1:856b:4277 with SMTP id
- i1-20020ad44101000000b004b1856b4277mr70224982qvp.129.1670783284766; Sun, 11
- Dec 2022 10:28:04 -0800 (PST)
+ bh=HEmAqWujrVxNCQMKl7ptRdTCY1TyWIcI8oh1636jxcU=; b=QkdtVbBG5qR/Mk6Eg7MZre//ob
+ 6m4BMcbNjtVvPDJzdih/y3yyJP0LxKZEtib9KS3C2Sk497qfb6brQrgCdiT9vOGhrn3ii46GCXsAN
+ kDg4GSxok7Erl2ribHRa+BRgHwjSVEyNNoVCEtyW07ceTBLlK/X9aBcjm+q93Pt3trKo=;
+Received: from kylie.crudebyte.com ([5.189.157.229])
+ by sfi-mx-2.v28.lw.sourceforge.com with esmtps
+ (TLS1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.95)
+ id 1p4iyD-0005ev-Lh for v9fs-developer@lists.sourceforge.net;
+ Mon, 12 Dec 2022 13:35:51 +0000
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+ d=crudebyte.com; s=kylie; h=Content-Type:Content-Transfer-Encoding:
+ MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:
+ Content-ID:Content-Description;
+ bh=HEmAqWujrVxNCQMKl7ptRdTCY1TyWIcI8oh1636jxcU=; b=F52oo6ztaWYvJ/v3/RSAYaULwe
+ +PhRv7I8Uq6Uxxx5wQleZfm4qd0DEszRDRnwUFuRyd1mCPg6N1QdL+lhT4yFngIvLqlDsFb/125KD
+ nYJqUCjUtivSA2jcfebm8VXNRmBrNgJwg/tcy9i3yb98QArdi2kg2rNk/H++5IDOeEgJoiqwWlvsd
+ 8TCZfRN26Sx0hXUuBqPrXbylEwqk23t11R2Ap35ESplCj6kvro/Y2j0OgJz3DuQ0BiZ0sL+MxKy3i
+ UIqxxI4g2z7r0T3fp1KHm2IarvNkMnu/FjXESN/+T8iUgJDaVT2v/5qCy+FIZDtyIqcu088QMCv2i
+ bJ2FWmuZ0yQAFqwi0Yna+sVomriQbUda2ltppEUsYn9ZdaglMW6/CAuAuLxwm8cY5D32NaF6ls1nA
+ ZSDtjEb/vUh34DBx7EwH4YQbAmCFenGX2R61xXdnyl7dUUvxr1yigzTljr43MxdM4b4OW/7hkGK7Q
+ 5uegmpdk+9SI7ptFLMPeh8gmRNtkdtBZvUEUJ8j7vS0OHxcV6XaX/MNkLOyBUV7lSTjQC0e2W0Amo
+ W+7973zZnAV0WsQ8AQfzVo/I7d5cA743t4tWaypgry7de6kHliQ7TN+E0GMus+oGGIRO12fKO/UPC
+ SRwYFgKvHxZJF7k/ExW+XoWuQv6dZ1SuuQfSS3W10=;
+To: Dominique Martinet <asmadeus@codewreck.org>
+Date: Mon, 12 Dec 2022 14:35:39 +0100
+Message-ID: <21422678.bhv4C0q8Fj@silver>
+In-Reply-To: <20221210001044.534859-1-asmadeus@codewreck.org>
+References: <20221210001044.534859-1-asmadeus@codewreck.org>
 MIME-Version: 1.0
-References: <202212112131.994277de-oliver.sang@intel.com>
-In-Reply-To: <202212112131.994277de-oliver.sang@intel.com>
-From: Linus Torvalds <torvalds@linux-foundation.org>
-Date: Sun, 11 Dec 2022 10:27:48 -0800
-X-Gmail-Original-Message-ID: <CAHk-=wipgS=05hJdztC8sJj01wpxMKQ67tV53UyFa2WtZ93o5A@mail.gmail.com>
-Message-ID: <CAHk-=wipgS=05hJdztC8sJj01wpxMKQ67tV53UyFa2WtZ93o5A@mail.gmail.com>
-To: kernel test robot <oliver.sang@intel.com>
-X-Spam-Score: 0.2 (/)
+X-Spam-Score: -0.2 (/)
 X-Spam-Report: Spam detection software,
- running on the system "util-spamd-1.v13.lw.sourceforge.com", 
+ running on the system "util-spamd-2.v13.lw.sourceforge.com", 
  has NOT identified this incoming email as spam.  The original
  message has been attached to this so you can view it or label
  similar future email.  If you have any questions, see
  the administrator of that system for details.
- Content preview:  The disassembly isn't great, because the test robot doesn't
- try to find where the instructions start, but before that > 4: 48 8b 57 18
- mov 0x18(%rdi),%rdx instruction we also had a 
- Content analysis details:   (0.2 points, 6.0 required)
+ Content preview:  On Saturday, December 10,
+ 2022 1:10:44 AM CET Dominique Martinet
+ wrote: > The request receiving thread writes into request then marks the
+ request > valid in p9_client_cb by setting status after a writ [...] 
+ Content analysis details:   (-0.2 points, 6.0 required)
  pts rule name              description
  ---- ---------------------- --------------------------------------------------
- -0.0 RCVD_IN_DNSWL_NONE     RBL: Sender listed at https://www.dnswl.org/,
- no trust [209.85.160.182 listed in list.dnswl.org]
- 0.0 RCVD_IN_MSPIKE_H3      RBL: Good reputation (+3)
- [209.85.160.182 listed in wl.mailspike.net]
- 0.0 SPF_HELO_NONE          SPF: HELO does not publish an SPF Record
- 0.2 HEADER_FROM_DIFFERENT_DOMAINS From and EnvelopeFrom 2nd level
- mail domains are different
  -0.0 SPF_PASS               SPF: sender matches SPF record
- -0.1 DKIM_VALID_AU          Message has a valid DKIM or DK signature from
- author's domain
+ 0.0 SPF_HELO_NONE          SPF: HELO does not publish an SPF Record
+ -0.1 DKIM_VALID_EF          Message has a valid DKIM or DK signature from
+ envelope-from domain
  0.1 DKIM_SIGNED            Message has a DKIM or DK signature, not necessarily
  valid
  -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
- 0.0 RCVD_IN_MSPIKE_WL      Mailspike good senders
-X-Headers-End: 1p4R3f-00E1ha-K9
-Subject: Re: [V9fs-developer]
- [ammarfaizi2-block:dhowells/linux-fs/fscache-fixes] [mm, netfs,
- fscache] 6919cda8e0: canonical_address#:#[##]
+ -0.1 DKIM_VALID_AU          Message has a valid DKIM or DK signature from
+ author's domain
+X-Headers-End: 1p4iyD-0005ev-Lh
+Subject: Re: [V9fs-developer] [PATCH] 9p/virtio: add a read barrier in
+ p9_virtio_zc_request
 X-BeenThere: v9fs-developer@lists.sourceforge.net
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -130,114 +96,63 @@ List-Post: <mailto:v9fs-developer@lists.sourceforge.net>
 List-Help: <mailto:v9fs-developer-request@lists.sourceforge.net?subject=help>
 List-Subscribe: <https://lists.sourceforge.net/lists/listinfo/v9fs-developer>, 
  <mailto:v9fs-developer-request@lists.sourceforge.net?subject=subscribe>
-Cc: Shyam Prasad N <nspmangalore@gmail.com>, Steve French <sfrench@samba.org>,
- samba-technical@lists.samba.org, lkp@intel.com,
- Ammar Faizi <ammarfaizi2@gnuweeb.org>,
- Rohith Surabattula <rohiths.msft@gmail.com>, linux-cifs@vger.kernel.org,
- Dave Wysochanski <dwysocha@redhat.com>, ceph-devel@vger.kernel.org,
- Matthew Wilcox <willy@infradead.org>, linux-afs@lists.infradead.org,
- David Howells <dhowells@redhat.com>, linux-fsdevel@vger.kernel.org,
- linux-cachefs@redhat.com, GNU/Weeb Mailing List <gwml@vger.gnuweeb.org>,
- oe-lkp@lists.linux.dev, v9fs-developer@lists.sourceforge.net,
- Ilya Dryomov <idryomov@gmail.com>, linux-mm@kvack.org
+From: Christian Schoenebeck via V9fs-developer
+ <v9fs-developer@lists.sourceforge.net>
+Reply-To: Christian Schoenebeck <linux_oss@crudebyte.com>
+Cc: v9fs-developer@lists.sourceforge.net, Marco Elver <elver@google.com>,
+ linux-kernel@vger.kernel.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: v9fs-developer-bounces@lists.sourceforge.net
 
-The disassembly isn't great, because the test robot doesn't try to
-find where the instructions start, but before that
+On Saturday, December 10, 2022 1:10:44 AM CET Dominique Martinet wrote:
+> The request receiving thread writes into request then marks the request
+> valid in p9_client_cb by setting status after a write barrier.
+> 
+> p9_virtio_zc_request must like p9_client_rpc issue a read barrier after
+> getting notified of the new request status before reading other request
+> files.
+> 
+> (This has been noticed while fixing the usage of READ/WRITE_ONCE macros
+> for request status)
+> 
+> Link: https://lkml.kernel.org/r/167052961.MU3OA6Uzks@silver
+> Reported-by: Christian Schoenebeck <linux_oss@crudebyte.com>
+> Signed-off-by: Dominique Martinet <asmadeus@codewreck.org>
+> ---
+>  net/9p/trans_virtio.c | 6 ++++++
+>  1 file changed, 6 insertions(+)
+> 
+> diff --git a/net/9p/trans_virtio.c b/net/9p/trans_virtio.c
+> index 3c27ffb781e3..98425c63b3c3 100644
+> --- a/net/9p/trans_virtio.c
+> +++ b/net/9p/trans_virtio.c
+> @@ -533,6 +533,12 @@ p9_virtio_zc_request(struct p9_client *client, struct p9_req_t *req,
+>  	p9_debug(P9_DEBUG_TRANS, "virtio request kicked\n");
+>  	err = wait_event_killable(req->wq,
+>  			          READ_ONCE(req->status) >= REQ_STATUS_RCVD);
+> +
+> +	/* Make sure our req is coherent with regard to updates in other
+> +	 * threads - echoes to wmb() in the callback like p9_client_rpc
+> +	 */
+> +	smp_rmb();
+> +
 
->    4:   48 8b 57 18             mov    0x18(%rdi),%rdx
+Oh, I had p9_client_zc_rpc() for this in mind, but I see why you chose this
+place in p9_virtio_zc_request() instead. LGTM
 
-instruction we also had a
+I also made some tests to check whether this barrier would hurt performance,
+but I measured no difference. So this should be good to go:
 
-      mov    (%rdi),%rax
+Reviewed-by: Christian Schoenebeck <linux_oss@crudebyte.com>
 
-and it looks like this is the very top of 'filemap_release_folio()',
-so '%rdi' contains the folio pointer coming into this.
+>  	// RERROR needs reply (== error string) in static data
+>  	if (READ_ONCE(req->status) == REQ_STATUS_RCVD &&
+>  	    unlikely(req->rc.sdata[4] == P9_RERROR))
+> 
 
-End result:
 
-On Sun, Dec 11, 2022 at 6:27 AM kernel test robot <oliver.sang@intel.com> wrote:
->
->    4:   48 8b 57 18             mov    0x18(%rdi),%rdx
->    8:   83 e0 01                and    $0x1,%eax
->    b:   74 59                   je     0x66
 
-The
-
-    and    $0x1,%eax
-    je     0x66
-
-above is the test for
-
-    BUG_ON(!folio_test_locked(folio));
-
-where it's jumping out to the 'ud2' in case the lock bit (bit #0) isn't set.
-
-Then we have this:
-
->    d:   48 f7 07 00 60 00 00    testq  $0x6000,(%rdi)
->   14:   74 22                   je     0x38
-
-Which is testing PG_private | PG_private2, and jumping out (which we
-also don't do) if neither is set.
-
-And then we have:
-
->   16:   48 8b 07                mov    (%rdi),%rax
->   19:   f6 c4 80                test   $0x80,%ah
->   1c:   75 32                   jne    0x50
-
-Which is checking for PG_writeback.
-
-So then we get to
-
-    if (mapping && mapping->a_ops->release_folio)
-            return mapping->a_ops->release_folio(folio, gfp);
-
-which is this:
-
->   1e:   48 85 d2                test   %rdx,%rdx
->   21:   74 34                   je     0x57
-
-This %rdx value is the early load from the top of the function, it's
-checking 'mapping' for NULL.
-
-It's not NULL, but it's some odd value according to the oops report:
-
-  RDX: ffff889f03987f71
-
-which doesn't look like it's valid (well, it's a valid kernel pointer,
-but it's not aligned like a 'mapping' pointer should be.
-
-So now when we're going to load 'a_ops' from there, we load another
-garbage value:
-
->   23:   48 8b 82 90 00 00 00    mov    0x90(%rdx),%rax
-
-and we now have RAX: b000000000000000
-
-and then the 'a_ops->release_folio' access will trap:
-
->   2a:*  48 8b 40 48             mov    0x48(%rax),%rax          <-- trapping instruction
->   2e:   48 85 c0                test   %rax,%rax
->   31:   74 24                   je     0x57
-
-The above is the "load a_ops->release_folio and test it for NULL", but
-the load took a page fault because RAX was garbage.
-
-But RAX was garbage because we already had a bogus "mapping" pointer earlier.
-
-Now, why 'mapping' was bogus, I don't know. Maybe that page wasn't a
-page cache page at all? The mapping field is in a union and can
-contain other things.
-
-So I have no explanation for the oops, but I thought I'd just post the
-decoding of the instruction stream in case that helps somebody else to
-figure it out.
-
-                 Linus
 
 
 _______________________________________________
