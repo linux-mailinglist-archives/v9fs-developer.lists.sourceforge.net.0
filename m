@@ -2,53 +2,53 @@ Return-Path: <v9fs-developer-bounces@lists.sourceforge.net>
 X-Original-To: lists+v9fs-developer@lfdr.de
 Delivered-To: lists+v9fs-developer@lfdr.de
 Received: from lists.sourceforge.net (lists.sourceforge.net [216.105.38.7])
-	by mail.lfdr.de (Postfix) with ESMTPS id 929F264F82D
-	for <lists+v9fs-developer@lfdr.de>; Sat, 17 Dec 2022 09:21:19 +0100 (CET)
-Received: from [127.0.0.1] (helo=sfs-ml-1.v29.lw.sourceforge.com)
-	by sfs-ml-1.v29.lw.sourceforge.com with esmtp (Exim 4.95)
+	by mail.lfdr.de (Postfix) with ESMTPS id 35B4B64F861
+	for <lists+v9fs-developer@lfdr.de>; Sat, 17 Dec 2022 10:08:38 +0100 (CET)
+Received: from [127.0.0.1] (helo=sfs-ml-4.v29.lw.sourceforge.com)
+	by sfs-ml-4.v29.lw.sourceforge.com with esmtp (Exim 4.95)
 	(envelope-from <v9fs-developer-bounces@lists.sourceforge.net>)
-	id 1p6SRZ-00034q-5Z;
-	Sat, 17 Dec 2022 08:21:17 +0000
+	id 1p6TBL-0003Kr-AB;
+	Sat, 17 Dec 2022 09:08:35 +0000
 Received: from [172.30.20.202] (helo=mx.sourceforge.net)
- by sfs-ml-1.v29.lw.sourceforge.com with esmtps (TLS1.2) tls
+ by sfs-ml-4.v29.lw.sourceforge.com with esmtps (TLS1.2) tls
  TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384 (Exim 4.95)
- (envelope-from <Support-Netflix.de@de.ipshu.de>) id 1p6SRT-00032x-6G
+ (envelope-from <Support-Netflix.de@de.ipshu.de>) id 1p6TBB-0003KY-Vw
  for v9fs-developer@lists.sourceforge.net;
- Sat, 17 Dec 2022 08:21:11 +0000
+ Sat, 17 Dec 2022 09:08:25 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
  d=sourceforge.net; s=x; h=Content-Transfer-Encoding:Content-Type:MIME-Version
  :Message-ID:From:Date:Subject:To:Sender:Reply-To:Cc:Content-ID:
  Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
  :Resent-Message-ID:In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:
  List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=m7H5/UxniykAorrobXCceNCgiDmh+ekuvsIY6RajkgI=; b=mvDugaubbfVeJnzEmW0hGVuNOz
- J5s+LUg98Xrp4txx9jtnC4+ZY0xFnbpOxvEfmEcFqIzY69mI+qSvu8AGZyoO6VW4wji+P3boVoReS
- 97nTolX+zadO4Y/kr0DVlMgvANLaPwyRtO3Fof8DQ961Jhz5Bte+otvJ0WZ2zXvVBteI=;
+ bh=H9aF9sLKG3tfUFkGEAe8JVHeZe3sJIiohMILXx59ghQ=; b=dnZf2orOIgbOUL8ykCmpvW1DLa
+ tLHzCJtCVflz8fpsZFlu4FE8e3QnfiDq+g6BDKw1F317AmIVU9D0dZRHj1Xkz2CzYx6c8TDITRft5
+ Dss5bsSbSBovXeCGgGk6SZ9Cdk/5WcThTdWWy3a4Cev/TneCIjTeSI1L7WvxJ1jgiGOo=;
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  ;
  h=Content-Transfer-Encoding:Content-Type:MIME-Version:Message-ID:From:Date:
  Subject:To:Sender:Reply-To:Cc:Content-ID:Content-Description:Resent-Date:
  Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:
  References:List-Id:List-Help:List-Unsubscribe:List-Subscribe:List-Post:
- List-Owner:List-Archive; bh=m7H5/UxniykAorrobXCceNCgiDmh+ekuvsIY6RajkgI=; b=j
- NpHnRqLWjUR/HFRXzfRG8ZU5s6tqRy5TmiZiQpI+glL6d5VXdPA6GCVLs8irLvsCWWz12XQ22y3tw
- KB6P98TIIDemZGlWcoSGcollThpK+oJUuRftpWm6Jczo6SDv09AtJFGrTPL78UuIJHVnPIx5l2vBW
- Z5y4Wpwgc7H09Xew=;
-Received: from host.zekisolutions.com ([182.18.176.252])
- by sfi-mx-2.v28.lw.sourceforge.com with esmtps
+ List-Owner:List-Archive; bh=H9aF9sLKG3tfUFkGEAe8JVHeZe3sJIiohMILXx59ghQ=; b=b
+ noM/xG0E+ZTiQsRFfPosxacZZeYKrrpFmxTOLsK6x1ctZya4Z4Uc/CcL8MiQLa0rkNiVpVKMXIzla
+ qT9FWNV/xhMSUS6d4/LxirxoaJHYoMFG1hCmNSrF3tL66z9C4hqGsLEpJ72DN/uOH8UbH7XMRbRaO
+ phm1kRaOFNK+7z5Q=;
+Received: from [182.18.176.252] (helo=host.zekisolutions.com)
+ by sfi-mx-1.v28.lw.sourceforge.com with esmtps
  (TLS1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.95)
- id 1p6SRM-0002dR-5d for v9fs-developer@lists.sourceforge.net;
- Sat, 17 Dec 2022 08:21:11 +0000
+ id 1p6TB9-002MRZ-FM for v9fs-developer@lists.sourceforge.net;
+ Sat, 17 Dec 2022 09:08:25 +0000
 Received: from dsblocks by host.zekisolutions.com with local (Exim 4.95)
- (envelope-from <Support-Netflix.de@de.ipshu.de>) id 1p6SR8-000Dcx-64
+ (envelope-from <Support-Netflix.de@de.ipshu.de>) id 1p6R3o-000AgY-DZ
  for v9fs-developer@lists.sourceforge.net;
- Sat, 17 Dec 2022 13:50:50 +0530
+ Sat, 17 Dec 2022 12:22:40 +0530
 To: v9fs-developer@lists.sourceforge.net
 X-PHP-Script: www.3dsblocks.com/wp-content/9P7tiqGfhvd.php for 196.75.205.8
 X-PHP-Originating-Script: 1016:9P7tiqGfhvd.php
-Date: Sat, 17 Dec 2022 08:20:50 +0000
+Date: Sat, 17 Dec 2022 06:52:40 +0000
 From: NETFLIX <Support-Netflix.de@de.ipshu.de>
-Message-ID: <e1327dc1f5eda64adfc86c1e66a74192@www.3dsblocks.com>
+Message-ID: <7d54d267f8abb4c6524b41ff09111178@www.3dsblocks.com>
 MIME-Version: 1.0
 X-AntiAbuse: This header was added to track abuse,
  please include it with any abuse report
@@ -60,39 +60,40 @@ X-Get-Message-Sender-Via: host.zekisolutions.com: authenticated_id:
  dsblocks/only user confirmed/virtual account not confirmed
 X-Authenticated-Sender: host.zekisolutions.com: dsblocks
 X-Source: 
-X-Source-Args: /opt/cpanel/ea-php70/root/usr/bin/php-cgi
- /home/dsblocks/public_html/wp-content/9P7tiqGfhvd.php 
-X-Source-Dir: 3dsblocks.com:/public_html/wp-content
-X-Spam-Score: 4.2 (++++)
+X-Source-Args: 
+X-Source-Dir: 
+X-Spam-Score: 6.5 (++++++)
 X-Spam-Report: Spam detection software,
- running on the system "util-spamd-1.v13.lw.sourceforge.com", 
- has NOT identified this incoming email as spam.  The original
+ running on the system "util-spamd-2.v13.lw.sourceforge.com", 
+ has identified this incoming email as possible spam.  The original
  message has been attached to this so you can view it or label
  similar future email.  If you have any questions, see
  the administrator of that system for details.
  Content preview:  NETFLIX Dear customer ,. We recently failed to verify your
  payment information. We therefore need to ask you to complete verification
  of your billing and payment details. 
- Content analysis details:   (4.2 points, 6.0 required)
+ Content analysis details:   (6.5 points, 6.0 required)
  pts rule name              description
  ---- ---------------------- --------------------------------------------------
- 0.0 URIBL_RED              Contains an URL listed in the URIBL redlist
- [URIs: loteamentobuonavitaitu.fun]
  0.4 NO_DNS_FOR_FROM        DNS: Envelope sender has no MX or A DNS records
- -0.0 RCVD_IN_MSPIKE_H2      RBL: Average reputation (+2)
- [182.18.176.252 listed in wl.mailspike.net]
- 0.0 SPF_HELO_NONE          SPF: HELO does not publish an SPF Record
- 2.0 PDS_OTHER_BAD_TLD      Untrustworthy TLDs
+ 0.0 T_PDS_OTHER_BAD_TLD    Untrustworthy TLDs
  [URI: loteamentobuonavitaitu.fun] [(fun)]
+ 0.0 SPF_HELO_NONE          SPF: HELO does not publish an SPF Record
  0.8 DKIM_ADSP_NXDOMAIN     No valid author signature and domain not in
  DNS
  0.0 SPF_NONE               SPF: sender does not publish an SPF Record
- 0.0 HTML_MESSAGE           BODY: HTML included in message
  0.0 HTML_FONT_LOW_CONTRAST BODY: HTML font color similar or
  identical to background
+ 0.0 HTML_MESSAGE           BODY: HTML included in message
+ -0.0 RCVD_IN_MSPIKE_H2      RBL: Average reputation (+2)
+ [182.18.176.252 listed in wl.mailspike.net]
+ 0.0 URIBL_RED              Contains an URL listed in the URIBL redlist
+ [URIs: loteamentobuonavitaitu.fun]
+ 1.3 RDNS_NONE Delivered to internal network by a host with no rDNS
  1.0 URI_WP_DIRINDEX        URI for compromised WordPress site, possible
- malware 0.0 PHP_SCRIPT             Sent by PHP script
-X-Headers-End: 1p6SRM-0002dR-5d
+ malware 2.5 PHP_SCRIPT             Sent by PHP script
+ 0.6 NORDNS_LOW_CONTRAST    No rDNS + hidden text
+X-Headers-End: 1p6TB9-002MRZ-FM
 X-Content-Filtered-By: Mailman/MimeDel 2.1.21
 Subject: [V9fs-developer] Please update your payment method!
 X-BeenThere: v9fs-developer@lists.sourceforge.net
