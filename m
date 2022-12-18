@@ -2,123 +2,111 @@ Return-Path: <v9fs-developer-bounces@lists.sourceforge.net>
 X-Original-To: lists+v9fs-developer@lfdr.de
 Delivered-To: lists+v9fs-developer@lfdr.de
 Received: from lists.sourceforge.net (lists.sourceforge.net [216.105.38.7])
-	by mail.lfdr.de (Postfix) with ESMTPS id 944636502AC
-	for <lists+v9fs-developer@lfdr.de>; Sun, 18 Dec 2022 17:50:38 +0100 (CET)
-Received: from [127.0.0.1] (helo=sfs-ml-1.v29.lw.sourceforge.com)
-	by sfs-ml-1.v29.lw.sourceforge.com with esmtp (Exim 4.95)
+	by mail.lfdr.de (Postfix) with ESMTPS id E14C0650487
+	for <lists+v9fs-developer@lfdr.de>; Sun, 18 Dec 2022 20:47:45 +0100 (CET)
+Received: from [127.0.0.1] (helo=sfs-ml-4.v29.lw.sourceforge.com)
+	by sfs-ml-4.v29.lw.sourceforge.com with esmtp (Exim 4.95)
 	(envelope-from <v9fs-developer-bounces@lists.sourceforge.net>)
-	id 1p6ws0-0007Dh-W9;
-	Sun, 18 Dec 2022 16:50:36 +0000
+	id 1p6zdO-000716-3f;
+	Sun, 18 Dec 2022 19:47:42 +0000
 Received: from [172.30.20.202] (helo=mx.sourceforge.net)
- by sfs-ml-1.v29.lw.sourceforge.com with esmtps (TLS1.2) tls
+ by sfs-ml-4.v29.lw.sourceforge.com with esmtps (TLS1.2) tls
  TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384 (Exim 4.95)
- (envelope-from <rminnich@gmail.com>) id 1p6ws0-0007DV-00
+ (envelope-from <asmadeus@codewreck.org>) id 1p6zdC-00070q-5X
  for v9fs-developer@lists.sourceforge.net;
- Sun, 18 Dec 2022 16:50:36 +0000
+ Sun, 18 Dec 2022 19:47:30 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=sourceforge.net; s=x; h=Content-Type:Cc:To:Subject:Message-ID:Date:From:
- In-Reply-To:References:MIME-Version:Sender:Reply-To:Content-Transfer-Encoding
- :Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+ d=sourceforge.net; s=x; h=In-Reply-To:Content-Type:MIME-Version:References:
+ Message-ID:Subject:Cc:To:From:Date:Sender:Reply-To:Content-Transfer-Encoding:
+ Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
  Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
  List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=42b3fdhEBg2v19wxwmXhgF09WsLett0qlVLsU9Y6mZk=; b=CjeR6Ze7HSEmCHofdz5ZJEBoZN
- N2gamwoJ48BLGBiKT0p3SbV9UaeB+HhhWRAfxw8uYqwGCxY05zuPFyDjGgG+d3Wk50OnRja9kMVjs
- ESWm2EqdVyBahNqOdFh2jh7Y4kosRkhUJMcGSbMQJWzRw+Bz4VP/IW1shKMEik7vb4Jo=;
+ bh=Yu3PGd7/R0vNpUqHyhroP64tzfAp/2f6p+c45XHWGyo=; b=Vu+zu0GcxiN/OZTU9VciBK4R6N
+ svyaTnWnpa5/zybNzkHxw/AILiiSIETr4qvB/NToasHpUI5hG0N7GEYRiRv6Dd73LhxP6NgUf2Y2W
+ ZhE+mT1xBaxGAJZkJqxxnwA8vPsczjKM/oURVqqGFgE4Ssx6Gt0oMnhN6o+N2/Yuypoc=;
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  ;
- h=Content-Type:Cc:To:Subject:Message-ID:Date:From:In-Reply-To:References:
- MIME-Version:Sender:Reply-To:Content-Transfer-Encoding:Content-ID:
+ h=In-Reply-To:Content-Type:MIME-Version:References:Message-ID:Subject:Cc:To
+ :From:Date:Sender:Reply-To:Content-Transfer-Encoding:Content-ID:
  Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
  :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
  List-Post:List-Owner:List-Archive;
- bh=42b3fdhEBg2v19wxwmXhgF09WsLett0qlVLsU9Y6mZk=; b=RShY4YO8cq9/tMAz4fb5IDDXa5
- uF64ZnLhnMoE0TdLftuoVWUCADyjRgapCU00ruomjcA3syJ2YWjUKudZzK+VoJ4IrWD3g60AlwfY7
- gXPDe1mv/RWENin4hKhTJuTPf1Orb+p8xbCNpuvDOHgvaEsB81+d58dc3xr65YYLIo4o=;
-Received: from mail-qk1-f178.google.com ([209.85.222.178])
+ bh=Yu3PGd7/R0vNpUqHyhroP64tzfAp/2f6p+c45XHWGyo=; b=iVL9lxERAVwid6ecXnEeU1XqdJ
+ L20s+7wStSasqT9ZC2QJLrX2DK6DsA4vAhIP695vdJDGeRIksn6Rl0HR0HaMPdTGhkmxwCqe5lxpR
+ 8oimBR1LrcjZfApqfaLIJtu91WPfiPZuJKEgB6wf4F3375XBGVJounBapoF5S/mV+uHA=;
+Received: from nautica.notk.org ([91.121.71.147])
  by sfi-mx-2.v28.lw.sourceforge.com with esmtps
- (TLS1.2:ECDHE-RSA-AES128-GCM-SHA256:128) (Exim 4.95)
- id 1p6wrz-0002tC-3o for v9fs-developer@lists.sourceforge.net;
- Sun, 18 Dec 2022 16:50:35 +0000
-Received: by mail-qk1-f178.google.com with SMTP id a25so2832277qkl.12
- for <v9fs-developer@lists.sourceforge.net>;
- Sun, 18 Dec 2022 08:50:35 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
- h=cc:to:subject:message-id:date:from:in-reply-to:references
- :mime-version:from:to:cc:subject:date:message-id:reply-to;
- bh=42b3fdhEBg2v19wxwmXhgF09WsLett0qlVLsU9Y6mZk=;
- b=AfOz+ThydYZV5MJ37TbSqZSrAH99FriljmAiEkE/jw1hYp0ZgXdUJ94/7hVsbbNuz4
- 2v0x1nbtacF5dGHU6FfvdU7ma4ldOHSLdkUOe2Q/dgXAI67iL9ODPBrvajuQcYE5uS4W
- Qs7G4d0CaYrd4jjZuk+2KJDhQhmndI4W2htTmPEKFP2TfT8SX5akNOE8LwKXssu0YkUC
- ZsbkOnLHE2h62U9l+lrZ9hTZB4KnSb8ycb4EEzFaFQF0gv3rOSG80BL40sffbb4hYKUx
- dvOFGYvg64se7q4UvtX1LHEEKjPEMvKda3LDRXU9thYhB10eOR8h/PbmsiWnDQSU6GWN
- Sgqw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20210112;
- h=cc:to:subject:message-id:date:from:in-reply-to:references
- :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
- :reply-to;
- bh=42b3fdhEBg2v19wxwmXhgF09WsLett0qlVLsU9Y6mZk=;
- b=PCY5UyLdzCN751i/4rSNYAZxNsB3f4r+0SR5e4FuF8GKCAIrxIg8p6Rwtjk3uPDAsp
- mEogOlYb16bVWY72EWhp2v/uq2wU0Q7M2xoFtOTefz2tXa5Edi6Ny603GOP9k1i3Ftir
- 4AgZLBwnPHneOkcthxWFUw4uGW6i3k9S1pQ3hbEmZ5BRHfUVW+z+6RLACjk28ZgkckSG
- kRlWUZdTV3luJNnfGWatvbQVI/GP+InQlktQeG4HFJsbguxtWcu3SuIJPg5C4IFLeuam
- yOHoBoBfrGKDdC52sFMAOhIhSdkI3EwyfAOpegU69FAZtDDkYmflPOBpvEkbK9HhWiN7
- U5qA==
-X-Gm-Message-State: ANoB5plUwY7kDpr7TERyxPRa9k/AP7EeBJmnNpHs0PSnzpvMgYvAbVzC
- 2OvGPjHot9kgoulen++MP/VNb549cczg+q1V4bI=
-X-Google-Smtp-Source: AA0mqf7D4lbaMtOJ9y6jfxtwVWTbTb5PCAKHth15uUDYnalsGzBrVGtw5rzoA7Les78r0YKer8O2QJGGuu9FnvkUlig=
-X-Received: by 2002:ae9:eb96:0:b0:6fe:b1ae:29a9 with SMTP id
- b144-20020ae9eb96000000b006feb1ae29a9mr16653683qkg.305.1671382229097; Sun, 18
- Dec 2022 08:50:29 -0800 (PST)
-MIME-Version: 1.0
+ (TLS1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.95)
+ id 1p6zcz-0001JF-10 for v9fs-developer@lists.sourceforge.net;
+ Sun, 18 Dec 2022 19:47:24 +0000
+Received: by nautica.notk.org (Postfix, from userid 108)
+ id 4EE4BC01E; Sun, 18 Dec 2022 20:47:17 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=codewreck.org; s=2;
+ t=1671392837; bh=Yu3PGd7/R0vNpUqHyhroP64tzfAp/2f6p+c45XHWGyo=;
+ h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+ b=sjkJqnkxzqA0kr0fL1xuo1sL/rP2NFZg4xG1hhlNkmCULZ0uPIuj4uU/OTDcvuqjj
+ vQT9ceEYolAYoLdBOCsn9mcAptMqcZSLTokucGEtuHrnmmEJa6sd4t0Kkw8HUbsbzg
+ O02maKONKpYCul+LZYbt2MLsWVE62fdUEkHAIvkl+3hsdh9G+ojWOtO4zP6OJ4WiZ+
+ rhPs4zKX2XmwfD1J8HcGXbQFBLaXqf9xXghT3IAdgL4w/TBBXqULmwAfiCs/tx3/8P
+ Tqb24sOmdZGpmDNgLjbzFdyGuOzjjkTX96nHB5HiGwpiGlJY3CBXjc9QmdcciXhI7m
+ VVdoLIgRxj4sg==
+X-Spam-Checker-Version: SpamAssassin 3.3.2 (2011-06-06) on nautica.notk.org
+X-Spam-Level: 
+X-Spam-Status: No, score=0.0 required=5.0 tests=UNPARSEABLE_RELAY
+ autolearn=unavailable version=3.3.2
+Received: from odin.codewreck.org (localhost [127.0.0.1])
+ by nautica.notk.org (Postfix) with ESMTPS id 32E47C009;
+ Sun, 18 Dec 2022 20:47:13 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=codewreck.org; s=2;
+ t=1671392836; bh=Yu3PGd7/R0vNpUqHyhroP64tzfAp/2f6p+c45XHWGyo=;
+ h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+ b=SmgJqAMVCUcHsTFWdwG1Sv43aZ+Oncsdi0p+RYThslGjfadRWU3s7YHmQwmslCxjT
+ zU5SagpmLAZhphkzI53IPBjp3iGl2wqtm2n/7mtg6vg10JM/wX642WFYVHQ2yX2qNn
+ AOyXl0FtWckAG8J0tiWUEM39dSd9MjL3KFgWYscba5/iQJZAciEjUjgchUzyAYyJqv
+ q2Q/GvJVYFxCfqx1XtvBe3COXmCOHZKCocO5XNRzNTMRTy+7xhbIYDh395WPl9ctv8
+ t+/jThkywrAy0uD2366wstQNkjjZZjrA/0ti9Ms87HwOX0+4ovY/1bddZgLHmg34P2
+ 5Vzna0MrkOrmg==
+Received: from localhost (odin.codewreck.org [local])
+ by odin.codewreck.org (OpenSMTPD) with ESMTPA id 1ccad86e;
+ Sun, 18 Dec 2022 19:46:58 +0000 (UTC)
+Date: Mon, 19 Dec 2022 04:46:43 +0900
+From: asmadeus@codewreck.org
+To: ron minnich <rminnich@gmail.com>
+Message-ID: <Y59uIwoECw0yHhf1@codewreck.org>
 References: <20221217185210.1431478-1-evanhensbergen@icloud.com>
  <20221217185210.1431478-2-evanhensbergen@icloud.com>
  <4530979.Ltmge6kleC@silver>
  <CAFkjPTmoQvzaSsSOAgM9_0+knudWsdi8=TnMOTXZj05hT6tneQ@mail.gmail.com>
  <51FD8D16-4070-4DCF-AEB5-11640A82762E@icloud.com>
-In-Reply-To: <51FD8D16-4070-4DCF-AEB5-11640A82762E@icloud.com>
-From: ron minnich <rminnich@gmail.com>
-Date: Sun, 18 Dec 2022 08:50:18 -0800
-Message-ID: <CAP6exY+BF+1fjjUKX20vvbTZXiZ2gxUN3zc8+ZaHTY-aX6fRFQ@mail.gmail.com>
-To: evanhensbergen@icloud.com
+ <CAP6exY+BF+1fjjUKX20vvbTZXiZ2gxUN3zc8+ZaHTY-aX6fRFQ@mail.gmail.com>
+MIME-Version: 1.0
+Content-Disposition: inline
+In-Reply-To: <CAP6exY+BF+1fjjUKX20vvbTZXiZ2gxUN3zc8+ZaHTY-aX6fRFQ@mail.gmail.com>
 X-Spam-Score: -0.2 (/)
-X-Spam-Report: Spam detection software, running on the system "util-spamd-1.v13.lw.sourceforge.com",
+X-Spam-Report: Spam detection software,
+ running on the system "util-spamd-1.v13.lw.sourceforge.com", 
  has NOT identified this incoming email as spam.  The original
  message has been attached to this so you can view it or label
  similar future email.  If you have any questions, see
  the administrator of that system for details.
- 
- Content preview:  it's fine. tbh, I doubt the fact that you were fetching 31
-    vs 32 pages mattered as much as the fact that you weren't fetching *4k at
-    a time* :-) On Sun, Dec 18, 2022 at 8:36 AM wrote: > > Okay, how does this
-    look? Better? I can generate a new rev of the patch > stream later today
-   with this fix up and responses to some of the other > comments. For now, I’m
-    also pushing this to the [...] 
- 
+ Content preview:  ron minnich wrote on Sun, Dec 18, 2022 at 08:50:18AM -0800:
+ > it's fine. tbh, I doubt the fact that you were fetching 31 vs 32 pages
+ > mattered as much as the fact that you weren't fetching *4k at a t [...] 
  Content analysis details:   (-0.2 points, 6.0 required)
- 
-  pts rule name              description
+ pts rule name              description
  ---- ---------------------- --------------------------------------------------
- -0.0 RCVD_IN_DNSWL_NONE     RBL: Sender listed at https://www.dnswl.org/,
-                              no trust
-                             [209.85.222.178 listed in list.dnswl.org]
-  0.0 FREEMAIL_FROM          Sender email is commonly abused enduser mail
-                             provider
-                             [rminnich[at]gmail.com]
-  0.0 SPF_HELO_NONE          SPF: HELO does not publish an SPF Record
+ 0.0 SPF_HELO_NONE          SPF: HELO does not publish an SPF Record
  -0.0 SPF_PASS               SPF: sender matches SPF record
- -0.0 RCVD_IN_MSPIKE_H2      RBL: Average reputation (+2)
-                             [209.85.222.178 listed in wl.mailspike.net]
-  0.0 HTML_MESSAGE           BODY: HTML included in message
  -0.1 DKIM_VALID_AU          Message has a valid DKIM or DK signature from
-                             author's domain
+ author's domain
  -0.1 DKIM_VALID_EF          Message has a valid DKIM or DK signature from
-                             envelope-from domain
-  0.1 DKIM_SIGNED            Message has a DKIM or DK signature, not necessarily
-                             valid
- -0.1 DKIM_VALID             Message has at least one valid DKIM or DK signature
-X-Headers-End: 1p6wrz-0002tC-3o
-X-Content-Filtered-By: Mailman/MimeDel 2.1.21
+ envelope-from domain
+ 0.1 DKIM_SIGNED            Message has a DKIM or DK signature, not necessarily
+ valid
+ -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+ 0.0 UNPARSEABLE_RELAY      Informational: message has unparseable relay
+ lines
+X-Headers-End: 1p6zcz-0001JF-10
 Subject: Re: [V9fs-developer] [PATCH 1/6] Adjust maximum MSIZE to account
  for p9 header
 X-BeenThere: v9fs-developer@lists.sourceforge.net
@@ -135,61 +123,43 @@ List-Subscribe: <https://lists.sourceforge.net/lists/listinfo/v9fs-developer>,
 Cc: Latchesar Ionkov <lucho@ionkov.net>, Eric Van Hensbergen <ericvh@gmail.com>,
  Christian Schoenebeck <linux_oss@crudebyte.com>, linux-kernel@vger.kernel.org,
  linux-fsdevel@vger.kernel.org, v9fs-developer@lists.sourceforge.net
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: v9fs-developer-bounces@lists.sourceforge.net
 
-aXQncyBmaW5lLiB0YmgsIEkgZG91YnQgdGhlIGZhY3QgdGhhdCB5b3Ugd2VyZSBmZXRjaGluZyAz
-MSB2cyAzMiBwYWdlcwptYXR0ZXJlZCBhcyBtdWNoIGFzIHRoZSBmYWN0IHRoYXQgeW91IHdlcmVu
-J3QgZmV0Y2hpbmcgKjRrIGF0IGEgdGltZSogOi0pCgoKCk9uIFN1biwgRGVjIDE4LCAyMDIyIGF0
-IDg6MzYgQU0gPGV2YW5oZW5zYmVyZ2VuQGljbG91ZC5jb20+IHdyb3RlOgoKPgo+IE9rYXksIGhv
-dyBkb2VzIHRoaXMgbG9vaz8gIEJldHRlcj8gIEkgY2FuIGdlbmVyYXRlIGEgbmV3IHJldiBvZiB0
-aGUgcGF0Y2gKPiBzdHJlYW0gbGF0ZXIgdG9kYXkgd2l0aCB0aGlzIGZpeCB1cCBhbmQgcmVzcG9u
-c2VzIHRvIHNvbWUgb2YgdGhlIG90aGVyCj4gY29tbWVudHMuICBGb3Igbm93LCBJ4oCZbSBhbHNv
-IHB1c2hpbmcgdGhpcyB0byB0aGUgR2l0SHViIGJyYW5jaC4KPgo+IGRpZmYgLS1naXQgYS9uZXQv
-OXAvY2xpZW50LmMgYi9uZXQvOXAvY2xpZW50LmMKPiBpbmRleCBmZWY2NTE2YTA2MzkuLjZlNDA1
-ODliODdkNCAxMDA2NDQKPiAtLS0gYS9uZXQvOXAvY2xpZW50LmMKPiArKysgYi9uZXQvOXAvY2xp
-ZW50LmMKPiBAQCAtMjgsNyArMjgsMTEgQEAKPiAgI2RlZmluZSBDUkVBVEVfVFJBQ0VfUE9JTlRT
-Cj4gICNpbmNsdWRlIDx0cmFjZS9ldmVudHMvOXAuaD4KPgo+IC0jZGVmaW5lIERFRkFVTFRfTVNJ
-WkUgKDEyOCAqIDEwMjQpCj4gKy8qIERFRkFVTFQgTVNJWkUgPSAzMiBwYWdlcyB3b3J0aCBvZiBw
-YXlsb2FkICsgUDlfSERSU1ogKwo+ICsgKiByb29tIGZvciB3cml0ZSAoMTYgZXh0cmEpIG9yIHJl
-YWQgKDExIGV4dHJhKSBvcGVyYW5kcy4KPiArICovCj4gKwo+ICsjZGVmaW5lIERFRkFVTFRfTVNJ
-WkUgKCgxMjggKiAxMDI0KSArIFA5X0hEUlNaICsgMTYpCj4KPiAgLyogQ2xpZW50IE9wdGlvbiBQ
-YXJzaW5nIChjb2RlIGluc3BpcmVkIGJ5IE5GUyBjb2RlKQo+ICAgKiAgLSBhIGxpdHRsZSBsYXp5
-IC0gcGFyc2UgYWxsIGNsaWVudCBvcHRpb25zCj4gLS0KPiAyLjM3LjIKPgo+Cj4gT24gRGVjIDE4
-LCAyMDIyLCBhdCA5OjM3IEFNLCBFcmljIFZhbiBIZW5zYmVyZ2VuIDxlcmljdmhAZ21haWwuY29t
-PiB3cm90ZToKPgo+IFNvIC0gaGVyZSB3YXMgbXkgdGhpbmtpbmcgLSB3aGVuIHRoZSBjYWNoZSBp
-cyBlbmFibGVkLCB3ZSBhcmUgbW9zdGx5Cj4gdHJhbnNmZXJyaW5nIHBhZ2Ugc2l6ZWQgY2h1bmtz
-LiAgSGF2aW5nIHRoZSBNU0laRSBiZSAxMjhrIGV4YWN0bHkgbWVhbnMgd2UKPiBhcmUgdHJhbnNm
-ZXJyaW5nIDMxIHBhZ2VzIGluc3RlYWQgb2YgMzIuCj4KPiBCdXQgSSB0aGluayB5b3UgYXJlIHJp
-Z2h0IGFuZCBJIGdvdCB0aGlzIHdyb25nLCBpdCBuZWVkcyB0byBiZQo+IFA5X1JEX0hEUl9TWiBv
-ciBzb21ldGhpbmcgbm90IFA5X0hEUlNaIC0tCj4gUDlfSERSU1oganVzdCBjb3ZlcnMgc2l6ZVs0
-XStvcFsxXSt0YWdbMl0gYW5kIEkgcmVhbGx5IHdhbnQgaXQgdG8gY292ZXIKPiBzaXplWzRdK29w
-WzFdK3RhZ1syXStjb3VudFs0XSAoMTEgZm9yIHJlYWQpIG9yCj4gc2l6ZVs0XStvcFsxXSt0YWdb
-Ml0rZmlkWzRdK29mZnNldFs4XStjb3VudFs0XSAoMjMgZm9yIHdyaXRlKS4KPgo+IFNob3VsZCBo
-YXZlIGp1c3QgY29waWVkIHRoZSBjb2RlIGZyb20gbnBmcyAoc3J2LT5tc2l6ZSA9ICgxMjgqMTAy
-NCkrMjQpIC0tCj4gYnV0IEkgdGhpbmsgSSB0aG91Z2h0IFA5X0hEUlNaIHdhcyBzb21ldGhpbmcg
-ZGlmZmVyZW50IHRoYW4gaXQgYWN0dWFsbHkgd2FzCj4gKGFuZCB3YXMgc3R1cGlkIGVub3VnaCBu
-b3QgdG8gY2hlY2spIC0gSSBndWVzcyB3ZSBuZWVkIGEgY29uc3RhbnQgZm9yIHRoZQo+IG1heGlt
-dW0gcGFja2V0IHNpemUgb3RoZXIgdGhhbiBwYXlsb2FkLgo+Cj4gICAgICAgLWVyaWMKPgo+Cj4K
-Pgo+IE9uIFN1biwgRGVjIDE4LCAyMDIyIGF0IDg6NTUgQU0gQ2hyaXN0aWFuIFNjaG9lbmViZWNr
-IDwKPiBsaW51eF9vc3NAY3J1ZGVieXRlLmNvbT4gd3JvdGU6Cj4KPj4gT24gU2F0dXJkYXksIERl
-Y2VtYmVyIDE3LCAyMDIyIDc6NTI6MDUgUE0gQ0VUIEVyaWMgVmFuIEhlbnNiZXJnZW4gd3JvdGU6
-Cj4+ID4gQWRkIG1heGltdW0gcDkgaGVhZGVyIHNpemUgdG8gTVNJWkUgdG8gbWFrZSBzdXJlIHdl
-IGNhbgo+PiA+IGhhdmUgcGFnZSBhbGlnbmVkIGRhdGEuCj4+ID4KPj4gPiBTaWduZWQtb2ZmLWJ5
-OiBFcmljIFZhbiBIZW5zYmVyZ2VuIDxldmFuaGVuc2JlcmdlbkBpY2xvdWQuY29tPgo+PiA+IC0t
-LQo+PiA+ICBuZXQvOXAvY2xpZW50LmMgfCAyICstCj4+ID4gIDEgZmlsZSBjaGFuZ2VkLCAxIGlu
-c2VydGlvbigrKSwgMSBkZWxldGlvbigtKQo+PiA+Cj4+ID4gZGlmZiAtLWdpdCBhL25ldC85cC9j
-bGllbnQuYyBiL25ldC85cC9jbGllbnQuYwo+PiA+IGluZGV4IGZlZjY1MTZhMDYzOS4uNDE2YmFm
-MmYxZWRmIDEwMDY0NAo+PiA+IC0tLSBhL25ldC85cC9jbGllbnQuYwo+PiA+ICsrKyBiL25ldC85
-cC9jbGllbnQuYwo+PiA+IEBAIC0yOCw3ICsyOCw3IEBACj4+ID4gICNkZWZpbmUgQ1JFQVRFX1RS
-QUNFX1BPSU5UUwo+PiA+ICAjaW5jbHVkZSA8dHJhY2UvZXZlbnRzLzlwLmg+Cj4+ID4KPj4gPiAt
-I2RlZmluZSBERUZBVUxUX01TSVpFICgxMjggKiAxMDI0KQo+PiA+ICsjZGVmaW5lIERFRkFVTFRf
-TVNJWkUgKCgxMjggKiAxMDI0KSArIFA5X0hEUlNaKQo+Pgo+PiBBZGRpbmcgNyB3b3VsZCBtYWtl
-IHdoYXQgcGFnZSBhbGlnbmVkIGV4YWN0bHksIHRoZSBwYXlsb2FkPyBBbmQgaG93Pwo+Pgo+PiA+
-Cj4+ID4gIC8qIENsaWVudCBPcHRpb24gUGFyc2luZyAoY29kZSBpbnNwaXJlZCBieSBORlMgY29k
-ZSkKPj4gPiAgICogIC0gYSBsaXR0bGUgbGF6eSAtIHBhcnNlIGFsbCBjbGllbnQgb3B0aW9ucwo+
-PiA+Cj4+Cj4+Cj4+Cj4+Cj4KCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fClY5ZnMtZGV2ZWxvcGVyIG1haWxpbmcgbGlzdApWOWZzLWRldmVsb3BlckBsaXN0
-cy5zb3VyY2Vmb3JnZS5uZXQKaHR0cHM6Ly9saXN0cy5zb3VyY2Vmb3JnZS5uZXQvbGlzdHMvbGlz
-dGluZm8vdjlmcy1kZXZlbG9wZXIK
+ron minnich wrote on Sun, Dec 18, 2022 at 08:50:18AM -0800:
+> it's fine. tbh, I doubt the fact that you were fetching 31 vs 32 pages
+> mattered as much as the fact that you weren't fetching *4k at a time* :-)
+
+Yes, I think we can just blanket this as +4k and it wouldn't change
+much; I've been using 1MB+4k for rdma in previous tests...
+
+We still aren't doing things 4k at a time with this though, I'd suggest
+rounding down the rsize > msize check in p9_client_read_once():
+
+        if (!rsize || rsize > clnt->msize - P9_IOHDRSZ)
+                rsize = clnt->msize - P9_IOHDRSZ;
+
+to something that's better aligned; for some reason I thought we had
+that already.  . . but thinking again the sizes are probably driven by
+the cache and will be 4k multiples already?
+
+> > -#define DEFAULT_MSIZE (128 * 1024)
+> > +/* DEFAULT MSIZE = 32 pages worth of payload + P9_HDRSZ +
+> > + * room for write (16 extra) or read (11 extra) operands.
+> > + */
+> > +
+> > +#define DEFAULT_MSIZE ((128 * 1024) + P9_HDRSZ + 16)
+
+There's P9_IOHDRSZ for that ;)
+
+But I guess with the comment it doesn't matter much either way.
+
+-- 
+Dominique
+
+
+_______________________________________________
+V9fs-developer mailing list
+V9fs-developer@lists.sourceforge.net
+https://lists.sourceforge.net/lists/listinfo/v9fs-developer
