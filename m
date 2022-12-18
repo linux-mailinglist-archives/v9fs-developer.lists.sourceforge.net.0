@@ -2,28 +2,28 @@ Return-Path: <v9fs-developer-bounces@lists.sourceforge.net>
 X-Original-To: lists+v9fs-developer@lfdr.de
 Delivered-To: lists+v9fs-developer@lfdr.de
 Received: from lists.sourceforge.net (lists.sourceforge.net [216.105.38.7])
-	by mail.lfdr.de (Postfix) with ESMTPS id 51A4E650599
-	for <lists+v9fs-developer@lfdr.de>; Mon, 19 Dec 2022 00:24:36 +0100 (CET)
-Received: from [127.0.0.1] (helo=sfs-ml-1.v29.lw.sourceforge.com)
-	by sfs-ml-1.v29.lw.sourceforge.com with esmtp (Exim 4.95)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5647765059C
+	for <lists+v9fs-developer@lfdr.de>; Mon, 19 Dec 2022 00:24:45 +0100 (CET)
+Received: from [127.0.0.1] (helo=sfs-ml-2.v29.lw.sourceforge.com)
+	by sfs-ml-2.v29.lw.sourceforge.com with esmtp (Exim 4.95)
 	(envelope-from <v9fs-developer-bounces@lists.sourceforge.net>)
-	id 1p731H-0002zh-3g;
-	Sun, 18 Dec 2022 23:24:35 +0000
+	id 1p731Q-0005C7-4F;
+	Sun, 18 Dec 2022 23:24:44 +0000
 Received: from [172.30.20.202] (helo=mx.sourceforge.net)
- by sfs-ml-1.v29.lw.sourceforge.com with esmtps (TLS1.2) tls
+ by sfs-ml-2.v29.lw.sourceforge.com with esmtps (TLS1.2) tls
  TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384 (Exim 4.95)
- (envelope-from <evanhensbergen@icloud.com>) id 1p731F-0002zb-Jm
+ (envelope-from <evanhensbergen@icloud.com>) id 1p731O-0005C0-MJ
  for v9fs-developer@lists.sourceforge.net;
- Sun, 18 Dec 2022 23:24:33 +0000
+ Sun, 18 Dec 2022 23:24:42 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
  d=sourceforge.net; s=x; h=Content-Transfer-Encoding:MIME-Version:References:
  In-Reply-To:Message-Id:Date:Subject:Cc:To:From:Sender:Reply-To:Content-Type:
  Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
  Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
  List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=v+jzIl87dUoe95Agy9D7U8yZIxMn7NM1PIcIYD/J044=; b=B2Zs1P+UmRUsVG03/iZk45c2+D
- UtWYGyI/gUIlH8Plt07J74jJ5QJYrvV9gDvVNEKKabra+KcMSbtRp7AaxBmOJMI4dxaQhslHlDgO4
- rL3KVc3YI5JaMFs4Stw8EZ/Xf3JHewIwiC3w9FyIhFQsxaoA8QFLjElHRVJ7oLCOXk9Y=;
+ bh=fJAS5WOiNl8OGefvohv8GYDvU+ypBa5SutnfaYNBIeg=; b=LfykIatfeIzPtXF9kPQYHcUeKO
+ hOm9vBBKN6HGIAAlLANvTY1veORv4dpexY08m+IqmOxWvvngRA9zSLpLIo0O3smLnna7l5MAHHn2H
+ rteq3tS2Puu+55TrKYIuAxsE/U8Z+gwf50SiSaUNEv6lqlRq4wU+1w2Iw8ZsNRZDvF+Y=;
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  ;
  h=Content-Transfer-Encoding:MIME-Version:References:In-Reply-To:Message-Id:
@@ -31,48 +31,48 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
  :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
  List-Post:List-Owner:List-Archive;
- bh=v+jzIl87dUoe95Agy9D7U8yZIxMn7NM1PIcIYD/J044=; b=He+VGWaDHR7ky5SGOv44fBOWfB
- oB5/7mbTNTFuTasQYoDxmeLbIfhH77HpNNdeiLfYO7IhvLCm+QUCf/FT6aIBQSTC0xNbNH/cAvkI+
- aZLuDkSrdOeiiBKVOUIsGrXmlpNdgBVS7lK3qYEEwSADC54ldGg5S+NwTX5HI4PEwTXk=;
+ bh=fJAS5WOiNl8OGefvohv8GYDvU+ypBa5SutnfaYNBIeg=; b=K05WOOVPLcYb0KVXC8A8F+lmuF
+ 3DwgjYklP3vIVgCmt0+loN9cQxX+CCnwvM3D+3IpVNs0eymsXIpZFhz4es4sFBJ+hjG5iIDSbodsR
+ YNb1w4Uan56OZEuIc4g09T3kMyMINY8P1EoDKZIV6PEPGoIK70Wp6FO1MvCcYlTKv4ao=;
 Received: from ms11p00im-qufo17281301.me.com ([17.58.38.50])
- by sfi-mx-1.v28.lw.sourceforge.com with esmtps
+ by sfi-mx-2.v28.lw.sourceforge.com with esmtps
  (TLS1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.95)
- id 1p731E-004Btx-Pz for v9fs-developer@lists.sourceforge.net;
- Sun, 18 Dec 2022 23:24:33 +0000
+ id 1p731N-0003MC-Tu for v9fs-developer@lists.sourceforge.net;
+ Sun, 18 Dec 2022 23:24:42 +0000
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=icloud.com;
- s=1a1hai; t=1671405867;
- bh=v+jzIl87dUoe95Agy9D7U8yZIxMn7NM1PIcIYD/J044=;
+ s=1a1hai; t=1671405876;
+ bh=fJAS5WOiNl8OGefvohv8GYDvU+ypBa5SutnfaYNBIeg=;
  h=From:To:Subject:Date:Message-Id:MIME-Version;
- b=0SDetpPh6gsvgVh5fPfHcFgdx8+4mpb2OVQq71isvMmbgVGi3B6/4ZeNiGqHySz6W
- SJc1QKqpKEg4XktEWctZaK7Nnqp+bUzorWVL65KHUm+M08EoU7eI14VYie/43MkOru
- V32SlIg2lBv7R16fUiOVECLOxQYwwe3TSkD39996F60Dltw600bBLmFaNen9jrZxor
- j3Nt3W5330JV3rZouStavQrXABi5Fp/f5m24N5WcW/tnu1Jt8kYXF+JUzjX7hiWKOT
- cSMD+Glf4Eys1GC+ompx0clnWGZE3R+S8vztJ/B5YxsbXaQs35YgK82EdQEE124TnX
- s0+mQqoTJ3VEQ==
+ b=ooTWSiESAAaoZzIyWMvNN2mrZXKHRgEwEpqMnaAnUUiqysa1CeIHeMcvbODl149/p
+ ZxHlZ3IcItkSdA6YGRWkUuUR5eR0jlVHQgR2Jb7/YgPP59flaSbp/NkZujydYhIvMf
+ wVSeQwFtjKiPGjdk0czrveal/82z7/M2Ht0oBBvd3UVVun1vC9R81gUiqglOlywgFb
+ 0D9mu2fvC1XA+t4QRAzlU/Iixv9fE5h++JGiKNb3rgYwWHPHAjeI4xM9wO3HXJomqh
+ b3Um0KRkpBeZJw/wiNVZscm2DxdTuUtyb1MzPkrAtTTBFW285lGzD4q2D1UZkXsuYY
+ MiipNpcYtD0fQ==
 Received: from thundercleese.localdomain (ms11p00im-dlb-asmtpmailmevip.me.com
  [17.57.154.19])
- by ms11p00im-qufo17281301.me.com (Postfix) with ESMTPSA id 79DE4CC038B;
- Sun, 18 Dec 2022 23:24:26 +0000 (UTC)
+ by ms11p00im-qufo17281301.me.com (Postfix) with ESMTPSA id E0CDECC005D;
+ Sun, 18 Dec 2022 23:24:35 +0000 (UTC)
 To: v9fs-developer@lists.sourceforge.net, asmadeus@codewreck.org,
  rminnich@gmail.com, lucho@ionkov.net
-Date: Sun, 18 Dec 2022 23:22:23 +0000
-Message-Id: <20221218232217.1713283-9-evanhensbergen@icloud.com>
+Date: Sun, 18 Dec 2022 23:22:25 +0000
+Message-Id: <20221218232217.1713283-10-evanhensbergen@icloud.com>
 X-Mailer: git-send-email 2.37.2
 In-Reply-To: <20221218232217.1713283-1-evanhensbergen@icloud.com>
 References: <20221217183142.1425132-1-evanhensbergen@icloud.com>
  <20221218232217.1713283-1-evanhensbergen@icloud.com>
 MIME-Version: 1.0
-X-Proofpoint-ORIG-GUID: a50t9E4pmabKJ_W7baQHBp4N-A3esUcN
-X-Proofpoint-GUID: a50t9E4pmabKJ_W7baQHBp4N-A3esUcN
+X-Proofpoint-ORIG-GUID: a4izFcqvh2i1fGWRw_aPPq9hpnGkzlSU
+X-Proofpoint-GUID: a4izFcqvh2i1fGWRw_aPPq9hpnGkzlSU
 X-Proofpoint-Virus-Version: =?UTF-8?Q?vendor=3Dfsecure_engine=3D1.1.170-22c6f66c430a71ce266a39bfe25bc?=
  =?UTF-8?Q?2903e8d5c8f:6.0.425,18.0.572,17.11.62.513.0000000_definitions?=
  =?UTF-8?Q?=3D2022-01-14=5F01:2022-01-14=5F01,2020-02-14=5F11,2021-12-02?=
  =?UTF-8?Q?=5F01_signatures=3D0?=
 X-Proofpoint-Spam-Details: rule=notspam policy=default score=0 clxscore=1015
  mlxscore=0 spamscore=0
- adultscore=0 bulkscore=0 malwarescore=0 mlxlogscore=999 phishscore=0
+ adultscore=0 bulkscore=0 malwarescore=0 mlxlogscore=804 phishscore=0
  suspectscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2209130000 definitions=main-2212180222
+ engine=8.12.0-2209130000 definitions=main-2212180223
 X-Spam-Score: -0.9 (/)
 X-Spam-Report: Spam detection software,
  running on the system "util-spamd-2.v13.lw.sourceforge.com", 
@@ -80,21 +80,20 @@ X-Spam-Report: Spam detection software,
  message has been attached to this so you can view it or label
  similar future email.  If you have any questions, see
  the administrator of that system for details.
- Content preview: Add some additional mount modes for cache management
- including
- specifying directio as a mount option and an option for ignore qid.version
- for determining whether or not a file is cacheable. Signed-off-by: Eric Van
- Hensbergen --- fs/9p/v9fs.c | 16 ++++++++++++++-- fs/9p/v9fs.h | 5 ++++-
- 2 files changed, 18 insertions(+), 3 deletions(-) 
+ Content preview: Checking the p9_fid_put value allows us to pass back errors
+ involved if we end up clunking the fid as part of dir_release. This can help
+ with more graceful response to errors in writeback among other things. 
  Content analysis details:   (-0.9 points, 6.0 required)
  pts rule name              description
  ---- ---------------------- --------------------------------------------------
+ -0.0 RCVD_IN_MSPIKE_H2      RBL: Average reputation (+2)
+ [17.58.38.50 listed in wl.mailspike.net]
+ -0.7 RCVD_IN_DNSWL_LOW      RBL: Sender listed at https://www.dnswl.org/,
+ low trust [17.58.38.50 listed in list.dnswl.org]
  0.0 SPF_HELO_NONE          SPF: HELO does not publish an SPF Record
  -0.0 SPF_PASS               SPF: sender matches SPF record
  0.0 FREEMAIL_FROM          Sender email is commonly abused enduser mail
  provider [evanhensbergen[at]icloud.com]
- -0.0 RCVD_IN_MSPIKE_H2      RBL: Average reputation (+2)
- [17.58.38.50 listed in wl.mailspike.net]
  -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
  0.1 DKIM_SIGNED            Message has a DKIM or DK signature, not necessarily
  valid
@@ -102,10 +101,9 @@ X-Spam-Report: Spam detection software,
  author's domain
  -0.1 DKIM_VALID_EF          Message has a valid DKIM or DK signature from
  envelope-from domain
- -0.7 RCVD_IN_DNSWL_LOW      RBL: Sender listed at https://www.dnswl.org/,
- low trust [17.58.38.50 listed in list.dnswl.org]
-X-Headers-End: 1p731E-004Btx-Pz
-Subject: [V9fs-developer] [PATCH v2 08/10] Add new mount modes
+X-Headers-End: 1p731N-0003MC-Tu
+Subject: [V9fs-developer] [PATCH v2 09/10] fix error reporting in
+ v9fs_dir_release
 X-BeenThere: v9fs-developer@lists.sourceforge.net
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -126,87 +124,56 @@ Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: v9fs-developer-bounces@lists.sourceforge.net
 
-Add some additional mount modes for cache management including
-specifying directio as a mount option and an option for ignore
-qid.version for determining whether or not a file is cacheable.
+Checking the p9_fid_put value allows us to pass back errors
+involved if we end up clunking the fid as part of dir_release.
+
+This can help with more graceful response to errors in writeback
+among other things.
 
 Signed-off-by: Eric Van Hensbergen <evanhensbergen@icloud.com>
 ---
- fs/9p/v9fs.c | 16 ++++++++++++++--
- fs/9p/v9fs.h |  5 ++++-
- 2 files changed, 18 insertions(+), 3 deletions(-)
+ fs/9p/vfs_dir.c | 7 ++++---
+ 1 file changed, 4 insertions(+), 3 deletions(-)
 
-diff --git a/fs/9p/v9fs.c b/fs/9p/v9fs.c
-index f8e952c013f9..43d3806150a9 100644
---- a/fs/9p/v9fs.c
-+++ b/fs/9p/v9fs.c
-@@ -38,7 +38,7 @@ enum {
- 	/* String options */
- 	Opt_uname, Opt_remotename, Opt_cache, Opt_cachetag,
- 	/* Options that take no arguments */
--	Opt_nodevmap, Opt_noxattr,
-+	Opt_nodevmap, Opt_noxattr, Opt_directio, Opt_ignoreqv,
- 	/* Access options */
- 	Opt_access, Opt_posixacl,
- 	/* Lock timeout option */
-@@ -56,6 +56,8 @@ static const match_table_t tokens = {
- 	{Opt_remotename, "aname=%s"},
- 	{Opt_nodevmap, "nodevmap"},
- 	{Opt_noxattr, "noxattr"},
-+	{Opt_directio, "directio"},
-+	{Opt_ignoreqv, "ignoreqv"},
- 	{Opt_cache, "cache=%s"},
- 	{Opt_cachetag, "cachetag=%s"},
- 	{Opt_access, "access=%s"},
-@@ -125,7 +127,7 @@ int v9fs_show_options(struct seq_file *m, struct dentry *root)
- 	if (v9ses->nodev)
- 		seq_puts(m, ",nodevmap");
- 	if (v9ses->cache)
--		seq_printf(m, ",%s", v9fs_cache_modes[v9ses->cache]);
-+		seq_printf(m, ",cache=%s", v9fs_cache_modes[v9ses->cache]);
- #ifdef CONFIG_9P_FSCACHE
- 	if (v9ses->cachetag && v9ses->cache == CACHE_FSCACHE)
- 		seq_printf(m, ",cachetag=%s", v9ses->cachetag);
-@@ -147,6 +149,10 @@ int v9fs_show_options(struct seq_file *m, struct dentry *root)
- 		break;
+diff --git a/fs/9p/vfs_dir.c b/fs/9p/vfs_dir.c
+index 536769cdf7c8..b5495d6d0eff 100644
+--- a/fs/9p/vfs_dir.c
++++ b/fs/9p/vfs_dir.c
+@@ -197,7 +197,7 @@ static int v9fs_dir_readdir_dotl(struct file *file, struct dir_context *ctx)
+ 
+ 
+ /**
+- * v9fs_dir_release - close a directory
++ * v9fs_dir_release - called on a close of a file or directory
+  * @inode: inode of the directory
+  * @filp: file pointer to a directory
+  *
+@@ -209,6 +209,7 @@ int v9fs_dir_release(struct inode *inode, struct file *filp)
+ 	struct p9_fid *fid;
+ 	__le32 version;
+ 	loff_t i_size;
++	int retval = 0;
+ 
+ 	fid = filp->private_data;
+ 	p9_debug(P9_DEBUG_VFS, "inode: %p filp: %p fid: %d\n",
+@@ -226,7 +227,7 @@ int v9fs_dir_release(struct inode *inode, struct file *filp)
+ 		spin_lock(&inode->i_lock);
+ 		hlist_del(&fid->ilist);
+ 		spin_unlock(&inode->i_lock);
+-		p9_fid_put(fid);
++		retval = p9_fid_put(fid);
  	}
  
-+	if (v9ses->flags & V9FS_IGNORE_QV)
-+		seq_puts(m, ",ignoreqv");
-+	if (v9ses->flags & V9FS_DIRECT_IO)
-+		seq_puts(m, ",directio");
- 	if (v9ses->flags & V9FS_POSIX_ACL)
- 		seq_puts(m, ",posixacl");
+ 	if ((filp->f_mode & FMODE_WRITE)) {
+@@ -237,7 +238,7 @@ int v9fs_dir_release(struct inode *inode, struct file *filp)
+ 	} else {
+ 		fscache_unuse_cookie(v9fs_inode_cookie(v9inode), NULL, NULL);
+ 	}
+-	return 0;
++	return retval;
+ }
  
-@@ -276,6 +282,12 @@ static int v9fs_parse_options(struct v9fs_session_info *v9ses, char *opts)
- 		case Opt_noxattr:
- 			v9ses->flags |= V9FS_NO_XATTR;
- 			break;
-+		case Opt_directio:
-+			v9ses->flags |= V9FS_DIRECT_IO;
-+			break;
-+		case Opt_ignoreqv:
-+			v9ses->flags |= V9FS_IGNORE_QV;
-+			break;
- 		case Opt_cachetag:
- #ifdef CONFIG_9P_FSCACHE
- 			kfree(v9ses->cachetag);
-diff --git a/fs/9p/v9fs.h b/fs/9p/v9fs.h
-index a08cf6618c86..c80c318ff31c 100644
---- a/fs/9p/v9fs.h
-+++ b/fs/9p/v9fs.h
-@@ -37,7 +37,10 @@ enum p9_session_flags {
- 	V9FS_ACCESS_USER	= 0x08,
- 	V9FS_ACCESS_CLIENT	= 0x10,
- 	V9FS_POSIX_ACL		= 0x20,
--	V9FS_NO_XATTR		= 0x40
-+	V9FS_NO_XATTR		= 0x40,
-+	V9FS_IGNORE_QV		= 0x80,
-+	V9FS_DIRECT_IO		= 0x100,
-+	V9FS_SYNC			= 0x200
- };
- 
- /* possible values of ->cache */
+ const struct file_operations v9fs_dir_operations = {
 -- 
 2.37.2
 
