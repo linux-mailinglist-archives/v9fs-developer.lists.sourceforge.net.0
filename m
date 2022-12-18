@@ -2,28 +2,28 @@ Return-Path: <v9fs-developer-bounces@lists.sourceforge.net>
 X-Original-To: lists+v9fs-developer@lfdr.de
 Delivered-To: lists+v9fs-developer@lfdr.de
 Received: from lists.sourceforge.net (lists.sourceforge.net [216.105.38.7])
-	by mail.lfdr.de (Postfix) with ESMTPS id B4968650594
-	for <lists+v9fs-developer@lfdr.de>; Mon, 19 Dec 2022 00:24:08 +0100 (CET)
-Received: from [127.0.0.1] (helo=sfs-ml-4.v29.lw.sourceforge.com)
-	by sfs-ml-4.v29.lw.sourceforge.com with esmtp (Exim 4.95)
+	by mail.lfdr.de (Postfix) with ESMTPS id 051DE650597
+	for <lists+v9fs-developer@lfdr.de>; Mon, 19 Dec 2022 00:24:23 +0100 (CET)
+Received: from [127.0.0.1] (helo=sfs-ml-2.v29.lw.sourceforge.com)
+	by sfs-ml-2.v29.lw.sourceforge.com with esmtp (Exim 4.95)
 	(envelope-from <v9fs-developer-bounces@lists.sourceforge.net>)
-	id 1p730p-0002eC-H2;
-	Sun, 18 Dec 2022 23:24:07 +0000
+	id 1p7313-0005BR-Pl;
+	Sun, 18 Dec 2022 23:24:21 +0000
 Received: from [172.30.20.202] (helo=mx.sourceforge.net)
- by sfs-ml-4.v29.lw.sourceforge.com with esmtps (TLS1.2) tls
+ by sfs-ml-2.v29.lw.sourceforge.com with esmtps (TLS1.2) tls
  TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384 (Exim 4.95)
- (envelope-from <evanhensbergen@icloud.com>) id 1p730o-0002e1-RY
+ (envelope-from <evanhensbergen@icloud.com>) id 1p7312-0005BL-Ml
  for v9fs-developer@lists.sourceforge.net;
- Sun, 18 Dec 2022 23:24:06 +0000
+ Sun, 18 Dec 2022 23:24:20 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
  d=sourceforge.net; s=x; h=Content-Transfer-Encoding:MIME-Version:References:
  In-Reply-To:Message-Id:Date:Subject:Cc:To:From:Sender:Reply-To:Content-Type:
  Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
  Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
  List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=htdq/XZc8I8eF96377CKikxWMYv077FZxvjw+oX9C5o=; b=dG1pC8pnYI0uWfdtGzu1QgaVyO
- lL6svQtqZEv/LVxxtGlw7m4VoMBAe8JizxW1J1c64GYvEmtHaa80zsyZfjJbAvustEeHU01CzEEu+
- aiLLs5xdrmbcP0XyeiqXuYs3Qs8YNXzwI/JVNz2gByZGD6nFROiaBqVr3g5lnH+CNBSk=;
+ bh=oDXYKkCov4vc1fbNoQpiyUCSmJFNPo7qTEDD6t0cO18=; b=jD6qjGO59usrxvh35H+fmPqT7/
+ A3HP29zubAmymu4GJdLiqNySWEVydsFTVUUbY0VvZp83YE3xY2+gN7UFApmya+WGTZBHf4Ja9Ntki
+ 220Ms+EZ0hAI6h2cOolekpJIXvsE10wX2wjupnfHZsb7GpPMOnzBNVGvt7i9NSeGfz1E=;
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  ;
  h=Content-Transfer-Encoding:MIME-Version:References:In-Reply-To:Message-Id:
@@ -31,46 +31,46 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
  :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
  List-Post:List-Owner:List-Archive;
- bh=htdq/XZc8I8eF96377CKikxWMYv077FZxvjw+oX9C5o=; b=PvOpd0ZSB05wxCWl2PYPZINSff
- gUfLF+3Bq4c6lAQuPZQOXvCfRA6BfdwCsFzwF7UtwbMbwmQjgQcYsHnimO/ERDZHjPsqFfhfV+QoF
- +D35tXmeJCPCZf3/VyYGTgKUmZAcQiUvQW8owS0RfhnADs9mgJr97h6p+q+916z6jO9g=;
+ bh=oDXYKkCov4vc1fbNoQpiyUCSmJFNPo7qTEDD6t0cO18=; b=lHTv7Rj4rf4L2JwnNuOAAvwFa2
+ wWwmpCro3as7EM71VyAOPIT5f5IRsAKuViQQGdyiEoyWOu1L1O7NqN1Qlh1nYHSbwlX6lQHLxL+Gw
+ 99G7WIEps25HY7YOrn0Uvij6yvf97+lyXQd5HSRbAf5iH165qe+AbCtcma91VfNnt66I=;
 Received: from ms11p00im-qufo17281301.me.com ([17.58.38.50])
- by sfi-mx-2.v28.lw.sourceforge.com with esmtps
+ by sfi-mx-1.v28.lw.sourceforge.com with esmtps
  (TLS1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.95)
- id 1p730n-0003KZ-Mr for v9fs-developer@lists.sourceforge.net;
- Sun, 18 Dec 2022 23:24:06 +0000
+ id 1p7311-004BtZ-Ue for v9fs-developer@lists.sourceforge.net;
+ Sun, 18 Dec 2022 23:24:20 +0000
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=icloud.com;
- s=1a1hai; t=1671405840;
- bh=htdq/XZc8I8eF96377CKikxWMYv077FZxvjw+oX9C5o=;
+ s=1a1hai; t=1671405854;
+ bh=oDXYKkCov4vc1fbNoQpiyUCSmJFNPo7qTEDD6t0cO18=;
  h=From:To:Subject:Date:Message-Id:MIME-Version;
- b=QFyNE1SpFQWkKKFDDGJNghkxnVWgX6HuriKkhGY1KmS3buUES5/SwrAmnepbmKSha
- HO6vQC2pvXZCobvdd+eW0q+x9AnOJUWiiiv2RO2zfgjDEIe9LWH+iX+RCb5Lnqtyyl
- yqD4e9g5ZKk0RPUbQ9zYhlou6px5yYAo61LgUd0o0l4u+3DjDOAy0/PwWmRC4WtYS4
- D6Q+QBldepIkkJ0tyVaAd/TvYhxsddzfulWfmbiUWRHgb5GiY5cX0QNwWeqYGydED7
- ybV102N5jM5S9VyAvKzs90Al7PAgA9ZkfeYt3pqntFFfMUkDCnGF/ZKrRg5gF8rWiW
- G7FkXxTmHGJtA==
+ b=QToQWNFbYsWTWFfxE5Wy351p/X9UwtN+orRm+H0ebOqVlA5vJ0RRWN6qB4ifVfTMr
+ xWsrmhy43epqryCarcl6OhCuTtjdXAAq5lAqg6QYxIPsWGtuHDF8GoySlqyIHL5OM7
+ yYE81TCiU0o4BHlJd0/fBTtVnFUftT4WoK1Y9xsXiPTQFwBOOMjWTkQKxFCEbW07WS
+ OPzMmYT20smEJeE7Do6WjgOstd/FLkLM9xb3egbQCRLUHmX7uPSB4Z3UrPcl+VB78v
+ uPgGLUJOUubWfP15la5DJ4c6pHp/6GD9aF4XIq8BefI5NON7d/qER9XGxTjyywAXQ6
+ r9vRhjnMRWVBw==
 Received: from thundercleese.localdomain (ms11p00im-dlb-asmtpmailmevip.me.com
  [17.57.154.19])
- by ms11p00im-qufo17281301.me.com (Postfix) with ESMTPSA id 52D46CC03C2;
- Sun, 18 Dec 2022 23:23:59 +0000 (UTC)
+ by ms11p00im-qufo17281301.me.com (Postfix) with ESMTPSA id DB3EBCC036F;
+ Sun, 18 Dec 2022 23:24:13 +0000 (UTC)
 To: v9fs-developer@lists.sourceforge.net, asmadeus@codewreck.org,
  rminnich@gmail.com, lucho@ionkov.net
-Date: Sun, 18 Dec 2022 23:22:19 +0000
-Message-Id: <20221218232217.1713283-7-evanhensbergen@icloud.com>
+Date: Sun, 18 Dec 2022 23:22:21 +0000
+Message-Id: <20221218232217.1713283-8-evanhensbergen@icloud.com>
 X-Mailer: git-send-email 2.37.2
 In-Reply-To: <20221218232217.1713283-1-evanhensbergen@icloud.com>
 References: <20221217183142.1425132-1-evanhensbergen@icloud.com>
  <20221218232217.1713283-1-evanhensbergen@icloud.com>
 MIME-Version: 1.0
-X-Proofpoint-ORIG-GUID: xzxg9YkojhbJV7qxgyxoK48b60sdlYsq
-X-Proofpoint-GUID: xzxg9YkojhbJV7qxgyxoK48b60sdlYsq
+X-Proofpoint-ORIG-GUID: dzmLWAsZB3CFFZNJGNkOrzDsXxIHhK7j
+X-Proofpoint-GUID: dzmLWAsZB3CFFZNJGNkOrzDsXxIHhK7j
 X-Proofpoint-Virus-Version: =?UTF-8?Q?vendor=3Dfsecure_engine=3D1.1.170-22c6f66c430a71ce266a39bfe25bc?=
  =?UTF-8?Q?2903e8d5c8f:6.0.425,18.0.572,17.11.62.513.0000000_definitions?=
  =?UTF-8?Q?=3D2022-01-14=5F01:2022-01-14=5F01,2020-02-14=5F11,2021-12-02?=
  =?UTF-8?Q?=5F01_signatures=3D0?=
 X-Proofpoint-Spam-Details: rule=notspam policy=default score=0 clxscore=1015
  mlxscore=0 spamscore=0
- adultscore=0 bulkscore=0 malwarescore=0 mlxlogscore=739 phishscore=0
+ adultscore=0 bulkscore=0 malwarescore=0 mlxlogscore=595 phishscore=0
  suspectscore=0 classifier=spam adjust=0 reason=mlx scancount=1
  engine=8.12.0-2209130000 definitions=main-2212180222
 X-Spam-Score: -0.9 (/)
@@ -80,14 +80,18 @@ X-Spam-Report: Spam detection software,
  message has been attached to this so you can view it or label
  similar future email.  If you have any questions, see
  the administrator of that system for details.
- Content preview:  We are supposed to set fid->mode to reflect the flags that
- were used to open the file. We were actually setting it to the creation mode
- which is the default perms of the file not the flags the file wa [...] 
+ Content preview: Add some additional debug flags to assist with debugging
+ cache
+ changes. Also add some additional open modes so we can track cache state
+ in fids more directly. Signed-off-by: Eric Van Hensbergen ---
+ include/net/9p/9p.h | 5 +++++ 1 file changed, 5 insertions(+) 
  Content analysis details:   (-0.9 points, 6.0 required)
  pts rule name              description
  ---- ---------------------- --------------------------------------------------
  -0.7 RCVD_IN_DNSWL_LOW      RBL: Sender listed at https://www.dnswl.org/,
  low trust [17.58.38.50 listed in list.dnswl.org]
+ -0.0 RCVD_IN_MSPIKE_H2      RBL: Average reputation (+2)
+ [17.58.38.50 listed in wl.mailspike.net]
  0.0 FREEMAIL_FROM          Sender email is commonly abused enduser mail
  provider [evanhensbergen[at]icloud.com]
  0.0 SPF_HELO_NONE          SPF: HELO does not publish an SPF Record
@@ -99,10 +103,9 @@ X-Spam-Report: Spam detection software,
  0.1 DKIM_SIGNED            Message has a DKIM or DK signature, not necessarily
  valid
  -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
- -0.0 RCVD_IN_MSPIKE_H2      RBL: Average reputation (+2)
- [17.58.38.50 listed in wl.mailspike.net]
-X-Headers-End: 1p730n-0003KZ-Mr
-Subject: [V9fs-developer] [PATCH v2 06/10] fix bug in client create for .L
+X-Headers-End: 1p7311-004BtZ-Ue
+Subject: [V9fs-developer] [PATCH v2 07/10] Add additional debug flags and
+ open modes
 X-BeenThere: v9fs-developer@lists.sourceforge.net
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -123,29 +126,38 @@ Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: v9fs-developer-bounces@lists.sourceforge.net
 
-We are supposed to set fid->mode to reflect the flags
-that were used to open the file.  We were actually setting
-it to the creation mode which is the default perms of the
-file not the flags the file was opened with.
+Add some additional debug flags to assist with debugging
+cache changes.  Also add some additional open modes so we
+can track cache state in fids more directly.
 
 Signed-off-by: Eric Van Hensbergen <evanhensbergen@icloud.com>
 ---
- net/9p/client.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ include/net/9p/9p.h | 5 +++++
+ 1 file changed, 5 insertions(+)
 
-diff --git a/net/9p/client.c b/net/9p/client.c
-index f982d36b55b8..4ae41f8f7286 100644
---- a/net/9p/client.c
-+++ b/net/9p/client.c
-@@ -1293,7 +1293,7 @@ int p9_client_create_dotl(struct p9_fid *ofid, const char *name, u32 flags,
- 		 qid->type, qid->path, qid->version, iounit);
+diff --git a/include/net/9p/9p.h b/include/net/9p/9p.h
+index 429adf6be29c..61c20b89becd 100644
+--- a/include/net/9p/9p.h
++++ b/include/net/9p/9p.h
+@@ -42,6 +42,8 @@ enum p9_debug_flags {
+ 	P9_DEBUG_PKT =		(1<<10),
+ 	P9_DEBUG_FSC =		(1<<11),
+ 	P9_DEBUG_VPKT =		(1<<12),
++	P9_DEBUG_CACHE =	(1<<13),
++	P9_DEBUG_MMAP =		(1<<14),
+ };
  
- 	memmove(&ofid->qid, qid, sizeof(struct p9_qid));
--	ofid->mode = mode;
-+	ofid->mode = flags;
- 	ofid->iounit = iounit;
+ #ifdef CONFIG_NET_9P_DEBUG
+@@ -213,6 +215,9 @@ enum p9_open_mode_t {
+ 	P9_ORCLOSE = 0x40,
+ 	P9_OAPPEND = 0x80,
+ 	P9_OEXCL = 0x1000,
++	P9L_DIRECT = 0x2000, /* cache disabled */
++	P9L_NOWRITECACHE = 0x4000, /* no write caching  */
++	P9L_LOOSE = 0x8000, /* loose cache */
+ };
  
- free_and_error:
+ /**
 -- 
 2.37.2
 
