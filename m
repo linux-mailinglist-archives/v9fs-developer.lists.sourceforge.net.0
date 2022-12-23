@@ -2,94 +2,85 @@ Return-Path: <v9fs-developer-bounces@lists.sourceforge.net>
 X-Original-To: lists+v9fs-developer@lfdr.de
 Delivered-To: lists+v9fs-developer@lfdr.de
 Received: from lists.sourceforge.net (lists.sourceforge.net [216.105.38.7])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2B4A9654F8E
-	for <lists+v9fs-developer@lfdr.de>; Fri, 23 Dec 2022 12:15:37 +0100 (CET)
-Received: from [127.0.0.1] (helo=sfs-ml-4.v29.lw.sourceforge.com)
-	by sfs-ml-4.v29.lw.sourceforge.com with esmtp (Exim 4.95)
+	by mail.lfdr.de (Postfix) with ESMTPS id 98205655214
+	for <lists+v9fs-developer@lfdr.de>; Fri, 23 Dec 2022 16:31:59 +0100 (CET)
+Received: from [127.0.0.1] (helo=sfs-ml-2.v29.lw.sourceforge.com)
+	by sfs-ml-2.v29.lw.sourceforge.com with esmtp (Exim 4.95)
 	(envelope-from <v9fs-developer-bounces@lists.sourceforge.net>)
-	id 1p8g1W-0008B3-MQ;
-	Fri, 23 Dec 2022 11:15:34 +0000
+	id 1p8k1c-000357-Ld;
+	Fri, 23 Dec 2022 15:31:56 +0000
 Received: from [172.30.20.202] (helo=mx.sourceforge.net)
- by sfs-ml-4.v29.lw.sourceforge.com with esmtps (TLS1.2) tls
- TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384 (Exim 4.95)
- (envelope-from <asmadeus@codewreck.org>) id 1p8g1U-0008Aw-Qe
- for v9fs-developer@lists.sourceforge.net;
- Fri, 23 Dec 2022 11:15:32 +0000
+ by sfs-ml-2.v29.lw.sourceforge.com with esmtps (TLS1.2) tls
+ TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384 (Exim 4.95) (envelope-from
+ <BATV+a36cbb7ae26730e9169d+7061+infradead.org+hch@bombadil.srs.infradead.org>)
+ id 1p8k1a-000350-Hm for v9fs-developer@lists.sourceforge.net;
+ Fri, 23 Dec 2022 15:31:55 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=sourceforge.net; s=x; h=Content-Type:MIME-Version:Message-ID:Subject:Cc:To:
- From:Date:Sender:Reply-To:Content-Transfer-Encoding:Content-ID:
- Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
- :Resent-Message-ID:In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:
+ d=sourceforge.net; s=x; h=In-Reply-To:Content-Type:MIME-Version:References:
+ Message-ID:Subject:Cc:To:From:Date:Sender:Reply-To:Content-Transfer-Encoding:
+ Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+ Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
  List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=VN5EBYZqJL3wQsJ8/hshGhgSI3cKSXMIvWYt8/UPKFM=; b=W+LtOemF91Ym/k0hvlrKrNk6ca
- dkeAZdJwjBwIkAqKeMTCsglSIrGXfk1Yun+IbIXTKL/kT/m6Bo68eY38Dfp0rsgrZ6By8HYAr6ytC
- lzt/2Vge5WuzTiJ8nURNH6JTBc0TK0nF4nEfspGrK2S9zw0+UCVWBz31QSpxvHAXQ4aA=;
+ bh=YI+GETaE07zfIF6gTr93yZkoaqmkXGRyTSkPLa22IzA=; b=RHNV7QKd+lAoIvI28C7fpWmSD/
+ ZlXfL0P44xU252uPTH47FHAoZK8c1nRuCeA/BRqEsa/0xqegEjZ1DlJ8n515PWRRbKubl8hdGkKDL
+ ImLPztgD1Buy7M5w1O3b5TZqNIm8UW4uOHSxU/H6iPc3XZrupV3WgOxVkSCpswAKjpQY=;
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  ;
- h=Content-Type:MIME-Version:Message-ID:Subject:Cc:To:From:Date:Sender:
- Reply-To:Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date
- :Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:
- References:List-Id:List-Help:List-Unsubscribe:List-Subscribe:List-Post:
- List-Owner:List-Archive; bh=VN5EBYZqJL3wQsJ8/hshGhgSI3cKSXMIvWYt8/UPKFM=; b=e
- 3lHhF0MlKMvAzLLpaBZb6d7o30IlNjHH2EYOmvlsBxNLElUJ9DsM1sLeFLMNLWAVqWz0uS9RAP+YN
- EVpRioWjRrZrRyRvq5bHBg/dGaLJR0awKYjCF+oZIp+zCwqg1bzdihiCySC3cqiQJxEMVHA9xVXCM
- V4/6e0Hm6463gWQI=;
-Received: from nautica.notk.org ([91.121.71.147])
+ h=In-Reply-To:Content-Type:MIME-Version:References:Message-ID:Subject:Cc:To
+ :From:Date:Sender:Reply-To:Content-Transfer-Encoding:Content-ID:
+ Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
+ :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
+ List-Post:List-Owner:List-Archive;
+ bh=YI+GETaE07zfIF6gTr93yZkoaqmkXGRyTSkPLa22IzA=; b=XGyxPB6SzQeU7P9odQ+pkatMNm
+ TBtsoxxF4G+4zqQIGTe5xBfFEdVyILixvgplk08pfwknWD5tNAR3qKI4bKI4j9lHCaHXddrDQJ0+b
+ z8kHhuLP6CNaEgutG8mUdrWLSCcH3pKTq0Je9zE56WQ6MK6uTAej8ZWJFs2Brjq44Yj4=;
+Received: from bombadil.infradead.org ([198.137.202.133])
  by sfi-mx-1.v28.lw.sourceforge.com with esmtps
  (TLS1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.95)
- id 1p8g1S-0092DC-TL for v9fs-developer@lists.sourceforge.net;
- Fri, 23 Dec 2022 11:15:32 +0000
-Received: by nautica.notk.org (Postfix, from userid 108)
- id 284A1C009; Fri, 23 Dec 2022 12:15:36 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=codewreck.org; s=2;
- t=1671794136; bh=VN5EBYZqJL3wQsJ8/hshGhgSI3cKSXMIvWYt8/UPKFM=;
- h=Date:From:To:Cc:Subject:From;
- b=GvUwMFT0Q6aYikdx7+ZWM69hPxdNa0tfsCa0zyvxN5AGOR2mzoqBpf5hTdluw552j
- NcUZVbAwPk+Q6QaLM4SBJfXG+uMh/thXSBkscaP5OT0xD293L485SbIlwyDCXmMRXw
- XuhsCzHTxUI0HsaNHe8EUcnfuvcOLcktHEy0qbbs+e0FZFJOJSxOmeZ2yDrwgpB2GO
- z0vWfoxc2UcneQr8p2jGupykyZVkvsqnMt+GPv3ONNQpT0+DwCucO8kV11bnfAMDFv
- 2BqTq5QbMtBGQ15ytRRB3G+SW1zZwVmAgzZ5uEBQ3ChszRytXobxC9uAm1zknvW2ZM
- sXAbXW3iaI7dg==
-X-Spam-Checker-Version: SpamAssassin 3.3.2 (2011-06-06) on nautica.notk.org
-X-Spam-Level: 
-X-Spam-Status: No, score=0.0 required=5.0 tests=UNPARSEABLE_RELAY
- autolearn=unavailable version=3.3.2
-Received: from odin.codewreck.org (localhost [127.0.0.1])
- by nautica.notk.org (Postfix) with ESMTPS id 020A0C009;
- Fri, 23 Dec 2022 12:15:33 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=codewreck.org; s=2;
- t=1671794135; bh=VN5EBYZqJL3wQsJ8/hshGhgSI3cKSXMIvWYt8/UPKFM=;
- h=Date:From:To:Cc:Subject:From;
- b=jOIbSBD9sy53EBNLvHZoaDht+SWLUur99xN+t8rN/Iq/KOSSsXhz4OWts8/XOVvid
- qlAAqfzFC9tbdEuxgkSPLQa8lzc1K0uElivb3PlF8i4ISlgDGEkZY6A5lhN8jtLcto
- Wtx8rDPRuogYQQ8uC9CbllnziA94bauWo6LYrbBAT3Pqa0OVBVHiZ0KAPDIn4W05X3
- NFliLgwxrTvX6x5M5Ranzgo6zkEOJ/SCHk/jO8sUeFNfo9RKKBEwvT2bt+pjyPmnPf
- ia1ohKTTHEXS00Sx/lYinTD1j3jdujTQnafgAxkE4WWjubNP8q65wZ/RrTyFX6OK2V
- 9SZvqifuhhKgw==
-Received: from localhost (odin.codewreck.org [local])
- by odin.codewreck.org (OpenSMTPD) with ESMTPA id c8efe9ed;
- Fri, 23 Dec 2022 11:15:18 +0000 (UTC)
-Date: Fri, 23 Dec 2022 20:15:03 +0900
-From: Dominique Martinet <asmadeus@codewreck.org>
-To: Linus Torvalds <torvalds@linux-foundation.org>
-Message-ID: <Y6WNt21HKZmWTG3/@codewreck.org>
+ id 1p8k1Y-009AkL-GU for v9fs-developer@lists.sourceforge.net;
+ Fri, 23 Dec 2022 15:31:54 +0000
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+ d=infradead.org; s=bombadil.20210309; h=In-Reply-To:Content-Type:MIME-Version
+ :References:Message-ID:Subject:Cc:To:From:Date:Sender:Reply-To:
+ Content-Transfer-Encoding:Content-ID:Content-Description;
+ bh=YI+GETaE07zfIF6gTr93yZkoaqmkXGRyTSkPLa22IzA=; b=RkLgtlP2zs+0grtCP2XKKuFJes
+ 6FHjSru80hSAyAYCWjR4giWwoV3DaU3XpMF7/3HZDUa+E/kozrd+x6VmAXg4TRMKJHW9b8wzSyfeD
+ VokI0tlui9x8PQhh88Z82EqORo/ZAaFcoi8Gbx6S9ZrNjmqThuHWTTIRq3+YEjgq3IX5yINDVvjt+
+ e0+/qxQDLcU/llLFjIUrhW0P/9m/nHcrhbkOptvrE3r4S9ZgmuFyMLR/rPv50gmRKgcXjautu9IC5
+ U8MyiLTneJokeOtEKvUEFCZUMIUmLTbzJVU1SPbmDcoK0FIf2BAPGpTW1uoenfctyu+YHc+9jx57b
+ guycEkxA==;
+Received: from hch by bombadil.infradead.org with local (Exim 4.94.2 #2 (Red
+ Hat Linux)) id 1p8k0x-009SnO-0o; Fri, 23 Dec 2022 15:31:15 +0000
+Date: Fri, 23 Dec 2022 07:31:14 -0800
+From: Christoph Hellwig <hch@infradead.org>
+To: David Howells <dhowells@redhat.com>
+Message-ID: <Y6XJwvjKyTgRIiI3@infradead.org>
+References: <167172131368.2334525.8569808925687731937.stgit@warthog.procyon.org.uk>
+ <167172134962.2334525.570622889806603086.stgit@warthog.procyon.org.uk>
 MIME-Version: 1.0
 Content-Disposition: inline
-X-Spam-Score: -0.2 (/)
+In-Reply-To: <167172134962.2334525.570622889806603086.stgit@warthog.procyon.org.uk>
+X-SRS-Rewrite: SMTP reverse-path rewritten from <hch@infradead.org> by
+ bombadil.infradead.org. See http://www.infradead.org/rpr.html
+X-Spam-Score: -2.5 (--)
 X-Spam-Report: Spam detection software,
  running on the system "util-spamd-2.v13.lw.sourceforge.com", 
  has NOT identified this incoming email as spam.  The original
  message has been attached to this so you can view it or label
  similar future email.  If you have any questions, see
  the administrator of that system for details.
- Content preview: The following changes since commit
- b7b275e60bcd5f89771e865a8239325f86d9927d:
- Linux 6.1-rc7 (2022-11-27 13:31:48 -0800) are available in the Git repository
- at: Content analysis details:   (-0.2 points, 6.0 required)
+ Content preview:  On Thu, Dec 22, 2022 at 03:02:29PM +0000,
+ David Howells wrote:
+ > Make filemap_release_folio() return one of three values: > > (0)
+ FILEMAP_CANT_RELEASE_FOLIO
+ > > Couldn't release the folio's private da [...] 
+ Content analysis details:   (-2.5 points, 6.0 required)
  pts rule name              description
  ---- ---------------------- --------------------------------------------------
- -0.0 SPF_PASS               SPF: sender matches SPF record
+ -2.3 RCVD_IN_DNSWL_MED      RBL: Sender listed at https://www.dnswl.org/,
+ medium trust [198.137.202.133 listed in list.dnswl.org]
  0.0 SPF_HELO_NONE          SPF: HELO does not publish an SPF Record
+ 0.0 SPF_NONE               SPF: sender does not publish an SPF Record
  -0.1 DKIM_VALID_AU          Message has a valid DKIM or DK signature from
  author's domain
  0.1 DKIM_SIGNED            Message has a DKIM or DK signature, not necessarily
@@ -97,10 +88,9 @@ X-Spam-Report: Spam detection software,
  -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
  -0.1 DKIM_VALID_EF          Message has a valid DKIM or DK signature from
  envelope-from domain
- 0.0 UNPARSEABLE_RELAY      Informational: message has unparseable relay
- lines
-X-Headers-End: 1p8g1S-0092DC-TL
-Subject: [V9fs-developer] [GIT PULL] 9p fixes for 6.2-rc1
+X-Headers-End: 1p8k1Y-009AkL-GU
+Subject: Re: [V9fs-developer] [PATCH v5 3/3] mm: Make
+ filemap_release_folio() better inform shrink_folio_list()
 X-BeenThere: v9fs-developer@lists.sourceforge.net
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -112,66 +102,62 @@ List-Post: <mailto:v9fs-developer@lists.sourceforge.net>
 List-Help: <mailto:v9fs-developer-request@lists.sourceforge.net?subject=help>
 List-Subscribe: <https://lists.sourceforge.net/lists/listinfo/v9fs-developer>, 
  <mailto:v9fs-developer-request@lists.sourceforge.net?subject=subscribe>
-Cc: linux-fsdevel@vger.kernel.org, v9fs-developer@lists.sourceforge.net,
- Christian Schoenebeck <linux_oss@crudebyte.com>, linux-kernel@vger.kernel.org
+Cc: Shyam Prasad N <nspmangalore@gmail.com>, linux-cifs@vger.kernel.org,
+ linux-nfs@vger.kernel.org, Rohith Surabattula <rohiths.msft@gmail.com>,
+ Jeff Layton <jlayton@kernel.org>, Dave Wysochanski <dwysocha@redhat.com>,
+ ceph-devel@vger.kernel.org, linux-kernel@vger.kernel.org,
+ Matthew Wilcox <willy@infradead.org>, linux-afs@lists.infradead.org,
+ Steve French <sfrench@samba.org>, linux-mm@kvack.org,
+ linux-erofs@lists.ozlabs.org, linux-cachefs@redhat.com,
+ linux-ext4@lists.ozlabs.org, linux-fsdevel@vger.kernel.org,
+ v9fs-developer@lists.sourceforge.net, Ilya Dryomov <idryomov@gmail.com>,
+ Linus Torvalds <torvalds@linux-foundation.org>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: v9fs-developer-bounces@lists.sourceforge.net
 
-The following changes since commit b7b275e60bcd5f89771e865a8239325f86d9927d:
+On Thu, Dec 22, 2022 at 03:02:29PM +0000, David Howells wrote:
+> Make filemap_release_folio() return one of three values:
+> 
+>  (0) FILEMAP_CANT_RELEASE_FOLIO
+> 
+>      Couldn't release the folio's private data, so the folio can't itself
+>      be released.
+> 
+>  (1) FILEMAP_RELEASED_FOLIO
+> 
+>      The private data on the folio was released and the folio can be
+>      released.
+> 
+>  (2) FILEMAP_FOLIO_HAD_NO_PRIVATE
 
-  Linux 6.1-rc7 (2022-11-27 13:31:48 -0800)
+These names read really odd, due to the different placementments
+of FOLIO, the present vs past tense and the fact that 2 also released
+the folio, and the reliance of callers that one value of an enum
+must be 0, while no unprecedented, is a bit ugly.
 
-are available in the Git repository at:
+But do we even need them?  What abut just open coding
+filemap_release_folio (which is a mostly trivial function) in
+shrink_folio_list, which is the only place that cares?
 
-  https://github.com/martinetd/linux tags/9p-for-6.2-rc1
+	if (folio_has_private(folio) && folio_needs_release(folio)) {
+		if (folio_test_writeback(folio))
+			goto activate_locked;
 
-for you to fetch changes up to 1a4f69ef15ec29b213e2b086b2502644e8ef76ee:
+		if (mapping && mapping->a_ops->release_folio) {
+			if (!mapping->a_ops->release_folio(folio, gfp))
+				goto activate_locked;
+		} else {
+			if (!try_to_free_buffers(folio))
+				goto activate_locked;
+		}
 
-  9p/client: fix data race on req->status (2022-12-13 13:02:15 +0900)
+		if (!mapping && folio_ref_count(folio) == 1) {
+			...
 
-----------------------------------------------------------------
-9p-for-6.2-rc1
-
-- improve p9_check_errors to check buffer size instead of msize when possible
-(e.g. not zero-copy)
-- some more syzbot and KCSAN fixes
-- minor headers include cleanup
-
-----------------------------------------------------------------
-Christian Schoenebeck (2):
-      net/9p: distinguish zero-copy requests
-      net/9p: fix response size check in p9_check_errors()
-
-Christophe JAILLET (2):
-      9p/fs: Remove unneeded idr.h #include
-      9p/net: Remove unneeded idr.h #include
-
-Dominique Martinet (2):
-      9p/xen: do not memcpy header into req->rc
-      9p/client: fix data race on req->status
-
-Schspa Shi (1):
-      9p: set req refcount to zero to avoid uninitialized usage
-
- fs/9p/fid.c            |  1 -
- fs/9p/v9fs.c           |  1 -
- fs/9p/vfs_addr.c       |  1 -
- fs/9p/vfs_dentry.c     |  1 -
- fs/9p/vfs_dir.c        |  1 -
- fs/9p/vfs_file.c       |  1 -
- fs/9p/vfs_inode.c      |  1 -
- fs/9p/vfs_inode_dotl.c |  1 -
- fs/9p/vfs_super.c      |  1 -
- include/net/9p/9p.h    |  2 ++
- net/9p/client.c        | 33 ++++++++++++++++++++++-----------
- net/9p/trans_fd.c      | 13 ++++++-------
- net/9p/trans_rdma.c    |  5 ++---
- net/9p/trans_virtio.c  | 10 +++++-----
- net/9p/trans_xen.c     |  8 +++++---
- 15 files changed, 42 insertions(+), 38 deletions(-)
---
-Dominique
+alternatively just keep using filemap_release_folio and just add the
+folio_needs_release in the first branch.  That duplicates the test,
+but makes the change a one-liner.
 
 
 _______________________________________________
