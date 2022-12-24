@@ -2,105 +2,97 @@ Return-Path: <v9fs-developer-bounces@lists.sourceforge.net>
 X-Original-To: lists+v9fs-developer@lfdr.de
 Delivered-To: lists+v9fs-developer@lfdr.de
 Received: from lists.sourceforge.net (lists.sourceforge.net [216.105.38.7])
-	by mail.lfdr.de (Postfix) with ESMTPS id B489E65541F
-	for <lists+v9fs-developer@lfdr.de>; Fri, 23 Dec 2022 21:08:56 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1147C655806
+	for <lists+v9fs-developer@lfdr.de>; Sat, 24 Dec 2022 03:08:32 +0100 (CET)
 Received: from [127.0.0.1] (helo=sfs-ml-1.v29.lw.sourceforge.com)
 	by sfs-ml-1.v29.lw.sourceforge.com with esmtp (Exim 4.95)
 	(envelope-from <v9fs-developer-bounces@lists.sourceforge.net>)
-	id 1p8oLe-0003wZ-IL;
-	Fri, 23 Dec 2022 20:08:54 +0000
+	id 1p8txd-0005yn-Ct;
+	Sat, 24 Dec 2022 02:08:29 +0000
 Received: from [172.30.20.202] (helo=mx.sourceforge.net)
  by sfs-ml-1.v29.lw.sourceforge.com with esmtps (TLS1.2) tls
- TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384 (Exim 4.95)
- (envelope-from <pr-tracker-bot@kernel.org>) id 1p8oLU-0003wP-Sv
- for v9fs-developer@lists.sourceforge.net;
- Fri, 23 Dec 2022 20:08:44 +0000
+ TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384 (Exim 4.95) (envelope-from
+ <9ca63c9e73a047353e17845c6f4cfe5b@atl4wpplatweb08d.registeredsite.com>)
+ id 1p8txc-0005yf-4G for v9fs-developer@lists.sourceforge.net;
+ Sat, 24 Dec 2022 02:08:28 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=sourceforge.net; s=x; h=Cc:To:Date:Message-Id:References:In-Reply-To:From:
- Subject:Sender:Reply-To:MIME-Version:Content-Type:Content-Transfer-Encoding:
- Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
- Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
+ d=sourceforge.net; s=x; h=Content-Transfer-Encoding:Content-Type:MIME-Version
+ :Message-ID:Subject:From:To:Date:Sender:Reply-To:Cc:Content-ID:
+ Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
+ :Resent-Message-ID:In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:
  List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=RS20y4ZJUK0wOPgb4UVqK2rWwan/rckNrhgLuvvPcS8=; b=LUjS7acynR2fUgXwKAvswmoMy5
- tIKWpUOrAlGZKcoW6dKtns2YqH4+V0gwxfop3XD6nCqwZLfN+QTsstZlRpQ/3pvDbxl/TUBy+x94O
- IqlAri4nebHeZXmUPHl6EC8S+cOJaq2JmjPrksx8/3NVGdEb8nwHsVn4BZvrRiqkWF7Q=;
+ bh=gjIRFjQeOgnTqeGGaoLWTO0Jb2agRhIB9+PsozXbdCg=; b=RaOFDcWgxz4hly2gQz7wULwmkK
+ lZwhkLFVEI7sReOAsNzR5tiH6E4eGYkCEDHYXSew+9e6RxRMNo4puYBK8vrZWQZuUxajZ9N3XY5o6
+ hrXDSAahAZfnhjYQcWH4bIYNbLtj/uR+G25+SZ33GmGsCT25UJSKOVPOiCrFev3PXlbk=;
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  ;
- h=Cc:To:Date:Message-Id:References:In-Reply-To:From:Subject:Sender:Reply-To
- :MIME-Version:Content-Type:Content-Transfer-Encoding:Content-ID:
- Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
- :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
- List-Post:List-Owner:List-Archive;
- bh=RS20y4ZJUK0wOPgb4UVqK2rWwan/rckNrhgLuvvPcS8=; b=V6ISypTx+I7OSzuOo0z9cB1v8+
- qrCa4VJJZkaUEqhwVXBB98lcu33jElVUI6wfYT+zOLsZrOOf1dXJzfUEOSa0Ipc3TeFXHw/8ZBZDQ
- a2oQR4ikKVDJu/+bmc4dXkNbdkvsmLpxJbLLGkjCE7H+0XIG4ZNEwD5CTFglgHaeFoxI=;
-Received: from dfw.source.kernel.org ([139.178.84.217])
- by sfi-mx-2.v28.lw.sourceforge.com with esmtps
+ h=Content-Transfer-Encoding:Content-Type:MIME-Version:Message-ID:Subject:
+ From:To:Date:Sender:Reply-To:Cc:Content-ID:Content-Description:Resent-Date:
+ Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:
+ References:List-Id:List-Help:List-Unsubscribe:List-Subscribe:List-Post:
+ List-Owner:List-Archive; bh=gjIRFjQeOgnTqeGGaoLWTO0Jb2agRhIB9+PsozXbdCg=; b=R
+ C9IZkhqBteCMX97S1ZkhLEVcMkz1208mprFOXNm/+VqtAXSyH2Rnhtlq1CmkojjrL1P5X+hLlBYdT
+ oa34NnJMip5oict/jVmk6oaD9F3iACJSc9TzakCB/tZlxEZux0k1VF1kmWck3ie8ZIzfQsQ9qlEO2
+ R3XpWFwpfn8F1pSQ=;
+Received: from atl4mhfb01.myregisteredsite.com ([209.17.115.55])
+ by sfi-mx-1.v28.lw.sourceforge.com with esmtps
  (TLS1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.95)
- id 1p8oLQ-0003Eq-41 for v9fs-developer@lists.sourceforge.net;
- Fri, 23 Dec 2022 20:08:44 +0000
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
- (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
- (No client certificate requested)
- by dfw.source.kernel.org (Postfix) with ESMTPS id E2E7961EA5;
- Fri, 23 Dec 2022 20:08:33 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPS id 42027C433EF;
- Fri, 23 Dec 2022 20:08:33 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1671826113;
- bh=xPTOnB2Q3hBfI+si9FmT6bNHaXCqqzT8BSb+rFgeoUg=;
- h=Subject:From:In-Reply-To:References:Date:To:Cc:From;
- b=rs45jhVhCgXa2Zomf6baJf76XsWic/Jz1LJ5ZCDrjotKD4srgXUuo+b6k6dhH/4IG
- osGliT3M5RD3DEp/C6eWyZTTP4ejhMpSisLQQMzw6D4ct2lFlChTaNlHDzFz9cVcwk
- 1hOVMwSkeyG51lyf/LoB40DWRtMj3RaQHBdaMeYjuPFxZhgCB8x3OTiL6wTLAYoCyT
- FrXfG2LSUq9kQiBh1na90MJuGu9Jw38ktFtJDj79woNrfRLKeNNvH9TqEBDQlcb4AE
- 8Y5VqvbWU5++CWP9DIyXKFDZGrF3+hPqEnDsFHdylEV/fOYMGtG0DvbdnbP4QyhruH
- 1e5GpN1QJuWcA==
-Received: from aws-us-west-2-korg-oddjob-1.ci.codeaurora.org
- (localhost.localdomain [127.0.0.1])
- by aws-us-west-2-korg-oddjob-1.ci.codeaurora.org (Postfix) with ESMTP id
- 2FEB6C00448; Fri, 23 Dec 2022 20:08:33 +0000 (UTC)
-From: pr-tracker-bot@kernel.org
-In-Reply-To: <Y6WNt21HKZmWTG3/@codewreck.org>
-References: <Y6WNt21HKZmWTG3/@codewreck.org>
-X-PR-Tracked-List-Id: <linux-kernel.vger.kernel.org>
-X-PR-Tracked-Message-Id: <Y6WNt21HKZmWTG3/@codewreck.org>
-X-PR-Tracked-Remote: https://github.com/martinetd/linux tags/9p-for-6.2-rc1
-X-PR-Tracked-Commit-Id: 1a4f69ef15ec29b213e2b086b2502644e8ef76ee
-X-PR-Merge-Tree: torvalds/linux.git
-X-PR-Merge-Refname: refs/heads/master
-X-PR-Merge-Commit-Id: e3b862ed893bf030ebdd78ead99647374a2cfd47
-Message-Id: <167182611318.4135.10312690702165039666.pr-tracker-bot@kernel.org>
-Date: Fri, 23 Dec 2022 20:08:33 +0000
-To: Dominique Martinet <asmadeus@codewreck.org>
-X-Spam-Score: -5.9 (-----)
-X-Spam-Report: Spam detection software,
- running on the system "util-spamd-1.v13.lw.sourceforge.com", 
+ id 1p8txY-009f1q-9q for v9fs-developer@lists.sourceforge.net;
+ Sat, 24 Dec 2022 02:08:28 +0000
+Received: from atl4mhho05.registeredsite.com (atl4mhho05.registeredsite.com
+ [209.17.115.113])
+ by atl4mhfb01.myregisteredsite.com (8.14.4/8.14.4) with ESMTP id
+ 2BO1seDx010984
+ for <v9fs-developer@lists.sourceforge.net>; Fri, 23 Dec 2022 20:54:40 -0500
+Received: from atl4wpplatweb08d.registeredsite.com ([10.30.52.142])
+ by atl4mhho05.registeredsite.com (8.14.4/8.14.4) with ESMTP id 2BO1sTmF004170
+ (version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=NO)
+ for <v9fs-developer@lists.sourceforge.net>; Fri, 23 Dec 2022 20:54:29 -0500
+Received: from atl4wpplatweb08d.registeredsite.com (localhost [127.0.0.1])
+ by atl4wpplatweb08d.registeredsite.com (8.14.7/8.14.4) with ESMTP id
+ 2BO1rpBC029113
+ for <v9fs-developer@lists.sourceforge.net>; Fri, 23 Dec 2022 20:53:51 -0500
+Received: (from 9ca63c9e73a047353e17845c6f4cfe5b@localhost)
+ by atl4wpplatweb08d.registeredsite.com (8.14.7/8.14.7/Submit) id
+ 2BO1rp6D029112; Fri, 23 Dec 2022 20:53:51 -0500
+Date: Fri, 23 Dec 2022 20:52:21 -0500
+To: v9fs-developer@lists.sourceforge.net
+From: Parcel delivery <Support-87@ipgeolocation.io>
+Message-ID: <7177ce67f867be7ae2656e9727d9ef30@ipgeolocation.io>
+MIME-Version: 1.0
+X-Spam-Score: 4.5 (++++)
+X-Spam-Report: Spam detection software, running on the system "util-spamd-2.v13.lw.sourceforge.com",
  has NOT identified this incoming email as spam.  The original
  message has been attached to this so you can view it or label
  similar future email.  If you have any questions, see
  the administrator of that system for details.
- Content preview:  The pull request you sent on Fri, 23 Dec 2022 20:15:03 +0900:
- > https://github.com/martinetd/linux tags/9p-for-6.2-rc1 has been merged
- into torvalds/linux.git:
- https://git.kernel.org/torvalds/c/e3b862ed893bf030ebdd78ead99647374a2cfd47
- Content analysis details:   (-5.9 points, 6.0 required)
- pts rule name              description
+ 
+ Content preview:  DHL Express Your DHL package will be delivered to you today
+    by our parcel delivery service.   
+ 
+ Content analysis details:   (4.5 points, 6.0 required)
+ 
+  pts rule name              description
  ---- ---------------------- --------------------------------------------------
- 0.0 SPF_HELO_NONE          SPF: HELO does not publish an SPF Record
- -0.0 SPF_PASS               SPF: sender matches SPF record
- -0.1 DKIM_VALID_AU          Message has a valid DKIM or DK signature from
- author's domain
- -0.1 DKIM_VALID_EF          Message has a valid DKIM or DK signature from
- envelope-from domain
- 0.1 DKIM_SIGNED            Message has a DKIM or DK signature, not necessarily
- valid
- -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
- -5.0 RCVD_IN_DNSWL_HI       RBL: Sender listed at https://www.dnswl.org/,
- high trust [139.178.84.217 listed in list.dnswl.org]
- -0.7 DKIMWL_WL_HIGH         DKIMwl.org - High trust sender
-X-Headers-End: 1p8oLQ-0003Eq-41
-Subject: Re: [V9fs-developer] [GIT PULL] 9p fixes for 6.2-rc1
+  1.0 RCVD_IN_UCE1           RBL: IP Listed in UCEPROTECT Level 1
+                             [209.17.115.113 listed in dnsbl-1.uceprotect.net]
+  1.2 RCVD_IN_BL_SPAMCOP_NET RBL: Received via a relay in
+                             bl.spamcop.net
+              [Blocked - see <https://www.spamcop.net/bl.shtml?209.17.115.113>]
+  1.9 URIBL_ABUSE_SURBL      Contains an URL listed in the ABUSE SURBL
+                             blocklist
+                             [URIs: static.blog4ever.com]
+ -0.0 RCVD_IN_DNSWL_NONE     RBL: Sender listed at https://www.dnswl.org/,
+                              no trust
+                             [209.17.115.55 listed in list.dnswl.org]
+  0.2 HEADER_FROM_DIFFERENT_DOMAINS From and EnvelopeFrom 2nd level
+                             mail domains are different
+  0.0 SPF_NONE               SPF: sender does not publish an SPF Record
+  0.0 T_SPF_HELO_TEMPERROR   SPF: test of HELO record failed (temperror)
+  0.0 HTML_MESSAGE           BODY: HTML included in message
+X-Headers-End: 1p8txY-009f1q-9q
+X-Content-Filtered-By: Mailman/MimeDel 2.1.21
+Subject: [V9fs-developer] Your package cannot be delivered
 X-BeenThere: v9fs-developer@lists.sourceforge.net
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -112,29 +104,18 @@ List-Post: <mailto:v9fs-developer@lists.sourceforge.net>
 List-Help: <mailto:v9fs-developer-request@lists.sourceforge.net?subject=help>
 List-Subscribe: <https://lists.sourceforge.net/lists/listinfo/v9fs-developer>, 
  <mailto:v9fs-developer-request@lists.sourceforge.net?subject=subscribe>
-Cc: linux-fsdevel@vger.kernel.org, v9fs-developer@lists.sourceforge.net,
- Christian Schoenebeck <linux_oss@crudebyte.com>,
- Linus Torvalds <torvalds@linux-foundation.org>, linux-kernel@vger.kernel.org
-MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: v9fs-developer-bounces@lists.sourceforge.net
 
-The pull request you sent on Fri, 23 Dec 2022 20:15:03 +0900:
-
-> https://github.com/martinetd/linux tags/9p-for-6.2-rc1
-
-has been merged into torvalds/linux.git:
-https://git.kernel.org/torvalds/c/e3b862ed893bf030ebdd78ead99647374a2cfd47
-
-Thank you!
-
--- 
-Deet-doot-dot, I am a bot.
-https://korg.docs.kernel.org/prtracker.html
-
-
-_______________________________________________
-V9fs-developer mailing list
-V9fs-developer@lists.sourceforge.net
-https://lists.sourceforge.net/lists/listinfo/v9fs-developer
+CgoKCQoKCgoKREhMIEV4cHJlc3MKCgoKWW91ciBESEwgcGFja2FnZSB3aWxsIGJlIGRlbGl2ZXJl
+ZCB0byB5b3UgdG9kYXkgYnkgb3VyIHBhcmNlbCBkZWxpdmVyeSBzZXJ2aWNlLgoKwqAKCgoKSW4g
+b3JkZXIgdG8gc2VuZCBpdCB0byB5b3UgeW91IG5lZWQgdG8gdXBkYXRlIHlvdXIgc2hpcHBpbmcg
+YWRkcmVzcwoKT25jZSB3ZSBoYXZlIHJlY2VpdmVkIHRoZSBhZGRpdGlvbmFsIHNoaXBwaW5nIGNv
+c3QsIHdlIHdpbGwgY29udGFjdCB5b3UgdG8gYXJyYW5nZSBkZWxpdmVyeS4KCsKgCgpTdGFydCBE
+ZWxpdmVyeQoKwqAKClJlbWluZGVyOiB0aGlzIHByb2NlZHVyZSBpcyBtYW5kYXRvcnkgdG8gcHJl
+dmVudCB5b3VyIHBhY2thZ2UgZnJvbSBiZWluZyByZXR1cm5lZCB0byBzZW5kZXIKCsKgCgoKCgoK
+Cl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fClY5ZnMtZGV2
+ZWxvcGVyIG1haWxpbmcgbGlzdApWOWZzLWRldmVsb3BlckBsaXN0cy5zb3VyY2Vmb3JnZS5uZXQK
+aHR0cHM6Ly9saXN0cy5zb3VyY2Vmb3JnZS5uZXQvbGlzdHMvbGlzdGluZm8vdjlmcy1kZXZlbG9w
+ZXIK
