@@ -2,97 +2,104 @@ Return-Path: <v9fs-developer-bounces@lists.sourceforge.net>
 X-Original-To: lists+v9fs-developer@lfdr.de
 Delivered-To: lists+v9fs-developer@lfdr.de
 Received: from lists.sourceforge.net (lists.sourceforge.net [216.105.38.7])
-	by mail.lfdr.de (Postfix) with ESMTPS id 358BD6574B5
-	for <lists+v9fs-developer@lfdr.de>; Wed, 28 Dec 2022 10:36:01 +0100 (CET)
-Received: from [127.0.0.1] (helo=sfs-ml-1.v29.lw.sourceforge.com)
-	by sfs-ml-1.v29.lw.sourceforge.com with esmtp (Exim 4.95)
+	by mail.lfdr.de (Postfix) with ESMTPS id CAF91659757
+	for <lists+v9fs-developer@lfdr.de>; Fri, 30 Dec 2022 11:34:50 +0100 (CET)
+Received: from [127.0.0.1] (helo=sfs-ml-4.v29.lw.sourceforge.com)
+	by sfs-ml-4.v29.lw.sourceforge.com with esmtp (Exim 4.95)
 	(envelope-from <v9fs-developer-bounces@lists.sourceforge.net>)
-	id 1pASqs-000126-7D;
-	Wed, 28 Dec 2022 09:35:58 +0000
+	id 1pBCit-0008Tb-Tl;
+	Fri, 30 Dec 2022 10:34:47 +0000
 Received: from [172.30.20.202] (helo=mx.sourceforge.net)
- by sfs-ml-1.v29.lw.sourceforge.com with esmtps (TLS1.2) tls
- TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384 (Exim 4.95)
- (envelope-from <leon@kernel.org>) id 1pASqd-0000y6-S5
- for v9fs-developer@lists.sourceforge.net;
- Wed, 28 Dec 2022 09:35:43 +0000
+ by sfs-ml-4.v29.lw.sourceforge.com with esmtps (TLS1.2) tls
+ TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384 (Exim 4.95) (envelope-from
+ <3ur6uYwkbABcFLM7x881ExCC50.3BB381HF1EzBAG1AG.zB9@M3KW2WVRGUFZ5GODRSRYTGD7.apphosting.bounces.google.com>)
+ id 1pBCir-0008TP-U0 for v9fs-developer@lists.sourceforge.net;
+ Fri, 30 Dec 2022 10:34:45 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=sourceforge.net; s=x; h=In-Reply-To:Content-Type:MIME-Version:References:
- Message-ID:Subject:Cc:To:From:Date:Sender:Reply-To:Content-Transfer-Encoding:
- Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
- Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
+ d=sourceforge.net; s=x; h=Content-Type:To:From:Subject:Message-ID:In-Reply-To
+ :Date:MIME-Version:Sender:Reply-To:Cc:Content-Transfer-Encoding:Content-ID:
+ Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
+ :Resent-Message-ID:References:List-Id:List-Help:List-Unsubscribe:
  List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=xdaneX1g9ZuAPydKWERzO6TgeRTOijGBM1c/uJdZGG0=; b=eXibetWWlIQ2al9oheD8L9xhMc
- ecYsjEdqLE/JGR72om6BqeswMgPOGNKSxiyVv+EwOyebKIw1Zkz1LcxB8Fm5dAhVL5oCrRsIJrOav
- UFGLNrR+BCct8Vl+I7WkHGBOfKNe2jcUSZckkhpP+nblRXfuu4DYFuLxJ4NpC3afLxOk=;
+ bh=l1+xVltypcnxAkvWPCQxFM0n2XimN1lwperOL1Mtxsc=; b=ObeQOtKpaZJHZ9Z0EKlDsft/Gg
+ 2nQt1BF6ZmYX+F1iZWQc/vjqyJhjKQKW2snAkRPwCvUXU10GFu4ZNLX8L5Ai6zsWTOSsFtyqrhRqk
+ bTocN5RAbdkHJ+gvyeMZwN20djjLxtG64pdcoHz6c2YcnDzALsPpkRUVN3PR9JCCjE2Y=;
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  ;
- h=In-Reply-To:Content-Type:MIME-Version:References:Message-ID:Subject:Cc:To
- :From:Date:Sender:Reply-To:Content-Transfer-Encoding:Content-ID:
- Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
- :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
- List-Post:List-Owner:List-Archive;
- bh=xdaneX1g9ZuAPydKWERzO6TgeRTOijGBM1c/uJdZGG0=; b=P34Z2QFof+Bxl1QRrLKWpkeaaR
- 7WyRmdDXm7ceLJobLBE0tb1apKWHx47BjCCOULD/uIlmPwLoRuvEVfCOAMQDnS9CKZynw0uBodO98
- nhqqt4Fo8DdRtXX9mvctoiy0L7X7oZJ+wQRRgr2iQI2w66gBvs5LfPx3dtr4+Q10GzEI=;
-Received: from ams.source.kernel.org ([145.40.68.75])
- by sfi-mx-1.v28.lw.sourceforge.com with esmtps
- (TLS1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.95)
- id 1pASqd-00FBkd-56 for v9fs-developer@lists.sourceforge.net;
- Wed, 28 Dec 2022 09:35:43 +0000
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
- (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
- (No client certificate requested)
- by ams.source.kernel.org (Postfix) with ESMTPS id 0770BB8125D;
- Wed, 28 Dec 2022 09:35:36 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 46BECC433EF;
- Wed, 28 Dec 2022 09:35:34 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1672220134;
- bh=+sNc/TkmwLtCuF3WdXUxEZNFgs58QUzSnzN5GtPJVfQ=;
- h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
- b=gWvaKSvMzqNgHPGYNKYYTD26RNYZg+26+xbce1Ck4DozO6BjV8y0NGM/4bFQZWTlt
- 4BiV/ZviwuyM+yd13FwXa1jyVhfOQ6oqXo+vvHYmOjNEpaIP+CaGwO3bB4rk0yJ6HU
- EO5GgFkNDEZ3323L9Q4H9VtypC3SsHmgZJuPGfanDeJMhXQ9CIzH5kjNy+Pt4PIv32
- Q6+EYKrr29hKBnwDO7AHlnZjgHDWDE5YgNJ6jvsOzCyMGTY8BOunaj3DZpt/5hqtq9
- rgP8JUw/KS95TVcKijBY4N1VEuUhAd8zuCgJ/c3XxGsa+k3YxIYdi35dE9tZNZ9ayI
- ArmL/BRq2HhrQ==
-Date: Wed, 28 Dec 2022 11:35:30 +0200
-From: Leon Romanovsky <leon@kernel.org>
-To: Zhengchao Shao <shaozhengchao@huawei.com>
-Message-ID: <Y6wN4uBZwPV+rKXi@unreal>
-References: <20221220031223.3890143-1-shaozhengchao@huawei.com>
+ h=Content-Type:To:From:Subject:Message-ID:In-Reply-To:Date:MIME-Version:
+ Sender:Reply-To:Cc:Content-Transfer-Encoding:Content-ID:Content-Description:
+ Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+ References:List-Id:List-Help:List-Unsubscribe:List-Subscribe:List-Post:
+ List-Owner:List-Archive; bh=l1+xVltypcnxAkvWPCQxFM0n2XimN1lwperOL1Mtxsc=; b=a
+ b3H3wBgDIdNyE7CRQ1zCw48+4/wW3VvN8s9W/gRxqmjBvYfOTFMhUXG4d8qVKc6v0LUChv0JSQG2c
+ ZUKxNw9fefZQraL2tFR8OVOI8my8OCXzyBlm6SsFWYCkinhzJpOXXXoZamsqSNYCvs1U++9LvDtHj
+ fNh5lqmGxAPxNZpw=;
+Received: from mail-il1-f199.google.com ([209.85.166.199])
+ by sfi-mx-2.v28.lw.sourceforge.com with esmtps
+ (TLS1.2:ECDHE-RSA-AES128-GCM-SHA256:128) (Exim 4.95)
+ id 1pBCil-0003nf-Vq for v9fs-developer@lists.sourceforge.net;
+ Fri, 30 Dec 2022 10:34:44 +0000
+Received: by mail-il1-f199.google.com with SMTP id
+ y11-20020a056e02178b00b0030c048d64a7so7480076ilu.1
+ for <v9fs-developer@lists.sourceforge.net>;
+ Fri, 30 Dec 2022 02:34:39 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20210112;
+ h=to:from:subject:message-id:in-reply-to:date:mime-version
+ :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+ bh=l1+xVltypcnxAkvWPCQxFM0n2XimN1lwperOL1Mtxsc=;
+ b=Y2piT1HkIZYn3IdAH3Kk2HZ+Eu/3XU36XPEU3iAbZxi/58iGmVkWy6mWxstb61HAtH
+ SZDevFG3PnTYIaaCsuR4iQqcdfFws/hIqSuL/zqEDES26Q97Y3WnNY0sMqpKJW2mvKHF
+ P0CTIP2+bdk1kMXXTEP0H7iEWSkCrSSENm9CauuUUFp9Vt9uJgGnh897HFnkCZqAmiL7
+ Y6uD37cg6AzgxGzyRcBjpT1aBi4J9Jd6zAxC1wyYLkqCwZrCd/dDAsY7PafzJBEZGk86
+ K3KIX/79fh2UQsEVCyPmW+adnDmK4rWAwhF4INAn73x62dgFGl11tsgv3MdQRAi36kMQ
+ KnoQ==
+X-Gm-Message-State: AFqh2kpkRS+EOSDV1RTXZNKIhjfjRqBLriv9w9tLrxR11LPdblLb1QHg
+ qv+868CWlvcdDrAH4dIzMyYQq8E8NT5B0ygXlr0RBhqJuaJC
+X-Google-Smtp-Source: AMrXdXuCVhfuhDVOVDBO2QEW3ZsUFRaZINtASNymA6eBjtRAhCOlpvlwUqMjxK5NbcRex/8HxlW2bK/0gq0OxTMGvKNDTLJeZwSu
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20221220031223.3890143-1-shaozhengchao@huawei.com>
-X-Spam-Score: -5.9 (-----)
+X-Received: by 2002:a5e:cb44:0:b0:6df:b793:35ac with SMTP id
+ h4-20020a5ecb44000000b006dfb79335acmr2257037iok.33.1672396474461; Fri, 30 Dec
+ 2022 02:34:34 -0800 (PST)
+Date: Fri, 30 Dec 2022 02:34:34 -0800
+In-Reply-To: <00000000000015ac7905e97ebaed@google.com>
+X-Google-Appengine-App-Id: s~syzkaller
+X-Google-Appengine-App-Id-Alias: syzkaller
+Message-ID: <000000000000c8b66105f1092536@google.com>
+From: syzbot <syzbot+67d13108d855f451cafc@syzkaller.appspotmail.com>
+To: asmadeus@codewreck.org, dan.carpenter@oracle.com, davem@davemloft.net, 
+ edumazet@google.com, ericvh@gmail.com, kuba@kernel.org, leon@kernel.org, 
+ linux-kernel@vger.kernel.org, linux_oss@crudebyte.com, lucho@ionkov.net, 
+ netdev@vger.kernel.org, pabeni@redhat.com, syzkaller-bugs@googlegroups.com, 
+ v9fs-developer@lists.sourceforge.net
+X-Spam-Score: 3.1 (+++)
 X-Spam-Report: Spam detection software,
  running on the system "util-spamd-1.v13.lw.sourceforge.com", 
  has NOT identified this incoming email as spam.  The original
  message has been attached to this so you can view it or label
  similar future email.  If you have any questions, see
  the administrator of that system for details.
- Content preview:  On Tue, Dec 20, 2022 at 11:12:23AM +0800,
- Zhengchao Shao wrote:
- > When down_interruptible() failed in rdma_request(), receive dma buffer
- > is not unmapped. Add unmap action to error path. > > Fixes: f [...] 
- Content analysis details:   (-5.9 points, 6.0 required)
+ Content preview: This bug is marked as fixed by commit: 9p:
+ client_create/destroy:
+ only call trans_mod->close after create But I can't find it in the tested
+ trees[1] for more than 90 days. Is it a correct commit? Please update it
+ by replying: 
+ Content analysis details:   (3.1 points, 6.0 required)
  pts rule name              description
  ---- ---------------------- --------------------------------------------------
- -5.0 RCVD_IN_DNSWL_HI       RBL: Sender listed at https://www.dnswl.org/,
- high trust [145.40.68.75 listed in list.dnswl.org]
+ -0.0 RCVD_IN_DNSWL_NONE     RBL: Sender listed at https://www.dnswl.org/,
+ no trust [209.85.166.199 listed in list.dnswl.org]
+ 0.3 FROM_LOCAL_HEX         From: localpart has long hexadecimal sequence
+ 2.5 SORTED_RECIPS          Recipient list is sorted by address
  0.0 SPF_HELO_NONE          SPF: HELO does not publish an SPF Record
+ 0.2 HEADER_FROM_DIFFERENT_DOMAINS From and EnvelopeFrom 2nd level
+ mail domains are different
  -0.0 SPF_PASS               SPF: sender matches SPF record
- -0.1 DKIM_VALID_AU          Message has a valid DKIM or DK signature from
- author's domain
- -0.1 DKIM_VALID_EF          Message has a valid DKIM or DK signature from
- envelope-from domain
- 0.1 DKIM_SIGNED            Message has a DKIM or DK signature, not necessarily
- valid
- -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
- -0.7 DKIMWL_WL_HIGH         DKIMwl.org - High trust sender
-X-Headers-End: 1pASqd-00FBkd-56
-Subject: Re: [V9fs-developer] [PATCH] 9p/rdma: unmap receive dma buffer in
- rdma_request()
+ -0.0 RCVD_IN_MSPIKE_H2      RBL: Average reputation (+2)
+ [209.85.166.199 listed in wl.mailspike.net]
+X-Headers-End: 1pBCil-0003nf-Vq
+Subject: Re: [V9fs-developer] [syzbot] KASAN: use-after-free Read in
+ rdma_close
 X-BeenThere: v9fs-developer@lists.sourceforge.net
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -104,47 +111,41 @@ List-Post: <mailto:v9fs-developer@lists.sourceforge.net>
 List-Help: <mailto:v9fs-developer-request@lists.sourceforge.net?subject=help>
 List-Subscribe: <https://lists.sourceforge.net/lists/listinfo/v9fs-developer>, 
  <mailto:v9fs-developer-request@lists.sourceforge.net?subject=subscribe>
-Cc: lucho@ionkov.net, ericvh@gmail.com, netdev@vger.kernel.org,
- linux_oss@crudebyte.com, yuehaibing@huawei.com, tom@opengridcomputing.com,
- edumazet@google.com, weiyongjun1@huawei.com, kuba@kernel.org,
- v9fs-developer@lists.sourceforge.net, pabeni@redhat.com, davem@davemloft.net
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: v9fs-developer-bounces@lists.sourceforge.net
 
-On Tue, Dec 20, 2022 at 11:12:23AM +0800, Zhengchao Shao wrote:
-> When down_interruptible() failed in rdma_request(), receive dma buffer
-> is not unmapped. Add unmap action to error path.
-> 
-> Fixes: fc79d4b104f0 ("9p: rdma: RDMA Transport Support for 9P")
-> Signed-off-by: Zhengchao Shao <shaozhengchao@huawei.com>
-> ---
->  net/9p/trans_rdma.c | 2 ++
->  1 file changed, 2 insertions(+)
-> 
-> diff --git a/net/9p/trans_rdma.c b/net/9p/trans_rdma.c
-> index 83f9100d46bf..da83023fecbf 100644
-> --- a/net/9p/trans_rdma.c
-> +++ b/net/9p/trans_rdma.c
-> @@ -499,6 +499,8 @@ static int rdma_request(struct p9_client *client, struct p9_req_t *req)
->  
->  	if (down_interruptible(&rdma->sq_sem)) {
->  		err = -EINTR;
-> +		ib_dma_unmap_single(rdma->cm_id->device, c->busa,
-> +				    c->req->tc.size, DMA_TO_DEVICE);
->  		goto send_error;
->  	}
+This bug is marked as fixed by commit:
+9p: client_create/destroy: only call trans_mod->close after create
 
-It is not the only place where ib_dma_unmap_single() wasn't called.
-Even at the same function if ib_post_send() fails, the unmap is not
-called. Also post_recv() is missing call to ib_dma_unmap_single() too.
+But I can't find it in the tested trees[1] for more than 90 days.
+Is it a correct commit? Please update it by replying:
 
-Thanks
+#syz fix: exact-commit-title
 
->  
-> -- 
-> 2.34.1
-> 
+Until then the bug is still considered open and new crashes with
+the same signature are ignored.
+
+Kernel: Linux
+Dashboard link: https://syzkaller.appspot.com/bug?extid=67d13108d855f451cafc
+
+---
+[1] I expect the commit to be present in:
+
+1. for-kernelci branch of
+git://git.kernel.org/pub/scm/linux/kernel/git/arm64/linux.git
+
+2. master branch of
+git://git.kernel.org/pub/scm/linux/kernel/git/bpf/bpf-next.git
+
+3. master branch of
+git://git.kernel.org/pub/scm/linux/kernel/git/bpf/bpf.git
+
+4. master branch of
+git://git.kernel.org/pub/scm/linux/kernel/git/davem/net-next.git
+
+The full list of 10 trees can be found at
+https://syzkaller.appspot.com/upstream/repos
 
 
 _______________________________________________
