@@ -2,104 +2,101 @@ Return-Path: <v9fs-developer-bounces@lists.sourceforge.net>
 X-Original-To: lists+v9fs-developer@lfdr.de
 Delivered-To: lists+v9fs-developer@lfdr.de
 Received: from lists.sourceforge.net (lists.sourceforge.net [216.105.38.7])
-	by mail.lfdr.de (Postfix) with ESMTPS id CAF91659757
-	for <lists+v9fs-developer@lfdr.de>; Fri, 30 Dec 2022 11:34:50 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 557DD65A68C
+	for <lists+v9fs-developer@lfdr.de>; Sat, 31 Dec 2022 21:05:02 +0100 (CET)
 Received: from [127.0.0.1] (helo=sfs-ml-4.v29.lw.sourceforge.com)
 	by sfs-ml-4.v29.lw.sourceforge.com with esmtp (Exim 4.95)
 	(envelope-from <v9fs-developer-bounces@lists.sourceforge.net>)
-	id 1pBCit-0008Tb-Tl;
-	Fri, 30 Dec 2022 10:34:47 +0000
+	id 1pBi6F-0002hd-Cz;
+	Sat, 31 Dec 2022 20:04:59 +0000
 Received: from [172.30.20.202] (helo=mx.sourceforge.net)
  by sfs-ml-4.v29.lw.sourceforge.com with esmtps (TLS1.2) tls
- TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384 (Exim 4.95) (envelope-from
- <3ur6uYwkbABcFLM7x881ExCC50.3BB381HF1EzBAG1AG.zB9@M3KW2WVRGUFZ5GODRSRYTGD7.apphosting.bounces.google.com>)
- id 1pBCir-0008TP-U0 for v9fs-developer@lists.sourceforge.net;
- Fri, 30 Dec 2022 10:34:45 +0000
+ TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384 (Exim 4.95)
+ (envelope-from <sashal@kernel.org>) id 1pBi6E-0002hW-4c
+ for v9fs-developer@lists.sourceforge.net;
+ Sat, 31 Dec 2022 20:04:58 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=sourceforge.net; s=x; h=Content-Type:To:From:Subject:Message-ID:In-Reply-To
- :Date:MIME-Version:Sender:Reply-To:Cc:Content-Transfer-Encoding:Content-ID:
- Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
- :Resent-Message-ID:References:List-Id:List-Help:List-Unsubscribe:
+ d=sourceforge.net; s=x; h=Content-Transfer-Encoding:MIME-Version:References:
+ In-Reply-To:Message-Id:Date:Subject:Cc:To:From:Sender:Reply-To:Content-Type:
+ Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+ Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
  List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=l1+xVltypcnxAkvWPCQxFM0n2XimN1lwperOL1Mtxsc=; b=ObeQOtKpaZJHZ9Z0EKlDsft/Gg
- 2nQt1BF6ZmYX+F1iZWQc/vjqyJhjKQKW2snAkRPwCvUXU10GFu4ZNLX8L5Ai6zsWTOSsFtyqrhRqk
- bTocN5RAbdkHJ+gvyeMZwN20djjLxtG64pdcoHz6c2YcnDzALsPpkRUVN3PR9JCCjE2Y=;
+ bh=sILzJwRVxn25CNGQj8obVfL9agCJwooGkotfE5DINqI=; b=S/IWlARwPQV3KuDtlnkv4qY8tl
+ fz5UKNw+Z79U2cT+mXZ6HzEzl+hz45Iiv2kiIG7AqiuY42vETqhU2f5t+1vhpCAJpE8r0eipecFEb
+ 3VWSs/apalA3iVRXgu6fMLlO5RtYm5BNree1TvsFftybsgSgLCdJQM2InoQDKB4StHL4=;
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  ;
- h=Content-Type:To:From:Subject:Message-ID:In-Reply-To:Date:MIME-Version:
- Sender:Reply-To:Cc:Content-Transfer-Encoding:Content-ID:Content-Description:
- Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
- References:List-Id:List-Help:List-Unsubscribe:List-Subscribe:List-Post:
- List-Owner:List-Archive; bh=l1+xVltypcnxAkvWPCQxFM0n2XimN1lwperOL1Mtxsc=; b=a
- b3H3wBgDIdNyE7CRQ1zCw48+4/wW3VvN8s9W/gRxqmjBvYfOTFMhUXG4d8qVKc6v0LUChv0JSQG2c
- ZUKxNw9fefZQraL2tFR8OVOI8my8OCXzyBlm6SsFWYCkinhzJpOXXXoZamsqSNYCvs1U++9LvDtHj
- fNh5lqmGxAPxNZpw=;
-Received: from mail-il1-f199.google.com ([209.85.166.199])
- by sfi-mx-2.v28.lw.sourceforge.com with esmtps
- (TLS1.2:ECDHE-RSA-AES128-GCM-SHA256:128) (Exim 4.95)
- id 1pBCil-0003nf-Vq for v9fs-developer@lists.sourceforge.net;
- Fri, 30 Dec 2022 10:34:44 +0000
-Received: by mail-il1-f199.google.com with SMTP id
- y11-20020a056e02178b00b0030c048d64a7so7480076ilu.1
- for <v9fs-developer@lists.sourceforge.net>;
- Fri, 30 Dec 2022 02:34:39 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20210112;
- h=to:from:subject:message-id:in-reply-to:date:mime-version
- :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
- bh=l1+xVltypcnxAkvWPCQxFM0n2XimN1lwperOL1Mtxsc=;
- b=Y2piT1HkIZYn3IdAH3Kk2HZ+Eu/3XU36XPEU3iAbZxi/58iGmVkWy6mWxstb61HAtH
- SZDevFG3PnTYIaaCsuR4iQqcdfFws/hIqSuL/zqEDES26Q97Y3WnNY0sMqpKJW2mvKHF
- P0CTIP2+bdk1kMXXTEP0H7iEWSkCrSSENm9CauuUUFp9Vt9uJgGnh897HFnkCZqAmiL7
- Y6uD37cg6AzgxGzyRcBjpT1aBi4J9Jd6zAxC1wyYLkqCwZrCd/dDAsY7PafzJBEZGk86
- K3KIX/79fh2UQsEVCyPmW+adnDmK4rWAwhF4INAn73x62dgFGl11tsgv3MdQRAi36kMQ
- KnoQ==
-X-Gm-Message-State: AFqh2kpkRS+EOSDV1RTXZNKIhjfjRqBLriv9w9tLrxR11LPdblLb1QHg
- qv+868CWlvcdDrAH4dIzMyYQq8E8NT5B0ygXlr0RBhqJuaJC
-X-Google-Smtp-Source: AMrXdXuCVhfuhDVOVDBO2QEW3ZsUFRaZINtASNymA6eBjtRAhCOlpvlwUqMjxK5NbcRex/8HxlW2bK/0gq0OxTMGvKNDTLJeZwSu
+ h=Content-Transfer-Encoding:MIME-Version:References:In-Reply-To:Message-Id:
+ Date:Subject:Cc:To:From:Sender:Reply-To:Content-Type:Content-ID:
+ Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
+ :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
+ List-Post:List-Owner:List-Archive;
+ bh=sILzJwRVxn25CNGQj8obVfL9agCJwooGkotfE5DINqI=; b=YhfbQubYhBnViji87+GPrdWiGr
+ hqNihXWefZYp4e8RXo1Z0KeoHlaD664BMa4tp2pJGIRbOeZamNiJ3mXJJ74q6TibsXMTsS2u0gcGo
+ PrDyqx9VouPrJQuAYV5qDBiFjrCT16r1fa5scC6RmD7DyVFQ+idwPediBSjK+sCeYZyI=;
+Received: from ams.source.kernel.org ([145.40.68.75])
+ by sfi-mx-1.v28.lw.sourceforge.com with esmtps
+ (TLS1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.95)
+ id 1pBi6B-000jJ7-Oq for v9fs-developer@lists.sourceforge.net;
+ Sat, 31 Dec 2022 20:04:57 +0000
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+ (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+ (No client certificate requested)
+ by ams.source.kernel.org (Postfix) with ESMTPS id 39887B8090C;
+ Sat, 31 Dec 2022 20:04:46 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7AD0BC433F0;
+ Sat, 31 Dec 2022 20:04:43 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+ s=k20201202; t=1672517084;
+ bh=/XX5D6c/7U4fzdnyVEUJ//yyryAw9/ODhKqUW0yQu0E=;
+ h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
+ b=kwfo84DOWJN3fGRJq/0ymSSD6rpvegt72SX7ZqjjbyJuZTMDoc1/RCIW2wCgl1pwk
+ cynypQD1UnnKdJX65wgfNJSVNx+LXDirOGBbYPzbxdfzyKyJ/YOGh3ID1dQeZvTbvk
+ 1kYBP2WOhYZd68n9zW+hj4rdivnwh5n1WzWfLUe9Zv3MArKCHTixH8uTHh6PyQSK+B
+ LaZcDwqpV71awo2f95Q0alwv1+oTKmjHYl8yOYvGRVEuk1EaWRVn0R8Kbj1H1W/n/2
+ XvXXXMrHxpdoBBh1zkdVS9yYouglUzF1tmIHEbTqe+oRpL4ceAYGAjCNwUd+F4Shrz
+ wIxTyl2KkyihA==
+From: Sasha Levin <sashal@kernel.org>
+To: linux-kernel@vger.kernel.org,
+	stable@vger.kernel.org
+Date: Sat, 31 Dec 2022 15:04:34 -0500
+Message-Id: <20221231200439.1748686-2-sashal@kernel.org>
+X-Mailer: git-send-email 2.35.1
+In-Reply-To: <20221231200439.1748686-1-sashal@kernel.org>
+References: <20221231200439.1748686-1-sashal@kernel.org>
 MIME-Version: 1.0
-X-Received: by 2002:a5e:cb44:0:b0:6df:b793:35ac with SMTP id
- h4-20020a5ecb44000000b006dfb79335acmr2257037iok.33.1672396474461; Fri, 30 Dec
- 2022 02:34:34 -0800 (PST)
-Date: Fri, 30 Dec 2022 02:34:34 -0800
-In-Reply-To: <00000000000015ac7905e97ebaed@google.com>
-X-Google-Appengine-App-Id: s~syzkaller
-X-Google-Appengine-App-Id-Alias: syzkaller
-Message-ID: <000000000000c8b66105f1092536@google.com>
-From: syzbot <syzbot+67d13108d855f451cafc@syzkaller.appspotmail.com>
-To: asmadeus@codewreck.org, dan.carpenter@oracle.com, davem@davemloft.net, 
- edumazet@google.com, ericvh@gmail.com, kuba@kernel.org, leon@kernel.org, 
- linux-kernel@vger.kernel.org, linux_oss@crudebyte.com, lucho@ionkov.net, 
- netdev@vger.kernel.org, pabeni@redhat.com, syzkaller-bugs@googlegroups.com, 
- v9fs-developer@lists.sourceforge.net
-X-Spam-Score: 3.1 (+++)
+X-stable: review
+X-Patchwork-Hint: Ignore
+X-Spam-Score: -5.9 (-----)
 X-Spam-Report: Spam detection software,
  running on the system "util-spamd-1.v13.lw.sourceforge.com", 
  has NOT identified this incoming email as spam.  The original
  message has been attached to this so you can view it or label
  similar future email.  If you have any questions, see
  the administrator of that system for details.
- Content preview: This bug is marked as fixed by commit: 9p:
- client_create/destroy:
- only call trans_mod->close after create But I can't find it in the tested
- trees[1] for more than 90 days. Is it a correct commit? Please update it
- by replying: 
- Content analysis details:   (3.1 points, 6.0 required)
+ Content preview: From: Dominique Martinet <asmadeus@codewreck.org> [ Upstream
+ commit 1a4f69ef15ec29b213e2b086b2502644e8ef76ee ] KCSAN reported a race
+ between
+ writing req->status in p9_client_cb and accessing it in p9_client_rpc's
+ wait_event.
+ Content analysis details:   (-5.9 points, 6.0 required)
  pts rule name              description
  ---- ---------------------- --------------------------------------------------
- -0.0 RCVD_IN_DNSWL_NONE     RBL: Sender listed at https://www.dnswl.org/,
- no trust [209.85.166.199 listed in list.dnswl.org]
- 0.3 FROM_LOCAL_HEX         From: localpart has long hexadecimal sequence
- 2.5 SORTED_RECIPS          Recipient list is sorted by address
  0.0 SPF_HELO_NONE          SPF: HELO does not publish an SPF Record
- 0.2 HEADER_FROM_DIFFERENT_DOMAINS From and EnvelopeFrom 2nd level
- mail domains are different
  -0.0 SPF_PASS               SPF: sender matches SPF record
- -0.0 RCVD_IN_MSPIKE_H2      RBL: Average reputation (+2)
- [209.85.166.199 listed in wl.mailspike.net]
-X-Headers-End: 1pBCil-0003nf-Vq
-Subject: Re: [V9fs-developer] [syzbot] KASAN: use-after-free Read in
- rdma_close
+ -5.0 RCVD_IN_DNSWL_HI       RBL: Sender listed at https://www.dnswl.org/,
+ high trust [145.40.68.75 listed in list.dnswl.org]
+ -0.1 DKIM_VALID_AU          Message has a valid DKIM or DK signature from
+ author's domain
+ -0.1 DKIM_VALID_EF          Message has a valid DKIM or DK signature from
+ envelope-from domain
+ 0.1 DKIM_SIGNED            Message has a DKIM or DK signature, not necessarily
+ valid
+ -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+ -0.7 DKIMWL_WL_HIGH         DKIMwl.org - High trust sender
+X-Headers-End: 1pBi6B-000jJ7-Oq
+Subject: [V9fs-developer] [PATCH AUTOSEL 6.1 2/7] 9p/client: fix data race
+ on req->status
 X-BeenThere: v9fs-developer@lists.sourceforge.net
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -111,41 +108,258 @@ List-Post: <mailto:v9fs-developer@lists.sourceforge.net>
 List-Help: <mailto:v9fs-developer-request@lists.sourceforge.net?subject=help>
 List-Subscribe: <https://lists.sourceforge.net/lists/listinfo/v9fs-developer>, 
  <mailto:v9fs-developer-request@lists.sourceforge.net?subject=subscribe>
+Cc: Sasha Levin <sashal@kernel.org>, lucho@ionkov.net,
+ Marco Elver <elver@google.com>, ericvh@gmail.com, netdev@vger.kernel.org,
+ Christian Schoenebeck <linux_oss@crudebyte.com>, davem@davemloft.net,
+ edumazet@google.com, v9fs-developer@lists.sourceforge.net, kuba@kernel.org,
+ pabeni@redhat.com, Naresh Kamboju <naresh.kamboju@linaro.org>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: v9fs-developer-bounces@lists.sourceforge.net
 
-This bug is marked as fixed by commit:
-9p: client_create/destroy: only call trans_mod->close after create
+From: Dominique Martinet <asmadeus@codewreck.org>
 
-But I can't find it in the tested trees[1] for more than 90 days.
-Is it a correct commit? Please update it by replying:
+[ Upstream commit 1a4f69ef15ec29b213e2b086b2502644e8ef76ee ]
 
-#syz fix: exact-commit-title
+KCSAN reported a race between writing req->status in p9_client_cb and
+accessing it in p9_client_rpc's wait_event.
 
-Until then the bug is still considered open and new crashes with
-the same signature are ignored.
+Accesses to req itself is protected by the data barrier (writing req
+fields, write barrier, writing status // reading status, read barrier,
+reading other req fields), but status accesses themselves apparently
+also must be annotated properly with WRITE_ONCE/READ_ONCE when we
+access it without locks.
 
-Kernel: Linux
-Dashboard link: https://syzkaller.appspot.com/bug?extid=67d13108d855f451cafc
+Follows:
+ - error paths writing status in various threads all can notify
+p9_client_rpc, so these all also need WRITE_ONCE
+ - there's a similar read loop in trans_virtio for zc case that also
+needs READ_ONCE
+ - other reads in trans_fd should be protected by the trans_fd lock and
+lists state machine, as corresponding writers all are within trans_fd
+and should be under the same lock. If KCSAN complains on them we likely
+will have something else to fix as well, so it's better to leave them
+unmarked and look again if required.
 
+Link: https://lkml.kernel.org/r/20221205124756.426350-1-asmadeus@codewreck.org
+Reported-by: Naresh Kamboju <naresh.kamboju@linaro.org>
+Suggested-by: Marco Elver <elver@google.com>
+Acked-by: Marco Elver <elver@google.com>
+Reviewed-by: Christian Schoenebeck <linux_oss@crudebyte.com>
+Signed-off-by: Dominique Martinet <asmadeus@codewreck.org>
+Signed-off-by: Sasha Levin <sashal@kernel.org>
 ---
-[1] I expect the commit to be present in:
+ net/9p/client.c       | 15 ++++++++-------
+ net/9p/trans_fd.c     | 12 ++++++------
+ net/9p/trans_rdma.c   |  4 ++--
+ net/9p/trans_virtio.c |  9 +++++----
+ net/9p/trans_xen.c    |  4 ++--
+ 5 files changed, 23 insertions(+), 21 deletions(-)
 
-1. for-kernelci branch of
-git://git.kernel.org/pub/scm/linux/kernel/git/arm64/linux.git
+diff --git a/net/9p/client.c b/net/9p/client.c
+index aaa37b07e30a..29565e021495 100644
+--- a/net/9p/client.c
++++ b/net/9p/client.c
+@@ -438,7 +438,7 @@ void p9_client_cb(struct p9_client *c, struct p9_req_t *req, int status)
+ 	 * the status change is visible to another thread
+ 	 */
+ 	smp_wmb();
+-	req->status = status;
++	WRITE_ONCE(req->status, status);
+ 
+ 	wake_up(&req->wq);
+ 	p9_debug(P9_DEBUG_MUX, "wakeup: %d\n", req->tc.tag);
+@@ -600,7 +600,7 @@ static int p9_client_flush(struct p9_client *c, struct p9_req_t *oldreq)
+ 	/* if we haven't received a response for oldreq,
+ 	 * remove it from the list
+ 	 */
+-	if (oldreq->status == REQ_STATUS_SENT) {
++	if (READ_ONCE(oldreq->status) == REQ_STATUS_SENT) {
+ 		if (c->trans_mod->cancelled)
+ 			c->trans_mod->cancelled(c, oldreq);
+ 	}
+@@ -697,7 +697,8 @@ p9_client_rpc(struct p9_client *c, int8_t type, const char *fmt, ...)
+ 	}
+ again:
+ 	/* Wait for the response */
+-	err = wait_event_killable(req->wq, req->status >= REQ_STATUS_RCVD);
++	err = wait_event_killable(req->wq,
++				  READ_ONCE(req->status) >= REQ_STATUS_RCVD);
+ 
+ 	/* Make sure our req is coherent with regard to updates in other
+ 	 * threads - echoes to wmb() in the callback
+@@ -711,7 +712,7 @@ p9_client_rpc(struct p9_client *c, int8_t type, const char *fmt, ...)
+ 		goto again;
+ 	}
+ 
+-	if (req->status == REQ_STATUS_ERROR) {
++	if (READ_ONCE(req->status) == REQ_STATUS_ERROR) {
+ 		p9_debug(P9_DEBUG_ERROR, "req_status error %d\n", req->t_err);
+ 		err = req->t_err;
+ 	}
+@@ -724,7 +725,7 @@ p9_client_rpc(struct p9_client *c, int8_t type, const char *fmt, ...)
+ 			p9_client_flush(c, req);
+ 
+ 		/* if we received the response anyway, don't signal error */
+-		if (req->status == REQ_STATUS_RCVD)
++		if (READ_ONCE(req->status) == REQ_STATUS_RCVD)
+ 			err = 0;
+ 	}
+ recalc_sigpending:
+@@ -793,7 +794,7 @@ static struct p9_req_t *p9_client_zc_rpc(struct p9_client *c, int8_t type,
+ 		if (err != -ERESTARTSYS)
+ 			goto recalc_sigpending;
+ 	}
+-	if (req->status == REQ_STATUS_ERROR) {
++	if (READ_ONCE(req->status) == REQ_STATUS_ERROR) {
+ 		p9_debug(P9_DEBUG_ERROR, "req_status error %d\n", req->t_err);
+ 		err = req->t_err;
+ 	}
+@@ -806,7 +807,7 @@ static struct p9_req_t *p9_client_zc_rpc(struct p9_client *c, int8_t type,
+ 			p9_client_flush(c, req);
+ 
+ 		/* if we received the response anyway, don't signal error */
+-		if (req->status == REQ_STATUS_RCVD)
++		if (READ_ONCE(req->status) == REQ_STATUS_RCVD)
+ 			err = 0;
+ 	}
+ recalc_sigpending:
+diff --git a/net/9p/trans_fd.c b/net/9p/trans_fd.c
+index 07db2f436d44..5a1aecf7fe48 100644
+--- a/net/9p/trans_fd.c
++++ b/net/9p/trans_fd.c
+@@ -202,11 +202,11 @@ static void p9_conn_cancel(struct p9_conn *m, int err)
+ 
+ 	list_for_each_entry_safe(req, rtmp, &m->req_list, req_list) {
+ 		list_move(&req->req_list, &cancel_list);
+-		req->status = REQ_STATUS_ERROR;
++		WRITE_ONCE(req->status, REQ_STATUS_ERROR);
+ 	}
+ 	list_for_each_entry_safe(req, rtmp, &m->unsent_req_list, req_list) {
+ 		list_move(&req->req_list, &cancel_list);
+-		req->status = REQ_STATUS_ERROR;
++		WRITE_ONCE(req->status, REQ_STATUS_ERROR);
+ 	}
+ 
+ 	spin_unlock(&m->req_lock);
+@@ -467,7 +467,7 @@ static void p9_write_work(struct work_struct *work)
+ 
+ 		req = list_entry(m->unsent_req_list.next, struct p9_req_t,
+ 			       req_list);
+-		req->status = REQ_STATUS_SENT;
++		WRITE_ONCE(req->status, REQ_STATUS_SENT);
+ 		p9_debug(P9_DEBUG_TRANS, "move req %p\n", req);
+ 		list_move_tail(&req->req_list, &m->req_list);
+ 
+@@ -676,7 +676,7 @@ static int p9_fd_request(struct p9_client *client, struct p9_req_t *req)
+ 		return m->err;
+ 
+ 	spin_lock(&m->req_lock);
+-	req->status = REQ_STATUS_UNSENT;
++	WRITE_ONCE(req->status, REQ_STATUS_UNSENT);
+ 	list_add_tail(&req->req_list, &m->unsent_req_list);
+ 	spin_unlock(&m->req_lock);
+ 
+@@ -703,7 +703,7 @@ static int p9_fd_cancel(struct p9_client *client, struct p9_req_t *req)
+ 
+ 	if (req->status == REQ_STATUS_UNSENT) {
+ 		list_del(&req->req_list);
+-		req->status = REQ_STATUS_FLSHD;
++		WRITE_ONCE(req->status, REQ_STATUS_FLSHD);
+ 		p9_req_put(client, req);
+ 		ret = 0;
+ 	}
+@@ -732,7 +732,7 @@ static int p9_fd_cancelled(struct p9_client *client, struct p9_req_t *req)
+ 	 * remove it from the list.
+ 	 */
+ 	list_del(&req->req_list);
+-	req->status = REQ_STATUS_FLSHD;
++	WRITE_ONCE(req->status, REQ_STATUS_FLSHD);
+ 	spin_unlock(&m->req_lock);
+ 
+ 	p9_req_put(client, req);
+diff --git a/net/9p/trans_rdma.c b/net/9p/trans_rdma.c
+index 6ff706760676..e9a830c69058 100644
+--- a/net/9p/trans_rdma.c
++++ b/net/9p/trans_rdma.c
+@@ -507,7 +507,7 @@ static int rdma_request(struct p9_client *client, struct p9_req_t *req)
+ 	 * because doing if after could erase the REQ_STATUS_RCVD
+ 	 * status in case of a very fast reply.
+ 	 */
+-	req->status = REQ_STATUS_SENT;
++	WRITE_ONCE(req->status, REQ_STATUS_SENT);
+ 	err = ib_post_send(rdma->qp, &wr, NULL);
+ 	if (err)
+ 		goto send_error;
+@@ -517,7 +517,7 @@ static int rdma_request(struct p9_client *client, struct p9_req_t *req)
+ 
+  /* Handle errors that happened during or while preparing the send: */
+  send_error:
+-	req->status = REQ_STATUS_ERROR;
++	WRITE_ONCE(req->status, REQ_STATUS_ERROR);
+ 	kfree(c);
+ 	p9_debug(P9_DEBUG_ERROR, "Error %d in rdma_request()\n", err);
+ 
+diff --git a/net/9p/trans_virtio.c b/net/9p/trans_virtio.c
+index e757f0601304..3f3eb03cda7d 100644
+--- a/net/9p/trans_virtio.c
++++ b/net/9p/trans_virtio.c
+@@ -263,7 +263,7 @@ p9_virtio_request(struct p9_client *client, struct p9_req_t *req)
+ 
+ 	p9_debug(P9_DEBUG_TRANS, "9p debug: virtio request\n");
+ 
+-	req->status = REQ_STATUS_SENT;
++	WRITE_ONCE(req->status, REQ_STATUS_SENT);
+ req_retry:
+ 	spin_lock_irqsave(&chan->lock, flags);
+ 
+@@ -469,7 +469,7 @@ p9_virtio_zc_request(struct p9_client *client, struct p9_req_t *req,
+ 			inlen = n;
+ 		}
+ 	}
+-	req->status = REQ_STATUS_SENT;
++	WRITE_ONCE(req->status, REQ_STATUS_SENT);
+ req_retry_pinned:
+ 	spin_lock_irqsave(&chan->lock, flags);
+ 
+@@ -532,9 +532,10 @@ p9_virtio_zc_request(struct p9_client *client, struct p9_req_t *req,
+ 	spin_unlock_irqrestore(&chan->lock, flags);
+ 	kicked = 1;
+ 	p9_debug(P9_DEBUG_TRANS, "virtio request kicked\n");
+-	err = wait_event_killable(req->wq, req->status >= REQ_STATUS_RCVD);
++	err = wait_event_killable(req->wq,
++			          READ_ONCE(req->status) >= REQ_STATUS_RCVD);
+ 	// RERROR needs reply (== error string) in static data
+-	if (req->status == REQ_STATUS_RCVD &&
++	if (READ_ONCE(req->status) == REQ_STATUS_RCVD &&
+ 	    unlikely(req->rc.sdata[4] == P9_RERROR))
+ 		handle_rerror(req, in_hdr_len, offs, in_pages);
+ 
+diff --git a/net/9p/trans_xen.c b/net/9p/trans_xen.c
+index aaa5fd364691..cf1b89ba522b 100644
+--- a/net/9p/trans_xen.c
++++ b/net/9p/trans_xen.c
+@@ -157,7 +157,7 @@ static int p9_xen_request(struct p9_client *client, struct p9_req_t *p9_req)
+ 			      &masked_prod, masked_cons,
+ 			      XEN_9PFS_RING_SIZE(ring));
+ 
+-	p9_req->status = REQ_STATUS_SENT;
++	WRITE_ONCE(p9_req->status, REQ_STATUS_SENT);
+ 	virt_wmb();			/* write ring before updating pointer */
+ 	prod += size;
+ 	ring->intf->out_prod = prod;
+@@ -212,7 +212,7 @@ static void p9_xen_response(struct work_struct *work)
+ 			dev_warn(&priv->dev->dev,
+ 				 "requested packet size too big: %d for tag %d with capacity %zd\n",
+ 				 h.size, h.tag, req->rc.capacity);
+-			req->status = REQ_STATUS_ERROR;
++			WRITE_ONCE(req->status, REQ_STATUS_ERROR);
+ 			goto recv_error;
+ 		}
+ 
+-- 
+2.35.1
 
-2. master branch of
-git://git.kernel.org/pub/scm/linux/kernel/git/bpf/bpf-next.git
-
-3. master branch of
-git://git.kernel.org/pub/scm/linux/kernel/git/bpf/bpf.git
-
-4. master branch of
-git://git.kernel.org/pub/scm/linux/kernel/git/davem/net-next.git
-
-The full list of 10 trees can be found at
-https://syzkaller.appspot.com/upstream/repos
 
 
 _______________________________________________
