@@ -2,98 +2,118 @@ Return-Path: <v9fs-developer-bounces@lists.sourceforge.net>
 X-Original-To: lists+v9fs-developer@lfdr.de
 Delivered-To: lists+v9fs-developer@lfdr.de
 Received: from lists.sourceforge.net (lists.sourceforge.net [216.105.38.7])
-	by mail.lfdr.de (Postfix) with ESMTPS id CB92F65E93C
-	for <lists+v9fs-developer@lfdr.de>; Thu,  5 Jan 2023 11:47:25 +0100 (CET)
-Received: from [127.0.0.1] (helo=sfs-ml-4.v29.lw.sourceforge.com)
-	by sfs-ml-4.v29.lw.sourceforge.com with esmtp (Exim 4.95)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0091A65F59A
+	for <lists+v9fs-developer@lfdr.de>; Thu,  5 Jan 2023 22:19:55 +0100 (CET)
+Received: from [127.0.0.1] (helo=sfs-ml-2.v29.lw.sourceforge.com)
+	by sfs-ml-2.v29.lw.sourceforge.com with esmtp (Exim 4.95)
 	(envelope-from <v9fs-developer-bounces@lists.sourceforge.net>)
-	id 1pDNmL-0001gc-Uy;
-	Thu, 05 Jan 2023 10:47:21 +0000
+	id 1pDXeT-0006IQ-Q9;
+	Thu, 05 Jan 2023 21:19:53 +0000
 Received: from [172.30.20.202] (helo=mx.sourceforge.net)
- by sfs-ml-4.v29.lw.sourceforge.com with esmtps (TLS1.2) tls
- TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384 (Exim 4.95) (envelope-from
- <1axb7jotcstpe7v66hvomfbrj6s8mguq4pz4h6@bf05.eu1.hubspotemail.net>)
- id 1pDNmL-0001gW-55 for v9fs-developer@lists.sourceforge.net;
- Thu, 05 Jan 2023 10:47:21 +0000
+ by sfs-ml-2.v29.lw.sourceforge.com with esmtps (TLS1.2) tls
+ TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384 (Exim 4.95)
+ (envelope-from <jlayton@kernel.org>) id 1pDXeR-0006IJ-QM
+ for v9fs-developer@lists.sourceforge.net;
+ Thu, 05 Jan 2023 21:19:51 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=sourceforge.net; s=x; h=Content-Type:MIME-Version:Subject:Message-ID:To:
- Reply-To:From:Date:List-Unsubscribe:Sender:Cc:Content-Transfer-Encoding:
- Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
- Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:List-Id:
- List-Help:List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=eoWIOQQxDpRWeyAgCCIwMFYPgT73AfLsv7BhNn9RAjY=; b=XlPeUGO2LErliz8QBZwKJpEyXO
- LhDZr0vju9paaR+p4NN1nmH0LIPcX09mq4OVyZwvwkGbawA/GBYUvJ47JJSJF0Ie6Ue1E/8xWZs3P
- tAYmcjY1KIAvO1rSWWImNiFm+85d2YHgOEy3qovH+HNP4MGgINWuIqMr5+LKhsCEVoKM=;
+ d=sourceforge.net; s=x; h=Content-Transfer-Encoding:MIME-Version:Message-Id:
+ Date:Subject:Cc:To:From:Sender:Reply-To:Content-Type:Content-ID:
+ Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
+ :Resent-Message-ID:In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:
+ List-Subscribe:List-Post:List-Owner:List-Archive;
+ bh=2kCq/+abrIPf3UFJkoD3SJ5H7v6QXgBYjvx+1LE7Se8=; b=iM8BD9NTqIPlBRK51DQyxHyylv
+ De3JylNSk2yPz0RMdGd8lE97E/Vrsq5FSZ/A9/0J/NrCPreaWbyMgme6JTK10zMeWeGYbIrD0ZO6t
+ YUY+8UqOkh/ukT/1wjBuiqaY+8mUJ2AWxypDuWB+KIbujNwDhSKZxecSVfw0vk3lazOI=;
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  ;
- h=Content-Type:MIME-Version:Subject:Message-ID:To:Reply-To:From:Date:
- List-Unsubscribe:Sender:Cc:Content-Transfer-Encoding:Content-ID:
- Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
- :Resent-Message-ID:In-Reply-To:References:List-Id:List-Help:List-Subscribe:
- List-Post:List-Owner:List-Archive;
- bh=eoWIOQQxDpRWeyAgCCIwMFYPgT73AfLsv7BhNn9RAjY=; b=e1OHKHAitnMqyoRbfARbTvEnFH
- ynIV8s/6UY2ygmcMVBRpBHET3UCg8QYWazYIYNlw4mZXCx/YP/XAJ0UwOgTkJs5rZ7xNg64OjwqKL
- JwM981ytTgsBk9qBelotK6FLkpoGEDm0rLJ9AP3xfipKXCbNNNOdL7rpAS2pTT8YQmdk=;
-Received: from bd77e76.bf05.eu1.hubspotemail.net ([143.244.84.68])
- by sfi-mx-2.v28.lw.sourceforge.com with esmtps
- (TLS1.2:ECDHE-RSA-AES128-GCM-SHA256:128) (Exim 4.95)
- id 1pDNmG-0006d2-RI for v9fs-developer@lists.sourceforge.net;
- Thu, 05 Jan 2023 10:47:21 +0000
-Received: by 172.16.142.80 with SMTP id avcr23o4ki35f9f6y8bbpxjzudpysckd1mv;
- Thu, 5 Jan 2023 10:47:05 GMT
-DKIM-Signature: v=1; s=hs2; d=bf05.eu1.hubspotemail.net; 
- i=@bf05.eu1.hubspotemail.net; 
- h=sender:from:from:reply-to:to:to:cc:cc:subject:subject:list-unsubscribe:form-sub:feedback-id;
- a=rsa-sha256; c=relaxed/relaxed; 
- bh=eoWIOQQxDpRWeyAgCCIwMFYPgT73AfLsv7BhNn9RAjY=; 
- b=AsRMAoEb7mJ0HGulvvCIL7qmWMofcbucgASxY71HgIRXgZDYEoX5pjOrUFh405
- qzxE5MlrYS2ko8lP4GUx3Fm2BBE0HpWbKfgfZaBiBL1ssurJJ2bUSwRbEynjVRa
- yugE6e/nCoNeInNd0DbPmbNV8TtlXAvnlrvncBq9JALMDYQhggD87WsKBhFU2c0
- caw1TiO6Y6J/iy8P3Ig6N3oASP1V6+Y3krRCZcDRJcGiHEa0woTWx3c5tGGX3IN
- ZknSEPuvgIphIDwGmAuOORYwGzaSxqeD9p+aCpW3sPbT0g/eXlulEZV49TrMtyA
- fpqX823YLW1gBJMU+A6y3r0TVsOw==; q=dns/txt; t=1672915625; 
- x=1673088425;
-X-HS-Cid: 1axfzloju0hpafx8fr4cl3i16u6gn0a3ad5oem
-Date: Thu, 5 Jan 2023 11:47:05 +0100
-From: Auctim online auctions <noreply@auctim.com>
-To: v9fs-developer@lists.sourceforge.net
-Message-ID: <1672915333516.e0a6e4d7-ec0f-470b-a426-9621631a90b8@bf05.eu1.hubspotemail.net>
+ h=Content-Transfer-Encoding:MIME-Version:Message-Id:Date:Subject:Cc:To:From
+ :Sender:Reply-To:Content-Type:Content-ID:Content-Description:Resent-Date:
+ Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:
+ References:List-Id:List-Help:List-Unsubscribe:List-Subscribe:List-Post:
+ List-Owner:List-Archive; bh=2kCq/+abrIPf3UFJkoD3SJ5H7v6QXgBYjvx+1LE7Se8=; b=f
+ hLhEwdcFmw8Q0VDPiy6JHSrtdPgUk7zdEas/uR1TDIdB9Zg9xSwVMaA16kuxw/MWbxpGv1c1nbPhI
+ dUK6IzSMaSAPK/OLvXHrSUBiowstpJN2IYFEO2rEh6hppwY8yAMo2GoKWTdikeaFFQRexEywHIone
+ mXsfpUpeZyvolmfM=;
+Received: from dfw.source.kernel.org ([139.178.84.217])
+ by sfi-mx-1.v28.lw.sourceforge.com with esmtps
+ (TLS1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.95)
+ id 1pDXeP-006ejI-Oj for v9fs-developer@lists.sourceforge.net;
+ Thu, 05 Jan 2023 21:19:51 +0000
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+ (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+ (No client certificate requested)
+ by dfw.source.kernel.org (Postfix) with ESMTPS id 1829061C14;
+ Thu,  5 Jan 2023 21:19:44 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 32DC7C433D2;
+ Thu,  5 Jan 2023 21:19:39 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+ s=k20201202; t=1672953583;
+ bh=+6UQmIoUGiWM65DY/eqziyR1W5HdUMoYcvdaFWKk3N4=;
+ h=From:To:Cc:Subject:Date:From;
+ b=SYYmkIcTHB21pOu0kcIbiMYK1JxAB/n07X3N1fYlyvcgBFKQSwSRrkRYsZ1oHFg8l
+ jInB3gvu9KKqkMpWaTptSPmpeivdEiQJj0dTJNNpr8fxWy68mwue/xJopbFS7k2ThM
+ oRsMoHA+dAoPGBjYZ9Q+7NFO6WhiqQXWQnGUmlvMtUvMPqMIbVX9o29DazSf8i0b3o
+ T/avGyTzwKSgc+wI8KeQPrp/rqNGQCUSom7bsmGk0kn7iKu9NzThABv4C+yxS6ZgLf
+ N8WGIyKOqNIxLd/WnU+9Sbe0eyAt5at8TE4DeDiJ5Uj1UPUv0Iw9V8yVww5eAaMC4x
+ fl/T57GEJ1Aww==
+From: Jeff Layton <jlayton@kernel.org>
+To: Russell King <linux@armlinux.org.uk>,
+ Eric Van Hensbergen <ericvh@gmail.com>,
+ Latchesar Ionkov <lucho@ionkov.net>,
+ Dominique Martinet <asmadeus@codewreck.org>,
+ Christian Schoenebeck <linux_oss@crudebyte.com>,
+ David Howells <dhowells@redhat.com>,
+ Marc Dionne <marc.dionne@auristor.com>,
+ Alexander Viro <viro@zeniv.linux.org.uk>, Xiubo Li <xiubli@redhat.com>,
+ Ilya Dryomov <idryomov@gmail.com>, Steve French <sfrench@samba.org>,
+ Paulo Alcantara <pc@cjr.nz>, Ronnie Sahlberg <lsahlber@redhat.com>,
+ Shyam Prasad N <sprasad@microsoft.com>, Tom Talpey <tom@talpey.com>,
+ Christine Caulfield <ccaulfie@redhat.com>,
+ David Teigland <teigland@redhat.com>, Chuck Lever <chuck.lever@oracle.com>,
+ Miklos Szeredi <miklos@szeredi.hu>, Bob Peterson <rpeterso@redhat.com>,
+ Andreas Gruenbacher <agruenba@redhat.com>,
+ Namjae Jeon <linkinjeon@kernel.org>,
+ Sergey Senozhatsky <senozhatsky@chromium.org>,
+ Trond Myklebust <trond.myklebust@hammerspace.com>,
+ Anna Schumaker <anna@kernel.org>, Mark Fasheh <mark@fasheh.com>,
+ Joel Becker <jlbec@evilplan.org>, Joseph Qi <joseph.qi@linux.alibaba.com>,
+ Mike Marshall <hubcap@omnibond.com>,
+ Martin Brandenburg <martin@omnibond.com>,
+ "Darrick J. Wong" <djwong@kernel.org>
+Date: Thu,  5 Jan 2023 16:19:29 -0500
+Message-Id: <20230105211937.1572384-1-jlayton@kernel.org>
+X-Mailer: git-send-email 2.39.0
 MIME-Version: 1.0
-X-Report-Abuse-To: abuse@hubspot.com (see
- https://policy.hubspot.com/abuse-complaints)
-X-Spam-Score: 0.3 (/)
+X-Spam-Score: -5.9 (-----)
 X-Spam-Report: Spam detection software,
- running on the system "util-spamd-2.v13.lw.sourceforge.com", 
+ running on the system "util-spamd-1.v13.lw.sourceforge.com", 
  has NOT identified this incoming email as spam.  The original
  message has been attached to this so you can view it or label
  similar future email.  If you have any questions, see
  the administrator of that system for details.
- Content preview:  Liquidation due to relocation of designer office furniture
- seats, desks, chairs, lighting and more! AUCTIM_LOGO_ONLINE_AUCTIONS_WHITE
- (https://d316DH04.eu1.hubspotlinks.com/Ctc/GG+113/d316DH04/VX4D2H7W1KBSVq-kNd1cVgYnW6L2xF54Vqz-1N56dXhV3pl37V1-WJV7CgQ6hW1gYd-Y6c8497W4kTQR08SbF1PW7m4lxr1gD1cDW3BrP51
- [...] Content analysis details:   (0.3 points, 6.0 required)
+ Content preview:  The file locking definitions have lived in fs.h since the
+ dawn of time, but they are only used by a small subset of the source files
+ that include it. Move the file locking definitions to a new header file,
+ and add the appropriate #include directives to the source files that need
+ them. By doing this we trim down fs.h a bit and limit the amount of re [...]
+ Content analysis details:   (-5.9 points, 6.0 required)
  pts rule name              description
  ---- ---------------------- --------------------------------------------------
- -0.0 SPF_PASS               SPF: sender matches SPF record
- -0.0 RCVD_IN_MSPIKE_H2      RBL: Average reputation (+2)
- [143.244.84.68 listed in wl.mailspike.net]
- -0.0 RCVD_IN_DNSWL_NONE     RBL: Sender listed at https://www.dnswl.org/,
- no trust [143.244.84.68 listed in list.dnswl.org]
- 0.2 HEADER_FROM_DIFFERENT_DOMAINS From and EnvelopeFrom 2nd level
- mail domains are different
+ -5.0 RCVD_IN_DNSWL_HI       RBL: Sender listed at https://www.dnswl.org/,
+ high trust [139.178.84.217 listed in list.dnswl.org]
  0.0 SPF_HELO_NONE          SPF: HELO does not publish an SPF Record
- 0.1 URI_HEX                URI: URI hostname has long hexadecimal sequence
- 0.0 HTML_MESSAGE           BODY: HTML included in message
- 0.0 HTML_FONT_LOW_CONTRAST BODY: HTML font color similar or
- identical to background
- -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+ -0.0 SPF_PASS               SPF: sender matches SPF record
+ -0.1 DKIM_VALID_AU          Message has a valid DKIM or DK signature from
+ author's domain
+ -0.1 DKIM_VALID_EF          Message has a valid DKIM or DK signature from
+ envelope-from domain
  0.1 DKIM_SIGNED            Message has a DKIM or DK signature, not necessarily
  valid
- -0.0 DKIMWL_WL_MED          DKIMwl.org - Medium trust sender
-X-Headers-End: 1pDNmG-0006d2-RI
-X-Content-Filtered-By: Mailman/MimeDel 2.1.21
-Subject: [V9fs-developer] =?utf-8?q?Only_24_Hours_left_until_the_auction_d?=
- =?utf-8?q?esign_funiture_for_your_office_is_closing=2E=E2=8F=B0?=
+ -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+ -0.7 DKIMWL_WL_HIGH         DKIMwl.org - High trust sender
+X-Headers-End: 1pDXeP-006ejI-Oj
+Subject: [V9fs-developer] [PATCH v2] filelock: move file locking definitions
+ to separate header file
 X-BeenThere: v9fs-developer@lists.sourceforge.net
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -105,261 +125,1474 @@ List-Post: <mailto:v9fs-developer@lists.sourceforge.net>
 List-Help: <mailto:v9fs-developer-request@lists.sourceforge.net?subject=help>
 List-Subscribe: <https://lists.sourceforge.net/lists/listinfo/v9fs-developer>, 
  <mailto:v9fs-developer-request@lists.sourceforge.net?subject=subscribe>
-Reply-To: noreply@auctim.com
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Cc: linux-cifs@vger.kernel.org, Christian Brauner <brauner@kernel.org>,
+ linux-xfs@vger.kernel.org, devel@lists.orangefs.org,
+ samba-technical@lists.samba.org, linux-kernel@vger.kernel.org,
+ linux-afs@lists.infradead.org, cluster-devel@redhat.com,
+ ocfs2-devel@oss.oracle.com, Steve French <stfrench@microsoft.com>,
+ linux-fsdevel@vger.kernel.org, v9fs-developer@lists.sourceforge.net,
+ ceph-devel@vger.kernel.org, linux-nfs@vger.kernel.org,
+ Christoph Hellwig <hch@lst.de>, linux-arm-kernel@lists.infradead.org
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: v9fs-developer-bounces@lists.sourceforge.net
 
-TGlxdWlkYXRpb24gZHVlIHRvIHJlbG9jYXRpb24gb2YgZGVzaWduZXIgb2ZmaWNlIGZ1cm5pdHVy
-ZSBzZWF0cywgZGVza3MsIGNoYWlycywgbGlnaHRpbmcgYW5kIG1vcmUhCgpBVUNUSU1fTE9HT19P
-TkxJTkVfQVVDVElPTlNfV0hJVEUgKGh0dHBzOi8vZDMxNkRIMDQuZXUxLmh1YnNwb3RsaW5rcy5j
-b20vQ3RjL0dHKzExMy9kMzE2REgwNC9WWDREMkg3VzFLQlNWcS1rTmQxY1ZnWW5XNkwyeEY1NFZx
-ei0xTjU2ZFhoVjNwbDM3VjEtV0pWN0NnUTZoVzFnWWQtWTZjODQ5N1c0a1RRUjA4U2JGMVBXN200
-bHhyMWdEMWNEVzNCclA1MTlnZGx6a1czMDJrRi0zSmt6a3JXOEg2ZHNNOTVWYjhuVzFzRDVrWjYy
-OUtEQ1c4U0dYN3o1Zl9yeThXOE5EaGo5OFhMY21ZVzZtbHBNZjdfSGpUbVc4OEgzbUwxMmxtY2RX
-N0dtMzY0NkRGZENoVkhIMTFyNFZaaG5oVzYzdEwtNjg1ZEZtUlc4TG02WmQ4bC14RkhXMnBsQ1lR
-OERtdFFRTjJtQjJnTWN6cGtIVzhNZzBEejFkR0dud1c0eXhfczAzZHdHckpXN2o1N0tYMWtybTFT
-VzdscDV6ajVWVGhsS1c3OXRiUEo4UC0yUDZWc0drYnQ2cWc3WVdONTVZRnlZRmdqN3dXNVFfa3B6
-NS1RcDdEVldsVjFQN2pibVlUM2pzbTEgKQoKQVVDVElPTiBFTkRJTkcgVE9EQVkgKGh0dHBzOi8v
-ZDMxNkRIMDQuZXUxLmh1YnNwb3RsaW5rcy5jb20vQ3RjL0dHKzExMy9kMzE2REgwNC9WWDREMkg3
-VzFLQlNWcS1rTmQxY1ZnWW5XNkwyeEY1NFZxei0xTjU2ZFhqOTNwbDNyVjEtV0pWN0NnTUJWVzdr
-cWc3eTNGZzI1ME42NHEwWGdjMFNxZlc3UEdmVDc3WmpnUGxWSmt3alAzcVktRG5XMWdkWjRCM2tj
-UDl0VnJzdkpiNjEwdzZwVzNzNm5GZzJoY2J3Zlc1aDhnSngzWmJ0WXRXM0dTMUdQMVFUQ3RQVllT
-dnRqNGtSc0NaVzhmMUtQZzQwWS0wV1ZocDdkcDZfOHlya1c1TGJIbVMxRnlqeXhXMXkycllmMUJD
-ellqVzVtY2Y3ajh0aFNfRFcxYnhITl84djlTc2ZWckdjSjk4TWI5WXlXNjRwZ3M5NTdLWGdwVzgt
-bkhMODJ2aGtGdFcxNnFZamwzZ0JWTUdWUTI5ajk1bEhMZFNXMTNXOGRDMUdTZ3JfVzk2UE13MDJR
-Zkp2dFc3R19YRkY2MlJ5LVdXNWNaNi1zN3FKZDI3VzY5dzRoODc2ejJETFc4OE1TRzEyazRqZzNO
-NDZnOHFoWFpYeHoza0otMSApCgpERVNJR04gT0ZGSUNFIEZVUk5JVFVSRSAoaHR0cHM6Ly9kMzE2
-REgwNC5ldTEuaHVic3BvdGxpbmtzLmNvbS9DdGMvR0crMTEzL2QzMTZESDA0L1ZYNEQySDdXMUtC
-U1ZxLWtOZDFjVmdZblc2TDJ4RjU0VnF6LTFONTZkWGhoNW1WeUxWM1pzYzM3Q2dId0tXN05yTVBa
-OHp2SjIwVzFicm1iZzNGeXZ6OVc3TkhOV2MyRHlUSHlXN1ZsNnE0MUp5a2xHVzYwMUM5bjdGWTk0
-eFc0MGp4bjY0Y1hLcEtXM2hITEtDNXZiUW41VzZsREhZOTFqeW5nU041R1E1cEp2cDg4dlc2cTEx
-cDU0TnNWTnJXOGJHQ3piOG5UM3lTVzNtbVEteTRWRFFZUVc2N25DcmgyaHZZVzlXMVhDZjFRMVc1
-N25XVzIzS1M4bDhfMk1qTlczZG00NEY3cmo2TTJXNDV4TFE2NzhDS0dsVzYzd2NOUzRRdk5NbVc2
-bWctRjUzRFhfRC1XNHNjQzJKOHpRcnN5VzkyNXBIWTVmcG4tY1czTU5YTnE0NG5RUmZXNTJ2SjFy
-NFdwVmZKVzlmajk0YzU2Y0hYelc1NmdNdHY0N0daUmZXN0QwR1hEM3Bma1pWVmNyRFRQODJHVnNs
-TjVGY0xOTVRKNWtQVzZEX1FTdDFEeXZLUU40Qy1WR0wzeHJwbVc3dEZYOC0xVHQ0Z3hXM1hyQ2dM
-NnhuM1otTjlsUDRfMFY1MEpSVnE1WVN3NTBxS05fVzFmbGNjTjZOc0ZoX1c3QlFmZGM5MzhwZFpW
-NzlIZy00TE5YN0hXNDFKUURYNXNyelh4M3FmcDEgKQoKTGlxdWlkYXRpb24gZHVlIHRvIHJlbG9j
-YXRpb24gb2YgZGVzaWduZXIgb2ZmaWNlIGZ1cm5pdHVyZSBzZWF0cywgZGVza3MsIGNoYWlycywg
-bGlnaHRpbmcgYW5kIG1vcmUhCgpFbmRzOiAwNiBKQU4gMjAyMyAxNDowMAoKVmlzaXQgdGhpcyBh
-dWN0aW9uCihodHRwczovL2QzMTZESDA0LmV1MS5odWJzcG90bGlua3MuY29tL0N0Yy9HRysxMTMv
-ZDMxNkRIMDQvVlg0RDJIN1cxS0JTVnEta05kMWNWZ1luVzZMMnhGNTRWcXotMU41NmRYaGg1bVZ5
-TFYzWnNjMzdDZ0h3S1c3TnJNUFo4enZKMjBXMWJybWJnM0Z5dno5VzdOSE5XYzJEeVRIeVc3Vmw2
-cTQxSnlrbEdXNjAxQzluN0ZZOTR4VzQwanhuNjRjWEtwS1czaEhMS0M1dmJRbjVXNmxESFk5MWp5
-bmdTTjVHUTVwSnZwODh2VzZxMTFwNTROc1ZOclc4YkdDemI4blQzeVNXM21tUS15NFZEUVlRVzY3
-bkNyaDJodllXOVcxWENmMVExVzU3bldXMjNLUzhsOF8yTWpOVzNkbTQ0RjdyajZNMlc0NXhMUTY3
-OENLR2xXNjN3Y05TNFF2Tk1tVzZtZy1GNTNEWF9ELVc0c2NDMko4elFyc3lXOTI1cEhZNWZwbi1j
-VzNNTlhOcTQ0blFSZlc1MnZKMXI0V3BWZkpXOWZqOTRjNTZjSFh6VzU2Z010djQ3R1pSZlc3RDBH
-WEQzcGZrWlZWY3JEVFA4MkdWc2xONUZjTE5NVEo1a1BXNkRfUVN0MUR5dktRTjRDLVZHTDN4cnBt
-Vzd0Rlg4LTFUdDRneFczWHJDZ0w2eG4zWi1OOWxQNF8wVjUwSlJWcTVZU3c1MHFLTl9XMWZsY2NO
-Nk5zRmhfVzdCUWZkYzkzOHBkWlY3OUhnLTRMTlg3SFc0MUpRRFg1c3J6WHgzcWZwMSApCgpNdXNp
-YyBQcm9kdWNpbmcgc3R1ZGlvIEF1Y3Rpb24gQXVjdGlvbiBTdGFydHMgMDcwMSAxMDAwIChodHRw
-czovL2QzMTZESDA0LmV1MS5odWJzcG90bGlua3MuY29tL0N0Yy9HRysxMTMvZDMxNkRIMDQvVlg0
-RDJIN1cxS0JTVnEta05kMWNWZ1luVzZMMnhGNTRWcXotMU41NmRYaGg1bVZ5TFYzWnNjMzdDZ0h3
-S1c3TnJNUFo4enZKMjBXMWJybWJnM0Z5dno5VzdOSE5XYzJEeVRIeVc3Vmw2cTQxSnlrbEdXNjAx
-QzluN0ZZOTR4VzQwanhuNjRjWEtwS1czaEhMS0M1dmJRbjVXNmxESFk5MWp5bmdTTjVHUTVwSnZw
-ODh2VzZxMTFwNTROc1ZOclc4YkdDemI4blQzeVNXM21tUS15NFZEUVlRVzY3bkNyaDJodllXOVcx
-WENmMVExVzU3bldXMjNLUzhsOF8yTWpOVzNkbTQ0RjdyajZNMlc0NXhMUTY3OENLR2xXNjN3Y05T
-NFF2Tk1tVzZtZy1GNTNEWF9ELVc0c2NDMko4elFyc3lXOTI1cEhZNWZwbi1jVzNNTlhOcTQ0blFS
-Zlc1MnZKMXI0V3BWZkpXOWZqOTRjNTZjSFh6VzU2Z010djQ3R1pSZlc3RDBHWEQzcGZrWlZWY3JE
-VFA4MkdWc2xONUZjTE5NVEo1a1BXNkRfUVN0MUR5dktRTjRDLVZHTDN4cnBtVzd0Rlg4LTFUdDRn
-eFczWHJDZ0w2eG4zWi1OOWxQNF8wVjUwSlJWcTVZU3c1MHFLTl9XMWZsY2NONk5zRmhfVzdCUWZk
-YzkzOHBkWlY3OUhnLTRMTlg3SFc0MUpRRFg1c3J6WHgzcWZwMSApCgpzYW1zdW5nIChodHRwczov
-L2QzMTZESDA0LmV1MS5odWJzcG90bGlua3MuY29tL0N0Yy9HRysxMTMvZDMxNkRIMDQvVlg0RDJI
-N1cxS0JTVnEta05kMWNWZ1luVzZMMnhGNTRWcXotMU41NmRYaGg1bVZ5TFYzWnNjMzdDZ1pkZ1c3
-OFB3NDg0cFRETDdXMXBma0x0Nm5LNWZwVzVMRGJqczhWelhma1c2WFEwNHQxQnRHWmRXNy1mMlpr
-M1J5TmowVzNqYjVsejU0ampSVlc4V2NNMTg2SjhNbEhXMVozS2YzOThjbDduVlloREs4My0xRlJ3
-VzJtU2dmZjF5ejRMcU44djdOLTJ6S3ZTOVcxTEN4RlE2TGxLUGxXNW5wM0ZZN0c3VnptTjhnTmgz
-Nnozd05KVzZYN3JDWTFGdnloclc5MS0wM0IzMUNUWnhXNEhIWGdHNTJuUi1NVzZyTFlIaDU1OFBZ
-aFc4WjdXUFcyWGhybFRXNHdZN2d6NVJLNnpOVzRkdjVsUTlkM2tQYlc5Y2NTem4yejRqMkJXOHRC
-WV9GMUc4anBZTjI5RndZd2ZIakJITjVHZEdSWFNzY0pLTjZOOEtfTXpmN0tNVzZRUTM0UjNRUHJZ
-RlcyWXJsQ0g3RDVMOXlXN0RRa3JnOF95YmZxVzNyWlNnOTEzdjZHMVc2aHoyOEI4cW5kNEJXMXM4
-LUxwNTJ3Z1d5VzNCY1o1ajctZFNiV1c3NHlGeHk2N1Z0ZEhXN3JzQlpsM3JYUFRmVnA5NnJiM1Rz
-N1gwVzNGckctXzVkY2RiLVc3cjg4Unc0LTUxODMzaDBiMSApCgpTYW1zdW5nIFRWIDY1IiAoaHR0
-cHM6Ly9kMzE2REgwNC5ldTEuaHVic3BvdGxpbmtzLmNvbS9DdGMvR0crMTEzL2QzMTZESDA0L1ZY
-NEQySDdXMUtCU1ZxLWtOZDFjVmdZblc2TDJ4RjU0VnF6LTFONTZkWGhoNW1WeUxWM1pzYzM3Q2da
-ZGdXNzhQdzQ4NHBUREw3VzFwZmtMdDZuSzVmcFc1TERianM4VnpYZmtXNlhRMDR0MUJ0R1pkVzct
-ZjJaazNSeU5qMFczamI1bHo1NGpqUlZXOFdjTTE4Nko4TWxIVzFaM0tmMzk4Y2w3blZZaERLODMt
-MUZSd1cybVNnZmYxeXo0THFOOHY3Ti0yekt2UzlXMUxDeEZRNkxsS1BsVzVucDNGWTdHN1Z6bU44
-Z05oMzZ6M3dOSlc2WDdyQ1kxRnZ5aHJXOTEtMDNCMzFDVFp4VzRISFhnRzUyblItTVc2ckxZSGg1
-NThQWWhXOFo3V1BXMlhocmxUVzR3WTdnejVSSzZ6Tlc0ZHY1bFE5ZDNrUGJXOWNjU3puMno0ajJC
-Vzh0QllfRjFHOGpwWU4yOUZ3WXdmSGpCSE41R2RHUlhTc2NKS042TjhLX016ZjdLTVc2UVEzNFIz
-UVByWUZXMllybENIN0Q1TDl5VzdEUWtyZzhfeWJmcVczclpTZzkxM3Y2RzFXNmh6MjhCOHFuZDRC
-VzFzOC1McDUyd2dXeVczQmNaNWo3LWRTYldXNzR5Rnh5NjdWdGRIVzdyc0JabDNyWFBUZlZwOTZy
-YjNUczdYMFczRnJHLV81ZGNkYi1XN3I4OFJ3NC01MTgzM2gwYjEgKQoKQ3VycmVudCBiaWQg4oKs
-IDI2MCwwMAoKQWFydHNlbGFhciBCZWxnaXVtCgpDaGVjayBvdXQgdGhpcyBsb3QKKGh0dHBzOi8v
-ZDMxNkRIMDQuZXUxLmh1YnNwb3RsaW5rcy5jb20vQ3RjL0dHKzExMy9kMzE2REgwNC9WWDREMkg3
-VzFLQlNWcS1rTmQxY1ZnWW5XNkwyeEY1NFZxei0xTjU2ZFhoaDVtVnlMVjNac2MzN0NnWmRnVzc4
-UHc0ODRwVERMN1cxcGZrTHQ2bks1ZnBXNUxEYmpzOFZ6WGZrVzZYUTA0dDFCdEdaZFc3LWYyWmsz
-UnlOajBXM2piNWx6NTRqalJWVzhXY00xODZKOE1sSFcxWjNLZjM5OGNsN25WWWhESzgzLTFGUndX
-Mm1TZ2ZmMXl6NExxTjh2N04tMnpLdlM5VzFMQ3hGUTZMbEtQbFc1bnAzRlk3RzdWem1OOGdOaDM2
-ejN3TkpXNlg3ckNZMUZ2eWhyVzkxLTAzQjMxQ1RaeFc0SEhYZ0c1Mm5SLU1XNnJMWUhoNTU4UFlo
-VzhaN1dQVzJYaHJsVFc0d1k3Z3o1Uks2ek5XNGR2NWxROWQza1BiVzljY1N6bjJ6NGoyQlc4dEJZ
-X0YxRzhqcFlOMjlGd1l3ZkhqQkhONUdkR1JYU3NjSktONk44S19NemY3S01XNlFRMzRSM1FQcllG
-VzJZcmxDSDdENUw5eVc3RFFrcmc4X3liZnFXM3JaU2c5MTN2NkcxVzZoejI4QjhxbmQ0Qlcxczgt
-THA1MndnV3lXM0JjWjVqNy1kU2JXVzc0eUZ4eTY3VnRkSFc3cnNCWmwzclhQVGZWcDk2cmIzVHM3
-WDBXM0ZyRy1fNWRjZGItVzdyODhSdzQtNTE4MzNoMGIxICkKCmthbnRvb3JiYW5rIChodHRwczov
-L2QzMTZESDA0LmV1MS5odWJzcG90bGlua3MuY29tL0N0Yy9HRysxMTMvZDMxNkRIMDQvVlg0RDJI
-N1cxS0JTVnEta05kMWNWZ1luVzZMMnhGNTRWcXotMU41NmRYaGg1bVZ5TFYzWnNjMzdDZ0hCM1c1
-VnEwUkg0aDd2WXlXMUZOeWtyNmc2am04VzNHMjJGeTZQLWJia1czWHB0SFQyanctOHdONDlXTVdM
-ZlIwcUJXMTNTRkhINkMtZFRoVzNrdjU3NDFQbXFHY04yWWtoR25fTENDRFc0VDI1ekI1WTJsejhX
-MjZ4UXBRNmJTMmZTVzk4WEpkaDZESGM0ZE42MVN3TXlmMkRKSlY0bTgwNTNqbmpEeE43UEdCMGhG
-XzlwcVcxNlJxLUc0V3p0MG5XMkJQelpHNUtybnFxVzVGcF9fbDhUV2dac1cxdHBfZDE2NlFxRzlX
-MURZZ1ZiN1g4TFRuVzRfNnh6czJiMk1oQ041TmNLWld4bHczbFYyZEpIeTM2VjB4Ylc3MnZZVmIz
-NUxHNVZXODg2bU15MnJzQmxoVzRTQlR3cjlkbS15OFc4WnlHeHQ3WlBoZ2hXM3Jtei12M3Z6Sm15
-VzJRTGpkUTFwNk42ZFc0bjBwdjE2X1ROR25XNFFQNWd2NHFwc1BzVzhIcHEzUTZaQy1RX1c4Q1pO
-LUM3QndEenJXN0otWHhQMmo1bWxYVzdfWUd4YzdYS0JLc1c4ajhjTnA1Nl9selBXMzdEUkJwNHgw
-ZEo1VzhKSkhmSDFfd214RFczVHZ5Tjg2VllaSjczbFpnMSApCgoyLVBJRUNFIFNFTUlDSVJDVUxB
-UiBERVNJR04gU0VBVCBNTUMgKGh0dHBzOi8vZDMxNkRIMDQuZXUxLmh1YnNwb3RsaW5rcy5jb20v
-Q3RjL0dHKzExMy9kMzE2REgwNC9WWDREMkg3VzFLQlNWcS1rTmQxY1ZnWW5XNkwyeEY1NFZxei0x
-TjU2ZFhoaDVtVnlMVjNac2MzN0NnSEIzVzVWcTBSSDRoN3ZZeVcxRk55a3I2ZzZqbThXM0cyMkZ5
-NlAtYmJrVzNYcHRIVDJqdy04d040OVdNV0xmUjBxQlcxM1NGSEg2Qy1kVGhXM2t2NTc0MVBtcUdj
-TjJZa2hHbl9MQ0NEVzRUMjV6QjVZMmx6OFcyNnhRcFE2YlMyZlNXOThYSmRoNkRIYzRkTjYxU3dN
-eWYyREpKVjRtODA1M2puakR4TjdQR0IwaEZfOXBxVzE2UnEtRzRXenQwblcyQlB6Wkc1S3JucXFX
-NUZwX19sOFRXZ1pzVzF0cF9kMTY2UXFHOVcxRFlnVmI3WDhMVG5XNF82eHpzMmIyTWhDTjVOY0ta
-V3hsdzNsVjJkSkh5MzZWMHhiVzcydllWYjM1TEc1Vlc4ODZtTXkycnNCbGhXNFNCVHdyOWRtLXk4
-VzhaeUd4dDdaUGhnaFczcm16LXYzdnpKbXlXMlFMamRRMXA2TjZkVzRuMHB2MTZfVE5Hblc0UVA1
-Z3Y0cXBzUHNXOEhwcTNRNlpDLVFfVzhDWk4tQzdCd0R6clc3Si1YeFAyajVtbFhXN19ZR3hjN1hL
-QktzVzhqOGNOcDU2X2x6UFczN0RSQnA0eDBkSjVXOEpKSGZIMV93bXhEVzNUdnlOODZWWVpKNzNs
-WmcxICkKCkN1cnJlbnQgYmlkIOKCrCA1MzAsMDAKCkFhcnRzZWxhYXIgQmVsZ2l1bQoKQ2hlY2sg
-b3V0IHRoaXMgbG90CihodHRwczovL2QzMTZESDA0LmV1MS5odWJzcG90bGlua3MuY29tL0N0Yy9H
-RysxMTMvZDMxNkRIMDQvVlg0RDJIN1cxS0JTVnEta05kMWNWZ1luVzZMMnhGNTRWcXotMU41NmRY
-aGg1bVZ5TFYzWnNjMzdDZ0hCM1c1VnEwUkg0aDd2WXlXMUZOeWtyNmc2am04VzNHMjJGeTZQLWJi
-a1czWHB0SFQyanctOHdONDlXTVdMZlIwcUJXMTNTRkhINkMtZFRoVzNrdjU3NDFQbXFHY04yWWto
-R25fTENDRFc0VDI1ekI1WTJsejhXMjZ4UXBRNmJTMmZTVzk4WEpkaDZESGM0ZE42MVN3TXlmMkRK
-SlY0bTgwNTNqbmpEeE43UEdCMGhGXzlwcVcxNlJxLUc0V3p0MG5XMkJQelpHNUtybnFxVzVGcF9f
-bDhUV2dac1cxdHBfZDE2NlFxRzlXMURZZ1ZiN1g4TFRuVzRfNnh6czJiMk1oQ041TmNLWld4bHcz
-bFYyZEpIeTM2VjB4Ylc3MnZZVmIzNUxHNVZXODg2bU15MnJzQmxoVzRTQlR3cjlkbS15OFc4WnlH
-eHQ3WlBoZ2hXM3Jtei12M3Z6Sm15VzJRTGpkUTFwNk42ZFc0bjBwdjE2X1ROR25XNFFQNWd2NHFw
-c1BzVzhIcHEzUTZaQy1RX1c4Q1pOLUM3QndEenJXN0otWHhQMmo1bWxYVzdfWUd4YzdYS0JLc1c4
-ajhjTnA1Nl9selBXMzdEUkJwNHgwZEo1VzhKSkhmSDFfd214RFczVHZ5Tjg2VllaSjczbFpnMSAp
-CgprYW5udG9pcnIgKGh0dHBzOi8vZDMxNkRIMDQuZXUxLmh1YnNwb3RsaW5rcy5jb20vQ3RjL0dH
-KzExMy9kMzE2REgwNC9WWDREMkg3VzFLQlNWcS1rTmQxY1ZnWW5XNkwyeEY1NFZxei0xTjU2ZFho
-aDVtVnlMVjNac2MzN0NnQ05XVzVLSmZZSzJqZGh4OFc2UnA5TkIzWFdZcHFXNmJYeUJuNmdKWGNW
-VzhKWFoxXzJKSDZfWlc2WkJXXzM4N1BZR1lXMlhCMU43N3pZS0JHVzNKQng4ajZfZ3lrc1c2cmhu
-NDIxSGNnSFZXMnZCMURUMm1XcDV2VzU2eFpKdDh2SHY1clcyV0J5eHo3NjFzUHlXNl9OZDc1N3hC
-N1RMVzJLOXhoOTc0WkNXeVc0Ujh4ZjMxS3Z0R3dXN0pwWktQMTR5XzR0VzVjVzYyZzRKelNaNlcy
-empUaDc0cEhRUDNXM3ZQajJnNVc3bW1oVzI3a2NCXzZGLXZtYlc2WjRHMmM4Rm1XLWZXNDItbnps
-N1pGckhwVzEzbGdqUTZyMGd5ZE40dERGZmIzaC1qR1c1Z2RHY3M5ZjB6a2NWMzhSNl82MUtDc2RX
-NW5sdDRCNlNGOWZOVk1KbnpXNTZsbFhQVzItUWQyNzFCdkpKbVc3X0ZwdmsyMTVrajZXOGxuVzZR
-N2NDYjdrVzVidGZkbDhtdFJLTlc4SEdtR0M1UmMxYzFXNHdUQnhxNWY1dHpiVzIwVFdEaDhsWndY
-Zlc3MDBYeGM1LWNRc0RONVRGazlEcWs5bGZXOERHNGxZNUJfWUdRVlNIc0tkOFdOWkoyM21DWDEg
-KQoKRGVzaWduIFdvb2QgRGVzaWduIChodHRwczovL2QzMTZESDA0LmV1MS5odWJzcG90bGlua3Mu
-Y29tL0N0Yy9HRysxMTMvZDMxNkRIMDQvVlg0RDJIN1cxS0JTVnEta05kMWNWZ1luVzZMMnhGNTRW
-cXotMU41NmRYaGg1bVZ5TFYzWnNjMzdDZ0NOV1c1S0pmWUsyamRoeDhXNlJwOU5CM1hXWXBxVzZi
-WHlCbjZnSlhjVlc4SlhaMV8ySkg2X1pXNlpCV18zODdQWUdZVzJYQjFONzd6WUtCR1czSkJ4OGo2
-X2d5a3NXNnJobjQyMUhjZ0hWVzJ2QjFEVDJtV3A1dlc1NnhaSnQ4dkh2NXJXMldCeXh6NzYxc1B5
-VzZfTmQ3NTd4QjdUTFcySzl4aDk3NFpDV3lXNFI4eGYzMUt2dEd3VzdKcFpLUDE0eV80dFc1Y1c2
-Mmc0SnpTWjZXMnpqVGg3NHBIUVAzVzN2UGoyZzVXN21taFcyN2tjQl82Ri12bWJXNlo0RzJjOEZt
-Vy1mVzQyLW56bDdaRnJIcFcxM2xnalE2cjBneWRONHRERmZiM2gtakdXNWdkR2NzOWYwemtjVjM4
-UjZfNjFLQ3NkVzVubHQ0QjZTRjlmTlZNSm56VzU2bGxYUFcyLVFkMjcxQnZKSm1XN19GcHZrMjE1
-a2o2Vzhsblc2UTdjQ2I3a1c1YnRmZGw4bXRSS05XOEhHbUdDNVJjMWMxVzR3VEJ4cTVmNXR6Ylcy
-MFRXRGg4bFp3WGZXNzAwWHhjNS1jUXNETjVURms5RHFrOWxmVzhERzRsWTVCX1lHUVZTSHNLZDhX
-TlpKMjNtQ1gxICkKCkN1cnJlbnQgYmlkIOKCrCA1NjAsMDAKCkFhcnRzZWxhYXIgQmVsZ2l1bQoK
-Q2hlY2sgb3V0IHRoaXMgbG90CihodHRwczovL2QzMTZESDA0LmV1MS5odWJzcG90bGlua3MuY29t
-L0N0Yy9HRysxMTMvZDMxNkRIMDQvVlg0RDJIN1cxS0JTVnEta05kMWNWZ1luVzZMMnhGNTRWcXot
-MU41NmRYaGg1bVZ5TFYzWnNjMzdDZ0NOV1c1S0pmWUsyamRoeDhXNlJwOU5CM1hXWXBxVzZiWHlC
-bjZnSlhjVlc4SlhaMV8ySkg2X1pXNlpCV18zODdQWUdZVzJYQjFONzd6WUtCR1czSkJ4OGo2X2d5
-a3NXNnJobjQyMUhjZ0hWVzJ2QjFEVDJtV3A1dlc1NnhaSnQ4dkh2NXJXMldCeXh6NzYxc1B5VzZf
-TmQ3NTd4QjdUTFcySzl4aDk3NFpDV3lXNFI4eGYzMUt2dEd3VzdKcFpLUDE0eV80dFc1Y1c2Mmc0
-SnpTWjZXMnpqVGg3NHBIUVAzVzN2UGoyZzVXN21taFcyN2tjQl82Ri12bWJXNlo0RzJjOEZtVy1m
-VzQyLW56bDdaRnJIcFcxM2xnalE2cjBneWRONHRERmZiM2gtakdXNWdkR2NzOWYwemtjVjM4UjZf
-NjFLQ3NkVzVubHQ0QjZTRjlmTlZNSm56VzU2bGxYUFcyLVFkMjcxQnZKSm1XN19GcHZrMjE1a2o2
-Vzhsblc2UTdjQ2I3a1c1YnRmZGw4bXRSS05XOEhHbUdDNVJjMWMxVzR3VEJ4cTVmNXR6YlcyMFRX
-RGg4bFp3WGZXNzAwWHhjNS1jUXNETjVURms5RHFrOWxmVzhERzRsWTVCX1lHUVZTSHNLZDhXTlpK
-MjNtQ1gxICkKCmdsYXNzZXMgKGh0dHBzOi8vZDMxNkRIMDQuZXUxLmh1YnNwb3RsaW5rcy5jb20v
-Q3RjL0dHKzExMy9kMzE2REgwNC9WWDREMkg3VzFLQlNWcS1rTmQxY1ZnWW5XNkwyeEY1NFZxei0x
-TjU2ZFhoaDVtVnlMVjNac2MzN0NnUlZMVktuU3NjOEJZUHBZVzM4MG5SRjkzbkg3Rlcxbm5LUVEx
-N3pKVnZXMXJNYnF5MTlKWkR4VzY3Tmh2NTY1eWNxeFcyYi1oVmc3WmNMWm5ONHlaLTNIcjhrSlNX
-NlpLUXFKNDR6MXZ6VzN0OWwtbTROR3F5eVc2Qzh2d3g0WnNRNFNXMjZZLURyMlNxd1dmVzJDNTZw
-eDR2cHFkUFc3TVYyeWs3UUhQZ3hON0MzSkpoRk15OFlXNkdIZ25ZOFctR0dOVkRjTXBrN0JtckpY
-VzN3VExEcTRaQlpCTlc4TDVTQzgxUHE1X3BXMXByLUtTN193OFpNVzdTWExLcjdMZ25kc1c2d0dC
-Z0cxLVhNUUtXNXM0NXdqNVNmTVZNVzROXzY0ZzVSR19HVlc4YmpQMXgzQmJwbDlXNmRaWXhfMW1n
-RGpjVzZiY1QyMTFXNHByR1czVHBjd20zM0xEY25XODYycnYzOG1wamx3VzZWdDJEUjRYbUpKd04x
-VmhrMFhLUnlIMlc0SldkR3I2c01CNUZXNlNDX2ZsNHpHUFdsVzctZzRHYjlrM1REN1czY205X3oz
-NU5XcDFXMzdkd19XMXpmY2d6VzN3Y3RaazhqZExucVc1S2puTTgyNW45eXBXN3piZFduODlaX0xY
-M3BzZzEgKQoKR2xhc3MgUm9vbSBEZXZpZGVyIChodHRwczovL2QzMTZESDA0LmV1MS5odWJzcG90
-bGlua3MuY29tL0N0Yy9HRysxMTMvZDMxNkRIMDQvVlg0RDJIN1cxS0JTVnEta05kMWNWZ1luVzZM
-MnhGNTRWcXotMU41NmRYaGg1bVZ5TFYzWnNjMzdDZ1JWTFZLblNzYzhCWVBwWVczODBuUkY5M25I
-N0ZXMW5uS1FRMTd6SlZ2VzFyTWJxeTE5SlpEeFc2N05odjU2NXljcXhXMmItaFZnN1pjTFpuTjR5
-Wi0zSHI4a0pTVzZaS1FxSjQ0ejF2elczdDlsLW00TkdxeXlXNkM4dnd4NFpzUTRTVzI2WS1EcjJT
-cXdXZlcyQzU2cHg0dnBxZFBXN01WMnlrN1FIUGd4TjdDM0pKaEZNeThZVzZHSGduWThXLUdHTlZE
-Y01wazdCbXJKWFczd1RMRHE0WkJaQk5XOEw1U0M4MVBxNV9wVzFwci1LUzdfdzhaTVc3U1hMS3I3
-TGduZHNXNndHQmdHMS1YTVFLVzVzNDV3ajVTZk1WTVc0Tl82NGc1UkdfR1ZXOGJqUDF4M0JicGw5
-VzZkWll4XzFtZ0RqY1c2YmNUMjExVzRwckdXM1RwY3dtMzNMRGNuVzg2MnJ2MzhtcGpsd1c2VnQy
-RFI0WG1KSndOMVZoazBYS1J5SDJXNEpXZEdyNnNNQjVGVzZTQ19mbDR6R1BXbFc3LWc0R2I5azNU
-RDdXM2NtOV96MzVOV3AxVzM3ZHdfVzF6ZmNnelczd2N0Wms4amRMbnFXNUtqbk04MjVuOXlwVzd6
-YmRXbjg5Wl9MWDNwc2cxICkKCkN1cnJlbnQgYmlkIOKCrCAxNTAsMDAKCkFhcnRzZWxhYXIgQmVs
-Z2l1bQoKQ2hlY2sgb3V0IHRoaXMgbG90CihodHRwczovL2QzMTZESDA0LmV1MS5odWJzcG90bGlu
-a3MuY29tL0N0Yy9HRysxMTMvZDMxNkRIMDQvVlg0RDJIN1cxS0JTVnEta05kMWNWZ1luVzZMMnhG
-NTRWcXotMU41NmRYaGg1bVZ5TFYzWnNjMzdDZ1JWTFZLblNzYzhCWVBwWVczODBuUkY5M25IN0ZX
-MW5uS1FRMTd6SlZ2VzFyTWJxeTE5SlpEeFc2N05odjU2NXljcXhXMmItaFZnN1pjTFpuTjR5Wi0z
-SHI4a0pTVzZaS1FxSjQ0ejF2elczdDlsLW00TkdxeXlXNkM4dnd4NFpzUTRTVzI2WS1EcjJTcXdX
-ZlcyQzU2cHg0dnBxZFBXN01WMnlrN1FIUGd4TjdDM0pKaEZNeThZVzZHSGduWThXLUdHTlZEY01w
-azdCbXJKWFczd1RMRHE0WkJaQk5XOEw1U0M4MVBxNV9wVzFwci1LUzdfdzhaTVc3U1hMS3I3TGdu
-ZHNXNndHQmdHMS1YTVFLVzVzNDV3ajVTZk1WTVc0Tl82NGc1UkdfR1ZXOGJqUDF4M0JicGw5VzZk
-Wll4XzFtZ0RqY1c2YmNUMjExVzRwckdXM1RwY3dtMzNMRGNuVzg2MnJ2MzhtcGpsd1c2VnQyRFI0
-WG1KSndOMVZoazBYS1J5SDJXNEpXZEdyNnNNQjVGVzZTQ19mbDR6R1BXbFc3LWc0R2I5azNURDdX
-M2NtOV96MzVOV3AxVzM3ZHdfVzF6ZmNnelczd2N0Wms4amRMbnFXNUtqbk04MjVuOXlwVzd6YmRX
-bjg5Wl9MWDNwc2cxICkKCkRvIHlvdSB3YW50IHRvIFNFTEwgdGhyb3VnaCBhbiBvbmxpbmUgYXVj
-dGlvbj8KCkRpc2NvdmVyIHRoZSBhZHZhbnRhZ2VzIG9mIEFVQ1RJTQoKLQoKSW5zdGFudCBpbnRl
-cm5hdGlvbmFsIHJlYWNoLgoKLQoKWW91IGVuam95IHRoZSBiZW5lZml0cyBvZiB0aGUgQXVjdGlt
-IG5hbWUgcmVjb2duaXRpb24sCgpleHBlcnRpc2UsIGV4cGVyaWVuY2UsIG1hcmtldGluZyBjYW1w
-YWlnbnMgYW5kIHlvdSByZWR1Y2Ugb24gSVQgY29zdHMuCgotCgpZb3Ugd2lsbCBiZSBhYmxlIHRv
-IHNhdmUgc2lnbmlmaWNhbnRseSBvbiB5b3VyIG9wZXJhdGluZyBjb3N0cywgd2l0aG91dCB1bmV4
-cGVjdGVkIGJpbGxzLgoKLQoKU3VwcG9ydCBvZiBwcm9mZXNzaW9uYWwsIHN0cmF0ZWdpYyBidXQg
-YWxzbyB0YXJnZXRlZCBtYXJrZXRpbmcuCgotCgpZb3UgY2FuIGZvY3VzIG9uIHlvdXIgYXNzZXRz
-CgpBVUNUSU0gLSB0aGF0IGlzIGEgd2luLXdpbiBzdG9yeSEKCk1vcmUgaW5mbwooaHR0cHM6Ly9k
-MzE2REgwNC5ldTEuaHVic3BvdGxpbmtzLmNvbS9DdGMvR0crMTEzL2QzMTZESDA0L1ZYNEQySDdX
-MUtCU1ZxLWtOZDFjVmdZblc2TDJ4RjU0VnF6LTFONTZkWGhWM3BsMzdWMS1XSlY3Q2dONEpXNHBo
-RGR2Njc0YnY0Vzg1UV92Wjc3eXBNcFc1RF9kV18xZ3N5eWdXNF9yQ0txNzdRVFpCVzc5RDd2NDY4
-cV9qOFc3cnZZalA2V3ZwTjZXNS02RzQ1My1TOFdLTjRmZ05fTlA5N2ZyVzJmZmhZdDd3bHF4Wlc2
-WGNMUFMxVjV2ZDNXODY2clAyMVZnNWI4VzF0M25TbjYyWm45MVc2SmJMOXA3Wm5sc1FXNDZ5REdk
-MlJIeUY0VzViSllOTTVTVGdXUVc1NlZrODM5ZG04NWpOM1g5bEJ6ZmpMYkhXOHZzd2NUMkRZdndU
-VzZkSHdxeDNKdFdOblc3Y1JwOTc1cEQ0M1BGMzc4Sk5oS1Z0ME45MFA4eHZMV0QycFcxc2dITXg1
-Y0Q0WUdXMTkxWjd5NTdXbURxVzhWR25oMzVkTk5ELVc5a1YwU2M0RlRoV1czYktqMSApCgpUaGUg
-cG93ZXIgb2YgQXVjdGltIGluIHRoZSBmb2xsb3dpbmcgY2F0ZWdvcmllcwoKRmFjZWJvb2sgKGh0
-dHBzOi8vZDMxNkRIMDQuZXUxLmh1YnNwb3RsaW5rcy5jb20vQ3RjL0dHKzExMy9kMzE2REgwNC9W
-WDREMkg3VzFLQlNWcS1rTmQxY1ZnWW5XNkwyeEY1NFZxei0xTjU2ZFhoaDNsMGZ3VjEtV0pWN0Nn
-U2IzVzZKTmNfNDdmV3pGN1c1VlZOSDA2SEMyN0RXM3psbnNqMmhDSnp4VzNKSnNLVzgtcVlsNlc4
-MDJ4UTQ2Z2hjWmtWSG1nblAyMzBHZHhXOEdnX3NiNkdndzFyVkI2cnlaOEZWY1JtVzNrdnJQejRx
-LTNya1c0bUJIbUozR3JIdDhXNjAxU0h2NTU2RGxsVzZRUlM5UzljQmtjNFcxeGJZUFI4cDROODBX
-NDU3M2NZNWNSVzQ5VzJCcDVjQzhMdmdLa1c1RnZIdEc4QkJjeExNZkRqS0s4R3dmNVc4V1poZDAz
-MGhyUmRXM1AwbHEzNEZkX3gxVzRiSjBnRzVXM3Q1Q1c2Vm0zNzQxNlJYVFpXMmNWLUhZN0xxRnZW
-MzRHbjEgKQoKTGlua2VkSW4gKGh0dHBzOi8vZDMxNkRIMDQuZXUxLmh1YnNwb3RsaW5rcy5jb20v
-Q3RjL0dHKzExMy9kMzE2REgwNC9WWDREMkg3VzFLQlNWcS1rTmQxY1ZnWW5XNkwyeEY1NFZxei0x
-TjU2ZFhoQjNsMGZRVjEtV0pWN0NnQjM0VzdRWkpjODR6RnFnNlc2akNqcFc1QldmcDFXM0d2S2Zm
-OHpSY1hkVzh0aHJKMDZ5cEJKUFc4bGRfY1gyeGRMVk5XMWQxY3lXNGw0S3hfVzU2WHBLWDRibjRX
-c1c1Rm1UM3o3OWpINkdXMzdQbEo1NTRrZDMwVlJfejVnNEo0M2w1TjhtVGc4UmdocUhoVzRHTGhs
-LTVndDkxZlcyOWZ6MkgyOTIwUHhXMnlneDNwNzdLSjRGVzdrTWd0aDNDWW1zcVczVndtNWwxNVY0
-Q2hXNzZTeDd0NGdOcXNfTjRqRi12RkNiOTZXVzhqSDltNzJyQ1pMdlc4MDhNRkIyR1gzWWZXOWM1
-ODAzNlRHTFZaVzFzelpOSzE2c1N5Q1c3Vi1xemg3emdZXzZXMWpWMkZQNTEtSmNRM2JTSzEgKQoK
-SW5zdGFncmFtIChodHRwczovL2QzMTZESDA0LmV1MS5odWJzcG90bGlua3MuY29tL0N0Yy9HRysx
-MTMvZDMxNkRIMDQvVlg0RDJIN1cxS0JTVnEta05kMWNWZ1luVzZMMnhGNTRWcXotMU41NmRYaEIz
-bDBmUVYxLVdKVjdDZ1RDM1cxVm42Vks5OU5iR1hXMVktU2piNGhfYmJqTjVYZEo0NTlwN1I0TjR5
-UUJWbUwtTVdYVzFUNTNIeTZsWTM4Qlc2a2NNV2Q1RnBwYjFXM1dIZ043M25ycS13VzY5V3BjNjFj
-bnRyZ1cybG5zWFEyM3pEenFXNzB6a3RrNk41ODhiVzc2RF8wazN6X0Z3blczOXlHZmcyd2haY1JX
-MWQwVGNHNlRGUENsTjJqZzBMZmRodlJHVzlmOFc4YjZXWkZaYlc2djVRcTQyXzZEaDZXNjQ4Q3g4
-MnQ1eFNYVzgxSDY0NTVjcERUS1c3ZFFXTlg1SEdmQnpXMjY1QloyM1JYUGxuVzQ2TEd6SjhXZDc3
-S1c4UGJQMzc4c1EwbVRXNXRWWlZEN19Wc2ZYVzFIZ2x6RzVCTDJkUDNta2QxICkKCkF1Y3RpbSwg
-SGVsc3RzdHJhYXQgNDcsIEFhcnRzZWxhYXIsIEFudHdlcnAgMjYzMCwgQmVsZ2l1bQoKVW5zdWJz
-Y3JpYmUgKGh0dHBzOi8vaHMtMjU2ODU5NDYucy5odWJzcG90ZW1haWwtZXUxLm5ldC9ocy9tYW5h
-Z2UtcHJlZmVyZW5jZXMvdW5zdWJzY3JpYmUtYWxsP2xhbmd1YWdlUHJlZmVyZW5jZT1lbiZkPVZu
-bWJmZDg5ZDFQRlcxa1lWOTQ0Y2ZMM0JXNGtDSFR3NDVOcWwtVzNaV1dsczRjZzhUd1c0aEx4TEcz
-TTY2NDdXM0pGd24xNGYzQ3EzTjZCRzFfcG1XRmYyVzVYdEN3eDc5X19aNlYyNXJsVDZZRldSMk42
-UEdmWjNXck13ek41N1d0Y1JYa0dXeVcxWFEyTlIyVDA5d2JXN1cxVndZNEdaODdudzhGLUdQdjNW
-MjImdj0zJl9oc2VuYz1wMkFOcXR6LTlaYmhndWxERG8zMl94ajFqeFVpNV9Kam5EQnNYSDVzb2dr
-RmZFTEk1a3NqWC1wRlR4QVFrd3VpdEpVNHFtSFJoVnV5cHNVMEVzVTNMZGRqQ2lRMG1PZ0tmSU85
-c0d0S2ROSkFrUjRGdTFZVVlteEVvJl9oc21pPTY3NDc3NjM5ICkKCk1hbmFnZSBwcmVmZXJlbmNl
-cyAoaHR0cHM6Ly9ocy0yNTY4NTk0Ni5zLmh1YnNwb3RlbWFpbC1ldTEubmV0L2hzL21hbmFnZS1w
-cmVmZXJlbmNlcy91bnN1YnNjcmliZT9sYW5ndWFnZVByZWZlcmVuY2U9ZW4mZD1Wbm1iZmQ4OWQx
-UEZXMWtZVjk0NGNmTDNCVzRrQ0hUdzQ1TnFsLVczWldXbHM0Y2c4VHdXNGhMeExHM002NjQ3VzNK
-RnduMTRmM0NxM042QkcxX3BtV0ZmMlc1WHRDd3g3OV9fWjZWMjVybFQ2WUZXUjJONlBHZlozV3JN
-d3pONTdXdGNSWGtHV3lXMVhRMk5SMlQwOXdiVzdXMVZ3WTRHWjg3bnc4Ri1HUHYzVjIyJnY9MyZf
-aHNlbmM9cDJBTnF0ei05WmJoZ3VsRERvMzJfeGoxanhVaTVfSmpuREJzWEg1c29na0ZmRUxJNWtz
-algtcEZUeEFRa3d1aXRKVTRxbUhSaFZ1eXBzVTBFc1UzTGRkakNpUTBtT2dLZklPOXNHdEtkTkpB
-a1I0RnUxWVVZbXhFbyZfaHNtaT02NzQ3NzYzOSApCl9fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fClY5ZnMtZGV2ZWxvcGVyIG1haWxpbmcgbGlzdApWOWZzLWRl
-dmVsb3BlckBsaXN0cy5zb3VyY2Vmb3JnZS5uZXQKaHR0cHM6Ly9saXN0cy5zb3VyY2Vmb3JnZS5u
-ZXQvbGlzdHMvbGlzdGluZm8vdjlmcy1kZXZlbG9wZXIK
+The file locking definitions have lived in fs.h since the dawn of time,
+but they are only used by a small subset of the source files that
+include it.
+
+Move the file locking definitions to a new header file, and add the
+appropriate #include directives to the source files that need them. By
+doing this we trim down fs.h a bit and limit the amount of rebuilding
+that has to be done when we make changes to the file locking APIs.
+
+Reviewed-by: Xiubo Li <xiubli@redhat.com>
+Reviewed-by: Christian Brauner (Microsoft) <brauner@kernel.org>
+Reviewed-by: Christoph Hellwig <hch@lst.de>
+Reviewed-by: David Howells <dhowells@redhat.com>
+Acked-by: Chuck Lever <chuck.lever@oracle.com>
+Acked-by: Joseph Qi <joseph.qi@linux.alibaba.com>
+Acked-by: Steve French <stfrench@microsoft.com>
+Signed-off-by: Jeff Layton <jlayton@kernel.org>
+---
+ arch/arm/kernel/sys_oabi-compat.c |   1 +
+ fs/9p/vfs_file.c                  |   1 +
+ fs/afs/internal.h                 |   1 +
+ fs/attr.c                         |   1 +
+ fs/ceph/locks.c                   |   1 +
+ fs/cifs/cifsfs.c                  |   1 +
+ fs/cifs/cifsglob.h                |   1 +
+ fs/cifs/cifssmb.c                 |   1 +
+ fs/cifs/file.c                    |   1 +
+ fs/cifs/smb2file.c                |   1 +
+ fs/dlm/plock.c                    |   1 +
+ fs/fcntl.c                        |   1 +
+ fs/file_table.c                   |   1 +
+ fs/fuse/file.c                    |   1 +
+ fs/gfs2/file.c                    |   1 +
+ fs/inode.c                        |   1 +
+ fs/ksmbd/smb2pdu.c                |   1 +
+ fs/ksmbd/vfs.c                    |   1 +
+ fs/ksmbd/vfs_cache.c              |   1 +
+ fs/lockd/clntproc.c               |   1 +
+ fs/lockd/netns.h                  |   1 +
+ fs/locks.c                        |   1 +
+ fs/namei.c                        |   1 +
+ fs/nfs/file.c                     |   1 +
+ fs/nfs/nfs4_fs.h                  |   1 +
+ fs/nfs/pagelist.c                 |   1 +
+ fs/nfs/write.c                    |   1 +
+ fs/nfs_common/grace.c             |   1 +
+ fs/nfsd/netns.h                   |   1 +
+ fs/ocfs2/locks.c                  |   1 +
+ fs/ocfs2/stack_user.c             |   1 +
+ fs/open.c                         |   1 +
+ fs/orangefs/file.c                |   1 +
+ fs/posix_acl.c                    |   1 +
+ fs/proc/fd.c                      |   1 +
+ fs/utimes.c                       |   1 +
+ fs/xattr.c                        |   1 +
+ fs/xfs/xfs_linux.h                |   1 +
+ include/linux/filelock.h          | 438 ++++++++++++++++++++++++++++++
+ include/linux/fs.h                | 426 -----------------------------
+ include/linux/lockd/xdr.h         |   1 +
+ 41 files changed, 477 insertions(+), 426 deletions(-)
+ create mode 100644 include/linux/filelock.h
+
+v2:
+- drop pointless externs from the new filelock.h
+- move include into xfs_linux.h instead of xfs_buf.h
+- have filelock.h #include fs.h. Any file including filelock.h will
+  almost certainly need fs.h anyway.
+
+I've left some of Al's comments unaddressed for now, as I'd like to keep
+this move mostly mechanical, and no go changing function prototypes
+until the dust settles.
+
+I'll plan to drop this into linux-next within the next few days, with an
+eye toward merging this for v6.3.
+
+diff --git a/arch/arm/kernel/sys_oabi-compat.c b/arch/arm/kernel/sys_oabi-compat.c
+index 68112c172025..006163195d67 100644
+--- a/arch/arm/kernel/sys_oabi-compat.c
++++ b/arch/arm/kernel/sys_oabi-compat.c
+@@ -73,6 +73,7 @@
+ #include <linux/syscalls.h>
+ #include <linux/errno.h>
+ #include <linux/fs.h>
++#include <linux/filelock.h>
+ #include <linux/cred.h>
+ #include <linux/fcntl.h>
+ #include <linux/eventpoll.h>
+diff --git a/fs/9p/vfs_file.c b/fs/9p/vfs_file.c
+index b740017634ef..b6ba22975781 100644
+--- a/fs/9p/vfs_file.c
++++ b/fs/9p/vfs_file.c
+@@ -9,6 +9,7 @@
+ #include <linux/module.h>
+ #include <linux/errno.h>
+ #include <linux/fs.h>
++#include <linux/filelock.h>
+ #include <linux/sched.h>
+ #include <linux/file.h>
+ #include <linux/stat.h>
+diff --git a/fs/afs/internal.h b/fs/afs/internal.h
+index fd8567b98e2b..2d6d7dae225a 100644
+--- a/fs/afs/internal.h
++++ b/fs/afs/internal.h
+@@ -9,6 +9,7 @@
+ #include <linux/kernel.h>
+ #include <linux/ktime.h>
+ #include <linux/fs.h>
++#include <linux/filelock.h>
+ #include <linux/pagemap.h>
+ #include <linux/rxrpc.h>
+ #include <linux/key.h>
+diff --git a/fs/attr.c b/fs/attr.c
+index b45f30e516fa..f3eb8e57b451 100644
+--- a/fs/attr.c
++++ b/fs/attr.c
+@@ -14,6 +14,7 @@
+ #include <linux/capability.h>
+ #include <linux/fsnotify.h>
+ #include <linux/fcntl.h>
++#include <linux/filelock.h>
+ #include <linux/security.h>
+ #include <linux/evm.h>
+ #include <linux/ima.h>
+diff --git a/fs/ceph/locks.c b/fs/ceph/locks.c
+index f3b461c708a8..476f25bba263 100644
+--- a/fs/ceph/locks.c
++++ b/fs/ceph/locks.c
+@@ -7,6 +7,7 @@
+ 
+ #include "super.h"
+ #include "mds_client.h"
++#include <linux/filelock.h>
+ #include <linux/ceph/pagelist.h>
+ 
+ static u64 lock_secret;
+diff --git a/fs/cifs/cifsfs.c b/fs/cifs/cifsfs.c
+index 10e00c624922..f052f190b2e8 100644
+--- a/fs/cifs/cifsfs.c
++++ b/fs/cifs/cifsfs.c
+@@ -12,6 +12,7 @@
+ 
+ #include <linux/module.h>
+ #include <linux/fs.h>
++#include <linux/filelock.h>
+ #include <linux/mount.h>
+ #include <linux/slab.h>
+ #include <linux/init.h>
+diff --git a/fs/cifs/cifsglob.h b/fs/cifs/cifsglob.h
+index cfdd5bf701a1..cd8171a1c9a0 100644
+--- a/fs/cifs/cifsglob.h
++++ b/fs/cifs/cifsglob.h
+@@ -26,6 +26,7 @@
+ #include <uapi/linux/cifs/cifs_mount.h>
+ #include "../smbfs_common/smb2pdu.h"
+ #include "smb2pdu.h"
++#include <linux/filelock.h>
+ 
+ #define SMB_PATH_MAX 260
+ #define CIFS_PORT 445
+diff --git a/fs/cifs/cifssmb.c b/fs/cifs/cifssmb.c
+index 23f10e0d6e7e..60dd4e37030a 100644
+--- a/fs/cifs/cifssmb.c
++++ b/fs/cifs/cifssmb.c
+@@ -15,6 +15,7 @@
+  /* want to reuse a stale file handle and only the caller knows the file info */
+ 
+ #include <linux/fs.h>
++#include <linux/filelock.h>
+ #include <linux/kernel.h>
+ #include <linux/vfs.h>
+ #include <linux/slab.h>
+diff --git a/fs/cifs/file.c b/fs/cifs/file.c
+index 22dfc1f8b4f1..1d9cc59d8259 100644
+--- a/fs/cifs/file.c
++++ b/fs/cifs/file.c
+@@ -9,6 +9,7 @@
+  *
+  */
+ #include <linux/fs.h>
++#include <linux/filelock.h>
+ #include <linux/backing-dev.h>
+ #include <linux/stat.h>
+ #include <linux/fcntl.h>
+diff --git a/fs/cifs/smb2file.c b/fs/cifs/smb2file.c
+index ba6cc50af390..9f1dd04b555a 100644
+--- a/fs/cifs/smb2file.c
++++ b/fs/cifs/smb2file.c
+@@ -7,6 +7,7 @@
+  *
+  */
+ #include <linux/fs.h>
++#include <linux/filelock.h>
+ #include <linux/stat.h>
+ #include <linux/slab.h>
+ #include <linux/pagemap.h>
+diff --git a/fs/dlm/plock.c b/fs/dlm/plock.c
+index 737f185aad8d..ed4357e62f35 100644
+--- a/fs/dlm/plock.c
++++ b/fs/dlm/plock.c
+@@ -4,6 +4,7 @@
+  */
+ 
+ #include <linux/fs.h>
++#include <linux/filelock.h>
+ #include <linux/miscdevice.h>
+ #include <linux/poll.h>
+ #include <linux/dlm.h>
+diff --git a/fs/fcntl.c b/fs/fcntl.c
+index 146c9ab0cd4b..7852e946fdf4 100644
+--- a/fs/fcntl.c
++++ b/fs/fcntl.c
+@@ -10,6 +10,7 @@
+ #include <linux/mm.h>
+ #include <linux/sched/task.h>
+ #include <linux/fs.h>
++#include <linux/filelock.h>
+ #include <linux/file.h>
+ #include <linux/fdtable.h>
+ #include <linux/capability.h>
+diff --git a/fs/file_table.c b/fs/file_table.c
+index dd88701e54a9..372653b92617 100644
+--- a/fs/file_table.c
++++ b/fs/file_table.c
+@@ -13,6 +13,7 @@
+ #include <linux/init.h>
+ #include <linux/module.h>
+ #include <linux/fs.h>
++#include <linux/filelock.h>
+ #include <linux/security.h>
+ #include <linux/cred.h>
+ #include <linux/eventpoll.h>
+diff --git a/fs/fuse/file.c b/fs/fuse/file.c
+index 875314ee6f59..1458412f2492 100644
+--- a/fs/fuse/file.c
++++ b/fs/fuse/file.c
+@@ -18,6 +18,7 @@
+ #include <linux/falloc.h>
+ #include <linux/uio.h>
+ #include <linux/fs.h>
++#include <linux/filelock.h>
+ 
+ static int fuse_send_open(struct fuse_mount *fm, u64 nodeid,
+ 			  unsigned int open_flags, int opcode,
+diff --git a/fs/gfs2/file.c b/fs/gfs2/file.c
+index eea5be4fbf0e..e8e20a716004 100644
+--- a/fs/gfs2/file.c
++++ b/fs/gfs2/file.c
+@@ -15,6 +15,7 @@
+ #include <linux/mm.h>
+ #include <linux/mount.h>
+ #include <linux/fs.h>
++#include <linux/filelock.h>
+ #include <linux/gfs2_ondisk.h>
+ #include <linux/falloc.h>
+ #include <linux/swap.h>
+diff --git a/fs/inode.c b/fs/inode.c
+index f453eb58fd03..d02dd8f1e967 100644
+--- a/fs/inode.c
++++ b/fs/inode.c
+@@ -5,6 +5,7 @@
+  */
+ #include <linux/export.h>
+ #include <linux/fs.h>
++#include <linux/filelock.h>
+ #include <linux/mm.h>
+ #include <linux/backing-dev.h>
+ #include <linux/hash.h>
+diff --git a/fs/ksmbd/smb2pdu.c b/fs/ksmbd/smb2pdu.c
+index 14d7f3599c63..000a6648f122 100644
+--- a/fs/ksmbd/smb2pdu.c
++++ b/fs/ksmbd/smb2pdu.c
+@@ -12,6 +12,7 @@
+ #include <linux/ethtool.h>
+ #include <linux/falloc.h>
+ #include <linux/mount.h>
++#include <linux/filelock.h>
+ 
+ #include "glob.h"
+ #include "smbfsctl.h"
+diff --git a/fs/ksmbd/vfs.c b/fs/ksmbd/vfs.c
+index ff0e7a4fcd4d..5851934dc85b 100644
+--- a/fs/ksmbd/vfs.c
++++ b/fs/ksmbd/vfs.c
+@@ -6,6 +6,7 @@
+ 
+ #include <linux/kernel.h>
+ #include <linux/fs.h>
++#include <linux/filelock.h>
+ #include <linux/uaccess.h>
+ #include <linux/backing-dev.h>
+ #include <linux/writeback.h>
+diff --git a/fs/ksmbd/vfs_cache.c b/fs/ksmbd/vfs_cache.c
+index da9163b00350..552c3882a8f4 100644
+--- a/fs/ksmbd/vfs_cache.c
++++ b/fs/ksmbd/vfs_cache.c
+@@ -5,6 +5,7 @@
+  */
+ 
+ #include <linux/fs.h>
++#include <linux/filelock.h>
+ #include <linux/slab.h>
+ #include <linux/vmalloc.h>
+ 
+diff --git a/fs/lockd/clntproc.c b/fs/lockd/clntproc.c
+index 99fffc9cb958..e875a3571c41 100644
+--- a/fs/lockd/clntproc.c
++++ b/fs/lockd/clntproc.c
+@@ -12,6 +12,7 @@
+ #include <linux/types.h>
+ #include <linux/errno.h>
+ #include <linux/fs.h>
++#include <linux/filelock.h>
+ #include <linux/nfs_fs.h>
+ #include <linux/utsname.h>
+ #include <linux/freezer.h>
+diff --git a/fs/lockd/netns.h b/fs/lockd/netns.h
+index 5bec78c8e431..17432c445fe6 100644
+--- a/fs/lockd/netns.h
++++ b/fs/lockd/netns.h
+@@ -3,6 +3,7 @@
+ #define __LOCKD_NETNS_H__
+ 
+ #include <linux/fs.h>
++#include <linux/filelock.h>
+ #include <net/netns/generic.h>
+ 
+ struct lockd_net {
+diff --git a/fs/locks.c b/fs/locks.c
+index 8f01bee17715..a5cc90c958c9 100644
+--- a/fs/locks.c
++++ b/fs/locks.c
+@@ -52,6 +52,7 @@
+ #include <linux/capability.h>
+ #include <linux/file.h>
+ #include <linux/fdtable.h>
++#include <linux/filelock.h>
+ #include <linux/fs.h>
+ #include <linux/init.h>
+ #include <linux/security.h>
+diff --git a/fs/namei.c b/fs/namei.c
+index 309ae6fc8c99..60a9d3ac941f 100644
+--- a/fs/namei.c
++++ b/fs/namei.c
+@@ -20,6 +20,7 @@
+ #include <linux/kernel.h>
+ #include <linux/slab.h>
+ #include <linux/fs.h>
++#include <linux/filelock.h>
+ #include <linux/namei.h>
+ #include <linux/pagemap.h>
+ #include <linux/sched/mm.h>
+diff --git a/fs/nfs/file.c b/fs/nfs/file.c
+index d8ec889a4b3f..b0f3c9339e70 100644
+--- a/fs/nfs/file.c
++++ b/fs/nfs/file.c
+@@ -31,6 +31,7 @@
+ #include <linux/swap.h>
+ 
+ #include <linux/uaccess.h>
++#include <linux/filelock.h>
+ 
+ #include "delegation.h"
+ #include "internal.h"
+diff --git a/fs/nfs/nfs4_fs.h b/fs/nfs/nfs4_fs.h
+index 5edd1704f735..4c9f8bd866ab 100644
+--- a/fs/nfs/nfs4_fs.h
++++ b/fs/nfs/nfs4_fs.h
+@@ -23,6 +23,7 @@
+ #define NFS4_MAX_LOOP_ON_RECOVER (10)
+ 
+ #include <linux/seqlock.h>
++#include <linux/filelock.h>
+ 
+ struct idmap;
+ 
+diff --git a/fs/nfs/pagelist.c b/fs/nfs/pagelist.c
+index 16be6dae524f..779bfc37233c 100644
+--- a/fs/nfs/pagelist.c
++++ b/fs/nfs/pagelist.c
+@@ -21,6 +21,7 @@
+ #include <linux/nfs_page.h>
+ #include <linux/nfs_mount.h>
+ #include <linux/export.h>
++#include <linux/filelock.h>
+ 
+ #include "internal.h"
+ #include "pnfs.h"
+diff --git a/fs/nfs/write.c b/fs/nfs/write.c
+index 80c240e50952..1a80d548253a 100644
+--- a/fs/nfs/write.c
++++ b/fs/nfs/write.c
+@@ -25,6 +25,7 @@
+ #include <linux/freezer.h>
+ #include <linux/wait.h>
+ #include <linux/iversion.h>
++#include <linux/filelock.h>
+ 
+ #include <linux/uaccess.h>
+ #include <linux/sched/mm.h>
+diff --git a/fs/nfs_common/grace.c b/fs/nfs_common/grace.c
+index 0a9b72685f98..1479583fbb62 100644
+--- a/fs/nfs_common/grace.c
++++ b/fs/nfs_common/grace.c
+@@ -9,6 +9,7 @@
+ #include <net/net_namespace.h>
+ #include <net/netns/generic.h>
+ #include <linux/fs.h>
++#include <linux/filelock.h>
+ 
+ static unsigned int grace_net_id;
+ static DEFINE_SPINLOCK(grace_lock);
+diff --git a/fs/nfsd/netns.h b/fs/nfsd/netns.h
+index 8c854ba3285b..bc139401927d 100644
+--- a/fs/nfsd/netns.h
++++ b/fs/nfsd/netns.h
+@@ -10,6 +10,7 @@
+ 
+ #include <net/net_namespace.h>
+ #include <net/netns/generic.h>
++#include <linux/filelock.h>
+ #include <linux/percpu_counter.h>
+ #include <linux/siphash.h>
+ 
+diff --git a/fs/ocfs2/locks.c b/fs/ocfs2/locks.c
+index 73a3854b2afb..f37174e79fad 100644
+--- a/fs/ocfs2/locks.c
++++ b/fs/ocfs2/locks.c
+@@ -8,6 +8,7 @@
+  */
+ 
+ #include <linux/fs.h>
++#include <linux/filelock.h>
+ #include <linux/fcntl.h>
+ 
+ #include <cluster/masklog.h>
+diff --git a/fs/ocfs2/stack_user.c b/fs/ocfs2/stack_user.c
+index 64e6ddcfe329..05d4414d0c33 100644
+--- a/fs/ocfs2/stack_user.c
++++ b/fs/ocfs2/stack_user.c
+@@ -9,6 +9,7 @@
+ 
+ #include <linux/module.h>
+ #include <linux/fs.h>
++#include <linux/filelock.h>
+ #include <linux/miscdevice.h>
+ #include <linux/mutex.h>
+ #include <linux/slab.h>
+diff --git a/fs/open.c b/fs/open.c
+index 82c1a28b3308..9b1c08298a07 100644
+--- a/fs/open.c
++++ b/fs/open.c
+@@ -33,6 +33,7 @@
+ #include <linux/dnotify.h>
+ #include <linux/compat.h>
+ #include <linux/mnt_idmapping.h>
++#include <linux/filelock.h>
+ 
+ #include "internal.h"
+ 
+diff --git a/fs/orangefs/file.c b/fs/orangefs/file.c
+index 167fa43b24f9..4ecb91a9bbeb 100644
+--- a/fs/orangefs/file.c
++++ b/fs/orangefs/file.c
+@@ -14,6 +14,7 @@
+ #include "orangefs-kernel.h"
+ #include "orangefs-bufmap.h"
+ #include <linux/fs.h>
++#include <linux/filelock.h>
+ #include <linux/pagemap.h>
+ 
+ static int flush_racache(struct inode *inode)
+diff --git a/fs/posix_acl.c b/fs/posix_acl.c
+index d7bc81fc0840..d2271431f344 100644
+--- a/fs/posix_acl.c
++++ b/fs/posix_acl.c
+@@ -28,6 +28,7 @@
+ #include <linux/security.h>
+ #include <linux/evm.h>
+ #include <linux/fsnotify.h>
++#include <linux/filelock.h>
+ 
+ #include "internal.h"
+ 
+diff --git a/fs/proc/fd.c b/fs/proc/fd.c
+index fc46d6fe080c..53e4919ef860 100644
+--- a/fs/proc/fd.c
++++ b/fs/proc/fd.c
+@@ -12,6 +12,7 @@
+ #include <linux/file.h>
+ #include <linux/seq_file.h>
+ #include <linux/fs.h>
++#include <linux/filelock.h>
+ 
+ #include <linux/proc_fs.h>
+ 
+diff --git a/fs/utimes.c b/fs/utimes.c
+index 39f356017635..00499e4ba955 100644
+--- a/fs/utimes.c
++++ b/fs/utimes.c
+@@ -7,6 +7,7 @@
+ #include <linux/uaccess.h>
+ #include <linux/compat.h>
+ #include <asm/unistd.h>
++#include <linux/filelock.h>
+ 
+ static bool nsec_valid(long nsec)
+ {
+diff --git a/fs/xattr.c b/fs/xattr.c
+index adab9a70b536..3fead374901b 100644
+--- a/fs/xattr.c
++++ b/fs/xattr.c
+@@ -9,6 +9,7 @@
+   Copyright (c) 2004 Red Hat, Inc., James Morris <jmorris@redhat.com>
+  */
+ #include <linux/fs.h>
++#include <linux/filelock.h>
+ #include <linux/slab.h>
+ #include <linux/file.h>
+ #include <linux/xattr.h>
+diff --git a/fs/xfs/xfs_linux.h b/fs/xfs/xfs_linux.h
+index f9878021e7d0..e88f18f85e4b 100644
+--- a/fs/xfs/xfs_linux.h
++++ b/fs/xfs/xfs_linux.h
+@@ -34,6 +34,7 @@ typedef __u32			xfs_nlink_t;
+ #include <linux/module.h>
+ #include <linux/mutex.h>
+ #include <linux/file.h>
++#include <linux/filelock.h>
+ #include <linux/swap.h>
+ #include <linux/errno.h>
+ #include <linux/sched/signal.h>
+diff --git a/include/linux/filelock.h b/include/linux/filelock.h
+new file mode 100644
+index 000000000000..deee04385127
+--- /dev/null
++++ b/include/linux/filelock.h
+@@ -0,0 +1,438 @@
++/* SPDX-License-Identifier: GPL-2.0 */
++#ifndef _LINUX_FILELOCK_H
++#define _LINUX_FILELOCK_H
++
++#include <linux/fs.h>
++
++#define FL_POSIX	1
++#define FL_FLOCK	2
++#define FL_DELEG	4	/* NFSv4 delegation */
++#define FL_ACCESS	8	/* not trying to lock, just looking */
++#define FL_EXISTS	16	/* when unlocking, test for existence */
++#define FL_LEASE	32	/* lease held on this file */
++#define FL_CLOSE	64	/* unlock on close */
++#define FL_SLEEP	128	/* A blocking lock */
++#define FL_DOWNGRADE_PENDING	256 /* Lease is being downgraded */
++#define FL_UNLOCK_PENDING	512 /* Lease is being broken */
++#define FL_OFDLCK	1024	/* lock is "owned" by struct file */
++#define FL_LAYOUT	2048	/* outstanding pNFS layout */
++#define FL_RECLAIM	4096	/* reclaiming from a reboot server */
++
++#define FL_CLOSE_POSIX (FL_POSIX | FL_CLOSE)
++
++/*
++ * Special return value from posix_lock_file() and vfs_lock_file() for
++ * asynchronous locking.
++ */
++#define FILE_LOCK_DEFERRED 1
++
++struct file_lock;
++
++struct file_lock_operations {
++	void (*fl_copy_lock)(struct file_lock *, struct file_lock *);
++	void (*fl_release_private)(struct file_lock *);
++};
++
++struct lock_manager_operations {
++	void *lm_mod_owner;
++	fl_owner_t (*lm_get_owner)(fl_owner_t);
++	void (*lm_put_owner)(fl_owner_t);
++	void (*lm_notify)(struct file_lock *);	/* unblock callback */
++	int (*lm_grant)(struct file_lock *, int);
++	bool (*lm_break)(struct file_lock *);
++	int (*lm_change)(struct file_lock *, int, struct list_head *);
++	void (*lm_setup)(struct file_lock *, void **);
++	bool (*lm_breaker_owns_lease)(struct file_lock *);
++	bool (*lm_lock_expirable)(struct file_lock *cfl);
++	void (*lm_expire_lock)(void);
++};
++
++struct lock_manager {
++	struct list_head list;
++	/*
++	 * NFSv4 and up also want opens blocked during the grace period;
++	 * NLM doesn't care:
++	 */
++	bool block_opens;
++};
++
++struct net;
++void locks_start_grace(struct net *, struct lock_manager *);
++void locks_end_grace(struct lock_manager *);
++bool locks_in_grace(struct net *);
++bool opens_in_grace(struct net *);
++
++/*
++ * struct file_lock has a union that some filesystems use to track
++ * their own private info. The NFS side of things is defined here:
++ */
++#include <linux/nfs_fs_i.h>
++
++/*
++ * struct file_lock represents a generic "file lock". It's used to represent
++ * POSIX byte range locks, BSD (flock) locks, and leases. It's important to
++ * note that the same struct is used to represent both a request for a lock and
++ * the lock itself, but the same object is never used for both.
++ *
++ * FIXME: should we create a separate "struct lock_request" to help distinguish
++ * these two uses?
++ *
++ * The varous i_flctx lists are ordered by:
++ *
++ * 1) lock owner
++ * 2) lock range start
++ * 3) lock range end
++ *
++ * Obviously, the last two criteria only matter for POSIX locks.
++ */
++struct file_lock {
++	struct file_lock *fl_blocker;	/* The lock, that is blocking us */
++	struct list_head fl_list;	/* link into file_lock_context */
++	struct hlist_node fl_link;	/* node in global lists */
++	struct list_head fl_blocked_requests;	/* list of requests with
++						 * ->fl_blocker pointing here
++						 */
++	struct list_head fl_blocked_member;	/* node in
++						 * ->fl_blocker->fl_blocked_requests
++						 */
++	fl_owner_t fl_owner;
++	unsigned int fl_flags;
++	unsigned char fl_type;
++	unsigned int fl_pid;
++	int fl_link_cpu;		/* what cpu's list is this on? */
++	wait_queue_head_t fl_wait;
++	struct file *fl_file;
++	loff_t fl_start;
++	loff_t fl_end;
++
++	struct fasync_struct *	fl_fasync; /* for lease break notifications */
++	/* for lease breaks: */
++	unsigned long fl_break_time;
++	unsigned long fl_downgrade_time;
++
++	const struct file_lock_operations *fl_ops;	/* Callbacks for filesystems */
++	const struct lock_manager_operations *fl_lmops;	/* Callbacks for lockmanagers */
++	union {
++		struct nfs_lock_info	nfs_fl;
++		struct nfs4_lock_info	nfs4_fl;
++		struct {
++			struct list_head link;	/* link in AFS vnode's pending_locks list */
++			int state;		/* state of grant or error if -ve */
++			unsigned int	debug_id;
++		} afs;
++	} fl_u;
++} __randomize_layout;
++
++struct file_lock_context {
++	spinlock_t		flc_lock;
++	struct list_head	flc_flock;
++	struct list_head	flc_posix;
++	struct list_head	flc_lease;
++};
++
++#define locks_inode(f) file_inode(f)
++
++#ifdef CONFIG_FILE_LOCKING
++int fcntl_getlk(struct file *, unsigned int, struct flock *);
++int fcntl_setlk(unsigned int, struct file *, unsigned int,
++			struct flock *);
++
++#if BITS_PER_LONG == 32
++int fcntl_getlk64(struct file *, unsigned int, struct flock64 *);
++int fcntl_setlk64(unsigned int, struct file *, unsigned int,
++			struct flock64 *);
++#endif
++
++int fcntl_setlease(unsigned int fd, struct file *filp, long arg);
++int fcntl_getlease(struct file *filp);
++
++/* fs/locks.c */
++void locks_free_lock_context(struct inode *inode);
++void locks_free_lock(struct file_lock *fl);
++void locks_init_lock(struct file_lock *);
++struct file_lock * locks_alloc_lock(void);
++void locks_copy_lock(struct file_lock *, struct file_lock *);
++void locks_copy_conflock(struct file_lock *, struct file_lock *);
++void locks_remove_posix(struct file *, fl_owner_t);
++void locks_remove_file(struct file *);
++void locks_release_private(struct file_lock *);
++void posix_test_lock(struct file *, struct file_lock *);
++int posix_lock_file(struct file *, struct file_lock *, struct file_lock *);
++int locks_delete_block(struct file_lock *);
++int vfs_test_lock(struct file *, struct file_lock *);
++int vfs_lock_file(struct file *, unsigned int, struct file_lock *, struct file_lock *);
++int vfs_cancel_lock(struct file *filp, struct file_lock *fl);
++bool vfs_inode_has_locks(struct inode *inode);
++int locks_lock_inode_wait(struct inode *inode, struct file_lock *fl);
++int __break_lease(struct inode *inode, unsigned int flags, unsigned int type);
++void lease_get_mtime(struct inode *, struct timespec64 *time);
++int generic_setlease(struct file *, long, struct file_lock **, void **priv);
++int vfs_setlease(struct file *, long, struct file_lock **, void **);
++int lease_modify(struct file_lock *, int, struct list_head *);
++
++struct notifier_block;
++int lease_register_notifier(struct notifier_block *);
++void lease_unregister_notifier(struct notifier_block *);
++
++struct files_struct;
++void show_fd_locks(struct seq_file *f,
++			 struct file *filp, struct files_struct *files);
++bool locks_owner_has_blockers(struct file_lock_context *flctx,
++			fl_owner_t owner);
++
++static inline struct file_lock_context *
++locks_inode_context(const struct inode *inode)
++{
++	return smp_load_acquire(&inode->i_flctx);
++}
++
++#else /* !CONFIG_FILE_LOCKING */
++static inline int fcntl_getlk(struct file *file, unsigned int cmd,
++			      struct flock __user *user)
++{
++	return -EINVAL;
++}
++
++static inline int fcntl_setlk(unsigned int fd, struct file *file,
++			      unsigned int cmd, struct flock __user *user)
++{
++	return -EACCES;
++}
++
++#if BITS_PER_LONG == 32
++static inline int fcntl_getlk64(struct file *file, unsigned int cmd,
++				struct flock64 *user)
++{
++	return -EINVAL;
++}
++
++static inline int fcntl_setlk64(unsigned int fd, struct file *file,
++				unsigned int cmd, struct flock64 *user)
++{
++	return -EACCES;
++}
++#endif
++static inline int fcntl_setlease(unsigned int fd, struct file *filp, long arg)
++{
++	return -EINVAL;
++}
++
++static inline int fcntl_getlease(struct file *filp)
++{
++	return F_UNLCK;
++}
++
++static inline void
++locks_free_lock_context(struct inode *inode)
++{
++}
++
++static inline void locks_init_lock(struct file_lock *fl)
++{
++	return;
++}
++
++static inline void locks_copy_conflock(struct file_lock *new, struct file_lock *fl)
++{
++	return;
++}
++
++static inline void locks_copy_lock(struct file_lock *new, struct file_lock *fl)
++{
++	return;
++}
++
++static inline void locks_remove_posix(struct file *filp, fl_owner_t owner)
++{
++	return;
++}
++
++static inline void locks_remove_file(struct file *filp)
++{
++	return;
++}
++
++static inline void posix_test_lock(struct file *filp, struct file_lock *fl)
++{
++	return;
++}
++
++static inline int posix_lock_file(struct file *filp, struct file_lock *fl,
++				  struct file_lock *conflock)
++{
++	return -ENOLCK;
++}
++
++static inline int locks_delete_block(struct file_lock *waiter)
++{
++	return -ENOENT;
++}
++
++static inline int vfs_test_lock(struct file *filp, struct file_lock *fl)
++{
++	return 0;
++}
++
++static inline int vfs_lock_file(struct file *filp, unsigned int cmd,
++				struct file_lock *fl, struct file_lock *conf)
++{
++	return -ENOLCK;
++}
++
++static inline int vfs_cancel_lock(struct file *filp, struct file_lock *fl)
++{
++	return 0;
++}
++
++static inline bool vfs_inode_has_locks(struct inode *inode)
++{
++	return false;
++}
++
++static inline int locks_lock_inode_wait(struct inode *inode, struct file_lock *fl)
++{
++	return -ENOLCK;
++}
++
++static inline int __break_lease(struct inode *inode, unsigned int mode, unsigned int type)
++{
++	return 0;
++}
++
++static inline void lease_get_mtime(struct inode *inode,
++				   struct timespec64 *time)
++{
++	return;
++}
++
++static inline int generic_setlease(struct file *filp, long arg,
++				    struct file_lock **flp, void **priv)
++{
++	return -EINVAL;
++}
++
++static inline int vfs_setlease(struct file *filp, long arg,
++			       struct file_lock **lease, void **priv)
++{
++	return -EINVAL;
++}
++
++static inline int lease_modify(struct file_lock *fl, int arg,
++			       struct list_head *dispose)
++{
++	return -EINVAL;
++}
++
++struct files_struct;
++static inline void show_fd_locks(struct seq_file *f,
++			struct file *filp, struct files_struct *files) {}
++static inline bool locks_owner_has_blockers(struct file_lock_context *flctx,
++			fl_owner_t owner)
++{
++	return false;
++}
++
++static inline struct file_lock_context *
++locks_inode_context(const struct inode *inode)
++{
++	return NULL;
++}
++
++#endif /* !CONFIG_FILE_LOCKING */
++
++static inline int locks_lock_file_wait(struct file *filp, struct file_lock *fl)
++{
++	return locks_lock_inode_wait(locks_inode(filp), fl);
++}
++
++#ifdef CONFIG_FILE_LOCKING
++static inline int break_lease(struct inode *inode, unsigned int mode)
++{
++	/*
++	 * Since this check is lockless, we must ensure that any refcounts
++	 * taken are done before checking i_flctx->flc_lease. Otherwise, we
++	 * could end up racing with tasks trying to set a new lease on this
++	 * file.
++	 */
++	smp_mb();
++	if (inode->i_flctx && !list_empty_careful(&inode->i_flctx->flc_lease))
++		return __break_lease(inode, mode, FL_LEASE);
++	return 0;
++}
++
++static inline int break_deleg(struct inode *inode, unsigned int mode)
++{
++	/*
++	 * Since this check is lockless, we must ensure that any refcounts
++	 * taken are done before checking i_flctx->flc_lease. Otherwise, we
++	 * could end up racing with tasks trying to set a new lease on this
++	 * file.
++	 */
++	smp_mb();
++	if (inode->i_flctx && !list_empty_careful(&inode->i_flctx->flc_lease))
++		return __break_lease(inode, mode, FL_DELEG);
++	return 0;
++}
++
++static inline int try_break_deleg(struct inode *inode, struct inode **delegated_inode)
++{
++	int ret;
++
++	ret = break_deleg(inode, O_WRONLY|O_NONBLOCK);
++	if (ret == -EWOULDBLOCK && delegated_inode) {
++		*delegated_inode = inode;
++		ihold(inode);
++	}
++	return ret;
++}
++
++static inline int break_deleg_wait(struct inode **delegated_inode)
++{
++	int ret;
++
++	ret = break_deleg(*delegated_inode, O_WRONLY);
++	iput(*delegated_inode);
++	*delegated_inode = NULL;
++	return ret;
++}
++
++static inline int break_layout(struct inode *inode, bool wait)
++{
++	smp_mb();
++	if (inode->i_flctx && !list_empty_careful(&inode->i_flctx->flc_lease))
++		return __break_lease(inode,
++				wait ? O_WRONLY : O_WRONLY | O_NONBLOCK,
++				FL_LAYOUT);
++	return 0;
++}
++
++#else /* !CONFIG_FILE_LOCKING */
++static inline int break_lease(struct inode *inode, unsigned int mode)
++{
++	return 0;
++}
++
++static inline int break_deleg(struct inode *inode, unsigned int mode)
++{
++	return 0;
++}
++
++static inline int try_break_deleg(struct inode *inode, struct inode **delegated_inode)
++{
++	return 0;
++}
++
++static inline int break_deleg_wait(struct inode **delegated_inode)
++{
++	BUG();
++	return 0;
++}
++
++static inline int break_layout(struct inode *inode, bool wait)
++{
++	return 0;
++}
++
++#endif /* CONFIG_FILE_LOCKING */
++
++#endif /* _LINUX_FILELOCK_H */
+diff --git a/include/linux/fs.h b/include/linux/fs.h
+index 066555ad1bf8..006278d84d2f 100644
+--- a/include/linux/fs.h
++++ b/include/linux/fs.h
+@@ -1003,132 +1003,11 @@ static inline struct file *get_file(struct file *f)
+ #define MAX_LFS_FILESIZE 	((loff_t)LLONG_MAX)
+ #endif
+ 
+-#define FL_POSIX	1
+-#define FL_FLOCK	2
+-#define FL_DELEG	4	/* NFSv4 delegation */
+-#define FL_ACCESS	8	/* not trying to lock, just looking */
+-#define FL_EXISTS	16	/* when unlocking, test for existence */
+-#define FL_LEASE	32	/* lease held on this file */
+-#define FL_CLOSE	64	/* unlock on close */
+-#define FL_SLEEP	128	/* A blocking lock */
+-#define FL_DOWNGRADE_PENDING	256 /* Lease is being downgraded */
+-#define FL_UNLOCK_PENDING	512 /* Lease is being broken */
+-#define FL_OFDLCK	1024	/* lock is "owned" by struct file */
+-#define FL_LAYOUT	2048	/* outstanding pNFS layout */
+-#define FL_RECLAIM	4096	/* reclaiming from a reboot server */
+-
+-#define FL_CLOSE_POSIX (FL_POSIX | FL_CLOSE)
+-
+-/*
+- * Special return value from posix_lock_file() and vfs_lock_file() for
+- * asynchronous locking.
+- */
+-#define FILE_LOCK_DEFERRED 1
+-
+ /* legacy typedef, should eventually be removed */
+ typedef void *fl_owner_t;
+ 
+ struct file_lock;
+ 
+-struct file_lock_operations {
+-	void (*fl_copy_lock)(struct file_lock *, struct file_lock *);
+-	void (*fl_release_private)(struct file_lock *);
+-};
+-
+-struct lock_manager_operations {
+-	void *lm_mod_owner;
+-	fl_owner_t (*lm_get_owner)(fl_owner_t);
+-	void (*lm_put_owner)(fl_owner_t);
+-	void (*lm_notify)(struct file_lock *);	/* unblock callback */
+-	int (*lm_grant)(struct file_lock *, int);
+-	bool (*lm_break)(struct file_lock *);
+-	int (*lm_change)(struct file_lock *, int, struct list_head *);
+-	void (*lm_setup)(struct file_lock *, void **);
+-	bool (*lm_breaker_owns_lease)(struct file_lock *);
+-	bool (*lm_lock_expirable)(struct file_lock *cfl);
+-	void (*lm_expire_lock)(void);
+-};
+-
+-struct lock_manager {
+-	struct list_head list;
+-	/*
+-	 * NFSv4 and up also want opens blocked during the grace period;
+-	 * NLM doesn't care:
+-	 */
+-	bool block_opens;
+-};
+-
+-struct net;
+-void locks_start_grace(struct net *, struct lock_manager *);
+-void locks_end_grace(struct lock_manager *);
+-bool locks_in_grace(struct net *);
+-bool opens_in_grace(struct net *);
+-
+-/* that will die - we need it for nfs_lock_info */
+-#include <linux/nfs_fs_i.h>
+-
+-/*
+- * struct file_lock represents a generic "file lock". It's used to represent
+- * POSIX byte range locks, BSD (flock) locks, and leases. It's important to
+- * note that the same struct is used to represent both a request for a lock and
+- * the lock itself, but the same object is never used for both.
+- *
+- * FIXME: should we create a separate "struct lock_request" to help distinguish
+- * these two uses?
+- *
+- * The varous i_flctx lists are ordered by:
+- *
+- * 1) lock owner
+- * 2) lock range start
+- * 3) lock range end
+- *
+- * Obviously, the last two criteria only matter for POSIX locks.
+- */
+-struct file_lock {
+-	struct file_lock *fl_blocker;	/* The lock, that is blocking us */
+-	struct list_head fl_list;	/* link into file_lock_context */
+-	struct hlist_node fl_link;	/* node in global lists */
+-	struct list_head fl_blocked_requests;	/* list of requests with
+-						 * ->fl_blocker pointing here
+-						 */
+-	struct list_head fl_blocked_member;	/* node in
+-						 * ->fl_blocker->fl_blocked_requests
+-						 */
+-	fl_owner_t fl_owner;
+-	unsigned int fl_flags;
+-	unsigned char fl_type;
+-	unsigned int fl_pid;
+-	int fl_link_cpu;		/* what cpu's list is this on? */
+-	wait_queue_head_t fl_wait;
+-	struct file *fl_file;
+-	loff_t fl_start;
+-	loff_t fl_end;
+-
+-	struct fasync_struct *	fl_fasync; /* for lease break notifications */
+-	/* for lease breaks: */
+-	unsigned long fl_break_time;
+-	unsigned long fl_downgrade_time;
+-
+-	const struct file_lock_operations *fl_ops;	/* Callbacks for filesystems */
+-	const struct lock_manager_operations *fl_lmops;	/* Callbacks for lockmanagers */
+-	union {
+-		struct nfs_lock_info	nfs_fl;
+-		struct nfs4_lock_info	nfs4_fl;
+-		struct {
+-			struct list_head link;	/* link in AFS vnode's pending_locks list */
+-			int state;		/* state of grant or error if -ve */
+-			unsigned int	debug_id;
+-		} afs;
+-	} fl_u;
+-} __randomize_layout;
+-
+-struct file_lock_context {
+-	spinlock_t		flc_lock;
+-	struct list_head	flc_flock;
+-	struct list_head	flc_posix;
+-	struct list_head	flc_lease;
+-};
+-
+ /* The following constant reflects the upper bound of the file/locking space */
+ #ifndef OFFSET_MAX
+ #define OFFSET_MAX	type_max(loff_t)
+@@ -1137,216 +1016,6 @@ struct file_lock_context {
+ 
+ extern void send_sigio(struct fown_struct *fown, int fd, int band);
+ 
+-#define locks_inode(f) file_inode(f)
+-
+-#ifdef CONFIG_FILE_LOCKING
+-extern int fcntl_getlk(struct file *, unsigned int, struct flock *);
+-extern int fcntl_setlk(unsigned int, struct file *, unsigned int,
+-			struct flock *);
+-
+-#if BITS_PER_LONG == 32
+-extern int fcntl_getlk64(struct file *, unsigned int, struct flock64 *);
+-extern int fcntl_setlk64(unsigned int, struct file *, unsigned int,
+-			struct flock64 *);
+-#endif
+-
+-extern int fcntl_setlease(unsigned int fd, struct file *filp, long arg);
+-extern int fcntl_getlease(struct file *filp);
+-
+-/* fs/locks.c */
+-void locks_free_lock_context(struct inode *inode);
+-void locks_free_lock(struct file_lock *fl);
+-extern void locks_init_lock(struct file_lock *);
+-extern struct file_lock * locks_alloc_lock(void);
+-extern void locks_copy_lock(struct file_lock *, struct file_lock *);
+-extern void locks_copy_conflock(struct file_lock *, struct file_lock *);
+-extern void locks_remove_posix(struct file *, fl_owner_t);
+-extern void locks_remove_file(struct file *);
+-extern void locks_release_private(struct file_lock *);
+-extern void posix_test_lock(struct file *, struct file_lock *);
+-extern int posix_lock_file(struct file *, struct file_lock *, struct file_lock *);
+-extern int locks_delete_block(struct file_lock *);
+-extern int vfs_test_lock(struct file *, struct file_lock *);
+-extern int vfs_lock_file(struct file *, unsigned int, struct file_lock *, struct file_lock *);
+-extern int vfs_cancel_lock(struct file *filp, struct file_lock *fl);
+-bool vfs_inode_has_locks(struct inode *inode);
+-extern int locks_lock_inode_wait(struct inode *inode, struct file_lock *fl);
+-extern int __break_lease(struct inode *inode, unsigned int flags, unsigned int type);
+-extern void lease_get_mtime(struct inode *, struct timespec64 *time);
+-extern int generic_setlease(struct file *, long, struct file_lock **, void **priv);
+-extern int vfs_setlease(struct file *, long, struct file_lock **, void **);
+-extern int lease_modify(struct file_lock *, int, struct list_head *);
+-
+-struct notifier_block;
+-extern int lease_register_notifier(struct notifier_block *);
+-extern void lease_unregister_notifier(struct notifier_block *);
+-
+-struct files_struct;
+-extern void show_fd_locks(struct seq_file *f,
+-			 struct file *filp, struct files_struct *files);
+-extern bool locks_owner_has_blockers(struct file_lock_context *flctx,
+-			fl_owner_t owner);
+-
+-static inline struct file_lock_context *
+-locks_inode_context(const struct inode *inode)
+-{
+-	return smp_load_acquire(&inode->i_flctx);
+-}
+-
+-#else /* !CONFIG_FILE_LOCKING */
+-static inline int fcntl_getlk(struct file *file, unsigned int cmd,
+-			      struct flock __user *user)
+-{
+-	return -EINVAL;
+-}
+-
+-static inline int fcntl_setlk(unsigned int fd, struct file *file,
+-			      unsigned int cmd, struct flock __user *user)
+-{
+-	return -EACCES;
+-}
+-
+-#if BITS_PER_LONG == 32
+-static inline int fcntl_getlk64(struct file *file, unsigned int cmd,
+-				struct flock64 *user)
+-{
+-	return -EINVAL;
+-}
+-
+-static inline int fcntl_setlk64(unsigned int fd, struct file *file,
+-				unsigned int cmd, struct flock64 *user)
+-{
+-	return -EACCES;
+-}
+-#endif
+-static inline int fcntl_setlease(unsigned int fd, struct file *filp, long arg)
+-{
+-	return -EINVAL;
+-}
+-
+-static inline int fcntl_getlease(struct file *filp)
+-{
+-	return F_UNLCK;
+-}
+-
+-static inline void
+-locks_free_lock_context(struct inode *inode)
+-{
+-}
+-
+-static inline void locks_init_lock(struct file_lock *fl)
+-{
+-	return;
+-}
+-
+-static inline void locks_copy_conflock(struct file_lock *new, struct file_lock *fl)
+-{
+-	return;
+-}
+-
+-static inline void locks_copy_lock(struct file_lock *new, struct file_lock *fl)
+-{
+-	return;
+-}
+-
+-static inline void locks_remove_posix(struct file *filp, fl_owner_t owner)
+-{
+-	return;
+-}
+-
+-static inline void locks_remove_file(struct file *filp)
+-{
+-	return;
+-}
+-
+-static inline void posix_test_lock(struct file *filp, struct file_lock *fl)
+-{
+-	return;
+-}
+-
+-static inline int posix_lock_file(struct file *filp, struct file_lock *fl,
+-				  struct file_lock *conflock)
+-{
+-	return -ENOLCK;
+-}
+-
+-static inline int locks_delete_block(struct file_lock *waiter)
+-{
+-	return -ENOENT;
+-}
+-
+-static inline int vfs_test_lock(struct file *filp, struct file_lock *fl)
+-{
+-	return 0;
+-}
+-
+-static inline int vfs_lock_file(struct file *filp, unsigned int cmd,
+-				struct file_lock *fl, struct file_lock *conf)
+-{
+-	return -ENOLCK;
+-}
+-
+-static inline int vfs_cancel_lock(struct file *filp, struct file_lock *fl)
+-{
+-	return 0;
+-}
+-
+-static inline bool vfs_inode_has_locks(struct inode *inode)
+-{
+-	return false;
+-}
+-
+-static inline int locks_lock_inode_wait(struct inode *inode, struct file_lock *fl)
+-{
+-	return -ENOLCK;
+-}
+-
+-static inline int __break_lease(struct inode *inode, unsigned int mode, unsigned int type)
+-{
+-	return 0;
+-}
+-
+-static inline void lease_get_mtime(struct inode *inode,
+-				   struct timespec64 *time)
+-{
+-	return;
+-}
+-
+-static inline int generic_setlease(struct file *filp, long arg,
+-				    struct file_lock **flp, void **priv)
+-{
+-	return -EINVAL;
+-}
+-
+-static inline int vfs_setlease(struct file *filp, long arg,
+-			       struct file_lock **lease, void **priv)
+-{
+-	return -EINVAL;
+-}
+-
+-static inline int lease_modify(struct file_lock *fl, int arg,
+-			       struct list_head *dispose)
+-{
+-	return -EINVAL;
+-}
+-
+-struct files_struct;
+-static inline void show_fd_locks(struct seq_file *f,
+-			struct file *filp, struct files_struct *files) {}
+-static inline bool locks_owner_has_blockers(struct file_lock_context *flctx,
+-			fl_owner_t owner)
+-{
+-	return false;
+-}
+-
+-static inline struct file_lock_context *
+-locks_inode_context(const struct inode *inode)
+-{
+-	return NULL;
+-}
+-
+-#endif /* !CONFIG_FILE_LOCKING */
+-
+ static inline struct inode *file_inode(const struct file *f)
+ {
+ 	return f->f_inode;
+@@ -1357,11 +1026,6 @@ static inline struct dentry *file_dentry(const struct file *file)
+ 	return d_real(file->f_path.dentry, file_inode(file));
+ }
+ 
+-static inline int locks_lock_file_wait(struct file *filp, struct file_lock *fl)
+-{
+-	return locks_lock_inode_wait(locks_inode(filp), fl);
+-}
+-
+ struct fasync_struct {
+ 	rwlock_t		fa_lock;
+ 	int			magic;
+@@ -2621,96 +2285,6 @@ extern struct kobject *fs_kobj;
+ 
+ #define MAX_RW_COUNT (INT_MAX & PAGE_MASK)
+ 
+-#ifdef CONFIG_FILE_LOCKING
+-static inline int break_lease(struct inode *inode, unsigned int mode)
+-{
+-	/*
+-	 * Since this check is lockless, we must ensure that any refcounts
+-	 * taken are done before checking i_flctx->flc_lease. Otherwise, we
+-	 * could end up racing with tasks trying to set a new lease on this
+-	 * file.
+-	 */
+-	smp_mb();
+-	if (inode->i_flctx && !list_empty_careful(&inode->i_flctx->flc_lease))
+-		return __break_lease(inode, mode, FL_LEASE);
+-	return 0;
+-}
+-
+-static inline int break_deleg(struct inode *inode, unsigned int mode)
+-{
+-	/*
+-	 * Since this check is lockless, we must ensure that any refcounts
+-	 * taken are done before checking i_flctx->flc_lease. Otherwise, we
+-	 * could end up racing with tasks trying to set a new lease on this
+-	 * file.
+-	 */
+-	smp_mb();
+-	if (inode->i_flctx && !list_empty_careful(&inode->i_flctx->flc_lease))
+-		return __break_lease(inode, mode, FL_DELEG);
+-	return 0;
+-}
+-
+-static inline int try_break_deleg(struct inode *inode, struct inode **delegated_inode)
+-{
+-	int ret;
+-
+-	ret = break_deleg(inode, O_WRONLY|O_NONBLOCK);
+-	if (ret == -EWOULDBLOCK && delegated_inode) {
+-		*delegated_inode = inode;
+-		ihold(inode);
+-	}
+-	return ret;
+-}
+-
+-static inline int break_deleg_wait(struct inode **delegated_inode)
+-{
+-	int ret;
+-
+-	ret = break_deleg(*delegated_inode, O_WRONLY);
+-	iput(*delegated_inode);
+-	*delegated_inode = NULL;
+-	return ret;
+-}
+-
+-static inline int break_layout(struct inode *inode, bool wait)
+-{
+-	smp_mb();
+-	if (inode->i_flctx && !list_empty_careful(&inode->i_flctx->flc_lease))
+-		return __break_lease(inode,
+-				wait ? O_WRONLY : O_WRONLY | O_NONBLOCK,
+-				FL_LAYOUT);
+-	return 0;
+-}
+-
+-#else /* !CONFIG_FILE_LOCKING */
+-static inline int break_lease(struct inode *inode, unsigned int mode)
+-{
+-	return 0;
+-}
+-
+-static inline int break_deleg(struct inode *inode, unsigned int mode)
+-{
+-	return 0;
+-}
+-
+-static inline int try_break_deleg(struct inode *inode, struct inode **delegated_inode)
+-{
+-	return 0;
+-}
+-
+-static inline int break_deleg_wait(struct inode **delegated_inode)
+-{
+-	BUG();
+-	return 0;
+-}
+-
+-static inline int break_layout(struct inode *inode, bool wait)
+-{
+-	return 0;
+-}
+-
+-#endif /* CONFIG_FILE_LOCKING */
+-
+ /* fs/open.c */
+ struct audit_names;
+ struct filename {
+diff --git a/include/linux/lockd/xdr.h b/include/linux/lockd/xdr.h
+index 67e4a2c5500b..b60fbcd8cdfa 100644
+--- a/include/linux/lockd/xdr.h
++++ b/include/linux/lockd/xdr.h
+@@ -11,6 +11,7 @@
+ #define LOCKD_XDR_H
+ 
+ #include <linux/fs.h>
++#include <linux/filelock.h>
+ #include <linux/nfs.h>
+ #include <linux/sunrpc/xdr.h>
+ 
+-- 
+2.39.0
+
+
+
+_______________________________________________
+V9fs-developer mailing list
+V9fs-developer@lists.sourceforge.net
+https://lists.sourceforge.net/lists/listinfo/v9fs-developer
