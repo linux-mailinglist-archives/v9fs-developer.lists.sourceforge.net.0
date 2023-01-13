@@ -2,106 +2,104 @@ Return-Path: <v9fs-developer-bounces@lists.sourceforge.net>
 X-Original-To: lists+v9fs-developer@lfdr.de
 Delivered-To: lists+v9fs-developer@lfdr.de
 Received: from lists.sourceforge.net (lists.sourceforge.net [216.105.38.7])
-	by mail.lfdr.de (Postfix) with ESMTPS id ACC91665ACF
-	for <lists+v9fs-developer@lfdr.de>; Wed, 11 Jan 2023 12:51:22 +0100 (CET)
-Received: from [127.0.0.1] (helo=sfs-ml-1.v29.lw.sourceforge.com)
-	by sfs-ml-1.v29.lw.sourceforge.com with esmtp (Exim 4.95)
+	by mail.lfdr.de (Postfix) with ESMTPS id 34D2266944C
+	for <lists+v9fs-developer@lfdr.de>; Fri, 13 Jan 2023 11:35:56 +0100 (CET)
+Received: from [127.0.0.1] (helo=sfs-ml-2.v29.lw.sourceforge.com)
+	by sfs-ml-2.v29.lw.sourceforge.com with esmtp (Exim 4.95)
 	(envelope-from <v9fs-developer-bounces@lists.sourceforge.net>)
-	id 1pFZdZ-0006Te-Az;
-	Wed, 11 Jan 2023 11:51:20 +0000
+	id 1pGHPe-0003RJ-M7;
+	Fri, 13 Jan 2023 10:35:54 +0000
 Received: from [172.30.20.202] (helo=mx.sourceforge.net)
- by sfs-ml-1.v29.lw.sourceforge.com with esmtps (TLS1.2) tls
- TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384 (Exim 4.95)
- (envelope-from <linux+v9fs-developer=lists.sourceforge.net@armlinux.org.uk>)
- id 1pFZdX-0006Ld-9R for v9fs-developer@lists.sourceforge.net;
- Wed, 11 Jan 2023 11:51:18 +0000
+ by sfs-ml-2.v29.lw.sourceforge.com with esmtps (TLS1.2) tls
+ TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384 (Exim 4.95) (envelope-from
+ <39DPBYwkbAIU178tjuun0jyyrm.pxxpun31n0lxw2nw2.lxv@M3KW2WVRGUFZ5GODRSRYTGD7.apphosting.bounces.google.com>)
+ id 1pGHPR-0003R3-IA for v9fs-developer@lists.sourceforge.net;
+ Fri, 13 Jan 2023 10:35:40 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=sourceforge.net; s=x; h=Sender:In-Reply-To:Content-Type:MIME-Version:
- References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
- Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
- Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:
- List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=/B/lUwSLDdy4TKNacqRrqVdQIO2bhHf2Dz5b7u6s8PE=; b=LcbuF87EQFMuOeJF8jbfVVn8Ic
- ZrWuJb0B0AMeNbgV22Zy66jgq+D6KyrnKI0X1LM5N13M46Ew/7gOM+0igL9wWqgT1+4T7/tf7IheL
- WZ4KaHpxCT8hQoCw/SmZFcE+b+xWWAjunDSTiGqiwxFEUhqZzXeh0fd/5PR3vPQbdkCI=;
+ d=sourceforge.net; s=x; h=Content-Type:To:From:Subject:Message-ID:In-Reply-To
+ :Date:MIME-Version:Sender:Reply-To:Cc:Content-Transfer-Encoding:Content-ID:
+ Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
+ :Resent-Message-ID:References:List-Id:List-Help:List-Unsubscribe:
+ List-Subscribe:List-Post:List-Owner:List-Archive;
+ bh=l1+xVltypcnxAkvWPCQxFM0n2XimN1lwperOL1Mtxsc=; b=YQxHE40WndMBoCwsZljDIYnDM4
+ N3l4D0+C0UHj+gVmqAnWXREcIEZpt4W3FWEp+wiP1HCF8DxJ/Ourn+DPAWgcL9Vw2Zw9sZhm1h/Fi
+ LDPdpVnhn8iMyjkjiR/5Ka/zpmbrXc4idawKLoYU8BlNw666gdSH61KynS/Nxo/xTOF8=;
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  ;
- h=Sender:In-Reply-To:Content-Type:MIME-Version:References:Message-ID:
- Subject:Cc:To:From:Date:Reply-To:Content-Transfer-Encoding:Content-ID:
- Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
- :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
- List-Post:List-Owner:List-Archive;
- bh=/B/lUwSLDdy4TKNacqRrqVdQIO2bhHf2Dz5b7u6s8PE=; b=nWC3NRulJ3PQvVaSRFcDEkRbDS
- asP3pcci4Ptt9S+PGZI4rwdBQ7ebxdXColCGpF94D/z7v8sJwaBy9jn+gE6GNw9+aU+7lM1UwcT+q
- cfViH4fxYPOFxJUlSJl3zZwJCPXzt3LaLmv/PrLE29PRPYahAs+sk0LJWC1+dwyKKocA=;
-Received: from pandora.armlinux.org.uk ([78.32.30.218])
- by sfi-mx-1.v28.lw.sourceforge.com with esmtps
- (TLS1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.95)
- id 1pFZdU-00Dq3Z-Vy for v9fs-developer@lists.sourceforge.net;
- Wed, 11 Jan 2023 11:51:18 +0000
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=armlinux.org.uk; s=pandora-2019; h=Sender:In-Reply-To:Content-Type:
- MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
- Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
- Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:
- List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=/B/lUwSLDdy4TKNacqRrqVdQIO2bhHf2Dz5b7u6s8PE=; b=bcql4AlYVAJfMUZcdgk78k/Yny
- q4YxTySo08vOzZJbXrcUsvwxHEdzxgb+Ii1pvB23J18DFaDaSxWwBDTwyZecKpMjpzQSj9cSdzwmB
- E7FeOscjYnn+NHlMhzBHTcQyUCHILWDwxB3r/wjmCpMi1dOhxzWkdzfdVZaVaLtHEn2WfhcBSiMoJ
- xaR4xsr0iH8jHbII4QbOQBd/z6Ffk95rwXeSJqAugvrLrUzd2S6So2J6l2wpGNMPAo+GmrZbGZYy2
- 3br39DqBSOcN8JgFwxhPiVl/2Ubg9nDcfM/BSKfMobkmQa8ifVIF5567jY8IZeuTcc+4AkuGErYD7
- D1ThFcXw==;
-Received: from shell.armlinux.org.uk
- ([fd8f:7570:feb6:1:5054:ff:fe00:4ec]:36052)
- by pandora.armlinux.org.uk with esmtpsa (TLS1.3) tls
- TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384 (Exim 4.94.2)
- (envelope-from <linux@armlinux.org.uk>)
- id 1pFZIf-00054b-0L; Wed, 11 Jan 2023 11:29:44 +0000
-Received: from linux by shell.armlinux.org.uk with local (Exim 4.94.2)
- (envelope-from <linux@shell.armlinux.org.uk>)
- id 1pFZIV-0001D1-VB; Wed, 11 Jan 2023 11:29:35 +0000
-Date: Wed, 11 Jan 2023 11:29:35 +0000
-From: "Russell King (Oracle)" <linux@armlinux.org.uk>
-To: Jeff Layton <jlayton@kernel.org>
-Message-ID: <Y76dnx07NGAS2jqG@shell.armlinux.org.uk>
-References: <20230105211937.1572384-1-jlayton@kernel.org>
+ h=Content-Type:To:From:Subject:Message-ID:In-Reply-To:Date:MIME-Version:
+ Sender:Reply-To:Cc:Content-Transfer-Encoding:Content-ID:Content-Description:
+ Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+ References:List-Id:List-Help:List-Unsubscribe:List-Subscribe:List-Post:
+ List-Owner:List-Archive; bh=l1+xVltypcnxAkvWPCQxFM0n2XimN1lwperOL1Mtxsc=; b=N
+ Qz83Mf4IlXhOUUG8Wpv/BMb/BuUCLOZmPH+Ff//bkAHARhu9KqU9dEi7JMyVskDVGWFmMoZdrtyeS
+ WWLo6yYl2ECx35qPzKCE9jyZjN5daCZgt/aA9soMSXDXigQdKtgOL+7lA4l+74akm/oTp7pnmFxiz
+ Pxi/0bYWFf4xj4Po=;
+Received: from mail-il1-f198.google.com ([209.85.166.198])
+ by sfi-mx-2.v28.lw.sourceforge.com with esmtps
+ (TLS1.2:ECDHE-RSA-AES128-GCM-SHA256:128) (Exim 4.95)
+ id 1pGHPN-0006aw-Ty for v9fs-developer@lists.sourceforge.net;
+ Fri, 13 Jan 2023 10:35:39 +0000
+Received: by mail-il1-f198.google.com with SMTP id
+ o10-20020a056e02102a00b003006328df7bso15634112ilj.17
+ for <v9fs-developer@lists.sourceforge.net>;
+ Fri, 13 Jan 2023 02:35:37 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20210112;
+ h=to:from:subject:message-id:in-reply-to:date:mime-version
+ :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+ bh=l1+xVltypcnxAkvWPCQxFM0n2XimN1lwperOL1Mtxsc=;
+ b=AeF+Vj3EWwKqdCj7+UETIL+FWd0HeYZTJ70557T4RBy2jagZ7nxxIndGeCHN6Nj9u0
+ eb3ufs2TQ4cDfbMIeY59708uvXzwSEpT+p+7bztrva7dzcLEXkpidA9v/q8acWae782O
+ BRyiLO7F7c/FMJegpeUM2f8+zxNCzqWwRKGuZg3seDeGDKnoniSWVDlszcIoNC7IIKS5
+ rj/PHEXG8fIgYvG5h//BUe+Hg79yqz+shfAD1p9Hul6dGIH5dOVnbZwNtT8D7e2yhvD6
+ 2DXHmgxWfqrLHo06k/+whZRH7u/7u75wrQK8pc02cNJbaIYNSgMZF+FTb1ivJDy31ubF
+ lthw==
+X-Gm-Message-State: AFqh2koYfWwiRQOZE9w7oAKf4tscj8XM06pLUVjVGDuXqmX20oaRl/hq
+ hIy/DXSQFQsuNn0m375Yn0w58uzZzHkIODxR50aURD1R8D0a
+X-Google-Smtp-Source: AMrXdXueeOIjbgfJsuBkstMAC9Xwe+1dbnbo484X5eHTUi4XAlHe/5Z1A3bZDcjhLu3OpLSqti+aeZx4FW67RwpWMZUBFutdcV5B
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20230105211937.1572384-1-jlayton@kernel.org>
-X-Spam-Score: -2.5 (--)
+X-Received: by 2002:a05:6e02:789:b0:30d:a9e6:785c with SMTP id
+ q9-20020a056e02078900b0030da9e6785cmr2630943ils.213.1673606132313; Fri, 13
+ Jan 2023 02:35:32 -0800 (PST)
+Date: Fri, 13 Jan 2023 02:35:32 -0800
+In-Reply-To: <00000000000015ac7905e97ebaed@google.com>
+X-Google-Appengine-App-Id: s~syzkaller
+X-Google-Appengine-App-Id-Alias: syzkaller
+Message-ID: <00000000000002b67005f222cbba@google.com>
+From: syzbot <syzbot+67d13108d855f451cafc@syzkaller.appspotmail.com>
+To: asmadeus@codewreck.org, dan.carpenter@oracle.com, davem@davemloft.net, 
+ edumazet@google.com, ericvh@gmail.com, kuba@kernel.org, leon@kernel.org, 
+ linux-kernel@vger.kernel.org, linux_oss@crudebyte.com, lucho@ionkov.net, 
+ netdev@vger.kernel.org, pabeni@redhat.com, syzkaller-bugs@googlegroups.com, 
+ v9fs-developer@lists.sourceforge.net
+X-Spam-Score: 3.1 (+++)
 X-Spam-Report: Spam detection software,
- running on the system "util-spamd-2.v13.lw.sourceforge.com", 
+ running on the system "util-spamd-1.v13.lw.sourceforge.com", 
  has NOT identified this incoming email as spam.  The original
  message has been attached to this so you can view it or label
  similar future email.  If you have any questions, see
  the administrator of that system for details.
- Content preview:  On Thu, Jan 05, 2023 at 04:19:29PM -0500, Jeff Layton wrote:
- > The file locking definitions have lived in fs.h since the dawn of time,
- > but they are only used by a small subset of the source files th [...] 
- Content analysis details:   (-2.5 points, 6.0 required)
+ Content preview: This bug is marked as fixed by commit: 9p:
+ client_create/destroy:
+ only call trans_mod->close after create But I can't find it in the tested
+ trees[1] for more than 90 days. Is it a correct commit? Please update it
+ by replying: 
+ Content analysis details:   (3.1 points, 6.0 required)
  pts rule name              description
  ---- ---------------------- --------------------------------------------------
- 0.0 URIBL_BLOCKED          ADMINISTRATOR NOTICE: The query to URIBL was
- blocked.  See
- http://wiki.apache.org/spamassassin/DnsBlocklists#dnsbl-block
- for more information. [URIs: armlinux.org.uk]
- -2.3 RCVD_IN_DNSWL_MED      RBL: Sender listed at https://www.dnswl.org/,
- medium trust [78.32.30.218 listed in list.dnswl.org]
- 0.0 RCVD_IN_MSPIKE_H3      RBL: Good reputation (+3)
- [78.32.30.218 listed in wl.mailspike.net]
+ 0.3 FROM_LOCAL_HEX         From: localpart has long hexadecimal sequence
+ 0.2 HEADER_FROM_DIFFERENT_DOMAINS From and EnvelopeFrom 2nd level
+ mail domains are different
+ -0.0 RCVD_IN_DNSWL_NONE     RBL: Sender listed at https://www.dnswl.org/,
+ no trust [209.85.166.198 listed in list.dnswl.org]
+ -0.0 SPF_PASS               SPF: sender matches SPF record
+ -0.0 RCVD_IN_MSPIKE_H2      RBL: Average reputation (+2)
+ [209.85.166.198 listed in wl.mailspike.net]
  0.0 SPF_HELO_NONE          SPF: HELO does not publish an SPF Record
- 0.0 SPF_NONE               SPF: sender does not publish an SPF Record
- -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
- 0.1 DKIM_SIGNED            Message has a DKIM or DK signature, not necessarily
- valid
- -0.1 DKIM_VALID_AU          Message has a valid DKIM or DK signature from
- author's domain
- -0.1 DKIM_VALID_EF          Message has a valid DKIM or DK signature from
- envelope-from domain
- 0.0 RCVD_IN_MSPIKE_WL      Mailspike good senders
-X-Headers-End: 1pFZdU-00Dq3Z-Vy
-Subject: Re: [V9fs-developer] [PATCH v2] filelock: move file locking
- definitions to separate header file
+ 2.5 SORTED_RECIPS          Recipient list is sorted by address
+X-Headers-End: 1pGHPN-0006aw-Ty
+Subject: Re: [V9fs-developer] [syzbot] KASAN: use-after-free Read in
+ rdma_close
 X-BeenThere: v9fs-developer@lists.sourceforge.net
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -113,67 +111,41 @@ List-Post: <mailto:v9fs-developer@lists.sourceforge.net>
 List-Help: <mailto:v9fs-developer-request@lists.sourceforge.net?subject=help>
 List-Subscribe: <https://lists.sourceforge.net/lists/listinfo/v9fs-developer>, 
  <mailto:v9fs-developer-request@lists.sourceforge.net?subject=subscribe>
-Cc: Latchesar Ionkov <lucho@ionkov.net>,
- Martin Brandenburg <martin@omnibond.com>,
- "Darrick J. Wong" <djwong@kernel.org>,
- Christian Schoenebeck <linux_oss@crudebyte.com>,
- David Howells <dhowells@redhat.com>, Joseph Qi <joseph.qi@linux.alibaba.com>,
- Marc Dionne <marc.dionne@auristor.com>, linux-xfs@vger.kernel.org,
- Christoph Hellwig <hch@lst.de>, Mike Marshall <hubcap@omnibond.com>,
- linux-cifs@vger.kernel.org, Andreas Gruenbacher <agruenba@redhat.com>,
- Miklos Szeredi <miklos@szeredi.hu>, Mark Fasheh <mark@fasheh.com>,
- linux-afs@lists.infradead.org, cluster-devel@redhat.com,
- Christine Caulfield <ccaulfie@redhat.com>,
- v9fs-developer@lists.sourceforge.net, Ilya Dryomov <idryomov@gmail.com>,
- Namjae Jeon <linkinjeon@kernel.org>, devel@lists.orangefs.org,
- Shyam Prasad N <sprasad@microsoft.com>, Eric Van Hensbergen <ericvh@gmail.com>,
- linux-nfs@vger.kernel.org, Tom Talpey <tom@talpey.com>,
- linux-fsdevel@vger.kernel.org, David Teigland <teigland@redhat.com>,
- Alexander Viro <viro@zeniv.linux.org.uk>, ceph-devel@vger.kernel.org,
- Xiubo Li <xiubli@redhat.com>,
- Trond Myklebust <trond.myklebust@hammerspace.com>,
- linux-arm-kernel@lists.infradead.org, Christian Brauner <brauner@kernel.org>,
- Paulo Alcantara <pc@cjr.nz>, samba-technical@lists.samba.org,
- linux-kernel@vger.kernel.org, Ronnie Sahlberg <lsahlber@redhat.com>,
- Steve French <sfrench@samba.org>,
- Sergey Senozhatsky <senozhatsky@chromium.org>,
- Chuck Lever <chuck.lever@oracle.com>, ocfs2-devel@oss.oracle.com,
- Anna Schumaker <anna@kernel.org>, Bob Peterson <rpeterso@redhat.com>,
- Steve French <stfrench@microsoft.com>, Joel Becker <jlbec@evilplan.org>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: v9fs-developer-bounces@lists.sourceforge.net
 
-On Thu, Jan 05, 2023 at 04:19:29PM -0500, Jeff Layton wrote:
-> The file locking definitions have lived in fs.h since the dawn of time,
-> but they are only used by a small subset of the source files that
-> include it.
-> 
-> Move the file locking definitions to a new header file, and add the
-> appropriate #include directives to the source files that need them. By
-> doing this we trim down fs.h a bit and limit the amount of rebuilding
-> that has to be done when we make changes to the file locking APIs.
-> 
-> Reviewed-by: Xiubo Li <xiubli@redhat.com>
-> Reviewed-by: Christian Brauner (Microsoft) <brauner@kernel.org>
-> Reviewed-by: Christoph Hellwig <hch@lst.de>
-> Reviewed-by: David Howells <dhowells@redhat.com>
-> Acked-by: Chuck Lever <chuck.lever@oracle.com>
-> Acked-by: Joseph Qi <joseph.qi@linux.alibaba.com>
-> Acked-by: Steve French <stfrench@microsoft.com>
-> Signed-off-by: Jeff Layton <jlayton@kernel.org>
-> ---
->  arch/arm/kernel/sys_oabi-compat.c |   1 +
+This bug is marked as fixed by commit:
+9p: client_create/destroy: only call trans_mod->close after create
 
-For arm:
+But I can't find it in the tested trees[1] for more than 90 days.
+Is it a correct commit? Please update it by replying:
 
-Reviewed-by: Russell King (Oracle) <rmk+kernel@armlinux.org.uk>
+#syz fix: exact-commit-title
 
-Thanks.
+Until then the bug is still considered open and new crashes with
+the same signature are ignored.
 
--- 
-RMK's Patch system: https://www.armlinux.org.uk/developer/patches/
-FTTP is here! 40Mbps down 10Mbps up. Decent connectivity at last!
+Kernel: Linux
+Dashboard link: https://syzkaller.appspot.com/bug?extid=67d13108d855f451cafc
+
+---
+[1] I expect the commit to be present in:
+
+1. for-kernelci branch of
+git://git.kernel.org/pub/scm/linux/kernel/git/arm64/linux.git
+
+2. master branch of
+git://git.kernel.org/pub/scm/linux/kernel/git/bpf/bpf-next.git
+
+3. master branch of
+git://git.kernel.org/pub/scm/linux/kernel/git/bpf/bpf.git
+
+4. master branch of
+git://git.kernel.org/pub/scm/linux/kernel/git/davem/net-next.git
+
+The full list of 10 trees can be found at
+https://syzkaller.appspot.com/upstream/repos
 
 
 _______________________________________________
