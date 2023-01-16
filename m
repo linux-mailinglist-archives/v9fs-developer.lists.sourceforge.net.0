@@ -2,157 +2,161 @@ Return-Path: <v9fs-developer-bounces@lists.sourceforge.net>
 X-Original-To: lists+v9fs-developer@lfdr.de
 Delivered-To: lists+v9fs-developer@lfdr.de
 Received: from lists.sourceforge.net (lists.sourceforge.net [216.105.38.7])
-	by mail.lfdr.de (Postfix) with ESMTPS id CE58367D2D6
+	by mail.lfdr.de (Postfix) with ESMTPS id EE40E67D2D8
 	for <lists+v9fs-developer@lfdr.de>; Thu, 26 Jan 2023 18:15:16 +0100 (CET)
 Received: from [127.0.0.1] (helo=sfs-ml-2.v29.lw.sourceforge.com)
 	by sfs-ml-2.v29.lw.sourceforge.com with esmtp (Exim 4.95)
 	(envelope-from <v9fs-developer-bounces@lists.sourceforge.net>)
-	id 1pL5qF-000835-Fc;
-	Thu, 26 Jan 2023 17:15:14 +0000
+	id 1pL5qG-000839-AS;
+	Thu, 26 Jan 2023 17:15:15 +0000
 Received: from [172.30.20.202] (helo=mx.sourceforge.net)
- by sfs-ml-2.v29.lw.sourceforge.com with esmtps (TLS1.2) tls
+ by sfs-ml-4.v29.lw.sourceforge.com with esmtps (TLS1.2) tls
  TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384 (Exim 4.95)
- (envelope-from <yujie.liu@intel.com>) id 1pHJnS-0005tU-Ac;
- Mon, 16 Jan 2023 07:20:45 +0000
+ (envelope-from <yujie.liu@intel.com>) id 1pHK1i-0006yx-Ap;
+ Mon, 16 Jan 2023 07:35:28 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
  d=sourceforge.net; s=x; h=MIME-Version:Content-Type:Message-ID:Subject:CC:To:
  From:Date:Sender:Reply-To:Content-Transfer-Encoding:Content-ID:
  Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
  :Resent-Message-ID:In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:
  List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=XFZk1eRMb3CZlsP+nWVp8motH3qj8U+pmOcbxFt8cD4=; b=fGSUmlOD3Xv/IC+eWeKfzGYkNn
- aLuz1QpJdkmYgx+OnPRqBk4CQmbP28ehf6GvjdzDOJVe8nmI7dhUrXHt/vKMgHbWgM1gEvldQRbk+
- h639QMxxn4MARn6bEa/Pi1/IVHcMpNonC6wGZFPbn2OxaUsYw/7si+6UFYucIyq1JCrk=;
+ bh=bplG1zF2z5vTdMFMqylgMSLhMKEJuoIYM9QeDgOOIVY=; b=Nc43feYV+MgYt+EC98z0ySOMSu
+ F0TRBE7P6SXCMliVjeaJf98CESOWJoYz6FkYvaJqsLSccoBesGoVJulJsY2kJk43Ek9ZiCUX66i3V
+ 2zPkn3+oY8dJFAg2eS+auPa+EcS3g12eupydSXgobeFO93WoedCpGbfJ6UYhEpQ59S4Q=;
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  ;
  h=MIME-Version:Content-Type:Message-ID:Subject:CC:To:From:Date:Sender:
  Reply-To:Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date
  :Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:
  References:List-Id:List-Help:List-Unsubscribe:List-Subscribe:List-Post:
- List-Owner:List-Archive; bh=XFZk1eRMb3CZlsP+nWVp8motH3qj8U+pmOcbxFt8cD4=; b=T
- DvnGrxRpJJV+ikaFhRPgvt1SedZgR6Jj01mPZpj7hmkGUGnJqVu7q7H+YmBJjqSLw/TvhN/YKWFUK
- cG5wtYOyfNriTLOvOorCppyIL2ZtaR9EXOWb9eusUoEnfMyBprnGVGmCG2hXJWHEUw9pLC2Bpjnku
- oyJcYijhsAiAgtEA=;
-Received: from mga01.intel.com ([192.55.52.88])
+ List-Owner:List-Archive; bh=bplG1zF2z5vTdMFMqylgMSLhMKEJuoIYM9QeDgOOIVY=; b=I
+ hUY67ByYx/hFl1LPtGq6XXwgEwOJ7yBb6u/bDCsquA7ixiNFIXgNyxUOkKBGm8ga/mr8uQ/4exje0
+ IoOqm2CkVrHlNjFcL9Fcb9aobFn0r2eohr78w7EKpYf24JCRwHrB2+3WOJgfHx6P5+IwTKqNLxsR0
+ if745+ZK+iw+mteM=;
+Received: from mga02.intel.com ([134.134.136.20])
  by sfi-mx-2.v28.lw.sourceforge.com with esmtps
  (TLS1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.95)
- id 1pHJnN-0004UH-FI; Mon, 16 Jan 2023 07:20:45 +0000
+ id 1pHK1d-0004nH-Qy; Mon, 16 Jan 2023 07:35:28 +0000
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1673853641; x=1705389641;
+ t=1673854525; x=1705390525;
  h=date:from:to:cc:subject:message-id:mime-version;
- bh=ErqLKp8aTFdl5gS2V93Tkb7kZVvmgVPRoS5W/oU+/dQ=;
- b=ktJlNulvQ8EOYehrh6LnaR4nl5LkRV9MQLoXNIrO6f+GiPApSPODFouE
- vnjAJ9SJihFCWfx/fsz/gAeFMwQXjrALnS24PK3pH7QrwpPFvd7Dk1+ag
- 79muN1UeiB6hoxslzwZpT8W8pz5Lj9yqf+hebQz+ZPQexMkoXhHj94Udd
- ljjGmDOWxi/aDfAX5YazZpv67uVclwJIJusyayoQIQZ9Iv5Fqxc5I9CWy
- 2tNyL2D/vk7TzsjrcN9IiJqUXphb6EtRYc0TK02aw0yUO0ehka5UL3r5G
- iXU5zZdNV1/1aQxUQbilwYwh+qiKCtuuZLd/7tUMoirKTMc1zMlonCnhJ Q==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10591"; a="351647693"
+ bh=h4iZVTLfWg2v/tfnYw6MAsRaiaVzmS8YgyLcBibmBN8=;
+ b=YNd9QvoYt6wZg7VC3gslPRFTbkSOrxy9Z0l+9iN9/Zr5Cdk08Blr426J
+ jf2Fogd9AM8QS0+Cm/O+8g3SQxXkAgEFsHyV98hwjZAiOYqo1CWGqJWZ/
+ z9pAhK4YQoTvSp/B4n9JnPI3+uYaKz9ueimI/sJ+l6x3O1BCfaUpUsfnR
+ /G/hQEL5kYwTsGV8yhIAJDKuUc8uRyimjnZoC3xx6VdAF94/0PX5QGLo8
+ AoZkiMtc53m9nUmrcmd9+lTzzisOtFPngDj8FfndAu1VsYNOALxF9iB1h
+ S0qIEUy6gOz+0A5SMmLPC1Z7NO/CVbh0+UbrsiFZlwYzsoUD7Nogtw41f Q==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10591"; a="312257309"
 X-IronPort-AV: E=Sophos;i="5.97,220,1669104000"; 
- d="xz'341?yaml'341?scan'341,208,341";a="351647693"
-Received: from fmsmga003.fm.intel.com ([10.253.24.29])
- by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Jan 2023 23:20:33 -0800
+ d="xz'341?yaml'341?scan'341,208,341";a="312257309"
+Received: from orsmga007.jf.intel.com ([10.7.209.58])
+ by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 15 Jan 2023 23:35:18 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6500,9779,10591"; a="747614561"
+X-IronPort-AV: E=McAfee;i="6500,9779,10591"; a="652184591"
 X-IronPort-AV: E=Sophos;i="5.97,220,1669104000"; 
- d="xz'341?yaml'341?scan'341,208,341";a="747614561"
-Received: from fmsmsx601.amr.corp.intel.com ([10.18.126.81])
- by FMSMGA003.fm.intel.com with ESMTP; 15 Jan 2023 23:20:33 -0800
-Received: from fmsmsx602.amr.corp.intel.com (10.18.126.82) by
- fmsmsx601.amr.corp.intel.com (10.18.126.81) with Microsoft SMTP Server
+ d="xz'341?yaml'341?scan'341,208,341";a="652184591"
+Received: from orsmsx602.amr.corp.intel.com ([10.22.229.15])
+ by orsmga007.jf.intel.com with ESMTP; 15 Jan 2023 23:35:18 -0800
+Received: from orsmsx611.amr.corp.intel.com (10.22.229.24) by
+ ORSMSX602.amr.corp.intel.com (10.22.229.15) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.16; Sun, 15 Jan 2023 23:20:32 -0800
-Received: from FMSEDG603.ED.cps.intel.com (10.1.192.133) by
- fmsmsx602.amr.corp.intel.com (10.18.126.82) with Microsoft SMTP Server
+ 15.1.2507.16; Sun, 15 Jan 2023 23:35:17 -0800
+Received: from orsmsx610.amr.corp.intel.com (10.22.229.23) by
+ ORSMSX611.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.16 via Frontend Transport; Sun, 15 Jan 2023 23:20:32 -0800
-Received: from NAM11-DM6-obe.outbound.protection.outlook.com (104.47.57.168)
- by edgegateway.intel.com (192.55.55.68) with Microsoft SMTP Server
+ 15.1.2507.16; Sun, 15 Jan 2023 23:35:17 -0800
+Received: from ORSEDG601.ED.cps.intel.com (10.7.248.6) by
+ orsmsx610.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.16 via Frontend Transport; Sun, 15 Jan 2023 23:35:17 -0800
+Received: from NAM02-SN1-obe.outbound.protection.outlook.com (104.47.57.44) by
+ edgegateway.intel.com (134.134.137.102) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.16; Sun, 15 Jan 2023 23:20:29 -0800
+ 15.1.2507.16; Sun, 15 Jan 2023 23:35:16 -0800
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=YDJN02liqrNaKd2bbAsNaGyLg1Y35p/TzIPaJFt83l8ROpQb8d66+PKD67Y8lJqO38E3d1eVnKXVxbxw/gx7Z+CK9epl3XQV3Rdh6bpHyRtp/E90uNYtZpASgXJ+aBCeFDCKDcOwPsSwzuIiTqsv2wonwSXkcz7BMtAbHfnsoZw9kX3Trph878XKNB45QQly/Uikk6Ij283zkaxp+QHg9YkrWC//p7AUmkQSRhvY41LQodvPO6APsIQLS/7CZj7ZhmImdcqjE9rjiAVRiCwFqisciKA0RPDwjNAQRN0S3E56/hZa2WefU76KfRQZxJwqAxltQr1lvtXh64VYEHbUrg==
+ b=HaNlX6DlcWChwMNEvvVO32Vx+6YonaTalX7Ck543RQdjJxKfFfjHxgRu6CGSR9LG7QCmZr9iFepS1fk1bE56MjCDOE0c3jI/4Wyw30JJV5bCQ7YRK8Xfkhfsjt7Qiw841kZRMyhnOTxqry29gUEgVvvxQbHunaKPgs7U+91n55NScTAXqvOlmw7oP0XxhWDe5WAKQUOvLVVynS+AXir5gLJSL+d0DEStCxoMtlzVNS+aP39K683tl+WXYUKVfl0dz+mvcENJoZzlJnW3+lkgOcy04pLuY44veB0O4AtAOvA9CqydT1c5iV5ecvWH4oMEtbTZTRlFZbdPiKq9jpzagQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=4zuv3xpFduQj3AUqyEM0ShfcgxsLVtm95G+e3ecZG+k=;
- b=ZvG/W4M01sEpI64VpLfjjVd9gjGeRQqC0UpIpia6Ek35HnFh2EeHlnDYHPBuRx8x/RQH1dT9QG52PdJYU4f6HMINF6V0L6BQYKN6XTmdFyeKnYpILW8sPv01jMtQV5GQOnD1XKIge6/ENqRVDe+8KQBH53+ZSUmz+NwgrmYWvdL8nOJKOGCsE3ibKl8SQh+GQ8TnVD9IJJCaEc319Jn+FV03nvRYwhrWjkcuJKK4pRGxmDB7swGOjHzY10NgoXPWIdz8O1N/Ti1GAVFft/55BJG7uoxo0Rx/kezMfkaDqluFuX6DcNqmjIn2d5pGeNtEDkNjH6m2jgMt5xGVHq9mpw==
+ bh=Y1Xc1zGVctvTK9t+iAfXkPOML+31VeiVyS03+sOyJaw=;
+ b=B9Y3Zy6Ff2lVBpuIW5yM282cA7m/Jzyr3Yy2z6JDW0FHpDJStgosBNzTptOHUHD2PHgiD6jWugQnMIW9LQXfJgQ3JNRp8OC+Lz+onJuP6hCXkahNYeTsDfkh5AAaspTwecBOGFmoJs/4XstKePmxaY3nyklrHauFT8MDB3b8Y074fGGAtfT61f5t1XZD6YEC5zRKgC9Rxetm+YyS77ob/4f/xEpPdko9Tgzwv4hAzlTDYfOWJJnYIaUynwPdY5Pin337bxCM2xnreMtZM9Mr1SdTV3KbYoWBqPz9j0GbmtlIyPaeX94vNa6Xw8y7Q+nqeoLZ0xU7G8xPFRivVt9wpQ==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
 Authentication-Results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=intel.com;
 Received: from CY5PR11MB6392.namprd11.prod.outlook.com (2603:10b6:930:37::15)
- by SJ0PR11MB5199.namprd11.prod.outlook.com (2603:10b6:a03:2dd::6)
+ by MN0PR11MB6136.namprd11.prod.outlook.com (2603:10b6:208:3c8::5)
  with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5986.23; Mon, 16 Jan
- 2023 07:20:26 +0000
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6002.13; Mon, 16 Jan
+ 2023 07:35:10 +0000
 Received: from CY5PR11MB6392.namprd11.prod.outlook.com
  ([fe80::30e3:a7ab:35ba:93bb]) by CY5PR11MB6392.namprd11.prod.outlook.com
  ([fe80::30e3:a7ab:35ba:93bb%9]) with mapi id 15.20.6002.013; Mon, 16 Jan 2023
- 07:20:26 +0000
-Date: Mon, 16 Jan 2023 15:18:26 +0800
+ 07:35:09 +0000
+Date: Mon, 16 Jan 2023 15:33:07 +0800
 From: kernel test robot <yujie.liu@intel.com>
 To: David Howells <dhowells@redhat.com>
-Message-ID: <202301161453.f0e8c3a7-yujie.liu@intel.com>
-Content-Type: multipart/mixed; boundary="1mmaqbJyHxvoDZp6"
+Message-ID: <202301161433.8e4869f7-yujie.liu@intel.com>
+Content-Type: multipart/mixed; boundary="tfcqGTPmJW0aRR8b"
 Content-Disposition: inline
-X-ClientProxiedBy: SG2PR01CA0189.apcprd01.prod.exchangelabs.com
- (2603:1096:4:189::15) To CY5PR11MB6392.namprd11.prod.outlook.com
+X-ClientProxiedBy: SG2P153CA0034.APCP153.PROD.OUTLOOK.COM (2603:1096:4:c7::21)
+ To CY5PR11MB6392.namprd11.prod.outlook.com
  (2603:10b6:930:37::15)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: CY5PR11MB6392:EE_|SJ0PR11MB5199:EE_
-X-MS-Office365-Filtering-Correlation-Id: c21aaab3-8a40-4a01-492a-08daf79222da
+X-MS-TrafficTypeDiagnostic: CY5PR11MB6392:EE_|MN0PR11MB6136:EE_
+X-MS-Office365-Filtering-Correlation-Id: 6aa2b48e-2f1c-4c26-4d69-08daf79431cf
 X-LD-Processed: 46c98d88-e344-4ed4-8496-4ed7712e255d,ExtAddr
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: vax+Fipn0EuXfOt83/POuN2/lTGWWceOLOiSJkOWxb1DAyelZ6CRUGq/ACBbgdDegr8ux3dVPgyHvwsLPW1A/YtPVL4SdairavP4U2HNe2KJA1xvS8ks+wJQB0tSwTF7fifs9lFg6+y6CKbgX1h6liuEu4THZ9oj8ciJmkQy82/ManupUNBeLtdPvZ4PSUwqWTW4ys3SSPrXVZMiAdwRi+369ihQu2guXRZkuaIgrInmoDIcYvKH79zekzuY9N8Mylb+eBETmg3lxjpk0LtjdGwe+WP/pDRhyxVXk9fy0r7T8hA9rjXXrnlHz3TYfOXSwm7y3z3t8swnYQJgeN7Ewl1ZlbkIdSLht+Xhv4HrAaFfSzXzSBEi/KdLGChGbTfWz/nRxdcC6XQ6NXhiIidUBI/qYpLM7AVqgtheo0BfbpsgqEVHlTdwo8BXKgprPpElJjx3KOpb/ELImXV/fCXK4MZyKun3DVdlkRxsIyF0dNNa1HV3dAfQ5rmK8LBHhjzFK+cnGoJrQP8njQJMkbRi4DAoFx4Xi66Hx7S+yt/Pb9xmxUiiIGJGLFvUBeC76kTCySo8r/ylza/ms0AzshWyBsCOfbzUYJFqlaM1jtDvNaWVJ4ChPngXfqg0ZX9ol6CPCVC9jx6Olfswvjh4cY9LqO53EbShZER0+tilu1b2jUHROcW42IGArPSUin0KDI1W+UvSM5gzxdpVPRtJKRveEC4Yt/jJkT+aU3gZT51akpN8Wafo8he3mf5T1RUqQPRXogyD5tY/6Vwd9iW48sbBxxtGXoI0ybr4NG87byfCe9U=
+X-Microsoft-Antispam-Message-Info: ECP57ExDRdfsLIcKvHuKxHBzxwiSN+9P0tSir17769DL2eqdiAoXvd/XJMNQP33c7ZWbE+4dndFa4gTGmC8I9wm8f2PyIBjg+MmEfSWr2PX6dIyMyCZIagdaK6Vy6ygFuXR4iy3NYH2qY71P8oIaVaMD2vDcgtRg4nMvVZ5dTAzx4clCrR1uZrxxk544wQKns0DpZvP53DsWArUW3C3r8znsdQBMAZEXW0KTPLRAOeOG3blmA2coG3xwZied/Vx4PBjth9XNNRq8VhaM+Hw+zQE2sHbr5HNHUmiAHByBzUodqB2X8tSoIOc2YKo27xGXc8q4BVVzglXGC7Dy5Hy6yl7gaBl5bgJOcDYrJt0tgh/4+CnCViwwSaELZgmtuFAkQb0jA5+OCZ3M7y8AbXiOBCJCerr8M6NDF9i3/LH15hmtZq8yWWah0ggXK3qTztKO5sbuj5cc46O9xjdscvYujOnWncxsgjqNy1gQGvuFTa8126o1b03XYNj/b45s1XYYIdKb00TNn3drH6/qQ9EA7buWC1cXaf0rDsAURqeMDwOR1WSCNdOaxLghRtJYSqLP99Hder1b07TRx/xy8K70fE3jliZbb8ve5f1pgYd/mfTnpYeYF/WqDxqLkWWKGtEnWUAZyCKSFekcETe7jy+FkFwORF1sjnewzAYIUyGz6hDjXao/NqVkd4qusNH62U/+KHikBpsT9V2kQDngPZC67wt+T8mTnoUHi/a1wlvsgZ8UazuWk+0paWW0A/KtOTFwO264LHGSZiVVJG1RBLiaBg==
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:CY5PR11MB6392.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230022)(396003)(136003)(39860400002)(346002)(366004)(376002)(451199015)(36756003)(86362001)(4326008)(8936002)(66476007)(6916009)(8676002)(66556008)(66946007)(2906002)(235185007)(7416002)(82960400001)(83380400001)(38100700002)(5660300002)(966005)(478600001)(6486002)(316002)(41300700001)(2616005)(44144004)(6512007)(26005)(1076003)(6506007)(21490400003)(186003)(21314003)(2700100001);
+ SFS:(13230022)(39860400002)(366004)(376002)(346002)(396003)(136003)(451199015)(36756003)(44144004)(316002)(6916009)(86362001)(478600001)(6486002)(966005)(8676002)(7416002)(2906002)(235185007)(66476007)(5660300002)(66556008)(4326008)(41300700001)(66946007)(8936002)(82960400001)(38100700002)(21490400003)(186003)(6512007)(6506007)(83380400001)(26005)(2616005)(1076003)(2700100001);
  DIR:OUT; SFP:1102; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?21EDJJZRcaJMQ5kfDEOUtXbqildyOyEzFhINLqqPGguoxX5IgCXIQVOEXZBI?=
- =?us-ascii?Q?mCojjrhINNsxWXtDvjOcxeAR+52ddAyajzn2va2aePQMhLwEYpC/MOSb50yT?=
- =?us-ascii?Q?X/Rc9sfLJ+YNRTkwBqyU171sefvvthyq32QfkuxNEpqsEN8eiGI3lXNMtLkS?=
- =?us-ascii?Q?B/IzGMssiTzNUmkiTl1NLlNFW7z8axVpgJfw2SNK+Mx/vkfGR9cztLh6jlrP?=
- =?us-ascii?Q?BU9oR12OtjEmeRgGFXEOwO5cJYYbt+SCaOBcosiSe6rFl41LUnTLGD50dAh0?=
- =?us-ascii?Q?kilovH+SdI6TQ1ofzq1BdmwbLP8sf5AVx55bV+dY696arkD7Ruh25axxxe24?=
- =?us-ascii?Q?SOX06p3ZRm0+fpL3WczE6WHuSAXNvv+dhYn8Wuk13B4+sTn3XPOQK2DOxt8w?=
- =?us-ascii?Q?rVhyo+q+IwvcTlxFEhXiOzWxz2DWKP2TouTQPCSRKYRXmj1RrrrGGSBw9Ul2?=
- =?us-ascii?Q?7DCu5s+klb8Mlu0SF3Yd/FZx70pxWYyAVr/lCUCMkeD/c68STCPU7K84SYgb?=
- =?us-ascii?Q?TnVubSfPxAGnzvMj1ftGaqVqP6D4DaOrrZq46/dLQQZA9f9SIUspbdAyJBTk?=
- =?us-ascii?Q?BTds5zGqNti+RiZDmELt9FvyO/AHJXF5+H4G6EgYXzNjtbaPpjU+RfrF+9+M?=
- =?us-ascii?Q?M/9UJAKSiUbfMxQjQ9K4Hkn/imAKkMiK6W0/qBKtV17x9r9/F1s7Ao1Hm6DA?=
- =?us-ascii?Q?2gGACfmpMDc6vog60S9R+7si6FPySqLV5KBa8gWPvt0r4dpg7dGDPb37+j7d?=
- =?us-ascii?Q?O0a0Ypbr3zSNi5rbFJ7FirdNqIclEd9RDg6GiNqTMCqM49FQLuwtNZjMJjUE?=
- =?us-ascii?Q?gFINOG8E/gfNTsOMroFBVTrxgbAOj8jyFe4Gm/Mfditur3Qv5sTToxHeVjCW?=
- =?us-ascii?Q?04ofGOEJ6ew2nhuxBxCaWkkPSOjJBLWqNBaUXLhSMalLdfWnAqiemHe6yQkL?=
- =?us-ascii?Q?m10l4BaP8uxv9BavVugHuoUZnUVZw0MfAmoV/vRxEugx5MMZC5t43p26qHF0?=
- =?us-ascii?Q?gOrmm3dHGgMIf4ERv/UXjYWPlEZmY2zRszNfYOEuvcuynqovGk1Ru0cHsu0Q?=
- =?us-ascii?Q?3IbR8C8dAgDeu1f257bY5R3HtgMP7+b6p3rlkJ0VXdsZfIbeJ8GMA/Ygke/P?=
- =?us-ascii?Q?bhVNTsTDSvaIrtyykO/37YaBF5rWAPGb8ZrDJkZSM+iAbhtQ4+jgaD1LrMEw?=
- =?us-ascii?Q?mpFzFGuPPLZkspGGWxGW6eGgjHydDkaEI+jLLX6ItLHhvGjutwIR5sUjikW8?=
- =?us-ascii?Q?TzxmjUqMM/9alomcb0jtYpa7D3esXHPYe5NqafhgU9mbuwZe29eH+xGhy9Cc?=
- =?us-ascii?Q?wUIrKRErQokOzR9dYLQlRENU61Sr0vPbFuija0ICUQpSPASbbRW9W6J+Q1DZ?=
- =?us-ascii?Q?o5/Qg3Ykc89ABnQ7t6VVRaacsaTn+EU0JtIStfbq574gpGpaZtyB+RKrjnZw?=
- =?us-ascii?Q?9ienTiBEq7SvcQ3rGQ+7b47I8byKu1sVqT0okEtQDUihut6G+/eU7Yv/9vpz?=
- =?us-ascii?Q?o4S64EuFZjzFQLE7jPqVuRI3iKM7NwjCLZpJtAepRM0QncfkQVdEdy4/GiZJ?=
- =?us-ascii?Q?ZLnJIJco0+xiObhN7W0SXOKYshMy2KZBb7jwVy/31790poBlM0rD6eVZ4GwD?=
- =?us-ascii?Q?qA=3D=3D?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: c21aaab3-8a40-4a01-492a-08daf79222da
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?nLcm22RoGbK01XsM044pRbWcZ+mNlaPIMvK2DCDk4g45blwg0qur56Fi/Tvz?=
+ =?us-ascii?Q?XVlnm8rTO7l2hMP5+RqMfCGlwTzPJE6GnIYS0CTmBciL0ggRd4fMafOXSU14?=
+ =?us-ascii?Q?5FQs93AJPImdPj0mOg3QpCHVL5Ao4auqMG5FkQQFddH+8ac6gVY+bl/EdSNE?=
+ =?us-ascii?Q?b6IwYo2uR+RQpwWhlcal/e7U9C+J+Q6JkJJ64fpWKAnDXKLb/S4OD/deHCzj?=
+ =?us-ascii?Q?RXai6VH6jyvA0ttZFd/VVS1Lkj/k++4DYgN9+n5StPerZFz/IV43PYVSqdEO?=
+ =?us-ascii?Q?qVHYXWvLUBKNdDE99pr17f2cLaZUqQu2dc+gG0PEK6lkBBqhRNgmwn5dmkH9?=
+ =?us-ascii?Q?/7LctS3MTO7MpX5N2iF8rABELwYLksicQDXMgafwq/ZFyjSGINMqaUI8ioY1?=
+ =?us-ascii?Q?rjFkJ3iY3G61VEAX0gs75wt2yzLzB53Y33IPTljRN1YKqlqNuUEuqqkvXZns?=
+ =?us-ascii?Q?dwDMlEhQ8k63jKmiIhXTfaHKLYQ0+qJs7/4V1a1dnfwEbkHurM/WPJyONxsZ?=
+ =?us-ascii?Q?9CL5AC1V6OfZG4SJB4ilcRH4GMeb+cfVMAtjETiN1tChzdGOabZmUOfSGApy?=
+ =?us-ascii?Q?b4y/YQuxXE91visCFxCsqBewsi+U7+FfGZPHMFfuvPrbHWmZmQ3b9+uL02GF?=
+ =?us-ascii?Q?gW51KwOQ0b8tdAumAjjUcgY4qTF+2mYeckQtPOgrFmzd5RWs/WwJgnjX5Vrb?=
+ =?us-ascii?Q?zOKWv8fq0lGn6InLSgCLwQeY2VyaYxq8SsbLaINf6c/JhjE1xDynKTjAG+Sr?=
+ =?us-ascii?Q?PmNhuBuzVeeQ5UtG1MlE1nS/qM2gG3yKqEyyZ0VGBVpHx5Ew53K6noVYblLD?=
+ =?us-ascii?Q?25J4BrpocIkAjpm3ZfBNGzNZp6zTQQWfDlBvb+u3oIuv99jo/vk0Bvt4HjEN?=
+ =?us-ascii?Q?Uu9H4mY2lyaRdN24DmFi6+EhFHkflYzSsSZzwpJGxf4uRo57FqhD1exudT3D?=
+ =?us-ascii?Q?ODuP4j6EgDLlL+a7ZtXG7p1tDt4niPm7ZQ5wJ+NBPsIkCyl0M1yqgusf4jdJ?=
+ =?us-ascii?Q?gwRAP60EwJ6cKktu8UXLJ0uXMLF2z/d1V6MM7IZWuyobBOCIc2kH6oe3rP9z?=
+ =?us-ascii?Q?s1/lIiAAg3CFv1xuL+2t1+OT8dZXsWF8bdYeXWz7+mRxvGJvgh4qiWj7H9CA?=
+ =?us-ascii?Q?27Yk9/JGtw49mtBEm5wa7MkikHuR4MDL1+MCzX1nPW+bA0XUGXiwA38n08gu?=
+ =?us-ascii?Q?zT0GlF9UTCeLz0o6Pp0CpJa6FgQEH/35PiPZW4zp3FPyvSdRg2n7r50nRxPy?=
+ =?us-ascii?Q?85mTHyvrA+rgVRiR3XqxhGVn45i0Xqcm7DxQHaufFrBm6JmztMhBCrkcBfFl?=
+ =?us-ascii?Q?pJVLJXp5XNlzHLTSubzYDE6YXmpKyyupdmWofK4VzzXuj4unhf9Lx+f+AYlM?=
+ =?us-ascii?Q?3/UP+/D5000h21KYv6cczBiSaAe24IpwdJHeTbDfmjlzgQ7nWbf2TK1LGcmV?=
+ =?us-ascii?Q?yCGrWXucY2OvrUUmNKHHfiNKzj7I5z1263QmJJXyyruCzgX7bMVsUxR+5ZOU?=
+ =?us-ascii?Q?NUUZPAlIyMH22gufKoFLfPY5z1qbcgbUQGrpXLKuTmoLc+6OGNklQwU47Jp4?=
+ =?us-ascii?Q?mhUcwUYBxEYW8LeaodER4v9HwvKv33LmOp7cs9ulhW3AAL8S4/EKLciKf6hn?=
+ =?us-ascii?Q?4g=3D=3D?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: 6aa2b48e-2f1c-4c26-4d69-08daf79431cf
 X-MS-Exchange-CrossTenant-AuthSource: CY5PR11MB6392.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 16 Jan 2023 07:20:25.6816 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 16 Jan 2023 07:35:09.7841 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: xRmd2C12FL9RIiCnvRzhmvf7R3x+IHXOX0MNlrXGjEDRQ59vgERAD0OA1rBKmntEcVQXIzhzLiovNGK0du5+JQ==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ0PR11MB5199
+X-MS-Exchange-CrossTenant-UserPrincipalName: GQO+L7ewxL5JJExae0e5xCsrU68iEkF1TS06+Ulu3eXvwbopj4QnTfuqSShqggEOlNa3tUirvSCVmx6HDibWhw==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MN0PR11MB6136
 X-OriginatorOrg: intel.com
 X-Spam-Score: -1.7 (-)
 X-Spam-Report: Spam detection software,
@@ -169,9 +173,9 @@ X-Spam-Report: Spam detection software,
  pts rule name              description
  ---- ---------------------- --------------------------------------------------
  -2.3 RCVD_IN_DNSWL_MED      RBL: Sender listed at https://www.dnswl.org/,
- medium trust [192.55.52.88 listed in list.dnswl.org]
+ medium trust [134.134.136.20 listed in list.dnswl.org]
  0.0 RCVD_IN_MSPIKE_H3      RBL: Good reputation (+3)
- [192.55.52.88 listed in wl.mailspike.net]
+ [134.134.136.20 listed in wl.mailspike.net]
  0.0 SPF_HELO_NONE          SPF: HELO does not publish an SPF Record
  -0.0 SPF_PASS               SPF: sender matches SPF record
  0.1 DKIM_SIGNED            Message has a DKIM or DK signature, not necessarily
@@ -184,11 +188,11 @@ X-Spam-Report: Spam detection software,
  0.8 UPPERCASE_50_75        message body is 50-75% uppercase
  0.0 RCVD_IN_MSPIKE_WL      Mailspike good senders
  -0.0 DKIMWL_WL_HIGH         DKIMwl.org - High trust sender
-X-Headers-End: 1pHJnN-0004UH-FI
-X-Mailman-Approved-At: Thu, 26 Jan 2023 17:15:12 +0000
+X-Headers-End: 1pHK1d-0004nH-Qy
+X-Mailman-Approved-At: Thu, 26 Jan 2023 17:15:13 +0000
 X-Content-Filtered-By: Mailman/MimeDel 2.1.21
 Subject: [V9fs-developer] [dhowells-fs:iov-extract] [iov_iter] 64ea9d6c5f:
- xfstests.btrfs.020/026/215.fail
+ blktests.zbd/(003/004).fail blktests.loop/(002/004).fail
 X-BeenThere: v9fs-developer@lists.sourceforge.net
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -211,7 +215,7 @@ Cc: nvdimm@lists.linux.dev, jfs-discussion@lists.sourceforge.net,
  ocfs2-devel@oss.oracle.com
 Errors-To: v9fs-developer-bounces@lists.sourceforge.net
 
---1mmaqbJyHxvoDZp6
+--tfcqGTPmJW0aRR8b
 Content-Type: text/plain; charset="us-ascii"
 Content-Disposition: inline
 
@@ -221,89 +225,67 @@ Please note this report is for the v4 patch at
 https://lore.kernel.org/r/167305163159.1521586.9460968250704377087.stgit@warthog.procyon.org.uk/
 Since v5 has been posted, this report is for your reference only.
 
-We noticed xfstests.btrfs.020/026/215.fail due to commit (built with gcc-11):
+We noticed blktests.zbd/(003/004).fail and blktests.loop/(002/004).fail due to commit (built with gcc-11):
 
 commit: 64ea9d6c5f473c29c5de97abaa697856db90fef7 ("iov_iter: Use IOCB/IOMAP_WRITE if available rather than iterator direction")
 https://git.kernel.org/pub/scm/linux/kernel/git/dhowells/linux-fs.git iov-extract
 
-in testcase: xfstests
-version: xfstests-x86_64-fb6575e-1_20230102
-with following parameters:
+in testcase: blktests
+version: blktests-x86_64-b35866f-1_20221206
 
-	disk: 6HDD
-	fs: btrfs
-	test: btrfs-group-02
-
-test-description: xfstests is a regression test suite for xfs and other files ystems.
-test-url: git://git.kernel.org/pub/scm/fs/xfs/xfstests-dev.git
-
-on test machine: 8 threads 1 sockets Intel(R) Core(TM) i7-4770 CPU @ 3.40GHz (Haswell) with 8G memory
+on test machine: 4 threads Intel(R) Core(TM) i5-6500 CPU @ 3.20GHz (Skylake) with 32G memory
 
 caused below changes (please refer to attached dmesg/kmsg for entire log/backtrace):
 
 
-btrfs/020       [failed, exit status 1]
+zbd/003 => nullb1 (reset sequential required zones)          [failed]
+    runtime    ...  0.114s
+    --- tests/zbd/003.out       2022-12-06 16:53:11.000000000 +0000
+    +++ /lkp/benchmarks/blktests/results/nullb1/zbd/003.out.bad 2023-01-13 08:00:28.524999773 +0000
+    @@ -1,2 +1,2 @@
+     Running zbd/003
+    -Test complete
+    +Unexpected write poiter position in zone 0 wp: 0
 
-btrfs/026       - output mismatch (see /lkp/benchmarks/xfstests/results//btrfs/026.out.bad)
-    --- tests/btrfs/026.out	2023-01-02 16:54:41.000000000 +0000
-    +++ /lkp/benchmarks/xfstests/results//btrfs/026.out.bad	2023-01-15 04:49:37.182778590 +0000
-    @@ -8,8 +8,8 @@
-     wrote 268435456/268435456 bytes at offset 3145728
-     XXX Bytes, X ops; XX:XX:XX.X (XXX YYY/sec and XXX ops/sec)
-     File digests before remounting the file system:
-    -647d815906324ccdf288c7681f900ec0  SCRATCH_MNT/foo
-    -5876dba1217b4c2915cda86f4c67640e  SCRATCH_MNT/bar
-    +2106fb59f7a6292fbb35cf2fc69f74f9  SCRATCH_MNT/foo
-    +aca351b2f0529ab0cce383d7e43127d8  SCRATCH_MNT/bar
+zbd/004 => nullb1 (write split across sequential zones)      [failed]
+    runtime    ...  0.264s
+    --- tests/zbd/004.out       2022-12-06 16:53:11.000000000 +0000
+    +++ /lkp/benchmarks/blktests/results/nullb1/zbd/004.out.bad 2023-01-12 11:01:10.806858146 +0000
+    @@ -1,2 +1,2 @@
+     Running zbd/004
+    -Test complete
+    +Zone 0 condition is not FULL cond: EMPTY
+
+loop/002 (try various loop device block sizes)               [failed]
+    runtime    ...  0.234s
+    --- tests/loop/002.out      2022-12-06 16:53:11.000000000 +0000
+    +++ /lkp/benchmarks/blktests/results/nodev/loop/002.out.bad 2023-01-13 14:24:10.596748767 +0000
+    @@ -2,18 +2,18 @@
+     Checking default block size
+     512
+     Setting block size to 4096
+    -769bd186841c10e5b1106b55986206c0e87fc05a7f565fdee01b5abcaff6ae78  -
+    +ad7facb2586fc6e966c004d7d1d16b024f5805ff7cb47c7a85dabd8b48892ca7  -
+     4096
+     Setting block size to 2048
     ...
-    (Run 'diff -u /lkp/benchmarks/xfstests/tests/btrfs/026.out /lkp/benchmarks/xfstests/results//btrfs/026.out.bad'  to see the entire diff)
+    (Run 'diff -u tests/loop/002.out /lkp/benchmarks/blktests/results/nodev/loop/002.out.bad' to see the entire diff)
 
-btrfs/215       [failed, exit status 1]- output mismatch (see /lkp/benchmarks/xfstests/results//btrfs/215.out.bad)
-    --- tests/btrfs/215.out	2023-01-02 16:54:41.000000000 +0000
-    +++ /lkp/benchmarks/xfstests/results//btrfs/215.out.bad	2023-01-14 18:15:13.161797311 +0000
-    @@ -1,2 +1,3 @@
-     QA output created by 215
-    -Silence is golden
-    +Errors: 0 expected: 2
-    +(see /lkp/benchmarks/xfstests/results//btrfs/215.full for details)
-    ...
-    (Run 'diff -u /lkp/benchmarks/xfstests/tests/btrfs/215.out /lkp/benchmarks/xfstests/results//btrfs/215.out.bad'  to see the entire diff)
-
-
-In addition to that, the commit also has impact on the following tests:
-
-testcase: xfstests
-fs: xfs
-test: xfs-group-54
-
-2023-01-13 21:25:49 mkfs -t xfs -f -mreflink=0 /dev/sdb1
-
-Metadata corruption detected at 0x43f4b8, xfs_agf block 0x8/0x1000
-Metadata corruption detected at 0x43f4b8, xfs_agf block 0x6400008/0x1000
-Metadata corruption detected at 0x43f4b8, xfs_agf block 0xc800008/0x1000
-Metadata corruption detected at 0x43f4b8, xfs_agf block 0x12c00008/0x1000
-Metadata corruption detected at 0x4519d8, xfs_agi block 0x10/0x1000
-Metadata corruption detected at 0x4519d8, xfs_agi block 0x6400010/0x1000
-Metadata corruption detected at 0x4519d8, xfs_agi block 0xc800010/0x1000
-Metadata corruption detected at 0x4519d8, xfs_agi block 0x12c00010/0x1000
-Metadata corruption detected at 0x44a3f0, xfs_finobt block 0x38/0x1000
-mkfs.xfs: Inode allocation failed [117 - Structure needs cleaning]
-
-meta-data=/dev/sdb1              isize=512    agcount=4, agsize=13107200 blks
-         =                       sectsz=4096  attr=2, projid32bit=1
-         =                       crc=1        finobt=1, sparse=1, rmapbt=0
-         =                       reflink=0    bigtime=0
-data     =                       bsize=4096   blocks=52428800, imaxpct=25
-         =                       sunit=0      swidth=0 blks
-naming   =version 2              bsize=4096   ascii-ci=0, ftype=1
-log      =internal log           bsize=4096   blocks=25600, version=2
-         =                       sectsz=4096  sunit=1 blks, lazy-count=1
-realtime =none                   extsz=4096   blocks=0, rtextents=0
+loop/004 (combine loop direct I/O mode and a custom block size) [failed]
+    runtime    ...  0.636s
+    --- tests/loop/004.out      2022-12-06 16:53:11.000000000 +0000
+    +++ /lkp/benchmarks/blktests/results/nodev/loop/004.out.bad 2023-01-13 14:35:07.645643053 +0000
+    @@ -1,4 +1,4 @@
+     Running loop/004
+     1
+    -769bd186841c10e5b1106b55986206c0e87fc05a7f565fdee01b5abcaff6ae78  -
+    +ad7facb2586fc6e966c004d7d1d16b024f5805ff7cb47c7a85dabd8b48892ca7  -
+     Test complete
 
 
 If you fix the issue, kindly add following tag
 | Reported-by: kernel test robot <yujie.liu@intel.com>
-| Link: https://lore.kernel.org/oe-lkp/202301161453.f0e8c3a7-yujie.liu@intel.com
+| Link: https://lore.kernel.org/oe-lkp/202301161433.8e4869f7-yujie.liu@intel.com
 
 
 To reproduce:
@@ -322,7 +304,7 @@ To reproduce:
 0-DAY CI Kernel Test Service
 https://github.com/intel/lkp-tests
 
---1mmaqbJyHxvoDZp6
+--tfcqGTPmJW0aRR8b
 Content-Type: text/plain; charset="us-ascii"
 Content-Disposition: attachment;
 	filename="config-6.2.0-rc2-00206-g64ea9d6c5f47"
@@ -7027,7 +7009,7 @@ CONFIG_ARCH_USE_MEMTEST=y
 # end of Rust hacking
 # end of Kernel hacking
 
---1mmaqbJyHxvoDZp6
+--tfcqGTPmJW0aRR8b
 Content-Type: text/plain; charset="us-ascii"
 Content-Disposition: attachment; filename="job-script"
 
@@ -7035,53 +7017,47 @@ Content-Disposition: attachment; filename="job-script"
 
 export_top_env()
 {
-	export suite='xfstests'
-	export testcase='xfstests'
+	export suite='blktests'
+	export testcase='blktests'
 	export category='functional'
-	export need_memory='3G'
-	export job_origin='xfstests-btrfs.yaml'
+	export need_memory='1G'
+	export job_origin='blktests.yaml'
 	export queue_cmdline_keys='branch
 commit
 kbuild_queue_analysis'
 	export queue='validate'
-	export testbox='lkp-hsw-d01'
-	export tbox_group='lkp-hsw-d01'
-	export submit_id='63c382b2b08dd23c5adabd3f'
-	export job_file='/lkp/jobs/scheduled/lkp-hsw-d01/xfstests-6HDD-btrfs-btrfs-group-02-debian-11.1-x86_64-20220510.cgz-64ea9d6c5f473c29c5de97abaa697856db90fef7-20230115-80986-1ohq29p-4.yaml'
-	export id='0a1ee93b2c94906522d347d56902874c636ece1f'
+	export testbox='lkp-skl-d03'
+	export tbox_group='lkp-skl-d03'
+	export submit_id='63c2e86deab42d5dacd98cfe'
+	export job_file='/lkp/jobs/scheduled/lkp-skl-d03/blktests-zbd-group-01-debian-11.1-x86_64-20220510.cgz-64ea9d6c5f473c29c5de97abaa697856db90fef7-20230115-23980-17ck5wa-2.yaml'
+	export id='7c2c1edbac6b3dbac28455b00cbc4c104fa680b2'
 	export queuer_version='/zday/lkp'
-	export model='Haswell'
-	export nr_node=1
-	export nr_cpu=8
-	export memory='8G'
+	export model='Skylake'
+	export nr_cpu=4
+	export memory='32G'
 	export nr_ssd_partitions=1
-	export nr_hdd_partitions=6
-	export hdd_partitions='/dev/disk/by-id/ata-ST4000NM0035-1V4107_ZC12HHHW-part*'
-	export ssd_partitions='/dev/disk/by-id/ata-INTEL_SSDSC2BB800G4_PHWL42040015800RGN-part2'
-	export swap_partitions=
-	export rootfs_partition='/dev/disk/by-id/ata-INTEL_SSDSC2BB800G4_PHWL42040015800RGN-part1'
-	export brand='Intel(R) Core(TM) i7-4770 CPU @ 3.40GHz'
-	export need_kconfig='BLK_DEV_SD
-SCSI
-{"BLOCK"=>"y"}
-SATA_AHCI
-SATA_AHCI_PLATFORM
-ATA
-{"PCI"=>"y"}
-BTRFS_FS'
+	export nr_hdd_partitions=4
+	export hdd_partitions='/dev/disk/by-id/ata-ST1000DM003-1ER162_Z4YB6FTT-part*'
+	export ssd_partitions='/dev/disk/by-id/wwn-0x55cd2e404b653c95-part2'
+	export rootfs_partition='/dev/disk/by-id/wwn-0x55cd2e404b653c95-part1'
+	export brand='Intel(R) Core(TM) i5-6500 CPU @ 3.20GHz'
 	export commit='64ea9d6c5f473c29c5de97abaa697856db90fef7'
-	export ucode='0x28'
 	export need_kconfig_hw='{"PTP_1588_CLOCK"=>"y"}
 {"E1000E"=>"y"}
-{"ATA_SFF"=>"y"}
-{"ATA_BMDMA"=>"y"}
-ATA_PIIX
+SATA_AHCI
 DRM_I915'
+	export ucode='0xf0'
 	export bisect_dmesg=true
+	export need_kconfig=\{\"BLK_DEV_ZONED\"\=\>\"y\"\}'
+'\{\"BLK_DEV_NULL_BLK_FAULT_INJECTION\"\=\>\"y\"\}'
+'\{\"RDMA_RXE\"\=\>\"m,\ x86_64\"\}'
+'\{\"RDMA_SIW\"\=\>\"m,\ x86_64\"\}'
+'\{\"BTRFS_FS\"\=\>\"m\"\}'
+'\{\"BTRFS_FS_POSIX_ACL\"\=\>\"y\"\}
 	export kconfig='x86_64-rhel-8.3-func'
-	export enqueue_time='2023-01-15 12:36:02 +0800'
-	export _id='63c382c7b08dd23c5adabd40'
-	export _rt='/result/xfstests/6HDD-btrfs-btrfs-group-02/lkp-hsw-d01/debian-11.1-x86_64-20220510.cgz/x86_64-rhel-8.3-func/gcc-11/64ea9d6c5f473c29c5de97abaa697856db90fef7'
+	export enqueue_time='2023-01-15 01:37:50 +0800'
+	export _id='63c2e86deab42d5dacd98cfe'
+	export _rt='/result/blktests/zbd-group-01/lkp-skl-d03/debian-11.1-x86_64-20220510.cgz/x86_64-rhel-8.3-func/gcc-11/64ea9d6c5f473c29c5de97abaa697856db90fef7'
 	export user='lkp'
 	export compiler='gcc-11'
 	export LKP_SERVER='internal-lkp-server'
@@ -7089,16 +7065,16 @@ DRM_I915'
 	export base_commit='b7bfaa761d760e72a969d116517eaa12e404c262'
 	export branch='ammarfaizi2-block/dhowells/linux-fs/iov-extract'
 	export rootfs='debian-11.1-x86_64-20220510.cgz'
-	export result_root='/result/xfstests/6HDD-btrfs-btrfs-group-02/lkp-hsw-d01/debian-11.1-x86_64-20220510.cgz/x86_64-rhel-8.3-func/gcc-11/64ea9d6c5f473c29c5de97abaa697856db90fef7/3'
+	export result_root='/result/blktests/zbd-group-01/lkp-skl-d03/debian-11.1-x86_64-20220510.cgz/x86_64-rhel-8.3-func/gcc-11/64ea9d6c5f473c29c5de97abaa697856db90fef7/2'
 	export scheduler_version='/lkp/lkp/src'
 	export arch='x86_64'
 	export max_uptime=1200
 	export initrd='/osimage/debian/debian-11.1-x86_64-20220510.cgz'
 	export bootloader_append='root=/dev/ram0
-RESULT_ROOT=/result/xfstests/6HDD-btrfs-btrfs-group-02/lkp-hsw-d01/debian-11.1-x86_64-20220510.cgz/x86_64-rhel-8.3-func/gcc-11/64ea9d6c5f473c29c5de97abaa697856db90fef7/3
+RESULT_ROOT=/result/blktests/zbd-group-01/lkp-skl-d03/debian-11.1-x86_64-20220510.cgz/x86_64-rhel-8.3-func/gcc-11/64ea9d6c5f473c29c5de97abaa697856db90fef7/2
 BOOT_IMAGE=/pkg/linux/x86_64-rhel-8.3-func/gcc-11/64ea9d6c5f473c29c5de97abaa697856db90fef7/vmlinuz-6.2.0-rc2-00206-g64ea9d6c5f47
 branch=ammarfaizi2-block/dhowells/linux-fs/iov-extract
-job=/lkp/jobs/scheduled/lkp-hsw-d01/xfstests-6HDD-btrfs-btrfs-group-02-debian-11.1-x86_64-20220510.cgz-64ea9d6c5f473c29c5de97abaa697856db90fef7-20230115-80986-1ohq29p-4.yaml
+job=/lkp/jobs/scheduled/lkp-skl-d03/blktests-zbd-group-01-debian-11.1-x86_64-20220510.cgz-64ea9d6c5f473c29c5de97abaa697856db90fef7-20230115-23980-17ck5wa-2.yaml
 user=lkp
 ARCH=x86_64
 kconfig=x86_64-rhel-8.3-func
@@ -7130,20 +7106,20 @@ console=ttyS0,115200
 vga=normal
 rw'
 	export modules_initrd='/pkg/linux/x86_64-rhel-8.3-func/gcc-11/64ea9d6c5f473c29c5de97abaa697856db90fef7/modules.cgz'
-	export bm_initrd='/osimage/deps/debian-11.1-x86_64-20220510.cgz/run-ipconfig_20220515.cgz,/osimage/deps/debian-11.1-x86_64-20220510.cgz/lkp_20220513.cgz,/osimage/deps/debian-11.1-x86_64-20220510.cgz/rsync-rootfs_20220515.cgz,/osimage/deps/debian-11.1-x86_64-20220510.cgz/fs_20220526.cgz,/osimage/deps/debian-11.1-x86_64-20220510.cgz/xfstests_20230102.cgz,/osimage/pkg/debian-11.1-x86_64-20220510.cgz/xfstests-x86_64-fb6575e-1_20230102.cgz,/osimage/deps/debian-11.1-x86_64-20220510.cgz/hw_20220526.cgz'
+	export bm_initrd='/osimage/deps/debian-11.1-x86_64-20220510.cgz/lkp_20220513.cgz,/osimage/deps/debian-11.1-x86_64-20220510.cgz/run-ipconfig_20220515.cgz,/osimage/deps/debian-11.1-x86_64-20220510.cgz/rsync-rootfs_20220515.cgz,/osimage/deps/debian-11.1-x86_64-20220510.cgz/blktests_20221206.cgz,/osimage/pkg/debian-11.1-x86_64-20220510.cgz/blktests-x86_64-b35866f-1_20221206.cgz,/osimage/deps/debian-11.1-x86_64-20220510.cgz/hw_20220526.cgz'
 	export ucode_initrd='/osimage/ucode/intel-ucode-20220804.cgz'
 	export lkp_initrd='/osimage/user/lkp/lkp-x86_64.cgz'
-	export site='lkp-wsx01'
+	export site='inn'
 	export LKP_CGI_PORT=80
 	export LKP_CIFS_PORT=139
-	export last_kernel='6.2.0-rc3-00321-gb7bfaa761d76'
+	export last_kernel='6.2.0-rc3-intel-next-02203-g1b0ad4ea3666'
 	export repeat_to=6
-	export stop_repeat_if_found='xfstests.btrfs.026.fail'
+	export stop_repeat_if_found='blktests.zbd/003.fail'
 	export kbuild_queue_analysis=1
 	export schedule_notify_address=
 	export kernel='/pkg/linux/x86_64-rhel-8.3-func/gcc-11/64ea9d6c5f473c29c5de97abaa697856db90fef7/vmlinuz-6.2.0-rc2-00206-g64ea9d6c5f47'
-	export dequeue_time='2023-01-15 12:47:20 +0800'
-	export job_initrd='/lkp/jobs/scheduled/lkp-hsw-d01/xfstests-6HDD-btrfs-btrfs-group-02-debian-11.1-x86_64-20220510.cgz-64ea9d6c5f473c29c5de97abaa697856db90fef7-20230115-80986-1ohq29p-4.cgz'
+	export dequeue_time='2023-01-15 01:39:12 +0800'
+	export job_initrd='/lkp/jobs/scheduled/lkp-skl-d03/blktests-zbd-group-01-debian-11.1-x86_64-20220510.cgz-64ea9d6c5f473c29c5de97abaa697856db90fef7-20230115-23980-17ck5wa-2.cgz'
 
 	[ -n "$LKP_SRC" ] ||
 	export LKP_SRC=/lkp/${user:-lkp}/src
@@ -7159,17 +7135,13 @@ run_job()
 
 	export_top_env
 
-	run_setup nr_hdd=6 $LKP_SRC/setup/disk
-
-	run_setup fs='btrfs' $LKP_SRC/setup/fs
-
 	run_monitor $LKP_SRC/monitors/wrapper kmsg
 	run_monitor $LKP_SRC/monitors/wrapper heartbeat
 	run_monitor $LKP_SRC/monitors/wrapper meminfo
 	run_monitor $LKP_SRC/monitors/wrapper oom-killer
 	run_monitor $LKP_SRC/monitors/plain/watchdog
 
-	run_test test='btrfs-group-02' $LKP_SRC/tests/wrapper xfstests
+	run_test test='zbd-group-01' $LKP_SRC/tests/wrapper blktests
 }
 
 extract_stats()
@@ -7177,11 +7149,11 @@ extract_stats()
 	export stats_part_begin=
 	export stats_part_end=
 
-	env test='btrfs-group-02' $LKP_SRC/stats/wrapper xfstests
+	env test='zbd-group-01' $LKP_SRC/stats/wrapper blktests
 	$LKP_SRC/stats/wrapper kmsg
 	$LKP_SRC/stats/wrapper meminfo
 
-	$LKP_SRC/stats/wrapper time xfstests.time
+	$LKP_SRC/stats/wrapper time blktests.time
 	$LKP_SRC/stats/wrapper dmesg
 	$LKP_SRC/stats/wrapper kmsg
 	$LKP_SRC/stats/wrapper last_state
@@ -7191,127 +7163,92 @@ extract_stats()
 
 "$@"
 
---1mmaqbJyHxvoDZp6
+--tfcqGTPmJW0aRR8b
 Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: attachment; filename="xfstests"
+Content-Disposition: attachment; filename="blktests"
 
-2023-01-15 04:48:53 export TEST_DIR=/fs/sda1
-2023-01-15 04:48:53 export TEST_DEV=/dev/sda1
-2023-01-15 04:48:53 export FSTYP=btrfs
-2023-01-15 04:48:53 export SCRATCH_MNT=/fs/scratch
-2023-01-15 04:48:53 mkdir /fs/scratch -p
-2023-01-15 04:48:53 export SCRATCH_DEV_POOL="/dev/sda2 /dev/sda3 /dev/sda4 /dev/sda5 /dev/sda6"
-2023-01-15 04:48:53 sed "s:^:btrfs/:" //lkp/benchmarks/xfstests/tests/btrfs-group-02
-2023-01-15 04:48:53 ./check btrfs/020 btrfs/021 btrfs/022 btrfs/023 btrfs/024 btrfs/025 btrfs/026 btrfs/027 btrfs/028 btrfs/029
-FSTYP         -- btrfs
-PLATFORM      -- Linux/x86_64 lkp-hsw-d01 6.2.0-rc2-00206-g64ea9d6c5f47 #1 SMP Sat Jan 14 07:43:43 CST 2023
-MKFS_OPTIONS  -- /dev/sda2
-MOUNT_OPTIONS -- /dev/sda2 /fs/scratch
+2023-01-14 17:40:43 sed "s:^:zbd/:" /lkp/benchmarks/blktests/tests/zbd-group-01
+2023-01-14 17:40:43 ./check zbd/002 zbd/003
+zbd/002 => nullb1 (report zone)                             
+zbd/002 => nullb1 (report zone)                              [passed]
+    runtime    ...  0.057s
+zbd/003 => nullb1 (reset sequential required zones)         
+zbd/003 => nullb1 (reset sequential required zones)          [failed]
+    runtime    ...  0.121s
+    --- tests/zbd/003.out	2022-12-06 16:53:11.000000000 +0000
+    +++ /lkp/benchmarks/blktests/results/nullb1/zbd/003.out.bad	2023-01-14 17:40:44.160678808 +0000
+    @@ -1,2 +1,2 @@
+     Running zbd/003
+    -Test complete
+    +Unexpected write poiter position in zone 0 wp: 0
 
-btrfs/020       [failed, exit status 1]
-btrfs/021        14s
-btrfs/022        13s
-btrfs/023        7s
-btrfs/024        1s
-btrfs/025        2s
-btrfs/026       - output mismatch (see /lkp/benchmarks/xfstests/results//btrfs/026.out.bad)
-    --- tests/btrfs/026.out	2023-01-02 16:54:41.000000000 +0000
-    +++ /lkp/benchmarks/xfstests/results//btrfs/026.out.bad	2023-01-15 04:49:37.182778590 +0000
-    @@ -8,8 +8,8 @@
-     wrote 268435456/268435456 bytes at offset 3145728
-     XXX Bytes, X ops; XX:XX:XX.X (XXX YYY/sec and XXX ops/sec)
-     File digests before remounting the file system:
-    -647d815906324ccdf288c7681f900ec0  SCRATCH_MNT/foo
-    -5876dba1217b4c2915cda86f4c67640e  SCRATCH_MNT/bar
-    +2106fb59f7a6292fbb35cf2fc69f74f9  SCRATCH_MNT/foo
-    +aca351b2f0529ab0cce383d7e43127d8  SCRATCH_MNT/bar
-    ...
-    (Run 'diff -u /lkp/benchmarks/xfstests/tests/btrfs/026.out /lkp/benchmarks/xfstests/results//btrfs/026.out.bad'  to see the entire diff)
-btrfs/027        11s
-btrfs/028        32s
-btrfs/029        2s
-Ran: btrfs/020 btrfs/021 btrfs/022 btrfs/023 btrfs/024 btrfs/025 btrfs/026 btrfs/027 btrfs/028 btrfs/029
-Failures: btrfs/020 btrfs/026
-Failed 2 of 10 tests
-
-
---1mmaqbJyHxvoDZp6
+--tfcqGTPmJW0aRR8b
 Content-Type: text/plain; charset="us-ascii"
 Content-Disposition: attachment; filename="job.yaml"
 
 ---
 
-#! jobs/xfstests-btrfs.yaml
-suite: xfstests
-testcase: xfstests
+#! jobs/blktests.yaml
+suite: blktests
+testcase: blktests
 category: functional
-need_memory: 3G
-disk: 6HDD
-fs: btrfs
-xfstests:
-  test: btrfs-group-02
-job_origin: xfstests-btrfs.yaml
+need_memory: 1G
+blktests:
+  test: zbd-group-01
+job_origin: blktests.yaml
 
 #! queue options
 queue_cmdline_keys:
 - branch
 - commit
 queue: bisect
-testbox: lkp-hsw-d01
-tbox_group: lkp-hsw-d01
-submit_id: 63c2c89273a339a9d7e0c7e7
-job_file: "/lkp/jobs/scheduled/lkp-hsw-d01/xfstests-6HDD-btrfs-btrfs-group-02-debian-11.1-x86_64-20220510.cgz-64ea9d6c5f473c29c5de97abaa697856db90fef7-20230114-43479-1tqw6xj-0.yaml"
-id: ceaed32f7626bf8785ddd2b51b236ca194899799
+testbox: lkp-skl-d03
+tbox_group: lkp-skl-d03
+submit_id: 63c1ec805e80148bff835837
+job_file: "/lkp/jobs/scheduled/lkp-skl-d03/blktests-zbd-group-01-debian-11.1-x86_64-20220510.cgz-64ea9d6c5f473c29c5de97abaa697856db90fef7-20230114-35839-nviigf-0.yaml"
+id: 13ee40912dc965100c86cce447c72c592f9a6122
 queuer_version: "/zday/lkp"
 
-#! hosts/lkp-hsw-d01
-model: Haswell
-nr_node: 1
-nr_cpu: 8
-memory: 8G
+#! hosts/lkp-skl-d03
+model: Skylake
+nr_cpu: 4
+memory: 32G
 nr_ssd_partitions: 1
-nr_hdd_partitions: 6
-hdd_partitions: "/dev/disk/by-id/ata-ST4000NM0035-1V4107_ZC12HHHW-part*"
-ssd_partitions: "/dev/disk/by-id/ata-INTEL_SSDSC2BB800G4_PHWL42040015800RGN-part2"
-swap_partitions:
-rootfs_partition: "/dev/disk/by-id/ata-INTEL_SSDSC2BB800G4_PHWL42040015800RGN-part1"
-brand: Intel(R) Core(TM) i7-4770 CPU @ 3.40GHz
+nr_hdd_partitions: 4
+hdd_partitions: "/dev/disk/by-id/ata-ST1000DM003-1ER162_Z4YB6FTT-part*"
+ssd_partitions: "/dev/disk/by-id/wwn-0x55cd2e404b653c95-part2"
+rootfs_partition: "/dev/disk/by-id/wwn-0x55cd2e404b653c95-part1"
+brand: Intel(R) Core(TM) i5-6500 CPU @ 3.20GHz
 
 #! include/category/functional
 kmsg:
 heartbeat:
 meminfo:
 
-#! include/disk/nr_hdd
-need_kconfig:
-- BLK_DEV_SD
-- SCSI
-- BLOCK: y
-- SATA_AHCI
-- SATA_AHCI_PLATFORM
-- ATA
-- PCI: y
-- BTRFS_FS
-
 #! include/queue/cyclic
 commit: 64ea9d6c5f473c29c5de97abaa697856db90fef7
 
-#! include/testbox/lkp-hsw-d01
-ucode: '0x28'
+#! include/testbox/lkp-skl-d03
 need_kconfig_hw:
 - PTP_1588_CLOCK: y
 - E1000E: y
-- ATA_SFF: y
-- ATA_BMDMA: y
-- ATA_PIIX
+- SATA_AHCI
 - DRM_I915
+ucode: '0xf0'
 bisect_dmesg: true
 
-#! include/fs/OTHERS
+#! include/blktests
+need_kconfig:
+- BLK_DEV_ZONED: y
+- BLK_DEV_NULL_BLK_FAULT_INJECTION: y
+- RDMA_RXE: m, x86_64
+- RDMA_SIW: m, x86_64
+- BTRFS_FS: m
+- BTRFS_FS_POSIX_ACL: y
 kconfig: x86_64-rhel-8.3-func
-enqueue_time: 2023-01-14 23:21:55.262062962 +08:00
-_id: 63c2c89273a339a9d7e0c7e7
-_rt: "/result/xfstests/6HDD-btrfs-btrfs-group-02/lkp-hsw-d01/debian-11.1-x86_64-20220510.cgz/x86_64-rhel-8.3-func/gcc-11/64ea9d6c5f473c29c5de97abaa697856db90fef7"
+enqueue_time: 2023-01-14 07:42:56.985440856 +08:00
+_id: 63c1ec805e80148bff835837
+_rt: "/result/blktests/zbd-group-01/lkp-skl-d03/debian-11.1-x86_64-20220510.cgz/x86_64-rhel-8.3-func/gcc-11/64ea9d6c5f473c29c5de97abaa697856db90fef7"
 
 #! schedule options
 user: lkp
@@ -7321,17 +7258,17 @@ head_commit: 06d4905363dd8ba04ff9991efaa362a882840d35
 base_commit: b7bfaa761d760e72a969d116517eaa12e404c262
 branch: linux-devel/devel-hourly-20230112-093536
 rootfs: debian-11.1-x86_64-20220510.cgz
-result_root: "/result/xfstests/6HDD-btrfs-btrfs-group-02/lkp-hsw-d01/debian-11.1-x86_64-20220510.cgz/x86_64-rhel-8.3-func/gcc-11/64ea9d6c5f473c29c5de97abaa697856db90fef7/0"
-scheduler_version: "/lkp/lkp/.src-20230111-092854"
+result_root: "/result/blktests/zbd-group-01/lkp-skl-d03/debian-11.1-x86_64-20220510.cgz/x86_64-rhel-8.3-func/gcc-11/64ea9d6c5f473c29c5de97abaa697856db90fef7/0"
+scheduler_version: "/lkp/lkp/src"
 arch: x86_64
 max_uptime: 1200
 initrd: "/osimage/debian/debian-11.1-x86_64-20220510.cgz"
 bootloader_append:
 - root=/dev/ram0
-- RESULT_ROOT=/result/xfstests/6HDD-btrfs-btrfs-group-02/lkp-hsw-d01/debian-11.1-x86_64-20220510.cgz/x86_64-rhel-8.3-func/gcc-11/64ea9d6c5f473c29c5de97abaa697856db90fef7/0
+- RESULT_ROOT=/result/blktests/zbd-group-01/lkp-skl-d03/debian-11.1-x86_64-20220510.cgz/x86_64-rhel-8.3-func/gcc-11/64ea9d6c5f473c29c5de97abaa697856db90fef7/0
 - BOOT_IMAGE=/pkg/linux/x86_64-rhel-8.3-func/gcc-11/64ea9d6c5f473c29c5de97abaa697856db90fef7/vmlinuz-6.2.0-rc2-00206-g64ea9d6c5f47
 - branch=linux-devel/devel-hourly-20230112-093536
-- job=/lkp/jobs/scheduled/lkp-hsw-d01/xfstests-6HDD-btrfs-btrfs-group-02-debian-11.1-x86_64-20220510.cgz-64ea9d6c5f473c29c5de97abaa697856db90fef7-20230114-43479-1tqw6xj-0.yaml
+- job=/lkp/jobs/scheduled/lkp-skl-d03/blktests-zbd-group-01-debian-11.1-x86_64-20220510.cgz-64ea9d6c5f473c29c5de97abaa697856db90fef7-20230114-35839-nviigf-0.yaml
 - user=lkp
 - ARCH=x86_64
 - kconfig=x86_64-rhel-8.3-func
@@ -7365,76 +7302,45 @@ bootloader_append:
 
 #! runtime status
 modules_initrd: "/pkg/linux/x86_64-rhel-8.3-func/gcc-11/64ea9d6c5f473c29c5de97abaa697856db90fef7/modules.cgz"
-bm_initrd: "/osimage/deps/debian-11.1-x86_64-20220510.cgz/run-ipconfig_20220515.cgz,/osimage/deps/debian-11.1-x86_64-20220510.cgz/lkp_20220513.cgz,/osimage/deps/debian-11.1-x86_64-20220510.cgz/rsync-rootfs_20220515.cgz,/osimage/deps/debian-11.1-x86_64-20220510.cgz/fs_20220526.cgz,/osimage/deps/debian-11.1-x86_64-20220510.cgz/xfstests_20230102.cgz,/osimage/pkg/debian-11.1-x86_64-20220510.cgz/xfstests-x86_64-fb6575e-1_20230102.cgz,/osimage/deps/debian-11.1-x86_64-20220510.cgz/hw_20220526.cgz"
+bm_initrd: "/osimage/deps/debian-11.1-x86_64-20220510.cgz/run-ipconfig_20220515.cgz,/osimage/deps/debian-11.1-x86_64-20220510.cgz/lkp_20220513.cgz,/osimage/deps/debian-11.1-x86_64-20220510.cgz/rsync-rootfs_20220515.cgz,/osimage/deps/debian-11.1-x86_64-20220510.cgz/blktests_20221206.cgz,/osimage/pkg/debian-11.1-x86_64-20220510.cgz/blktests-x86_64-b35866f-1_20221206.cgz,/osimage/deps/debian-11.1-x86_64-20220510.cgz/hw_20220526.cgz"
 ucode_initrd: "/osimage/ucode/intel-ucode-20220804.cgz"
 lkp_initrd: "/osimage/user/lkp/lkp-x86_64.cgz"
-site: lkp-wsx01
+site: inn
 
-#! /db/releases/20230113175433/lkp-src/include/site/lkp-wsx01
+#! /db/releases/20230112224352/lkp-src/include/site/inn
 LKP_CGI_PORT: 80
 LKP_CIFS_PORT: 139
 oom-killer:
 watchdog:
-last_kernel: 4.20.0
+last_kernel: 6.2.0-rc3-wt-ath-09087-g55aa4d3b2656
 schedule_notify_address:
 
 #! user overrides
 kernel: "/pkg/linux/x86_64-rhel-8.3-func/gcc-11/64ea9d6c5f473c29c5de97abaa697856db90fef7/vmlinuz-6.2.0-rc2-00206-g64ea9d6c5f47"
-dequeue_time: 2023-01-14 23:38:15.343417825 +08:00
+dequeue_time: 2023-01-14 07:53:23.462839914 +08:00
 
-#! /cephfs/db/releases/20230113175433/lkp-src/include/site/lkp-wsx01
+#! /db/releases/20230113175433/lkp-src/include/site/inn
 job_state: finished
-loadavg: 2.41 1.07 0.41 1/186 10672
-start_time: '1673710772'
-end_time: '1673710863'
+loadavg: 0.72 0.20 0.07 2/154 945
+start_time: '1673654113'
+end_time: '1673654115'
 version: "/lkp/lkp/.src-20230111-092942:5b9bf8a4a:d984198af"
 
---1mmaqbJyHxvoDZp6
+--tfcqGTPmJW0aRR8b
 Content-Type: text/plain; charset="us-ascii"
 Content-Disposition: attachment; filename="reproduce"
 
-dmsetup remove_all
-wipefs -a --force /dev/sda1
-wipefs -a --force /dev/sda2
-wipefs -a --force /dev/sda3
-wipefs -a --force /dev/sda4
-wipefs -a --force /dev/sda5
-wipefs -a --force /dev/sda6
-mkfs -t btrfs /dev/sda1
-mkfs -t btrfs /dev/sda5
-mkfs -t btrfs /dev/sda3
-mkfs -t btrfs /dev/sda2
-mkfs -t btrfs /dev/sda4
-mkfs -t btrfs /dev/sda6
-mkdir -p /fs/sda1
-mount -t btrfs /dev/sda1 /fs/sda1
-mkdir -p /fs/sda2
-mount -t btrfs /dev/sda2 /fs/sda2
-mkdir -p /fs/sda3
-mount -t btrfs /dev/sda3 /fs/sda3
-mkdir -p /fs/sda4
-mount -t btrfs /dev/sda4 /fs/sda4
-mkdir -p /fs/sda5
-mount -t btrfs /dev/sda5 /fs/sda5
-mkdir -p /fs/sda6
-mount -t btrfs /dev/sda6 /fs/sda6
-export TEST_DIR=/fs/sda1
-export TEST_DEV=/dev/sda1
-export FSTYP=btrfs
-export SCRATCH_MNT=/fs/scratch
-mkdir /fs/scratch -p
-export SCRATCH_DEV_POOL="/dev/sda2 /dev/sda3 /dev/sda4 /dev/sda5 /dev/sda6"
-sed "s:^:btrfs/:" //lkp/benchmarks/xfstests/tests/btrfs-group-02
-./check btrfs/020 btrfs/021 btrfs/022 btrfs/023 btrfs/024 btrfs/025 btrfs/026 btrfs/027 btrfs/028 btrfs/029
+sed "s:^:zbd/:" /lkp/benchmarks/blktests/tests/zbd-group-01
+./check zbd/002 zbd/003
 
---1mmaqbJyHxvoDZp6
+--tfcqGTPmJW0aRR8b
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
 Content-Disposition: inline
 
 
---1mmaqbJyHxvoDZp6
+--tfcqGTPmJW0aRR8b
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -7445,5 +7351,5 @@ V9fs-developer mailing list
 V9fs-developer@lists.sourceforge.net
 https://lists.sourceforge.net/lists/listinfo/v9fs-developer
 
---1mmaqbJyHxvoDZp6--
+--tfcqGTPmJW0aRR8b--
 
