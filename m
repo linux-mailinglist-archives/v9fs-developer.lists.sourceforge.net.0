@@ -2,97 +2,99 @@ Return-Path: <v9fs-developer-bounces@lists.sourceforge.net>
 X-Original-To: lists+v9fs-developer@lfdr.de
 Delivered-To: lists+v9fs-developer@lfdr.de
 Received: from lists.sourceforge.net (lists.sourceforge.net [216.105.38.7])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9CC026759EE
-	for <lists+v9fs-developer@lfdr.de>; Fri, 20 Jan 2023 17:29:29 +0100 (CET)
-Received: from [127.0.0.1] (helo=sfs-ml-2.v29.lw.sourceforge.com)
-	by sfs-ml-2.v29.lw.sourceforge.com with esmtp (Exim 4.95)
+	by mail.lfdr.de (Postfix) with ESMTPS id 40CD1676B52
+	for <lists+v9fs-developer@lfdr.de>; Sun, 22 Jan 2023 07:38:48 +0100 (CET)
+Received: from [127.0.0.1] (helo=sfs-ml-4.v29.lw.sourceforge.com)
+	by sfs-ml-4.v29.lw.sourceforge.com with esmtp (Exim 4.95)
 	(envelope-from <v9fs-developer-bounces@lists.sourceforge.net>)
-	id 1pIuGe-0001zJ-0i;
-	Fri, 20 Jan 2023 16:29:27 +0000
+	id 1pJU06-00077e-BP;
+	Sun, 22 Jan 2023 06:38:44 +0000
 Received: from [172.30.20.202] (helo=mx.sourceforge.net)
- by sfs-ml-2.v29.lw.sourceforge.com with esmtps (TLS1.2) tls
+ by sfs-ml-4.v29.lw.sourceforge.com with esmtps (TLS1.2) tls
  TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384 (Exim 4.95)
- (envelope-from <alexander.shishkin@linux.intel.com>)
- id 1pIuGd-0001zD-3Q for v9fs-developer@lists.sourceforge.net;
- Fri, 20 Jan 2023 16:29:26 +0000
+ (envelope-from <info@bestimien.com>) id 1pJU05-00077Y-2A
+ for v9fs-developer@lists.sourceforge.net;
+ Sun, 22 Jan 2023 06:38:43 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=sourceforge.net; s=x; h=Content-Type:MIME-Version:Message-ID:Date:
- References:In-Reply-To:Subject:Cc:To:From:Sender:Reply-To:
- Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
- Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:
- List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=4Nl3cH+qrOj0826kYdnSAMTcIBNT6yafxZvrNTVOAMM=; b=Y4KVumenGjS2CjhtmH2Qr9e7O+
- 4Yqnl055bhLYGKx91p9ZPuaea6EFDqPETu58bMGsobPUnEcM+PGzZ/Hcb++8C+3+A4gp1t/q54axM
- b7ef2Vbmb575ZXh82x7Rb1jUoO7zN1/BUfz0TQQOfRYf0wbCpQmM6Fb7aX3popP/IA0Q=;
+ d=sourceforge.net; s=x; h=Content-Type:List-Unsubscribe:MIME-Version:
+ Message-ID:Date:Subject:To:From:Reply-To:Sender:Cc:Content-Transfer-Encoding:
+ Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+ Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:List-Id:
+ List-Help:List-Subscribe:List-Post:List-Owner:List-Archive;
+ bh=VqYNazIj8L/WHJiJPvX+HWaovT7whZuxbojVVIn0rp0=; b=YUUheAs8MyahovcPMmIse/M0H6
+ RKI/DZek32XPuBDZgVAjMAJoMEdikQ5ojjGVJfsxdByl/Y+/D4U3KkpnA8cj4q9uxk948sWT+EPw5
+ 8rlD6KeUpQMh8WnebU1oJR10BlUMEJJCK+uDkpGqAMxUu0KOw8w4VfMIFKwVhlxKmcWE=;
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  ;
- h=Content-Type:MIME-Version:Message-ID:Date:References:In-Reply-To:Subject:
- Cc:To:From:Sender:Reply-To:Content-Transfer-Encoding:Content-ID:
+ h=Content-Type:List-Unsubscribe:MIME-Version:Message-ID:Date:Subject:To:
+ From:Reply-To:Sender:Cc:Content-Transfer-Encoding:Content-ID:
  Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
- :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
+ :Resent-Message-ID:In-Reply-To:References:List-Id:List-Help:List-Subscribe:
  List-Post:List-Owner:List-Archive;
- bh=4Nl3cH+qrOj0826kYdnSAMTcIBNT6yafxZvrNTVOAMM=; b=eOSwda+BqJLpwRkL+R0hsC4chp
- dpy+jbK68aDRkTVGV61gpK1N9Q8PEdw6MQ6ba/LFwCZwuxctMtzwKLLz6Hum6T43MwF7LynqYrrAu
- N9ilYt66ODaP98Z18ULl1Ey6vGzDPEqlXNbKaGjh35NxLcs9uB/7QNOUuvIeAF2PuGho=;
-Received: from mga18.intel.com ([134.134.136.126])
+ bh=VqYNazIj8L/WHJiJPvX+HWaovT7whZuxbojVVIn0rp0=; b=aQ7RLnJuGgEkEvHgJ+yqHxhUoq
+ +oUVVnyuJaxUoD4Iu1g/VR/PxDavywvHUc7EI+zZT6l7S4511B552tK/7rrhSluJldp+nnlSpR79u
+ nK9URUMN2wjFCQLHqxZ5Qm6/MfLPoC9S7++QysYhLe3ogqYtwOVHsRJdIAgSOEI+JkW8=;
+Received: from srv.bestimien.com ([23.95.50.146])
  by sfi-mx-2.v28.lw.sourceforge.com with esmtps
  (TLS1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.95)
- id 1pIuGY-0000l7-FM for v9fs-developer@lists.sourceforge.net;
- Fri, 20 Jan 2023 16:29:26 +0000
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1674232162; x=1705768162;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version;
- bh=O6wpBdznok9WWQi6tGstvlF0qyv4xAofY8+th1qvITo=;
- b=fWFx0s3jnIiKkuGFLdsOVllpEAVgG1+R3RBNXuNBEwCQxbp+L2JKs5Rz
- bYQi50F0mkUOgF5gbaXy9HkO8i+IEKuMPuKfis5oX4USfIubQyfQwLxr4
- FoeMagblB6vbkQx0T/xiJhd5+Riymept5lFJbI5u4ELNuS2VWr5MzwVu2
- s9BIOfsUPOnY+09yKvDIMDpj7EHY14MiY0mdbfFwHGPs6eeHWobuUhxjV
- pQZQ0xQfron0CNqd4D36xo/hu6vxPPiQi3xCZfCgTQH6qsFal288pZlLp
- BwC6uJsxyPe869t2GxdC4WX34DnBGeg8cCzVHNW53i8GPK7g0MVeBBBQH w==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10596"; a="309190337"
-X-IronPort-AV: E=Sophos;i="5.97,232,1669104000"; d="scan'208";a="309190337"
-Received: from orsmga006.jf.intel.com ([10.7.209.51])
- by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Jan 2023 08:29:16 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6500,9779,10596"; a="638203235"
-X-IronPort-AV: E=Sophos;i="5.97,232,1669104000"; d="scan'208";a="638203235"
-Received: from ubik.fi.intel.com (HELO localhost) ([10.237.72.184])
- by orsmga006.jf.intel.com with ESMTP; 20 Jan 2023 08:29:12 -0800
-From: Alexander Shishkin <alexander.shishkin@linux.intel.com>
-To: "Michael S. Tsirkin" <mst@redhat.com>
-In-Reply-To: <20230120074817-mutt-send-email-mst@kernel.org>
-References: <20230119135721.83345-1-alexander.shishkin@linux.intel.com>
- <20230119135721.83345-4-alexander.shishkin@linux.intel.com>
- <20230120074817-mutt-send-email-mst@kernel.org>
-Date: Fri, 20 Jan 2023 18:29:11 +0200
-Message-ID: <871qnpqieg.fsf@ubik.fi.intel.com>
+ id 1pJTzy-0005FN-Dq for v9fs-developer@lists.sourceforge.net;
+ Sun, 22 Jan 2023 06:38:42 +0000
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; s=dkim; d=bestimien.com; 
+ h=Reply-To:From:To:Subject:Date:Message-ID:MIME-Version:List-Unsubscribe:
+ Content-Type; i=info@bestimien.com;
+ bh=VqYNazIj8L/WHJiJPvX+HWaovT7whZuxbojVVIn0rp0=;
+ b=g8/HvBxxDkUnx5jMh1Bavo6QYkXWQzDsIW818GLVdg8vOoUV/djwLIPOg0ms2Bb2t+INzR4QZgLN
+ dYjPw+7o4bJT7xj9thrzGqF4sUmVP1u09LZDX9ndvyGq3CAnoVKGb4vZwst0u3hhcP9ffVGB9hax
+ sDFTjlymMuTrK6N6T/s=
+To: v9fs-developer@lists.sourceforge.net
+Date: 22 Jan 2023 07:38:33 +0100
+Message-ID: <20230122073833.C7C64B67D3FBA360@bestimien.com>
 MIME-Version: 1.0
-X-Spam-Score: -0.8 (/)
-X-Spam-Report: Spam detection software,
- running on the system "util-spamd-1.v13.lw.sourceforge.com", 
- has NOT identified this incoming email as spam.  The original
+X-Spam-Score: 7.2 (+++++++)
+X-Spam-Report: Spam detection software, running on the system "util-spamd-1.v13.lw.sourceforge.com",
+ has identified this incoming email as possible spam.  The original
  message has been attached to this so you can view it or label
  similar future email.  If you have any questions, see
  the administrator of that system for details.
- Content preview:  "Michael S. Tsirkin" <mst@redhat.com> writes: > On Thu, Jan
- 19, 2023 at 03:57:18PM +0200, Alexander Shishkin wrote: >> From: Andi Kleen
- <ak@linux.intel.com> >> >> diff --git a/net/9p/trans_virtio.c
- b/net/9p/trans_virtio.c >> index 3c27ffb781e3..a [...] 
- Content analysis details:   (-0.8 points, 6.0 required)
- pts rule name              description
+ 
+ Content preview:  Greetings  v9fs-developer ! We invite all interested project
+    owners and investors to our project financing/investment programme. We source
+    unique business development opportunities and work closely with established
+    companies in its actualization. 
+ 
+ Content analysis details:   (7.2 points, 6.0 required)
+ 
+  pts rule name              description
  ---- ---------------------- --------------------------------------------------
- 0.0 SPF_HELO_NONE          SPF: HELO does not publish an SPF Record
- 0.0 SPF_NONE               SPF: sender does not publish an SPF Record
+  2.5 URIBL_DBL_SPAM         Contains a spam URL listed in the Spamhaus DBL
+                             blocklist
+                             [URIs: bestimien.com]
+  1.2 RCVD_IN_BL_SPAMCOP_NET RBL: Received via a relay in
+                             bl.spamcop.net
+                [Blocked - see <https://www.spamcop.net/bl.shtml?23.95.50.146>]
+  2.6 RCVD_IN_SBL            RBL: Received via a relay in Spamhaus SBL
+                             [23.95.50.146 listed in zen.spamhaus.org]
+  0.1 URIBL_SBL_A            Contains URL's A record listed in the Spamhaus SBL
+                             blocklist
+                             [URIs: bestimien.com]
+ -0.0 RCVD_IN_MSPIKE_H2      RBL: Average reputation (+2)
+                             [23.95.50.146 listed in wl.mailspike.net]
+ -0.0 SPF_PASS               SPF: sender matches SPF record
+  0.0 SPF_HELO_NONE          SPF: HELO does not publish an SPF Record
+  1.0 RCVD_IN_UCE1           RBL: IP Listed in UCEPROTECT Level 1
+                             [23.95.50.146 listed in dnsbl-1.uceprotect.net]
+  0.0 HTML_MESSAGE           BODY: HTML included in message
+ -0.1 DKIM_VALID_AU          Message has a valid DKIM or DK signature from
+                             author's domain
  -0.1 DKIM_VALID_EF          Message has a valid DKIM or DK signature from
- envelope-from domain
- -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
- 0.1 DKIM_SIGNED            Message has a DKIM or DK signature, not necessarily
- valid -0.7 DKIMWL_WL_HIGH         DKIMwl.org - High trust sender
-X-Headers-End: 1pIuGY-0000l7-FM
-Subject: Re: [V9fs-developer] [PATCH v1 3/6] virtio 9p: Fix an overflow
+                             envelope-from domain
+ -0.1 DKIM_VALID             Message has at least one valid DKIM or DK signature
+  0.1 DKIM_SIGNED            Message has a DKIM or DK signature, not necessarily
+                             valid
+  0.0 HK_NAME_MR_MRS         No description available.
+X-Headers-End: 1pJTzy-0005FN-Dq
+X-Content-Filtered-By: Mailman/MimeDel 2.1.21
+Subject: [V9fs-developer] Do you need a loan ?
 X-BeenThere: v9fs-developer@lists.sourceforge.net
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -104,47 +106,38 @@ List-Post: <mailto:v9fs-developer@lists.sourceforge.net>
 List-Help: <mailto:v9fs-developer-request@lists.sourceforge.net?subject=help>
 List-Subscribe: <https://lists.sourceforge.net/lists/listinfo/v9fs-developer>, 
  <mailto:v9fs-developer-request@lists.sourceforge.net?subject=subscribe>
-Cc: Latchesar Ionkov <lucho@ionkov.net>, Andi Kleen <ak@linux.intel.com>,
- Eric Van Hensbergen <ericvh@gmail.com>, jasowang@redhat.com,
- Christian Schoenebeck <linux_oss@crudebyte.com>, linux-kernel@vger.kernel.org,
- virtualization@lists.linux-foundation.org, alexander.shishkin@linux.intel.com,
- elena.reshetova@intel.com, v9fs-developer@lists.sourceforge.net,
- kirill.shutemov@linux.intel.com
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+From: "Mr. Yousef Khalid via V9fs-developer"
+ <v9fs-developer@lists.sourceforge.net>
+Reply-To: alice@szksnk.com
+Cc: "Mr. Yousef Khalid" <info@bestimien.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: v9fs-developer-bounces@lists.sourceforge.net
 
-"Michael S. Tsirkin" <mst@redhat.com> writes:
-
-> On Thu, Jan 19, 2023 at 03:57:18PM +0200, Alexander Shishkin wrote:
->> From: Andi Kleen <ak@linux.intel.com>
->> 
->> diff --git a/net/9p/trans_virtio.c b/net/9p/trans_virtio.c
->> index 3c27ffb781e3..a78e4d80e5ba 100644
->> --- a/net/9p/trans_virtio.c
->> +++ b/net/9p/trans_virtio.c
->> @@ -629,7 +629,7 @@ static int p9_virtio_probe(struct virtio_device *vdev)
->>  		err = -EINVAL;
->>  		goto out_free_vq;
->>  	}
->> -	tag = kzalloc(tag_len + 1, GFP_KERNEL);
->> +	tag = kzalloc((u32)tag_len + 1, GFP_KERNEL);
->>  	if (!tag) {
->>  		err = -ENOMEM;
->>  		goto out_free_vq;
->
-> Hmm are you sure there's a difference in behaviour? I thought C will just
-> extend the integer to int.
-
-Actually, you're right, integer promotion would extend the original
-expression to int. I'll drop this patch also.
-
-Thanks,
---
-Alex
-
-
-_______________________________________________
-V9fs-developer mailing list
-V9fs-developer@lists.sourceforge.net
-https://lists.sourceforge.net/lists/listinfo/v9fs-developer
+CgoKCgogICAgR3JlZXRpbmdzwqAgdjlmcy1kZXZlbG9wZXLCoCEKCgoKICAgIFdlIGludml0ZSBh
+bGwgaW50ZXJlc3RlZCBwcm9qZWN0IG93bmVycyBhbmQgaW52ZXN0b3JzIHRvIG91ciAKcHJvamVj
+dCBmaW5hbmNpbmcvaW52ZXN0bWVudCBwcm9ncmFtbWUuCgogICAgV2Ugc291cmNlIHVuaXF1ZSBi
+dXNpbmVzcyBkZXZlbG9wbWVudCBvcHBvcnR1bml0aWVzIGFuZCB3b3JrIApjbG9zZWx5IHdpdGgg
+ZXN0YWJsaXNoZWQgY29tcGFuaWVzIGluIGl0cyBhY3R1YWxpemF0aW9uLgoKICAgIFdlIGFyZSB0
+aGUgcHJlbWllciBhbHRlcm5hdGl2ZSBhc3NldCBtYW5hZ2VtZW50IGZpcm0gaW4gdGhlIApNaWRk
+bGUgRWFzdC4gV2UgZm9jdXMgb24gZ2VuZXJhdGluZyBzdXN0YWluYWJsZSwgc3VwZXJpb3IgCnBl
+cmZvcm1hbmNlIGZvciBhbGwgb3VyIHN0YWtlaG9sZGVycywgZ3Jvd2luZyBjYXBpdGFsIGFuZCB2
+YWx1ZSAKdGhyb3VnaCB3b3JsZC1jbGFzcyBleHBlcnRpc2UgYW5kIGFkaGVyZW5jZSB0byB0aGUg
+Zm9sbG93aW5nIGNvcmUgCnByaW5jaXBsZXM6IFdlIHdpc2ggdG8gcmUtaW52ZXN0IHRocm91Z2gg
+cHJvamVjdCBmdW5kaW5nIGluIAppbnZlc3RtZW50IGxvYW4gdG8gdGhpcmQgcGFydHkgaW52ZXN0
+b3JzLCBwcm9qZWN0IG93bmVycyBvbiBhIAoyLjUlIGludGVyZXN0IHJhdGUgcGVyIGFubnVtIG9u
+IGxvbmcgdGVybSBpbnZlc3RtZW50IHByb2plY3RzIAp0aGF0IGNhbiBnZW5lcmF0ZSB1cCB0byAx
+MCUgUk9JIHdpdGhpbiB0aGUgcGVyaW9kIG9mIGludmVzdG1lbnQuCgogICAgV2UgcHJpZGUgb3Vy
+c2VsdmVzIG9uIGZvcm1pbmcgdHJ1ZSBwYXJ0bmVyc2hpcHMgd2l0aCB0aGUgCm93bmVycyBhbmQg
+c3Rha2Vob2xkZXJzIG9mIGJ1c2luZXNzZXMgd2UgaW52ZXN0IGluLiBXZSB3b3JrIApjbG9zZWx5
+IHdpdGggb3VyIHBhcnRuZXJzIHRvIGNyZWF0ZSB2YWx1ZSBhbmQgcHV0IHBvcnRmb2xpbyAKY29t
+cGFuaWVzIGZpcm1seSBvbiBhbiBhY2NlbGVyYXRlZCBncm93dGggcGF0aC4KCiAgICBJZiBvdXIg
+b2ZmZXIgZm9yIGNvbGxhYm9yYXRpb24gaXMgd2l0aGluIHRoZSBhY2NlcHRhYmxlIApmaW5hbmNp
+bmcgc2NoZW1lIGFudGljaXBhdGVkIGJ5IHlvdXIgb3JnYW5pemF0aW9uLCB3ZSB3aWxsIGJlIApn
+bGFkIHRvIGNvbnNpZGVyIGEgcG9zc2libGUgY29sbGFib3JhdGlvbiB3aXRoIHlvdXIgb3JnYW5p
+emF0aW9uLgoKICAgIEJlc3QgUmVnYXJkcywKICAgIE1yLiBZb3VzZWYgS2hhbGlkCiAgICBGaW5h
+bmNpYWwgQ29uc3VsdGFudAogICAgUHJpdmF0ZSBlbWFpbDp5b3VzZWZfa2hhbGlkQGZnaXMtYWUu
+bmV0ICjCoMKgKQpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+XwpWOWZzLWRldmVsb3BlciBtYWlsaW5nIGxpc3QKVjlmcy1kZXZlbG9wZXJAbGlzdHMuc291cmNl
+Zm9yZ2UubmV0Cmh0dHBzOi8vbGlzdHMuc291cmNlZm9yZ2UubmV0L2xpc3RzL2xpc3RpbmZvL3Y5
+ZnMtZGV2ZWxvcGVyCg==
