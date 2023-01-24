@@ -2,103 +2,117 @@ Return-Path: <v9fs-developer-bounces@lists.sourceforge.net>
 X-Original-To: lists+v9fs-developer@lfdr.de
 Delivered-To: lists+v9fs-developer@lfdr.de
 Received: from lists.sourceforge.net (lists.sourceforge.net [216.105.38.7])
-	by mail.lfdr.de (Postfix) with ESMTPS id 83A1E67958B
-	for <lists+v9fs-developer@lfdr.de>; Tue, 24 Jan 2023 11:45:07 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 89731679920
+	for <lists+v9fs-developer@lfdr.de>; Tue, 24 Jan 2023 14:20:11 +0100 (CET)
 Received: from [127.0.0.1] (helo=sfs-ml-4.v29.lw.sourceforge.com)
 	by sfs-ml-4.v29.lw.sourceforge.com with esmtp (Exim 4.95)
 	(envelope-from <v9fs-developer-bounces@lists.sourceforge.net>)
-	id 1pKGna-0000HA-EU;
-	Tue, 24 Jan 2023 10:45:05 +0000
+	id 1pKJDe-0003fC-JM;
+	Tue, 24 Jan 2023 13:20:09 +0000
 Received: from [172.30.20.202] (helo=mx.sourceforge.net)
  by sfs-ml-4.v29.lw.sourceforge.com with esmtps (TLS1.2) tls
  TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384 (Exim 4.95)
- (envelope-from <lkp@intel.com>) id 1pKGnW-0000Gy-RT
+ (envelope-from <ericvh@gmail.com>) id 1pKJDd-0003f5-9k
  for v9fs-developer@lists.sourceforge.net;
- Tue, 24 Jan 2023 10:45:01 +0000
+ Tue, 24 Jan 2023 13:20:07 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=sourceforge.net; s=x; h=Content-Type:MIME-Version:Message-ID:Subject:Cc:To:
- From:Date:Sender:Reply-To:Content-Transfer-Encoding:Content-ID:
- Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
- :Resent-Message-ID:In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:
+ d=sourceforge.net; s=x; h=Content-Type:Cc:To:Subject:Message-ID:Date:From:
+ In-Reply-To:References:MIME-Version:Sender:Reply-To:Content-Transfer-Encoding
+ :Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+ Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
  List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=0S0JJypSGUR2oSMv0WnfLaYSa/uGN2L/wJT9KVKHt7k=; b=SnoJEgW8435j9zcV6HAWfh9CC8
- bppvQt4pkbGrVonPlez16wrn45NJN0jn51TNcKSjZge4ledGWzwEXmq5rBW8iibsUtVpXtwMYrz6J
- OeDn1qrjkoCOCcQmzKqMSeQLtHcmUEnaMfwAmVuQwnTelVT3oZM3tdR8S8mTY5NZeKVA=;
+ bh=S8Kzxt05nYbYv/Il6BkxFDEsa9KwofMO5gAxHua0u0Q=; b=ISe4gCmSnWXUNb/Ua7C02AKfCe
+ bB1+/vEBvPt7btJI3GjxeLA6B1dW33rSCSPho3YoCiiC15K4IKpdaTWDNtlEoTg69D2zb2PNBOSe/
+ a9nsJbd8/1HhjZBDv8+B2Cen6iChCo+/GdhaVA/dJ3N2ngUHIAXa6OgzUGCUKpcDy7+w=;
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  ;
- h=Content-Type:MIME-Version:Message-ID:Subject:Cc:To:From:Date:Sender:
- Reply-To:Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date
- :Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:
- References:List-Id:List-Help:List-Unsubscribe:List-Subscribe:List-Post:
- List-Owner:List-Archive; bh=0S0JJypSGUR2oSMv0WnfLaYSa/uGN2L/wJT9KVKHt7k=; b=X
- Dhav3rtMQuokj1uIJQ+2nDgwaExaLeQeqw7PFQ32UE91TLVzaKupi2LaHsifCcxcFauwW2gSwxLMh
- qVvJzrmx21XbDBqtgXY+LNV981fBj7aX12K3YBO4b+zhMx3MfnybCi2Jv67h/tNeyaPh4K/bcxofA
- C7Y8k4QEU7HS7U54=;
-Received: from mga03.intel.com ([134.134.136.65])
+ h=Content-Type:Cc:To:Subject:Message-ID:Date:From:In-Reply-To:References:
+ MIME-Version:Sender:Reply-To:Content-Transfer-Encoding:Content-ID:
+ Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
+ :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
+ List-Post:List-Owner:List-Archive;
+ bh=S8Kzxt05nYbYv/Il6BkxFDEsa9KwofMO5gAxHua0u0Q=; b=gUGMDUkU3Z9jSprFsMiwWc56UW
+ cksu4bPL4Wjtgz1uiB6wh4P4G4IxUFJyT/Kd5iLqceJu9zu3RRO81Ut88g83ZNiIFhvtyuXwJMddW
+ JxgYNvkgJcbw8VIl173qHdFRnPN0G8U4FwO2xq+4ISBEkeMviY5a06bIROfmiW7U8iBU=;
+Received: from mail-wr1-f47.google.com ([209.85.221.47])
  by sfi-mx-2.v28.lw.sourceforge.com with esmtps
- (TLS1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.95)
- id 1pKGnR-0003Yi-TD for v9fs-developer@lists.sourceforge.net;
- Tue, 24 Jan 2023 10:45:01 +0000
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1674557097; x=1706093097;
- h=date:from:to:cc:subject:message-id:mime-version;
- bh=9GN09YTe7MMMKDh6Jjnt9HvPyO8WnTDVLFsKBcAcLXM=;
- b=I0bC0CAcHGg7QAo/w8WtydyBUG1avWOBhCxpadfen9a4qMjIXJb8OFST
- XoDIZsAEzbIBRiG4Ue2lnd5Ce416Td/V6mgalmFvwcpDbOcP42Jxw+6ji
- o6fmU4q6kWvhPA9w07K38T7Kqjv6e1EupdIJ9b24QRVeZo9ltTmmKJHF4
- ljjiZlfoJdsbaH5hvLYyIPK069ceHDg3Z2S9DzQcSFHNcmiOQMPTVrh7I
- vB6h6f4WjqpqVe9+aoTJ/HJ4XC5EPk5QPCTLw7K2KOqrS1xeGRI47yd0s
- +uTo9NXUpteFegRcVClWjLWfmbGdhu8VmWqJLCvkA3LGOJfwwFmVzT5iW w==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10599"; a="328356977"
-X-IronPort-AV: E=Sophos;i="5.97,242,1669104000"; d="scan'208";a="328356977"
-Received: from fmsmga006.fm.intel.com ([10.253.24.20])
- by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Jan 2023 02:44:51 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6500,9779,10599"; a="907438513"
-X-IronPort-AV: E=Sophos;i="5.97,242,1669104000"; d="scan'208";a="907438513"
-Received: from lkp-server01.sh.intel.com (HELO 5646d64e7320) ([10.239.97.150])
- by fmsmga006.fm.intel.com with ESMTP; 24 Jan 2023 02:44:50 -0800
-Received: from kbuild by 5646d64e7320 with local (Exim 4.96)
- (envelope-from <lkp@intel.com>) id 1pKGnJ-0006LU-2a;
- Tue, 24 Jan 2023 10:44:49 +0000
-Date: Tue, 24 Jan 2023 18:43:58 +0800
-From: kernel test robot <lkp@intel.com>
-To: Eric Van Hensbergen <ericvh@kernel.org>
-Message-ID: <202301241856.YAPUu0wS-lkp@intel.com>
+ (TLS1.2:ECDHE-RSA-AES128-GCM-SHA256:128) (Exim 4.95)
+ id 1pKJDa-0000Mf-HG for v9fs-developer@lists.sourceforge.net;
+ Tue, 24 Jan 2023 13:20:07 +0000
+Received: by mail-wr1-f47.google.com with SMTP id y1so9360956wru.2
+ for <v9fs-developer@lists.sourceforge.net>;
+ Tue, 24 Jan 2023 05:20:06 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
+ h=cc:to:subject:message-id:date:from:in-reply-to:references
+ :mime-version:from:to:cc:subject:date:message-id:reply-to;
+ bh=S8Kzxt05nYbYv/Il6BkxFDEsa9KwofMO5gAxHua0u0Q=;
+ b=OBULABva49l1uj5XfRdIeaR7BQqNE+F9Z4FEZLSRpdUq9NKs7SIK1CigazkB1calPn
+ li/WA/0Mve+PUUF4zANyAB1WGgX+/PGI2pDFCRmW5AHF+s92T+UGDbGVJ/A7lDgYIvlR
+ 0yki1UQRgXzblAgAZFkl8hpxMt7GgMaTvObD/zaijny/BZVjekSjbYuej5yKaHEri+fy
+ E1WZj2C1G4cBME7FCwWrAYRh5tdpQebXXWkmIqUObhBS4aQE42GEwNGWHtVc4mLVUL+j
+ sOpMdJeF8ksYSYMF8H0gqgeJBhDBQ821VXP9F8mcc6T+J/gJI4d7j/p2BEIWedxWmKLB
+ +hlg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20210112;
+ h=cc:to:subject:message-id:date:from:in-reply-to:references
+ :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+ :reply-to;
+ bh=S8Kzxt05nYbYv/Il6BkxFDEsa9KwofMO5gAxHua0u0Q=;
+ b=b4X1ynW/zCHv6SYxd+jI31y6RoRW5MnLtwF/Yu3DBEHTzjT0dlNx65gaSwiN/PZRbO
+ nm3kgnOSW1RqDjw8do9SzQvVXsO8ePahaoDCElv40UH0rPn94oQqLTt10h1tVRH8xCwC
+ A6gt41c2k7i2zby+cUczDXeAt1eG2Y4L3DiQo0j+EaEzoadFtoDTRJsWFdfuNckehSat
+ uiz12QWKztjwKcy3tkgKTBhikWbAg8rJUFP6qhECE1E79ML5HinXOqP5RgLY3GNPsQUg
+ h8nAIu75QOGAcbwaCqKFOku2B8woMjg7nAyr77WUOPpIvgj+aZBf26YI6tWFjvWlaiCm
+ GtVA==
+X-Gm-Message-State: AFqh2kocAICSVA9Z+mhRVO+Z1f5QFYqwlYnRDO+MU6oAPXjLh89U8S3b
+ xri0jxm1Z64y8U5Q58dbADiVmS2sSU0+DVMnYeo=
+X-Google-Smtp-Source: AMrXdXs0jp8hzux2num/SK3+92Ghh9+9qWX6yljAqhEQ9nSQ/NY0UFYL3KRTYsdVHjwdBLkI/V4lBrq795+SaMaXCJo=
+X-Received: by 2002:a5d:658e:0:b0:2be:54ab:41a4 with SMTP id
+ q14-20020a5d658e000000b002be54ab41a4mr635460wru.104.1674566398901; Tue, 24
+ Jan 2023 05:19:58 -0800 (PST)
 MIME-Version: 1.0
-Content-Disposition: inline
-X-Spam-Score: -2.5 (--)
+References: <20221217183142.1425132-1-evanhensbergen@icloud.com>
+ <20221218232217.1713283-1-evanhensbergen@icloud.com>
+ <4478705.9R3AOq7agI@silver>
+ <CEE93F4D-7C11-4FE3-BB70-A9C865BE5BC2@icloud.com>
+ <Y89HQXu90ea6Ed4r@codewreck.org>
+ <CAFkjPTkX2t_YOEENVPEggV-yhyjYgBrYjYLYCH9JVeTifeap3g@mail.gmail.com>
+ <Y89cxzpuZXgxYrs5@codewreck.org>
+In-Reply-To: <Y89cxzpuZXgxYrs5@codewreck.org>
+From: Eric Van Hensbergen <ericvh@gmail.com>
+Date: Tue, 24 Jan 2023 07:19:47 -0600
+Message-ID: <CAFkjPTkBznPVE3=FAUhOsUHewBK16Skwu0B5LY0qfZ80tKMXQA@mail.gmail.com>
+To: asmadeus@codewreck.org
+X-Spam-Score: -0.2 (/)
 X-Spam-Report: Spam detection software,
- running on the system "util-spamd-2.v13.lw.sourceforge.com", 
+ running on the system "util-spamd-1.v13.lw.sourceforge.com", 
  has NOT identified this incoming email as spam.  The original
  message has been attached to this so you can view it or label
  similar future email.  If you have any questions, see
  the administrator of that system for details.
- Content preview: tree:
- https://git.kernel.org/pub/scm/linux/kernel/git/ericvh/v9fs.git
- ericvh/for-next head: 2245aefc0a6f35eb2a9ad0afa8958c3d2fa694ea commit:
- 7cde5b8cea83cb4f289ad3b1183656836b14fa2b
- [4/12] Consolidate [...] 
- Content analysis details:   (-2.5 points, 6.0 required)
+ Content preview:  Okay, I'll go ahead and ask stephen to add me back into the
+ next list and see what he says, in the background I'll also look at what
+ it would take to setup a workflow to mirror branches from v9fs/linu [...] 
+ Content analysis details:   (-0.2 points, 6.0 required)
  pts rule name              description
  ---- ---------------------- --------------------------------------------------
- -2.3 RCVD_IN_DNSWL_MED      RBL: Sender listed at https://www.dnswl.org/,
- medium trust [134.134.136.65 listed in list.dnswl.org]
- 0.0 SPF_HELO_NONE          SPF: HELO does not publish an SPF Record
  -0.0 SPF_PASS               SPF: sender matches SPF record
- 0.1 DKIM_SIGNED            Message has a DKIM or DK signature, not necessarily
- valid
+ 0.0 SPF_HELO_NONE          SPF: HELO does not publish an SPF Record
+ 0.0 FREEMAIL_FROM          Sender email is commonly abused enduser mail
+ provider [ericvh[at]gmail.com]
+ -0.1 DKIM_VALID_AU          Message has a valid DKIM or DK signature from
+ author's domain
  -0.1 DKIM_VALID_EF          Message has a valid DKIM or DK signature from
  envelope-from domain
  -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
- -0.1 DKIM_VALID_AU          Message has a valid DKIM or DK signature from
- author's domain
- -0.0 DKIMWL_WL_HIGH         DKIMwl.org - High trust sender
-X-Headers-End: 1pKGnR-0003Yi-TD
-Subject: [V9fs-developer] [ericvh-v9fs:ericvh/for-next 4/12]
- fs/9p/vfs_file.c:590:42: warning: 'v9fs_file_vm_ops' defined but not used
+ 0.1 DKIM_SIGNED            Message has a DKIM or DK signature, not necessarily
+ valid -0.0 RCVD_IN_MSPIKE_H2      RBL: Average reputation (+2)
+ [209.85.221.47 listed in wl.mailspike.net]
+ -0.0 RCVD_IN_DNSWL_NONE     RBL: Sender listed at https://www.dnswl.org/,
+ no trust [209.85.221.47 listed in list.dnswl.org]
+X-Headers-End: 1pKJDa-0000Mf-HG
+Subject: Re: [V9fs-developer] [PATCH v2 00/10] Performance fixes for 9p
+ filesystem
 X-BeenThere: v9fs-developer@lists.sourceforge.net
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -110,56 +124,59 @@ List-Post: <mailto:v9fs-developer@lists.sourceforge.net>
 List-Help: <mailto:v9fs-developer-request@lists.sourceforge.net?subject=help>
 List-Subscribe: <https://lists.sourceforge.net/lists/listinfo/v9fs-developer>, 
  <mailto:v9fs-developer-request@lists.sourceforge.net?subject=subscribe>
-Cc: v9fs-developer@lists.sourceforge.net, oe-kbuild-all@lists.linux.dev
+Cc: Latchesar Ionkov <lucho@ionkov.net>,
+ Zhengchao Shao via V9fs-developer <v9fs-developer@lists.sourceforge.net>,
+ Christian Schoenebeck <linux_oss@crudebyte.com>,
+ Ron Minnich <rminnich@gmail.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: v9fs-developer-bounces@lists.sourceforge.net
 
-tree:   https://git.kernel.org/pub/scm/linux/kernel/git/ericvh/v9fs.git ericvh/for-next
-head:   2245aefc0a6f35eb2a9ad0afa8958c3d2fa694ea
-commit: 7cde5b8cea83cb4f289ad3b1183656836b14fa2b [4/12] Consolidate file operations and add readahead and writeback
-config: x86_64-rhel-8.3-func (https://download.01.org/0day-ci/archive/20230124/202301241856.YAPUu0wS-lkp@intel.com/config)
-compiler: gcc-11 (Debian 11.3.0-8) 11.3.0
-reproduce (this is a W=1 build):
-        # https://git.kernel.org/pub/scm/linux/kernel/git/ericvh/v9fs.git/commit/?id=7cde5b8cea83cb4f289ad3b1183656836b14fa2b
-        git remote add ericvh-v9fs https://git.kernel.org/pub/scm/linux/kernel/git/ericvh/v9fs.git
-        git fetch --no-tags ericvh-v9fs ericvh/for-next
-        git checkout 7cde5b8cea83cb4f289ad3b1183656836b14fa2b
-        # save the config file
-        mkdir build_dir && cp config build_dir/.config
-        make W=1 O=build_dir ARCH=x86_64 olddefconfig
-        make W=1 O=build_dir ARCH=x86_64 SHELL=/bin/bash fs/9p/
+Okay, I'll go ahead and ask stephen to add me back into the next list
+and see what he says, in the background I'll also look at what it
+would take to setup a workflow to mirror branches from v9fs/linux on
+github to kernel.org.  I've had automate regression testing and
+performance regressions on my to-do list since before december so
+might also get back to that once I finish fixing the dir-cache
+patches.
 
-If you fix the issue, kindly add following tag where applicable
-| Reported-by: kernel test robot <lkp@intel.com>
+         -eric
 
-All warnings (new ones prefixed by >>):
-
->> fs/9p/vfs_file.c:590:42: warning: 'v9fs_file_vm_ops' defined but not used [-Wunused-const-variable=]
-     590 | static const struct vm_operations_struct v9fs_file_vm_ops = {
-         |                                          ^~~~~~~~~~~~~~~~
-
-
-vim +/v9fs_file_vm_ops +590 fs/9p/vfs_file.c
-
-fb89b45cdfdc8b Dominique Martinet 2014-01-10  588  
-fb89b45cdfdc8b Dominique Martinet 2014-01-10  589  
-7263cebed9fada Aneesh Kumar K.V   2011-02-28 @590  static const struct vm_operations_struct v9fs_file_vm_ops = {
-7263cebed9fada Aneesh Kumar K.V   2011-02-28  591  	.fault = filemap_fault,
-f1820361f83d55 Kirill A. Shutemov 2014-04-07  592  	.map_pages = filemap_map_pages,
-7263cebed9fada Aneesh Kumar K.V   2011-02-28  593  	.page_mkwrite = v9fs_vm_page_mkwrite,
-7263cebed9fada Aneesh Kumar K.V   2011-02-28  594  };
-7263cebed9fada Aneesh Kumar K.V   2011-02-28  595  
-
-:::::: The code at line 590 was first introduced by commit
-:::::: 7263cebed9fadad719063fdc8bba7085cf2c080d fs/9p: Add buffered write support for v9fs.
-
-:::::: TO: Aneesh Kumar K.V <aneesh.kumar@linux.vnet.ibm.com>
-:::::: CC: Eric Van Hensbergen <ericvh@gmail.com>
-
--- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests
+On Mon, Jan 23, 2023 at 10:21 PM <asmadeus@codewreck.org> wrote:
+>
+> Eric Van Hensbergen wrote on Mon, Jan 23, 2023 at 09:12:13PM -0600:
+> > Was just looking at this, I imagine my 9p-next branch timed out of
+> > being included in linux-next about a decade ago ;)  I could
+> > re-establish, but I think it's probably best we keep a single 9p
+> > funnel into linux-next and that probably means yours for now (there
+> > doesn't seem to be much precedent in Next/Trees for
+> > multi-maintainers).
+>
+> I seem to recall nfs used to alternate maintainers, and Next/Trees[1]
+> lists a tree for trond and another for anna which would imply they each
+> have their own branch.
+> afaiu xfs does something similar but they seem to channel it through
+> git://git.kernel.org/pub/scm/fs/xfs/xfs-linux.git, although there's
+> three branches included in there...
+>
+> Anyway, it doesn't look like there's any clear cut rule here, we can
+> probably do whatever looks good.
+>
+> [1] https://kernel.googlesource.com/pub/scm/linux/kernel/git/next/linux-next/+/master/Next/Trees
+>
+> > We could try and coordinate around a shared
+> > github for-next repo and require at least one other maintainer review
+> > patches before submission to for-next and then mirror that to
+> > kernel.org -- mainly looking to minimize workload for folks here, open
+> > to other ideas.
+>
+> I don't particularly like github workflows -- would just follow along
+> there if you want some gating, but going through github.com/v9fs/linux
+> probably makes sense access-wise, I don't have an account on kernel.org
+> so that'll be one less thing to do.
+>
+> --
+> Dominique
 
 
 _______________________________________________
