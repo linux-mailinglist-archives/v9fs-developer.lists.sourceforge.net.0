@@ -2,17 +2,17 @@ Return-Path: <v9fs-developer-bounces@lists.sourceforge.net>
 X-Original-To: lists+v9fs-developer@lfdr.de
 Delivered-To: lists+v9fs-developer@lfdr.de
 Received: from lists.sourceforge.net (lists.sourceforge.net [216.105.38.7])
-	by mail.lfdr.de (Postfix) with ESMTPS id B1E0F678E50
+	by mail.lfdr.de (Postfix) with ESMTPS id A9C17678E4E
 	for <lists+v9fs-developer@lfdr.de>; Tue, 24 Jan 2023 03:39:22 +0100 (CET)
-Received: from [127.0.0.1] (helo=sfs-ml-1.v29.lw.sourceforge.com)
-	by sfs-ml-1.v29.lw.sourceforge.com with esmtp (Exim 4.95)
+Received: from [127.0.0.1] (helo=sfs-ml-2.v29.lw.sourceforge.com)
+	by sfs-ml-2.v29.lw.sourceforge.com with esmtp (Exim 4.95)
 	(envelope-from <v9fs-developer-bounces@lists.sourceforge.net>)
-	id 1pK9DV-0004tb-4j;
+	id 1pK9DV-0000h5-DA;
 	Tue, 24 Jan 2023 02:39:20 +0000
 Received: from [172.30.20.202] (helo=mx.sourceforge.net)
- by sfs-ml-1.v29.lw.sourceforge.com with esmtps (TLS1.2) tls
+ by sfs-ml-2.v29.lw.sourceforge.com with esmtps (TLS1.2) tls
  TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384 (Exim 4.95)
- (envelope-from <ericvh@kernel.org>) id 1pK9DU-0004tV-JM
+ (envelope-from <ericvh@kernel.org>) id 1pK9DU-0000gs-4R
  for v9fs-developer@lists.sourceforge.net;
  Tue, 24 Jan 2023 02:39:19 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
@@ -21,9 +21,9 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
  Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
  Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
  List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=W03lUavWvh+5NbPsinIKPGwjvugxe2minBOHruecpUg=; b=j07+YM3XTJ3E8uGImYQJI1lSzS
- 3Qj37UaQF2q9oVvy7qKtGAJmv19eAwXwQATWvZttYSbdyCwCr0ipHFURxu5lG+sdjgwQ0ZuynxVM5
- udmXYhFVH50cU2kLrgJ/jb0lIS+6vqI3jkdEeq+O5B6WyDc9dCvaGIw9Jurb28Eefh8Y=;
+ bh=Fw9lpMcRlQ98cMWAJ6yr69bVmkSt3U+zp7vHa9aUgRs=; b=QG5UPvGid5iBnqduV6RgN0qDAr
+ MzPnrU8UIAC/fEdiTVxgiJg1vgWIOmipayjOYohUyqpLCtEEpYZgj+Z5DCsHNYr/GX+cQAp/D/Gpi
+ AiqgPUugcE697JfeemZ1j1HF771qabkOoByGqonTJNE3YNJUvCwKQdQYo4jzmr3DZP3I=;
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  ;
  h=Content-Transfer-Encoding:MIME-Version:References:In-Reply-To:Message-Id:
@@ -31,68 +31,69 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
  :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
  List-Post:List-Owner:List-Archive;
- bh=W03lUavWvh+5NbPsinIKPGwjvugxe2minBOHruecpUg=; b=j/J7eCrwMpwRJ6/o2CZKBDQz1F
- 5lccxidjPrpVGS+6OWU723QjJACA5G4e3Ru5uySl5V3YU2fW48Vm2BMz+j8kKCf/kZMl3yxxz3TTW
- KwHWKvU6dcsjgByKouQx1AxYW2mfuAwtDBeqy/AYKCRT8S9U2eo216Sr8s9W8tpIHhkQ=;
-Received: from ams.source.kernel.org ([145.40.68.75])
- by sfi-mx-2.v28.lw.sourceforge.com with esmtps
+ bh=Fw9lpMcRlQ98cMWAJ6yr69bVmkSt3U+zp7vHa9aUgRs=; b=EtdcmgSNHj9GqLers7GG9z7m5P
+ vKgp+2QEa8zvrj8StLSthwLvvWGZZ26N3uBA9Y9LFgCJqF48wiHvqTrFAql5hjUufo5A+FwKLVqk8
+ Yvld74Yl8U3jtL5+WOm/GUpOZYTZOA2tsU4BX/rti0J/CrbH35XYAlCtWC41JEErlwTA=;
+Received: from dfw.source.kernel.org ([139.178.84.217])
+ by sfi-mx-1.v28.lw.sourceforge.com with esmtps
  (TLS1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.95)
- id 1pK9DP-0004Yl-2K for v9fs-developer@lists.sourceforge.net;
+ id 1pK9DO-00Dv6h-K0 for v9fs-developer@lists.sourceforge.net;
  Tue, 24 Jan 2023 02:39:19 +0000
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
  (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
  (No client certificate requested)
- by ams.source.kernel.org (Postfix) with ESMTPS id B313BB80EBB;
- Tue, 24 Jan 2023 02:39:08 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8AE4DC433EF;
- Tue, 24 Jan 2023 02:39:06 +0000 (UTC)
+ by dfw.source.kernel.org (Postfix) with ESMTPS id 1AADC611AC;
+ Tue, 24 Jan 2023 02:39:09 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id AB2AEC4339C;
+ Tue, 24 Jan 2023 02:39:07 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1674527947;
- bh=F4sTcOFyWGXSAq6Qam4JIEoGJfFTcWlqfUVCdiEqLJg=;
+ s=k20201202; t=1674527948;
+ bh=PwWjKgBCrFlHwrWRE5cwXvsrY7AklcLgKZPzMWv8M98=;
  h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
- b=QNS87hUFKYpRtzfj7nyDEfEASgBqbRaKmb564FhjdiUgItaDg/ta0btS6/H13vUiy
- CJSmOqpRkh/dJQvA3ED9Lh3l17vSXmyFKhvhfZrd12CnjqlJZgw2+w52jQkiSaJdKc
- 39jOnOFohqIP4JYj+IT4Dmyd3FF/Eq8yqBDT+5hDNs8zcl70n6Ih1XDpxx8bZxhuE8
- PcKZzLPwFOl8+1jr86yFID4VtvoZpO3qfpXGHn9xiulLIbCQF/X9sYKsxuUSWV9IeF
- TxBDFoCyAeFlsjePGrk5Qc1JfzERZN4sG9b3+qGzN+DeTT3y5sXK70+xNknavMuz5/
- k6qcnWBjGS6QQ==
+ b=JS6jD+RgGGbUubzXvH6A68+919GJ3rSiQnnhqsc+tyKxmcasyjQTcoGGs2Vf5LJIC
+ GvTxhwJvFKg3oEnIsdFQx0xJEONh7r4YAEkjuOrmytD6TrYgNjgvYBDQyQrBVK+so7
+ 87Nxw/8JkegNoigWo1wiPvVLuO6Ji6g5DZHuOxzWXEaHRHGoR7mRDr1EcYhx3RYyz8
+ JhRtODX5+XTlRuJs5jEaBONXZt4a6Hn7rq5GBbHRZlegWqLWv6nRkHwd66O7pkpRFy
+ l6KMbbQUvCJ9MWjWFBrHxWNMTEusdLjpaWCwhEV0grRv1xf5B2C7lDCDqk4KxOwQF9
+ Weal6JaTo/frA==
 From: Eric Van Hensbergen <ericvh@kernel.org>
 To: v9fs-developer@lists.sourceforge.net, asmadeus@codewreck.org,
  rminnich@gmail.com, lucho@ionkov.net
-Date: Tue, 24 Jan 2023 02:38:23 +0000
-Message-Id: <20230124023834.106339-1-ericvh@kernel.org>
+Date: Tue, 24 Jan 2023 02:38:24 +0000
+Message-Id: <20230124023834.106339-2-ericvh@kernel.org>
 X-Mailer: git-send-email 2.37.2
-In-Reply-To: <20221218232217.1713283-1-evanhensbergen@icloud.com>
+In-Reply-To: <20230124023834.106339-1-ericvh@kernel.org>
 References: <20221218232217.1713283-1-evanhensbergen@icloud.com>
+ <20230124023834.106339-1-ericvh@kernel.org>
 MIME-Version: 1.0
-X-Spam-Score: -5.9 (-----)
+X-Spam-Score: -5.2 (-----)
 X-Spam-Report: Spam detection software,
- running on the system "util-spamd-1.v13.lw.sourceforge.com", 
+ running on the system "util-spamd-2.v13.lw.sourceforge.com", 
  has NOT identified this incoming email as spam.  The original
  message has been attached to this so you can view it or label
  similar future email.  If you have any questions, see
  the administrator of that system for details.
- Content preview: This is the third version of a patch series which adds a
- number
- of features to improve read/write performance in the 9p filesystem. Mostly
- it focuses on fixing caching to help utilize the recently inc [...] 
- Content analysis details:   (-5.9 points, 6.0 required)
+ Content preview: Add maximum p9 header size to MSIZE to make sure we can have
+ page aligned data. Signed-off-by: Eric Van Hensbergen <ericvh@kernel.org>
+ --- net/9p/client.c | 6 +++++- 1 file changed, 5 insertions(+), 1 deletion(-)
+ Content analysis details:   (-5.2 points, 6.0 required)
  pts rule name              description
  ---- ---------------------- --------------------------------------------------
- -5.0 RCVD_IN_DNSWL_HI       RBL: Sender listed at https://www.dnswl.org/,
- high trust [145.40.68.75 listed in list.dnswl.org]
- -0.0 SPF_PASS               SPF: sender matches SPF record
  0.0 SPF_HELO_NONE          SPF: HELO does not publish an SPF Record
- -0.1 DKIM_VALID_AU          Message has a valid DKIM or DK signature from
- author's domain
+ -0.0 SPF_PASS               SPF: sender matches SPF record
+ -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
  -0.1 DKIM_VALID_EF          Message has a valid DKIM or DK signature from
  envelope-from domain
- -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+ -0.1 DKIM_VALID_AU          Message has a valid DKIM or DK signature from
+ author's domain
  0.1 DKIM_SIGNED            Message has a DKIM or DK signature, not necessarily
- valid -0.7 DKIMWL_WL_HIGH         DKIMwl.org - High trust sender
-X-Headers-End: 1pK9DP-0004Yl-2K
-Subject: [V9fs-developer] [PATCH v3 00/11] Performance fixes for 9p
- filesystem
+ valid
+ -5.0 RCVD_IN_DNSWL_HI       RBL: Sender listed at https://www.dnswl.org/,
+ high trust [139.178.84.217 listed in list.dnswl.org]
+ -0.0 DKIMWL_WL_HIGH         DKIMwl.org - High trust sender
+X-Headers-End: 1pK9DO-00Dv6h-K0
+Subject: [V9fs-developer] [PATCH v3 01/11] Adjust maximum MSIZE to account
+ for p9 header
 X-BeenThere: v9fs-developer@lists.sourceforge.net
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -110,54 +111,31 @@ Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: v9fs-developer-bounces@lists.sourceforge.net
 
-This is the third version of a patch series which adds a number
-of features to improve read/write performance in the 9p filesystem.
-Mostly it focuses on fixing caching to help utilize the recently
-increased MSIZE limits and also fixes some problematic behavior
-within the writeback code.
+Add maximum p9 header size to MSIZE to make sure we can
+have page aligned data.
 
-All together, these show roughly 10x speed increases on simple
-file transfers.  Future patch sets will improve cache consistency
-and directory caching.
+Signed-off-by: Eric Van Hensbergen <ericvh@kernel.org>
+---
+ net/9p/client.c | 6 +++++-
+ 1 file changed, 5 insertions(+), 1 deletion(-)
 
-These patches are also available on github:
-https://github.com/v9fs/linux/tree/ericvh/for-next
-and on kernel.org:
-https://git.kernel.org/pub/scm/linux/kernel/git/ericvh/v9fs.git
-
-Tested against qemu, cpu, and diod with fsx, dbench, and some
-simple benchmarks.
-
-Eric Van Hensbergen (11):
-  Adjust maximum MSIZE to account for p9 header
-  Expand setup of writeback cache to all levels
-  Consolidate file operations and add readahead and writeback
-  Remove unnecessary superblock flags
-  allow disable of xattr support on mount
-  fix bug in client create for .L
-  Add additional debug flags and open modes
-  Add new mount modes
-  fix error reporting in v9fs_dir_release
-  writeback mode fixes
-  Fix revalidate
-
- Documentation/filesystems/9p.rst |  26 +++--
- fs/9p/fid.c                      |  52 ++++-----
- fs/9p/fid.h                      |  33 +++++-
- fs/9p/v9fs.c                     |  49 +++++---
- fs/9p/v9fs.h                     |   9 +-
- fs/9p/v9fs_vfs.h                 |   4 -
- fs/9p/vfs_addr.c                 |  24 ++--
- fs/9p/vfs_dentry.c               |   3 +-
- fs/9p/vfs_dir.c                  |  16 ++-
- fs/9p/vfs_file.c                 | 194 +++++++------------------------
- fs/9p/vfs_inode.c                |  71 ++++-------
- fs/9p/vfs_inode_dotl.c           |  62 +++++-----
- fs/9p/vfs_super.c                |  28 +++--
- include/net/9p/9p.h              |   5 +
- net/9p/client.c                  |   8 +-
- 15 files changed, 256 insertions(+), 328 deletions(-)
-
+diff --git a/net/9p/client.c b/net/9p/client.c
+index 622ec6a586ee..6c2a768a6ab1 100644
+--- a/net/9p/client.c
++++ b/net/9p/client.c
+@@ -28,7 +28,11 @@
+ #define CREATE_TRACE_POINTS
+ #include <trace/events/9p.h>
+ 
+-#define DEFAULT_MSIZE (128 * 1024)
++/* DEFAULT MSIZE = 32 pages worth of payload + P9_HDRSZ +
++ * room for write (16 extra) or read (11 extra) operands.
++ */
++
++#define DEFAULT_MSIZE ((128 * 1024) + P9_IOHDRSZ)
+ 
+ /* Client Option Parsing (code inspired by NFS code)
+  *  - a little lazy - parse all client options
 -- 
 2.37.2
 
