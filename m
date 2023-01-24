@@ -2,111 +2,113 @@ Return-Path: <v9fs-developer-bounces@lists.sourceforge.net>
 X-Original-To: lists+v9fs-developer@lfdr.de
 Delivered-To: lists+v9fs-developer@lfdr.de
 Received: from lists.sourceforge.net (lists.sourceforge.net [216.105.38.7])
-	by mail.lfdr.de (Postfix) with ESMTPS id DAB80678E7B
-	for <lists+v9fs-developer@lfdr.de>; Tue, 24 Jan 2023 03:44:05 +0100 (CET)
-Received: from [127.0.0.1] (helo=sfs-ml-4.v29.lw.sourceforge.com)
-	by sfs-ml-4.v29.lw.sourceforge.com with esmtp (Exim 4.95)
+	by mail.lfdr.de (Postfix) with ESMTPS id 92F19678E8E
+	for <lists+v9fs-developer@lfdr.de>; Tue, 24 Jan 2023 03:50:12 +0100 (CET)
+Received: from [127.0.0.1] (helo=sfs-ml-2.v29.lw.sourceforge.com)
+	by sfs-ml-2.v29.lw.sourceforge.com with esmtp (Exim 4.95)
 	(envelope-from <v9fs-developer-bounces@lists.sourceforge.net>)
-	id 1pK9I6-0007d4-3G;
-	Tue, 24 Jan 2023 02:44:04 +0000
+	id 1pK9Nz-000130-LJ;
+	Tue, 24 Jan 2023 02:50:10 +0000
 Received: from [172.30.20.202] (helo=mx.sourceforge.net)
- by sfs-ml-4.v29.lw.sourceforge.com with esmtps (TLS1.2) tls
+ by sfs-ml-2.v29.lw.sourceforge.com with esmtps (TLS1.2) tls
  TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384 (Exim 4.95)
- (envelope-from <asmadeus@codewreck.org>) id 1pK9I3-0007cx-Ci
+ (envelope-from <asmadeus@codewreck.org>) id 1pK9Ny-00012t-5h
  for v9fs-developer@lists.sourceforge.net;
- Tue, 24 Jan 2023 02:44:02 +0000
+ Tue, 24 Jan 2023 02:50:09 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=sourceforge.net; s=x; h=In-Reply-To:Content-Type:MIME-Version:References:
- Message-ID:Subject:Cc:To:From:Date:Sender:Reply-To:Content-Transfer-Encoding:
+ d=sourceforge.net; s=x; h=In-Reply-To:Content-Transfer-Encoding:Content-Type:
+ MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Sender:Reply-To:
  Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
  Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
  List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=HTS1ZbZA1TUADjld+raUJqmd4pxeyrVKtWHVtO56iNw=; b=RjhfnRO+w3T4ljeADuPDq4jrGt
- SZGqA9XAC84Lj0KYD94mDlIOc6z1JlZZx2cIBBmJZJXcOQB54aSdGHAzwRLAoQQugwlgn7RrzeugJ
- oY6QBXZ9NOD4QxsUjv70tVVjZiZOxUz42xYELfRViYfw5YnYzOlmyIntPOBdy6P2Mf7g=;
+ bh=sNo2M+vMXVNnmuHmMi9fNsU/T1dxnbKBZtBfGYFBJqc=; b=UZ1tzXxUfT7PA3Ptm4GB+QoU3k
+ qLCbZmzsh00nbCGfCwHMmA1mPt70UzTjJOGkv52JM1CUz7ndDZZmudfDHbCo5DTqkpGCw2V6OMiYF
+ qejmWF0FjE9yEirjlk8kvvTZeRpu8ddFklidT66kDGxuUtNBLMIhfqmqtoeL85/JGVHQ=;
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  ;
- h=In-Reply-To:Content-Type:MIME-Version:References:Message-ID:Subject:Cc:To
- :From:Date:Sender:Reply-To:Content-Transfer-Encoding:Content-ID:
+ h=In-Reply-To:Content-Transfer-Encoding:Content-Type:MIME-Version:
+ References:Message-ID:Subject:Cc:To:From:Date:Sender:Reply-To:Content-ID:
  Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
  :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
  List-Post:List-Owner:List-Archive;
- bh=HTS1ZbZA1TUADjld+raUJqmd4pxeyrVKtWHVtO56iNw=; b=L7o1az0BArvBjvfUN0Ucp53bGU
- mR2NBKXG5BzbUw8DTXdf8GcgTmVCVKCV/st7uTkbZmY1rIIN664ntZLYXgmXo1ZZSHtKauBikE7F2
- plu1RPPS4wTAoY1HvbUZDWAMUaTckleraEQRifHDs10Fal3akzSjtNJCq16bb+wIGOJM=;
+ bh=sNo2M+vMXVNnmuHmMi9fNsU/T1dxnbKBZtBfGYFBJqc=; b=FxooF0BuBRjQRI83BDjsBguiDv
+ okxEnJHs6BV8BdFlycXA8LSI59DfGdd6Q7V3K2NAlXTdkguteZ/fgd3syFLyB44q0XgZ2Wvtq7aEt
+ lJWlyCBfoFXrIPfc8A/8cvI9uIUNMEXobGprqqkALlki3SRgklsrHrfdzcrPcW2t99yU=;
 Received: from nautica.notk.org ([91.121.71.147])
- by sfi-mx-1.v28.lw.sourceforge.com with esmtps
+ by sfi-mx-2.v28.lw.sourceforge.com with esmtps
  (TLS1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.95)
- id 1pK9Hy-00DvDT-In for v9fs-developer@lists.sourceforge.net;
- Tue, 24 Jan 2023 02:44:01 +0000
+ id 1pK9Nt-0004pI-Ef for v9fs-developer@lists.sourceforge.net;
+ Tue, 24 Jan 2023 02:50:09 +0000
 Received: by nautica.notk.org (Postfix, from userid 108)
- id 83D2CC01E; Tue, 24 Jan 2023 03:44:08 +0100 (CET)
+ id 5A387C01E; Tue, 24 Jan 2023 03:50:16 +0100 (CET)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=codewreck.org; s=2;
- t=1674528248; bh=HTS1ZbZA1TUADjld+raUJqmd4pxeyrVKtWHVtO56iNw=;
+ t=1674528616; bh=sNo2M+vMXVNnmuHmMi9fNsU/T1dxnbKBZtBfGYFBJqc=;
  h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
- b=F0RhzEZND/5LfsABCtWDR9xa5yhiK9tt1DKJQXleksWBvc6ywXFdBCTRbr2HrsH+b
- HKCY4DkKcoDz0FRh8mpcnsl1sHo+1jT5l/0vnc9KhF2Je0uL+dbmKBHaIdJCKryWrt
- 1xL5ac8aLhmrMde6i/bPOZM1MA4Y0bWLfUP+guU5Bue5ZAUMIxUgf0jruFy3MNMEII
- eINNCfhSJzMdJ2U+fb2gVBaO7sMRGeQn9ueTAiuHHbyKO8SyuS01YBEZw2ofpeoid3
- KvjrduDcqbFSM3D27Y/rOvznSepcx3/RDjglWsD87pRtNhaTgG59x/Q4oJdl2FWyIx
- 2KoOY3qjtJWnw==
+ b=auR2LTgbqUESWdQFsOH6G6jdyJZNuEsdbqwj0802ggjGubDemBBcTW19oJHdwERf1
+ KLTj92n6Ak9FVEbsnYXQJ2xOrszyVoz885izMPPYWA4oSwJVyiaj/y9X4ALultB3W9
+ a5wVG0+4SHzuFnT2zpV9ABro5E0Cr+nB1AYh5SYPRJLDEripVC72CTjKLhGtKRdiE+
+ SKBGNpWjdJ1Kb35YzaHH25NuDRGLMjxCchxUiStvUlsTWB3n1kQDG6IeHR5RZjTKFX
+ ZrbYTjf4/pd/KEE5zY0OVsoHcgmJP0Bm8W6jSS0sfjgm9eY+brz/leDX18Q2EfS61o
+ fYShBUznNpRdg==
 X-Spam-Checker-Version: SpamAssassin 3.3.2 (2011-06-06) on nautica.notk.org
 X-Spam-Level: 
 X-Spam-Status: No, score=0.0 required=5.0 tests=UNPARSEABLE_RELAY
  autolearn=unavailable version=3.3.2
 Received: from odin.codewreck.org (localhost [127.0.0.1])
- by nautica.notk.org (Postfix) with ESMTPS id C1AD8C009;
- Tue, 24 Jan 2023 03:44:05 +0100 (CET)
+ by nautica.notk.org (Postfix) with ESMTPS id AF6ECC009;
+ Tue, 24 Jan 2023 03:50:13 +0100 (CET)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=codewreck.org; s=2;
- t=1674528247; bh=HTS1ZbZA1TUADjld+raUJqmd4pxeyrVKtWHVtO56iNw=;
+ t=1674528615; bh=sNo2M+vMXVNnmuHmMi9fNsU/T1dxnbKBZtBfGYFBJqc=;
  h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
- b=aYX5LCOYgSENiFQRS/BnkaxgHeqU1ZlFISHHmmZavmJCJwIFNCTUy1l66kJaiBkhU
- SqcaPEdijGw98Dd9dmAUykYj/BeFZrz+O61dQbYZtMmoDLqFjH0uyzWyl6to4BlaCU
- pcp6ug6Wv8npzAANS/p/P4ZKmmlBUPzK+6MsYAQI8Zk1o6CJPGw7gpblEquCgr1Nsu
- n6lo8t1LDhJWNoi/YAMSvWVtUtkObpj4slGWFGXfdV+ZevBV0d87cxP6Yf3Ku5He0N
- 0vus9nPMBAKZCdMPTsQPB31BodKxX7e1k3lF8TBQZx2z4WrIVvlg3XiLqrXyzsH2E/
- 7Mh2T2UWwNiFg==
+ b=i16EJ9kBh9jIXmYnudf4BDTdOfKbpABLFv4Ox9v/rl7CDDxWuA6w4A2Icyc6BCcZ9
+ eIPAloZCWtNKPJdUJfn1QNaKdsmGGGtr0mEd4dZCm+vLeb64KnRJuYH2dFVdzbvQlN
+ r2q/wUfbbiKCYCH5iXg85p4zDne3Y++NbNE4IL9I/bMNMW4e9ZtUbB066vcnpHYVqr
+ 2ce5q4DuR0WWaAZ1EprZIwszrDXLO8+0T0DKciuigt8VzdjoD8Uwqur1OkXgGO2ryp
+ 3fHBgz0PbYy+tONgQqjZuAO7/nEzNJYaZxLTp/9rei9lKyi2IBH3tL7vT7lEA4p3TR
+ l217FDv+lrQfA==
 Received: from localhost (odin.codewreck.org [local])
- by odin.codewreck.org (OpenSMTPD) with ESMTPA id ed1f598f;
- Tue, 24 Jan 2023 02:43:43 +0000 (UTC)
-Date: Tue, 24 Jan 2023 11:43:28 +0900
+ by odin.codewreck.org (OpenSMTPD) with ESMTPA id 3239948c;
+ Tue, 24 Jan 2023 02:49:52 +0000 (UTC)
+Date: Tue, 24 Jan 2023 11:49:37 +0900
 From: asmadeus@codewreck.org
-To: Eric Van Hensbergen <evanhensbergen@icloud.com>
-Message-ID: <Y89F0KGdEBcwu39Y@codewreck.org>
+To: evanhensbergen@icloud.com
+Message-ID: <Y89HQXu90ea6Ed4r@codewreck.org>
 References: <20221217183142.1425132-1-evanhensbergen@icloud.com>
  <20221218232217.1713283-1-evanhensbergen@icloud.com>
- <20221218232217.1713283-4-evanhensbergen@icloud.com>
+ <4478705.9R3AOq7agI@silver>
+ <CEE93F4D-7C11-4FE3-BB70-A9C865BE5BC2@icloud.com>
 MIME-Version: 1.0
 Content-Disposition: inline
-In-Reply-To: <20221218232217.1713283-4-evanhensbergen@icloud.com>
+In-Reply-To: <CEE93F4D-7C11-4FE3-BB70-A9C865BE5BC2@icloud.com>
 X-Spam-Score: -0.2 (/)
-X-Spam-Report: Spam detection software,
- running on the system "util-spamd-1.v13.lw.sourceforge.com", 
+X-Spam-Report: Spam detection software, running on the system "util-spamd-1.v13.lw.sourceforge.com",
  has NOT identified this incoming email as spam.  The original
  message has been attached to this so you can view it or label
  similar future email.  If you have any questions, see
  the administrator of that system for details.
- Content preview:  Eric Van Hensbergen wrote on Sun, Dec 18, 2022 at 11:22:13PM
- +0000: > We had 3 different sets of file operations across 2 different
- protocol
- > variants differentiated by cache which really only change [...] 
+ 
+ Content preview:  evanhensbergen@icloud.com wrote on Mon, Jan 23, 2023 at 08:33:46PM
+    -0600: > I’m fine with funneling these through Dominique since he’s currently
+    > the active maintainer, but I’ve also re-establi [...] 
+ 
  Content analysis details:   (-0.2 points, 6.0 required)
- pts rule name              description
+ 
+  pts rule name              description
  ---- ---------------------- --------------------------------------------------
  -0.0 SPF_PASS               SPF: sender matches SPF record
- 0.0 SPF_HELO_NONE          SPF: HELO does not publish an SPF Record
+  0.0 SPF_HELO_NONE          SPF: HELO does not publish an SPF Record
  -0.1 DKIM_VALID_AU          Message has a valid DKIM or DK signature from
- author's domain
+                             author's domain
  -0.1 DKIM_VALID_EF          Message has a valid DKIM or DK signature from
- envelope-from domain
- -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
- 0.1 DKIM_SIGNED            Message has a DKIM or DK signature, not necessarily
- valid
- 0.0 UNPARSEABLE_RELAY      Informational: message has unparseable relay
- lines
-X-Headers-End: 1pK9Hy-00DvDT-In
-Subject: Re: [V9fs-developer] [PATCH v2 03/10] Consolidate file operations
- and add readahead and writeback
+                             envelope-from domain
+ -0.1 DKIM_VALID             Message has at least one valid DKIM or DK signature
+  0.1 DKIM_SIGNED            Message has a DKIM or DK signature, not necessarily
+                             valid
+  0.0 UNPARSEABLE_RELAY      Informational: message has unparseable relay
+                             lines
+X-Headers-End: 1pK9Nt-0004pI-Ef
+Subject: Re: [V9fs-developer] [PATCH v2 00/10] Performance fixes for 9p
+ filesystem
 X-BeenThere: v9fs-developer@lists.sourceforge.net
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -118,66 +120,29 @@ List-Post: <mailto:v9fs-developer@lists.sourceforge.net>
 List-Help: <mailto:v9fs-developer-request@lists.sourceforge.net?subject=help>
 List-Subscribe: <https://lists.sourceforge.net/lists/listinfo/v9fs-developer>, 
  <mailto:v9fs-developer-request@lists.sourceforge.net?subject=subscribe>
-Cc: lucho@ionkov.net, linux_oss@crudebyte.com, linux-kernel@vger.kernel.org,
- rminnich@gmail.com, linux-fsdevel@vger.kernel.org,
- v9fs-developer@lists.sourceforge.net
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Cc: Latchesar Ionkov <lucho@ionkov.net>,
+ Christian Schoenebeck <linux_oss@crudebyte.com>, linux-kernel@vger.kernel.org,
+ Ron Minnich <rminnich@gmail.com>, linux-fsdevel@vger.kernel.org,
+ Zhengchao Shao via V9fs-developer <v9fs-developer@lists.sourceforge.net>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: v9fs-developer-bounces@lists.sourceforge.net
 
-Eric Van Hensbergen wrote on Sun, Dec 18, 2022 at 11:22:13PM +0000:
-> We had 3 different sets of file operations across 2 different protocol
-> variants differentiated by cache which really only changed 3
-> functions.  But the real problem is that certain file modes, mount
-> options, and other factors weren't being considered when we
-> decided whether or not to use caches.
-> 
-> This consolidates all the operations and switches
-> to conditionals within a common set to decide whether or not
-> to do different aspects of caching.
-> 
-> Signed-off-by: Eric Van Hensbergen <evanhensbergen@icloud.com>
-> ---
->  fs/9p/v9fs.c           |  30 ++++------
->  fs/9p/v9fs.h           |   2 +
->  fs/9p/v9fs_vfs.h       |   4 --
->  fs/9p/vfs_dir.c        |   9 +++
->  fs/9p/vfs_file.c       | 123 +++++++----------------------------------
->  fs/9p/vfs_inode.c      |  31 ++++-------
->  fs/9p/vfs_inode_dotl.c |  19 ++++++-
->  7 files changed, 71 insertions(+), 147 deletions(-)
-> 
-> diff --git a/fs/9p/vfs_dir.c b/fs/9p/vfs_dir.c
-> index 1675a196c2ba..536769cdf7c8 100644
-> --- a/fs/9p/vfs_dir.c
-> +++ b/fs/9p/vfs_dir.c
-> @@ -214,6 +214,15 @@ int v9fs_dir_release(struct inode *inode, struct file *filp)
->  	p9_debug(P9_DEBUG_VFS, "inode: %p filp: %p fid: %d\n",
->  		 inode, filp, fid ? fid->fid : -1);
->  	if (fid) {
-> +		if ((fid->qid.type == P9_QTFILE) && (filp->f_mode & FMODE_WRITE)) {
-
-dir release, but the fid is of type regular file ?
-
-Either way this doesn't look directly related to cache level
-consodilations, probably better in another commit.
-
-> +			int retval = file_write_and_wait_range(filp, 0, -1);
-> +
-> +			if (retval != 0) {
-> +				p9_debug(P9_DEBUG_ERROR,
-> +					"trying to flush filp %p failed with error code %d\n",
-> +					filp, retval);
-> +			}
-> +		}
->  		spin_lock(&inode->i_lock);
->  		hlist_del(&fid->ilist);
->  		spin_unlock(&inode->i_lock);
--- 
-Dominique
-
-
-_______________________________________________
-V9fs-developer mailing list
-V9fs-developer@lists.sourceforge.net
-https://lists.sourceforge.net/lists/listinfo/v9fs-developer
+ZXZhbmhlbnNiZXJnZW5AaWNsb3VkLmNvbSB3cm90ZSBvbiBNb24sIEphbiAyMywgMjAyMyBhdCAw
+ODozMzo0NlBNIC0wNjAwOgo+IEnigJltIGZpbmUgd2l0aCBmdW5uZWxpbmcgdGhlc2UgdGhyb3Vn
+aCBEb21pbmlxdWUgc2luY2UgaGXigJlzIGN1cnJlbnRseQo+IHRoZSBhY3RpdmUgbWFpbnRhaW5l
+ciwgYnV0IEnigJl2ZSBhbHNvIHJlLWVzdGFibGlzaGVkIGtlcm5lbC5vcmcKPiA8aHR0cDovL2tl
+cm5lbC5vcmcvPiBjcmVkZW50aWFscyBzbyBJIGNhbiBmaWVsZCB0aGUgcHVsbC1yZXF1ZXN0IGlm
+Cj4gZGVzaXJlZC4KCkknbSBoYXBweSBlaXRoZXIgd2F5OyBJJ3ZlIGhhZCBhICh0b28gcXVpY2sg
+dG8gcmVhbGx5IGNhbGwgcmV2aWV3KSBsb29rCmF0IHRoZSBjb2RlIGl0c2VsZiBhbmQgaXQgbW9z
+dGx5IG1ha2VzIHNlbnNlIHRvIG1lLCBhbmQgYXMgeW91IHBvaW50ZWQKb3V0IHNvbWUgd291bGQg
+d2FycmFudCBhIENjIHN0YWJsZUAgYW5kIG5vdCB3YWl0aW5nIGlmIEkgaGFkIHRpbWUgdG8gZG8K
+dGhpcyBzZXJpb3VzbHksIGJ1dCBJJ20gbm90IHN1cmUgSSdsbCBtYWtlIGl0IGlmIHRoaXMgbmVl
+ZHMgdG8gd2FpdCBmb3IKbWUuCgpEbyB5b3UgYWxzbyBoYXZlIGEgdHJlZSB0aGF0IGdvZXMgaW4g
+LW5leHQgPyBJIHRoaW5rIEkgYXNrZWQgYmVmb3JlIGJ1dApsb3N0IHlvdXIgcmVwbHksIHNvcnJ5
+LgpJZiBub3QgaXQnbGwgcHJvYmFibHkgYmUgZWFzaWVyIGZvciBtZSB0byBwaWNrIGl0IHVwIHRo
+aXMgY3ljbGUsIGJ1dAp0aGF0J3MgYWJvdXQgdGhlIG9ubHkgcmVhc29uIEknZCBzZWUgZm9yIG1l
+IHRvIHRha2UgdGhlIHBhdGNoZXMgYXMKdGhpbmdzIHN0YW5kLgoKLS0gCkRvbWluaXF1ZQoKCl9f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fClY5ZnMtZGV2ZWxv
+cGVyIG1haWxpbmcgbGlzdApWOWZzLWRldmVsb3BlckBsaXN0cy5zb3VyY2Vmb3JnZS5uZXQKaHR0
+cHM6Ly9saXN0cy5zb3VyY2Vmb3JnZS5uZXQvbGlzdHMvbGlzdGluZm8vdjlmcy1kZXZlbG9wZXIK
