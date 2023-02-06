@@ -2,28 +2,28 @@ Return-Path: <v9fs-developer-bounces@lists.sourceforge.net>
 X-Original-To: lists+v9fs-developer@lfdr.de
 Delivered-To: lists+v9fs-developer@lfdr.de
 Received: from lists.sourceforge.net (lists.sourceforge.net [216.105.38.7])
-	by mail.lfdr.de (Postfix) with ESMTPS id C166068BE11
-	for <lists+v9fs-developer@lfdr.de>; Mon,  6 Feb 2023 14:24:22 +0100 (CET)
-Received: from [127.0.0.1] (helo=sfs-ml-2.v29.lw.sourceforge.com)
-	by sfs-ml-2.v29.lw.sourceforge.com with esmtp (Exim 4.95)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1152E68BE68
+	for <lists+v9fs-developer@lfdr.de>; Mon,  6 Feb 2023 14:37:56 +0100 (CET)
+Received: from [127.0.0.1] (helo=sfs-ml-1.v29.lw.sourceforge.com)
+	by sfs-ml-1.v29.lw.sourceforge.com with esmtp (Exim 4.95)
 	(envelope-from <v9fs-developer-bounces@lists.sourceforge.net>)
-	id 1pP1Tq-0000Yv-70;
-	Mon, 06 Feb 2023 13:24:21 +0000
+	id 1pP1gx-00058j-12;
+	Mon, 06 Feb 2023 13:37:54 +0000
 Received: from [172.30.20.202] (helo=mx.sourceforge.net)
- by sfs-ml-2.v29.lw.sourceforge.com with esmtps (TLS1.2) tls
+ by sfs-ml-1.v29.lw.sourceforge.com with esmtps (TLS1.2) tls
  TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384 (Exim 4.95)
- (envelope-from <ericvh@gmail.com>) id 1pP1Tm-0000Yo-0O
+ (envelope-from <ericvh@gmail.com>) id 1pP1gv-00058W-MS
  for v9fs-developer@lists.sourceforge.net;
- Mon, 06 Feb 2023 13:24:17 +0000
+ Mon, 06 Feb 2023 13:37:52 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
  d=sourceforge.net; s=x; h=Content-Type:Cc:To:Subject:Message-ID:Date:From:
  In-Reply-To:References:MIME-Version:Sender:Reply-To:Content-Transfer-Encoding
  :Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
  Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
  List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=fe4ZpWP3M41TkLmkySsFaYZazKI65IaWQo/JAv4+eHE=; b=Kwe6pAFhQcHq2XB2ZpKoIDT6/y
- l7JRAz5e5rkH8no9cGsTweLPtU6IBuQ2q2WLzfgW44gSeJcZzT4Xmv4y4BVzNksE//mUrPJcDhJNM
- bxlLGxoYc4AS7gbxuuYJQobl0rSfllmo+1630TBQ1OvF0s4HpWrIway9YoxhAy41RBEk=;
+ bh=JtK8lF6MCOaS/ib0UuQzzKTe2nEq5CKGERbXbVra/oc=; b=Qwy2CUbFPkDln/Yqu+qO5Jrprz
+ HlB/i/oXJMh2qGZ/1xU5HWIo+2nXpjEztWH8QIZ9TCHxLIRtvfpxIbetAOeyI67lmxeNVxMm0aH7V
+ zxkcqyDI/ua/Ojtw9L7ss/d2Rb057WrIUWWlHQvJnYsiQVUJKlqGtpt1jpxVUMwxLSho=;
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  ;
  h=Content-Type:Cc:To:Subject:Message-ID:Date:From:In-Reply-To:References:
@@ -31,85 +31,85 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
  :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
  List-Post:List-Owner:List-Archive;
- bh=fe4ZpWP3M41TkLmkySsFaYZazKI65IaWQo/JAv4+eHE=; b=ZY5cZzhe9tkN578ktrOPHe2skr
- Xinulsy7Wl508YGwW0j93aoHmOGp1tp6BupWOA5aqK90oiTRcjdPwDoqCJOTfocyRq2uz4gn7tQW6
- pLXrkSIbHwWqN6TOCmfgk+C362LIvBFg+ptUvfZJ5NGGN2QAlZhBU0Ku/D0lr3D8V8VQ=;
+ bh=JtK8lF6MCOaS/ib0UuQzzKTe2nEq5CKGERbXbVra/oc=; b=WRY0uhFwcE2QOkSmLRDVQSPyYW
+ qqIJQhR9GywTprZyYOgMPq4p6Bgx7Naf429Yk1h4I9qNf5cDyjyjki2U9Wa4QClrLTYvqnlAvghD+
+ G+H0CnKvO8iiTA4owEfcQL7HB6ble9kmF7lJLNrv1wUiCzMzyigHGoVythoYuFtZ+mJM=;
 Received: from mail-wm1-f41.google.com ([209.85.128.41])
  by sfi-mx-1.v28.lw.sourceforge.com with esmtps
  (TLS1.2:ECDHE-RSA-AES128-GCM-SHA256:128) (Exim 4.95)
- id 1pP1Tj-00Ca2J-Dt for v9fs-developer@lists.sourceforge.net;
- Mon, 06 Feb 2023 13:24:17 +0000
+ id 1pP1gq-00CaVl-Eq for v9fs-developer@lists.sourceforge.net;
+ Mon, 06 Feb 2023 13:37:52 +0000
 Received: by mail-wm1-f41.google.com with SMTP id
- j32-20020a05600c1c2000b003dc4fd6e61dso10748749wms.5
+ l37-20020a05600c1d2500b003dfe46a9801so7323564wms.0
  for <v9fs-developer@lists.sourceforge.net>;
- Mon, 06 Feb 2023 05:24:15 -0800 (PST)
+ Mon, 06 Feb 2023 05:37:48 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
  h=cc:to:subject:message-id:date:from:in-reply-to:references
  :mime-version:from:to:cc:subject:date:message-id:reply-to;
- bh=fe4ZpWP3M41TkLmkySsFaYZazKI65IaWQo/JAv4+eHE=;
- b=WV/2pTePlkxQh9rO6HflR5NPaqJ5Fu0LxT6locukbLUyCFJ58QkovJ/g2cAcq8H66i
- jEE0u4mnIE2bh3eXApXhNSurbLHHoFIWH2J1TOY1Gz9QuAdeE9O/KWSjW+CSTwM+WwA4
- IcPdv56YTjayIBK17mBiGxmzKNnwLOW8cuw94zZ4L03t+MdytogFv1XuocseNY8f/0aD
- yCBed7rs5Fx8e7ADefbRgqagTsbQRQ/QyzPpW/pxcW3sL1o3agsUTO4jKcQmEITW8Flb
- 1BYAVnDsJLqGp5eMCsykp6NfV1DH5sW47OjrYkhlngfYXnQ++5wE3Kqr06mThMo2kvPd
- 47Cw==
+ bh=JtK8lF6MCOaS/ib0UuQzzKTe2nEq5CKGERbXbVra/oc=;
+ b=UjmmeR5KWDm6CcgY6kipRMuL9ZYkzlfB97msM82Pe4GISbKW2IVY9wvGbtdJhb4VD/
+ syzaLHV7Ek1sGVLY1vU5ioDg9dBdNTN1/hobxh83s5KwM+l+//dkLTkOZm7ZU/AiTMZ9
+ JKXoSIVFZOc5UtmJI7PfN06V1GRo1SvGVbWqv+H+qqboxPvC+C71PIjOFwwtimMLFxRG
+ TpCbZIQ+cLzvU0zhsuFNSHyAfPCvxQrzjyViF/OGUO6mDxgSENfIi/lOBE1w69p+L0zZ
+ DKdDWJ8uW1LrYm4guh29Oa0l2dvPn2Ct3teyurK+8FYjaFfUCuw3NlARYfAllTGuTm2i
+ mVRg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20210112;
  h=cc:to:subject:message-id:date:from:in-reply-to:references
  :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
  :reply-to;
- bh=fe4ZpWP3M41TkLmkySsFaYZazKI65IaWQo/JAv4+eHE=;
- b=NCC9oO9SvzLNG0liYO0uSgMDSrzO4R/eSlklEI/ek/6VMDscEffEGAqv33Sb2X3YP7
- IAERTRQAl8FmhWY++3jrs2BMyCk+eEVM7eaPknrF8V5bn+KS73cPayYD5ps/RiG6tK9z
- XkbT50Rj7uyPbmmaHBEzRMtvtXII+1ko/9aTJjnSs3i8JvfJgrljmXBRqEzfy6zB8MF+
- 0onn3wTU7/irPpoWlQzVNR9JBn9TU/4oRoeFGGqveXczyjDxyKVhy4SFgVu77KvQ16ap
- 4X765ad2G+33DjOHj3FE+/iZwcsjnCTYo7AKC/UYrJuNRUEBfMzPeHEAI6tTPjR7m6h0
- uTnA==
-X-Gm-Message-State: AO0yUKVdJ2lVQtQR1uil6D707NeknSt8kbXWxuHpnVI3d3/ViOrGFWAi
- HwJE8JAKTg+5Jw6yODEg+xgjt1WrKt20Aagz66s=
-X-Google-Smtp-Source: AK7set+fpoyWUkVoXQsqyWAJ9gujOdYn8doJkjCSZcNyd+IA/hSR+lOlyICI+uTJJOQY91YuHTE0UVhqY9SZLfIzKGU=
-X-Received: by 2002:a1c:e909:0:b0:3d1:e3ba:3bb6 with SMTP id
- q9-20020a1ce909000000b003d1e3ba3bb6mr1013155wmc.29.1675689848737; Mon, 06 Feb
- 2023 05:24:08 -0800 (PST)
+ bh=JtK8lF6MCOaS/ib0UuQzzKTe2nEq5CKGERbXbVra/oc=;
+ b=sq8Qf+8RGhVEJNHf0qHG9IY79FFbBy9RA2aWU+u6c0mOTJpFMWHheBaHCeN3QQkGP/
+ NM1/m/lcbIfxGtiOHbOfpAuZzPhCNDuevpJW+883+WZ9bcSTePbxTUzxkcbqmkLtgULP
+ /nLAiR55ZOXfGM6XAwvctn8LUUvBKl9BUUXj8cH/9IOk5BDBQMzCArawx2OS4GP0mtzm
+ v3f6QwDOFz4gUzS63ga1NGtY9uNbLbEwJXzOAp2Q4F3FHm7wg602ra3mEosSB4dz2XIK
+ pSQnlDjm2zetNXcp2yodc8YgCG6TFUC5IIPC8VLn7QZstqrt0GBwdK7XQTvmVlhRsZwf
+ ZT6g==
+X-Gm-Message-State: AO0yUKXXHsyAB69fdoeao6m42m3AxTgZcg/gad2jqYkSPblo0PmQaVfS
+ Of488pEOc14S6hsGBkk7UlcwBlvYQg/xGc52LGI=
+X-Google-Smtp-Source: AK7set9yjLCi6LS32UtkqwUd45F1wNsNY8ZPtU2mX3Rol2LREzaowUWQV3I0wWKKYamifbFHdduQjseQF6lcRBZVL50=
+X-Received: by 2002:a05:600c:354b:b0:3e0:c45:3456 with SMTP id
+ i11-20020a05600c354b00b003e00c453456mr53427wmq.44.1675690661795; Mon, 06 Feb
+ 2023 05:37:41 -0800 (PST)
 MIME-Version: 1.0
 References: <20221218232217.1713283-1-evanhensbergen@icloud.com>
  <2302787.WOG5zRkYfl@silver>
- <CAFkjPTkc-f11p-+ZCV-wRtpT5SbyYBodAzbEHciTRH5CY1br9A@mail.gmail.com>
- <9010570.AfT4dvHSuA@silver>
-In-Reply-To: <9010570.AfT4dvHSuA@silver>
+ <CAFkjPT=nxuG5rSuJ1seFV9eWvWNkyzw2f45yWqyEQV3+M91MPg@mail.gmail.com>
+ <1959073.LTPWMqHWT2@silver>
+In-Reply-To: <1959073.LTPWMqHWT2@silver>
 From: Eric Van Hensbergen <ericvh@gmail.com>
-Date: Mon, 6 Feb 2023 07:23:57 -0600
-Message-ID: <CAFkjPTkcGC_eBp8Db2b48rtbFads+2KGkD1DZRL=C6k-4uX0oA@mail.gmail.com>
+Date: Mon, 6 Feb 2023 07:37:30 -0600
+Message-ID: <CAFkjPTnDfEX4KrTtztcA=eOif6X05r=QAJrfp1wegn=xsgK6nQ@mail.gmail.com>
 To: Christian Schoenebeck <linux_oss@crudebyte.com>
 X-Spam-Score: -0.2 (/)
 X-Spam-Report: Spam detection software,
- running on the system "util-spamd-2.v13.lw.sourceforge.com", 
+ running on the system "util-spamd-1.v13.lw.sourceforge.com", 
  has NOT identified this incoming email as spam.  The original
  message has been attached to this so you can view it or label
  similar future email.  If you have any questions, see
  the administrator of that system for details.
- Content preview:  On Mon, Feb 6, 2023 at 7:04 AM Christian Schoenebeck wrote:
- > > > The particular call path you ran into though may be fixed in a > >
- different way -- so calls to setattr trigger a flush of the write [...] 
+ Content preview:  On Mon, Feb 6, 2023 at 7:20 AM Christian Schoenebeck wrote:
+ > > Okay, that's surprising to me indeed. My expecation was that "loose"
+ would > still retain its previous behaviour, i.e. loose consisten [...] 
  Content analysis details:   (-0.2 points, 6.0 required)
  pts rule name              description
  ---- ---------------------- --------------------------------------------------
  -0.0 SPF_PASS               SPF: sender matches SPF record
+ 0.0 SPF_HELO_NONE          SPF: HELO does not publish an SPF Record
  0.0 FREEMAIL_FROM          Sender email is commonly abused enduser mail
  provider [ericvh[at]gmail.com]
- 0.0 SPF_HELO_NONE          SPF: HELO does not publish an SPF Record
- -0.0 RCVD_IN_DNSWL_NONE     RBL: Sender listed at https://www.dnswl.org/,
- no trust [209.85.128.41 listed in list.dnswl.org]
  -0.0 RCVD_IN_MSPIKE_H2      RBL: Average reputation (+2)
  [209.85.128.41 listed in wl.mailspike.net]
- -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
- -0.1 DKIM_VALID_EF          Message has a valid DKIM or DK signature from
- envelope-from domain
+ -0.0 RCVD_IN_DNSWL_NONE     RBL: Sender listed at https://www.dnswl.org/,
+ no trust [209.85.128.41 listed in list.dnswl.org]
  -0.1 DKIM_VALID_AU          Message has a valid DKIM or DK signature from
  author's domain
+ -0.1 DKIM_VALID_EF          Message has a valid DKIM or DK signature from
+ envelope-from domain
+ -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
  0.1 DKIM_SIGNED            Message has a DKIM or DK signature, not necessarily
  valid
-X-Headers-End: 1pP1Tj-00Ca2J-Dt
+X-Headers-End: 1pP1gq-00CaVl-Eq
 Subject: Re: [V9fs-developer] [PATCH v3 00/11] Performance fixes for 9p
  filesystem
 X-BeenThere: v9fs-developer@lists.sourceforge.net
@@ -123,52 +123,110 @@ List-Post: <mailto:v9fs-developer@lists.sourceforge.net>
 List-Help: <mailto:v9fs-developer-request@lists.sourceforge.net?subject=help>
 List-Subscribe: <https://lists.sourceforge.net/lists/listinfo/v9fs-developer>, 
  <mailto:v9fs-developer-request@lists.sourceforge.net?subject=subscribe>
-Cc: lucho@ionkov.net, v9fs-developer@lists.sourceforge.net,
- Eric Van Hensbergen <ericvh@kernel.org>, rminnich@gmail.com
+Cc: lucho@ionkov.net, linux-kernel@vger.kernel.org, rminnich@gmail.com,
+ linux-fsdevel@vger.kernel.org, v9fs-developer@lists.sourceforge.net,
+ Eric Van Hensbergen <ericvh@kernel.org>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: v9fs-developer-bounces@lists.sourceforge.net
 
-On Mon, Feb 6, 2023 at 7:04 AM Christian Schoenebeck
+On Mon, Feb 6, 2023 at 7:20 AM Christian Schoenebeck
 <linux_oss@crudebyte.com> wrote:
 >
-> > The particular call path you ran into though may be fixed in a
-> > different way -- so calls to setattr trigger a flush of the writeback
-> > buffer -- this happens regardless of whether we are working on an open
-> > file or not.  Might be easy enough to prevent flushing if the file
-> > isn't currently open (because there should be nothing to flush) -- but
-> > I had a second question: why are we flushing in the first place, this
-> > seems to be traced back 12 years to a commit from Aneesh where he is
-> > concerned that if we change the mode or ownership of the file then we
-> > won't be able to writeback, but that shouldn't be a concern because if
-> > someone has the file open under the original permissions then they
-> > should be able to write regardless of someone changing permissions
-> > underneath them.
+> Okay, that's surprising to me indeed. My expecation was that "loose" would
+> still retain its previous behaviour, i.e. loose consistency cache but without
+> any readahead or writeback. I already wondered about the transitivity you used
+> in code for cache selection with direct `<=` comparison of user's cache
+> option.
 >
-> I can't say for sure what the motivation was, as not being involved on the
-> party back then, but keep in mind that Linux client currently collects a
-> constantly growing amount of open FIDs indefinitely, and at a certain point
-> e.g. QEMU is forced to close some open FIDs to prevent a crash, which QEMU re-
-> opens later on when those FIDs are accessed by client again.
+> Having said that, I wonder whether it would make sense to handle these as
+> options independent of each other (e.g. cache=loose,readahead), but not sure,
+> maybe it would overcomplicate things unnecessarily.
 >
 
-Indeed - the fact that there are double the number of fids to
-accommodate the "extra" writeback_fid was one of the motivations for
-trying to remove it.  The flush here doesn't really help with that as
-the fid held on to for writeback as well as the fid held on to for the
-cached dir_entry will still be held regardless.  The second held fid
-won't actually get dealt with until I finish the patch series with the
-multiple WIP patches...but will get back to working on that once we
-are done with this.
+That's fair and I've considered it, but was waiting until I get to the
+dir cache changes to figure out which way I wanted to go.  I imagine
+the way that would play out is there are three types of caching
+(readahead, writeback, dir) with writeback inclusive of readahead
+still though.  Then there would be three cache policies (tight,
+temporal, loose) and finally there'd be a seperate option for fscache
+(open question as to whether or not fscache with < dir makes sense..I
+think probably not).
 
-On a secondary note, I was mostly trying to reproduce your problems on
-my M1 mac (w/ qemu running native on the M1) -- the open FID problem
-happens MUCH, MUCH sooner.  I think by default you only get 256 open
-files on OSX.  dbench with 8 threads always triggers handle failures -
-so we may need to adjust any constants for fid reclaiming on qemu when
-running on mac.
+> > I've a design for a "tight" cache, which will also not be
+> > as performant as loose but will add consistent dir-caching on top of
+> > readahead and writeback -- once we've properly vetted that it should
+> > likely be the default cache option and any fscache should be built on
+> > top of it.  I was also thinking of augmenting "tight" and "loose" with
+> > a "temporal" cache that works more like NFS and bounds consistency to
+> > a particular time quanta.  Loose was always a bit of a "hack" for some
+> > particular use cases and has always been a bit problematic in my mind.
+>
+> Or we could add notifications on file changes from server side, because that's
+> what this is actually about, right?
+>
 
-      -eric
+Yeah, that's always an option, but would be tricky to work out the 9p
+model for this as model is explicitly RPC so we'd have to post a read
+for file changes.  We had the same discussion for locks and decided to
+keep it simple for now.  I'm not opposed to exploring this, but we'd
+want to keep it as a invalidate log with a single open posted read --
+could use a synthetic or something similar to the Tauth messages to
+have that.  That's gonna go on the end-of-the-backlog for
+consideration, but happy to review if someone else wants to go after
+it.
+
+> > So, to make sure we are on the same page, was your performance
+> > uplifts/penalties versus cache=none or versus legacy cache=loose?
+>
+> I have not tested cache=none at all, because in the scenario of 9p being a
+> root fs, you need at least cache=mmap, otherwise you won't even be able to
+> boot a minimum system.
+>
+
+Yeah, understood -- mmap ~= writeback so the writeback issues would
+persist there.  FWIW, I continue to see no problems with cache=none,
+but that makes sense as all the changes are in the cache code.  Will
+keep crunching on getting this fixed.
+
+> I compared:
+>
+>   * master(cache=loose) vs. this(cache=loose)
+>
+>   * master(cache=loose) vs. this(cache=readahead)
+>
+>   * master(cache=loose) vs. this(cache=writeback)
+>
+> > The 10x perf improvement in the patch series was in streaming reads over
+> > cache=none.
+>
+> OK, that's an important information to mention in the first place. Because
+> when say you measured a performance plus of x times, I would assume you
+> compared it to at least a somewhat similar setup. I mean cache=loose was
+> always much faster than cache=none before.
+>
+
+Sorry that I didn't make that more clear.  The original motivation for
+the patch series was the cpu project that Ron and I have been
+collaborating on and cache==loose was problematic for that use case so
+we wanted something that approached the performance of cache==loose
+but with tighter consistency (in particular the ability to actually do
+read-ahead with open-to-close consistency).  As you pointed out
+though, there was a 5% improvement in loose (probably due to reduction
+of messages associated with management of the writeback_fid).  In any
+case, the hope is to make cache=mmap (and eventually cache=tight) the
+default cache mode versus cache=none -- but have to get this stable
+first.
+
+As I said, the dir-cache changes in the WIP patch series are expected
+to benefit loose a bit more (particularly around the dir-read pain
+points) and I spotted several cases where loose appears to be
+re-requesting files it already has in cache -- so there may be more to
+it.  But that being said, I don't expected to get 10x out of those
+changes (although depends on the types of operations being performed).
+Will know better when I get further along.
+
+         -eric
 
 
 _______________________________________________
