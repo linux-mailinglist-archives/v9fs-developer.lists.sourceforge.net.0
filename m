@@ -2,91 +2,94 @@ Return-Path: <v9fs-developer-bounces@lists.sourceforge.net>
 X-Original-To: lists+v9fs-developer@lfdr.de
 Delivered-To: lists+v9fs-developer@lfdr.de
 Received: from lists.sourceforge.net (lists.sourceforge.net [216.105.38.7])
-	by mail.lfdr.de (Postfix) with ESMTPS id 37B46692F37
+	by mail.lfdr.de (Postfix) with ESMTPS id A55E1692F39
 	for <lists+v9fs-developer@lfdr.de>; Sat, 11 Feb 2023 08:51:03 +0100 (CET)
-Received: from [127.0.0.1] (helo=sfs-ml-4.v29.lw.sourceforge.com)
-	by sfs-ml-4.v29.lw.sourceforge.com with esmtp (Exim 4.95)
+Received: from [127.0.0.1] (helo=sfs-ml-1.v29.lw.sourceforge.com)
+	by sfs-ml-1.v29.lw.sourceforge.com with esmtp (Exim 4.95)
 	(envelope-from <v9fs-developer-bounces@lists.sourceforge.net>)
-	id 1pQkex-0005eM-GK;
-	Sat, 11 Feb 2023 07:50:59 +0000
+	id 1pQkf1-0004Iq-3S;
+	Sat, 11 Feb 2023 07:51:02 +0000
 Received: from [172.30.20.202] (helo=mx.sourceforge.net)
- by sfs-ml-4.v29.lw.sourceforge.com with esmtps (TLS1.2) tls
+ by sfs-ml-1.v29.lw.sourceforge.com with esmtps (TLS1.2) tls
  TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384 (Exim 4.95)
- (envelope-from <asmadeus@codewreck.org>) id 1pQkew-0005eG-FD
+ (envelope-from <asmadeus@codewreck.org>) id 1pQkez-0004IO-At
  for v9fs-developer@lists.sourceforge.net;
- Sat, 11 Feb 2023 07:50:58 +0000
+ Sat, 11 Feb 2023 07:51:00 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=sourceforge.net; s=x; h=Content-Transfer-Encoding:MIME-Version:Message-Id:
- Date:Subject:Cc:To:From:Sender:Reply-To:Content-Type:Content-ID:
- Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
- :Resent-Message-ID:In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:
+ d=sourceforge.net; s=x; h=Content-Transfer-Encoding:MIME-Version:References:
+ In-Reply-To:Message-Id:Date:Subject:Cc:To:From:Sender:Reply-To:Content-Type:
+ Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+ Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
  List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=mZ7V6TvH4FiikbfdBWS/VYGEygwMettD8agI1gFOm1M=; b=FG+2EvQVEL0fj3UySOhV6saiVv
- 8px2CXq9JbMQ4J6Q5Z/QHFheoUmbj1fBlwsRJEerruyb4BQuRrjC3iS1M43Z8B1GQ+Wy6jy6COmzo
- crpdzPXGHdopICHrLe/nRnX+YtA6QZ9oWdyExKaG8960H63WQraWR1ge+B6VP1dim7eo=;
+ bh=UfsDrit7eLpVkZZfZcRzk8BZOU6gKynjWaH0yapJsnY=; b=lYxZYjS8gbo044axQGrJRjvtqZ
+ Z80+5HoxCSThhDmLogndFsAXE14ulWtK+2I23yejRir/NCJCKanYtbfwGtqwG3Z9vOPCaltZQnfMm
+ nyDtmKslCuDtDJYmMaWvM4Wn6Hi6fDxwsc2WX3h35xFXwmAjXRlOK+fvYIFEMat3qQSY=;
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  ;
- h=Content-Transfer-Encoding:MIME-Version:Message-Id:Date:Subject:Cc:To:From
- :Sender:Reply-To:Content-Type:Content-ID:Content-Description:Resent-Date:
- Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:
- References:List-Id:List-Help:List-Unsubscribe:List-Subscribe:List-Post:
- List-Owner:List-Archive; bh=mZ7V6TvH4FiikbfdBWS/VYGEygwMettD8agI1gFOm1M=; b=X
- 0hPzOWbLi++7lMCuKSj2Q8kPSM5chu90YaflrAKIE6v4fgIY6M8TJSxNnaQPxGX8Z7V8dnZ4sW0xK
- P3oG/X6IXu/uUj9x+gi8xIPHCkc0k3EOFhhNRxtNzx1L0C5OeRnxPmpcMQQegB6vp4FfQAG9xk9Cv
- hh6SDLWnhfTa2UbE=;
+ h=Content-Transfer-Encoding:MIME-Version:References:In-Reply-To:Message-Id:
+ Date:Subject:Cc:To:From:Sender:Reply-To:Content-Type:Content-ID:
+ Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
+ :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
+ List-Post:List-Owner:List-Archive;
+ bh=UfsDrit7eLpVkZZfZcRzk8BZOU6gKynjWaH0yapJsnY=; b=GoiuW2isXUUR9xbZu71UgnX+L9
+ v3pdj9Nbjh3BIJAX3bXKqbZkiUbS/laNEQWx3mcsGbq6AU1ameZg57aSpaMZKFN2JYjab7QUmA9B9
+ 18zpY7xUWwXIWzAvmvcOr7Yh2oQt39jQNBU7h7KtX5XZYtxHpajgvOxnqT2xENJg/cB4=;
 Received: from nautica.notk.org ([91.121.71.147])
  by sfi-mx-2.v28.lw.sourceforge.com with esmtps
  (TLS1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.95)
- id 1pQker-0001BZ-CO for v9fs-developer@lists.sourceforge.net;
- Sat, 11 Feb 2023 07:50:58 +0000
+ id 1pQkev-0001Bh-GG for v9fs-developer@lists.sourceforge.net;
+ Sat, 11 Feb 2023 07:51:00 +0000
 Received: by nautica.notk.org (Postfix, from userid 108)
- id 0EC42C01E; Sat, 11 Feb 2023 08:51:10 +0100 (CET)
+ id 8BD9AC009; Sat, 11 Feb 2023 08:51:14 +0100 (CET)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=codewreck.org; s=2;
- t=1676101870; bh=mZ7V6TvH4FiikbfdBWS/VYGEygwMettD8agI1gFOm1M=;
- h=From:To:Cc:Subject:Date:From;
- b=Sim4YISfEupjBbCSUW1dEtp1xy9940T9KIHPYJaHTzfTBMgTRimF9S0F9c6KjOGHU
- CVj/VBiQGPfGgO7P12lhm0etBp+UKNS7EULawsi7oRKOeQ4e6czX1EZQJF48QLxcxo
- h0vbdWVrBEq4W82UfDnK49Bg9GqKBF4ceHXsF+GZP5+8OYJ3aP1YLBGL7IJr4CLWAa
- y6ChuTVKp7Dc9Cn+tc7BqaE7NIzy2tNneRGw8Rwk64CBec9gbxGHOwPZAgf0Q/EnlW
- GKfANzIEWwyDY4nFEFzVpzeMeWEqB5Mm3D0cxXsy30xX8AhN/5k1DdZ2tbdYBJ4UK8
- bFBiFFV3rPy3Q==
+ t=1676101874; bh=UfsDrit7eLpVkZZfZcRzk8BZOU6gKynjWaH0yapJsnY=;
+ h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
+ b=GBM2t+sS5avUYvRjF5rsRwgVGggc9u9dqiKiC5icg2O6vsFE3kcuoL0LOV/SgASNs
+ jLR/49+n5k5SExlQXpUt955wZuPAfpyqh6NXvGhcP3y2wTErD34R9XoN/8nO7mimtM
+ yRdHraNzyNHO+y50M93xQGUXRO3ItL7Tq/rxHRwgKkGd6zSNbWY5GW8Iyd0u9e6ea0
+ s2RMYNMTxusmxsXDu5QVy6XoYTqQ+b07TFH57zBzemu0cFnLFL3owUehAjLorssump
+ KL1vgktz2F5MKKj7Bw7QIh9OzmY6HzMObv0SZGW3N/rkhorTM42d0eHUOkZFoMAGh8
+ qwajrNOhuYLZQ==
 X-Spam-Checker-Version: SpamAssassin 3.3.2 (2011-06-06) on nautica.notk.org
 X-Spam-Level: 
 X-Spam-Status: No, score=0.0 required=5.0 tests=UNPARSEABLE_RELAY
  autolearn=unavailable version=3.3.2
 Received: from odin.codewreck.org (localhost [127.0.0.1])
- by nautica.notk.org (Postfix) with ESMTPS id F1B04C009;
- Sat, 11 Feb 2023 08:51:06 +0100 (CET)
+ by nautica.notk.org (Postfix) with ESMTPS id E1A88C01C;
+ Sat, 11 Feb 2023 08:51:09 +0100 (CET)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=codewreck.org; s=2;
- t=1676101869; bh=mZ7V6TvH4FiikbfdBWS/VYGEygwMettD8agI1gFOm1M=;
- h=From:To:Cc:Subject:Date:From;
- b=UaVAGdvP1UrXfRlpEefbJxV82II9TLvIIo+tumn/ZPRwDTUbRn/lx4jItfYP6rWig
- lbs+hmErZz+dBzQYpBmDPwuZATvqkgYApuUB98U9e/jfg1QAStbnyJH7lfnvbl7FB5
- ZYOzsDbp5YBZbcsNW2u2PFhzmza7wSq2RTVxo9UJ+GLzLVVN3a4fxpCk4Dvq/JF6Dw
- ZKAuP/D/tT7IX2l5dtgzxUKMVdX9GtK1O5TjX8/iOFU3QZLavVSug48Ip3kOO4DH06
- OQsMkYsprDppSotSZAzDpAZl5vIlvIks8g146FIP6BddXMaRYAF0JaeKlk03KFFizZ
- VSQjqJGL+omxw==
+ t=1676101874; bh=UfsDrit7eLpVkZZfZcRzk8BZOU6gKynjWaH0yapJsnY=;
+ h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
+ b=GBM2t+sS5avUYvRjF5rsRwgVGggc9u9dqiKiC5icg2O6vsFE3kcuoL0LOV/SgASNs
+ jLR/49+n5k5SExlQXpUt955wZuPAfpyqh6NXvGhcP3y2wTErD34R9XoN/8nO7mimtM
+ yRdHraNzyNHO+y50M93xQGUXRO3ItL7Tq/rxHRwgKkGd6zSNbWY5GW8Iyd0u9e6ea0
+ s2RMYNMTxusmxsXDu5QVy6XoYTqQ+b07TFH57zBzemu0cFnLFL3owUehAjLorssump
+ KL1vgktz2F5MKKj7Bw7QIh9OzmY6HzMObv0SZGW3N/rkhorTM42d0eHUOkZFoMAGh8
+ qwajrNOhuYLZQ==
 Received: from localhost (odin.codewreck.org [local])
- by odin.codewreck.org (OpenSMTPD) with ESMTPA id 7a50f303;
- Sat, 11 Feb 2023 07:50:41 +0000 (UTC)
+ by odin.codewreck.org (OpenSMTPD) with ESMTPA id 6bace919;
+ Sat, 11 Feb 2023 07:50:43 +0000 (UTC)
 From: Dominique Martinet <asmadeus@codewreck.org>
 To: v9fs-developer@lists.sourceforge.net,
  Eric Van Hensbergen <ericvh@gmail.com>,
  Christian Schoenebeck <linux_oss@crudebyte.com>
-Date: Sat, 11 Feb 2023 16:50:18 +0900
-Message-Id: <20230211075023.137253-1-asmadeus@codewreck.org>
+Date: Sat, 11 Feb 2023 16:50:19 +0900
+Message-Id: <20230211075023.137253-2-asmadeus@codewreck.org>
 X-Mailer: git-send-email 2.39.0
+In-Reply-To: <20230211075023.137253-1-asmadeus@codewreck.org>
+References: <20230211075023.137253-1-asmadeus@codewreck.org>
 MIME-Version: 1.0
 X-Spam-Score: -0.2 (/)
 X-Spam-Report: Spam detection software,
- running on the system "util-spamd-1.v13.lw.sourceforge.com", 
+ running on the system "util-spamd-2.v13.lw.sourceforge.com", 
  has NOT identified this incoming email as spam.  The original
  message has been attached to this so you can view it or label
  similar future email.  If you have any questions, see
  the administrator of that system for details.
- Content preview:  I've been working on async RPCs for a while and never had
- time to debug the last issues this had, but by limiting the async clunks to
- failures the impact is drastically smaller and I've not been able [...] 
+ Content preview: This commit containers no code change: - move p9_fid_* higher
+ in code as p9_fid_destroy will be used in async callback - move
+ p9_client_flush
+ as it will no longer call p9_client_rpc and can simplify f [...] 
  Content analysis details:   (-0.2 points, 6.0 required)
  pts rule name              description
  ---- ---------------------- --------------------------------------------------
@@ -94,20 +97,20 @@ X-Spam-Report: Spam detection software,
  blocked.  See
  http://wiki.apache.org/spamassassin/DnsBlocklists#dnsbl-block
  for more information. [URIs: codewreck.org]
- -0.0 SPF_PASS               SPF: sender matches SPF record
  0.0 SPF_HELO_NONE          SPF: HELO does not publish an SPF Record
- -0.1 DKIM_VALID_AU          Message has a valid DKIM or DK signature from
- author's domain
+ -0.0 SPF_PASS               SPF: sender matches SPF record
  -0.1 DKIM_VALID_EF          Message has a valid DKIM or DK signature from
  envelope-from domain
  -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+ -0.1 DKIM_VALID_AU          Message has a valid DKIM or DK signature from
+ author's domain
  0.1 DKIM_SIGNED            Message has a DKIM or DK signature, not necessarily
  valid
  0.0 UNPARSEABLE_RELAY      Informational: message has unparseable relay
  lines
-X-Headers-End: 1pQker-0001BZ-CO
-Subject: [V9fs-developer] [PATCH 0/5] Take 3 at async RPCs and no longer
- looping forever on signals
+X-Headers-End: 1pQkev-0001Bh-GG
+Subject: [V9fs-developer] [PATCH 1/5] 9p/net: move code in preparation of
+ async rpc
 X-BeenThere: v9fs-developer@lists.sourceforge.net
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -125,59 +128,249 @@ Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: v9fs-developer-bounces@lists.sourceforge.net
 
-I've been working on async RPCs for a while and never had time to debug
-the last issues this had, but by limiting the async clunks to failures
-the impact is drastically smaller and I've not been able to reproduce
-any more bug so far.
+This commit containers no code change:
+ - move p9_fid_* higher in code as p9_fid_destroy will be used
+in async callback
+ - move p9_client_flush as it will no longer call p9_client_rpc
+and can simplify forward declaration a bit later
 
-This will require some more testing and I'm tempted to say this is not
-worth rushing this into the merge window next week-ish; the new problem
-Jens reported with task_work isn't really new and I'd rather get this
-right than rush new bugs in given the sour experience I've had with this
-patch series... Hopefully it'll get in this time.
-With that in mind I plan to take the patches in to my -next branch after
-the merge window, so this has time to get reviewed first.
+This just simplifies the next commits to make diffs cleaner.
 
-I'd like to measure impact on performance as well, but really spent way
-more time on this than I already have, so that'll have to wait a bit.
+Signed-off-by: Dominique Martinet <asmadeus@codewreck.org>
+---
+ net/9p/client.c | 198 ++++++++++++++++++++++++------------------------
+ 1 file changed, 99 insertions(+), 99 deletions(-)
 
-The only good thing here is that this shouldn't conflict with Eric's
-rework...
-
-
-A few problems I ran into today:
- - not doing async clunks for retries led to massive fid leaks as soon
-as I started doing async flush; I've described that in the clunk patch
-but basically all the servers we tested with always replied with the
-clunk before the flush, so the first clunk was never an error, so there
-wasn't a need to retry at all... Because if it had it'd fall with
-ERESTARTSYS immediately again, and it didn't.
-This isn't perfect, but hopefully should be good enough to avoid too
-many problems.
-
- - for flush itself, the waiting for all in-flight flushes before
-sending new rpc isn't great, but I don't have any better idea.
-I think in the general case we could get away with not waiting at all
-most of the time (check if there are any pending flush sent by the
-current tid?), but the current approach by making the thread not
-killable at all (!) is much more conservative, so I feel like we
-should try this much even if it costs a bit.
-
-
-Anyway, here goes nothing. Comments please!
-
-
-Dominique Martinet (5):
-  9p/net: move code in preparation of async rpc
-  9p/net: share pooled receive buffers size exception in p9_tag_alloc
-  9p/net: implement asynchronous rpc skeleton
-  9p/net: add async clunk for retries
-  9p/net: make flush asynchronous
-
- include/net/9p/client.h |  15 +-
- net/9p/client.c         | 508 +++++++++++++++++++++++++---------------
- 2 files changed, 339 insertions(+), 184 deletions(-)
-
+diff --git a/net/9p/client.c b/net/9p/client.c
+index 622ec6a586ee..53ebd07c36ee 100644
+--- a/net/9p/client.c
++++ b/net/9p/client.c
+@@ -428,6 +428,66 @@ static void p9_tag_cleanup(struct p9_client *c)
+ 	rcu_read_unlock();
+ }
+ 
++static struct p9_fid *p9_fid_create(struct p9_client *clnt)
++{
++	int ret;
++	struct p9_fid *fid;
++
++	p9_debug(P9_DEBUG_FID, "clnt %p\n", clnt);
++	fid = kzalloc(sizeof(*fid), GFP_KERNEL);
++	if (!fid)
++		return NULL;
++
++	fid->mode = -1;
++	fid->uid = current_fsuid();
++	fid->clnt = clnt;
++	refcount_set(&fid->count, 1);
++
++	idr_preload(GFP_KERNEL);
++	spin_lock_irq(&clnt->lock);
++	ret = idr_alloc_u32(&clnt->fids, fid, &fid->fid, P9_NOFID - 1,
++			    GFP_NOWAIT);
++	spin_unlock_irq(&clnt->lock);
++	idr_preload_end();
++	if (!ret) {
++		trace_9p_fid_ref(fid, P9_FID_REF_CREATE);
++		return fid;
++	}
++
++	kfree(fid);
++	return NULL;
++}
++
++static void p9_fid_destroy(struct p9_fid *fid)
++{
++	struct p9_client *clnt;
++	unsigned long flags;
++
++	p9_debug(P9_DEBUG_FID, "fid %d\n", fid->fid);
++	trace_9p_fid_ref(fid, P9_FID_REF_DESTROY);
++	clnt = fid->clnt;
++	spin_lock_irqsave(&clnt->lock, flags);
++	idr_remove(&clnt->fids, fid->fid);
++	spin_unlock_irqrestore(&clnt->lock, flags);
++	kfree(fid->rdir);
++	kfree(fid);
++}
++
++/* We also need to export tracepoint symbols for tracepoint_enabled() */
++EXPORT_TRACEPOINT_SYMBOL(9p_fid_ref);
++
++void do_trace_9p_fid_get(struct p9_fid *fid)
++{
++	trace_9p_fid_ref(fid, P9_FID_REF_GET);
++}
++EXPORT_SYMBOL(do_trace_9p_fid_get);
++
++void do_trace_9p_fid_put(struct p9_fid *fid)
++{
++	trace_9p_fid_ref(fid, P9_FID_REF_PUT);
++}
++EXPORT_SYMBOL(do_trace_9p_fid_put);
++
+ /**
+  * p9_client_cb - call back from transport to client
+  * @c: client state
+@@ -570,6 +630,45 @@ static int p9_check_errors(struct p9_client *c, struct p9_req_t *req)
+ 	return err;
+ }
+ 
++static struct p9_req_t *p9_client_prepare_req(struct p9_client *c,
++					      int8_t type, uint t_size, uint r_size,
++					      const char *fmt, va_list ap)
++{
++	int err;
++	struct p9_req_t *req;
++	va_list apc;
++
++	p9_debug(P9_DEBUG_MUX, "client %p op %d\n", c, type);
++
++	/* we allow for any status other than disconnected */
++	if (c->status == Disconnected)
++		return ERR_PTR(-EIO);
++
++	/* if status is begin_disconnected we allow only clunk request */
++	if (c->status == BeginDisconnect && type != P9_TCLUNK)
++		return ERR_PTR(-EIO);
++
++	va_copy(apc, ap);
++	req = p9_tag_alloc(c, type, t_size, r_size, fmt, apc);
++	va_end(apc);
++	if (IS_ERR(req))
++		return req;
++
++	/* marshall the data */
++	p9pdu_prepare(&req->tc, req->tc.tag, type);
++	err = p9pdu_vwritef(&req->tc, c->proto_version, fmt, ap);
++	if (err)
++		goto reterr;
++	p9pdu_finalize(c, &req->tc);
++	trace_9p_client_req(c, type, req->tc.tag);
++	return req;
++reterr:
++	p9_req_put(c, req);
++	/* We have to put also the 2nd reference as it won't be used */
++	p9_req_put(c, req);
++	return ERR_PTR(err);
++}
++
+ static struct p9_req_t *
+ p9_client_rpc(struct p9_client *c, int8_t type, const char *fmt, ...);
+ 
+@@ -613,45 +712,6 @@ static int p9_client_flush(struct p9_client *c, struct p9_req_t *oldreq)
+ 	return 0;
+ }
+ 
+-static struct p9_req_t *p9_client_prepare_req(struct p9_client *c,
+-					      int8_t type, uint t_size, uint r_size,
+-					      const char *fmt, va_list ap)
+-{
+-	int err;
+-	struct p9_req_t *req;
+-	va_list apc;
+-
+-	p9_debug(P9_DEBUG_MUX, "client %p op %d\n", c, type);
+-
+-	/* we allow for any status other than disconnected */
+-	if (c->status == Disconnected)
+-		return ERR_PTR(-EIO);
+-
+-	/* if status is begin_disconnected we allow only clunk request */
+-	if (c->status == BeginDisconnect && type != P9_TCLUNK)
+-		return ERR_PTR(-EIO);
+-
+-	va_copy(apc, ap);
+-	req = p9_tag_alloc(c, type, t_size, r_size, fmt, apc);
+-	va_end(apc);
+-	if (IS_ERR(req))
+-		return req;
+-
+-	/* marshall the data */
+-	p9pdu_prepare(&req->tc, req->tc.tag, type);
+-	err = p9pdu_vwritef(&req->tc, c->proto_version, fmt, ap);
+-	if (err)
+-		goto reterr;
+-	p9pdu_finalize(c, &req->tc);
+-	trace_9p_client_req(c, type, req->tc.tag);
+-	return req;
+-reterr:
+-	p9_req_put(c, req);
+-	/* We have to put also the 2nd reference as it won't be used */
+-	p9_req_put(c, req);
+-	return ERR_PTR(err);
+-}
+-
+ /**
+  * p9_client_rpc - issue a request and wait for a response
+  * @c: client session
+@@ -838,66 +898,6 @@ static struct p9_req_t *p9_client_zc_rpc(struct p9_client *c, int8_t type,
+ 	return ERR_PTR(safe_errno(err));
+ }
+ 
+-static struct p9_fid *p9_fid_create(struct p9_client *clnt)
+-{
+-	int ret;
+-	struct p9_fid *fid;
+-
+-	p9_debug(P9_DEBUG_FID, "clnt %p\n", clnt);
+-	fid = kzalloc(sizeof(*fid), GFP_KERNEL);
+-	if (!fid)
+-		return NULL;
+-
+-	fid->mode = -1;
+-	fid->uid = current_fsuid();
+-	fid->clnt = clnt;
+-	refcount_set(&fid->count, 1);
+-
+-	idr_preload(GFP_KERNEL);
+-	spin_lock_irq(&clnt->lock);
+-	ret = idr_alloc_u32(&clnt->fids, fid, &fid->fid, P9_NOFID - 1,
+-			    GFP_NOWAIT);
+-	spin_unlock_irq(&clnt->lock);
+-	idr_preload_end();
+-	if (!ret) {
+-		trace_9p_fid_ref(fid, P9_FID_REF_CREATE);
+-		return fid;
+-	}
+-
+-	kfree(fid);
+-	return NULL;
+-}
+-
+-static void p9_fid_destroy(struct p9_fid *fid)
+-{
+-	struct p9_client *clnt;
+-	unsigned long flags;
+-
+-	p9_debug(P9_DEBUG_FID, "fid %d\n", fid->fid);
+-	trace_9p_fid_ref(fid, P9_FID_REF_DESTROY);
+-	clnt = fid->clnt;
+-	spin_lock_irqsave(&clnt->lock, flags);
+-	idr_remove(&clnt->fids, fid->fid);
+-	spin_unlock_irqrestore(&clnt->lock, flags);
+-	kfree(fid->rdir);
+-	kfree(fid);
+-}
+-
+-/* We also need to export tracepoint symbols for tracepoint_enabled() */
+-EXPORT_TRACEPOINT_SYMBOL(9p_fid_ref);
+-
+-void do_trace_9p_fid_get(struct p9_fid *fid)
+-{
+-	trace_9p_fid_ref(fid, P9_FID_REF_GET);
+-}
+-EXPORT_SYMBOL(do_trace_9p_fid_get);
+-
+-void do_trace_9p_fid_put(struct p9_fid *fid)
+-{
+-	trace_9p_fid_ref(fid, P9_FID_REF_PUT);
+-}
+-EXPORT_SYMBOL(do_trace_9p_fid_put);
+-
+ static int p9_client_version(struct p9_client *c)
+ {
+ 	int err = 0;
 -- 
 2.39.1
 
