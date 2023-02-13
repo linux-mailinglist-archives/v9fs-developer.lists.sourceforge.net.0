@@ -2,83 +2,86 @@ Return-Path: <v9fs-developer-bounces@lists.sourceforge.net>
 X-Original-To: lists+v9fs-developer@lfdr.de
 Delivered-To: lists+v9fs-developer@lfdr.de
 Received: from lists.sourceforge.net (lists.sourceforge.net [216.105.38.7])
-	by mail.lfdr.de (Postfix) with ESMTPS id DA2AE692F4B
-	for <lists+v9fs-developer@lfdr.de>; Sat, 11 Feb 2023 09:06:12 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id BD53F693B88
+	for <lists+v9fs-developer@lfdr.de>; Mon, 13 Feb 2023 02:00:52 +0100 (CET)
 Received: from [127.0.0.1] (helo=sfs-ml-2.v29.lw.sourceforge.com)
 	by sfs-ml-2.v29.lw.sourceforge.com with esmtp (Exim 4.95)
 	(envelope-from <v9fs-developer-bounces@lists.sourceforge.net>)
-	id 1pQktg-0005D0-3l;
-	Sat, 11 Feb 2023 08:06:11 +0000
+	id 1pRND6-0006Ek-V4;
+	Mon, 13 Feb 2023 01:00:48 +0000
 Received: from [172.30.20.202] (helo=mx.sourceforge.net)
  by sfs-ml-2.v29.lw.sourceforge.com with esmtps (TLS1.2) tls
  TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384 (Exim 4.95)
- (envelope-from <asmadeus@codewreck.org>) id 1pQkte-0005Ct-DY
+ (envelope-from <ericvh@gmail.com>) id 1pRND5-0006Ee-6V
  for v9fs-developer@lists.sourceforge.net;
- Sat, 11 Feb 2023 08:06:09 +0000
+ Mon, 13 Feb 2023 01:00:46 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=sourceforge.net; s=x; h=In-Reply-To:Content-Type:MIME-Version:References:
- Message-ID:Subject:Cc:To:From:Date:Sender:Reply-To:Content-Transfer-Encoding:
- Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+ d=sourceforge.net; s=x; h=Content-Type:Cc:To:Subject:Message-ID:Date:From:
+ In-Reply-To:References:MIME-Version:Sender:Reply-To:Content-Transfer-Encoding
+ :Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
  Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
  List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=/4p9G+PVx8BGkfwEmhVgFFfnUl5ZHemCeP8SNirq5Lw=; b=CzUuXAwO0Jb6eyp+dW82InjAWC
- MQ7mtSr2K44fd3XV7A4/q93Sik2gHL6L00eEgUJsPbwTeje99PZMdHVY1ZV69tQhO7hV/R5vW3AFA
- 6xuSkidJQczxK5ni7IKwtyVeVfX+eJqyZhWNUPmehAu40CkB5kjcaiw5R8t6q0ZPLQEg=;
+ bh=06COdPRnG+39m66zuzkhdsZ8XyyXnmKdKi6XGpOB7fE=; b=F042+uyDHbxy68i/cYYnfYKNjg
+ wk+vhBaRPFHSOqk8zjVq55aFHuNwf2W15auhdixg9Jb8su/1cQSN96KEvRZcjBdGjprLZqu8W0K60
+ c/g0aedq7VeREn4kXcikLIhSN7PeuiucBTVCSoYDuD3ZRrw1uVhZVqKVJrRX9UVvvDYY=;
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  ;
- h=In-Reply-To:Content-Type:MIME-Version:References:Message-ID:Subject:Cc:To
- :From:Date:Sender:Reply-To:Content-Transfer-Encoding:Content-ID:
+ h=Content-Type:Cc:To:Subject:Message-ID:Date:From:In-Reply-To:References:
+ MIME-Version:Sender:Reply-To:Content-Transfer-Encoding:Content-ID:
  Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
  :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
  List-Post:List-Owner:List-Archive;
- bh=/4p9G+PVx8BGkfwEmhVgFFfnUl5ZHemCeP8SNirq5Lw=; b=ldrQA/i39GikZS3ML4ugKdqJZg
- AhasFc+h740EhFsMx4iWgi9/kheyGCXk0XXWQG8H1E9EN+mPXidUUdXMqvBwWEgrPJLBQRnT54JCp
- JjZ9pC3Geq9Djw9XaqzQk8bfwhPEhmXFaep28QVQj8r14MYV137GkQ4O9av1UyHB21c0=;
-Received: from nautica.notk.org ([91.121.71.147])
- by sfi-mx-2.v28.lw.sourceforge.com with esmtps
- (TLS1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.95)
- id 1pQktZ-0001bO-0l for v9fs-developer@lists.sourceforge.net;
- Sat, 11 Feb 2023 08:06:09 +0000
-Received: by nautica.notk.org (Postfix, from userid 108)
- id 1AC0AC009; Sat, 11 Feb 2023 09:06:22 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=codewreck.org; s=2;
- t=1676102782; bh=/4p9G+PVx8BGkfwEmhVgFFfnUl5ZHemCeP8SNirq5Lw=;
- h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
- b=MfrpC9pJJ/BrdRivl8Yphmxj5QyjY2PL9qu2jNwEliDylRLQ2bqAJrnBukY1Ot2AK
- pCdwnO+M4FHX95DJa2bQ1/Wc6I5tUpo2S8l8dI+iexYoIOe3kSTMsE46RBiu4dXanI
- buaUiTO1LC7zoZjj9on7/IInsKVjAdc/tB3xferFwHbI3KN1kwcTQHtdTY1d2X8sXZ
- pUQlgLPtsC2vrwYPYPGQTa329gURDF63NfTMi75CUkCPplwB4NzzXGczQqdlL9ODaw
- +9wdrrUzlH7Vs5o5Or2VoSsSqvjR6XFdImnCoM6IXmK5vTuJmgbnDAgnoxgVptW9Ji
- vN+BgxBcyyjiQ==
-X-Spam-Checker-Version: SpamAssassin 3.3.2 (2011-06-06) on nautica.notk.org
-X-Spam-Level: 
-X-Spam-Status: No, score=0.0 required=5.0 tests=UNPARSEABLE_RELAY
- autolearn=unavailable version=3.3.2
-Received: from odin.codewreck.org (localhost [127.0.0.1])
- by nautica.notk.org (Postfix) with ESMTPS id 52444C009;
- Sat, 11 Feb 2023 09:06:19 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=codewreck.org; s=2;
- t=1676102781; bh=/4p9G+PVx8BGkfwEmhVgFFfnUl5ZHemCeP8SNirq5Lw=;
- h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
- b=XcIOAxaKklddAXtfwh3QZJOZWBvjhO64tAB61EL25BX2JbwIVbj4iqTxjyLpLeQJX
- YC44bKPVLfSEny3Vat9VvD8SF6sbSQBG5GvX2FXuEdSogTQ02RV0vsa3FtHm3+i2zL
- jGL0w3SnJ8/ayvaZJSCJvTqlV7lGKHodxIFplC6PLNdmdLqQSMuS7DwmCYpnozxvX3
- pyq0aQgk+dhn9F/8nAe/7RWleQ6uCzggET47CE2QepGaeJ6gv5hW6moAGcEcqJzxdS
- USJA9oO+6PARLCGc/xIiUWktDQbDHcdGXtaQ2+y1lQ20cbJOrjlfL2FFaH+4raZLeZ
- jXFh13qSNBd6Q==
-Received: from localhost (odin.codewreck.org [local])
- by odin.codewreck.org (OpenSMTPD) with ESMTPA id 0c5daf8e;
- Sat, 11 Feb 2023 08:05:54 +0000 (UTC)
-Date: Sat, 11 Feb 2023 17:05:39 +0900
-From: Dominique Martinet <asmadeus@codewreck.org>
-To: v9fs-developer@lists.sourceforge.net,
- Eric Van Hensbergen <ericvh@gmail.com>,
- Christian Schoenebeck <linux_oss@crudebyte.com>
-Message-ID: <Y+dMU4dRatN40BLF@codewreck.org>
-References: <20230211075023.137253-1-asmadeus@codewreck.org>
+ bh=06COdPRnG+39m66zuzkhdsZ8XyyXnmKdKi6XGpOB7fE=; b=FtyckUuNoPwOiDWFs0AvqHSBlx
+ HIXKrKXeFyb+QChGx0MftRdx3FzefbBifRc7RB6ZLYMmILjiJzsAaxkZyD9NEF1hyJMAk7oov1nF1
+ mELURrDzJbo1Hld9sWM4hmc+nRo4lvMk9JYyfxzHrqglWjN9YHeNVNcy4Ao4zVYIKh0s=;
+Received: from mail-wm1-f42.google.com ([209.85.128.42])
+ by sfi-mx-1.v28.lw.sourceforge.com with esmtps
+ (TLS1.2:ECDHE-RSA-AES128-GCM-SHA256:128) (Exim 4.95)
+ id 1pRND2-002GnI-K4 for v9fs-developer@lists.sourceforge.net;
+ Mon, 13 Feb 2023 01:00:46 +0000
+Received: by mail-wm1-f42.google.com with SMTP id
+ k8-20020a05600c1c8800b003dc57ea0dfeso10209092wms.0
+ for <v9fs-developer@lists.sourceforge.net>;
+ Sun, 12 Feb 2023 17:00:44 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
+ h=cc:to:subject:message-id:date:from:in-reply-to:references
+ :mime-version:from:to:cc:subject:date:message-id:reply-to;
+ bh=06COdPRnG+39m66zuzkhdsZ8XyyXnmKdKi6XGpOB7fE=;
+ b=htyie5G3y35TAj9a+ugbREIVaGH1gvLSInh3P5ZzkSbrKQnrOjA0vYl4uoLM46UyyN
+ E8703FmuurRxiNFkDZxD6AQGZGUEo8AKucRNq3FWkDTtaVpYbnF8qo+2x2vBKHU4vMlW
+ VjvNjtXZHTUxA49Cwo3HzePDXYlI4xIWz5GlQUzgFIOojpiiX01dvGEaTHiAk6SDULsz
+ ARDp2CKRJhDDWLcvMu0SyfO+A1Q0uueU3w1mOeQ1YUEWHJq9QnEeI95gFXHYjhPkaESu
+ GXtXr7IjUKp3yWFzsa5aJBLpWNMRCa/VNdfK1W5EfYMhSZaNOKJxBs4iyZPXfXI0cv/S
+ bYhg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20210112;
+ h=cc:to:subject:message-id:date:from:in-reply-to:references
+ :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+ :reply-to;
+ bh=06COdPRnG+39m66zuzkhdsZ8XyyXnmKdKi6XGpOB7fE=;
+ b=VkcIH7ypUQFq1ChFKRGboTMLsncGHh76e11jCWVh1mxx4Fg2RODp9qIX2hlOZPDWaJ
+ AL9mjge0UAUnRjEtOndOsuyp5mi20PDdm6SL1OpG7FRadybaYWiptTa3Uh+dUwNE6cXK
+ l07r0EE4tY8UzgY1V0/G+m6Vg6J4/FoWd+Ui1vWNL/95SX1xyqmyiHz46CKksoBKw7g6
+ zDCkLs9kMW1XJXdug+/WA1zdnqJYhnV82O3K7+q0EALZG9j3UXUQkAsaabbTphi4Oouh
+ v4rCeToq5uiU/ADN4lt8ojE0biAC1mg3zKI8rrudV05VsUwlZJet4HjxNkYZD9WKS3dx
+ fzvQ==
+X-Gm-Message-State: AO0yUKXEtvcfixJAu0S0+MHlbmrkbqAQkXpi61TdQ4gXLnH09+nVbxTI
+ Nrp/+eRGmskhCO9joTlgwnEIXX5TkycEul/Jk/tjvCk1NY0=
+X-Google-Smtp-Source: AK7set/FUnvePU6Kpmlm9V4uAi1P2V7Pf5UUYqSbq8si1m/d/uvd+TS4NzRfhytaexdmiDmEAgmOhikf/ZpS4FIvBN8=
+X-Received: by 2002:a05:600c:a39e:b0:3d7:8c6:a8cb with SMTP id
+ hn30-20020a05600ca39e00b003d708c6a8cbmr1305895wmb.82.1676250037891; Sun, 12
+ Feb 2023 17:00:37 -0800 (PST)
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20230211075023.137253-1-asmadeus@codewreck.org>
+References: <20221218232217.1713283-1-evanhensbergen@icloud.com>
+ <9010570.AfT4dvHSuA@silver>
+ <CAFkjPTkcGC_eBp8Db2b48rtbFads+2KGkD1DZRL=C6k-4uX0oA@mail.gmail.com>
+ <3428263.euj80CISbX@silver>
+ <CAFkjPT=_SRORm=J9sxx0CxAWOGvKft-ZXhtNseHm5NNpv9TrLg@mail.gmail.com>
+In-Reply-To: <CAFkjPT=_SRORm=J9sxx0CxAWOGvKft-ZXhtNseHm5NNpv9TrLg@mail.gmail.com>
+From: Eric Van Hensbergen <ericvh@gmail.com>
+Date: Sun, 12 Feb 2023 19:00:26 -0600
+Message-ID: <CAFkjPTkqHs091FeePjZsPS8eNQoPY+HJiW1nS7KTDgEEue9XFQ@mail.gmail.com>
+To: Christian Schoenebeck <linux_oss@crudebyte.com>
 X-Spam-Score: -0.2 (/)
 X-Spam-Report: Spam detection software,
  running on the system "util-spamd-2.v13.lw.sourceforge.com", 
@@ -86,31 +89,30 @@ X-Spam-Report: Spam detection software,
  message has been attached to this so you can view it or label
  similar future email.  If you have any questions, see
  the administrator of that system for details.
- Content preview:  Dominique Martinet wrote on Sat, Feb 11, 2023 at 04:50:18PM
- +0900: > A few problems I ran into today: > [...] Ah, one more thing I forgot:
- I'm still convinced that p9_virtio_zc_request is wrong in its current (before
- these patches), and adding this on top doesn't make it any better. 
+ Content preview:  Okay, after much thrashing about, I think I figured out what
+ was going wrong -- seems filemap_write_and_wait didn't quite do what I thought
+ it does when the superblock isn't marked as synchronous (whi [...] 
  Content analysis details:   (-0.2 points, 6.0 required)
  pts rule name              description
  ---- ---------------------- --------------------------------------------------
- 0.0 URIBL_BLOCKED          ADMINISTRATOR NOTICE: The query to URIBL was
- blocked.  See
- http://wiki.apache.org/spamassassin/DnsBlocklists#dnsbl-block
- for more information. [URIs: codewreck.org]
+ -0.0 RCVD_IN_DNSWL_NONE     RBL: Sender listed at https://www.dnswl.org/,
+ no trust [209.85.128.42 listed in list.dnswl.org]
  0.0 SPF_HELO_NONE          SPF: HELO does not publish an SPF Record
+ 0.0 FREEMAIL_FROM          Sender email is commonly abused enduser mail
+ provider [ericvh[at]gmail.com]
  -0.0 SPF_PASS               SPF: sender matches SPF record
- -0.1 DKIM_VALID_EF          Message has a valid DKIM or DK signature from
- envelope-from domain
- -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
  -0.1 DKIM_VALID_AU          Message has a valid DKIM or DK signature from
  author's domain
  0.1 DKIM_SIGNED            Message has a DKIM or DK signature, not necessarily
  valid
- 0.0 UNPARSEABLE_RELAY      Informational: message has unparseable relay
- lines
-X-Headers-End: 1pQktZ-0001bO-0l
-Subject: Re: [V9fs-developer] [PATCH 0/5] Take 3 at async RPCs and no longer
- looping forever on signals
+ -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+ -0.1 DKIM_VALID_EF          Message has a valid DKIM or DK signature from
+ envelope-from domain
+ -0.0 RCVD_IN_MSPIKE_H2      RBL: Average reputation (+2)
+ [209.85.128.42 listed in wl.mailspike.net]
+X-Headers-End: 1pRND2-002GnI-K4
+Subject: Re: [V9fs-developer] [PATCH v3 00/11] Performance fixes for 9p
+ filesystem
 X-BeenThere: v9fs-developer@lists.sourceforge.net
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -122,33 +124,42 @@ List-Post: <mailto:v9fs-developer@lists.sourceforge.net>
 List-Help: <mailto:v9fs-developer-request@lists.sourceforge.net?subject=help>
 List-Subscribe: <https://lists.sourceforge.net/lists/listinfo/v9fs-developer>, 
  <mailto:v9fs-developer-request@lists.sourceforge.net?subject=subscribe>
-Cc: Latchesar Ionkov <lucho@ionkov.net>, Jens Axboe <axboe@kernel.dk>,
- Pengfei Xu <pengfei.xu@intel.com>, linux-kernel@vger.kernel.org
+Cc: lucho@ionkov.net, v9fs-developer@lists.sourceforge.net,
+ Eric Van Hensbergen <ericvh@kernel.org>, rminnich@gmail.com
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: v9fs-developer-bounces@lists.sourceforge.net
 
-Dominique Martinet wrote on Sat, Feb 11, 2023 at 04:50:18PM +0900:
-> A few problems I ran into today:
-> [...]
+Okay, after much thrashing about, I think I figured out what was going
+wrong -- seems filemap_write_and_wait didn't quite do what I thought
+it does when the superblock isn't marked as synchronous (which it used
+to be if caches weren't enabled).  In any case, I replaced the
+filemap_write_and_wait writeback flushes with something a bit heavier
+weight and it seemed to get rid of the problem for my test cases.  I
+will be doing some more testing, but if you get a chance see if it
+gets rid of your problems as well.
 
-Ah, one more thing I forgot: I'm still convinced that
-p9_virtio_zc_request is wrong in its current (before these patches), and
-adding this on top doesn't make it any better.
+       -eric
 
-We'll likely want to fix that too before merging this, giving another
-reason to dealy this for 6.4.
-
-p9_virtio_zc_request shouldn't unpin the pages if wait_event_killable is
-interrupted, and the flush async cb should call back in the transport to
-unpin at that point or something?
-
-I'm probably repeating myself here but I really don't have time in the
-day for everything, so that too will have to wait...
-(and there's probably more I forgot, but that'll do for now)
-
--- 
-Dominique
+On Mon, Feb 6, 2023 at 7:59 AM Eric Van Hensbergen <ericvh@gmail.com> wrote:
+>
+> On Mon, Feb 6, 2023 at 7:46 AM Christian Schoenebeck
+> <linux_oss@crudebyte.com> wrote:
+> >
+> > Can't we just close old pages when a certain number is piled up? Originally I
+> > assumed that the generalized, shared cache code would do that automatically at
+> > a certain point.
+> >
+>
+> Indeed, I'm sure that's there but probably only once the page cache
+> approaches the memory limits.  However, that behavior should be
+> uncoupled from the fids themselves anyways, fids really should only be
+> there for open-files and even if we have writeback-fids, they should
+> only be there for dirty open files (although have to keep them for all
+> open-files because of the weird open without re-open permissions
+> behavior).
+>
+>        -eric
 
 
 _______________________________________________
