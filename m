@@ -2,106 +2,83 @@ Return-Path: <v9fs-developer-bounces@lists.sourceforge.net>
 X-Original-To: lists+v9fs-developer@lfdr.de
 Delivered-To: lists+v9fs-developer@lfdr.de
 Received: from lists.sourceforge.net (lists.sourceforge.net [216.105.38.7])
-	by mail.lfdr.de (Postfix) with ESMTPS id 45738694588
-	for <lists+v9fs-developer@lfdr.de>; Mon, 13 Feb 2023 13:14:08 +0100 (CET)
-Received: from [127.0.0.1] (helo=sfs-ml-1.v29.lw.sourceforge.com)
-	by sfs-ml-1.v29.lw.sourceforge.com with esmtp (Exim 4.95)
+	by mail.lfdr.de (Postfix) with ESMTPS id EEB17694E58
+	for <lists+v9fs-developer@lfdr.de>; Mon, 13 Feb 2023 18:47:54 +0100 (CET)
+Received: from [127.0.0.1] (helo=sfs-ml-2.v29.lw.sourceforge.com)
+	by sfs-ml-2.v29.lw.sourceforge.com with esmtp (Exim 4.95)
 	(envelope-from <v9fs-developer-bounces@lists.sourceforge.net>)
-	id 1pRXig-0001jF-O9;
-	Mon, 13 Feb 2023 12:14:05 +0000
+	id 1pRcvh-0007mX-3q;
+	Mon, 13 Feb 2023 17:47:52 +0000
 Received: from [172.30.20.202] (helo=mx.sourceforge.net)
- by sfs-ml-1.v29.lw.sourceforge.com with esmtps (TLS1.2) tls
+ by sfs-ml-2.v29.lw.sourceforge.com with esmtps (TLS1.2) tls
  TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384 (Exim 4.95)
- (envelope-from <ericvh@gmail.com>) id 1pRXif-0001ir-DD
+ (envelope-from <linux_oss@crudebyte.com>) id 1pRcvf-0007mQ-3R
  for v9fs-developer@lists.sourceforge.net;
- Mon, 13 Feb 2023 12:14:04 +0000
+ Mon, 13 Feb 2023 17:47:51 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=sourceforge.net; s=x; h=Content-Type:Cc:To:Subject:Message-ID:Date:From:
- In-Reply-To:References:MIME-Version:Sender:Reply-To:Content-Transfer-Encoding
- :Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+ d=sourceforge.net; s=x; h=Content-Type:Content-Transfer-Encoding:MIME-Version
+ :References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Sender:Reply-To:
+ Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
  Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
  List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=wE7elN8gKWlwdXUHUBx4/clTthhSbmUmpi6FVIkoDW4=; b=HSjadXuw8F/GJmFGw7wglh7c2I
- LTyeGt2/TYMnuwKcT3VfLLUD4znfxFj5QMK4jqBjka+NtWhtHmmQX7YzeaTywxP/icmfSyNIIfe9j
- Vf8H1rOCJXk6Fro0Q3GwZg3wDUAaPeiZMaNKmKCIGI3Mk6x4rBsmws009zuClfMkbpW4=;
+ bh=A5df1yTIZD9wAyLTiI9WcLrb+WZ3/VTbUZ/qbUROp8w=; b=lDRbqvuius6TaNJjDkw9JtorZ6
+ g1A5fKIctZXD9ZjQYzDjXWE13j4z+QDCcdNeOViV8pEfiFyFfNhS5JEt202hQc9+EaA/DtWBuXmFn
+ CaQd4G88k4W1lrHfNvCKlZJiZoulHHNN/PIP27WGXy3mPuqoxRoSyce6ySZTlvD//QgA=;
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  ;
- h=Content-Type:Cc:To:Subject:Message-ID:Date:From:In-Reply-To:References:
- MIME-Version:Sender:Reply-To:Content-Transfer-Encoding:Content-ID:
+ h=Content-Type:Content-Transfer-Encoding:MIME-Version:References:
+ In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Sender:Reply-To:Content-ID:
  Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
  :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
  List-Post:List-Owner:List-Archive;
- bh=wE7elN8gKWlwdXUHUBx4/clTthhSbmUmpi6FVIkoDW4=; b=c45Ux/F/xYB97QnpoM1heO3+XM
- dag6ocfD1YBgCqN99gpL+YHoKjMA/pYxSgPhUkIXH2k3+qlYWl7i11JKlZe8pbxPqr3KnRi7Gp8ks
- 7m+05U6ElfBtCN4vpk6K7nOU3Gogy3Aa44F4eVavAOoL96227FCD2tVPoXcQmmkto3zM=;
-Received: from mail-wm1-f49.google.com ([209.85.128.49])
+ bh=A5df1yTIZD9wAyLTiI9WcLrb+WZ3/VTbUZ/qbUROp8w=; b=nVGEsr6WDa+px/ZWBKCQZaW3VI
+ yPy4gE6hghfDPe37oslXvVLAOf4gwFzXYNeMjzaz58GHl8jysHqgKROQzX6XkN41QS7yH2CHiZDCj
+ OMV4bO8B01oPybIwwR3BF0qJDNFyLIRnYCdkams88wE2PqoVXV5ykicP2cYHVd+ltw54=;
+Received: from [5.189.157.229] (helo=kylie.crudebyte.com)
  by sfi-mx-1.v28.lw.sourceforge.com with esmtps
- (TLS1.2:ECDHE-RSA-AES128-GCM-SHA256:128) (Exim 4.95)
- id 1pRXiZ-002jtS-PG for v9fs-developer@lists.sourceforge.net;
- Mon, 13 Feb 2023 12:14:04 +0000
-Received: by mail-wm1-f49.google.com with SMTP id r18so8540167wmq.5
- for <v9fs-developer@lists.sourceforge.net>;
- Mon, 13 Feb 2023 04:13:59 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
- h=cc:to:subject:message-id:date:from:in-reply-to:references
- :mime-version:from:to:cc:subject:date:message-id:reply-to;
- bh=wE7elN8gKWlwdXUHUBx4/clTthhSbmUmpi6FVIkoDW4=;
- b=c6WrQWpuC7mx9HVhLW/QXnGJVJKobMRkZ9uTwuahaPRQyDMwvzJ4gjj8icvT3vgnKT
- 312jZ4z6h3vpVh0J1D4/44bbjsCFAyk/wYq+ZqpG7dfFSrsYNSWzgDjcttL2CNTkEhIx
- oeEwq8UC7aXHhqto90//YwWFwV2agA9Kc6V+cdbBeoQwmQElNdWUhZM+SFYChaWcVKMX
- fz6u4BlioWzdv7r8dGrB6yHXifLDtWrET7F1zeSo1Q/P6/6nqXIwpVWn7Nx4hFK9pczZ
- Js5dtyaHX1nU52iOMy49fKhWXHt5XlUaEv3A5sgKEqaygv43e7Cq2khEGHHeQvA0MyzI
- OzSA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20210112;
- h=cc:to:subject:message-id:date:from:in-reply-to:references
- :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
- :reply-to;
- bh=wE7elN8gKWlwdXUHUBx4/clTthhSbmUmpi6FVIkoDW4=;
- b=tychr+h7jmz1GY0HqNXWDUeCsAcNrMFJcQn8XiDC6pK974m+PECN5TQYjVkneidhNF
- MxpkE8jHTx/QZLZca+Tj/KdJkd3Q3LpLBqmjxv/8xKDXTN/Ao4sfpV+EHs2wzuB0/+6y
- nTuqZ+pcIw1kAMCxOFiLbxEHrn5t0wc658OMw/rf7hiyKLXJsuFe935sSve/c4NTWbP/
- G5GY6Eds6+4RqO8u0eByNo3smcEWwdO3QxMLv3Pjqn9vN7gU9gPeY746IqX8/sTiezuA
- WYHXpuyi6fntravtVwt/2txNAxo9w6TKAlTH75gcYz2cVPt1fjFLM7AQ787mt5x64hXM
- nVSQ==
-X-Gm-Message-State: AO0yUKWlGhSYBdWO/GY1IGc0m4W5qFmetW/0dCuVj5FSjCL7fE5iBhEw
- oar4/G5cVZfta2SPDNC2ZNiadADa0QeKrQ9bifGBTbdo
-X-Google-Smtp-Source: AK7set9aTJ6jjoOEkV5mRF6Sh6OPjQm2gpBerxU9vFA1jCNviVLCGlGIiTsTqp89ghEeOFZtN4V4F8mHCXSoURwOaqg=
-X-Received: by 2002:a05:600c:2212:b0:3d1:e3ba:3bb6 with SMTP id
- z18-20020a05600c221200b003d1e3ba3bb6mr1225576wml.29.1676290433021; Mon, 13
- Feb 2023 04:13:53 -0800 (PST)
+ (TLS1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.95)
+ id 1pRcva-003FFF-1X for v9fs-developer@lists.sourceforge.net;
+ Mon, 13 Feb 2023 17:47:50 +0000
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+ d=crudebyte.com; s=kylie; h=Content-Type:Content-Transfer-Encoding:
+ MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:
+ Content-ID:Content-Description;
+ bh=A5df1yTIZD9wAyLTiI9WcLrb+WZ3/VTbUZ/qbUROp8w=; b=C4K8k+rtBUYTFU+iQu5F+kYFhj
+ 2DZHAIyak88UeJ7ohRtfc+kj9gm6eOtZq/BmFAeDtDFfnUTLW9Hmlr4F5VQVa606yjkMuKaNDRzCT
+ 6EsaOhaguz0wZ+5YpXB1dwsIa9zC6KoMfzhSA5Gtdik1pSjrk7roWUADvmU8Zxn8akghvcJhKdCt2
+ uBjDVTuyJelFnyfkNfSqxmK14O3xJJ2qh8t9J8bLi3B2S3M1QZWJ0l2PDItEzQImdnCQ7ysybjDb/
+ iNlm3P3KoB9bqll6rYKruGF1g1Q1KgWm8gOMMrT9Tl4vcSKT7hXIFZmMr6WR4IVIxOAx+E4m8AePo
+ W3VvsuQbAz8k5zL4q84qv6OQlR4o08b4SE1vLsOPK9G+VwrSFpRXifkPKd3/CjoWVOlNJlhByez8x
+ /DR1/l9M3XmT5sJ5201ztvBeUy1SliOxNbW+c2MYAJfol0HOwpYC4Kkl14MkoKbmzsKVlRGbM4Tx/
+ drx1FLUAfU56Owji1zc65TyfcYo6i74oWzSPS1vCfcl82ErkmLu24pDtduCha4Xl68Khr1U0bVWn+
+ I4gzh+qQ6xbizvrZUpvPWXRBG8b8NMPm8yMsV0X2DHs2fGSur2rIg+4YH4KaHffWpYyc4C91+sUzz
+ 1EaroH3VDG5E/rJ7UcT7V/SRBT2iQo61/K3JLA3uc=;
+To: v9fs-developer@lists.sourceforge.net,
+ Eric Van Hensbergen <ericvh@gmail.com>,
+ Dominique Martinet <asmadeus@codewreck.org>
+Date: Mon, 13 Feb 2023 18:46:13 +0100
+Message-ID: <1847623.mNM4OxGzmo@silver>
+In-Reply-To: <20230211075023.137253-2-asmadeus@codewreck.org>
+References: <20230211075023.137253-1-asmadeus@codewreck.org>
+ <20230211075023.137253-2-asmadeus@codewreck.org>
 MIME-Version: 1.0
-References: <20221218232217.1713283-1-evanhensbergen@icloud.com>
- <CAFkjPTkqHs091FeePjZsPS8eNQoPY+HJiW1nS7KTDgEEue9XFQ@mail.gmail.com>
- <CAFkjPTn=6+X1=b4sfAd8LrZ2xuJF_4hsDbUmFZtifpROTTtB9g@mail.gmail.com>
- <7353605.ZQh82CZjP3@silver>
-In-Reply-To: <7353605.ZQh82CZjP3@silver>
-From: Eric Van Hensbergen <ericvh@gmail.com>
-Date: Mon, 13 Feb 2023 06:13:42 -0600
-Message-ID: <CAFkjPTmW+RHHP7sF-JjbZ-mCmCUv63NCVOU3aWOzDCezb4L0sQ@mail.gmail.com>
-To: Christian Schoenebeck <linux_oss@crudebyte.com>
-X-Spam-Score: -0.2 (/)
+X-Spam-Score: 1.1 (+)
 X-Spam-Report: Spam detection software,
  running on the system "util-spamd-2.v13.lw.sourceforge.com", 
  has NOT identified this incoming email as spam.  The original
  message has been attached to this so you can view it or label
  similar future email.  If you have any questions, see
  the administrator of that system for details.
- Content preview: its available in the for-next branch on github or kernel.org.
- Want to test some more before posting V4, hopefully will get through that
- today. On Mon, Feb 13, 2023 at 2:49 AM Christian Schoenebeck < wrote: 
- Content analysis details:   (-0.2 points, 6.0 required)
+ Content preview:  On Saturday, February 11,
+ 2023 8:50:19 AM CET Dominique Martinet
+ wrote: > This commit containers no code change: > - move p9_fid_* higher
+ in code as p9_fid_destroy will be used > in async callback I would have just
+ added p9_fid_destroy()'s prototype earlier in code instead of moving stuff
+ around: Content analysis details:   (1.1 points, 6.0 required)
  pts rule name              description
  ---- ---------------------- --------------------------------------------------
- -0.0 RCVD_IN_DNSWL_NONE     RBL: Sender listed at https://www.dnswl.org/,
- no trust [209.85.128.49 listed in list.dnswl.org]
- 0.0 FREEMAIL_FROM          Sender email is commonly abused enduser mail
- provider [ericvh[at]gmail.com]
  0.0 SPF_HELO_NONE          SPF: HELO does not publish an SPF Record
  -0.0 SPF_PASS               SPF: sender matches SPF record
- -0.0 RCVD_IN_MSPIKE_H2      RBL: Average reputation (+2)
- [209.85.128.49 listed in wl.mailspike.net]
- 0.0 HTML_MESSAGE           BODY: HTML included in message
  -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
  0.1 DKIM_SIGNED            Message has a DKIM or DK signature, not necessarily
  valid
@@ -109,10 +86,10 @@ X-Spam-Report: Spam detection software,
  author's domain
  -0.1 DKIM_VALID_EF          Message has a valid DKIM or DK signature from
  envelope-from domain
-X-Headers-End: 1pRXiZ-002jtS-PG
-X-Content-Filtered-By: Mailman/MimeDel 2.1.21
-Subject: Re: [V9fs-developer] [PATCH v3 00/11] Performance fixes for 9p
- filesystem
+ 1.3 RDNS_NONE Delivered to internal network by a host with no rDNS
+X-Headers-End: 1pRcva-003FFF-1X
+Subject: Re: [V9fs-developer] [PATCH 1/5] 9p/net: move code in preparation
+ of async rpc
 X-BeenThere: v9fs-developer@lists.sourceforge.net
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -124,44 +101,274 @@ List-Post: <mailto:v9fs-developer@lists.sourceforge.net>
 List-Help: <mailto:v9fs-developer-request@lists.sourceforge.net?subject=help>
 List-Subscribe: <https://lists.sourceforge.net/lists/listinfo/v9fs-developer>, 
  <mailto:v9fs-developer-request@lists.sourceforge.net?subject=subscribe>
-Cc: lucho@ionkov.net, rminnich@gmail.com,
- Eric Van Hensbergen <ericvh@kernel.org>, v9fs-developer@lists.sourceforge.net
+From: Christian Schoenebeck via V9fs-developer
+ <v9fs-developer@lists.sourceforge.net>
+Reply-To: Christian Schoenebeck <linux_oss@crudebyte.com>
+Cc: Latchesar Ionkov <lucho@ionkov.net>, Jens Axboe <axboe@kernel.dk>,
+ Pengfei Xu <pengfei.xu@intel.com>, linux-kernel@vger.kernel.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: v9fs-developer-bounces@lists.sourceforge.net
 
-its available in the for-next branch on github or kernel.org.  Want to test
-some more before posting V4, hopefully will get through that today.
+On Saturday, February 11, 2023 8:50:19 AM CET Dominique Martinet wrote:
+> This commit containers no code change:
+>  - move p9_fid_* higher in code as p9_fid_destroy will be used
+> in async callback
 
-On Mon, Feb 13, 2023 at 2:49 AM Christian Schoenebeck <
-linux_oss@crudebyte.com> wrote:
+I would have just added p9_fid_destroy()'s prototype earlier in code instead
+of moving stuff around:
 
-> On Monday, February 13, 2023 2:01:22 AM CET Eric Van Hensbergen wrote:
-> > (sorry - changes are in the for-next branch, need to do some merging
-> > into my v9fs-devel branch)
-> >
-> > On Sun, Feb 12, 2023 at 7:00 PM Eric Van Hensbergen <ericvh@gmail.com>
-> wrote:
-> > >
-> > > Okay, after much thrashing about, I think I figured out what was going
-> > > wrong -- seems filemap_write_and_wait didn't quite do what I thought
-> > > it does when the superblock isn't marked as synchronous (which it used
-> > > to be if caches weren't enabled).  In any case, I replaced the
-> > > filemap_write_and_wait writeback flushes with something a bit heavier
-> > > weight and it seemed to get rid of the problem for my test cases.  I
-> > > will be doing some more testing, but if you get a chance see if it
-> > > gets rid of your problems as well.
->
-> I will definitely test it out! Are you going to post a v4? Otherwise just
-> drop
-> me a note once it is ready to grab from which of your repo branches.
-> Thanks!
->
-> Best regards,
-> Christian Schoenebeck
->
->
->
+static void p9_fid_destroy(struct p9_fid *fid);
+
+Because that would not mess with 'git blame' history. But anyway, it's just
+restructuring, no behaviour change, so:
+
+Reviewed-by: Christian Schoenebeck <linux_oss@crudebyte.com>
+
+>  - move p9_client_flush as it will no longer call p9_client_rpc
+> and can simplify forward declaration a bit later
+> 
+> This just simplifies the next commits to make diffs cleaner.
+> 
+> Signed-off-by: Dominique Martinet <asmadeus@codewreck.org>
+> ---
+>  net/9p/client.c | 198 ++++++++++++++++++++++++------------------------
+>  1 file changed, 99 insertions(+), 99 deletions(-)
+> 
+> diff --git a/net/9p/client.c b/net/9p/client.c
+> index 622ec6a586ee..53ebd07c36ee 100644
+> --- a/net/9p/client.c
+> +++ b/net/9p/client.c
+> @@ -428,6 +428,66 @@ static void p9_tag_cleanup(struct p9_client *c)
+>  	rcu_read_unlock();
+>  }
+>  
+> +static struct p9_fid *p9_fid_create(struct p9_client *clnt)
+> +{
+> +	int ret;
+> +	struct p9_fid *fid;
+> +
+> +	p9_debug(P9_DEBUG_FID, "clnt %p\n", clnt);
+> +	fid = kzalloc(sizeof(*fid), GFP_KERNEL);
+> +	if (!fid)
+> +		return NULL;
+> +
+> +	fid->mode = -1;
+> +	fid->uid = current_fsuid();
+> +	fid->clnt = clnt;
+> +	refcount_set(&fid->count, 1);
+> +
+> +	idr_preload(GFP_KERNEL);
+> +	spin_lock_irq(&clnt->lock);
+> +	ret = idr_alloc_u32(&clnt->fids, fid, &fid->fid, P9_NOFID - 1,
+> +			    GFP_NOWAIT);
+> +	spin_unlock_irq(&clnt->lock);
+> +	idr_preload_end();
+> +	if (!ret) {
+> +		trace_9p_fid_ref(fid, P9_FID_REF_CREATE);
+> +		return fid;
+> +	}
+> +
+> +	kfree(fid);
+> +	return NULL;
+> +}
+> +
+> +static void p9_fid_destroy(struct p9_fid *fid)
+> +{
+> +	struct p9_client *clnt;
+> +	unsigned long flags;
+> +
+> +	p9_debug(P9_DEBUG_FID, "fid %d\n", fid->fid);
+> +	trace_9p_fid_ref(fid, P9_FID_REF_DESTROY);
+> +	clnt = fid->clnt;
+> +	spin_lock_irqsave(&clnt->lock, flags);
+> +	idr_remove(&clnt->fids, fid->fid);
+> +	spin_unlock_irqrestore(&clnt->lock, flags);
+> +	kfree(fid->rdir);
+> +	kfree(fid);
+> +}
+> +
+> +/* We also need to export tracepoint symbols for tracepoint_enabled() */
+> +EXPORT_TRACEPOINT_SYMBOL(9p_fid_ref);
+> +
+> +void do_trace_9p_fid_get(struct p9_fid *fid)
+> +{
+> +	trace_9p_fid_ref(fid, P9_FID_REF_GET);
+> +}
+> +EXPORT_SYMBOL(do_trace_9p_fid_get);
+> +
+> +void do_trace_9p_fid_put(struct p9_fid *fid)
+> +{
+> +	trace_9p_fid_ref(fid, P9_FID_REF_PUT);
+> +}
+> +EXPORT_SYMBOL(do_trace_9p_fid_put);
+> +
+>  /**
+>   * p9_client_cb - call back from transport to client
+>   * @c: client state
+> @@ -570,6 +630,45 @@ static int p9_check_errors(struct p9_client *c, struct p9_req_t *req)
+>  	return err;
+>  }
+>  
+> +static struct p9_req_t *p9_client_prepare_req(struct p9_client *c,
+> +					      int8_t type, uint t_size, uint r_size,
+> +					      const char *fmt, va_list ap)
+> +{
+> +	int err;
+> +	struct p9_req_t *req;
+> +	va_list apc;
+> +
+> +	p9_debug(P9_DEBUG_MUX, "client %p op %d\n", c, type);
+> +
+> +	/* we allow for any status other than disconnected */
+> +	if (c->status == Disconnected)
+> +		return ERR_PTR(-EIO);
+> +
+> +	/* if status is begin_disconnected we allow only clunk request */
+> +	if (c->status == BeginDisconnect && type != P9_TCLUNK)
+> +		return ERR_PTR(-EIO);
+> +
+> +	va_copy(apc, ap);
+> +	req = p9_tag_alloc(c, type, t_size, r_size, fmt, apc);
+> +	va_end(apc);
+> +	if (IS_ERR(req))
+> +		return req;
+> +
+> +	/* marshall the data */
+> +	p9pdu_prepare(&req->tc, req->tc.tag, type);
+> +	err = p9pdu_vwritef(&req->tc, c->proto_version, fmt, ap);
+> +	if (err)
+> +		goto reterr;
+> +	p9pdu_finalize(c, &req->tc);
+> +	trace_9p_client_req(c, type, req->tc.tag);
+> +	return req;
+> +reterr:
+> +	p9_req_put(c, req);
+> +	/* We have to put also the 2nd reference as it won't be used */
+> +	p9_req_put(c, req);
+> +	return ERR_PTR(err);
+> +}
+> +
+>  static struct p9_req_t *
+>  p9_client_rpc(struct p9_client *c, int8_t type, const char *fmt, ...);
+>  
+> @@ -613,45 +712,6 @@ static int p9_client_flush(struct p9_client *c, struct p9_req_t *oldreq)
+>  	return 0;
+>  }
+>  
+> -static struct p9_req_t *p9_client_prepare_req(struct p9_client *c,
+> -					      int8_t type, uint t_size, uint r_size,
+> -					      const char *fmt, va_list ap)
+> -{
+> -	int err;
+> -	struct p9_req_t *req;
+> -	va_list apc;
+> -
+> -	p9_debug(P9_DEBUG_MUX, "client %p op %d\n", c, type);
+> -
+> -	/* we allow for any status other than disconnected */
+> -	if (c->status == Disconnected)
+> -		return ERR_PTR(-EIO);
+> -
+> -	/* if status is begin_disconnected we allow only clunk request */
+> -	if (c->status == BeginDisconnect && type != P9_TCLUNK)
+> -		return ERR_PTR(-EIO);
+> -
+> -	va_copy(apc, ap);
+> -	req = p9_tag_alloc(c, type, t_size, r_size, fmt, apc);
+> -	va_end(apc);
+> -	if (IS_ERR(req))
+> -		return req;
+> -
+> -	/* marshall the data */
+> -	p9pdu_prepare(&req->tc, req->tc.tag, type);
+> -	err = p9pdu_vwritef(&req->tc, c->proto_version, fmt, ap);
+> -	if (err)
+> -		goto reterr;
+> -	p9pdu_finalize(c, &req->tc);
+> -	trace_9p_client_req(c, type, req->tc.tag);
+> -	return req;
+> -reterr:
+> -	p9_req_put(c, req);
+> -	/* We have to put also the 2nd reference as it won't be used */
+> -	p9_req_put(c, req);
+> -	return ERR_PTR(err);
+> -}
+> -
+>  /**
+>   * p9_client_rpc - issue a request and wait for a response
+>   * @c: client session
+> @@ -838,66 +898,6 @@ static struct p9_req_t *p9_client_zc_rpc(struct p9_client *c, int8_t type,
+>  	return ERR_PTR(safe_errno(err));
+>  }
+>  
+> -static struct p9_fid *p9_fid_create(struct p9_client *clnt)
+> -{
+> -	int ret;
+> -	struct p9_fid *fid;
+> -
+> -	p9_debug(P9_DEBUG_FID, "clnt %p\n", clnt);
+> -	fid = kzalloc(sizeof(*fid), GFP_KERNEL);
+> -	if (!fid)
+> -		return NULL;
+> -
+> -	fid->mode = -1;
+> -	fid->uid = current_fsuid();
+> -	fid->clnt = clnt;
+> -	refcount_set(&fid->count, 1);
+> -
+> -	idr_preload(GFP_KERNEL);
+> -	spin_lock_irq(&clnt->lock);
+> -	ret = idr_alloc_u32(&clnt->fids, fid, &fid->fid, P9_NOFID - 1,
+> -			    GFP_NOWAIT);
+> -	spin_unlock_irq(&clnt->lock);
+> -	idr_preload_end();
+> -	if (!ret) {
+> -		trace_9p_fid_ref(fid, P9_FID_REF_CREATE);
+> -		return fid;
+> -	}
+> -
+> -	kfree(fid);
+> -	return NULL;
+> -}
+> -
+> -static void p9_fid_destroy(struct p9_fid *fid)
+> -{
+> -	struct p9_client *clnt;
+> -	unsigned long flags;
+> -
+> -	p9_debug(P9_DEBUG_FID, "fid %d\n", fid->fid);
+> -	trace_9p_fid_ref(fid, P9_FID_REF_DESTROY);
+> -	clnt = fid->clnt;
+> -	spin_lock_irqsave(&clnt->lock, flags);
+> -	idr_remove(&clnt->fids, fid->fid);
+> -	spin_unlock_irqrestore(&clnt->lock, flags);
+> -	kfree(fid->rdir);
+> -	kfree(fid);
+> -}
+> -
+> -/* We also need to export tracepoint symbols for tracepoint_enabled() */
+> -EXPORT_TRACEPOINT_SYMBOL(9p_fid_ref);
+> -
+> -void do_trace_9p_fid_get(struct p9_fid *fid)
+> -{
+> -	trace_9p_fid_ref(fid, P9_FID_REF_GET);
+> -}
+> -EXPORT_SYMBOL(do_trace_9p_fid_get);
+> -
+> -void do_trace_9p_fid_put(struct p9_fid *fid)
+> -{
+> -	trace_9p_fid_ref(fid, P9_FID_REF_PUT);
+> -}
+> -EXPORT_SYMBOL(do_trace_9p_fid_put);
+> -
+>  static int p9_client_version(struct p9_client *c)
+>  {
+>  	int err = 0;
+> 
+
+
+
 
 _______________________________________________
 V9fs-developer mailing list
