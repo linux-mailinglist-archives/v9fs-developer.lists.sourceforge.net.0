@@ -2,111 +2,95 @@ Return-Path: <v9fs-developer-bounces@lists.sourceforge.net>
 X-Original-To: lists+v9fs-developer@lfdr.de
 Delivered-To: lists+v9fs-developer@lfdr.de
 Received: from lists.sourceforge.net (lists.sourceforge.net [216.105.38.7])
-	by mail.lfdr.de (Postfix) with ESMTPS id CCAE3696232
-	for <lists+v9fs-developer@lfdr.de>; Tue, 14 Feb 2023 12:17:17 +0100 (CET)
-Received: from [127.0.0.1] (helo=sfs-ml-4.v29.lw.sourceforge.com)
-	by sfs-ml-4.v29.lw.sourceforge.com with esmtp (Exim 4.95)
+	by mail.lfdr.de (Postfix) with ESMTPS id 81070696FF1
+	for <lists+v9fs-developer@lfdr.de>; Tue, 14 Feb 2023 22:40:42 +0100 (CET)
+Received: from [127.0.0.1] (helo=sfs-ml-1.v29.lw.sourceforge.com)
+	by sfs-ml-1.v29.lw.sourceforge.com with esmtp (Exim 4.95)
 	(envelope-from <v9fs-developer-bounces@lists.sourceforge.net>)
-	id 1pRtJD-0003IX-CX;
-	Tue, 14 Feb 2023 11:17:15 +0000
+	id 1pS32W-0000yd-Mi;
+	Tue, 14 Feb 2023 21:40:39 +0000
 Received: from [172.30.20.202] (helo=mx.sourceforge.net)
- by sfs-ml-4.v29.lw.sourceforge.com with esmtps (TLS1.2) tls
+ by sfs-ml-1.v29.lw.sourceforge.com with esmtps (TLS1.2) tls
  TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384 (Exim 4.95)
- (envelope-from <asmadeus@codewreck.org>) id 1pRtJB-0003IQ-3L
+ (envelope-from <aohhfw@service.n786.cn>) id 1pS32U-0000yW-Bf
  for v9fs-developer@lists.sourceforge.net;
- Tue, 14 Feb 2023 11:17:13 +0000
+ Tue, 14 Feb 2023 21:40:37 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=sourceforge.net; s=x; h=In-Reply-To:Content-Type:MIME-Version:References:
- Message-ID:Subject:Cc:To:From:Date:Sender:Reply-To:Content-Transfer-Encoding:
- Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
- Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
+ d=sourceforge.net; s=x; h=Content-Type:Mime-Version:Message-ID:Subject:To:
+ From:Date:Sender:Reply-To:Cc:Content-Transfer-Encoding:Content-ID:
+ Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
+ :Resent-Message-ID:In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:
  List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=/eJLX6N8Wql6x4hLGnwhV1ycbyVYDBW+JqG/0usBf8c=; b=ZGmCY5+dPsLX8vTXTYphP3g6VQ
- pH4hb/KRc4e7xZRhgyhuYgQ4qmVXySCmbU4onUUi8MvONOz3wnf3Fm7FleViZrMpI4RQbGONXF8lQ
- VQKgCNK2p8jmmi7DdtaTlQYFWnQ+x6Y+uK02ZuGAbQHg+UO4vQbIeXO4mr8lOSGlzlR0=;
+ bh=niO0xM11k4U93+Lejnt6+z6UY0A3Brj/zN+9+NacmTo=; b=ODhwE8i1OL1slPmzmpa0U/yD4Y
+ CxzrKiZFM+okgkFmS37Ntn0qtE/FgXlre1PyJB/DgxgkKeHAGdJnnwSyY5OotPHyrmEvxSYAo44+3
+ XXFkxLJVjhmSadtuWdBELsP1YX0wVlnWOaUjXyWUIYv9A82hR2lI9uulB006pHejSXVo=;
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  ;
- h=In-Reply-To:Content-Type:MIME-Version:References:Message-ID:Subject:Cc:To
- :From:Date:Sender:Reply-To:Content-Transfer-Encoding:Content-ID:
- Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
- :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
- List-Post:List-Owner:List-Archive;
- bh=/eJLX6N8Wql6x4hLGnwhV1ycbyVYDBW+JqG/0usBf8c=; b=TI7BC9hqnUXjk+Zx8AtRRbKdu8
- 6o0ZnlMD8aP7UZi2F5clWokwggQCOKHBDcsdNwciey/WP7H4BhGCaf+mL5GVqdKsCnEjC+hiuEmv4
- BwbXqDpZbhcA+aKznP+RXyfR/tpMgEIyatTAAdheFs3KBQO9Hmfh7aU2N5O17hIoyaFA=;
-Received: from nautica.notk.org ([91.121.71.147])
- by sfi-mx-1.v28.lw.sourceforge.com with esmtps
- (TLS1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.95)
- id 1pRtJ5-0048Wm-5F for v9fs-developer@lists.sourceforge.net;
- Tue, 14 Feb 2023 11:17:13 +0000
-Received: by nautica.notk.org (Postfix, from userid 108)
- id DA48EC01E; Tue, 14 Feb 2023 12:17:23 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=codewreck.org; s=2;
- t=1676373443; bh=/eJLX6N8Wql6x4hLGnwhV1ycbyVYDBW+JqG/0usBf8c=;
- h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
- b=1qSqZIRf8f79863Rt5SSzu0gb9GWeRyNw4zSD3bw4+SAWl6IYgD/6uUvANG+cy6VJ
- z8lsR8hE3Zw+voqjc88eXUNNUL4Shl1cejt83NMWHslUyropbhESBZfhwwDrPnG0Ju
- qXmGw3sTN74pGhGOmsGj+V/KXy8VtQt+ThNKG9wTJZnNYVZbwO0Cv7uQFFDMwWksc3
- Y8NdaPNSEDQKQRH0Znj9qZdyrDilclRdhr+sDmal+Q41KZUSo6G8ltuchjbp3h5d8N
- L1JSR6hp7U0sr2DUerslNSHtYflwTSpBYqFPLhVNMfJH4Gl/99VzbrW9bAeUg+jCU5
- 0Zw+vmF6ej0+Q==
-X-Spam-Checker-Version: SpamAssassin 3.3.2 (2011-06-06) on nautica.notk.org
-X-Spam-Level: 
-X-Spam-Status: No, score=0.0 required=5.0 tests=UNPARSEABLE_RELAY
- autolearn=unavailable version=3.3.2
-Received: from odin.codewreck.org (localhost [127.0.0.1])
- by nautica.notk.org (Postfix) with ESMTPS id 30937C009;
- Tue, 14 Feb 2023 12:17:19 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=codewreck.org; s=2;
- t=1676373442; bh=/eJLX6N8Wql6x4hLGnwhV1ycbyVYDBW+JqG/0usBf8c=;
- h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
- b=PO9bv7qBRs2vQdKPuM0RSEXej0qKOwrCJXiVIfwgIJn1UhHzwhtS/4f00TuxAWeqF
- nQj32YMFGCi2//GMEdlUXXlQoxJD/T43GECn6Au3N/cOGm78QDpSi9YUxjoZK4wvtN
- WNoItWJH/0O4tOoBUN7UXmN80NjlEl8v9A+JCMzUVq3n9I1g9i4KUkNfk4hyEfmX1Y
- msMM/39F4SWNPPZPnDRFUsM2n0HyMFYq4BIh2agAYlqGol7mB+/11W3tG3j23lsk8z
- URVTX/ZnKT/ok9dZV+co8wkOQnmiRioOyomXHa5Q7kGvO/I6lh81VqvhWXSwYWfshU
- rdYiMfi2o6gfQ==
-Received: from localhost (odin.codewreck.org [local])
- by odin.codewreck.org (OpenSMTPD) with ESMTPA id 6b2bd355;
- Tue, 14 Feb 2023 11:16:53 +0000 (UTC)
-Date: Tue, 14 Feb 2023 20:16:38 +0900
-From: Dominique Martinet <asmadeus@codewreck.org>
-To: Christian Schoenebeck <linux_oss@crudebyte.com>
-Message-ID: <Y+ttlog6sth3vPHJ@codewreck.org>
-References: <20230211075023.137253-1-asmadeus@codewreck.org>
- <2973654.udxrvWzM6v@silver> <Y+q7vvc2Sek8d7wG@codewreck.org>
- <2526146.SOovFYVi4y@silver>
-MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <2526146.SOovFYVi4y@silver>
-X-Spam-Score: -0.2 (/)
-X-Spam-Report: Spam detection software,
- running on the system "util-spamd-2.v13.lw.sourceforge.com", 
- has NOT identified this incoming email as spam.  The original
+ h=Content-Type:Mime-Version:Message-ID:Subject:To:From:Date:Sender:Reply-To
+ :Cc:Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+ Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:
+ References:List-Id:List-Help:List-Unsubscribe:List-Subscribe:List-Post:
+ List-Owner:List-Archive; bh=niO0xM11k4U93+Lejnt6+z6UY0A3Brj/zN+9+NacmTo=; b=U
+ 4GxvUOWQ+ygiODvFSA+Nz8hpz4cliz6w4GXDmY2rjsLB25CAKyly+0XIP9M8NHm+rSKswYo5RUIcC
+ us5EJK0kkZMcLSafmTCtSVhtA2fwbTEZ6yj7hQ+fdkecSTBH087bY9lP6LGi/u+aVwn7OUpBZlzMF
+ eO5dwmOdoYtQ+uvI=;
+Received: from [45.156.27.247] (helo=service.n786.cn)
+ by sfi-mx-2.v28.lw.sourceforge.com with esmtp (Exim 4.95)
+ id 1pS32P-00083P-3b for v9fs-developer@lists.sourceforge.net;
+ Tue, 14 Feb 2023 21:40:37 +0000
+DKIM-Signature: v=1; a=rsa-sha1; c=relaxed/relaxed; s=mykey; d=service.n786.cn;
+ h=Date:From:To:Subject:Message-ID:Mime-Version:Content-Type;
+ bh=PBuBVLHgb7oweP2i99i2jETnojM=;
+ b=ZeOemnfar63YfSqNpZjAh17iilkq7zg/gCrcjnFr9cdX7x18cihbYjS49Mfm7SeWfMsfuyy7HnMx
+ HdBPv62fB9APNIP2mH6O6J3n6916lTBXkwfvHDGxYfznYY7MR1tfzDbbJBEXAW5JI/92LZL172tk
+ c/cKtuVKEBommRaChyk=
+Received: from yahoo2.com.cn (156.239.37.234) by service.n786.cn id
+ htfvt20001gi for <v9fs-developer@lists.sourceforge.net>;
+ Tue, 14 Feb 2023 21:19:26 +0000 (envelope-from <aohhfw@service.n786.cn>)
+Date: Wed, 15 Feb 2023 05:19:10 +0800
+From: "Amazon.co.jp" <aohhfw@service.n786.cn>
+To: <v9fs-developer@lists.sourceforge.net>
+Message-ID: <20230215051923646256@service.n786.cn>
+X-mailer: Foxmail 6, 13, 102, 15 [cn]
+Mime-Version: 1.0
+X-Spam-Score: 7.4 (+++++++)
+X-Spam-Report: Spam detection software, running on the system "util-spamd-2.v13.lw.sourceforge.com",
+ has identified this incoming email as possible spam.  The original
  message has been attached to this so you can view it or label
  similar future email.  If you have any questions, see
  the administrator of that system for details.
- Content preview:  Christian Schoenebeck wrote on Tue, Feb 14,
- 2023 at 10:34:36AM
- +0100: > > Ugh! thanks for the test, I'm not making much sense of the trace
- (folio > > wait bit means some background write isn't happeni [...] 
- Content analysis details:   (-0.2 points, 6.0 required)
- pts rule name              description
+ 
+ Content preview:  サインインが検出されました v9fs-developer@lists.sourceforge.net様、新しいデバイスからお客様のアカウントへのサインインが検出されました。
+    日時 2023/2/1 [...] 
+ 
+ Content analysis details:   (7.4 points, 6.0 required)
+ 
+  pts rule name              description
  ---- ---------------------- --------------------------------------------------
+  2.5 URIBL_DBL_PHISH        Contains a Phishing URL listed in the Spamhaus
+                             DBL blocklist
+                             [URIs: n786.cn]
+  3.6 RCVD_IN_SBL_CSS        RBL: Received via a relay in Spamhaus SBL-CSS
+                             [45.156.27.247 listed in zen.spamhaus.org]
+  0.1 URIBL_CSS_A            Contains URL's A record listed in the Spamhaus CSS
+                             blocklist
+                             [URIs: service.n786.cn]
  -0.0 SPF_PASS               SPF: sender matches SPF record
- 0.0 SPF_HELO_NONE          SPF: HELO does not publish an SPF Record
+ -0.0 SPF_HELO_PASS          SPF: HELO matches SPF record
+  0.1 URI_HEX                URI: URI hostname has long hexadecimal sequence
+  0.0 HTML_MESSAGE           BODY: HTML included in message
  -0.1 DKIM_VALID_AU          Message has a valid DKIM or DK signature from
- author's domain
- -0.1 DKIM_VALID_EF          Message has a valid DKIM or DK signature from
- envelope-from domain
- 0.1 DKIM_SIGNED            Message has a DKIM or DK signature, not necessarily
- valid
- -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
- 0.0 UNPARSEABLE_RELAY      Informational: message has unparseable relay
- lines
-X-Headers-End: 1pRtJ5-0048Wm-5F
-Subject: Re: [V9fs-developer] [PATCH 0/5] Take 3 at async RPCs and no longer
- looping forever on signals
+                             author's domain
+  0.1 DKIM_SIGNED            Message has a DKIM or DK signature, not necessarily
+                             valid
+ -0.1 DKIM_VALID             Message has at least one valid DKIM or DK signature
+  1.3 RDNS_NONE              Delivered to internal network by a host with no rDNS
+X-Headers-End: 1pS32P-00083P-3b
+X-Content-Filtered-By: Mailman/MimeDel 2.1.21
+Subject: [V9fs-developer] =?utf-8?b?djlmcy1kZXZlbG9wZXLmp5gg44CQQW1hem9u?=
+	=?utf-8?b?44CR44GU5qGI5YaF4oC744Ki44Kr44Km44Oz44OI44Gu44K744Kt44Ol?=
+	=?utf-8?b?44Oq44OG44Kj44Gu5ZWP6aGM44Oh44O844Or55Wq5Y+377yaNzU5ODcx?=
+	=?utf-8?q?457823?=
 X-BeenThere: v9fs-developer@lists.sourceforge.net
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -118,56 +102,32 @@ List-Post: <mailto:v9fs-developer@lists.sourceforge.net>
 List-Help: <mailto:v9fs-developer-request@lists.sourceforge.net?subject=help>
 List-Subscribe: <https://lists.sourceforge.net/lists/listinfo/v9fs-developer>, 
  <mailto:v9fs-developer-request@lists.sourceforge.net?subject=subscribe>
-Cc: Jens Axboe <axboe@kernel.dk>, Latchesar Ionkov <lucho@ionkov.net>,
- Eric Van Hensbergen <ericvh@gmail.com>, linux-kernel@vger.kernel.org,
- Pengfei Xu <pengfei.xu@intel.com>, v9fs-developer@lists.sourceforge.net
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: v9fs-developer-bounces@lists.sourceforge.net
 
-Christian Schoenebeck wrote on Tue, Feb 14, 2023 at 10:34:36AM +0100:
-> > Ugh! thanks for the test, I'm not making much sense of the trace (folio
-> > wait bit means some background write isn't happening when flushing
-> > before the setattr?) but I'll try to reproduce and have a look
-> > today/tomorrow
-> 
-> Yes, apparently it tries to write dirty pages of the mapped file and keeps
-> hanging there [fs/9p/vfs_inode_dotl.c:586]:
-
-Yeah, it'd help to get the trace of the thread actually trying to do the
-IO, if it still exists.
-I had some hangs in the check that there are no flush in flight at some
-point, and I thought I fixed that, but I can't really see anywhere else
-that'd start hanging with this... it'll be clearer if I can reproduce.
-
-
-Anyway, I found another bug, just running ./configure on a random project
-(picked coreutils tarball) fails with interrupted system call ?!
-
-checking for gawk... gawk
-checking whether make sets $(MAKE)... yes
-checking whether make supports nested variables... yes
-checking whether make supports nested variables... (cached) yes
-checking for gcc... gcc
-./configure: line 6385: can't create conftest.c: Interrupted system call
-checking whether the C compiler works... no
-sed: can't read conftest.c: No such file or directory
-configure: error: in `/mnt/coreutils-9.1':
-configure: error: C compiler cannot create executables
-See `config.log' for more details
-
-
-This obviously doesn't happen if I run with `sh -x configure`, but
-through execsnoop I caught it's just calling 'gcc conftest.c' and
-there's nothing special in here... But it doesn't happen without these
-patches, so I get something to dig at first.
-With a bit of luck it's the same root cause...
-
--- 
-Dominique
-
-
-_______________________________________________
-V9fs-developer mailing list
-V9fs-developer@lists.sourceforge.net
-https://lists.sourceforge.net/lists/listinfo/v9fs-developer
+DQrjgrXjgqTjg7PjgqTjg7PjgYzmpJzlh7rjgZXjgozjgb7jgZfjgZ8NCnY5ZnMtZGV2ZWxvcGVy
+QGxpc3RzLnNvdXJjZWZvcmdlLm5ldOanmOOAgeaWsOOBl+OBhOODh+ODkOOCpOOCueOBi+OCieOB
+iuWuouanmOOBruOCouOCq+OCpuODs+ODiOOBuOOBruOCteOCpOODs+OCpOODs+OBjOaknOWHuuOB
+leOCjOOBvuOBl+OBn+OAgg0K5pel5pmCIDIwMjMvMi8xNSAvNToxOToyMkphcGFuIFN0YW5kYXJk
+IFRpbWUgIA0K44OH44OQ44Kk44K5ICBHb29nbGUgQ2hyb21lIFdpbmRvd3MgKOODh+OCueOCr+OD
+iOODg+ODlykgIA0K5LuY6L+RICBLeW90bywgSmFwYW4gIA0K44GT44KM44GM44GK5a6i5qeY44GU
+6Ieq6Lqr44Gr44KI44KL5pON5L2c44Gg44Gj44Gf5aC05ZCI44CB44GT44Gu44Oh44OD44K744O8
+44K444Gv54Sh6KaW44GX44Gm44GP44Gg44GV44GE44CC6Iez5oCl56K66KqN44GX44Gf44GE44GT
+44Go44GM44GU44GW44GE44G+44GZ44Gu44Gn44CB5LiL6KiY44Oq44Oz44Kv44KS44Ki44Kv44K7
+44K544GX44CB44GU56K66KqN44KS44GE44Gf44Gg44GN44G+44GZ44KI44GG44GK6aGY44GE44GE
+44Gf44GX44G+44GZ44CCDQog44Ki44Kr44Km44Oz44OI566h55CGDQrilqAg5rOo5oSP5LqL6aCF
+DQogDQoq5q6L5b+144Gq44GM44KJ44CBMjTmmYLplpPku6XlhoXjgavnorroqo3jgafjgY3jgarj
+gZHjgozjgbDjgIEg44GK5a6i5qeY44Gu44Ki44Kr44Km44Oz44OI44KS44Ot44OD44Kv44GX44Gm
+QW1hem9u44K144O844OTIOOCueOCkuS4gOaZgueahOOBq+eEoeWKueOBq+WkieabtOOBmeOCi+OB
+k+OBqOOCkuOBiuefpeOCieOBmyDjgZfjgb7jgZnjgIINCirjgZPjga7jg6Hjg7zjg6vjga/ph43o
+poHjgarjgYrnn6XjgonjgZvjgajjgZfjgabjgIHjg6Hjg7wg44Or44KS5Y+X5L+h5biM5pyb44GX
+44Gq44GE44GK5a6i5qeY44Gr44KC44GK6YCB44KK44GE44Gf44GXIOOBvuOBmeOAguOBlOeQhuin
+o+OBhOOBn+OBoOOBjeOAgeOBguOCiuOBjOOBqOOBhuOBlOOBluOBhOOBviDjgZnjgIINCirjgZPj
+ga7jg6Hjg7zjg6vjgYzjgZTkuI3mmI7ngrnjgYzjgYLjgorjgb7jgZfjgZ/jgonjgIFBbWF6b27j
+grXjgqTjg4jjgavjgZTpgKPntaHjgY/jgaDjgZXjgYTjgIINCuOBlOi/t+aDkeOBqOOBlOW/g+mF
+jeOCkuOBiuOBi+OBkeOBl+OBpuOAgea3seOBj+OBiuipq+OBs+eUsyDjgZfkuIrjgZLjgb7jgZnj
+gILjgZTkuobmib/jgYLjgorjgYzjgajjgYbjgZTjgZbjgYTjgb7jgZfjgZ/jgIIKX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KVjlmcy1kZXZlbG9wZXIgbWFp
+bGluZyBsaXN0ClY5ZnMtZGV2ZWxvcGVyQGxpc3RzLnNvdXJjZWZvcmdlLm5ldApodHRwczovL2xp
+c3RzLnNvdXJjZWZvcmdlLm5ldC9saXN0cy9saXN0aW5mby92OWZzLWRldmVsb3Blcgo=
