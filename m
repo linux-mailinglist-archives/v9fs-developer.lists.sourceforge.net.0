@@ -2,28 +2,28 @@ Return-Path: <v9fs-developer-bounces@lists.sourceforge.net>
 X-Original-To: lists+v9fs-developer@lfdr.de
 Delivered-To: lists+v9fs-developer@lfdr.de
 Received: from lists.sourceforge.net (lists.sourceforge.net [216.105.38.7])
-	by mail.lfdr.de (Postfix) with ESMTPS id 09D5869B88E
-	for <lists+v9fs-developer@lfdr.de>; Sat, 18 Feb 2023 08:51:15 +0100 (CET)
-Received: from [127.0.0.1] (helo=sfs-ml-2.v29.lw.sourceforge.com)
-	by sfs-ml-2.v29.lw.sourceforge.com with esmtp (Exim 4.95)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4E7DB69B891
+	for <lists+v9fs-developer@lfdr.de>; Sat, 18 Feb 2023 08:52:36 +0100 (CET)
+Received: from [127.0.0.1] (helo=sfs-ml-1.v29.lw.sourceforge.com)
+	by sfs-ml-1.v29.lw.sourceforge.com with esmtp (Exim 4.95)
 	(envelope-from <v9fs-developer-bounces@lists.sourceforge.net>)
-	id 1pTI02-0007bj-FX;
-	Sat, 18 Feb 2023 07:51:13 +0000
+	id 1pTI1K-0003X0-MK;
+	Sat, 18 Feb 2023 07:52:33 +0000
 Received: from [172.30.20.202] (helo=mx.sourceforge.net)
- by sfs-ml-2.v29.lw.sourceforge.com with esmtps (TLS1.2) tls
+ by sfs-ml-1.v29.lw.sourceforge.com with esmtps (TLS1.2) tls
  TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384 (Exim 4.95)
- (envelope-from <asmadeus@codewreck.org>) id 1pTI00-0007bd-MX
+ (envelope-from <asmadeus@codewreck.org>) id 1pTI1I-0003Wu-Mr
  for v9fs-developer@lists.sourceforge.net;
- Sat, 18 Feb 2023 07:51:12 +0000
+ Sat, 18 Feb 2023 07:52:31 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
  d=sourceforge.net; s=x; h=In-Reply-To:Content-Type:MIME-Version:References:
  Message-ID:Subject:Cc:To:From:Date:Sender:Reply-To:Content-Transfer-Encoding:
  Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
  Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
  List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=rqkbDdTH8Q/SkKVOVqq93Y5dIKlvpKXvER9IFuH5QSg=; b=Uztrv4F5+PG4MZ9C2lapnGj6ng
- y27WP5rn1xqgq6DJ9P+uuUcFfg/0Cf6lTshOyVgoU25QWs8mYnvLKgCHu0rpARDVZlw97zH44VeYv
- 7pdWKfCAa9DBrnLGVWAtOthCBUycFPMaBIZTNr6lXhcqJbk9Zm50Jr/gUfYlnZpaFh5Y=;
+ bh=fROapFjKhE+vxFkAOe21o2IY0fvbpMlTcgsaDuyTXTA=; b=a0D4Jy/RxoV9iWK+D+zTrspsS6
+ QDH5EzJhwUgqMOdv1xzy13dVP83tuSR34ue8+55IJ0QG0Na/XRKO0as1/zF2pjcf9TZp6OeyTiul8
+ vUGnG5V8J88xc7EpcCLoU0YWE/YnYyA3cOyFcucd+nzlHp0fed7cPimw57TM8LAmyFTg=;
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  ;
  h=In-Reply-To:Content-Type:MIME-Version:References:Message-ID:Subject:Cc:To
@@ -31,54 +31,54 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
  :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
  List-Post:List-Owner:List-Archive;
- bh=rqkbDdTH8Q/SkKVOVqq93Y5dIKlvpKXvER9IFuH5QSg=; b=S1xcswqWu58oAlKyi+XRaed5Jk
- O870PBK5TqtLno5ALtpnLjpqG8UYVKELyazES9IbtmoQJ/Cnm2ACi+YAbeQIdr2ELKAKBHXcfrXWH
- k6LgiVnCaltfErnH1vX3rXS8z/JRmpnPpvy4KTC0WYCvFrN6z/Ax1z82ao2RrKhNeHzg=;
+ bh=fROapFjKhE+vxFkAOe21o2IY0fvbpMlTcgsaDuyTXTA=; b=j/L2wooIBB4YVrJqUFeqLz02zC
+ ep1h7gomFcjaHyNaqhijh/0SGCo6N7HX5xMYIXo4n6mMLbNCNeaYbABLefOMsekrW1wJwlaNTzeVG
+ A9ZcYNOa+hv86zhh1zEEG0B2BMB3IttLqEfxmoBvg5j4ohCSDTxbwERM5RA0npsS266I=;
 Received: from nautica.notk.org ([91.121.71.147])
- by sfi-mx-1.v28.lw.sourceforge.com with esmtps
+ by sfi-mx-2.v28.lw.sourceforge.com with esmtps
  (TLS1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.95)
- id 1pTHzx-008E0C-PS for v9fs-developer@lists.sourceforge.net;
- Sat, 18 Feb 2023 07:51:11 +0000
+ id 1pTI1E-0007YO-9W for v9fs-developer@lists.sourceforge.net;
+ Sat, 18 Feb 2023 07:52:31 +0000
 Received: by nautica.notk.org (Postfix, from userid 108)
- id 540C1C01E; Sat, 18 Feb 2023 08:51:27 +0100 (CET)
+ id 9587AC01E; Sat, 18 Feb 2023 08:52:45 +0100 (CET)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=codewreck.org; s=2;
- t=1676706687; bh=rqkbDdTH8Q/SkKVOVqq93Y5dIKlvpKXvER9IFuH5QSg=;
+ t=1676706765; bh=fROapFjKhE+vxFkAOe21o2IY0fvbpMlTcgsaDuyTXTA=;
  h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
- b=cxPpy4t5/BUED2lUaCMFjukza5RUGMMQLokPf7cBMS138QnNFdlAxgquvCZCOXDsy
- PvaXPBKh86sym0nEUIlZAgiLRy/fYBnj0FiugW5RowgfMuA45WUI2+6yh3/gJ2/HFB
- Fj0+TdZH7AE+gBOEMrCyrdP/0QSg2FaIFw3ip6CuCjyxyZkJtvf+CuCT0YlVQijj41
- sY90U0ZmYctyclthaO+/RcB8h8S2sAx482CcjxrYBtORvJWAj6zakaLG08t5DeYvGq
- fO6X0KpL/omb2KcaO47YDmEXVQBIQKC8VrE+GCrqSWwn89yHMgXEql2F2zls33TXQs
- ejOoxiMzsPQZw==
+ b=KQoazwGaf00xHDeJJ2w63lcvhrJJY/GnP2k1wl5qGZ+CSqUjOQIjA2HXVugwImUrd
+ 3J7maTAVQYZWvLDmmCdpco9BJvVWsx530+tPvl7zx7FHpD9lpQB3NpynmTvYOkoG9J
+ 6t8DKQyPKmEEjFGLeDB++RsSOGXd8DU8es4KV5AulKC6MCEUVnjNEI/rkHzPzE/YuY
+ DLcXqJJPMcrKR5P3Sylvar1KH0VRU5sUDdHtC5mRRvEQ5+s4+7B/TQQ/cZpwcAggWg
+ 2J38CLRYTJ09x8LfeG+TyRFPUeXhawjGExtfgySez6fAjxvAWcK2FjP3JcVp4omUnS
+ PFh8LqboctC8w==
 X-Spam-Checker-Version: SpamAssassin 3.3.2 (2011-06-06) on nautica.notk.org
 X-Spam-Level: 
 X-Spam-Status: No, score=0.0 required=5.0 tests=UNPARSEABLE_RELAY
  autolearn=unavailable version=3.3.2
 Received: from odin.codewreck.org (localhost [127.0.0.1])
- by nautica.notk.org (Postfix) with ESMTPS id E6B71C009;
- Sat, 18 Feb 2023 08:51:23 +0100 (CET)
+ by nautica.notk.org (Postfix) with ESMTPS id 1D974C009;
+ Sat, 18 Feb 2023 08:52:41 +0100 (CET)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=codewreck.org; s=2;
- t=1676706686; bh=rqkbDdTH8Q/SkKVOVqq93Y5dIKlvpKXvER9IFuH5QSg=;
+ t=1676706764; bh=fROapFjKhE+vxFkAOe21o2IY0fvbpMlTcgsaDuyTXTA=;
  h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
- b=TCHG6QG7LRNHbpCxRAEc1wo1E/QpTFW2JboGOrYLTvFuGV9ObV20Z9TNO7zTsyU8T
- hVNh99xz4/vini8qjc+TkowSbVOrn89j6MmYweXxSmY5BkmQINPqUdSuGjD26cBC4B
- oGnlGhm0HLxp/39axxgLX8kWQwmuO82J7zHLIJ1swbMuuBspYBQEvb8oFTukrqRH0b
- l6qv9tjVRHoE0UeIJryPsxwnyHCPMbo5kms/swfEnIDArY/5njvsxFk4iDh1icDJwi
- Wq/0+PEC3IiYgAWKJq8OPCy3fVSDIwAXe6HrVj0x3nHAK8KfaDTrK7+449TV8/oNb4
- 8HASCTOIPCQGQ==
+ b=kp2dJ0cTkLZeU2PanQyiK8g376dUUACCdnM5CEq2GVZStTBzbs12bxBBIyQYxH9pf
+ jKEp4pcbcg+hmm0nImA4D+Ns3LbOUwOsQ7Ix5UJ2/cnDwZe0G4qHnNgQ6/PC/8E3oo
+ OvW5QoaWRvmop0E9icHVWRasO6Lky4lSqwKWE7ttxunpqyhgCu62l8bQeNFs6T8Mvy
+ dQnVNraigTIVS1cyq2pOwG34j+1cEbvnDjOEqNlZRug1+MhsdpLHV7YK7L2vFvX6pK
+ 59zbSGunPmAy55LVpD9JDZL//7vlGCaO+/qoAJwEat9eG9tvK/pm+xncR2ngBwOCTI
+ 0LNndMn9B0pzQ==
 Received: from localhost (odin.codewreck.org [local])
- by odin.codewreck.org (OpenSMTPD) with ESMTPA id 1fdbbd87;
- Sat, 18 Feb 2023 07:50:57 +0000 (UTC)
-Date: Sat, 18 Feb 2023 16:50:42 +0900
+ by odin.codewreck.org (OpenSMTPD) with ESMTPA id b6aa872e;
+ Sat, 18 Feb 2023 07:52:15 +0000 (UTC)
+Date: Sat, 18 Feb 2023 16:52:00 +0900
 From: asmadeus@codewreck.org
 To: Eric Van Hensbergen <ericvh@kernel.org>
-Message-ID: <Y/CDUtk3CNIMaf+B@codewreck.org>
+Message-ID: <Y/CDoEvgmLNbhZw7@codewreck.org>
 References: <20230124023834.106339-1-ericvh@kernel.org>
  <20230218003323.2322580-1-ericvh@kernel.org>
- <20230218003323.2322580-2-ericvh@kernel.org>
+ <20230218003323.2322580-6-ericvh@kernel.org>
 MIME-Version: 1.0
 Content-Disposition: inline
-In-Reply-To: <20230218003323.2322580-2-ericvh@kernel.org>
+In-Reply-To: <20230218003323.2322580-6-ericvh@kernel.org>
 X-Spam-Score: -0.2 (/)
 X-Spam-Report: Spam detection software,
  running on the system "util-spamd-2.v13.lw.sourceforge.com", 
@@ -86,9 +86,9 @@ X-Spam-Report: Spam detection software,
  message has been attached to this so you can view it or label
  similar future email.  If you have any questions, see
  the administrator of that system for details.
- Content preview:  Eric Van Hensbergen wrote on Sat, Feb 18, 2023 at 12:33:13AM
- +0000: > Add maximum p9 header size to MSIZE to make sure we can > have page
- aligned data. > > Signed-off-by: Eric Van Hensbergen <ericvh@k [...] 
+ Content preview:  Eric Van Hensbergen wrote on Sat, Feb 18, 2023 at 12:33:17AM
+ +0000: > xattr creates a lot of additional messages for 9p in > the current
+ implementation. This allows users to > conditionalize xattr sup [...] 
  Content analysis details:   (-0.2 points, 6.0 required)
  pts rule name              description
  ---- ---------------------- --------------------------------------------------
@@ -103,9 +103,9 @@ X-Spam-Report: Spam detection software,
  envelope-from domain
  0.0 UNPARSEABLE_RELAY      Informational: message has unparseable relay
  lines
-X-Headers-End: 1pTHzx-008E0C-PS
-Subject: Re: [V9fs-developer] [PATCH v4 01/11] net/9p: Adjust maximum MSIZE
- to account for p9 header
+X-Headers-End: 1pTI1E-0007YO-9W
+Subject: Re: [V9fs-developer] [PATCH v4 05/11] fs/9p: allow disable of xattr
+ support on mount
 X-BeenThere: v9fs-developer@lists.sourceforge.net
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -124,39 +124,20 @@ Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: v9fs-developer-bounces@lists.sourceforge.net
 
-Eric Van Hensbergen wrote on Sat, Feb 18, 2023 at 12:33:13AM +0000:
-> Add maximum p9 header size to MSIZE to make sure we can
-> have page aligned data.
+Eric Van Hensbergen wrote on Sat, Feb 18, 2023 at 12:33:17AM +0000:
+> xattr creates a lot of additional messages for 9p in
+> the current implementation.  This allows users to
+> conditionalize xattr support on 9p mount if they
+> are on a connection with bad latency.  Using this
+> flag is also useful when debugging other aspects
+> of 9p as it reduces the noise in the trace files.
 > 
 > Signed-off-by: Eric Van Hensbergen <ericvh@kernel.org>
 
-I'd be tempted to round that up to the next PAGE_SIZE, but it likely
-won't make any difference in practice if we want to round the actual
-payload. Let's go for this.
-
 Reviewed-by: Dominique Martinet <asmadeus@codewreck.org>
 
-> ---
->  net/9p/client.c | 6 +++++-
->  1 file changed, 5 insertions(+), 1 deletion(-)
-> 
-> diff --git a/net/9p/client.c b/net/9p/client.c
-> index 622ec6a586ee..6c2a768a6ab1 100644
-> --- a/net/9p/client.c
-> +++ b/net/9p/client.c
-> @@ -28,7 +28,11 @@
->  #define CREATE_TRACE_POINTS
->  #include <trace/events/9p.h>
->  
-> -#define DEFAULT_MSIZE (128 * 1024)
-> +/* DEFAULT MSIZE = 32 pages worth of payload + P9_HDRSZ +
-> + * room for write (16 extra) or read (11 extra) operands.
-> + */
-> +
-> +#define DEFAULT_MSIZE ((128 * 1024) + P9_IOHDRSZ)
->  
->  /* Client Option Parsing (code inspired by NFS code)
->   *  - a little lazy - parse all client options
+--
+Dominique
 
 
 _______________________________________________
