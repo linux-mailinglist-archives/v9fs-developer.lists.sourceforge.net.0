@@ -2,28 +2,28 @@ Return-Path: <v9fs-developer-bounces@lists.sourceforge.net>
 X-Original-To: lists+v9fs-developer@lfdr.de
 Delivered-To: lists+v9fs-developer@lfdr.de
 Received: from lists.sourceforge.net (lists.sourceforge.net [216.105.38.7])
-	by mail.lfdr.de (Postfix) with ESMTPS id 930E969B8D0
-	for <lists+v9fs-developer@lfdr.de>; Sat, 18 Feb 2023 09:50:23 +0100 (CET)
-Received: from [127.0.0.1] (helo=sfs-ml-1.v29.lw.sourceforge.com)
-	by sfs-ml-1.v29.lw.sourceforge.com with esmtp (Exim 4.95)
+	by mail.lfdr.de (Postfix) with ESMTPS id BAD1B69B8D5
+	for <lists+v9fs-developer@lfdr.de>; Sat, 18 Feb 2023 09:55:59 +0100 (CET)
+Received: from [127.0.0.1] (helo=sfs-ml-4.v29.lw.sourceforge.com)
+	by sfs-ml-4.v29.lw.sourceforge.com with esmtp (Exim 4.95)
 	(envelope-from <v9fs-developer-bounces@lists.sourceforge.net>)
-	id 1pTIvG-0005pO-PU;
-	Sat, 18 Feb 2023 08:50:21 +0000
+	id 1pTJ0g-0006Uh-8p;
+	Sat, 18 Feb 2023 08:55:58 +0000
 Received: from [172.30.20.202] (helo=mx.sourceforge.net)
- by sfs-ml-1.v29.lw.sourceforge.com with esmtps (TLS1.2) tls
+ by sfs-ml-4.v29.lw.sourceforge.com with esmtps (TLS1.2) tls
  TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384 (Exim 4.95)
- (envelope-from <asmadeus@codewreck.org>) id 1pTIvE-0005pD-Qa
+ (envelope-from <asmadeus@codewreck.org>) id 1pTJ0Y-0006UN-37
  for v9fs-developer@lists.sourceforge.net;
- Sat, 18 Feb 2023 08:50:20 +0000
+ Sat, 18 Feb 2023 08:55:50 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
  d=sourceforge.net; s=x; h=In-Reply-To:Content-Type:MIME-Version:References:
  Message-ID:Subject:Cc:To:From:Date:Sender:Reply-To:Content-Transfer-Encoding:
  Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
  Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
  List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=sXdImI4nkNQNTEPrwVQoa5Yw0dY8HCwd1vHRxqYPKJY=; b=DRye0Z9yaBsECBk0iZnTFOhhQe
- r/7OOJMQwGmkXb0zLBt0IrVHw2c3Rw2BSCfFeQm4Uf0naJ7HfDrT/AjKaE8MsiqowI3T3dBLIkqBI
- 9wvx6yO8AIG+GjQfKSbNN+qRUslNAG+bwmSOTCYt00hBBOFm2ixTVOEhxjzKldvQIk8g=;
+ bh=rmDypawu+51PJyFLO+R0QGTEt+vCIzj5+qIOxEvcCX0=; b=lICrFgyq9FekrAEnsyjtqfhoCO
+ cpf9r+34Y8MQMifGIlG8XurH0uhGwgnmLLF2aVljqFL6c68RIy0JTt8QQg6nLCmtW/H3OT4BCy6Ej
+ R9M9sdD7zi6eD7yc25UJS27nn+pM+kLgyICTIBIrKLnAVHIqBXcurdxiWTbKHqx8B32E=;
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  ;
  h=In-Reply-To:Content-Type:MIME-Version:References:Message-ID:Subject:Cc:To
@@ -31,54 +31,54 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
  :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
  List-Post:List-Owner:List-Archive;
- bh=sXdImI4nkNQNTEPrwVQoa5Yw0dY8HCwd1vHRxqYPKJY=; b=i55kQoaUT4upYVTAoT2z2fqGBF
- 8mo0tq4Cw+D/jM2Z5K2It+Ph/Iok9KJt9knsPAEf+nXnolAmiRLz4DhgrpBTuMRa9GE8LrU94gvhG
- vCyMxq0NSVjooPWnjtuv9+R4CifCdM3qG5Bff/efqopAag7kb+xhzsLGBPVrVXucfBHE=;
+ bh=rmDypawu+51PJyFLO+R0QGTEt+vCIzj5+qIOxEvcCX0=; b=SX5v3uJFXHWpfsPS2xukWhD8s4
+ p3zX8SWdKZAKNQfyAajHHDFw/lzy/vbSQ+is8rhwrIbp9QwwuvDOjI7IijjxaPhggDo8/v6EbWWUn
+ l/lS/bLLdRmOwF6Ad7JWo3TSu/rRGcK5BkrtNCPPIWBqvyTPAukL769v1PpvVQ187iDE=;
 Received: from nautica.notk.org ([91.121.71.147])
  by sfi-mx-1.v28.lw.sourceforge.com with esmtps
  (TLS1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.95)
- id 1pTIvB-008Ht4-W5 for v9fs-developer@lists.sourceforge.net;
- Sat, 18 Feb 2023 08:50:19 +0000
+ id 1pTJ0T-008IOM-Qe for v9fs-developer@lists.sourceforge.net;
+ Sat, 18 Feb 2023 08:55:49 +0000
 Received: by nautica.notk.org (Postfix, from userid 108)
- id 5B757C01C; Sat, 18 Feb 2023 09:50:35 +0100 (CET)
+ id 5968DC01C; Sat, 18 Feb 2023 09:56:03 +0100 (CET)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=codewreck.org; s=2;
- t=1676710235; bh=sXdImI4nkNQNTEPrwVQoa5Yw0dY8HCwd1vHRxqYPKJY=;
+ t=1676710563; bh=rmDypawu+51PJyFLO+R0QGTEt+vCIzj5+qIOxEvcCX0=;
  h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
- b=QL+JBVm61ZHbZfpzS0z30/QJHPq2fa/YzotMPK8iFUJLStoBdU3CvTEX2jzEnYuyw
- 6z+Y096nExUAvDDhRe/fdtFaQJYXFvpllyfTWLbL2Yr97I3VlnxjKukaYrL6YwCr3l
- yN7PWCPPBryhmUlfmN/dFxmI+JfDwDgj5yvTd096tuMOtF0hz092kED9hdixeyWaip
- dgGQ+WsT4LMzOERnG3ibRkMKZDnhBNe02YYZGhNCLlrPm4wzqxOXXCf9gw3RRCTkap
- H8IUTwS1+E4v+Wrjhc4+T/cN5lREMVLiBZC+XotGEfNUbbPPgkyEF2Zti42MqvzLzu
- rozfzpcr/sK6w==
+ b=ROEtQMleKCNI9GkdeyWu/+8EX3Ujw/BkNBRyFE6GK//56etGh/icAKrjn961k2Nyd
+ MhpEmyWbZL3ULYCnhwKPQC9ZMSrUmma2vVWymGo4G9kq4Eii96Rj7e52MACtJQbUxt
+ Rcg/u1WSVxjEuE0+ZmFhSz1GwClnwU7ErhDw+lRAhkqta8uKyKTNgId3oaFXEeq5FC
+ 6/Ih+RJp7+4/Ir1hAN173co00GQjfq0XD5B9gBV8q+1yBtMA/5iaFcxdZ9AO+b5Pyd
+ T2wKZNvIzDIcmKjUDqdJHAT251jtJoFoOzIYt2UEZny8WDttOxKhE2W+pWjt919Qmr
+ S/K2RYPcKMSCw==
 X-Spam-Checker-Version: SpamAssassin 3.3.2 (2011-06-06) on nautica.notk.org
 X-Spam-Level: 
 X-Spam-Status: No, score=0.0 required=5.0 tests=UNPARSEABLE_RELAY
  autolearn=unavailable version=3.3.2
 Received: from odin.codewreck.org (localhost [127.0.0.1])
- by nautica.notk.org (Postfix) with ESMTPS id 14017C009;
- Sat, 18 Feb 2023 09:50:31 +0100 (CET)
+ by nautica.notk.org (Postfix) with ESMTPS id A1C80C009;
+ Sat, 18 Feb 2023 09:56:00 +0100 (CET)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=codewreck.org; s=2;
- t=1676710234; bh=sXdImI4nkNQNTEPrwVQoa5Yw0dY8HCwd1vHRxqYPKJY=;
+ t=1676710562; bh=rmDypawu+51PJyFLO+R0QGTEt+vCIzj5+qIOxEvcCX0=;
  h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
- b=bzl1CnpZNMJWsCQVMYsRbq3nj3xhcmrEDd46AQZjNYKstgvhUqU5mnLsB09u/5Kr1
- Bs9JG8rQBU/IOlCHxv6LLcWyK0HfNk/1lEG1su3KzncFwiIBRHsAzHbkCUOMChK6wV
- xW9CpXh09lGoDMnXmGr8TcXy9bFxgw0uENfHiwFxYGKBPOacHo10AXGnYEkAykR9xy
- IeuibZbKtpopP7VE05IsStciz+JQqmbxalu6Vf3Ris23cezj7Jbrc34bYBiqmE2QPX
- c+WzICD5d7zcnPOTWBb5opd8D4ctI5VNpv1Rm5CSa8sXXXuYl6vexboUGwa4UA33Xo
- cRAycGsYP0ojQ==
+ b=hbWNlrezX4KzLObMiKvKPYPks6rFHMwAQOzMjigQfxPQzePwn0+ryk3GxPdFQJ1qB
+ K/Czcu+KZmn5KMHFQDrASzDXZXX7+no1FU08cUJKq59glD3JHVid23hxVTHFubiZSH
+ 6PBbaNRklnxqTzVBCpWKqBatSiyNJIYLt4PKjD3JYQmSihN8Bru50QRtJRo4sG4t68
+ xAu2n171LPHGsplsuJeK66WL/cvx/gMIMQqNy8a4nuSwFfqlPUUNfUa+GWCy5/NN/P
+ eSkW4xvT9m251N5BoAzYQyb4+yEU5ZJRmDmiIz01MM2n6SgpPHXTQXyWkH1/OE7J2T
+ ACd8DGtWvekdQ==
 Received: from localhost (odin.codewreck.org [local])
- by odin.codewreck.org (OpenSMTPD) with ESMTPA id 271fab5c;
- Sat, 18 Feb 2023 08:50:05 +0000 (UTC)
-Date: Sat, 18 Feb 2023 17:49:50 +0900
+ by odin.codewreck.org (OpenSMTPD) with ESMTPA id 744eb814;
+ Sat, 18 Feb 2023 08:55:34 +0000 (UTC)
+Date: Sat, 18 Feb 2023 17:55:19 +0900
 From: asmadeus@codewreck.org
 To: Eric Van Hensbergen <ericvh@kernel.org>
-Message-ID: <Y/CRLskZ7QOROVWk@codewreck.org>
+Message-ID: <Y/CSd2oYO9dBbVUH@codewreck.org>
 References: <20230124023834.106339-1-ericvh@kernel.org>
  <20230218003323.2322580-1-ericvh@kernel.org>
- <20230218003323.2322580-10-ericvh@kernel.org>
+ <20230218003323.2322580-12-ericvh@kernel.org>
 MIME-Version: 1.0
 Content-Disposition: inline
-In-Reply-To: <20230218003323.2322580-10-ericvh@kernel.org>
+In-Reply-To: <20230218003323.2322580-12-ericvh@kernel.org>
 X-Spam-Score: -0.2 (/)
 X-Spam-Report: Spam detection software,
  running on the system "util-spamd-1.v13.lw.sourceforge.com", 
@@ -86,10 +86,9 @@ X-Spam-Report: Spam detection software,
  message has been attached to this so you can view it or label
  similar future email.  If you have any questions, see
  the administrator of that system for details.
- Content preview:  Eric Van Hensbergen wrote on Sat, Feb 18, 2023 at 12:33:21AM
- +0000: > Checking the p9_fid_put value allows us to pass back errors >
- involved
- if we end up clunking the fid as part of dir_release. > > T [...] 
+ Content preview:  Eric Van Hensbergen wrote on Sat, Feb 18, 2023 at 12:33:23AM
+ +0000: > Unclear if this case ever happens, but if no inode in dentry, then
+ > the dentry is definitely invalid. Seemed to be the opposite i [...] 
  Content analysis details:   (-0.2 points, 6.0 required)
  pts rule name              description
  ---- ---------------------- --------------------------------------------------
@@ -104,9 +103,8 @@ X-Spam-Report: Spam detection software,
  valid
  0.0 UNPARSEABLE_RELAY      Informational: message has unparseable relay
  lines
-X-Headers-End: 1pTIvB-008Ht4-W5
-Subject: Re: [V9fs-developer] [PATCH v4 09/11] fs/9p: fix error reporting in
- v9fs_dir_release
+X-Headers-End: 1pTJ0T-008IOM-Qe
+Subject: Re: [V9fs-developer] [PATCH v4 11/11] fs/9p: Fix revalidate
 X-BeenThere: v9fs-developer@lists.sourceforge.net
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -125,22 +123,20 @@ Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: v9fs-developer-bounces@lists.sourceforge.net
 
-Eric Van Hensbergen wrote on Sat, Feb 18, 2023 at 12:33:21AM +0000:
-> Checking the p9_fid_put value allows us to pass back errors
-> involved if we end up clunking the fid as part of dir_release.
-> 
-> This can help with more graceful response to errors in writeback
-> among other things.
+Eric Van Hensbergen wrote on Sat, Feb 18, 2023 at 12:33:23AM +0000:
+> Unclear if this case ever happens, but if no inode in dentry, then
+> the dentry is definitely invalid.  Seemed to be the opposite in the
+> existing code.
 
-That is good!
+Looking at other implementations of d_revalidate (ecryptfs, cifs, vfat)
+it seems to be assumed that the inode is always valid.
 
-Note if there are other refs we won't see any error :/ But I think we
-should check p9_fid_put return value way more often, even if all we do
-with it is print a warning at some debug level for context.
+I'd just remove the if, or if we keep it add a WARN or something for a
+while so we can remove it in a few releases?
 
-Reviewed-by: Dominique Martinet <asmadeus@codewreck.org>
-
---
+(That said, it's better to return 0 than 1 here, so don't take this for
+a no -- progress is progress)
+-- 
 Dominique
 
 
