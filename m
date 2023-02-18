@@ -2,28 +2,28 @@ Return-Path: <v9fs-developer-bounces@lists.sourceforge.net>
 X-Original-To: lists+v9fs-developer@lfdr.de
 Delivered-To: lists+v9fs-developer@lfdr.de
 Received: from lists.sourceforge.net (lists.sourceforge.net [216.105.38.7])
-	by mail.lfdr.de (Postfix) with ESMTPS id 718C969B88B
-	for <lists+v9fs-developer@lfdr.de>; Sat, 18 Feb 2023 08:49:21 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 09D5869B88E
+	for <lists+v9fs-developer@lfdr.de>; Sat, 18 Feb 2023 08:51:15 +0100 (CET)
 Received: from [127.0.0.1] (helo=sfs-ml-2.v29.lw.sourceforge.com)
 	by sfs-ml-2.v29.lw.sourceforge.com with esmtp (Exim 4.95)
 	(envelope-from <v9fs-developer-bounces@lists.sourceforge.net>)
-	id 1pTHyC-0007Zh-17;
-	Sat, 18 Feb 2023 07:49:19 +0000
+	id 1pTI02-0007bj-FX;
+	Sat, 18 Feb 2023 07:51:13 +0000
 Received: from [172.30.20.202] (helo=mx.sourceforge.net)
  by sfs-ml-2.v29.lw.sourceforge.com with esmtps (TLS1.2) tls
  TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384 (Exim 4.95)
- (envelope-from <asmadeus@codewreck.org>) id 1pTHyA-0007Zb-5X
+ (envelope-from <asmadeus@codewreck.org>) id 1pTI00-0007bd-MX
  for v9fs-developer@lists.sourceforge.net;
- Sat, 18 Feb 2023 07:49:17 +0000
+ Sat, 18 Feb 2023 07:51:12 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
  d=sourceforge.net; s=x; h=In-Reply-To:Content-Type:MIME-Version:References:
  Message-ID:Subject:Cc:To:From:Date:Sender:Reply-To:Content-Transfer-Encoding:
  Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
  Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
  List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=SNQrITH6He6cyqDtohKqoAHimWnNUzPJH2XwvQbg/M0=; b=KSTcgQIPApWEmBXcfdKm2Wv3bL
- eCcn2X0pEndGSBn+25NtmYjKxozL22IMJSiUj0v4OA5IY42Ip5h01CqIow7+iXEsR54fVN/oZQjeg
- KL57ojIADcfP/UvORnAxNO5b1r537QTWpN/tlxKsKz8+lYXMdeTBH4zknxIuLo+/cTOA=;
+ bh=rqkbDdTH8Q/SkKVOVqq93Y5dIKlvpKXvER9IFuH5QSg=; b=Uztrv4F5+PG4MZ9C2lapnGj6ng
+ y27WP5rn1xqgq6DJ9P+uuUcFfg/0Cf6lTshOyVgoU25QWs8mYnvLKgCHu0rpARDVZlw97zH44VeYv
+ 7pdWKfCAa9DBrnLGVWAtOthCBUycFPMaBIZTNr6lXhcqJbk9Zm50Jr/gUfYlnZpaFh5Y=;
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  ;
  h=In-Reply-To:Content-Type:MIME-Version:References:Message-ID:Subject:Cc:To
@@ -31,53 +31,54 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
  :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
  List-Post:List-Owner:List-Archive;
- bh=SNQrITH6He6cyqDtohKqoAHimWnNUzPJH2XwvQbg/M0=; b=EtTvzONFP1V2RRwYu3kDsTFGlu
- pe7RiHojJa9SrPzykah+uXSIS0WZOwpGQI8i+ubXrm6fCftuRmJF3T7H5snfhYOJa6TOKNdxzLruz
- +S8OD29wyNsSWE2JlYDLFA8IESHdGZSPjbly6ny9RI5FILSifzOOF7uYMCqduoO95cqM=;
+ bh=rqkbDdTH8Q/SkKVOVqq93Y5dIKlvpKXvER9IFuH5QSg=; b=S1xcswqWu58oAlKyi+XRaed5Jk
+ O870PBK5TqtLno5ALtpnLjpqG8UYVKELyazES9IbtmoQJ/Cnm2ACi+YAbeQIdr2ELKAKBHXcfrXWH
+ k6LgiVnCaltfErnH1vX3rXS8z/JRmpnPpvy4KTC0WYCvFrN6z/Ax1z82ao2RrKhNeHzg=;
 Received: from nautica.notk.org ([91.121.71.147])
  by sfi-mx-1.v28.lw.sourceforge.com with esmtps
  (TLS1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.95)
- id 1pTHy6-008Dte-4Z for v9fs-developer@lists.sourceforge.net;
- Sat, 18 Feb 2023 07:49:17 +0000
+ id 1pTHzx-008E0C-PS for v9fs-developer@lists.sourceforge.net;
+ Sat, 18 Feb 2023 07:51:11 +0000
 Received: by nautica.notk.org (Postfix, from userid 108)
- id 4D6B6C01E; Sat, 18 Feb 2023 08:49:31 +0100 (CET)
+ id 540C1C01E; Sat, 18 Feb 2023 08:51:27 +0100 (CET)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=codewreck.org; s=2;
- t=1676706571; bh=SNQrITH6He6cyqDtohKqoAHimWnNUzPJH2XwvQbg/M0=;
+ t=1676706687; bh=rqkbDdTH8Q/SkKVOVqq93Y5dIKlvpKXvER9IFuH5QSg=;
  h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
- b=JS5KXU4FKrbNhBKW5Blw6jUfAfcNRgKQujmRHI/Xv9y34Nk9A2ntsMHmoI8XdOEhk
- wGXgWn8ajn6nli/xt37l6PNmEBdf/6Ovgum7Pq8FEY9BiYqqTHllzXJqPtlFVJK9mz
- oFoELedp+tCLwxflPTVk6zUReBPXwJxjd2qM1cTs6+uofBE5EQS6V6WNHCJM2EZpzg
- pgDr5sh5/O1w8fjYosuDq4FFM7Khtcmex12fjQ1uzxmcPHW1rJiVxvo4gcsvS+01kY
- qGoqfCuSs3Q+YJFU3Lt2e6Id4nWu3Vinw8hQDd1hFvCVdO8g/v74XIYWd6yhH0ww8Z
- 2lTzOWHs5DYDg==
+ b=cxPpy4t5/BUED2lUaCMFjukza5RUGMMQLokPf7cBMS138QnNFdlAxgquvCZCOXDsy
+ PvaXPBKh86sym0nEUIlZAgiLRy/fYBnj0FiugW5RowgfMuA45WUI2+6yh3/gJ2/HFB
+ Fj0+TdZH7AE+gBOEMrCyrdP/0QSg2FaIFw3ip6CuCjyxyZkJtvf+CuCT0YlVQijj41
+ sY90U0ZmYctyclthaO+/RcB8h8S2sAx482CcjxrYBtORvJWAj6zakaLG08t5DeYvGq
+ fO6X0KpL/omb2KcaO47YDmEXVQBIQKC8VrE+GCrqSWwn89yHMgXEql2F2zls33TXQs
+ ejOoxiMzsPQZw==
 X-Spam-Checker-Version: SpamAssassin 3.3.2 (2011-06-06) on nautica.notk.org
 X-Spam-Level: 
 X-Spam-Status: No, score=0.0 required=5.0 tests=UNPARSEABLE_RELAY
  autolearn=unavailable version=3.3.2
 Received: from odin.codewreck.org (localhost [127.0.0.1])
- by nautica.notk.org (Postfix) with ESMTPS id 8FD06C009;
- Sat, 18 Feb 2023 08:49:28 +0100 (CET)
+ by nautica.notk.org (Postfix) with ESMTPS id E6B71C009;
+ Sat, 18 Feb 2023 08:51:23 +0100 (CET)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=codewreck.org; s=2;
- t=1676706570; bh=SNQrITH6He6cyqDtohKqoAHimWnNUzPJH2XwvQbg/M0=;
+ t=1676706686; bh=rqkbDdTH8Q/SkKVOVqq93Y5dIKlvpKXvER9IFuH5QSg=;
  h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
- b=qiivNhLQc5gQ9M0Bn1CWrePFSoYcpOnRmkg4sGZOQzsgc1MGBKcsha28EyWcmPrl0
- h6KCVUk+DAl4dob68e3ivlq2VAoC6o4t8OFbb2KJXrNeigZz3gIBKXAcsakyIsRQY0
- UWIAbDAOikNYsXqHUNpqyeSjT+7VbeZ82TN8unh2bbv1lC1GS9EIRMiWA+PGOnNH5A
- MubQpCeIAd0CvHG9Z5UjyHYA+V5RtJEklUlAPYmPeGgPCAlSkStIC3+FtD/7vQ5Cot
- 0MhY5Ur3Y3sQpwDr+kY1KFiEOXu7VgviRn1x8mzM7rMDP2BRwHf82LmLYeiexXT9Gt
- Yuq7W4nhL2HdQ==
+ b=TCHG6QG7LRNHbpCxRAEc1wo1E/QpTFW2JboGOrYLTvFuGV9ObV20Z9TNO7zTsyU8T
+ hVNh99xz4/vini8qjc+TkowSbVOrn89j6MmYweXxSmY5BkmQINPqUdSuGjD26cBC4B
+ oGnlGhm0HLxp/39axxgLX8kWQwmuO82J7zHLIJ1swbMuuBspYBQEvb8oFTukrqRH0b
+ l6qv9tjVRHoE0UeIJryPsxwnyHCPMbo5kms/swfEnIDArY/5njvsxFk4iDh1icDJwi
+ Wq/0+PEC3IiYgAWKJq8OPCy3fVSDIwAXe6HrVj0x3nHAK8KfaDTrK7+449TV8/oNb4
+ 8HASCTOIPCQGQ==
 Received: from localhost (odin.codewreck.org [local])
- by odin.codewreck.org (OpenSMTPD) with ESMTPA id f49989bc;
- Sat, 18 Feb 2023 07:49:01 +0000 (UTC)
-Date: Sat, 18 Feb 2023 16:48:46 +0900
+ by odin.codewreck.org (OpenSMTPD) with ESMTPA id 1fdbbd87;
+ Sat, 18 Feb 2023 07:50:57 +0000 (UTC)
+Date: Sat, 18 Feb 2023 16:50:42 +0900
 From: asmadeus@codewreck.org
 To: Eric Van Hensbergen <ericvh@kernel.org>
-Message-ID: <Y/CC3qyBFSFVI/S0@codewreck.org>
+Message-ID: <Y/CDUtk3CNIMaf+B@codewreck.org>
 References: <20230124023834.106339-1-ericvh@kernel.org>
  <20230218003323.2322580-1-ericvh@kernel.org>
+ <20230218003323.2322580-2-ericvh@kernel.org>
 MIME-Version: 1.0
 Content-Disposition: inline
-In-Reply-To: <20230218003323.2322580-1-ericvh@kernel.org>
+In-Reply-To: <20230218003323.2322580-2-ericvh@kernel.org>
 X-Spam-Score: -0.2 (/)
 X-Spam-Report: Spam detection software,
  running on the system "util-spamd-2.v13.lw.sourceforge.com", 
@@ -85,9 +86,9 @@ X-Spam-Report: Spam detection software,
  message has been attached to this so you can view it or label
  similar future email.  If you have any questions, see
  the administrator of that system for details.
- Content preview:  Eric Van Hensbergen wrote on Sat, Feb 18, 2023 at 12:33:12AM
- +0000: > I'm gonna definitely submit the first couple patches as they are
- > fairly harmless - but would like to submit the whole series to [...] 
+ Content preview:  Eric Van Hensbergen wrote on Sat, Feb 18, 2023 at 12:33:13AM
+ +0000: > Add maximum p9 header size to MSIZE to make sure we can > have page
+ aligned data. > > Signed-off-by: Eric Van Hensbergen <ericvh@k [...] 
  Content analysis details:   (-0.2 points, 6.0 required)
  pts rule name              description
  ---- ---------------------- --------------------------------------------------
@@ -102,9 +103,9 @@ X-Spam-Report: Spam detection software,
  envelope-from domain
  0.0 UNPARSEABLE_RELAY      Informational: message has unparseable relay
  lines
-X-Headers-End: 1pTHy6-008Dte-4Z
-Subject: Re: [V9fs-developer] [PATCH v4 00/11] Performance fixes for 9p
- filesystem
+X-Headers-End: 1pTHzx-008E0C-PS
+Subject: Re: [V9fs-developer] [PATCH v4 01/11] net/9p: Adjust maximum MSIZE
+ to account for p9 header
 X-BeenThere: v9fs-developer@lists.sourceforge.net
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -123,40 +124,39 @@ Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: v9fs-developer-bounces@lists.sourceforge.net
 
-Eric Van Hensbergen wrote on Sat, Feb 18, 2023 at 12:33:12AM +0000:
-> I'm gonna definitely submit the first couple patches as they are
-> fairly harmless - but would like to submit the whole series to the
-> upcoming merge window.
+Eric Van Hensbergen wrote on Sat, Feb 18, 2023 at 12:33:13AM +0000:
+> Add maximum p9 header size to MSIZE to make sure we can
+> have page aligned data.
+> 
+> Signed-off-by: Eric Van Hensbergen <ericvh@kernel.org>
 
-Could you take the three patches I have in my 9p-next branch:
-https://github.com/martinetd/linux/commits/9p-next
+I'd be tempted to round that up to the next PAGE_SIZE, but it likely
+won't make any difference in practice if we want to round the actual
+payload. Let's go for this.
 
-If you're going to submit some?
-The async stuff still isn't good, but there three patches have had
-reviews and should be good to go.
+Reviewed-by: Dominique Martinet <asmadeus@codewreck.org>
 
-(I guess we can just send Linus two pull requests for 9p, but it doesn't
-really make sense given the low number of patches)
-
-> Would appreciate reviews.
-
-Just one first review on the form: let's start a new thread for every
-new revision of the patchset.
-
-I also used to relink from the pervious cover letter and thought that
-made more sense at the time, but I was told to split threads a while ago
-and now I'm trying some new tools based on lkml.kernel.org's public
-inbox thread view I can agree it's much simpler to grab a batch of patch
-if older versions aren't mixed in the thread.
-(For the curious, I'm just grabbing the thread to review on an e-ink
-reader for my eyes, but there's also b4 that I've been meaning to try at
-some point -- https://b4.docs.kernel.org/en/latest/ -- that will likely
-work the same)
-
-Anyway, off to look at patches a bit.
-
--- 
-Dominiquee
+> ---
+>  net/9p/client.c | 6 +++++-
+>  1 file changed, 5 insertions(+), 1 deletion(-)
+> 
+> diff --git a/net/9p/client.c b/net/9p/client.c
+> index 622ec6a586ee..6c2a768a6ab1 100644
+> --- a/net/9p/client.c
+> +++ b/net/9p/client.c
+> @@ -28,7 +28,11 @@
+>  #define CREATE_TRACE_POINTS
+>  #include <trace/events/9p.h>
+>  
+> -#define DEFAULT_MSIZE (128 * 1024)
+> +/* DEFAULT MSIZE = 32 pages worth of payload + P9_HDRSZ +
+> + * room for write (16 extra) or read (11 extra) operands.
+> + */
+> +
+> +#define DEFAULT_MSIZE ((128 * 1024) + P9_IOHDRSZ)
+>  
+>  /* Client Option Parsing (code inspired by NFS code)
+>   *  - a little lazy - parse all client options
 
 
 _______________________________________________
