@@ -2,65 +2,85 @@ Return-Path: <v9fs-developer-bounces@lists.sourceforge.net>
 X-Original-To: lists+v9fs-developer@lfdr.de
 Delivered-To: lists+v9fs-developer@lfdr.de
 Received: from lists.sourceforge.net (lists.sourceforge.net [216.105.38.7])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1C61D69BBB3
-	for <lists+v9fs-developer@lfdr.de>; Sat, 18 Feb 2023 20:58:30 +0100 (CET)
-Received: from [127.0.0.1] (helo=sfs-ml-1.v29.lw.sourceforge.com)
-	by sfs-ml-1.v29.lw.sourceforge.com with esmtp (Exim 4.95)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2F5CB69BBDA
+	for <lists+v9fs-developer@lfdr.de>; Sat, 18 Feb 2023 21:30:16 +0100 (CET)
+Received: from [127.0.0.1] (helo=sfs-ml-2.v29.lw.sourceforge.com)
+	by sfs-ml-2.v29.lw.sourceforge.com with esmtp (Exim 4.95)
 	(envelope-from <v9fs-developer-bounces@lists.sourceforge.net>)
-	id 1pTTLo-0001x8-Ml;
-	Sat, 18 Feb 2023 19:58:27 +0000
+	id 1pTTqY-0004eC-4F;
+	Sat, 18 Feb 2023 20:30:13 +0000
 Received: from [172.30.20.202] (helo=mx.sourceforge.net)
- by sfs-ml-1.v29.lw.sourceforge.com with esmtps (TLS1.2) tls
+ by sfs-ml-2.v29.lw.sourceforge.com with esmtps (TLS1.2) tls
  TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384 (Exim 4.95)
- (envelope-from <linux_oss@crudebyte.com>) id 1pTTLm-0001x1-6v
+ (envelope-from <asmadeus@codewreck.org>) id 1pTTqV-0004e5-GE
  for v9fs-developer@lists.sourceforge.net;
- Sat, 18 Feb 2023 19:58:25 +0000
+ Sat, 18 Feb 2023 20:30:10 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=sourceforge.net; s=x; h=Content-Type:Content-Transfer-Encoding:MIME-Version
- :References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Sender:Reply-To:
+ d=sourceforge.net; s=x; h=In-Reply-To:Content-Type:MIME-Version:References:
+ Message-ID:Subject:Cc:To:From:Date:Sender:Reply-To:Content-Transfer-Encoding:
  Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
  Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
  List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=C8XrL9CNyt1HtqjywXrajg6YUETn7qZRDBR+dZ8edfQ=; b=H/UM2R3ZL1bkAwFDYjgPnpO5DU
- /bEWDPeGEgCjxYTD223+2Udv1j4wnYcoewl+rGkktjXCAyQ6MIRaAMizmJBCs7WQet3mlzCFB+Aoa
- E3iA/ORztObM9EiT4c/BQC7zu0PfvBhau8D7R67YF+I1KtXkFiYtBdiiSYykVshdpNYc=;
+ bh=MJagL46Q61+YbfyuoP4/F/MhRpNNtR2aGh+V7psBaus=; b=eyrkzCbIHsWxWoJZD2u9vho1y8
+ Z7WGEcPPkwHQV63QtmB1IhNbvi6n5I2Gunf30LYbONJXbV71U9TGrrmYGQsH+kzur83NLM9y+4r66
+ hbMS16aUe+TARglK1VkIhRy+8GlGG3n+/bXazx+JK9g6Tf3RNO/vLnomDaJ+u82YyMM0=;
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  ;
- h=Content-Type:Content-Transfer-Encoding:MIME-Version:References:
- In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Sender:Reply-To:Content-ID:
+ h=In-Reply-To:Content-Type:MIME-Version:References:Message-ID:Subject:Cc:To
+ :From:Date:Sender:Reply-To:Content-Transfer-Encoding:Content-ID:
  Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
  :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
  List-Post:List-Owner:List-Archive;
- bh=C8XrL9CNyt1HtqjywXrajg6YUETn7qZRDBR+dZ8edfQ=; b=KKpVCPVgKaPKuj5es6ThBP71vm
- rOjVmpHHPi2vWTKpR9Xg9bWqpJpZ97jgRO8e3un8PEVstS4Q5CM6u8R3i2H8A8euJ+mXiUL9ur35e
- 3dzdciezbzXniw017FMRYKB3vcobhmGSslvb4SKGq78KY7oXs0dj89V9SNPBr1oPJBhY=;
-Received: from kylie.crudebyte.com ([5.189.157.229])
- by sfi-mx-2.v28.lw.sourceforge.com with esmtps
+ bh=MJagL46Q61+YbfyuoP4/F/MhRpNNtR2aGh+V7psBaus=; b=hG3ieKD1ucl7+UDSADsHORdPI6
+ QkheT20iFDBC6MjaYuhSE++Oxw1TPMUBpmoZdvw64ATSn/DaA2t2aMdHPwwhXZvBO/4N23IJwDhtg
+ q91dfXtF6sbrB/N3cgRA7u7ttkqUppQmEXJr+6HMTBAR2nVR1boaDx2xVmesmJuttdBI=;
+Received: from nautica.notk.org ([91.121.71.147])
+ by sfi-mx-1.v28.lw.sourceforge.com with esmtps
  (TLS1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.95)
- id 1pTTLi-00018Z-Mi for v9fs-developer@lists.sourceforge.net;
- Sat, 18 Feb 2023 19:58:25 +0000
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=crudebyte.com; s=kylie; h=Content-Type:Content-Transfer-Encoding:
- MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:
- Content-ID:Content-Description;
- bh=C8XrL9CNyt1HtqjywXrajg6YUETn7qZRDBR+dZ8edfQ=; b=b/60iRsAukh4dG7k7Zp5PgccNg
- zOrp2y6rl8UEEKsw5gVWHBlOWdwAMYiVXbhfg7ErOV6J/Bk54gZjM2wtazC+fjNZV2C8Qr/lII3rO
- T3XR93FLw6ZqZE/216m2yb9dbIDvWMgGqIhqM/XK1HgduHPX+029kJ58y0rYjrGtbJg+JAnYjj4k8
- 2TMWU7IEa3iGzfsY1UgexiuEItdctYQqwoSEL8RDn4eIa71kh6qOv1CSMnfLWlatFp0lYmz8wRrvm
- I3NBXYbU0uA8ZmFklItY22Vz9fvpfQ5ofcU9PexN23zgV65lYon4fFjoRlh2T4Ld2i/ScZfxAsNk5
- nmlxjttttg9q2ZFDvGc/NA4cCztzK8+JdrXV0DThcy335V36V3BDcUaTfRgNYR53pIUETRbO2zviQ
- +7BUwc1yCElc0GJxXoEqyrgaAKR9Z3fxd7R/epBEjAM0pidrn9cJcN03qEj8kTrgXfEsdu08rc8pJ
- YdhbPjS/PAXllgh3O5TdFs0a5r8IoKVDXta8KStjc5toU3gll+Clun+CAp7I5hnI4vPTyTv1dPLsF
- iuN+1qvFZq7L/QnsqAwu5ElnpZHv2cAy/AY2Hcqxdz1M9Z9BkxD45/yUV8s1DyU2+nKqivU/BfNZ0
- sGmUC4v526CiaV3vjOoHVxR3ZKHXuCeAV7f7HghxM=;
-To: Eric Van Hensbergen <ericvh@kernel.org>, asmadeus@codewreck.org
-Date: Sat, 18 Feb 2023 20:58:08 +0100
-Message-ID: <1983433.kCcYWV5373@silver>
-In-Reply-To: <Y/Ch8o/6HVS8Iyeh@codewreck.org>
+ id 1pTTqQ-0093e7-HF for v9fs-developer@lists.sourceforge.net;
+ Sat, 18 Feb 2023 20:30:10 +0000
+Received: by nautica.notk.org (Postfix, from userid 108)
+ id 3A74AC01C; Sat, 18 Feb 2023 21:30:21 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=codewreck.org; s=2;
+ t=1676752221; bh=MJagL46Q61+YbfyuoP4/F/MhRpNNtR2aGh+V7psBaus=;
+ h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+ b=VlkQeF7rLAogYl7v6cMOn4v21gvZvYgga67P3u3CadkY6y/0nxU9rxPF32G21DpJO
+ Mm0gTlvYqR7+mJCbBbcwkTOuFpOJlbaWCzUygLC2hn85u4p7KhysR4IDVHNnikSYwu
+ fj5PNaAHrJoE9d6RUa44OLFWiA5rpbRx2CE4ZS10z07tnHQ7QoA/iztLtPiaKR90Dk
+ vLOyRWyAafKNvuiP3JyKIgUg8d18ysImnYglNET+x9GMl6rpuqrXklkPzfv4fcZBGc
+ jbtHZ+JroUMrAdA4mve5ZS/IdLAdhmOjg3wap+FzO5VWsspo4+GnC3IQJQnhaZhVI6
+ VCrshQkxnsGlw==
+X-Spam-Checker-Version: SpamAssassin 3.3.2 (2011-06-06) on nautica.notk.org
+X-Spam-Level: 
+X-Spam-Status: No, score=0.0 required=5.0 tests=UNPARSEABLE_RELAY
+ autolearn=unavailable version=3.3.2
+Received: from odin.codewreck.org (localhost [127.0.0.1])
+ by nautica.notk.org (Postfix) with ESMTPS id 52AB4C009;
+ Sat, 18 Feb 2023 21:30:18 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=codewreck.org; s=2;
+ t=1676752220; bh=MJagL46Q61+YbfyuoP4/F/MhRpNNtR2aGh+V7psBaus=;
+ h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+ b=p7vV70phFOoUGW1hQbPmuz6+rHCs1vU5JmFv+0v4QfGpPc9qc+nibWVPkV+VQPi51
+ c4UH8COVxpcuFiWJzOyrTN588YpT24Z6XOciECid9MfUa/XcJkZAj7ZpoAjWAACnxv
+ oiLPYlLp/2C5mlec0/NmAA/Z5zo1JvBDb3UG7sAbWS/NHeuy8Vax7KKfzpCSTGHWuJ
+ B0GzeTK9pSDMSljs7PAw67nG85rKFix0dgA8UOOoGvhRmYjMsaMnmV4snF/nx3yfQj
+ aI5rpg76shJoqYzvBQK7LObTXBk+mUgNMd2u9ZlGr7imgNELdItWTrQVoH00UvsRif
+ 0yeOWPFkzbY7w==
+Received: from localhost (odin.codewreck.org [local])
+ by odin.codewreck.org (OpenSMTPD) with ESMTPA id 236bd756;
+ Sat, 18 Feb 2023 20:29:51 +0000 (UTC)
+Date: Sun, 19 Feb 2023 05:29:36 +0900
+From: asmadeus@codewreck.org
+To: Eric Van Hensbergen <ericvh@gmail.com>
+Message-ID: <Y/E1MCTVslQzozEb@codewreck.org>
 References: <20230124023834.106339-1-ericvh@kernel.org>
+ <20230218003323.2322580-1-ericvh@kernel.org>
  <20230218003323.2322580-11-ericvh@kernel.org>
- <Y/Ch8o/6HVS8Iyeh@codewreck.org>
+ <Y/Ch8o/6HVS8Iyeh@codewreck.org> <Y/DBZSaAsRiNR2WV@codewreck.org>
+ <CAFkjPTk=GOU+2D3hORsGntwYc-OLkyMH4YMSY_ERfBXdkq2_hg@mail.gmail.com>
 MIME-Version: 1.0
+Content-Disposition: inline
+In-Reply-To: <CAFkjPTk=GOU+2D3hORsGntwYc-OLkyMH4YMSY_ERfBXdkq2_hg@mail.gmail.com>
 X-Spam-Score: -0.2 (/)
 X-Spam-Report: Spam detection software,
  running on the system "util-spamd-1.v13.lw.sourceforge.com", 
@@ -68,10 +88,9 @@ X-Spam-Report: Spam detection software,
  message has been attached to this so you can view it or label
  similar future email.  If you have any questions, see
  the administrator of that system for details.
- Content preview:  On Saturday, February 18,
- 2023 11:01:22 AM CET asmadeus@codewreck.org
- wrote: > Eric Van Hensbergen wrote on Sat, Feb 18, 2023 at 12:33:22AM +0000:
- > > This fixes several detected problems from preivou [...] 
+ Content preview:  Eric Van Hensbergen wrote on Sat, Feb 18, 2023 at 10:40:27AM
+ -0600: > This is stupidity on my part, but can you send me your setup for
+ > fscache so I can test the way you are testing it? It is the one [...] 
  Content analysis details:   (-0.2 points, 6.0 required)
  pts rule name              description
  ---- ---------------------- --------------------------------------------------
@@ -84,7 +103,9 @@ X-Spam-Report: Spam detection software,
  -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
  0.1 DKIM_SIGNED            Message has a DKIM or DK signature, not necessarily
  valid
-X-Headers-End: 1pTTLi-00018Z-Mi
+ 0.0 UNPARSEABLE_RELAY      Informational: message has unparseable relay
+ lines
+X-Headers-End: 1pTTqQ-0093e7-HF
 Subject: Re: [V9fs-developer] [PATCH v4 10/11] fs/9p: writeback mode fixes
 X-BeenThere: v9fs-developer@lists.sourceforge.net
 X-Mailman-Version: 2.1.21
@@ -97,84 +118,50 @@ List-Post: <mailto:v9fs-developer@lists.sourceforge.net>
 List-Help: <mailto:v9fs-developer-request@lists.sourceforge.net?subject=help>
 List-Subscribe: <https://lists.sourceforge.net/lists/listinfo/v9fs-developer>, 
  <mailto:v9fs-developer-request@lists.sourceforge.net?subject=subscribe>
-From: Christian Schoenebeck via V9fs-developer
- <v9fs-developer@lists.sourceforge.net>
-Reply-To: Christian Schoenebeck <linux_oss@crudebyte.com>
-Cc: lucho@ionkov.net, v9fs-developer@lists.sourceforge.net,
- linux-fsdevel@vger.kernel.org, linux-kernel@vger.kernel.org,
- rminnich@gmail.com
+Cc: lucho@ionkov.net, linux_oss@crudebyte.com, linux-kernel@vger.kernel.org,
+ rminnich@gmail.com, linux-fsdevel@vger.kernel.org,
+ v9fs-developer@lists.sourceforge.net, Eric Van Hensbergen <ericvh@kernel.org>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: v9fs-developer-bounces@lists.sourceforge.net
 
-On Saturday, February 18, 2023 11:01:22 AM CET asmadeus@codewreck.org wrote:
-> Eric Van Hensbergen wrote on Sat, Feb 18, 2023 at 12:33:22AM +0000:
-> > This fixes several detected problems from preivous
-> > patches when running with writeback mode.  In
-> > particular this fixes issues with files which are opened
-> > as write only and getattr on files which dirty caches.
-> > 
-> > This patch makes sure that cache behavior for an open file is stored in
-> > the client copy of fid->mode.  This allows us to reflect cache behavior
-> > from mount flags, open mode, and information from the server to
-> > inform readahead and writeback behavior.
-> > 
-> > This includes adding support for a 9p semantic that qid.version==0
-> > is used to mark a file as non-cachable which is important for
-> > synthetic files.  This may have a side-effect of not supporting
-> > caching on certain legacy file servers that do not properly set
-> > qid.version.  There is also now a mount flag which can disable
-> > the qid.version behavior.
-> > 
-> > Signed-off-by: Eric Van Hensbergen <ericvh@kernel.org>
-> 
-> Didn't have time to review it all thoroughly, sending what I have
-> anyway...
-> 
-> > diff --git a/Documentation/filesystems/9p.rst b/Documentation/filesystems/9p.rst
-> > index 0e800b8f73cc..0c2c7a181d85 100644
-> > --- a/Documentation/filesystems/9p.rst
-> > +++ b/Documentation/filesystems/9p.rst
-> > @@ -79,18 +79,14 @@ Options
-> >  
-> >    cache=mode	specifies a caching policy.  By default, no caches are used.
-> >  
-> > -                        none
-> > -				default no cache policy, metadata and data
-> > -                                alike are synchronous.
-> > -			loose
-> > -				no attempts are made at consistency,
-> > -                                intended for exclusive, read-only mounts
-> > -                        fscache
-> > -				use FS-Cache for a persistent, read-only
-> > -				cache backend.
-> > -                        mmap
-> > -				minimal cache that is only used for read-write
-> > -                                mmap.  Northing else is cached, like cache=none
-> > +			=========	=============================================
-> > +			none		no cache of file or metadata
-> > +			readahead	readahead caching of files
-> > +			writeback	delayed writeback of files
-> > +			mmap		support mmap operations read/write with cache
-> > +			loose		meta-data and file cache with no coherency
-> > +			fscache		use FS-Cache for a persistent cache backend
-> > +			=========	=============================================
-> 
-> perhaps a word saying the caches are incremental, only one can be used,
-> and listing them in order?
-> e.g. it's not clear from this that writeback also enables readahead,
-> and as a user I'd try to use cache=readahead,cache=writeback and wonder
-> why that doesn't work (well, I guess it would in that order...)
+Eric Van Hensbergen wrote on Sat, Feb 18, 2023 at 10:40:27AM -0600:
+> This is stupidity on my part, but can you send me your setup for
+> fscache so I can test the way you are testing it?  It is the one thing
+> I still haven't incorporated into my test matrix so definitely a blind
+> spot I appreciate you exposing.
 
-+1 on docs
+I mounted with fscache but I didn't actually have a backend running when
+testing, so there's really not setup involved -- just qemu's
+'-virtfs local,path=/tmp/linux-test,mount_tag=tmp,security_model=mapped-file'
+and
+'mount -t 9p -o debug=1,cache=fscache,trans=virtio tmp /mnt'
 
-The question was also whether to make these true separate options before being
-merged.
-
-I give these patches a spin tomorrow.
+In that case, fscache basically acts like loose, except it also does all
+its cookies stuff so it's sort of useful to test anyway.
 
 
-
+I also have a setup that runs cachefilesd on top but it wasn't involved
+here; for completeness if you want to test:
+- add an extra disk to qemu
+qemu-img create -f qcow2 /tmp/disk 1G
+'-device virtio-blk-pci,drive=hd0 -drive if=none,file=/tmp/disk,snapshot=on,id=hd0'
+- just runs cachefilesd (ignore hardcoded nix paths, that's my easy way out
+of running straight out of initrd without making it huge):
+---
+if [ -e /dev/vda ]; then
+        /run/current-system/sw/bin/mkfs.ext4 -q /dev/vda
+        mkdir /cache /var/run
+        mount /dev/vda /cache
+        echo -e 'dir /cache\ntag cache' > /etc/cachefilesd.conf
+        echo 'modprobe cachefiles'
+        echo '/nix/store/4vy0z1ygfidfmbzaxblkmzv7j0irhhwc-cachefilesd-0.10.10/bin/cachefilesd -s -d > /cache/log 2>&1'
+fi
+---
+And that's basically it; you should see files poping up in /dev/vda when
+you do reads (iirc writes weren't cached through last I looked)
+-- 
+Dominique
 
 
 _______________________________________________
