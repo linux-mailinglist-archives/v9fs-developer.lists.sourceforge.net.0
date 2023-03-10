@@ -2,104 +2,120 @@ Return-Path: <v9fs-developer-bounces@lists.sourceforge.net>
 X-Original-To: lists+v9fs-developer@lfdr.de
 Delivered-To: lists+v9fs-developer@lfdr.de
 Received: from lists.sourceforge.net (lists.sourceforge.net [216.105.38.7])
-	by mail.lfdr.de (Postfix) with ESMTPS id 681A16B3C73
-	for <lists+v9fs-developer@lfdr.de>; Fri, 10 Mar 2023 11:38:43 +0100 (CET)
-Received: from [127.0.0.1] (helo=sfs-ml-4.v29.lw.sourceforge.com)
-	by sfs-ml-4.v29.lw.sourceforge.com with esmtp (Exim 4.95)
+	by mail.lfdr.de (Postfix) with ESMTPS id F2F966B51D0
+	for <lists+v9fs-developer@lfdr.de>; Fri, 10 Mar 2023 21:28:31 +0100 (CET)
+Received: from [127.0.0.1] (helo=sfs-ml-1.v29.lw.sourceforge.com)
+	by sfs-ml-1.v29.lw.sourceforge.com with esmtp (Exim 4.95)
 	(envelope-from <v9fs-developer-bounces@lists.sourceforge.net>)
-	id 1paa91-0008LS-HB;
-	Fri, 10 Mar 2023 10:38:40 +0000
+	id 1pajLp-0002eb-6o;
+	Fri, 10 Mar 2023 20:28:29 +0000
 Received: from [172.30.20.202] (helo=mx.sourceforge.net)
- by sfs-ml-4.v29.lw.sourceforge.com with esmtps (TLS1.2) tls
- TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384 (Exim 4.95) (envelope-from
- <3qAgLZAkbAA05BCxnyyr4n22vq.t11tyr75r4p106r06.p1z@M3KW2WVRGUFZ5GODRSRYTGD7.apphosting.bounces.google.com>)
- id 1paa90-0008LM-7T for v9fs-developer@lists.sourceforge.net;
- Fri, 10 Mar 2023 10:38:39 +0000
+ by sfs-ml-1.v29.lw.sourceforge.com with esmtps (TLS1.2) tls
+ TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384 (Exim 4.95)
+ (envelope-from <ivan.orlov0322@gmail.com>) id 1pajLl-0002eU-Ve
+ for v9fs-developer@lists.sourceforge.net;
+ Fri, 10 Mar 2023 20:28:26 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=sourceforge.net; s=x; h=Content-Type:To:From:Subject:Message-ID:In-Reply-To
- :Date:MIME-Version:Sender:Reply-To:Cc:Content-Transfer-Encoding:Content-ID:
+ d=sourceforge.net; s=x; h=Content-Transfer-Encoding:MIME-Version:Message-Id:
+ Date:Subject:Cc:To:From:Sender:Reply-To:Content-Type:Content-ID:
  Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
- :Resent-Message-ID:References:List-Id:List-Help:List-Unsubscribe:
+ :Resent-Message-ID:In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:
  List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=G9TOw2H2TDDn1VQzhH7iezPzkkf4u+p1oMfgUm2gH4s=; b=c6Zte7kj8ZF/lws1jajJ9+ALsR
- xv5p1keLtF6Vt59qKc1AC3cvmC4KWSYSRt9W1kOVBUnpGoQ27Au16yf43ad4/hRVYG7EUtuxReWwN
- hqlrK06+kNx5epz5xtgxjJ0mnORwI7D60u6X6J7jGyC5aDbW3buSaGw+HL608SSlIxfs=;
+ bh=Nj5Pya6YtC6FZkwNt6VTrCVc/MqS8ZrcuQEjsXDc0Os=; b=jjVMD98LxTTxT2PpK4oa/v2VE6
+ ng1iXxcUcjQ4dzAjvI/x92uRW6YQRQb0c+2cuUh+Flm/wQ5XU0ehFVunCZ/R5nWd3dLv7ppAcdQCE
+ 4MT67iJzo/+6eGnrvdvelKetFbBxhmy6eSv8hSMC+1N3VBNYxI9DccnfbnqV3EX+td9M=;
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  ;
- h=Content-Type:To:From:Subject:Message-ID:In-Reply-To:Date:MIME-Version:
- Sender:Reply-To:Cc:Content-Transfer-Encoding:Content-ID:Content-Description:
- Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+ h=Content-Transfer-Encoding:MIME-Version:Message-Id:Date:Subject:Cc:To:From
+ :Sender:Reply-To:Content-Type:Content-ID:Content-Description:Resent-Date:
+ Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:
  References:List-Id:List-Help:List-Unsubscribe:List-Subscribe:List-Post:
- List-Owner:List-Archive; bh=G9TOw2H2TDDn1VQzhH7iezPzkkf4u+p1oMfgUm2gH4s=; b=O
- dngUdkWM8tGXzhYhVLBQzxkhR3qqEXRNWRgHo8yZ1u86rZEpTlddcu3LDK4H13u+YfTKnWg2CKVah
- WvmNDFgJw/7+qgj0ENYnbx5cvfxcBr6/IJr2G+tIM9AENt0QGD7dPMCRPJdQHx6R5RE4keh3PbhS0
- GWrLw0hAXbuGAewI=;
-Received: from mail-io1-f69.google.com ([209.85.166.69])
- by sfi-mx-2.v28.lw.sourceforge.com with esmtps
+ List-Owner:List-Archive; bh=Nj5Pya6YtC6FZkwNt6VTrCVc/MqS8ZrcuQEjsXDc0Os=; b=F
+ YzWowXd/y8xUf3VvtH1+xWGjue/S8ooE+PWXJfGMK7mXFuxc8X2Us9i5i4fFvbLIWqQTeTQeAe1k3
+ qtYgKakVMYSgdWqzCc++FDbucFJnm4KlCjGZSEVl11EE7PRUOFoFksatUuI8b7mg1dRpLPIqa27m9
+ p4UVaLf38BQEz2ds=;
+Received: from mail-ed1-f43.google.com ([209.85.208.43])
+ by sfi-mx-1.v28.lw.sourceforge.com with esmtps
  (TLS1.2:ECDHE-RSA-AES128-GCM-SHA256:128) (Exim 4.95)
- id 1paa91-0004kP-Cx for v9fs-developer@lists.sourceforge.net;
- Fri, 10 Mar 2023 10:38:39 +0000
-Received: by mail-io1-f69.google.com with SMTP id
- 9-20020a5ea509000000b0074ca36737d2so2239622iog.7
+ id 1pajLj-003vrX-DZ for v9fs-developer@lists.sourceforge.net;
+ Fri, 10 Mar 2023 20:28:26 +0000
+Received: by mail-ed1-f43.google.com with SMTP id i34so25371216eda.7
  for <v9fs-developer@lists.sourceforge.net>;
- Fri, 10 Mar 2023 02:38:38 -0800 (PST)
+ Fri, 10 Mar 2023 12:28:23 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=gmail.com; s=20210112; t=1678480097;
+ h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+ :to:from:from:to:cc:subject:date:message-id:reply-to;
+ bh=Nj5Pya6YtC6FZkwNt6VTrCVc/MqS8ZrcuQEjsXDc0Os=;
+ b=JFvBWiv4O29p9nkvZSyqySeXpLFWrG/dvB8Xwadh0onr6XyucS682UvOyAD2WFt2+Z
+ m+K0SA8O4Fivr18xiFdKwVSXouWTNf0AdrQNHTrM5G1heBYP9CfrPfB81JZ22yp8A24R
+ xygIOCHAnxYWNvHA02XbLsa0szktm21/HsHEpZanepim9l0UYc1fdHQnsRXE5Q8xSbLq
+ FKGHM4kkXEowNcwDs+O1x64Enm8hzlKAJ4VOOO6B7lwHxdUvknRQHOOK9uw+RYjKY5pl
+ 8cNM95rZ4oW7iG2a8xJXNzY4tJZ54GDQhPnmzhYNvF1Qesv3Q2l1GBosJUlFVX993vM+
+ xa3Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20210112; t=1678444713;
- h=to:from:subject:message-id:in-reply-to:date:mime-version
- :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
- bh=G9TOw2H2TDDn1VQzhH7iezPzkkf4u+p1oMfgUm2gH4s=;
- b=LqVnCyLC7iQykAn38zd3k3nie2tuXlVzg7s47QnqaHrviZcJLm2mhcpuGoJAT139GF
- q2PBjDIHRND8j+ywo41quds3s9j0BARwqjOrpP2ZrE6eKsfC6G+BSbjrFAPpq79OfUuH
- HjqBAoDLOJf2LIAkbtr6NzzqxE0PPv6iRo9ND7O48iNVjW9mGqStgEBZIac0u9aMgO5n
- jiWetWrkN234qNYLN9P+OWTVoa1bn/XyxaXhzeViks8GhDrGlIEAW8ln8eB7x01QWuns
- m9RWq4AWD5V8HadIj/5AxYCPKsRuAS4ze2Vd3LCF9pBwuIOC378P1hGu1AH8NSs9HKN1
- sqLw==
-X-Gm-Message-State: AO0yUKU6NjLJwNyyapyhTk5PwCpNN7dE5lygN6xQIbtyxHsudN02hiU4
- lfkEiDuMtICyOgQp0KMZPDgUS2FV9xnF/RiBIDocnSVAsIcX
-X-Google-Smtp-Source: AK7set+htPHZBwSnCPyxLzhw6W23I2DyI4HLTP7zAHq5sRfVPF1UZQaLGMrJBIiXiB0u1/lW2y1kYlG57pPce5E1sMnez9QH28a6
+ d=1e100.net; s=20210112; t=1678480097;
+ h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+ :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+ :reply-to;
+ bh=Nj5Pya6YtC6FZkwNt6VTrCVc/MqS8ZrcuQEjsXDc0Os=;
+ b=lssFAp4xqZNHDtwKT8mLjnYjt9L+u60+nj0164nHPy3KAd7T49pnbcyUI1+O25WVMF
+ IyfKb4WrTfJOxPgsuKLeiM0aRwne3nqGOjghkb9NZxAIyzWvgKP0W7aFoo73feN665kn
+ brT+5yMUi1VXKiLpK6n6Xw+zzSfcCJCgTCbKbwKlJlNDivXNgW6sun+ztrBRoTF8Cif7
+ feNWSYhOHDd+VTnhl1YKWe8PqYzZrKyuhz4nR30oBF61ugw6VO/h0QH/VLOAUvwm7qB8
+ SjuaENElMjmtqByCQ2LAXQnIbDHpXUJhHuAD0UmuLAXxdAzOMPA+RDs0LTMnBilIqROA
+ u6Ig==
+X-Gm-Message-State: AO0yUKVKZd+LUHg1yS5pH4G4mSQvbErzEIg+gkUsfKDmi4QhVL86DWMC
+ I6OcXnWNts94mbdX4CO8Nww=
+X-Google-Smtp-Source: AK7set/7HZ8W4oEzbgBOxclON9yaE4uHyP6GY9Kv1zpo6Of02/JFJNnPOCT6n6xfDGMxnkAjfBNAYQ==
+X-Received: by 2002:a17:906:208a:b0:889:d24e:6017 with SMTP id
+ 10-20020a170906208a00b00889d24e6017mr3644384ejq.3.1678480096443; 
+ Fri, 10 Mar 2023 12:28:16 -0800 (PST)
+Received: from ivan-HLYL-WXX9.. ([37.252.81.68])
+ by smtp.gmail.com with ESMTPSA id
+ xa6-20020a170907b9c600b008b26f3d45fbsm260551ejc.143.2023.03.10.12.28.14
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Fri, 10 Mar 2023 12:28:16 -0800 (PST)
+From: Ivan Orlov <ivan.orlov0322@gmail.com>
+To: ericvh@gmail.com, lucho@ionkov.net, asmadeus@codewreck.org,
+ linux_oss@crudebyte.com
+Date: Sat, 11 Mar 2023 00:26:19 +0400
+Message-Id: <20230310202619.433269-1-ivan.orlov0322@gmail.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-X-Received: by 2002:a05:6e02:d4a:b0:310:a24c:4231 with SMTP id
- h10-20020a056e020d4a00b00310a24c4231mr11305536ilj.6.1678444712894; Fri, 10
- Mar 2023 02:38:32 -0800 (PST)
-Date: Fri, 10 Mar 2023 02:38:32 -0800
-In-Reply-To: <00000000000015ac7905e97ebaed@google.com>
-X-Google-Appengine-App-Id: s~syzkaller
-X-Google-Appengine-App-Id-Alias: syzkaller
-Message-ID: <000000000000e32a7905f6895c83@google.com>
-From: syzbot <syzbot+67d13108d855f451cafc@syzkaller.appspotmail.com>
-To: asmadeus@codewreck.org, dan.carpenter@oracle.com, davem@davemloft.net, 
- edumazet@google.com, ericvh@gmail.com, kuba@kernel.org, leon@kernel.org, 
- linux-kernel@vger.kernel.org, linux_oss@crudebyte.com, lucho@ionkov.net, 
- netdev@vger.kernel.org, pabeni@redhat.com, syzkaller-bugs@googlegroups.com, 
- v9fs-developer@lists.sourceforge.net
-X-Spam-Score: 3.1 (+++)
+X-Spam-Score: 0.1 (/)
 X-Spam-Report: Spam detection software,
  running on the system "util-spamd-1.v13.lw.sourceforge.com", 
  has NOT identified this incoming email as spam.  The original
  message has been attached to this so you can view it or label
  similar future email.  If you have any questions, see
  the administrator of that system for details.
- Content preview: This bug is marked as fixed by commit: 9p:
- client_create/destroy:
- only call trans_mod->close after create But I can't find it in the tested
- trees[1] for more than 90 days. Is it a correct commit? Please update it
- by replying: 
- Content analysis details:   (3.1 points, 6.0 required)
+ Content preview: KASAN reported the following issue: [ 36.825817][ T5923] BUG:
+ KASAN: wild-memory-access in v9fs_get_acl+0x1a4/0x390 [ 36.827479][ T5923]
+ Write of size 4 at addr 9fffeb37f97f1c00 by task syz-executor79 [...] 
+ Content analysis details:   (0.1 points, 6.0 required)
  pts rule name              description
  ---- ---------------------- --------------------------------------------------
- 0.3 FROM_LOCAL_HEX         From: localpart has long hexadecimal sequence
- 0.2 HEADER_FROM_DIFFERENT_DOMAINS From and EnvelopeFrom 2nd level
- mail domains are different
  -0.0 RCVD_IN_DNSWL_NONE     RBL: Sender listed at https://www.dnswl.org/,
- no trust [209.85.166.69 listed in list.dnswl.org]
- -0.0 RCVD_IN_MSPIKE_H2      RBL: Average reputation (+2)
- [209.85.166.69 listed in wl.mailspike.net]
+ no trust [209.85.208.43 listed in list.dnswl.org]
  -0.0 SPF_PASS               SPF: sender matches SPF record
+ -0.0 RCVD_IN_MSPIKE_H2      RBL: Average reputation (+2)
+ [209.85.208.43 listed in wl.mailspike.net]
  0.0 SPF_HELO_NONE          SPF: HELO does not publish an SPF Record
- 2.5 SORTED_RECIPS          Recipient list is sorted by address
-X-Headers-End: 1paa91-0004kP-Cx
-Subject: Re: [V9fs-developer] [syzbot] KASAN: use-after-free Read in
- rdma_close
+ 0.0 FREEMAIL_FROM          Sender email is commonly abused enduser mail
+ provider [ivan.orlov0322[at]gmail.com]
+ 0.2 FREEMAIL_ENVFROM_END_DIGIT Envelope-from freemail username ends
+ in digit [ivan.orlov0322[at]gmail.com]
+ -0.1 DKIM_VALID_AU          Message has a valid DKIM or DK signature from
+ author's domain
+ -0.1 DKIM_VALID_EF          Message has a valid DKIM or DK signature from
+ envelope-from domain
+ -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+ 0.1 DKIM_SIGNED            Message has a DKIM or DK signature, not necessarily
+ valid
+X-Headers-End: 1pajLj-003vrX-DZ
+Subject: [V9fs-developer] [PATCH] 9P FS: Fix wild-memory-access write in
+ v9fs_get_acl
 X-BeenThere: v9fs-developer@lists.sourceforge.net
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -111,41 +127,90 @@ List-Post: <mailto:v9fs-developer@lists.sourceforge.net>
 List-Help: <mailto:v9fs-developer-request@lists.sourceforge.net?subject=help>
 List-Subscribe: <https://lists.sourceforge.net/lists/listinfo/v9fs-developer>, 
  <mailto:v9fs-developer-request@lists.sourceforge.net?subject=subscribe>
+Cc: Ivan Orlov <ivan.orlov0322@gmail.com>, linux-kernel@vger.kernel.org,
+ syzbot+cb1d16facb3cc90de5fb@syzkaller.appspotmail.com,
+ skhan@linuxfoundation.org, v9fs-developer@lists.sourceforge.net,
+ linux-kernel-mentees@lists.linuxfoundation.org, himadrispandya@gmail.com
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: v9fs-developer-bounces@lists.sourceforge.net
 
-This bug is marked as fixed by commit:
-9p: client_create/destroy: only call trans_mod->close after create
+KASAN reported the following issue:
+[   36.825817][ T5923] BUG: KASAN: wild-memory-access in v9fs_get_acl+0x1a4/0x390
+[   36.827479][ T5923] Write of size 4 at addr 9fffeb37f97f1c00 by task syz-executor798/5923
+[   36.829303][ T5923]
+[   36.829846][ T5923] CPU: 0 PID: 5923 Comm: syz-executor798 Not tainted 6.2.0-syzkaller-18302-g596b6b709632 #0
+[   36.832110][ T5923] Hardware name: Google Google Compute Engine/Google Compute Engine, BIOS Google 01/21/2023
+[   36.834464][ T5923] Call trace:
+[   36.835196][ T5923]  dump_backtrace+0x1c8/0x1f4
+[   36.836229][ T5923]  show_stack+0x2c/0x3c
+[   36.837100][ T5923]  dump_stack_lvl+0xd0/0x124
+[   36.838103][ T5923]  print_report+0xe4/0x4c0
+[   36.839068][ T5923]  kasan_report+0xd4/0x130
+[   36.840052][ T5923]  kasan_check_range+0x264/0x2a4
+[   36.841199][ T5923]  __kasan_check_write+0x2c/0x3c
+[   36.842216][ T5923]  v9fs_get_acl+0x1a4/0x390
+[   36.843232][ T5923]  v9fs_mount+0x77c/0xa5c
+[   36.844163][ T5923]  legacy_get_tree+0xd4/0x16c
+[   36.845173][ T5923]  vfs_get_tree+0x90/0x274
+[   36.846137][ T5923]  do_new_mount+0x25c/0x8c8
+[   36.847066][ T5923]  path_mount+0x590/0xe58
+[   36.848147][ T5923]  __arm64_sys_mount+0x45c/0x594
+[   36.849273][ T5923]  invoke_syscall+0x98/0x2c0
+[   36.850421][ T5923]  el0_svc_common+0x138/0x258
+[   36.851397][ T5923]  do_el0_svc+0x64/0x198
+[   36.852398][ T5923]  el0_svc+0x58/0x168
+[   36.853224][ T5923]  el0t_64_sync_handler+0x84/0xf0
+[   36.854293][ T5923]  el0t_64_sync+0x190/0x194
 
-But I can't find it in the tested trees[1] for more than 90 days.
-Is it a correct commit? Please update it by replying:
+Calling '__v9fs_get_acl' method in 'v9fs_get_acl' creates the
+following chain of function calls:
 
-#syz fix: exact-commit-title
+__v9fs_get_acl
+	v9fs_fid_get_acl
+		v9fs_fid_xattr_get
+			p9_client_xattrwalk
 
-Until then the bug is still considered open and new crashes with
-the same signature are ignored.
+Function p9_client_xattrwalk accepts a pointer to u64-typed
+variable attr_size and puts some u64 value into it. However,
+after the executing the p9_client_xattrwalk, in some circumstances
+we assign the value of u64-typed variable 'attr_size' to the
+variable 'retval', which we will return. However, the type of
+'retval' is ssize_t, and if the value of attr_size is larger
+than SSIZE_MAX, we will face the signed type overflow. If the
+overflow occurs, the result of v9fs_fid_xattr_get may be
+negative, but not classified as an error. When we try to allocate
+an acl with 'broken' size we receive an error, but don't process
+it. When we try to free this acl, we face the 'wild-memory-access'
+error (because it wasn't allocated).
 
-Kernel: Linux
-Dashboard link: https://syzkaller.appspot.com/bug?extid=67d13108d855f451cafc
+This patch will modify the condition in the 'v9fs_fid_xattr_get'
+function, so it will return an error if the 'attr_size' is larger
+than SSIZE_MAX.
 
+Reported-by: syzbot+cb1d16facb3cc90de5fb@syzkaller.appspotmail.com
+Link: https://syzkaller.appspot.com/bug?id=fbbef66d9e4d096242f3617de5d14d12705b4659
+Signed-off-by: Ivan Orlov <ivan.orlov0322@gmail.com>
 ---
-[1] I expect the commit to be present in:
+ fs/9p/xattr.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-1. for-kernelci branch of
-git://git.kernel.org/pub/scm/linux/kernel/git/arm64/linux.git
+diff --git a/fs/9p/xattr.c b/fs/9p/xattr.c
+index 50f7f3f6b55e..d6f7450107a8 100644
+--- a/fs/9p/xattr.c
++++ b/fs/9p/xattr.c
+@@ -35,7 +35,7 @@ ssize_t v9fs_fid_xattr_get(struct p9_fid *fid, const char *name,
+ 		return retval;
+ 	}
+ 	if (attr_size > buffer_size) {
+-		if (!buffer_size) /* request to get the attr_size */
++		if (!buffer_size && attr_size <= (u64) SSIZE_MAX) /* request to get the attr_size */
+ 			retval = attr_size;
+ 		else
+ 			retval = -ERANGE;
+-- 
+2.34.1
 
-2. master branch of
-git://git.kernel.org/pub/scm/linux/kernel/git/bpf/bpf-next.git
-
-3. master branch of
-git://git.kernel.org/pub/scm/linux/kernel/git/bpf/bpf.git
-
-4. main branch of
-git://git.kernel.org/pub/scm/linux/kernel/git/davem/net-next.git
-
-The full list of 10 trees can be found at
-https://syzkaller.appspot.com/upstream/repos
 
 
 _______________________________________________
