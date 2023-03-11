@@ -2,119 +2,120 @@ Return-Path: <v9fs-developer-bounces@lists.sourceforge.net>
 X-Original-To: lists+v9fs-developer@lfdr.de
 Delivered-To: lists+v9fs-developer@lfdr.de
 Received: from lists.sourceforge.net (lists.sourceforge.net [216.105.38.7])
-	by mail.lfdr.de (Postfix) with ESMTPS id F232D6B5BF7
-	for <lists+v9fs-developer@lfdr.de>; Sat, 11 Mar 2023 13:50:44 +0100 (CET)
-Received: from [127.0.0.1] (helo=sfs-ml-4.v29.lw.sourceforge.com)
-	by sfs-ml-4.v29.lw.sourceforge.com with esmtp (Exim 4.95)
+	by mail.lfdr.de (Postfix) with ESMTPS id 9CBF26B5EC9
+	for <lists+v9fs-developer@lfdr.de>; Sat, 11 Mar 2023 18:28:36 +0100 (CET)
+Received: from [127.0.0.1] (helo=sfs-ml-1.v29.lw.sourceforge.com)
+	by sfs-ml-1.v29.lw.sourceforge.com with esmtp (Exim 4.95)
 	(envelope-from <v9fs-developer-bounces@lists.sourceforge.net>)
-	id 1paygM-0001d1-1c;
-	Sat, 11 Mar 2023 12:50:43 +0000
+	id 1pb31F-0000tn-Vu;
+	Sat, 11 Mar 2023 17:28:34 +0000
 Received: from [172.30.20.202] (helo=mx.sourceforge.net)
- by sfs-ml-4.v29.lw.sourceforge.com with esmtps (TLS1.2) tls
+ by sfs-ml-1.v29.lw.sourceforge.com with esmtps (TLS1.2) tls
  TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384 (Exim 4.95)
- (envelope-from <ivan.orlov0322@gmail.com>) id 1paygK-0001ct-Iv
+ (envelope-from <k.kahurani@gmail.com>) id 1pb31C-0000th-3f
  for v9fs-developer@lists.sourceforge.net;
- Sat, 11 Mar 2023 12:50:41 +0000
+ Sat, 11 Mar 2023 17:28:30 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=sourceforge.net; s=x; h=Content-Transfer-Encoding:MIME-Version:Message-Id:
- Date:Subject:Cc:To:From:Sender:Reply-To:Content-Type:Content-ID:
- Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
- :Resent-Message-ID:In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:
+ d=sourceforge.net; s=x; h=Content-Type:Cc:To:Subject:Message-ID:Date:From:
+ In-Reply-To:References:MIME-Version:Sender:Reply-To:Content-Transfer-Encoding
+ :Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+ Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
  List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=SBjZYb5OoxKrZVN1LuY9aWsQyO7jN0oF5M/Ac3rt8Aw=; b=IP/RZflK2fSq2zUT4QY3oxgGYU
- S0B9jUL0/9sN3o4lkuUYc8y1DYUfpe6XUS3Hweab+CsQTl4y75tHKxcBoaU0GMwqATghzqa83On/H
- H97+Ulssi/qEx5654TWZacdmereUsU0Yt9cpiSeRO8dYy0+/ytAHIY5SPqxM4up3oJhI=;
+ bh=fnRfrNBgW6VmdsH5V5foIRR4UqfDscL7jiZjugpsRTo=; b=gH7cMOqPT156VC7w2to8wbHPfF
+ HEyEgT0lUmvAsLbA11jkoq9UpGXAxXaYzX0LZeaC8sbk5rk2f/JESv/e73nY8CUGsUnUPQRaKwwaX
+ /OJncSJZDJLCpDXDZ/9NzJ21zww0vImZLbprGhO5rrVQKJp3YqAwFwZtlQxAHCgUbLkU=;
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  ;
- h=Content-Transfer-Encoding:MIME-Version:Message-Id:Date:Subject:Cc:To:From
- :Sender:Reply-To:Content-Type:Content-ID:Content-Description:Resent-Date:
- Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:
- References:List-Id:List-Help:List-Unsubscribe:List-Subscribe:List-Post:
- List-Owner:List-Archive; bh=SBjZYb5OoxKrZVN1LuY9aWsQyO7jN0oF5M/Ac3rt8Aw=; b=V
- H6RBFQ+13t427TJ4jjMxRK2zReaLCSV8qu5W5VOr3NDchEDf+VLbZIv+F3H6qKWqr5n3FykalbaTe
- BNLtU8vnl83L1an/CvFHVl6Yv84veA/W9PmJtjMwsj9/Z047FbHf4R1hy8N+qB2Ap4S30kw9FP5+R
- KfXpNLk1bWDKWUS8=;
-Received: from mail-ed1-f53.google.com ([209.85.208.53])
- by sfi-mx-2.v28.lw.sourceforge.com with esmtps
+ h=Content-Type:Cc:To:Subject:Message-ID:Date:From:In-Reply-To:References:
+ MIME-Version:Sender:Reply-To:Content-Transfer-Encoding:Content-ID:
+ Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
+ :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
+ List-Post:List-Owner:List-Archive;
+ bh=fnRfrNBgW6VmdsH5V5foIRR4UqfDscL7jiZjugpsRTo=; b=WwzrDERw3XXqoeX6pFu6URkzXY
+ TxxHlovmUj4gwA8MxcUZhMUHlCb+7LwTpBSZ5cx/E0sluDtFMnDBvRlHVwVN3BUq65sH3lCnMUNO3
+ U223Td9qW6EryVQpC+u4RIB1FA8dRh/7w/ALsQ3KpknDiKbpiK0H0gqlts4r1wv6Oxks=;
+Received: from mail-qt1-f174.google.com ([209.85.160.174])
+ by sfi-mx-1.v28.lw.sourceforge.com with esmtps
  (TLS1.2:ECDHE-RSA-AES128-GCM-SHA256:128) (Exim 4.95)
- id 1paygL-0006ZF-Uj for v9fs-developer@lists.sourceforge.net;
- Sat, 11 Mar 2023 12:50:41 +0000
-Received: by mail-ed1-f53.google.com with SMTP id s11so31262042edy.8
+ id 1pb31A-004sP4-MN for v9fs-developer@lists.sourceforge.net;
+ Sat, 11 Mar 2023 17:28:30 +0000
+Received: by mail-qt1-f174.google.com with SMTP id l13so9198955qtv.3
  for <v9fs-developer@lists.sourceforge.net>;
- Sat, 11 Mar 2023 04:50:40 -0800 (PST)
+ Sat, 11 Mar 2023 09:28:28 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20210112; t=1678539034;
- h=content-transfer-encoding:mime-version:message-id:date:subject:cc
- :to:from:from:to:cc:subject:date:message-id:reply-to;
- bh=SBjZYb5OoxKrZVN1LuY9aWsQyO7jN0oF5M/Ac3rt8Aw=;
- b=KOKA1oHwHelUWVx1tvFJPO3xRp1FrKSu0qgOUbg3Cm5CBweajMR5S9kytIrx1s9HHN
- H3lNGGUmh/qxyT9GV6ssLIjDrASksCMShLpitZtRgIv9Ic9P+lG0lKTOmM1V0WRVKWPl
- RgHn9KuzkPLHmYzzgOn8vzUIzfqTpDp+iWnWSpDM40PAQqCchKoQpbJfpbbsgdqbwRmJ
- sRWRqoe3imxdgibqbfMXKHxANvSBOdyU3pisTGXXL4ouy/1H+4GAlx4tLtuPiVeCdr7b
- oyM4tz9Wp4dpofoRxG2OTanXnBf9nK7pSfMvnL3t9rCJ/GiD+S3waWy/PpsuHyNjiJmZ
- 26hQ==
+ d=gmail.com; s=20210112; t=1678555702;
+ h=cc:to:subject:message-id:date:from:in-reply-to:references
+ :mime-version:from:to:cc:subject:date:message-id:reply-to;
+ bh=fnRfrNBgW6VmdsH5V5foIRR4UqfDscL7jiZjugpsRTo=;
+ b=C6D5HWsfgRAVuzMHhXeARyWuDjQgOKKer7Ufufgzt0noOOc52Q1n6+XRBM3TSoUWEJ
+ XSzPNVsOekj4XArMD37y6hPza1Cg+tuPLXDg5ygK1OS1/k7R93nfruXDROk8aSIUIpry
+ J8NIWsR1XLoaEm+/paZETVfzweT55acsl8Jz3jYuWCgzBWvHTaQpbsh9k7zpjEorh8to
+ 73siR+m+Dhc0VeUjQbX5KtL1PSjQKNgUPRcZACxq5O+BqVwoXem0pYBgf5GyB2CfFGJU
+ 1F9/CF0hVdoRYuAziPsUViPIpvg2Sbd+eWmEw5A+OTG/+sE2LyZkOD7ZSRCvAUEJ734a
+ NOjg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20210112; t=1678539034;
- h=content-transfer-encoding:mime-version:message-id:date:subject:cc
- :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+ d=1e100.net; s=20210112; t=1678555702;
+ h=cc:to:subject:message-id:date:from:in-reply-to:references
+ :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
  :reply-to;
- bh=SBjZYb5OoxKrZVN1LuY9aWsQyO7jN0oF5M/Ac3rt8Aw=;
- b=fuFqXRGnODPNywfjAyRPcF7sqzEzLfuVkNIvLpOh0AdQPmg7ljmxESGSSSaJ4uG2tT
- lGOUWmCSLU29LpoJyWuyJZ6QLamhkUEB0sP7ON5JRpUt5v7PUX2EmFqOX3ezLPTTeTTF
- sCM58ZrDxw0zpnRyd1krUcM4XjmLtoqrHXfPE+tKOdNb6otZphP6TgUM158aE6CfcmZj
- 3W4n2gGOQrhi6TDxdfbLs+v6THNxI0nwx0PwNEmOe43taOYKR82gGDLHZWwhKmNf/RKO
- v6s2E5GZoBUaoYpP2jucVaOR6mbH3HTG+oT+vsJVCaGwBfn2UIFEoJwq1OTO+YxCBZ5b
- yvDA==
-X-Gm-Message-State: AO0yUKUbRNwSpsPFkW70XZlyArOscAJnTU0LV0Pt9kqLkz2UyIPDavRQ
- VTJpHowgf+1xbGVlMDhj8hA=
-X-Google-Smtp-Source: AK7set8Bjo77NnsV6VY0w/OqDBdQ5H+daGC5HzeMtg4lHsEzcw5++12ulnluQB5/V5mh/4tRX6BxIw==
-X-Received: by 2002:a05:6402:5187:b0:4ad:6f56:a362 with SMTP id
- q7-20020a056402518700b004ad6f56a362mr6558536edd.4.1678539034534; 
- Sat, 11 Mar 2023 04:50:34 -0800 (PST)
-Received: from ivan-HLYL-WXX9.. ([37.252.81.68])
- by smtp.gmail.com with ESMTPSA id
- d11-20020a056402400b00b004fadc041e13sm369557eda.42.2023.03.11.04.50.32
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Sat, 11 Mar 2023 04:50:34 -0800 (PST)
-From: Ivan Orlov <ivan.orlov0322@gmail.com>
-To: ericvh@gmail.com, lucho@ionkov.net, asmadeus@codewreck.org,
- linux_oss@crudebyte.com
-Date: Sat, 11 Mar 2023 16:50:25 +0400
-Message-Id: <20230311125025.24605-1-ivan.orlov0322@gmail.com>
-X-Mailer: git-send-email 2.34.1
+ bh=fnRfrNBgW6VmdsH5V5foIRR4UqfDscL7jiZjugpsRTo=;
+ b=K6I020uryKYwTiBZOXRXjSs2AY63PLJPsv+4akUqp/q55YPSlNtd2mDYmo/IZuPBNJ
+ j4yDGEEUXiEEFZpnqTbf3bPTY0YjWupeaPGetJUJO3Guc6Y6Jx3GYLEm1UCm2pXZsbNL
+ oMo4qll1TWTd/UsfwPkdMRlYFJ+xHHlV7UtHsxtU47knhnGRI5FpLECrKnEr5rk9qnkP
+ +aW447fzAXpV0AOt5eyOXlNvwYEyakOxKyryhrDG2xY83KnMbKpsvaBcSGVPHt8YfLdR
+ KdGiP33o3Is6DgUsgfZCME9G1C49e/MKCVFt9iWlChuXCIqDj8XD5g0gfffSmCHYJX/I
+ cwdA==
+X-Gm-Message-State: AO0yUKWfKSP5FajLRjAhd/sAwEyW33oY6imB8db3PTxv5N1sxJBMeMqZ
+ cc9Yai97E2SjMJ/rqhjsoD+/mXTFSxPVRwZO1g/GXhe1
+X-Google-Smtp-Source: AK7set9MRPoWlhlXXNagYxf7CMlIQeQnU+M7fqxlruT+LftsaXnAPYZ8vyLAxDqRt4PSvOUSgVD2j6p38/nFosDJGuA=
+X-Received: by 2002:ac8:4295:0:b0:3bf:e153:89d8 with SMTP id
+ o21-20020ac84295000000b003bfe15389d8mr7536967qtl.0.1678555702618; Sat, 11 Mar
+ 2023 09:28:22 -0800 (PST)
 MIME-Version: 1.0
-X-Spam-Score: 0.1 (/)
-X-Spam-Report: Spam detection software,
- running on the system "util-spamd-2.v13.lw.sourceforge.com", 
+References: <20230310202619.433269-1-ivan.orlov0322@gmail.com>
+In-Reply-To: <20230310202619.433269-1-ivan.orlov0322@gmail.com>
+From: David Kahurani <k.kahurani@gmail.com>
+Date: Sat, 11 Mar 2023 20:28:11 +0300
+Message-ID: <CAAZOf24yhpSBd1926v7T=qDwqvFfLsWMJeMKTafeZ=69hJ4rdw@mail.gmail.com>
+To: Ivan Orlov <ivan.orlov0322@gmail.com>
+X-Spam-Score: -0.2 (/)
+X-Spam-Report: Spam detection software, running on the system "util-spamd-1.v13.lw.sourceforge.com",
  has NOT identified this incoming email as spam.  The original
  message has been attached to this so you can view it or label
  similar future email.  If you have any questions, see
  the administrator of that system for details.
- Content preview: KASAN reported the following issue: [ 36.825817][ T5923] BUG:
- KASAN: wild-memory-access in v9fs_get_acl+0x1a4/0x390 [ 36.827479][ T5923]
- Write of size 4 at addr 9fffeb37f97f1c00 by task syz-executor79 [...] 
- Content analysis details:   (0.1 points, 6.0 required)
- pts rule name              description
+ 
+ Content preview:  On Fri, Mar 10, 2023 at 11:28 PM Ivan Orlov wrote: > KASAN
+    reported the following issue: > [ 36.825817][ T5923] BUG: KASAN: wild-memory-access
+    in > v9fs_get_acl+0x1a4/0x390 > [ 36.827479][ T5923] Write of size 4 at addr
+    9fffeb37f97f1c00 by task > syz- [...] 
+ 
+ Content analysis details:   (-0.2 points, 6.0 required)
+ 
+  pts rule name              description
  ---- ---------------------- --------------------------------------------------
- 0.0 FREEMAIL_FROM          Sender email is commonly abused enduser mail
- provider [ivan.orlov0322[at]gmail.com]
  -0.0 SPF_PASS               SPF: sender matches SPF record
- 0.0 SPF_HELO_NONE          SPF: HELO does not publish an SPF Record
- 0.2 FREEMAIL_ENVFROM_END_DIGIT Envelope-from freemail username ends
- in digit [ivan.orlov0322[at]gmail.com]
+  0.0 FREEMAIL_FROM          Sender email is commonly abused enduser mail
+                             provider
+                             [k.kahurani[at]gmail.com]
+  0.0 SPF_HELO_NONE          SPF: HELO does not publish an SPF Record
  -0.0 RCVD_IN_DNSWL_NONE     RBL: Sender listed at https://www.dnswl.org/,
- no trust [209.85.208.53 listed in list.dnswl.org]
- -0.0 RCVD_IN_MSPIKE_H2      RBL: Average reputation (+2)
- [209.85.208.53 listed in wl.mailspike.net]
- -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
- -0.1 DKIM_VALID_AU          Message has a valid DKIM or DK signature from
- author's domain
+                              no trust
+                             [209.85.160.174 listed in list.dnswl.org]
+  0.0 RCVD_IN_MSPIKE_H3      RBL: Good reputation (+3)
+                             [209.85.160.174 listed in wl.mailspike.net]
+  0.0 HTML_MESSAGE           BODY: HTML included in message
  -0.1 DKIM_VALID_EF          Message has a valid DKIM or DK signature from
- envelope-from domain
- 0.1 DKIM_SIGNED            Message has a DKIM or DK signature, not necessarily
- valid
-X-Headers-End: 1paygL-0006ZF-Uj
-Subject: [V9fs-developer] [PATCH v3] 9P FS: Fix wild-memory-access write in
+                             envelope-from domain
+ -0.1 DKIM_VALID             Message has at least one valid DKIM or DK signature
+  0.1 DKIM_SIGNED            Message has a DKIM or DK signature, not necessarily
+                             valid
+ -0.1 DKIM_VALID_AU          Message has a valid DKIM or DK signature from
+                             author's domain
+  0.0 RCVD_IN_MSPIKE_WL      Mailspike good senders
+X-Headers-End: 1pb31A-004sP4-MN
+X-Content-Filtered-By: Mailman/MimeDel 2.1.21
+Subject: Re: [V9fs-developer] [PATCH] 9P FS: Fix wild-memory-access write in
  v9fs_get_acl
 X-BeenThere: v9fs-developer@lists.sourceforge.net
 X-Mailman-Version: 2.1.21
@@ -127,109 +128,87 @@ List-Post: <mailto:v9fs-developer@lists.sourceforge.net>
 List-Help: <mailto:v9fs-developer-request@lists.sourceforge.net?subject=help>
 List-Subscribe: <https://lists.sourceforge.net/lists/listinfo/v9fs-developer>, 
  <mailto:v9fs-developer-request@lists.sourceforge.net?subject=subscribe>
-Cc: Ivan Orlov <ivan.orlov0322@gmail.com>, linux-kernel@vger.kernel.org,
+Cc: lucho@ionkov.net, ericvh@gmail.com, linux_oss@crudebyte.com,
+ linux-kernel@vger.kernel.org,
  syzbot+cb1d16facb3cc90de5fb@syzkaller.appspotmail.com,
- skhan@linuxfoundation.org, v9fs-developer@lists.sourceforge.net,
- himadrispandya@gmail.com
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+ v9fs-developer@lists.sourceforge.net,
+ linux-kernel-mentees@lists.linuxfoundation.org
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: v9fs-developer-bounces@lists.sourceforge.net
 
-KASAN reported the following issue:
-[   36.825817][ T5923] BUG: KASAN: wild-memory-access in v9fs_get_acl+0x1a4/0x390
-[   36.827479][ T5923] Write of size 4 at addr 9fffeb37f97f1c00 by task syz-executor798/5923
-[   36.829303][ T5923]
-[   36.829846][ T5923] CPU: 0 PID: 5923 Comm: syz-executor798 Not tainted 6.2.0-syzkaller-18302-g596b6b709632 #0
-[   36.832110][ T5923] Hardware name: Google Google Compute Engine/Google Compute Engine, BIOS Google 01/21/2023
-[   36.834464][ T5923] Call trace:
-[   36.835196][ T5923]  dump_backtrace+0x1c8/0x1f4
-[   36.836229][ T5923]  show_stack+0x2c/0x3c
-[   36.837100][ T5923]  dump_stack_lvl+0xd0/0x124
-[   36.838103][ T5923]  print_report+0xe4/0x4c0
-[   36.839068][ T5923]  kasan_report+0xd4/0x130
-[   36.840052][ T5923]  kasan_check_range+0x264/0x2a4
-[   36.841199][ T5923]  __kasan_check_write+0x2c/0x3c
-[   36.842216][ T5923]  v9fs_get_acl+0x1a4/0x390
-[   36.843232][ T5923]  v9fs_mount+0x77c/0xa5c
-[   36.844163][ T5923]  legacy_get_tree+0xd4/0x16c
-[   36.845173][ T5923]  vfs_get_tree+0x90/0x274
-[   36.846137][ T5923]  do_new_mount+0x25c/0x8c8
-[   36.847066][ T5923]  path_mount+0x590/0xe58
-[   36.848147][ T5923]  __arm64_sys_mount+0x45c/0x594
-[   36.849273][ T5923]  invoke_syscall+0x98/0x2c0
-[   36.850421][ T5923]  el0_svc_common+0x138/0x258
-[   36.851397][ T5923]  do_el0_svc+0x64/0x198
-[   36.852398][ T5923]  el0_svc+0x58/0x168
-[   36.853224][ T5923]  el0t_64_sync_handler+0x84/0xf0
-[   36.854293][ T5923]  el0t_64_sync+0x190/0x194
-
-Calling '__v9fs_get_acl' method in 'v9fs_get_acl' creates the
-following chain of function calls:
-
-__v9fs_get_acl
-	v9fs_fid_get_acl
-		v9fs_fid_xattr_get
-			p9_client_xattrwalk
-
-Function p9_client_xattrwalk accepts a pointer to u64-typed
-variable attr_size and puts some u64 value into it. However,
-after the executing the p9_client_xattrwalk, in some circumstances
-we assign the value of u64-typed variable 'attr_size' to the
-variable 'retval', which we will return. However, the type of
-'retval' is ssize_t, and if the value of attr_size is larger
-than SSIZE_MAX, we will face the signed type overflow. If the
-overflow occurs, the result of v9fs_fid_xattr_get may be
-negative, but not classified as an error. When we try to allocate
-an acl with 'broken' size we receive an error, but don't process
-it. When we try to free this acl, we face the 'wild-memory-access'
-error (because it wasn't allocated).
-
-This patch will add new condition to the 'v9fs_fid_xattr_get'
-function, so it will return an EOVERFLOW error if the 'attr_size'
-is larger than SSIZE_MAX.
-
-In this version of the patch I simplified the condition.
-
-In previous (v2) version of the patch I removed explicit type conversion
-and added separate condition to check the possible overflow and return
-an error (in v1 version I've just modified the existing condition).
-
-Tested via syzkaller.
-
-Suggested-by: Christian Schoenebeck <linux_oss@crudebyte.com>
-Reported-by: syzbot+cb1d16facb3cc90de5fb@syzkaller.appspotmail.com
-Link: https://syzkaller.appspot.com/bug?id=fbbef66d9e4d096242f3617de5d14d12705b4659
-Signed-off-by: Ivan Orlov <ivan.orlov0322@gmail.com>
----
- fs/9p/xattr.c | 8 +++++---
- 1 file changed, 5 insertions(+), 3 deletions(-)
-
-diff --git a/fs/9p/xattr.c b/fs/9p/xattr.c
-index 50f7f3f6b55e..1974a38bce20 100644
---- a/fs/9p/xattr.c
-+++ b/fs/9p/xattr.c
-@@ -35,10 +35,12 @@ ssize_t v9fs_fid_xattr_get(struct p9_fid *fid, const char *name,
- 		return retval;
- 	}
- 	if (attr_size > buffer_size) {
--		if (!buffer_size) /* request to get the attr_size */
--			retval = attr_size;
--		else
-+		if (buffer_size)
- 			retval = -ERANGE;
-+		else if (attr_size > SSIZE_MAX)
-+			retval = -EOVERFLOW;
-+		else /* request to get the attr_size */
-+			retval = attr_size;
- 	} else {
- 		iov_iter_truncate(&to, attr_size);
- 		retval = p9_client_read(attr_fid, 0, &to, &err);
--- 
-2.34.1
-
-
-
-_______________________________________________
-V9fs-developer mailing list
-V9fs-developer@lists.sourceforge.net
-https://lists.sourceforge.net/lists/listinfo/v9fs-developer
+T24gRnJpLCBNYXIgMTAsIDIwMjMgYXQgMTE6MjjigK9QTSBJdmFuIE9ybG92IDxpdmFuLm9ybG92
+MDMyMkBnbWFpbC5jb20+Cndyb3RlOgoKPiBLQVNBTiByZXBvcnRlZCB0aGUgZm9sbG93aW5nIGlz
+c3VlOgo+IFsgICAzNi44MjU4MTddWyBUNTkyM10gQlVHOiBLQVNBTjogd2lsZC1tZW1vcnktYWNj
+ZXNzIGluCj4gdjlmc19nZXRfYWNsKzB4MWE0LzB4MzkwCj4gWyAgIDM2LjgyNzQ3OV1bIFQ1OTIz
+XSBXcml0ZSBvZiBzaXplIDQgYXQgYWRkciA5ZmZmZWIzN2Y5N2YxYzAwIGJ5IHRhc2sKPiBzeXot
+ZXhlY3V0b3I3OTgvNTkyMwo+IFsgICAzNi44MjkzMDNdWyBUNTkyM10KPiBbICAgMzYuODI5ODQ2
+XVsgVDU5MjNdIENQVTogMCBQSUQ6IDU5MjMgQ29tbTogc3l6LWV4ZWN1dG9yNzk4IE5vdCB0YWlu
+dGVkCj4gNi4yLjAtc3l6a2FsbGVyLTE4MzAyLWc1OTZiNmI3MDk2MzIgIzAKPiBbICAgMzYuODMy
+MTEwXVsgVDU5MjNdIEhhcmR3YXJlIG5hbWU6IEdvb2dsZSBHb29nbGUgQ29tcHV0ZSBFbmdpbmUv
+R29vZ2xlCj4gQ29tcHV0ZSBFbmdpbmUsIEJJT1MgR29vZ2xlIDAxLzIxLzIwMjMKPiBbICAgMzYu
+ODM0NDY0XVsgVDU5MjNdIENhbGwgdHJhY2U6Cj4gWyAgIDM2LjgzNTE5Nl1bIFQ1OTIzXSAgZHVt
+cF9iYWNrdHJhY2UrMHgxYzgvMHgxZjQKPiBbICAgMzYuODM2MjI5XVsgVDU5MjNdICBzaG93X3N0
+YWNrKzB4MmMvMHgzYwo+IFsgICAzNi44MzcxMDBdWyBUNTkyM10gIGR1bXBfc3RhY2tfbHZsKzB4
+ZDAvMHgxMjQKPiBbICAgMzYuODM4MTAzXVsgVDU5MjNdICBwcmludF9yZXBvcnQrMHhlNC8weDRj
+MAo+IFsgICAzNi44MzkwNjhdWyBUNTkyM10gIGthc2FuX3JlcG9ydCsweGQ0LzB4MTMwCj4gWyAg
+IDM2Ljg0MDA1Ml1bIFQ1OTIzXSAga2FzYW5fY2hlY2tfcmFuZ2UrMHgyNjQvMHgyYTQKPiBbICAg
+MzYuODQxMTk5XVsgVDU5MjNdICBfX2thc2FuX2NoZWNrX3dyaXRlKzB4MmMvMHgzYwo+IFsgICAz
+Ni44NDIyMTZdWyBUNTkyM10gIHY5ZnNfZ2V0X2FjbCsweDFhNC8weDM5MAo+IFsgICAzNi44NDMy
+MzJdWyBUNTkyM10gIHY5ZnNfbW91bnQrMHg3N2MvMHhhNWMKPiBbICAgMzYuODQ0MTYzXVsgVDU5
+MjNdICBsZWdhY3lfZ2V0X3RyZWUrMHhkNC8weDE2Ywo+IFsgICAzNi44NDUxNzNdWyBUNTkyM10g
+IHZmc19nZXRfdHJlZSsweDkwLzB4Mjc0Cj4gWyAgIDM2Ljg0NjEzN11bIFQ1OTIzXSAgZG9fbmV3
+X21vdW50KzB4MjVjLzB4OGM4Cj4gWyAgIDM2Ljg0NzA2Nl1bIFQ1OTIzXSAgcGF0aF9tb3VudCsw
+eDU5MC8weGU1OAo+IFsgICAzNi44NDgxNDddWyBUNTkyM10gIF9fYXJtNjRfc3lzX21vdW50KzB4
+NDVjLzB4NTk0Cj4gWyAgIDM2Ljg0OTI3M11bIFQ1OTIzXSAgaW52b2tlX3N5c2NhbGwrMHg5OC8w
+eDJjMAo+IFsgICAzNi44NTA0MjFdWyBUNTkyM10gIGVsMF9zdmNfY29tbW9uKzB4MTM4LzB4MjU4
+Cj4gWyAgIDM2Ljg1MTM5N11bIFQ1OTIzXSAgZG9fZWwwX3N2YysweDY0LzB4MTk4Cj4gWyAgIDM2
+Ljg1MjM5OF1bIFQ1OTIzXSAgZWwwX3N2YysweDU4LzB4MTY4Cj4gWyAgIDM2Ljg1MzIyNF1bIFQ1
+OTIzXSAgZWwwdF82NF9zeW5jX2hhbmRsZXIrMHg4NC8weGYwCj4gWyAgIDM2Ljg1NDI5M11bIFQ1
+OTIzXSAgZWwwdF82NF9zeW5jKzB4MTkwLzB4MTk0Cj4KPiBDYWxsaW5nICdfX3Y5ZnNfZ2V0X2Fj
+bCcgbWV0aG9kIGluICd2OWZzX2dldF9hY2wnIGNyZWF0ZXMgdGhlCj4gZm9sbG93aW5nIGNoYWlu
+IG9mIGZ1bmN0aW9uIGNhbGxzOgo+Cj4gX192OWZzX2dldF9hY2wKPiAgICAgICAgIHY5ZnNfZmlk
+X2dldF9hY2wKPiAgICAgICAgICAgICAgICAgdjlmc19maWRfeGF0dHJfZ2V0Cj4gICAgICAgICAg
+ICAgICAgICAgICAgICAgcDlfY2xpZW50X3hhdHRyd2Fsawo+Cj4gRnVuY3Rpb24gcDlfY2xpZW50
+X3hhdHRyd2FsayBhY2NlcHRzIGEgcG9pbnRlciB0byB1NjQtdHlwZWQKPiB2YXJpYWJsZSBhdHRy
+X3NpemUgYW5kIHB1dHMgc29tZSB1NjQgdmFsdWUgaW50byBpdC4gSG93ZXZlciwKPiBhZnRlciB0
+aGUgZXhlY3V0aW5nIHRoZSBwOV9jbGllbnRfeGF0dHJ3YWxrLCBpbiBzb21lIGNpcmN1bXN0YW5j
+ZXMKPiB3ZSBhc3NpZ24gdGhlIHZhbHVlIG9mIHU2NC10eXBlZCB2YXJpYWJsZSAnYXR0cl9zaXpl
+JyB0byB0aGUKPiB2YXJpYWJsZSAncmV0dmFsJywgd2hpY2ggd2Ugd2lsbCByZXR1cm4uIEhvd2V2
+ZXIsIHRoZSB0eXBlIG9mCj4gJ3JldHZhbCcgaXMgc3NpemVfdCwgYW5kIGlmIHRoZSB2YWx1ZSBv
+ZiBhdHRyX3NpemUgaXMgbGFyZ2VyCj4gdGhhbiBTU0laRV9NQVgsIHdlIHdpbGwgZmFjZSB0aGUg
+c2lnbmVkIHR5cGUgb3ZlcmZsb3cuIElmIHRoZQo+IG92ZXJmbG93IG9jY3VycywgdGhlIHJlc3Vs
+dCBvZiB2OWZzX2ZpZF94YXR0cl9nZXQgbWF5IGJlCj4gbmVnYXRpdmUsIGJ1dCBub3QgY2xhc3Np
+ZmllZCBhcyBhbiBlcnJvci4gV2hlbiB3ZSB0cnkgdG8gYWxsb2NhdGUKPiBhbiBhY2wgd2l0aCAn
+YnJva2VuJyBzaXplIHdlIHJlY2VpdmUgYW4gZXJyb3IsIGJ1dCBkb24ndCBwcm9jZXNzCj4gaXQu
+IFdoZW4gd2UgdHJ5IHRvIGZyZWUgdGhpcyBhY2wsIHdlIGZhY2UgdGhlICd3aWxkLW1lbW9yeS1h
+Y2Nlc3MnCj4gZXJyb3IgKGJlY2F1c2UgaXQgd2Fzbid0IGFsbG9jYXRlZCkuCj4KPiBUaGlzIHBh
+dGNoIHdpbGwgbW9kaWZ5IHRoZSBjb25kaXRpb24gaW4gdGhlICd2OWZzX2ZpZF94YXR0cl9nZXQn
+Cj4gZnVuY3Rpb24sIHNvIGl0IHdpbGwgcmV0dXJuIGFuIGVycm9yIGlmIHRoZSAnYXR0cl9zaXpl
+JyBpcyBsYXJnZXIKPiB0aGFuIFNTSVpFX01BWC4KPgo+IFJlcG9ydGVkLWJ5OiBzeXpib3QrY2Ix
+ZDE2ZmFjYjNjYzkwZGU1ZmJAc3l6a2FsbGVyLmFwcHNwb3RtYWlsLmNvbQo+IExpbms6Cj4gaHR0
+cHM6Ly9zeXprYWxsZXIuYXBwc3BvdC5jb20vYnVnP2lkPWZiYmVmNjZkOWU0ZDA5NjI0MmYzNjE3
+ZGU1ZDE0ZDEyNzA1YjQ2NTkKPiBTaWduZWQtb2ZmLWJ5Cj4gPGh0dHBzOi8vc3l6a2FsbGVyLmFw
+cHNwb3QuY29tL2J1Zz9pZD1mYmJlZjY2ZDllNGQwOTYyNDJmMzYxN2RlNWQxNGQxMjcwNWI0NjU5
+U2lnbmVkLW9mZi1ieT46Cj4gSXZhbiBPcmxvdiA8aXZhbi5vcmxvdjAzMjJAZ21haWwuY29tPgo+
+IC0tLQo+ICBmcy85cC94YXR0ci5jIHwgMiArLQo+ICAxIGZpbGUgY2hhbmdlZCwgMSBpbnNlcnRp
+b24oKyksIDEgZGVsZXRpb24oLSkKPgo+IGRpZmYgLS1naXQgYS9mcy85cC94YXR0ci5jIGIvZnMv
+OXAveGF0dHIuYwo+IGluZGV4IDUwZjdmM2Y2YjU1ZS4uZDZmNzQ1MDEwN2E4IDEwMDY0NAo+IC0t
+LSBhL2ZzLzlwL3hhdHRyLmMKPiArKysgYi9mcy85cC94YXR0ci5jCj4gQEAgLTM1LDcgKzM1LDcg
+QEAgc3NpemVfdCB2OWZzX2ZpZF94YXR0cl9nZXQoc3RydWN0IHA5X2ZpZCAqZmlkLCBjb25zdAo+
+IGNoYXIgKm5hbWUsCj4gICAgICAgICAgICAgICAgIHJldHVybiByZXR2YWw7Cj4gICAgICAgICB9
+Cj4gICAgICAgICBpZiAoYXR0cl9zaXplID4gYnVmZmVyX3NpemUpIHsKPiAtICAgICAgICAgICAg
+ICAgaWYgKCFidWZmZXJfc2l6ZSkgLyogcmVxdWVzdCB0byBnZXQgdGhlIGF0dHJfc2l6ZSAqLwo+
+ICsgICAgICAgICAgICAgICBpZiAoIWJ1ZmZlcl9zaXplICYmIGF0dHJfc2l6ZSA8PSAodTY0KSBT
+U0laRV9NQVgpIC8qCj4gcmVxdWVzdCB0byBnZXQgdGhlIGF0dHJfc2l6ZSAqLwo+CgpJJ20gbm90
+IHN1cmUgd2hhdCBhcmUgdGhlIHJ1bGVzIGFyb3VuZCBoZXJlIGJ1dCBJIHByZWZlciB0byB1c2Ug
+YnJhY2tldHMKbW9yZSBnZW5lcm91c2x5LgoKCj4gICAgICAgICAgICAgICAgICAgICAgICAgcmV0
+dmFsID0gYXR0cl9zaXplOwo+ICAgICAgICAgICAgICAgICBlbHNlCj4gICAgICAgICAgICAgICAg
+ICAgICAgICAgcmV0dmFsID0gLUVSQU5HRTsKPiAtLQo+IDIuMzQuMQo+Cj4gX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KPiBMaW51eC1rZXJuZWwtbWVudGVl
+cyBtYWlsaW5nIGxpc3QKPiBMaW51eC1rZXJuZWwtbWVudGVlc0BsaXN0cy5saW51eGZvdW5kYXRp
+b24ub3JnCj4gaHR0cHM6Ly9saXN0cy5saW51eGZvdW5kYXRpb24ub3JnL21haWxtYW4vbGlzdGlu
+Zm8vbGludXgta2VybmVsLW1lbnRlZXMKPgoKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX18KVjlmcy1kZXZlbG9wZXIgbWFpbGluZyBsaXN0ClY5ZnMtZGV2ZWxv
+cGVyQGxpc3RzLnNvdXJjZWZvcmdlLm5ldApodHRwczovL2xpc3RzLnNvdXJjZWZvcmdlLm5ldC9s
+aXN0cy9saXN0aW5mby92OWZzLWRldmVsb3Blcgo=
