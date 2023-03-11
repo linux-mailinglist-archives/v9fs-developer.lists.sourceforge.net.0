@@ -2,116 +2,127 @@ Return-Path: <v9fs-developer-bounces@lists.sourceforge.net>
 X-Original-To: lists+v9fs-developer@lfdr.de
 Delivered-To: lists+v9fs-developer@lfdr.de
 Received: from lists.sourceforge.net (lists.sourceforge.net [216.105.38.7])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3562A6B5ED1
-	for <lists+v9fs-developer@lfdr.de>; Sat, 11 Mar 2023 18:30:45 +0100 (CET)
-Received: from [127.0.0.1] (helo=sfs-ml-1.v29.lw.sourceforge.com)
-	by sfs-ml-1.v29.lw.sourceforge.com with esmtp (Exim 4.95)
+	by mail.lfdr.de (Postfix) with ESMTPS id D95F46B5F12
+	for <lists+v9fs-developer@lfdr.de>; Sat, 11 Mar 2023 18:36:27 +0100 (CET)
+Received: from [127.0.0.1] (helo=sfs-ml-4.v29.lw.sourceforge.com)
+	by sfs-ml-4.v29.lw.sourceforge.com with esmtp (Exim 4.95)
 	(envelope-from <v9fs-developer-bounces@lists.sourceforge.net>)
-	id 1pb33L-000102-F2;
-	Sat, 11 Mar 2023 17:30:43 +0000
+	id 1pb38V-0004yT-Dy;
+	Sat, 11 Mar 2023 17:36:04 +0000
 Received: from [172.30.20.202] (helo=mx.sourceforge.net)
- by sfs-ml-1.v29.lw.sourceforge.com with esmtps (TLS1.2) tls
+ by sfs-ml-4.v29.lw.sourceforge.com with esmtps (TLS1.2) tls
  TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384 (Exim 4.95)
- (envelope-from <k.kahurani@gmail.com>) id 1pb33J-0000zu-Qm
+ (envelope-from <ivan.orlov0322@gmail.com>) id 1pb38K-0004yC-SL
  for v9fs-developer@lists.sourceforge.net;
- Sat, 11 Mar 2023 17:30:42 +0000
+ Sat, 11 Mar 2023 17:35:53 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=sourceforge.net; s=x; h=Content-Transfer-Encoding:Content-Type:Cc:To:
- Subject:Message-ID:Date:From:In-Reply-To:References:MIME-Version:Sender:
- Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender
- :Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
+ d=sourceforge.net; s=x; h=Content-Transfer-Encoding:Content-Type:In-Reply-To:
+ From:References:Cc:To:Subject:MIME-Version:Date:Message-ID:Sender:Reply-To:
+ Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+ Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
  List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=uU6dGrt2rIzrhCnJXbaQHOas3xv+F1JDdAfTJ+oW/RQ=; b=HAVXk9rqAWEd3sflBGPyTBWbfd
- 8vipDn7tcTozFR3466Kz8qtdsIG0ttpQh0X1AbDwXTy28EfjxIShSynCxbl3C+rHUoTU7KGgOyIj6
- FREoZz3gVf1D+Y/ch/OIR6PbvB7ehAbde5ViL2Z4F7YsUIYLKF5WbnTjWiLYD9jAnjaI=;
+ bh=inkmI/Yc55oH+OAgW/G1RQMkGyBxBvxe3t8F6Rn9vUA=; b=S2iv+XiZ2L62Dgpp9IKrz3HBjt
+ uWIPVz0MizjWGrJ3J/uO+CCDxTlznR4rMBuZyKKcPrCnoiJcGEhtFQPg8Z6bLiq1cU8MBTFnVWupi
+ qJc+k8Vhwu4CHtaIFloPQGasMtAYEQyKtLlfcGeCNmnuZTinrl/4HiioeZTVKGJS6jrA=;
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  ;
- h=Content-Transfer-Encoding:Content-Type:Cc:To:Subject:Message-ID:Date:From
- :In-Reply-To:References:MIME-Version:Sender:Reply-To:Content-ID:
+ h=Content-Transfer-Encoding:Content-Type:In-Reply-To:From:References:Cc:To:
+ Subject:MIME-Version:Date:Message-ID:Sender:Reply-To:Content-ID:
  Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
  :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
  List-Post:List-Owner:List-Archive;
- bh=uU6dGrt2rIzrhCnJXbaQHOas3xv+F1JDdAfTJ+oW/RQ=; b=aiKLMEgSwEg2kBBtdWPWFOuEdX
- ou64+u8tfujLjMy0S2cfyrB/hCj5xpKgvSSIQzTqa3/aRkZnaHJtYNVCKkLdvCR17oNZmjJ7BpATT
- 7sgSX5Alg+yGZO52M2iSkYbaO9qxlTq898YTs8do2cciMUzSTrvBGnoC404SwywtQ6r4=;
-Received: from mail-qk1-f182.google.com ([209.85.222.182])
+ bh=inkmI/Yc55oH+OAgW/G1RQMkGyBxBvxe3t8F6Rn9vUA=; b=c7tqmP/Tj3mPA8Xpw2wyzpgUiX
+ WQ+OIeyY6cX6H3pK5V3e8W7ny+j8WSxPVwv2UujRY5rFWBLM9NiM5CPGe13Um80G99tf3WBngQhrP
+ htYn3AhVyDzuN582lFxQlZny2OZ1gQW3qnf06j7rx6+VsFRPW1FiotF46FU+XX83C3ek=;
+Received: from mail-ed1-f47.google.com ([209.85.208.47])
  by sfi-mx-2.v28.lw.sourceforge.com with esmtps
  (TLS1.2:ECDHE-RSA-AES128-GCM-SHA256:128) (Exim 4.95)
- id 1pb33K-0003Rj-FX for v9fs-developer@lists.sourceforge.net;
- Sat, 11 Mar 2023 17:30:42 +0000
-Received: by mail-qk1-f182.google.com with SMTP id bl39so2999073qkb.10
+ id 1pb38J-0003a2-Bp for v9fs-developer@lists.sourceforge.net;
+ Sat, 11 Mar 2023 17:35:53 +0000
+Received: by mail-ed1-f47.google.com with SMTP id er25so4908164edb.5
  for <v9fs-developer@lists.sourceforge.net>;
- Sat, 11 Mar 2023 09:30:41 -0800 (PST)
+ Sat, 11 Mar 2023 09:35:50 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20210112; t=1678555836;
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:from:to:cc:subject:date
- :message-id:reply-to;
- bh=uU6dGrt2rIzrhCnJXbaQHOas3xv+F1JDdAfTJ+oW/RQ=;
- b=bvh9trzBAS2l2m1h0HCxqnySScFOuROTEyTiIMTBeF8PQP2OWZqPqWC3cGECLhcwAH
- 6anXClkJjl9COgnOAanr4FE3271F1yJqo/9lpTUV6ep6IJQpkiwRWfoU0uoZJCZEqVHi
- ysV2zp6JFgFx+r4XQbRJ435KksJeyyF2JlgJGhe0G5J6XH2E6xs4sYHAMW8XVCqOdMBS
- bW4h09gR02iQfeF+bjjP8LPJqMFDEcHEMWLjSmMSfw+zpO/54/GLaN/qWhXk54lvwbmj
- 09Shs0n/oW3/dUfuLdTCzHBKhkqIZZals5Rj5dpXybe/FvZTGTWh3skuEE2aFRyBW20j
- vkxQ==
+ d=gmail.com; s=20210112; t=1678556144;
+ h=content-transfer-encoding:in-reply-to:from:references:cc:to
+ :content-language:subject:user-agent:mime-version:date:message-id
+ :from:to:cc:subject:date:message-id:reply-to;
+ bh=inkmI/Yc55oH+OAgW/G1RQMkGyBxBvxe3t8F6Rn9vUA=;
+ b=pHGpBQ073xM2B56EvVGdkyPDPc2e2lY3LZlq3DkqgmHpKoMzrOTG37LsE8XI4w/sQw
+ mdWuBiAqqwl/ni9QcB2IYANfjhTKVScmyjinmHlpDPAMczMY4MFlRQKCiu2Qz3IE7pHZ
+ O4vYJq0slSj+TYuraVo2VYJALXgswIP4fvY0YwFe1E6whfGGQWjw6GamzeVL0F0BeFTm
+ CXuPvhSbluqR2MJ27JNghrZSz4lheJBkldd+U+6nYeQkpW1GlSgQsT77KvAgRzZecQhM
+ Fqwmp8DK4Fo0JV/07N2SffV4diUn9KdGD+vmWG6lsWp3hmpcCHm7UH1ulgxRirRJeNtb
+ th6w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20210112; t=1678555836;
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
- :subject:date:message-id:reply-to;
- bh=uU6dGrt2rIzrhCnJXbaQHOas3xv+F1JDdAfTJ+oW/RQ=;
- b=2M0Bpe1c+o9k7eEVr9NQp2biIFtLlVX3LSOb8+u7oKuYbbVx+ywE0+YoCSvH+ls1++
- xjz13ivobqAaRysMOdbIZ5Q2dK1M08wbQOBLkEceTPUClOYnuDQQD9D5vVdyMiU+K/E/
- osLTYtustvFmcEaoAaY+Kvp0wtFhbn1B2dcY8F3mlidhPb8h6+gHtBMt9J/B3+Baj/IE
- vDa7b815Y3H9poaR+Xo//ScstfnVCecxGxIArR43LS1U23CX1Osf2wNKVa2RxQrwRdYn
- ldbj5PPAhD669v6Tc5UC4SCMVnHecznCR3gl5jzaJmLuAy4n5bgJ/QJgCI+ZQwitmr9J
- NJMQ==
-X-Gm-Message-State: AO0yUKUYwlKbQyGO1TQRfNeqsBWYV7kGxsidNGj1E4UizB/q8Ok4WTX0
- V6OuC7cgVjo3wFAeHpinFqO9xoXwH7hObLr8AKg=
-X-Google-Smtp-Source: AK7set+cugWP5zKt6KMIC6m8i+hg8Ut3Qze/upRlJFEFI+Q72RtsBkvvN4MVyja5eqWo2xLoK7aPOAxioOApHIXudEQ=
-X-Received: by 2002:a37:64c1:0:b0:72d:4b50:f156 with SMTP id
- y184-20020a3764c1000000b0072d4b50f156mr1491924qkb.14.1678555835734; Sat, 11
- Mar 2023 09:30:35 -0800 (PST)
+ d=1e100.net; s=20210112; t=1678556144;
+ h=content-transfer-encoding:in-reply-to:from:references:cc:to
+ :content-language:subject:user-agent:mime-version:date:message-id
+ :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+ bh=inkmI/Yc55oH+OAgW/G1RQMkGyBxBvxe3t8F6Rn9vUA=;
+ b=swE8uFNRIx9Du9xIaxPNzAkgNPco8HjL52OMwVgvtgo/FSdPSLTcetdZ7Wd1mVSMrv
+ Bpuq1uYVsqy7eVwq5IpTUGJ8R1qZjIejOWVN+pAbm3X2ROn2PUTQBH4oIPfgABolEKEL
+ bSVcMEcXPG+aW4hqCPrb46re2KGs2xXKrnVffrSF5wgytVQVIZdIbD8ihWg2HOrH9/D+
+ woJfcmjZgRsdMTLpBvW5lTT7kZDr+k7uQuf9GZOYKW+8BzcyivUMC0MNLtXL/9JSGDts
+ gW6dGLJDt6EZPGla6EEM7HMhI1LdVl90dnkl1pQwxVorFuYB+w5cxvSiGhIH8Xgk3AEp
+ ytrg==
+X-Gm-Message-State: AO0yUKXZ3yigk1WQkb936G/Jv2qqcG22E2oXjJS6Dxd/xs9rDIHgMXob
+ QP7EWL/0CeBWpYSeXtRISBw=
+X-Google-Smtp-Source: AK7set+wjuNcDAjxAcSlBFN1Kql0mhZJD7n898URWMUbIbQwCZ7D6krXKc5StYEaRyb8plJ2mAqAaQ==
+X-Received: by 2002:a17:906:10c8:b0:8b1:94cc:10b1 with SMTP id
+ v8-20020a17090610c800b008b194cc10b1mr6628865ejv.7.1678556143979; 
+ Sat, 11 Mar 2023 09:35:43 -0800 (PST)
+Received: from [192.168.10.15] ([37.252.81.68])
+ by smtp.gmail.com with ESMTPSA id
+ h14-20020a50c38e000000b004fa610895b5sm962679edf.7.2023.03.11.09.35.42
+ (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+ Sat, 11 Mar 2023 09:35:43 -0800 (PST)
+Message-ID: <d5bb5ff0-1102-c7cd-c21b-c3a7f4f31717@gmail.com>
+Date: Sat, 11 Mar 2023 21:35:41 +0400
 MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.7.1
+Content-Language: en-US
+To: David Kahurani <k.kahurani@gmail.com>
 References: <20230310202619.433269-1-ivan.orlov0322@gmail.com>
-In-Reply-To: <20230310202619.433269-1-ivan.orlov0322@gmail.com>
-From: David Kahurani <k.kahurani@gmail.com>
-Date: Sat, 11 Mar 2023 20:30:24 +0300
-Message-ID: <CAAZOf27oFt=+DndvUxFLoRM8u_+oUs-Bdtca=yoBT0e-ych3Lw@mail.gmail.com>
-To: Ivan Orlov <ivan.orlov0322@gmail.com>
-X-Spam-Score: -0.2 (/)
-X-Spam-Report: Spam detection software, running on the system "util-spamd-1.v13.lw.sourceforge.com",
+ <CAAZOf24yhpSBd1926v7T=qDwqvFfLsWMJeMKTafeZ=69hJ4rdw@mail.gmail.com>
+From: Ivan Orlov <ivan.orlov0322@gmail.com>
+In-Reply-To: <CAAZOf24yhpSBd1926v7T=qDwqvFfLsWMJeMKTafeZ=69hJ4rdw@mail.gmail.com>
+X-Spam-Score: -1.9 (-)
+X-Spam-Report: Spam detection software,
+ running on the system "util-spamd-1.v13.lw.sourceforge.com", 
  has NOT identified this incoming email as spam.  The original
  message has been attached to this so you can view it or label
  similar future email.  If you have any questions, see
  the administrator of that system for details.
- 
- Content preview:  On Fri, Mar 10, 2023 at 11:28 PM Ivan Orlov wrote: > > KASAN
-    reported the following issue: > [ 36.825817][ T5923] BUG: KASAN: wild-memory-access
-    in v9fs_get_acl+0x1a4/0x390 > [ 36.827479][ T5923] [...] 
- 
- Content analysis details:   (-0.2 points, 6.0 required)
- 
-  pts rule name              description
+ Content preview:  > I'm not sure what are the rules around here but I prefer
+ to use brackets > more generously. I think in this particular case they can
+ just make the code less readable (considering they will not change the
+ behavior
+ in any way). However, this is eternal discussion and I saw examples of both
+ in [...] 
+ Content analysis details:   (-1.9 points, 6.0 required)
+ pts rule name              description
  ---- ---------------------- --------------------------------------------------
  -0.0 RCVD_IN_DNSWL_NONE     RBL: Sender listed at https://www.dnswl.org/,
-                              no trust
-                             [209.85.222.182 listed in list.dnswl.org]
+ no trust [209.85.208.47 listed in list.dnswl.org]
  -0.0 SPF_PASS               SPF: sender matches SPF record
-  0.0 FREEMAIL_FROM          Sender email is commonly abused enduser mail
-                             provider
-                             [k.kahurani[at]gmail.com]
-  0.0 SPF_HELO_NONE          SPF: HELO does not publish an SPF Record
- -0.0 RCVD_IN_MSPIKE_H2      RBL: Average reputation (+2)
-                             [209.85.222.182 listed in wl.mailspike.net]
+ 0.2 FREEMAIL_ENVFROM_END_DIGIT Envelope-from freemail username ends
+ in digit [ivan.orlov0322[at]gmail.com]
+ 0.0 FREEMAIL_FROM          Sender email is commonly abused enduser mail
+ provider [ivan.orlov0322[at]gmail.com]
+ 0.0 SPF_HELO_NONE          SPF: HELO does not publish an SPF Record
  -0.1 DKIM_VALID_EF          Message has a valid DKIM or DK signature from
-                             envelope-from domain
- -0.1 DKIM_VALID             Message has at least one valid DKIM or DK signature
-  0.1 DKIM_SIGNED            Message has a DKIM or DK signature, not necessarily
-                             valid
+ envelope-from domain
+ -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+ 0.1 DKIM_SIGNED            Message has a DKIM or DK signature, not necessarily
+ valid
  -0.1 DKIM_VALID_AU          Message has a valid DKIM or DK signature from
-                             author's domain
-X-Headers-End: 1pb33K-0003Rj-FX
+ author's domain
+ -0.0 RCVD_IN_MSPIKE_H2      RBL: Average reputation (+2)
+ [209.85.208.47 listed in wl.mailspike.net]
+ -2.0 NICE_REPLY_A           Looks like a legit reply (A)
+X-Headers-End: 1pb38J-0003a2-Bp
 Subject: Re: [V9fs-developer] [PATCH] 9P FS: Fix wild-memory-access write in
  v9fs_get_acl
 X-BeenThere: v9fs-developer@lists.sourceforge.net
@@ -130,80 +141,21 @@ Cc: lucho@ionkov.net, ericvh@gmail.com, linux_oss@crudebyte.com,
  syzbot+cb1d16facb3cc90de5fb@syzkaller.appspotmail.com,
  v9fs-developer@lists.sourceforge.net,
  linux-kernel-mentees@lists.linuxfoundation.org
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Errors-To: v9fs-developer-bounces@lists.sourceforge.net
 
-T24gRnJpLCBNYXIgMTAsIDIwMjMgYXQgMTE6MjjigK9QTSBJdmFuIE9ybG92IDxpdmFuLm9ybG92
-MDMyMkBnbWFpbC5jb20+IHdyb3RlOgo+Cj4gS0FTQU4gcmVwb3J0ZWQgdGhlIGZvbGxvd2luZyBp
-c3N1ZToKPiBbICAgMzYuODI1ODE3XVsgVDU5MjNdIEJVRzogS0FTQU46IHdpbGQtbWVtb3J5LWFj
-Y2VzcyBpbiB2OWZzX2dldF9hY2wrMHgxYTQvMHgzOTAKPiBbICAgMzYuODI3NDc5XVsgVDU5MjNd
-IFdyaXRlIG9mIHNpemUgNCBhdCBhZGRyIDlmZmZlYjM3Zjk3ZjFjMDAgYnkgdGFzayBzeXotZXhl
-Y3V0b3I3OTgvNTkyMwo+IFsgICAzNi44MjkzMDNdWyBUNTkyM10KPiBbICAgMzYuODI5ODQ2XVsg
-VDU5MjNdIENQVTogMCBQSUQ6IDU5MjMgQ29tbTogc3l6LWV4ZWN1dG9yNzk4IE5vdCB0YWludGVk
-IDYuMi4wLXN5emthbGxlci0xODMwMi1nNTk2YjZiNzA5NjMyICMwCj4gWyAgIDM2LjgzMjExMF1b
-IFQ1OTIzXSBIYXJkd2FyZSBuYW1lOiBHb29nbGUgR29vZ2xlIENvbXB1dGUgRW5naW5lL0dvb2ds
-ZSBDb21wdXRlIEVuZ2luZSwgQklPUyBHb29nbGUgMDEvMjEvMjAyMwo+IFsgICAzNi44MzQ0NjRd
-WyBUNTkyM10gQ2FsbCB0cmFjZToKPiBbICAgMzYuODM1MTk2XVsgVDU5MjNdICBkdW1wX2JhY2t0
-cmFjZSsweDFjOC8weDFmNAo+IFsgICAzNi44MzYyMjldWyBUNTkyM10gIHNob3dfc3RhY2srMHgy
-Yy8weDNjCj4gWyAgIDM2LjgzNzEwMF1bIFQ1OTIzXSAgZHVtcF9zdGFja19sdmwrMHhkMC8weDEy
-NAo+IFsgICAzNi44MzgxMDNdWyBUNTkyM10gIHByaW50X3JlcG9ydCsweGU0LzB4NGMwCj4gWyAg
-IDM2LjgzOTA2OF1bIFQ1OTIzXSAga2FzYW5fcmVwb3J0KzB4ZDQvMHgxMzAKPiBbICAgMzYuODQw
-MDUyXVsgVDU5MjNdICBrYXNhbl9jaGVja19yYW5nZSsweDI2NC8weDJhNAo+IFsgICAzNi44NDEx
-OTldWyBUNTkyM10gIF9fa2FzYW5fY2hlY2tfd3JpdGUrMHgyYy8weDNjCj4gWyAgIDM2Ljg0MjIx
-Nl1bIFQ1OTIzXSAgdjlmc19nZXRfYWNsKzB4MWE0LzB4MzkwCj4gWyAgIDM2Ljg0MzIzMl1bIFQ1
-OTIzXSAgdjlmc19tb3VudCsweDc3Yy8weGE1Ywo+IFsgICAzNi44NDQxNjNdWyBUNTkyM10gIGxl
-Z2FjeV9nZXRfdHJlZSsweGQ0LzB4MTZjCj4gWyAgIDM2Ljg0NTE3M11bIFQ1OTIzXSAgdmZzX2dl
-dF90cmVlKzB4OTAvMHgyNzQKPiBbICAgMzYuODQ2MTM3XVsgVDU5MjNdICBkb19uZXdfbW91bnQr
-MHgyNWMvMHg4YzgKPiBbICAgMzYuODQ3MDY2XVsgVDU5MjNdICBwYXRoX21vdW50KzB4NTkwLzB4
-ZTU4Cj4gWyAgIDM2Ljg0ODE0N11bIFQ1OTIzXSAgX19hcm02NF9zeXNfbW91bnQrMHg0NWMvMHg1
-OTQKPiBbICAgMzYuODQ5MjczXVsgVDU5MjNdICBpbnZva2Vfc3lzY2FsbCsweDk4LzB4MmMwCj4g
-WyAgIDM2Ljg1MDQyMV1bIFQ1OTIzXSAgZWwwX3N2Y19jb21tb24rMHgxMzgvMHgyNTgKPiBbICAg
-MzYuODUxMzk3XVsgVDU5MjNdICBkb19lbDBfc3ZjKzB4NjQvMHgxOTgKPiBbICAgMzYuODUyMzk4
-XVsgVDU5MjNdICBlbDBfc3ZjKzB4NTgvMHgxNjgKPiBbICAgMzYuODUzMjI0XVsgVDU5MjNdICBl
-bDB0XzY0X3N5bmNfaGFuZGxlcisweDg0LzB4ZjAKPiBbICAgMzYuODU0MjkzXVsgVDU5MjNdICBl
-bDB0XzY0X3N5bmMrMHgxOTAvMHgxOTQKPgo+IENhbGxpbmcgJ19fdjlmc19nZXRfYWNsJyBtZXRo
-b2QgaW4gJ3Y5ZnNfZ2V0X2FjbCcgY3JlYXRlcyB0aGUKPiBmb2xsb3dpbmcgY2hhaW4gb2YgZnVu
-Y3Rpb24gY2FsbHM6Cj4KPiBfX3Y5ZnNfZ2V0X2FjbAo+ICAgICAgICAgdjlmc19maWRfZ2V0X2Fj
-bAo+ICAgICAgICAgICAgICAgICB2OWZzX2ZpZF94YXR0cl9nZXQKPiAgICAgICAgICAgICAgICAg
-ICAgICAgICBwOV9jbGllbnRfeGF0dHJ3YWxrCj4KPiBGdW5jdGlvbiBwOV9jbGllbnRfeGF0dHJ3
-YWxrIGFjY2VwdHMgYSBwb2ludGVyIHRvIHU2NC10eXBlZAo+IHZhcmlhYmxlIGF0dHJfc2l6ZSBh
-bmQgcHV0cyBzb21lIHU2NCB2YWx1ZSBpbnRvIGl0LiBIb3dldmVyLAo+IGFmdGVyIHRoZSBleGVj
-dXRpbmcgdGhlIHA5X2NsaWVudF94YXR0cndhbGssIGluIHNvbWUgY2lyY3Vtc3RhbmNlcwo+IHdl
-IGFzc2lnbiB0aGUgdmFsdWUgb2YgdTY0LXR5cGVkIHZhcmlhYmxlICdhdHRyX3NpemUnIHRvIHRo
-ZQo+IHZhcmlhYmxlICdyZXR2YWwnLCB3aGljaCB3ZSB3aWxsIHJldHVybi4gSG93ZXZlciwgdGhl
-IHR5cGUgb2YKPiAncmV0dmFsJyBpcyBzc2l6ZV90LCBhbmQgaWYgdGhlIHZhbHVlIG9mIGF0dHJf
-c2l6ZSBpcyBsYXJnZXIKPiB0aGFuIFNTSVpFX01BWCwgd2Ugd2lsbCBmYWNlIHRoZSBzaWduZWQg
-dHlwZSBvdmVyZmxvdy4gSWYgdGhlCj4gb3ZlcmZsb3cgb2NjdXJzLCB0aGUgcmVzdWx0IG9mIHY5
-ZnNfZmlkX3hhdHRyX2dldCBtYXkgYmUKPiBuZWdhdGl2ZSwgYnV0IG5vdCBjbGFzc2lmaWVkIGFz
-IGFuIGVycm9yLiBXaGVuIHdlIHRyeSB0byBhbGxvY2F0ZQo+IGFuIGFjbCB3aXRoICdicm9rZW4n
-IHNpemUgd2UgcmVjZWl2ZSBhbiBlcnJvciwgYnV0IGRvbid0IHByb2Nlc3MKPiBpdC4gV2hlbiB3
-ZSB0cnkgdG8gZnJlZSB0aGlzIGFjbCwgd2UgZmFjZSB0aGUgJ3dpbGQtbWVtb3J5LWFjY2VzcycK
-PiBlcnJvciAoYmVjYXVzZSBpdCB3YXNuJ3QgYWxsb2NhdGVkKS4KPgo+IFRoaXMgcGF0Y2ggd2ls
-bCBtb2RpZnkgdGhlIGNvbmRpdGlvbiBpbiB0aGUgJ3Y5ZnNfZmlkX3hhdHRyX2dldCcKPiBmdW5j
-dGlvbiwgc28gaXQgd2lsbCByZXR1cm4gYW4gZXJyb3IgaWYgdGhlICdhdHRyX3NpemUnIGlzIGxh
-cmdlcgo+IHRoYW4gU1NJWkVfTUFYLgo+Cj4gUmVwb3J0ZWQtYnk6IHN5emJvdCtjYjFkMTZmYWNi
-M2NjOTBkZTVmYkBzeXprYWxsZXIuYXBwc3BvdG1haWwuY29tCj4gTGluazogaHR0cHM6Ly9zeXpr
-YWxsZXIuYXBwc3BvdC5jb20vYnVnP2lkPWZiYmVmNjZkOWU0ZDA5NjI0MmYzNjE3ZGU1ZDE0ZDEy
-NzA1YjQ2NTkKPiBTaWduZWQtb2ZmLWJ5OiBJdmFuIE9ybG92IDxpdmFuLm9ybG92MDMyMkBnbWFp
-bC5jb20+Cj4gLS0tCj4gIGZzLzlwL3hhdHRyLmMgfCAyICstCj4gIDEgZmlsZSBjaGFuZ2VkLCAx
-IGluc2VydGlvbigrKSwgMSBkZWxldGlvbigtKQo+Cj4gZGlmZiAtLWdpdCBhL2ZzLzlwL3hhdHRy
-LmMgYi9mcy85cC94YXR0ci5jCj4gaW5kZXggNTBmN2YzZjZiNTVlLi5kNmY3NDUwMTA3YTggMTAw
-NjQ0Cj4gLS0tIGEvZnMvOXAveGF0dHIuYwo+ICsrKyBiL2ZzLzlwL3hhdHRyLmMKPiBAQCAtMzUs
-NyArMzUsNyBAQCBzc2l6ZV90IHY5ZnNfZmlkX3hhdHRyX2dldChzdHJ1Y3QgcDlfZmlkICpmaWQs
-IGNvbnN0IGNoYXIgKm5hbWUsCj4gICAgICAgICAgICAgICAgIHJldHVybiByZXR2YWw7Cj4gICAg
-ICAgICB9Cj4gICAgICAgICBpZiAoYXR0cl9zaXplID4gYnVmZmVyX3NpemUpIHsKPiAtICAgICAg
-ICAgICAgICAgaWYgKCFidWZmZXJfc2l6ZSkgLyogcmVxdWVzdCB0byBnZXQgdGhlIGF0dHJfc2l6
-ZSAqLwo+ICsgICAgICAgICAgICAgICBpZiAoIWJ1ZmZlcl9zaXplICYmIGF0dHJfc2l6ZSA8PSAo
-dTY0KSBTU0laRV9NQVgpIC8qIHJlcXVlc3QgdG8gZ2V0IHRoZSBhdHRyX3NpemUgKi8KCkknbSBu
-b3Qgc3VyZSB3aGF0IGFyZSB0aGUgcnVsZXMgYXJvdW5kIGhlcmUgYnV0IEkgcHJlZmVyIHRvIHVz
-ZQpicmFja2V0cyBtb3JlIGdlbmVyb3VzbHkuCgo+Cj4gICAgICAgICAgICAgICAgICAgICAgICAg
-cmV0dmFsID0gYXR0cl9zaXplOwo+ICAgICAgICAgICAgICAgICBlbHNlCj4gICAgICAgICAgICAg
-ICAgICAgICAgICAgcmV0dmFsID0gLUVSQU5HRTsKPiAtLQo+IDIuMzQuMQo+Cj4gX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KPiBMaW51eC1rZXJuZWwtbWVu
-dGVlcyBtYWlsaW5nIGxpc3QKPiBMaW51eC1rZXJuZWwtbWVudGVlc0BsaXN0cy5saW51eGZvdW5k
-YXRpb24ub3JnCj4gaHR0cHM6Ly9saXN0cy5saW51eGZvdW5kYXRpb24ub3JnL21haWxtYW4vbGlz
-dGluZm8vbGludXgta2VybmVsLW1lbnRlZXMKCgpfX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fXwpWOWZzLWRldmVsb3BlciBtYWlsaW5nIGxpc3QKVjlmcy1kZXZl
-bG9wZXJAbGlzdHMuc291cmNlZm9yZ2UubmV0Cmh0dHBzOi8vbGlzdHMuc291cmNlZm9yZ2UubmV0
-L2xpc3RzL2xpc3RpbmZvL3Y5ZnMtZGV2ZWxvcGVyCg==
+
+> I'm not sure what are the rules around here but I prefer to use brackets 
+> more generously.
+
+I think in this particular case they can just make the code less 
+readable (considering they will not change the behavior in any way). 
+However, this is eternal discussion and I saw examples of both in the 
+kernel sources.
+
+
+_______________________________________________
+V9fs-developer mailing list
+V9fs-developer@lists.sourceforge.net
+https://lists.sourceforge.net/lists/listinfo/v9fs-developer
