@@ -2,28 +2,28 @@ Return-Path: <v9fs-developer-bounces@lists.sourceforge.net>
 X-Original-To: lists+v9fs-developer@lfdr.de
 Delivered-To: lists+v9fs-developer@lfdr.de
 Received: from lists.sourceforge.net (lists.sourceforge.net [216.105.38.7])
-	by mail.lfdr.de (Postfix) with ESMTPS id BBDD86B9430
-	for <lists+v9fs-developer@lfdr.de>; Tue, 14 Mar 2023 13:43:28 +0100 (CET)
-Received: from [127.0.0.1] (helo=sfs-ml-4.v29.lw.sourceforge.com)
-	by sfs-ml-4.v29.lw.sourceforge.com with esmtp (Exim 4.95)
+	by mail.lfdr.de (Postfix) with ESMTPS id B5BD96B943C
+	for <lists+v9fs-developer@lfdr.de>; Tue, 14 Mar 2023 13:43:47 +0100 (CET)
+Received: from [127.0.0.1] (helo=sfs-ml-2.v29.lw.sourceforge.com)
+	by sfs-ml-2.v29.lw.sourceforge.com with esmtp (Exim 4.95)
 	(envelope-from <v9fs-developer-bounces@lists.sourceforge.net>)
-	id 1pc3zx-0001WV-Mn;
-	Tue, 14 Mar 2023 12:43:26 +0000
+	id 1pc40H-0002NB-8i;
+	Tue, 14 Mar 2023 12:43:45 +0000
 Received: from [172.30.20.202] (helo=mx.sourceforge.net)
- by sfs-ml-4.v29.lw.sourceforge.com with esmtps (TLS1.2) tls
+ by sfs-ml-2.v29.lw.sourceforge.com with esmtps (TLS1.2) tls
  TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384 (Exim 4.95)
- (envelope-from <sashal@kernel.org>) id 1pc3zw-0001WP-IR
+ (envelope-from <sashal@kernel.org>) id 1pc40G-0002N1-LD
  for v9fs-developer@lists.sourceforge.net;
- Tue, 14 Mar 2023 12:43:25 +0000
+ Tue, 14 Mar 2023 12:43:45 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
  d=sourceforge.net; s=x; h=Content-Transfer-Encoding:MIME-Version:References:
  In-Reply-To:Message-Id:Date:Subject:Cc:To:From:Sender:Reply-To:Content-Type:
  Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
  Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
  List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=PPog09gFC1rjVJ5UGgPeFTrSO1d4LHOramxlPOcy6ow=; b=d8XnygjgGvmeFXEtspMvcsYxhJ
- uKeAs6o8lFsnUmN/oM0u3Xb76O5d3IF8WZFxxUQ484l93Z9wv6l7Sk4sywWXT8fd15R3s7uCEjdkR
- abNk/pSupfHR/qNcE39BxhMEaK3ByaIhcPq0NSO2myT9avnRHpV9vJwwlY2p4HRHbmcI=;
+ bh=FC0mlpaVpJLtQ9zkOhwSxRMd5WmlJMqYTF/nixoH0kc=; b=jUmzoWOk3c3Gj5LlyFw497p5sY
+ 6zW+UNFBHaDocBj/V0K4r23oTK4OSGlK/7YfEncg57zpxtR1VTaE2tzPNRWb5P72w0DWRHUGUjqVO
+ g+o5gvjSPYNOwbkrezEo3Vi58eMWYnDeE1+WEZIkGL3IUnVz9Mp0qtTR6/nilgYymTa0=;
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  ;
  h=Content-Transfer-Encoding:MIME-Version:References:In-Reply-To:Message-Id:
@@ -31,39 +31,39 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
  :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
  List-Post:List-Owner:List-Archive;
- bh=PPog09gFC1rjVJ5UGgPeFTrSO1d4LHOramxlPOcy6ow=; b=OQRBNygV1igXf3SaN4PTlQY25y
- bmdMAyZeS48vAyOdEJpFRA3uouWTYLx23XR7z8Xxo0X8Z9YHWQrN6VdLUlnwhup8sFoZ0jXVWWDfh
- 6BBTr2CX49nmZnXrZHOB2ZCV+cQNVJ+G4jL2eBLDqf3jwEE+EUVcAeNFy8S+dbBzivv8=;
+ bh=FC0mlpaVpJLtQ9zkOhwSxRMd5WmlJMqYTF/nixoH0kc=; b=kwhhAvC6Y67WozY6Ady+AQHwYk
+ FYVCYUD7OE03ik1cqbDQoJo6pSyfC+KJs6cq5A73jiVZcQjeYnrHcFGfriZbBJHICWofSFD5z1EjY
+ dTCQKDmMFjUujLma54YzbIRCQaQH8elTbtT6IuVvoKua+bpNakVprRaFtODmXMwjEIr8=;
 Received: from dfw.source.kernel.org ([139.178.84.217])
  by sfi-mx-1.v28.lw.sourceforge.com with esmtps
  (TLS1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.95)
- id 1pc3zx-008OEI-2r for v9fs-developer@lists.sourceforge.net;
- Tue, 14 Mar 2023 12:43:25 +0000
+ id 1pc40G-008OEk-KD for v9fs-developer@lists.sourceforge.net;
+ Tue, 14 Mar 2023 12:43:45 +0000
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
  (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
  (No client certificate requested)
- by dfw.source.kernel.org (Postfix) with ESMTPS id ACF8F61772;
- Tue, 14 Mar 2023 12:43:19 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 13F22C4339C;
- Tue, 14 Mar 2023 12:43:17 +0000 (UTC)
+ by dfw.source.kernel.org (Postfix) with ESMTPS id 3CEC761780;
+ Tue, 14 Mar 2023 12:43:39 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 90AC2C4339B;
+ Tue, 14 Mar 2023 12:43:37 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1678797799;
- bh=VCoUk9Py4cE0Vx0q2TgkNuGt9UilbNTVdSBJTBikMuU=;
+ s=k20201202; t=1678797818;
+ bh=+c45SjTlnq+NXIqIkShpUo9G/Gb3Q2yw0iHlcuh/bBw=;
  h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
- b=o+MD3moA9XMeXRSDQSwHZE3/+Lr+/G77pCO0WoixjaBgjFX/s6eKFZaKr6STNrM/T
- kgE/Oq77TndFpmg3/TzWW/Ko/z+tqTWPyxXnsaw4SVjtBaYTU+U6nqgOZByK4XXkKT
- izUbSPfZ4CzbmwQd8KQ0ZPs7uac1L7ufRFZpNyYgrT45LR3cJf8youw+GWpwsRro1X
- QtycQVCNmELYNoCKQItyuoMOcEHHMMke2DEPnD6sVsInk794qTF0xl8OAWHUd4JPNQ
- 4zx7fm/wBWpub08ML9LYpzdnTXXUZdPBi4uVuKeyYfH4LqcgiR7A/JrVd8IxkopNZK
- FP3GK8EmsnAvQ==
+ b=XvgZnGCmS8AUwxKFAVrPcHYr6G65PvoqWSNNYHYG3dI4mXT36w7qasGDd22FiRUQ+
+ PDq/ox3djVePAT8OWHCXdVuIe3J9boHvsWynrq43UM0323vrzHYr2PaRaocmsV1Msm
+ bk6wkxV+Vnwx+RBaZkEx4ISRc55qlP/XS/O2l6FrPHlpDP++JX+9f7Cp/T5lgCM9Jz
+ Azj8SRvR7KTdXIYt+5495vtPt/k7tXWfKOa4ALphoUT6lUda884gnkLAmhPVnaAiD4
+ wleCYG6DVqnKngUPwJPo1o/66kyEZ3iaP2h5feXGeW8KROX0Ql7gQPhg8u6/DTk+SV
+ oo7rvGGQKxsaw==
 From: Sasha Levin <sashal@kernel.org>
 To: linux-kernel@vger.kernel.org,
 	stable@vger.kernel.org
-Date: Tue, 14 Mar 2023 08:43:01 -0400
-Message-Id: <20230314124305.470657-9-sashal@kernel.org>
+Date: Tue, 14 Mar 2023 08:43:21 -0400
+Message-Id: <20230314124325.470931-9-sashal@kernel.org>
 X-Mailer: git-send-email 2.39.2
-In-Reply-To: <20230314124305.470657-1-sashal@kernel.org>
-References: <20230314124305.470657-1-sashal@kernel.org>
+In-Reply-To: <20230314124325.470931-1-sashal@kernel.org>
+References: <20230314124325.470931-1-sashal@kernel.org>
 MIME-Version: 1.0
 X-stable: review
 X-Patchwork-Hint: Ignore
@@ -95,8 +95,8 @@ X-Spam-Report: Spam detection software,
  -0.1 DKIM_VALID_AU          Message has a valid DKIM or DK signature from
  author's domain
  -0.7 DKIMWL_WL_HIGH         DKIMwl.org - High trust sender
-X-Headers-End: 1pc3zx-008OEI-2r
-Subject: [V9fs-developer] [PATCH AUTOSEL 6.2 09/13] net/9p: fix bug in
+X-Headers-End: 1pc40G-008OEk-KD
+Subject: [V9fs-developer] [PATCH AUTOSEL 6.1 09/13] net/9p: fix bug in
  client create for .L
 X-BeenThere: v9fs-developer@lists.sourceforge.net
 X-Mailman-Version: 2.1.21
@@ -134,10 +134,10 @@ Signed-off-by: Sasha Levin <sashal@kernel.org>
  1 file changed, 1 insertion(+), 1 deletion(-)
 
 diff --git a/net/9p/client.c b/net/9p/client.c
-index 622ec6a586eea..00a6d1e348768 100644
+index 554a4b11f4fec..af59c3f2ec2e7 100644
 --- a/net/9p/client.c
 +++ b/net/9p/client.c
-@@ -1289,7 +1289,7 @@ int p9_client_create_dotl(struct p9_fid *ofid, const char *name, u32 flags,
+@@ -1284,7 +1284,7 @@ int p9_client_create_dotl(struct p9_fid *ofid, const char *name, u32 flags,
  		 qid->type, qid->path, qid->version, iounit);
  
  	memmove(&ofid->qid, qid, sizeof(struct p9_qid));
