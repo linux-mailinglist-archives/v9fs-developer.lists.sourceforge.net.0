@@ -2,102 +2,103 @@ Return-Path: <v9fs-developer-bounces@lists.sourceforge.net>
 X-Original-To: lists+v9fs-developer@lfdr.de
 Delivered-To: lists+v9fs-developer@lfdr.de
 Received: from lists.sourceforge.net (lists.sourceforge.net [216.105.38.7])
-	by mail.lfdr.de (Postfix) with ESMTPS id 54C846B9448
-	for <lists+v9fs-developer@lfdr.de>; Tue, 14 Mar 2023 13:44:08 +0100 (CET)
-Received: from [127.0.0.1] (helo=sfs-ml-4.v29.lw.sourceforge.com)
-	by sfs-ml-4.v29.lw.sourceforge.com with esmtp (Exim 4.95)
+	by mail.lfdr.de (Postfix) with ESMTPS id A91B26BDAAE
+	for <lists+v9fs-developer@lfdr.de>; Thu, 16 Mar 2023 22:14:30 +0100 (CET)
+Received: from [127.0.0.1] (helo=sfs-ml-1.v29.lw.sourceforge.com)
+	by sfs-ml-1.v29.lw.sourceforge.com with esmtp (Exim 4.95)
 	(envelope-from <v9fs-developer-bounces@lists.sourceforge.net>)
-	id 1pc40c-0001XI-0l;
-	Tue, 14 Mar 2023 12:44:07 +0000
+	id 1pcuvb-0006IM-9i;
+	Thu, 16 Mar 2023 21:14:27 +0000
 Received: from [172.30.20.202] (helo=mx.sourceforge.net)
- by sfs-ml-4.v29.lw.sourceforge.com with esmtps (TLS1.2) tls
+ by sfs-ml-1.v29.lw.sourceforge.com with esmtps (TLS1.2) tls
  TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384 (Exim 4.95)
- (envelope-from <sashal@kernel.org>) id 1pc40a-0001XC-Dk
+ (envelope-from <mkt@cnc.neemails.com>) id 1pcuvZ-0006IG-It
  for v9fs-developer@lists.sourceforge.net;
- Tue, 14 Mar 2023 12:44:05 +0000
+ Thu, 16 Mar 2023 21:14:26 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=sourceforge.net; s=x; h=Content-Transfer-Encoding:MIME-Version:References:
- In-Reply-To:Message-Id:Date:Subject:Cc:To:From:Sender:Reply-To:Content-Type:
+ d=sourceforge.net; s=x; h=Content-Type:MIME-Version:List-Unsubscribe:To:
+ Sender:Reply-To:Message-Id:Subject:Date:From:Cc:Content-Transfer-Encoding:
  Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
- Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
- List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=+14bHH0J5YYmCuvf4vWVcFDgRMO6SjXPgA/zmnRN5eU=; b=FiwhbVgy2gumt7HW7W+SdsbQbM
- OftTFjidHYR+nERZ0V6jTWkbS08fJe3BhuBYPSxpKdobNBTt0a7P2rgv+beh5ovlVtS9QwJ7CDSHJ
- stna4TV+F5gE8TEBcylk6mlkc6SPqoYEElDdAgGGUB+YfokP6/m6blrtMEBmsyOMMybY=;
+ Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:List-Id:
+ List-Help:List-Subscribe:List-Post:List-Owner:List-Archive;
+ bh=C0/jIvKGr1DVZdl6RKFBLdV4nH9xlMsTBQAEe/THqbU=; b=NENvbDoLpK6LA9i++TJ89WTiAK
+ jiMBphjxywKzKKfvXwzDvRacY97oFlHifP5P68h6Ca5/vPKnwAzML2c5Eq+h0tDuNEAXMv6SiEgtU
+ Ncv9OMPfalZ7xi3syp9RDzpHeR7kF1H+rxmcu0FMeU3wx4QdSuM7I/XwQemUckNBDOsU=;
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  ;
- h=Content-Transfer-Encoding:MIME-Version:References:In-Reply-To:Message-Id:
- Date:Subject:Cc:To:From:Sender:Reply-To:Content-Type:Content-ID:
- Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
- :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
- List-Post:List-Owner:List-Archive;
- bh=+14bHH0J5YYmCuvf4vWVcFDgRMO6SjXPgA/zmnRN5eU=; b=cb/XguLx3QT0sayzCQjqkHg6vy
- o0BxibqMbVkXtZ9TO2mxMY8QAwoJYa6/Yxf6PljSyBlLTTmf7mib5YGphJmE8/viqRICN6h3XOVxr
- Qh1pHEI2famR8kUhC9iBL0PcjVsPtmuaXkSMqfjsnnIyTvUZefE7sG/3pUbUkvJp+fCA=;
-Received: from ams.source.kernel.org ([145.40.68.75])
+ h=Content-Type:MIME-Version:List-Unsubscribe:To:Sender:Reply-To:Message-Id:
+ Subject:Date:From:Cc:Content-Transfer-Encoding:Content-ID:Content-Description
+ :Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+ In-Reply-To:References:List-Id:List-Help:List-Subscribe:List-Post:List-Owner:
+ List-Archive; bh=C0/jIvKGr1DVZdl6RKFBLdV4nH9xlMsTBQAEe/THqbU=; b=dzu6hKbKZNNF
+ pndfUb4rb86sfM2ME6PcydRxsfF1Ep3k4lcEQ2UlxNa08fea3K1d7xDka7jVbf0RkuvY6OY7BYLCU
+ XRcq3DHQcZEOQRjLE2Kt33FvAq15XFdpsN+p77FBytfW+wsXBouspvDBWLfFJaBGNu6KehZbyfUoI
+ FfjN4=;
+Received: from pn129.mxout.mta2.net ([216.169.99.129])
  by sfi-mx-1.v28.lw.sourceforge.com with esmtps
- (TLS1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.95)
- id 1pc40a-008OF6-Hv for v9fs-developer@lists.sourceforge.net;
- Tue, 14 Mar 2023 12:44:05 +0000
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
- (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
- (No client certificate requested)
- by ams.source.kernel.org (Postfix) with ESMTPS id 40DDEB8191A;
- Tue, 14 Mar 2023 12:43:58 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id EAA4EC433D2;
- Tue, 14 Mar 2023 12:43:55 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1678797837;
- bh=u62PHWIrN6HTCJZD7dyHy2je/j/PdhGkuo2ogWvA/hw=;
- h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
- b=FoYosMUUOcZrDv3Yr1r8YIhEbDmFKgxdvFJM2ziYnBIDE7IGcvu3ofA/yCCSZnVsp
- vXL/ZzDRGN2UWrKVDLUbeRCm8mf3PSM96Z27RAECN95+oR4yocQOYkClCyxiiDkwTX
- q3XTrSfNlZo6c148JKgx6/zMVS05/jTrV4BHqg8LLO1wLidE8EYTgNWc6g3fRovys9
- wj2flqG50fJiG/Mp0ubjiABJEJgBRrekv+8X5rJySTRQrN2rgKH1DXjIq1UgJDR7Ju
- qHZCsalDa3/QoSWpI7t7lLHkxv+yBsrGXXzkgDEkr3bDCt1U9/gSMcEzgbPUfKF7fn
- GBgZr7TXJ/v5A==
-From: Sasha Levin <sashal@kernel.org>
-To: linux-kernel@vger.kernel.org,
-	stable@vger.kernel.org
-Date: Tue, 14 Mar 2023 08:43:42 -0400
-Message-Id: <20230314124344.471127-8-sashal@kernel.org>
-X-Mailer: git-send-email 2.39.2
-In-Reply-To: <20230314124344.471127-1-sashal@kernel.org>
-References: <20230314124344.471127-1-sashal@kernel.org>
+ (TLS1.2:ECDHE-RSA-AES256-SHA384:256) (Exim 4.95) id 1pcuvZ-00BCsj-5k
+ for v9fs-developer@lists.sourceforge.net;
+ Thu, 16 Mar 2023 21:14:25 +0000
+DKIM-Signature: v=1; a=rsa-sha256; d=cnc.neemails.com; s=api;
+ c=relaxed/simple; t=1679001258;
+ h=from:date:subject:reply-to:to:list-unsubscribe:mime-version;
+ bh=C0/jIvKGr1DVZdl6RKFBLdV4nH9xlMsTBQAEe/THqbU=;
+ b=GWsxtszYYDvUucaEqYunErOTPAhuNM5PNNfz/Ck38sgfIdNNkSA8ObgNM1+ayEq+ED7mYcxtW7m
+ aP9PahIYx2JcZJwit+Ny3qW0CYTkVLeV27wBnKQX+qZrBn9hb3HDWlK6pYZgc8MbZ6D4Q9lgzAsVA
+ U41l7BaMKAoHzf8tZYU=
+DKIM-Signature: v=1; a=rsa-sha256; d=elasticemail.com; s=api;
+ c=relaxed/simple; t=1679001258;
+ h=from:date:subject:reply-to:to:list-unsubscribe;
+ bh=C0/jIvKGr1DVZdl6RKFBLdV4nH9xlMsTBQAEe/THqbU=;
+ b=Ai8h5uBUQnfSRdkmmnWeaTT/CfDmxa1pqWRD8sA1GHi6rQ0TqYFOe2LCdIOXLOrRUN+kPmf+Azs
+ QBB7NMYnGEi6fIiLwFzNoiabrZeMGDTBcaN7lFY58afpAxBtGUhDtSk0SAobIKtoQ4OMsJS9p5JpB
+ sJL4TsrvDY8JbVK3+FA=
+From: Lily <mkt@cnc.neemails.com>
+Date: Thu, 16 Mar 2023 21:14:18 +0000
+Message-Id: <4ujfvccr1b0u.ACjwdL3ANEUnSnpGPPq3ZA2@tracking.cnc.neemails.com>
+To: "v9fs-developer@lists.sourceforge.net"
+ <v9fs-developer@lists.sourceforge.net>
+X-Msg-EID: ACjwdL3ANEUnSnpGPPq3ZA2
 MIME-Version: 1.0
-X-stable: review
-X-Patchwork-Hint: Ignore
-X-Spam-Score: -5.2 (-----)
-X-Spam-Report: Spam detection software,
- running on the system "util-spamd-2.v13.lw.sourceforge.com", 
+X-Spam-Score: 5.9 (+++++)
+X-Spam-Report: Spam detection software, running on the system "util-spamd-2.v13.lw.sourceforge.com",
  has NOT identified this incoming email as spam.  The original
  message has been attached to this so you can view it or label
  similar future email.  If you have any questions, see
  the administrator of that system for details.
- Content preview: From: Eric Van Hensbergen <ericvh@kernel.org> [ Upstream
- commit
- 3866584a1c56a2bbc8c0981deb4476d0b801969e ] We are supposed to set fid->mode
- to reflect the flags that were used to open the file. We were actually setting
- it to the creation mode which is the default perms of the file not the flags
- the file wa [...] 
- Content analysis details:   (-5.2 points, 6.0 required)
- pts rule name              description
+ 
+ Content preview:  Dear manager, I hope this letter finds you well.   I'm Lily
+    from Jindee CNC, We are professional precision hardware and plastic parts
+    processing factory from China.  We have CNC precision machining [...] 
+ 
+ Content analysis details:   (5.9 points, 6.0 required)
+ 
+  pts rule name              description
  ---- ---------------------- --------------------------------------------------
+  1.7 URIBL_BLACK            Contains an URL listed in the URIBL blacklist
+                             [URIs: xcwms.com]
+ -0.0 RCVD_IN_DNSWL_NONE     RBL: Sender listed at https://www.dnswl.org/,
+                              no trust
+                             [216.169.99.129 listed in list.dnswl.org]
+ -0.0 RCVD_IN_MSPIKE_H2      RBL: Average reputation (+2)
+                             [216.169.99.129 listed in wl.mailspike.net]
  -0.0 SPF_PASS               SPF: sender matches SPF record
- 0.0 SPF_HELO_NONE          SPF: HELO does not publish an SPF Record
- -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+  0.0 SPF_HELO_NONE          SPF: HELO does not publish an SPF Record
+  1.3 HTML_IMAGE_ONLY_24     BODY: HTML: images with 2000-2400 bytes of
+                             words
+  0.0 HTML_MESSAGE           BODY: HTML included in message
+ -0.1 DKIM_VALID             Message has at least one valid DKIM or DK signature
  -0.1 DKIM_VALID_AU          Message has a valid DKIM or DK signature from
- author's domain
- -0.1 DKIM_VALID_EF          Message has a valid DKIM or DK signature from
- envelope-from domain
- 0.1 DKIM_SIGNED            Message has a DKIM or DK signature, not necessarily
- valid
- -5.0 RCVD_IN_DNSWL_HI       RBL: Sender listed at https://www.dnswl.org/,
- high trust [145.40.68.75 listed in list.dnswl.org]
- -0.0 DKIMWL_WL_HIGH         DKIMwl.org - High trust sender
-X-Headers-End: 1pc40a-008OF6-Hv
-Subject: [V9fs-developer] [PATCH AUTOSEL 5.15 08/10] net/9p: fix bug in
- client create for .L
+                             author's domain
+  0.1 DKIM_SIGNED            Message has a DKIM or DK signature, not necessarily
+                             valid
+  2.0 PYZOR_CHECK            Listed in Pyzor
+                             (https://pyzor.readthedocs.io/en/latest/)
+  1.1 URIBL_GREY             Contains an URL listed in the URIBL greylist
+                             [URIs: elasticemail.com]
+X-Headers-End: 1pcuvZ-00BCsj-5k
+X-Content-Filtered-By: Mailman/MimeDel 2.1.21
+Subject: [V9fs-developer] CNC Precision Parts Manufacturing
 X-BeenThere: v9fs-developer@lists.sourceforge.net
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -109,49 +110,39 @@ List-Post: <mailto:v9fs-developer@lists.sourceforge.net>
 List-Help: <mailto:v9fs-developer-request@lists.sourceforge.net?subject=help>
 List-Subscribe: <https://lists.sourceforge.net/lists/listinfo/v9fs-developer>, 
  <mailto:v9fs-developer-request@lists.sourceforge.net?subject=subscribe>
-Cc: Sasha Levin <sashal@kernel.org>, lucho@ionkov.net, ericvh@gmail.com,
- netdev@vger.kernel.org, v9fs-developer@lists.sourceforge.net,
- rminnich@sandia.gov, Eric Van Hensbergen <ericvh@kernel.org>,
- davem@davemloft.net
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Reply-To: Lily <sales@jindeecnc.cn>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: v9fs-developer-bounces@lists.sourceforge.net
 
-From: Eric Van Hensbergen <ericvh@kernel.org>
-
-[ Upstream commit 3866584a1c56a2bbc8c0981deb4476d0b801969e ]
-
-We are supposed to set fid->mode to reflect the flags
-that were used to open the file.  We were actually setting
-it to the creation mode which is the default perms of the
-file not the flags the file was opened with.
-
-Signed-off-by: Eric Van Hensbergen <ericvh@kernel.org>
-Reviewed-by: Dominique Martinet <asmadeus@codewreck.org>
-Signed-off-by: Sasha Levin <sashal@kernel.org>
----
- net/9p/client.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
-
-diff --git a/net/9p/client.c b/net/9p/client.c
-index 08e0c9990af06..c4c1e44cd7ca3 100644
---- a/net/9p/client.c
-+++ b/net/9p/client.c
-@@ -1315,7 +1315,7 @@ int p9_client_create_dotl(struct p9_fid *ofid, const char *name, u32 flags,
- 		 qid->type, qid->path, qid->version, iounit);
- 
- 	memmove(&ofid->qid, qid, sizeof(struct p9_qid));
--	ofid->mode = mode;
-+	ofid->mode = flags;
- 	ofid->iounit = iounit;
- 
- free_and_error:
--- 
-2.39.2
-
-
-
-_______________________________________________
-V9fs-developer mailing list
-V9fs-developer@lists.sourceforge.net
-https://lists.sourceforge.net/lists/listinfo/v9fs-developer
+RGVhciBtYW5hZ2VyLApJIGhvcGUgdGhpcyBsZXR0ZXIgZmluZHMgeW91IHdlbGwuwqDCoApJJ20g
+TGlseSBmcm9tIEppbmRlZSBDTkMsIFdlIGFyZSBwcm9mZXNzaW9uYWwgcHJlY2lzaW9uIGhhcmR3
+YXJlIGFuZApwbGFzdGljIHBhcnRzIHByb2Nlc3NpbmcgZmFjdG9yeSBmcm9tIENoaW5hLsKgCldl
+IGhhdmUgQ05DIHByZWNpc2lvbiBtYWNoaW5pbmcsIENOQyB0dXJuaW5nLCBpbmplY3Rpb24gbW9s
+ZGluZywKc3RhbXBpbmcsIHNoZWV0IG1ldGFsLCBkaWUtY2FzdGluZywgYW5kIG90aGVyIHByb2R1
+Y3Rpb24gZXF1aXBtZW50LCB3ZQphbHNvIGhhdmUgYW4gZXhjZWxsZW50IGRlc2lnbiB0ZWFtIGFu
+ZCBwcm9kdWN0IG1hbmFnZW1lbnQgdGVhbSwKV2UgY2xlYXJseSBmZWVsOiBnbG9iYWwgaW5mbGF0
+aW9uIGFuZCBvdGhlciBmYWN0b3JzIGNhdXNlZCBieSB0aGUKZWNvbm9taWMgZG93bnR1cm4gYXQg
+aG9tZSBhbmQgYWJyb2FkIGFyZSB2ZXJ5IHNldmVyZS4KwqAxLsKgwqBBYm91dCB5b3VyIG9sZCBw
+cm9kdWN0cywgaWYgeW91IG5lZWQgdG8gaW1wcm92ZSB0aGUgcXVhbGl0eQphbmQgcmVkdWNlIHRo
+ZSBjb3N0LCBwbGVhc2UgZ2l2ZSB1cyB5b3VyIGRyYXdpbmdzIGFuZCB0aGUgdGFyZ2V0CnByaWNl
+LCB3ZSB3aWxsIHRyeSB0byBtZWV0IHlvdXIgcmVxdWlyZW1lbnRzOyDCoMKgwqDCoMKgwqDCoMKg
+wqDCoArCoDIuwqDCoEZvciB5b3VyIG5ldyBwcm9kdWN0cywgcGxlYXNlIHNlbmQgdXMgZHJhd2lu
+Z3MsIHdlIHdpbGwgZ2l2ZQp5b3UgYSByZWFzb25hYmxlIHF1b3RhdGlvbiwgYW5kIHByb3ZpZGUg
+eW91IHdpdGggaGlnaC1xdWFsaXR5IHNhbXBsZXMKKGNhbiBiZSBmcmVlIG9mIGNoYXJnZSkuCk5v
+dywgQ2hpbmEgcG9saWN5IGxpZnRlZCB0aGUgY29udHJvbCBvZiBDT1ZJRCwgeW91IGFyZSB3ZWxj
+b21lIHRvCnZpc2l0IG91ciBmYWN0b3J5IGluIENoaW5hLgpCZXN0IHJlZ2FyZHMsCkxpbHkKc2Fs
+ZXNAamluZGVlY25jLiBjbgpKaW5kZWUgQ05DClVuc3Vic2NyaWJlClsvaHR0cDovL3RyYWNraW5n
+LmNuYy5uZWVtYWlscy5jb20vdHJhY2tpbmcvdW5zdWJzY3JpYmU/ZD1KZUQyTEpnSDlRd0NKYjZW
+UlZEZk5HRHRPYUdUSm5LS0lkU05qRnk4V0czWkp1NHhVOElaM19sd0d5bEZxMWpfbkx6bkstTXkx
+blNfUGhBWGdJTUVBTk1NanVZdWdmTzE0YUxoaTIxUDRSOEVwcV82eUpXZEt6Y21ydHVMNmtVOHpv
+OXYxYm9MYW1FR0wwb0VvdWxVdWlYbVVvd3F0Q2RBbEVwUklOYjl5U3NzOS1oN24tMHhuWmh6djE0
+QngycUFXYUJ2U2VOdVBndkJQYWwtUl9BQzI0N29kNkx3UmljODJONjIta1ZQZzdMUnFDcHNxeW12
+V2NZYTZvNVcxeWxwWTNGejVnRnZ2QzRIWFprSUVuODlwNVBOTm1MSGxPRFlCblhzYzBKc0hTUlBD
+cFNDalA5SVh5cHhlNkIxTlpnbmJERjRkYTR2cElIVjBtR283bGQzdEhCQnlfV3ROeDBwajZmSTJ3
+aTRTN2xTMnY5X3k4WFMyQ1djUmlWNTkyVWtZbEMzZC1BNWtGT2RFbHlEWWdJNDhtcC03YnBQM0o3
+bWZzd2plaEJkbmpDbzR4YTk5MVZVZzhmZ2dyeFpXcGRhYy1UaXFCWGtQWVZVa1VYOWFXWnNjVUdJ
+QUdHUVl4YmRUeG1vaVZFOVJnYW13MUtGNGFnR2oxOGxhM2xMb2lmMU9RMl0KX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KVjlmcy1kZXZlbG9wZXIgbWFpbGlu
+ZyBsaXN0ClY5ZnMtZGV2ZWxvcGVyQGxpc3RzLnNvdXJjZWZvcmdlLm5ldApodHRwczovL2xpc3Rz
+LnNvdXJjZWZvcmdlLm5ldC9saXN0cy9saXN0aW5mby92OWZzLWRldmVsb3Blcgo=
