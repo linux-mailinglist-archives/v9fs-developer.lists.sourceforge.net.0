@@ -2,105 +2,105 @@ Return-Path: <v9fs-developer-bounces@lists.sourceforge.net>
 X-Original-To: lists+v9fs-developer@lfdr.de
 Delivered-To: lists+v9fs-developer@lfdr.de
 Received: from lists.sourceforge.net (lists.sourceforge.net [216.105.38.7])
-	by mail.lfdr.de (Postfix) with ESMTPS id ECBF56EA874
-	for <lists+v9fs-developer@lfdr.de>; Fri, 21 Apr 2023 12:39:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id E020C6EB92B
+	for <lists+v9fs-developer@lfdr.de>; Sat, 22 Apr 2023 14:30:09 +0200 (CEST)
 Received: from [127.0.0.1] (helo=sfs-ml-1.v29.lw.sourceforge.com)
 	by sfs-ml-1.v29.lw.sourceforge.com with esmtp (Exim 4.95)
 	(envelope-from <v9fs-developer-bounces@lists.sourceforge.net>)
-	id 1ppoB6-0007Wq-Ap;
-	Fri, 21 Apr 2023 10:39:43 +0000
+	id 1pqCNU-0001ZS-DL;
+	Sat, 22 Apr 2023 12:30:07 +0000
 Received: from [172.30.20.202] (helo=mx.sourceforge.net)
  by sfs-ml-1.v29.lw.sourceforge.com with esmtps (TLS1.2) tls
- TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384 (Exim 4.95) (envelope-from
- <35mdCZAkbAOcbhiTJUUNaJYYRM.PXXPUNdbNaLXWcNWc.LXV@M3KW2WVRGUFZ5GODRSRYTGD7.apphosting.bounces.google.com>)
- id 1ppoB4-0007WX-Ly for v9fs-developer@lists.sourceforge.net;
- Fri, 21 Apr 2023 10:39:41 +0000
+ TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384 (Exim 4.95)
+ (envelope-from <amazon-service@cqwnjf.store>) id 1pqCNT-0001ZD-OH
+ for v9fs-developer@lists.sourceforge.net;
+ Sat, 22 Apr 2023 12:30:06 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=sourceforge.net; s=x; h=Content-Type:To:From:Subject:Message-ID:In-Reply-To
- :Date:MIME-Version:Sender:Reply-To:Cc:Content-Transfer-Encoding:Content-ID:
+ d=sourceforge.net; s=x; h=Content-Type:MIME-Version:Date:Subject:To:From:
+ Message-ID:Sender:Reply-To:Cc:Content-Transfer-Encoding:Content-ID:
  Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
- :Resent-Message-ID:References:List-Id:List-Help:List-Unsubscribe:
+ :Resent-Message-ID:In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:
  List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=G9TOw2H2TDDn1VQzhH7iezPzkkf4u+p1oMfgUm2gH4s=; b=idfiElV+HXhZddEQ/O1LgrGDm/
- UbneZa0hk+BA8028hhz6NajfVybJ0NrH6XwylPV2h4vWz8/cK/VxIUdcjoTZX/ofPMT4cFe1b+A4D
- fSRZH3QTSw5a5LzWNfSn9xyi5SiWm8+MuIl/LG6+ZpcbrHvf7dh4S8adgxNE9cRr1+Wo=;
+ bh=GcPVZS9nizmMiZna/p3f1mf9t58u5oeQScj67m14ryc=; b=iPhAzXNvblRrGBnao7NIMvwnPu
+ UoLIUysKERvTwkBoZWSLYcQUjydQjQyDZOANW1/xT83HneyA94joKMafM/rAg3Eq8x6yhuDqE6Zs2
+ vm2TCdoMZXlb5Jf+/itDKGT1WfZF216qNQh0Dqd3Dr+DWuM8QZG4rfH2GF2b4zWa43yA=;
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  ;
- h=Content-Type:To:From:Subject:Message-ID:In-Reply-To:Date:MIME-Version:
- Sender:Reply-To:Cc:Content-Transfer-Encoding:Content-ID:Content-Description:
- Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+ h=Content-Type:MIME-Version:Date:Subject:To:From:Message-ID:Sender:Reply-To
+ :Cc:Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+ Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:
  References:List-Id:List-Help:List-Unsubscribe:List-Subscribe:List-Post:
- List-Owner:List-Archive; bh=G9TOw2H2TDDn1VQzhH7iezPzkkf4u+p1oMfgUm2gH4s=; b=c
- i7ipDBz/79xEAwXZ8wb/90/G0FYCI++NwFxuGOq+mdRTon7ALpd8aU90pSY9vFGbS6qboZ5MYfryb
- sCpd+Z3ERRz6KK2o1uM6hmzLRo+PzV55d11Pwcf4/aFwKNo3wRmQo37Iehl7j6qP2Fo2h2liaOJAe
- Shj+PWSxG/O7+3pk=;
-Received: from mail-io1-f70.google.com ([209.85.166.70])
+ List-Owner:List-Archive; bh=GcPVZS9nizmMiZna/p3f1mf9t58u5oeQScj67m14ryc=; b=n
+ WZg+cbdkSJizeOQWVqut8syov74ZjiZtgq6XqKdVspY7Z5GL7TXC5r1gfgXaC6tACepOZ5Viy5mja
+ USZb+BBt1J2/bIpvsU7okjpRshwsG27mf/UgwbdRBecKSsyc02pXEsHoyvh2fto8O7PjG8BjBJI8F
+ uNXzuW/S2zHhujrw=;
+Received: from [122.8.182.108] (helo=cqwnjf.store)
  by sfi-mx-2.v28.lw.sourceforge.com with esmtps
- (TLS1.2:ECDHE-RSA-AES128-GCM-SHA256:128) (Exim 4.95)
- id 1ppoB1-0003SP-U9 for v9fs-developer@lists.sourceforge.net;
- Fri, 21 Apr 2023 10:39:41 +0000
-Received: by mail-io1-f70.google.com with SMTP id
- ca18e2360f4ac-7606d44d4cfso148100739f.1
+ (TLS1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.95)
+ id 1pqCNN-0005hy-JX for v9fs-developer@lists.sourceforge.net;
+ Sat, 22 Apr 2023 12:30:06 +0000
+Received: from drup (unknown [104.128.66.42])
+ by cqwnjf.store (Postfix) with ESMTPA id D6BC22B07A
  for <v9fs-developer@lists.sourceforge.net>;
- Fri, 21 Apr 2023 03:39:39 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20221208; t=1682073574; x=1684665574;
- h=to:from:subject:message-id:in-reply-to:date:mime-version
- :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
- bh=G9TOw2H2TDDn1VQzhH7iezPzkkf4u+p1oMfgUm2gH4s=;
- b=GgLnnjjbJ3gjn73XRCrHqVIUgojAld/+KWdazdw5d0k0gbWD7yZHJ1cH4lFy3E9JOl
- XbfvQO/TdoqpZtQS0Z3Qyvsz/hddVFaclXmJXKDevEOtXZxr+Vjh8nMh6SeGnSCYb0Lj
- h5ihOfB8AQ6mBMJ50LODls51mmsod9kiO+TojwYqK4ExkPhPvI6J7neht+sMjHTMIHVw
- c5xilqu0wvYFXyeAxCjrVChRFaKj4J/MwcU1pthuTG0DhAkeoF04NIxqq2HXktyNeVIk
- JtLxgSE/z9nkktBKXDnSMa6h0cL9LRASSCDEvChBhzX3Yl0mJlO8zmV0M3p/ToN/JySI
- 3jwQ==
-X-Gm-Message-State: AAQBX9ct6DCSkzLeo2vvY27hYt0os4WQThhS1YKMQTcIkOWzgY7EOvqC
- UoTPaHXiumnrnqKgA9jW1PhWq6gNLgqXW6LdMq8GXjiCPSxL
-X-Google-Smtp-Source: AKy350YyCFmua8oWPJ4Yg0OC2jZMgh0inWc9TsFM5D0fT3r23bveFRBsJ3dexBUvmI5UDsULh2YriO+HvaWQi4f6SSMZylMOO7au
+ Sat, 22 Apr 2023 20:11:04 +0800 (CST)
+DKIM-Filter: OpenDKIM Filter v2.11.0 cqwnjf.store D6BC22B07A
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cqwnjf.store;
+ s=default; t=1682165465;
+ bh=GcPVZS9nizmMiZna/p3f1mf9t58u5oeQScj67m14ryc=;
+ h=From:To:Subject:Date:From;
+ b=mm1faxkeXgkTO4BIqUPpd8gbHztl0L3EOqOrxuoJ52qqweyXaLn9Jv40+f0CIElBr
+ XcYi1o1ojUt/FChQvVTD1gkGbuAjGl0rXNoteiMYCy3AgmVXgyr2zu14MkjZo8sweU
+ UeDUvPls787vYBTn/faUptXWIm1cUmQ8IR8g3k/g=
+Message-ID: <82148455AB14D5FC4A58100646A7A905@drup>
+To: v9fs-developer <v9fs-developer@lists.sourceforge.net>
+Date: Sat, 22 Apr 2023 21:10:54 +0900
 MIME-Version: 1.0
-X-Received: by 2002:a6b:e30e:0:b0:760:a66f:af61 with SMTP id
- u14-20020a6be30e000000b00760a66faf61mr2285637ioc.2.1682073574354; Fri, 21 Apr
- 2023 03:39:34 -0700 (PDT)
-Date: Fri, 21 Apr 2023 03:39:34 -0700
-In-Reply-To: <00000000000015ac7905e97ebaed@google.com>
-X-Google-Appengine-App-Id: s~syzkaller
-X-Google-Appengine-App-Id-Alias: syzkaller
-Message-ID: <000000000000e2ba1c05f9d645f5@google.com>
-From: syzbot <syzbot+67d13108d855f451cafc@syzkaller.appspotmail.com>
-To: asmadeus@codewreck.org, dan.carpenter@oracle.com, davem@davemloft.net, 
- edumazet@google.com, ericvh@gmail.com, kuba@kernel.org, leon@kernel.org, 
- linux-kernel@vger.kernel.org, linux_oss@crudebyte.com, lucho@ionkov.net, 
- netdev@vger.kernel.org, pabeni@redhat.com, syzkaller-bugs@googlegroups.com, 
- v9fs-developer@lists.sourceforge.net
-X-Spam-Score: 3.0 (+++)
-X-Spam-Report: Spam detection software,
- running on the system "util-spamd-2.v13.lw.sourceforge.com", 
- has NOT identified this incoming email as spam.  The original
+X-Priority: 3
+X-Mailer: Supmailer 38.1.1
+X-Helo-Check: bad, Forged Random Domain (cqwnjf.store)
+X-Spam-Score: 8.0 (++++++++)
+X-Spam-Report: Spam detection software, running on the system "util-spamd-1.v13.lw.sourceforge.com",
+ has identified this incoming email as possible spam.  The original
  message has been attached to this so you can view it or label
  similar future email.  If you have any questions, see
  the administrator of that system for details.
- Content preview: This bug is marked as fixed by commit: 9p:
- client_create/destroy:
- only call trans_mod->close after create But I can't find it in the tested
- trees[1] for more than 90 days. Is it a correct commit? Please update it
- by replying: 
- Content analysis details:   (3.0 points, 6.0 required)
- pts rule name              description
+ 
+ Content preview:  ━━━━━━━━━━━━━2023.4.18━━ ※重要なお知らせ
+    メールマガジンの受信を希望されていない方へもお送りしています。
+    ━━━━━━━━� [...] 
+ 
+ Content analysis details:   (8.0 points, 6.0 required)
+ 
+  pts rule name              description
  ---- ---------------------- --------------------------------------------------
- 0.3 FROM_LOCAL_HEX         From: localpart has long hexadecimal sequence
+  1.2 RCVD_IN_BL_SPAMCOP_NET RBL: Received via a relay in
+                             bl.spamcop.net
+               [Blocked - see <https://www.spamcop.net/bl.shtml?122.8.182.108>]
+  1.0 RCVD_IN_UCE1           RBL: IP Listed in UCEPROTECT Level 1
+                             [122.8.182.108 listed in dnsbl-1.uceprotect.net]
+  0.0 URIBL_PH_SURBL         Contains an URL listed in the PH SURBL blocklist
+                             [URIs: xmdbk.ltd]
+  1.9 URIBL_ABUSE_SURBL      Contains an URL listed in the ABUSE SURBL
+                             blocklist
+                             [URIs: xmdbk.ltd]
+ -0.0 SPF_HELO_PASS          SPF: HELO matches SPF record
  -0.0 SPF_PASS               SPF: sender matches SPF record
- 0.2 HEADER_FROM_DIFFERENT_DOMAINS From and EnvelopeFrom 2nd level
- mail domains are different
- 2.5 SORTED_RECIPS          Recipient list is sorted by address
- 0.0 SPF_HELO_NONE          SPF: HELO does not publish an SPF Record
- -0.0 RCVD_IN_MSPIKE_H2      RBL: Average reputation (+2)
- [209.85.166.70 listed in wl.mailspike.net]
- -0.0 RCVD_IN_DNSWL_NONE     RBL: Sender listed at https://www.dnswl.org/,
- no trust [209.85.166.70 listed in list.dnswl.org]
- -0.0 T_SCC_BODY_TEXT_LINE   No description available.
-X-Headers-End: 1ppoB1-0003SP-U9
-Subject: Re: [V9fs-developer] [syzbot] KASAN: use-after-free Read in
- rdma_close
+  2.7 RCVD_IN_PSBL           RBL: Received via a relay in PSBL
+                             [122.8.182.108 listed in psbl.surriel.com]
+  0.0 HTML_MESSAGE           BODY: HTML included in message
+ -0.1 DKIM_VALID_EF          Message has a valid DKIM or DK signature from
+                             envelope-from domain
+ -0.1 DKIM_VALID             Message has at least one valid DKIM or DK signature
+  0.1 DKIM_SIGNED            Message has a DKIM or DK signature, not necessarily
+                             valid
+ -0.1 DKIM_VALID_AU          Message has a valid DKIM or DK signature from
+                             author's domain
+  1.3 RDNS_NONE              Delivered to internal network by a host with no rDNS
+X-Headers-End: 1pqCNN-0005hy-JX
+X-Content-Filtered-By: Mailman/MimeDel 2.1.21
+Subject: [V9fs-developer] =?utf-8?b?44GU5rOo5oSP44GP44Gg44GV44GE77yB5Lul?=
+	=?utf-8?b?5LiL44Gu5YaF5a6544KS44KI44GP44GK6Kqt44G/44GP44Gg44GV44GE?=
+	=?utf-8?b?77yBNC8yMi8yMDIz?=
 X-BeenThere: v9fs-developer@lists.sourceforge.net
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -113,44 +113,39 @@ List-Post: <mailto:v9fs-developer@lists.sourceforge.net>
 List-Help: <mailto:v9fs-developer-request@lists.sourceforge.net?subject=help>
 List-Subscribe: <https://lists.sourceforge.net/lists/listinfo/v9fs-developer>, 
  <mailto:v9fs-developer-request@lists.sourceforge.net?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+From: "Amazon.co.jp via V9fs-developer" <v9fs-developer@lists.sourceforge.net>
+Reply-To: "Amazon.co.jp" <amazon-service@cqwnjf.store>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: v9fs-developer-bounces@lists.sourceforge.net
 
-This bug is marked as fixed by commit:
-9p: client_create/destroy: only call trans_mod->close after create
-
-But I can't find it in the tested trees[1] for more than 90 days.
-Is it a correct commit? Please update it by replying:
-
-#syz fix: exact-commit-title
-
-Until then the bug is still considered open and new crashes with
-the same signature are ignored.
-
-Kernel: Linux
-Dashboard link: https://syzkaller.appspot.com/bug?extid=67d13108d855f451cafc
-
----
-[1] I expect the commit to be present in:
-
-1. for-kernelci branch of
-git://git.kernel.org/pub/scm/linux/kernel/git/arm64/linux.git
-
-2. master branch of
-git://git.kernel.org/pub/scm/linux/kernel/git/bpf/bpf-next.git
-
-3. master branch of
-git://git.kernel.org/pub/scm/linux/kernel/git/bpf/bpf.git
-
-4. main branch of
-git://git.kernel.org/pub/scm/linux/kernel/git/davem/net-next.git
-
-The full list of 10 trees can be found at
-https://syzkaller.appspot.com/upstream/repos
-
-
-_______________________________________________
-V9fs-developer mailing list
-V9fs-developer@lists.sourceforge.net
-https://lists.sourceforge.net/lists/listinfo/v9fs-developer
+DQrilIHilIHilIHilIHilIHilIHilIHilIHilIHilIHilIHilIHilIEyMDIzLjQuMTjilIHilIEN
+CuKAu+mHjeimgeOBquOBiuefpeOCieOBmw0K44Oh44O844Or44Oe44Ks44K444Oz44Gu5Y+X5L+h
+44KS5biM5pyb44GV44KM44Gm44GE44Gq44GE5pa544G444KC44GK6YCB44KK44GX44Gm44GE44G+
+44GZ44CCDQrilIHilIHilIHilIHilIHilIHilIHilIHilIHilIHilIHilIHilIHilIHilIHilIHi
+lIHilIHilIENCg0Kdjlmcy1kZXZlbG9wZXJAbGlzdHMuc291cmNlZm9yZ2UubmV0IOS8muWToean
+mOOAgeW8iuekvuOBq+OBiumgkOOBi+OCiuOBmeOCi+OAjOOCr+ODrOOCuOODg+ODiOOCq+ODvOOD
+ieOBruOBiuWuouanmOaDheWgseOAjeOBr+ato+eiuuOBquaDheWgseOBp+OBr+OBquOBhOOBn+OC
+geOAgQ0K5byK56S+44Gn44Gv44CB44Kv44Os44K444OD44OI44Kr44O844OJ5Lya56S+44KE6YqA
+6KGM44Gu5rG65riI6KaP5YmH44Gr5Z+644Gl44GN44CB6KaB5Lu244KS5rqA44Gf44GX44Gm44GE
+44Gq44GE44GK5a6i5qeY44Gr5a++44GX44Gm5Yi26ZmQ5o6q572u44KS44GV44Gb44Gm6aCC44GN
+44G+44GZ44CCDQrjgZTliKnnlKjjgavmlK/pmpzjgpLjgY3jgZ/jgZXjgarjgYTjgojjgYbjgIHj
+gYrml6njgoHjgavkuIvoqJjjga7jg6rjg7Pjgq/jgpLjgq/jg6rjg4Pjgq/jgZfjgabjgIHmraPj
+gZfjgYTmg4XloLHjgpLjgZToqJjlhaXjgY/jgaDjgZXjgYTjgIINCg0K4oeS44Ot44Kw44Kk44Oz
+44Gv44GT44Gh44KJDQoNCuKAu+OBk+OBrlVSTOOBruacieWKueacn+mWk+OBr+aJi+e2muOBjeWP
+l+S7mOaZguOCiOOCijI05pmC6ZaT44Gn44GZ44CCDQrilqDmnInlirnmnJ/pmZDjgIAyMDIz5bm0
+NOaciDE55pelKOawtCkyMuaZgjAw5YiGDQoNCuKAu1VSTOOBjOeEoeWKueOBruWgtOWQiOOBr+OA
+geaBkOOCjOWFpeOCiuOBvuOBmeOBjOOAgeaUueOCgeOBpuODkeOCueODr+ODvOODieOBruWGjeeZ
+u+mMsuaJi+e2muOBjeOCkuOBiumhmOOBhOOBhOOBn+OBl+OBvuOBmeOAgg0KDQrjgZTliKnnlKjj
+ga7jgYrlrqLjgZXjgb7jgavjga/jgZTov7fmg5HjgpLjgYrjgYvjgZHjgZfjgb7jgZfjgaboqqDj
+gavnlLPjgZfoqLPjgZTjgZbjgYTjgb7jgZvjgpPjgYzjgIENCuS9leWNkuOBlOeQhuino+iznOOC
+iuOBvuOBmeOCiOOBhuOBiumhmOOBhOeUs+OBl+S4iuOBkuOBvuOBmeOAgg0KDQrilIHilIHilIHi
+lIHilIHilIHilIHilIHilIHilIHilIHilIHilIHilIHilIHilIHilIHilIHilIHilIENCuKAu+OD
+oeODvOODq+ODnuOCrOOCuOODs+OBruWPl+S/oeOCkuW4jOacm+OBleOCjOOBpuOBhOOBquOBhOaW
+ueOBuOOCguOBiumAgeOCiuOBl+OBpuOBhOOBvuOBmeOAgg0K4oC744GT44Gu44Oh44O844Or44Gr
+44GU6L+U5L+h44GE44Gf44Gg44GN44G+44GX44Gm44KC44GU5a++5b+c44GE44Gf44GX44GL44Gt
+44G+44GZ44Gu44Gn44CBDQrjgYLjgonjgYvjgZjjgoHjgZTkuobmib/jgY/jgaDjgZXjgYTjgIIN
+Ci0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0NCgpfX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpWOWZzLWRldmVsb3BlciBtYWlsaW5n
+IGxpc3QKVjlmcy1kZXZlbG9wZXJAbGlzdHMuc291cmNlZm9yZ2UubmV0Cmh0dHBzOi8vbGlzdHMu
+c291cmNlZm9yZ2UubmV0L2xpc3RzL2xpc3RpbmZvL3Y5ZnMtZGV2ZWxvcGVyCg==
