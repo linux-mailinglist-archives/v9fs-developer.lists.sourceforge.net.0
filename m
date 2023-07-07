@@ -2,106 +2,124 @@ Return-Path: <v9fs-developer-bounces@lists.sourceforge.net>
 X-Original-To: lists+v9fs-developer@lfdr.de
 Delivered-To: lists+v9fs-developer@lfdr.de
 Received: from lists.sourceforge.net (lists.sourceforge.net [216.105.38.7])
-	by mail.lfdr.de (Postfix) with ESMTPS id C7F7B743EAE
-	for <lists+v9fs-developer@lfdr.de>; Fri, 30 Jun 2023 17:26:28 +0200 (CEST)
-Received: from [127.0.0.1] (helo=sfs-ml-3.v29.lw.sourceforge.com)
-	by sfs-ml-3.v29.lw.sourceforge.com with esmtp (Exim 4.95)
+	by mail.lfdr.de (Postfix) with ESMTPS id 871E174B53C
+	for <lists+v9fs-developer@lfdr.de>; Fri,  7 Jul 2023 18:46:56 +0200 (CEST)
+Received: from [127.0.0.1] (helo=sfs-ml-1.v29.lw.sourceforge.com)
+	by sfs-ml-1.v29.lw.sourceforge.com with esmtp (Exim 4.95)
 	(envelope-from <v9fs-developer-bounces@lists.sourceforge.net>)
-	id 1qFG0v-0002Wm-Im;
-	Fri, 30 Jun 2023 15:26:25 +0000
+	id 1qHobd-0007Zr-1y;
+	Fri, 07 Jul 2023 16:46:53 +0000
 Received: from [172.30.20.202] (helo=mx.sourceforge.net)
- by sfs-ml-3.v29.lw.sourceforge.com with esmtps (TLS1.2) tls
+ by sfs-ml-1.v29.lw.sourceforge.com with esmtps (TLS1.2) tls
  TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384 (Exim 4.95)
- (envelope-from <dhowells@redhat.com>) id 1qFG0m-0002Wf-F7
+ (envelope-from <42.hyeyoo@gmail.com>) id 1qHobc-0007Zl-63
  for v9fs-developer@lists.sourceforge.net;
- Fri, 30 Jun 2023 15:26:18 +0000
+ Fri, 07 Jul 2023 16:46:53 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=sourceforge.net; s=x; h=Content-Transfer-Encoding:MIME-Version:References:
- In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Sender:Reply-To:Content-Type:
- Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
- Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
+ d=sourceforge.net; s=x; h=Content-Transfer-Encoding:Content-Type:Cc:To:
+ Subject:Message-ID:Date:From:In-Reply-To:References:MIME-Version:Sender:
+ Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender
+ :Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
  List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=YvuuosyDox1jyrnioRFOxuFzcr1YzhZJrvdziq8YYeo=; b=C128rnmcB0kY/ODEFNdPc82mAJ
- p1gwmwc+n5B3eCdJ58XlgN1O+klYCy0WPDu00SxK44O/cVTjVmruLMdHU6110Z0IaMPxggr6FW1Al
- MkNfmVpxYfhyHT7MF/6FY2RS4r4wOiBI2ICBEy6ECOhKtetW8elsOkep9hct+eDrpNW0=;
+ bh=Z/ReIviycKOpXSvVBgcqd1EotrbzaoMQKO3qVU7I/G8=; b=Wl/HeCe/d9L3YtpbSjgy97aZyk
+ iTuQkHSLP+Hy8oHTK8vdtxRsGodHd/+/tHADHf6sjbp+pgEHj02oCKbpNFcuIBuJvqW95xK82VFuT
+ 6W9+dTdT9wyzKKD8Ya2J6UhzDaDXwXh5Ho9Oju1VdrJtVxnaC8A987RuNiz+9xpWAiI0=;
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  ;
- h=Content-Transfer-Encoding:MIME-Version:References:In-Reply-To:Message-ID:
- Date:Subject:Cc:To:From:Sender:Reply-To:Content-Type:Content-ID:
+ h=Content-Transfer-Encoding:Content-Type:Cc:To:Subject:Message-ID:Date:From
+ :In-Reply-To:References:MIME-Version:Sender:Reply-To:Content-ID:
  Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
  :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
  List-Post:List-Owner:List-Archive;
- bh=YvuuosyDox1jyrnioRFOxuFzcr1YzhZJrvdziq8YYeo=; b=XEFqE9vZciLmXrB7JURpK3b1k/
- Ky2AmadLy5N0unOFoZGUCbJeboiY+uBaD1tdUYNNyu3ublouP7IeL+xPvB1BEPUDBRPVJTJ8mu40n
- Zd7sIDBxv7BCOoX08+Zqa2SF5cuIlqFMPqI/V/6GeinKDIIqa+lW6U2LIxhjCYiOY/GU=;
-Received: from us-smtp-delivery-124.mimecast.com ([170.10.133.124])
- by sfi-mx-1.v28.lw.sourceforge.com with esmtps
- (TLS1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.95)
- id 1qFG0i-002FgS-H2 for v9fs-developer@lists.sourceforge.net;
- Fri, 30 Jun 2023 15:26:16 +0000
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
- s=mimecast20190719; t=1688138764;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references;
- bh=YvuuosyDox1jyrnioRFOxuFzcr1YzhZJrvdziq8YYeo=;
- b=N/AzGVwOyg8mSzIf3aw4CFYDcFz3Xgq71qwPA/MwLVhYZMGKg1i3Kkx3ZMvnvwvJhPmc8e
- 6bJCr4+7+duI7u7FwPfrQMGNIxqMAhFTfhV5wLh7s/YqT8PgPAZMTJcc1LN1SJj5UGDMm4
- +BmQIJ/d4IuSijIDpYvSP0+mS469LfI=
-Received: from mimecast-mx02.redhat.com (mx3-rdu2.redhat.com
- [66.187.233.73]) by relay.mimecast.com with ESMTP with STARTTLS
- (version=TLSv1.2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- us-mta-142-n-OmuebeNTmap1grquelDQ-1; Fri, 30 Jun 2023 11:26:00 -0400
-X-MC-Unique: n-OmuebeNTmap1grquelDQ-1
-Received: from smtp.corp.redhat.com (int-mx07.intmail.prod.int.rdu2.redhat.com
- [10.11.54.7])
- (using TLSv1.2 with cipher AECDH-AES256-SHA (256/256 bits))
- (No client certificate requested)
- by mimecast-mx02.redhat.com (Postfix) with ESMTPS id 5340229AA2CC;
- Fri, 30 Jun 2023 15:25:59 +0000 (UTC)
-Received: from warthog.procyon.org.uk.com (unknown [10.42.28.195])
- by smtp.corp.redhat.com (Postfix) with ESMTP id B7DBB14682FA;
- Fri, 30 Jun 2023 15:25:56 +0000 (UTC)
-From: David Howells <dhowells@redhat.com>
-To: Jens Axboe <axboe@kernel.dk>, Al Viro <viro@zeniv.linux.org.uk>,
- Christoph Hellwig <hch@infradead.org>
-Date: Fri, 30 Jun 2023 16:25:23 +0100
-Message-ID: <20230630152524.661208-11-dhowells@redhat.com>
-In-Reply-To: <20230630152524.661208-1-dhowells@redhat.com>
-References: <20230630152524.661208-1-dhowells@redhat.com>
+ bh=Z/ReIviycKOpXSvVBgcqd1EotrbzaoMQKO3qVU7I/G8=; b=dGzi1sO1hTeEhMCGHDg1IGvGbG
+ El/xIFXtXJ2N5GuxN57DqLwvv0d36iJl2WAg4+bCYfYgwnpW3XDw0zl9uL8zf16v/V2Ra6htndnpz
+ uLI57ByTW3OSejiGi7Yc1bs38NmROZE0yNdHq/vANWTMi4AuWr01WmINmxMeF0Jkf+qc=;
+Received: from mail-vk1-f172.google.com ([209.85.221.172])
+ by sfi-mx-2.v28.lw.sourceforge.com with esmtps
+ (TLS1.2:ECDHE-RSA-AES128-GCM-SHA256:128) (Exim 4.95)
+ id 1qHobd-0004ib-1I for v9fs-developer@lists.sourceforge.net;
+ Fri, 07 Jul 2023 16:46:52 +0000
+Received: by mail-vk1-f172.google.com with SMTP id
+ 71dfb90a1353d-47e25709402so855782e0c.0
+ for <v9fs-developer@lists.sourceforge.net>;
+ Fri, 07 Jul 2023 09:46:50 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=gmail.com; s=20221208; t=1688748405; x=1691340405;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=Z/ReIviycKOpXSvVBgcqd1EotrbzaoMQKO3qVU7I/G8=;
+ b=rdIoGdwP5Ghffl0SSNU+UexYiw7dQQTY/KbUSpraUXheaqWYQIzf9VS2G54zkxoXeK
+ Zs8WYI2qt4N0BqTuDA21gVijWUiGiy3OrYR8lv3DKyrgrFEFY/VwOEHPHcniApVN32A0
+ PyNQdCHlm8WB6hLN7Grylpw6RdoDNjUV6Py9A1+F4jya88T8Iq9Ka7vxdq5yT5c1LaGv
+ mhT4LjqqufdVQx6CIlQHGhtHR9EIUodVt14QLVcTA2E3j7ZHuNoD2AWGoyZkb9l6fTKO
+ 8M1Q1mr7rQzV9JK8pww9IzJ4dCo0vnfyDZPwzvga/a4qwpdfyRbTwoQs0RfSeuNrnbjJ
+ agjw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20221208; t=1688748405; x=1691340405;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+ :subject:date:message-id:reply-to;
+ bh=Z/ReIviycKOpXSvVBgcqd1EotrbzaoMQKO3qVU7I/G8=;
+ b=ZCNnU9ctnx1zUpCZHaUuQtIWqbyVoJzV6NhxOqw8j2DzC4LYKJuFAnbLZ/EUiXf5wR
+ yuD17PU0MGkRRzkrVIhFG2HXjJaOiKmV4/x1JXEjvi21WmzTJ7bC6kqgT3PDAHz6EJ1V
+ NqjVN6RPDzhu4XiFrw+Om/y+gsDfvfh2FU+uPnlwNow3FDuO1fpsmLK0/SnsMPiE2lg9
+ 2BVlSSVIm4Ew114owW16vFBr4jZIiJYG24Sq91y+49U1arConUEWhTz9JMQa/SCN27Gj
+ GIpZsYZNWWGEz+rwbMBAH9jOBY5os5pQglnColHBnoTR6Rx5Webp08JYTA9i77Wx9QaF
+ igqw==
+X-Gm-Message-State: ABy/qLYAyGBLU6U8672aLZcpiExszA5/a7rKT1Bm65lQpSBpcouriQlP
+ KL/cerTpscRxPchMPXvdyQmQYG+L6Wm9pASwLgU=
+X-Google-Smtp-Source: APBJJlGKmNTgweK2kwJWs4/wFqNBmjg4Djz4jCj6ZqMtOK2vtD8XozEN8rFv3LAaQCX0JTqMTCJbsPKbO24byO+QNwg=
+X-Received: by 2002:a1f:43c4:0:b0:47e:91fc:d2b8 with SMTP id
+ q187-20020a1f43c4000000b0047e91fcd2b8mr3487027vka.2.1688748404847; Fri, 07
+ Jul 2023 09:46:44 -0700 (PDT)
 MIME-Version: 1.0
-X-Scanned-By: MIMEDefang 3.1 on 10.11.54.7
-X-Spam-Score: -0.9 (/)
-X-Spam-Report: Spam detection software,
- running on the system "util-spamd-1.v13.lw.sourceforge.com", 
+References: <20230628104852.3391651-1-dhowells@redhat.com>
+ <20230628104852.3391651-3-dhowells@redhat.com>
+ <ZKg/J3OG3kQ9ynSO@fedora>
+In-Reply-To: <ZKg/J3OG3kQ9ynSO@fedora>
+From: Hyeonggon Yoo <42.hyeyoo@gmail.com>
+Date: Sat, 8 Jul 2023 01:46:33 +0900
+Message-ID: <CAB=+i9Qbi7+o90Cd_ecd1TeaAYnWPcO-gNp7kzc95Pxecy0XTw@mail.gmail.com>
+To: David Howells <dhowells@redhat.com>
+X-Spam-Score: -0.2 (/)
+X-Spam-Report: Spam detection software, running on the system "util-spamd-2.v13.lw.sourceforge.com",
  has NOT identified this incoming email as spam.  The original
  message has been attached to this so you can view it or label
  similar future email.  If you have any questions, see
  the administrator of that system for details.
- Content preview:  Convert the 9p filesystem to use iov_iter_extract_pages()
- instead of iov_iter_get_pages(). This will pin pages or leave them unaltered
- rather than getting a ref on them as appropriate to the iterator. 
- Content analysis details:   (-0.9 points, 6.0 required)
- pts rule name              description
+ 
+ Content preview:  On Sat, Jul 8, 2023 at 1:39 AM Hyeonggon Yoo wrote: > >
+   On Wed, Jun 28, 2023 at 11:48:52AM +0100, David Howells wrote: > > Fscache
+    has an optimisation by which reads from the cache are skipped unt [...] 
+ 
+ Content analysis details:   (-0.2 points, 6.0 required)
+ 
+  pts rule name              description
  ---- ---------------------- --------------------------------------------------
- 0.0 RCVD_IN_MSPIKE_H4      RBL: Very Good reputation (+4)
- [170.10.133.124 listed in wl.mailspike.net]
- -0.0 RCVD_IN_DNSWL_NONE     RBL: Sender listed at https://www.dnswl.org/,
- no trust [170.10.133.124 listed in list.dnswl.org]
+  0.0 HK_RANDOM_ENVFROM      Envelope sender username looks random
+  0.0 HK_RANDOM_FROM         From username looks random
+  0.0 FREEMAIL_FROM          Sender email is commonly abused enduser mail
+                             provider
+                             [42.hyeyoo[at]gmail.com]
+  0.0 SPF_HELO_NONE          SPF: HELO does not publish an SPF Record
  -0.0 SPF_PASS               SPF: sender matches SPF record
- 0.0 SPF_HELO_NONE          SPF: HELO does not publish an SPF Record
+ -0.0 RCVD_IN_DNSWL_NONE     RBL: Sender listed at https://www.dnswl.org/,
+                              no trust
+                             [209.85.221.172 listed in list.dnswl.org]
+ -0.0 RCVD_IN_MSPIKE_H2      RBL: Average reputation (+2)
+                             [209.85.221.172 listed in wl.mailspike.net]
  -0.1 DKIM_VALID_EF          Message has a valid DKIM or DK signature from
- envelope-from domain
- -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+                             envelope-from domain
+ -0.1 DKIM_VALID             Message has at least one valid DKIM or DK signature
  -0.1 DKIM_VALID_AU          Message has a valid DKIM or DK signature from
- author's domain
- 0.1 DKIM_SIGNED            Message has a DKIM or DK signature, not necessarily
- valid 0.0 RCVD_IN_MSPIKE_WL      Mailspike good senders
- -0.7 DKIMWL_WL_HIGH         DKIMwl.org - High trust sender
-X-Headers-End: 1qFG0i-002FgS-H2
-Subject: [V9fs-developer] [RFC PATCH 10/11] 9p: Pin pages rather than
- ref'ing if appropriate
+                             author's domain
+  0.1 DKIM_SIGNED            Message has a DKIM or DK signature, not necessarily
+                             valid
+ -0.0 T_SCC_BODY_TEXT_LINE   No description available.
+X-Headers-End: 1qHobd-0004ib-1I
+Subject: Re: [V9fs-developer] [BUG mm-unstable] BUG: KASAN: use-after-free
+ in shrink_folio_list+0x9f4/0x1ae0
 X-BeenThere: v9fs-developer@lists.sourceforge.net
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -114,222 +132,105 @@ List-Post: <mailto:v9fs-developer@lists.sourceforge.net>
 List-Help: <mailto:v9fs-developer-request@lists.sourceforge.net?subject=help>
 List-Subscribe: <https://lists.sourceforge.net/lists/listinfo/v9fs-developer>, 
  <mailto:v9fs-developer-request@lists.sourceforge.net?subject=subscribe>
-Cc: Latchesar Ionkov <lucho@ionkov.net>, linux-block@vger.kernel.org,
- Hillf Danton <hdanton@sina.com>, Jan Kara <jack@suse.cz>,
- David Hildenbrand <david@redhat.com>, Eric Van Hensbergen <ericvh@gmail.com>,
- Christian Schoenebeck <linux_oss@crudebyte.com>,
- Jeff Layton <jlayton@kernel.org>, Christian Brauner <brauner@kernel.org>,
- Matthew Wilcox <willy@infradead.org>, linux-kernel@vger.kernel.org,
- David Howells <dhowells@redhat.com>, linux-mm@kvack.org,
- Jason Gunthorpe <jgg@nvidia.com>, linux-fsdevel@vger.kernel.org,
- v9fs-developer@lists.sourceforge.net, Logan Gunthorpe <logang@deltatee.com>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Cc: Shyam Prasad N <nspmangalore@gmail.com>, linux-cifs@vger.kernel.org,
+ linux-nfs@vger.kernel.org, Ilya Dryomov <idryomov@gmail.com>,
+ linux-mm@kvack.org, Rohith Surabattula <rohiths.msft@gmail.com>,
+ linux-erofs@lists.ozlabs.org, Dave Wysochanski <dwysocha@redhat.com>,
+ Jeff Layton <jlayton@kernel.org>, Matthew Wilcox <willy@infradead.org>,
+ Christoph Hellwig <hch@infradead.org>, Steve French <sfrench@samba.org>,
+ linux-cachefs@redhat.com, v9fs-developer@lists.sourceforge.net,
+ linux-fsdevel@vger.kernel.org, ceph-devel@vger.kernel.org,
+ linux-ext4@vger.kernel.org, Linus Torvalds <torvalds@linux-foundation.org>,
+ linux-afs@lists.infradead.org
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: v9fs-developer-bounces@lists.sourceforge.net
 
-Convert the 9p filesystem to use iov_iter_extract_pages() instead of
-iov_iter_get_pages().  This will pin pages or leave them unaltered rather
-than getting a ref on them as appropriate to the iterator.
-
-The pages need to be pinned for DIO-read rather than having refs taken on
-them to prevent VM copy-on-write from malfunctioning during a concurrent
-fork() (the result of the I/O would otherwise end up only visible to the
-child process and not the parent).
-
-Signed-off-by: David Howells <dhowells@redhat.com>
-cc: Dominique Martinet <asmadeus@codewreck.org>
-cc: Eric Van Hensbergen <ericvh@gmail.com>
-cc: Latchesar Ionkov <lucho@ionkov.net>
-cc: Christian Schoenebeck <linux_oss@crudebyte.com>
-cc: v9fs-developer@lists.sourceforge.net
----
- net/9p/trans_common.c |  8 ++--
- net/9p/trans_common.h |  2 +-
- net/9p/trans_virtio.c | 92 ++++++++++++++-----------------------------
- 3 files changed, 34 insertions(+), 68 deletions(-)
-
-diff --git a/net/9p/trans_common.c b/net/9p/trans_common.c
-index c827f694551c..4342de18f08b 100644
---- a/net/9p/trans_common.c
-+++ b/net/9p/trans_common.c
-@@ -9,16 +9,16 @@
- #include "trans_common.h"
- 
- /**
-- * p9_release_pages - Release pages after the transaction.
-+ * p9_unpin_pages - Unpin pages after the transaction.
-  * @pages: array of pages to be put
-  * @nr_pages: size of array
-  */
--void p9_release_pages(struct page **pages, int nr_pages)
-+void p9_unpin_pages(struct page **pages, int nr_pages)
- {
- 	int i;
- 
- 	for (i = 0; i < nr_pages; i++)
- 		if (pages[i])
--			put_page(pages[i]);
-+			unpin_user_page(pages[i]);
- }
--EXPORT_SYMBOL(p9_release_pages);
-+EXPORT_SYMBOL(p9_unpin_pages);
-diff --git a/net/9p/trans_common.h b/net/9p/trans_common.h
-index 32134db6abf3..fd94c48aba5b 100644
---- a/net/9p/trans_common.h
-+++ b/net/9p/trans_common.h
-@@ -4,4 +4,4 @@
-  * Author Venkateswararao Jujjuri <jvrao@linux.vnet.ibm.com>
-  */
- 
--void p9_release_pages(struct page **pages, int nr_pages);
-+void p9_unpin_pages(struct page **pages, int nr_pages);
-diff --git a/net/9p/trans_virtio.c b/net/9p/trans_virtio.c
-index 3c27ffb781e3..93569de2bdba 100644
---- a/net/9p/trans_virtio.c
-+++ b/net/9p/trans_virtio.c
-@@ -310,71 +310,35 @@ static int p9_get_mapped_pages(struct virtio_chan *chan,
- 			       struct iov_iter *data,
- 			       int count,
- 			       size_t *offs,
--			       int *need_drop)
-+			       bool *need_unpin,
-+			       iov_iter_extraction_t extraction_flags)
- {
- 	int nr_pages;
- 	int err;
-+	int n;
- 
- 	if (!iov_iter_count(data))
- 		return 0;
- 
--	if (!iov_iter_is_kvec(data)) {
--		int n;
--		/*
--		 * We allow only p9_max_pages pinned. We wait for the
--		 * Other zc request to finish here
--		 */
--		if (atomic_read(&vp_pinned) >= chan->p9_max_pages) {
--			err = wait_event_killable(vp_wq,
--			      (atomic_read(&vp_pinned) < chan->p9_max_pages));
--			if (err == -ERESTARTSYS)
--				return err;
--		}
--		n = iov_iter_get_pages_alloc2(data, pages, count, offs);
--		if (n < 0)
--			return n;
--		*need_drop = 1;
--		nr_pages = DIV_ROUND_UP(n + *offs, PAGE_SIZE);
--		atomic_add(nr_pages, &vp_pinned);
--		return n;
--	} else {
--		/* kernel buffer, no need to pin pages */
--		int index;
--		size_t len;
--		void *p;
--
--		/* we'd already checked that it's non-empty */
--		while (1) {
--			len = iov_iter_single_seg_count(data);
--			if (likely(len)) {
--				p = data->kvec->iov_base + data->iov_offset;
--				break;
--			}
--			iov_iter_advance(data, 0);
--		}
--		if (len > count)
--			len = count;
--
--		nr_pages = DIV_ROUND_UP((unsigned long)p + len, PAGE_SIZE) -
--			   (unsigned long)p / PAGE_SIZE;
--
--		*pages = kmalloc_array(nr_pages, sizeof(struct page *),
--				       GFP_NOFS);
--		if (!*pages)
--			return -ENOMEM;
--
--		*need_drop = 0;
--		p -= (*offs = offset_in_page(p));
--		for (index = 0; index < nr_pages; index++) {
--			if (is_vmalloc_addr(p))
--				(*pages)[index] = vmalloc_to_page(p);
--			else
--				(*pages)[index] = kmap_to_page(p);
--			p += PAGE_SIZE;
--		}
--		iov_iter_advance(data, len);
--		return len;
-+	/*
-+	 * We allow only p9_max_pages pinned. We wait for the
-+	 * Other zc request to finish here
-+	 */
-+	if (atomic_read(&vp_pinned) >= chan->p9_max_pages) {
-+		err = wait_event_killable(vp_wq,
-+					  (atomic_read(&vp_pinned) < chan->p9_max_pages));
-+		if (err == -ERESTARTSYS)
-+			return err;
- 	}
-+
-+	n = iov_iter_extract_pages(data, pages, count, INT_MAX,
-+				   extraction_flags, offs);
-+	if (n < 0)
-+		return n;
-+	*need_unpin = iov_iter_extract_will_pin(data);
-+	nr_pages = DIV_ROUND_UP(n + *offs, PAGE_SIZE);
-+	atomic_add(nr_pages, &vp_pinned);
-+	return n;
- }
- 
- static void handle_rerror(struct p9_req_t *req, int in_hdr_len,
-@@ -429,7 +393,7 @@ p9_virtio_zc_request(struct p9_client *client, struct p9_req_t *req,
- 	struct virtio_chan *chan = client->trans;
- 	struct scatterlist *sgs[4];
- 	size_t offs;
--	int need_drop = 0;
-+	bool need_unpin;
- 	int kicked = 0;
- 
- 	p9_debug(P9_DEBUG_TRANS, "virtio request\n");
-@@ -437,7 +401,8 @@ p9_virtio_zc_request(struct p9_client *client, struct p9_req_t *req,
- 	if (uodata) {
- 		__le32 sz;
- 		int n = p9_get_mapped_pages(chan, &out_pages, uodata,
--					    outlen, &offs, &need_drop);
-+					    outlen, &offs, &need_unpin,
-+					    WRITE_FROM_ITER);
- 		if (n < 0) {
- 			err = n;
- 			goto err_out;
-@@ -456,7 +421,8 @@ p9_virtio_zc_request(struct p9_client *client, struct p9_req_t *req,
- 		memcpy(&req->tc.sdata[0], &sz, sizeof(sz));
- 	} else if (uidata) {
- 		int n = p9_get_mapped_pages(chan, &in_pages, uidata,
--					    inlen, &offs, &need_drop);
-+					    inlen, &offs, &need_unpin,
-+					    READ_INTO_ITER);
- 		if (n < 0) {
- 			err = n;
- 			goto err_out;
-@@ -542,13 +508,13 @@ p9_virtio_zc_request(struct p9_client *client, struct p9_req_t *req,
- 	 * Non kernel buffers are pinned, unpin them
- 	 */
- err_out:
--	if (need_drop) {
-+	if (need_unpin) {
- 		if (in_pages) {
--			p9_release_pages(in_pages, in_nr_pages);
-+			p9_unpin_pages(in_pages, in_nr_pages);
- 			atomic_sub(in_nr_pages, &vp_pinned);
- 		}
- 		if (out_pages) {
--			p9_release_pages(out_pages, out_nr_pages);
-+			p9_unpin_pages(out_pages, out_nr_pages);
- 			atomic_sub(out_nr_pages, &vp_pinned);
- 		}
- 		/* wakeup anybody waiting for slots to pin pages */
-
-
-
-_______________________________________________
-V9fs-developer mailing list
-V9fs-developer@lists.sourceforge.net
-https://lists.sourceforge.net/lists/listinfo/v9fs-developer
+T24gU2F0LCBKdWwgOCwgMjAyMyBhdCAxOjM54oCvQU0gSHllb25nZ29uIFlvbyA8NDIuaHlleW9v
+QGdtYWlsLmNvbT4gd3JvdGU6Cj4KPiBPbiBXZWQsIEp1biAyOCwgMjAyMyBhdCAxMTo0ODo1MkFN
+ICswMTAwLCBEYXZpZCBIb3dlbGxzIHdyb3RlOgo+ID4gRnNjYWNoZSBoYXMgYW4gb3B0aW1pc2F0
+aW9uIGJ5IHdoaWNoIHJlYWRzIGZyb20gdGhlIGNhY2hlIGFyZSBza2lwcGVkIHVudGlsCj4gPiB3
+ZSBrbm93IHRoYXQgKGEpIHRoZXJlJ3MgZGF0YSB0aGVyZSB0byBiZSByZWFkIGFuZCAoYikgdGhh
+dCBkYXRhIGlzbid0Cj4gPiBlbnRpcmVseSBjb3ZlcmVkIGJ5IHBhZ2VzIHJlc2lkZW50IGluIHRo
+ZSBuZXRmcyBwYWdlY2FjaGUuICBUaGlzIGlzIGRvbmUKPiA+IHdpdGggdHdvIGZsYWdzIG1hbmlw
+dWxhdGVkIGJ5IGZzY2FjaGVfbm90ZV9wYWdlX3JlbGVhc2UoKToKPiA+Cj4gPiAgICAgICBpZiAo
+Li4uCj4gPiAgICAgICAgICAgdGVzdF9iaXQoRlNDQUNIRV9DT09LSUVfSEFWRV9EQVRBLCAmY29v
+a2llLT5mbGFncykgJiYKPiA+ICAgICAgICAgICB0ZXN0X2JpdChGU0NBQ0hFX0NPT0tJRV9OT19E
+QVRBX1RPX1JFQUQsICZjb29raWUtPmZsYWdzKSkKPiA+ICAgICAgICAgICAgICAgY2xlYXJfYml0
+KEZTQ0FDSEVfQ09PS0lFX05PX0RBVEFfVE9fUkVBRCwgJmNvb2tpZS0+ZmxhZ3MpOwo+ID4KPiA+
+IHdoZXJlIHRoZSBOT19EQVRBX1RPX1JFQUQgZmxhZyBjYXVzZXMgY2FjaGVmaWxlc19wcmVwYXJl
+X3JlYWQoKSB0byBpbmRpY2F0ZQo+ID4gdGhhdCBuZXRmc2xpYiBzaG91bGQgZG93bmxvYWQgZnJv
+bSB0aGUgc2VydmVyIG9yIGNsZWFyIHRoZSBwYWdlIGluc3RlYWQuCj4gPgo+ID4gVGhlIGZzY2Fj
+aGVfbm90ZV9wYWdlX3JlbGVhc2UoKSBmdW5jdGlvbiBpcyBpbnRlbmRlZCB0byBiZSBjYWxsZWQg
+ZnJvbQo+ID4gLT5yZWxlYXNlcGFnZSgpIC0gYnV0IHRoYXQgb25seSBnZXRzIGNhbGxlZCBpZiBQ
+R19wcml2YXRlIG9yIFBHX3ByaXZhdGVfMgo+ID4gaXMgc2V0IC0gYW5kIGN1cnJlbnRseSB0aGUg
+Zm9ybWVyIGlzIGF0IHRoZSBkaXNjcmV0aW9uIG9mIHRoZSBuZXR3b3JrCj4gPiBmaWxlc3lzdGVt
+IGFuZCB0aGUgbGF0dGVyIGlzIG9ubHkgc2V0IHdoaWxzdCBhIHBhZ2UgaXMgYmVpbmcgd3JpdHRl
+biB0byB0aGUKPiA+IGNhY2hlLCBzbyBzb21ldGltZXMgd2UgbWlzcyBjbGVhcmluZyB0aGUgb3B0
+aW1pc2F0aW9uLgo+ID4KPiA+IEZpeCB0aGlzIGJ5IGZvbGxvd2luZyBXaWxseSdzIHN1Z2dlc3Rp
+b25bMV0gYW5kIGFkZGluZyBhbiBhZGRyZXNzX3NwYWNlCj4gPiBmbGFnLCBBU19SRUxFQVNFX0FM
+V0FZUywgdGhhdCBjYXVzZXMgZmlsZW1hcF9yZWxlYXNlX2ZvbGlvKCkgdG8gYWx3YXlzIGNhbGwK
+PiA+IC0+cmVsZWFzZV9mb2xpbygpIGlmIGl0J3Mgc2V0LCBldmVuIGlmIFBHX3ByaXZhdGUgb3Ig
+UEdfcHJpdmF0ZV8yIGFyZW4ndAo+ID4gc2V0Lgo+ID4KPiA+IE5vdGUgdGhhdCB0aGlzIHdvdWxk
+IHJlcXVpcmUgZm9saW9fdGVzdF9wcml2YXRlKCkgYW5kIHBhZ2VfaGFzX3ByaXZhdGUoKSB0bwo+
+ID4gYmVjb21lIG1vcmUgY29tcGxpY2F0ZWQuICBUbyBhdm9pZCB0aGF0LCBpbiB0aGUgcGxhY2Vz
+WypdIHdoZXJlIHRoZXNlIGFyZQo+ID4gdXNlZCB0byBjb25kaXRpb25hbGlzZSBjYWxscyB0byBm
+aWxlbWFwX3JlbGVhc2VfZm9saW8oKSBhbmQKPiA+IHRyeV90b19yZWxlYXNlX3BhZ2UoKSwgdGhl
+IHRlc3RzIGFyZSByZW1vdmVkIHRoZSB0aG9zZSBmdW5jdGlvbnMganVzdAo+ID4ganVtcGVkIHRv
+IHVuY29uZGl0aW9uYWxseSBhbmQgdGhlIHRlc3QgaXMgcGVyZm9ybWVkIHRoZXJlLgo+ID4KPiA+
+IFsqXSBUaGVyZSBhcmUgc29tZSBleGNlcHRpb25zIGluIHZtc2Nhbi5jIHdoZXJlIHRoZSBjaGVj
+ayBndWFyZHMgbW9yZSB0aGFuCj4gPiBqdXN0IGEgY2FsbCB0byB0aGUgcmVsZWFzZXIuICBJJ3Zl
+IGFkZGVkIGEgZnVuY3Rpb24sIGZvbGlvX25lZWRzX3JlbGVhc2UoKQo+ID4gdG8gd3JhcCBhbGwg
+dGhlIGNoZWNrcyBmb3IgdGhhdC4KPiA+Cj4gPiBBU19SRUxFQVNFX0FMV0FZUyBzaG91bGQgYmUg
+c2V0IGlmIGEgbm9uLU5VTEwgY29va2llIGlzIG9idGFpbmVkIGZyb20KPiA+IGZzY2FjaGUgYW5k
+IGNsZWFyZWQgaW4gLT5ldmljdF9pbm9kZSgpIGJlZm9yZSB0cnVuY2F0ZV9pbm9kZV9wYWdlc19m
+aW5hbCgpCj4gPiBpcyBjYWxsZWQuCj4gPgo+ID4gQWRkaXRpb25hbGx5LCB0aGUgRlNDQUNIRV9D
+T09LSUVfTk9fREFUQV9UT19SRUFEIGZsYWcgbmVlZHMgdG8gYmUgY2xlYXJlZAo+ID4gYW5kIHRo
+ZSBvcHRpbWlzYXRpb24gY2FuY2VsbGVkIGlmIGEgY2FjaGVmaWxlcyBvYmplY3QgYWxyZWFkeSBj
+b250YWlucyBkYXRhCj4gPiB3aGVuIHdlIG9wZW4gaXQuCj4gPgo+ID4gRml4ZXM6IDFmNjdlNmQw
+YjE4OCAoImZzY2FjaGU6IFByb3ZpZGUgYSBmdW5jdGlvbiB0byBub3RlIHRoZSByZWxlYXNlIG9m
+IGEgcGFnZSIpCj4gPiBGaXhlczogMDQ3NDg3Yzk0N2U4ICgiY2FjaGVmaWxlczogSW1wbGVtZW50
+IHRoZSBJL08gcm91dGluZXMiKQo+ID4gUmVwb3J0ZWQtYnk6IFJvaGl0aCBTdXJhYmF0dHVsYSA8
+cm9oaXRocy5tc2Z0QGdtYWlsLmNvbT4KPiA+IFN1Z2dlc3RlZC1ieTogTWF0dGhldyBXaWxjb3gg
+PHdpbGx5QGluZnJhZGVhZC5vcmc+Cj4gPiBTaWduZWQtb2ZmLWJ5OiBEYXZpZCBIb3dlbGxzIDxk
+aG93ZWxsc0ByZWRoYXQuY29tPgo+Cj4gSGkgRGF2aWQsCj4KPiBJIHdhcyBiaXNlY3RpbmcgYSB1
+c2UtYWZ0ZXItZnJlZSBCVUcgb24gdGhlIGxhdGVzdCBtbS11bnN0YWJsZSwKPiB3aGVyZSBIRUFE
+IGlzIDM0N2UyMDhkZTBlNCAoInJtYXA6IHBhc3MgdGhlIGZvbGlvIHRvIF9fcGFnZV9jaGVja19h
+bm9uX3JtYXAoKSIpLgo+Cj4gQWNjb3JkaW5nIHRvIG15IGJpc2VjdGlvbiwgdGhpcyBpcyB0aGUg
+Zmlyc3QgYmFkIGNvbW1pdC4KPiBVc2UtQWZ0ZXItRnJlZSBpcyB0cmlnZ2VyZWQgb24gcmVjbGFt
+YXRpb24gcGF0aCB3aGVuIHN3YXAgaXMgZW5hYmxlZC4KClRoaXMgd2FzIG9yaWdpbmFsbHkgb2Nj
+dXJyZWQgZHVyaW5nIGtlcm5lbCBjb21waWxhdGlvbiBidXQKY2FuIGVhc2lseSBiZSByZXByb2R1
+Y2VkIHZpYToKCnN0cmVzcy1uZyAtLWJpZ2hlYXAgJChucHJvYykKCj4gKGFuZCBjb3VsZG4ndCB0
+cmlnZ2VyIHdpdGhvdXQgc3dhcCBlbmFibGVkKQo+Cj4gdGhlIGNvbmZpZywgS0FTQU4gc3BsYXQs
+IGJpc2VjdCBsb2cgYXJlIGF0dGFjaGVkLgo+IGhvcGUgdGhpcyBpc24ndCB0b28gbGF0ZSA6KAo+
+Cj4gPiBjYzogTWF0dGhldyBXaWxjb3ggPHdpbGx5QGluZnJhZGVhZC5vcmc+Cj4gPiBjYzogTGlu
+dXMgVG9ydmFsZHMgPHRvcnZhbGRzQGxpbnV4LWZvdW5kYXRpb24ub3JnPgo+ID4gY2M6IFN0ZXZl
+IEZyZW5jaCA8c2ZyZW5jaEBzYW1iYS5vcmc+Cj4gPiBjYzogU2h5YW0gUHJhc2FkIE4gPG5zcG1h
+bmdhbG9yZUBnbWFpbC5jb20+Cj4gPiBjYzogUm9oaXRoIFN1cmFiYXR0dWxhIDxyb2hpdGhzLm1z
+ZnRAZ21haWwuY29tPgo+ID4gY2M6IERhdmUgV3lzb2NoYW5za2kgPGR3eXNvY2hhQHJlZGhhdC5j
+b20+Cj4gPiBjYzogRG9taW5pcXVlIE1hcnRpbmV0IDxhc21hZGV1c0Bjb2Rld3JlY2sub3JnPgo+
+ID4gY2M6IElseWEgRHJ5b21vdiA8aWRyeW9tb3ZAZ21haWwuY29tPgo+ID4gY2M6IGxpbnV4LWNh
+Y2hlZnNAcmVkaGF0LmNvbQo+ID4gY2M6IGxpbnV4LWNpZnNAdmdlci5rZXJuZWwub3JnCj4gPiBj
+YzogbGludXgtYWZzQGxpc3RzLmluZnJhZGVhZC5vcmcKPiA+IGNjOiB2OWZzLWRldmVsb3BlckBs
+aXN0cy5zb3VyY2Vmb3JnZS5uZXQKPiA+IGNjOiBjZXBoLWRldmVsQHZnZXIua2VybmVsLm9yZwo+
+ID4gY2M6IGxpbnV4LW5mc0B2Z2VyLmtlcm5lbC5vcmcKPiA+IGNjOiBsaW51eC1mc2RldmVsQHZn
+ZXIua2VybmVsLm9yZwo+ID4gY2M6IGxpbnV4LW1tQGt2YWNrLm9yZwo+ID4gLS0tCj4gPgo+ID4g
+Tm90ZXM6Cj4gPiAgICAgdmVyICM3KQo+ID4gICAgICAtIE1ha2UgTkZTIHNldCBBU19SRUxFQVNF
+X0FMV0FZUy4KPiA+Cj4gPiAgICAgdmVyICM0KQo+ID4gICAgICAtIFNwbGl0IG91dCBtZXJnaW5n
+IG9mIGZvbGlvX2hhc19wcml2YXRlKCkvZmlsZW1hcF9yZWxlYXNlX2ZvbGlvKCkgY2FsbAo+ID4g
+ICAgICAgIHBhaXJzIGludG8gYSBwcmVjZWRpbmcgcGF0Y2guCj4gPiAgICAgIC0gRG9uJ3QgbmVl
+ZCB0byBjbGVhciBBU19SRUxFQVNFX0FMV0FZUyBpbiAtPmV2aWN0X2lub2RlKCkuCj4gPgo+ID4g
+ICAgIHZlciAjMykKPiA+ICAgICAgLSBGaXhlZCBtYXBwaW5nX2NsZWFyX3JlbGVhc2VfYWx3YXlz
+KCkgdG8gdXNlIGNsZWFyX2JpdCgpIG5vdCBzZXRfYml0KCkuCj4gPiAgICAgIC0gTW92ZWQgYSAn
+JiYnIHRvIHRoZSBjb3JyZWN0IGxpbmUuCj4gPgo+ID4gICAgIHZlciAjMikKPiA+ICAgICAgLSBS
+ZXdyb3RlIGVudGlyZWx5IGFjY29yZGluZyB0byBXaWxseSdzIHN1Z2dlc3Rpb25bMV0uCj4gPgo+
+ID4gIGZzLzlwL2NhY2hlLmMgICAgICAgICAgIHwgIDIgKysKPiA+ICBmcy9hZnMvaW50ZXJuYWwu
+aCAgICAgICB8ICAyICsrCj4gPiAgZnMvY2FjaGVmaWxlcy9uYW1laS5jICAgfCAgMiArKwo+ID4g
+IGZzL2NlcGgvY2FjaGUuYyAgICAgICAgIHwgIDIgKysKPiA+ICBmcy9uZnMvZnNjYWNoZS5jICAg
+ICAgICB8ICAzICsrKwo+ID4gIGZzL3NtYi9jbGllbnQvZnNjYWNoZS5jIHwgIDIgKysKPiA+ICBp
+bmNsdWRlL2xpbnV4L3BhZ2VtYXAuaCB8IDE2ICsrKysrKysrKysrKysrKysKPiA+ICBtbS9pbnRl
+cm5hbC5oICAgICAgICAgICB8ICA1ICsrKystCj4gPiAgOCBmaWxlcyBjaGFuZ2VkLCAzMyBpbnNl
+cnRpb25zKCspLCAxIGRlbGV0aW9uKC0pCgoKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX18KVjlmcy1kZXZlbG9wZXIgbWFpbGluZyBsaXN0ClY5ZnMtZGV2ZWxv
+cGVyQGxpc3RzLnNvdXJjZWZvcmdlLm5ldApodHRwczovL2xpc3RzLnNvdXJjZWZvcmdlLm5ldC9s
+aXN0cy9saXN0aW5mby92OWZzLWRldmVsb3Blcgo=
