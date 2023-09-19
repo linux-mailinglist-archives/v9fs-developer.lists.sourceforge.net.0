@@ -2,107 +2,110 @@ Return-Path: <v9fs-developer-bounces@lists.sourceforge.net>
 X-Original-To: lists+v9fs-developer@lfdr.de
 Delivered-To: lists+v9fs-developer@lfdr.de
 Received: from lists.sourceforge.net (lists.sourceforge.net [216.105.38.7])
-	by mail.lfdr.de (Postfix) with ESMTPS id ABCDA7A4A7F
-	for <lists+v9fs-developer@lfdr.de>; Mon, 18 Sep 2023 15:07:51 +0200 (CEST)
-Received: from [127.0.0.1] (helo=sfs-ml-1.v29.lw.sourceforge.com)
-	by sfs-ml-1.v29.lw.sourceforge.com with esmtp (Exim 4.95)
+	by mail.lfdr.de (Postfix) with ESMTPS id 04ECF7A570C
+	for <lists+v9fs-developer@lfdr.de>; Tue, 19 Sep 2023 03:40:13 +0200 (CEST)
+Received: from [127.0.0.1] (helo=sfs-ml-2.v29.lw.sourceforge.com)
+	by sfs-ml-2.v29.lw.sourceforge.com with esmtp (Exim 4.95)
 	(envelope-from <v9fs-developer-bounces@lists.sourceforge.net>)
-	id 1qiDyf-00051j-Cl;
-	Mon, 18 Sep 2023 13:07:48 +0000
+	id 1qiPik-0003Wo-4q;
+	Tue, 19 Sep 2023 01:40:10 +0000
 Received: from [172.30.20.202] (helo=mx.sourceforge.net)
- by sfs-ml-1.v29.lw.sourceforge.com with esmtps (TLS1.2) tls
- TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384 (Exim 4.95) (envelope-from
- <bounces+34502291-403f-v9fs-developer=lists.sourceforge.net@em3226.sendfoxmail.com>)
- id 1qiDyW-00051b-DO for v9fs-developer@lists.sourceforge.net;
- Mon, 18 Sep 2023 13:07:39 +0000
+ by sfs-ml-2.v29.lw.sourceforge.com with esmtps (TLS1.2) tls
+ TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384 (Exim 4.95)
+ (envelope-from <luis.ramirez@consultores-rh.com>) id 1qiPii-0003Wi-7r
+ for v9fs-developer@lists.sourceforge.net;
+ Tue, 19 Sep 2023 01:40:08 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=sourceforge.net; s=x; h=To:List-Unsubscribe:Reply-To:Subject:Message-ID:
- Mime-Version:From:Date:Content-Type:Sender:Cc:Content-Transfer-Encoding:
- Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
- Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:List-Id:
- List-Help:List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=v8wFwebwxFo4QTBDzygJ0w4UVnn1EKtgo34fx4jPHLM=; b=GY6w8tfDyRphKupeiQWVSLVa0N
- HOR9hHn2KQOn4EJPwQO/t38liWUR93sEza9uz4EJpji+wTR9Hr65A3lqmTkqZacdJx/GuC7knr3nU
- cm6OE0jOWzd80PtbS/JzrW6WmLXhDrc3AMuuywdkOcrmg887h4N4WjmvO+8cLRil1MS4=;
+ d=sourceforge.net; s=x; h=Message-ID:Date:Content-Type:Subject:To:Reply-To:
+ From:MIME-Version:Sender:Cc:Content-Transfer-Encoding:Content-ID:
+ Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
+ :Resent-Message-ID:In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:
+ List-Subscribe:List-Post:List-Owner:List-Archive;
+ bh=fU6BB6WZequZJWH36oBbD6PFJWN+5pd6Vx6/W0rh4Tc=; b=b0QX2y/2hb5YSpfhtvshmunIGh
+ wmCCFnytJvGX51HvmnMCiGMm65m7KVXxUtwRwi4LJkGoXhArZWhTvQX4ewja/ZPV+wG/SVmgDNWFt
+ 1xsSbWipdMmPT9s66QIhMAWBNQXYJKzCKNivGV6OErOCmNaDt2fAClUUkDB7AHVphx1Y=;
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  ;
- h=To:List-Unsubscribe:Reply-To:Subject:Message-ID:Mime-Version:From:Date:
- Content-Type:Sender:Cc:Content-Transfer-Encoding:Content-ID:
+ h=Message-ID:Date:Content-Type:Subject:To:Reply-To:From:MIME-Version:Sender
+ :Cc:Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+ Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:
+ References:List-Id:List-Help:List-Unsubscribe:List-Subscribe:List-Post:
+ List-Owner:List-Archive; bh=fU6BB6WZequZJWH36oBbD6PFJWN+5pd6Vx6/W0rh4Tc=; b=e
+ byeiTxvS9yEOcGkyle8PdWfopEtEOQg4/exMbPPjHsC6EWpe5d0j7TmWRSNEs+F3qsq8uF7c4Jc8v
+ vD1B/ndpv9BRX6XuqU/ZZ0z+5C1by3zFYgEf0SQ/J8M9E6MuisBs+gF/XKblgtURHDirxDDZSIuS6
+ CMpFR1ddjS1N/s6E=;
+Received: from info.innova-fs.com ([67.225.227.180] helo=psicosmart-rh.com)
+ by sfi-mx-2.v28.lw.sourceforge.com with esmtps
+ (TLS1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.95)
+ id 1qiPif-0007EW-N5 for v9fs-developer@lists.sourceforge.net;
+ Tue, 19 Sep 2023 01:40:08 +0000
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+ d=psicosmart-rh.com; s=default; h=Message-ID:Date:Content-Type:Subject:To:
+ Reply-To:From:MIME-Version:Sender:Cc:Content-Transfer-Encoding:Content-ID:
  Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
- :Resent-Message-ID:In-Reply-To:References:List-Id:List-Help:List-Subscribe:
- List-Post:List-Owner:List-Archive;
- bh=v8wFwebwxFo4QTBDzygJ0w4UVnn1EKtgo34fx4jPHLM=; b=YEnK9vg/5EPlprhW6bNMwLZs80
- 5J6YUtgHPtCvVqV0S+WOv2DobsCdNGJpviEXEcVOsYSQpbp4CTUF1kEnE+vlwzdqK/2P2dMluxUoL
- UQJmuVUacCpKwvbwGs+eYkADH7R5HHfvgqFdAofA+XgD2TCCR8eYJjlu27xIkAkNBGCw=;
-Received: from o9.us1.sendfox.com ([167.89.35.240])
- by sfi-mx-1.v28.lw.sourceforge.com with esmtps
- (TLS1.2:ECDHE-RSA-AES128-GCM-SHA256:128) (Exim 4.95)
- id 1qiDyM-00Ct2s-33 for v9fs-developer@lists.sourceforge.net;
- Mon, 18 Sep 2023 13:07:37 +0000
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=sendfoxmail.com;
- h=content-type:from:mime-version:subject:reply-to:list-unsubscribe:to:
- cc:content-type:from:subject:to;
- s=s1; bh=v8wFwebwxFo4QTBDzygJ0w4UVnn1EKtgo34fx4jPHLM=;
- b=Iu4mr9qUEq1E0LKJoehFzMwx7tCnrf7GWcE1pcNylU/s5wcW5kcGAWisCx+tQ43SZdov
- WFg3yr8Ouib8Q8ty/7WfO0E3ISV26/l01RxpskC7pdkEXTUl57++pcyY5AikBCaqvj5zVh
- U87ZseCGkaPUkhndASHlwZTP6g+UIdij7zlhDUYZsJi0T6Dl8CsYer4D55aA/yDXw6JcuG
- 9hmCv6l7XGQOTTcLQxX59vwr3fhqikqJluPvNioZSFoLcSqLF3fLTrjBmtsGCB3g1n0xZ4
- XhaOdQUMyKBfkaRtbF4adbwOjJFlDivC3Za9lD95pcf//UUUo+Q2PpNuxHY+pHDQ==
-Received: by filterdrecv-7765c6879f-mhm7j with SMTP id
- filterdrecv-7765c6879f-mhm7j-1-65084B8A-54
- 2023-09-18 13:07:22.421460719 +0000 UTC m=+258794.948431710
-Received: from MzQ1MDIyOTE (unknown) by geopod-ismtpd-10 (SG) with HTTP
- id RwPpmjPGTqKAyMHd0EjSSQ Mon, 18 Sep 2023 13:07:22.332 +0000 (UTC)
-Date: Mon, 18 Sep 2023 13:07:22 +0000 (UTC)
-Mime-Version: 1.0
-Message-ID: <RwPpmjPGTqKAyMHd0EjSSQ@geopod-ismtpd-10>
-X-Mailer: SendFox
-X-SF-CAMPAIGN: xoqg85
-Feedback-ID: xoqg85:3q5z2v:campaign:6cca2329-033f-401d-90f5-e1fa4182d394
-X-SF-DELIVERABLE: 8k299k26
-X-SG-EID: =?us-ascii?Q?PoLznDAJfVWm0JhmuVN1ny+nvxSkLU+mqn1U966fJ0Erv3hCCAlvZb2yLy1sls?=
- =?us-ascii?Q?3lczA=2FkmRS8BmC72jNo6V94m9x8jzWkWVUXC6GE?=
- =?us-ascii?Q?fOZYfnpJyEMUFKu+0bg+BYfqyOprPzJWUueV6qH?=
- =?us-ascii?Q?vLe95neS0dvDZwSR3TpFibCw=2FZtXapTD5Peg5n=2F?=
- =?us-ascii?Q?R4YCTMQ3bebKrO9XhxxFDULNxMMxbrzQ0pb8bgx?=
- =?us-ascii?Q?fEKlc0uvbss2CNTaXdvbN7xxkLyJK1AZdVIQ35M?=
- =?us-ascii?Q?HuwqfAW+AVn2GPQe7QdqA=3D=3D?=
-X-SG-ID: =?us-ascii?Q?N2C25iY2uzGMFz6rgvQsb8raWjw0ZPf1VmjsCkspi=2FIBNz1iFG7fYuoVJU3W5=2F?=
- =?us-ascii?Q?IXYGrIi7laDE9uEHRLvwd9rwe2k=2F3zVui80puMz?=
- =?us-ascii?Q?KBFLlqciVaBAHvFGIVUzIEqnXnk?=
+ :Resent-Message-ID:In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:
+ List-Subscribe:List-Post:List-Owner:List-Archive;
+ bh=fU6BB6WZequZJWH36oBbD6PFJWN+5pd6Vx6/W0rh4Tc=; b=GRfwKMvrYntM30szWVV4YIIVkY
+ f3dU5VosRK0YEpr5Bj2qfqQ4PjLVYmj6GF4/eSr+tPxt+H66zQHFQy07Zlhf1q+zWXw25wM0WKVCP
+ N99nqkblV/U5VW84UL5wVIvCsQhP+2VuegcFqSD867DyWhEA32iLJRDxSt2rsdmTqmDK0L8JseL5E
+ JEd83r8ZvYr9/+/DUmYvQ3lKkr9rbbqMhlH+t1Q2AuJU5wttlK9imPSs0ZqE3lmv4LEDwid2SWNds
+ AZOkHtygrFGC19AZ4d/CKuM9ZoJpt1OPo9gholEiXdyToEyBCWiQJa6unyqANvUVJs92RGMlraegT
+ 0N2jDWCw==;
+Received: from [177.225.59.82] (port=20674
+ helo=customer-GDL-PUBLIC-CGN-59-82.megared.net.mx)
+ by host.401hospedando.info with esmtpsa (TLS1.2) tls
+ TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384 (Exim 4.96)
+ (envelope-from <luis.ramirez@consultores-rh.com>) id 1qiPib-0000Ua-0F
+ for v9fs-developer@lists.sourceforge.net;
+ Mon, 18 Sep 2023 19:40:00 -0600
+MIME-Version: 1.0
+From: "Luis Ramirez" <luis.ramirez@consultores-rh.com>
 To: v9fs-developer@lists.sourceforge.net
-X-Entity-ID: Xh7v+CfeYqGVlxrcmKtJiA==
-X-Spam-Score: 2.4 (++)
-X-Spam-Report: Spam detection software,
- running on the system "util-spamd-1.v13.lw.sourceforge.com", 
+X-Mailer: Smart_Send_4_4_2
+Date: Mon, 18 Sep 2023 19:39:57 -0600
+Message-ID: <11160480893752632220045@DESKTOP-HUVFA9U>
+X-AntiAbuse: This header was added to track abuse,
+ please include it with any abuse report
+X-AntiAbuse: Primary Hostname - host.401hospedando.info
+X-AntiAbuse: Original Domain - lists.sourceforge.net
+X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
+X-AntiAbuse: Sender Address Domain - consultores-rh.com
+X-Get-Message-Sender-Via: host.401hospedando.info: authenticated_id:
+ psicosm1/only user confirmed/virtual account not confirmed
+X-Authenticated-Sender: host.401hospedando.info: psicosm1
+X-Spam-Score: 4.5 (++++)
+X-Spam-Report: Spam detection software, running on the system "util-spamd-2.v13.lw.sourceforge.com",
  has NOT identified this incoming email as spam.  The original
  message has been attached to this so you can view it or label
  similar future email.  If you have any questions, see
  the administrator of that system for details.
- Content preview:  DEAR, We're thrilled to introduce our revolutionary Trading
- Platform and Money Exchange, designed to transform your trading experience.
- As a valued member, you can now enjoy an exclusive 73% discount for a [...]
- Content analysis details:   (2.4 points, 6.0 required)
- pts rule name              description
+ 
+ Content preview:  Hola, espero te encuentres bien. La asignación y medición
+    de objetivos (KPIs) son fundamentales para el éxito organizacional, ya que
+    los KPIs logran enfocar a los colaboradores sobre un objetivo específico
+    y darle continuidad al [...] 
+ 
+ Content analysis details:   (4.5 points, 6.0 required)
+ 
+  pts rule name              description
  ---- ---------------------- --------------------------------------------------
- -0.0 RCVD_IN_MSPIKE_H2      RBL: Average reputation (+2)
- [167.89.35.240 listed in wl.mailspike.net]
- 0.0 SPF_HELO_NONE          SPF: HELO does not publish an SPF Record
- -0.0 SPF_PASS               SPF: sender matches SPF record
- 0.1 HTTPS_HTTP_MISMATCH    BODY: No description available.
- 0.0 HTML_MESSAGE           BODY: HTML included in message
- 0.0 DEAR_NOBODY            RAW: Message contains Dear but with no name
- -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
- -0.1 DKIM_VALID_AU          Message has a valid DKIM or DK signature from
- author's domain
- 0.1 DKIM_SIGNED            Message has a DKIM or DK signature, not necessarily
- valid
- -0.1 DKIM_VALID_EF          Message has a valid DKIM or DK signature from
- envelope-from domain
- 2.5 FREEMAIL_FORGED_REPLYTO Freemail in Reply-To, but not From
-X-Headers-End: 1qiDyM-00Ct2s-33
+  2.5 URIBL_DBL_SPAM         Contains a spam URL listed in the Spamhaus DBL
+                             blocklist
+                             [URIs: psicosmart-rh.com]
+ -0.0 SPF_HELO_PASS          SPF: HELO matches SPF record
+  1.0 SPF_SOFTFAIL           SPF: sender does not match SPF record (softfail)
+  0.0 URI_TRUNCATED          BODY: Message contained a URI which was truncated
+  0.0 HTML_MESSAGE           BODY: HTML included in message
+  0.1 DKIM_SIGNED            Message has a DKIM or DK signature, not necessarily
+                             valid
+ -0.1 DKIM_VALID             Message has at least one valid DKIM or DK signature
+  0.0 T_KAM_HTML_FONT_INVALID Test for Invalidly Named or Formatted
+                             Colors in HTML
+  1.0 FORGED_SPF_HELO        No description available.
+X-Headers-End: 1qiPif-0007EW-N5
 X-Content-Filtered-By: Mailman/MimeDel 2.1.21
-Subject: [V9fs-developer] P2P Trading Platform Business Solution
+Subject: [V9fs-developer] Maximiza el rendimiento de tus colaboradores
+ mediante KPIs!
 X-BeenThere: v9fs-developer@lists.sourceforge.net
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -115,33 +118,36 @@ List-Post: <mailto:v9fs-developer@lists.sourceforge.net>
 List-Help: <mailto:v9fs-developer-request@lists.sourceforge.net?subject=help>
 List-Subscribe: <https://lists.sourceforge.net/lists/listinfo/v9fs-developer>, 
  <mailto:v9fs-developer-request@lists.sourceforge.net?subject=subscribe>
-From: AppDevs via V9fs-developer <v9fs-developer@lists.sourceforge.net>
-Reply-To: AppDevs <appdevs.net@gmail.com>
-Cc: AppDevs <mail@sendfoxmail.com>
+Reply-To: luis.ramirez@consultores-rh.com
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: base64
 Errors-To: v9fs-developer-bounces@lists.sourceforge.net
 
-IAoKREVBUiwKCldlJ3JlIHRocmlsbGVkIHRvIGludHJvZHVjZSBvdXIgcmV2b2x1dGlvbmFyeSBU
-cmFkaW5nIFBsYXRmb3JtIGFuZApNb25leSBFeGNoYW5nZSwgZGVzaWduZWQgdG8gdHJhbnNmb3Jt
-IHlvdXIgdHJhZGluZyBleHBlcmllbmNlLiBBcyBhCnZhbHVlZCBtZW1iZXIsIHlvdSBjYW4gbm93
-IGVuam95IGFuIGV4Y2x1c2l2ZSA3MyUgZGlzY291bnQgZm9yIGEKbGltaXRlZCB0aW1lIQoK8J+M
-nyBLRVkgRkVBVFVSRVMg8J+MnwoK4pyFIFRyYWRlIE1hcmtldHBsYWNlCgrinIUgT2ZmZXIgYW5k
-IENvdW50ZXIgT2ZmZXIKCuKchSBCVVkgfCBTRUxMIHwgRVhDSEFOR0UKCuKchSBCaW9tZXRyaWMg
-TG9naW4gd2l0aCBGYWNlSUQgYW5kIFRvdWNoSUQKCuKchSBVc2VyLUZyaWVuZGx5IEludGVyZmFj
-ZQoK4pyFIEFkdmFuY2VkIEFuYWx5c2lzIFRvb2xzCgrinIUgUmVhbC1UaW1lIERhdGEKCvCflKUg
-TElNSVRFRC1USU1FIE9GRkVSIPCflKUKClVwZ3JhZGUgeW91ciB0cmFkaW5nIGdhbWUgdG9kYXkg
-YW5kIHNhdmUgNzMlISBBY3Qgbm93LCB0aGlzIG9mZmVyCmV4cGlyZXMgc29vbi4KClRhcCB0byBT
-ZWUgdGhlIFByb2R1Y3QgWy9odHRwczovL3NlbmRmb3guY29tL3Ryay9jbGljay84azI5OWsyNi94
-eDl2djVdCgpEb24ndCBtaXNzIHRoaXMgY2hhbmNlIHRvIGFjY2VzcyB0aGUgZnV0dXJlIG9mIHRy
-YWRpbmcgYXQgYW4KdW5iZWF0YWJsZSBwcmljZS4KCkJlc3QgUmVnYXJkcy4KCkFQUERFVlMgLSBT
-T0ZUV0FSRSBTT0xVVElPTlMKCldFQlNJVEU6IEhUVFBTOi8vQVBQREVWUy5ORVQKWy9odHRwczov
-L3NlbmRmb3guY29tL3Ryay9jbGljay84azI5OWsyNi9rOTVwcDRdCgpXSEFUU0FQUDogKzQ0NzQ2
-MjI0NjgxNAoKIAkJQXBwRGV2cyBGbGF0OiAxNDA0LCBCbG9jazogQywgQnVpbGRpbmc6IEtyaXNo
-bm9jaHVyYSwgU2VjdG9yOiAxOCwKVXR0YXJhIERoYWthLCBEaGFrYSAxMjMwIEJhbmdsYWRlc2gK
-CiAJCSBVbnN1YnNjcmliZSBbL2h0dHBzOi8vc2VuZGZveC5jb20vdHJrL3Vuc3Vic2NyaWJlLzhr
-Mjk5azI2XSAKCiAgCgogCQkgW1NlbmRGb3hdIFsvaHR0cHM6Ly9zZW5kZm94LmNvbS90cmsvY2xp
-Y2svOGsyOTlrMjYveWs5eDJsXSAKCiAKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX18KVjlmcy1kZXZlbG9wZXIgbWFpbGluZyBsaXN0ClY5ZnMtZGV2ZWxvcGVy
-QGxpc3RzLnNvdXJjZWZvcmdlLm5ldApodHRwczovL2xpc3RzLnNvdXJjZWZvcmdlLm5ldC9saXN0
-cy9saXN0aW5mby92OWZzLWRldmVsb3Blcgo=
+SG9sYSwgZXNwZXJvIHRlIGVuY3VlbnRyZXMgYmllbi4KCkxhIGFzaWduYWNpw7NuIHkgbWVkaWNp
+w7NuIGRlIG9iamV0aXZvcyAoS1BJcykgc29uIGZ1bmRhbWVudGFsZXMgcGFyYSBlbCDDqXhpdG8g
+b3JnYW5pemFjaW9uYWwsIHlhIHF1ZSBsb3MgS1BJcyBsb2dyYW4gZW5mb2NhciBhIGxvcyBjb2xh
+Ym9yYWRvcmVzIHNvYnJlIHVuIG9iamV0aXZvIGVzcGVjw61maWNvIHkgZGFybGUgY29udGludWlk
+YWQgYWwgbG9ncm8uCgogCgpTaW4gZW1iYXJnbywgZGVmaW5pciBsb3MgS1BJcyB5IGRhcmxlcyBz
+ZWd1aW1pZW50byBwdWVkZSBzZXIgY29tcGxlam8gcGFyYSBsYSBtYXlvcsOtYSBkZSBsw61kZXJl
+cy4gUG9yIGVsbG8gcXVpZXJvIGludml0YXJ0ZSBhIHV0aWxpemFyIFBsdXNvcmlhLCBlc3RlIGVz
+IHVuIHNvZnR3YXJlIGVzcGVjaWFsaXphZG8gZW4gbGEgYXNpZ25hY2nDs24sIHNlZ3VpbWllbnRv
+IHkgbWVkaWNpw7NuIGRlIEtQSXMgYmFqbyBsYSBtZXRvZG9sb2fDrWEgUy5NLkEuUi5ULiBMYSBo
+ZXJyYW1pZW50YQoKaGFyw6EgdW4gY2FtYmlvIHJhZGljYWwgZW4gdHUgb3JnYW5pemFjacOzbiwg
+eWEgcXVlIGRlIG1hbmVyYSBzZW5jaWxsYSB5IHLDoXBpZGEgdGUgYXl1ZGFyw6EgYSBkYXIgb3Jk
+ZW4gZW4gbG9zIG9iamV0aXZvcyB5IGVuZm9jYXIgYSB0dXMgY29sYWJvcmFkb3JlcyBlbiBhY3Rp
+dmlkYWRlcyBlc3RyYXTDqWdpY2FzLgoKIAoKQWxndW5hcyB2ZW50YWphcyBkZSB1dGlsaXphciBQ
+bHVzb3JpYSBzb246CgogCgpBZG1pbmlzdHJhY2nDs24geSBlbmZvcXVlIGRlbCBwZXJzb25hbCwg
+dGUgZGFyw6FzIGN1ZW50YSBkZWwgcmVuZGltaWVudG8gZGVsIGVxdWlwbyBlIGlkZW50aWZpY2Fy
+w6FzIMOhcmVhcyBkZSBtZWpvcmEuCkxvZ3JvIGRlIG9iamV0aXZvcywgZGVzZGUgbGEgaW1wbGVt
+ZW50YWNpw7NuIGRlIFBsdXNvcmlhIHZlcsOhcyBjb21vIGxvcyBjb2xhYm9yYWRvcmVzIGxvZ3Jh
+biBsb3MgcmVzdWx0YWRvcyBhbCB0ZW5lciBtZXRhcyBjbGFyYXMgeSBtZWRpYmxlcy4KVG9tYSBk
+ZSBkZWNpc2lvbmVzIGluZm9ybWFkYXMsIHRlbmRyw6FzIHVuIHBhbm9yYW1hIGNsYXJvIGRlIGNh
+ZGEgw6FyZWEgbyBpbmRpdmlkdW8sIGxvIGN1YWwgdGUgcGVybWl0aXLDoSB0b21hciBkZWNpc2lv
+bmVzIGJhc2FkYXMgZW4gZGF0b3MuCgpFbCBzaXN0ZW1hIGVzIGludHVpdGl2byB5IGRlIGbDoWNp
+bCBpbXBsZW1lbnRhY2nDs24sIHNpIGRlc2VhcyBjb25vY2VyIG3DoXMgZGV0YWxsZXMgc29icmUg
+ZXN0YSBoZXJyYW1pZW50YSBubyBkdWRlcyBlbiBjb250YWN0YXJub3MgbyByZXNwb25kZXIgZXN0
+ZSBjb3JyZW8sIHRhbWJpw6luIHB1ZWRlcyBkYXIgY2xpYyBhcXXDrSBwYXJhIHBvbmVydGUgZW4g
+Y29udGFjdG8uCgoKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X18KVjlmcy1kZXZlbG9wZXIgbWFpbGluZyBsaXN0ClY5ZnMtZGV2ZWxvcGVyQGxpc3RzLnNvdXJj
+ZWZvcmdlLm5ldApodHRwczovL2xpc3RzLnNvdXJjZWZvcmdlLm5ldC9saXN0cy9saXN0aW5mby92
+OWZzLWRldmVsb3Blcgo=
