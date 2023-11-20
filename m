@@ -2,75 +2,95 @@ Return-Path: <v9fs-developer-bounces@lists.sourceforge.net>
 X-Original-To: lists+v9fs-developer@lfdr.de
 Delivered-To: lists+v9fs-developer@lfdr.de
 Received: from lists.sourceforge.net (lists.sourceforge.net [216.105.38.7])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7C3147F17EC
-	for <lists+v9fs-developer@lfdr.de>; Mon, 20 Nov 2023 16:55:11 +0100 (CET)
-Received: from [127.0.0.1] (helo=sfs-ml-4.v29.lw.sourceforge.com)
-	by sfs-ml-4.v29.lw.sourceforge.com with esmtp (Exim 4.95)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0DA3D7F21F7
+	for <lists+v9fs-developer@lfdr.de>; Tue, 21 Nov 2023 01:09:54 +0100 (CET)
+Received: from [127.0.0.1] (helo=sfs-ml-3.v29.lw.sourceforge.com)
+	by sfs-ml-3.v29.lw.sourceforge.com with esmtp (Exim 4.95)
 	(envelope-from <v9fs-developer-bounces@lists.sourceforge.net>)
-	id 1r56c8-0007jZ-SY;
-	Mon, 20 Nov 2023 15:55:08 +0000
+	id 1r5EKu-0006bW-41;
+	Tue, 21 Nov 2023 00:09:51 +0000
 Received: from [172.30.20.202] (helo=mx.sourceforge.net)
- by sfs-ml-4.v29.lw.sourceforge.com with esmtps (TLS1.2) tls
+ by sfs-ml-3.v29.lw.sourceforge.com with esmtps (TLS1.2) tls
  TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384 (Exim 4.95)
- (envelope-from <funding@allprojectfundings.com>) id 1r56c7-0007jS-OB
+ (envelope-from <Ahmadramcfacffa@pobox.com>) id 1r5EKs-0006bP-KA
  for v9fs-developer@lists.sourceforge.net;
- Mon, 20 Nov 2023 15:55:07 +0000
+ Tue, 21 Nov 2023 00:09:49 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=sourceforge.net; s=x; h=Content-Transfer-Encoding:Content-Type:MIME-Version
- :Message-ID:Date:Subject:To:From:Reply-To:Sender:Cc:Content-ID:
- Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
- :Resent-Message-ID:In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:
+ d=sourceforge.net; s=x; h=Reply-To:Date:From:To:Subject:Content-Description:
+ Content-Transfer-Encoding:MIME-Version:Message-ID:Content-Type:Sender:Cc:
+ Content-ID:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:
+ Resent-Message-ID:In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:
  List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=MpgnR19x+2wo01oPjinoPIM3jsClzpE+eCy/2DM5QyQ=; b=L90nDbH/NTHKBZ2AMWKN4/SJB3
- wLGCX+JQY+3PdCs122WWcdSoTYtmHcuimUkAFS+RmukPoMcWWbO7zK0QOrhQ8UakAEu34UZOxsY0c
- szRo+gqat18hGweJXZthgBBGsnGtM1jc7cXMWtcnn1uklSbbqQD7Y2YnYFFcZbZi/WL8=;
+ bh=9rtpEhzr1CoFou27TA6axbRjZfRZzcCZFknU3QIUeRA=; b=SOafKjcYTfenle8vRo2fVAjRUH
+ lhJvogf2AJTYTom/M/onoNXGT7e2nBd0FXHPNTY0FBzKCZ0e+46eq8xpZs00vmU9p3udV9R836w13
+ hrqbdhh126U2V00nKRkUzJsa6wzQ4iznutKKc7Rvcj8HkZWgDu0mD+JlAyUT6NlBLgI8=;
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
- ;
- h=Content-Transfer-Encoding:Content-Type:MIME-Version:Message-ID:Date:
- Subject:To:From:Reply-To:Sender:Cc:Content-ID:Content-Description:Resent-Date
- :Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:
- References:List-Id:List-Help:List-Unsubscribe:List-Subscribe:List-Post:
- List-Owner:List-Archive; bh=MpgnR19x+2wo01oPjinoPIM3jsClzpE+eCy/2DM5QyQ=; b=A
- 4aS8Q+C06pxDApYVE9J8SebKlhl1a/c5HcmbsS9NzbsVEamV/Q4P8IuuC0/xyU+qz8EAHNTjaCnuX
- yRA/w03cYYlje/it9SE4WBtaJs2OOdfiYxrTY+3F88Yq/vKaP1U1QUETZou3WhwfDyN08x3y8ApwX
- cGJ6snLh4tzQNVzM=;
-Received: from [91.199.147.229] (helo=s770432.srvape.com)
- by sfi-mx-1.v28.lw.sourceforge.com with esmtp (Exim 4.95)
- id 1r56c5-00BDCQ-S5 for v9fs-developer@lists.sourceforge.net;
- Mon, 20 Nov 2023 15:55:07 +0000
-Received: from allprojectfundings.com (localhost [IPv6:::1])
- by s770432.srvape.com (Postfix) with ESMTP id 7C27028E4D5
- for <v9fs-developer@lists.sourceforge.net>;
- Mon, 20 Nov 2023 16:49:07 +0100 (CET)
-From: Amir Aziz <funding@allprojectfundings.com>
-To: v9fs-developer@lists.sourceforge.net
-Date: 20 Nov 2023 07:49:09 -0800
-Message-ID: <20231120074909.D141146A276A57AF@allprojectfundings.com>
+ ; h=Reply-To:Date:From:To:Subject:Content-Description:
+ Content-Transfer-Encoding:MIME-Version:Message-ID:Content-Type:Sender:Cc:
+ Content-ID:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:
+ Resent-Message-ID:In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:
+ List-Subscribe:List-Post:List-Owner:List-Archive;
+ bh=9rtpEhzr1CoFou27TA6axbRjZfRZzcCZFknU3QIUeRA=; b=EyA87TWA9wfNdCUBkUhOZ0x6DZ
+ kF5Lzid7uvtOaTwbKVYUA5ku/fF+cCRIT67hQTJyyPNYIAxjo2Bg5lNxTqSEnz7QOLsotF+1rSkB/
+ P+4kZoYsEI/gueNP12r7598e7ghJObtzQKBMoW9WZQeIvg6yBDS7g+qYTD/gaBFfv0vs=;
+Received: from mail.great-harvest.com.hk ([202.82.82.2]
+ helo=GHMG01.great-harvest.local)
+ by sfi-mx-1.v28.lw.sourceforge.com with esmtps
+ (TLS1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.95)
+ id 1r5EKp-00BUiW-J2 for v9fs-developer@lists.sourceforge.net;
+ Tue, 21 Nov 2023 00:09:49 +0000
+X-AuditID: c0a80a26-927612400000462b-ae-655bf2361b4e
+Received: from [45.154.98.249] (Unknown_Domain [45.154.98.249])
+ (using TLS with cipher DHE-RSA-AES256-SHA (256/256 bits))
+ (Client did not present a certificate)
+ by GHMG01.great-harvest.local (Symantec Messaging Gateway) with SMTP id
+ B4.C5.17963.632FB556; Tue, 21 Nov 2023 07:56:38 +0800 (HKT)
+Message-ID: <B4.C5.17963.632FB556@GHMG01.great-harvest.local>
 MIME-Version: 1.0
-X-Spam-Score: 4.2 (++++)
+Content-Description: Mail message body
+To: v9fs-developer@lists.sourceforge.net
+From: "Ramadan Ahmad" <Ahmadramcfacffa@pobox.com>
+Date: Tue, 21 Nov 2023 00:56:37 +0100
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFvrDJMWRmVeSWpSXmKPExsWiOyvpp67Zp+hUg30blC0+/l3F5sDosXvB
+ Z6YAxigum5TUnMyy1CJ9uwSujImvDzAWnGauaP33namB8SdTFyMnh4SAicSWf5NZuhi5OIQE
+ VjFJXD/RzwaSYBbQk7gxdQqYzStgKzHh2Cx2CFtQ4uTMJywQNdoSyxa+Zu5i5ACy1SS+dpWA
+ hIUFDCWeHrnKCGKLCGhIPFy8CcxmA4of2z8PbCSLgKpE057rYDcICahLnJ96hWkCI88sJJtn
+ Idk2C8m2WQjbFjCyrGKUcvfwdTcw1EsvSk0s0c1ILCpLLS7Ry8lPTszZxAgMoAMruNR2MH6c
+ 9FHvECMTB+MhRgkOZiUR3m9CEalCvCmJlVWpRfnxRaU5qcWHGKU5WJTEeQMCpOKFBNITS1Kz
+ U1MLUotgskwcnFINTNE18lOsVs6euP++ylvpDU8L2Au/Zm2InbpYvf7+T2PJTp8za7U73/jd
+ 7BL4UiN7Sq/TwbLlutKCGK5Htf67v26sLxB6OT11tm1D2t3IyAgNzpraX8GWc8y+G3DuO7H/
+ z7+UddNun96qde7xjqVfM3S8L3DtSpsaW9K3036FRmN6UcB3N7UK7wfN+Y4Tq3IlIsL7WsSD
+ //NvOa35ibHxyuPAnc4tn6/UuWv7PhQ5u2hzXs185/VfLZikpr1d+Js1etMdznW58yQtpOxU
+ D6vIlMyfOLn61DvFXWuCVtqnTPSqE3MwM3T9Ihf4iqmtc8GkVQyejP3c1aY3dl59s/F55dNP
+ D9YoRhycfYShyHhGoRJLcUaioRZzUXEiAF4K3naPAgAA
+X-Spam-Score: 4.8 (++++)
 X-Spam-Report: Spam detection software,
- running on the system "util-spamd-2.v13.lw.sourceforge.com", 
+ running on the system "util-spamd-1.v13.lw.sourceforge.com", 
  has NOT identified this incoming email as spam.  The original
  message has been attached to this so you can view it or label
  similar future email.  If you have any questions, see
  the administrator of that system for details.
- Content preview:  Greetings,
- We are a consultancy firm situated in Bahrain currently
- looking to finance new or existing projects in any industry. Currently we
- are sourcing for opportunities for our review and consideration and would
- be delighted to discuss further. 
- Content analysis details:   (4.2 points, 6.0 required)
+ Content preview: Attn: v9fs-developer@lists.sourceforge.net Date: 21-11-2023
+ Subject: Investment Expression of Interest (IEOI) Dear Sir,
+ Having been referred
+ to your investment by my team, we would be honored to review your available
+ investment projects for onward referral to my principal investors who can
+ allocate capital for the fina [...] 
+ Content analysis details:   (4.8 points, 6.0 required)
  pts rule name              description
  ---- ---------------------- --------------------------------------------------
- 0.0 SPF_NONE               SPF: sender does not publish an SPF Record
- 0.0 SPF_HELO_NONE          SPF: HELO does not publish an SPF Record
- 2.0 PYZOR_CHECK            Listed in Pyzor
- (https://pyzor.readthedocs.io/en/latest/)
- 1.3 RDNS_NONE Delivered to internal network by a host with no rDNS
- 0.9 FSL_BULK_SIG           Bulk signature with no Unsubscribe
+ 1.0 RCVD_IN_UCE1           RBL: IP Listed in UCEPROTECT Level 1
+ [202.82.82.2 listed in dnsbl-1.uceprotect.net]
+ 1.7 DEAR_SOMETHING         BODY: Contains 'Dear (something)'
+ 0.7 SPF_NEUTRAL            SPF: sender does not match SPF record (neutral)
+ 0.0 T_SPF_HELO_TEMPERROR   SPF: test of HELO record failed (temperror)
+ 0.4 RCVD_IN_MSPIKE_L4      RBL: Bad reputation (-4)
+ [202.82.82.2 listed in bl.mailspike.net]
  -0.0 T_SCC_BODY_TEXT_LINE   No description available.
-X-Headers-End: 1r56c5-00BDCQ-S5
-Subject: [V9fs-developer] We Can Finance Your Business / Projects
+ 1.0 RCVD_IN_MSPIKE_BL      Mailspike blocklisted
+ 0.0 KHOP_HELO_FCRDNS       Relay HELO differs from its IP's reverse DNS
+X-Headers-End: 1r5EKp-00BUiW-J2
+Subject: [V9fs-developer] Investment Expression of Interest (IEOI)
 X-BeenThere: v9fs-developer@lists.sourceforge.net
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -83,26 +103,24 @@ List-Post: <mailto:v9fs-developer@lists.sourceforge.net>
 List-Help: <mailto:v9fs-developer-request@lists.sourceforge.net?subject=help>
 List-Subscribe: <https://lists.sourceforge.net/lists/listinfo/v9fs-developer>, 
  <mailto:v9fs-developer-request@lists.sourceforge.net?subject=subscribe>
-Reply-To: amiraziz@wealthconsultantmanagers.com
+Reply-To: finance@almnadrinvestment.com
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: v9fs-developer-bounces@lists.sourceforge.net
 
-Greetings,
+Attn: v9fs-developer@lists.sourceforge.net
+Date: 21-11-2023
+Subject: Investment Expression of Interest (IEOI)
 
-We are a consultancy firm situated in Bahrain currently looking 
-to finance new or existing projects in any industry.
+Dear Sir,
 
-Currently we are sourcing for opportunities for our review and 
-consideration and would be delighted to discuss further.
+Having been referred to your investment by my team, we would be honored to review your available investment projects for onward referral to my principal investors who can allocate capital for the financing of it.
 
-Please feel free to contact us if you wish to proceed via our 
-email : amiraziz@wealthconsultantmanagers.com
+kindly advise at your convenience
 
-Regards,
-Amir Aziz
-
-N:B We will never charge or ask for any upfront fees of any sort.
+Best Regards,
+Ramadan Ahmad CFA
+Chartered Finance Investment Analyst
 
 
 _______________________________________________
