@@ -2,120 +2,105 @@ Return-Path: <v9fs-developer-bounces@lists.sourceforge.net>
 X-Original-To: lists+v9fs-developer@lfdr.de
 Delivered-To: lists+v9fs-developer@lfdr.de
 Received: from lists.sourceforge.net (lists.sourceforge.net [216.105.38.7])
-	by mail.lfdr.de (Postfix) with ESMTPS id 95B7D886444
-	for <lists+v9fs-developer@lfdr.de>; Fri, 22 Mar 2024 01:13:10 +0100 (CET)
-Received: from [127.0.0.1] (helo=sfs-ml-2.v29.lw.sourceforge.com)
-	by sfs-ml-2.v29.lw.sourceforge.com with esmtp (Exim 4.95)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4E6BC887B2B
+	for <lists+v9fs-developer@lfdr.de>; Sun, 24 Mar 2024 01:25:10 +0100 (CET)
+Received: from [127.0.0.1] (helo=sfs-ml-4.v29.lw.sourceforge.com)
+	by sfs-ml-4.v29.lw.sourceforge.com with esmtp (Exim 4.95)
 	(envelope-from <v9fs-developer-bounces@lists.sourceforge.net>)
-	id 1rnSWw-0006iO-ID;
-	Fri, 22 Mar 2024 00:13:07 +0000
+	id 1roBff-0001br-FN;
+	Sun, 24 Mar 2024 00:25:07 +0000
 Received: from [172.30.20.202] (helo=mx.sourceforge.net)
- by sfs-ml-2.v29.lw.sourceforge.com with esmtps (TLS1.2) tls
+ by sfs-ml-4.v29.lw.sourceforge.com with esmtps (TLS1.2) tls
  TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384 (Exim 4.95)
- (envelope-from <bounce.L3079S42415M42@s1.arrobamail.com>)
- id 1rnSWv-0006iC-BH for v9fs-developer@lists.sourceforge.net;
- Fri, 22 Mar 2024 00:13:06 +0000
+ (envelope-from <healthy@ns1008578.ip-92-204-137.us>)
+ id 1roBfe-0001bk-CW for v9fs-developer@lists.sourceforge.net;
+ Sun, 24 Mar 2024 00:25:06 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=sourceforge.net; s=x; h=Content-Type:MIME-Version:List-ID:List-Unsubscribe:
- Message-ID:Subject:Reply-To:From:To:Date:Sender:Cc:Content-Transfer-Encoding:
- Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
- Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:List-Help:
+ d=sourceforge.net; s=x; h=Content-Transfer-Encoding:Content-Type:MIME-Version
+ :Message-ID:Subject:Reply-To:From:To:Date:Sender:Cc:Content-ID:
+ Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
+ :Resent-Message-ID:In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:
  List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=7mtucEBYmSo5ks0mTgrzEQVBrP+a7qcLLcKceG2lPxA=; b=BWHC12BR4vAS1a3uBrZu+AKnIl
- b8Gkg0xRqnBwBadjAxKiFUlSUWxeZ/2BTVmpEePTGoK8USPD8zqq5yBMr5GlCVaYTRCelpzrMxHYO
- noLin1drSOrP0HTWUbsN1voyNFeAwcxGyBnNUKzO3pJvsFQoCikFRpoBt9y8KSz4HYHA=;
+ bh=ZuIIXXQiwfxJxFh9nImy7WPXPJcT/kPwb6CaUup83U8=; b=WIggG2BIVc9JPy7VfB0szhhzau
+ j4/RCeK4FTBwdu2Tty07vbhhua8wsHPCAfQLzVV2eYktI2Gh49xYpRBv3eKAbil2d+9jsTcb1Hkud
+ JqEArEP5m33FnzLcHR9L8rWF1RnEFCQ6aNxPl0CSx12JxCCHOos65o2wvVYI/sdItwlA=;
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  ;
- h=Content-Type:MIME-Version:List-ID:List-Unsubscribe:Message-ID:Subject:
- Reply-To:From:To:Date:Sender:Cc:Content-Transfer-Encoding:Content-ID:
- Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
- :Resent-Message-ID:In-Reply-To:References:List-Help:List-Subscribe:List-Post:
- List-Owner:List-Archive; bh=7mtucEBYmSo5ks0mTgrzEQVBrP+a7qcLLcKceG2lPxA=; b=C
- 1TPBAdq/XqXZ0eC0SHqWK46lPxrtTxPyLetAOjuOqd8bQs/J72A5+ouAthWeKAm5z5SxaGpGgtqba
- xdQ58ZOs4uzaCpuOEtWvIgSP8ROq8tT5gIdgLtc0IDJ1WqPOFLNiHf149Pi9+fXX52WOiKfLpmk1S
- 7Ucw7HsMySr+IDs4=;
-Received: from pf-28.fleetservers.net ([190.105.146.28])
+ h=Content-Transfer-Encoding:Content-Type:MIME-Version:Message-ID:Subject:
+ Reply-To:From:To:Date:Sender:Cc:Content-ID:Content-Description:Resent-Date:
+ Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:
+ References:List-Id:List-Help:List-Unsubscribe:List-Subscribe:List-Post:
+ List-Owner:List-Archive; bh=ZuIIXXQiwfxJxFh9nImy7WPXPJcT/kPwb6CaUup83U8=; b=k
+ DVat2U7ib/AagYWRI+MlwaN8fyS/XmAjTLxxASd70BREMmJWIyKWYi4Qtp07sinlMJtOspjqBHUsX
+ 05DWAv4T+Oqoj85AnOiUSB9kLMqFSFOi1C79+FeKb3RlE+h3HHLEhP+PouDRTV/hA5sLps2oKXbzS
+ nfQxfWzqhVau3Q2g=;
+Received: from ns1008578.ip-92-204-137.us ([92.204.137.172])
  by sfi-mx-2.v28.lw.sourceforge.com with esmtps
  (TLS1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.95)
- id 1rnSWu-0003UE-65 for v9fs-developer@lists.sourceforge.net;
- Fri, 22 Mar 2024 00:13:06 +0000
-Date: Thu, 21 Mar 2024 18:12:52 -0600
+ id 1roBfd-0000CW-L9 for v9fs-developer@lists.sourceforge.net;
+ Sun, 24 Mar 2024 00:25:06 +0000
+Received: from healthy by ns1008578.ip-92-204-137.us with local (Exim 4.96.2)
+ (envelope-from <healthy@ns1008578.ip-92-204-137.us>)
+ id 1roBfY-0000Nb-0j for v9fs-developer@lists.sourceforge.net;
+ Sun, 24 Mar 2024 00:25:00 +0000
+Date: Sun, 24 Mar 2024 00:24:46 +0000
 To: v9fs-developer@lists.sourceforge.net
-From: Mariann Rivas <mariann.rivas@consultores-rh.com>
-Message-ID: <TFhzoVE3hJFR9M5wjJ9xx6WhZXrAqu7yOskDBxIQFg@s1.arrobamail.com>
-X-Mailer: FMMailer v3
-X-Data: ZXx2OWZzLWRldmVsb3BlckBsaXN0cy5zb3VyY2Vmb3JnZS5uZXR8
-X-Fid: eGZpZC12OWZzLWRldmVsb3BlckBsaXN0cy5zb3VyY2Vmb3JnZS5uZXQtNDItMzA3OS00MjQxNS0yNjktczEuYXJyb2JhbWFpbC5jb20=
-X-fmbh: djlmcy1kZXZlbG9wZXJAbGlzdHMuc291cmNlZm9yZ2UubmV0OzQyOzMwNzk7NDI0MTU7MjY5
-X-bhid: X-bhd: 42;3079;42415
-List-Unsubscribe-Post: List-Unsubscribe=One-Click
-X-AntiAbuse: abuse@outservices.net
-Precedence: bulk
-Feedback-ID: 42:3079s42415:124931:WPservicesESP
-X-Transport: AgdLcOmFm
+From: KRA PHILIPPE <phsandra00w@gmail.com>
+Message-ID: <a39f4295c8caa036c5a261e98b901750@gmail.com>
 MIME-Version: 1.0
-DKIM-Signature: v=1; d=consultores-rh.com; s=fm;
- a=rsa-sha256; q=dns/txt; t=1711066372; c=relaxed/simple;
- h=Date:To:From:Reply-To:Subject:Message-ID:X-Mailer:X-Data:X-Fid:X-fmbh:List-Unsubscribe:X-AntiAbuse:Feedback-ID:List-ID:MIME-Version:Content-Type;
- z=Date:Thu,=2021=20Mar=202024=2018:12:52=20-0600
- |To:v9fs-developer@lists.sourceforge.net
- |From:Mariann=20Rivas=20<mariann.rivas@consultores-rh.com>
- |Reply-To:Mariann=20Rivas=20<mariann.rivas@consultores-rh.com>
- |Subject:=3D?utf-8?Q?Generaci=3DC3=3DB3n_de_tabulador_de_sueldos_en_l=3DC3
- =3DADnea.?=3D
- |Message-ID:<TFhzoVE3hJFR9M5wjJ9xx6WhZXrAqu7yOskDBxIQFg@s1.arrobamail.com>
- |X-Mailer:FMMailer=20v3
- |X-Data:ZXx2OWZzLWRldmVsb3BlckBsaXN0cy5zb3VyY2Vmb3JnZS5uZXR8
- |X-Fid:eGZpZC12OWZzLWRldmVsb3BlckBsaXN0cy5zb3VyY2Vmb3JnZS5uZXQtNDItMzA3OS0
- 0MjQxNS0yNjktczEuYXJyb2JhbWFpbC5jb20=3D
- |X-fmbh:djlmcy1kZXZlbG9wZXJAbGlzdHMuc291cmNlZm9yZ2UubmV0OzQyOzMwNzk7NDI0MT
- U7MjY5
- |List-Unsubscribe:<https://s1.arrobamail.com/unsuscribe.php?FormData=3Dtet
- wysrqipsteseup> |X-AntiAbuse:abuse@outservices.net
- |Feedback-ID:42:3079s42415:124931:WPservicesESP
- |List-ID:<36948:763470> |MIME-Version:1.0
- |Content-Type:multipart/alternative=3B=20boundary=3D"b1_TFhzoVE3hJFR9M5wjJ
- 9xx6WhZXrAqu7yOskDBxIQFg";
- bh=7mtucEBYmSo5ks0mTgrzEQVBrP+a7qcLLcKceG2lPxA=;
- b=itJ+UOyHrNBQXlpnydIwvT1lteNLpBBjkSiwSY95EatcoLsLzZ/HKjqLscaAuORFk4pfBPImS
- jLHKrPJg9CSCQaKy3a07C7ueO/ivgyuQJSh5rYWWEenGrPD3/2+Wxw7TcGMEZj/mf2BpJOS17
- qg54Wvrr67OMzhHeRCoftEoNk=
-X-Spam-Score: 1.1 (+)
-X-Spam-Report: Spam detection software, running on the system "util-spamd-2.v13.lw.sourceforge.com",
- has NOT identified this incoming email as spam.  The original
+X-AntiAbuse: This header was added to track abuse,
+ please include it with any abuse report
+X-AntiAbuse: Primary Hostname - ns1008578.ip-92-204-137.us
+X-AntiAbuse: Original Domain - lists.sourceforge.net
+X-AntiAbuse: Originator/Caller UID/GID - [1031 983] / [47 12]
+X-AntiAbuse: Sender Address Domain - ns1008578.ip-92-204-137.us
+X-Get-Message-Sender-Via: ns1008578.ip-92-204-137.us: authenticated_id:
+ healthy/only user confirmed/virtual account not confirmed
+X-Authenticated-Sender: ns1008578.ip-92-204-137.us: healthy
+X-Source: 
+X-Source-Args: php-fpm: pool healthyhealthnutraceuticals_com            
+X-Source-Dir: healthyhealthnutraceuticals.com:/public_html
+X-Spam-Score: 6.5 (++++++)
+X-Spam-Report: Spam detection software,
+ running on the system "util-spamd-2.v13.lw.sourceforge.com", 
+ has identified this incoming email as possible spam.  The original
  message has been attached to this so you can view it or label
  similar future email.  If you have any questions, see
  the administrator of that system for details.
- 
- Content preview:  Hola, &nbsp; Esta información, consideramos, es importante
-    para tu departamento de recursos humanos. Los tabuladores salariales no solo
-    reflejan equidad, sino que son pilares de motivación y retención del talen
-    [...] 
- 
- Content analysis details:   (1.1 points, 6.0 required)
- 
-  pts rule name              description
+ Content preview:  Greetings, I hope this email finds you well, I have a very
+ profitable business which I would like your company to handle and execute
+ on a partnership basis. There is this wealthy cattle farmer who needs a very
+ important cattle vaccine. 
+ Content analysis details:   (6.5 points, 6.0 required)
+ pts rule name              description
  ---- ---------------------- --------------------------------------------------
-  0.2 HEADER_FROM_DIFFERENT_DOMAINS From and EnvelopeFrom 2nd level
-                             mail domains are different
-  0.0 SPF_HELO_NONE          SPF: HELO does not publish an SPF Record
-  0.0 SPF_NONE               SPF: sender does not publish an SPF Record
-  0.0 HTML_MESSAGE           BODY: HTML included in message
- -0.1 DKIM_VALID             Message has at least one valid DKIM or DK signature
- -0.1 DKIM_VALID_AU          Message has a valid DKIM or DK signature from
-                             author's domain
-  0.1 DKIM_SIGNED            Message has a DKIM or DK signature, not necessarily
-                             valid
-  2.0 PYZOR_CHECK            Listed in Pyzor
-                             (https://pyzor.readthedocs.io/en/latest/)
- -1.0 MAILING_LIST_MULTI     Multiple indicators imply a widely-seen list
-                             manager
-X-Headers-End: 1rnSWu-0003UE-65
+ 1.0 RCVD_IN_UCE1           RBL: IP Listed in UCEPROTECT Level 1
+ [92.204.137.172 listed in dnsbl-1.uceprotect.net]
+ 0.5 RCVD_IN_MSPIKE_L5      RBL: Very bad reputation (-5)
+ [92.204.137.172 listed in bl.mailspike.net]
+ 0.0 DKIM_ADSP_CUSTOM_MED   No valid author signature, adsp_override is
+ CUSTOM_MED
+ 0.2 HEADER_FROM_DIFFERENT_DOMAINS From and EnvelopeFrom 2nd level
+ mail domains are different
+ 0.0 FREEMAIL_FROM          Sender email is commonly abused enduser mail
+ provider [phsandra00w[at]gmail.com]
+ 0.0 SPF_NONE               SPF: sender does not publish an SPF Record
+ 0.0 SPF_HELO_NONE          SPF: HELO does not publish an SPF Record
+ 1.0 FORGED_GMAIL_RCVD      'From' gmail.com does not match 'Received'
+ headers
+ 0.0 HTML_MESSAGE           BODY: HTML included in message
+ 1.0 RCVD_IN_MSPIKE_BL      Mailspike blocklisted
+ 0.0 FREEMAIL_FORGED_FROMDOMAIN 2nd level domains in From and
+ EnvelopeFrom freemail headers are different
+ 1.2 NML_ADSP_CUSTOM_MED    ADSP custom_med hit, and not from a mailing
+ list 0.0 SPOOFED_FREEMAIL       No description available.
+ 1.5 SPOOF_GMAIL_MID        From Gmail but it doesn't seem to be...
+X-Headers-End: 1roBfd-0000CW-L9
 X-Content-Filtered-By: Mailman/MimeDel 2.1.21
-Subject: [V9fs-developer] =?utf-8?q?Generaci=C3=B3n_de_tabulador_de_sueldo?=
- =?utf-8?b?cyBlbiBsw61uZWEu?=
+Subject: [V9fs-developer] Contract Letter
 X-BeenThere: v9fs-developer@lists.sourceforge.net
 X-Mailman-Version: 2.1.21
+Precedence: list
 List-Id: "deprecated: use v9fs@lists.linux.dev"
  <v9fs-developer.lists.sourceforge.net>
 List-Unsubscribe: <https://lists.sourceforge.net/lists/options/v9fs-developer>, 
@@ -125,47 +110,23 @@ List-Post: <mailto:v9fs-developer@lists.sourceforge.net>
 List-Help: <mailto:v9fs-developer-request@lists.sourceforge.net?subject=help>
 List-Subscribe: <https://lists.sourceforge.net/lists/listinfo/v9fs-developer>, 
  <mailto:v9fs-developer-request@lists.sourceforge.net?subject=subscribe>
-Reply-To: Mariann Rivas <mariann.rivas@consultores-rh.com>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Reply-To: WKRAPHIL20@caramail.fr
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: v9fs-developer-bounces@lists.sourceforge.net
 
-CgoKCQoKCkhvbGEsCgombmJzcDsKCkVzdGEgaW5mb3JtYWNpw7NuLCBjb25zaWRlcmFtb3MsIGVz
-IGltcG9ydGFudGUgcGFyYSB0dSBkZXBhcnRhbWVudG8gZGUgcmVjdXJzb3MgaHVtYW5vcy4gTG9z
-IHRhYnVsYWRvcmVzIHNhbGFyaWFsZXMgbm8gc29sbyByZWZsZWphbiBlcXVpZGFkLCBzaW5vIHF1
-ZSBzb24gcGlsYXJlcyBkZSBtb3RpdmFjacOzbiB5IHJldGVuY2nDs24gZGVsIHRhbGVudG87IHNp
-biBlbWJhcmdvLCBlbiBtdWNoYXMgZW1wcmVzYXMgeSBvcmdhbml6YWNpb25lcyBubyBzZSB0aWVu
-ZSB1biBwYW5vcmFtYSBjbGFybyBzb2JyZSBjdcOhbCBlcyBlbCBzdWVsZG8gaWRlYWwgZGUgY2Fk
-YSBwdWVzdG8gZGUgYWN1ZXJkbyBjb24gbGEgZXhwZXJpZW5jaWEsIGVkdWNhY2nDs24sIGhhYmls
-aWRhZGVzLCByZXNwb25zYWJpbGlkYWRlcywgZXRjLgoKRXMgcG9yIGVsbG8gcXVlIHVuIHRhYnVs
-YWRvciBkZSBzdWVsZG9zIHkgc2FsYXJpb3Mgc2UgY29udmllcnRlIGVuIGxhIGJyw7pqdWxhIHF1
-ZSB0b2RhIG9yZ2FuaXphY2nDs24gbmVjZXNpdGEgcGFyYSBsYSBjb3JyZWN0YSBjb21wZW5zYWNp
-w7NuIHNhbGFyaWFsLgoKU2FsYXJpeiBlbiB1bmEgaGVycmFtaWVudGEgb25saW5lIHF1ZSBkZSBt
-YW5lcmEgcsOhcGlkYSBlIGludHVpdGl2YSB0ZSBheXVkYXJhIGNvbiBsYSBjcmVhY2nDs24gZGVs
-IHRhYnVsYWRvciBkZSBzdWVsZG9zIHkgc2FsYXJpb3MgZGUgdHUgZW1wcmVzYSB1IG9yZ2FuaXph
-Y2nDs24sIGFkZW3DoXMgcXVlIG51ZXN0cm8gZXF1aXBvIGRlIGNvbnN1bHRvcmVzIGV4cGVydG9z
-IGVuIGVsIHNpc3RlbWEgeSBtZXRvZG9sb2fDrWEgZXN0YXLDoW4gZGlzcG9uaWJsZXMgcGFyYSB0
-aSBwYXJhIGN1YWxxdWllciBkdWRhIHF1ZSBzdXJqYSBkdXJhbnRlIGVsIHByb2Nlc28uCgpMb3Mg
-YmVuZWZpY2lvcyBpbnN0YW50w6FuZW9zIGFsIGltcGxlbWVudGFyIFNhbGFyaXogc2Vyw6FuOgoK
-CgkKCVByb3BpY2lhciBsYSBlcXVpZGFkIGludGVybmEuCgkKCQoJU2luIG5lY2VzaWRhZCBkZSBz
-ZXIgZXhwZXJ0byBjcmVhcsOhcyBlbCB0YWJ1bGFkb3IuCgkKCQoJVG9tYXLDoXMgZGVjaXNpb25l
-cyBkZSBtYW5lcmEgc2VuY2lsbGEsIHlhIHF1ZSBlc3RhcsOhbiByZXNwYWxkYWRhcyBlbiBkYXRv
-cy4KCQoKCkVzdG95IGNvbnZlbmNpZG8gZGUgcXVlIHVuIHRhYnVsYWRvciBkZSBzdWVsZG9zIHRl
-IHJlc3VsdGFyYSBlbiBncmFuZGVzIGJlbmVmaWNpb3MgZW4gdMOpcm1pbm9zIGRlIGdlc3Rpw7Nu
-IHkgc2F0aXNmYWNjacOzbiBkZWwgZXF1aXBvLiBTaSB0ZSBpbnRlcmVzYSBjb25vY2VyIG3DoXMg
-byBoYWNlciB1bmEgcHJ1ZWJhLCBlc3RhcsOpIGVuY2FudGFkbyBkZSBheXVkYXJ0ZSBlbiBlbCBw
-cm9jZXNvLiBDbGljIGFxdcOtIHBhcmEgbcOhcyBpbmZvcm1hY2nDs24uCgpTYWx1ZG9zLgoKX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCgoKCQoJCQoJCQkK
-CQkJTWFyaWFubiBSaXZhcwoKCQkJTGzDoW1hbm9zIHNpbiBjb3N0bzogMDAgMSAoODgwKSAzNTEg
-NzkyNCZuYnNwOwoKCQkJQ29sb21iaWEsIEJvZ290w6E6ICg1NzEpIDU4MCAwMzUxCgoJCQlDaXVk
-YWQgZGUgTcOpeGljbzogKDU1KSA1MDE4IDA1NjUKCgkJCVJlcMO6YmxpY2EgRG9taW5pY2FuYTog
-KDgyOSkgOTU0IDgwNzcKCgkJCUd1YXRlbWFsYTogKDUwMikgMjMxNSA5ODM1CgoJCQlFbCBTYWx2
-YWRvcjogKDUwMykgMjExMyA5NDIyCgoJCQlDaGlsZTogKDU2KSAyMjU4IDM1OTI5CgoJCQlXaGF0
-c0FwcDogKzUyIDMzIDE2MDcgMjA4OQoJCQkKCQkJCgkJCQoJCQkKCQkKCQoKCiZuYnNwOwoKQ2xp
-YyBhcXXDrSZuYnNwO3BhcmEgZGFyc2UgZGUgYmFqYS4KCiZuYnNwOwoKCgoKUGFyYSByZW1vdmVy
-IHN1IGRpcmVjY2kmb2FjdXRlO24gZGUgZXN0YSBsaXN0YSBoYWdhIDxhIGhyZWY9Imh0dHBzOi8v
-czEuYXJyb2JhbWFpbC5jb20vdW5zdXNjcmliZS5waHA/aWQ9dGV0d3lzcnFpcHN0ZXNldXAiPmNs
-aWNrIGFxdSZpYWN1dGU7PC9hPgpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fXwpWOWZzLWRldmVsb3BlciBtYWlsaW5nIGxpc3QKVjlmcy1kZXZlbG9wZXJAbGlz
-dHMuc291cmNlZm9yZ2UubmV0Cmh0dHBzOi8vbGlzdHMuc291cmNlZm9yZ2UubmV0L2xpc3RzL2xp
-c3RpbmZvL3Y5ZnMtZGV2ZWxvcGVyCg==
+Greetings, 
+
+I hope this email finds you well, I have a very profitable business which I would like your company to handle and execute on a partnership basis. 
+
+There is this wealthy cattle farmer who needs a very important cattle vaccine.
+ 
+Regards, 
+
+Kra Philippe
+
+
+_______________________________________________
+V9fs-developer mailing list
+V9fs-developer@lists.sourceforge.net
+https://lists.sourceforge.net/lists/listinfo/v9fs-developer
