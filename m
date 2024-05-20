@@ -2,67 +2,62 @@ Return-Path: <v9fs-developer-bounces@lists.sourceforge.net>
 X-Original-To: lists+v9fs-developer@lfdr.de
 Delivered-To: lists+v9fs-developer@lfdr.de
 Received: from lists.sourceforge.net (lists.sourceforge.net [216.105.38.7])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6A1818C85BC
-	for <lists+v9fs-developer@lfdr.de>; Fri, 17 May 2024 13:37:11 +0200 (CEST)
-Received: from [127.0.0.1] (helo=sfs-ml-1.v29.lw.sourceforge.com)
-	by sfs-ml-1.v29.lw.sourceforge.com with esmtp (Exim 4.95)
+	by mail.lfdr.de (Postfix) with ESMTPS id BB41F8C98C4
+	for <lists+v9fs-developer@lfdr.de>; Mon, 20 May 2024 07:24:23 +0200 (CEST)
+Received: from [127.0.0.1] (helo=sfs-ml-3.v29.lw.sourceforge.com)
+	by sfs-ml-3.v29.lw.sourceforge.com with esmtp (Exim 4.95)
 	(envelope-from <v9fs-developer-bounces@lists.sourceforge.net>)
-	id 1s7vtc-0002eg-2h;
-	Fri, 17 May 2024 11:37:09 +0000
+	id 1s8vVV-0001Sl-1K;
+	Mon, 20 May 2024 05:24:20 +0000
 Received: from [172.30.20.202] (helo=mx.sourceforge.net)
- by sfs-ml-1.v29.lw.sourceforge.com with esmtps (TLS1.2) tls
+ by sfs-ml-3.v29.lw.sourceforge.com with esmtps (TLS1.2) tls
  TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384 (Exim 4.95)
- (envelope-from <no-reply.email.aeon@9lsmhc.cn>) id 1s7vtZ-0002eL-Hb
+ (envelope-from <no-reply.email.aeon@vksinaq.cn>) id 1s8vVT-0001Se-0j
  for v9fs-developer@lists.sourceforge.net;
- Fri, 17 May 2024 11:37:07 +0000
+ Mon, 20 May 2024 05:24:18 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
  d=sourceforge.net; s=x; h=Content-Type:MIME-Version:Date:Subject:To:From:
  Message-ID:Sender:Reply-To:Cc:Content-Transfer-Encoding:Content-ID:
  Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
  :Resent-Message-ID:In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:
  List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=lvQFtIZgtPTkcmuHj7M03yeqjSt0YFSQ8+qxSlQ6hHI=; b=CPGxqPcurnAAJ5gnxImmHF/0Tv
- Y8CpxCFGHGT6udGi17fxNWllo+wLXi2aqd6apYVGvhwA1iz4nm9zmpBbJqgZOEf7r4YdH7xhPIIeg
- alnNAfT/hELgG7WJB4u48zJpAPLsth3PfBdeHvZjmpcg6AYYNhSV0U96bnmZTfEsw6qw=;
+ bh=q2OlBIP3C9xydqNqBz/sCIhbBkv9cS30Ey3nOpn+Wxg=; b=dx7YpIrEHbzrPGBx670jdF7lUc
+ WW1hVCOrK3Jas8akVHs9GjjuS7l6oWbYmNHCO1pMxzhheSN+FAE4RZ2VdXNMP00deX7uB7AYsZJ5C
+ i4gVgAURBLJDdMG4GGQD0GCkecbxth1AnG15P9v2VeTCJvhSld+Y6BeGIb42KBX0IrR0=;
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  ;
  h=Content-Type:MIME-Version:Date:Subject:To:From:Message-ID:Sender:Reply-To
  :Cc:Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
  Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:
  References:List-Id:List-Help:List-Unsubscribe:List-Subscribe:List-Post:
- List-Owner:List-Archive; bh=lvQFtIZgtPTkcmuHj7M03yeqjSt0YFSQ8+qxSlQ6hHI=; b=Q
- HvfbGrdGs6+mKCwKl4PBGAOdygtZUSjQbz0lcO335WMnPvbWQmkYu2mtCJFQMQzfFQhxH93NnroA9
- oVks9u04bHi6ikGPL9PSuD1K+eJMlIOzv6pH+yXd138itAPUHkGfnPBbOirDJJ+TVTfeJFpMJIdIc
- n8ox2RKTwsajzm3o=;
-Received: from [104.238.249.130] (helo=9lsmhc.cn)
+ List-Owner:List-Archive; bh=q2OlBIP3C9xydqNqBz/sCIhbBkv9cS30Ey3nOpn+Wxg=; b=g
+ 1nAIpsJs3YbWBSYHHuD974A3cjYgl59oqs3vYCxrVhg5BCPx7Y6iWY8jsqfbxKYX1kUK2MB5vqggw
+ iRMFfVuKuHTXXMRqPKSZ5KPHe7oO+TgYscupUQAcx52fIOGlHapKkPjU/XFFAaIEqKHnb8zN4nH11
+ OfnygVNvyJ9wMY6o=;
+Received: from [152.32.205.18] (helo=mail.vksinaq.cn)
  by sfi-mx-2.v28.lw.sourceforge.com with esmtps
  (TLS1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.95)
- id 1s7vtZ-00067T-Ho for v9fs-developer@lists.sourceforge.net;
- Fri, 17 May 2024 11:37:06 +0000
-Received: from iex.qxvbui (unknown [193.148.61.79])
- by 9lsmhc.cn (Postfix) with ESMTPA id C01AB86416
- for <v9fs-developer@lists.sourceforge.net>;
- Fri, 17 May 2024 19:18:29 +0800 (CST)
-DKIM-Filter: OpenDKIM Filter v2.11.0 9lsmhc.cn C01AB86416
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=9lsmhc.cn;
- s=default; t=1715944710;
- bh=lvQFtIZgtPTkcmuHj7M03yeqjSt0YFSQ8+qxSlQ6hHI=;
- h=From:To:Subject:Date:From;
- b=MMWesl5hQ8TbEaS0cgN3olvGhK1wuyHECtPSmCHY7PXsELKNeILu2nIY/ceB31u5J
- ztKDwqxX9BwL6BesjOSvDkCxwywMJEWGGizSGwsmFRTLOTnuTOpVs/3/B2EQA+bS8p
- EAHPc3J05llOQZVUU8wjkFJb5CyzDMlYTAfYuHoE=
-Message-ID: <AF1624831C498494D71331707D6120F9@iex.qxvbui>
+ id 1s8vVQ-0001v1-NF for v9fs-developer@lists.sourceforge.net;
+ Mon, 20 May 2024 05:24:18 +0000
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; s=default; d=vksinaq.cn; 
+ h=Message-ID:From:To:Subject:Date:MIME-Version:Content-Type;
+ i=no-reply.email.aeon@vksinaq.cn;
+ bh=q2OlBIP3C9xydqNqBz/sCIhbBkv9cS30Ey3nOpn+Wxg=;
+ b=hePE9MMeuSEGILGU8uxhLxHhuIhou3XG3aa4RtNfv4hGT+do0BtoP6f6r3w+3NrbfmmVZNfmVa17
+ PZ1VbUg/0djwAEmuBoWchj7GK2HotfwHWEvSq4grpdBHhvMqIWDgm2VxNyq8w81+PotW8dVcQ8Cy
+ EwgY4Emk2ZwjtmWfJpJuNIHOrJwoHwxIMe01QP4dvGz3PeYWFAfLkhB3yYHeEuvjlO1A5iPpHh+j
+ fXBJRTpEbdDLKoB9lrFLEodLQrml7GTPNPhfbo3ReR639SRSf+sCupCcqZt/BJjvsxoc1EOfGsnS
+ Qf3tjsMe/NuaA8eR7QBOqG+4nXK7V4cw/WT65g==
+Message-ID: <9BD6307FDA6CE9D25823948AB6E3AFC2@IFp.keixqubc>
+From: =?utf-8?B?44Kk44Kq44Oz44Kr44O844OJ?= <no-reply.email.aeon@vksinaq.cn>
 To: <v9fs-developer@lists.sourceforge.net>
-Date: Fri, 17 May 2024 20:18:23 +0900
+Date: Mon, 20 May 2024 14:03:41 +0900
 MIME-Version: 1.0
-X-Priority: 1
 X-MSMail-Priority: High
-X-Mailer: Microsoft Outlook Express 6.00.2900.5512
 X-MimeOLE: Produced By Microsoft MimeOLE V6.00.2900.5512
-X-Helo-Check: bad, Forged Random Domain (9lsmhc.cn)
-X-Spam-Score: 6.4 (++++++)
-X-Spam-Report: Spam detection software, running on the system "util-spamd-2.v13.lw.sourceforge.com",
- has identified this incoming email as possible spam.  The original
+X-Spam-Score: 0.1 (/)
+X-Spam-Report: Spam detection software, running on the system "util-spamd-1.v13.lw.sourceforge.com",
+ has NOT identified this incoming email as spam.  The original
  message has been attached to this so you can view it or label
  similar future email.  If you have any questions, see
  the administrator of that system for details.
@@ -71,7 +66,7 @@ X-Spam-Report: Spam detection software, running on the system "util-spamd-2.v13.
     本メールはWeb明細(環境宣言)にご登録いただいているお客さまにお送りし�
     [...] 
  
- Content analysis details:   (6.4 points, 6.0 required)
+ Content analysis details:   (0.1 points, 6.0 required)
  
   pts rule name              description
  ---- ---------------------- --------------------------------------------------
@@ -80,36 +75,29 @@ X-Spam-Report: Spam detection software, running on the system "util-spamd-2.v13.
                              http://wiki.apache.org/spamassassin/DnsBlocklists#dnsbl-block
                               for more information.
                              [URIs: aeon.co.jp]
-  0.0 RCVD_IN_DNSWL_BLOCKED  RBL: ADMINISTRATOR NOTICE: The query to
-                             DNSWL was blocked.  See
-                             http://wiki.apache.org/spamassassin/DnsBlocklists#dnsbl-block
-                              for more information.
-                             [104.238.249.130 listed in list.dnswl.org]
   1.9 URIBL_ABUSE_SURBL      Contains an URL listed in the ABUSE SURBL
                              blocklist
-                             [URIs: 7vsr3r.cn]
-  1.3 RCVD_IN_VALIDITY_RPBL  RBL: Relay in Validity RPBL,
-                             https://senderscore.org/blocklistlookup/
-                           [104.238.249.130 listed in bl.score.senderscore.com]
- -0.0 RCVD_IN_MSPIKE_H2      RBL: Average reputation (+2)
-                             [104.238.249.130 listed in wl.mailspike.net]
- -0.0 SPF_HELO_PASS          SPF: HELO matches SPF record
+                             [URIs: ov0j9c.cn]
+  0.0 URIBL_PH_SURBL         Contains an URL listed in the PH SURBL blocklist
+                             [URIs: vksinaq.cn]
+ -5.0 RCVD_IN_DNSWL_HI       RBL: Sender listed at https://www.dnswl.org/,
+                             high trust
+                             [152.32.205.18 listed in list.dnswl.org]
+  0.0 SPF_HELO_NONE          SPF: HELO does not publish an SPF Record
  -0.0 SPF_PASS               SPF: sender matches SPF record
-  0.1 HTTPS_HTTP_MISMATCH    BODY: No description available.
   0.0 HTML_MESSAGE           BODY: HTML included in message
- -0.1 DKIM_VALID             Message has at least one valid DKIM or DK signature
+  0.1 HTTPS_HTTP_MISMATCH    BODY: No description available.
  -0.1 DKIM_VALID_EF          Message has a valid DKIM or DK signature from
                              envelope-from domain
- -0.1 DKIM_VALID_AU          Message has a valid DKIM or DK signature from
-                             author's domain
+ -0.1 DKIM_VALID             Message has at least one valid DKIM or DK signature
   0.1 DKIM_SIGNED            Message has a DKIM or DK signature, not necessarily
                              valid
+ -0.1 DKIM_VALID_AU          Message has a valid DKIM or DK signature from
+                             author's domain
   2.0 PYZOR_CHECK            Listed in Pyzor
                              (https://pyzor.readthedocs.io/en/latest/)
   1.3 RDNS_NONE              Delivered to internal network by a host with no rDNS
-  0.0 HDR_ORDER_FTSDMCXX_NORDNS Header order similar to spam
-                             (FTSDMCXX/boundary variant) + no rDNS
-X-Headers-End: 1s7vtZ-00067T-Ho
+X-Headers-End: 1s8vVQ-0001v1-NF
 X-Content-Filtered-By: Mailman/MimeDel 2.1.21
 Subject: [V9fs-developer] =?utf-8?b?NOaciOOBlOiri+axgumhjeOBruOBiuefpQ==?=
  =?utf-8?b?44KJ44Gb?=
@@ -125,9 +113,6 @@ List-Post: <mailto:v9fs-developer@lists.sourceforge.net>
 List-Help: <mailto:v9fs-developer-request@lists.sourceforge.net?subject=help>
 List-Subscribe: <https://lists.sourceforge.net/lists/listinfo/v9fs-developer>, 
  <mailto:v9fs-developer-request@lists.sourceforge.net?subject=subscribe>
-From: =?utf-8?B?44Kk44Kq44Oz44Oa44Kk?= via V9fs-developer
- <v9fs-developer@lists.sourceforge.net>
-Reply-To: =?utf-8?B?44Kk44Kq44Oz44Oa44Kk?= <no-reply.email.aeon@9lsmhc.cn>
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: base64
 Errors-To: v9fs-developer-bounces@lists.sourceforge.net
@@ -139,7 +124,7 @@ i+OBiuWuouOBleOBvuOBq+OBiumAgeOCiuOBl+OBpuOBiuOCiuOBvuOBmeOAgg0KDQo05pyI44Gu
 44GU6KuL5rGC6aGN44GM56K65a6a44GE44Gf44GX44G+44GX44Gf44CCDQoNCuKUgeKUgeKUgeKU
 geKUgeKUgeKUgeKUgQ0K44GK5pSv5omV44GE44Gr44Gk44GE44GmDQrilIHilIHilIHilIHilIHi
 lIHilIHilIENCuOBlOWIqeeUqOOCq+ODvOODiSDvvJog44Kk44Kq44Oz44Kr44O844OJ44K744Os
-44Kv44OIDQrjgYrmlK/miZXml6Ug77yaMjAyNOW5tDXmnIgyMeaXpQ0KDQrlj6Pluqfmrovpq5jj
+44Kv44OIDQrjgYrmlK/miZXml6Ug77yaMjAyNOW5tDXmnIgyMuaXpQ0KDQrlj6Pluqfmrovpq5jj
 ga7jgZTnorroqo3jg7vjgZTlhaXph5Hjga/jgIHjgYrmlK/miZXml6Xjga7liY3llrbmpa3ml6Xj
 gb7jgafjgavjgYrpoZjjgYTjgYTjgZ/jgZfjgb7jgZnjgIINCuOBlOWIqeeUqOaYjue0sOOBr+OA
 geOCouODl+ODquOAjOOCpOOCquODs+OCpuOCqeODrOODg+ODiOOAjeOBvuOBn+OBr+ODm+ODvOOD
