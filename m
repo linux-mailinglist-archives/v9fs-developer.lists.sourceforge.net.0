@@ -2,101 +2,122 @@ Return-Path: <v9fs-developer-bounces@lists.sourceforge.net>
 X-Original-To: lists+v9fs-developer@lfdr.de
 Delivered-To: lists+v9fs-developer@lfdr.de
 Received: from lists.sourceforge.net (lists.sourceforge.net [216.105.38.7])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3DAC88D4472
-	for <lists+v9fs-developer@lfdr.de>; Thu, 30 May 2024 06:13:57 +0200 (CEST)
-Received: from [127.0.0.1] (helo=sfs-ml-2.v29.lw.sourceforge.com)
-	by sfs-ml-2.v29.lw.sourceforge.com with esmtp (Exim 4.95)
+	by mail.lfdr.de (Postfix) with ESMTPS id 9353B8D6373
+	for <lists+v9fs-developer@lfdr.de>; Fri, 31 May 2024 15:47:55 +0200 (CEST)
+Received: from [127.0.0.1] (helo=sfs-ml-1.v29.lw.sourceforge.com)
+	by sfs-ml-1.v29.lw.sourceforge.com with esmtp (Exim 4.95)
 	(envelope-from <v9fs-developer-bounces@lists.sourceforge.net>)
-	id 1sCXAm-0003r5-AK;
-	Thu, 30 May 2024 04:13:52 +0000
+	id 1sD2bo-0002KF-EM;
+	Fri, 31 May 2024 13:47:53 +0000
 Received: from [172.30.29.66] (helo=mx.sourceforge.net)
- by sfs-ml-2.v29.lw.sourceforge.com with esmtps (TLS1.2) tls
+ by sfs-ml-1.v29.lw.sourceforge.com with esmtps (TLS1.2) tls
  TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384 (Exim 4.95)
- (envelope-from <Sales=hf1.cncmfgcn.com@bounces.hf1.cncmfgcn.com>)
- id 1sCXAk-0003ql-GU for v9fs-developer@lists.sourceforge.net;
- Thu, 30 May 2024 04:13:50 +0000
+ (envelope-from <edou@rdklein.fr>) id 1sD2bm-0002K4-Hw
+ for v9fs-developer@lists.sourceforge.net;
+ Fri, 31 May 2024 13:47:52 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=sourceforge.net; s=x; h=Content-Type:MIME-Version:List-Unsubscribe:To:
- Sender:Reply-To:Message-Id:Subject:Date:From:Cc:Content-Transfer-Encoding:
+ d=sourceforge.net; s=x; h=Content-Type:MIME-Version:Message-ID:In-reply-to:
+ Date:Subject:Cc:To:From:References:Sender:Reply-To:Content-Transfer-Encoding:
  Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
- Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:List-Id:
- List-Help:List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=7A1tHSDIXuggoby1+J96xSMTCys0hWFZcMrQQXf+8Jo=; b=kZYsb3qCnDDePGuj1wVE/lyq6c
- njmAhjg6kjlg7jo/aJwGBUu+o9Fws+WJzWwc20HM/YconRx2fftfy2wUUd59SdU90NsJCo2sPeKJE
- VEwhOM7+gVPnjZHfhtcVCoptrzet6sukJgJCJalzI9KC0KlDfad40XZZJjPJxvnd18yo=;
+ Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
+ List-Subscribe:List-Post:List-Owner:List-Archive;
+ bh=m4S8eDiDu1EP4zNkuw7Yk//I/Gq4aMypu5K5NZZYpGw=; b=NTSr+pJyC1T+R/54h+BU6HN2+s
+ nhNgqOE5hmmAAy1uZ9TqdoljwDChfPFmxKi35ZPuDJFoFN9Hn8ngeiKOaciDMVilQkUirGM7ayCRT
+ SiqI19d7IXXK0q3nfZ2DYaydpImhGOALbV0ZpNrIfdwEV3TQMAJjTKwttxc204gIsGnM=;
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  ;
- h=Content-Type:MIME-Version:List-Unsubscribe:To:Sender:Reply-To:Message-Id:
- Subject:Date:From:Cc:Content-Transfer-Encoding:Content-ID:Content-Description
- :Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
- In-Reply-To:References:List-Id:List-Help:List-Subscribe:List-Post:List-Owner:
- List-Archive; bh=7A1tHSDIXuggoby1+J96xSMTCys0hWFZcMrQQXf+8Jo=; b=PtGH7nhcjUzQ
- VLnY3Ae4Kt6gjujGqZ5vvLiJTy/LTOxyZYxsk48EkJ+dSA0xfp8Dmu7SFQzeQktqhSW4UUjw7s+UG
- +lADsGFY3aOVq6C+xdOnidJbIM+UnvuO+KVV9GMqHAp72v/9xv4kIPNcNvwCSQ5xoZWZ2vvWonf0/
- dN9EY=;
-Received: from mkt1.getchmfg.com ([216.169.98.172])
+ h=Content-Type:MIME-Version:Message-ID:In-reply-to:Date:Subject:Cc:To:From:
+ References:Sender:Reply-To:Content-Transfer-Encoding:Content-ID:
+ Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
+ :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
+ List-Post:List-Owner:List-Archive;
+ bh=m4S8eDiDu1EP4zNkuw7Yk//I/Gq4aMypu5K5NZZYpGw=; b=lQCSuGX9GlGzM55w04wWiKaok8
+ 6KsWWl82DwUTl7vqfWWOwtkoYcw+jvR0cg4alMkm8FaOXI/M9aitIxBRfenpq9lyJCLLpl4RY4JMU
+ CFXfMnogtda7qzoLiXD8vuwsgK65b1n4/vdvmvyudhckVVB1fM9XlAVlJNWVPRYYoiNc=;
+Received: from sender-op-o11.zoho.eu ([136.143.169.11])
  by sfi-mx-2.v28.lw.sourceforge.com with esmtps
  (TLS1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.95)
- id 1sCXAf-0007fz-RN for v9fs-developer@lists.sourceforge.net;
- Thu, 30 May 2024 04:13:50 +0000
-DKIM-Signature: v=1; a=rsa-sha256; d=hf1.cncmfgcn.com; s=api;
- c=relaxed/simple; t=1717042398;
- h=from:date:subject:reply-to:to:list-unsubscribe:list-unsubscribe-post;
- bh=7A1tHSDIXuggoby1+J96xSMTCys0hWFZcMrQQXf+8Jo=;
- b=CprcUMabWa4WTskp6Ane9PZCp8Lr6UtGcaz5ayp+LW0VyTCvcuuwCnnnwIZg4T7Soq0N1QU0tRV
- Lkl+4cGkNXvpPhURNyzwHLAQibsSirLw66EarpjRBfQz5+f5XIyev01eZhVCaiLl8rANPDQE0Hr/H
- rpEwZk1UEmoQYqeIRzk=
-From: Peter Lee <Sales@hf1.cncmfgcn.com>
-Date: Thu, 30 May 2024 04:13:18 +0000
-Message-Id: <4un6pqxtokwb.zALpWdAjZgzl7nTZuUnoJg2@tracking.hf1.cncmfgcn.com>
-To: "v9fs-developer@lists.sourceforge.net"
- <v9fs-developer@lists.sourceforge.net>
-List-Unsubscribe-Post: List-Unsubscribe=One-Click
-X-Msg-EID: zALpWdAjZgzl7nTZuUnoJg2
+ id 1sD2bn-0000Z5-9Y for v9fs-developer@lists.sourceforge.net;
+ Fri, 31 May 2024 13:47:51 +0000
+ARC-Seal: i=1; a=rsa-sha256; t=1717162336; cv=none; d=zohomail.eu; s=zohoarc; 
+ b=Tz2o4bX04hCKZjRStDof6OB6q1gxVwbL8hDv9FbfbuCGynQVHr74aiVaQhCQMmmDc6H7fE5ABzWFnKi7ZPia4ghPuwoKOdxPgN4aanDyOvOXJwC5WwpcfZaOqvQEujEQaekbWJgSnBXdpMVgK6poCN/PH/1+cpp6dzurm927cvU=
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.eu;
+ s=zohoarc; t=1717162336;
+ h=Content-Type:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:Subject:To:To:Message-Id:Reply-To;
+ bh=m4S8eDiDu1EP4zNkuw7Yk//I/Gq4aMypu5K5NZZYpGw=; 
+ b=AemKaNDwLgZBDd6Fpzcq2OvpGLNQeLx1EQ8Hb8V42AFHfoGNKsvdh9uFmHWGMBIu/RYuMOUXrUQw93+2+UllPSEL48fQE6A+bG/sepS/TLdqlMcgLbCOhnD8t3eZCY8Zbon4BGQ7VBCrvPB1ySE/fs4bJWjLnVi6HCzNJKA3peM=
+ARC-Authentication-Results: i=1; mx.zohomail.eu;
+ dkim=pass  header.i=rdklein.fr;
+ spf=pass  smtp.mailfrom=edou@rdklein.fr;
+ dmarc=pass header.from=<edou@rdklein.fr>
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1717162336; 
+ s=zoho; d=rdklein.fr; i=edou@rdklein.fr;
+ h=References:From:From:To:To:Cc:Cc:Subject:Subject:Date:Date:In-reply-to:Message-ID:MIME-Version:Content-Type:Message-Id:Reply-To;
+ bh=m4S8eDiDu1EP4zNkuw7Yk//I/Gq4aMypu5K5NZZYpGw=;
+ b=RKhrJs5g8WLysljfYt3qHmkH056JfqzN7X8Cxv9trFoItP8sFMMd/baHhAVrEoQB
+ pcVRCPKwAE1OOmEn/PRsoReFjXuSRexiiiQsZC5+7T+vqa+Z2PSQm9ZblZjjFfdMVcN
+ gQJn4apLldwO4uTHZfiXjuay+PoVrgEC4ghe4mjiAdSZkPnUVF5eiDH4UeSIhD8OK9D
+ zAuzjCGEClV1omtmtG0AQh+8t/+szTAtjTx4q31jcc3mk4018czzIlVs3SFcTl/oG8o
+ BCp9WsqX8V41rRfQ38N/K0dbUOawZtpgQBcz6HiO7CzqONwkI/YcUxSh1w93Cf0l8QN
+ fjXFdZ5ACw==
+Received: by mx.zoho.eu with SMTPS id 1717162333329609.5429184171768;
+ Fri, 31 May 2024 15:32:13 +0200 (CEST)
+References: <CAP6exYLRpE+QyQkZN2_qzugA46ifAKyJSP_QUqa=uYKHRHw1TA@mail.gmail.com>
+ <ZkX1t9LL68wZsfMh@codewreck.org>
+User-agent: mu4e 1.10.2; emacs 28.2
+From: Edouard Klein <edou@rdklein.fr>
+To: Dominique Martinet <asmadeus@codewreck.org>
+Date: Fri, 31 May 2024 15:29:19 +0200
+In-reply-to: <ZkX1t9LL68wZsfMh@codewreck.org>
+Message-ID: <87h6eenm3w.fsf@rdklein.fr>
 MIME-Version: 1.0
-X-Spam-Score: -2.8 (--)
+X-ZohoMailClient: External
+X-Spam-Score: -0.2 (/)
 X-Spam-Report: Spam detection software,
- running on the system "util-spamd-1.v13.lw.sourceforge.com", 
+ running on the system "util-spamd-2.v13.lw.sourceforge.com", 
  has NOT identified this incoming email as spam.  The original
  message has been attached to this so you can view it or label
  similar future email.  If you have any questions, see
  the administrator of that system for details.
- Content preview:  Dear manager, I hope this message finds you well. My name
- is Peter and I am reaching out on behalf of HF Precision from Shenzhen, China.
- It's widely acknowledged that having an experienced CNC machini [...] 
- Content analysis details:   (-2.8 points, 6.0 required)
+ Content preview:  Hi,
+ Thank you for your answer. Right now this above my skillset
+ but I'll take a look at the bugs and see if I can do something. That'll get
+ my feet wet with kernel development on Linux. I'll keep you posted. 
+ Content analysis details:   (-0.2 points, 6.0 required)
  pts rule name              description
  ---- ---------------------- --------------------------------------------------
  0.0 URIBL_BLOCKED          ADMINISTRATOR NOTICE: The query to URIBL was
  blocked.  See
  http://wiki.apache.org/spamassassin/DnsBlocklists#dnsbl-block
- for more information. [URIs: cncmfgcn.com]
- -5.0 RCVD_IN_DNSWL_HI       RBL: Sender listed at https://www.dnswl.org/,
- high trust [216.169.98.172 listed in list.dnswl.org]
- 0.5 FROM_DOMAIN_NOVOWEL    From: domain has series of non-vowel letters
- 0.0 RCVD_IN_VALIDITY_SAFE_BLOCKED RBL: ADMINISTRATOR NOTICE: The
+ for more information. [URIs: syzkaller.appspot.com]
+ 0.0 RCVD_IN_VALIDITY_CERTIFIED_BLOCKED RBL: ADMINISTRATOR NOTICE:
+ The query to Validity was blocked.  See
+ https://knowledge.validity.com/hc/en-us/articles/20961730681243
+ for more information.
+ [136.143.169.11 listed in sa-accredit.habeas.com]
+ 0.0 RCVD_IN_VALIDITY_RPBL_BLOCKED RBL: ADMINISTRATOR NOTICE: The
  query to Validity was blocked.  See
  https://knowledge.validity.com/hc/en-us/articles/20961730681243
  for more information.
- [216.169.98.172 listed in sa-accredit.habeas.com]
- -0.0 SPF_HELO_PASS          SPF: HELO matches SPF record
- -0.0 SPF_PASS               SPF: sender matches SPF record
+ [136.143.169.11 listed in bl.score.senderscore.com]
+ 0.0 RCVD_IN_DNSWL_BLOCKED  RBL: ADMINISTRATOR NOTICE: The query to
+ DNSWL was blocked.  See
+ http://wiki.apache.org/spamassassin/DnsBlocklists#dnsbl-block
+ for more information. [136.143.169.11 listed in list.dnswl.org]
  0.0 RCVD_IN_MSPIKE_H4      RBL: Very Good reputation (+4)
- [216.169.98.172 listed in wl.mailspike.net]
- 0.5 URI_NOVOWEL            URI: URI hostname has long non-vowel sequence
- 0.0 HTML_MESSAGE           BODY: HTML included in message
- 1.3 HTML_IMAGE_ONLY_24     BODY: HTML: images with 2000-2400 bytes of
- words
- -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
- 0.1 DKIM_SIGNED            Message has a DKIM or DK signature, not necessarily
- valid
+ [136.143.169.11 listed in wl.mailspike.net]
+ -0.0 SPF_PASS               SPF: sender matches SPF record
+ 0.0 SPF_HELO_NONE          SPF: HELO does not publish an SPF Record
  -0.1 DKIM_VALID_AU          Message has a valid DKIM or DK signature from
  author's domain
+ -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+ -0.1 DKIM_VALID_EF          Message has a valid DKIM or DK signature from
+ envelope-from domain
+ 0.1 DKIM_SIGNED            Message has a DKIM or DK signature, not necessarily
+ valid 0.0 RCVD_IN_MSPIKE_WL      Mailspike good senders
  -0.0 T_SCC_BODY_TEXT_LINE   No description available.
- 0.0 RCVD_IN_MSPIKE_WL      Mailspike good senders
-X-Headers-End: 1sCXAf-0007fz-RN
-X-Content-Filtered-By: Mailman/MimeDel 2.1.21
-Subject: [V9fs-developer] CNC Machining Experts at Your Service
+X-Headers-End: 1sD2bn-0000Z5-9Y
+Subject: Re: [V9fs-developer] marking 9p as safe for user mounts, wdyt?
 X-BeenThere: v9fs-developer@lists.sourceforge.net
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -109,42 +130,65 @@ List-Post: <mailto:v9fs-developer@lists.sourceforge.net>
 List-Help: <mailto:v9fs-developer-request@lists.sourceforge.net?subject=help>
 List-Subscribe: <https://lists.sourceforge.net/lists/listinfo/v9fs-developer>, 
  <mailto:v9fs-developer-request@lists.sourceforge.net?subject=subscribe>
-Reply-To: Peter Lee <Sales@HFmachining.com>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Cc: ron minnich <rminnich@gmail.com>,
+ V9FS Developers <v9fs-developer@lists.sourceforge.net>
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: v9fs-developer-bounces@lists.sourceforge.net
 
-RGVhciBtYW5hZ2VyLApJIGhvcGUgdGhpcyBtZXNzYWdlIGZpbmRzIHlvdSB3ZWxsLiBNeSBuYW1l
-IGlzIFBldGVyIGFuZCBJIGFtIHJlYWNoaW5nCm91dCBvbiBiZWhhbGYgb2YgSEYgUHJlY2lzaW9u
-IGZyb20gU2hlbnpoZW4sIENoaW5hLgpJdCdzIHdpZGVseSBhY2tub3dsZWRnZWQgdGhhdCBoYXZp
-bmcgYW4gZXhwZXJpZW5jZWQgQ05DIG1hY2hpbmlzdCBhdAp5b3VyIHNlcnZpY2UgY2FuIHNpZ25p
-ZmljYW50bHkgZW5oYW5jZSB0aGUgcHJvZHVjdGlvbiBvZiBDTkMKY29tcG9uZW50cy4gTm90IG9u
-bHkgY2FuIHRoZXkgZWZmaWNpZW50bHkgbWFudWZhY3R1cmUgcGFydHMsIGJ1dCB0aGV5CmNhbiBh
-bHNvIGRldmVsb3Agb3V0c3RhbmRpbmcgbWFjaGluaW5nIHByb2dyYW1zLCBlbnN1cmluZyBzbW9v
-dGgKcHJvZHVjdGlvbiBwcm9jZXNzZXMuCldlIHVuZGVyc3RhbmQgdGhlIHBhcmFtb3VudCBpbXBv
-cnRhbmNlIG9mIGNvc3QgYW5kIHF1YWxpdHkgd2hlbiBpdApjb21lcyB0byB5b3VyIHByb2plY3Qu
-IE1hbnVmYWN0dXJpbmcgcGFydHMgaW4gdGhlIHNob3J0ZXN0IHBvc3NpYmxlCnRpbWUgY2FuIHJl
-ZHVjZSB5b3VyIHBhcnQgY29zdHMsIHdoaWxlIGRldmVsb3BpbmcgZXhjZXB0aW9uYWwgQ05DCm1h
-Y2hpbmluZyBwcm9ncmFtcyBjYW4gbWluaW1pemUgcG90ZW50aWFsIGlzc3VlcyB3aXRoIHRoZSBw
-YXJ0cy4KU2hvdWxkIHlvdSByZXF1aXJlIHByb2Zlc3Npb25hbCBDTkMgcHJlY2lzaW9uIGNvbXBv
-bmVudCBtYW51ZmFjdHVyaW5nCnNlcnZpY2VzLCBvdXIgdGVhbSBpcyByZWFkeSB0byBwcm92aWRl
-IHN1cHBvcnQgYXQgYW55IHRpbWUuIFdoZXRoZXIKeW91IG5lZWQgYSBjdXN0b20gcHJvdG90eXBl
-LCBsb3ctdm9sdW1lIHByb2R1Y3Rpb24sIG9yIGhpZ2gtdm9sdW1lCnByb2R1Y3Rpb24sIG91ciBz
-ZXJ2aWNlIGlzIHNlY29uZCB0byBub25lLiDCoApQbGVhc2UgZmVlbCBmcmVlIHRvIHJlYWNoIG91
-dCB0byB1cywgYW5kIGxldCB1cyBjb2xsYWJvcmF0ZSB0byBicmluZwpzdWNjZXNzIHRvIHlvdXIg
-cHJvamVjdCEKQmVzdCByZWdhcmRzLApQZXRlciBMZWUKU2FsZXMgRGlyZWN0b3IKU2FsZXNASEZt
-YWNoaW5pbmcuY29tCkhGIFByZWNpc2lvbiBNYWNoaW5pbmcKVW5zdWJzY3JpYmUKWy9odHRwOi8v
-dHJhY2tpbmcuaGYxLmNuY21mZ2NuLmNvbS90cmFja2luZy91bnN1YnNjcmliZT9kPVJhRThzeklk
-bG51R2tmdzVxU2xaNlRXZHBwaVBqU3JZd1htLWdMWTBNOUZCTDIyMUdtT203VktobnJlbXp4RGNM
-cUN5VE5iVTB3ODFwV2swMlFTQVIxNmNaSnc1Rk1JSXlJdDdJMGttN3VSYllBcDNiTVpiMTJJVzhm
-bWtVZDNubWVYTEM4ZDJmbG9ZNm9TTm5UajRzX3AtRFZfcVZud0tOVlJUX3RQdjBQQU5zdHVtUk55
-QmNEclpGdDQzM3RVOEY4VEZwT0s2ZGlaVDVnSjBWWTlKQzdzOUdpMUNXSW5rd2Ruc3p1SGJEeUc3
-Wk1aWEpHc0xhZ3hwcWRxajlMRzBFLTdIbnNLSmxfb2xnQnBMXzFpUVZDaVE3STY3ckk4YmpoS3pa
-eDM0ZG1LQ2tsekt3RjJxZFJkSEF5Rm5mZ0RNSGxWRjhVZTZOSlVJc2YwWUh6Z09VRHg4T2hBR3gx
-Y2VTb1F1d3AwWXRld0N0SnBkcnNxVi1iWFZJMkRhYjVvVjRfT2FBYW5FbVRxbjhWbnAtY1lZeTEy
-WmxXckV1TEo1ZWhtOWgxU25ud1RramFxSmxKWkUzalFUNTZwRkp1M05OTnFFNnRwTEp1TDQtUzZS
-cVl1SWg0TkwxbzV4dzAyNDd2c09zQ3ZaNUpPRHVOXzVPVy1BUnV0RDhMYi1hTDIzX0RhOFhXSF9D
-ZGZrTFhkOUVvaEZyRUExXQpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fXwpWOWZzLWRldmVsb3BlciBtYWlsaW5nIGxpc3QKVjlmcy1kZXZlbG9wZXJAbGlzdHMu
-c291cmNlZm9yZ2UubmV0Cmh0dHBzOi8vbGlzdHMuc291cmNlZm9yZ2UubmV0L2xpc3RzL2xpc3Rp
-bmZvL3Y5ZnMtZGV2ZWxvcGVyCg==
+Hi,
+
+Thank you for your answer. Right now this above my skillset but I'll take a look
+at the bugs and see if I can do something. That'll get my feet wet with
+kernel development on Linux.
+
+I'll keep you posted.
+
+Cheers,
+
+Edouard.
+
+
+Dominique Martinet <asmadeus@codewreck.org> writes:
+
+> Hi Ron,
+>
+> sorry for the slow reply, I didn't see this mail for some reason.
+>
+> ron minnich wrote on Sun, Apr 14, 2024 at 11:03:44AM -0700:
+>> we would like to make 9p safe, in the sense that FUSE is safe, for user
+>> mounts.
+>> 
+>> This would add FS_USERNS_MOUNT to the .fs_flags in v9fs_fs_type.
+>> 
+>> This would be very helpful for those who wish to mount 9p without a FUSE
+>> middleman.
+>> 
+>> Any thoughts on whether this can happen?
+>
+> Hmm, while I understand where this come from and how it can be useful,
+> we have a dozen of syzcaller bugs open:
+> https://syzkaller.appspot.com/upstream/s/v9fs
+>
+> If we make 9p user-mountable, that'd be free for all for anyone to
+> badger on, so I'm not really comfortable opening this box as things
+> stand.
+>
+> Filesystem syzcaller bugs have always been a problem when we allow users
+> to mount arbitrary filesystem images (especially if the user can modify
+> the image while the kernel accesses it), but in 9p case it's even one
+> step further with mount-by-fd, so any exploit would immediately become
+> very easy to use...
+> Perhaps if we could limit that to a few protocols (virtio, tcp with port
+> < 1024?), but that wouldn't help you would it?
+>
+> So if someone can find time to investigate these fuzz reports so we can
+> either fix them or ensure they're harmless then I'd be game for it,
+> but as things stand I don't think it's safe.
+
+
+
+_______________________________________________
+V9fs-developer mailing list
+V9fs-developer@lists.sourceforge.net
+https://lists.sourceforge.net/lists/listinfo/v9fs-developer
