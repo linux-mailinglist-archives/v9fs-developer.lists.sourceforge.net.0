@@ -2,89 +2,160 @@ Return-Path: <v9fs-developer-bounces@lists.sourceforge.net>
 X-Original-To: lists+v9fs-developer@lfdr.de
 Delivered-To: lists+v9fs-developer@lfdr.de
 Received: from lists.sourceforge.net (lists.sourceforge.net [216.105.38.7])
-	by mail.lfdr.de (Postfix) with ESMTPS id 49F7B9505E3
-	for <lists+v9fs-developer@lfdr.de>; Tue, 13 Aug 2024 15:07:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id EA19795552A
+	for <lists+v9fs-developer@lfdr.de>; Sat, 17 Aug 2024 05:03:09 +0200 (CEST)
 Received: from [127.0.0.1] (helo=sfs-ml-2.v29.lw.sourceforge.com)
 	by sfs-ml-2.v29.lw.sourceforge.com with esmtp (Exim 4.95)
 	(envelope-from <v9fs-developer-bounces@lists.sourceforge.net>)
-	id 1sdrFN-0004Na-1p;
-	Tue, 13 Aug 2024 13:07:33 +0000
+	id 1sf9id-0002wu-Ef;
+	Sat, 17 Aug 2024 03:03:07 +0000
 Received: from [172.30.29.66] (helo=mx.sourceforge.net)
  by sfs-ml-2.v29.lw.sourceforge.com with esmtps (TLS1.2) tls
  TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384 (Exim 4.95)
- (envelope-from <informationAEONv9fs-developer88dC@gilt.jp>)
- id 1sdrFM-0004NP-9N for v9fs-developer@lists.sourceforge.net;
- Tue, 13 Aug 2024 13:07:32 +0000
+ (envelope-from <frankdavidloanfirm3@gmail.com>) id 1sf9iU-0002w6-CI
+ for v9fs-developer@lists.sourceforge.net;
+ Sat, 17 Aug 2024 03:02:58 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=sourceforge.net; s=x; h=Content-Type:MIME-Version:List-Unsubscribe:Subject:
- To:Date:Message-ID:From:Sender:Reply-To:Cc:Content-Transfer-Encoding:
- Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
- Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:List-Id:
- List-Help:List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=pcmwRbC425JcEqa4vc+Ma5oaXAPAHTxOxvxxa7JEpE8=; b=h6cRFbgj2nmNqLZz9YUxxSqmZ7
- Pm2NH4z5dPEcCR42OM+L2VYrXcisi6yIGDtVd9P/a7agAMziqg6IOK8Agl7jO6yDGczwF2Vd2deDW
- 3iCYgxlJGWrOP0PZqLnLCTCsQGkNCRgCgjvufbSWZfkvbyGHEx62cG5iW7f+lEj1xsj4=;
+ d=sourceforge.net; s=x; h=Content-Type:To:Subject:Message-ID:Date:From:
+ MIME-Version:Sender:Reply-To:Cc:Content-Transfer-Encoding:Content-ID:
+ Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
+ :Resent-Message-ID:In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:
+ List-Subscribe:List-Post:List-Owner:List-Archive;
+ bh=knBYrvkqNtoR4fAblMdR4Wnbuc+2MhroL4aPtlAVG04=; b=fWvRAUfTKNulOj5JpA+yq20Hq5
+ 2sY7wlDOzNKCV/un/auh5s3RhqY+ZxLo8v3MOjg6smO2gkT0fJLK/um+GDE8W9MGzncL4t6ej22uC
+ hdJ0al7/33mU1EU5N6C1dpeFstvUv9fo6DSRPFB3yifuL93QCwiGvMNcO5rAAfpU6dHs=;
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  ;
- h=Content-Type:MIME-Version:List-Unsubscribe:Subject:To:Date:Message-ID:
- From:Sender:Reply-To:Cc:Content-Transfer-Encoding:Content-ID:
- Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
- :Resent-Message-ID:In-Reply-To:References:List-Id:List-Help:List-Subscribe:
- List-Post:List-Owner:List-Archive;
- bh=pcmwRbC425JcEqa4vc+Ma5oaXAPAHTxOxvxxa7JEpE8=; b=ZSjT7yGV06fTs+lMwX7pz3+6+l
- Od4LgeQNUVCO6hZCO4tcpW+xXHMY1pZv1lUrgW1efLuEn37SL9zDhNznCEBixcktnKbE4hBr3rHDM
- DMDiWBLtKh0SAhA+k6Y0OOxtV+zwr9miy8D4UaNSONBJ+JIR/Im/eeekkFUlZsJrd2GU=;
-Received: from [45.207.207.231] (helo=C20240810197547.local)
- by sfi-mx-2.v28.lw.sourceforge.com with esmtp (Exim 4.95)
- id 1sdrFL-0003sk-EU for v9fs-developer@lists.sourceforge.net;
- Tue, 13 Aug 2024 13:07:32 +0000
-Received: from localhost (C20240810197547.local [IPv6:::1])
- by C20240810197547.local (Postfix) with ESMTP id DD07C6C4D85
+ h=Content-Type:To:Subject:Message-ID:Date:From:MIME-Version:Sender:Reply-To
+ :Cc:Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+ Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:
+ References:List-Id:List-Help:List-Unsubscribe:List-Subscribe:List-Post:
+ List-Owner:List-Archive; bh=knBYrvkqNtoR4fAblMdR4Wnbuc+2MhroL4aPtlAVG04=; b=l
+ ZvOHNuP6OlMrvEy4skQSiY495qNaDDjtImYD4LERXzIKeP2x0fMdtYXXi19Id1Uxf+wD02W9zzmF5
+ 2pXbsKYWFxYRi3pR/LrGzFsfSA5ub0kulxvgrZkwX22IvUngT/JghRNLjNZ7ZNddbq3Nvd5O/vB2X
+ sR3UYLXlhodOGXnU=;
+Received: from mail-pj1-f48.google.com ([209.85.216.48])
+ by sfi-mx-2.v28.lw.sourceforge.com with esmtps
+ (TLS1.2:ECDHE-RSA-AES128-GCM-SHA256:128) (Exim 4.95)
+ id 1sf9iT-00062L-Nf for v9fs-developer@lists.sourceforge.net;
+ Sat, 17 Aug 2024 03:02:58 +0000
+Received: by mail-pj1-f48.google.com with SMTP id
+ 98e67ed59e1d1-2d3c071d276so1948553a91.1
  for <v9fs-developer@lists.sourceforge.net>;
- Tue, 13 Aug 2024 08:52:47 +0000 (UTC)
-Mime-Version: 1.0
-X-Originating-IP: [99.150.48.178]
-Message-ID: <2024081354078558975414@mc307.repica.jp>
-Date: Tue, 13 Aug 2024 17:52:47 +0900
-To: v9fs-developer@lists.sourceforge.net
-List-Unsubscribe-Post: List-Unsubscribe=One-Click
+ Fri, 16 Aug 2024 20:02:57 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=gmail.com; s=20230601; t=1723863767; x=1724468567; darn=lists.sourceforge.net;
+ h=to:subject:message-id:date:from:mime-version:from:to:cc:subject
+ :date:message-id:reply-to;
+ bh=knBYrvkqNtoR4fAblMdR4Wnbuc+2MhroL4aPtlAVG04=;
+ b=imMNUA7JTzpUwwNnczQMmgNNGOmiAPZkXuILASlo1CEOgxePrs0nTGrx0+anLqeDes
+ x7yFCm1FeZluvesNmBSh42RxIXjy77lKfVA/BO5lVLrUPjCKQxA6/ftgErY2ffM8Lgsv
+ 0EnGVH66XjdFCsDgol9MJPHkbJ6YHlnZa4J4bqSuZnUGnz1TTSUVWLCfo2+w1WE9bL3u
+ xN4mzdnV5aLRLvZYD2z2de443iwRxJA1uwEAHsvJNCejJPShlk42Ci+FLeTcwl4aF6OV
+ ql6zenQfSSiVVpaCinZVu/2Izcnu/W5Mc8lqSW/DDdCmDy+pARMdO92aIq+GvKXeGVij
+ n6dQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1723863767; x=1724468567;
+ h=to:subject:message-id:date:from:mime-version:x-gm-message-state
+ :from:to:cc:subject:date:message-id:reply-to;
+ bh=knBYrvkqNtoR4fAblMdR4Wnbuc+2MhroL4aPtlAVG04=;
+ b=br93jT/Zo54+5UAbQrlM86o4VN5FT7czdqxZO23LflynFRSoWdlidWyKz9Wya8FDg7
+ 4NoPSv2NUcJpTCrIcuEAsOdIMqhpHpEFug2puqLfli/ETzGbP8AK3wfbxhu8HfHgaSZz
+ FYxWZ4v7rHT9OrhOm+iGiQ6jin359/Ak7kY51GEVJhIz5ViAQM8Tj2fh+Y95vD5ALisA
+ xagstMC/bvXBIOJO3LXHlPNQorX5Iix/d6cBF3ieWmksc+yWO/i683EltGJ3yArBHQYU
+ 3hVWp0KnbE4btjinUZ9BNDSkxvIeOgNr6CvQEn7N7G/SoH13rodI5BCMphJC8ty9S+H0
+ WfyQ==
+X-Forwarded-Encrypted: i=1;
+ AJvYcCV7o2LDGmZvy8E4Y9kiPXqnPWX/cjsAsmXXqTkE3Zwf9G0dc+YKFQGxD7/ZtP0j9TMrGum2Qi7fv0aUKg6VjBpZGLoC6ZXHwTgqle9P2DjgB7epzak=
+X-Gm-Message-State: AOJu0Yx+Xl/IZC7ZB/pG3/JXfloDocjyrlQ7uoc3rsDwSRJETkFK2A1D
+ hpyOTaaPGzMHppgwVngNky76hVG1Z0BhYkGoPbsGEi3YdbeqUDGx9WYVTzQK3k+foDGSjMeoALQ
+ IeK1l3W8Wy115WQJ/wz8ZmHbzu2w=
+X-Google-Smtp-Source: AGHT+IHwA0wJaIzv0EUv6xjogks+4zkEk058d7vJ68bnl91GENFUItmvFr+ej0vNpIAZM7RWyhXxmYXXNP9zqaGIKWI=
+X-Received: by 2002:a17:90a:fb0d:b0:2c7:e46e:f8b7 with SMTP id
+ 98e67ed59e1d1-2d3dfc3a592mr5117497a91.4.1723863766496; Fri, 16 Aug 2024
+ 20:02:46 -0700 (PDT)
 MIME-Version: 1.0
-X-Helo-Check: bad, Forged Fake (C20240810197547.local)
-X-Spam-Score: 5.0 (+++++)
-X-Spam-Report: Spam detection software, running on the system "util-spamd-2.v13.lw.sourceforge.com",
+From: Frank David <frankdavidloanfirm3@gmail.com>
+Date: Fri, 16 Aug 2024 20:02:33 -0700
+Message-ID: <CACPaKzkW2vKy=1aYZxjUn0bJYEq2jQbQD3-gQKKV1ZVCPs89aA@mail.gmail.com>
+To: fred112.peterson@gmail.com, peterson.54@mail.ru, 
+ gerrybenardloanfirm@hotmail.com, ninoemmanuel49@gmail.com, 
+ ninoemmanuel49@yandex.com, mrbobwood@hotmail.com, 
+ elena.molockanowa1998@yandex.ru, boss@compania.com, Vladimir_okt@mail.ru, 
+ meagankarterloanfunds@gmail.com, samantha5313@mail.ru, 
+ britannialoaninvestment@hotmail.com, klarabannyfinance@gmail.com, 
+ larry_ben11@hotmail.com, sveta.petrova99@yandex.ru, 
+ mariaandersonloanfirm@hotmail.com, linkkese@yandex.com, koshy@india.hp.com, 
+ aaron@freebsd.org, aaron@daltons.ca, ascope@cpan.org, adam@herzogdesigns.com, 
+ adamw@freebsd.org, ade@freebsd.org, knu@freebsd.org, knu@idaemons.org, 
+ alane@freebsd.org, ale@freebsd.org, kappa@freebsd.org.ua, ports@logvinov.com, 
+ bland@freebsd.org, zaa@zaa.pp.ru, Alexander@leidinger.net, 
+ ale@biancalanas.net, danfe@freebsd.org, alexis.praga@free.fr, ah@linux-hq.de, 
+ reki@reki.ru, andrey.zverev@electro-com.ru, andrew@ugh.net.au, 
+ ahumphrey@realestate.com.au, freeghb@gmail.com, 
+ Andrew Pantyukhin <infofarmer@freebsd.org>, melanhit@gmail.com,
+ andy@freebsd.org, anes@anes.su, 
+ tobez@freebsd.org, tobez@tobez.org, toha@toha.org.ua, antonio@inf.ufsc.br, 
+ wahjava@gmail.com, autrijus@autrijus.org, farrokhi@freebsd.org, 
+ tuxsuximus@hotmail.com, woodsb02@freebsd.org, benno@jeamland.net, 
+ bill.brinzer@gmail.com, billf@chc-chimes.com, unfurl@freebsd.org, 
+ rde@ml1.org.uk, bsam@freebsd.org, B.Candler@pobox.com, brion@queeg.com, 
+ cpm@fbsd.es, cpm@freebsd.org, cm@therek.net, clsung@freebsd.org, 
+ jedgar@fxp.org, portmaster@bsdforge.com, cjk32@cam.ac.uk, 
+ ports@onlineloop.com, clefevre@citeweb.net, dvl@freebsd.org, daniel@roe.ch, 
+ dbaio@freebsd.org, bremner@unb.ca, obrien@freebsd.org, 
+ dsze@alumni.uwaterloo.ca, catone@cpan.org, dhn@freebsd.org, 
+ dikshie@sfc.wide.ad.jp, demon@gpad.ac.ru, dirk@freebsd.org, 
+ ditesh@gathani.org, marck@freebsd.org, demon@freebsd.org, 
+ klassert@mathematik.tu-chemnitz.de, dave@thedillows.org, linuxraid@lsi.com, 
+ ajk@comnets.uni-bremen.de, nic_swsd@realtek.com, ericvh@gmail.com, 
+ rminnich@sandia.gov, lucho@ionkov.net, v9fs-developer@lists.sourceforge.net, 
+ alistair@devzero.co.uk, linux-acenic@sunsite.dk, peter@piie.net, 
+ rui.zhang@intel.com, T-Bone@parisc-linux.org
+X-Spam-Score: -5.0 (-----)
+X-Spam-Report: Spam detection software,
+ running on the system "util-spamd-2.v13.lw.sourceforge.com", 
  has NOT identified this incoming email as spam.  The original
  message has been attached to this so you can view it or label
  similar future email.  If you have any questions, see
  the administrator of that system for details.
- 
- Content preview:  イオンカード重要なセキュリティ通知 再認証手続きについての重要なお知らせ
-    拝啓　イオンカード会員様 
- 
- Content analysis details:   (5.0 points, 6.0 required)
- 
-  pts rule name              description
+ Content preview: Apply for your Personal and Business loan at very low
+ interest
+ rate of 3% , please contact Email: frankdavidloanfirm3@gmail.com WhatsApp
+ +523346239363 Apply for your Personal and Business loan at very low interest
+ rate of 3% , please contact Email: frankdavidloanfirm3@gmail.com WhatsApp
+ +523346239363 
+ Content analysis details:   (-5.0 points, 6.0 required)
+ pts rule name              description
  ---- ---------------------- --------------------------------------------------
-  0.5 RCVD_IN_MSPIKE_L5      RBL: Very bad reputation (-5)
-                             [45.207.207.231 listed in bl.mailspike.net]
+ 0.0 RCVD_IN_VALIDITY_CERTIFIED_BLOCKED RBL: ADMINISTRATOR NOTICE:
+ The query to Validity was blocked.  See
+ https://knowledge.validity.com/hc/en-us/articles/20961730681243
+ for more information.
+ [209.85.216.48 listed in sa-accredit.habeas.com]
  -5.0 RCVD_IN_DNSWL_HI       RBL: Sender listed at https://www.dnswl.org/,
-                             high trust
-                             [45.207.207.231 listed in list.dnswl.org]
-  1.3 RCVD_IN_VALIDITY_RPBL  RBL: Relay in Validity RPBL,
-                             https://senderscore.org/blocklistlookup/
-                            [45.207.207.231 listed in bl.score.senderscore.com]
-  0.0 SPF_HELO_NONE          SPF: HELO does not publish an SPF Record
-  0.9 SPF_FAIL               SPF: sender does not match SPF record (fail)
-                             [SPF failed: Rejected by SPF record]
-  1.1 DATE_IN_PAST_03_06     Date: is 3 to 6 hours before Received: date
-  0.0 HTML_FONT_FACE_BAD     BODY: HTML font face is not a word
-  0.0 HTML_MESSAGE           BODY: HTML included in message
-  5.0 RCVD_IN_MSPIKE_BL      Mailspike blocklisted
-  1.3 RDNS_NONE              Delivered to internal network by a host with no rDNS
+ high trust [209.85.216.48 listed in list.dnswl.org]
+ 0.0 RCVD_IN_MSPIKE_H3      RBL: Good reputation (+3)
+ [209.85.216.48 listed in wl.mailspike.net]
+ 0.2 FREEMAIL_ENVFROM_END_DIGIT Envelope-from freemail username ends
+ in digit [frankdavidloanfirm3[at]gmail.com]
+ 0.0 SPF_HELO_NONE          SPF: HELO does not publish an SPF Record
+ -0.0 SPF_PASS               SPF: sender matches SPF record
+ 0.0 FREEMAIL_FROM          Sender email is commonly abused enduser mail
+ provider [frankdavidloanfirm3[at]gmail.com]
+ 0.0 HTML_MESSAGE           BODY: HTML included in message
+ 0.1 DKIM_SIGNED            Message has a DKIM or DK signature, not necessarily
+ valid
+ -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+ -0.1 DKIM_VALID_AU          Message has a valid DKIM or DK signature from
+ author's domain
+ -0.1 DKIM_VALID_EF          Message has a valid DKIM or DK signature from
+ envelope-from domain
+ 0.0 RCVD_IN_MSPIKE_WL      Mailspike good senders
  -0.0 T_SCC_BODY_TEXT_LINE   No description available.
-X-Headers-End: 1sdrFL-0003sk-EU
+X-Headers-End: 1sf9iT-00062L-Nf
 X-Content-Filtered-By: Mailman/MimeDel 2.1.21
-Subject: [V9fs-developer] =?utf-8?b?44Kk44Kq44Oz44Kr44O844OJ77ya57eK5oCl?=
- =?utf-8?b?44Gu44K744Kt44Ol44Oq44OG44Kj56K66KqN?=
+Subject: [V9fs-developer] Loan Offer
 X-BeenThere: v9fs-developer@lists.sourceforge.net
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -97,61 +168,14 @@ List-Post: <mailto:v9fs-developer@lists.sourceforge.net>
 List-Help: <mailto:v9fs-developer-request@lists.sourceforge.net?subject=help>
 List-Subscribe: <https://lists.sourceforge.net/lists/listinfo/v9fs-developer>, 
  <mailto:v9fs-developer-request@lists.sourceforge.net?subject=subscribe>
-From: =?UTF-8?q?=E3=82=A4=E3=82=AA=E3=83=B3=E3=83=95=E3=82=A3=E3=83=8A=E3=83=B3?=
- =?UTF-8?q?=E3=82=B7=E3=83=A3=E3=83=AB=E3=82=B5=E3=83=BC=E3=83=93=E3=82=B9?=
- =?UTF-8?q?=E6=A0=AA=E5=BC=8F=E4=BC=9A=E7=A4=BE?= via V9fs-developer
- <v9fs-developer@lists.sourceforge.net>
-Reply-To: =?UTF-8?q?=E3=82=A4=E3=82=AA=E3=83=B3=E3=83=95=E3=82=A3=E3=83=8A=E3=83=B3?=
- =?UTF-8?q?=E3=82=B7=E3=83=A3=E3=83=AB=E3=82=B5=E3=83=BC=E3=83=93=E3=82=B9?=
- =?UTF-8?q?=E6=A0=AA=E5=BC=8F=E4=BC=9A=E7=A4=BE?=
- <informationAEONv9fs-developer88dC@gilt.jp>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: v9fs-developer-bounces@lists.sourceforge.net
 
-CgoKICAgIAogICAgCiAgICDjgqTjgqrjg7Pjgqvjg7zjg4nph43opoHjgarjgrvjgq3jg6Xjg6rj
-g4bjgqPpgJrnn6UKICAgIAoKCiAgICAKICAgICAgICAKICAgICAgICAgICAgCgoKCiAgICAgICAg
-ICAgIAogICAgICAgICAgICAgICAgCiAgICAgICAgICAgICAgICAgICAgCiAgICAgICAgICAgICAg
-ICAgICAgICAgIOWGjeiqjeiovOaJi+e2muOBjeOBq+OBpOOBhOOBpuOBrumHjeimgeOBquOBiuef
-peOCieOBmwoKCiAgICAgICAgICAgICAgICAgICAgCiAgICAgICAgICAgICAgICAKICAgICAgICAg
-ICAgCiAgICAgICAgCgoKICAgICAgICAKICAgICAgICAgICAg5oud5ZWT44CA44Kk44Kq44Oz44Kr
-44O844OJ5Lya5ZOh5qeYCgoKICAgICAgICAgICAg44Kk44Kq44Oz44Kr44O844OJ44KS44GU5oSb
-55So44GE44Gf44Gg44GN44CB44GC44KK44GM44Go44GG44GU44GW44GE44G+44GZ44CCCgoKICAg
-ICAgICAgICAg5pyA6L+R44Gu6KqN6Ki85omL57aa44GN44GM5q2j5bi444Gr6KGM44KP44KM44Gm
-44GE44Gq44GE44Gf44KB44CB44GK5a6i5qeY44Gu44Ki44Kr44Km44Oz44OI44GM5LiA5pmC55qE
-44Gr5Yi26ZmQ44GV44KM44Gm44GE44G+44GZ44CC44GK5a6i5qeY44Gu44Ki44Kr44Km44Oz44OI
-44KS5L+d6K2344GZ44KL44Gf44KB44CB5YaN5bqm44Gu6KqN6Ki844GM5b+F6KaB44Gn44GZ44CC
-CgoKICAgICAgICAgICAgCgoKICAgICAgICAgICAg5YaN6KqN6Ki844Gu5omL57aa44GN5pa55rOV
-77yaCgoKICAgICAgICAgICAgCiAgICAgICAgICAgICAgICDku6XkuIvjga7jgIzlho3oqo3oqLzp
-lovlp4vjgI3jg5zjgr/jg7PjgpLjgq/jg6rjg4Pjgq/jgZfjgabjgIHoqo3oqLzjg5rjg7zjgrjj
-gavjgqLjgq/jgrvjgrnjgZfjgabjgY/jgaDjgZXjgYTjgIIKICAgICAgICAgICAgICAgIOODreOC
-sOOCpOODs+W+jOOAgeOBlOacrOS6uueiuuiqjeaDheWgseOCkuWGjeW6puWFpeWKm+OBl+OBpuOB
-j+OBoOOBleOBhOOAggogICAgICAgICAgICAgICAg5pyA6L+R44Gu5Y+W5byV5bGl5q2044KS56K6
-6KqN44GX44CB5LiN5a+p44Gq5Y+W5byV44GM44Gq44GE44GL44GU56K66KqN44GP44Gg44GV44GE
-44CCCiAgICAgICAgICAgICAgICDjgrvjgq3jg6Xjg6rjg4bjgqPos6rllY/jgavjgZTlm57nrZTj
-gYTjgZ/jgaDjgY3jgIHlho3oqo3oqLzjgpLlrozkuobjgZfjgabjgY/jgaDjgZXjgYTjgIIKICAg
-ICAgICAgICAgCiAgICAgICAgICAgIOWGjeiqjeiovOmWi+WniwogICAgICAgICAgICAKICAgICAg
-ICAgICAgICAgIOWGjeiqjeiovOOBrumam+OBr+OAgeaZruauteS9v+eUqOOBl+OBpuOBhOOCi+OC
-ueODnuODvOODiOODleOCqeODs+OBqOODouODkOOCpOODq+ODh+ODvOOCv+mAmuS/oeOCkuWIqeeU
-qOOBl+OAgVZQTuOChFdpLUZp44Gv5L2/55So44GX44Gq44GE44GT44Go44KS5o6o5aWo44GX44G+
-44GZ44CC44GT44KM44Gr44KI44KK6KqN6Ki844Gu5a6J5YWo5oCn44GM6auY44G+44KK44G+44GZ
-44CCCgoKICAgICAgICAgICAgICAgIOaJi+e2muOBjeOBjOWujOS6huOBmeOCi+OBvuOBp+OAgeOC
-q+ODvOODieOBruWIqeeUqOOBjOWItumZkOOBleOCjOOCi+WgtOWQiOOBjOOBguOCiuOBvuOBmeOB
-ruOBp+OAgeOBlOS6huaJv+OBiumhmOOBhOeUs+OBl+S4iuOBkuOBvuOBmeOAguOBlOWNlOWKm+OB
-ruOBu+OBqeOCiOOCjeOBl+OBj+OBiumhmOOBhOOBhOOBn+OBl+OBvuOBmeOAggoKCiAgICAgICAg
-ICAgIAogICAgICAgICAgICDjgoLjgZfjgZPjga7jg6Hjg7zjg6vjgavopprjgYjjgYzjgarjgYTl
-oLTlkIjjgoTos6rllY/jgYzjgYLjgovloLTlkIjjga/jgIHku6XkuIvjgb7jgafjgZTpgKPntaHj
-gY/jgaDjgZXjgYTvvJoKCgogICAgICAgICAgICAKICAgICAgICAgICAgICAgIO+8nOWbuuWumumb
-u+ipseOBi+OCie+8ngrjg5Xjg6rjg7zjg4DjgqTjg6Tjg6vvvI/nhKHmlpkwMTIwLTIyMy0yMTIK
-CgoKICAgICAgICAgICAgCiAgICAgICAgICAgICAgICDvvJzmkLrluK/pm7voqbHjg7vjgrnjg57j
-g7zjg4jjg5Xjgqnjg7PjgYvjgonvvJ4K44OK44OT44OA44Kk44Ok44Or77yP5pyJ5paZMDU3MC0w
-NjQtNzUwCgoKCiAgICAgICAgICAgIAogICAgICAgICAgICAgICAg5rW35aSW44GL44KJ44GvIDA0
-My0zMzEtMDk5OQoKCgogICAgICAgIAoKCiAgICAgICAgCiAgICAgICAgICAgIAogICAgICAgICAg
-ICAgICAg44Kk44Kq44Oz44Kv44Os44K444OD44OI44K144O844OT44K55qCq5byP5Lya56S+CuOA
-kjEwMS0wMDU0IOadseS6rOmDveWNg+S7o+eUsOWMuuelnueUsOmMpueUuuS4ieS4geebrjIy55Wq
-5Zyw44OG44Op44K544K544Kv44Ko44KiCiAgICAgICAgICAgIAoKCiAgICAgICAgICAgIAoKCgog
-ICAgICAgICAgICAKICAgICAgICAgICAgICAgIEFFT04KQ0FSRAogICAgICAgICAgICAKCgogICAg
-ICAgIAoKCiAgICAKCgoKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX18KVjlmcy1kZXZlbG9wZXIgbWFpbGluZyBsaXN0ClY5ZnMtZGV2ZWxvcGVyQGxpc3RzLnNv
-dXJjZWZvcmdlLm5ldApodHRwczovL2xpc3RzLnNvdXJjZWZvcmdlLm5ldC9saXN0cy9saXN0aW5m
-by92OWZzLWRldmVsb3Blcgo=
+Apply for your Personal and Business loan at very low interest rate of 3% ,
+please contact Email: frankdavidloanfirm3@gmail.com WhatsApp +523346239363
+
+_______________________________________________
+V9fs-developer mailing list
+V9fs-developer@lists.sourceforge.net
+https://lists.sourceforge.net/lists/listinfo/v9fs-developer
