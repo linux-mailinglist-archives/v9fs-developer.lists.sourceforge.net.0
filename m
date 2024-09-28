@@ -2,150 +2,165 @@ Return-Path: <v9fs-developer-bounces@lists.sourceforge.net>
 X-Original-To: lists+v9fs-developer@lfdr.de
 Delivered-To: lists+v9fs-developer@lfdr.de
 Received: from lists.sourceforge.net (lists.sourceforge.net [216.105.38.7])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2C3D297E304
-	for <lists+v9fs-developer@lfdr.de>; Sun, 22 Sep 2024 21:37:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id C9B5B98918E
+	for <lists+v9fs-developer@lfdr.de>; Sat, 28 Sep 2024 23:26:02 +0200 (CEST)
 Received: from [127.0.0.1] (helo=sfs-ml-2.v29.lw.sourceforge.com)
 	by sfs-ml-2.v29.lw.sourceforge.com with esmtp (Exim 4.95)
 	(envelope-from <v9fs-developer-bounces@lists.sourceforge.net>)
-	id 1ssSOE-0008R2-Oe;
-	Sun, 22 Sep 2024 19:37:02 +0000
+	id 1suewx-0003yq-Pu;
+	Sat, 28 Sep 2024 21:25:59 +0000
 Received: from [172.30.29.66] (helo=mx.sourceforge.net)
  by sfs-ml-2.v29.lw.sourceforge.com with esmtps (TLS1.2) tls
  TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384 (Exim 4.95)
- (envelope-from <return@tekbeden.com>) id 1ssSOD-0008Qj-5Q
+ (envelope-from <return@mockupscreens.com>) id 1suews-0003y8-6b
  for v9fs-developer@lists.sourceforge.net;
- Sun, 22 Sep 2024 19:37:01 +0000
+ Sat, 28 Sep 2024 21:25:54 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=sourceforge.net; s=x; h=List-Unsubscribe:Content-Transfer-Encoding:
- Content-Type:Mime-Version:Subject:Message-ID:To:Reply-To:From:Date:Sender:Cc:
+ d=sourceforge.net; s=x; h=To:List-Unsubscribe:Subject:Message-ID:Mime-Version
+ :From:Date:Content-Type:Sender:Reply-To:Cc:Content-Transfer-Encoding:
  Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
  Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:List-Id:
  List-Help:List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=fdrCmwA9y88r3u1Fq23qbqzdDH/6k69v9oNA5HVoPv0=; b=kALgzAy0iJUA/aVa5JRHp1b5Dr
- W6qo16irpYDwciL8/Pj1BKDr05T6yTJQL/Dp3S/wIFbLtu06HmuRpmaCxAVZiF0lCar7kDbFx/s37
- 6eYznr/T2d94fTWGfd1vEdh7PJ+wsO4OVlSxdjoROS4Ns08jDhn5d5ppnUHGMaJt64/E=;
+ bh=m33vwXk2RhsOIYD7InHsSblS+6W0mPLWsx7Cqwp0Hkg=; b=HdQwnnFtlKARpV5vBxF/kJWWeS
+ RYGYfof1SVODkLVfAys91gZ0aRY2yzckChqhuNz7SG3xLG+Mth9w0/A+SfDrzkHndCD6QVt9Zdcph
+ JXjzBFNpP+XUXm2+i6Qq9EC3h58OJoz39ZILkXYvNTKusxo4dRJK4mdqAl/F5FZ/wAyU=;
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  ;
- h=List-Unsubscribe:Content-Transfer-Encoding:Content-Type:Mime-Version:
- Subject:Message-ID:To:Reply-To:From:Date:Sender:Cc:Content-ID:
+ h=To:List-Unsubscribe:Subject:Message-ID:Mime-Version:From:Date:
+ Content-Type:Sender:Reply-To:Cc:Content-Transfer-Encoding:Content-ID:
  Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
  :Resent-Message-ID:In-Reply-To:References:List-Id:List-Help:List-Subscribe:
  List-Post:List-Owner:List-Archive;
- bh=fdrCmwA9y88r3u1Fq23qbqzdDH/6k69v9oNA5HVoPv0=; b=QWccmdD8P9mPmk+brZJMBNm5Hi
- Gov/rgmr+IyPWaPBV6g6uB0aSF1tKXnmu+hmOkojU2ncLxt73fIHxcARr3/ZkKKKrpwMPAKIZ/Hio
- J6ArMRw1g03AmFOwVR34fVfjWw1u9+dU2XgfLMfsHOHk5z6w0JKVaHxO0vrF6K9hUAB4=;
-Received: from 195-15-207-165.dc3-a.pub1.etik-cloud.com ([195.15.207.165]
- helo=tekbeden.com) by sfi-mx-2.v28.lw.sourceforge.com with esmtp 
- (Exim 4.95) id 1ssSOB-0008NW-UQ
- for v9fs-developer@lists.sourceforge.net;
- Sun, 22 Sep 2024 19:37:01 +0000
+ bh=m33vwXk2RhsOIYD7InHsSblS+6W0mPLWsx7Cqwp0Hkg=; b=QYlO2t6cLODsXRHl5RlupfAh6D
+ RVupb2vceySiyb2hJ8K9gg9BrntdHYdlpk9L2r6GgfUiZhD1xsb8olT4hq8TH/h/PKpui7ONPWB7V
+ sACXsECobs6xUM4CFWKLevJdkvgxeUiRE0AJL5F3cv8B2OWUUokni1YIsB8yWCFHNziU=;
+Received: from [38.129.16.74] (helo=mockupscreens.com)
+ by sfi-mx-2.v28.lw.sourceforge.com with esmtp (Exim 4.95)
+ id 1suewr-0000Yf-9L for v9fs-developer@lists.sourceforge.net;
+ Sat, 28 Sep 2024 21:25:54 +0000
 X-Spam-Flag: NO
-Received-SPF: pass (mail117c60.megamailservers.eu: domain of
- bnc.fcn4LGvIb4JDF9TmmDhkzW6c_rNoNqEvPSN7HZR75FU=.e@arbeiderpartiet.no
- designates 193.69.50.22 as permitted sender)
- receiver=mail117c60.megamailservers.eu; client-ip=193.69.50.22;
- helo=mta7e.sndr.no;
- envelope-from=bnc.fcn4LGvIb4JDF9TmmDhkzW6c_rNoNqEvPSN7HZR75FU=.e@arbeiderpartiet.no;
+Received-SPF: pass (mail127c60.megamailservers.eu: domain of
+ bounces+22073510-e539-kaander2=online.no@em6709.kappahl.com designates
+ 167.89.106.248 as permitted sender) receiver=mail127c60.megamailservers.eu;
+ client-ip=167.89.106.248; helo=o72.ptr884.email.eclub.se;
+ envelope-from=bounces+22073510-e539-kaander2=online.no@em6709.kappahl.com;
  x-software=spfmilter 2.001 http://www.acme.com/software/spfmilter/ with
  libspf2-1.2.10; 
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail117c60.megamailservers.eu
- 48JDfAF2033288
-Authentication-Results: mail117c60.megamailservers.eu;
- dmarc=pass (p=none dis=none)
- header.from=arbeiderpartiet.no
-Authentication-Results: mail117c60.megamailservers.eu; spf=pass
- smtp.mailfrom=bnc.fcn4LGvIb4JDF9TmmDhkzW6c_rNoNqEvPSN7HZR75FU=.e@arbeiderpartiet.no
-X-Envelope-From: bnc.fcn4LGvIb4JDF9TmmDhkzW6c_rNoNqEvPSN7HZR75FU=.e@arbeiderpartiet.no
-Authentication-Results: mail117c60.megamailservers.eu;
- dkim=pass (1024-bit key) header.d=arbeiderpartiet.no
- header.i=ikkesvar@arbeiderpartiet.no header.b="S0x/HPZw"
-Received: from mta7e.sndr.no (mta7e.sndr.no [193.69.50.22])
- by mail117c60.megamailservers.eu (8.14.9/8.13.1) with ESMTP id 48JDfAF2033288
- (version=TLSv1/SSLv3 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NO)
- for <kaander2@online.no>; Thu, 19 Sep 2024 13:47:08 +0000
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; s=key1;
- d=arbeiderpartiet.no; 
- h=Date:From:Reply-To:To:Message-ID:Subject:Mime-Version:Content-Type:
- Content-Transfer-Encoding:List-Unsubscribe:List-Unsubscribe-Post;
- i=ikkesvar@arbeiderpartiet.no;
- bh=UaDxSRJi+v9cFAjzre3R+gU5pCbPQ7FTadRovoB2ubU=;
- b=S0x/HPZw2fKmeMqBW0fhPFIFHvRskrfa+6tCF6+5jUUSTdw1phMlsxSVzKmdYq9ETt/3Z8L+CMb6
- V0wYqTuk6+6fABUygZm5BjyTXe0b6QGWuGHZBjDrrgZITNQT/cQnt5ucRNfsx26V+Uf4K9h6hUm5
- rF/zJLjhTFlVjnVnp1Y=
-Received: by mta7e.sndr.no id htgllo37jogr for <kaander2@online.no>;
- Thu, 19 Sep 2024 15:37:05 +0200 (envelope-from
- <bnc.fcn4LGvIb4JDF9TmmDhkzW6c_rNoNqEvPSN7HZR75FU=.e@arbeiderpartiet.no>)
-Date: Sun, 22 Sep 2024 18:39:24 +0000
-From: Harbor Freight Rewards <ikkesvar@arbeiderpartiet.no>
-To: v9fs-developer@lists.sourceforge.net
-Message-ID: <6648276006745092634@make.as>
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail127c60.megamailservers.eu
+ 48F53SQd098070
+Authentication-Results: mail127c60.megamailservers.eu;
+ dmarc=pass (p=none dis=none) header.from=kappahl.com
+Authentication-Results: mail127c60.megamailservers.eu; spf=pass
+ smtp.mailfrom=bounces+22073510-e539-kaander2=online.no@em6709.kappahl.com
+X-Envelope-From: bounces+22073510-e539-kaander2=online.no@em6709.kappahl.com
+Authentication-Results: mail127c60.megamailservers.eu;
+ dkim=pass (2048-bit key) header.d=kappahl.com header.i=@kappahl.com
+ header.b="fknsOsjy"
+Received: from o72.ptr884.email.eclub.se (o72.ptr884.email.eclub.se
+ [167.89.106.248])
+ by mail127c60.megamailservers.eu (8.14.9/8.13.1) with ESMTP id 48F53SQd098070
+ (version=TLSv1/SSLv3 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NO)
+ for <kaander2@online.no>; Sun, 15 Sep 2024 05:03:32 +0000
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kappahl.com;
+ h=content-type:from:mime-version:subject:list-unsubscribe-post:
+ list-unsubscribe:to:cc:content-type:from:subject:to;
+ s=s1; bh=fASdpyKxVhkeAovCa4E1ZDnF6T1JJ1Pz6ZqT5Sqail8=;
+ b=fknsOsjyvLJksnKJhpucRfjH+IUzLyhCszVSF71GnhUcNHulczLZ0cTXI+FhVe7PDJm4
+ B5YUCMCJFzPNeFEigswbl8ATZmXcBFPy3MzSaFjJKpg9XCotGF1n6tKs0JBLJxx2ex9lO7
+ bPGYuymeusS0vwRgYfCOa0VGP6q7KY7Pqc3z8Q3bS9DRFFowEucCatDFLzhcfmOj8bcCtX
+ DQ6+WQy2/F0tKA/pLXE2DYVsyL9G/v/0MUYEyqPBR9qxT64lJxm7YtEJGnLaXJfq2DuiDz
+ fjk83fBwITeQUg6m/Sf7nfU2dFYvjUvsSjDPLnZGxla5rNYcHujftlI31v2cTv/g==
+Received: by recvd-7744477dd-q5c5l with SMTP id
+ recvd-7744477dd-q5c5l-1-66E66A30-1
+ 2024-09-15 05:01:36.057546548 +0000 UTC m=+212637.579878800
+Received: from MjIwNzM1MTA (unknown) by geopod-ismtpd-5 (SG) with HTTP
+ id 88yZSzx8Tx6hmBkmKmLI6g Sun, 15 Sep 2024 05:01:36.018 +0000 (UTC)
+Date: Sat, 28 Sep 2024 21:13:47 +0000
+From: Tractor Supply Surprise <noreply@kappahl.com>
 Mime-Version: 1.0
-X-Complaints-To: abuse@sndr.no
-X-Type: default
+Message-ID: <459571603288yZSzx8Tx6hmBkmKmLI6g@geopod-ismtpd-5>
 List-Unsubscribe-Post: List-Unsubscribe=One-Click
+X-Voyado-ProcessBatch: 56ede9c7e83245aeab8045bae8cafb84
+X-Voyado-EmailBatch: a7fcc879-36ae-416d-b578-32ff36f41842
+X-Voyado-MessageId: 76fea95f-5538-40b5-92cc-b1e600809d86
+X-SG-EID: =?us-ascii?Q?u001=2EUInZnJI2qDm=2FtC+vXa6Fl6dWmNmjAs62RvIqD3omn6kejAeSHfe8SyEys?=
+ =?us-ascii?Q?2cWbifUZHIUlITdW4gAgPEA68n75qdlzP7G0zD+?=
+ =?us-ascii?Q?zvo=2Fi=2FtP3PuGV5PraAHrGhpYof1cy+NYoMz2Mhy?=
+ =?us-ascii?Q?PYq09ALHDio3djgVncL37KO3acOpy4=2FJboTC0pJ?=
+ =?us-ascii?Q?GdxuFg76ehTzHCu8MrvbL9VxkJrE0wotv5KBabO?=
+ =?us-ascii?Q?laEIr2yjK+Y3LPbgjFQ6OQ=3D?=
+X-SG-ID: =?us-ascii?Q?u001=2ESdBcvi+Evd=2FbQef8eZF3BpTL9BgbK5wfSJMJGMsmprA07JZ6jYu8gxUof?=
+ =?us-ascii?Q?WzjgGHhijVJyPpLoORLBZ2UiPbF5D2EcTCO14Ec?=
+ =?us-ascii?Q?5=2FKzuZKYafnm3lckzeEoJAMRslQQUhsME0GB55j?=
+ =?us-ascii?Q?QKtXI0Xbv40QNDlqN19hI6SU+w9sonhFoD=2FYnKr?=
+ =?us-ascii?Q?p=2Fuz2OzWM7t9d1pdaU7t=2Fs5zolJZDISgvIh1HLT?=
+ =?us-ascii?Q?hLSJ+zYHN=2FA3iQrM1UPWEYJkUI5J7W2d6u6rFzU?=
+ =?us-ascii?Q?pZY4hzEh5gBtr2RGg9TvSIN2SO84UinrLN0kSke?=
+ =?us-ascii?Q?GjrkRnAw34j05AaDSzEJnkOoZgcJ+SSOVJFBGka?=
+ =?us-ascii?Q?bNsEOwin7u4nLe1oLYqDyvyqeazJSGpJ961HRgb?=
+ =?us-ascii?Q?cbqbgzk42R22oOTT4Cbmfi6ganoq=2FwYW=2Fvz00Yg?=
+ =?us-ascii?Q?hiBSZQIyeuGOpNU+0uQ=3D?=
+To: v9fs-developer@lists.sourceforge.net
+X-Entity-ID: u001.4hIIw1hDER1r7eo7+Nyq+g==
 X-VADE-SPAMSTATE: commercial:mce
 X-VADE-SPAMSCORE: 17
-X-VADE-SPAMCAUSE: gggruggvucftvghtrhhoucdtuddrgeeftddrudeluddgieekucetufdoteggodetrfdotffvucfrrhhofhhilhgvmecujffquffvqffrkfetpdfgpfggqdeviedtnecuuegrihhlohhuthemuceftddunecundfotefknffkpffiucdludejmdenucfjughrpeffhfhrvffkufggtgfgjfesrgejrfertddtjeenucfhrhhomheplfhonhgrshcuifgrhhhrucfuthpprhgvuceoihhkkhgvshhvrghrsegrrhgsvghiuggvrhhprghrthhivghtrdhnoheqnecuggftrfgrthhtvghrnhepkeelvddvieegueeitddutddukeefgfegueffheelvdekkeevtefgudevhfegueefnecuffhomhgrihhnpegrrhgsvghiuggvrhhprghrthhivghtrdhnohenucfkphepudelfedrieelrdehtddrvddvnecuvehluhhsthgvrhfuihiivgepudduheenucfrrghrrghmpehinhgvthepudelfedrieelrdehtddrvddvpdhhvghlohepmhhtrgejvgdrshhnughrrdhnohdpmhgrihhlfhhrohhmpegsnhgtrdhftghngefnifhvkfgsgeflfffhlefvmhhmffhhkhiihgeitggprhfpohfpqhfgvhfruffpjefjkgftjeehhfgfpedrvgesrghrsggvihguvghrphgrrhhtihgvthdrnhhopdhnsggprhgtphhtthhopedupdhrtghpthhtohepkhgrrghnuggvrhdvsehonhhlihhnvgdrnhho
-X-Rspamd-Status: No, score=2.04
-X-Rspamd-Result: default: False [2.04 / 6.00]; EXT_CSS(1.00)[];
- URI_COUNT_ODD(1.00)[9];
- DMARC_POLICY_ALLOW(-0.50)[arbeiderpartiet.no,none];
- MV_CASE(0.50)[];
- FORGED_SENDER(0.30)[ikkesvar@arbeiderpartiet.no,bnc.fcn4LGvIb4JDF9TmmDhkzW6c_rNoNqEvPSN7HZR75FU=.e@arbeiderpartiet.no];
- R_DKIM_ALLOW(-0.20)[arbeiderpartiet.no:s=key1];
- R_SPF_ALLOW(-0.20)[+ip4:193.69.50.16/28:c];
- MIME_BASE64_TEXT(0.10)[]; ONCE_RECEIVED(0.10)[];
+X-VADE-SPAMCAUSE: gggruggvucftvghtrhhoucdtuddrgeeftddrudekuddgledvucetufdoteggodetrfdotffvucfrrhhofhhilhgvmecujffquffvqffrkfetpdfgpfggqdeviedtnecuuegrihhlohhuthemuceftddunecundfotefknffkpffiucdludejmdenucfjughrpegtfffhggfkuffjvfesrgdttdertddtjeenucfhrhhomhepmfgrphhprghhlhcuoehnohhrvghplhihsehkrghpphgrhhhlrdgtohhmqeenucggtffrrghtthgvrhhnpeejhedvueejkeduvdegieegvdekfedugeehlefggeejgeetkefhleeiueekfedtkeenucffohhmrghinhepvggtlhhusgdrshgvnecukfhppeduieejrdekledruddtiedrvdegkeenucevlhhushhtvghrufhiiigvpeehleenucfrrghrrghmpehinhgvthepudeijedrkeelrddutdeirddvgeekpdhhvghlohepohejvddrphhtrhekkeegrdgvmhgrihhlrdgvtghluhgsrdhsvgdpmhgrihhlfhhrohhmpegsohhunhgtvghsoddvvddtjeefhedutddqvgehfeelqdhkrggrnhguvghrvdepohhnlhhinhgvrdhnohesvghmieejtdelrdhkrghpphgrhhhlrdgtohhmpdhnsggprhgtphhtthhopedupdhrtghpthhtohepkhgrrghnuggvrhdvsehonhhlihhnvgdrnhho
+X-Rspamd-Status: No, score=2.09
+X-Rspamd-Result: default: False [2.09 / 6.00]; URI_COUNT_ODD(1.00)[21];
+ DMARC_POLICY_ALLOW(-0.50)[kappahl.com,none];
+ MID_RHS_NOT_FQDN(0.50)[]; MV_CASE(0.50)[];
+ R_PARTS_DIFFER(0.50)[74.9%];
+ FORGED_SENDER(0.30)[noreply@kappahl.com,bounces@em6709.kappahl.com];
+ R_DKIM_ALLOW(-0.20)[kappahl.com:s=s1];
+ MANY_INVISIBLE_PARTS(0.20)[3];
+ R_SPF_ALLOW(-0.20)[+ip4:167.89.106.248:c];
  MIME_GOOD(-0.10)[multipart/alternative,text/plain];
- MANY_INVISIBLE_PARTS(0.05)[1]; HAS_LIST_UNSUB(-0.01)[];
- RCVD_TLS_LAST(0.00)[]; TO_MATCH_ENVRCPT_ALL(0.00)[];
- MIME_TRACE(0.00)[0:+,1:+,2:~]; ARC_NA(0.00)[];
- FROM_HAS_DN(0.00)[]; RCVD_COUNT_ONE(0.00)[1];
- MISSING_XM_UA(0.00)[]; REPLYTO_ADDR_EQ_FROM(0.00)[];
- FROM_NEQ_ENVFROM(0.00)[ikkesvar@arbeiderpartiet.no,bnc.fcn4LGvIb4JDF9TmmDhkzW6c_rNoNqEvPSN7HZR75FU=.e@arbeiderpartiet.no];
- DKIM_TRACE(0.00)[arbeiderpartiet.no:+]; TO_DN_NONE(0.00)[];
- ASN(0.00)[asn:2116, ipnet:193.69.0.0/16, country:NO];
- PREVIOUSLY_DELIVERED(0.00)[kaander2@online.no];
- RCPT_COUNT_ONE(0.00)[1];
- HAS_REPLYTO(0.00)[ikkesvar@arbeiderpartiet.no]
-X-Origin-Country: NO
-X-Origin-ASN: 2116
+ ZERO_FONT(0.10)[1]; HAS_LIST_UNSUB(-0.01)[];
+ FROM_HAS_DN(0.00)[]; ARC_NA(0.00)[];
+ SUBJECT_HAS_EXCLAIM(0.00)[]; RCVD_TLS_LAST(0.00)[];
+ DKIM_TRACE(0.00)[kappahl.com:+];
+ TAGGED_FROM(0.00)[22073510-e539-kaander2=online.no];
+ RCVD_COUNT_TWO(0.00)[2];
+ FROM_NEQ_ENVFROM(0.00)[noreply@kappahl.com,bounces@em6709.kappahl.com];
+ TO_MATCH_ENVRCPT_ALL(0.00)[]; TO_DN_NONE(0.00)[];
+ MISSING_XM_UA(0.00)[];
+ ASN(0.00)[asn:11377, ipnet:167.89.96.0/20, country:US];
+ MIME_TRACE(0.00)[0:+,1:+,2:~]; RCPT_COUNT_ONE(0.00)[1]
+X-Origin-Country: US
+X-Origin-ASN: 11377
 X-WHL: LR
-X-Spam-Score: 7.3 (+++++++)
-X-Spam-Report: Spam detection software, running on the system "util-spamd-2.v13.lw.sourceforge.com",
- has identified this incoming email as possible spam.  The original
+X-Spam-Score: 4.3 (++++)
+X-Spam-Report: Spam detection software,
+ running on the system "util-spamd-1.v13.lw.sourceforge.com", 
+ has NOT identified this incoming email as spam.  The original
  message has been attached to this so you can view it or label
  similar future email.  If you have any questions, see
  the administrator of that system for details.
- 
- Content preview:  Mer trygghet, mindre forskjeller og større muligheter. ‌
-    ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌
-    ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ [...] 
- 
- Content analysis details:   (7.3 points, 6.0 required)
- 
-  pts rule name              description
+ Content preview:  Ikke glem medlemstilbudet ditt Please use an email client
+ supporting HTML email,
+ or click this link to view the email online:
+ https://kappahl.customer.eclub.se/open/email/online/X6n-djhVtUCSzLHmAICdhg/IfmSmLDQakKbdK4hAOvsWQ/iyjrmd6xnkGN_rHsAFKTOA
+ Content analysis details:   (4.3 points, 6.0 required)
+ pts rule name              description
  ---- ---------------------- --------------------------------------------------
-  1.3 RCVD_IN_VALIDITY_RPBL  RBL: Relay in Validity RPBL,
-                             https://senderscore.org/blocklistlookup/
-                            [195.15.207.165 listed in bl.score.senderscore.com]
-  5.0 RCVD_IN_UCE1           RBL: IP Listed in UCEPROTECT Level 1
-                             [195.15.207.165 listed in dnsbl-1.uceprotect.net]
-  0.0 TVD_RCVD_IP            Message was received from an IP address
-  0.0 T_SPF_HELO_TEMPERROR   SPF: test of HELO record failed (temperror)
-  0.0 HTML_MESSAGE           BODY: HTML included in message
-  0.0 HTML_NONELEMENT_30_40  BODY: 30% to 40% of HTML elements are
-                             non-standard
-  0.0 AC_BR_BONANZA          RAW: Too many newlines in a row... spammy template
-  0.1 DKIM_SIGNED            Message has a DKIM or DK signature, not necessarily
-                             valid
-  0.1 DKIM_INVALID           DKIM or DK signature exists, but is not valid
-  0.4 RDNS_DYNAMIC           Delivered to internal network by host with
-                             dynamic-looking rDNS
-  0.0 DYNAMIC_IMGUR          dynamic IP + hosted image
-  0.4 KHOP_HELO_FCRDNS       Relay HELO differs from its IP's reverse DNS
-X-Headers-End: 1ssSOB-0008NW-UQ
+ 3.6 RCVD_IN_SBL_CSS        RBL: Received via a relay in Spamhaus SBL-CSS
+ [38.129.16.74 listed in zen.spamhaus.org]
+ -0.9 RCVD_IN_MSPIKE_H2      RBL: Average reputation (+2)
+ [38.129.16.74 listed in wl.mailspike.net]
+ -0.0 SPF_HELO_PASS          SPF: HELO matches SPF record
+ 0.0 HTML_MESSAGE           BODY: HTML included in message
+ 0.1 HTML_TAG_BALANCE_BODY  BODY: HTML has unbalanced "body" tags
+ 0.1 MIME_HTML_MOSTLY       BODY: Multipart message mostly text/html MIME
+ 0.0 AC_BR_BONANZA RAW: Too many newlines in a row... spammy template
+ 0.1 DKIM_SIGNED            Message has a DKIM or DK signature, not necessarily
+ valid
+ 0.1 DKIM_INVALID           DKIM or DK signature exists, but is not valid
+ 1.3 RDNS_NONE Delivered to internal network by a host with no rDNS
+ 0.0 HOSTED_IMG_MULTI_PUB_01 Multiple hosted images at public site
+X-Headers-End: 1suewr-0000Yf-9L
 X-Content-Filtered-By: Mailman/MimeDel 2.1.21
-Subject: [V9fs-developer] Expiring Soon : Your Daytona 3 Ton Car Jack Reward
+Subject: [V9fs-developer] Final Notice Coming for a Yeti Crossroads Backpack
+ Reward
 X-BeenThere: v9fs-developer@lists.sourceforge.net
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -158,65 +173,16 @@ List-Post: <mailto:v9fs-developer@lists.sourceforge.net>
 List-Help: <mailto:v9fs-developer-request@lists.sourceforge.net?subject=help>
 List-Subscribe: <https://lists.sourceforge.net/lists/listinfo/v9fs-developer>, 
  <mailto:v9fs-developer-request@lists.sourceforge.net?subject=subscribe>
-Reply-To: ikkesvar@arbeiderpartiet.no
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: v9fs-developer-bounces@lists.sourceforge.net
 
-TWVyIHRyeWdnaGV0LCBtaW5kcmUgZm9yc2tqZWxsZXIgb2cgc3TDuHJyZSBtdWxpZ2hldGVyLg0K
-4oCMIOKAjCDigIwg4oCMIOKAjCDigIwg4oCMIOKAjCDigIwg4oCMIOKAjCDigIwg4oCMIOKAjCDi
-gIwg4oCMIOKAjCDigIwg4oCMIOKAjCDigIwg4oCMIOKAjCDigIwg4oCMIOKAjCDigIwg4oCMIOKA
-jCDigIwg4oCMIOKAjCDigIwg4oCMIOKAjCDigIwg4oCMIOKAjCDigIwg4oCMIOKAjCDigIwg4oCM
-IOKAjCDigIwg4oCMIOKAjCDigIwg4oCMIOKAjCDigIwg4oCMIOKAjCDigIwg4oCMIOKAjCDigIwg
-4oCMIOKAjCDigIwg4oCMIOKAjCDigIwg4oCMIOKAjCDigIwg4oCMIOKAjCDigIwg4oCMIOKAjCDi
-gIwg4oCMIOKAjCDigIwg4oCMIOKAjCDigIwg4oCMIOKAjCDigIwg4oCMIOKAjCDigIwg4oCMIOKA
-jCDigIwg4oCMIOKAjCDigIwg4oCMIOKAjCDigIwg4oCMIOKAjCDigIwg4oCMIOKAjCDigIwg4oCM
-IOKAjCDigIwg4oCMIOKAjCDigIwg4oCMIOKAjCDigIwg4oCMIOKAjCDigIwg4oCMIOKAjCDigIwg
-4oCMIOKAjCDigIwg4oCMIOKAjCDigIwg4oCMIOKAjCDigIwg4oCMIOKAjCDigIwg4oCMIOKAjCDi
-gIwg4oCMIOKAjCDigIwg4oCMIOKAjCDigIwg4oCMIOKAjCDigIwg4oCMIOKAjCDigIwg4oCMIOKA
-jCDigIwg4oCMIOKAjCDigIwg4oCMIOKAjCDigIwNCg0KTG9nbyAtIEFyYmVpZGVycGFydGlldExv
-Z28gLSBBcmJlaWRlcnBhcnRpZXRTZSBlLXBvc3RlbiBpDQpkaW4gbmV0dGxlc2VyICggaHJlZj0i
-aHR0cHM6Ly9ueWhldHNicmV2LmFyYmVpZGVycGFydGlldC5uby9wL3IvZmNuNExHdkliNEpERjlU
-bW1EaGt6VzZjX3JOb05xRXZQU043SFpSNzVGVT0iICkNCg0KS2rDpnJlIG1lZGxlbSwNCg0KDQpJ
-IMOlciBmw6VyIGZvbGsgYmVkcmUgcsOlZC4NCg0KRXR0ZXIgw6V0dGUgw6VyIG1lZCB1c29zaWFs
-ZSBrdXR0IHVuZGVyIEjDuHlyZSBvZyBGcnAsIGV0dGVyIHRpIMOlcg0KbmVzdGVuIHV0ZW4gcmVh
-bGzDuG5uc3Zla3N0IGkgTm9yZ2UsIGV0dGVyIHRvIMOlciBtZWQga3JhZnRpZw0KcHJpc3Zla3N0
-IG9nIHJlbnRlb3BwZ2FuZ2VyLCBzw6UgZXIgdmkgdmVkIGV0IHZlbmRlcHVua3QgaQ0Kw7hrb25v
-bWllbiwgZGVyIGZvbGsgZsOlciBiZWRyZSByw6VkLiBOw6UgZsOlciBhcmJlaWQgaWdqZW4gw7hr
-dCB2ZXJkaQ0KaSBOb3JnZS4gRGV0IGdqw7hyIGF0IGRldCB2aWwgbMO4bm5lIHNlZyBtZXIgw6Ug
-am9iYmUuDQoNCkRldCBnasO4ciBhdCBlbmRhIGZsZXJlIGVubiBkZSAxNDUgMDAwIHNvbSBhbGxl
-cmVkZSBoYXIga29tbWV0IGkNCmpvYmIgcMOlIHbDpXIgdmFrdCwgdmlsIGtvbW1lIGkgam9iYi4N
-Cg0KT2cgbWVkIHN5c3NlbHNldHRpbmcgcMOlIHJla29yZG5pdsOlZXIgbWVkIGV0IG7DpnJpbmdz
-bGl2IHNvbSBzZXR0ZXINCmVrc3BvcnRyZWtvcmRlciBvZyBpbnZlc3RlcmluZ3NyZWtvcmRlciwg
-bWVkIGVuIHN0ZXJrZXJlDQp2ZWxmZXJkc3N0YXQsIHRhciB2aSBvZ3PDpSB2YXJlIHDDpSBub2Ug
-YXYgZGV0IGZpbmVzdGUgamVnIHZldCBtZWQNCk5vcmdlLiBOb2UgYXYgZGV0IHNvbSBnasO4ciBO
-b3JnZSB0aWwgTm9yZ2U6IERlIHNtw6UgZm9yc2tqZWxsZW5lLA0KZGVuIGjDuHllIHRpbGxpdGVu
-IG9nIGRldCBzdGVya2UgZmVsbGVzc2thcGV0IQ0KDQpPbSB1bmRlciBldHQgw6VyIGVyIGRldCB2
-YWxnIGkgTm9yZ2UuIFZlZCB2YWxnZXQgc2thbCBmb2xrIHZlbGdlDQplbiByZWdqZXJpbmcgZm9y
-IMOlciBzb20gYmxpciBhdmdqw7hyZW5kZSBmb3IgbGFuZGV0IHbDpXJ0Og0KDQoqIERldHRlIGVy
-IMOlciBkZXIgdmkgdHJlbmdlciDDpSBmw6UgMTUwIDAwMCBmbGVyZSBpIGFyYmVpZC4NCiogRGVy
-IHZpIHNrYWwga3V0dGUgaSB2ZW50ZXRpZGVuZSBpIGhlbHNldGplbmVzdGVuLg0KKiBEZXIgdmkg
-c2thbCBuw6Uga2xpbWFtw6VsZW5lLCBvbXN0aWxsZSBlbmVyZ2lzeXN0ZW1ldCB2w6VydC4NCiog
-RGVyIHZpIHNrYWwgYmxpIHZlcmRlbnMgbWVzdCBkaWdpdGFsaXNlcnRlIHNhbWZ1bm4uDQoqIERl
-ciB2aSBza2FsIGJ5Z2dlIGZvcnN2YXIgb2cgYmVyZWRza2FwIGZvciBlbiBueQ0Kc2lra2VyaGV0
-c3BvbGl0aXNrIHNpdHVhc2pvbi4NCiogRGVyIHZpIHNrYWwgc3TDpSBww6UgaW50ZXJuYXNqb25h
-bHQgZm9yIG1lciBmcmVkIG9nIGbDpnJyZSBrcmlnZXIuDQoqIERlciB2aSBza2FsIHZpIHNrYWwg
-Zm9ydHNldHRlIGthbXBlbiBtb3QgZ2plbmdrcmltaW5hbGl0ZXRlbi4NClN0b3BwZSBueXJla3J1
-dHRlcmluZ2VuLg0KKiBPZyBiaWRyYSB0aWwgYXQgZm9sayBiZWRyZSByw6VkLg0KRGV0dGUgZXIg
-dGlkZW4gZm9yIMOlIHN0w6Ugc2FtbWVuIG9tIGVuIHBvbGl0aWtrIGZvciBtZXIgdHJ5Z2doZXQs
-DQptaW5kcmUgZm9yc2tqZWxsZXIgb2cgc3TDuHJyZSBtdWxpZ2hldGVyIQ0KDQpGb3IgaHZlciBv
-ZyBlbiDigJMgb2cgZm9yIG9zcyBpIGZlbGxlc3NrYXAhDQoNClNpZ25hdHVyIC0gSm9uYXMgR2Fo
-ciBTdMO4cmVTaWduYXR1ciAtIEpvbmFzIEdhaHIgU3TDuHJlDQpKb25hcyBHYWhyIFN0w7hyZQ0K
-UGFydGlsZWRlciBvZyBzdGF0c21pbmlzdGVyLCBBcmJlaWRlcnBhcnRpZXQNCg0KDQoNCkdpIGV0
-IGJpZHJhZyB0aWwgdmFsZ2thbXBlbiAoIGhyZWY9Imh0dHA6Ly9hcmJlaWRlcnBhcnRpZXQubm8v
-YmlkcmEvIiApDQrigIoNCkxvZ28gLSBBcmJlaWRlcnBhcnRpZXQgKCBocmVmPSJodHRwczovL3d3
-dy5hcmJlaWRlcnBhcnRpZXQubm8iICkNCg0KRHUgbW90dGFyIGRlbm5lIGUtcG9zdGVuIGZvcmRp
-IGR1IHN0w6VyIHDDpSBBcmJlaWRlcnBhcnRpZXRzDQplLXBvc3RsaXN0ZS4NCg0KRHUga2FuIGtv
-bnRha3RlIG9zcyBww6UNCnBvc3RAYXJiZWlkZXJwYXJ0aWV0Lm5vICggaHJlZj0ibWFpbHRvOnBv
-c3RAYXJiZWlkZXJwYXJ0aWV0Lm5vP3N1YmplY3Q9TnloZXRzYnJldiIgKQ0KDQpNZWxkIGRlZyBh
-diBsaXN0ZW4gKCBocmVmPSJodHRwczovL255aGV0c2JyZXYuYXJiZWlkZXJwYXJ0aWV0Lm5vL3Av
-dS9mY240TEd2SWI0SkRGOVRtbURoa3pXNmNfck5vTnFFdlBTTjdIWlI3NUZVPSIgKQ0KDQpBcmJl
-aWRlcnBhcnRpZXQNCg0KWW91bmdzdG9yZ2V0IDJBDQoNCk9zbG8sIDAwMjgNCg0KTm9yd2F5Cl9f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fClY5ZnMtZGV2ZWxv
-cGVyIG1haWxpbmcgbGlzdApWOWZzLWRldmVsb3BlckBsaXN0cy5zb3VyY2Vmb3JnZS5uZXQKaHR0
-cHM6Ly9saXN0cy5zb3VyY2Vmb3JnZS5uZXQvbGlzdHMvbGlzdGluZm8vdjlmcy1kZXZlbG9wZXIK
+Ikke glem medlemstilbudet ditt
+
+Please use an email client supporting HTML email, or click this link to view the email online: 
+
+https://kappahl.customer.eclub.se/open/email/online/X6n-djhVtUCSzLHmAICdhg/IfmSmLDQakKbdK4hAOvsWQ/iyjrmd6xnkGN_rHsAFKTOA
+_______________________________________________
+V9fs-developer mailing list
+V9fs-developer@lists.sourceforge.net
+https://lists.sourceforge.net/lists/listinfo/v9fs-developer
