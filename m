@@ -2,165 +2,124 @@ Return-Path: <v9fs-developer-bounces@lists.sourceforge.net>
 X-Original-To: lists+v9fs-developer@lfdr.de
 Delivered-To: lists+v9fs-developer@lfdr.de
 Received: from lists.sourceforge.net (lists.sourceforge.net [216.105.38.7])
-	by mail.lfdr.de (Postfix) with ESMTPS id C9B5B98918E
-	for <lists+v9fs-developer@lfdr.de>; Sat, 28 Sep 2024 23:26:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id C2C2398A811
+	for <lists+v9fs-developer@lfdr.de>; Mon, 30 Sep 2024 17:02:09 +0200 (CEST)
 Received: from [127.0.0.1] (helo=sfs-ml-2.v29.lw.sourceforge.com)
 	by sfs-ml-2.v29.lw.sourceforge.com with esmtp (Exim 4.95)
 	(envelope-from <v9fs-developer-bounces@lists.sourceforge.net>)
-	id 1suewx-0003yq-Pu;
-	Sat, 28 Sep 2024 21:25:59 +0000
+	id 1svHuZ-0004qH-AL;
+	Mon, 30 Sep 2024 15:02:07 +0000
 Received: from [172.30.29.66] (helo=mx.sourceforge.net)
  by sfs-ml-2.v29.lw.sourceforge.com with esmtps (TLS1.2) tls
  TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384 (Exim 4.95)
- (envelope-from <return@mockupscreens.com>) id 1suews-0003y8-6b
+ (envelope-from <monatamang62@gmail.com>) id 1svHuY-0004q9-KA
  for v9fs-developer@lists.sourceforge.net;
- Sat, 28 Sep 2024 21:25:54 +0000
+ Mon, 30 Sep 2024 15:02:06 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=sourceforge.net; s=x; h=To:List-Unsubscribe:Subject:Message-ID:Mime-Version
- :From:Date:Content-Type:Sender:Reply-To:Cc:Content-Transfer-Encoding:
- Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
- Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:List-Id:
- List-Help:List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=m33vwXk2RhsOIYD7InHsSblS+6W0mPLWsx7Cqwp0Hkg=; b=HdQwnnFtlKARpV5vBxF/kJWWeS
- RYGYfof1SVODkLVfAys91gZ0aRY2yzckChqhuNz7SG3xLG+Mth9w0/A+SfDrzkHndCD6QVt9Zdcph
- JXjzBFNpP+XUXm2+i6Qq9EC3h58OJoz39ZILkXYvNTKusxo4dRJK4mdqAl/F5FZ/wAyU=;
+ d=sourceforge.net; s=x; h=Content-Type:MIME-Version:Date:Subject:To:Reply-To:
+ Message-ID:From:Sender:Cc:Content-Transfer-Encoding:Content-ID:
+ Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
+ :Resent-Message-ID:In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:
+ List-Subscribe:List-Post:List-Owner:List-Archive;
+ bh=MxitZxgmvoGPY/D0MWsatY/SG1INnyxTi18mvHYSZYE=; b=J1RtpjdQ3jqI3pQrY9QClIfJYP
+ 0WEhxuk4Pf4z3+qf5YF9L6wBU2QdDsrm2IwtP4ajVjjhmJ4zO0VDu/DmsZl+QrwuBkAmy8VIgSyH1
+ SrRdGCaX7pLQbs9IRWkT1ztwroZIVGeRP0Z7K8L+n60yh5FHaTXu1JerkMu3bVJx3i+A=;
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  ;
- h=To:List-Unsubscribe:Subject:Message-ID:Mime-Version:From:Date:
- Content-Type:Sender:Reply-To:Cc:Content-Transfer-Encoding:Content-ID:
- Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
- :Resent-Message-ID:In-Reply-To:References:List-Id:List-Help:List-Subscribe:
- List-Post:List-Owner:List-Archive;
- bh=m33vwXk2RhsOIYD7InHsSblS+6W0mPLWsx7Cqwp0Hkg=; b=QYlO2t6cLODsXRHl5RlupfAh6D
- RVupb2vceySiyb2hJ8K9gg9BrntdHYdlpk9L2r6GgfUiZhD1xsb8olT4hq8TH/h/PKpui7ONPWB7V
- sACXsECobs6xUM4CFWKLevJdkvgxeUiRE0AJL5F3cv8B2OWUUokni1YIsB8yWCFHNziU=;
-Received: from [38.129.16.74] (helo=mockupscreens.com)
- by sfi-mx-2.v28.lw.sourceforge.com with esmtp (Exim 4.95)
- id 1suewr-0000Yf-9L for v9fs-developer@lists.sourceforge.net;
- Sat, 28 Sep 2024 21:25:54 +0000
-X-Spam-Flag: NO
-Received-SPF: pass (mail127c60.megamailservers.eu: domain of
- bounces+22073510-e539-kaander2=online.no@em6709.kappahl.com designates
- 167.89.106.248 as permitted sender) receiver=mail127c60.megamailservers.eu;
- client-ip=167.89.106.248; helo=o72.ptr884.email.eclub.se;
- envelope-from=bounces+22073510-e539-kaander2=online.no@em6709.kappahl.com;
- x-software=spfmilter 2.001 http://www.acme.com/software/spfmilter/ with
- libspf2-1.2.10; 
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail127c60.megamailservers.eu
- 48F53SQd098070
-Authentication-Results: mail127c60.megamailservers.eu;
- dmarc=pass (p=none dis=none) header.from=kappahl.com
-Authentication-Results: mail127c60.megamailservers.eu; spf=pass
- smtp.mailfrom=bounces+22073510-e539-kaander2=online.no@em6709.kappahl.com
-X-Envelope-From: bounces+22073510-e539-kaander2=online.no@em6709.kappahl.com
-Authentication-Results: mail127c60.megamailservers.eu;
- dkim=pass (2048-bit key) header.d=kappahl.com header.i=@kappahl.com
- header.b="fknsOsjy"
-Received: from o72.ptr884.email.eclub.se (o72.ptr884.email.eclub.se
- [167.89.106.248])
- by mail127c60.megamailservers.eu (8.14.9/8.13.1) with ESMTP id 48F53SQd098070
- (version=TLSv1/SSLv3 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NO)
- for <kaander2@online.no>; Sun, 15 Sep 2024 05:03:32 +0000
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kappahl.com;
- h=content-type:from:mime-version:subject:list-unsubscribe-post:
- list-unsubscribe:to:cc:content-type:from:subject:to;
- s=s1; bh=fASdpyKxVhkeAovCa4E1ZDnF6T1JJ1Pz6ZqT5Sqail8=;
- b=fknsOsjyvLJksnKJhpucRfjH+IUzLyhCszVSF71GnhUcNHulczLZ0cTXI+FhVe7PDJm4
- B5YUCMCJFzPNeFEigswbl8ATZmXcBFPy3MzSaFjJKpg9XCotGF1n6tKs0JBLJxx2ex9lO7
- bPGYuymeusS0vwRgYfCOa0VGP6q7KY7Pqc3z8Q3bS9DRFFowEucCatDFLzhcfmOj8bcCtX
- DQ6+WQy2/F0tKA/pLXE2DYVsyL9G/v/0MUYEyqPBR9qxT64lJxm7YtEJGnLaXJfq2DuiDz
- fjk83fBwITeQUg6m/Sf7nfU2dFYvjUvsSjDPLnZGxla5rNYcHujftlI31v2cTv/g==
-Received: by recvd-7744477dd-q5c5l with SMTP id
- recvd-7744477dd-q5c5l-1-66E66A30-1
- 2024-09-15 05:01:36.057546548 +0000 UTC m=+212637.579878800
-Received: from MjIwNzM1MTA (unknown) by geopod-ismtpd-5 (SG) with HTTP
- id 88yZSzx8Tx6hmBkmKmLI6g Sun, 15 Sep 2024 05:01:36.018 +0000 (UTC)
-Date: Sat, 28 Sep 2024 21:13:47 +0000
-From: Tractor Supply Surprise <noreply@kappahl.com>
-Mime-Version: 1.0
-Message-ID: <459571603288yZSzx8Tx6hmBkmKmLI6g@geopod-ismtpd-5>
-List-Unsubscribe-Post: List-Unsubscribe=One-Click
-X-Voyado-ProcessBatch: 56ede9c7e83245aeab8045bae8cafb84
-X-Voyado-EmailBatch: a7fcc879-36ae-416d-b578-32ff36f41842
-X-Voyado-MessageId: 76fea95f-5538-40b5-92cc-b1e600809d86
-X-SG-EID: =?us-ascii?Q?u001=2EUInZnJI2qDm=2FtC+vXa6Fl6dWmNmjAs62RvIqD3omn6kejAeSHfe8SyEys?=
- =?us-ascii?Q?2cWbifUZHIUlITdW4gAgPEA68n75qdlzP7G0zD+?=
- =?us-ascii?Q?zvo=2Fi=2FtP3PuGV5PraAHrGhpYof1cy+NYoMz2Mhy?=
- =?us-ascii?Q?PYq09ALHDio3djgVncL37KO3acOpy4=2FJboTC0pJ?=
- =?us-ascii?Q?GdxuFg76ehTzHCu8MrvbL9VxkJrE0wotv5KBabO?=
- =?us-ascii?Q?laEIr2yjK+Y3LPbgjFQ6OQ=3D?=
-X-SG-ID: =?us-ascii?Q?u001=2ESdBcvi+Evd=2FbQef8eZF3BpTL9BgbK5wfSJMJGMsmprA07JZ6jYu8gxUof?=
- =?us-ascii?Q?WzjgGHhijVJyPpLoORLBZ2UiPbF5D2EcTCO14Ec?=
- =?us-ascii?Q?5=2FKzuZKYafnm3lckzeEoJAMRslQQUhsME0GB55j?=
- =?us-ascii?Q?QKtXI0Xbv40QNDlqN19hI6SU+w9sonhFoD=2FYnKr?=
- =?us-ascii?Q?p=2Fuz2OzWM7t9d1pdaU7t=2Fs5zolJZDISgvIh1HLT?=
- =?us-ascii?Q?hLSJ+zYHN=2FA3iQrM1UPWEYJkUI5J7W2d6u6rFzU?=
- =?us-ascii?Q?pZY4hzEh5gBtr2RGg9TvSIN2SO84UinrLN0kSke?=
- =?us-ascii?Q?GjrkRnAw34j05AaDSzEJnkOoZgcJ+SSOVJFBGka?=
- =?us-ascii?Q?bNsEOwin7u4nLe1oLYqDyvyqeazJSGpJ961HRgb?=
- =?us-ascii?Q?cbqbgzk42R22oOTT4Cbmfi6ganoq=2FwYW=2Fvz00Yg?=
- =?us-ascii?Q?hiBSZQIyeuGOpNU+0uQ=3D?=
+ h=Content-Type:MIME-Version:Date:Subject:To:Reply-To:Message-ID:From:Sender
+ :Cc:Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+ Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:
+ References:List-Id:List-Help:List-Unsubscribe:List-Subscribe:List-Post:
+ List-Owner:List-Archive; bh=MxitZxgmvoGPY/D0MWsatY/SG1INnyxTi18mvHYSZYE=; b=Y
+ SP87LgqZydPT2SpsDXg90jMLr1CaVurxnQyVnNoGOfLtDhMxojDs/eWj4+ZFkLKoOhrHYpNUpF6xf
+ e2KE2Ga7Wf+0CW+CnSyXO/Ff7ZfdlejzwFKvIaX5xvqBfGgl/T6Wm1KOVJ82OTZ4w1yn2Pfo4ChuX
+ 90xgJWD2MmWiRJtI=;
+Received: from mail-pf1-f196.google.com ([209.85.210.196])
+ by sfi-mx-2.v28.lw.sourceforge.com with esmtps
+ (TLS1.2:ECDHE-RSA-AES128-GCM-SHA256:128) (Exim 4.95)
+ id 1svHuY-0008Ei-1K for v9fs-developer@lists.sourceforge.net;
+ Mon, 30 Sep 2024 15:02:06 +0000
+Received: by mail-pf1-f196.google.com with SMTP id
+ d2e1a72fcca58-7178df70f28so3525748b3a.2
+ for <v9fs-developer@lists.sourceforge.net>;
+ Mon, 30 Sep 2024 08:02:06 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=gmail.com; s=20230601; t=1727708515; x=1728313315; darn=lists.sourceforge.net;
+ h=mime-version:date:subject:to:reply-to:message-id:from:from:to:cc
+ :subject:date:message-id:reply-to;
+ bh=MxitZxgmvoGPY/D0MWsatY/SG1INnyxTi18mvHYSZYE=;
+ b=L7uirqIwDqjJfeQdTul7uAvRBW6EX7l3pwvllW5wvLrVavkLG5dnGYs7RY0QMaoSxC
+ IJdplWAqgXrWORLQBWEZ5upRZcKeVlnEFfqs/lWQCGxDllRB/UxE1W7nkva8NJfEk2Zo
+ KOjU/u3pPsKX2XHpCnczrgD3VxTufqABCDpQgai8WDO9m5EjqD0cv9DExfGlG/y33PvR
+ utRvqHT5OKF1hf3jH961tRhK7eJ3OcSript3GA1tNvrvdORZuciqiWnANligV4mH4/aY
+ nrJiba6LRLZjCsi661UaIKEsDbey83G+NdPgwZ7UzgRgGPcVYszEkwjyiTFES4oTUQ6S
+ YLhQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1727708515; x=1728313315;
+ h=mime-version:date:subject:to:reply-to:message-id:from
+ :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+ bh=MxitZxgmvoGPY/D0MWsatY/SG1INnyxTi18mvHYSZYE=;
+ b=mUGbtDJyr74ijGt42hpZsFbA6gGWwEk9m9JdAmF3rvJgovFYzN0UO2sAf9B/hoZIAL
+ UDSuGXp8inBHzH7z4Fp4kRxOthoi4JTpcecG0KuNqwkLuZU4S6vhuVLC/hu7XYsVQxzP
+ PIurADDQKjauDI1dHoT6yVYfW8GkfG0pzFaQhcsTZIyYKODwHlP4ehGUqDYjTENxiir3
+ +bB9zk87y/oeKuwlVa+YaeJrkPK4HecQB7pBpU8hlbzGgS4JbiKCvPFxQPfP8FTwAbBU
+ 6Tslvg+pZuimbQjQP62NiOgLJChwuR13tWRGncq5hxwW+Tf2DnT1/x/Yr3Z9C3Q+w12s
+ gbDA==
+X-Gm-Message-State: AOJu0YyC14HPrLTtwcNewJoTCl1O1EMxxL86RWj7wvwq7tsuMwglP3Yh
+ m5s3jQMZ0tmB53XhWVzrMYbxYq1mJ9baLFxt3CexO0+O//CEUsBeD/b5PDjL
+X-Google-Smtp-Source: AGHT+IExyEJdptaSioKgtQ5ioZPXjtCkj1pxw/6wsDukuHnimxUphHphQac4GWjz2W64UU2/Kid05A==
+X-Received: by 2002:a05:6a00:3e1c:b0:719:2046:5d76 with SMTP id
+ d2e1a72fcca58-71b2607ae90mr19521668b3a.23.1727708514965; 
+ Mon, 30 Sep 2024 08:01:54 -0700 (PDT)
+Received: from [103.67.163.162] ([103.67.163.162])
+ by smtp.gmail.com with ESMTPSA id
+ d2e1a72fcca58-71b265160c8sm6285052b3a.126.2024.09.30.08.01.53
+ for <v9fs-developer@lists.sourceforge.net>
+ (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+ Mon, 30 Sep 2024 08:01:54 -0700 (PDT)
+From: Michelle Fangman <monatamang62@gmail.com>
+X-Google-Original-From: Michelle Fangman <michfangman@outlook.com>
+Message-ID: <d41083772b1f40a1ebaa9f8e125b20f78457314d9944158b9026c0cc2cd82d89@mx.google.com>
 To: v9fs-developer@lists.sourceforge.net
-X-Entity-ID: u001.4hIIw1hDER1r7eo7+Nyq+g==
-X-VADE-SPAMSTATE: commercial:mce
-X-VADE-SPAMSCORE: 17
-X-VADE-SPAMCAUSE: gggruggvucftvghtrhhoucdtuddrgeeftddrudekuddgledvucetufdoteggodetrfdotffvucfrrhhofhhilhgvmecujffquffvqffrkfetpdfgpfggqdeviedtnecuuegrihhlohhuthemuceftddunecundfotefknffkpffiucdludejmdenucfjughrpegtfffhggfkuffjvfesrgdttdertddtjeenucfhrhhomhepmfgrphhprghhlhcuoehnohhrvghplhihsehkrghpphgrhhhlrdgtohhmqeenucggtffrrghtthgvrhhnpeejhedvueejkeduvdegieegvdekfedugeehlefggeejgeetkefhleeiueekfedtkeenucffohhmrghinhepvggtlhhusgdrshgvnecukfhppeduieejrdekledruddtiedrvdegkeenucevlhhushhtvghrufhiiigvpeehleenucfrrghrrghmpehinhgvthepudeijedrkeelrddutdeirddvgeekpdhhvghlohepohejvddrphhtrhekkeegrdgvmhgrihhlrdgvtghluhgsrdhsvgdpmhgrihhlfhhrohhmpegsohhunhgtvghsoddvvddtjeefhedutddqvgehfeelqdhkrggrnhguvghrvdepohhnlhhinhgvrdhnohesvghmieejtdelrdhkrghpphgrhhhlrdgtohhmpdhnsggprhgtphhtthhopedupdhrtghpthhtohepkhgrrghnuggvrhdvsehonhhlihhnvgdrnhho
-X-Rspamd-Status: No, score=2.09
-X-Rspamd-Result: default: False [2.09 / 6.00]; URI_COUNT_ODD(1.00)[21];
- DMARC_POLICY_ALLOW(-0.50)[kappahl.com,none];
- MID_RHS_NOT_FQDN(0.50)[]; MV_CASE(0.50)[];
- R_PARTS_DIFFER(0.50)[74.9%];
- FORGED_SENDER(0.30)[noreply@kappahl.com,bounces@em6709.kappahl.com];
- R_DKIM_ALLOW(-0.20)[kappahl.com:s=s1];
- MANY_INVISIBLE_PARTS(0.20)[3];
- R_SPF_ALLOW(-0.20)[+ip4:167.89.106.248:c];
- MIME_GOOD(-0.10)[multipart/alternative,text/plain];
- ZERO_FONT(0.10)[1]; HAS_LIST_UNSUB(-0.01)[];
- FROM_HAS_DN(0.00)[]; ARC_NA(0.00)[];
- SUBJECT_HAS_EXCLAIM(0.00)[]; RCVD_TLS_LAST(0.00)[];
- DKIM_TRACE(0.00)[kappahl.com:+];
- TAGGED_FROM(0.00)[22073510-e539-kaander2=online.no];
- RCVD_COUNT_TWO(0.00)[2];
- FROM_NEQ_ENVFROM(0.00)[noreply@kappahl.com,bounces@em6709.kappahl.com];
- TO_MATCH_ENVRCPT_ALL(0.00)[]; TO_DN_NONE(0.00)[];
- MISSING_XM_UA(0.00)[];
- ASN(0.00)[asn:11377, ipnet:167.89.96.0/20, country:US];
- MIME_TRACE(0.00)[0:+,1:+,2:~]; RCPT_COUNT_ONE(0.00)[1]
-X-Origin-Country: US
-X-Origin-ASN: 11377
-X-WHL: LR
-X-Spam-Score: 4.3 (++++)
+Date: Mon, 30 Sep 2024 11:01:50 -0400
+MIME-Version: 1.0
+X-Spam-Score: 3.4 (+++)
 X-Spam-Report: Spam detection software,
- running on the system "util-spamd-1.v13.lw.sourceforge.com", 
+ running on the system "util-spamd-2.v13.lw.sourceforge.com", 
  has NOT identified this incoming email as spam.  The original
  message has been attached to this so you can view it or label
  similar future email.  If you have any questions, see
  the administrator of that system for details.
- Content preview:  Ikke glem medlemstilbudet ditt Please use an email client
- supporting HTML email,
- or click this link to view the email online:
- https://kappahl.customer.eclub.se/open/email/online/X6n-djhVtUCSzLHmAICdhg/IfmSmLDQakKbdK4hAOvsWQ/iyjrmd6xnkGN_rHsAFKTOA
- Content analysis details:   (4.3 points, 6.0 required)
+ Content preview:  Hello, I'm offering my late husband's Yamaha Piano to any
+ music enthusiast who may appreciate it. If you or someone you know might be
+ interested in receiving this instrument for free, please feel free to rea
+ [...] Content analysis details:   (3.4 points, 6.0 required)
  pts rule name              description
  ---- ---------------------- --------------------------------------------------
- 3.6 RCVD_IN_SBL_CSS        RBL: Received via a relay in Spamhaus SBL-CSS
- [38.129.16.74 listed in zen.spamhaus.org]
- -0.9 RCVD_IN_MSPIKE_H2      RBL: Average reputation (+2)
- [38.129.16.74 listed in wl.mailspike.net]
- -0.0 SPF_HELO_PASS          SPF: HELO matches SPF record
- 0.0 HTML_MESSAGE           BODY: HTML included in message
- 0.1 HTML_TAG_BALANCE_BODY  BODY: HTML has unbalanced "body" tags
- 0.1 MIME_HTML_MOSTLY       BODY: Multipart message mostly text/html MIME
- 0.0 AC_BR_BONANZA RAW: Too many newlines in a row... spammy template
+ -0.0 RCVD_IN_DNSWL_NONE     RBL: Sender listed at https://www.dnswl.org/,
+ no trust [209.85.210.196 listed in list.dnswl.org]
+ 0.0 SPF_HELO_NONE          SPF: HELO does not publish an SPF Record
+ -0.0 SPF_PASS               SPF: sender matches SPF record
+ 0.2 FREEMAIL_ENVFROM_END_DIGIT Envelope-from freemail username ends
+ in digit [monatamang62[at]gmail.com]
+ 0.0 FREEMAIL_FROM          Sender email is commonly abused enduser mail
+ provider [monatamang62[at]gmail.com]
+ -0.1 DKIM_VALID_AU          Message has a valid DKIM or DK signature from
+ author's domain
+ -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
  0.1 DKIM_SIGNED            Message has a DKIM or DK signature, not necessarily
  valid
- 0.1 DKIM_INVALID           DKIM or DK signature exists, but is not valid
- 1.3 RDNS_NONE Delivered to internal network by a host with no rDNS
- 0.0 HOSTED_IMG_MULTI_PUB_01 Multiple hosted images at public site
-X-Headers-End: 1suewr-0000Yf-9L
-X-Content-Filtered-By: Mailman/MimeDel 2.1.21
-Subject: [V9fs-developer] Final Notice Coming for a Yeti Crossroads Backpack
- Reward
+ -0.1 DKIM_VALID_EF          Message has a valid DKIM or DK signature from
+ envelope-from domain 2.0 PYZOR_CHECK            Listed in Pyzor
+ (https://pyzor.readthedocs.io/en/latest/)
+ 0.0 RCVD_IN_MSPIKE_H3      RBL: Good reputation (+3)
+ [209.85.210.196 listed in wl.mailspike.net]
+ 0.0 RCVD_IN_MSPIKE_WL      Mailspike good senders
+ 0.4 FSL_BULK_SIG           Bulk signature with no Unsubscribe
+ 1.0 FREEMAIL_REPLYTO       Reply-To/From or Reply-To/body contain
+ different freemails
+X-Headers-End: 1svHuY-0008Ei-1K
+Subject: [V9fs-developer] Baby Grand Piano  09/30
 X-BeenThere: v9fs-developer@lists.sourceforge.net
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -173,15 +132,19 @@ List-Post: <mailto:v9fs-developer@lists.sourceforge.net>
 List-Help: <mailto:v9fs-developer-request@lists.sourceforge.net?subject=help>
 List-Subscribe: <https://lists.sourceforge.net/lists/listinfo/v9fs-developer>, 
  <mailto:v9fs-developer-request@lists.sourceforge.net?subject=subscribe>
+Reply-To: michfangman@outlook.com
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: v9fs-developer-bounces@lists.sourceforge.net
 
-Ikke glem medlemstilbudet ditt
+Hello,
 
-Please use an email client supporting HTML email, or click this link to view the email online: 
+I'm offering my late husband's Yamaha Piano to any music enthusiast who may appreciate it. If you or someone you know might be interested in receiving this instrument for free, please feel free to reach out to me.
 
-https://kappahl.customer.eclub.se/open/email/online/X6n-djhVtUCSzLHmAICdhg/IfmSmLDQakKbdK4hAOvsWQ/iyjrmd6xnkGN_rHsAFKTOA
+Warm regards,
+Michelle 
+
+
 _______________________________________________
 V9fs-developer mailing list
 V9fs-developer@lists.sourceforge.net
