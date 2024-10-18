@@ -2,88 +2,77 @@ Return-Path: <v9fs-developer-bounces@lists.sourceforge.net>
 X-Original-To: lists+v9fs-developer@lfdr.de
 Delivered-To: lists+v9fs-developer@lfdr.de
 Received: from lists.sourceforge.net (lists.sourceforge.net [216.105.38.7])
-	by mail.lfdr.de (Postfix) with ESMTPS id A00A799FA73
-	for <lists+v9fs-developer@lfdr.de>; Tue, 15 Oct 2024 23:48:05 +0200 (CEST)
-Received: from [127.0.0.1] (helo=sfs-ml-1.v29.lw.sourceforge.com)
-	by sfs-ml-1.v29.lw.sourceforge.com with esmtp (Exim 4.95)
+	by mail.lfdr.de (Postfix) with ESMTPS id CC24C9A47CA
+	for <lists+v9fs-developer@lfdr.de>; Fri, 18 Oct 2024 22:22:42 +0200 (CEST)
+Received: from [127.0.0.1] (helo=sfs-ml-4.v29.lw.sourceforge.com)
+	by sfs-ml-4.v29.lw.sourceforge.com with esmtp (Exim 4.95)
 	(envelope-from <v9fs-developer-bounces@lists.sourceforge.net>)
-	id 1t0pOc-0004eV-RO;
-	Tue, 15 Oct 2024 21:48:03 +0000
+	id 1t1tUe-0008EX-0x;
+	Fri, 18 Oct 2024 20:22:40 +0000
 Received: from [172.30.29.66] (helo=mx.sourceforge.net)
- by sfs-ml-1.v29.lw.sourceforge.com with esmtps (TLS1.2) tls
+ by sfs-ml-4.v29.lw.sourceforge.com with esmtps (TLS1.2) tls
  TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384 (Exim 4.95)
- (envelope-from <mailmaster8@glow55.co.uk>) id 1t0pOb-0004eF-Bb
+ (envelope-from <info@empal.com>) id 1t1tUb-0008EP-N8
  for v9fs-developer@lists.sourceforge.net;
- Tue, 15 Oct 2024 21:48:02 +0000
+ Fri, 18 Oct 2024 20:22:37 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=sourceforge.net; s=x; h=Content-Transfer-Encoding:Content-Type:MIME-Version
- :Date:Subject:To:From:Message-ID:Sender:Reply-To:Cc:Content-ID:
- Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
- :Resent-Message-ID:In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:
- List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=1q2Q6VpGLLMJ8or2hhC7r7h8QMGcbH9lzc+ExXtdtX0=; b=Wu+RHoDuENnVWzQqVDzyji/6fR
- EQU+2eidvH64S01YDl86WGoUGpPGCOohUudtEebwaUat8uedlh0hpVYfezREbzyClDhf+QLMt83Jk
- 0Aik8jOIYOAdjZzp48u3xzeTOgLe7ysPaf7Ch5xR9qqcLAu1zCMEzWK2xrfem064tGnM=;
+ d=sourceforge.net; s=x; h=Message-ID:Reply-To:Date:From:To:Subject:
+ Content-Description:Content-Transfer-Encoding:MIME-Version:Content-Type:
+ Sender:Cc:Content-ID:Resent-Date:Resent-From:Resent-Sender:Resent-To:
+ Resent-Cc:Resent-Message-ID:In-Reply-To:References:List-Id:List-Help:
+ List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
+ bh=oiNjubdxM8Fo5U6sMr/hJnvRp59okrNiJ2gys5p7ick=; b=iezBwzUNJnvdisefodRmdoHefp
+ tcK3Vcfytaj+XGUGNBzmgQmWSD9Nr2McLyWb4FCvxldCbcimGUZIGd2yrFiGP5Svrhf/yTgWBkGe7
+ x2en0QvHjRNnC/Yt5p8c+WbUNnvDiz0K5KrhxUHsTqxoiwaKrc6ds6q734xVK2+fggCk=;
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  ;
- h=Content-Transfer-Encoding:Content-Type:MIME-Version:Date:Subject:To:From:
- Message-ID:Sender:Reply-To:Cc:Content-ID:Content-Description:Resent-Date:
- Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:
- References:List-Id:List-Help:List-Unsubscribe:List-Subscribe:List-Post:
- List-Owner:List-Archive; bh=1q2Q6VpGLLMJ8or2hhC7r7h8QMGcbH9lzc+ExXtdtX0=; b=Q
- /MSlObij/aPbXM52VPVKzh7i+qnXydkFq5BBBdu/O0l/8KLYW7PltDR93Bob0Oxl779LbDMRL8j2n
- n097E3y/gTvAI1mjOIK8TSZpAWiKvkWEnlIztWMoYcM8REIBrpnwZX9Y73ge88veZENtSCWbPo5Tn
- SwqGLRs+WK7CSDbU=;
-Received: from www11656m.sakura.ne.jp ([153.127.187.56])
- by sfi-mx-2.v28.lw.sourceforge.com with esmtps
- (TLS1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.95)
- id 1t0pOa-0001yb-PT for v9fs-developer@lists.sourceforge.net;
- Tue, 15 Oct 2024 21:48:02 +0000
-Received: from tzbenmv.in ([223.122.225.152]) (authenticated bits=0)
- by www11656m.sakura.ne.jp (8.16.1/8.16.1) with ESMTPSA id 49FKpZLw075909
- (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NO)
- for <v9fs-developer@lists.sourceforge.net>;
- Wed, 16 Oct 2024 05:51:37 +0900 (JST)
- (envelope-from mailmaster8@glow55.co.uk)
-Message-ID: <42904d7840f5d9edd0742c872b5315ef@kitanaka.co.jp>
-From: =?utf-8?Q?=E3=82=A2=E3=82=A4=E3=83=95=E3=83=AB=E6=A0=AA=E5=BC=8F=E4=BC=9A=E7=A4=BE?=
- <kitanaka@kitanaka.co.jp>
-To: "=?utf-8?Q?v9fs-developer@lists.sourceforge.net?="
- <v9fs-developer@lists.sourceforge.net>
-Date: Tue, 15 Oct 2024 20:51:35 +0000
-X-Priority: 3
-X-Mailer: Coremail2.0 Copyright Tebie Ltd 5622
+ h=Message-ID:Reply-To:Date:From:To:Subject:Content-Description:
+ Content-Transfer-Encoding:MIME-Version:Content-Type:Sender:Cc:Content-ID:
+ Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+ In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
+ List-Post:List-Owner:List-Archive;
+ bh=oiNjubdxM8Fo5U6sMr/hJnvRp59okrNiJ2gys5p7ick=; b=KAd0KT9y+zEH9rD20ThGoMEfrm
+ QT0MrkcZQGKg7BDpaxXf6v7TFEATDo5Ym66FnA7eu0tpXWwkj7EIUAgmJ5jB2Vp0zbYVEd3WFd1kH
+ ahwelw8R0pT6vJkgvowyckGrEjYcspgKnHnEH9h0cqlEne723MKQ+ytywZTl0Awg/HtI=;
+Received: from [107.173.177.143] (helo=empal.com)
+ by sfi-mx-2.v28.lw.sourceforge.com with esmtp (Exim 4.95)
+ id 1t1tUa-0007cZ-Ko for v9fs-developer@lists.sourceforge.net;
+ Fri, 18 Oct 2024 20:22:37 +0000
+Received: from [198.12.90.231] (account info@empal.com [198.12.90.231]
+ verified) by empal.com (CommuniGate Pro SMTP 6.2.14 _community_)
+ with ESMTPSA id 524522 for v9fs-developer@lists.sourceforge.net;
+ Fri, 18 Oct 2024 22:22:32 +0200
 MIME-Version: 1.0
-X-Spam-Score: 3.9 (+++)
-X-Spam-Report: Spam detection software, running on the system "util-spamd-2.v13.lw.sourceforge.com",
- has NOT identified this incoming email as spam.  The original
+Content-Description: Mail message body
+To: v9fs-developer@lists.sourceforge.net
+From: "Michelle@w-richard.com"<info@empal.com>
+Date: Fri, 18 Oct 2024 22:22:28 +0200
+Message-ID: <auto-000000524522@empal.com>
+X-Spam-Score: 7.0 (+++++++)
+X-Spam-Report: Spam detection software,
+ running on the system "util-spamd-2.v13.lw.sourceforge.com", 
+ has identified this incoming email as possible spam.  The original
  message has been attached to this so you can view it or label
  similar future email.  If you have any questions, see
  the administrator of that system for details.
- 
- Content preview:  いつもアイフルをご利用いただき、誠にありがとうございます。
-    お得なニュースをお届けします！今ログインしていただくと、即時にご利用中の貸�
-    [...] 
- 
- Content analysis details:   (3.9 points, 6.0 required)
- 
-  pts rule name              description
+ Content preview:  Hello, I am Michelle Franzen via European investors group,
+ We represent investors in regulatory discussions and constructively engage
+ with listed companies. that offers loans and credit facilities at [...] 
+ Content analysis details:   (7.0 points, 6.0 required)
+ pts rule name              description
  ---- ---------------------- --------------------------------------------------
-  0.0 URIBL_PH_SURBL         Contains an URL listed in the PH SURBL blocklist
-                             [URIs: liamma.com]
-  1.9 URIBL_ABUSE_SURBL      Contains an URL listed in the ABUSE SURBL
-                             blocklist
-                             [URIs: liamma.com]
-  1.7 URIBL_BLACK            Contains an URL listed in the URIBL blacklist
-                             [URIs: liamma.com]
-  0.0 SPF_HELO_NONE          SPF: HELO does not publish an SPF Record
- -0.0 SPF_PASS               SPF: sender matches SPF record
-  0.2 HEADER_FROM_DIFFERENT_DOMAINS From and EnvelopeFrom 2nd level
-                             mail domains are different
-X-Headers-End: 1t0pOa-0001yb-PT
-Subject: [V9fs-developer] =?utf-8?b?44CQ6ZmQ5a6a54m55YW444CR6LK45LuY5p6g?=
-	=?utf-8?b?44Ki44OD44OX77yL6LGq6I+v6LOe5ZOB44GM5b2T44Gf44KL44OB44Oj?=
-	=?utf-8?b?44Oz44K577yB?=
+ 0.5 SUBJ_ALL_CAPS          Subject is all capitals
+ 0.9 SPF_HELO_SOFTFAIL      SPF: HELO does not match SPF record (softfail)
+ 0.2 FREEMAIL_REPLYTO_END_DIGIT Reply-To freemail username ends in
+ digit [michellefranzen5[at]gmail.com]
+ 1.0 SPF_SOFTFAIL           SPF: sender does not match SPF record (softfail)
+ 0.0 T_FROM_MULTI_NORDNS    Multiple From addresses + no rDNS
+ 0.0 FROM_MISSPACED         From: missing whitespace
+ 1.8 FROM_MISSP_REPLYTO     From misspaced, has Reply-To
+ 2.5 FREEMAIL_FORGED_REPLYTO Freemail in Reply-To, but not From
+ 0.0 T_PDS_FROM_2_EMAILS    From header has multiple different addresses
+X-Headers-End: 1t1tUa-0007cZ-Ko
+Subject: [V9fs-developer] APPROACHABLE BUSINESS PROPOSAL
 X-BeenThere: v9fs-developer@lists.sourceforge.net
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -96,32 +85,19 @@ List-Post: <mailto:v9fs-developer@lists.sourceforge.net>
 List-Help: <mailto:v9fs-developer-request@lists.sourceforge.net?subject=help>
 List-Subscribe: <https://lists.sourceforge.net/lists/listinfo/v9fs-developer>, 
  <mailto:v9fs-developer-request@lists.sourceforge.net?subject=subscribe>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Reply-To: michellefranzen5@gmail.com
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: v9fs-developer-bounces@lists.sourceforge.net
 
-44GE44Gk44KC44Ki44Kk44OV44Or44KS44GU5Yip55So44GE44Gf44Gg44GN44CB6Kqg44Gr44GC
-44KK44GM44Go44GG44GU44GW44GE44G+44GZ44CCIA0K44GK5b6X44Gq44OL44Ol44O844K544KS
-44GK5bGK44GR44GX44G+44GZ77yB5LuK44Ot44Kw44Kk44Oz44GX44Gm44GE44Gf44Gg44GP44Go
-44CB5Y2z5pmC44Gr44GU5Yip55So5Lit44Gu6LK45LuY5p6g44KS44Ki44OD44OX44GZ44KL44OB
-44Oj44Oz44K544Gn44GZ44CC44GC44Gq44Gf44Gu6ZmQ5bqm6aGN44GM44GZ44GQ44Gr44Ki44OD
-44OX44GV44KM44CB44GV44KJ44Gr5L6/5Yip44Gr44GK6YeR44KS5YCf44KK44KL44GT44Go44GM
-44Gn44GN44G+44GZ44CCDQoNCuWKoOOBiOOBpuOAgeixquiPr+aKvemBuOOBq+WPguWKoOOBmeOC
-i+ODgeODo+ODs+OCueOCguOBguOCiuOBvuOBme+8geODreOCsOOCpOODs+OBl+OBpuOBlOW/nOWL
-n+OBhOOBn+OBoOOBj+OBoOOBkeOBp+OAgeS7peS4i+OBrue0oOaVteOBquiznuWTgeOBjOW9k+OB
-n+OCi+OBi+OCguOBl+OCjOOBvuOBm+OCk++8mg0K4oCiIOacgOaWsGlQaG9uZSAxNiBQcm8gTWF4
-77yINTEyR0LvvIkgDQrigKIg44Oa44Ki44Gn6KGM44GP6LGq6I+v44Oq44K+44O844OI5peF6KGM
-5Yi4IA0K4oCiIEFwcGxlIFdhdGNoIFVsdHJhDQrigKIg6auY57Sa44Kw44Or44Oh5L2T6aiT44OH
-44Kj44OK44O8IA0K4oCiIDEw5LiH5YaG5YiG44Gu44OH44K444K/44Or44Ku44OV44OI44Kr44O8
-44OJDQoNCuOBk+OBruOCreODo+ODs+ODmuODvOODs+OBr+acrOaXpeOBi+OCiTMx5pel44G+44Gn
-6ZmQ5a6a77yB5pep6YCf44Ot44Kw44Kk44Oz44GX44Gm54m55YW444KS44Ky44OD44OI44GX44G+
-44GX44KH44GG77yBDQoNCuKWvOS7iuOBmeOBkOODreOCsOOCpOODs+OBl+OBpuW/nOWLn+OBmeOC
-iyAgDQpodHRwczovL2xpYW1tYS5jb20vYm9ycm93Lmh0bWw/bG9naW49Z2lmdDIzODYNCg0K4oC7
-5pys44Kt44Oj44Oz44Oa44O844Oz44GvMjAyNOW5tDEw5pyIMTHml6XjgYvjgokyMDI05bm0MTDm
-nIgzMeaXpeOBvuOBp+OBruacn+mWk+mZkOWumuOBp+OBmeOAgg0K4oC75oq96YG444Gv5YWs5q2j
-44Gr6KGM44KP44KM44CB5b2T6YG457WQ5p6c44Gv5b2T6YG46ICF44Gr44Gu44G/6YCa55+l44GV
-44KM44G+44GZ44CCICANCg0K44Ki44Kk44OV44Or5qCq5byP5Lya56S+DQrCqSBBSUZVTCBDT1JQ
-T1JBVElPTi4gQWxsIFJpZ2h0cyBSZXNlcnZlZC4KCgoKX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX18KVjlmcy1kZXZlbG9wZXIgbWFpbGluZyBsaXN0ClY5ZnMt
-ZGV2ZWxvcGVyQGxpc3RzLnNvdXJjZWZvcmdlLm5ldApodHRwczovL2xpc3RzLnNvdXJjZWZvcmdl
-Lm5ldC9saXN0cy9saXN0aW5mby92OWZzLWRldmVsb3Blcgo=
+Hello,
+ I am Michelle Franzen via European investors group, We represent investors in regulatory discussions and constructively engage with listed companies. that offers loans and credit facilities at a small interest rate for ten to Fifteen years and a moratorium of one year .They also finance profit-oriented projects and businesses. They understand that each business is unique, so let us know what you need for your business, and they will tailor our financing to suit your specific requirements.
+ Regards,
+Michelle Franzen
+Consultant.
+
+
+_______________________________________________
+V9fs-developer mailing list
+V9fs-developer@lists.sourceforge.net
+https://lists.sourceforge.net/lists/listinfo/v9fs-developer
