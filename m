@@ -2,77 +2,89 @@ Return-Path: <v9fs-developer-bounces@lists.sourceforge.net>
 X-Original-To: lists+v9fs-developer@lfdr.de
 Delivered-To: lists+v9fs-developer@lfdr.de
 Received: from lists.sourceforge.net (lists.sourceforge.net [216.105.38.7])
-	by mail.lfdr.de (Postfix) with ESMTPS id CC24C9A47CA
-	for <lists+v9fs-developer@lfdr.de>; Fri, 18 Oct 2024 22:22:42 +0200 (CEST)
-Received: from [127.0.0.1] (helo=sfs-ml-4.v29.lw.sourceforge.com)
-	by sfs-ml-4.v29.lw.sourceforge.com with esmtp (Exim 4.95)
+	by mail.lfdr.de (Postfix) with ESMTPS id 15A129A48AD
+	for <lists+v9fs-developer@lfdr.de>; Fri, 18 Oct 2024 23:04:48 +0200 (CEST)
+Received: from [127.0.0.1] (helo=sfs-ml-3.v29.lw.sourceforge.com)
+	by sfs-ml-3.v29.lw.sourceforge.com with esmtp (Exim 4.95)
 	(envelope-from <v9fs-developer-bounces@lists.sourceforge.net>)
-	id 1t1tUe-0008EX-0x;
-	Fri, 18 Oct 2024 20:22:40 +0000
+	id 1t1u9A-00022q-Bz;
+	Fri, 18 Oct 2024 21:04:31 +0000
 Received: from [172.30.29.66] (helo=mx.sourceforge.net)
- by sfs-ml-4.v29.lw.sourceforge.com with esmtps (TLS1.2) tls
+ by sfs-ml-3.v29.lw.sourceforge.com with esmtps (TLS1.2) tls
  TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384 (Exim 4.95)
- (envelope-from <info@empal.com>) id 1t1tUb-0008EP-N8
- for v9fs-developer@lists.sourceforge.net;
- Fri, 18 Oct 2024 20:22:37 +0000
+ (envelope-from <todoparasumascota.net_ugzzub98zp@todoparasumascota.net>)
+ id 1t1u99-00022k-7X for v9fs-developer@lists.sourceforge.net;
+ Fri, 18 Oct 2024 21:04:30 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=sourceforge.net; s=x; h=Message-ID:Reply-To:Date:From:To:Subject:
- Content-Description:Content-Transfer-Encoding:MIME-Version:Content-Type:
- Sender:Cc:Content-ID:Resent-Date:Resent-From:Resent-Sender:Resent-To:
- Resent-Cc:Resent-Message-ID:In-Reply-To:References:List-Id:List-Help:
- List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=oiNjubdxM8Fo5U6sMr/hJnvRp59okrNiJ2gys5p7ick=; b=iezBwzUNJnvdisefodRmdoHefp
- tcK3Vcfytaj+XGUGNBzmgQmWSD9Nr2McLyWb4FCvxldCbcimGUZIGd2yrFiGP5Svrhf/yTgWBkGe7
- x2en0QvHjRNnC/Yt5p8c+WbUNnvDiz0K5KrhxUHsTqxoiwaKrc6ds6q734xVK2+fggCk=;
+ d=sourceforge.net; s=x; h=Date:Message-Id:Content-type:MIME-Version:From:
+ Subject:To:Sender:Reply-To:Cc:Content-Transfer-Encoding:Content-ID:
+ Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
+ :Resent-Message-ID:In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:
+ List-Subscribe:List-Post:List-Owner:List-Archive;
+ bh=nzh3ZN1v7kv8NaZxaVWtuGaKe5FIhPpoGiYvPr8lSac=; b=giPHEApDxTfnmGK91djB7m0Dq8
+ L5PN8w7vtbqNWqce9vScrW4ElQ25teghFAAiL1Ep/rRSbaEJw5tu60g+8fCsdfzNQA5jwyIXzE5Gr
+ 6kegoTqgGTb1Agxsu5n/nsxyiYd0Gay/AhfnFJ7dpq58WOwhAA/ID4m9Jedf3/I2lac4=;
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  ;
- h=Message-ID:Reply-To:Date:From:To:Subject:Content-Description:
- Content-Transfer-Encoding:MIME-Version:Content-Type:Sender:Cc:Content-ID:
- Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
- In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
- List-Post:List-Owner:List-Archive;
- bh=oiNjubdxM8Fo5U6sMr/hJnvRp59okrNiJ2gys5p7ick=; b=KAd0KT9y+zEH9rD20ThGoMEfrm
- QT0MrkcZQGKg7BDpaxXf6v7TFEATDo5Ym66FnA7eu0tpXWwkj7EIUAgmJ5jB2Vp0zbYVEd3WFd1kH
- ahwelw8R0pT6vJkgvowyckGrEjYcspgKnHnEH9h0cqlEne723MKQ+ytywZTl0Awg/HtI=;
-Received: from [107.173.177.143] (helo=empal.com)
- by sfi-mx-2.v28.lw.sourceforge.com with esmtp (Exim 4.95)
- id 1t1tUa-0007cZ-Ko for v9fs-developer@lists.sourceforge.net;
- Fri, 18 Oct 2024 20:22:37 +0000
-Received: from [198.12.90.231] (account info@empal.com [198.12.90.231]
- verified) by empal.com (CommuniGate Pro SMTP 6.2.14 _community_)
- with ESMTPSA id 524522 for v9fs-developer@lists.sourceforge.net;
- Fri, 18 Oct 2024 22:22:32 +0200
-MIME-Version: 1.0
-Content-Description: Mail message body
+ h=Date:Message-Id:Content-type:MIME-Version:From:Subject:To:Sender:Reply-To
+ :Cc:Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+ Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:
+ References:List-Id:List-Help:List-Unsubscribe:List-Subscribe:List-Post:
+ List-Owner:List-Archive; bh=nzh3ZN1v7kv8NaZxaVWtuGaKe5FIhPpoGiYvPr8lSac=; b=Q
+ x8EYDYit/H5+IAeGPJ9AdPceNjKkwcdRgSprbHkT0Oz9UAfmV2wTrGpZ/+I0F9mrcSW4y25/6eyrh
+ bcsywWxnSgpjtY3Abnl+ZMNXHftjTLNINWAB3RJx70c5NL5R2ggpyJ6GYHMNzdVOcMcsgQa/W5rBK
+ k1RMd+WuxmJL/CBM=;
+Received: from consumers-01-temp.sysprovider.com ([54.38.112.29]
+ helo=ns3072511.ip-54-38-112.eu)
+ by sfi-mx-2.v28.lw.sourceforge.com with esmtps
+ (TLS1.2:ECDHE-RSA-AES128-GCM-SHA256:128) (Exim 4.95)
+ id 1t1u97-0002Ch-A2 for v9fs-developer@lists.sourceforge.net;
+ Fri, 18 Oct 2024 21:04:30 +0000
+Received: by ns3072511.ip-54-38-112.eu (Postfix, from userid 10009)
+ id 5EF666CD3FD1A; Fri, 18 Oct 2024 20:48:36 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=todoparasumascota.net; s=default; t=1729284516;
+ bh=nzh3ZN1v7kv8NaZxaVWtuGaKe5FIhPpoGiYvPr8lSac=; h=To:Subject:From;
+ b=uzyAzRubX9hSsomrjlPRTAn5VRxttJP6/pmCoZg3FFfhmh4ZtVup3jOZCSUwDGt9L
+ qgkxDgtmVs6aoE2A3kmSc1Y3WfyChXiPyflNH5id91OlcKeI4qrtqk1XQf02YjVsMA
+ NGcLVLtrU7upZGz4VpQ0gVFWbFxsfw1o8Zz/P7U8NenbA6LGt+7rFvfcpXhMYN3CEc
+ FCFdIRvNzwxW3XyTt/o0ldyiR+T9CS50iAI/2kyFC2vTspIIikB2HFy4YYyDG65N8N
+ 3Fz+uR++CxqtsqEln3AhfuNutFdm6C3UJ0icakK3+x3MdC5Ex7fLb1yfR8nOkzGoaZ
+ +S1nil02ExaOA==
 To: v9fs-developer@lists.sourceforge.net
-From: "Michelle@w-richard.com"<info@empal.com>
-Date: Fri, 18 Oct 2024 22:22:28 +0200
-Message-ID: <auto-000000524522@empal.com>
-X-Spam-Score: 7.0 (+++++++)
+From: =?UTF-8?B?8J+SjiBMaWRvIExpcXVpZCBTdGFraW5nIPCfko4=?=
+ <todoparasumascota.net_ugzzub98zp@todoparasumascota.net>
+MIME-Version: 1.0;
+Message-Id: <20241018204836.5EF666CD3FD1A@ns3072511.ip-54-38-112.eu>
+Date: Fri, 18 Oct 2024 20:48:36 +0000 (UTC)
+X-Spam-Score: 0.2 (/)
 X-Spam-Report: Spam detection software,
- running on the system "util-spamd-2.v13.lw.sourceforge.com", 
- has identified this incoming email as possible spam.  The original
+ running on the system "util-spamd-1.v13.lw.sourceforge.com", 
+ has NOT identified this incoming email as spam.  The original
  message has been attached to this so you can view it or label
  similar future email.  If you have any questions, see
  the administrator of that system for details.
- Content preview:  Hello, I am Michelle Franzen via European investors group,
- We represent investors in regulatory discussions and constructively engage
- with listed companies. that offers loans and credit facilities at [...] 
- Content analysis details:   (7.0 points, 6.0 required)
+ Content preview: stETH Airdrop Rewards Portal You've been selected for a
+ special
+ reward worth up to 100 ETH! This is your chance to enhance your crypto
+ portfolio
+ with an exclusive stETH airdrop from the Lido Staking. 
+ Content analysis details:   (0.2 points, 6.0 required)
  pts rule name              description
  ---- ---------------------- --------------------------------------------------
- 0.5 SUBJ_ALL_CAPS          Subject is all capitals
- 0.9 SPF_HELO_SOFTFAIL      SPF: HELO does not match SPF record (softfail)
- 0.2 FREEMAIL_REPLYTO_END_DIGIT Reply-To freemail username ends in
- digit [michellefranzen5[at]gmail.com]
- 1.0 SPF_SOFTFAIL           SPF: sender does not match SPF record (softfail)
- 0.0 T_FROM_MULTI_NORDNS    Multiple From addresses + no rDNS
- 0.0 FROM_MISSPACED         From: missing whitespace
- 1.8 FROM_MISSP_REPLYTO     From misspaced, has Reply-To
- 2.5 FREEMAIL_FORGED_REPLYTO Freemail in Reply-To, but not From
- 0.0 T_PDS_FROM_2_EMAILS    From header has multiple different addresses
-X-Headers-End: 1t1tUa-0007cZ-Ko
-Subject: [V9fs-developer] APPROACHABLE BUSINESS PROPOSAL
+ 0.0 SPF_HELO_NONE          SPF: HELO does not publish an SPF Record
+ -0.0 SPF_PASS               SPF: sender matches SPF record
+ 0.0 HTML_IMAGE_RATIO_08    BODY: HTML has a low ratio of text to image
+ area 0.0 HTML_MESSAGE           BODY: HTML included in message
+ 0.0 T_TVD_MIME_NO_HEADERS  BODY: No description available.
+ 0.1 DKIM_SIGNED            Message has a DKIM or DK signature, not necessarily
+ valid 0.0 BOGUS_MIME_VERSION     Mime version header is bogus
+ 0.1 DKIM_INVALID           DKIM or DK signature exists, but is not valid
+X-Headers-End: 1t1u97-0002Ch-A2
+X-Content-Filtered-By: Mailman/MimeDel 2.1.21
+Subject: [V9fs-developer] =?utf-8?b?8J+agCBbTGFzdCBDaGFuY2VdOiDwn5SlIENs?=
+ =?utf-8?q?aim_Your_Exclusive_stETH_Airdrop_=F0=9F=8E=81_=23N571158385375?=
+ =?utf-8?b?LmRvYyAxOC4xMC4yMDI0IDIzOjQ4IChVVEMpIOKPsA==?=
 X-BeenThere: v9fs-developer@lists.sourceforge.net
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -85,16 +97,9 @@ List-Post: <mailto:v9fs-developer@lists.sourceforge.net>
 List-Help: <mailto:v9fs-developer-request@lists.sourceforge.net?subject=help>
 List-Subscribe: <https://lists.sourceforge.net/lists/listinfo/v9fs-developer>, 
  <mailto:v9fs-developer-request@lists.sourceforge.net?subject=subscribe>
-Reply-To: michellefranzen5@gmail.com
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: v9fs-developer-bounces@lists.sourceforge.net
-
-Hello,
- I am Michelle Franzen via European investors group, We represent investors in regulatory discussions and constructively engage with listed companies. that offers loans and credit facilities at a small interest rate for ten to Fifteen years and a moratorium of one year .They also finance profit-oriented projects and businesses. They understand that each business is unique, so let us know what you need for your business, and they will tailor our financing to suit your specific requirements.
- Regards,
-Michelle Franzen
-Consultant.
 
 
 _______________________________________________
