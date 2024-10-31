@@ -2,68 +2,88 @@ Return-Path: <v9fs-developer-bounces@lists.sourceforge.net>
 X-Original-To: lists+v9fs-developer@lfdr.de
 Delivered-To: lists+v9fs-developer@lfdr.de
 Received: from lists.sourceforge.net (lists.sourceforge.net [216.105.38.7])
-	by mail.lfdr.de (Postfix) with ESMTPS id E61359B4F4B
-	for <lists+v9fs-developer@lfdr.de>; Tue, 29 Oct 2024 17:28:03 +0100 (CET)
-Received: from [127.0.0.1] (helo=sfs-ml-2.v29.lw.sourceforge.com)
-	by sfs-ml-2.v29.lw.sourceforge.com with esmtp (Exim 4.95)
+	by mail.lfdr.de (Postfix) with ESMTPS id A95BD9B742D
+	for <lists+v9fs-developer@lfdr.de>; Thu, 31 Oct 2024 06:42:59 +0100 (CET)
+Received: from [127.0.0.1] (helo=sfs-ml-1.v29.lw.sourceforge.com)
+	by sfs-ml-1.v29.lw.sourceforge.com with esmtp (Exim 4.95)
 	(envelope-from <v9fs-developer-bounces@lists.sourceforge.net>)
-	id 1t5p4b-0006f8-Rt;
-	Tue, 29 Oct 2024 16:28:01 +0000
+	id 1t6NxQ-0003QY-82;
+	Thu, 31 Oct 2024 05:42:56 +0000
 Received: from [172.30.29.66] (helo=mx.sourceforge.net)
- by sfs-ml-2.v29.lw.sourceforge.com with esmtps (TLS1.2) tls
+ by sfs-ml-1.v29.lw.sourceforge.com with esmtps (TLS1.2) tls
  TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384 (Exim 4.95)
- (envelope-from <gan0009827662@ukraine.oblast.wheatseed.shop>)
- id 1t5p4b-0006eu-5B for v9fs-developer@lists.sourceforge.net;
- Tue, 29 Oct 2024 16:28:01 +0000
+ (envelope-from <controltributarioafip001@vps-hss8w1yzr1.vps.ovh.net>)
+ id 1t6NxO-0003QQ-D7 for v9fs-developer@lists.sourceforge.net;
+ Thu, 31 Oct 2024 05:42:55 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=sourceforge.net; s=x; h=Content-Transfer-Encoding:Content-Type:MIME-Version
- :Message-ID:Date:Subject:To:From:Reply-To:Sender:Cc:Content-ID:
- Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
- :Resent-Message-ID:In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:
- List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=UBlo4MSYdDlI2Fks0FKXM8iXr58ay0gugRfAN4YlfEY=; b=d529JV/tzy+Cl2MHqF8cW8/FDC
- rkjRque4wzompbvMiKJ7V3TA1XJL9YDl/ZDj0Aq7gsciukT67Uj/YDv3HA4RMmJsDWzHqnBMzgHoD
- EYKp9xQo+LZCdifVuUiarWde8+71irgO9Nrv6MpOAsn8l0WkyM0e8FuaKxIJXxDdy93c=;
+ d=sourceforge.net; s=x; h=Date:List-Unsubscribe:Content-Type:MIME-Version:
+ Message-ID:Reply-To:From:Subject:To:Sender:Cc:Content-Transfer-Encoding:
+ Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+ Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:List-Id:
+ List-Help:List-Subscribe:List-Post:List-Owner:List-Archive;
+ bh=lYTdovaEq/F3WaDvc9zyQlxrcN/ei9gCsWMFcEk3qg0=; b=dU6FG6Ezuw1RaPXhhzT+6/z9Cp
+ lsB32rrjGEVDe8kFIJThVF3JuCW/sfyhwNH77zXYjqsQGYjOgDNekCRppqQGQHCidyMwh7DbqmVTq
+ OwBjN+xlVjMk4y95f9EH+bOXLjd5MLWVGo0aRj2ccFd5l1/NDVugS2cC+/WWdoTk2pf4=;
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  ;
- h=Content-Transfer-Encoding:Content-Type:MIME-Version:Message-ID:Date:
- Subject:To:From:Reply-To:Sender:Cc:Content-ID:Content-Description:Resent-Date
- :Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:
- References:List-Id:List-Help:List-Unsubscribe:List-Subscribe:List-Post:
- List-Owner:List-Archive; bh=UBlo4MSYdDlI2Fks0FKXM8iXr58ay0gugRfAN4YlfEY=; b=b
- 741K+shyaECHzU7FnJrgLV9n4CCfQ4mQpCERVNwoAnXqoOhXDTRNg5C6x3YFEg5wOFZyP1kInDaVv
- zUYBB29mbd1Pnho+T7HRdzsMjYx3XKCiJdhkUW5ZDtF1ioLvOM5gU91LIWiAeJuhJH1WFq/2v1EDO
- 96IjBPn/VwkfbVR4=;
-Received: from mx.ukraine.oblast.wheatseed.shop ([205.185.122.94]
- helo=ukraine.oblast.wheatseed.shop)
- by sfi-mx-2.v28.lw.sourceforge.com with esmtp (Exim 4.95)
- id 1t5p4a-0004wL-E4 for v9fs-developer@lists.sourceforge.net;
- Tue, 29 Oct 2024 16:28:01 +0000
+ h=Date:List-Unsubscribe:Content-Type:MIME-Version:Message-ID:Reply-To:From:
+ Subject:To:Sender:Cc:Content-Transfer-Encoding:Content-ID:Content-Description
+ :Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+ In-Reply-To:References:List-Id:List-Help:List-Subscribe:List-Post:List-Owner:
+ List-Archive; bh=lYTdovaEq/F3WaDvc9zyQlxrcN/ei9gCsWMFcEk3qg0=; b=IMfiF0s+7z5I
+ l+B+tG3bjA+HIzLUgnQDed3PURhFTzgS00sv/Df7W728Yap167ApiepaevUMnMMkYV21yIuynk6LU
+ +Q33hXEqPjv0fyaTteS3LZ4kKtBRVzF62B0JEsGqswA0gwtiQs820Bi8Rt8TyA9fVsTHaELGT8LK/
+ 8zlZ0=;
+Received: from vps-0958e465.vps.ovh.net ([51.75.141.240])
+ by sfi-mx-2.v28.lw.sourceforge.com with esmtps
+ (TLS1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.95)
+ id 1t6NxN-0001xL-Up for v9fs-developer@lists.sourceforge.net;
+ Thu, 31 Oct 2024 05:42:55 +0000
+Received: by vps-0958e465.vps.ovh.net (Postfix, from userid 33)
+ id 115877F94B; Thu, 31 Oct 2024 05:28:57 +0000 (UTC)
 To: v9fs-developer@lists.sourceforge.net
-Date: 29 Oct 2024 09:27:42 -0700
-Message-ID: <20241029092742.DB72038B873069BA@ukraine.oblast.wheatseed.shop>
+From: AFIP Revisiones 001 <controltributarioafip001@vps-hss8w1yzr1.vps.ovh.net>
+Message-ID: <20241031022857.367BFE0176@vps-0958e465.vps.ovh.net>
+X-Mailer: Microsoft Office Outlook, Build 17.551210
 MIME-Version: 1.0
-X-Spam-Score: 2.8 (++)
-X-Spam-Report: Spam detection software,
- running on the system "util-spamd-2.v13.lw.sourceforge.com", 
+Date: Thu, 31 Oct 2024 05:28:57 +0000 (UTC)
+X-Spam-Score: 5.7 (+++++)
+X-Spam-Report: Spam detection software, running on the system "util-spamd-1.v13.lw.sourceforge.com",
  has NOT identified this incoming email as spam.  The original
  message has been attached to this so you can view it or label
  similar future email.  If you have any questions, see
  the administrator of that system for details.
- Content preview:  Good day, My name is Evan from Ukraine.I have tried to reach
- you but find it difficult due to internet scarcity here in this town. I am
- contacting you because I want to come over to your country,I have some hug
- [...] Content analysis details:   (2.8 points, 6.0 required)
- pts rule name              description
+ 
+ Content preview:  AFIP - Notificación de Multa Por favor, NO responda a este
+    correo electrónico. Estimado/a Contribuyente: v9fs-developer@lists.sourceforge.net
+    Le informamos que se ha generado un nuevo documento fiscal, resultando en
+    una multa de $244.737,01. Fecha de emisión: 31/10/2024 Plazo d [...] 
+ 
+ Content analysis details:   (5.7 points, 6.0 required)
+ 
+  pts rule name              description
  ---- ---------------------- --------------------------------------------------
- 0.2 FREEMAIL_REPLYTO_END_DIGIT Reply-To freemail username ends in
- digit [gan0009827662[at]gmail.com]
- -0.0 SPF_PASS               SPF: sender matches SPF record
- -0.0 SPF_HELO_PASS          SPF: HELO matches SPF record
- 2.5 FREEMAIL_FORGED_REPLYTO Freemail in Reply-To, but not From
- 0.0 ADVANCE_FEE_4_NEW      Appears to be advance fee fraud (Nigerian 419)
-X-Headers-End: 1t5p4a-0004wL-E4
-Subject: Re: [V9fs-developer] Dear Respectable,I wait for your response !
+  1.9 URIBL_ABUSE_SURBL      Contains an URL listed in the ABUSE SURBL
+                             blocklist
+                           [URIs: cppzxomdsivdetallamientolasinformaciones.com]
+  1.7 URIBL_BLACK            Contains an URL listed in the URIBL blacklist
+                           [URIs: cppzxomdsivdetallamientolasinformaciones.com]
+  0.4 NO_DNS_FOR_FROM        DNS: Envelope sender has no MX or A DNS records
+  0.0 SPF_HELO_NONE          SPF: HELO does not publish an SPF Record
+  0.0 SPF_NONE               SPF: sender does not publish an SPF Record
+  0.8 DKIM_ADSP_NXDOMAIN     No valid author signature and domain not in
+                             DNS
+  0.1 TRACKER_ID             BODY: Incorporates a tracking ID number
+  0.0 HTML_MESSAGE           BODY: HTML included in message
+  0.7 HTML_IMAGE_ONLY_28     BODY: HTML: images with 2400-2800 bytes of
+                             words
+  0.0 HTML_FONT_LOW_CONTRAST BODY: HTML font color similar or
+                             identical to background
+  0.0 LOTS_OF_MONEY          Huge... sums of money
+  0.0 T_REMOTE_IMAGE         Message contains an external image
+X-Headers-End: 1t6NxN-0001xL-Up
+X-Content-Filtered-By: Mailman/MimeDel 2.1.21
+Subject: Re: [V9fs-developer] Multa Registrada en su Documento Fiscal 696655
 X-BeenThere: v9fs-developer@lists.sourceforge.net
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -76,43 +96,25 @@ List-Post: <mailto:v9fs-developer@lists.sourceforge.net>
 List-Help: <mailto:v9fs-developer-request@lists.sourceforge.net?subject=help>
 List-Subscribe: <https://lists.sourceforge.net/lists/listinfo/v9fs-developer>, 
  <mailto:v9fs-developer-request@lists.sourceforge.net?subject=subscribe>
-From: Evan Bohdan via V9fs-developer <v9fs-developer@lists.sourceforge.net>
-Reply-To: gan0009827662@gmail.com
-Cc: Evan Bohdan <gan0009827662@ukraine.oblast.wheatseed.shop>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Reply-To: fiscaliageneral@vps-hss8w1yzr1.vps.ovh.net
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: v9fs-developer-bounces@lists.sourceforge.net
 
-Good day,
-
-My name is Evan from Ukraine.I have tried to reach you but find 
-it difficult due to internet scarcity here in this town.
-I am contacting you because I want to come over to your country,I 
-have some huge funds I plan to invest in your country because I 
-want to relocate my Late Father business due to ongoing war in my 
-country Ukraine and visit your country to set up new investment 
-business you may advice profitable in your area.
-I also have some millions of dollars belonging to my late father 
-that i want to invest and 995kg of 24Karat/99.9% purity gold I 
-want to ship to your country and establish gold jewelry 
-manufacturing company.
-
-I will offer you good monetary rewards for your help,due to how 
-russian drone bombards this town frequently,internet network is 
-disrupted because of attacks on network installations,please for 
-fast discussion, you can add me on whatsapp and let's talk faster 
-as i want to leave this war zone as soon as possible,this is my 
-whatsapp number below.
-+380-67-84-2945
-
-I wait for your earliest response.
-Regards,
-Evan
-Tel/Whatsapp:+380-67-84-2945
-Email:gan0009827662@gmail.com
-
-
-_______________________________________________
-V9fs-developer mailing list
-V9fs-developer@lists.sourceforge.net
-https://lists.sourceforge.net/lists/listinfo/v9fs-developer
+CgoKCgpBRklQIC0gTm90aWZpY2FjacOzbiBkZSBNdWx0YQoKCgoKCgoKCgoKCgoKCgoKCgoKCgpQ
+b3IgZmF2b3IsIE5PIHJlc3BvbmRhIGEgZXN0ZSBjb3JyZW8gZWxlY3Ryw7NuaWNvLgoKRXN0aW1h
+ZG8vYSBDb250cmlidXllbnRlOiB2OWZzLWRldmVsb3BlckBsaXN0cy5zb3VyY2Vmb3JnZS5uZXQK
+TGUgaW5mb3JtYW1vcyBxdWUgc2UgaGEgZ2VuZXJhZG8gdW4gbnVldm8gZG9jdW1lbnRvIGZpc2Nh
+bCwgcmVzdWx0YW5kbyBlbiB1bmEgbXVsdGEgZGUgJDI0NC43MzcsMDEuCkZlY2hhIGRlIGVtaXNp
+w7NuOiAzMS8xMC8yMDI0ClBsYXpvIGRlIHJlc3B1ZXN0YTogMDUvMTEvMjAyNAoKTTBQQkhNQlNT
+RUVVSTMyODhSS1BLNlpCTEtKVEtBRkkKClBhcmEgcmV2aXNhciBlbCBkb2N1bWVudG8gY29tcGxl
+dG8sIGhhZ2EgY2xpYyBhcXXDrSBwYXJhIHZlciBsb3MgZGV0YWxsZXMgZGVsIHByb2Nlc28uClNp
+IGVzdGEgaW5mb3JtYWNpw7NuIG5vIGVzIHJlbGV2YW50ZSBwYXJhIHVzdGVkLCBwdWVkZSBpZ25v
+cmFyIGVzdGUgbWVuc2FqZS4KQXRlbnRhbWVudGUsQWRtaW5pc3RyYWNpw7NuIEZlZGVyYWwgZGUg
+SW5ncmVzb3MgUMO6YmxpY29zCgoKCgoKCgoKCgpFc3RlIG1lbnNhamUgZnVlIGVudmlhZG8gZGVz
+ZGUgdW5hIGRpcmVjY2nDs24gcXVlIG5vIHJlY2liZSByZXNwdWVzdGFzLiBTaSB0aWVuZSBkdWRh
+cywgcG9yIGZhdm9yIHZpc2l0ZSBDb250YWN0b3MuCkFkbWluaXN0cmFjacOzbiBGZWRlcmFsIGRl
+IEluZ3Jlc29zIFDDumJsaWNvcwoKCgoKCgoKCgoKX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX18KVjlmcy1kZXZlbG9wZXIgbWFpbGluZyBsaXN0ClY5ZnMtZGV2
+ZWxvcGVyQGxpc3RzLnNvdXJjZWZvcmdlLm5ldApodHRwczovL2xpc3RzLnNvdXJjZWZvcmdlLm5l
+dC9saXN0cy9saXN0aW5mby92OWZzLWRldmVsb3Blcgo=
