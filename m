@@ -2,89 +2,98 @@ Return-Path: <v9fs-developer-bounces@lists.sourceforge.net>
 X-Original-To: lists+v9fs-developer@lfdr.de
 Delivered-To: lists+v9fs-developer@lfdr.de
 Received: from lists.sourceforge.net (lists.sourceforge.net [216.105.38.7])
-	by mail.lfdr.de (Postfix) with ESMTPS id ED4409BAF3C
-	for <lists+v9fs-developer@lfdr.de>; Mon,  4 Nov 2024 10:11:25 +0100 (CET)
-Received: from [127.0.0.1] (helo=sfs-ml-4.v29.lw.sourceforge.com)
-	by sfs-ml-4.v29.lw.sourceforge.com with esmtp (Exim 4.95)
+	by mail.lfdr.de (Postfix) with ESMTPS id 9392A9BFD31
+	for <lists+v9fs-developer@lfdr.de>; Thu,  7 Nov 2024 05:10:10 +0100 (CET)
+Received: from [127.0.0.1] (helo=sfs-ml-2.v29.lw.sourceforge.com)
+	by sfs-ml-2.v29.lw.sourceforge.com with esmtp (Exim 4.95)
 	(envelope-from <v9fs-developer-bounces@lists.sourceforge.net>)
-	id 1t7t7L-0003pP-GS;
-	Mon, 04 Nov 2024 09:11:23 +0000
+	id 1t8tqS-0005kp-AN;
+	Thu, 07 Nov 2024 04:10:08 +0000
 Received: from [172.30.29.66] (helo=mx.sourceforge.net)
- by sfs-ml-4.v29.lw.sourceforge.com with esmtps (TLS1.2) tls
+ by sfs-ml-2.v29.lw.sourceforge.com with esmtps (TLS1.2) tls
  TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384 (Exim 4.95)
- (envelope-from <jan.polasek@bytebrigadebuilders.com>)
- id 1t7t7K-0003pJ-4o for v9fs-developer@lists.sourceforge.net;
- Mon, 04 Nov 2024 09:11:22 +0000
+ (envelope-from <MyJcb@alphrc.com>) id 1t8tqQ-0005kb-Qd
+ for v9fs-developer@lists.sourceforge.net;
+ Thu, 07 Nov 2024 04:10:06 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=sourceforge.net; s=x; h=Content-Transfer-Encoding:Content-Type:MIME-Version
- :Subject:To:From:Date:Message-ID:Sender:Reply-To:Cc:Content-ID:
+ d=sourceforge.net; s=x; h=Content-Type:Message-ID:Mime-Version:Subject:To:
+ From:Date:Sender:Reply-To:Cc:Content-Transfer-Encoding:Content-ID:
  Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
  :Resent-Message-ID:In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:
  List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=bRQ4jFxNVcM6F4NBYTbWMLQ1h+eElp/lMiKXKTCAKAg=; b=gfnhpXFgiJK/HgXOIBFpqvOE8L
- LdRn/CnE+VaDEmuTGS/0HVUP4b6YdtZNhzRy1xwAmzddnw+HOH8dAskV6H+G0g0k6KIJgeGHI24k9
- hLg/Uzh4RoR64BZ8MbAmO1uG3RuUgrgrS+xF9Ol/yYH8Mz1bgUehKyywCFXOWhwuFCiM=;
+ bh=HwPmahCHCTZBD7Dv6FbSXXUptWLD+L1LK0kfOy1Cd+U=; b=ECbqBIxccrJGv2L7JX4KmgUGog
+ a6bqQpNDgJHmlB0zPk/HGe9z055vLBBeJRwbdllLwK/26mCbfonwA5MBB9Fr/dS/cfXSHI3q1Fnqy
+ xujbGijC/weh9wD2bQ/Xp6pCIW+JszRgb+hAQ6PYgYvi4Zpfs29vfVuoRcLUSJ3pnYFA=;
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  ;
- h=Content-Transfer-Encoding:Content-Type:MIME-Version:Subject:To:From:Date:
- Message-ID:Sender:Reply-To:Cc:Content-ID:Content-Description:Resent-Date:
+ h=Content-Type:Message-ID:Mime-Version:Subject:To:From:Date:Sender:Reply-To
+ :Cc:Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
  Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:
  References:List-Id:List-Help:List-Unsubscribe:List-Subscribe:List-Post:
- List-Owner:List-Archive; bh=bRQ4jFxNVcM6F4NBYTbWMLQ1h+eElp/lMiKXKTCAKAg=; b=U
- Nhc5JLMJ1FWKli9cNWC3R603XhK7+6BxabdCezEUpf6f9py6jp11ampvM3NwIhi2d7rOtU0IGVa0y
- FUerbbrGGa9Bx1FpZrr8zZNrkRm5QQ67WEle6kkWar9eLjjmRBA9GZfFkRMoJKkkmtWHhE9IIhBLH
- hmaWl5IUREGrurow=;
-Received: from mail.bytebrigadebuilders.com ([80.211.239.163])
+ List-Owner:List-Archive; bh=HwPmahCHCTZBD7Dv6FbSXXUptWLD+L1LK0kfOy1Cd+U=; b=J
+ pRDxDXPJrhgQb7YVBX6hFrMnmCjPk/oqZ3z5wgdxM+dvgrIVLxk6OCoHQ9yqKEsr9RPk2n2He6exF
+ LcI8i+gNSRZe9Ja9PNUi7oaNTEgNwCKwYADB4U8tPlXYzOnYXroaxFSUxkl6zcB9JICbb7g4jeg8q
+ q5yxrDsNdVw5Pn34=;
+Received: from mail4.alphrc.com ([23.95.248.170])
  by sfi-mx-2.v28.lw.sourceforge.com with esmtps
  (TLS1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.95)
- id 1t7t7I-0001Eh-St for v9fs-developer@lists.sourceforge.net;
- Mon, 04 Nov 2024 09:11:22 +0000
-Received: by mail.ByteBrigadeBuilders.com (Postfix, from userid 1002)
- id 41F67842E7; Mon,  4 Nov 2024 10:11:04 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=ByteBrigadeBuilders.com; s=mail; t=1730711469;
- bh=bRQ4jFxNVcM6F4NBYTbWMLQ1h+eElp/lMiKXKTCAKAg=;
- h=Date:From:To:Subject:From;
- b=KzFHgpUGtANc6EcFgUUrh1CdVKy/5Nr7rfOW42eTGc+cBCTMAGNAkuMAd9vlDjTgV
- OAspFLgLj7QHGaj8hoGlLgyDunZsNk9dLOr7w/7FFCMmvDPZuc/YqPDgBCkf38Bhe+
- trzgm2pNwh1UCXeaOOU7akafkGCRkxTeElK17AOEOjAIMwZlweIP2a0sE4mpvTf3iC
- sFC5vnEPiJ99JCfAtjOQ2Oi6LqWJkAQrFzceuE+JN+YIUQb/MRrOX3RaLr+4W3tGlu
- axvatl90qg/ME2p3E4scdzORhsTCBi5KK24z8LA/bf6o8QMinWk0IozNzVbFK32OF3
- okD1iHO/CeWVg==
-Received: by mail.ByteBrigadeBuilders.com for
- <v9fs-developer@lists.sourceforge.net>; Mon,  4 Nov 2024 09:10:59 GMT
-Message-ID: <20241104084500-0.1.ay.y1p0.0.zdh0isrgfh@ByteBrigadeBuilders.com>
-Date: Mon,  4 Nov 2024 09:10:59 GMT
-To: <v9fs-developer@lists.sourceforge.net>
-X-Mailer: mail.ByteBrigadeBuilders.com
-MIME-Version: 1.0
-X-Spam-Score: -0.2 (/)
+ id 1t8tqP-00016G-GB for v9fs-developer@lists.sourceforge.net;
+ Thu, 07 Nov 2024 04:10:06 +0000
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; s=default; d=alphrc.com; 
+ h=Date:From:To:Subject:Mime-Version:Message-ID:Content-Type;
+ i=MyJcb@alphrc.com;
+ bh=HwPmahCHCTZBD7Dv6FbSXXUptWLD+L1LK0kfOy1Cd+U=;
+ b=JiLFxT2j/1oBL2gNzb6cpoJhFXq5TyEVN3dnhksFJFo1/0ByfKvlUq44gBt9RGRwdWMRYo/zU9QA
+ pIs4iTv3DRtfak+KPP69t9qhR3XRlkLZszRvsVcIrq2Vih4FPu/P6TQR1tM1xC40X4rpUDAA+TRc
+ tgOCz7sR5aLhDLQv17s=
+Date: Thu, 7 Nov 2024 13:09:41 +0900
+To: v9fs-developer <v9fs-developer@lists.sourceforge.net>
+X-Has-Attach: no
+Mime-Version: 1.0
+Message-ID: <202411071309544433505@alphrc.com>
+X-Spam-Score: 7.9 (+++++++)
 X-Spam-Report: Spam detection software, running on the system "util-spamd-2.v13.lw.sourceforge.com",
- has NOT identified this incoming email as spam.  The original
+ has identified this incoming email as possible spam.  The original
  message has been attached to this so you can view it or label
  similar future email.  If you have any questions, see
  the administrator of that system for details.
  
- Content preview:  Hi! I’m reaching out because I see great potential in your
-    products and services. Imagine your offer reaching thousands of new, engaged
-    customers. That's exactly what we offer through our affiliate marketing program.
-    
+ Content preview:  制限解除に関するご案内 本メールは、手続きが完了していないお客様にお送りしております。
+    先日はご協力いただきありがとうございました。しかし、手続きが未完了のため、現在アカウントは引き続き一時停止となっております。
+    以下のリ� [...] 
  
- Content analysis details:   (-0.2 points, 6.0 required)
+ Content analysis details:   (7.9 points, 6.0 required)
  
   pts rule name              description
  ---- ---------------------- --------------------------------------------------
+  2.5 URIBL_DBL_SPAM         Contains a spam URL listed in the Spamhaus DBL
+                             blocklist
+                             [URIs: burooespace.com]
+  3.6 RCVD_IN_SBL_CSS        RBL: Received via a relay in Spamhaus SBL-CSS
+                             [23.95.248.170 listed in zen.spamhaus.org]
+  0.0 URIBL_PH_SURBL         Contains an URL listed in the PH SURBL blocklist
+                             [URIs: burooespace.com]
+  1.9 URIBL_ABUSE_SURBL      Contains an URL listed in the ABUSE SURBL
+                             blocklist
+                             [URIs: burooespace.com]
+  0.1 URIBL_CSS_A            Contains URL's A record listed in the Spamhaus CSS
+                             blocklist
+                             [URIs: alphrc.com]
  -0.0 SPF_PASS               SPF: sender matches SPF record
   0.0 SPF_HELO_NONE          SPF: HELO does not publish an SPF Record
-  0.1 DKIM_SIGNED            Message has a DKIM or DK signature, not necessarily
-                             valid
+  0.0 HTML_MESSAGE           BODY: HTML included in message
  -0.1 DKIM_VALID_EF          Message has a valid DKIM or DK signature from
                              envelope-from domain
+ -0.1 DKIM_VALID             Message has at least one valid DKIM or DK signature
+  0.1 DKIM_SIGNED            Message has a DKIM or DK signature, not necessarily
+                             valid
  -0.1 DKIM_VALID_AU          Message has a valid DKIM or DK signature from
                              author's domain
- -0.1 DKIM_VALID             Message has at least one valid DKIM or DK signature
-X-Headers-End: 1t7t7I-0001Eh-St
-Subject: [V9fs-developer] Quick Question About Collaboration
+X-Headers-End: 1t8tqP-00016G-GB
+X-Content-Filtered-By: Mailman/MimeDel 2.1.21
+Subject: [V9fs-developer] =?utf-8?b?SkNC44Kr44O844OJ44Gu5omL57aa44GN44KS?=
+	=?utf-8?b?5a6M5LqG44GX44CB44Ki44Kr44Km44Oz44OI44KS5YaN6ZaL44GX44Gm?=
+	=?utf-8?b?44GP44Gg44GV44GE?=
 X-BeenThere: v9fs-developer@lists.sourceforge.net
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -97,25 +106,42 @@ List-Post: <mailto:v9fs-developer@lists.sourceforge.net>
 List-Help: <mailto:v9fs-developer-request@lists.sourceforge.net?subject=help>
 List-Subscribe: <https://lists.sourceforge.net/lists/listinfo/v9fs-developer>, 
  <mailto:v9fs-developer-request@lists.sourceforge.net?subject=subscribe>
-From: Jan Polasek via V9fs-developer <v9fs-developer@lists.sourceforge.net>
-Reply-To: Jan Polasek <jan.polasek@bytebrigadebuilders.com>
+From: MyJCB via V9fs-developer <v9fs-developer@lists.sourceforge.net>
+Reply-To: MyJCB <MyJcb@alphrc.com>
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: base64
 Errors-To: v9fs-developer-bounces@lists.sourceforge.net
 
-SGkhCgpJ4oCZbSByZWFjaGluZyBvdXQgYmVjYXVzZSBJIHNlZSBncmVhdCBwb3RlbnRpYWwgaW4g
-eW91ciBwcm9kdWN0cyBhbmQgc2VydmljZXMuCgpJbWFnaW5lIHlvdXIgb2ZmZXIgcmVhY2hpbmcg
-dGhvdXNhbmRzIG9mIG5ldywgZW5nYWdlZCBjdXN0b21lcnMuIFRoYXQncyBleGFjdGx5IHdoYXQg
-d2Ugb2ZmZXIgdGhyb3VnaCBvdXIgYWZmaWxpYXRlIG1hcmtldGluZyBwcm9ncmFtLgoKT3ZlciB0
-aGUgcGFzdCAzIHllYXJzLCB0aGUgYWZmaWxpYXRlIGFjdGl2aXRpZXMgd2UgY29uZHVjdGVkIGZv
-ciBvbmUgb2Ygb3VyIGNsaWVudHMgaW4gdGhlIGUtY29tbWVyY2UgaW5kdXN0cnkgY29udHJpYnV0
-ZWQgdG8gYW4gaW1wcmVzc2l2ZSByZXZlbnVlIGdyb3d0aCBmcm9tIDglIHRvIDE5JSAocXVhcnRl
-cmx5IGF2ZXJhZ2UpLgoKV2UgaGF2ZSBleHRlbnNpdmUgZXhwZXJpZW5jZSBpbiB0aGUgQ0VFIG1h
-cmtldCAoQ2VudHJhbCBhbmQgRWFzdGVybiBFdXJvcGUpLCB3aGljaCBpcyBjdXJyZW50bHkgdGhl
-IGZhc3Rlc3QtZ3Jvd2luZyBhZHZlcnRpc2luZyBtYXJrZXQgaW4gdGhlIHdvcmxkLgoKV2UgYXJl
-IGludGVyZXN0ZWQgaW4gcGFydG5lcmluZyB3aXRoIHdlYnNpdGVzIHRoYXQgYXR0cmFjdCBhdCBs
-ZWFzdCAyMDAsMDAwIHZpc2l0cyBwZXIgbW9udGguIEhvdyBhYm91dCBhIHNob3J0LCBuby1vYmxp
-Z2F0aW9uIGNvbnZlcnNhdGlvbj8KCgpCZXN0IHJlZ2FyZHMKSmFuIFBvbGFzZWsKCgpfX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpWOWZzLWRldmVsb3BlciBt
-YWlsaW5nIGxpc3QKVjlmcy1kZXZlbG9wZXJAbGlzdHMuc291cmNlZm9yZ2UubmV0Cmh0dHBzOi8v
-bGlzdHMuc291cmNlZm9yZ2UubmV0L2xpc3RzL2xpc3RpbmZvL3Y5ZnMtZGV2ZWxvcGVyCg==
+5Yi26ZmQ6Kej6Zmk44Gr6Zai44GZ44KL44GU5qGI5YaFIA0K5pys44Oh44O844Or44Gv44CB5omL
+57aa44GN44GM5a6M5LqG44GX44Gm44GE44Gq44GE44GK5a6i5qeY44Gr44GK6YCB44KK44GX44Gm
+44GK44KK44G+44GZ44CCIA0KICANCuWFiOaXpeOBr+OBlOWNlOWKm+OBhOOBn+OBoOOBjeOBguOC
+iuOBjOOBqOOBhuOBlOOBluOBhOOBvuOBl+OBn+OAguOBl+OBi+OBl+OAgeaJi+e2muOBjeOBjOac
+quWujOS6huOBruOBn+OCgeOAgeePvuWcqOOCouOCq+OCpuODs+ODiOOBr+W8leOBjee2muOBjeS4
+gOaZguWBnOatouOBqOOBquOBo+OBpuOBiuOCiuOBvuOBmeOAgg0K5Lul5LiL44Gu44Oq44Oz44Kv
+44KI44KK5omL57aa44GN44KS5YaN6ZaL44GX44Gm44GP44Gg44GV44GE44CCIA0KSkNC44Kr44O8
+44OJDQrvvIjjgqvjg7zjg4nnlarlj7fjgYzjgIwzNTTjgI3jgIwzNTXjgI3jgaflp4vjgb7jgotK
+Q0Ljgqvjg7zjg4njgYzlr77osaHjgafjgZnvvIkgDQoNCuOBk+OBoeOCieOBi+OCieaJi+e2muOB
+jeOCkuWGjemWi+OBl+OBpuOBj+OBoOOBleOBhCANCg0K44CQ5pyJ5Yq55pyf6ZmQ44CRMjAyNOW5
+tDEx5pyIMzDml6Xjgb7jgacNCuODu+KAu+WgtOWQiOOBq+OCiOOBo+OBpuOBr+OAgeaJi+e2muOB
+jeOBruacgOW+jOOBq+OAgeS4jeato+OBquaJi+e2muOBjeOCkumYsuatouOBmeOCi+OBn+OCgeOA
+gemKgOihjOOBq+OBiumbu+ipseOBhOOBn+OBoOOBjeOAgeacrOS6uueiuuiqjeOBjOW/heimgeOB
+qOOBquOCi+WgtOWQiOOBjOOBlOOBluOBhOOBvuOBmeOAgiANCiAgDQrvvJzjgZTms6jmhI/jgY/j
+gaDjgZXjgYTvvJ4NCg0K44O744GZ44Gn44Gr5omL57aa44GN44KS5a6M5LqG44GV44KM44Gm44GE
+44KL44GK5a6i5qeY44Gr44KC44CB6Kqk44Gj44Gm5pys44Oh44O844Or44GM6YCB5L+h44GV44KM
+44KL5aC05ZCI44GM44GU44GW44GE44G+44GZ44CC44Gd44Gu6Zqb44Gr44Gv44CB5omL57aa44GN
+44KS5YaN5bqm6KGM44GG5b+F6KaB44Gv44GU44GW44GE44G+44Gb44KT44CCDQoNCuODu+WuieWF
+qOeiuuS/neOBruOBn+OCgeOAgeWGjeaJi+e2muOBjeOBjOS4reaWreOBleOCjOOBn+WgtOWQiOOA
+geS4iuiomOODquODs+OCr+OBr+eEoeWKueOBqOOBquOCiuOBvuOBmeOAguOBneOBrumam+OBr+OA
+geWGjemAgeOBleOCjOOBn+ODoeODvOODq+OBi+OCieOBiuaJi+e2muOBjeOCkuOBiumhmOOBhOOB
+hOOBn+OBl+OBvuOBmeOAgg0KDQogIA0K5pys44Oh44O844Or44Gu6YWN5L+h5YGc5q2i44O75L+d
+5a2Y44GV44KM44Gf44GK5a6i5qeY5oOF5aCx44Gu5YmK6Zmk44KS5biM5pyb44GV44KM44KL5pa5
+44Gv44GT44Gh44KJDQrmnKzku7bjgavplqLjgZnjgovjgYrllY/jgYTlkIjjgo/jgZsNCkpDQuS4
+gOiIrOOCq+ODvOODieS8muWToeanmOOAgDA1NzAtMDYwLTEyMw0KSkNC44K044O844Or44OJ44Kr
+44O844OJ5Lya5ZOh5qeY44CAMDU3MC0wNzAtMDM1DQpKQ0Ljg5fjg6njg4Hjg4rjgqvjg7zjg4nj
+g7vjgrbjg7vjgq/jg6njgrnkvJrlk6Hmp5jjgIAwNTcwLTAwOC00MDANCg0K4oC75pys44Oh44O8
+44Or44Ki44OJ44Os44K544Gv6YCB5L+h5bCC55So44Gn44GZ44CC5pys44GU5qGI5YaF44Gr6Zai
+44GZ44KLReODoeODvOODq+OBp+OBruOBiuWVj+OBhOWQiOOCj+OBm+OBr+WPl+OBkeS7mOOBkeOB
+puOBiuOCiuOBvuOBm+OCk+OAgiANCsKpIEpDQiBDby4sTHRkLiANCg0KDQoKX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KVjlmcy1kZXZlbG9wZXIgbWFpbGlu
+ZyBsaXN0ClY5ZnMtZGV2ZWxvcGVyQGxpc3RzLnNvdXJjZWZvcmdlLm5ldApodHRwczovL2xpc3Rz
+LnNvdXJjZWZvcmdlLm5ldC9saXN0cy9saXN0aW5mby92OWZzLWRldmVsb3Blcgo=
