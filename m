@@ -2,109 +2,133 @@ Return-Path: <v9fs-developer-bounces@lists.sourceforge.net>
 X-Original-To: lists+v9fs-developer@lfdr.de
 Delivered-To: lists+v9fs-developer@lfdr.de
 Received: from lists.sourceforge.net (lists.sourceforge.net [216.105.38.7])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9C3139D1F69
-	for <lists+v9fs-developer@lfdr.de>; Tue, 19 Nov 2024 05:46:12 +0100 (CET)
-Received: from [127.0.0.1] (helo=sfs-ml-2.v29.lw.sourceforge.com)
-	by sfs-ml-2.v29.lw.sourceforge.com with esmtp (Exim 4.95)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7731D9DF89F
+	for <lists+v9fs-developer@lfdr.de>; Mon,  2 Dec 2024 02:57:12 +0100 (CET)
+Received: from [127.0.0.1] (helo=sfs-ml-4.v29.lw.sourceforge.com)
+	by sfs-ml-4.v29.lw.sourceforge.com with esmtp (Exim 4.95)
 	(envelope-from <v9fs-developer-bounces@lists.sourceforge.net>)
-	id 1tDG7u-0007j2-38;
-	Tue, 19 Nov 2024 04:46:10 +0000
+	id 1tHvgT-0001AC-Ef;
+	Mon, 02 Dec 2024 01:57:09 +0000
 Received: from [172.30.29.66] (helo=mx.sourceforge.net)
- by sfs-ml-2.v29.lw.sourceforge.com with esmtps (TLS1.2) tls
+ by sfs-ml-4.v29.lw.sourceforge.com with esmtps (TLS1.2) tls
  TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384 (Exim 4.95) (envelope-from
- <notificacionaudiencia123@b2h1v3.abogadorodriguezyasociados.com>)
- id 1tDG7s-0007im-GV for v9fs-developer@lists.sourceforge.net;
- Tue, 19 Nov 2024 04:46:08 +0000
+ <bounces+48404592-5e90-v9fs-developer=lists.sourceforge.net@em2283.ease-servicesgroup.com>)
+ id 1tHvgS-0001A3-4f for v9fs-developer@lists.sourceforge.net;
+ Mon, 02 Dec 2024 01:57:08 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=sourceforge.net; s=x; h=Date:List-Unsubscribe:Content-Type:MIME-Version:
- Message-ID:Reply-To:From:Subject:To:Sender:Cc:Content-Transfer-Encoding:
+ d=sourceforge.net; s=x; h=To:List-Unsubscribe:Reply-To:Subject:Message-ID:
+ Mime-Version:From:Date:Content-Type:Sender:Cc:Content-Transfer-Encoding:
  Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
  Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:List-Id:
  List-Help:List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=vc/Lt5RFZSFVlAjQOeetonkNYh3tlOtP5cfXec611Bs=; b=Zq8BSPQ4zlRu4coJHuhnFYH+CD
- lL/Fs5pcCUANgpKo4uKq3VC/YIFQV5iyxFWAfbOfX2TfkB8rB7mk87MKtuaYRs+CsblqXLzdAATPH
- 4Ym0NahoPQKGnDs0lpWYiWuPIyHqctdoBJqfa3arZ5i49rbz28bsmLlzSZTI88akit4Q=;
+ bh=CYPrGF8mqr+zemvrMXwhFlbIrcHhdb4WurKVu9gTeHc=; b=kO4y1I568b+FE/wg0uLlGIHypH
+ 2JVi6Rd33AXfjWv2mmTKX/CaFROKx/9pAcRIM7iTmCEv2MmObW1hlOU/pMOXmq8dLT/9Xbahi1HYQ
+ 8GLLYEU1C0lwEnVHI/opC9A/COaPJ5ZRYYOc4CSVNmyhMuVD/JS6b05VnzqDDrolFosA=;
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  ;
- h=Date:List-Unsubscribe:Content-Type:MIME-Version:Message-ID:Reply-To:From:
- Subject:To:Sender:Cc:Content-Transfer-Encoding:Content-ID:Content-Description
- :Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
- In-Reply-To:References:List-Id:List-Help:List-Subscribe:List-Post:List-Owner:
- List-Archive; bh=vc/Lt5RFZSFVlAjQOeetonkNYh3tlOtP5cfXec611Bs=; b=kbkYgcN1iFiV
- X6wRkmcXlpkss5rg8rBSMnNN4dTFlsOD6vHPto6Bw5MQKBQ2Jv2U6XK5bO/ZTtqm9/wPnHWKAqvcu
- A+xY1vckxGPtMFYTjxhTqZAxY8u18a+YIIcIncFYcPS5gMd1YR9ddhLEYKHnqX7qzIOe4F0+qYC38
- 1vBZA=;
-Received: from vps-e85d9432.vps.ovh.net ([51.255.171.112]
- helo=b2h1v3.abogadorodriguezyasociados.com)
+ h=To:List-Unsubscribe:Reply-To:Subject:Message-ID:Mime-Version:From:Date:
+ Content-Type:Sender:Cc:Content-Transfer-Encoding:Content-ID:
+ Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
+ :Resent-Message-ID:In-Reply-To:References:List-Id:List-Help:List-Subscribe:
+ List-Post:List-Owner:List-Archive;
+ bh=CYPrGF8mqr+zemvrMXwhFlbIrcHhdb4WurKVu9gTeHc=; b=YUCeSKNFX6+G2Ee6MXwz1aEwYs
+ 3rMLqr9DRSW7ECCMWFDm1pMBFDekvP1vSN+8iyBXLfNVhLZ3kO16Sn5HiGsg0qFGnEShnNJraUEXG
+ JsLIFZObjIBmjkXGWBMu/Kk4av0Fl9KeYEy7dXFregRo/6OYf4LAR4CVTL7JD3TGIavo=;
+Received: from xtrwhxbr.outbound-mail.sendgrid.net ([167.89.10.181])
  by sfi-mx-2.v28.lw.sourceforge.com with esmtps
- (TLS1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.95)
- id 1tDG7o-0007CA-Hd for v9fs-developer@lists.sourceforge.net;
- Tue, 19 Nov 2024 04:46:08 +0000
-Received: by b2h1v3.abogadorodriguezyasociados.com (Postfix, from userid 33)
- id C6500802AF; Tue, 19 Nov 2024 04:33:12 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=b2h1v3.abogadorodriguezyasociados.com; s=mail; t=1731990792;
- bh=vc/Lt5RFZSFVlAjQOeetonkNYh3tlOtP5cfXec611Bs=;
- h=To:Subject:From:Reply-To:List-Unsubscribe:Date:From;
- b=W63fUrV9cSjiHB6Om5vLL7GIycNsIg7q9SMBYvyxuMu3KWmvCgEMaMqMvPMPohf3r
- tseJnUckaum6e+9l5hCJoSrJW/mLgYArQoaVV0KF8gTfRulKQrFh/rtpE4fISjyX03
- ajBVhqD9ZA8IvhVNNe3coD9DiLJRDekJ0qiwMWZPMgZdel+StNZ8OV1kLIp5OfbuEu
- QbkiDTyyYrukXjfOtRshThgf9o3MOQjCu/0g1zJh7df7VRSCM0CtFHLjZF50sh8xNu
- V4oH9gZ9AJB5a8xcWHY+FbpEJrHljM9rNKhXf+203sByYBLgMiwjwhKmjEBFMVxqxK
- hs+s6JWFz2PPQ==
+ (TLS1.2:ECDHE-RSA-AES128-GCM-SHA256:128) (Exim 4.95)
+ id 1tHvgR-0001Gj-Dp for v9fs-developer@lists.sourceforge.net;
+ Mon, 02 Dec 2024 01:57:08 +0000
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ease-servicesgroup.com;
+ h=content-type:from:mime-version:subject:reply-to:list-unsubscribe-post:
+ list-unsubscribe:to:cc:content-type:from:subject:to;
+ s=s1; bh=CYPrGF8mqr+zemvrMXwhFlbIrcHhdb4WurKVu9gTeHc=;
+ b=pDnY5X4iJyNTmRdKcGXcISzO7XJHJdEemaP7V3YA1ZxK6F4Pwv46GycqU6yDej8dmOzF
+ X66U/t1JVIUAO+XD/NjFHCRADwFqkvZQBOGLjOsKRihaTAUwG8hYssgGsToXglI5LYkF9s
+ Uag0XQ5ZJSo2swINRcH6tsGcKrqZkas2qdjoyCV8N9lb3bqdpAxIyaxmqABagBB3RC0GHc
+ /Tw8XFTKlnSrlhnq9tF5tacGcxpR6p6VWcIdK79NsXHj0Ft+0c1w7n/O8NgVJD7bwtSiQL
+ T+AVyWCp92nYeYm1/NKusobpE41Ngo4hF0E7cLxy3OhAOx1DbyzCU/V1FLJRA2Cg==
+Received: by recvd-5c8ccdbd88-r9rtl with SMTP id
+ recvd-5c8ccdbd88-r9rtl-1-674D0F9F-8
+ 2024-12-02 01:38:39.243342334 +0000 UTC m=+1484203.312620884
+Received: from NDg0MDQ1OTI (unknown) by geopod-ismtpd-33 (SG) with HTTP
+ id WrQeiBfVSHSMf2caMhZDBQ Mon, 02 Dec 2024 01:38:39.221 +0000 (UTC)
+Date: Mon, 02 Dec 2024 01:38:39 +0000 (UTC)
+From: Sandra fitcher <hrdocument@ease-servicesgroup.com>
+Mime-Version: 1.0
+Message-ID: <WrQeiBfVSHSMf2caMhZDBQ@geopod-ismtpd-33>
+List-Unsubscribe-Post: List-Unsubscribe=One-Click
+X-SG-EID: =?us-ascii?Q?u001=2EHVq8j79czPrhnV44XU0XRsKXh7eZ371vY6sescmgVfomLIdpa2Zm4BcZP?=
+ =?us-ascii?Q?yiTRpYAp95vO=2FEgOYv7ufLQUmtrLU7exgKuskJL?=
+ =?us-ascii?Q?VifdzMUao6oUZD9M3T2lw+nxtGs2j33UdK4QMSm?=
+ =?us-ascii?Q?hu5e9QqjUjiTsz=2FK0cM01FAUqKsnuuTpZyOkQC2?=
+ =?us-ascii?Q?=2FNSR86z9GhjIZADJo0pxktAYpyfU1vJwkjPk=2FPQ?=
+ =?us-ascii?Q?8Wf3051fjlN+RK=2FtFj2FjM2z9h1iYcrmANcj=2Frt?=
+ =?us-ascii?Q?7rz9Q50LPhpL05IiL0UCsWB=2FCK8Xp6zXRhoXWkV?=
+ =?us-ascii?Q?kcNlUFkw=3D?=
+X-SG-ID: =?us-ascii?Q?u001=2EXwhBPNhCejkv4+fVosb2QVfR16Qxp9CrA7PjDe5zzeI=2F0IZCBsPXtgHbA?=
+ =?us-ascii?Q?oGIj+RskLxA4N2rJjSWrHfgX07tLOm0v5BUQcd6?=
+ =?us-ascii?Q?w3knjorGi7Hwu0WCOA5AFSvy0=2FwlG32=2FOYCqaew?=
+ =?us-ascii?Q?A52B3B1R5+uAVHT7rfaS1scUVv6rtBjmpsmlWmp?=
+ =?us-ascii?Q?tEG8tSX09IPGekfLx2Y0PkjEnB0Bm6SAmPnbU3Y?=
+ =?us-ascii?Q?wJQizmHehSxlAhmjwVzP+PtFwSIRDHn=2FXuVbEQA?=
+ =?us-ascii?Q?C6x8GeKYJFR8JWlShvd0DFGdRlbFDmpXtXP9VhW?=
+ =?us-ascii?Q?02i8dmjEZitZy2KVRFkwiPCf+RfwSYMT3bsAIAx?=
+ =?us-ascii?Q?g8QrsaqInHLtxyYCMT=2FCsm3Gnjd+Qolu+zD1yFi?=
+ =?us-ascii?Q?nq86CelRruSlJ=2FHr70=2FDN84qAsD157pvpeJFK7J?=
+ =?us-ascii?Q?AhErqPLNkgL5gujXfA2aFBMKNpvpLh45Ly7JZwk?=
+ =?us-ascii?Q?ByO10lAN8R67FYACVmq8xLA2IK+UI9h8lytaV40?=
+ =?us-ascii?Q?kYBOLs+fKO+HKmYTgAC3I0m=2FyUt7hA24JD9N0y7?=
+ =?us-ascii?Q?4FIz+AAAhCv3GB5V5ZE0T+a4WI0ZQ5YkDA2YHfj?=
+ =?us-ascii?Q?WwwYe6eHpbzPXyJZ3tbcxAF9KJ3kUgzyoqQACjr?=
+ =?us-ascii?Q?yjSQLsZDDycOgyoygrp5JgUPmvnbXxDL8mEEPqk?=
+ =?us-ascii?Q?cN60MLRYEVFb6bjzt+4QU1TPMgE=2FjTzvEKLloqo?=
+ =?us-ascii?Q?xi2wskJavwLWWgfY5HOdW=2Fb?=
 To: v9fs-developer@lists.sourceforge.net
-From: Dra Franco SECLO TNBQAFAZ
- <notificacionaudiencia123@b2h1v3.abogadorodriguezyasociados.com>
-Message-ID: <20241119013312.0A0D0A9EDD@b2h1v3.abogadorodriguezyasociados.com>
-X-Mailer: Microsoft Office Outlook, Build 17.551210
-MIME-Version: 1.0
-Date: Tue, 19 Nov 2024 04:33:12 +0000 (UTC)
-X-Spam-Score: 6.6 (++++++)
+X-Entity-ID: u001.JZht0uIXh9BBh/qE8V61sg==
+X-Spam-Score: 6.8 (++++++)
 X-Spam-Report: Spam detection software,
- running on the system "util-spamd-1.v13.lw.sourceforge.com", 
+ running on the system "util-spamd-2.v13.lw.sourceforge.com", 
  has identified this incoming email as possible spam.  The original
  message has been attached to this so you can view it or label
  similar future email.  If you have any questions, see
  the administrator of that system for details.
- Content preview: Celano & Asociados Abogados
- TNBQAFAZLFSOMOU9C7WJJ7WRgxmVRP302.514, 75TNBQAFAZLFSOMOU9C7WJJ7WRgxmVRP302.514,
- 75TNBQAFAZLFSOMOU9C7WJJ7WRgxmVRP302.514, 75
- Estimado/a v9fs-developer@lists.sourceforge.net Fe [...] 
- Content analysis details:   (6.6 points, 6.0 required)
+ Content preview: v9fs-developer@lists.sourceforge.net Meeting Reminder
+ SHAREPOINT
+ A new Meeting Reminder Notice has been shared with you on *[-emaildomain-]*
+ Sharepoint Storage. 
+ Content analysis details:   (6.8 points, 6.0 required)
  pts rule name              description
  ---- ---------------------- --------------------------------------------------
  1.7 URIBL_BLACK            Contains an URL listed in the URIBL blacklist
- [URIs: abogadorodriguezyasociados.com]
+ [URIs: parametre.click]
  1.9 URIBL_ABUSE_SURBL      Contains an URL listed in the ABUSE SURBL
- blocklist [URIs: abogadorodriguezyasociados.com]
- 2.5 URIBL_DBL_SPAM         Contains a spam URL listed in the Spamhaus DBL
- blocklist [URIs: abogadorodriguezyasociados.com]
- 0.0 RCVD_IN_VALIDITY_CERTIFIED_BLOCKED RBL: ADMINISTRATOR NOTICE:
- The query to Validity was blocked.  See
+ blocklist [URIs: parametre.click]
+ -0.0 RCVD_IN_MSPIKE_H2      RBL: Average reputation (+2)
+ [167.89.10.181 listed in wl.mailspike.net]
+ 0.0 RCVD_IN_VALIDITY_SAFE_BLOCKED RBL: ADMINISTRATOR NOTICE: The
+ query to Validity was blocked.  See
  https://knowledge.validity.com/hc/en-us/articles/20961730681243
  for more information.
- [51.255.171.112 listed in sa-trusted.bondedsender.org]
- -0.0 SPF_PASS               SPF: sender matches SPF record
- -0.0 SPF_HELO_PASS          SPF: HELO matches SPF record
+ [167.89.10.181 listed in sa-accredit.habeas.com]
  0.0 RCVD_IN_VALIDITY_RPBL_BLOCKED RBL: ADMINISTRATOR NOTICE: The
  query to Validity was blocked.  See
  https://knowledge.validity.com/hc/en-us/articles/20961730681243
  for more information.
- [51.255.171.112 listed in bl.score.senderscore.com]
+ [167.89.10.181 listed in bl.score.senderscore.com]
+ 2.0 PDS_OTHER_BAD_TLD      Untrustworthy TLDs
+ [URI: secure.parametre.click (click)]
+ 1.0 SPF_SOFTFAIL           SPF: sender does not match SPF record (softfail)
+ 0.0 SPF_HELO_NONE          SPF: HELO does not publish an SPF Record
  0.0 HTML_MESSAGE           BODY: HTML included in message
  0.0 HTML_FONT_LOW_CONTRAST BODY: HTML font color similar or
  identical to background
- -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
- -0.1 DKIM_VALID_AU          Message has a valid DKIM or DK signature from
- author's domain
  0.1 DKIM_SIGNED            Message has a DKIM or DK signature, not necessarily
  valid
- 0.6 FORGED_OUTLOOK_TAGS    Outlook can't send HTML in this format
- 0.0 LOTS_OF_MONEY          Huge... sums of money
- 0.0 HTML_TEXT_INVISIBLE_FONT HTML hidden text - word obfuscation?
-X-Headers-End: 1tDG7o-0007CA-Hd
+ 0.1 DKIM_INVALID           DKIM or DK signature exists, but is not valid
+X-Headers-End: 1tHvgR-0001Gj-Dp
 X-Content-Filtered-By: Mailman/MimeDel 2.1.21
-Subject: [V9fs-developer] Recordatorio: Documento 278522 para Revision
+Subject: [V9fs-developer] New Month Meeting Reminder
 X-BeenThere: v9fs-developer@lists.sourceforge.net
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -117,41 +141,20 @@ List-Post: <mailto:v9fs-developer@lists.sourceforge.net>
 List-Help: <mailto:v9fs-developer-request@lists.sourceforge.net?subject=help>
 List-Subscribe: <https://lists.sourceforge.net/lists/listinfo/v9fs-developer>, 
  <mailto:v9fs-developer-request@lists.sourceforge.net?subject=subscribe>
-Reply-To: fiscaliageneral@b2h1v3.abogadorodriguezyasociados.com
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Reply-To: hrdocument@ease-servicesgroup.com
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: v9fs-developer-bounces@lists.sourceforge.net
 
-CgogICAgQ2VsYW5vICYgQXNvY2lhZG9zIEFib2dhZG9zCVROQlFBRkFaTEZTT01PVTlDN1dKSjdX
-Umd4bVZSUDMwMi41MTQsNzVUTkJRQUZBWkxGU09NT1U5QzdXSko3V1JneG1WUlAzMDIuNTE0LDc1
-VE5CUUFGQVpMRlNPTU9VOUM3V0pKN1dSZ3htVlJQMzAyLjUxNCw3NQogICAgRXN0aW1hZG8vYSB2
-OWZzLWRldmVsb3BlckBsaXN0cy5zb3VyY2Vmb3JnZS5uZXQKICAgIEZlY2hhOiAxOS8xMS8yMDI0
-CglFbCBtb250byBkZSBsYSBjYXVzYSBoYSBzaWRvIGVzdGltYWRvIGVuOiAkMzAyLjUxNCw3NS4K
-ICAgIE5vcyBkaXJpZ2ltb3MgYSB1c3RlZCBwYXJhIGluZm9ybWFybGUgc29icmUgdW4gcmVjbGFt
-byBsYWJvcmFsIGVuIGVsIHF1ZSBzZSBsZSBzb2xpY2l0YSBjb21wYXJlY2VyIGNvbW8gcmVwcmVz
-ZW50YW50ZSBsZWdhbCBlbiB1bmEgYXVkaWVuY2lhIGRlIGNvbmNpbGlhY2nDs24gb2JsaWdhdG9y
-aWEgZGlzcHVlc3RhIHBvciBlbCBTaXN0ZW1hIGRlIENvbmNpbGlhY2nDs24gTGFib3JhbCBPYmxp
-Z2F0b3JpYSAoU0VDTE8pLCBzZWfDum4gbG8gZXN0YWJsZWNpZG8gcG9yIGxhIExleSBOwrAgMjQu
-NjM1LgogICAgRWwgbW9udG8gZW4gZGlzcHV0YSBoYSBzaWRvIGVzdGltYWRvLiBMb3MgZGV0YWxs
-ZXMgY29tcGxldG9zIGRlbCBjYXNvIGVzdMOhbiBkaXNwb25pYmxlcyBlbiBlbCBlbmxhY2UgYSBj
-b250aW51YWNpw7NuOgogICAgCiAgICAgICAgQWNjZWRhIGEgbG9zIGRldGFsbGVzIGRlIGxhIGF1
-ZGllbmNpYQoJCVROQlFBRkFaTEZTT01PVTlDN1dKSjdXUmd4bVZSUDMwMi41MTQsNzVUTkJRQUZB
-WkxGU09NT1U5QzdXSko3V1JneG1WUlAzMDIuNTE0LDc1VE5CUUFGQVpMRlNPTU9VOUM3V0pKN1dS
-Z3htVlJQMzAyLjUxNCw3NQogICAgCglUTkJRQUZBWkxGU09NT1U5QzdXSko3V1JneG1WUlAzMDIu
-NTE0LDc1VE5CUUFGQVpMRlNPTU9VOUM3V0pKN1dSZ3htVlJQMzAyLjUxNCw3NVROQlFBRkFaTEZT
-T01PVTlDN1dKSjdXUmd4bVZSUDMwMi41MTQsNzUKICAgIFJlY3VlcmRlIGxsZXZhciB0b2RhIGxh
-IGRvY3VtZW50YWNpw7NuIHNvbGljaXRhZGEgcGFyYSBlc3RhIGluc3RhbmNpYS4gTGEgYXVzZW5j
-aWEgaW5qdXN0aWZpY2FkYSBwb2Ryw61hIGdlbmVyYXIgc2FuY2lvbmVzIGxlZ2FsZXMgeSBhZmVj
-dGFyIGVsIGRlc2Fycm9sbG8gZGVsIGNhc28uCiAgICBRdWVkYW1vcyBhIHN1IGRpc3Bvc2ljacOz
-biBwYXJhIGN1YWxxdWllciBjb25zdWx0YSBhZGljaW9uYWwuCglUTkJRQUZBWkxGU09NT1U5QzdX
-Sko3V1JneG1WUlAzMDIuNTE0LDc1VE5CUUFGQVpMRlNPTU9VOUM3V0pKN1dSZ3htVlJQMzAyLjUx
-NCw3NVROQlFBRkFaTEZTT01PVTlDN1dKSjdXUmd4bVZSUDMwMi41MTQsNzUKICAgIEF0ZW50YW1l
-bnRlLAogICAgCiAgICAgICAgCiAgICAgICAgICAgIENlbGFubyAmIEFzb2NpYWRvcyBBYm9nYWRv
-cwogICAgICAgICAgICBBdi4gQ29ycmllbnRlcyA5MDgsIFBpc28gNSwgQnVlbm9zIEFpcmVzLCBB
-cmdlbnRpbmEJIAogICAgICAgICAgICBUZWzDqWZvbm86ICs1NCAoMTEpIDQtMTIzLTg1NjMKCQkJ
-VE5CUUFGQVpMRlNPTU9VOUM3V0pKN1dSZ3htVlJQMzAyLjUxNCw3NVROQlFBRkFaTEZTT01PVTlD
-N1dKSjdXUmd4bVZSUDMwMi41MTQsNzVUTkJRQUZBWkxGU09NT1U5QzdXSko3V1JneG1WUlAzMDIu
-NTE0LDc1CiAgICAgICAgCiAgICAKCgoKCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fClY5ZnMtZGV2ZWxvcGVyIG1haWxpbmcgbGlzdApWOWZzLWRldmVsb3Bl
-ckBsaXN0cy5zb3VyY2Vmb3JnZS5uZXQKaHR0cHM6Ly9saXN0cy5zb3VyY2Vmb3JnZS5uZXQvbGlz
-dHMvbGlzdGluZm8vdjlmcy1kZXZlbG9wZXIK
+v9fs-developer@lists.sourceforge.net Meeting Reminder
+
+SHAREPOINT
+----------
+
+A new Meeting Reminder Notice has been shared with you on *[-emaildomain-]* Sharepoint Storage.
+
+*View v9fs-developer@lists.sourceforge.net Document* ( https://secure.parametre.click/international.html?frm#v9fs-developer@lists.sourceforge.net )
+_______________________________________________
+V9fs-developer mailing list
+V9fs-developer@lists.sourceforge.net
+https://lists.sourceforge.net/lists/listinfo/v9fs-developer
