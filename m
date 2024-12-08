@@ -2,133 +2,83 @@ Return-Path: <v9fs-developer-bounces@lists.sourceforge.net>
 X-Original-To: lists+v9fs-developer@lfdr.de
 Delivered-To: lists+v9fs-developer@lfdr.de
 Received: from lists.sourceforge.net (lists.sourceforge.net [216.105.38.7])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7731D9DF89F
-	for <lists+v9fs-developer@lfdr.de>; Mon,  2 Dec 2024 02:57:12 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id C47029E843D
+	for <lists+v9fs-developer@lfdr.de>; Sun,  8 Dec 2024 09:39:59 +0100 (CET)
 Received: from [127.0.0.1] (helo=sfs-ml-4.v29.lw.sourceforge.com)
 	by sfs-ml-4.v29.lw.sourceforge.com with esmtp (Exim 4.95)
 	(envelope-from <v9fs-developer-bounces@lists.sourceforge.net>)
-	id 1tHvgT-0001AC-Ef;
-	Mon, 02 Dec 2024 01:57:09 +0000
+	id 1tKCpY-0006WP-AT;
+	Sun, 08 Dec 2024 08:39:56 +0000
 Received: from [172.30.29.66] (helo=mx.sourceforge.net)
  by sfs-ml-4.v29.lw.sourceforge.com with esmtps (TLS1.2) tls
- TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384 (Exim 4.95) (envelope-from
- <bounces+48404592-5e90-v9fs-developer=lists.sourceforge.net@em2283.ease-servicesgroup.com>)
- id 1tHvgS-0001A3-4f for v9fs-developer@lists.sourceforge.net;
- Mon, 02 Dec 2024 01:57:08 +0000
+ TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384 (Exim 4.95)
+ (envelope-from <ubuntu@bmi-tech.cn>) id 1tKCpU-0006WF-PV
+ for v9fs-developer@lists.sourceforge.net;
+ Sun, 08 Dec 2024 08:39:52 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=sourceforge.net; s=x; h=To:List-Unsubscribe:Reply-To:Subject:Message-ID:
- Mime-Version:From:Date:Content-Type:Sender:Cc:Content-Transfer-Encoding:
- Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
- Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:List-Id:
- List-Help:List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=CYPrGF8mqr+zemvrMXwhFlbIrcHhdb4WurKVu9gTeHc=; b=kO4y1I568b+FE/wg0uLlGIHypH
- 2JVi6Rd33AXfjWv2mmTKX/CaFROKx/9pAcRIM7iTmCEv2MmObW1hlOU/pMOXmq8dLT/9Xbahi1HYQ
- 8GLLYEU1C0lwEnVHI/opC9A/COaPJ5ZRYYOc4CSVNmyhMuVD/JS6b05VnzqDDrolFosA=;
+ d=sourceforge.net; s=x; h=Content-Transfer-Encoding:Content-Type:MIME-Version
+ :Message-ID:Date:Subject:To:From:Reply-To:Sender:Cc:Content-ID:
+ Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
+ :Resent-Message-ID:In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:
+ List-Subscribe:List-Post:List-Owner:List-Archive;
+ bh=xpdqNvBW2iJujK9fBlE1satOfe/JYoJ+RWKSpnEpE14=; b=O0fc1YSgBZO4xUOhcKMY04/QAN
+ 2U2ZtzW4MrVX+poGyjZpJ2ef5spqV1XHtJWtPovbOGk0aLKfx+hqffoGwGV+2r2bY50SJuajId0DX
+ XIudaLkuU1f7IAPC4o2yu21IPx9oGb3Y/2tJBHhYvb07rivec2a/FIwy0yuHoOmXIuvQ=;
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  ;
- h=To:List-Unsubscribe:Reply-To:Subject:Message-ID:Mime-Version:From:Date:
- Content-Type:Sender:Cc:Content-Transfer-Encoding:Content-ID:
- Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
- :Resent-Message-ID:In-Reply-To:References:List-Id:List-Help:List-Subscribe:
- List-Post:List-Owner:List-Archive;
- bh=CYPrGF8mqr+zemvrMXwhFlbIrcHhdb4WurKVu9gTeHc=; b=YUCeSKNFX6+G2Ee6MXwz1aEwYs
- 3rMLqr9DRSW7ECCMWFDm1pMBFDekvP1vSN+8iyBXLfNVhLZ3kO16Sn5HiGsg0qFGnEShnNJraUEXG
- JsLIFZObjIBmjkXGWBMu/Kk4av0Fl9KeYEy7dXFregRo/6OYf4LAR4CVTL7JD3TGIavo=;
-Received: from xtrwhxbr.outbound-mail.sendgrid.net ([167.89.10.181])
- by sfi-mx-2.v28.lw.sourceforge.com with esmtps
- (TLS1.2:ECDHE-RSA-AES128-GCM-SHA256:128) (Exim 4.95)
- id 1tHvgR-0001Gj-Dp for v9fs-developer@lists.sourceforge.net;
- Mon, 02 Dec 2024 01:57:08 +0000
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ease-servicesgroup.com;
- h=content-type:from:mime-version:subject:reply-to:list-unsubscribe-post:
- list-unsubscribe:to:cc:content-type:from:subject:to;
- s=s1; bh=CYPrGF8mqr+zemvrMXwhFlbIrcHhdb4WurKVu9gTeHc=;
- b=pDnY5X4iJyNTmRdKcGXcISzO7XJHJdEemaP7V3YA1ZxK6F4Pwv46GycqU6yDej8dmOzF
- X66U/t1JVIUAO+XD/NjFHCRADwFqkvZQBOGLjOsKRihaTAUwG8hYssgGsToXglI5LYkF9s
- Uag0XQ5ZJSo2swINRcH6tsGcKrqZkas2qdjoyCV8N9lb3bqdpAxIyaxmqABagBB3RC0GHc
- /Tw8XFTKlnSrlhnq9tF5tacGcxpR6p6VWcIdK79NsXHj0Ft+0c1w7n/O8NgVJD7bwtSiQL
- T+AVyWCp92nYeYm1/NKusobpE41Ngo4hF0E7cLxy3OhAOx1DbyzCU/V1FLJRA2Cg==
-Received: by recvd-5c8ccdbd88-r9rtl with SMTP id
- recvd-5c8ccdbd88-r9rtl-1-674D0F9F-8
- 2024-12-02 01:38:39.243342334 +0000 UTC m=+1484203.312620884
-Received: from NDg0MDQ1OTI (unknown) by geopod-ismtpd-33 (SG) with HTTP
- id WrQeiBfVSHSMf2caMhZDBQ Mon, 02 Dec 2024 01:38:39.221 +0000 (UTC)
-Date: Mon, 02 Dec 2024 01:38:39 +0000 (UTC)
-From: Sandra fitcher <hrdocument@ease-servicesgroup.com>
-Mime-Version: 1.0
-Message-ID: <WrQeiBfVSHSMf2caMhZDBQ@geopod-ismtpd-33>
-List-Unsubscribe-Post: List-Unsubscribe=One-Click
-X-SG-EID: =?us-ascii?Q?u001=2EHVq8j79czPrhnV44XU0XRsKXh7eZ371vY6sescmgVfomLIdpa2Zm4BcZP?=
- =?us-ascii?Q?yiTRpYAp95vO=2FEgOYv7ufLQUmtrLU7exgKuskJL?=
- =?us-ascii?Q?VifdzMUao6oUZD9M3T2lw+nxtGs2j33UdK4QMSm?=
- =?us-ascii?Q?hu5e9QqjUjiTsz=2FK0cM01FAUqKsnuuTpZyOkQC2?=
- =?us-ascii?Q?=2FNSR86z9GhjIZADJo0pxktAYpyfU1vJwkjPk=2FPQ?=
- =?us-ascii?Q?8Wf3051fjlN+RK=2FtFj2FjM2z9h1iYcrmANcj=2Frt?=
- =?us-ascii?Q?7rz9Q50LPhpL05IiL0UCsWB=2FCK8Xp6zXRhoXWkV?=
- =?us-ascii?Q?kcNlUFkw=3D?=
-X-SG-ID: =?us-ascii?Q?u001=2EXwhBPNhCejkv4+fVosb2QVfR16Qxp9CrA7PjDe5zzeI=2F0IZCBsPXtgHbA?=
- =?us-ascii?Q?oGIj+RskLxA4N2rJjSWrHfgX07tLOm0v5BUQcd6?=
- =?us-ascii?Q?w3knjorGi7Hwu0WCOA5AFSvy0=2FwlG32=2FOYCqaew?=
- =?us-ascii?Q?A52B3B1R5+uAVHT7rfaS1scUVv6rtBjmpsmlWmp?=
- =?us-ascii?Q?tEG8tSX09IPGekfLx2Y0PkjEnB0Bm6SAmPnbU3Y?=
- =?us-ascii?Q?wJQizmHehSxlAhmjwVzP+PtFwSIRDHn=2FXuVbEQA?=
- =?us-ascii?Q?C6x8GeKYJFR8JWlShvd0DFGdRlbFDmpXtXP9VhW?=
- =?us-ascii?Q?02i8dmjEZitZy2KVRFkwiPCf+RfwSYMT3bsAIAx?=
- =?us-ascii?Q?g8QrsaqInHLtxyYCMT=2FCsm3Gnjd+Qolu+zD1yFi?=
- =?us-ascii?Q?nq86CelRruSlJ=2FHr70=2FDN84qAsD157pvpeJFK7J?=
- =?us-ascii?Q?AhErqPLNkgL5gujXfA2aFBMKNpvpLh45Ly7JZwk?=
- =?us-ascii?Q?ByO10lAN8R67FYACVmq8xLA2IK+UI9h8lytaV40?=
- =?us-ascii?Q?kYBOLs+fKO+HKmYTgAC3I0m=2FyUt7hA24JD9N0y7?=
- =?us-ascii?Q?4FIz+AAAhCv3GB5V5ZE0T+a4WI0ZQ5YkDA2YHfj?=
- =?us-ascii?Q?WwwYe6eHpbzPXyJZ3tbcxAF9KJ3kUgzyoqQACjr?=
- =?us-ascii?Q?yjSQLsZDDycOgyoygrp5JgUPmvnbXxDL8mEEPqk?=
- =?us-ascii?Q?cN60MLRYEVFb6bjzt+4QU1TPMgE=2FjTzvEKLloqo?=
- =?us-ascii?Q?xi2wskJavwLWWgfY5HOdW=2Fb?=
+ h=Content-Transfer-Encoding:Content-Type:MIME-Version:Message-ID:Date:
+ Subject:To:From:Reply-To:Sender:Cc:Content-ID:Content-Description:Resent-Date
+ :Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:
+ References:List-Id:List-Help:List-Unsubscribe:List-Subscribe:List-Post:
+ List-Owner:List-Archive; bh=xpdqNvBW2iJujK9fBlE1satOfe/JYoJ+RWKSpnEpE14=; b=Y
+ bYXQIhfsF4woiNKSM0KmRH9U2wrIrWIGNRlDds5HCOI+TR+bMBNcCkyZHj3cX46haHBTGrAHb55L6
+ nE5W0q5z27r+d0tYkg6F0525PwqTB+JK33IHTe0vgdGLR9KFPe1OMpwdXvxu0ZcTeJP+KF5V3MGX9
+ r/HSwtjMAc6Sqc+M=;
+Received: from [39.156.195.158] (helo=mail.bmi-tech.cn)
+ by sfi-mx-2.v28.lw.sourceforge.com with esmtp (Exim 4.95)
+ id 1tKCpS-0005M4-WE for v9fs-developer@lists.sourceforge.net;
+ Sun, 08 Dec 2024 08:39:52 +0000
+Received: from bmi-tech.cn (unknown [41.138.89.243])
+ by mail.bmi-tech.cn (Postfix) with ESMTPA id 4173F85FFA45
+ for <v9fs-developer@lists.sourceforge.net>;
+ Sun,  8 Dec 2024 16:37:55 +0800 (CST)
+From: Marie PRESLES <ubuntu@bmi-tech.cn>
 To: v9fs-developer@lists.sourceforge.net
-X-Entity-ID: u001.JZht0uIXh9BBh/qE8V61sg==
-X-Spam-Score: 6.8 (++++++)
-X-Spam-Report: Spam detection software,
- running on the system "util-spamd-2.v13.lw.sourceforge.com", 
- has identified this incoming email as possible spam.  The original
+Date: 08 Dec 2024 09:37:52 +0100
+Message-ID: <20241208093752.19BD7D76DBD79132@bmi-tech.cn>
+MIME-Version: 1.0
+X-Spam-Score: 3.8 (+++)
+X-Spam-Report: Spam detection software, running on the system "util-spamd-2.v13.lw.sourceforge.com",
+ has NOT identified this incoming email as spam.  The original
  message has been attached to this so you can view it or label
  similar future email.  If you have any questions, see
  the administrator of that system for details.
- Content preview: v9fs-developer@lists.sourceforge.net Meeting Reminder
- SHAREPOINT
- A new Meeting Reminder Notice has been shared with you on *[-emaildomain-]*
- Sharepoint Storage. 
- Content analysis details:   (6.8 points, 6.0 required)
- pts rule name              description
+ 
+ Content preview:  Bonjour, J'espère que vous allez bien! Je suis désolé de
+    vous contacter comme ça, ce n'est pas mon habitude. Ayant suivi mon cœur
+    je pense que vous êtes la personne dont j'ai besoin pour mon message que
+    [...] 
+ 
+ Content analysis details:   (3.8 points, 6.0 required)
+ 
+  pts rule name              description
  ---- ---------------------- --------------------------------------------------
- 1.7 URIBL_BLACK            Contains an URL listed in the URIBL blacklist
- [URIs: parametre.click]
- 1.9 URIBL_ABUSE_SURBL      Contains an URL listed in the ABUSE SURBL
- blocklist [URIs: parametre.click]
- -0.0 RCVD_IN_MSPIKE_H2      RBL: Average reputation (+2)
- [167.89.10.181 listed in wl.mailspike.net]
- 0.0 RCVD_IN_VALIDITY_SAFE_BLOCKED RBL: ADMINISTRATOR NOTICE: The
- query to Validity was blocked.  See
- https://knowledge.validity.com/hc/en-us/articles/20961730681243
- for more information.
- [167.89.10.181 listed in sa-accredit.habeas.com]
- 0.0 RCVD_IN_VALIDITY_RPBL_BLOCKED RBL: ADMINISTRATOR NOTICE: The
- query to Validity was blocked.  See
- https://knowledge.validity.com/hc/en-us/articles/20961730681243
- for more information.
- [167.89.10.181 listed in bl.score.senderscore.com]
- 2.0 PDS_OTHER_BAD_TLD      Untrustworthy TLDs
- [URI: secure.parametre.click (click)]
- 1.0 SPF_SOFTFAIL           SPF: sender does not match SPF record (softfail)
- 0.0 SPF_HELO_NONE          SPF: HELO does not publish an SPF Record
- 0.0 HTML_MESSAGE           BODY: HTML included in message
- 0.0 HTML_FONT_LOW_CONTRAST BODY: HTML font color similar or
- identical to background
- 0.1 DKIM_SIGNED            Message has a DKIM or DK signature, not necessarily
- valid
- 0.1 DKIM_INVALID           DKIM or DK signature exists, but is not valid
-X-Headers-End: 1tHvgR-0001Gj-Dp
-X-Content-Filtered-By: Mailman/MimeDel 2.1.21
-Subject: [V9fs-developer] New Month Meeting Reminder
+  0.0 RCVD_IN_VALIDITY_RPBL_BLOCKED RBL: ADMINISTRATOR NOTICE: The
+                             query to Validity was blocked.  See
+                             https://knowledge.validity.com/hc/en-us/articles/20961730681243
+                              for more information.
+                            [39.156.195.158 listed in bl.score.senderscore.com]
+  0.0 RCVD_IN_VALIDITY_SAFE_BLOCKED RBL: ADMINISTRATOR NOTICE: The
+                             query to Validity was blocked.  See
+                             https://knowledge.validity.com/hc/en-us/articles/20961730681243
+                              for more information.
+                         [39.156.195.158 listed in sa-trusted.bondedsender.org]
+  0.0 SPF_NONE               SPF: sender does not publish an SPF Record
+  0.0 SPF_HELO_NONE          SPF: HELO does not publish an SPF Record
+  1.3 RDNS_NONE              Delivered to internal network by a host with no rDNS
+  2.5 FREEMAIL_FORGED_REPLYTO Freemail in Reply-To, but not From
+X-Headers-End: 1tKCpS-0005M4-WE
+Subject: [V9fs-developer] Mme Marie PRESLES
 X-BeenThere: v9fs-developer@lists.sourceforge.net
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -141,20 +91,41 @@ List-Post: <mailto:v9fs-developer@lists.sourceforge.net>
 List-Help: <mailto:v9fs-developer-request@lists.sourceforge.net?subject=help>
 List-Subscribe: <https://lists.sourceforge.net/lists/listinfo/v9fs-developer>, 
  <mailto:v9fs-developer-request@lists.sourceforge.net?subject=subscribe>
-Reply-To: hrdocument@ease-servicesgroup.com
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Reply-To: preslesmarie@yahoo.com
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: v9fs-developer-bounces@lists.sourceforge.net
 
-v9fs-developer@lists.sourceforge.net Meeting Reminder
-
-SHAREPOINT
-----------
-
-A new Meeting Reminder Notice has been shared with you on *[-emaildomain-]* Sharepoint Storage.
-
-*View v9fs-developer@lists.sourceforge.net Document* ( https://secure.parametre.click/international.html?frm#v9fs-developer@lists.sourceforge.net )
-_______________________________________________
-V9fs-developer mailing list
-V9fs-developer@lists.sourceforge.net
-https://lists.sourceforge.net/lists/listinfo/v9fs-developer
+Qm9uam91ciwKCkonZXNww6hyZSBxdWUgdm91cyBhbGxleiBiaWVuISBKZSBzdWlzIGTDqXNvbMOp
+IGRlIHZvdXMgY29udGFjdGVyIApjb21tZSDDp2EsIGNlIG4nZXN0IHBhcyBtb24gaGFiaXR1ZGUu
+IEF5YW50IHN1aXZpIG1vbiBjxZN1ciBqZSAKcGVuc2UgcXVlIHZvdXMgw6p0ZXMgbGEgcGVyc29u
+bmUgZG9udCBqJ2FpIGJlc29pbiBwb3VyIG1vbiBtZXNzYWdlIApxdWUgamUgcG9ydGUgw6Agdm90
+cmUgY29ubmFpc3NhbmNlLiBKZSB2b3VzIGRlbWFuZGUgZGUgcG9ydGVyIHVuZSAKYXR0ZW50aW9u
+IHBhcnRpY3VsacOocmUgw6AgbW9uIG1lc3NhZ2UgYWZpbiBxdWUgdm91cyBwdWlzc2lleiAKcHJl
+bmRyZSBsYSBib25uZSBkw6ljaXNpb24uIEVuIGVmZmV0LCBqZSBtJ2FwcGVsbGUgTWFyaWUgUFJF
+U0xFUyAsIAp1biBib3Vyc2llciBzbG92YXF1ZSDDoCBsYSByZXRyYWl0ZSBvw7kgaidhaSBmYWl0
+IGZvcnR1bmUgZGFucyBkZXMgCmVudHJlcHJpc2VzIGVuIHBsZWluIGVzc29yIHRlbGxlcyBxdWUg
+bGVzIGJvdXJzZXMgZXQgYmllbiBwbHVzIAplbmNvcmUuIE1haXMgw6AgdW4gbW9tZW50IGhvcnMg
+ZHUgdGVtcHMgZGUgbm9zIHBhcmNvdXJzLCBsYSAKcsOpYWxpdMOpIG5vdXMgbW9udHJlIHF1ZSBy
+aWVuIG7igJllc3Qgw6l0ZXJuZWwuIEMnZXN0IGFpbnNpIHF1ZSBqJ2FpIApyw6lhbGlzw6kgcXVl
+IGxlIGTDqWJ1dCBkZSBjaGFxdWUgdmllIGEgdG91am91cnMgdW5lIGZpbiBldCBxdWUgamUgCm5l
+IHBldXggcGFzIHJlc3RlciBsb25ndGVtcHMuIEVuIGVmZmV0LCBqZSBzb3VmZnJlIAptYWxoZXVy
+ZXVzZW1lbnQgZCd1biBjYW5jZXIgZW4gcGhhc2UgdGVybWluYWxlLCBsZSBtw6lkZWNpbiAKdHJh
+aXRhbnQgbSdhIGRpdCBxdWUgbWVzIGpvdXJzIMOpdGFpZW50IGNvbXB0w6lzIGVuIHJhaXNvbiBk
+ZSBtYSAKc2FudMOpIGTDqWdyYWTDqWUgZXQgZGUgbW9uIMOiZ2UgYXZhbmPDqS4gw4l0YW50IHVu
+ZSBncmFuZGV1ciBkJ8OibWUgcXVpIApmYWl0IGRlIG1vaSB1biBwaGlsYW50aHJvcGUsIGonYWkg
+dG91am91cnMgdW4gY8WTdXIgcG91ciBtZXMgCnNlbWJsYWJsZXMsIHN1cnRvdXQgY2V1eCBxdWkg
+c291ZmZyZW50LCBjZXV4IHF1aSBsdXR0ZW50LCB0b3VzIApjZXMgZ2VucyBxdWkgbmUgc29udCBw
+YXMgZW50ZW5kdXMgZXQgY2VsYSBsb3JzIGRlIG1lcyB2b3lhZ2VzLiAKU2FjaGV6IHF1ZSBjZWxh
+IG5lIG1lIHNlcnQgw6AgcmllbiBkJ2F2b2lyIGRlcyBiaWVucyBldCBkZSBuZSBwYXMgCnBhcnRh
+Z2VyIHNhY2hhbnQgcXVlIGxhIG1vcnQgZXN0IMOgIG1lcyB0cm91c3Nlcy4gQydlc3QgcG91cnF1
+b2kgCmplIHNvdWhhaXRlIGJpZW4gdm91bG9pciB2b3VzIG9mZnJpciBtYSBwcm9wcmnDqXTDqSBk
+J3VuZSBzb21tZSBkZSAKMjUgNTgwIDAwMCDigqwsIGFmaW4gcXVlIHZvdXMgcHVpc3NpZXogcsOp
+YWxpc2VyIGxlcyBwcm9qZXRzIHF1aSAKdm91cyB0aWVubmVudCDDoCBjxZN1ci4gVmV1aWxsZXog
+cHJlbmRyZSBjb250YWN0IGF2ZWMgbW9uIG5vdGFpcmUgCnBvdXIgcsOpY2xhbWVyIHZvdHJlIGRv
+bmF0aW9uLCBhZmluIHF1ZSBsZXMgZG9jdW1lbnRzIHNvaWVudCAKw6l0YWJsaXMgcG91ciB2b3Vz
+IHBlcm1ldHRyZSBkZSBqdXN0aWZpZXIgbCdvcmlnaW5lIGRlIHZvcyBmb25kcy4KCkJpZW4gw6Ag
+dm91cwoKCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fClY5
+ZnMtZGV2ZWxvcGVyIG1haWxpbmcgbGlzdApWOWZzLWRldmVsb3BlckBsaXN0cy5zb3VyY2Vmb3Jn
+ZS5uZXQKaHR0cHM6Ly9saXN0cy5zb3VyY2Vmb3JnZS5uZXQvbGlzdHMvbGlzdGluZm8vdjlmcy1k
+ZXZlbG9wZXIK
