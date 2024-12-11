@@ -2,117 +2,137 @@ Return-Path: <v9fs-developer-bounces@lists.sourceforge.net>
 X-Original-To: lists+v9fs-developer@lfdr.de
 Delivered-To: lists+v9fs-developer@lfdr.de
 Received: from lists.sourceforge.net (lists.sourceforge.net [216.105.38.7])
-	by mail.lfdr.de (Postfix) with ESMTPS id D2C4C9EC9EE
-	for <lists+v9fs-developer@lfdr.de>; Wed, 11 Dec 2024 11:05:51 +0100 (CET)
-Received: from [127.0.0.1] (helo=sfs-ml-1.v29.lw.sourceforge.com)
-	by sfs-ml-1.v29.lw.sourceforge.com with esmtp (Exim 4.95)
+	by mail.lfdr.de (Postfix) with ESMTPS id D3F5F9ED6FA
+	for <lists+v9fs-developer@lfdr.de>; Wed, 11 Dec 2024 21:04:00 +0100 (CET)
+Received: from [127.0.0.1] (helo=sfs-ml-4.v29.lw.sourceforge.com)
+	by sfs-ml-4.v29.lw.sourceforge.com with esmtp (Exim 4.95)
 	(envelope-from <v9fs-developer-bounces@lists.sourceforge.net>)
-	id 1tLJbI-00044t-9A;
-	Wed, 11 Dec 2024 10:05:49 +0000
+	id 1tLSvz-0007Y9-So;
+	Wed, 11 Dec 2024 20:03:47 +0000
 Received: from [172.30.29.66] (helo=mx.sourceforge.net)
- by sfs-ml-1.v29.lw.sourceforge.com with esmtps (TLS1.2) tls
- TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384 (Exim 4.95) (envelope-from
- <362NZZwkbAFoKQRC2DD6J2HHA5.8GG8D6MK6J4GFL6FL.4GE@M3KW2WVRGUFZ5GODRSRYTGD7.apphosting.bounces.google.com>)
- id 1tLJbC-00044Q-Ia for v9fs-developer@lists.sourceforge.net;
- Wed, 11 Dec 2024 10:05:43 +0000
+ by sfs-ml-4.v29.lw.sourceforge.com with esmtps (TLS1.2) tls
+ TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384 (Exim 4.95)
+ (envelope-from <leocstone@gmail.com>) id 1tLSvx-0007Y3-C7
+ for v9fs-developer@lists.sourceforge.net;
+ Wed, 11 Dec 2024 20:03:45 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=sourceforge.net; s=x; h=Content-Type:To:From:Subject:Message-ID:Date:
- MIME-Version:Sender:Reply-To:Cc:Content-Transfer-Encoding:Content-ID:
- Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
- :Resent-Message-ID:In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:
+ d=sourceforge.net; s=x; h=Content-Transfer-Encoding:MIME-Version:References:
+ In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Sender:Reply-To:Content-Type:
+ Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+ Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
  List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=1v3I6zfzgXP0Ysga0Ll9bKQKdnSUtHzDJbNNRqSw5+4=; b=GocxFTh5D4hHJt66BCn2i4oGBI
- UKOHncHM8qzrm6FOXqCWRsG3Otmkr56rBpnlVIvq891X/TUrQWVJXK+QcgRCXz0y+WDSJis93QK5k
- VcSDOqSiG/tbhvi729cyuvSm0oZ5C34UXyompuOqgI6satekAohVImng3m6TIZudHgxc=;
+ bh=zjpNgAxO5KyvvV+aPXyUgI2o0mazz3K0LzFSUucmqIA=; b=XIvwfO/kllXd/UjQOfol35ZNQi
+ hdPbKNXPCJj9Z6lpHL44kBsm1RyoEnC/djkq4x80yceUStHfc84WqC24TPjF6mvHVEdILrffL/5Mj
+ LU359+zP7gAH0XkV5LBoPakqPukyI3Qa1fE4TDuGqtDVAlU5tWM0q0aSeB1IpvKLXmjQ=;
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  ;
- h=Content-Type:To:From:Subject:Message-ID:Date:MIME-Version:Sender:Reply-To
- :Cc:Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
- Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:
- References:List-Id:List-Help:List-Unsubscribe:List-Subscribe:List-Post:
- List-Owner:List-Archive; bh=1v3I6zfzgXP0Ysga0Ll9bKQKdnSUtHzDJbNNRqSw5+4=; b=Z
- Ohe0jpXxFM/1uqVb4MvthqwjrFcVzJ7shqv+lwV0/3yFkR/nMzW09MmOK+Mx1b7rWMTXtmZN9vzBW
- HC/f9JM+BW8RG033rFOUIgu2MIz15R5UntcmP/rz8a3xqy/DFXQJvWwOSBkDJyG4XzzNmQspJdIIe
- N3UpyuBfeNAcwwSw=;
-Received: from mail-io1-f79.google.com ([209.85.166.79])
+ h=Content-Transfer-Encoding:MIME-Version:References:In-Reply-To:Message-ID:
+ Date:Subject:Cc:To:From:Sender:Reply-To:Content-Type:Content-ID:
+ Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
+ :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
+ List-Post:List-Owner:List-Archive;
+ bh=zjpNgAxO5KyvvV+aPXyUgI2o0mazz3K0LzFSUucmqIA=; b=V0hYoXgI07cEkpOFh6ufmocia5
+ AvJegWsdH3NIVbSEfTnhjnO6F7PvuE+xupvbz/rh7E2tw5VtWTsd63EaRxdEicygRY5Lctwb9/oVH
+ z0ayh0OEBgABMHgJaJsZ4gz1j1fkJvXMxmjkgKqAbWQinauBIWhr6tgO+vc+fQasg4RE=;
+Received: from mail-pg1-f182.google.com ([209.85.215.182])
  by sfi-mx-2.v28.lw.sourceforge.com with esmtps
  (TLS1.2:ECDHE-RSA-AES128-GCM-SHA256:128) (Exim 4.95)
- id 1tLJbC-0004uS-GS for v9fs-developer@lists.sourceforge.net;
- Wed, 11 Dec 2024 10:05:43 +0000
-Received: by mail-io1-f79.google.com with SMTP id
- ca18e2360f4ac-844c16508bfso237664839f.1
+ id 1tLSvw-0000wU-P4 for v9fs-developer@lists.sourceforge.net;
+ Wed, 11 Dec 2024 20:03:45 +0000
+Received: by mail-pg1-f182.google.com with SMTP id
+ 41be03b00d2f7-7fd17f231a7so4733923a12.0
  for <v9fs-developer@lists.sourceforge.net>;
- Wed, 11 Dec 2024 02:05:42 -0800 (PST)
+ Wed, 11 Dec 2024 12:03:44 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=gmail.com; s=20230601; t=1733947419; x=1734552219; darn=lists.sourceforge.net;
+ h=content-transfer-encoding:mime-version:references:in-reply-to
+ :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=zjpNgAxO5KyvvV+aPXyUgI2o0mazz3K0LzFSUucmqIA=;
+ b=DIw2yysZcpbycrRvtAExuawMV26JIkwb6vxA6i05CeSabpKWnh8brI26SN7F/PO09N
+ gbyOsXpnmFscuWnkZhgM4tCRcCo5sjU6rHv1xFf03N+mBb2jMXBvev3paoVmVcj14/Wy
+ bAVhsdyHCVbvZfNY3a7IM6gAsQvSqS8sg4Ts9vXhL/amJlk9UoITxLpbEB0L9TGWW8rS
+ Ng1WUrSQFJeAtvqWZMKhw8PUaDe8bGIJvym8Pw9jmUNcV4u99myL4q2WkxLFwSYtOGW4
+ UHL8naXUw8Q1FnK3uKcA2rLzbdSoOLLpCS2oQVYusbn4hR+TNOCXXO/RgqsyP2gOxbUr
+ VyWA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1733911532; x=1734516332;
- h=to:from:subject:message-id:date:mime-version:x-gm-message-state
- :from:to:cc:subject:date:message-id:reply-to;
- bh=1v3I6zfzgXP0Ysga0Ll9bKQKdnSUtHzDJbNNRqSw5+4=;
- b=H5ZNH9MBC7dMBZQllX87PP+NwphOTVg8IspwhfLuuMBp9g10QubJpOxOLJRn5pQZTI
- d4sXc6M7dnHHzjNU6VPi2czOdvb3eruafLU5u4c0Wqs7y881BbC9Rk9Gie+RIJykf4Lu
- dfFgrm8m8yR9YTCiDtYuA2yDnr80Y2c2g3dwG3yYnlv8VfNfNZpJi3Y5HoT4vjsJYUfH
- WSxaai7DJ7xpvyyaCAnFEPCZ0cMXAsX6Vr2zlsbjL+q+yeBib3yLDaeBg1Z5ABWeT6Qp
- P03065RVfY0qEFjXyxBcpJyqngXYzwsaFFw8SnkcVgZ7dF+e1xJNTTSjaYeWjsxMMsYE
- td+g==
+ d=1e100.net; s=20230601; t=1733947419; x=1734552219;
+ h=content-transfer-encoding:mime-version:references:in-reply-to
+ :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+ :subject:date:message-id:reply-to;
+ bh=zjpNgAxO5KyvvV+aPXyUgI2o0mazz3K0LzFSUucmqIA=;
+ b=NVhHno+6qGbtLmsYTAriJBX/2i6MTp0HyxmRk5kyijY5a7UuFoSTxSP5eJWTPYqyrJ
+ ShSIcoyD/k4AHSj5w7z8sNKEheqHOyUHoZ1w20zQdRyUDxfSOlj/Kjw2zg0yX5GT5QZR
+ PGb10LDbZ6yrPgzxRLca4/GxBRnbpq7ojQ0+559l0ct129cF5HM3W4V5epBLQ/W+x0Rx
+ RqToW8Uu5D8zyYXAV72H1D/CvdXZTgJxJ38NQeYhvZ48dJaHPinuLKLoV+h84aL6xOUC
+ EhE1b3yNBG2lfEIhaN9KnUnSrherrfYogt7qiJ/vtPk2YmbUEJjGtjwgjx4CuHqYYyDc
+ eq4g==
 X-Forwarded-Encrypted: i=1;
- AJvYcCWRCmCfbElnvQqdJ8U/lYNdv2VPeUi+T3yN3Tbp0CDUb7ZkIPj0dcipXpuLuEC5xWYhgpakUt0wKgUYsyw0EQ==@lists.sourceforge.net
-X-Gm-Message-State: AOJu0YwP0c9YqYoN+3liNbOOCHXzv8ezAStgxMVth8FsKbZBXimK+718
- JUKvDcQRFYSOojRzTOmkSvvdTpN+jINbnaVc/9n1wZQwMSleE0fsQdcReUquu3MyxQdLMiNNo91
- 3w5rrUY7tpWbin330jP0yo2ztoxO+KO9H4MGNd9HJEjYp8bivDAxrT8c=
-X-Google-Smtp-Source: AGHT+IElOl1gHGvF3GIfVFdrI5o1zAlVuIxd/c9Lq8l+R5nhGOu9cpxuFrtqc2bTsRrWEWioxXBmzW4kks65UiiHKwKT7+dJTjIr
+ AJvYcCUOqn01iwIZ7HZGiDArRPveki/z4cglVwJG5KU6N1Mhnp13vNbkBlMHafPrsbMWTpXh4d7xQdoVuJV0VX3hYQ==@lists.sourceforge.net
+X-Gm-Message-State: AOJu0YxvU9dVykqasl3Ya2g9BtpeBuLVfgJMY3gNmk6XnG+5U/xhEf5a
+ U7jmVZNXwgWf3b7Uq0nabu+q8U7qyFJbpuq55FLUg4+XcVC5jUqq
+X-Gm-Gg: ASbGncsg7trkzzRB0vz1hyRR4uDlyYqhm0+dWlHUkZUYcR4eqaOHH4sckZoK54iXdkr
+ 02k8YrSPTqWw3zb2TKnGqEYkcVEcmUCFAw8RkxtdsLtd8O8cvxFC4nAj2/93tljn+H+6euG3Fyc
+ 12ay5xqflXLhiaX/r8PGwppTDo9WxQpi2NN/ACbR+q98LPn0BD9ZCC4FtqxoRf3Am4x2fFI7iuo
+ LqsuZajllnETBO0/4Mfh7g3oMby77qTdLM4/0tN1ec2mnQ0YcT8K/sJJFxlOZEIzXicEw==
+X-Google-Smtp-Source: AGHT+IFkpFW//odQIKH7vFlXlfPhvueJRWLMq59qElOmOHMBZNOyfMpmd6lTVOFk+xCH3IcDg/u63A==
+X-Received: by 2002:a17:90b:1c87:b0:2ee:aa28:79aa with SMTP id
+ 98e67ed59e1d1-2f127f7e587mr6242980a91.6.1733947418716; 
+ Wed, 11 Dec 2024 12:03:38 -0800 (PST)
+Received: from tc.hsd1.or.comcast.net ([2601:1c2:c104:170:a69f:44ab:93c9:b027])
+ by smtp.gmail.com with ESMTPSA id
+ 41be03b00d2f7-7fd4757691dsm6158725a12.18.2024.12.11.12.03.37
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Wed, 11 Dec 2024 12:03:38 -0800 (PST)
+From: Leo Stone <leocstone@gmail.com>
+To: syzbot+03fb58296859d8dbab4d@syzkaller.appspotmail.com
+Date: Wed, 11 Dec 2024 12:02:40 -0800
+Message-ID: <20241211200240.103853-1-leocstone@gmail.com>
+X-Mailer: git-send-email 2.43.0
+In-Reply-To: <675963eb.050a0220.17f54a.0038.GAE@google.com>
+References: <675963eb.050a0220.17f54a.0038.GAE@google.com>
 MIME-Version: 1.0
-X-Received: by 2002:a05:6e02:1648:b0:3a6:b783:3c06 with SMTP id
- e9e14a558f8ab-3aa08f669c9mr30078905ab.19.1733911531791; Wed, 11 Dec 2024
- 02:05:31 -0800 (PST)
-Date: Wed, 11 Dec 2024 02:05:31 -0800
-X-Google-Appengine-App-Id: s~syzkaller
-X-Google-Appengine-App-Id-Alias: syzkaller
-Message-ID: <675963eb.050a0220.17f54a.0038.GAE@google.com>
-From: syzbot <syzbot+03fb58296859d8dbab4d@syzkaller.appspotmail.com>
-To: asmadeus@codewreck.org, ericvh@gmail.com, ericvh@kernel.org, 
- linux-fsdevel@vger.kernel.org, linux-kernel@vger.kernel.org, 
- linux_oss@crudebyte.com, lucho@ionkov.net, syzkaller-bugs@googlegroups.com, 
- torvalds@linux-foundation.org, v9fs-developer@lists.sourceforge.net, 
- v9fs@lists.linux.dev, viro@zeniv.linux.org.uk
-X-Spam-Score: 3.1 (+++)
+X-Spam-Score: -0.2 (/)
 X-Spam-Report: Spam detection software,
- running on the system "util-spamd-1.v13.lw.sourceforge.com", 
+ running on the system "util-spamd-2.v13.lw.sourceforge.com", 
  has NOT identified this incoming email as spam.  The original
  message has been attached to this so you can view it or label
  similar future email.  If you have any questions, see
  the administrator of that system for details.
- Content preview:  Hello,
- syzbot found the following issue on: HEAD commit: af2ea8ab7a54
- Add linux-next specific files for 20241205 git tree: linux-next
- console+strace:
- https://syzkaller.appspot.com/x/log.txt?x=1369fde8580000 kernel config:
- https://syzkaller.apps [...] 
- Content analysis details:   (3.1 points, 6.0 required)
+ Content preview:  syzbot creates a pipe and writes some data to it. It then
+ creates a v9fs mount using the pipe as transport. The data in the pipe
+ specifies
+ an ACL of size 9 TB (9895604649984 bytes) for the root inode, [...] 
+ Content analysis details:   (-0.2 points, 6.0 required)
  pts rule name              description
  ---- ---------------------- --------------------------------------------------
- 0.3 FROM_LOCAL_HEX         From: localpart has long hexadecimal sequence
+ -0.0 RCVD_IN_DNSWL_NONE     RBL: Sender listed at https://www.dnswl.org/,
+ no trust [209.85.215.182 listed in list.dnswl.org]
  0.0 SPF_HELO_NONE          SPF: HELO does not publish an SPF Record
- 0.0 RCVD_IN_VALIDITY_SAFE_BLOCKED RBL: ADMINISTRATOR NOTICE: The
- query to Validity was blocked.  See
- https://knowledge.validity.com/hc/en-us/articles/20961730681243
- for more information.
- [209.85.166.79 listed in sa-trusted.bondedsender.org]
+ -0.0 SPF_PASS               SPF: sender matches SPF record
+ 0.0 FREEMAIL_FROM          Sender email is commonly abused enduser mail
+ provider [leocstone[at]gmail.com]
  0.0 RCVD_IN_VALIDITY_RPBL_BLOCKED RBL: ADMINISTRATOR NOTICE: The
  query to Validity was blocked.  See
  https://knowledge.validity.com/hc/en-us/articles/20961730681243
  for more information.
- [209.85.166.79 listed in bl.score.senderscore.com]
- 0.2 HEADER_FROM_DIFFERENT_DOMAINS From and EnvelopeFrom 2nd level
- mail domains are different
- 2.5 SORTED_RECIPS          Recipient list is sorted by address
- -0.0 SPF_PASS               SPF: sender matches SPF record
- -0.0 RCVD_IN_MSPIKE_H2      RBL: Average reputation (+2)
- [209.85.166.79 listed in wl.mailspike.net]
- -0.0 RCVD_IN_DNSWL_NONE     RBL: Sender listed at https://www.dnswl.org/,
- no trust [209.85.166.79 listed in list.dnswl.org]
-X-Headers-End: 1tLJbC-0004uS-GS
-Subject: [V9fs-developer] [syzbot] [v9fs?] WARNING in
- __alloc_frozen_pages_noprof
+ [209.85.215.182 listed in bl.score.senderscore.com]
+ 0.0 RCVD_IN_VALIDITY_CERTIFIED_BLOCKED RBL: ADMINISTRATOR NOTICE:
+ The query to Validity was blocked.  See
+ https://knowledge.validity.com/hc/en-us/articles/20961730681243
+ for more information.
+ [209.85.215.182 listed in sa-accredit.habeas.com]
+ 0.0 RCVD_IN_MSPIKE_H3      RBL: Good reputation (+3)
+ [209.85.215.182 listed in wl.mailspike.net]
+ -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+ -0.1 DKIM_VALID_EF          Message has a valid DKIM or DK signature from
+ envelope-from domain
+ -0.1 DKIM_VALID_AU          Message has a valid DKIM or DK signature from
+ author's domain
+ 0.1 DKIM_SIGNED            Message has a DKIM or DK signature, not necessarily
+ valid 0.0 RCVD_IN_MSPIKE_WL      Mailspike good senders
+X-Headers-End: 1tLSvw-0000wU-P4
+Subject: Re: [V9fs-developer] WARNING in __alloc_frozen_pages_noprof
 X-BeenThere: v9fs-developer@lists.sourceforge.net
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -125,125 +145,56 @@ List-Post: <mailto:v9fs-developer@lists.sourceforge.net>
 List-Help: <mailto:v9fs-developer-request@lists.sourceforge.net?subject=help>
 List-Subscribe: <https://lists.sourceforge.net/lists/listinfo/v9fs-developer>, 
  <mailto:v9fs-developer-request@lists.sourceforge.net?subject=subscribe>
+Cc: lucho@ionkov.net, Leo Stone <leocstone@gmail.com>, ericvh@gmail.com,
+ linux_oss@crudebyte.com, syzkaller-bugs@googlegroups.com,
+ linux-kernel@vger.kernel.org, viro@zeniv.linux.org.uk,
+ linux-fsdevel@vger.kernel.org, v9fs-developer@lists.sourceforge.net,
+ ericvh@kernel.org, torvalds@linux-foundation.org, v9fs@lists.linux.dev
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: v9fs-developer-bounces@lists.sourceforge.net
 
-Hello,
+syzbot creates a pipe and writes some data to it. It then creates a v9fs
+mount using the pipe as transport. The data in the pipe specifies an ACL
+of size 9 TB (9895604649984 bytes) for the root inode, causing kmalloc
+to fail.
 
-syzbot found the following issue on:
+KMALLOC_MAX_SIZE is probably too loose of an upper bound for the size of
+an ACL, but I didn't see an existing limit for V9FS like in e.g. NFS:
 
-HEAD commit:    af2ea8ab7a54 Add linux-next specific files for 20241205
-git tree:       linux-next
-console+strace: https://syzkaller.appspot.com/x/log.txt?x=1369fde8580000
-kernel config:  https://syzkaller.appspot.com/x/.config?x=76f158395f6f15fd
-dashboard link: https://syzkaller.appspot.com/bug?extid=03fb58296859d8dbab4d
-compiler:       Debian clang version 15.0.6, GNU ld (GNU Binutils for Debian) 2.40
-syz repro:      https://syzkaller.appspot.com/x/repro.syz?x=15070820580000
-C reproducer:   https://syzkaller.appspot.com/x/repro.c?x=16e870f8580000
+include/linux/nfsacl.h:
+>/* Maximum number of ACL entries over NFS */
+>#define NFS_ACL_MAX_ENTRIES     1024
+>
+>#define NFSACL_MAXWORDS         (2*(2+3*NFS_ACL_MAX_ENTRIES))
+>#define NFSACL_MAXPAGES         ((2*(8+12*NFS_ACL_MAX_ENTRIES) + PAGE_SIZE-1) \
+>                                 >> PAGE_SHIFT)
+>        
+>#define NFS_ACL_MAX_ENTRIES_INLINE      (5)
+>#define NFS_ACL_INLINE_BUFSIZE  ((2*(2+3*NFS_ACL_MAX_ENTRIES_INLINE)) << 2)
 
-Downloadable assets:
-disk image: https://storage.googleapis.com/syzbot-assets/8af0861258fa/disk-af2ea8ab.raw.xz
-vmlinux: https://storage.googleapis.com/syzbot-assets/ffb38cf7a344/vmlinux-af2ea8ab.xz
-kernel image: https://storage.googleapis.com/syzbot-assets/6fbd2e50358a/bzImage-af2ea8ab.xz
-
-The issue was bisected to:
-
-commit 3a34b13a88caeb2800ab44a4918f230041b37dd9
-Author: Linus Torvalds <torvalds@linux-foundation.org>
-Date:   Fri Jul 30 22:42:34 2021 +0000
-
-    pipe: make pipe writes always wake up readers
-
-bisection log:  https://syzkaller.appspot.com/x/bisect.txt?x=10759c0f980000
-final oops:     https://syzkaller.appspot.com/x/report.txt?x=12759c0f980000
-console output: https://syzkaller.appspot.com/x/log.txt?x=14759c0f980000
-
-IMPORTANT: if you fix the issue, please add the following tag to the commit:
-Reported-by: syzbot+03fb58296859d8dbab4d@syzkaller.appspotmail.com
-Fixes: 3a34b13a88ca ("pipe: make pipe writes always wake up readers")
-
-------------[ cut here ]------------
-WARNING: CPU: 0 PID: 5830 at mm/page_alloc.c:4728 __alloc_frozen_pages_noprof+0x3c5/0x710 mm/page_alloc.c:4728
-Modules linked in:
-CPU: 0 UID: 0 PID: 5830 Comm: syz-executor405 Not tainted 6.13.0-rc1-next-20241205-syzkaller #0
-Hardware name: Google Google Compute Engine/Google Compute Engine, BIOS Google 09/13/2024
-RIP: 0010:__alloc_frozen_pages_noprof+0x3c5/0x710 mm/page_alloc.c:4728
-Code: ff df 0f 85 09 01 00 00 44 89 e9 81 e1 7f ff ff ff a9 00 00 04 00 41 0f 44 cd 41 89 cd e9 f9 00 00 00 c6 05 87 3a 0c 0e 01 90 <0f> 0b 90 41 83 fc 0a 0f 86 13 fd ff ff 45 31 e4 48 c7 44 24 20 0e
-RSP: 0018:ffffc90003e8f940 EFLAGS: 00010246
-RAX: 0000000000000000 RBX: dffffc0000000000 RCX: 0000000000000000
-RDX: 0000000000000000 RSI: 0000000000000000 RDI: ffffc90003e8f9c8
-RBP: ffffc90003e8fa50 R08: ffffc90003e8f9c7 R09: 0000000000000000
-R10: ffffc90003e8f9a0 R11: fffff520007d1f39 R12: 0000000000000020
-R13: 0000000000040d40 R14: 1ffff920007d1f30 R15: 1ffff920007d1f2c
-FS:  0000555587715480(0000) GS:ffff8880b8600000(0000) knlGS:0000000000000000
-CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
-CR2: 0000000020001000 CR3: 000000003352e000 CR4: 00000000003526f0
-DR0: 0000000000000000 DR1: 0000000000000000 DR2: 0000000000000000
-DR3: 0000000000000000 DR6: 00000000fffe0ff0 DR7: 0000000000000400
-Call Trace:
- <TASK>
- __alloc_pages_noprof+0xa/0x30 mm/page_alloc.c:4786
- __alloc_pages_node_noprof include/linux/gfp.h:269 [inline]
- alloc_pages_node_noprof include/linux/gfp.h:296 [inline]
- ___kmalloc_large_node+0x8b/0x1d0 mm/slub.c:4228
- __kmalloc_large_node_noprof+0x1a/0x80 mm/slub.c:4255
- __do_kmalloc_node mm/slub.c:4271 [inline]
- __kmalloc_noprof+0x339/0x4c0 mm/slub.c:4295
- kmalloc_noprof include/linux/slab.h:905 [inline]
- kzalloc_noprof include/linux/slab.h:1037 [inline]
- v9fs_fid_get_acl+0x4f/0x100 fs/9p/acl.c:32
- __v9fs_get_acl fs/9p/acl.c:66 [inline]
- v9fs_get_acl+0x96/0x350 fs/9p/acl.c:92
- v9fs_qid_iget_dotl fs/9p/vfs_inode_dotl.c:131 [inline]
- v9fs_inode_from_fid_dotl+0x22d/0x2c0 fs/9p/vfs_inode_dotl.c:154
- v9fs_get_new_inode_from_fid fs/9p/v9fs.h:251 [inline]
- v9fs_mount+0x718/0xa90 fs/9p/vfs_super.c:142
- legacy_get_tree+0xee/0x190 fs/fs_context.c:662
- vfs_get_tree+0x90/0x2b0 fs/super.c:1814
- do_new_mount+0x2be/0xb40 fs/namespace.c:3507
- do_mount fs/namespace.c:3847 [inline]
- __do_sys_mount fs/namespace.c:4057 [inline]
- __se_sys_mount+0x2d6/0x3c0 fs/namespace.c:4034
- do_syscall_x64 arch/x86/entry/common.c:52 [inline]
- do_syscall_64+0xf3/0x230 arch/x86/entry/common.c:83
- entry_SYSCALL_64_after_hwframe+0x77/0x7f
-RIP: 0033:0x7f05fcd17de9
-Code: 28 00 00 00 75 05 48 83 c4 28 c3 e8 f1 17 00 00 90 48 89 f8 48 89 f7 48 89 d6 48 89 ca 4d 89 c2 4d 89 c8 4c 8b 4c 24 08 0f 05 <48> 3d 01 f0 ff ff 73 01 c3 48 c7 c1 b8 ff ff ff f7 d8 64 89 01 48
-RSP: 002b:00007ffc85e9b418 EFLAGS: 00000246 ORIG_RAX: 00000000000000a5
-RAX: ffffffffffffffda RBX: 0000000000000000 RCX: 00007f05fcd17de9
-RDX: 0000000020000b80 RSI: 00000000200003c0 RDI: 0000000000000000
-RBP: 000000000000ec55 R08: 0000000020000580 R09: 00007ffc85e9b450
-R10: 0000000000000000 R11: 0000000000000246 R12: 00007ffc85e9b450
-R13: 00007ffc85e9b43c R14: 431bde82d7b634db R15: 00007f05fcd60087
- </TASK>
-
+#syz test
 
 ---
-This report is generated by a bot. It may contain errors.
-See https://goo.gl/tpsmEJ for more information about syzbot.
-syzbot engineers can be reached at syzkaller@googlegroups.com.
+ fs/9p/acl.c | 2 ++
+ 1 file changed, 2 insertions(+)
 
-syzbot will keep track of this issue. See:
-https://goo.gl/tpsmEJ#status for how to communicate with syzbot.
-For information about bisection process see: https://goo.gl/tpsmEJ#bisection
+diff --git a/fs/9p/acl.c b/fs/9p/acl.c
+index eed551d8555f..1b9681d58f8d 100644
+--- a/fs/9p/acl.c
++++ b/fs/9p/acl.c
+@@ -28,6 +28,8 @@ static struct posix_acl *v9fs_fid_get_acl(struct p9_fid *fid, const char *name)
+ 		return ERR_PTR(size);
+ 	if (size == 0)
+ 		return ERR_PTR(-ENODATA);
++	if (size > KMALLOC_MAX_SIZE)
++		return ERR_PTR(-ERANGE);
+ 
+ 	value = kzalloc(size, GFP_NOFS);
+ 	if (!value)
+-- 
+2.43.0
 
-If the report is already addressed, let syzbot know by replying with:
-#syz fix: exact-commit-title
-
-If you want syzbot to run the reproducer, reply with:
-#syz test: git://repo/address.git branch-or-commit-hash
-If you attach or paste a git patch, syzbot will apply it before testing.
-
-If you want to overwrite report's subsystems, reply with:
-#syz set subsystems: new-subsystem
-(See the list of subsystem names on the web dashboard)
-
-If the report is a duplicate of another one, reply with:
-#syz dup: exact-subject-of-another-report
-
-If you want to undo deduplication, reply with:
-#syz undup
 
 
 _______________________________________________
