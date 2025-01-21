@@ -2,95 +2,101 @@ Return-Path: <v9fs-developer-bounces@lists.sourceforge.net>
 X-Original-To: lists+v9fs-developer@lfdr.de
 Delivered-To: lists+v9fs-developer@lfdr.de
 Received: from lists.sourceforge.net (lists.sourceforge.net [216.105.38.7])
-	by mail.lfdr.de (Postfix) with ESMTPS id B1FABA065C4
-	for <lists+v9fs-developer@lfdr.de>; Wed,  8 Jan 2025 21:12:12 +0100 (CET)
-Received: from [127.0.0.1] (helo=sfs-ml-2.v29.lw.sourceforge.com)
-	by sfs-ml-2.v29.lw.sourceforge.com with esmtp (Exim 4.95)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0ECB0A17A29
+	for <lists+v9fs-developer@lfdr.de>; Tue, 21 Jan 2025 10:28:42 +0100 (CET)
+Received: from [127.0.0.1] (helo=sfs-ml-4.v29.lw.sourceforge.com)
+	by sfs-ml-4.v29.lw.sourceforge.com with esmtp (Exim 4.95)
 	(envelope-from <v9fs-developer-bounces@lists.sourceforge.net>)
-	id 1tVcPR-0008Ah-OC;
-	Wed, 08 Jan 2025 20:12:09 +0000
+	id 1taAYp-0007kH-6o;
+	Tue, 21 Jan 2025 09:28:39 +0000
 Received: from [172.30.29.66] (helo=mx.sourceforge.net)
- by sfs-ml-2.v29.lw.sourceforge.com with esmtps (TLS1.2) tls
+ by sfs-ml-4.v29.lw.sourceforge.com with esmtps (TLS1.2) tls
  TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384 (Exim 4.95)
- (envelope-from <sendonly@ondapolitica.com>) id 1tVcPP-0008AK-Gh
+ (envelope-from <bruno.volf@hustvibe.com>) id 1taAYo-0007kB-0R
  for v9fs-developer@lists.sourceforge.net;
- Wed, 08 Jan 2025 20:12:08 +0000
+ Tue, 21 Jan 2025 09:28:38 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
  d=sourceforge.net; s=x; h=Content-Transfer-Encoding:Content-Type:MIME-Version
- :Date:Subject:To:From:Message-ID:Sender:Reply-To:Cc:Content-ID:
+ :Subject:To:From:Date:Message-ID:Sender:Reply-To:Cc:Content-ID:
  Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
  :Resent-Message-ID:In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:
  List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=yxOo4JC8cR+FPqF0W3xTl1akPYz9PPcBsdaaAhZO8JE=; b=KX2Al6V5GZz6zss9Jx5ntktX3Z
- eHmSDlmwjy3eFJwG41ZZBdw40mRVTA3Es+W84l3arDKj5j9tSWpWxiVgCFF1gfPCVELkOA8+glraB
- J1J6IV6Va0BO8/plQYilGVhVBCt9maCf0HG85aHeESO9hzH5RDX7c8Xvy+jnib2Skw0I=;
+ bh=OF7lSyu4ohHl48KZgXXK4SGwvHPfTbkHjZaGwymcmuQ=; b=gZZ0XUvCzeGHpKDH5SgIYjtAiH
+ 7kMXf4Z+UnZXqfVsuuMZqMRbw9h8YnzKYT1oTN6cmp6pE8lJVxugMpDCq4nSlQEElCrBmA1OXlMKF
+ qerHJ4MdW+oKZaZJtNZyopDQ3np0f252mVbG1mJciagCFpWDtFmYPeNtHGYC9Pa4SbkU=;
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  ;
- h=Content-Transfer-Encoding:Content-Type:MIME-Version:Date:Subject:To:From:
+ h=Content-Transfer-Encoding:Content-Type:MIME-Version:Subject:To:From:Date:
  Message-ID:Sender:Reply-To:Cc:Content-ID:Content-Description:Resent-Date:
  Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:
  References:List-Id:List-Help:List-Unsubscribe:List-Subscribe:List-Post:
- List-Owner:List-Archive; bh=yxOo4JC8cR+FPqF0W3xTl1akPYz9PPcBsdaaAhZO8JE=; b=c
- xvxexiNEq5KNccOo1uYd5y6QVVb2JqHVS0pL9Uo5Dy/fNDeraqYORYulhzSB+vyEoeqYI+oNcqqR5
- 6Uupj3vkfGnIaa4KInadLImLoawwqA1yRGhS7s8HLO6J+rxk0KiNLc4AWbXq2IfShM06nYQ33pCcz
- k/rDcZlpXwpgn1oA=;
-Received: from [140.227.120.168] (helo=mail0.ondapolitica.com)
+ List-Owner:List-Archive; bh=OF7lSyu4ohHl48KZgXXK4SGwvHPfTbkHjZaGwymcmuQ=; b=b
+ JkSQDnUeFOH/zRi5vhuMh1AFG8QY+wl1S60gOFyub/lGFL3uY5q+M/P3lqlhPTUIB+Vz49L293LcB
+ fAR2TfxLfTthlsx5edTT/TDDJ9HaQPXsSekAdWFj/lMr+PSSdLAi/QciJo5CH+SR2tCMkRzwikIpr
+ nIPwfH0huDKS9OCk=;
+Received: from mail.hustvibe.com ([89.46.78.155])
  by sfi-mx-2.v28.lw.sourceforge.com with esmtps
  (TLS1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.95)
- id 1tVcPN-0004ed-Ko for v9fs-developer@lists.sourceforge.net;
- Wed, 08 Jan 2025 20:12:06 +0000
-Message-ID: <a6c1be525f17b9d91f4a512205ff2233@shimabara.jp>
-From: =?utf-8?Q?=EF=BC=AA=EF=BC=A1=E3=83=8D=E3=83=83=E3=83=88=E3=83=90=E3=83=B3=E3=82=AF?=
- <okamoto-cl@shimabara.jp>
-To: "=?utf-8?Q?v9fs-developer@lists.sourceforge.net?="
- <v9fs-developer@lists.sourceforge.net>
-Date: Wed, 08 Jan 2025 19:51:43 +0000
+ id 1taAYm-00072P-PX for v9fs-developer@lists.sourceforge.net;
+ Tue, 21 Jan 2025 09:28:37 +0000
+Received: by mail.hustvibe.com (Postfix, from userid 1002)
+ id 3A97182BCB; Tue, 21 Jan 2025 10:10:38 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=hustvibe.com; s=mail;
+ t=1737450647; bh=OF7lSyu4ohHl48KZgXXK4SGwvHPfTbkHjZaGwymcmuQ=;
+ h=Date:From:To:Subject:From;
+ b=E/kr0lq2vrYYYrtFl399Rg1jp2NnhpQ1mMxb6jX8DvgNzPEjSv/4/u8kwTAfMkUio
+ xI8GmWAJsmv2UduJyo4lnkDZCgt2vG9tFhNFgDedbbbEDzbrk9RvyS5Kl6JirWoOC0
+ 0qWyeAwtgg5u5KhUxHxyyy71+vTUXSyTP61ZTJlA5MotEoF4AromyMvQoIONLgB+yK
+ TTGD8bNwp6nhGhp9uuNaFfcUaYn9k74U7z7mausP07ZJ36S2FLaQMw/fVxHZCfNJTn
+ CA5X5uy2qo97qFbyGmxPW5GIcEECELJh1/d02x7MlqtcEPcU6sW21AinoOgphuuJvW
+ UyJZDLsnB9uew==
+Received: by mail.hustvibe.com for <v9fs-developer@lists.sourceforge.net>;
+ Tue, 21 Jan 2025 09:10:31 GMT
+Message-ID: <20250121084500-0.1.8.706.0.kgwlvh1ne9@hustvibe.com>
+Date: Tue, 21 Jan 2025 09:10:31 GMT
+To: <v9fs-developer@lists.sourceforge.net>
+X-Mailer: mail.hustvibe.com
 MIME-Version: 1.0
-X-Spam-Score: 7.2 (+++++++)
-X-Spam-Report: Spam detection software, running on the system "util-spamd-2.v13.lw.sourceforge.com",
- has identified this incoming email as possible spam.  The original
+X-Spam-Score: 1.4 (+)
+X-Spam-Report: Spam detection software,
+ running on the system "util-spamd-1.v13.lw.sourceforge.com", 
+ has NOT identified this incoming email as spam.  The original
  message has been attached to this so you can view it or label
  similar future email.  If you have any questions, see
  the administrator of that system for details.
- 
- Content preview:  いつもＪＡネットバンクをご利用いただきありがとうございます。
-    ＪＡネットバンクでは、お客さまに安心安全にお取引いただけるよう、マネー・ローンダリングおよびテロ資金供与防止対策に取り組んでおり、そ�
-    [...] 
- 
- Content analysis details:   (7.2 points, 6.0 required)
- 
-  pts rule name              description
+ Content preview:  Dear Sir/Madam, How close are you to the idea of precise,
+ flawless bread production, where every process runs automatically, and quality
+ remains consistent? With this vision in mind, we have been manufacturing
+ bakery equipment for over 30 years, including sourdough machines, fermenters, 
+ leavening tanks, and starter cultures. 
+ Content analysis details:   (1.4 points, 6.0 required)
+ pts rule name              description
  ---- ---------------------- --------------------------------------------------
-  0.0 RCVD_IN_VALIDITY_CERTIFIED_BLOCKED RBL: ADMINISTRATOR NOTICE:
-                             The query to Validity was blocked.  See
-                             https://knowledge.validity.com/hc/en-us/articles/20961730681243
-                              for more information.
-                             [140.227.120.168 listed in sa-accredit.habeas.com]
-  0.0 RCVD_IN_VALIDITY_RPBL_BLOCKED RBL: ADMINISTRATOR NOTICE: The
-                             query to Validity was blocked.  See
-                             https://knowledge.validity.com/hc/en-us/articles/20961730681243
-                              for more information.
-                           [140.227.120.168 listed in bl.score.senderscore.com]
-  0.0 URIBL_PH_SURBL         Contains an URL listed in the PH SURBL blocklist
-                             [URIs: dishscrubb.com]
-  1.9 URIBL_ABUSE_SURBL      Contains an URL listed in the ABUSE SURBL
-                             blocklist
-                             [URIs: dishscrubb.com]
-  1.7 URIBL_BLACK            Contains an URL listed in the URIBL blacklist
-                             [URIs: dishscrubb.com]
- -0.0 RCVD_IN_MSPIKE_H2      RBL: Average reputation (+2)
-                             [140.227.120.168 listed in wl.mailspike.net]
-  0.2 HEADER_FROM_DIFFERENT_DOMAINS From and EnvelopeFrom 2nd level
-                             mail domains are different
-  0.0 SPF_HELO_NONE          SPF: HELO does not publish an SPF Record
+ 1.7 DEAR_SOMETHING         BODY: Contains 'Dear (something)'
+ 0.0 RCVD_IN_VALIDITY_RPBL_BLOCKED RBL: ADMINISTRATOR NOTICE: The
+ query to Validity was blocked.  See
+ https://knowledge.validity.com/hc/en-us/articles/20961730681243
+ for more information.
+ [89.46.78.155 listed in bl.score.senderscore.com]
+ 0.0 RCVD_IN_VALIDITY_CERTIFIED_BLOCKED RBL: ADMINISTRATOR NOTICE:
+ The query to Validity was blocked.  See
+ https://knowledge.validity.com/hc/en-us/articles/20961730681243
+ for more information.
+ [89.46.78.155 listed in sa-trusted.bondedsender.org]
+ -0.1 RCVD_IN_MSPIKE_H2      RBL: Average reputation (+2)
+ [89.46.78.155 listed in wl.mailspike.net]
+ 0.0 SPF_HELO_NONE          SPF: HELO does not publish an SPF Record
  -0.0 SPF_PASS               SPF: sender matches SPF record
-  2.0 PYZOR_CHECK            Listed in Pyzor
-                             (https://pyzor.readthedocs.io/en/latest/)
-  1.3 RDNS_NONE              Delivered to internal network by a host with no rDNS
-X-Headers-End: 1tVcPN-0004ed-Ko
-Subject: [V9fs-developer] =?utf-8?b?44CQ77yq77yh44ON44OD44OI44OQ44Oz44Kv?=
-	=?utf-8?b?44CR44GK5a6i44GV44G+5oOF5aCx44O75Y+W5byV55uu55qE44Gu56K6?=
-	=?utf-8?b?6KqN?=
+ 0.1 DKIM_SIGNED            Message has a DKIM or DK signature, not necessarily
+ valid
+ -0.1 DKIM_VALID_EF          Message has a valid DKIM or DK signature from
+ envelope-from domain
+ -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+ -0.1 DKIM_VALID_AU          Message has a valid DKIM or DK signature from
+ author's domain
+ 0.0 FROM_FMBLA_NEWDOM14    From domain was registered in last 7-14 days
+X-Headers-End: 1taAYm-00072P-PX
+Subject: [V9fs-developer] Bakery Machines
 X-BeenThere: v9fs-developer@lists.sourceforge.net
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -103,35 +109,30 @@ List-Post: <mailto:v9fs-developer@lists.sourceforge.net>
 List-Help: <mailto:v9fs-developer-request@lists.sourceforge.net?subject=help>
 List-Subscribe: <https://lists.sourceforge.net/lists/listinfo/v9fs-developer>, 
  <mailto:v9fs-developer-request@lists.sourceforge.net?subject=subscribe>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+From: Bruno Volf via V9fs-developer <v9fs-developer@lists.sourceforge.net>
+Reply-To: Bruno Volf <bruno.volf@hustvibe.com>
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: v9fs-developer-bounces@lists.sourceforge.net
 
-44GE44Gk44KC77yq77yh44ON44OD44OI44OQ44Oz44Kv44KS44GU5Yip55So44GE44Gf44Gg44GN
-44GC44KK44GM44Go44GG44GU44GW44GE44G+44GZ44CCDQoNCu+8qu+8oeODjeODg+ODiOODkOOD
-s+OCr+OBp+OBr+OAgeOBiuWuouOBleOBvuOBq+WuieW/g+WuieWFqOOBq+OBiuWPluW8leOBhOOB
-n+OBoOOBkeOCi+OCiOOBhuOAgeODnuODjeODvOODu+ODreODvOODs+ODgOODquODs+OCsOOBiuOC
-iOOBs+ODhuODreizh+mHkeS+m+S4jumYsuatouWvvuetluOBq+WPluOCiue1hOOCk+OBp+OBiuOC
-iuOAgeOBneOBruS4gOeSsOOBqOOBl+OBpuOAgeWumuacn+eahOOBq+OBiuWuouOBleOBvuaDheWg
-seODu+WPluW8leebrueahOetieOBrueiuuiqjeOCkuihjOOBo+OBpuOBiuOCiuOBvuOBmeOAgg0K
-44GK5omL5pWw44KS44GK44GL44GR44GE44Gf44GX44G+44GZ44GM44CB44GU55CG6Kej44Gu44GG
-44GI44GU5Zue562U44Gu44G744Gp44GK6aGY44GE44GE44Gf44GX44G+44GZ44CCDQoNCuS4i+io
-mOOBruOBiuWPluW8leeiuuiqjeODnOOCv+ODs+OCkuOCr+ODquODg+OCr+OBmeOCi+OBqCDjgIwg
-44GK5a6i44GV44G+5oOF5aCx44O75Y+W5byV55uu55qE44Gu56K66KqNIOOAjSDjga7nlLvpnaLj
-gYzooajnpLrjgZXjgozjgb7jgZnjgILnlLvpnaLjga7moYjlhoXjgavmsr/jgaPjgabjgYrlrqLj
-gZXjgb7mg4XloLHnrYnjga7norroqo3jgajjgZTlpInmm7Tjga7mnInnhKHjgIHlj5blvJXnm67n
-moTjgpLjgZTlm57nrZTjgY/jgaDjgZXjgYTjgILnorroqo3kuovpoIXjga7lpInmm7TjgoTmlrDj
-gZ/jgarmm7jpoZ7mj5Dlh7rnrYnjgYzjgarjgYTloLTlkIjjgIEx5YiG56iL5bqm44Gn5a6M5LqG
-44GX44G+44GZ44CCDQoNCuKWvOOBiuWPluW8leeiuuiqjQ0KaHR0cHM6Ly9kaXNoc2NydWJiLmNv
-bS9ocmlzdGluZS5odG1sDQoNCg0K44CQ44GU5rOo5oSP44CRDQrigLvlm57nrZTjgYzlrozkuobj
-gZfjgb7jgZnjgajjgIHpgJrluLjjganjgYrjgorjg63jgrDjgqTjg7Plvozjga7jgYrmiYvntprj
-gY3jgYzlj6/og73jgavjgarjgorjgb7jgZnjgIINCuKAu+S4gOWumuacn+mWk+OBlOeiuuiqjeOB
-hOOBn+OBoOOBkeOBquOBhOWgtOWQiOOAgeWPo+W6p+WPluW8leOCkuWItumZkOOBleOBm+OBpuOB
-hOOBn+OBoOOBjeOBvuOBmeOAgg0K4pSB4pSB4pSB4pSB4pSB4pSB4pSB4pSB4pSB4pSB4pSB4pSB
-4pSB4pSB4pSB4pSB4pSBDQrjgZTkuI3mmI7jgarngrnjgYzjgZTjgZbjgYTjgb7jgZfjgZ/jgonj
-gIHkuIvoqJjjgb7jgafjgZTpgKPntaHjgY/jgaDjgZXjgYTjgIINCumAo+e1oeWFiCAwMTIwLTA1
-OC0wOTgNCuOBk+OCjOOBi+OCieOCgu+8qu+8oeODjeODg+ODiOODkOODs+OCr+OCkuOCiOOCjeOB
-l+OBj+OBiumhmOOBhOOBl+OBvuOBmeOAggoKCgpfX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fXwpWOWZzLWRldmVsb3BlciBtYWlsaW5nIGxpc3QKVjlmcy1kZXZl
-bG9wZXJAbGlzdHMuc291cmNlZm9yZ2UubmV0Cmh0dHBzOi8vbGlzdHMuc291cmNlZm9yZ2UubmV0
-L2xpc3RzL2xpc3RpbmZvL3Y5ZnMtZGV2ZWxvcGVyCg==
+Dear Sir/Madam,
+
+How close are you to the idea of precise, flawless bread production, where every process runs automatically, and quality remains consistent?
+
+With this vision in mind, we have been manufacturing bakery equipment for over 30 years, including sourdough machines, fermenters, leavening tanks, and starter cultures.
+
+We meticulously combine robust construction and hygienic designs that meet ATEX and FDA standards. Through automation, we eliminate the risk of human error, lighten staff workloads, and shorten production times. The unparalleled consistency of fermentation processes allows you to achieve stable product quality and higher profitability.
+
+We offer technologies tailored to small and medium-sized businesses, as well as advanced systems for industrial bakeries. Our solutions enable "clean label" production, which is increasingly valued by consumers.
+
+Would you like to see how our machines work in practice? We would be happy to arrange a meeting and provide further details.
+
+
+Best regards
+Bruno Volf
+
+
+_______________________________________________
+V9fs-developer mailing list
+V9fs-developer@lists.sourceforge.net
+https://lists.sourceforge.net/lists/listinfo/v9fs-developer
