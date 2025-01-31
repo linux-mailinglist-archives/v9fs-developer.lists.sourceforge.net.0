@@ -2,99 +2,97 @@ Return-Path: <v9fs-developer-bounces@lists.sourceforge.net>
 X-Original-To: lists+v9fs-developer@lfdr.de
 Delivered-To: lists+v9fs-developer@lfdr.de
 Received: from lists.sourceforge.net (lists.sourceforge.net [216.105.38.7])
-	by mail.lfdr.de (Postfix) with ESMTPS id E43ABA22A0C
-	for <lists+v9fs-developer@lfdr.de>; Thu, 30 Jan 2025 10:06:17 +0100 (CET)
-Received: from [127.0.0.1] (helo=sfs-ml-4.v29.lw.sourceforge.com)
-	by sfs-ml-4.v29.lw.sourceforge.com with esmtp (Exim 4.95)
+	by mail.lfdr.de (Postfix) with ESMTPS id A8261A2391D
+	for <lists+v9fs-developer@lfdr.de>; Fri, 31 Jan 2025 05:00:51 +0100 (CET)
+Received: from [127.0.0.1] (helo=sfs-ml-3.v29.lw.sourceforge.com)
+	by sfs-ml-3.v29.lw.sourceforge.com with esmtp (Exim 4.95)
 	(envelope-from <v9fs-developer-bounces@lists.sourceforge.net>)
-	id 1tdQV5-00019I-TF;
-	Thu, 30 Jan 2025 09:06:15 +0000
+	id 1tdiD2-0006U3-US;
+	Fri, 31 Jan 2025 04:00:48 +0000
 Received: from [172.30.29.66] (helo=mx.sourceforge.net)
- by sfs-ml-4.v29.lw.sourceforge.com with esmtps (TLS1.2) tls
+ by sfs-ml-3.v29.lw.sourceforge.com with esmtps (TLS1.2) tls
  TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384 (Exim 4.95)
- (envelope-from <jon.brennan@tasknomic.com>) id 1tdQV3-000199-A1
+ (envelope-from <info@serviciosfusionar.com.ar>) id 1tdiCz-0006Tv-Cj
  for v9fs-developer@lists.sourceforge.net;
- Thu, 30 Jan 2025 09:06:13 +0000
+ Fri, 31 Jan 2025 04:00:45 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=sourceforge.net; s=x; h=Content-Transfer-Encoding:Content-Type:MIME-Version
- :Subject:To:From:Date:Message-ID:Sender:Reply-To:Cc:Content-ID:
+ d=sourceforge.net; s=x; h=Content-transfer-encoding:Content-type:Date:Subject
+ :Reply-To:To:From:Mime-Version:Message-Id:Sender:Cc:Content-ID:
  Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
  :Resent-Message-ID:In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:
  List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=qhPXDtX36VH1dBuRhQTg7JW2X59vA6pMbLgMkEPcRoI=; b=TokOpnfkQ1gv0FQlYVhJV7a1Lb
- hi1nnXUZw7PL4btq8Kj4403nheLvTLuxqcXAIkUy1xtfzUa3x/+s+7bOaqwGI2PzATCZHkg1r80Tr
- Z6mWJLa/7zDHmDDku2VdTsC3CkSPMdJfnFwN+TrFkOuNtw8mbqTvPlYZuw0rOOyvMVvo=;
+ bh=0Wx+vMeB4+Yr+Ixmn/JyF9y1jdNqQfiHuQ+urJgpfMo=; b=RhatSydYHXl43J4rjX/nzZ/z1h
+ 2b5dpLxpycLgpBnJDZDCWELy0n6Ya2qBa8sXc8HtwMz+PFkdvFqpvPEd/CRCMAnWO3h0Hm71WuLG8
+ fKjDbSU4c5uAavDXVvODsAm4QQ+LEuazruEf0lIVhSxw4R6XvGpEi3WKh/SxyXdL4srs=;
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  ;
- h=Content-Transfer-Encoding:Content-Type:MIME-Version:Subject:To:From:Date:
- Message-ID:Sender:Reply-To:Cc:Content-ID:Content-Description:Resent-Date:
+ h=Content-transfer-encoding:Content-type:Date:Subject:Reply-To:To:From:
+ Mime-Version:Message-Id:Sender:Cc:Content-ID:Content-Description:Resent-Date:
  Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:
  References:List-Id:List-Help:List-Unsubscribe:List-Subscribe:List-Post:
- List-Owner:List-Archive; bh=qhPXDtX36VH1dBuRhQTg7JW2X59vA6pMbLgMkEPcRoI=; b=k
- vmMiUiVAkk+TbFkeP//ojNokqHyFjM6UeMjr+t54ciDydM44cHWOY9PMJWAZUYBTIUSYGxy8BlCnt
- AFTiAYaP7yKU6UVEiPYrXIDF962wW4z0krswe/EZa1DEZrbDowHVzq5Frt4j4Y7jfQ/kX90+lND+M
- h7UYy9sGTnkeTvcI=;
-Received: from mail.tasknomic.com ([141.95.16.86])
+ List-Owner:List-Archive; bh=0Wx+vMeB4+Yr+Ixmn/JyF9y1jdNqQfiHuQ+urJgpfMo=; b=T
+ 8eGnjM8GIV4Ed/zLMOnbZWuR4rDXZMFs8aIRRPrWdNtP8DZG6z/1dnXk3aygQM5PjEtUU4sGtAxWg
+ XyQ6wKgdJnzsfYJ05T/joOHUHAYUF6EWZzBNn37a/d9uHH02j6sFwoSEnwIMzwQsFt+xN5fHHOdFk
+ FHQ2WkiKuNN8q3wI=;
+Received: from ccheetah.mxout.godns.net ([200.85.159.27] helo=mx1619.godns.net)
  by sfi-mx-2.v28.lw.sourceforge.com with esmtps
  (TLS1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.95)
- id 1tdQUy-0006bt-V7 for v9fs-developer@lists.sourceforge.net;
- Thu, 30 Jan 2025 09:06:13 +0000
-Received: by mail.tasknomic.com (Postfix, from userid 1002)
- id BAF5CA41F9; Thu, 30 Jan 2025 10:05:46 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=tasknomic.com;
- s=mail; t=1738227956;
- bh=qhPXDtX36VH1dBuRhQTg7JW2X59vA6pMbLgMkEPcRoI=;
- h=Date:From:To:Subject:From;
- b=VB2jLpxJnZ0h4sy1DfVYu4yiZGkwiKw+rhS5JTDiDQk5tNc6zcGLBzqDlddkjHU4a
- O/cK/QKnlnPgkSAexRG3iO3KSEyB7JqZTq14me/YZT9vNnU2ise2/+shwpnDvfwsWV
- 3DeSa3b5yubo3BhKpcK0bcZKvSVmWyILcMM6bhS4F53iVyxxQgNJVWWbD736YGKfbr
- +H7l1SC+ksfgpRaSc1++pl+nuovhV1RhXwQRI5VeJov82bIkuJCXt2ZaIxdw5c1HYh
- sKhnE4Ec5TNmycrXUPEiS9VNdxd5aAqDYA13KP1EEYC3Z4qSV8+slUxWZ7HaqXkTN5
- jO9pMRIiqEiWQ==
-Received: by mail.tasknomic.com for <v9fs-developer@lists.sourceforge.net>;
- Thu, 30 Jan 2025 09:05:31 GMT
-Message-ID: <20250130084500-0.1.gv.wuxf.0.cmfqe6a2o9@tasknomic.com>
-Date: Thu, 30 Jan 2025 09:05:31 GMT
-To: <v9fs-developer@lists.sourceforge.net>
-X-Mailer: mail.tasknomic.com
-MIME-Version: 1.0
-X-Spam-Score: -0.2 (/)
+ id 1tdiCu-0001Ui-A3 for v9fs-developer@lists.sourceforge.net;
+ Fri, 31 Jan 2025 04:00:44 +0000
+Received: (qmail 12463 invoked by uid 520); 31 Jan 2025 03:33:47 -0000
+Authentication-Results: smtp.correoseguro.co; auth=pass (login)
+Received: from [10.206.0.2] (83.115.174.34.bc.googleusercontent.com
+ [34.174.115.83])
+ by smtp.correoseguro.co (Haraka/2.8.13) with ESMTPA id
+ 173BB3F3-4DAE-4EA9-B2DF-FBFE79677ED3.1
+ envelope-from <info@serviciosfusionar.com.ar> (authenticated bits=0);
+ Fri, 31 Jan 2025 00:33:41 -0300
+Message-Id: <jE18ym7US3CmDjRoE1INE5paap6Qa38JmepDzQvjnh0N@serviciosfusionar.com.ar>
+Mime-Version: 1.0
+From: "Daniel Kofi" <info@serviciosfusionar.com.ar>
+To: "v9fs-developer" <v9fs-developer@lists.sourceforge.net>
+Date: Thu, 30 Jan 2025 19:33:41 -0800
+X-Haraka-GeoIP: NA, US
+X-Spam-Checker-Version: SpamAssassin 3.3.2 (2011-06-06) on arg-mailout3
+X-Spam-Level: **
+X-Spam-Status: No, score=2.6 required=4.0 tests=DEAR_FRIEND autolearn=disabled
+ version=3.3.2
+X-Spam-SpamCheckerVersion: 0
+DKIM-Signature: v=1; a=rsa-sha256;
+ bh=0Wx+vMeB4+Yr+Ixmn/JyF9y1jdNqQfiHuQ+urJgpfMo=; c=relaxed/simple;
+ d=correoseguro.co; h=from:to; s=default;
+ b=Ls4h/OQ1YiMU+5/Z0BU7tS8iuoizLOYVOkECCtHpb2dnVhnNwTSRh4xU7JtXZGsR6/tEl4xDf5AOBUhXBqddDKJG01D9eaWqh6tPq1hDTxezk89ok0QOc5iYoUdZhVYs1qBW5f2CR5WGoXDSxBZYi7Za+Lz6N+dM5/sluBIF/zOPAZswH1hMJu8Krh7UBWOfGatRpN3zSy4GbiNclYi4JXMg38p7WgdDZh6ukazcAeOrWpMk+ZCW50VB5kL0qWad/fAnSoWXbYZ4i7XQYQy2kofOzTpJemxnk1KnK3mncePtb7tgAZUPO7zjUmhATHDKAd7YmBtDuLQO2YG6mvy8PA==
+X-Spam-Score: 2.6 (++)
 X-Spam-Report: Spam detection software,
  running on the system "util-spamd-1.v13.lw.sourceforge.com", 
  has NOT identified this incoming email as spam.  The original
  message has been attached to this so you can view it or label
  similar future email.  If you have any questions, see
  the administrator of that system for details.
- Content preview:  Hi,
- How often do companies give up comfortable space for customers
- due to fire safety requirements? We produce wall-mounted chairs that take
- up only 12 cm of space when folded. When needed, it provides a comfortable
- place to sit, and when the escape route needs to be clear,
- it virtually disappears a [...] 
- Content analysis details:   (-0.2 points, 6.0 required)
+ Content preview:  Dear Friend I trust this message finds you in good spirits
+ during this holiday season. Allow me to introduce myself; my name is Daniel
+ Kofi, and I hold the position of Executive Director at Absa Bank [...] 
+ Content analysis details:   (2.6 points, 6.0 required)
  pts rule name              description
  ---- ---------------------- --------------------------------------------------
- 0.0 RCVD_IN_VALIDITY_CERTIFIED_BLOCKED RBL: ADMINISTRATOR NOTICE:
- The query to Validity was blocked.  See
- https://knowledge.validity.com/hc/en-us/articles/20961730681243
- for more information.
- [141.95.16.86 listed in sa-accredit.habeas.com]
  0.0 RCVD_IN_VALIDITY_RPBL_BLOCKED RBL: ADMINISTRATOR NOTICE: The
  query to Validity was blocked.  See
  https://knowledge.validity.com/hc/en-us/articles/20961730681243
  for more information.
- [141.95.16.86 listed in bl.score.senderscore.com]
+ [200.85.159.27 listed in bl.score.senderscore.com]
+ 0.0 RCVD_IN_VALIDITY_CERTIFIED_BLOCKED RBL: ADMINISTRATOR NOTICE:
+ The query to Validity was blocked.  See
+ https://knowledge.validity.com/hc/en-us/articles/20961730681243
+ for more information.
+ [200.85.159.27 listed in sa-accredit.habeas.com]
  0.0 SPF_HELO_NONE          SPF: HELO does not publish an SPF Record
  -0.0 SPF_PASS               SPF: sender matches SPF record
- -0.1 DKIM_VALID_AU          Message has a valid DKIM or DK signature from
- author's domain
+ 2.6 DEAR_FRIEND            BODY: Dear Friend? That's not very dear!
  0.1 DKIM_SIGNED            Message has a DKIM or DK signature, not necessarily
  valid
- -0.1 DKIM_VALID_EF          Message has a valid DKIM or DK signature from
- envelope-from domain
  -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-X-Headers-End: 1tdQUy-0006bt-V7
-Subject: [V9fs-developer] Informacje o dostawie
+X-Headers-End: 1tdiCu-0001Ui-A3
+Subject: [V9fs-developer] Confidential Business Opportunity
 X-BeenThere: v9fs-developer@lists.sourceforge.net
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -107,23 +105,18 @@ List-Post: <mailto:v9fs-developer@lists.sourceforge.net>
 List-Help: <mailto:v9fs-developer-request@lists.sourceforge.net?subject=help>
 List-Subscribe: <https://lists.sourceforge.net/lists/listinfo/v9fs-developer>, 
  <mailto:v9fs-developer-request@lists.sourceforge.net?subject=subscribe>
-From: Jon Brennan via V9fs-developer <v9fs-developer@lists.sourceforge.net>
-Reply-To: Jon Brennan <jon.brennan@tasknomic.com>
-Content-Type: text/plain; charset="us-ascii"
+Reply-To: back-up@hibank.com.br
 Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Errors-To: v9fs-developer-bounces@lists.sourceforge.net
 
-Hi,
-
-How often do companies give up comfortable space for customers due to fire safety requirements?
-
-We produce wall-mounted chairs that take up only 12 cm of space when folded. When needed, it provides a comfortable place to sit, and when the escape route needs to be clear, it virtually disappears against the wall.
-
-Would you like to check how a simple solution can so significantly improve the functionality of a space?
+Dear Friend
+I trust this message finds you in good spirits during this holiday season.
+Allow me to introduce myself; my name is Daniel Kofi, and I hold the position of Executive Director at Absa Bank Ghana Limited. I would like to explore a confidential business proposition that I believe could be mutually advantageous for us. If this piques your interest, I would be delighted to provide further details at your convenience.
+Thank you for considering this opportunity. I look forward to your response.
+Warm regards, Daniel Kofi Executive Director Absa Bank Ghana Limited
 
 
-Sincerely
-Jon Brennan
 
 
 _______________________________________________
