@@ -2,134 +2,94 @@ Return-Path: <v9fs-developer-bounces@lists.sourceforge.net>
 X-Original-To: lists+v9fs-developer@lfdr.de
 Delivered-To: lists+v9fs-developer@lfdr.de
 Received: from lists.sourceforge.net (lists.sourceforge.net [216.105.38.7])
-	by mail.lfdr.de (Postfix) with ESMTPS id 04CC5A89A22
-	for <lists+v9fs-developer@lfdr.de>; Tue, 15 Apr 2025 12:30:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1A071A9EA65
+	for <lists+v9fs-developer@lfdr.de>; Mon, 28 Apr 2025 10:12:47 +0200 (CEST)
 Received: from [127.0.0.1] (helo=sfs-ml-2.v29.lw.sourceforge.com)
 	by sfs-ml-2.v29.lw.sourceforge.com with esmtp (Exim 4.95)
 	(envelope-from <v9fs-developer-bounces@lists.sourceforge.net>)
-	id 1u4dYa-0001Fz-K4;
-	Tue, 15 Apr 2025 10:30:21 +0000
+	id 1u9JbX-0005Yw-Ju;
+	Mon, 28 Apr 2025 08:12:44 +0000
 Received: from [172.30.29.66] (helo=mx.sourceforge.net)
  by sfs-ml-2.v29.lw.sourceforge.com with esmtps (TLS1.2) tls
  TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384 (Exim 4.95)
- (envelope-from <tabotong.es@deped.gov.ph>) id 1u4dYK-0001F2-GQ
+ (envelope-from <bruno.volf@bizboard24.com>) id 1u9JbW-0005Yk-26
  for v9fs-developer@lists.sourceforge.net;
- Tue, 15 Apr 2025 10:30:05 +0000
+ Mon, 28 Apr 2025 08:12:42 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=sourceforge.net; s=x; h=Content-Type:MIME-Version:Message-ID:Date:Subject:
- To:From:Reply-To:Sender:Cc:Content-Transfer-Encoding:Content-ID:
+ d=sourceforge.net; s=x; h=Content-Transfer-Encoding:Content-Type:MIME-Version
+ :Subject:To:From:Date:Message-ID:Sender:Reply-To:Cc:Content-ID:
  Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
  :Resent-Message-ID:In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:
  List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=3tZLOWCI4/6YllbGoDfwz0VTPsHZeKgoK+prqpBSk5E=; b=KtfihT+xpgXAUn15Y9spGCYRnW
- LVe1kKkiqW0DRyNliRjDHb/3ZEwVn4s6NzQ+1U5bbpKpD2uVdk28csjRi/03YFFDEAqJjzp6DhuQh
- 34lhnncZQuwU+tFUyzKmgwgyj2WijbiQP09Gk0acLl2UO2HqXIkAJiHX9JBZl13Ggn1g=;
+ bh=OF7lSyu4ohHl48KZgXXK4SGwvHPfTbkHjZaGwymcmuQ=; b=N90AIJRXyYJ8uGzPzB3nDT+QHC
+ Gxtn98N/HNwykoGpCwurahkclMlxqG6pfZdVIzR2oJl1pi2DSLM+LengtTh3uTbm5xg6i8iFpMO3q
+ KtwBaiqovmmhdwxZSbb+UdYe39FubLxIiwEtqUBA9J3aLhpE4iSr9xT7g+Z6zrphcyxA=;
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  ;
- h=Content-Type:MIME-Version:Message-ID:Date:Subject:To:From:Reply-To:Sender
- :Cc:Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+ h=Content-Transfer-Encoding:Content-Type:MIME-Version:Subject:To:From:Date:
+ Message-ID:Sender:Reply-To:Cc:Content-ID:Content-Description:Resent-Date:
  Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:
  References:List-Id:List-Help:List-Unsubscribe:List-Subscribe:List-Post:
- List-Owner:List-Archive; bh=3tZLOWCI4/6YllbGoDfwz0VTPsHZeKgoK+prqpBSk5E=; b=R
- UyEHrNq/XvvzODUqRrnEgqmpyybLILmfJdpGd5ilMIXqrsilMTBBXkV3SB1BctytJVGb8AUNl+xS/
- DYR8ynvR2NeawhMtt3KSTqXg97+xt3nFf9Eaej/NK/ScHsPGorzmEDV3U7g6krNuU+URBBpARnxTj
- XfNdC7D8SYDovUT4=;
-Received: from mail-ej1-f48.google.com ([209.85.218.48])
+ List-Owner:List-Archive; bh=OF7lSyu4ohHl48KZgXXK4SGwvHPfTbkHjZaGwymcmuQ=; b=R
+ 6ACYGhG6z5fi40ReO5URTxswCOxyPjVHJdhDUEkL9d9EWqTQLPnjT0+7/R51/HuLeWWOu3GDNX/dS
+ aAUu/tbWeg6wv28viOPfs7IPFVoQtI2CMkzMaiQLyg6H2zLAc8PexekSdXLO5i1mJM6+7K1YEepdd
+ omdhAsL3A45frsCs=;
+Received: from mail.bizboard24.com ([141.95.54.37])
  by sfi-mx-2.v28.lw.sourceforge.com with esmtps
- (TLS1.2:ECDHE-RSA-AES128-GCM-SHA256:128) (Exim 4.95)
- id 1u4dY4-0007o6-8B for v9fs-developer@lists.sourceforge.net;
- Tue, 15 Apr 2025 10:30:05 +0000
-Received: by mail-ej1-f48.google.com with SMTP id
- a640c23a62f3a-ac345bd8e13so928968266b.0
- for <v9fs-developer@lists.sourceforge.net>;
- Tue, 15 Apr 2025 03:29:48 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=deped.gov.ph; s=google; t=1744712981; x=1745317781;
- darn=lists.sourceforge.net; 
- h=content-class:priority:importance:mime-version:message-id:date
- :subject:to:from:reply-to:thread-index:thread-topic:from:to:cc
- :subject:date:message-id:reply-to;
- bh=3tZLOWCI4/6YllbGoDfwz0VTPsHZeKgoK+prqpBSk5E=;
- b=XMYRC5zd5PAeG9KJLXk4abZUHb6PCnQ7CiDzTm7jOpBN3CUU0RgRq/iF8hMjNXAWCV
- d+kAs4SytXmuMERWdEK4f/c7PBCOoBWLk05f9jmv4Xzl1JNWbiaObtzCndAlRlikrrK4
- PzPH3cAQILgjzJQ5e6XnPZVHp+M1JZ4S54rKQ=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1744712981; x=1745317781;
- h=content-class:priority:importance:mime-version:message-id:date
- :subject:to:from:reply-to:thread-index:thread-topic
- :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
- bh=3tZLOWCI4/6YllbGoDfwz0VTPsHZeKgoK+prqpBSk5E=;
- b=Vbn/skrdV9milXJfJpo2n2hPyz0ryrbihPHQu8SMl/mfttB65fboG/NBDEbhBPjjND
- MfDV05UCehgvWXSD6popLI/efMfl1LTfcXrSafbAooCYsoOqynjQV6Jd7Xq0sD45OaTd
- mP6ocUHg3yGmkIERbD8xaKO6T6wzxCThVFe6hkzYQJeEoGtx7HRshULyzPOyVU7XqmqK
- es+Yw01h+eGB6lkTutbt8/0RambUupQZl/JXVc9bxAL+eOc2ldG8DLY+3snfc8aLS3uL
- 7mcoRZIiviJB/8GOwTbVK7MTgag53tnA+/cxpNQZ0XkKi94eBu43YP/cyxpP+kvP2L57
- aABg==
-X-Gm-Message-State: AOJu0YxWEeaN6okYOlKptKKGCRZUxdgQ9ZbogAQS6Ix3C0XYKUjOTx2n
- 3KbgYoK5oSnfMBntfTvPQ77ygYtsA7s0yOYLXSVGIC04BnhmmNCwswQWEx9vbCv2hTLTS/dLZqP
- 94TGtrgkRLfYY+JPNy9c/i6t3cAU03P4FKBvOF0KWZq2R0fhtgZseAOERQ43Qi16ekZRdAxz6eH
- 4=
-X-Gm-Gg: ASbGncslYyT82KGUVWQ1n9uBmUIUCJ+ts2JSWBSAxnp83ocDQw8yRz/Y7vzAtPTvqHk
- 9U6Zoex+cASW7GrX13sv8ZyA2SDwmOfKHBic9aSTR8EeU0efCdSVHWHjbeq08joVm+cd1RVX03P
- UXHwNjfn8CN735oMsQgMHvPvFNZG4tGVnDPRb6QKBQieDPbVTEULe+Chu3FU+MsHgvjQaivTIxz
- qMyOBC+LFBgx5MFJMluX2GEleP0KkX+A4mdCTzesot2Vif3phxRNj3up2lXsZJhElcQkG8V8frl
- 6fdFNBzR81/ptCq1DBC53sWRh5L8atar0dx1Pia+loiDauIm5hQic6EO
-X-Google-Smtp-Source: AGHT+IEB4L2kbJWMp961MVx7/kf+AzyQ9v2uYSMx6XrWZvd9aAEqdhLURUywwyIBzjC3AojVlV5org==
-X-Received: by 2002:a17:906:c105:b0:ac7:ed56:8a34 with SMTP id
- a640c23a62f3a-acad34996acmr1312299566b.21.1744712981221; 
- Tue, 15 Apr 2025 03:29:41 -0700 (PDT)
-Received: from WINUV1QM7FUHOK ([45.137.22.168])
- by smtp.gmail.com with ESMTPSA id
- 4fb4d7f45d1cf-5f36ef5653bsm6702393a12.20.2025.04.15.03.29.40
- for <v9fs-developer@lists.sourceforge.net>
- (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
- Tue, 15 Apr 2025 03:29:40 -0700 (PDT)
-Thread-Topic: potential collaboration.in Aviation
-thread-index: Adut8UuYshQGyC0XQ5uPXCC+3hZatg==
-From: =?utf-8?Q?Julio Silvio?= <tabotong.es@deped.gov.ph>
+ (TLS1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.95)
+ id 1u9JbG-0001Gu-B4 for v9fs-developer@lists.sourceforge.net;
+ Mon, 28 Apr 2025 08:12:42 +0000
+Received: by mail.bizboard24.com (Postfix, from userid 1002)
+ id 4574D2470B; Mon, 28 Apr 2025 08:11:11 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=bizboard24.com;
+ s=mail; t=1745827894;
+ bh=OF7lSyu4ohHl48KZgXXK4SGwvHPfTbkHjZaGwymcmuQ=;
+ h=Date:From:To:Subject:From;
+ b=HzSuya3IEfOJcDkuuYdr76WEAmLOYccFpbFEiYLhhALyr/tNkj3mKXt18fd2Z0eV3
+ w2Co0uOyBl5D4ECoppAiHWXZW4Nj+I0kbrrqh+wXUMpiOaxUF8FgUxYRH35k3wNqYy
+ I7Z6NWxF05KACpwUMqMaYrGDZJDol3V2kXMDT1k2cHdytEh3aT36edeXVQGo77M+Dm
+ KdETuX6+pJXiLNVWqANi5zi7IeLi8hqEkygHHeAsUTAwmE7meaphKw8z7EfrvT/jBs
+ iqps4bR63m9a6w//89SYy0hdHTv7aAqtjPI45X1Hs1LDDgyxnAYDV2+DYHw6itiGjm
+ ieU6mkE6Oj9TQ==
+Received: by mail.bizboard24.com for <v9fs-developer@lists.sourceforge.net>;
+ Mon, 28 Apr 2025 08:11:03 GMT
+Message-ID: <20250428064500-0.1.20.8ecl.0.v5r10i9x37@bizboard24.com>
+Date: Mon, 28 Apr 2025 08:11:03 GMT
 To: <v9fs-developer@lists.sourceforge.net>
-Date: Tue, 15 Apr 2025 03:29:40 -0700
-Message-ID: <D3ACD4C0E1FA4303A35FEF79D29B9F69@WINUV1QM7FUHOK>
+X-Mailer: mail.bizboard24.com
 MIME-Version: 1.0
-X-Mailer: Microsoft CDO for Windows 2000
-Importance: normal
-Priority: normal
-X-MimeOLE: Produced By Microsoft MimeOLE
-Content-Class: urn:content-classes:message
-X-Spam-Score: 2.6 (++)
+X-Spam-Score: 4.0 (++++)
 X-Spam-Report: Spam detection software,
  running on the system "util-spamd-2.v13.lw.sourceforge.com", 
  has NOT identified this incoming email as spam.  The original
  message has been attached to this so you can view it or label
  similar future email.  If you have any questions, see
  the administrator of that system for details.
- Content preview: -- ***This communication may contain confidential or
- privileged
- information, and is intended solely for the individual or entity to whom
- it is originally addressed. Any disclosure, copying, dissemination [...] 
- Content analysis details:   (2.6 points, 6.0 required)
+ Content preview:  Dear Sir/Madam, How close are you to the idea of precise,
+ flawless bread production, where every process runs automatically, and quality
+ remains consistent? With this vision in mind, we have been manufacturing
+ bakery equipment for over 30 years, including sourdough machines, fermenters, 
+ leavening tanks, and starter cultures. 
+ Content analysis details:   (4.0 points, 6.0 required)
  pts rule name              description
  ---- ---------------------- --------------------------------------------------
- 0.0 BAD_ENC_HEADER         Message has bad MIME encoding in the header
+ 2.5 URIBL_DBL_SPAM         Contains a spam URL listed in the Spamhaus DBL
+ blocklist [URIs: bizboard24.com]
+ 1.7 DEAR_SOMETHING         BODY: Contains 'Dear (something)'
  0.0 RCVD_IN_VALIDITY_SAFE_BLOCKED RBL: ADMINISTRATOR NOTICE: The
  query to Validity was blocked.  See
  https://knowledge.validity.com/hc/en-us/articles/20961730681243
  for more information.
- [209.85.218.48 listed in sa-accredit.habeas.com]
+ [141.95.54.37 listed in sa-accredit.habeas.com]
  0.0 RCVD_IN_VALIDITY_RPBL_BLOCKED RBL: ADMINISTRATOR NOTICE: The
  query to Validity was blocked.  See
  https://knowledge.validity.com/hc/en-us/articles/20961730681243
  for more information.
- [209.85.218.48 listed in bl.score.senderscore.com]
+ [141.95.54.37 listed in bl.score.senderscore.com]
+ 0.0 RCVD_IN_MSPIKE_H2      RBL: Average reputation (+2)
+ [141.95.54.37 listed in wl.mailspike.net]
  -0.0 SPF_PASS               SPF: sender matches SPF record
  0.0 SPF_HELO_NONE          SPF: HELO does not publish an SPF Record
- 0.2 FREEMAIL_REPLYTO_END_DIGIT Reply-To freemail username ends in
- digit [silvio11908[at]gmail.com]
- -0.0 RCVD_IN_DNSWL_NONE     RBL: Sender listed at https://www.dnswl.org/,
- no trust [209.85.218.48 listed in list.dnswl.org]
- 0.0 RCVD_IN_MSPIKE_H2      RBL: Average reputation (+2)
- [209.85.218.48 listed in wl.mailspike.net]
- 0.0 HTML_MESSAGE           BODY: HTML included in message
  0.1 DKIM_SIGNED            Message has a DKIM or DK signature, not necessarily
  valid
  -0.1 DKIM_VALID_EF          Message has a valid DKIM or DK signature from
@@ -137,10 +97,8 @@ X-Spam-Report: Spam detection software,
  -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
  -0.1 DKIM_VALID_AU          Message has a valid DKIM or DK signature from
  author's domain
- 2.5 FREEMAIL_FORGED_REPLYTO Freemail in Reply-To, but not From
-X-Headers-End: 1u4dY4-0007o6-8B
-X-Content-Filtered-By: Mailman/MimeDel 2.1.21
-Subject: [V9fs-developer] potential collaboration.in Aviation
+X-Headers-End: 1u9JbG-0001Gu-B4
+Subject: [V9fs-developer] Bakery Machines
 X-BeenThere: v9fs-developer@lists.sourceforge.net
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -153,22 +111,28 @@ List-Post: <mailto:v9fs-developer@lists.sourceforge.net>
 List-Help: <mailto:v9fs-developer-request@lists.sourceforge.net?subject=help>
 List-Subscribe: <https://lists.sourceforge.net/lists/listinfo/v9fs-developer>, 
  <mailto:v9fs-developer-request@lists.sourceforge.net?subject=subscribe>
-Reply-To: silvio11908@gmail.com
+From: Bruno Volf via V9fs-developer <v9fs-developer@lists.sourceforge.net>
+Reply-To: Bruno Volf <bruno.volf@bizboard24.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: v9fs-developer-bounces@lists.sourceforge.net
 
+Dear Sir/Madam,
 
--- 
+How close are you to the idea of precise, flawless bread production, where every process runs automatically, and quality remains consistent?
 
-***This communication may contain confidential or privileged information, 
-and is intended solely for the individual or entity to whom it is 
-originally addressed. Any disclosure, copying, dissemination, or any action 
-taken in reliance to it by others, other than the intended recipient, is 
-strictly prohibited. The opinions, conclusions, and statements expressed in 
-this message are those of the sender and may not necessarily reflect the 
-views of the Department of Education.**
-*
+With this vision in mind, we have been manufacturing bakery equipment for over 30 years, including sourdough machines, fermenters, leavening tanks, and starter cultures.
+
+We meticulously combine robust construction and hygienic designs that meet ATEX and FDA standards. Through automation, we eliminate the risk of human error, lighten staff workloads, and shorten production times. The unparalleled consistency of fermentation processes allows you to achieve stable product quality and higher profitability.
+
+We offer technologies tailored to small and medium-sized businesses, as well as advanced systems for industrial bakeries. Our solutions enable "clean label" production, which is increasingly valued by consumers.
+
+Would you like to see how our machines work in practice? We would be happy to arrange a meeting and provide further details.
+
+
+Best regards
+Bruno Volf
+
 
 _______________________________________________
 V9fs-developer mailing list
