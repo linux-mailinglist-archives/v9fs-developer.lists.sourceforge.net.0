@@ -2,181 +2,126 @@ Return-Path: <v9fs-developer-bounces@lists.sourceforge.net>
 X-Original-To: lists+v9fs-developer@lfdr.de
 Delivered-To: lists+v9fs-developer@lfdr.de
 Received: from lists.sourceforge.net (lists.sourceforge.net [216.105.38.7])
-	by mail.lfdr.de (Postfix) with ESMTPS id A0AFBAA74ED
-	for <lists+v9fs-developer@lfdr.de>; Fri,  2 May 2025 16:27:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 23368AAEC5B
+	for <lists+v9fs-developer@lfdr.de>; Wed,  7 May 2025 21:41:55 +0200 (CEST)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.sourceforge.net; s=beta; h=Content-Transfer-Encoding:Content-Type:
 	Reply-To:List-Subscribe:List-Help:List-Post:List-Archive:List-Unsubscribe:
-	List-Id:Subject:MIME-Version:To:From:Date:Message-ID:Sender:Cc:Content-ID:
+	List-Id:Subject:MIME-Version:Message-ID:From:To:Date:Sender:Cc:Content-ID:
 	Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
 	:Resent-Message-ID:In-Reply-To:References:List-Owner;
-	bh=lIZBKU4vAGys97jNuZ1skPACoFi6FhxOUrjzFGN/R2Q=; b=H8bLwwmHCBz5uWp0R+W02POMRZ
-	bUYSQHX2OuDSFQ+EySS5axTAyS33zSuqbQ33ttHXGr6Kda7iX9Xx+TyrKptOEtXdEIZj6ZOnYUrtQ
-	tVFdR7uVzzwibZ5hoxkGBW6mQGdwSJmGTa94qPa6GnsRVi9kuoBMEavSoc45D3PAUgiU=;
+	bh=9TMh7rpL2KBaBfcn3ndiBOT62SlNdo3/EPj2Edt8Bxs=; b=e+B06xkAocLGKXJ7e4pV48H3KE
+	rMpbxekaNkSsnYJs2SWDO41MFD2MY6x9rTwEYQXwTr16DoaKSdz69H56zuqParlWoy5t3pBQSOv3Y
+	BEZ3k7Oy3H5dB+varY8VUXZj16hMntSOwHEgdeU+X/+YOusEUhJsM+3LXOdEBqnDZ308=;
 Received: from [127.0.0.1] (helo=sfs-ml-1.v29.lw.sourceforge.com)
 	by sfs-ml-1.v29.lw.sourceforge.com with esmtp (Exim 4.95)
 	(envelope-from <v9fs-developer-bounces@lists.sourceforge.net>)
-	id 1uArM4-00063V-BZ;
-	Fri, 02 May 2025 14:27:08 +0000
+	id 1uCkeO-0003la-1W;
+	Wed, 07 May 2025 19:41:52 +0000
 Received: from [172.30.29.66] (helo=mx.sourceforge.net)
  by sfs-ml-1.v29.lw.sourceforge.com with esmtps (TLS1.2) tls
  TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384 (Exim 4.95)
- (envelope-from <admin@sageaubrey.com>) id 1uArM3-00063P-Mo
- for v9fs-developer@lists.sourceforge.net;
- Fri, 02 May 2025 14:27:07 +0000
+ (envelope-from <bounce.L35S138850M666@s1.arrobamail.com>)
+ id 1uCkeN-0003lS-JR for v9fs-developer@lists.sourceforge.net;
+ Wed, 07 May 2025 19:41:51 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=sourceforge.net; s=x; h=MIME-Version:Subject:Reply-To:To:From:Date:
- Message-ID:Content-Type:Sender:Cc:Content-Transfer-Encoding:Content-ID:
- Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
- :Resent-Message-ID:In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:
+ d=sourceforge.net; s=x; h=Content-Type:MIME-Version:List-ID:List-Unsubscribe:
+ Message-ID:Subject:Reply-To:From:To:Date:Sender:Cc:Content-Transfer-Encoding:
+ Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+ Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:List-Help:
  List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=SJU+ZtyPRXDB7BBlW9mGOf80UFYDsvZQnZDdRRNgPK8=; b=Bpah546DO9tLhFwcqegaYsIi+j
- osM+xMpRMvuGripHSOoGytbgWTvlJmfzdQDNsggQJkBnmCHr0LbCoa75WmtfTDqFSckpTRxL5dwnY
- 5wbaVaddOvlSkPIQmzjuJ3eUwCmU9eN8lI5kegBxzQRiUxc/HB6cJhLBiWoewp3GHdjA=;
+ bh=/4hEEw54kLSwg4i51BCxGmAo5LMOSsFHXph98OJsIGM=; b=Yr5fVJTGXbkgRy+ZW9vPy8YXB7
+ N/6Tobfl8EUu+a/84BArlUqPTxId5rQKVx+ggedqBvabw1olCCLvnSl76GYvUs0aZ9rUkjibzbChu
+ aKR5IwpE1fxVKWICLHj22cV84h70Oxnun1IGrvNTi2uGLAXY9NhEYA69Dp+V3uxpnisk=;
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  ;
- h=MIME-Version:Subject:Reply-To:To:From:Date:Message-ID:Content-Type:Sender
- :Cc:Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
- Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:
- References:List-Id:List-Help:List-Unsubscribe:List-Subscribe:List-Post:
- List-Owner:List-Archive; bh=SJU+ZtyPRXDB7BBlW9mGOf80UFYDsvZQnZDdRRNgPK8=; b=l
- 7W1V3SdOHU56/5px+acrK1aWcr/KlItyK7K/OesI0Hjt7CSpwBQ9Qy0EM+m+WGt4V544UPXLs3TQ0
- 9BJuGILVYQH3SjWo4DpC5F6LF1kuMMbyOh9kU2w57GDafAhpTatgtuNBjsL+pMk2FvxstZdelzlok
- z5jMw/O2uXajtW+w=;
-Received: from mail-westcentralusazon11020110.outbound.protection.outlook.com
- ([40.93.198.110] helo=CY4PR05CU001.outbound.protection.outlook.com)
+ h=Content-Type:MIME-Version:List-ID:List-Unsubscribe:Message-ID:Subject:
+ Reply-To:From:To:Date:Sender:Cc:Content-Transfer-Encoding:Content-ID:
+ Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
+ :Resent-Message-ID:In-Reply-To:References:List-Help:List-Subscribe:List-Post:
+ List-Owner:List-Archive; bh=/4hEEw54kLSwg4i51BCxGmAo5LMOSsFHXph98OJsIGM=; b=Q
+ pufPE+PGYqP9ZVL5RwfrTdK0VnRxE8GZcNjV1fpUfDAyborOGR2tljk8d0oFWBLLakC2vv6tgpgSq
+ ra1j8jZqYhlBb3TkGLxZZlvzaXNIBGfdUdOLgPe04R+ttjr7sqQG9dlLR1dy88WPtd6d7ZZkgd7Rx
+ dQ3Bf071b9//4Ifg=;
+Received: from p144i156.pf.fmservers.net ([190.105.144.156])
  by sfi-mx-2.v28.lw.sourceforge.com with esmtps
  (TLS1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.95)
- id 1uArLn-0008JW-NC for v9fs-developer@lists.sourceforge.net;
- Fri, 02 May 2025 14:27:07 +0000
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=QQ7z7e/hyxHEJnjqpLQt0cWOEaw64UleTLliM6hfMI5oM8h0i4718/AnqG5DAoVmK2MFfgu7MQG99/6pYIweWTP9OBeORGXpom29LnXq5YmgTj3+xl4PvXBC9rYheYzf0XJxT4R9hKaQeimxC5pt8urNyWckuFj/zR7mb5E8krU6lwHWUL8DY17rMBigUPBQGLeucVz+drAYv95oJB3Q5H5Q3jHoZPU4PGAveYRFB45u5vaEvEurErZR3sH0+Jx8giC9UxWlzBPCqEi0RURjiUgaBIW/gv0L2lLeXyMg1PoTs9gS+RSwWmt3UpDai68TE/40LqMbdRqKtWV00q0N1g==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=SJU+ZtyPRXDB7BBlW9mGOf80UFYDsvZQnZDdRRNgPK8=;
- b=Hsvac/CiaYa2/psk8Kf9pq+jL73UoHI157a/ZI7UlASmNtIPUoNlPUgxTJUKfT308/e3tevzN4g6qk7xRMAm934ExDiI6DacBBbiTQ6Fe9KZzTEAJ7DEXaW+4naAxgBURi/o0tmUSnK98DQvojxg3NWYwC3MCFrYwPdrPtRXj0te5VS4FTRDAdLOLWocZtsdunSSjw4nh2WZl77Kz7tLLN9OpdINBHGaPNJ6h3GW9+JL8hPj4Hkyc6K99tofwFEfBc1giFTu96FuXmXC0IXY9bAzZXCIObw6DvVqVhGMpM08349JJ4Xd0mUO9JC2o1J1YsJmE3eSc2q9RfUR9dJGgg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=fail (sender ip is
- 23.94.190.51) smtp.rcpttodomain=lists.sourceforge.net
- smtp.mailfrom=sageaubrey.com; dmarc=none action=none
- header.from=sageaubrey.com; dkim=none (message not signed); arc=none (0)
-Received: from BN7PR02CA0030.namprd02.prod.outlook.com (2603:10b6:408:20::43)
- by BN8PR07MB6884.namprd07.prod.outlook.com (2603:10b6:408:79::21)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8699.24; Fri, 2 May
- 2025 13:52:05 +0000
-Received: from BL02EPF0001A0FA.namprd03.prod.outlook.com
- (2603:10b6:408:20:cafe::c) by BN7PR02CA0030.outlook.office365.com
- (2603:10b6:408:20::43) with Microsoft SMTP Server (version=TLS1_3,
- cipher=TLS_AES_256_GCM_SHA384) id 15.20.8655.41 via Frontend Transport; Fri,
- 2 May 2025 13:52:05 +0000
-X-MS-Exchange-Authentication-Results: spf=fail (sender IP is 23.94.190.51)
- smtp.mailfrom=sageaubrey.com; dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=sageaubrey.com;
-Received-SPF: Fail (protection.outlook.com: domain of sageaubrey.com does not
- designate 23.94.190.51 as permitted sender)
- receiver=protection.outlook.com; 
- client-ip=23.94.190.51; helo=[127.0.0.1];
-Received: from [127.0.0.1] (23.94.190.51) by
- BL02EPF0001A0FA.mail.protection.outlook.com (10.167.242.101) with Microsoft
- SMTP Server (version=TLS1_3, cipher=TLS_AES_256_GCM_SHA384) id 15.20.8699.20
- via Frontend Transport; Fri, 2 May 2025 13:52:05 +0000
-Message-ID: <v9fs-developer@lists.sourceforge.net-1746193925403@sageaubrey-com.mail.protection.outlook.com>
-Date: Fri, 02 May 2025 13:52:05 GMT
-From: Ease Pay Finance <admin@sageaubrey.com>
+ id 1uCkeL-0003al-Hy for v9fs-developer@lists.sourceforge.net;
+ Wed, 07 May 2025 19:41:51 +0000
+Date: Wed, 7 May 2025 14:41:37 -0500
 To: v9fs-developer@lists.sourceforge.net
+From: =?utf-8?Q?Luis_Ram=C3=ADrez?= <luis.ramirez@consultores-rh.com>
+Message-ID: <J5BlxHY6GjyP0vQcs56XQcc3mNz8ZCi1ff9LvgtHss@s1.arrobamail.com>
+X-Mailer: FMMailer v3
+X-Data: ZXx2OWZzLWRldmVsb3BlckBsaXN0cy5zb3VyY2Vmb3JnZS5uZXR8
+X-Fid: eGZpZC12OWZzLWRldmVsb3BlckBsaXN0cy5zb3VyY2Vmb3JnZS5uZXQtNjY2LTM1LTEzODg1MC0yNjktczEuYXJyb2JhbWFpbC5jb20=
+X-fmbh: djlmcy1kZXZlbG9wZXJAbGlzdHMuc291cmNlZm9yZ2UubmV0OzY2NjszNTsxMzg4NTA7MjY5
+X-bhid: X-bhd: 666;35;138850
+List-Unsubscribe-Post: List-Unsubscribe=One-Click
+X-AntiAbuse: abuse@outservices.net
+Precedence: bulk
+Feedback-ID: 666:35s138850:124931:WPservicesESP
+X-Transport: p144i156
 MIME-Version: 1.0
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: BL02EPF0001A0FA:EE_|BN8PR07MB6884:EE_
-X-MS-Office365-Filtering-Correlation-Id: 8d456e6c-d1e8-4d5c-99cc-08dd89808641
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
- ARA:13230040|61400799027|36860700013|376014|82310400026|34020700016|8096899003|36200700002;
-X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?qBVLl7EwBjjYI4ywwcPE2l/Yck46MewKVwGqLoc411wRXuGyHTyreDTNItDZ?=
- =?us-ascii?Q?7pYlnioHa7bmrjKN8OJh5v1OtQHPWlAXlovhKVvUQ8L7cguYGEGdopsH/i85?=
- =?us-ascii?Q?uWyKvTmOkA687Xn37x5OHJEJjyXnHtNV7BDbGEyimMZqOt1abzkVHsODo8fM?=
- =?us-ascii?Q?kYbxLlw/jg+mCrWU6AgLKj/u3IDQHQfNY1AmzRFnhrWBW5kbn+ZNPOcPVXaf?=
- =?us-ascii?Q?lf1lT7iUk5uZZLcTKJmc0hvxfdljr/WMT77tJh1dWZ5cN33B40Yz16Y3WawM?=
- =?us-ascii?Q?fU3DdHoFXamwUQRKrZDcZXUgBUcq6E5O9C+gJ3da/IqHXcoJwd72fC6J6Ism?=
- =?us-ascii?Q?dqc4w5pY2v5ph/bvNSYFI1/xbnzUT0bsf+eVpkUj3Z58Wa2lTFYIqmgt6/p8?=
- =?us-ascii?Q?N26q+cVYEJUu1bOUVjZn8MLDiSogCovnMRFVh2EWohWfCetFB8b5KI4wFz0r?=
- =?us-ascii?Q?VSHDYo/Iwf7DEd8QyOPfvUY9a4qIaAdVNV2oyytkhXdY0W5SKoRgEmrTUlYN?=
- =?us-ascii?Q?r3u62PIhkX3QW5i6rHkSz5jmmupMxKknToGiQbtNE77lhUbRauMngrs0kQef?=
- =?us-ascii?Q?bi0Rwf6Nfietgh9ft8mB6RzIuWHabbnHRwBDtvbg7mGbPbsXhk6yAZ5E3W3R?=
- =?us-ascii?Q?nUWDZoUswdwUMOzFQFrhPVSfaILbFiN+pJiEebgBUrZPt9SANPT4eQJbaxNp?=
- =?us-ascii?Q?vGzKb/v1Py+8yVk9uUjhR7a22bYZBztEljm2gO7UbK9IQxPFM1R/LwuAKUwG?=
- =?us-ascii?Q?TFbqvGfSbMDVKRyRgG140eFECWbtvBLWb088DApQfx0EsidDk15YKtrleaJD?=
- =?us-ascii?Q?GfI+AROf28ZlS9euiaPk/WBTTvVCcnYuMFyBQaTurW4poF9KjQKqqGSnRdSa?=
- =?us-ascii?Q?EREqa+pA4BlR+3EQJDVH6o8q6eGGxySk4xJk9jTLvCcq6LzjNN7iCqtxOgYF?=
- =?us-ascii?Q?N/Fy1tp+2c4C8z3U1nrxlK86OK1zLjScQ4SRqw0z7kSITSj00sUCTyxUdScv?=
- =?us-ascii?Q?HbBiX3QF4eDa5SckELO/wyslild6nkHU6XA74FG6LWUCP+YvQVSqSWlyQ4uG?=
- =?us-ascii?Q?yu06CzmkMqRtrl8m58JkJFYOeOyg33xmqXvu2ugPPF7blR/7wpZGoGcZi7p8?=
- =?us-ascii?Q?SAJHuzui/NeaVaABSmB8KIyTh2DUng2Lt8UUGY9HjVrrHpAlRPJ8zrq8wImo?=
- =?us-ascii?Q?PY7/960QkGQHqiilvq28ipb5NF+Z7bEQt36dKDrWd5AX7QR+RxRnVjpaCQqk?=
- =?us-ascii?Q?uPkIY7u378GwiEoz/lPoc+ZEKmjzZ3Lf/4tz9cehM2RwkrqT+Je7G97C3G7D?=
- =?us-ascii?Q?k0GFkV0wQl3cDN6l61caE+MxkyyWmyDtwHNA8WgDwZaIHKh39we5/+qGFPnP?=
- =?us-ascii?Q?4ouUn6ZASbKk1Te6hZdvRkjoyfblq7oXfYLieURHw3A4oHDsHUVWYrhpPCS3?=
- =?us-ascii?Q?z41V0S9EcGwPFgh3uFENe9pEwJSp0sLTnIysJ7JYEGLO9AvhUHr4h3/fSQZu?=
- =?us-ascii?Q?q/jIRf9o1h4BWQdu0JOAD3P0l7DQTv8BGxCYgXF2/nNFYJY1uSYiNaM77g?=
- =?us-ascii?Q?=3D=3D?=
-X-Forefront-Antispam-Report: CIP:23.94.190.51; CTRY:US; LANG:de; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:[127.0.0.1]; PTR:23-94-190-51-host.colocrossing.com;
- CAT:NONE;
- SFS:(13230040)(61400799027)(36860700013)(376014)(82310400026)(34020700016)(8096899003)(36200700002);
- DIR:OUT; SFP:1102; 
-X-OriginatorOrg: sageaubrey.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 02 May 2025 13:52:05.7194 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 8d456e6c-d1e8-4d5c-99cc-08dd89808641
-X-MS-Exchange-CrossTenant-Id: 77f5ddae-2ae4-48a7-9178-56243c300ce3
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=77f5ddae-2ae4-48a7-9178-56243c300ce3; Ip=[23.94.190.51];
- Helo=[[127.0.0.1]]
-X-MS-Exchange-CrossTenant-AuthSource: BL02EPF0001A0FA.namprd03.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BN8PR07MB6884
-X-Spam-Score: 1.8 (+)
-X-Spam-Report: Spam detection software, running on the system "util-spamd-1.v13.lw.sourceforge.com",
+DKIM-Signature: v=1; d=consultores-rh.com; s=fm;
+ a=rsa-sha256; q=dns/txt; t=1746646897; c=relaxed/simple;
+ h=Date:To:From:Reply-To:Subject:Message-ID:X-Mailer:X-Data:X-Fid:X-fmbh:List-Unsubscribe:X-AntiAbuse:Feedback-ID:List-ID:MIME-Version:Content-Type;
+ z=Date:Wed,=207=20May=202025=2014:41:37=20-0500
+ |To:v9fs-developer@lists.sourceforge.net
+ |From:=3D?utf-8?Q?Luis_Ram=3DC3=3DADrez?=3D=20<luis.ramirez@consultores-rh
+ .com>
+ |Reply-To:=3D?utf-8?Q?Luis_Ram=3DC3=3DADrez?=3D=20<luis.ramirez@consultore
+ s-rh.com>
+ |Subject:=3D?utf-8?Q?Mejora_el_liderazgo_con_evaluaciones_360=3DC2=3DB0_ob
+ jetivas?=3D
+ |Message-ID:<J5BlxHY6GjyP0vQcs56XQcc3mNz8ZCi1ff9LvgtHss@s1.arrobamail.com>
+ |X-Mailer:FMMailer=20v3
+ |X-Data:ZXx2OWZzLWRldmVsb3BlckBsaXN0cy5zb3VyY2Vmb3JnZS5uZXR8
+ |X-Fid:eGZpZC12OWZzLWRldmVsb3BlckBsaXN0cy5zb3VyY2Vmb3JnZS5uZXQtNjY2LTM1LTE
+ zODg1MC0yNjktczEuYXJyb2JhbWFpbC5jb20=3D
+ |X-fmbh:djlmcy1kZXZlbG9wZXJAbGlzdHMuc291cmNlZm9yZ2UubmV0OzY2NjszNTsxMzg4NT
+ A7MjY5
+ |List-Unsubscribe:<https://s1.arrobamail.com/unsuscribe.php?FormData=3Dwro
+ oyqsrysuuuseup> |X-AntiAbuse:abuse@outservices.net
+ |Feedback-ID:666:35s138850:124931:WPservicesESP
+ |List-ID:<420:2499300> |MIME-Version:1.0
+ |Content-Type:multipart/alternative=3B=20boundary=3D"b1_J5BlxHY6GjyP0vQcs5
+ 6XQcc3mNz8ZCi1ff9LvgtHss";
+ bh=/4hEEw54kLSwg4i51BCxGmAo5LMOSsFHXph98OJsIGM=;
+ b=auCFANTJqC2f6TG3YjomJo4zsOtM1YPw6l+T44Zts/6O7hPYLA7YawAK74zeSAAUHYGGq96tT
+ W/QYOMbqCBQ9FJJr6xvyVZQjdBxoZsfsUUQG6kO0OJYEzc0g5RH2F8a76zJHiK/f7duSgiMe/
+ nIcBJTBvqaPHlbCE9lziopG9w=
+X-Spam-Score: -1.1 (-)
+X-Spam-Report: Spam detection software, running on the system "6901ab67b84d",
  has NOT identified this incoming email as spam.  The original
  message has been attached to this so you can view it or label
  similar future email.  If you have any questions, see
  the administrator of that system for details.
  
- Content preview:  Hello v9fs-developer, . Project Funding Opportunities Projekt
-    Finanzierung Möglichkeiten 
+ Content preview:  Hola, ¿cómo estás? Tomar decisiones sobre talento sin
+   una evaluación objetiva es un riesgo. Con Vorecol 360 Feedback, obtén una
+    visión clara y sin sesgos del desempeño de cada colaborador, basada en
+   la retroalimenta [...] 
  
- Content analysis details:   (1.8 points, 6.0 required)
+ Content analysis details:   (-1.1 points, 5.0 required)
  
   pts rule name              description
  ---- ---------------------- --------------------------------------------------
-  1.0 MSGID_MULTIPLE_AT      Message-ID contains multiple '@' characters
- -0.0 SPF_PASS               SPF: sender matches SPF record
-  0.0 RCVD_IN_VALIDITY_RPBL_BLOCKED RBL: ADMINISTRATOR NOTICE: The
-                             query to Validity was blocked.  See
-                             https://knowledge.validity.com/hc/en-us/articles/20961730681243
-                              for more information.
-                             [40.93.198.110 listed in bl.score.senderscore.com]
- -0.0 SPF_HELO_PASS          SPF: HELO matches SPF record
-  0.0 RCVD_IN_VALIDITY_SAFE_BLOCKED RBL: ADMINISTRATOR NOTICE: The
-                             query to Validity was blocked.  See
-                             https://knowledge.validity.com/hc/en-us/articles/20961730681243
-                              for more information.
-                             [40.93.198.110 listed in sa-accredit.habeas.com]
-  0.1 MIME_HTML_MOSTLY       BODY: Multipart message mostly text/html MIME
-  0.7 MPART_ALT_DIFF         BODY: HTML and text parts are different
+ -0.1 DKIM_VALID_AU          Message has a valid DKIM or DK signature from author's
+                             domain
+ -0.1 DKIM_VALID             Message has at least one valid DKIM or DK signature
+  0.1 DKIM_SIGNED            Message has a DKIM or DK signature, not necessarily valid
+  0.0 HEADER_FROM_DIFFERENT_DOMAINS From and EnvelopeFrom 2nd level mail
+                             domains are different
   0.0 HTML_MESSAGE           BODY: HTML included in message
-  0.0 RCVD_IN_MSPIKE_H2      RBL: Average reputation (+2)
-                             [40.93.198.110 listed in wl.mailspike.net]
- -0.0 RCVD_IN_DNSWL_NONE     RBL: Sender listed at https://www.dnswl.org/,
-                              no trust
-                             [40.93.198.110 listed in list.dnswl.org]
-X-Headers-End: 1uArLn-0008JW-NC
+ -1.0 MAILING_LIST_MULTI     Multiple indicators imply a widely-seen list
+                             manager
+X-Headers-End: 1uCkeL-0003al-Hy
 X-Content-Filtered-By: Mailman/MimeDel 2.1.21
-Subject: [V9fs-developer] Access Funding Opportunities
+Subject: [V9fs-developer] =?utf-8?q?Mejora_el_liderazgo_con_evaluaciones_3?=
+ =?utf-8?q?60=C2=B0_objetivas?=
 X-BeenThere: v9fs-developer@lists.sourceforge.net
 X-Mailman-Version: 2.1.21
-Precedence: list
 List-Id: "deprecated: use v9fs@lists.linux.dev"
  <v9fs-developer.lists.sourceforge.net>
 List-Unsubscribe: <https://lists.sourceforge.net/lists/options/v9fs-developer>, 
@@ -186,14 +131,36 @@ List-Post: <mailto:v9fs-developer@lists.sourceforge.net>
 List-Help: <mailto:v9fs-developer-request@lists.sourceforge.net?subject=help>
 List-Subscribe: <https://lists.sourceforge.net/lists/listinfo/v9fs-developer>, 
  <mailto:v9fs-developer-request@lists.sourceforge.net?subject=subscribe>
-Reply-To: easepayfinance.ca@proton.me
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Reply-To: =?utf-8?Q?Luis_Ram=C3=ADrez?= <luis.ramirez@consultores-rh.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: v9fs-developer-bounces@lists.sourceforge.net
 
-Hello v9fs-developer,
-.
-_______________________________________________
-V9fs-developer mailing list
-V9fs-developer@lists.sourceforge.net
-https://lists.sourceforge.net/lists/listinfo/v9fs-developer
+CgoKCQoJCgoKSG9sYSwgwr9jw7NtbyBlc3TDoXM/CgpUb21hciBkZWNpc2lvbmVzIHNvYnJlIHRh
+bGVudG8gc2luIHVuYSBldmFsdWFjacOzbiBvYmpldGl2YSBlcyB1biByaWVzZ28uIENvbiBWb3Jl
+Y29sIDM2MCBGZWVkYmFjaywgb2J0w6luIHVuYSB2aXNpw7NuIGNsYXJhIHkgc2luIHNlc2dvcyBk
+ZWwgZGVzZW1wZcOxbyBkZSBjYWRhIGNvbGFib3JhZG9yLCBiYXNhZGEgZW4gbGEgcmV0cm9hbGlt
+ZW50YWNpw7NuIGRlIHN1IGVxdWlwbywgbMOtZGVyZXMgeSBwYXJlcy4KCiZuYnNwOwoKCglGZWVk
+YmFjayBjb21wbGV0byB5IHNpbiBwcmVqdWljaW9zIHBhcmEgbWVqb3JhciBlbCByZW5kaW1pZW50
+by4KCU1lam9yIHRvbWEgZGUgZGVjaXNpb25lcyBjb24gZGF0b3MgZXN0cnVjdHVyYWRvcyB5IG1l
+ZGlibGVzLgoJRGVzYXJyb2xsbyBjb250aW51byBhbCBpZGVudGlmaWNhciDDoXJlYXMgZGUgbWVq
+b3JhIHkgZm9ydGFsZXphcy4KCgrigIsKCkxhcyBlbXByZXNhcyBxdWUgYXBsaWNhbiBldmFsdWFj
+aW9uZXMgMzYwwrAgYXVtZW50YW4mbmJzcDtsYSBlZmVjdGl2aWRhZCBkZSBzdSBsaWRlcmF6Z28u
+IMK/TGlzdG8gcGFyYSBwb3RlbmNpYXIgdHUgZXF1aXBvPwoKU29saWNpdGEgdW5hIGRlbW9zdHJh
+Y2nDs24gZ3JhdHVpdGEgaGFjaWVuZG8mbmJzcDtjbGljIGFxdcOtLCZuYnNwO28mbmJzcDtjb250
+w6FjdGFtZSBwb3IgdGVsw6lmb25vIHBhcmEgY29ub2NlciBsb3MgY29zdG9zLgoKJm5ic3A7CgpT
+YWx1ZG9zIGNvcmRpYWxlcy4KCgoJCgkJCgkJCQoJCQkmbmJzcDsKCgkJCQoKCQkJJm5ic3A7CgoJ
+CQlMdWlzIFJhbcOtcmV6CgoJCQkmbmJzcDsKCgkJCUxsw6FtYW5vcyZuYnNwO3NpbiBjb3N0bzog
+MDAgMSAoODgwKSAzNTEgNzkyNAoKCQkJQ2l1ZGFkIGRlIE3DqXhpY286ICg1NSkgNTAxOCAwNTY1
+CgoJCQlDb2xvbWJpYSwgQm9nb3TDoTogKDU3MSkgNTgwIDAzNTEKCgkJCVJlcMO6YmxpY2EgRG9t
+aW5pY2FuYTogKDgyOSkgOTU0IDgwNzcKCgkJCUd1YXRlbWFsYTogKDUwMikgMjMxNSA5ODM1CgoJ
+CQlFbCBTYWx2YWRvcjogKDUwMykgMjExMyA5NDIyCgoJCQlDaGlsZTogKDU2KSAyMjU4IDM1OTI5
+CgoJCQlXaGF0c0FwcDogKzUyIDMzIDE2MDcgMjA4OQoJCQkKCQkJCgkJCSZuYnNwOwoKCQkJJm5i
+c3A7CgoJCQkmbmJzcDsKCgkJCSZuYnNwOwoJCQkKCQkKCQoKCkNsaWMgcGFyYSZuYnNwO2RhcnNl
+IGRlIGJhamEgZGVsIGJvbGV0w61uCgoKCgpQYXJhIHJlbW92ZXIgc3UgZGlyZWNjaSZvYWN1dGU7
+biBkZSBlc3RhIGxpc3RhIGhhZ2EgPGEgaHJlZj0iaHR0cHM6Ly9zMS5hcnJvYmFtYWlsLmNvbS91
+bnN1c2NyaWJlLnBocD9pZD13cm9veXFzcnlzdXV1c2V1cCI+Y2xpY2sgYXF1JmlhY3V0ZTs8L2E+
+Cl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fClY5ZnMtZGV2
+ZWxvcGVyIG1haWxpbmcgbGlzdApWOWZzLWRldmVsb3BlckBsaXN0cy5zb3VyY2Vmb3JnZS5uZXQK
+aHR0cHM6Ly9saXN0cy5zb3VyY2Vmb3JnZS5uZXQvbGlzdHMvbGlzdGluZm8vdjlmcy1kZXZlbG9w
+ZXIK
