@@ -2,127 +2,178 @@ Return-Path: <v9fs-developer-bounces@lists.sourceforge.net>
 X-Original-To: lists+v9fs-developer@lfdr.de
 Delivered-To: lists+v9fs-developer@lfdr.de
 Received: from lists.sourceforge.net (lists.sourceforge.net [216.105.38.7])
-	by mail.lfdr.de (Postfix) with ESMTPS id AC21AB0476A
-	for <lists+v9fs-developer@lfdr.de>; Mon, 14 Jul 2025 20:31:29 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id B5C8BB063E8
+	for <lists+v9fs-developer@lfdr.de>; Tue, 15 Jul 2025 18:07:28 +0200 (CEST)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.sourceforge.net; s=beta; h=Content-Transfer-Encoding:Content-Type:
-	Reply-To:List-Subscribe:List-Help:List-Post:List-Archive:List-Unsubscribe:
-	List-Id:Subject:MIME-Version:Message-ID:From:To:Date:Sender:Cc:Content-ID:
-	Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
-	:Resent-Message-ID:In-Reply-To:References:List-Owner;
-	bh=AtW+1pvWTUYhgC0d1JRfiYZRfT4ZV/hSmfxGQzC62l4=; b=CqVX9b3+nxepCVemYPiWKGn9Mx
-	VJIJRIzf7Lib6/GMh/kdatCmd+uo/O3oe1lylOa7BkCrj3nTsQaZT3X6JEwBywtW+L1KdjSL5zKDW
-	gKpLbT05CmOLChGJYvwZ9HWICf94FT/bwccmasoHpEbXxaAEWQ7c6GjnDq5PYLzaW8os=;
+	d=lists.sourceforge.net; s=beta; h=Content-Transfer-Encoding:Content-Type:Cc:
+	Reply-To:From:List-Subscribe:List-Help:List-Post:List-Archive:
+	List-Unsubscribe:List-Id:Subject:MIME-Version:Message-ID:Date:To:Sender:
+	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+	Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:List-Owner;
+	bh=QwmNlarny8oGAy9Rffn6SMB893fcDwAHkXDGUJBpkWg=; b=ZyLxJFv2TIM9dnWayct5mtY3Zz
+	bEaeG8XBaJGUJGlLQZo1TpEqnoiEWJKf4VN3ojePw/cqgZ+K+Td001pOqokMxJOzBsLZ3AoDiPp0Z
+	LA6V2EVQHNiyX2eIpIT+2IX6TPrXRY2wcqhL+jtuFxx2HhLgaofMiJNe376d27kyOGKI=;
 Received: from [127.0.0.1] (helo=sfs-ml-2.v29.lw.sourceforge.com)
 	by sfs-ml-2.v29.lw.sourceforge.com with esmtp (Exim 4.95)
 	(envelope-from <v9fs-developer-bounces@lists.sourceforge.net>)
-	id 1ubNxV-0006yJ-5O;
-	Mon, 14 Jul 2025 18:31:25 +0000
+	id 1ubiBh-0006Us-KJ;
+	Tue, 15 Jul 2025 16:07:26 +0000
 Received: from [172.30.29.66] (helo=mx.sourceforge.net)
  by sfs-ml-2.v29.lw.sourceforge.com with esmtps (TLS1.2) tls
  TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384 (Exim 4.95)
- (envelope-from <bounce.L3194S133745M836@s1.arrobamail.com>)
- id 1ubNxT-0006y5-O5 for v9fs-developer@lists.sourceforge.net;
- Mon, 14 Jul 2025 18:31:23 +0000
+ (envelope-from <Sergey.Nalivayko@kaspersky.com>) id 1ubiBg-0006Ug-79
+ for v9fs-developer@lists.sourceforge.net;
+ Tue, 15 Jul 2025 16:07:25 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=sourceforge.net; s=x; h=Content-Type:MIME-Version:List-ID:List-Unsubscribe:
- Message-ID:Subject:Reply-To:From:To:Date:Sender:Cc:Content-Transfer-Encoding:
- Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
- Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:List-Help:
+ d=sourceforge.net; s=x; h=Content-Type:Content-Transfer-Encoding:MIME-Version
+ :Message-ID:Date:Subject:CC:To:From:Sender:Reply-To:Content-ID:
+ Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
+ :Resent-Message-ID:In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:
  List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=NsoicLkf7meiM/7TASY8R0kZYMqHZSQOirY4R//hp/s=; b=Xx1mDBipmDyJl0IJiuIfiIXhOv
- 9ToPut/2Lbu9MsBnO12Zs7fa3kmCdpv7Rx0/fKRYUmuq+4zbFezqv0KfIuMgeQHQ5lqPrVsOMLNFj
- Str8HSCLZ5kwxbsWhD0GNV12v7THiKdfMHAM1vv5SNa+lrbCJDgNJ+vijesSTx/WOVyA=;
+ bh=9gU0AfKr4YjzUxSgA+NdV2Yg+QJia3Jk/uXqq1EDjVw=; b=WjRplw8bcILapEH80FjZjltBNh
+ GUr1BL2nBT4ZGoS62j3dk1ZtPvVetfaE7/ZJwPogF9Q/q3Wjz33lqtaBudfVIl/kov2kcEYQrdMQp
+ Yjgw/4Kx5u3/9a3eLu2C5hDvK+XeqZShntO2ktjN5ku3DrTAnm/dfY86tUXy2Ab2H/pA=;
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  ;
- h=Content-Type:MIME-Version:List-ID:List-Unsubscribe:Message-ID:Subject:
- Reply-To:From:To:Date:Sender:Cc:Content-Transfer-Encoding:Content-ID:
- Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
- :Resent-Message-ID:In-Reply-To:References:List-Help:List-Subscribe:List-Post:
- List-Owner:List-Archive; bh=NsoicLkf7meiM/7TASY8R0kZYMqHZSQOirY4R//hp/s=; b=L
- cs1IBKl6yxj0OcWMvYbv3nj55QITJm2Xv6r6x5484xXRI/W2ZIwGxlcXhSUEU0Y45Hi9qJS3B9l3a
- HEAN1prd4p5JU2fG6TMVvVNkuLGZxHIrtdgUR0ghviD6ha+R7RGvWFPUvA11uTGGlAaQjJ+ZROTH5
- s/nfmNUp2KQjNAHg=;
-Received: from p144i156.pf.fmservers.net ([190.105.144.156])
+ h=Content-Type:Content-Transfer-Encoding:MIME-Version:Message-ID:Date:
+ Subject:CC:To:From:Sender:Reply-To:Content-ID:Content-Description:Resent-Date
+ :Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:
+ References:List-Id:List-Help:List-Unsubscribe:List-Subscribe:List-Post:
+ List-Owner:List-Archive; bh=9gU0AfKr4YjzUxSgA+NdV2Yg+QJia3Jk/uXqq1EDjVw=; b=E
+ 1RwSWSaPf9BgwuLUMVON5GCVCM+8RbUGy8MP5HEdTfJIgxCP/VIDvNLer30hUrZhJBk4loGm/eA86
+ 8GFMB9u6ofkg/8Z4wxGY/afHEad48wMZySggKq3Y7oV/2Z4BxQFyX+4Qx6WojIEyjUtAYTr6A6Jgq
+ bV2g+zq+Yfm3I+hE=;
+Received: from mailhub11-fb.kaspersky-labs.com ([81.19.104.124])
  by sfi-mx-2.v28.lw.sourceforge.com with esmtps
  (TLS1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.95)
- id 1ubNxS-0008UB-St for v9fs-developer@lists.sourceforge.net;
- Mon, 14 Jul 2025 18:31:23 +0000
-Date: Mon, 14 Jul 2025 13:31:11 -0500
-To: V9fs-developer <v9fs-developer@lists.sourceforge.net>
-From: =?utf-8?Q?Jassiel_Ram=C3=ADrez?= <jassiel.ramirez@consultores-rh.com>
-Message-ID: <yoWfkwde5BTRe72hcZDcdKazJ848LSlVCA3vPMyws@s1.arrobamail.com>
-X-Mailer: FMMailer v3
-X-Data: ZXx2OWZzLWRldmVsb3BlckBsaXN0cy5zb3VyY2Vmb3JnZS5uZXR8
-X-Fid: eGZpZC12OWZzLWRldmVsb3BlckBsaXN0cy5zb3VyY2Vmb3JnZS5uZXQtODM2LTMxOTQtMTMzNzQ1LTI2OS1zMS5hcnJvYmFtYWlsLmNvbQ==
-X-fmbh: djlmcy1kZXZlbG9wZXJAbGlzdHMuc291cmNlZm9yZ2UubmV0OzgzNjszMTk0OzEzMzc0NTsyNjk=
-X-bhid: X-bhd: 836;3194;133745
-List-Unsubscribe-Post: List-Unsubscribe=One-Click
-X-AntiAbuse: abuse@outservices.net
-Precedence: bulk
-Feedback-ID: 836:3194s133745:124931:WPservicesESP
-X-Transport: p144i156
+ id 1ubiBf-0008Qm-Av for v9fs-developer@lists.sourceforge.net;
+ Tue, 15 Jul 2025 16:07:24 +0000
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kaspersky.com;
+ s=mail202505; t=1752594650;
+ bh=9gU0AfKr4YjzUxSgA+NdV2Yg+QJia3Jk/uXqq1EDjVw=;
+ h=From:To:Subject:Date:Message-ID:MIME-Version:Content-Type;
+ b=YAcs6g4if9h5bTvIxcTrEZhUBa0caEL2zuycPJkLI8EHNw8P0efI8D/T0F1WnD/x5
+ pipuLoRVm/Tym+itVaEmw3UDMsquv8qVoRdz2NsgL8LjpBDnjJyatpbfXN9HlGyQQr
+ drYQAbhdUVLwv0qzl8fbxuxiQ89Gv4BRBJl5CTaB3wg2yE/vNtYC1om6Vty/QaraM0
+ RcGrKygg9qg4ycj2+WjbfBOVJ/RwLO7sFgIjugayWupfHNp8VMJIg3oV/Yh79mV1wg
+ 5bMX6OBv+ZaIu7Ycf0C5rbKwtojeZV4DhEvvQQZP87DXZ67UhzIjfXWhPN2RgGvmNR
+ JHYUMSfGwVAgg==
+Received: from mailhub11-fb.kaspersky-labs.com (localhost [127.0.0.1])
+ by mailhub11-fb.kaspersky-labs.com (Postfix) with ESMTP id 879B5E8E599
+ for <v9fs-developer@lists.sourceforge.net>;
+ Tue, 15 Jul 2025 18:50:50 +0300 (MSK)
+Received: from mx13.kaspersky-labs.com (mx13.kaspersky-labs.com
+ [91.103.66.164])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256
+ client-signature RSA-PSS (4096 bits) client-digest SHA256)
+ (Client CN "mx13.kaspersky-labs.com",
+ Issuer "Kaspersky MailRelays CA G3" (verified OK))
+ by mailhub11-fb.kaspersky-labs.com (Postfix) with ESMTPS id 59EAFE8E593
+ for <v9fs-developer@lists.sourceforge.net>;
+ Tue, 15 Jul 2025 18:50:50 +0300 (MSK)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kaspersky.com;
+ s=mail202505; t=1752594642;
+ bh=9gU0AfKr4YjzUxSgA+NdV2Yg+QJia3Jk/uXqq1EDjVw=;
+ h=From:To:Subject:Date:Message-ID:MIME-Version:Content-Type;
+ b=GO2ZlztNSJKaJsD+KHDh6kbW37GRJnVMXiae37+puVystSIFNCRg0eA19ewiAk8d5
+ kYrAC3O/oKnJEw+v9BF34K6DBtcpmdQkOnttEO9j+UcCQNhAOqE8WP/FbvGsu6kLDH
+ jHR60K+31WOndxHEo3sHPctRV6ltqAqqllX6gA6G9G7v/9qKYzuSFHEDG/Yc3/RS0N
+ pITSxd3cuEb+Oi4xWt/EaVQ7d59Fm24elpg9lIeduc2XKuUHHZg4MMuPAAG3Ij3JJ8
+ Ym9z3xgExFzxOfu40Kt/Jup3D0JFWR1dEMaVo9GTXRypEi7wW6cEiIIkXZN8pHTJ3/
+ rhC8cwpKLfmYw==
+Received: from relay13.kaspersky-labs.com (localhost [127.0.0.1])
+ by relay13.kaspersky-labs.com (Postfix) with ESMTP id E2B503E2085;
+ Tue, 15 Jul 2025 18:50:42 +0300 (MSK)
+Received: from mail-hq2.kaspersky.com (unknown [91.103.66.201])
+ (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+ (Client CN "mail-hq2.kaspersky.com",
+ Issuer "Kaspersky MailRelays CA G3" (verified OK))
+ by mailhub13.kaspersky-labs.com (Postfix) with ESMTPS id 2EDD73E21E5;
+ Tue, 15 Jul 2025 18:50:42 +0300 (MSK)
+Received: from Nalivayko.avp.ru (10.16.106.60) by HQMAILSRV3.avp.ru
+ (10.64.57.53) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1748.10; Tue, 15 Jul
+ 2025 18:49:50 +0300
+To: <v9fs-developer@lists.sourceforge.net>, <netdev@vger.kernel.org>
+Date: Tue, 15 Jul 2025 18:48:15 +0300
+Message-ID: <20250715154815.3501030-1-Sergey.Nalivayko@kaspersky.com>
+X-Mailer: git-send-email 2.30.2
 MIME-Version: 1.0
-DKIM-Signature: v=1; d=consultores-rh.com; s=fm;
- a=rsa-sha256; q=dns/txt; t=1752517871; c=relaxed/simple;
- h=Date:To:From:Reply-To:Subject:Message-ID:X-Mailer:X-Data:X-Fid:X-fmbh:List-Unsubscribe:X-AntiAbuse:Feedback-ID:List-ID:MIME-Version:Content-Type;
- z=Date:Mon,=2014=20Jul=202025=2013:31:11=20-0500
- |To:V9fs-developer=20<v9fs-developer@lists.sourceforge.net>
- |From:=3D?utf-8?Q?Jassiel_Ram=3DC3=3DADrez?=3D=20<jassiel.ramirez@consulto
- res-rh.com>
- |Reply-To:=3D?utf-8?Q?Jassiel_Ram=3DC3=3DADrez?=3D=20<jassiel.ramirez@cons
- ultores-rh.com>
- |Subject:=3D?utf-8?Q?Una_soluci=3DC3=3DB3n_integral_para_capacitar_a_tu_eq
- uipo?=3D
- |Message-ID:<yoWfkwde5BTRe72hcZDcdKazJ848LSlVCA3vPMyws@s1.arrobamail.com>
- |X-Mailer:FMMailer=20v3
- |X-Data:ZXx2OWZzLWRldmVsb3BlckBsaXN0cy5zb3VyY2Vmb3JnZS5uZXR8
- |X-Fid:eGZpZC12OWZzLWRldmVsb3BlckBsaXN0cy5zb3VyY2Vmb3JnZS5uZXQtODM2LTMxOTQ
- tMTMzNzQ1LTI2OS1zMS5hcnJvYmFtYWlsLmNvbQ=3D=3D
- |X-fmbh:djlmcy1kZXZlbG9wZXJAbGlzdHMuc291cmNlZm9yZ2UubmV0OzgzNjszMTk0OzEzMz
- c0NTsyNjk=3D
- |List-Unsubscribe:<https://s1.arrobamail.com/unsuscribe.php?FormData=3Dwrr
- itysrwptsoruseup> |X-AntiAbuse:abuse@outservices.net
- |Feedback-ID:836:3194s133745:124931:WPservicesESP
- |List-ID:<38328:2407410> |MIME-Version:1.0
- |Content-Type:multipart/alternative=3B=20boundary=3D"b1_yoWfkwde5BTRe72hcZ
- DcdKazJ848LSlVCA3vPMyws";
- bh=NsoicLkf7meiM/7TASY8R0kZYMqHZSQOirY4R//hp/s=;
- b=Yuy9lPZd2s6pZvUjxhWQg2HgbNAVHMDhWOgRX83mUAkiKMFexzmlJFDQW5V6Umcq2vOasZRJC
- 5yJRoKeWFM4x4ypC7Kv3pKPqRrQF9LghkRbQujv3B1tyJVuqFzyjQmBEkr/ifCBGTwW7FjlJZ
- h5tBATmNJzY/jyhLCqDIcly64=
-X-Spam-Score: 2.9 (++)
-X-Spam-Report: Spam detection software, running on the system "sfi-spamd-2.hosts.colo.sdot.me",
+X-Originating-IP: [10.16.106.60]
+X-ClientProxiedBy: HQMAILSRV2.avp.ru (10.64.57.52) To HQMAILSRV3.avp.ru
+ (10.64.57.53)
+X-KSE-ServerInfo: HQMAILSRV3.avp.ru, 9
+X-KSE-AntiSpam-Interceptor-Info: scan successful
+X-KSE-AntiSpam-Version: 6.1.1, Database issued on: 07/15/2025 15:31:12
+X-KSE-AntiSpam-Status: KAS_STATUS_NOT_DETECTED
+X-KSE-AntiSpam-Method: none
+X-KSE-AntiSpam-Rate: 0
+X-KSE-AntiSpam-Info: Lua profiles 194865 [Jul 15 2025]
+X-KSE-AntiSpam-Info: Version: 6.1.1.11
+X-KSE-AntiSpam-Info: Envelope from: Sergey.Nalivayko@kaspersky.com
+X-KSE-AntiSpam-Info: LuaCore: 63 0.3.63
+ 9cc2b4b18bf16653fda093d2c494e542ac094a39
+X-KSE-AntiSpam-Info: {Tracking_cluster_exceptions}
+X-KSE-AntiSpam-Info: {Tracking_real_kaspersky_domains}
+X-KSE-AntiSpam-Info: {Tracking_uf_ne_domains}
+X-KSE-AntiSpam-Info: {Tracking_from_domain_doesnt_match_to}
+X-KSE-AntiSpam-Info: d41d8cd98f00b204e9800998ecf8427e.com:7.1.1;
+ 127.0.0.199:7.1.2; kaspersky.com:5.0.1,7.1.1
+X-KSE-AntiSpam-Info: {Tracking_white_helo}
+X-KSE-AntiSpam-Info: FromAlignment: s
+X-KSE-AntiSpam-Info: Rate: 0
+X-KSE-AntiSpam-Info: Status: not_detected
+X-KSE-AntiSpam-Info: Method: none
+X-KSE-Antiphishing-Info: Clean
+X-KSE-Antiphishing-ScanningType: Deterministic
+X-KSE-Antiphishing-Method: None
+X-KSE-Antiphishing-Bases: 07/15/2025 15:33:00
+X-KSE-AttachmentFiltering-Interceptor-Info: no applicable attachment filtering
+ rules found
+X-KSE-Antivirus-Interceptor-Info: scan successful
+X-KSE-Antivirus-Info: Clean, bases: 7/15/2025 2:29:00 PM
+X-KSE-BulkMessagesFiltering-Scan-Result: InTheLimit
+X-KSE-AttachmentFiltering-Interceptor-Info: no applicable attachment filtering
+ rules found
+X-KSE-BulkMessagesFiltering-Scan-Result: InTheLimit
+X-KSMG-AntiPhishing: NotDetected
+X-KSMG-AntiSpam-Interceptor-Info: not scanned
+X-KSMG-AntiSpam-Status: not scanned, disabled by settings
+X-KSMG-AntiVirus: Kaspersky Secure Mail Gateway, version 2.1.1.8310,
+ bases: 2025/07/15 13:18:00 #27641879
+X-KSMG-AntiVirus-Status: NotDetected, skipped
+X-KSMG-LinksScanning: NotDetected
+X-KSMG-Message-Action: skipped
+X-KSMG-Rule-ID: 52
+X-Spam-Score: -0.2 (/)
+X-Spam-Report: Spam detection software,
+ running on the system "sfi-spamd-1.hosts.colo.sdot.me", 
  has NOT identified this incoming email as spam.  The original
  message has been attached to this so you can view it or label
  similar future email.  If you have any questions, see
  the administrator of that system for details.
- 
- Content preview:  Hola&nbsp;V9fs-developer, ¿Te has preguntado qué tan estructurado
-    y accesible es el aprendizaje dentro de tu organización? 
- 
- Content analysis details:   (2.9 points, 5.0 required)
- 
-  pts rule name              description
+ Content preview: Syzkaller reports a KASAN issue as below: general protection
+ fault, probably for non-canonical address 0xfbd59c0000000021: 0000 [#1] PREEMPT
+ SMP KASAN NOPTI KASAN: maybe wild-memory-access in range
+ [0xdead000000000108-0xdead00000000010f] CPU: [...] 
+ Content analysis details:   (-0.2 points, 5.0 required)
+ pts rule name              description
  ---- ---------------------- --------------------------------------------------
-  4.0 RCVD_IN_UCE1           RBL: IP Listed in UCEPROTECT Level 1
-                             [190.105.144.156 listed in dnsbl-1.uceprotect.net]
-  0.1 DKIM_SIGNED            Message has a DKIM or DK signature, not necessarily valid
- -0.1 DKIM_VALID             Message has at least one valid DKIM or DK signature
- -0.1 DKIM_VALID_AU          Message has a valid DKIM or DK signature from author's
-                             domain
-  0.0 HEADER_FROM_DIFFERENT_DOMAINS From and EnvelopeFrom 2nd level mail
-                             domains are different
-  0.0 HTML_MESSAGE           BODY: HTML included in message
-  0.0 HTML_IMAGE_ONLY_32     BODY: HTML: images with 2800-3200 bytes of words
- -1.0 MAILING_LIST_MULTI     Multiple indicators imply a widely-seen list
-                             manager
-X-Headers-End: 1ubNxS-0008UB-St
-X-Content-Filtered-By: Mailman/MimeDel 2.1.21
-Subject: [V9fs-developer] =?utf-8?q?Una_soluci=C3=B3n_integral_para_capaci?=
- =?utf-8?q?tar_a_tu_equipo?=
+ -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+ -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from author's
+ domain
+ 0.1 DKIM_SIGNED            Message has a DKIM or DK signature,
+ not necessarily valid
+ -0.1 DKIM_VALID_EF          Message has a valid DKIM or DK signature from
+ envelope-from domain
+ -0.0 DKIMWL_WL_HIGH         DKIMwl.org - High trust sender
+X-Headers-End: 1ubiBf-0008Qm-Av
+Subject: [V9fs-developer] [PATCH] net: 9p: fix double req put in
+ p9_fd_cancelled
 X-BeenThere: v9fs-developer@lists.sourceforge.net
 X-Mailman-Version: 2.1.21
+Precedence: list
 List-Id: "deprecated: use v9fs@lists.linux.dev"
  <v9fs-developer.lists.sourceforge.net>
 List-Unsubscribe: <https://lists.sourceforge.net/lists/options/v9fs-developer>, 
@@ -132,33 +183,129 @@ List-Post: <mailto:v9fs-developer@lists.sourceforge.net>
 List-Help: <mailto:v9fs-developer-request@lists.sourceforge.net?subject=help>
 List-Subscribe: <https://lists.sourceforge.net/lists/listinfo/v9fs-developer>, 
  <mailto:v9fs-developer-request@lists.sourceforge.net?subject=subscribe>
-Reply-To: =?utf-8?Q?Jassiel_Ram=C3=ADrez?= <jassiel.ramirez@consultores-rh.com>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+From: Nalivayko Sergey via V9fs-developer
+ <v9fs-developer@lists.sourceforge.net>
+Reply-To: Nalivayko Sergey <Sergey.Nalivayko@kaspersky.com>
+Cc: Latchesar Ionkov <lucho@ionkov.net>, Wang Hai <wanghai38@huawei.com>,
+ lvc-project@linuxtesting.org, Eric Van Hensbergen <ericvh@gmail.com>,
+ Nalivayko Sergey <Sergey.Nalivayko@kaspersky.com>, stable@vger.kernel.org
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: v9fs-developer-bounces@lists.sourceforge.net
 
-CgoKCQoKCkhvbGEmbmJzcDtWOWZzLWRldmVsb3BlciwKCsK/VGUgaGFzIHByZWd1bnRhZG8gcXXD
-qSB0YW4gZXN0cnVjdHVyYWRvIHkgYWNjZXNpYmxlIGVzIGVsIGFwcmVuZGl6YWplIGRlbnRybyBk
-ZSB0dSBvcmdhbml6YWNpw7NuPwoKRW4gTGVhcm5pbmcgTWFuYWdlbWVudCB0ZSBheXVkYW1vcyBh
-IGNlbnRyYWxpemFyIHkgZ2VzdGlvbmFyIGxhIGNhcGFjaXRhY2nDs24gZGUgZm9ybWEgcHLDoWN0
-aWNhLCBjb24gbcOhcyBkZSAxMDAgY3Vyc29zIGxpc3RvcyBwYXJhIGltcGxlbWVudGFyIHkgbGEg
-cG9zaWJpbGlkYWQgZGUgY2FyZ2FyIHR1cyBwcm9waW9zIGNvbnRlbmlkb3MuCgpMbyBxdWUgbcOh
-cyB2YWxvcmFuIG51ZXN0cm9zIGNsaWVudGVzIGRlIFJSLiZuYnNwO0hILiBlcyBxdWU6CgoKCURp
-c2XDsWFuIHJ1dGFzIGRlIGFwcmVuZGl6YWplIHBlcnNvbmFsaXphZGFzIHBhcmEgY2FkYSBlcXVp
-cG8uCglDZW50cmFsaXphbiBlbCBjb250ZW5pZG8gaW50ZXJubyB5IGV4dGVybm8gZW4gdW5hIHNv
-bGEgcGxhdGFmb3JtYS4KCU1vbml0b3JlYW4gZWwgYXZhbmNlIGNvbiBtw6l0cmljYXMgY2xhcmFz
-IGRlIGZvcm1hY2nDs24uCglGYWNpbGl0YW4gbGEgY2FwYWNpdGFjacOzbiBjb250aW51YSBzaW4g
-Y29tcGxpY2FjaW9uZXMgdMOpY25pY2FzLgoKClNpIGVzdMOhcyBidXNjYW5kbyBtZWpvcmFyIGxh
-IGZvcm1hIGVuIHF1ZSBjYXBhY2l0YXMgYSB0dSBlcXVpcG8geSBoYWNlcmxvIGRlIGZvcm1hIG3D
-oXMgZWZpY2llbnRlLCB0ZSBsbyByZWNvbWllbmRvIG11Y2jDrXNpbW8uIFBhcmEgbcOhcyBpbmZv
-cm1hY2nDs24gcHVlZGVzIHJlc3BvbmRlciBlc3RlIGNvcnJlbyBvIGxsYW1hcm1lIGFsIG7Dum1l
-cm8gZGUgYWJham8sJm5ic3A7CgpTYWx1ZG9zCgotLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0KCkF0
-dGUuOiBKYXNzaWVsIFJhbcOtcmV6CgpDaXVkYWQgZGUgTcOpeGljbzogKDU1KSA1MDE4IDA1NjUK
-CldoYXRzQXBwOiZuYnNwOys1MiAzMyAxNjA3IDIwODkKCiZuYnNwOwoKUGFyYSBkZSBzdXNjcmli
-aXJ0ZSBkZSBlc3RhIGxpc3RhLCZuYnNwO2FxdcOtCgoKCgpQYXJhIHJlbW92ZXIgc3UgZGlyZWNj
-aSZvYWN1dGU7biBkZSBlc3RhIGxpc3RhIGhhZ2EgPGEgaHJlZj0iaHR0cHM6Ly9zMS5hcnJvYmFt
-YWlsLmNvbS91bnN1c2NyaWJlLnBocD9pZD13cnJpdHlzcndwdHNvcnVzZXVwIj5jbGljayBhcXUm
-aWFjdXRlOzwvYT4KX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X18KVjlmcy1kZXZlbG9wZXIgbWFpbGluZyBsaXN0ClY5ZnMtZGV2ZWxvcGVyQGxpc3RzLnNvdXJj
-ZWZvcmdlLm5ldApodHRwczovL2xpc3RzLnNvdXJjZWZvcmdlLm5ldC9saXN0cy9saXN0aW5mby92
-OWZzLWRldmVsb3Blcgo=
+Syzkaller reports a KASAN issue as below:
+
+general protection fault, probably for non-canonical address 0xfbd59c0000000021: 0000 [#1] PREEMPT SMP KASAN NOPTI
+KASAN: maybe wild-memory-access in range [0xdead000000000108-0xdead00000000010f]
+CPU: 0 PID: 5083 Comm: syz-executor.2 Not tainted 6.1.134-syzkaller-00037-g855bd1d7d838 #0
+Hardware name: QEMU Standard PC (i440FX + PIIX, 1996), BIOS 1.12.0-1 04/01/2014
+RIP: 0010:__list_del include/linux/list.h:114 [inline]
+RIP: 0010:__list_del_entry include/linux/list.h:137 [inline]
+RIP: 0010:list_del include/linux/list.h:148 [inline]
+RIP: 0010:p9_fd_cancelled+0xe9/0x200 net/9p/trans_fd.c:734
+
+Call Trace:
+ <TASK>
+ p9_client_flush+0x351/0x440 net/9p/client.c:614
+ p9_client_rpc+0xb6b/0xc70 net/9p/client.c:734
+ p9_client_version net/9p/client.c:920 [inline]
+ p9_client_create+0xb51/0x1240 net/9p/client.c:1027
+ v9fs_session_init+0x1f0/0x18f0 fs/9p/v9fs.c:408
+ v9fs_mount+0xba/0xcb0 fs/9p/vfs_super.c:126
+ legacy_get_tree+0x108/0x220 fs/fs_context.c:632
+ vfs_get_tree+0x8e/0x300 fs/super.c:1573
+ do_new_mount fs/namespace.c:3056 [inline]
+ path_mount+0x6a6/0x1e90 fs/namespace.c:3386
+ do_mount fs/namespace.c:3399 [inline]
+ __do_sys_mount fs/namespace.c:3607 [inline]
+ __se_sys_mount fs/namespace.c:3584 [inline]
+ __x64_sys_mount+0x283/0x300 fs/namespace.c:3584
+ do_syscall_x64 arch/x86/entry/common.c:51 [inline]
+ do_syscall_64+0x35/0x80 arch/x86/entry/common.c:81
+ entry_SYSCALL_64_after_hwframe+0x6e/0xd8
+
+This happens because of a race condition between:
+
+- The 9p client sending an invalid flush request and later cleaning it up;
+- The 9p client in p9_read_work() canceled all pending requests.
+
+      Thread 1                              Thread 2
+    ...
+    p9_client_create()
+    ...
+    p9_fd_create()
+    ...
+    p9_conn_create()
+    ...
+    // start Thread 2
+    INIT_WORK(&m->rq, p9_read_work);
+                                        p9_read_work()
+    ...
+    p9_client_rpc()
+    ...
+                                        ...
+                                        p9_conn_cancel()
+                                        ...
+                                        spin_lock(&m->req_lock);
+    ...
+    p9_fd_cancelled()
+    ...
+                                        ...
+                                        spin_unlock(&m->req_lock);
+                                        // status rewrite
+                                        p9_client_cb(m->client, req, REQ_STATUS_ERROR)
+                                        // first remove
+                                        list_del(&req->req_list);
+                                        ...
+
+    spin_lock(&m->req_lock)
+    ...
+    // second remove
+    list_del(&req->req_list);
+    spin_unlock(&m->req_lock)
+  ...
+
+Commit 74d6a5d56629 ("9p/trans_fd: Fix concurrency del of req_list in
+p9_fd_cancelled/p9_read_work") fixes a concurrency issue in the 9p filesystem
+client where the req_list could be deleted simultaneously by both
+p9_read_work and p9_fd_cancelled functions, but for the case where req->status
+equals REQ_STATUS_RCVD.
+
+Add an explicit check for REQ_STATUS_ERROR in p9_fd_cancelled before
+processing the request. Skip processing if the request is already in the error
+state, as it has been removed and its resources cleaned up.
+
+Found by Linux Verification Center (linuxtesting.org) with Syzkaller.
+Fixes: afd8d6541155 ("9P: Add cancelled() to the transport functions.")
+Cc: stable@vger.kernel.org
+Signed-off-by: Nalivayko Sergey <Sergey.Nalivayko@kaspersky.com>
+---
+ net/9p/trans_fd.c | 6 +++---
+ 1 file changed, 3 insertions(+), 3 deletions(-)
+
+diff --git a/net/9p/trans_fd.c b/net/9p/trans_fd.c
+index a69422366a23..a6054a392a90 100644
+--- a/net/9p/trans_fd.c
++++ b/net/9p/trans_fd.c
+@@ -721,9 +721,9 @@ static int p9_fd_cancelled(struct p9_client *client, struct p9_req_t *req)
+ 
+ 	spin_lock(&m->req_lock);
+ 	/* Ignore cancelled request if message has been received
+-	 * before lock.
+-	 */
+-	if (req->status == REQ_STATUS_RCVD) {
++	* or cancelled with error before lock.
++	*/
++	if (req->status == REQ_STATUS_RCVD || req->status == REQ_STATUS_ERROR) {
+ 		spin_unlock(&m->req_lock);
+ 		return 0;
+ 	}
+-- 
+2.30.2
+
+
+
+_______________________________________________
+V9fs-developer mailing list
+V9fs-developer@lists.sourceforge.net
+https://lists.sourceforge.net/lists/listinfo/v9fs-developer
