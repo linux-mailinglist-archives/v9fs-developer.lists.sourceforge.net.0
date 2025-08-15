@@ -2,126 +2,102 @@ Return-Path: <v9fs-developer-bounces@lists.sourceforge.net>
 X-Original-To: lists+v9fs-developer@lfdr.de
 Delivered-To: lists+v9fs-developer@lfdr.de
 Received: from lists.sourceforge.net (lists.sourceforge.net [216.105.38.7])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7B75CB23F14
-	for <lists+v9fs-developer@lfdr.de>; Wed, 13 Aug 2025 05:37:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 15537B27590
+	for <lists+v9fs-developer@lfdr.de>; Fri, 15 Aug 2025 04:20:55 +0200 (CEST)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.sourceforge.net; s=beta; h=Content-Transfer-Encoding:Content-Type:
-	Reply-To:List-Subscribe:List-Help:List-Post:List-Archive:List-Unsubscribe:
-	List-Id:Subject:MIME-Version:Message-ID:From:To:Date:Sender:Cc:Content-ID:
-	Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
-	:Resent-Message-ID:In-Reply-To:References:List-Owner;
-	bh=84FfI65R4uqNEeJXGFyXJCS0YVLhoB+hYyGZL/CgNP8=; b=iQXKQhp8I7Hh3e5v3w2rtg/+zE
-	svrA0cX+Yl59cZgDEToftc/M3PN8sTz6WFaW1nScZxcMOIVpEzs+lZ7UQd0yusKw58adWR5Xs1kyC
-	KzdWehdmRnQZlCIsuGvNPptOjMo/dzibPiVEHZD7t7B95uFGwnK0yqgmQbv+sKjxtWp8=;
-Received: from [127.0.0.1] (helo=sfs-ml-2.v29.lw.sourceforge.com)
-	by sfs-ml-2.v29.lw.sourceforge.com with esmtp (Exim 4.95)
+	d=lists.sourceforge.net; s=beta; h=Content-Transfer-Encoding:Content-Type:Cc:
+	List-Subscribe:List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:
+	Subject:In-Reply-To:MIME-Version:References:Message-ID:To:From:Date:Sender:
+	Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender
+	:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
+	bh=e55szS1Z6VbaoTDBkg8z7Y/ZYx1oG/uGs7pwxiyPlhI=; b=QvqDl48zSORxELaX1SRiEk4jmN
+	U60YV2MfNhjHnnyQO9ZOu8TYXPgcmrPgDzG/HHV3RA6zc6Jz5SWU5lckoOuMx+2zqufsL7PrXDOHJ
+	XaogvxC0HviKJVkPOUnmacYmF4dATOF1BvBY9lrUfXPVxY5wBH8MMxFuBwXFz9opjquk=;
+Received: from [127.0.0.1] (helo=sfs-ml-1.v29.lw.sourceforge.com)
+	by sfs-ml-1.v29.lw.sourceforge.com with esmtp (Exim 4.95)
 	(envelope-from <v9fs-developer-bounces@lists.sourceforge.net>)
-	id 1um2JB-0007s5-Bu;
-	Wed, 13 Aug 2025 03:37:50 +0000
+	id 1umk3o-0006oZ-EQ;
+	Fri, 15 Aug 2025 02:20:52 +0000
 Received: from [172.30.29.66] (helo=mx.sourceforge.net)
- by sfs-ml-2.v29.lw.sourceforge.com with esmtps (TLS1.2) tls
+ by sfs-ml-1.v29.lw.sourceforge.com with esmtps (TLS1.2) tls
  TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384 (Exim 4.95)
- (envelope-from <bounce.L3194S133745M924@s1.arrobamail.com>)
- id 1um2JA-0007rs-7m for v9fs-developer@lists.sourceforge.net;
- Wed, 13 Aug 2025 03:37:49 +0000
+ (envelope-from <asmadeus@codewreck.org>) id 1umk3k-0006oS-LN
+ for v9fs-developer@lists.sourceforge.net;
+ Fri, 15 Aug 2025 02:20:50 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=sourceforge.net; s=x; h=Content-Type:MIME-Version:List-ID:List-Unsubscribe:
- Message-ID:Subject:Reply-To:From:To:Date:Sender:Cc:Content-Transfer-Encoding:
+ d=sourceforge.net; s=x; h=In-Reply-To:Content-Type:MIME-Version:References:
+ Message-ID:Subject:Cc:To:From:Date:Sender:Reply-To:Content-Transfer-Encoding:
  Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
- Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:List-Help:
+ Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
  List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=G/CIVijgxUvtUxQoLjdkhWJZ7Bg14Gydw27A5ikS0dE=; b=T9da6/pruJ9fF/0evQeuT+DAnd
- xD7dAMmJZjO/Dc+C1mMM0t0lZXSyOPsf1PEeoWhvXtVcqDKUnHGdQP9iFV2c7ulryMyRQLnvWkBvS
- bqAgykhdcmAVPBpBiDKxRtDYY1YpabrSaW6xA6vEi0RAmBSG0ZInsakbsjmAzV/Ioi4s=;
+ bh=3to1JoTI7YxcKW36ucsrZ8J9JD5dqSy+UMJOKOKBxv0=; b=aeo8S6ZicZ3Qt1/UDNqFIA19DO
+ VDzPaRX0A8dhLiJWzvx5zN49dMFS01it0+dL4lU4FRgP0Y7lfnZ9e0orOHuYp1sdUOYfbAD1LYc3d
+ +TnFrxye5EXsCyaBgyu3mHrf7iCwFF3gun2R04zOJHmUt9xhOQRDq/JQ1Tql1G8ZuUKQ=;
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  ;
- h=Content-Type:MIME-Version:List-ID:List-Unsubscribe:Message-ID:Subject:
- Reply-To:From:To:Date:Sender:Cc:Content-Transfer-Encoding:Content-ID:
+ h=In-Reply-To:Content-Type:MIME-Version:References:Message-ID:Subject:Cc:To
+ :From:Date:Sender:Reply-To:Content-Transfer-Encoding:Content-ID:
  Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
- :Resent-Message-ID:In-Reply-To:References:List-Help:List-Subscribe:List-Post:
- List-Owner:List-Archive; bh=G/CIVijgxUvtUxQoLjdkhWJZ7Bg14Gydw27A5ikS0dE=; b=a
- 1c7/omb8kx3aJjpIMmJWzgJDC0m5JbxH4pphPgaSACIKyHjwK3ibhL4RQVvXx72JgPFQz4tyo7+A3
- /FvAp4mqeWyD6TvrLy5g2uNdXvQjha8+vsjFVgZH+LPSAqR1F/9pqt97nVtiZTUdu2TDY5VHR1Ia0
- 0tltxJcd7WjG6IRo=;
-Received: from p144i156.pf.fmservers.net ([190.105.144.156])
- by sfi-mx-2.v28.lw.sourceforge.com with esmtps
- (TLS1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.95)
- id 1um2JA-0002T0-6O for v9fs-developer@lists.sourceforge.net;
- Wed, 13 Aug 2025 03:37:48 +0000
-Date: Tue, 12 Aug 2025 22:37:36 -0500
-To: V9fs-developer <v9fs-developer@lists.sourceforge.net>
-From: =?utf-8?Q?Daniel_Rodr=C3=ADguez?= <daniel.rodriguez@consultores-rh.com>
-Message-ID: <DQEWN1MTMUCn4snqZjABUsZivTd9SlnvbhxtFvVvE@s1.arrobamail.com>
-X-Mailer: FMMailer v3
-X-Data: ZXx2OWZzLWRldmVsb3BlckBsaXN0cy5zb3VyY2Vmb3JnZS5uZXR8
-X-Fid: eGZpZC12OWZzLWRldmVsb3BlckBsaXN0cy5zb3VyY2Vmb3JnZS5uZXQtOTI0LTMxOTQtMTMzNzQ1LTI2OS1zMS5hcnJvYmFtYWlsLmNvbQ==
-X-fmbh: djlmcy1kZXZlbG9wZXJAbGlzdHMuc291cmNlZm9yZ2UubmV0OzkyNDszMTk0OzEzMzc0NTsyNjk=
-X-bhid: X-bhd: 924;3194;133745
-List-Unsubscribe-Post: List-Unsubscribe=One-Click
-X-AntiAbuse: abuse@outservices.net
-Precedence: bulk
-Feedback-ID: 924:3194s133745:124931:WPservicesESP
-X-Transport: p144i156
+ :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
+ List-Post:List-Owner:List-Archive;
+ bh=3to1JoTI7YxcKW36ucsrZ8J9JD5dqSy+UMJOKOKBxv0=; b=h9fUoeNO+Xxpsp21+hgLB4/QrK
+ En7rO4CVqcjhwZpk9V6b/7ZzyuW5/spvrC4RbW7tX4L0+8bDQOlxb2be+U8k89FjpDCmRnxOEj7gD
+ wzKGFMelXj1lcQbnWma1k8N9ykaUis9tVMnmE1mRBhcUm+ZMOX+eOHhSQRp3/PVmbkoE=;
+Received: from submarine.notk.org ([62.210.214.84])
+ by sfi-mx-2.v28.lw.sourceforge.com with esmtp (Exim 4.95)
+ id 1umk3j-00083I-1o for v9fs-developer@lists.sourceforge.net;
+ Fri, 15 Aug 2025 02:20:48 +0000
+Received: from gaia.codewreck.org (localhost [127.0.0.1])
+ by submarine.notk.org (Postfix) with ESMTPS id 4EF1A14C2D3;
+ Fri, 15 Aug 2025 04:01:17 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=codewreck.org;
+ s=2; t=1755223279;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+ in-reply-to:in-reply-to:references:references;
+ bh=3to1JoTI7YxcKW36ucsrZ8J9JD5dqSy+UMJOKOKBxv0=;
+ b=UPw4PWwRqxf1H5wm6Xxz+bk+TNXbRFnTYziuff+8i7C6OO8Se8RC09eI8Fcum+oBQS9poC
+ b1Zoo0jfmSbXHuT8QZfYyItZad4X2x2SJEP2AyxwceCrfT0puraxxFHTdihNOAiuZIWika
+ nkpROOMoLZMoWnLxAuyzug8AotDS8bUzWWCnMYaO7Os7sjgSgTvJqci7KJfKUFXI2o7I/o
+ HiFDGcNMqo1c+f/cQNpTAtz91AHQIuefT07IyHLbCDN+RvdDuWnkmw+e9bnhXikd1BDVos
+ qCNiWlLkUAvs72tRqhAaogpJj2VqOiPG8mKpRUvOf1Ko9YUdsrEoqV/4IAmbnA==
+Received: from localhost (gaia.codewreck.org [local])
+ by gaia.codewreck.org (OpenSMTPD) with ESMTPA id 831f3cb7;
+ Fri, 15 Aug 2025 02:01:15 +0000 (UTC)
+Date: Fri, 15 Aug 2025 11:01:00 +0900
+From: Dominique Martinet <asmadeus@codewreck.org>
+To: Nalivayko Sergey <Sergey.Nalivayko@kaspersky.com>
+Message-ID: <aJ6U3DQn876wGS4C@codewreck.org>
+References: <20250715154815.3501030-1-Sergey.Nalivayko@kaspersky.com>
 MIME-Version: 1.0
-DKIM-Signature: v=1; d=consultores-rh.com; s=fm;
- a=rsa-sha256; q=dns/txt; t=1755056256; c=relaxed/simple;
- h=Date:To:From:Reply-To:Subject:Message-ID:X-Mailer:X-Data:X-Fid:X-fmbh:List-Unsubscribe:X-AntiAbuse:Feedback-ID:List-ID:MIME-Version:Content-Type;
- z=Date:Tue,=2012=20Aug=202025=2022:37:36=20-0500
- |To:V9fs-developer=20<v9fs-developer@lists.sourceforge.net>
- |From:=3D?utf-8?Q?Daniel_Rodr=3DC3=3DADguez?=3D=20<daniel.rodriguez@consul
- tores-rh.com>
- |Reply-To:=3D?utf-8?Q?Daniel_Rodr=3DC3=3DADguez?=3D=20<daniel.rodriguez@co
- nsultores-rh.com>
- |Subject:El=20feedback=20efectivo=20empieza=20con=20datos=20claros
- |Message-ID:<DQEWN1MTMUCn4snqZjABUsZivTd9SlnvbhxtFvVvE@s1.arrobamail.com>
- |X-Mailer:FMMailer=20v3
- |X-Data:ZXx2OWZzLWRldmVsb3BlckBsaXN0cy5zb3VyY2Vmb3JnZS5uZXR8
- |X-Fid:eGZpZC12OWZzLWRldmVsb3BlckBsaXN0cy5zb3VyY2Vmb3JnZS5uZXQtOTI0LTMxOTQ
- tMTMzNzQ1LTI2OS1zMS5hcnJvYmFtYWlsLmNvbQ=3D=3D
- |X-fmbh:djlmcy1kZXZlbG9wZXJAbGlzdHMuc291cmNlZm9yZ2UubmV0OzkyNDszMTk0OzEzMz
- c0NTsyNjk=3D
- |List-Unsubscribe:<https://s1.arrobamail.com/unsuscribe.php?FormData=3Dwrr
- itysrwptspetseup> |X-AntiAbuse:abuse@outservices.net
- |Feedback-ID:924:3194s133745:124931:WPservicesESP
- |List-ID:<38328:2407410> |MIME-Version:1.0
- |Content-Type:multipart/alternative=3B=20boundary=3D"b1_DQEWN1MTMUCn4snqZj
- ABUsZivTd9SlnvbhxtFvVvE";
- bh=G/CIVijgxUvtUxQoLjdkhWJZ7Bg14Gydw27A5ikS0dE=;
- b=UgTro0P0nCYDVHzzLX+dZEG4bUifbfj81oYH0JWw/72XBxru11DPFIQeFmjIEDgkbCcEGgnbG
- 0a1i1H5PUS58wGEm4VnBBXxyGVMRnyUGBdrBXgQku6fFn40zNep1Jh597S8et5g4zmXeDT7Zg
- tz2eAkm2jGZKdVPQlyLD2wDqc=
-X-Spam-Score: 2.9 (++)
-X-Spam-Report: Spam detection software, running on the system "sfi-spamd-1.hosts.colo.sdot.me",
+Content-Disposition: inline
+In-Reply-To: <20250715154815.3501030-1-Sergey.Nalivayko@kaspersky.com>
+X-Spam-Score: -0.2 (/)
+X-Spam-Report: Spam detection software,
+ running on the system "sfi-spamd-1.hosts.colo.sdot.me", 
  has NOT identified this incoming email as spam.  The original
  message has been attached to this so you can view it or label
  similar future email.  If you have any questions, see
  the administrator of that system for details.
- 
- Content preview:  Fortalece la evaluación del desempeño Fortalece la evaluación
-    del desempeño con Vorecol 360 Feedback. 
- 
- Content analysis details:   (2.9 points, 5.0 required)
- 
-  pts rule name              description
+ Content preview:  Nalivayko Sergey wrote on Tue, Jul 15, 2025 at 06:48:15PM
+ +0300: > This happens because of a race condition between: > > - The 9p client
+ sending an invalid flush request and later cleaning it up; > - [...] 
+ Content analysis details:   (-0.2 points, 5.0 required)
+ pts rule name              description
  ---- ---------------------- --------------------------------------------------
-  4.0 RCVD_IN_UCE1           RBL: IP Listed in UCEPROTECT Level 1
-                             [190.105.144.156 listed in dnsbl-1.uceprotect.net]
- -0.1 DKIM_VALID_AU          Message has a valid DKIM or DK signature from author's
-                             domain
- -0.1 DKIM_VALID             Message has at least one valid DKIM or DK signature
-  0.1 DKIM_SIGNED            Message has a DKIM or DK signature, not necessarily valid
-  0.0 HEADER_FROM_DIFFERENT_DOMAINS From and EnvelopeFrom 2nd level mail
-                             domains are different
-  0.0 HTML_MESSAGE           BODY: HTML included in message
-  0.0 HTML_FONT_LOW_CONTRAST BODY: HTML font color similar or identical to
-                             background
- -1.0 MAILING_LIST_MULTI     Multiple indicators imply a widely-seen list
-                             manager
-X-Headers-End: 1um2JA-0002T0-6O
-X-Content-Filtered-By: Mailman/MimeDel 2.1.21
-Subject: [V9fs-developer] El feedback efectivo empieza con datos claros
+ -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from author's
+ domain
+ -0.1 DKIM_VALID_EF          Message has a valid DKIM or DK signature from
+ envelope-from domain
+ -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+ 0.1 DKIM_SIGNED            Message has a DKIM or DK signature,
+ not necessarily valid
+X-Headers-End: 1umk3j-00083I-1o
+Subject: Re: [V9fs-developer] [PATCH] net: 9p: fix double req put in
+ p9_fd_cancelled
 X-BeenThere: v9fs-developer@lists.sourceforge.net
 X-Mailman-Version: 2.1.21
+Precedence: list
 List-Id: "deprecated: use v9fs@lists.linux.dev"
  <v9fs-developer.lists.sourceforge.net>
 List-Unsubscribe: <https://lists.sourceforge.net/lists/options/v9fs-developer>, 
@@ -131,40 +107,88 @@ List-Post: <mailto:v9fs-developer@lists.sourceforge.net>
 List-Help: <mailto:v9fs-developer-request@lists.sourceforge.net?subject=help>
 List-Subscribe: <https://lists.sourceforge.net/lists/listinfo/v9fs-developer>, 
  <mailto:v9fs-developer-request@lists.sourceforge.net?subject=subscribe>
-Reply-To: =?utf-8?Q?Daniel_Rodr=C3=ADguez?=
- <daniel.rodriguez@consultores-rh.com>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Cc: Latchesar Ionkov <lucho@ionkov.net>, Wang Hai <wanghai38@huawei.com>,
+ lvc-project@linuxtesting.org, Eric Van Hensbergen <ericvh@gmail.com>,
+ netdev@vger.kernel.org, stable@vger.kernel.org,
+ v9fs-developer@lists.sourceforge.net
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: v9fs-developer-bounces@lists.sourceforge.net
 
-CgoKCUZvcnRhbGVjZSBsYSBldmFsdWFjacOzbiBkZWwgZGVzZW1wZcOxbwoKCkZvcnRhbGVjZSBs
-YSBldmFsdWFjacOzbiBkZWwgZGVzZW1wZcOxbyBjb24gVm9yZWNvbCAzNjAgRmVlZGJhY2suCgoK
-CgkKCQkKCQkJCgkJCUhvbGEsJm5ic3A7Vjlmcy1kZXZlbG9wZXIsCgoJCQlMYSByZXRyb2FsaW1l
-bnRhY2nDs24gZXMgdW5hIGRlIGxhcyBoZXJyYW1pZW50YXMgbcOhcyBwb2Rlcm9zYXMgcGFyYSBl
-bCBkZXNhcnJvbGxvIGRlIGxhcyBwZXJzb25hcywgcGVybyBtdWNoYXMgdmVjZXMgc2UgbGltaXRh
-IGEgbGEgb3BpbmnDs24gZGUgdW4gc29sbyBsw61kZXIuIENvbiB1bmEgdmlzacOzbiBtw6FzIGFt
-cGxpYSwgbGFzIGRlY2lzaW9uZXMgc2UgdnVlbHZlbiBtw6FzIGp1c3RhcyB5IGVmZWN0aXZhcy4K
-CgkJCVZvcmVjb2wgMzYwIEZlZWRiYWNrIHRlIHBlcm1pdGUgZXZhbHVhciBlbCBkZXNlbXBlw7Fv
-IGRlc2RlIG3Dumx0aXBsZXMgcGVyc3BlY3RpdmFzLCBvYnRlbmllbmRvIHVuYSBpbWFnZW4gY29t
-cGxldGEgeSBvYmpldGl2YS4KCgkJCUNvbiBWb3JlY29sIDM2MCBGZWVkYmFjayBwdWVkZXM6CgoJ
-CQnigKIgUmVjaWJpciBldmFsdWFjaW9uZXMgZGVzZGUgZGlmZXJlbnRlcyBmdWVudGVzOiBsw61k
-ZXJlcywgcGFyZXMsIGNvbGFib3JhZG9yZXMgeSBhdXRvZXZhbHVhY2nDs24uCgoJCQnigKIgUGVy
-c29uYWxpemFyIGNvbXBldGVuY2lhcyB5IGNyaXRlcmlvcyBzZWfDum4gZWwgcm9sIHkgbGFzIG1l
-dGFzIGRlIGxhIG9yZ2FuaXphY2nDs24uCgoJCQnigKIgR2VuZXJhciByZXBvcnRlcyBjbGFyb3Mg
-eSBhY2Npb25hYmxlcywgY29uIMOhcmVhcyBkZSBtZWpvcmEgeSBmb3J0YWxlemFzIGRlc3RhY2Fk
-YXMuCgoJCQlFc3RvIGF5dWRhIGEgY3JlYXIgdW5hIGN1bHR1cmEgZGUgcmV0cm9hbGltZW50YWNp
-w7NuIGNvbnRpbnVhIHkgbWVqb3JhIGNvbnN0YW50ZSBlbiB0b2RvcyBsb3Mgbml2ZWxlcy4KCgkJ
-CVNpIGVzdMOhcyBidXNjYW5kbyBmb3J0YWxlY2VyIGxhIGV2YWx1YWNpw7NuIGRlbCBkZXNlbXBl
-w7FvLCBlc3RhIHB1ZWRlIHNlciB1bmEgbXV5IGJ1ZW5hIG9wY2nDs24uIFNpIHF1aWVyZXMgY29u
-b2NlciBtw6FzIHB1ZWRlcyByZXNwb25kZXIgZXN0ZSBjb3JyZW8gbyBzaW1wbGVtZW50ZSBjb250
-YWN0YXJtZSwgbWlzIGRhdG9zIGVzdMOhbiBhYmFqby4KCgkJCVNhbHVkb3MsCgoJCQktLS0tLS0t
-LS0tLS0tLQoKCQkJQXR0ZS46IERhbmllbCBSb2Ryw61ndWV6CgoJCQlDaXVkYWQgZGUgTcOpeGlj
-bzogKDU1KSA1MDE4IDA1NjUKCgkJCVdoYXRzQXBwOiArNTIgMzMgMTYwNyAyMDg5CgoJCQlTaSBu
-byBkZXNlYXMgcmVjaWJpciBtw6FzIGNvcnJlb3MsIGhheiBjbGljIGFxdcOtIHBhcmEgZGFydGUg
-ZGUgYmFqYS4KCQkJCgkJCgkKCgoKCgpQYXJhIHJlbW92ZXIgc3UgZGlyZWNjaSZvYWN1dGU7biBk
-ZSBlc3RhIGxpc3RhIGhhZ2EgPGEgaHJlZj0iaHR0cHM6Ly9zMS5hcnJvYmFtYWlsLmNvbS91bnN1
-c2NyaWJlLnBocD9pZD13cnJpdHlzcndwdHNwZXRzZXVwIj5jbGljayBhcXUmaWFjdXRlOzwvYT4K
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KVjlmcy1kZXZl
-bG9wZXIgbWFpbGluZyBsaXN0ClY5ZnMtZGV2ZWxvcGVyQGxpc3RzLnNvdXJjZWZvcmdlLm5ldApo
-dHRwczovL2xpc3RzLnNvdXJjZWZvcmdlLm5ldC9saXN0cy9saXN0aW5mby92OWZzLWRldmVsb3Bl
-cgo=
+Nalivayko Sergey wrote on Tue, Jul 15, 2025 at 06:48:15PM +0300:
+> This happens because of a race condition between:
+> 
+> - The 9p client sending an invalid flush request and later cleaning it up;
+> - The 9p client in p9_read_work() canceled all pending requests.
+> 
+>       Thread 1                              Thread 2
+>     ...
+>     p9_client_create()
+>     ...
+>     p9_fd_create()
+>     ...
+>     p9_conn_create()
+>     ...
+>     // start Thread 2
+>     INIT_WORK(&m->rq, p9_read_work);
+>                                         p9_read_work()
+>     ...
+>     p9_client_rpc()
+>     ...
+>                                         ...
+>                                         p9_conn_cancel()
+>                                         ...
+>                                         spin_lock(&m->req_lock);
+>     ...
+>     p9_fd_cancelled()
+>     ...
+>                                         ...
+>                                         spin_unlock(&m->req_lock);
+>                                         // status rewrite
+>                                         p9_client_cb(m->client, req, REQ_STATUS_ERROR)
+>                                         // first remove
+>                                         list_del(&req->req_list);
+>                                         ...
+> 
+>     spin_lock(&m->req_lock)
+>     ...
+>     // second remove
+>     list_del(&req->req_list);
+>     spin_unlock(&m->req_lock)
+>   ...
+> 
+> Commit 74d6a5d56629 ("9p/trans_fd: Fix concurrency del of req_list in
+> p9_fd_cancelled/p9_read_work") fixes a concurrency issue in the 9p filesystem
+> client where the req_list could be deleted simultaneously by both
+> p9_read_work and p9_fd_cancelled functions, but for the case where req->status
+> equals REQ_STATUS_RCVD.
+
+Sorry for the delay,
+Thanks for the investigation, this makes sense and deserves fixing.
+
+> Add an explicit check for REQ_STATUS_ERROR in p9_fd_cancelled before
+> processing the request. Skip processing if the request is already in the error
+> state, as it has been removed and its resources cleaned up.
+
+Looking at the other status, it's quite unlikely but if other thread
+would make it FLSHD we should also skip these -- and I don't think it's
+possible as far as the logic goes but if it's not sent yet we would have
+nothing to flush either, so it's probably better to invert the check,
+and make it `if (req != SENT) return` ?
+
+client.c already checks `READ_ONCE(oldreq->status) == REQ_STATUS_SENT`
+before calling cancelled but that's without lock, so basically we're
+checking nothing raced since that check, and it's not limited to RCVD
+and ERROR.
+
+If you can send a v2 with that I'll pick it up.
+
+Thanks,
+-- 
+Dominique Martinet | Asmadeus
+
+
+_______________________________________________
+V9fs-developer mailing list
+V9fs-developer@lists.sourceforge.net
+https://lists.sourceforge.net/lists/listinfo/v9fs-developer
